@@ -13,18 +13,18 @@ class ViewUtilsBase {
 
     public void clearNonTransitionAlpha(@NonNull View view) {
         if (view.getVisibility() == 0) {
-            view.setTag(R.id.save_non_transition_alpha, null);
+            view.setTag(C0703R.id.save_non_transition_alpha, null);
         }
     }
 
     public float getTransitionAlpha(@NonNull View view) {
-        Float f2 = (Float) view.getTag(R.id.save_non_transition_alpha);
+        Float f2 = (Float) view.getTag(C0703R.id.save_non_transition_alpha);
         return f2 != null ? view.getAlpha() / f2.floatValue() : view.getAlpha();
     }
 
     public void saveNonTransitionAlpha(@NonNull View view) {
-        if (view.getTag(R.id.save_non_transition_alpha) == null) {
-            view.setTag(R.id.save_non_transition_alpha, Float.valueOf(view.getAlpha()));
+        if (view.getTag(C0703R.id.save_non_transition_alpha) == null) {
+            view.setTag(C0703R.id.save_non_transition_alpha, Float.valueOf(view.getAlpha()));
         }
     }
 
@@ -69,7 +69,7 @@ class ViewUtilsBase {
     }
 
     public void setTransitionAlpha(@NonNull View view, float f2) {
-        Float f3 = (Float) view.getTag(R.id.save_non_transition_alpha);
+        Float f3 = (Float) view.getTag(C0703R.id.save_non_transition_alpha);
         if (f3 != null) {
             view.setAlpha(f3.floatValue() * f2);
         } else {

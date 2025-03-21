@@ -1,7 +1,7 @@
 package anet.channel.strategy;
 
 import android.text.TextUtils;
-import anet.channel.strategy.l;
+import anet.channel.strategy.C0842l;
 import java.io.Serializable;
 
 /* compiled from: Taobao */
@@ -14,24 +14,26 @@ class IPConnStrategy implements IConnStrategy, Serializable {
     public static final int TYPE_NORMAL = 1;
     public static final int TYPE_STATIC_BANDWITDH = 0;
 
-    /* renamed from: a, reason: collision with root package name */
-    volatile int f1917a = 1;
+    /* renamed from: a */
+    volatile int f1036a = 1;
 
-    /* renamed from: b, reason: collision with root package name */
-    volatile int f1918b = 1;
+    /* renamed from: b */
+    volatile int f1037b = 1;
 
-    /* renamed from: c, reason: collision with root package name */
-    transient boolean f1919c;
+    /* renamed from: c */
+    transient boolean f1038c;
     public volatile int cto;
     public volatile int heartbeat;
-    public final String ip;
+
+    /* renamed from: ip */
+    public final String f1039ip;
     public final int port;
     public final ConnProtocol protocol;
     public volatile int retry;
     public volatile int rto;
 
     private IPConnStrategy(String str, int i2, ConnProtocol connProtocol, int i3, int i4, int i5, int i6) {
-        this.ip = str;
+        this.f1039ip = str;
         this.port = i2;
         this.protocol = connProtocol;
         this.cto = i3;
@@ -40,12 +42,13 @@ class IPConnStrategy implements IConnStrategy, Serializable {
         this.heartbeat = i6;
     }
 
-    static IPConnStrategy a(String str, l.a aVar) {
+    /* renamed from: a */
+    static IPConnStrategy m632a(String str, C0842l.a aVar) {
         ConnProtocol valueOf = ConnProtocol.valueOf(aVar);
         if (valueOf == null) {
             return null;
         }
-        return a(str, aVar.f1989a, valueOf, aVar.f1991c, aVar.f1992d, aVar.f1993e, aVar.f1994f);
+        return m631a(str, aVar.f1109a, valueOf, aVar.f1111c, aVar.f1112d, aVar.f1113e, aVar.f1114f);
     }
 
     public boolean equals(Object obj) {
@@ -56,7 +59,7 @@ class IPConnStrategy implements IConnStrategy, Serializable {
             return false;
         }
         IPConnStrategy iPConnStrategy = (IPConnStrategy) obj;
-        return this.port == iPConnStrategy.port && this.ip.equals(iPConnStrategy.ip) && this.protocol.equals(iPConnStrategy.protocol);
+        return this.port == iPConnStrategy.port && this.f1039ip.equals(iPConnStrategy.f1039ip) && this.protocol.equals(iPConnStrategy.protocol);
     }
 
     @Override // anet.channel.strategy.IConnStrategy
@@ -71,17 +74,17 @@ class IPConnStrategy implements IConnStrategy, Serializable {
 
     @Override // anet.channel.strategy.IConnStrategy
     public String getIp() {
-        return this.ip;
+        return this.f1039ip;
     }
 
     @Override // anet.channel.strategy.IConnStrategy
     public int getIpSource() {
-        return this.f1918b;
+        return this.f1037b;
     }
 
     @Override // anet.channel.strategy.IConnStrategy
     public int getIpType() {
-        return this.f1917a;
+        return this.f1036a;
     }
 
     @Override // anet.channel.strategy.IConnStrategy
@@ -109,14 +112,14 @@ class IPConnStrategy implements IConnStrategy, Serializable {
     }
 
     public int hashCode() {
-        return ((((527 + this.ip.hashCode()) * 31) + this.port) * 31) + this.protocol.hashCode();
+        return ((((527 + this.f1039ip.hashCode()) * 31) + this.port) * 31) + this.protocol.hashCode();
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder(32);
         sb.append('{');
-        sb.append(this.ip);
-        if (this.f1917a == 0) {
+        sb.append(this.f1039ip);
+        if (this.f1036a == 0) {
             sb.append("(*)");
         }
         sb.append(' ');
@@ -127,7 +130,8 @@ class IPConnStrategy implements IConnStrategy, Serializable {
         return sb.toString();
     }
 
-    static IPConnStrategy a(String str, int i2, ConnProtocol connProtocol, int i3, int i4, int i5, int i6) {
+    /* renamed from: a */
+    static IPConnStrategy m631a(String str, int i2, ConnProtocol connProtocol, int i3, int i4, int i5, int i6) {
         if (TextUtils.isEmpty(str) || connProtocol == null || i2 <= 0) {
             return null;
         }

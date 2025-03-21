@@ -38,13 +38,13 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     private void addPhotoRecyclerView() {
         boolean booleanExtra = getIntent().getBooleanExtra(UCrop.Options.EXTRA_SKIP_MULTIPLE_CROP, true);
         this.mRecyclerView = new RecyclerView(this);
-        this.mRecyclerView.setId(R.id.id_recycler);
-        this.mRecyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.ucrop_color_widget_background));
+        this.mRecyclerView.setId(C4415R.id.id_recycler);
+        this.mRecyclerView.setBackgroundColor(ContextCompat.getColor(this, C4415R.color.ucrop_color_widget_background));
         this.mRecyclerView.setLayoutParams(new RelativeLayout.LayoutParams(-1, ScreenUtils.dip2px(this, 80.0f)));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(0);
         if (this.isAnimation) {
-            this.mRecyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getApplicationContext(), R.anim.ucrop_layout_animation_fall_down));
+            this.mRecyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getApplicationContext(), C4415R.anim.ucrop_layout_animation_fall_down));
         }
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         ((SimpleItemAnimator) this.mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -69,8 +69,8 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         }
         this.uCropPhotoBox.addView(this.mRecyclerView);
         changeLayoutParams(this.mShowBottomControls);
-        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(R.id.ucrop_frame)).getLayoutParams()).addRule(2, R.id.id_recycler);
-        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, R.id.controls_wrapper);
+        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(C4415R.id.ucrop_frame)).getLayoutParams()).addRule(2, C4415R.id.id_recycler);
+        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, C4415R.id.controls_wrapper);
     }
 
     private void changeLayoutParams(boolean z) {
@@ -79,7 +79,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         }
         if (z) {
             ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(12, 0);
-            ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, R.id.wrapper_controls);
+            ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, C4415R.id.wrapper_controls);
         } else {
             ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(12);
             ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, 0);
@@ -99,7 +99,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     private void initLoadCutData() {
         ArrayList<CutInfo> arrayList = this.list;
         if (arrayList == null || arrayList.size() == 0) {
-            a();
+            onBackPressed();
             return;
         }
         int size = this.list.size();
@@ -126,8 +126,8 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         this.mAdapter.notifyItemChanged(this.cutIndex);
         this.uCropPhotoBox.addView(this.mRecyclerView);
         changeLayoutParams(this.mShowBottomControls);
-        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(R.id.ucrop_frame)).getLayoutParams()).addRule(2, R.id.id_recycler);
-        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, R.id.controls_wrapper);
+        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(C4415R.id.ucrop_frame)).getLayoutParams()).addRule(2, C4415R.id.id_recycler);
+        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, C4415R.id.controls_wrapper);
     }
 
     private void resetCutDataStatus() {
@@ -159,7 +159,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         this.isAnimation = getIntent().getBooleanExtra(UCrop.Options.EXTRA_MULTIPLE_RECYCLERANIMATION, true);
         ArrayList<CutInfo> arrayList = this.list;
         if (arrayList == null || arrayList.size() == 0) {
-            a();
+            onBackPressed();
         } else if (this.list.size() > 1) {
             initLoadCutData();
             addPhotoRecyclerView();
@@ -182,8 +182,8 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         if (view != null) {
             this.uCropPhotoBox.removeView(view);
         }
-        setContentView(R.layout.ucrop_activity_photobox);
-        this.uCropPhotoBox = (RelativeLayout) findViewById(R.id.ucrop_photobox);
+        setContentView(C4415R.layout.ucrop_activity_photobox);
+        this.uCropPhotoBox = (RelativeLayout) findViewById(C4415R.id.ucrop_photobox);
         addBlockingView();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -220,7 +220,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     protected void setResultUri(Uri uri, float f2, int i2, int i3, int i4, int i5) {
         try {
             if (this.list.size() < this.cutIndex) {
-                a();
+                onBackPressed();
                 return;
             }
             CutInfo cutInfo = this.list.get(this.cutIndex);
@@ -243,7 +243,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
                 resetCutData();
             } else {
                 setResult(-1, new Intent().putExtra(UCrop.Options.EXTRA_OUTPUT_URI_LIST, this.list));
-                a();
+                onBackPressed();
             }
         } catch (Exception e2) {
             e2.printStackTrace();

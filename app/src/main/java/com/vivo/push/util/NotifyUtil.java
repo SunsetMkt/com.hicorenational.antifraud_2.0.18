@@ -50,12 +50,12 @@ public class NotifyUtil {
     private static synchronized void initAdapter(Context context) {
         synchronized (NotifyUtil.class) {
             if (sNotifyData == null) {
-                BaseNotifyDataAdapter baseNotifyDataAdapter = (BaseNotifyDataAdapter) getObjectByReflect(sNotifyDataAdapter, new l());
+                BaseNotifyDataAdapter baseNotifyDataAdapter = (BaseNotifyDataAdapter) getObjectByReflect(sNotifyDataAdapter, new C4001l());
                 sNotifyData = baseNotifyDataAdapter;
                 baseNotifyDataAdapter.init(context);
             }
             if (sNotifyLayout == null) {
-                BaseNotifyLayoutAdapter baseNotifyLayoutAdapter = (BaseNotifyLayoutAdapter) getObjectByReflect(sNotifyLayoutAdapter, new m());
+                BaseNotifyLayoutAdapter baseNotifyLayoutAdapter = (BaseNotifyLayoutAdapter) getObjectByReflect(sNotifyLayoutAdapter, new C4002m());
                 sNotifyLayout = baseNotifyLayoutAdapter;
                 baseNotifyLayoutAdapter.init(context);
             }

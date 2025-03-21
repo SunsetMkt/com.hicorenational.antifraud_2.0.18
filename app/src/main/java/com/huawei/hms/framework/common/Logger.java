@@ -3,11 +3,11 @@ package com.huawei.hms.framework.common;
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Log;
-import c.c.a.b.a.a;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.IllegalFormatException;
 import org.json.JSONException;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class Logger {
@@ -92,32 +92,34 @@ public class Logger {
     }
 
     @SuppressLint({"LogTagMismatch"})
-    public static void d(String str, Object obj) {
+    /* renamed from: d */
+    public static void m6794d(String str, Object obj) {
         println(3, str, obj);
     }
 
-    public static void e(String str, Object obj) {
+    /* renamed from: e */
+    public static void m6796e(String str, Object obj) {
         println(6, str, obj);
     }
 
     private static void extLogPrintln(int i2, String str, String str2) {
         if (i2 == 2) {
-            extLogger.v(str, str2);
+            extLogger.m6791v(str, str2);
             return;
         }
         if (i2 == 3) {
-            extLogger.d(str, str2);
+            extLogger.m6787d(str, str2);
             return;
         }
         if (i2 == 4) {
-            extLogger.i(str, str2);
+            extLogger.m6790i(str, str2);
         } else if (i2 == 5) {
-            extLogger.w(str, str2);
+            extLogger.m6792w(str, str2);
         } else {
             if (i2 != 6) {
                 return;
             }
-            extLogger.e(str, str2);
+            extLogger.m6788e(str, str2);
         }
     }
 
@@ -150,7 +152,8 @@ public class Logger {
     }
 
     @SuppressLint({"LogTagMismatch"})
-    public static void i(String str, Object obj) {
+    /* renamed from: i */
+    public static void m6799i(String str, Object obj) {
         println(4, str, obj);
     }
 
@@ -180,34 +183,39 @@ public class Logger {
         if (i2 < 3) {
             return;
         }
-        logPrintln(i2, str, obj == null ? a.f3101h : obj.toString());
+        logPrintln(i2, str, obj == null ? AbstractC1191a.f2571h : obj.toString());
     }
 
     public static void setExtLogger(ExtLogger extLogger2, boolean z) {
         extLogger = extLogger2;
         kitPrint = z;
-        i(TAG, "logger = " + extLogger2 + z);
+        m6799i(TAG, "logger = " + extLogger2 + z);
     }
 
-    public static void v(String str, String str2, Object... objArr) {
+    /* renamed from: v */
+    public static void m6802v(String str, String str2, Object... objArr) {
         println(2, str, str2, objArr);
     }
 
-    public static void w(String str, Object obj) {
+    /* renamed from: w */
+    public static void m6803w(String str, Object obj) {
         println(5, str, obj);
     }
 
     @SuppressLint({"LogTagMismatch"})
-    public static void d(String str, String str2, Object... objArr) {
+    /* renamed from: d */
+    public static void m6795d(String str, String str2, Object... objArr) {
         println(3, str, str2, objArr);
     }
 
-    public static void e(String str, String str2, Object... objArr) {
+    /* renamed from: e */
+    public static void m6798e(String str, String str2, Object... objArr) {
         println(6, str, str2, objArr);
     }
 
     @SuppressLint({"LogTagMismatch"})
-    public static void i(String str, String str2, Object... objArr) {
+    /* renamed from: i */
+    public static void m6800i(String str, String str2, Object... objArr) {
         println(4, str, str2, objArr);
     }
 
@@ -216,22 +224,25 @@ public class Logger {
             try {
                 logPrintln(i2, str, StringUtils.format(str2, objArr));
             } catch (IllegalFormatException e2) {
-                w(TAG, "log format error" + str2, e2);
+                m6804w(TAG, "log format error" + str2, e2);
             }
         }
     }
 
-    public static void v(String str, Object obj) {
+    /* renamed from: v */
+    public static void m6801v(String str, Object obj) {
         println(2, str, obj);
     }
 
-    public static void w(String str, String str2, Object... objArr) {
+    /* renamed from: w */
+    public static void m6805w(String str, String str2, Object... objArr) {
         println(5, str, str2, objArr);
     }
 
-    public static void e(String str, String str2, Throwable th) {
+    /* renamed from: e */
+    public static void m6797e(String str, String str2, Throwable th) {
         if (isAPPLoggable(6)) {
-            extLogger.e(complexAppTag(str), complexMsg(str2, 5), getNewThrowable(th));
+            extLogger.m6789e(complexAppTag(str), complexMsg(str2, 5), getNewThrowable(th));
         }
         if (kitPrint) {
             complexTag(str);
@@ -240,9 +251,10 @@ public class Logger {
         }
     }
 
-    public static void w(String str, String str2, Throwable th) {
+    /* renamed from: w */
+    public static void m6804w(String str, String str2, Throwable th) {
         if (isAPPLoggable(5)) {
-            extLogger.w(complexAppTag(str), complexMsg(str2, 5), getNewThrowable(th));
+            extLogger.m6793w(complexAppTag(str), complexMsg(str2, 5), getNewThrowable(th));
         }
         if (kitPrint) {
             complexTag(str);

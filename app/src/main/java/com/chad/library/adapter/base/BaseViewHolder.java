@@ -29,309 +29,353 @@ import java.util.Set;
 /* loaded from: classes.dex */
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final SparseArray<View> f5437a;
+    /* renamed from: a */
+    private final SparseArray<View> f5597a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final HashSet<Integer> f5438b;
+    /* renamed from: b */
+    private final HashSet<Integer> f5598b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private final LinkedHashSet<Integer> f5439c;
+    /* renamed from: c */
+    private final LinkedHashSet<Integer> f5599c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private final LinkedHashSet<Integer> f5440d;
+    /* renamed from: d */
+    private final LinkedHashSet<Integer> f5600d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private BaseQuickAdapter f5441e;
+    /* renamed from: e */
+    private BaseQuickAdapter f5601e;
 
-    /* renamed from: f, reason: collision with root package name */
+    /* renamed from: f */
     @Deprecated
-    public View f5442f;
+    public View f5602f;
 
-    /* renamed from: g, reason: collision with root package name */
-    Object f5443g;
+    /* renamed from: g */
+    Object f5603g;
 
-    class a implements View.OnClickListener {
-        a() {
+    /* renamed from: com.chad.library.adapter.base.BaseViewHolder$a */
+    class ViewOnClickListenerC1902a implements View.OnClickListener {
+        ViewOnClickListenerC1902a() {
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            if (BaseViewHolder.this.f5441e.o() != null) {
-                BaseViewHolder.this.f5441e.o().onItemChildClick(BaseViewHolder.this.f5441e, view, BaseViewHolder.this.f());
+            if (BaseViewHolder.this.f5601e.m5173o() != null) {
+                BaseViewHolder.this.f5601e.m5173o().onItemChildClick(BaseViewHolder.this.f5601e, view, BaseViewHolder.this.m5193f());
             }
         }
     }
 
-    class b implements View.OnLongClickListener {
-        b() {
+    /* renamed from: com.chad.library.adapter.base.BaseViewHolder$b */
+    class ViewOnLongClickListenerC1903b implements View.OnLongClickListener {
+        ViewOnLongClickListenerC1903b() {
         }
 
         @Override // android.view.View.OnLongClickListener
         public boolean onLongClick(View view) {
-            return BaseViewHolder.this.f5441e.p() != null && BaseViewHolder.this.f5441e.p().a(BaseViewHolder.this.f5441e, view, BaseViewHolder.this.f());
+            return BaseViewHolder.this.f5601e.m5174p() != null && BaseViewHolder.this.f5601e.m5174p().m5185a(BaseViewHolder.this.f5601e, view, BaseViewHolder.this.m5193f());
         }
     }
 
     public BaseViewHolder(View view) {
         super(view);
-        this.f5437a = new SparseArray<>();
-        this.f5439c = new LinkedHashSet<>();
-        this.f5440d = new LinkedHashSet<>();
-        this.f5438b = new HashSet<>();
-        this.f5442f = view;
+        this.f5597a = new SparseArray<>();
+        this.f5599c = new LinkedHashSet<>();
+        this.f5600d = new LinkedHashSet<>();
+        this.f5598b = new HashSet<>();
+        this.f5602f = view;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public int f() {
-        if (getLayoutPosition() >= this.f5441e.j()) {
-            return getLayoutPosition() - this.f5441e.j();
+    /* renamed from: f */
+    public int m5193f() {
+        if (getLayoutPosition() >= this.f5601e.m5164j()) {
+            return getLayoutPosition() - this.f5601e.m5164j();
         }
         return 0;
     }
 
     @Deprecated
-    public View c() {
-        return this.f5442f;
+    /* renamed from: c */
+    public View m5223c() {
+        return this.f5602f;
     }
 
-    public HashSet<Integer> d() {
-        return this.f5440d;
+    /* renamed from: d */
+    public HashSet<Integer> m5229d() {
+        return this.f5600d;
     }
 
-    public Set<Integer> e() {
-        return this.f5438b;
+    /* renamed from: e */
+    public Set<Integer> m5232e() {
+        return this.f5598b;
     }
 
-    public BaseViewHolder g(@IdRes int i2, @ColorInt int i3) {
-        ((TextView) c(i2)).setTextColor(i3);
+    /* renamed from: g */
+    public BaseViewHolder m5234g(@IdRes int i2, @ColorInt int i3) {
+        ((TextView) m5224c(i2)).setTextColor(i3);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, CharSequence charSequence) {
-        ((TextView) c(i2)).setText(charSequence);
+    /* renamed from: a */
+    public BaseViewHolder m5211a(@IdRes int i2, CharSequence charSequence) {
+        ((TextView) m5224c(i2)).setText(charSequence);
         return this;
     }
 
-    public HashSet<Integer> b() {
-        return this.f5439c;
+    /* renamed from: b */
+    public HashSet<Integer> m5222b() {
+        return this.f5599c;
     }
 
-    public BaseViewHolder c(@IdRes int i2, @DrawableRes int i3) {
-        ((ImageView) c(i2)).setImageResource(i3);
+    /* renamed from: c */
+    public BaseViewHolder m5225c(@IdRes int i2, @DrawableRes int i3) {
+        ((ImageView) m5224c(i2)).setImageResource(i3);
         return this;
     }
 
-    public BaseViewHolder d(@IdRes int i2) {
-        Linkify.addLinks((TextView) c(i2), 15);
+    /* renamed from: d */
+    public BaseViewHolder m5227d(@IdRes int i2) {
+        Linkify.addLinks((TextView) m5224c(i2), 15);
         return this;
     }
 
-    public BaseViewHolder e(@IdRes int i2, int i3) {
-        ((ProgressBar) c(i2)).setProgress(i3);
+    /* renamed from: e */
+    public BaseViewHolder m5231e(@IdRes int i2, int i3) {
+        ((ProgressBar) m5224c(i2)).setProgress(i3);
         return this;
     }
 
-    public BaseViewHolder b(@IdRes int i2, @DrawableRes int i3) {
-        c(i2).setBackgroundResource(i3);
+    /* renamed from: b */
+    public BaseViewHolder m5220b(@IdRes int i2, @DrawableRes int i3) {
+        m5224c(i2).setBackgroundResource(i3);
         return this;
     }
 
-    public BaseViewHolder f(@IdRes int i2, @StringRes int i3) {
-        ((TextView) c(i2)).setText(i3);
+    /* renamed from: f */
+    public BaseViewHolder m5233f(@IdRes int i2, @StringRes int i3) {
+        ((TextView) m5224c(i2)).setText(i3);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, @ColorInt int i3) {
-        c(i2).setBackgroundColor(i3);
+    /* renamed from: a */
+    public BaseViewHolder m5197a(@IdRes int i2, @ColorInt int i3) {
+        m5224c(i2).setBackgroundColor(i3);
         return this;
     }
 
-    public BaseViewHolder c(@IdRes int i2, boolean z) {
-        c(i2).setVisibility(z ? 0 : 4);
+    /* renamed from: c */
+    public BaseViewHolder m5226c(@IdRes int i2, boolean z) {
+        m5224c(i2).setVisibility(z ? 0 : 4);
         return this;
     }
 
-    public BaseViewHolder d(@IdRes int i2, int i3) {
-        ((ProgressBar) c(i2)).setMax(i3);
+    /* renamed from: d */
+    public BaseViewHolder m5228d(@IdRes int i2, int i3) {
+        ((ProgressBar) m5224c(i2)).setMax(i3);
         return this;
     }
 
-    public BaseViewHolder e(@IdRes int i2) {
-        a(i2);
-        b(i2);
-        this.f5438b.add(Integer.valueOf(i2));
+    /* renamed from: e */
+    public BaseViewHolder m5230e(@IdRes int i2) {
+        m5194a(i2);
+        m5218b(i2);
+        this.f5598b.add(Integer.valueOf(i2));
         return this;
     }
 
-    public BaseViewHolder b(@IdRes int i2, boolean z) {
-        c(i2).setVisibility(z ? 0 : 8);
+    /* renamed from: b */
+    public BaseViewHolder m5221b(@IdRes int i2, boolean z) {
+        m5224c(i2).setVisibility(z ? 0 : 8);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, Drawable drawable) {
-        ((ImageView) c(i2)).setImageDrawable(drawable);
+    /* renamed from: a */
+    public BaseViewHolder m5202a(@IdRes int i2, Drawable drawable) {
+        ((ImageView) m5224c(i2)).setImageDrawable(drawable);
         return this;
     }
 
-    public <T extends View> T c(@IdRes int i2) {
-        T t = (T) this.f5437a.get(i2);
+    /* renamed from: c */
+    public <T extends View> T m5224c(@IdRes int i2) {
+        T t = (T) this.f5597a.get(i2);
         if (t != null) {
             return t;
         }
         T t2 = (T) this.itemView.findViewById(i2);
-        this.f5437a.put(i2, t2);
+        this.f5597a.put(i2, t2);
         return t2;
     }
 
-    public BaseViewHolder b(@IdRes int i2, float f2) {
-        ((RatingBar) c(i2)).setRating(f2);
+    /* renamed from: b */
+    public BaseViewHolder m5219b(@IdRes int i2, float f2) {
+        ((RatingBar) m5224c(i2)).setRating(f2);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, Bitmap bitmap) {
-        ((ImageView) c(i2)).setImageBitmap(bitmap);
+    /* renamed from: a */
+    public BaseViewHolder m5200a(@IdRes int i2, Bitmap bitmap) {
+        ((ImageView) m5224c(i2)).setImageBitmap(bitmap);
         return this;
     }
 
-    public BaseViewHolder b(@IdRes int i2) {
-        this.f5440d.add(Integer.valueOf(i2));
-        View c2 = c(i2);
-        if (c2 != null) {
-            if (!c2.isLongClickable()) {
-                c2.setLongClickable(true);
+    /* renamed from: b */
+    public BaseViewHolder m5218b(@IdRes int i2) {
+        this.f5600d.add(Integer.valueOf(i2));
+        View m5224c = m5224c(i2);
+        if (m5224c != null) {
+            if (!m5224c.isLongClickable()) {
+                m5224c.setLongClickable(true);
             }
-            c2.setOnLongClickListener(new b());
+            m5224c.setOnLongClickListener(new ViewOnLongClickListenerC1903b());
         }
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, float f2) {
+    /* renamed from: a */
+    public BaseViewHolder m5195a(@IdRes int i2, float f2) {
         if (Build.VERSION.SDK_INT >= 11) {
-            c(i2).setAlpha(f2);
+            m5224c(i2).setAlpha(f2);
         } else {
             AlphaAnimation alphaAnimation = new AlphaAnimation(f2, f2);
             alphaAnimation.setDuration(0L);
             alphaAnimation.setFillAfter(true);
-            c(i2).startAnimation(alphaAnimation);
+            m5224c(i2).startAnimation(alphaAnimation);
         }
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, Typeface typeface) {
-        TextView textView = (TextView) c(i2);
+    /* renamed from: a */
+    public BaseViewHolder m5201a(@IdRes int i2, Typeface typeface) {
+        TextView textView = (TextView) m5224c(i2);
         textView.setTypeface(typeface);
         textView.setPaintFlags(textView.getPaintFlags() | 128);
         return this;
     }
 
-    public BaseViewHolder a(Typeface typeface, int... iArr) {
+    /* renamed from: a */
+    public BaseViewHolder m5214a(Typeface typeface, int... iArr) {
         for (int i2 : iArr) {
-            TextView textView = (TextView) c(i2);
+            TextView textView = (TextView) m5224c(i2);
             textView.setTypeface(typeface);
             textView.setPaintFlags(textView.getPaintFlags() | 128);
         }
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, int i3, int i4) {
-        ProgressBar progressBar = (ProgressBar) c(i2);
+    /* renamed from: a */
+    public BaseViewHolder m5198a(@IdRes int i2, int i3, int i4) {
+        ProgressBar progressBar = (ProgressBar) m5224c(i2);
         progressBar.setMax(i4);
         progressBar.setProgress(i3);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, float f2, int i3) {
-        RatingBar ratingBar = (RatingBar) c(i2);
+    /* renamed from: a */
+    public BaseViewHolder m5196a(@IdRes int i2, float f2, int i3) {
+        RatingBar ratingBar = (RatingBar) m5224c(i2);
         ratingBar.setMax(i3);
         ratingBar.setRating(f2);
         return this;
     }
 
     @Deprecated
-    public BaseViewHolder a(@IdRes int i2, View.OnClickListener onClickListener) {
-        c(i2).setOnClickListener(onClickListener);
+    /* renamed from: a */
+    public BaseViewHolder m5203a(@IdRes int i2, View.OnClickListener onClickListener) {
+        m5224c(i2).setOnClickListener(onClickListener);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2) {
-        this.f5439c.add(Integer.valueOf(i2));
-        View c2 = c(i2);
-        if (c2 != null) {
-            if (!c2.isClickable()) {
-                c2.setClickable(true);
+    /* renamed from: a */
+    public BaseViewHolder m5194a(@IdRes int i2) {
+        this.f5599c.add(Integer.valueOf(i2));
+        View m5224c = m5224c(i2);
+        if (m5224c != null) {
+            if (!m5224c.isClickable()) {
+                m5224c.setClickable(true);
             }
-            c2.setOnClickListener(new a());
+            m5224c.setOnClickListener(new ViewOnClickListenerC1902a());
         }
         return this;
     }
 
     @Deprecated
-    public BaseViewHolder a(@IdRes int i2, View.OnTouchListener onTouchListener) {
-        c(i2).setOnTouchListener(onTouchListener);
+    /* renamed from: a */
+    public BaseViewHolder m5205a(@IdRes int i2, View.OnTouchListener onTouchListener) {
+        m5224c(i2).setOnTouchListener(onTouchListener);
         return this;
     }
 
     @Deprecated
-    public BaseViewHolder a(@IdRes int i2, View.OnLongClickListener onLongClickListener) {
-        c(i2).setOnLongClickListener(onLongClickListener);
+    /* renamed from: a */
+    public BaseViewHolder m5204a(@IdRes int i2, View.OnLongClickListener onLongClickListener) {
+        m5224c(i2).setOnLongClickListener(onLongClickListener);
         return this;
     }
 
     @Deprecated
-    public BaseViewHolder a(@IdRes int i2, AdapterView.OnItemClickListener onItemClickListener) {
-        ((AdapterView) c(i2)).setOnItemClickListener(onItemClickListener);
+    /* renamed from: a */
+    public BaseViewHolder m5207a(@IdRes int i2, AdapterView.OnItemClickListener onItemClickListener) {
+        ((AdapterView) m5224c(i2)).setOnItemClickListener(onItemClickListener);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, AdapterView.OnItemLongClickListener onItemLongClickListener) {
-        ((AdapterView) c(i2)).setOnItemLongClickListener(onItemLongClickListener);
+    /* renamed from: a */
+    public BaseViewHolder m5208a(@IdRes int i2, AdapterView.OnItemLongClickListener onItemLongClickListener) {
+        ((AdapterView) m5224c(i2)).setOnItemLongClickListener(onItemLongClickListener);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, AdapterView.OnItemSelectedListener onItemSelectedListener) {
-        ((AdapterView) c(i2)).setOnItemSelectedListener(onItemSelectedListener);
+    /* renamed from: a */
+    public BaseViewHolder m5209a(@IdRes int i2, AdapterView.OnItemSelectedListener onItemSelectedListener) {
+        ((AdapterView) m5224c(i2)).setOnItemSelectedListener(onItemSelectedListener);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
-        ((CompoundButton) c(i2)).setOnCheckedChangeListener(onCheckedChangeListener);
+    /* renamed from: a */
+    public BaseViewHolder m5210a(@IdRes int i2, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
+        ((CompoundButton) m5224c(i2)).setOnCheckedChangeListener(onCheckedChangeListener);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, Object obj) {
-        c(i2).setTag(obj);
+    /* renamed from: a */
+    public BaseViewHolder m5212a(@IdRes int i2, Object obj) {
+        m5224c(i2).setTag(obj);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, int i3, Object obj) {
-        c(i2).setTag(i3, obj);
+    /* renamed from: a */
+    public BaseViewHolder m5199a(@IdRes int i2, int i3, Object obj) {
+        m5224c(i2).setTag(i3, obj);
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, boolean z) {
-        KeyEvent.Callback c2 = c(i2);
-        if (c2 instanceof Checkable) {
-            ((Checkable) c2).setChecked(z);
+    /* renamed from: a */
+    public BaseViewHolder m5213a(@IdRes int i2, boolean z) {
+        KeyEvent.Callback m5224c = m5224c(i2);
+        if (m5224c instanceof Checkable) {
+            ((Checkable) m5224c).setChecked(z);
         }
         return this;
     }
 
-    public BaseViewHolder a(@IdRes int i2, Adapter adapter2) {
-        ((AdapterView) c(i2)).setAdapter(adapter2);
+    /* renamed from: a */
+    public BaseViewHolder m5206a(@IdRes int i2, Adapter adapter2) {
+        ((AdapterView) m5224c(i2)).setAdapter(adapter2);
         return this;
     }
 
-    protected BaseViewHolder a(BaseQuickAdapter baseQuickAdapter) {
-        this.f5441e = baseQuickAdapter;
+    /* renamed from: a */
+    protected BaseViewHolder m5215a(BaseQuickAdapter baseQuickAdapter) {
+        this.f5601e = baseQuickAdapter;
         return this;
     }
 
-    public Object a() {
-        return this.f5443g;
+    /* renamed from: a */
+    public Object m5216a() {
+        return this.f5603g;
     }
 
-    public void a(Object obj) {
-        this.f5443g = obj;
+    /* renamed from: a */
+    public void m5217a(Object obj) {
+        this.f5603g = obj;
     }
 }

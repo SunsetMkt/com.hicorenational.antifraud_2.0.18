@@ -11,6 +11,6 @@ public class PushServiceReceiver extends BroadcastReceiver {
         Intent intent2 = new Intent(context, (Class<?>) PushMessageHandler.class);
         intent2.putExtras(intent);
         intent2.setAction(intent.getAction());
-        PushMessageHandler.a(context, intent2);
+        PushMessageHandler.m13457a(context, intent2);
     }
 }

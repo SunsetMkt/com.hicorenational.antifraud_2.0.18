@@ -76,13 +76,15 @@ public class PushEntity extends BaseBean {
     }
 
     public static class ExtraBean extends BaseBean {
-        String id;
+
+        /* renamed from: id */
+        String f1610id;
         String title;
         String type;
         String url;
 
         public String getId() {
-            return this.id;
+            return this.f1610id;
         }
 
         public String getTitle() {
@@ -98,7 +100,7 @@ public class PushEntity extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f1610id = str;
         }
 
         public void setTitle(String str) {

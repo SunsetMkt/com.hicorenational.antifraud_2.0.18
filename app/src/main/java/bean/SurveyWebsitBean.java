@@ -7,7 +7,9 @@ public class SurveyWebsitBean extends BaseBean {
     private String account;
     private String caseInfoID;
     private String createTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1631id;
     private String pwd;
     private String updateTime;
     private String url;
@@ -25,7 +27,7 @@ public class SurveyWebsitBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1631id;
     }
 
     public String getPwd() {
@@ -53,7 +55,7 @@ public class SurveyWebsitBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1631id = str;
     }
 
     public void setPwd(String str) {

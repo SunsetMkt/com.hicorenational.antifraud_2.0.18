@@ -10,11 +10,11 @@ public final class Objects {
 
     public static final class ToStringHelper {
 
-        /* renamed from: a, reason: collision with root package name */
-        private final List<String> f6762a;
+        /* renamed from: a */
+        private final List<String> f7282a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private final Object f6763b;
+        /* renamed from: b */
+        private final Object f7283b;
 
         public final ToStringHelper add(String str, Object obj) {
             String str2 = (String) Preconditions.checkNotNull(str);
@@ -23,18 +23,18 @@ public final class Objects {
             sb.append(str2);
             sb.append(ContainerUtils.KEY_VALUE_DELIMITER);
             sb.append(valueOf);
-            this.f6762a.add(sb.toString());
+            this.f7282a.add(sb.toString());
             return this;
         }
 
         public final String toString() {
-            String simpleName = this.f6763b.getClass().getSimpleName();
+            String simpleName = this.f7283b.getClass().getSimpleName();
             StringBuilder sb = new StringBuilder(100);
             sb.append(simpleName);
             sb.append('{');
-            int size = this.f6762a.size();
+            int size = this.f7282a.size();
             for (int i2 = 0; i2 < size; i2++) {
-                sb.append(this.f6762a.get(i2));
+                sb.append(this.f7282a.get(i2));
                 if (i2 < size - 1) {
                     sb.append(", ");
                 }
@@ -44,8 +44,8 @@ public final class Objects {
         }
 
         private ToStringHelper(Object obj) {
-            this.f6763b = Preconditions.checkNotNull(obj);
-            this.f6762a = new ArrayList();
+            this.f7283b = Preconditions.checkNotNull(obj);
+            this.f7282a = new ArrayList();
         }
     }
 

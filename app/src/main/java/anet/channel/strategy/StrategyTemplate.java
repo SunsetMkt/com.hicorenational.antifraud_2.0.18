@@ -9,17 +9,18 @@ public class StrategyTemplate {
     Map<String, ConnProtocol> templateMap = new ConcurrentHashMap();
 
     /* compiled from: Taobao */
-    static class a {
+    /* renamed from: anet.channel.strategy.StrategyTemplate$a */
+    static class C0824a {
 
-        /* renamed from: a, reason: collision with root package name */
-        static StrategyTemplate f1948a = new StrategyTemplate();
+        /* renamed from: a */
+        static StrategyTemplate f1068a = new StrategyTemplate();
 
-        a() {
+        C0824a() {
         }
     }
 
     public static StrategyTemplate getInstance() {
-        return a.f1948a;
+        return C0824a.f1068a;
     }
 
     public ConnProtocol getConnProtocol(String str) {
@@ -31,8 +32,8 @@ public class StrategyTemplate {
             this.templateMap.put(str, connProtocol);
             try {
                 IStrategyInstance strategyCenter = StrategyCenter.getInstance();
-                if (strategyCenter instanceof g) {
-                    ((g) strategyCenter).f1978b.f1933c.a(str, connProtocol);
+                if (strategyCenter instanceof C0837g) {
+                    ((C0837g) strategyCenter).f1098b.f1053c.m664a(str, connProtocol);
                 }
             } catch (Exception unused) {
             }

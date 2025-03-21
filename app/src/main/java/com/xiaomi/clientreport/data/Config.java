@@ -2,7 +2,7 @@ package com.xiaomi.clientreport.data;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.xiaomi.push.bl;
+import com.xiaomi.push.C4110bl;
 
 /* loaded from: classes2.dex */
 public class Config {
@@ -70,7 +70,7 @@ public class Config {
     }
 
     public static Config defaultConfig(Context context) {
-        return getBuilder().setEventEncrypted(true).setAESKey(bl.a(context)).setMaxFileLength(1048576L).setEventUploadSwitchOpen(false).setEventUploadFrequency(86400L).setPerfUploadSwitchOpen(false).setPerfUploadFrequency(86400L).build(context);
+        return getBuilder().setEventEncrypted(true).setAESKey(C4110bl.m13918a(context)).setMaxFileLength(1048576L).setEventUploadSwitchOpen(false).setEventUploadFrequency(86400L).setPerfUploadSwitchOpen(false).setPerfUploadFrequency(86400L).build(context);
     }
 
     public static Builder getBuilder() {
@@ -133,7 +133,7 @@ public class Config {
         if (!TextUtils.isEmpty(builder.mAESKey)) {
             this.mAESKey = builder.mAESKey;
         } else {
-            this.mAESKey = bl.a(context);
+            this.mAESKey = C4110bl.m13918a(context);
         }
         if (builder.mMaxFileLength > -1) {
             this.mMaxFileLength = builder.mMaxFileLength;

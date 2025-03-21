@@ -3,9 +3,9 @@ package com.sina.weibo.sdk.auth;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import com.sina.weibo.sdk.a.b;
-import com.sina.weibo.sdk.a.e;
-import com.sina.weibo.sdk.net.c;
+import com.sina.weibo.sdk.net.InterfaceC2932c;
+import com.sina.weibo.sdk.p193a.C2908b;
+import com.sina.weibo.sdk.p193a.C2911e;
 
 /* loaded from: classes.dex */
 public class AccessTokenHelper {
@@ -35,21 +35,22 @@ public class AccessTokenHelper {
     }
 
     public static void refreshAccessToken(final Context context, String str) {
-        com.sina.weibo.sdk.a.b bVar;
+        C2908b c2908b;
         Oauth2AccessToken readAccessToken = readAccessToken(context);
         if (readAccessToken != null) {
-            e eVar = new e(str, readAccessToken, new c<String>() { // from class: com.sina.weibo.sdk.auth.AccessTokenHelper.1
-                @Override // com.sina.weibo.sdk.net.c
-                public final /* synthetic */ void a(String str2) {
+            C2911e c2911e = new C2911e(str, readAccessToken, new InterfaceC2932c<String>() { // from class: com.sina.weibo.sdk.auth.AccessTokenHelper.1
+                @Override // com.sina.weibo.sdk.net.InterfaceC2932c
+                /* renamed from: a */
+                public final /* synthetic */ void mo8814a(String str2) {
                     AccessTokenHelper.writeAccessToken(context, Oauth2AccessToken.parseAccessToken(str2));
                 }
 
-                @Override // com.sina.weibo.sdk.net.c
+                @Override // com.sina.weibo.sdk.net.InterfaceC2932c
                 public final void onError(Throwable th) {
                 }
             });
-            bVar = b.a.K;
-            bVar.a(eVar);
+            c2908b = C2908b.a.f9268K;
+            c2908b.m8806a(c2911e);
         }
     }
 

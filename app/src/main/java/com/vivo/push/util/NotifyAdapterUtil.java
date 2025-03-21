@@ -15,9 +15,12 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 import com.taobao.accs.AccsClientConfig;
-import com.vivo.push.f.u;
+import com.vivo.push.C3924m;
 import com.vivo.push.model.InsideNotificationItem;
 import com.vivo.push.model.NotifyArriveCallbackByUser;
+import com.vivo.push.p232b.C3844p;
+import com.vivo.push.p237f.C3911u;
+import com.vivo.push.restructure.C3932a;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -71,15 +74,15 @@ public class NotifyAdapterUtil {
     }
 
     private static boolean isPullService() {
-        return n.f12281a ? Build.VERSION.SDK_INT < 31 : Build.VERSION.SDK_INT < 28;
+        return C4003n.f14260a ? Build.VERSION.SDK_INT < 31 : Build.VERSION.SDK_INT < 28;
     }
 
     private static boolean isZh(Context context) {
         return context.getResources().getConfiguration().locale.getLanguage().endsWith("zh");
     }
 
-    public static void pushNotification(Context context, List<Bitmap> list, InsideNotificationItem insideNotificationItem, long j2, int i2, NotifyArriveCallbackByUser notifyArriveCallbackByUser, u.a aVar) {
-        u.d(TAG, "pushNotification");
+    public static void pushNotification(Context context, List<Bitmap> list, InsideNotificationItem insideNotificationItem, long j2, int i2, NotifyArriveCallbackByUser notifyArriveCallbackByUser, C3911u.a aVar) {
+        C4010u.m13309d(TAG, "pushNotification");
         initAdapter(context);
         int notifyMode = NotifyUtil.getNotifyDataAdapter(context).getNotifyMode(insideNotificationItem);
         if (!TextUtils.isEmpty(insideNotificationItem.getPurePicUrl()) && list != null && list.size() > 1 && list.get(1) != null) {
@@ -92,7 +95,7 @@ public class NotifyAdapterUtil {
         }
     }
 
-    private static void pushNotificationByCustom(Context context, List<Bitmap> list, InsideNotificationItem insideNotificationItem, long j2, NotifyArriveCallbackByUser notifyArriveCallbackByUser, u.a aVar) {
+    private static void pushNotificationByCustom(Context context, List<Bitmap> list, InsideNotificationItem insideNotificationItem, long j2, NotifyArriveCallbackByUser notifyArriveCallbackByUser, C3911u.a aVar) {
         Notification notification;
         Bitmap bitmap;
         Resources resources = context.getResources();
@@ -102,8 +105,8 @@ public class NotifyAdapterUtil {
         int i2 = context.getApplicationInfo().icon;
         Bundle bundle = new Bundle();
         bundle.putLong(PUSH_ID, j2);
-        if (com.vivo.push.restructure.a.a().e().l().isOpenMultiUser()) {
-            bundle.putInt(USER_ID, w.a());
+        if (C3932a.m13069a().m13074e().mo13130l().isOpenMultiUser()) {
+            bundle.putInt(USER_ID, C4012w.m13314a());
         }
         bundle.putInt(EXTRA_VPUSH_TYPE, 1);
         int i3 = Build.VERSION.SDK_INT;
@@ -172,7 +175,7 @@ public class NotifyAdapterUtil {
         AudioManager audioManager = (AudioManager) context.getSystemService("audio");
         int ringerMode = audioManager.getRingerMode();
         int vibrateSetting = audioManager.getVibrateSetting(0);
-        u.d(TAG, "ringMode=" + ringerMode + " callVibrateSetting=" + vibrateSetting);
+        C4010u.m13309d(TAG, "ringMode=" + ringerMode + " callVibrateSetting=" + vibrateSetting);
         int notifyType = insideNotificationItem.getNotifyType();
         if (notifyType != 2) {
             if (notifyType != 3) {
@@ -192,41 +195,41 @@ public class NotifyAdapterUtil {
         } else if (ringerMode == 2) {
             notification2.defaults = 1;
         }
-        i iVar = new i();
-        Intent a2 = iVar.a(context, packageName, j2, insideNotificationItem, notifyArriveCallbackByUser);
-        if (a2 == null) {
-            u.a(TAG, "make notify intent error  ");
+        C3998i c3998i = new C3998i();
+        Intent m13232a = c3998i.m13232a(context, packageName, j2, insideNotificationItem, notifyArriveCallbackByUser);
+        if (m13232a == null) {
+            C4010u.m13292a(TAG, "make notify intent error  ");
             return;
         }
         if (isPullService()) {
-            notification2.contentIntent = PendingIntent.getService(context, (int) SystemClock.uptimeMillis(), b.a(context, packageName, j2, a2, insideNotificationItem), 201326592);
+            notification2.contentIntent = PendingIntent.getService(context, (int) SystemClock.uptimeMillis(), AbstractC3991b.m13227a(context, packageName, j2, m13232a, insideNotificationItem), 201326592);
         } else {
-            new com.vivo.push.b.p(packageName, j2, insideNotificationItem).b(a2);
-            notification2.contentIntent = iVar.a(context, a2);
+            new C3844p(packageName, j2, insideNotificationItem).m13326b(m13232a);
+            notification2.contentIntent = c3998i.mo13230a(context, m13232a);
         }
         if (sNotificationManager != null) {
-            int j3 = com.vivo.push.m.a().j();
+            int m13051j = C3924m.m13016a().m13051j();
             try {
-                if (j3 == 0) {
+                if (m13051j == 0) {
                     sNotificationManager.notify(sNotifyId, notification2);
                     if (aVar != null) {
-                        aVar.a();
+                        aVar.mo12987a();
                         return;
                     }
                     return;
                 }
-                if (j3 != 1) {
-                    u.a(TAG, "unknow notify style ".concat(String.valueOf(j3)));
+                if (m13051j != 1) {
+                    C4010u.m13292a(TAG, "unknow notify style ".concat(String.valueOf(m13051j)));
                     return;
                 }
                 sNotificationManager.notify((int) j2, notification2);
                 if (aVar != null) {
-                    aVar.a();
+                    aVar.mo12987a();
                 }
             } catch (Exception e2) {
-                u.a(TAG, e2);
+                C4010u.m13294a(TAG, e2);
                 if (aVar != null) {
-                    aVar.b();
+                    aVar.mo12988b();
                 }
             }
         }
@@ -240,7 +243,7 @@ public class NotifyAdapterUtil {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static void pushNotificationBySystem(android.content.Context r17, java.util.List<android.graphics.Bitmap> r18, com.vivo.push.model.InsideNotificationItem r19, long r20, int r22, com.vivo.push.model.NotifyArriveCallbackByUser r23, com.vivo.push.f.u.a r24) {
+    private static void pushNotificationBySystem(android.content.Context r17, java.util.List<android.graphics.Bitmap> r18, com.vivo.push.model.InsideNotificationItem r19, long r20, int r22, com.vivo.push.model.NotifyArriveCallbackByUser r23, com.vivo.push.p237f.C3911u.a r24) {
         /*
             Method dump skipped, instructions count: 578
             To view this dump change 'Code comments level' option to 'DEBUG'
@@ -249,22 +252,22 @@ public class NotifyAdapterUtil {
     }
 
     public static boolean repealNotifyById(Context context, long j2) {
-        int j3 = com.vivo.push.m.a().j();
-        if (j3 != 0) {
-            if (j3 == 1) {
+        int m13051j = C3924m.m13016a().m13051j();
+        if (m13051j != 0) {
+            if (m13051j == 1) {
                 return cancelNotify(context, (int) j2);
             }
-            u.a(TAG, "unknow cancle notify style ".concat(String.valueOf(j3)));
+            C4010u.m13292a(TAG, "unknow cancle notify style ".concat(String.valueOf(m13051j)));
             return false;
         }
-        long b2 = ad.b().b("com.vivo.push.notify_key", -1L);
-        if (b2 == j2) {
-            u.d(TAG, "undo showed message ".concat(String.valueOf(j2)));
-            u.a(context, "回收已展示的通知： ".concat(String.valueOf(j2)));
+        long m13245b = C3987ad.m13198b().m13245b("com.vivo.push.notify_key", -1L);
+        if (m13245b == j2) {
+            C4010u.m13309d(TAG, "undo showed message ".concat(String.valueOf(j2)));
+            C4010u.m13297a(context, "回收已展示的通知： ".concat(String.valueOf(j2)));
             return cancelNotify(context, sNotifyId);
         }
-        u.d(TAG, "current showing message id " + b2 + " not match " + j2);
-        u.a(context, "与已展示的通知" + b2 + "与待回收的通知" + j2 + "不匹配");
+        C4010u.m13309d(TAG, "current showing message id " + m13245b + " not match " + j2);
+        C4010u.m13297a(context, "与已展示的通知" + m13245b + "与待回收的通知" + j2 + "不匹配");
         return false;
     }
 

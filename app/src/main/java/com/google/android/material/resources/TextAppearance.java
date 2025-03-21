@@ -14,7 +14,7 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -54,21 +54,21 @@ public class TextAppearance {
     public final int typeface;
 
     public TextAppearance(Context context, @StyleRes int i2) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(i2, R.styleable.TextAppearance);
-        this.textSize = obtainStyledAttributes.getDimension(R.styleable.TextAppearance_android_textSize, 0.0f);
-        this.textColor = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.TextAppearance_android_textColor);
-        this.textColorHint = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.TextAppearance_android_textColorHint);
-        this.textColorLink = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.TextAppearance_android_textColorLink);
-        this.textStyle = obtainStyledAttributes.getInt(R.styleable.TextAppearance_android_textStyle, 0);
-        this.typeface = obtainStyledAttributes.getInt(R.styleable.TextAppearance_android_typeface, 1);
-        int indexWithValue = MaterialResources.getIndexWithValue(obtainStyledAttributes, R.styleable.TextAppearance_fontFamily, R.styleable.TextAppearance_android_fontFamily);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(i2, C1921R.styleable.TextAppearance);
+        this.textSize = obtainStyledAttributes.getDimension(C1921R.styleable.TextAppearance_android_textSize, 0.0f);
+        this.textColor = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TextAppearance_android_textColor);
+        this.textColorHint = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TextAppearance_android_textColorHint);
+        this.textColorLink = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TextAppearance_android_textColorLink);
+        this.textStyle = obtainStyledAttributes.getInt(C1921R.styleable.TextAppearance_android_textStyle, 0);
+        this.typeface = obtainStyledAttributes.getInt(C1921R.styleable.TextAppearance_android_typeface, 1);
+        int indexWithValue = MaterialResources.getIndexWithValue(obtainStyledAttributes, C1921R.styleable.TextAppearance_fontFamily, C1921R.styleable.TextAppearance_android_fontFamily);
         this.fontFamilyResourceId = obtainStyledAttributes.getResourceId(indexWithValue, 0);
         this.fontFamily = obtainStyledAttributes.getString(indexWithValue);
-        this.textAllCaps = obtainStyledAttributes.getBoolean(R.styleable.TextAppearance_textAllCaps, false);
-        this.shadowColor = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.TextAppearance_android_shadowColor);
-        this.shadowDx = obtainStyledAttributes.getFloat(R.styleable.TextAppearance_android_shadowDx, 0.0f);
-        this.shadowDy = obtainStyledAttributes.getFloat(R.styleable.TextAppearance_android_shadowDy, 0.0f);
-        this.shadowRadius = obtainStyledAttributes.getFloat(R.styleable.TextAppearance_android_shadowRadius, 0.0f);
+        this.textAllCaps = obtainStyledAttributes.getBoolean(C1921R.styleable.TextAppearance_textAllCaps, false);
+        this.shadowColor = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TextAppearance_android_shadowColor);
+        this.shadowDx = obtainStyledAttributes.getFloat(C1921R.styleable.TextAppearance_android_shadowDx, 0.0f);
+        this.shadowDy = obtainStyledAttributes.getFloat(C1921R.styleable.TextAppearance_android_shadowDy, 0.0f);
+        this.shadowRadius = obtainStyledAttributes.getFloat(C1921R.styleable.TextAppearance_android_shadowRadius, 0.0f);
         obtainStyledAttributes.recycle();
     }
 

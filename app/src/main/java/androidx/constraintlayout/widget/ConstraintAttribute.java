@@ -26,37 +26,39 @@ public class ConstraintAttribute {
     private String mStringValue;
     private AttributeType mType;
 
-    /* renamed from: androidx.constraintlayout.widget.ConstraintAttribute$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType = new int[AttributeType.values().length];
+    /* renamed from: androidx.constraintlayout.widget.ConstraintAttribute$1 */
+    static /* synthetic */ class C04691 {
+
+        /* renamed from: $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType */
+        static final /* synthetic */ int[] f610x66adad53 = new int[AttributeType.values().length];
 
         static {
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.COLOR_TYPE.ordinal()] = 1;
+                f610x66adad53[AttributeType.COLOR_TYPE.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.COLOR_DRAWABLE_TYPE.ordinal()] = 2;
+                f610x66adad53[AttributeType.COLOR_DRAWABLE_TYPE.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.INT_TYPE.ordinal()] = 3;
+                f610x66adad53[AttributeType.INT_TYPE.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.FLOAT_TYPE.ordinal()] = 4;
+                f610x66adad53[AttributeType.FLOAT_TYPE.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.STRING_TYPE.ordinal()] = 5;
+                f610x66adad53[AttributeType.STRING_TYPE.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.BOOLEAN_TYPE.ordinal()] = 6;
+                f610x66adad53[AttributeType.BOOLEAN_TYPE.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.DIMENSION_TYPE.ordinal()] = 7;
+                f610x66adad53[AttributeType.DIMENSION_TYPE.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
         }
@@ -107,41 +109,41 @@ public class ConstraintAttribute {
     public static void parse(Context context, XmlPullParser xmlPullParser, HashMap<String, ConstraintAttribute> hashMap) {
         AttributeType attributeType;
         Object string;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.CustomAttribute);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0471R.styleable.CustomAttribute);
         int indexCount = obtainStyledAttributes.getIndexCount();
         String str = null;
         Object obj = null;
         AttributeType attributeType2 = null;
         for (int i2 = 0; i2 < indexCount; i2++) {
             int index = obtainStyledAttributes.getIndex(i2);
-            if (index == R.styleable.CustomAttribute_attributeName) {
+            if (index == C0471R.styleable.CustomAttribute_attributeName) {
                 str = obtainStyledAttributes.getString(index);
                 if (str != null && str.length() > 0) {
                     str = Character.toUpperCase(str.charAt(0)) + str.substring(1);
                 }
-            } else if (index == R.styleable.CustomAttribute_customBoolean) {
+            } else if (index == C0471R.styleable.CustomAttribute_customBoolean) {
                 obj = Boolean.valueOf(obtainStyledAttributes.getBoolean(index, false));
                 attributeType2 = AttributeType.BOOLEAN_TYPE;
             } else {
-                if (index == R.styleable.CustomAttribute_customColorValue) {
+                if (index == C0471R.styleable.CustomAttribute_customColorValue) {
                     attributeType = AttributeType.COLOR_TYPE;
                     string = Integer.valueOf(obtainStyledAttributes.getColor(index, 0));
-                } else if (index == R.styleable.CustomAttribute_customColorDrawableValue) {
+                } else if (index == C0471R.styleable.CustomAttribute_customColorDrawableValue) {
                     attributeType = AttributeType.COLOR_DRAWABLE_TYPE;
                     string = Integer.valueOf(obtainStyledAttributes.getColor(index, 0));
-                } else if (index == R.styleable.CustomAttribute_customPixelDimension) {
+                } else if (index == C0471R.styleable.CustomAttribute_customPixelDimension) {
                     attributeType = AttributeType.DIMENSION_TYPE;
                     string = Float.valueOf(TypedValue.applyDimension(1, obtainStyledAttributes.getDimension(index, 0.0f), context.getResources().getDisplayMetrics()));
-                } else if (index == R.styleable.CustomAttribute_customDimension) {
+                } else if (index == C0471R.styleable.CustomAttribute_customDimension) {
                     attributeType = AttributeType.DIMENSION_TYPE;
                     string = Float.valueOf(obtainStyledAttributes.getDimension(index, 0.0f));
-                } else if (index == R.styleable.CustomAttribute_customFloatValue) {
+                } else if (index == C0471R.styleable.CustomAttribute_customFloatValue) {
                     attributeType = AttributeType.FLOAT_TYPE;
                     string = Float.valueOf(obtainStyledAttributes.getFloat(index, Float.NaN));
-                } else if (index == R.styleable.CustomAttribute_customIntegerValue) {
+                } else if (index == C0471R.styleable.CustomAttribute_customIntegerValue) {
                     attributeType = AttributeType.INT_TYPE;
                     string = Integer.valueOf(obtainStyledAttributes.getInteger(index, -1));
-                } else if (index == R.styleable.CustomAttribute_customStringValue) {
+                } else if (index == C0471R.styleable.CustomAttribute_customStringValue) {
                     attributeType = AttributeType.STRING_TYPE;
                     string = obtainStyledAttributes.getString(index);
                 }
@@ -162,7 +164,7 @@ public class ConstraintAttribute {
             ConstraintAttribute constraintAttribute = hashMap.get(str);
             String str2 = "set" + str;
             try {
-                switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[constraintAttribute.mType.ordinal()]) {
+                switch (C04691.f610x66adad53[constraintAttribute.mType.ordinal()]) {
                     case 1:
                         cls.getMethod(str2, Integer.TYPE).invoke(view, Integer.valueOf(constraintAttribute.mColorValue));
                         break;
@@ -207,7 +209,7 @@ public class ConstraintAttribute {
         if (constraintAttribute == null || (attributeType = this.mType) != constraintAttribute.mType) {
             return false;
         }
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[attributeType.ordinal()]) {
+        switch (C04691.f610x66adad53[attributeType.ordinal()]) {
             case 1:
             case 2:
                 if (this.mColorValue == constraintAttribute.mColorValue) {
@@ -242,7 +244,7 @@ public class ConstraintAttribute {
     }
 
     public float getValueToInterpolate() {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[this.mType.ordinal()]) {
+        switch (C04691.f610x66adad53[this.mType.ordinal()]) {
             case 1:
             case 2:
                 throw new RuntimeException("Color does not have a single color to interpolate");
@@ -262,7 +264,7 @@ public class ConstraintAttribute {
     }
 
     public void getValuesToInterpolate(float[] fArr) {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[this.mType.ordinal()]) {
+        switch (C04691.f610x66adad53[this.mType.ordinal()]) {
             case 1:
             case 2:
                 int i2 = (this.mColorValue >> 24) & 255;
@@ -294,7 +296,7 @@ public class ConstraintAttribute {
     }
 
     public int noOfInterpValues() {
-        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[this.mType.ordinal()];
+        int i2 = C04691.f610x66adad53[this.mType.ordinal()];
         return (i2 == 1 || i2 == 2) ? 4 : 1;
     }
 
@@ -315,7 +317,7 @@ public class ConstraintAttribute {
         String str = "set" + this.mName;
         try {
             boolean z = true;
-            switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[this.mType.ordinal()]) {
+            switch (C04691.f610x66adad53[this.mType.ordinal()]) {
                 case 1:
                     cls.getMethod(str, Integer.TYPE).invoke(view, Integer.valueOf((clamp((int) (((float) Math.pow(fArr[0], 0.45454545454545453d)) * 255.0f)) << 16) | (clamp((int) (fArr[3] * 255.0f)) << 24) | (clamp((int) (((float) Math.pow(fArr[1], 0.45454545454545453d)) * 255.0f)) << 8) | clamp((int) (((float) Math.pow(fArr[2], 0.45454545454545453d)) * 255.0f))));
                     return;
@@ -365,7 +367,7 @@ public class ConstraintAttribute {
     }
 
     public void setValue(float[] fArr) {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[this.mType.ordinal()]) {
+        switch (C04691.f610x66adad53[this.mType.ordinal()]) {
             case 1:
             case 2:
                 this.mColorValue = Color.HSVToColor(fArr);
@@ -403,7 +405,7 @@ public class ConstraintAttribute {
     }
 
     public void setValue(Object obj) {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[this.mType.ordinal()]) {
+        switch (C04691.f610x66adad53[this.mType.ordinal()]) {
             case 1:
             case 2:
                 this.mColorValue = ((Integer) obj).intValue();

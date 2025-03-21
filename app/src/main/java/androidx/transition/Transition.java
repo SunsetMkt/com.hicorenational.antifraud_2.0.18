@@ -25,13 +25,13 @@ import androidx.collection.LongSparseArray;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.view.ViewCompat;
 import com.xiaomi.mipush.sdk.Constants;
-import h.q2.t.m0;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes.dex */
 public abstract class Transition implements Cloneable {
@@ -632,7 +632,7 @@ public abstract class Transition implements Cloneable {
         ArrayMap<Animator, AnimationInfo> runningAnimators = getRunningAnimators();
         SparseIntArray sparseIntArray = new SparseIntArray();
         int size = arrayList.size();
-        long j2 = m0.f16408b;
+        long j2 = C5556m0.f20396b;
         int i4 = 0;
         while (i4 < size) {
             TransitionValues transitionValues3 = arrayList.get(i4);
@@ -1147,8 +1147,8 @@ public abstract class Transition implements Cloneable {
     }
 
     @Override // 
-    /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public Transition mo6clone() {
+    /* renamed from: clone */
+    public Transition mo26847clone() {
         try {
             Transition transition = (Transition) super.clone();
             transition.mAnimators = new ArrayList<>();

@@ -25,6 +25,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 class FocusMeteringControl {
@@ -108,7 +109,7 @@ class FocusMeteringControl {
         this.mSessionListenerForFocus = new Camera2CameraControl.CaptureResultListener() { // from class: androidx.camera.camera2.internal.w
             @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
             public final boolean onCaptureResult(TotalCaptureResult totalCaptureResult) {
-                return FocusMeteringControl.this.a(isAfModeSupported, meteringRectangleArr, meteringRectangleArr2, meteringRectangleArr3, totalCaptureResult);
+                return FocusMeteringControl.this.m316a(isAfModeSupported, meteringRectangleArr, meteringRectangleArr2, meteringRectangleArr3, totalCaptureResult);
             }
         };
         this.mCameraControl.addCaptureResultListener(this.mSessionListenerForFocus);
@@ -118,7 +119,7 @@ class FocusMeteringControl {
             this.mAutoCancelHandle = this.mScheduler.schedule(new Runnable() { // from class: androidx.camera.camera2.internal.u
                 @Override // java.lang.Runnable
                 public final void run() {
-                    FocusMeteringControl.this.a(j2);
+                    FocusMeteringControl.this.m313a(j2);
                 }
             }, focusMeteringAction.getAutoCancelDurationInMillis(), TimeUnit.MILLISECONDS);
         }
@@ -236,9 +237,10 @@ class FocusMeteringControl {
         }
     }
 
-    public /* synthetic */ void b(long j2) {
+    /* renamed from: b */
+    public /* synthetic */ void m317b(long j2) {
         if (j2 == this.mFocusTimeoutCounter) {
-            a();
+            m312a();
         }
     }
 
@@ -256,15 +258,15 @@ class FocusMeteringControl {
                 builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, 2);
             }
             builder.addImplementationOptions(builder2.build());
-            this.mCameraControl.a(Collections.singletonList(builder.build()));
+            this.mCameraControl.m297a(Collections.singletonList(builder.build()));
         }
     }
 
-    c.b.b.a.a.a<Void> cancelFocusAndMetering() {
+    InterfaceFutureC0952a<Void> cancelFocusAndMetering() {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.p
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return FocusMeteringControl.this.a(completer);
+                return FocusMeteringControl.this.m311a(completer);
             }
         });
     }
@@ -272,7 +274,7 @@ class FocusMeteringControl {
     /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
     /* renamed from: cancelFocusAndMeteringInternal, reason: merged with bridge method [inline-methods] */
-    public void b(@Nullable CallbackToFutureAdapter.Completer<Void> completer) {
+    public void m318b(@Nullable CallbackToFutureAdapter.Completer<Void> completer) {
         failCancelFuture("Cancelled by another cancelFocusAndMetering()");
         failActionFuture("Cancelled by cancelFocusAndMetering()");
         this.mRunningCancelCompleter = completer;
@@ -282,7 +284,7 @@ class FocusMeteringControl {
             this.mSessionListenerForCancel = new Camera2CameraControl.CaptureResultListener() { // from class: androidx.camera.camera2.internal.x
                 @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
                 public final boolean onCaptureResult(TotalCaptureResult totalCaptureResult) {
-                    return FocusMeteringControl.this.a(supportedAfMode, totalCaptureResult);
+                    return FocusMeteringControl.this.m315a(supportedAfMode, totalCaptureResult);
                 }
             };
             this.mCameraControl.addCaptureResultListener(this.mSessionListenerForCancel);
@@ -301,8 +303,8 @@ class FocusMeteringControl {
     /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
     /* renamed from: cancelFocusAndMeteringWithoutAsyncResult, reason: merged with bridge method [inline-methods] */
-    public void a() {
-        b(null);
+    public void m312a() {
+        m318b(null);
     }
 
     void setActive(boolean z) {
@@ -316,7 +318,7 @@ class FocusMeteringControl {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.q
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.a();
+                FocusMeteringControl.this.m312a();
             }
         });
     }
@@ -327,11 +329,11 @@ class FocusMeteringControl {
         this.mDefaultAwbRects = (MeteringRectangle[]) builder.get(CaptureRequest.CONTROL_AWB_REGIONS);
     }
 
-    c.b.b.a.a.a<FocusMeteringResult> startFocusAndMetering(@NonNull final FocusMeteringAction focusMeteringAction, @Nullable final Rational rational) {
+    InterfaceFutureC0952a<FocusMeteringResult> startFocusAndMetering(@NonNull final FocusMeteringAction focusMeteringAction, @Nullable final Rational rational) {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.r
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return FocusMeteringControl.this.a(focusMeteringAction, rational, completer);
+                return FocusMeteringControl.this.m310a(focusMeteringAction, rational, completer);
             }
         });
     }
@@ -339,7 +341,7 @@ class FocusMeteringControl {
     /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
     /* renamed from: startFocusAndMeteringInternal, reason: merged with bridge method [inline-methods] */
-    public void a(@NonNull CallbackToFutureAdapter.Completer<FocusMeteringResult> completer, @NonNull FocusMeteringAction focusMeteringAction, @Nullable Rational rational) {
+    public void m314a(@NonNull CallbackToFutureAdapter.Completer<FocusMeteringResult> completer, @NonNull FocusMeteringAction focusMeteringAction, @Nullable Rational rational) {
         if (!this.mIsActive) {
             completer.setException(new CameraControl.OperationCanceledException("Camera is not active."));
             return;
@@ -370,7 +372,7 @@ class FocusMeteringControl {
         failActionFuture("Cancelled by another startFocusAndMetering()");
         failCancelFuture("Cancelled by another startFocusAndMetering()");
         if (this.mCurrentFocusMeteringAction != null) {
-            a();
+            m312a();
         }
         disableAutoCancel();
         this.mCurrentFocusMeteringAction = focusMeteringAction;
@@ -404,7 +406,7 @@ class FocusMeteringControl {
             Camera2ImplConfig.Builder builder2 = new Camera2ImplConfig.Builder();
             builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, 1);
             builder.addImplementationOptions(builder2.build());
-            this.mCameraControl.a(Collections.singletonList(builder.build()));
+            this.mCameraControl.m297a(Collections.singletonList(builder.build()));
         }
     }
 
@@ -417,21 +419,23 @@ class FocusMeteringControl {
             Camera2ImplConfig.Builder builder2 = new Camera2ImplConfig.Builder();
             builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AF_TRIGGER, 1);
             builder.addImplementationOptions(builder2.build());
-            this.mCameraControl.a(Collections.singletonList(builder.build()));
+            this.mCameraControl.m297a(Collections.singletonList(builder.build()));
         }
     }
 
-    public /* synthetic */ Object a(final FocusMeteringAction focusMeteringAction, final Rational rational, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m310a(final FocusMeteringAction focusMeteringAction, final Rational rational, final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.s
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.a(completer, focusMeteringAction, rational);
+                FocusMeteringControl.this.m314a(completer, focusMeteringAction, rational);
             }
         });
         return "startFocusAndMetering";
     }
 
-    public /* synthetic */ boolean a(boolean z, MeteringRectangle[] meteringRectangleArr, MeteringRectangle[] meteringRectangleArr2, MeteringRectangle[] meteringRectangleArr3, TotalCaptureResult totalCaptureResult) {
+    /* renamed from: a */
+    public /* synthetic */ boolean m316a(boolean z, MeteringRectangle[] meteringRectangleArr, MeteringRectangle[] meteringRectangleArr2, MeteringRectangle[] meteringRectangleArr3, TotalCaptureResult totalCaptureResult) {
         Integer num = (Integer) totalCaptureResult.get(CaptureResult.CONTROL_AF_STATE);
         if (shouldTriggerAF()) {
             if (this.mCurrentAfState.intValue() == 3) {
@@ -469,26 +473,29 @@ class FocusMeteringControl {
         return false;
     }
 
-    public /* synthetic */ void a(final long j2) {
+    /* renamed from: a */
+    public /* synthetic */ void m313a(final long j2) {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.t
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.b(j2);
+                FocusMeteringControl.this.m317b(j2);
             }
         });
     }
 
-    public /* synthetic */ Object a(final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m311a(final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.v
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.b(completer);
+                FocusMeteringControl.this.m318b(completer);
             }
         });
         return "cancelFocusAndMetering";
     }
 
-    public /* synthetic */ boolean a(int i2, TotalCaptureResult totalCaptureResult) {
+    /* renamed from: a */
+    public /* synthetic */ boolean m315a(int i2, TotalCaptureResult totalCaptureResult) {
         Integer num = (Integer) totalCaptureResult.get(CaptureResult.CONTROL_AF_MODE);
         CaptureRequest request = totalCaptureResult.getRequest();
         MeteringRectangle[] meteringRectangleArr = (MeteringRectangle[]) request.get(CaptureRequest.CONTROL_AF_REGIONS);

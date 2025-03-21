@@ -1,58 +1,64 @@
 package com.tencent.open.log;
 
-import com.tencent.open.log.d;
+import com.tencent.open.log.C3277d;
 
 /* compiled from: ProGuard */
 /* loaded from: classes2.dex */
 public abstract class Tracer {
 
-    /* renamed from: a, reason: collision with root package name */
-    private volatile int f9848a;
+    /* renamed from: a */
+    private volatile int f11231a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private volatile boolean f9849b;
+    /* renamed from: b */
+    private volatile boolean f11232b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private g f9850c;
+    /* renamed from: c */
+    private C3280g f11233c;
 
     public Tracer() {
-        this(c.f9872a, true, g.f9891a);
+        this(C3276c.f11255a, true, C3280g.f11276a);
     }
 
-    public void a(int i2, Thread thread, long j2, String str, String str2, Throwable th) {
-        if (d() && d.a.a(this.f9848a, i2)) {
+    /* renamed from: a */
+    public void m10514a(int i2, Thread thread, long j2, String str, String str2, Throwable th) {
+        if (m10517d() && C3277d.a.m10549a(this.f11231a, i2)) {
             doTrace(i2, thread, j2, str, str2, th);
         }
     }
 
-    public boolean d() {
-        return this.f9849b;
+    /* renamed from: d */
+    public boolean m10517d() {
+        return this.f11232b;
     }
 
     protected abstract void doTrace(int i2, Thread thread, long j2, String str, String str2, Throwable th);
 
-    public g e() {
-        return this.f9850c;
+    /* renamed from: e */
+    public C3280g m10518e() {
+        return this.f11233c;
     }
 
-    public Tracer(int i2, boolean z, g gVar) {
-        this.f9848a = c.f9872a;
-        this.f9849b = true;
-        this.f9850c = g.f9891a;
-        a(i2);
-        a(z);
-        a(gVar);
+    public Tracer(int i2, boolean z, C3280g c3280g) {
+        this.f11231a = C3276c.f11255a;
+        this.f11232b = true;
+        this.f11233c = C3280g.f11276a;
+        m10513a(i2);
+        m10516a(z);
+        m10515a(c3280g);
     }
 
-    public void a(int i2) {
-        this.f9848a = i2;
+    /* renamed from: a */
+    public void m10513a(int i2) {
+        this.f11231a = i2;
     }
 
-    public void a(boolean z) {
-        this.f9849b = z;
+    /* renamed from: a */
+    public void m10516a(boolean z) {
+        this.f11232b = z;
     }
 
-    public void a(g gVar) {
-        this.f9850c = gVar;
+    /* renamed from: a */
+    public void m10515a(C3280g c3280g) {
+        this.f11233c = c3280g;
     }
 }

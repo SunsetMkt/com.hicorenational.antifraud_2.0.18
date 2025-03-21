@@ -15,6 +15,7 @@ import androidx.annotation.Dimension;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuItemImpl;
@@ -25,6 +26,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.TextScale;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -137,7 +139,7 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
             return null;
         }
         ColorStateList colorStateList = AppCompatResources.getColorStateList(getContext(), typedValue.resourceId);
-        if (!getContext().getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)) {
+        if (!getContext().getTheme().resolveAttribute(C0120R.attr.colorPrimary, typedValue, true)) {
             return null;
         }
         int i3 = typedValue.data;
@@ -422,11 +424,11 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
         this.selectedItemId = 0;
         this.selectedItemPosition = 0;
         Resources resources = getResources();
-        this.inactiveItemMaxWidth = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_bottom_navigation_item_max_width);
-        this.inactiveItemMinWidth = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_bottom_navigation_item_min_width);
-        this.activeItemMaxWidth = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_bottom_navigation_active_item_max_width);
-        this.activeItemMinWidth = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_bottom_navigation_active_item_min_width);
-        this.itemHeight = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_bottom_navigation_height);
+        this.inactiveItemMaxWidth = resources.getDimensionPixelSize(C1921R.dimen.design_bottom_navigation_item_max_width);
+        this.inactiveItemMinWidth = resources.getDimensionPixelSize(C1921R.dimen.design_bottom_navigation_item_min_width);
+        this.activeItemMaxWidth = resources.getDimensionPixelSize(C1921R.dimen.design_bottom_navigation_active_item_max_width);
+        this.activeItemMinWidth = resources.getDimensionPixelSize(C1921R.dimen.design_bottom_navigation_active_item_min_width);
+        this.itemHeight = resources.getDimensionPixelSize(C1921R.dimen.design_bottom_navigation_height);
         this.itemTextColorDefault = createDefaultColorStateList(R.attr.textColorSecondary);
         this.set = new AutoTransition();
         this.set.setOrdering(0);

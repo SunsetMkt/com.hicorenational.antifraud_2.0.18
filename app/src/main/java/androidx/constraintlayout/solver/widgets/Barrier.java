@@ -54,13 +54,13 @@ public class Barrier extends HelperWidget {
             this.resolved = false;
             int i6 = this.mBarrierType;
             if (i6 == 0 || i6 == 1) {
-                linearSystem.addEquality(this.mLeft.mSolverVariable, this.mX);
-                linearSystem.addEquality(this.mRight.mSolverVariable, this.mX);
+                linearSystem.addEquality(this.mLeft.mSolverVariable, this.f598mX);
+                linearSystem.addEquality(this.mRight.mSolverVariable, this.f598mX);
                 return;
             } else {
                 if (i6 == 2 || i6 == 3) {
-                    linearSystem.addEquality(this.mTop.mSolverVariable, this.mY);
-                    linearSystem.addEquality(this.mBottom.mSolverVariable, this.mY);
+                    linearSystem.addEquality(this.mTop.mSolverVariable, this.f599mY);
+                    linearSystem.addEquality(this.mBottom.mSolverVariable, this.f599mY);
                     return;
                 }
                 return;

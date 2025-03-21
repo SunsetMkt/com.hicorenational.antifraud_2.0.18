@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import bean.SurveyH5Bean;
-import c.b.b.a.a.a;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.Locale;
 import java.util.concurrent.CancellationException;
@@ -18,10 +17,13 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import p000a.p001a.p014u.C0052a;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
-public abstract class AbstractResolvableFuture<V> implements a<V> {
+public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC0952a<V> {
     static final AtomicHelper ATOMIC_HELPER;
     private static final Object NULL;
     private static final long SPIN_THRESHOLD_NANOS = 1000;
@@ -34,7 +36,7 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
 
     @Nullable
     volatile Waiter waiters;
-    static final boolean GENERATE_CANCELLATION_CAUSES = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", a.a.u.a.f1254k));
+    static final boolean GENERATE_CANCELLATION_CAUSES = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", C0052a.f159k));
     private static final Logger log = Logger.getLogger(AbstractResolvableFuture.class.getName());
 
     private static abstract class AtomicHelper {
@@ -147,12 +149,12 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
     }
 
     private static final class SetFuture<V> implements Runnable {
-        final a<? extends V> future;
+        final InterfaceFutureC0952a<? extends V> future;
         final AbstractResolvableFuture<V> owner;
 
-        SetFuture(AbstractResolvableFuture<V> abstractResolvableFuture, a<? extends V> aVar) {
+        SetFuture(AbstractResolvableFuture<V> abstractResolvableFuture, InterfaceFutureC0952a<? extends V> interfaceFutureC0952a) {
             this.owner = abstractResolvableFuture;
-            this.future = aVar;
+            this.future = interfaceFutureC0952a;
         }
 
         @Override // java.lang.Runnable
@@ -362,9 +364,9 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
         return obj;
     }
 
-    static Object getFutureValue(a<?> aVar) {
-        if (aVar instanceof AbstractResolvableFuture) {
-            Object obj = ((AbstractResolvableFuture) aVar).value;
+    static Object getFutureValue(InterfaceFutureC0952a<?> interfaceFutureC0952a) {
+        if (interfaceFutureC0952a instanceof AbstractResolvableFuture) {
+            Object obj = ((AbstractResolvableFuture) interfaceFutureC0952a).value;
             if (!(obj instanceof Cancellation)) {
                 return obj;
             }
@@ -375,18 +377,18 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
             Throwable th = cancellation.cause;
             return th != null ? new Cancellation(false, th) : Cancellation.CAUSELESS_CANCELLED;
         }
-        boolean isCancelled = aVar.isCancelled();
+        boolean isCancelled = interfaceFutureC0952a.isCancelled();
         if ((!GENERATE_CANCELLATION_CAUSES) && isCancelled) {
             return Cancellation.CAUSELESS_CANCELLED;
         }
         try {
-            Object uninterruptibly = getUninterruptibly(aVar);
+            Object uninterruptibly = getUninterruptibly(interfaceFutureC0952a);
             return uninterruptibly == null ? NULL : uninterruptibly;
         } catch (CancellationException e2) {
             if (isCancelled) {
                 return new Cancellation(false, e2);
             }
-            return new Failure(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + aVar, e2));
+            return new Failure(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + interfaceFutureC0952a, e2));
         } catch (ExecutionException e3) {
             return new Failure(e3.getCause());
         } catch (Throwable th2) {
@@ -457,7 +459,7 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
         return obj == this ? "this future" : String.valueOf(obj);
     }
 
-    @Override // c.b.b.a.a.a
+    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
     public final void addListener(Runnable runnable, Executor executor) {
         checkNotNull(runnable);
         checkNotNull(executor);
@@ -498,12 +500,12 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
                 if (!(obj2 instanceof SetFuture)) {
                     return true;
                 }
-                a<? extends V> aVar = ((SetFuture) obj2).future;
-                if (!(aVar instanceof AbstractResolvableFuture)) {
-                    aVar.cancel(z);
+                InterfaceFutureC0952a<? extends V> interfaceFutureC0952a = ((SetFuture) obj2).future;
+                if (!(interfaceFutureC0952a instanceof AbstractResolvableFuture)) {
+                    interfaceFutureC0952a.cancel(z);
                     return true;
                 }
-                abstractResolvableFuture = (AbstractResolvableFuture) aVar;
+                abstractResolvableFuture = (AbstractResolvableFuture) interfaceFutureC0952a;
                 obj2 = abstractResolvableFuture.value;
                 if (!(obj2 == null) && !(obj2 instanceof SetFuture)) {
                     return true;
@@ -568,7 +570,7 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
         }
         String abstractResolvableFuture = toString();
         String lowerCase = timeUnit.toString().toLowerCase(Locale.ROOT);
-        String str = "Waited " + j2 + c.c.a.b.a.a.f3100g + timeUnit.toString().toLowerCase(Locale.ROOT);
+        String str = "Waited " + j2 + AbstractC1191a.f2568g + timeUnit.toString().toLowerCase(Locale.ROOT);
         if (nanos + 1000 < 0) {
             String str2 = str + " (plus ";
             long j3 = -nanos;
@@ -576,11 +578,11 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
             long nanos2 = j3 - timeUnit.toNanos(convert);
             boolean z = convert == 0 || nanos2 > 1000;
             if (convert > 0) {
-                String str3 = str2 + convert + c.c.a.b.a.a.f3100g + lowerCase;
+                String str3 = str2 + convert + AbstractC1191a.f2568g + lowerCase;
                 if (z) {
                     str3 = str3 + Constants.ACCEPT_TIME_SEPARATOR_SP;
                 }
-                str2 = str3 + c.c.a.b.a.a.f3100g;
+                str2 = str3 + AbstractC1191a.f2568g;
             }
             if (z) {
                 str2 = str2 + nanos2 + " nanoseconds ";
@@ -644,22 +646,22 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
         return true;
     }
 
-    protected boolean setFuture(a<? extends V> aVar) {
+    protected boolean setFuture(InterfaceFutureC0952a<? extends V> interfaceFutureC0952a) {
         Failure failure;
-        checkNotNull(aVar);
+        checkNotNull(interfaceFutureC0952a);
         Object obj = this.value;
         if (obj == null) {
-            if (aVar.isDone()) {
-                if (!ATOMIC_HELPER.casValue(this, null, getFutureValue(aVar))) {
+            if (interfaceFutureC0952a.isDone()) {
+                if (!ATOMIC_HELPER.casValue(this, null, getFutureValue(interfaceFutureC0952a))) {
                     return false;
                 }
                 complete(this);
                 return true;
             }
-            SetFuture setFuture = new SetFuture(this, aVar);
+            SetFuture setFuture = new SetFuture(this, interfaceFutureC0952a);
             if (ATOMIC_HELPER.casValue(this, null, setFuture)) {
                 try {
-                    aVar.addListener(setFuture, DirectExecutor.INSTANCE);
+                    interfaceFutureC0952a.addListener(setFuture, DirectExecutor.INSTANCE);
                 } catch (Throwable th) {
                     try {
                         failure = new Failure(th);
@@ -673,7 +675,7 @@ public abstract class AbstractResolvableFuture<V> implements a<V> {
             obj = this.value;
         }
         if (obj instanceof Cancellation) {
-            aVar.cancel(((Cancellation) obj).wasInterrupted);
+            interfaceFutureC0952a.cancel(((Cancellation) obj).wasInterrupted);
         }
         return false;
     }

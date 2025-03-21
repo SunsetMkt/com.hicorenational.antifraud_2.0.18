@@ -9,7 +9,9 @@ public class ChatBean extends BaseBean {
     public static final int CHAT_TYPE_QQ = 2;
     public static final int CHAT_TYPE_WCHAT = 1;
     private Long caseInfoID;
-    private Long id;
+
+    /* renamed from: id */
+    private Long f1586id;
     private String suspectAccount;
     private String suspectAccountBindEMail;
     private String suspectAccountBindMobile;
@@ -32,7 +34,7 @@ public class ChatBean extends BaseBean {
     }
 
     public Long getId() {
-        return this.id;
+        return this.f1586id;
     }
 
     public String getSuspectAccount() {
@@ -104,7 +106,7 @@ public class ChatBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.id = l2;
+        this.f1586id = l2;
     }
 
     public void setSuspectAccount(String str) {

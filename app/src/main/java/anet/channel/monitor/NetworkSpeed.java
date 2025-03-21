@@ -7,15 +7,15 @@ public enum NetworkSpeed {
     Fast("强网络", 5);
 
 
-    /* renamed from: a, reason: collision with root package name */
-    private final String f1802a;
+    /* renamed from: a */
+    private final String f876a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final int f1803b;
+    /* renamed from: b */
+    private final int f877b;
 
     NetworkSpeed(String str, int i2) {
-        this.f1802a = str;
-        this.f1803b = i2;
+        this.f876a = str;
+        this.f877b = i2;
     }
 
     public static NetworkSpeed valueOfCode(int i2) {
@@ -23,10 +23,10 @@ public enum NetworkSpeed {
     }
 
     public int getCode() {
-        return this.f1803b;
+        return this.f877b;
     }
 
     public String getDesc() {
-        return this.f1802a;
+        return this.f876a;
     }
 }

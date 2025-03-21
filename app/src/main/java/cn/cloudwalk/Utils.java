@@ -7,10 +7,8 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import androidx.core.view.ViewCompat;
-import c.c.a.b.a.a;
 import cn.cloudwalk.jni.FaceLivingImg;
 import com.xiaomi.mipush.sdk.Constants;
-import h.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class Utils {
@@ -55,9 +55,9 @@ public class Utils {
         int[] iArr = new int[i4];
         for (int i5 = 0; i5 < i4; i5++) {
             int i6 = i5 * 3;
-            int i7 = bArr[i6] & f1.f16099c;
-            int i8 = bArr[i6 + 1] & f1.f16099c;
-            int i9 = bArr[i6 + 2] & f1.f16099c;
+            int i7 = bArr[i6] & C5230f1.f20085c;
+            int i8 = bArr[i6 + 1] & C5230f1.f20085c;
+            int i9 = bArr[i6 + 2] & C5230f1.f20085c;
             if (i7 < 0) {
                 i7 = 0;
             } else if (i7 > 255) {
@@ -145,7 +145,7 @@ public class Utils {
     }
 
     public static boolean isEmpty(String str) {
-        return str == null || "".equals(str) || a.f3101h.equals(str) || "unknown".equals(str);
+        return str == null || "".equals(str) || AbstractC1191a.f2571h.equals(str) || "unknown".equals(str);
     }
 
     public static boolean isFileExist(String str) {

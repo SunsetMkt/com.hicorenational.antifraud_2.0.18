@@ -4,7 +4,7 @@ import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.text.TextUtils;
 import android.util.Base64;
-import com.huawei.secure.android.common.encrypt.utils.b;
+import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -24,81 +24,83 @@ import java.security.cert.CertificateException;
 /* loaded from: classes.dex */
 public abstract class RSASignKS {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7501a = "RSASignKS";
+    /* renamed from: a */
+    private static final String f8078a = "RSASignKS";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7502b = "AndroidKeyStore";
+    /* renamed from: b */
+    private static final String f8079b = "AndroidKeyStore";
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7503c = "SHA256withRSA/PSS";
+    /* renamed from: c */
+    private static final String f8080c = "SHA256withRSA/PSS";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final String f7504d = "";
+    /* renamed from: d */
+    private static final String f8081d = "";
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final int f7505e = 2048;
+    /* renamed from: e */
+    private static final int f8082e = 2048;
 
-    /* renamed from: f, reason: collision with root package name */
-    private static final int f7506f = 3072;
+    /* renamed from: f */
+    private static final int f8083f = 3072;
 
-    private static byte[] a(String str, byte[] bArr, boolean z) {
+    /* renamed from: a */
+    private static byte[] m7869a(String str, byte[] bArr, boolean z) {
         byte[] bArr2 = new byte[0];
         if (TextUtils.isEmpty(str) || bArr == null) {
-            b.b(f7501a, "alias or content is null");
+            C2551b.m7898b(f8078a, "alias or content is null");
             return bArr2;
         }
         if (!isBuildVersionHigherThan22()) {
-            b.b(f7501a, "sdk version is too low");
+            C2551b.m7898b(f8078a, "sdk version is too low");
             return bArr2;
         }
-        KeyStore.Entry b2 = b(str, z);
-        if (!(b2 instanceof KeyStore.PrivateKeyEntry)) {
-            b.b(f7501a, "Not an instance of a PrivateKeyEntry");
+        KeyStore.Entry m7870b = m7870b(str, z);
+        if (!(m7870b instanceof KeyStore.PrivateKeyEntry)) {
+            C2551b.m7898b(f8078a, "Not an instance of a PrivateKeyEntry");
             return bArr2;
         }
         try {
-            Signature signature = Signature.getInstance(f7503c);
-            signature.initSign(((KeyStore.PrivateKeyEntry) b2).getPrivateKey());
+            Signature signature = Signature.getInstance(f8080c);
+            signature.initSign(((KeyStore.PrivateKeyEntry) m7870b).getPrivateKey());
             signature.update(bArr);
             return signature.sign();
         } catch (InvalidKeyException e2) {
-            b.b(f7501a, "InvalidKeyException: " + e2.getMessage());
+            C2551b.m7898b(f8078a, "InvalidKeyException: " + e2.getMessage());
             return bArr2;
         } catch (NoSuchAlgorithmException e3) {
-            b.b(f7501a, "NoSuchAlgorithmException: " + e3.getMessage());
+            C2551b.m7898b(f8078a, "NoSuchAlgorithmException: " + e3.getMessage());
             return bArr2;
         } catch (SignatureException e4) {
-            b.b(f7501a, "SignatureException: " + e4.getMessage());
+            C2551b.m7898b(f8078a, "SignatureException: " + e4.getMessage());
             return bArr2;
         } catch (Exception e5) {
-            b.b(f7501a, "Exception: " + e5.getMessage());
+            C2551b.m7898b(f8078a, "Exception: " + e5.getMessage());
             return bArr2;
         }
     }
 
-    private static KeyStore.Entry b(String str, boolean z) {
-        if (!a(str)) {
-            a(str, z);
+    /* renamed from: b */
+    private static KeyStore.Entry m7870b(String str, boolean z) {
+        if (!m7867a(str)) {
+            m7866a(str, z);
         }
         try {
-            KeyStore keyStore = KeyStore.getInstance(f7502b);
+            KeyStore keyStore = KeyStore.getInstance(f8079b);
             keyStore.load(null);
             return keyStore.getEntry(str, null);
         } catch (IOException e2) {
-            b.b(f7501a, "IOException: " + e2.getMessage());
+            C2551b.m7898b(f8078a, "IOException: " + e2.getMessage());
             return null;
         } catch (KeyStoreException e3) {
-            b.b(f7501a, "KeyStoreException: " + e3.getMessage());
+            C2551b.m7898b(f8078a, "KeyStoreException: " + e3.getMessage());
             return null;
         } catch (NoSuchAlgorithmException e4) {
-            b.b(f7501a, "NoSuchAlgorithmException: " + e4.getMessage());
+            C2551b.m7898b(f8078a, "NoSuchAlgorithmException: " + e4.getMessage());
             return null;
         } catch (UnrecoverableEntryException e5) {
-            b.b(f7501a, "UnrecoverableEntryException: " + e5.getMessage());
+            C2551b.m7898b(f8078a, "UnrecoverableEntryException: " + e5.getMessage());
             return null;
         } catch (CertificateException e6) {
-            b.b(f7501a, "CertificateException: " + e6.getMessage());
+            C2551b.m7898b(f8078a, "CertificateException: " + e6.getMessage());
             return null;
         }
     }
@@ -134,7 +136,7 @@ public abstract class RSASignKS {
             String str4 = "verifySign UnsupportedEncodingException: " + e2.getMessage();
             return false;
         } catch (Exception e3) {
-            b.b(f7501a, "base64 decode Exception" + e3.getMessage());
+            C2551b.m7898b(f8078a, "base64 decode Exception" + e3.getMessage());
             return false;
         }
     }
@@ -146,110 +148,113 @@ public abstract class RSASignKS {
             String str4 = "verifySign UnsupportedEncodingException: " + e2.getMessage();
             return false;
         } catch (Exception e3) {
-            b.b(f7501a, "base64 decode Exception" + e3.getMessage());
+            C2551b.m7898b(f8078a, "base64 decode Exception" + e3.getMessage());
             return false;
         }
     }
 
     @Deprecated
     public static byte[] sign(String str, byte[] bArr) {
-        return a(str, bArr, false);
+        return m7869a(str, bArr, false);
     }
 
     public static byte[] signNew(String str, byte[] bArr) {
-        return a(str, bArr, true);
+        return m7869a(str, bArr, true);
     }
 
     @Deprecated
     public static boolean verifySign(String str, byte[] bArr, byte[] bArr2) {
-        return a(str, bArr, bArr2, false);
+        return m7868a(str, bArr, bArr2, false);
     }
 
     public static boolean verifySignNew(String str, byte[] bArr, byte[] bArr2) {
-        return a(str, bArr, bArr2, true);
+        return m7868a(str, bArr, bArr2, true);
     }
 
-    private static boolean a(String str, byte[] bArr, byte[] bArr2, boolean z) {
+    /* renamed from: a */
+    private static boolean m7868a(String str, byte[] bArr, byte[] bArr2, boolean z) {
         if (!TextUtils.isEmpty(str) && bArr != null && bArr2 != null) {
             if (!isBuildVersionHigherThan22()) {
-                b.b(f7501a, "sdk version is too low");
+                C2551b.m7898b(f8078a, "sdk version is too low");
                 return false;
             }
-            KeyStore.Entry b2 = b(str, z);
-            if (!(b2 instanceof KeyStore.PrivateKeyEntry)) {
-                b.b(f7501a, "Not an instance of a PrivateKeyEntry");
+            KeyStore.Entry m7870b = m7870b(str, z);
+            if (!(m7870b instanceof KeyStore.PrivateKeyEntry)) {
+                C2551b.m7898b(f8078a, "Not an instance of a PrivateKeyEntry");
                 return false;
             }
             try {
-                Signature signature = Signature.getInstance(f7503c);
-                signature.initVerify(((KeyStore.PrivateKeyEntry) b2).getCertificate());
+                Signature signature = Signature.getInstance(f8080c);
+                signature.initVerify(((KeyStore.PrivateKeyEntry) m7870b).getCertificate());
                 signature.update(bArr);
                 return signature.verify(bArr2);
             } catch (InvalidKeyException e2) {
-                b.b(f7501a, "InvalidKeyException: " + e2.getMessage());
+                C2551b.m7898b(f8078a, "InvalidKeyException: " + e2.getMessage());
                 return false;
             } catch (NoSuchAlgorithmException e3) {
-                b.b(f7501a, "NoSuchAlgorithmException: " + e3.getMessage());
+                C2551b.m7898b(f8078a, "NoSuchAlgorithmException: " + e3.getMessage());
                 return false;
             } catch (SignatureException e4) {
-                b.b(f7501a, "SignatureException: " + e4.getMessage());
+                C2551b.m7898b(f8078a, "SignatureException: " + e4.getMessage());
                 return false;
             } catch (Exception e5) {
-                b.b(f7501a, "Exception: " + e5.getMessage());
+                C2551b.m7898b(f8078a, "Exception: " + e5.getMessage());
                 return false;
             }
         }
-        b.b(f7501a, "alias or content or sign value is null");
+        C2551b.m7898b(f8078a, "alias or content or sign value is null");
         return false;
     }
 
-    private static synchronized KeyPair a(String str, boolean z) {
+    /* renamed from: a */
+    private static synchronized KeyPair m7866a(String str, boolean z) {
         synchronized (RSASignKS.class) {
             KeyPair keyPair = null;
-            if (a(str)) {
-                b.b(f7501a, "Key pair exits");
+            if (m7867a(str)) {
+                C2551b.m7898b(f8078a, "Key pair exits");
                 return null;
             }
             try {
                 try {
-                    KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA", f7502b);
+                    KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA", f8079b);
                     if (!z) {
                         keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 12).setDigests("SHA-256", "SHA-512").setSignaturePaddings("PSS").setKeySize(2048).build());
                     } else {
-                        keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 12).setDigests("SHA-256", "SHA-512").setSignaturePaddings("PSS").setKeySize(f7506f).build());
+                        keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 12).setDigests("SHA-256", "SHA-512").setSignaturePaddings("PSS").setKeySize(f8083f).build());
                     }
                     keyPair = keyPairGenerator.generateKeyPair();
                 } catch (InvalidAlgorithmParameterException e2) {
-                    b.b(f7501a, "InvalidAlgorithmParameterException: " + e2.getMessage());
+                    C2551b.m7898b(f8078a, "InvalidAlgorithmParameterException: " + e2.getMessage());
                 } catch (NoSuchProviderException e3) {
-                    b.b(f7501a, "NoSuchProviderException: " + e3.getMessage());
+                    C2551b.m7898b(f8078a, "NoSuchProviderException: " + e3.getMessage());
                 }
             } catch (NoSuchAlgorithmException e4) {
-                b.b(f7501a, "NoSuchAlgorithmException: " + e4.getMessage());
+                C2551b.m7898b(f8078a, "NoSuchAlgorithmException: " + e4.getMessage());
             }
             return keyPair;
         }
     }
 
-    private static boolean a(String str) {
+    /* renamed from: a */
+    private static boolean m7867a(String str) {
         try {
-            KeyStore keyStore = KeyStore.getInstance(f7502b);
+            KeyStore keyStore = KeyStore.getInstance(f8079b);
             keyStore.load(null);
             return keyStore.getKey(str, null) != null;
         } catch (IOException e2) {
-            b.b(f7501a, "IOException: " + e2.getMessage());
+            C2551b.m7898b(f8078a, "IOException: " + e2.getMessage());
             return false;
         } catch (KeyStoreException e3) {
-            b.b(f7501a, "KeyStoreException: " + e3.getMessage());
+            C2551b.m7898b(f8078a, "KeyStoreException: " + e3.getMessage());
             return false;
         } catch (NoSuchAlgorithmException e4) {
-            b.b(f7501a, "NoSuchAlgorithmException: " + e4.getMessage());
+            C2551b.m7898b(f8078a, "NoSuchAlgorithmException: " + e4.getMessage());
             return false;
         } catch (UnrecoverableKeyException e5) {
-            b.b(f7501a, "UnrecoverableKeyException: " + e5.getMessage());
+            C2551b.m7898b(f8078a, "UnrecoverableKeyException: " + e5.getMessage());
             return false;
         } catch (CertificateException e6) {
-            b.b(f7501a, "CertificateException: " + e6.getMessage());
+            C2551b.m7898b(f8078a, "CertificateException: " + e6.getMessage());
             return false;
         }
     }

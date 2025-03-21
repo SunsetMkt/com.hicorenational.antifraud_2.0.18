@@ -8,14 +8,14 @@
     android:layout_marginLeft="15dp"
     android:layout_marginTop="15dp"
     android:layout_marginRight="15dp">
-    <ui.view.pagerecycle.PageRecyclerView
+    <p388ui.view.pagerecycle.PageRecyclerView
         android:layout_gravity="bottom"
         android:id="@+id/page_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="85dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"/>
-    <ui.view.pagerecycle.PageIndicatorView
+    <p388ui.view.pagerecycle.PageIndicatorView
         android:layout_gravity="center_horizontal"
         android:id="@+id/page_indicator"
         android:background="@drawable/home_people_white_radius"

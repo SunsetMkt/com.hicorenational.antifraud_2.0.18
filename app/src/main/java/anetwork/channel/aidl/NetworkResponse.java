@@ -6,41 +6,45 @@ import anet.channel.util.ALog;
 import anet.channel.util.ErrorConstant;
 import java.util.List;
 import java.util.Map;
+import p000a.p001a.InterfaceC0008i;
+import p000a.p001a.p012s.C0035a;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
-public class NetworkResponse implements Parcelable, a.a.i {
-    public static final Parcelable.Creator<NetworkResponse> CREATOR = new l();
+public class NetworkResponse implements Parcelable, InterfaceC0008i {
+    public static final Parcelable.Creator<NetworkResponse> CREATOR = new C0886l();
 
-    /* renamed from: a, reason: collision with root package name */
-    int f2077a;
+    /* renamed from: a */
+    int f1203a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f2078b;
+    /* renamed from: b */
+    private String f1204b;
 
-    /* renamed from: c, reason: collision with root package name */
-    byte[] f2079c;
+    /* renamed from: c */
+    byte[] f1205c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private Map<String, List<String>> f2080d;
+    /* renamed from: d */
+    private Map<String, List<String>> f1206d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private Throwable f2081e;
+    /* renamed from: e */
+    private Throwable f1207e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private a.a.s.a f2082f;
+    /* renamed from: f */
+    private C0035a f1208f;
 
     public NetworkResponse() {
     }
 
-    public void a(int i2) {
-        this.f2077a = i2;
-        this.f2078b = ErrorConstant.getErrMsg(i2);
+    /* renamed from: a */
+    public void m748a(int i2) {
+        this.f1203a = i2;
+        this.f1204b = ErrorConstant.getErrMsg(i2);
     }
 
-    @Override // a.a.i
-    public String d() {
-        return this.f2078b;
+    @Override // p000a.p001a.InterfaceC0008i
+    /* renamed from: d */
+    public String mo51d() {
+        return this.f1204b;
     }
 
     @Override // android.os.Parcelable
@@ -48,111 +52,121 @@ public class NetworkResponse implements Parcelable, a.a.i {
         return 0;
     }
 
-    @Override // a.a.i
-    public a.a.s.a e() {
-        return this.f2082f;
+    @Override // p000a.p001a.InterfaceC0008i
+    /* renamed from: e */
+    public C0035a mo52e() {
+        return this.f1208f;
     }
 
-    @Override // a.a.i
-    public Map<String, List<String>> f() {
-        return this.f2080d;
+    @Override // p000a.p001a.InterfaceC0008i
+    /* renamed from: f */
+    public Map<String, List<String>> mo53f() {
+        return this.f1206d;
     }
 
-    @Override // a.a.i
-    public Throwable g() {
-        return this.f2081e;
+    @Override // p000a.p001a.InterfaceC0008i
+    /* renamed from: g */
+    public Throwable mo54g() {
+        return this.f1207e;
     }
 
-    @Override // a.a.i
+    @Override // p000a.p001a.InterfaceC0008i
     public int getStatusCode() {
-        return this.f2077a;
+        return this.f1203a;
     }
 
-    @Override // a.a.i
-    public byte[] n() {
-        return this.f2079c;
+    @Override // p000a.p001a.InterfaceC0008i
+    /* renamed from: n */
+    public byte[] mo55n() {
+        return this.f1205c;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder("NetworkResponse [");
         sb.append("statusCode=");
-        sb.append(this.f2077a);
+        sb.append(this.f1203a);
         sb.append(", desc=");
-        sb.append(this.f2078b);
+        sb.append(this.f1204b);
         sb.append(", connHeadFields=");
-        sb.append(this.f2080d);
+        sb.append(this.f1206d);
         sb.append(", bytedata=");
-        byte[] bArr = this.f2079c;
+        byte[] bArr = this.f1205c;
         sb.append(bArr != null ? new String(bArr) : "");
         sb.append(", error=");
-        sb.append(this.f2081e);
+        sb.append(this.f1207e);
         sb.append(", statisticData=");
-        sb.append(this.f2082f);
+        sb.append(this.f1208f);
         sb.append("]");
         return sb.toString();
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeInt(this.f2077a);
-        parcel.writeString(this.f2078b);
-        byte[] bArr = this.f2079c;
+        parcel.writeInt(this.f1203a);
+        parcel.writeString(this.f1204b);
+        byte[] bArr = this.f1205c;
         int length = bArr != null ? bArr.length : 0;
         parcel.writeInt(length);
         if (length > 0) {
-            parcel.writeByteArray(this.f2079c);
+            parcel.writeByteArray(this.f1205c);
         }
-        parcel.writeMap(this.f2080d);
-        a.a.s.a aVar = this.f2082f;
-        if (aVar != null) {
-            parcel.writeSerializable(aVar);
+        parcel.writeMap(this.f1206d);
+        C0035a c0035a = this.f1208f;
+        if (c0035a != null) {
+            parcel.writeSerializable(c0035a);
         }
     }
 
     public NetworkResponse(int i2) {
-        this.f2077a = i2;
-        this.f2078b = ErrorConstant.getErrMsg(i2);
+        this.f1203a = i2;
+        this.f1204b = ErrorConstant.getErrMsg(i2);
     }
 
-    public void a(byte[] bArr) {
-        this.f2079c = bArr;
+    /* renamed from: a */
+    public void m753a(byte[] bArr) {
+        this.f1205c = bArr;
     }
 
-    public void a(Map<String, List<String>> map) {
-        this.f2080d = map;
+    /* renamed from: a */
+    public void m752a(Map<String, List<String>> map) {
+        this.f1206d = map;
     }
 
-    public void a(String str) {
-        this.f2078b = str;
+    /* renamed from: a */
+    public void m750a(String str) {
+        this.f1204b = str;
     }
 
-    public void a(Throwable th) {
-        this.f2081e = th;
+    /* renamed from: a */
+    public void m751a(Throwable th) {
+        this.f1207e = th;
     }
 
-    public static NetworkResponse a(Parcel parcel) {
+    /* renamed from: a */
+    public static NetworkResponse m747a(Parcel parcel) {
         NetworkResponse networkResponse = new NetworkResponse();
         try {
-            networkResponse.f2077a = parcel.readInt();
-            networkResponse.f2078b = parcel.readString();
+            networkResponse.f1203a = parcel.readInt();
+            networkResponse.f1204b = parcel.readString();
             int readInt = parcel.readInt();
             if (readInt > 0) {
-                networkResponse.f2079c = new byte[readInt];
-                parcel.readByteArray(networkResponse.f2079c);
+                networkResponse.f1205c = new byte[readInt];
+                parcel.readByteArray(networkResponse.f1205c);
             }
-            networkResponse.f2080d = parcel.readHashMap(NetworkResponse.class.getClassLoader());
+            networkResponse.f1206d = parcel.readHashMap(NetworkResponse.class.getClassLoader());
             try {
-                networkResponse.f2082f = (a.a.s.a) parcel.readSerializable();
+                networkResponse.f1208f = (C0035a) parcel.readSerializable();
             } catch (Throwable unused) {
-                ALog.i("anet.NetworkResponse", "[readFromParcel] source.readSerializable() error", null, new Object[0]);
+                ALog.m716i("anet.NetworkResponse", "[readFromParcel] source.readSerializable() error", null, new Object[0]);
             }
         } catch (Exception e2) {
-            ALog.w("anet.NetworkResponse", "[readFromParcel]", null, e2, new Object[0]);
+            ALog.m717w("anet.NetworkResponse", "[readFromParcel]", null, e2, new Object[0]);
         }
         return networkResponse;
     }
 
-    public void a(a.a.s.a aVar) {
-        this.f2082f = aVar;
+    /* renamed from: a */
+    public void m749a(C0035a c0035a) {
+        this.f1208f = c0035a;
     }
 }

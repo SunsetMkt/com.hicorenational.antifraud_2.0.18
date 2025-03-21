@@ -21,7 +21,8 @@ public abstract class NetWorkUtil {
         public static final int WAP = -3;
     }
 
-    private static NetworkInfo a(Context context) {
+    /* renamed from: a */
+    private static NetworkInfo m7792a(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
         if (connectivityManager != null) {
             return connectivityManager.getActiveNetworkInfo();
@@ -33,10 +34,11 @@ public abstract class NetWorkUtil {
         if (context == null) {
             return 0;
         }
-        return a(a(context));
+        return m7791a(m7792a(context));
     }
 
-    private static int a(NetworkInfo networkInfo) {
+    /* renamed from: a */
+    private static int m7791a(NetworkInfo networkInfo) {
         if (networkInfo != null && networkInfo.isConnected()) {
             if (networkInfo.getType() == 1) {
                 return 1;

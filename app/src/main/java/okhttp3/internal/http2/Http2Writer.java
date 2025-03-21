@@ -1,6 +1,5 @@
 package okhttp3.internal.http2;
 
-import h.f1;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -10,6 +9,7 @@ import okhttp3.internal.Util;
 import okhttp3.internal.http2.Hpack;
 import okio.Buffer;
 import okio.BufferedSink;
+import p286h.C5230f1;
 
 /* loaded from: classes2.dex */
 final class Http2Writer implements Closeable {
@@ -106,8 +106,8 @@ final class Http2Writer implements Closeable {
             throw Http2.illegalArgument("reserved bit set: %s", Integer.valueOf(i2));
         }
         writeMedium(this.sink, i3);
-        this.sink.writeByte(b2 & f1.f16099c);
-        this.sink.writeByte(b3 & f1.f16099c);
+        this.sink.writeByte(b2 & C5230f1.f20085c);
+        this.sink.writeByte(b3 & C5230f1.f20085c);
         this.sink.writeInt(i2 & Integer.MAX_VALUE);
     }
 

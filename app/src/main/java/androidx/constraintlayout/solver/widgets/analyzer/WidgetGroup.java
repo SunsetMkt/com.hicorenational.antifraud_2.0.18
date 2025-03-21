@@ -4,16 +4,18 @@ import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.widgets.Chain;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
-import c.c.a.b.a.a;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class WidgetGroup {
     private static final boolean DEBUG = false;
     static int count;
-    int id;
+
+    /* renamed from: id */
+    int f607id;
     int orientation;
     ArrayList<ConstraintWidget> widgets = new ArrayList<>();
     boolean authoritative = false;
@@ -48,11 +50,11 @@ public class WidgetGroup {
     }
 
     public WidgetGroup(int i2) {
-        this.id = -1;
+        this.f607id = -1;
         this.orientation = 0;
         int i3 = count;
         count = i3 + 1;
-        this.id = i3;
+        this.f607id = i3;
         this.orientation = i2;
     }
 
@@ -130,7 +132,7 @@ public class WidgetGroup {
         if (this.moveTo != -1 && size > 0) {
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 WidgetGroup widgetGroup = arrayList.get(i2);
-                if (this.moveTo == widgetGroup.id) {
+                if (this.moveTo == widgetGroup.f607id) {
                     moveTo(this.orientation, widgetGroup);
                 }
             }
@@ -145,7 +147,7 @@ public class WidgetGroup {
     }
 
     public int getId() {
-        return this.id;
+        return this.f607id;
     }
 
     public int getOrientation() {
@@ -176,7 +178,7 @@ public class WidgetGroup {
                 next.verticalGroup = widgetGroup.getId();
             }
         }
-        this.moveTo = widgetGroup.id;
+        this.moveTo = widgetGroup.f607id;
     }
 
     public void setAuthoritative(boolean z) {
@@ -192,10 +194,10 @@ public class WidgetGroup {
     }
 
     public String toString() {
-        String str = getOrientationString() + " [" + this.id + "] <";
+        String str = getOrientationString() + " [" + this.f607id + "] <";
         Iterator<ConstraintWidget> it = this.widgets.iterator();
         while (it.hasNext()) {
-            str = str + a.f3100g + it.next().getDebugName();
+            str = str + AbstractC1191a.f2568g + it.next().getDebugName();
         }
         return str + " >";
     }

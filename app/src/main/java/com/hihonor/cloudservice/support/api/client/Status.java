@@ -8,53 +8,56 @@ import com.tencent.bugly.beta.tinker.TinkerReport;
 import java.util.Arrays;
 
 /* loaded from: classes.dex */
-public final class Status extends com.hihonor.cloudservice.support.api.client.a implements Parcelable {
+public final class Status extends AbstractC2135a implements Parcelable {
 
-    /* renamed from: b, reason: collision with root package name */
-    private PendingIntent f5999b;
+    /* renamed from: b */
+    private PendingIntent f6386b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private Intent f6000c;
+    /* renamed from: c */
+    private Intent f6387c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private int f6001d;
+    /* renamed from: d */
+    private int f6388d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f6002e;
+    /* renamed from: e */
+    private String f6389e;
 
-    /* renamed from: f, reason: collision with root package name */
-    public static final Status f5991f = new Status(0);
+    /* renamed from: f */
+    public static final Status f6377f = new Status(0);
 
-    /* renamed from: g, reason: collision with root package name */
-    public static final Status f5992g = new Status(1);
+    /* renamed from: g */
+    public static final Status f6378g = new Status(1);
 
-    /* renamed from: h, reason: collision with root package name */
+    /* renamed from: h */
     @Deprecated
-    public static final Status f5993h = new Status(16);
+    public static final Status f6379h = new Status(16);
 
-    /* renamed from: i, reason: collision with root package name */
+    /* renamed from: i */
     @Deprecated
-    public static final Status f5994i = new Status(18);
+    public static final Status f6380i = new Status(18);
 
-    /* renamed from: j, reason: collision with root package name */
+    /* renamed from: j */
     @Deprecated
-    public static final Status f5995j = new Status(8);
+    public static final Status f6381j = new Status(8);
 
-    /* renamed from: k, reason: collision with root package name */
+    /* renamed from: k */
     @Deprecated
-    public static final Status f5996k = new Status(14);
+    public static final Status f6382k = new Status(14);
 
-    /* renamed from: l, reason: collision with root package name */
+    /* renamed from: l */
     @Deprecated
-    public static final Status f5997l = new Status(15);
+    public static final Status f6383l = new Status(15);
 
-    /* renamed from: m, reason: collision with root package name */
-    public static final Status f5998m = new Status(TinkerReport.KEY_LOADED_SUCC_COST_OTHER);
-    public static final Status n = new Status(500);
-    public static final Parcelable.Creator<Status> CREATOR = new a();
+    /* renamed from: m */
+    public static final Status f6384m = new Status(TinkerReport.KEY_LOADED_SUCC_COST_OTHER);
 
-    class a implements Parcelable.Creator {
-        a() {
+    /* renamed from: n */
+    public static final Status f6385n = new Status(500);
+    public static final Parcelable.Creator<Status> CREATOR = new C2134a();
+
+    /* renamed from: com.hihonor.cloudservice.support.api.client.Status$a */
+    class C2134a implements Parcelable.Creator {
+        C2134a() {
         }
 
         @Override // android.os.Parcelable.Creator
@@ -72,29 +75,34 @@ public final class Status extends com.hihonor.cloudservice.support.api.client.a 
         this(i2, null);
     }
 
-    private static boolean a(Object obj, Object obj2) {
+    /* renamed from: a */
+    private static boolean m6010a(Object obj, Object obj2) {
         return obj == obj2 || (obj != null && obj.equals(obj2));
     }
 
-    @Override // com.hihonor.cloudservice.support.api.client.a
-    public Status a() {
+    @Override // com.hihonor.cloudservice.support.api.client.AbstractC2135a
+    /* renamed from: a */
+    public Status mo6011a() {
         return this;
     }
 
-    public String b() {
+    /* renamed from: b */
+    public String m6012b() {
         StringBuilder sb = new StringBuilder();
-        sb.append(c());
+        sb.append(m6013c());
         sb.append(": ");
-        sb.append(d() != null ? d() : "");
+        sb.append(m6014d() != null ? m6014d() : "");
         return sb.toString();
     }
 
-    public int c() {
-        return this.f6001d;
+    /* renamed from: c */
+    public int m6013c() {
+        return this.f6388d;
     }
 
-    public String d() {
-        return this.f6002e;
+    /* renamed from: d */
+    public String m6014d() {
+        return this.f6389e;
     }
 
     @Override // android.os.Parcelable
@@ -102,8 +110,9 @@ public final class Status extends com.hihonor.cloudservice.support.api.client.a 
         return 0;
     }
 
-    public boolean e() {
-        return this.f6001d <= 0;
+    /* renamed from: e */
+    public boolean m6015e() {
+        return this.f6388d <= 0;
     }
 
     public boolean equals(Object obj) {
@@ -114,44 +123,44 @@ public final class Status extends com.hihonor.cloudservice.support.api.client.a 
             return false;
         }
         Status status = (Status) obj;
-        return this.f6001d == status.f6001d && a(this.f6002e, status.f6002e) && a(this.f5999b, status.f5999b);
+        return this.f6388d == status.f6388d && m6010a(this.f6389e, status.f6389e) && m6010a(this.f6386b, status.f6386b);
     }
 
     public int hashCode() {
         Object[] objArr = new Object[3];
         Object[] objArr2 = new Object[0];
-        objArr2[0] = Integer.valueOf(this.f6001d);
-        objArr2[1] = this.f6002e;
-        objArr[2] = this.f5999b;
+        objArr2[0] = Integer.valueOf(this.f6388d);
+        objArr2[1] = this.f6389e;
+        objArr[2] = this.f6386b;
         return Arrays.hashCode(objArr);
     }
 
     public String toString() {
-        return "{statusCode: " + this.f6001d + ", statusMessage: " + this.f6002e + ", pendingIntent: " + this.f5999b + ", }";
+        return "{statusCode: " + this.f6388d + ", statusMessage: " + this.f6389e + ", pendingIntent: " + this.f6386b + ", }";
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeInt(this.f6001d);
-        parcel.writeString(this.f6002e);
-        PendingIntent pendingIntent = this.f5999b;
+        parcel.writeInt(this.f6388d);
+        parcel.writeString(this.f6389e);
+        PendingIntent pendingIntent = this.f6386b;
         if (pendingIntent != null) {
             pendingIntent.writeToParcel(parcel, i2);
         }
-        PendingIntent.writePendingIntentOrNullToParcel(this.f5999b, parcel);
-        if (this.f6000c != null) {
+        PendingIntent.writePendingIntentOrNullToParcel(this.f6386b, parcel);
+        if (this.f6387c != null) {
             writeToParcel(parcel, i2);
         }
     }
 
     public Status(int i2, String str) {
-        this.f6001d = i2;
-        this.f6002e = str;
+        this.f6388d = i2;
+        this.f6389e = str;
     }
 
     public Status(int i2, String str, PendingIntent pendingIntent) {
-        this.f6001d = i2;
-        this.f6002e = str;
-        this.f5999b = pendingIntent;
+        this.f6388d = i2;
+        this.f6389e = str;
+        this.f6386b = pendingIntent;
     }
 }

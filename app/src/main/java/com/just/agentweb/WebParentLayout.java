@@ -30,22 +30,22 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
 
     WebParentLayout(@NonNull Context context) {
         this(context, null);
-        LogUtils.i(TAG, "WebParentLayout");
+        LogUtils.m8083i(TAG, "WebParentLayout");
     }
 
     private void createErrorLayout() {
         final FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setBackgroundColor(-1);
-        frameLayout.setId(R.id.mainframe_error_container_id);
+        frameLayout.setId(C2605R.id.mainframe_error_container_id);
         View view = this.mErrorView;
         if (view == null) {
             LayoutInflater from = LayoutInflater.from(getContext());
-            LogUtils.i(TAG, "mErrorLayoutRes:" + this.mErrorLayoutRes);
+            LogUtils.m8083i(TAG, "mErrorLayoutRes:" + this.mErrorLayoutRes);
             from.inflate(this.mErrorLayoutRes, (ViewGroup) frameLayout, true);
         } else {
             frameLayout.addView(view);
         }
-        View view2 = (ViewStub) findViewById(R.id.mainframe_error_viewsub_id);
+        View view2 = (ViewStub) findViewById(C2605R.id.mainframe_error_viewsub_id);
         int indexOfChild = indexOfChild(view2);
         removeViewInLayout(view2);
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
@@ -72,7 +72,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
                 });
                 return;
             } else if (LogUtils.isDebug()) {
-                LogUtils.e(TAG, "ClickView is null , cannot bind accurate view to refresh or reload .");
+                LogUtils.m8081e(TAG, "ClickView is null , cannot bind accurate view to refresh or reload .");
             }
         }
         frameLayout.setOnClickListener(new View.OnClickListener() { // from class: com.just.agentweb.WebParentLayout.2
@@ -102,7 +102,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
     }
 
     void hideErrorLayout() {
-        View findViewById = findViewById(R.id.mainframe_error_container_id);
+        View findViewById = findViewById(C2605R.id.mainframe_error_container_id);
         if (findViewById != null) {
             findViewById.setVisibility(8);
         }
@@ -115,7 +115,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
         }
         this.mErrorLayoutRes = i2;
         if (this.mErrorLayoutRes <= 0) {
-            this.mErrorLayoutRes = R.layout.agentweb_error_page;
+            this.mErrorLayoutRes = C2605R.layout.agentweb_error_page;
         }
     }
 
@@ -156,7 +156,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
         this.mClickId = -1;
         this.mErrorLayout = null;
         if (context instanceof Activity) {
-            this.mErrorLayoutRes = R.layout.agentweb_error_page;
+            this.mErrorLayoutRes = C2605R.layout.agentweb_error_page;
             return;
         }
         throw new IllegalArgumentException("WebParentLayout context must be activity or activity sub class .");

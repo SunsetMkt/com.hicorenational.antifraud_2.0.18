@@ -14,7 +14,9 @@ public class SurveyAppBean extends BaseBean {
     private String appVersion;
     private String caseInfoID;
     private String createTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1626id;
     private String invitationCode;
     private BlockFileBean packageFile;
     private String packageFileID;
@@ -72,7 +74,7 @@ public class SurveyAppBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1626id;
     }
 
     public String getInvitationCode() {
@@ -176,7 +178,7 @@ public class SurveyAppBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1626id = str;
     }
 
     public void setInvitationCode(String str) {

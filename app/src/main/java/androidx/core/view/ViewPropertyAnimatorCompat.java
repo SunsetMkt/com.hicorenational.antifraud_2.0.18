@@ -377,7 +377,8 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    public ViewPropertyAnimatorCompat x(float f2) {
+    /* renamed from: x */
+    public ViewPropertyAnimatorCompat m393x(float f2) {
         View view = this.mView.get();
         if (view != null) {
             view.animate().x(f2);
@@ -393,7 +394,8 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    public ViewPropertyAnimatorCompat y(float f2) {
+    /* renamed from: y */
+    public ViewPropertyAnimatorCompat m394y(float f2) {
         View view = this.mView.get();
         if (view != null) {
             view.animate().y(f2);
@@ -409,7 +411,8 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    public ViewPropertyAnimatorCompat z(float f2) {
+    /* renamed from: z */
+    public ViewPropertyAnimatorCompat m395z(float f2) {
         View view = this.mView.get();
         if (view != null && Build.VERSION.SDK_INT >= 21) {
             view.animate().z(f2);

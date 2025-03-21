@@ -6,7 +6,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.View;
-import androidx.constraintlayout.widget.R;
+import androidx.constraintlayout.widget.C0471R;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -51,16 +51,16 @@ public class KeyTrigger extends Key {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(R.styleable.KeyTrigger_framePosition, 8);
-            mAttrMap.append(R.styleable.KeyTrigger_onCross, 4);
-            mAttrMap.append(R.styleable.KeyTrigger_onNegativeCross, 1);
-            mAttrMap.append(R.styleable.KeyTrigger_onPositiveCross, 2);
-            mAttrMap.append(R.styleable.KeyTrigger_motionTarget, 7);
-            mAttrMap.append(R.styleable.KeyTrigger_triggerId, 6);
-            mAttrMap.append(R.styleable.KeyTrigger_triggerSlack, 5);
-            mAttrMap.append(R.styleable.KeyTrigger_motion_triggerOnCollision, 9);
-            mAttrMap.append(R.styleable.KeyTrigger_motion_postLayoutCollision, 10);
-            mAttrMap.append(R.styleable.KeyTrigger_triggerReceiver, 11);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_framePosition, 8);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_onCross, 4);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_onNegativeCross, 1);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_onPositiveCross, 2);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_motionTarget, 7);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_triggerId, 6);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_triggerSlack, 5);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_motion_triggerOnCollision, 9);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_motion_postLayoutCollision, 10);
+            mAttrMap.append(C0471R.styleable.KeyTrigger_triggerReceiver, 11);
         }
 
         private Loader() {
@@ -181,7 +181,7 @@ public class KeyTrigger extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyTrigger), context);
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyTrigger), context);
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key

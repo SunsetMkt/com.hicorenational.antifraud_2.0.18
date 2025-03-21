@@ -3,8 +3,8 @@ package network.http;
 import android.app.Activity;
 import java.util.HashMap;
 import manager.AccountManager;
-import ui.basemvp.BaseView;
-import ui.model.ModelPresent;
+import p388ui.basemvp.BaseView;
+import p388ui.model.ModelPresent;
 
 /* loaded from: classes2.dex */
 public class StatisticsShareHttp extends ModelPresent {

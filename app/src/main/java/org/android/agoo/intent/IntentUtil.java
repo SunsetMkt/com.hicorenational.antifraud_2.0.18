@@ -17,7 +17,7 @@ public final class IntentUtil {
         try {
             return context.getPackageName() + INTENT_FROM_AGOO_COMMAND;
         } catch (Throwable th) {
-            ALog.w(TAG, "getAgooCommand", th, new Object[0]);
+            ALog.m9185w(TAG, "getAgooCommand", th, new Object[0]);
             return null;
         }
     }
@@ -29,7 +29,7 @@ public final class IntentUtil {
         try {
             return context.getPackageName() + INTENT_FROM_THIRDPUSH_COMMAND;
         } catch (Throwable th) {
-            ALog.w(TAG, "getAgooCommand", th, new Object[0]);
+            ALog.m9185w(TAG, "getAgooCommand", th, new Object[0]);
             return null;
         }
     }

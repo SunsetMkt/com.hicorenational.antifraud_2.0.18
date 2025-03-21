@@ -290,7 +290,7 @@ public class MaterialShapeDrawable extends Drawable implements TintAwareDrawable
     }
 
     @Override // android.graphics.drawable.Drawable
-    public void setAlpha(@IntRange(from = 0, to = 255) int i2) {
+    public void setAlpha(@IntRange(from = 0, m294to = 255) int i2) {
         this.alpha = i2;
         invalidateSelf();
     }

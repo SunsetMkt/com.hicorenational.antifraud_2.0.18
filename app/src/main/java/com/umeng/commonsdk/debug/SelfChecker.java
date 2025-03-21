@@ -47,7 +47,7 @@ public class SelfChecker {
             r3 = r3[r0]     // Catch: java.lang.Throwable -> L4c
             r2.append(r3)     // Catch: java.lang.Throwable -> L4c
             java.lang.String r2 = r2.toString()     // Catch: java.lang.Throwable -> L4c
-            com.umeng.commonsdk.debug.UMRTLog.i(r5, r2)     // Catch: java.lang.Throwable -> L4c
+            com.umeng.commonsdk.debug.UMRTLog.m11556i(r5, r2)     // Catch: java.lang.Throwable -> L4c
         L49:
             int r0 = r0 + 1
             goto Ld
@@ -70,7 +70,7 @@ public class SelfChecker {
             r0 = r2[r0]
             r1.append(r0)
             java.lang.String r0 = r1.toString()
-            com.umeng.commonsdk.debug.UMRTLog.i(r5, r0)
+            com.umeng.commonsdk.debug.UMRTLog.m11556i(r5, r0)
             goto L80
         L7f:
             r7 = 1
@@ -78,12 +78,12 @@ public class SelfChecker {
             java.lang.String r0 = ""
             if (r7 == 0) goto L8d
             java.lang.String r1 = "基础组件库完整性自检通过。"
-            com.umeng.commonsdk.debug.UMRTLog.i(r5, r1)
+            com.umeng.commonsdk.debug.UMRTLog.m11556i(r5, r1)
             com.umeng.commonsdk.debug.UMLog.mutlInfo(r1, r4, r0)
             goto L95
         L8d:
             java.lang.String r1 = "基础组件库完整性自检未通过！请检查应用混淆配置。"
-            com.umeng.commonsdk.debug.UMRTLog.i(r5, r1)
+            com.umeng.commonsdk.debug.UMRTLog.m11556i(r5, r1)
             com.umeng.commonsdk.debug.UMLog.mutlInfo(r1, r4, r0)
         L95:
             return r7

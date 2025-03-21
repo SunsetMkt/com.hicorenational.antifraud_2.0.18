@@ -1,17 +1,17 @@
 package okio;
 
 import anet.channel.strategy.dispatch.DispatchConstants;
-import com.umeng.analytics.pro.cw;
-import h.q2.e;
-import h.q2.t.i0;
-import h.t1;
-import h.y;
-import i.c.a.d;
+import com.umeng.analytics.pro.C3393cw;
 import okio.internal.ByteStringKt;
+import p286h.C5611t1;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.InterfaceC5481e;
+import p286h.p309q2.p311t.C5544i0;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: -Util.kt */
-@e(name = "-Util")
-@y(bv = {1, 0, 3}, d1 = {"\u0000:\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0012\n\u0000\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0003\n\u0002\u0010\u0005\n\u0002\b\u0002\n\u0002\u0010\n\n\u0002\b\u0003\n\u0002\u0010\u000e\n\u0000\u001a0\u0010\u0000\u001a\u00020\u00012\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u00052\u0006\u0010\u0006\u001a\u00020\u00032\u0006\u0010\u0007\u001a\u00020\u00052\u0006\u0010\b\u001a\u00020\u0005H\u0000\u001a \u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\f2\u0006\u0010\r\u001a\u00020\f2\u0006\u0010\b\u001a\u00020\fH\u0000\u001a\u0019\u0010\u000e\u001a\u00020\f2\u0006\u0010\u0002\u001a\u00020\u00052\u0006\u0010\u0006\u001a\u00020\fH\u0080\b\u001a\u0019\u0010\u000e\u001a\u00020\f2\u0006\u0010\u0002\u001a\u00020\f2\u0006\u0010\u0006\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010\u000f\u001a\u00020\u0005*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0005H\u0080\f\u001a\u0015\u0010\u000f\u001a\u00020\f*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\fH\u0080\f\u001a\u0015\u0010\u000f\u001a\u00020\f*\u00020\u00052\u0006\u0010\u0011\u001a\u00020\fH\u0080\f\u001a\f\u0010\u0012\u001a\u00020\u0005*\u00020\u0005H\u0000\u001a\f\u0010\u0012\u001a\u00020\f*\u00020\fH\u0000\u001a\f\u0010\u0012\u001a\u00020\u0013*\u00020\u0013H\u0000\u001a\u0015\u0010\u0014\u001a\u00020\u0005*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0005H\u0080\f\u001a\u0015\u0010\u0015\u001a\u00020\u0005*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0005H\u0080\f\u001a\f\u0010\u0016\u001a\u00020\u0017*\u00020\u0010H\u0000\u001a\f\u0010\u0016\u001a\u00020\u0017*\u00020\u0005H\u0000\u001a\f\u0010\u0016\u001a\u00020\u0017*\u00020\fH\u0000¨\u0006\u0018"}, d2 = {"arrayRangeEquals", "", "a", "", "aOffset", "", "b", "bOffset", "byteCount", "checkOffsetAndCount", "", "size", "", "offset", "minOf", "and", "", DispatchConstants.OTHER, "reverseBytes", "", "shl", "shr", "toHexString", "", "okio"}, k = 2, mv = {1, 1, 16})
+@InterfaceC5481e(name = "-Util")
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000:\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0012\n\u0000\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0003\n\u0002\u0010\u0005\n\u0002\b\u0002\n\u0002\u0010\n\n\u0002\b\u0003\n\u0002\u0010\u000e\n\u0000\u001a0\u0010\u0000\u001a\u00020\u00012\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u00052\u0006\u0010\u0006\u001a\u00020\u00032\u0006\u0010\u0007\u001a\u00020\u00052\u0006\u0010\b\u001a\u00020\u0005H\u0000\u001a \u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\f2\u0006\u0010\r\u001a\u00020\f2\u0006\u0010\b\u001a\u00020\fH\u0000\u001a\u0019\u0010\u000e\u001a\u00020\f2\u0006\u0010\u0002\u001a\u00020\u00052\u0006\u0010\u0006\u001a\u00020\fH\u0080\b\u001a\u0019\u0010\u000e\u001a\u00020\f2\u0006\u0010\u0002\u001a\u00020\f2\u0006\u0010\u0006\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010\u000f\u001a\u00020\u0005*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0005H\u0080\f\u001a\u0015\u0010\u000f\u001a\u00020\f*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\fH\u0080\f\u001a\u0015\u0010\u000f\u001a\u00020\f*\u00020\u00052\u0006\u0010\u0011\u001a\u00020\fH\u0080\f\u001a\f\u0010\u0012\u001a\u00020\u0005*\u00020\u0005H\u0000\u001a\f\u0010\u0012\u001a\u00020\f*\u00020\fH\u0000\u001a\f\u0010\u0012\u001a\u00020\u0013*\u00020\u0013H\u0000\u001a\u0015\u0010\u0014\u001a\u00020\u0005*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0005H\u0080\f\u001a\u0015\u0010\u0015\u001a\u00020\u0005*\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0005H\u0080\f\u001a\f\u0010\u0016\u001a\u00020\u0017*\u00020\u0010H\u0000\u001a\f\u0010\u0016\u001a\u00020\u0017*\u00020\u0005H\u0000\u001a\f\u0010\u0016\u001a\u00020\u0017*\u00020\fH\u0000¨\u0006\u0018"}, m23546d2 = {"arrayRangeEquals", "", "a", "", "aOffset", "", "b", "bOffset", "byteCount", "checkOffsetAndCount", "", "size", "", "offset", "minOf", "and", "", DispatchConstants.OTHER, "reverseBytes", "", "shl", "shr", "toHexString", "", "okio"}, m23547k = 2, m23548mv = {1, 1, 16})
 /* renamed from: okio.-Util, reason: invalid class name */
 /* loaded from: classes2.dex */
 public final class Util {
@@ -27,9 +27,9 @@ public final class Util {
         return i2 & j2;
     }
 
-    public static final boolean arrayRangeEquals(@d byte[] bArr, int i2, @d byte[] bArr2, int i3, int i4) {
-        i0.f(bArr, "a");
-        i0.f(bArr2, "b");
+    public static final boolean arrayRangeEquals(@InterfaceC5816d byte[] bArr, int i2, @InterfaceC5816d byte[] bArr2, int i3, int i4) {
+        C5544i0.m22546f(bArr, "a");
+        C5544i0.m22546f(bArr2, "b");
         for (int i5 = 0; i5 < i4; i5++) {
             if (bArr[i5 + i2] != bArr2[i5 + i3]) {
                 return false;
@@ -57,7 +57,7 @@ public final class Util {
     }
 
     public static final short reverseBytes(short s) {
-        int i2 = s & t1.f16480c;
+        int i2 = s & C5611t1.f20467c;
         return (short) (((i2 & 255) << 8) | ((65280 & i2) >>> 8));
     }
 
@@ -69,16 +69,16 @@ public final class Util {
         return b2 >> i2;
     }
 
-    @d
+    @InterfaceC5816d
     public static final String toHexString(byte b2) {
-        return new String(new char[]{ByteStringKt.getHEX_DIGIT_CHARS()[(b2 >> 4) & 15], ByteStringKt.getHEX_DIGIT_CHARS()[b2 & cw.f10303m]});
+        return new String(new char[]{ByteStringKt.getHEX_DIGIT_CHARS()[(b2 >> 4) & 15], ByteStringKt.getHEX_DIGIT_CHARS()[b2 & C3393cw.f11873m]});
     }
 
     public static final long minOf(int i2, long j2) {
         return Math.min(i2, j2);
     }
 
-    @d
+    @InterfaceC5816d
     public static final String toHexString(int i2) {
         if (i2 == 0) {
             return "0";
@@ -91,7 +91,7 @@ public final class Util {
         return new String(cArr, i3, cArr.length - i3);
     }
 
-    @d
+    @InterfaceC5816d
     public static final String toHexString(long j2) {
         if (j2 == 0) {
             return "0";

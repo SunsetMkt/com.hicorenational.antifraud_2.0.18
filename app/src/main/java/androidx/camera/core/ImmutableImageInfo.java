@@ -1,8 +1,9 @@
 package androidx.camera.core;
 
 import androidx.annotation.Nullable;
+import p031c.p035b.p036a.p037a.InterfaceC0950c;
 
-@c.b.a.a.c
+@InterfaceC0950c
 /* loaded from: classes.dex */
 abstract class ImmutableImageInfo implements ImageInfo {
     ImmutableImageInfo() {

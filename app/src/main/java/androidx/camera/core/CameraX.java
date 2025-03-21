@@ -43,6 +43,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 @MainThread
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -66,11 +67,11 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static c.b.b.a.a.a<Void> sInitializeFuture = Futures.immediateFailedFuture(new IllegalStateException("CameraX is not initialized."));
+    private static InterfaceFutureC0952a<Void> sInitializeFuture = Futures.immediateFailedFuture(new IllegalStateException("CameraX is not initialized."));
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static c.b.b.a.a.a<Void> sShutdownFuture = Futures.immediateFuture(null);
+    private static InterfaceFutureC0952a<Void> sShutdownFuture = Futures.immediateFuture(null);
     final CameraRepository mCameraRepository = new CameraRepository();
     private final Object mInitializeLock = new Object();
     private final UseCaseGroupRepository mUseCaseGroupRepository = new UseCaseGroupRepository();
@@ -79,10 +80,10 @@ public final class CameraX {
     private InternalInitState mInitState = InternalInitState.UNINITIALIZED;
 
     @GuardedBy("mInitializeLock")
-    private c.b.b.a.a.a<Void> mShutdownInternalFuture = Futures.immediateFuture(null);
+    private InterfaceFutureC0952a<Void> mShutdownInternalFuture = Futures.immediateFuture(null);
 
-    /* renamed from: androidx.camera.core.CameraX$3, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass3 {
+    /* renamed from: androidx.camera.core.CameraX$3 */
+    static /* synthetic */ class C02923 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$CameraX$InternalInitState = new int[InternalInitState.values().length];
 
         static {
@@ -117,16 +118,18 @@ public final class CameraX {
         this.mCameraExecutor = executor;
     }
 
-    static /* synthetic */ CameraX a(CameraX cameraX, Void r1) {
+    /* renamed from: a */
+    static /* synthetic */ CameraX m321a(CameraX cameraX, Void r1) {
         return cameraX;
     }
 
-    static /* synthetic */ Object a(final CameraX cameraX, final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    static /* synthetic */ Object m323a(final CameraX cameraX, final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
         synchronized (sInitializeLock) {
             Futures.addCallback(FutureChain.from(sShutdownFuture).transformAsync(new AsyncFunction() { // from class: androidx.camera.core.h
                 @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
-                public final c.b.b.a.a.a apply(Object obj) {
-                    c.b.b.a.a.a initInternal;
+                public final InterfaceFutureC0952a apply(Object obj) {
+                    InterfaceFutureC0952a initInternal;
                     initInternal = CameraX.this.initInternal(context, cameraXConfig);
                     return initInternal;
                 }
@@ -156,7 +159,8 @@ public final class CameraX {
         useCase.attachCameraControl(str, camera.getCameraControlInternal());
     }
 
-    static /* synthetic */ Object b(final CameraX cameraX, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: b */
+    static /* synthetic */ Object m325b(final CameraX cameraX, final CallbackToFutureAdapter.Completer completer) throws Exception {
         synchronized (sInitializeLock) {
             sInitializeFuture.addListener(new Runnable() { // from class: androidx.camera.core.e
                 @Override // java.lang.Runnable
@@ -360,8 +364,8 @@ public final class CameraX {
     }
 
     @NonNull
-    private static c.b.b.a.a.a<CameraX> getInstance() {
-        c.b.b.a.a.a<CameraX> instanceLocked;
+    private static InterfaceFutureC0952a<CameraX> getInstance() {
+        InterfaceFutureC0952a<CameraX> instanceLocked;
         synchronized (sInitializeLock) {
             instanceLocked = getInstanceLocked();
         }
@@ -370,7 +374,7 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static c.b.b.a.a.a<CameraX> getInstanceLocked() {
+    private static InterfaceFutureC0952a<CameraX> getInstanceLocked() {
         if (!sTargetInitialized) {
             return Futures.immediateFailedFuture(new IllegalStateException("Must call CameraX.initialize() first"));
         }
@@ -379,7 +383,7 @@ public final class CameraX {
             @Override // androidx.arch.core.util.Function
             public final Object apply(Object obj) {
                 CameraX cameraX2 = CameraX.this;
-                CameraX.a(cameraX2, (Void) obj);
+                CameraX.m321a(cameraX2, (Void) obj);
                 return cameraX2;
             }
         }, CameraXExecutors.directExecutor());
@@ -388,8 +392,8 @@ public final class CameraX {
     /* JADX WARN: Multi-variable type inference failed */
     @NonNull
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static c.b.b.a.a.a<CameraX> getOrCreateInstance(@NonNull Context context) {
-        c.b.b.a.a.a<CameraX> instanceLocked;
+    public static InterfaceFutureC0952a<CameraX> getOrCreateInstance(@NonNull Context context) {
+        InterfaceFutureC0952a<CameraX> instanceLocked;
         Preconditions.checkNotNull(context, "Context must not be null.");
         synchronized (sInitializeLock) {
             instanceLocked = getInstanceLocked();
@@ -410,7 +414,7 @@ public final class CameraX {
                     provider = (CameraXConfig.Provider) application;
                 } else {
                     try {
-                        provider = (CameraXConfig.Provider) Class.forName(application.getResources().getString(R.string.androidx_camera_default_config_provider)).getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+                        provider = (CameraXConfig.Provider) Class.forName(application.getResources().getString(C0320R.string.androidx_camera_default_config_provider)).getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
                     } catch (Resources.NotFoundException | ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException unused2) {
                     }
                 }
@@ -451,15 +455,15 @@ public final class CameraX {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public c.b.b.a.a.a<Void> initInternal(final Context context, final CameraXConfig cameraXConfig) {
-        c.b.b.a.a.a<Void> future;
+    public InterfaceFutureC0952a<Void> initInternal(final Context context, final CameraXConfig cameraXConfig) {
+        InterfaceFutureC0952a<Void> future;
         synchronized (this.mInitializeLock) {
             Preconditions.checkState(this.mInitState == InternalInitState.UNINITIALIZED, "CameraX.initInternal() should only be called once per instance");
             this.mInitState = InternalInitState.INITIALIZING;
             future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.b
                 @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                 public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                    return CameraX.this.a(context, cameraXConfig, completer);
+                    return CameraX.this.m326a(context, cameraXConfig, completer);
                 }
             });
         }
@@ -467,8 +471,8 @@ public final class CameraX {
     }
 
     @NonNull
-    public static c.b.b.a.a.a<Void> initialize(@NonNull Context context, @NonNull CameraXConfig cameraXConfig) {
-        c.b.b.a.a.a<Void> initializeLocked;
+    public static InterfaceFutureC0952a<Void> initialize(@NonNull Context context, @NonNull CameraXConfig cameraXConfig) {
+        InterfaceFutureC0952a<Void> initializeLocked;
         synchronized (sInitializeLock) {
             initializeLocked = initializeLocked(context, cameraXConfig);
         }
@@ -477,7 +481,7 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static c.b.b.a.a.a<Void> initializeLocked(@NonNull final Context context, @NonNull final CameraXConfig cameraXConfig) {
+    private static InterfaceFutureC0952a<Void> initializeLocked(@NonNull final Context context, @NonNull final CameraXConfig cameraXConfig) {
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(cameraXConfig);
         Preconditions.checkState(!sTargetInitialized, "Must call CameraX.shutdown() first.");
@@ -491,7 +495,7 @@ public final class CameraX {
         sInitializeFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.d
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return CameraX.a(CameraX.this, context, cameraXConfig, completer);
+                return CameraX.m323a(CameraX.this, context, cameraXConfig, completer);
             }
         });
         return sInitializeFuture;
@@ -526,8 +530,8 @@ public final class CameraX {
     }
 
     @NonNull
-    public static c.b.b.a.a.a<Void> shutdown() {
-        c.b.b.a.a.a<Void> shutdownLocked;
+    public static InterfaceFutureC0952a<Void> shutdown() {
+        InterfaceFutureC0952a<Void> shutdownLocked;
         synchronized (sInitializeLock) {
             shutdownLocked = shutdownLocked();
         }
@@ -535,9 +539,9 @@ public final class CameraX {
     }
 
     @NonNull
-    private c.b.b.a.a.a<Void> shutdownInternal() {
+    private InterfaceFutureC0952a<Void> shutdownInternal() {
         synchronized (this.mInitializeLock) {
-            int i2 = AnonymousClass3.$SwitchMap$androidx$camera$core$CameraX$InternalInitState[this.mInitState.ordinal()];
+            int i2 = C02923.$SwitchMap$androidx$camera$core$CameraX$InternalInitState[this.mInitState.ordinal()];
             if (i2 == 1) {
                 this.mInitState = InternalInitState.SHUTDOWN;
                 return Futures.immediateFuture(null);
@@ -550,7 +554,7 @@ public final class CameraX {
                 this.mShutdownInternalFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.i
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                        return CameraX.this.b(completer);
+                        return CameraX.this.m328b(completer);
                     }
                 });
             }
@@ -560,7 +564,7 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static c.b.b.a.a.a<Void> shutdownLocked() {
+    private static InterfaceFutureC0952a<Void> shutdownLocked() {
         if (!sTargetInitialized) {
             return sShutdownFuture;
         }
@@ -570,7 +574,7 @@ public final class CameraX {
         sShutdownFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.a
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return CameraX.b(CameraX.this, completer);
+                return CameraX.m325b(CameraX.this, completer);
             }
         });
         return sShutdownFuture;
@@ -629,7 +633,8 @@ public final class CameraX {
         }
     }
 
-    public /* synthetic */ void b(Context context, CameraXConfig cameraXConfig, CallbackToFutureAdapter.Completer completer) {
+    /* renamed from: b */
+    public /* synthetic */ void m329b(Context context, CameraXConfig cameraXConfig, CallbackToFutureAdapter.Completer completer) {
         try {
             this.mContext = context.getApplicationContext();
             CameraFactory.Provider cameraFactoryProvider = cameraXConfig.getCameraFactoryProvider(null);
@@ -679,17 +684,19 @@ public final class CameraX {
         }
     }
 
-    public /* synthetic */ Object a(final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m326a(final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mCameraExecutor.execute(new Runnable() { // from class: androidx.camera.core.c
             @Override // java.lang.Runnable
             public final void run() {
-                CameraX.this.b(context, cameraXConfig, completer);
+                CameraX.this.m329b(context, cameraXConfig, completer);
             }
         });
         return "CameraX initInternal";
     }
 
-    public /* synthetic */ void a(CallbackToFutureAdapter.Completer completer) {
+    /* renamed from: a */
+    public /* synthetic */ void m327a(CallbackToFutureAdapter.Completer completer) {
         Executor executor = this.mCameraExecutor;
         if (executor instanceof CameraExecutor) {
             ((CameraExecutor) executor).deinit();
@@ -697,11 +704,12 @@ public final class CameraX {
         completer.set(null);
     }
 
-    public /* synthetic */ Object b(final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: b */
+    public /* synthetic */ Object m328b(final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mCameraRepository.deinit().addListener(new Runnable() { // from class: androidx.camera.core.g
             @Override // java.lang.Runnable
             public final void run() {
-                CameraX.this.a(completer);
+                CameraX.this.m327a(completer);
             }
         }, this.mCameraExecutor);
         return "CameraX shutdownInternal";

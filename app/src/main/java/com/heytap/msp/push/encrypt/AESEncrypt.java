@@ -1,6 +1,6 @@
 package com.heytap.msp.push.encrypt;
 
-import com.heytap.mcssdk.k.g;
+import com.heytap.mcssdk.p160k.C2107g;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.IvParameterSpec;
@@ -16,34 +16,34 @@ public class AESEncrypt {
 
     public static String decrypt(String str, String str2) {
         String[] split = str2.split(IV_CONNECT);
-        byte[] b2 = a.b(split[0]);
-        byte[] b3 = a.b(split[1]);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(a.b(str), ALGORITHM);
+        byte[] m5923b = C2110a.m5923b(split[0]);
+        byte[] m5923b2 = C2110a.m5923b(split[1]);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(C2110a.m5923b(str), ALGORITHM);
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
-        cipher.init(2, secretKeySpec, new IvParameterSpec(b3));
-        return new String(cipher.doFinal(b2));
+        cipher.init(2, secretKeySpec, new IvParameterSpec(m5923b2));
+        return new String(cipher.doFinal(m5923b));
     }
 
     public static String encrypt(String str) {
         try {
             return encrypt(SDK_APP_SECRET, str);
         } catch (Exception e2) {
-            g.b(e2.getLocalizedMessage());
+            C2107g.m5884b(e2.getLocalizedMessage());
             return "";
         }
     }
 
     public static String encrypt(String str, String str2) {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(a.b(str), ALGORITHM);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(C2110a.m5923b(str), ALGORITHM);
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         cipher.init(1, secretKeySpec);
-        String d2 = a.d(cipher.getIV());
-        return a.d(cipher.doFinal(str2.getBytes())) + IV_CONNECT + d2;
+        String m5926d = C2110a.m5926d(cipher.getIV());
+        return C2110a.m5926d(cipher.doFinal(str2.getBytes())) + IV_CONNECT + m5926d;
     }
 
     public static String genKey() {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM);
         keyGenerator.init(256);
-        return a.d(keyGenerator.generateKey().getEncoded());
+        return C2110a.m5926d(keyGenerator.generateKey().getEncoded());
     }
 }

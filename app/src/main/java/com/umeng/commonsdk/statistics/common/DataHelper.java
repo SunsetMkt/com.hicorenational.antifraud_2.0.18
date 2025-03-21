@@ -3,7 +3,6 @@ package com.umeng.commonsdk.statistics.common;
 import android.annotation.SuppressLint;
 import com.just.agentweb.DefaultWebClient;
 import com.umeng.commonsdk.utils.UMUtils;
-import h.f1;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.security.MessageDigest;
@@ -12,6 +11,7 @@ import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import p286h.C5230f1;
 
 /* loaded from: classes2.dex */
 public class DataHelper {
@@ -31,7 +31,7 @@ public class DataHelper {
     static String bytes2Hex(byte[] bArr) {
         String str = "";
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & f1.f16099c);
+            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
             if (hexString.length() == 1) {
                 str = str + "0";
             }
@@ -104,7 +104,7 @@ public class DataHelper {
         if (new Random().nextFloat() < 0.001d) {
             int i3 = 0;
             if (str == null) {
-                MLog.e("--->", "null signature..");
+                MLog.m11747e("--->", "null signature..");
             }
             try {
                 i3 = Integer.parseInt(str.substring(9, 11), 16);

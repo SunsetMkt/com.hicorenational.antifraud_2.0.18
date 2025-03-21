@@ -18,7 +18,7 @@ public abstract class MultiValueSet<C> {
     @Override // 
     @NonNull
     /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public abstract MultiValueSet<C> mo0clone();
+    public abstract MultiValueSet<C> mo26841clone();
 
     @NonNull
     public List<C> getAllItems() {

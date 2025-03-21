@@ -11,13 +11,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import com.heytap.mcssdk.constant.C2084a;
 import com.huawei.hms.activity.BridgeActivity;
 import com.huawei.hms.activity.IBridgeActivityDelegate;
 import com.huawei.hms.api.FailedBinderCallBack;
 import com.huawei.hms.common.internal.BindResolveClients;
+import com.huawei.hms.p182ui.AbstractDialog;
+import com.huawei.hms.p182ui.AbstractPromptDialog;
 import com.huawei.hms.support.log.HMSLog;
-import com.huawei.hms.ui.AbstractDialog;
-import com.huawei.hms.ui.AbstractPromptDialog;
 import com.huawei.hms.utils.HMSPackageManager;
 import com.huawei.hms.utils.ResourceLoaderUtil;
 import com.huawei.hms.utils.UIUtil;
@@ -32,13 +33,14 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
     private static final String TAG = "BindingFailedResolution";
     private FailedBinderCallBack.BinderCallBack callBack;
     private Activity curActivity;
-    private d promptdlg;
+    private C2300d promptdlg;
     private boolean isStarting = true;
     private Handler mConnectTimeoutHandler = null;
     private Handler selfDestroyHandler = null;
 
-    class a implements Handler.Callback {
-        a() {
+    /* renamed from: com.huawei.hms.api.BindingFailedResolution$a */
+    class C2297a implements Handler.Callback {
+        C2297a() {
         }
 
         @Override // android.os.Handler.Callback
@@ -46,15 +48,16 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
             if (message == null || message.what != 3) {
                 return false;
             }
-            HMSLog.i(BindingFailedResolution.TAG, "selfDestroyHandle：MSG_SELF_DESTROY_TIMEOUT");
+            HMSLog.m7717i(BindingFailedResolution.TAG, "selfDestroyHandle：MSG_SELF_DESTROY_TIMEOUT");
             BindingFailedResolution.this.noticeBindFailed();
             BindingFailedResolution.this.finishBridgeActivity(8);
             return true;
         }
     }
 
-    class b implements Handler.Callback {
-        b() {
+    /* renamed from: com.huawei.hms.api.BindingFailedResolution$b */
+    class C2298b implements Handler.Callback {
+        C2298b() {
         }
 
         @Override // android.os.Handler.Callback
@@ -62,14 +65,15 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
             if (message == null || message.what != 2) {
                 return false;
             }
-            HMSLog.e(BindingFailedResolution.TAG, "In connect, bind core try timeout");
+            HMSLog.m7715e(BindingFailedResolution.TAG, "In connect, bind core try timeout");
             BindingFailedResolution.this.fireStartResult(false);
             return true;
         }
     }
 
-    class c implements AbstractDialog.Callback {
-        c() {
+    /* renamed from: com.huawei.hms.api.BindingFailedResolution$c */
+    class C2299c implements AbstractDialog.Callback {
+        C2299c() {
         }
 
         @Override // com.huawei.hms.ui.AbstractDialog.Callback
@@ -87,11 +91,12 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         }
     }
 
-    private static class d extends AbstractPromptDialog {
-        private d() {
+    /* renamed from: com.huawei.hms.api.BindingFailedResolution$d */
+    private static class C2300d extends AbstractPromptDialog {
+        private C2300d() {
         }
 
-        @Override // com.huawei.hms.ui.AbstractDialog
+        @Override // com.huawei.hms.p182ui.AbstractDialog
         public String onGetMessageString(Context context) {
             String appName = Util.getAppName(context, null);
             String appName2 = Util.getAppName(context, HMSPackageManager.getInstance(context).getHMSPackageNameForMultiService());
@@ -104,12 +109,12 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
             return ResourceLoaderUtil.getString("hms_bindfaildlg_message", objArr);
         }
 
-        @Override // com.huawei.hms.ui.AbstractDialog
+        @Override // com.huawei.hms.p182ui.AbstractDialog
         public String onGetPositiveButtonString(Context context) {
             return ResourceLoaderUtil.getString("hms_confirm");
         }
 
-        /* synthetic */ d(a aVar) {
+        /* synthetic */ C2300d(C2297a c2297a) {
             this();
         }
     }
@@ -117,7 +122,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
     private void bindCoreService(boolean z) {
         Activity activity = getActivity();
         if (activity == null) {
-            HMSLog.e(TAG, "In connect, bind core try fail");
+            HMSLog.m7715e(TAG, "In connect, bind core try fail");
             fireStartResult(false);
             noticeBindResult(z, 8);
             return;
@@ -126,7 +131,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         try {
             String hMSPackageNameForMultiService = HMSPackageManager.getInstance(activity.getApplicationContext()).getHMSPackageNameForMultiService();
             if (TextUtils.isEmpty(hMSPackageNameForMultiService)) {
-                HMSLog.e(TAG, "servicePackageName is empty, Service is invalid.");
+                HMSLog.m7715e(TAG, "servicePackageName is empty, Service is invalid.");
                 fireStartResult(false);
                 noticeBindResult(z, 1);
                 return;
@@ -137,12 +142,12 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
                     postConnDelayHandle();
                     return;
                 }
-                HMSLog.e(TAG, "In connect, bind core try fail");
+                HMSLog.m7715e(TAG, "In connect, bind core try fail");
                 fireStartResult(false);
                 noticeBindResult(z, 8);
             }
         } catch (IllegalArgumentException unused) {
-            HMSLog.e(TAG, "IllegalArgumentException when bindCoreService intent.setPackage");
+            HMSLog.m7715e(TAG, "IllegalArgumentException when bindCoreService intent.setPackage");
             fireStartResult(false);
             noticeBindResult(z, 8);
         }
@@ -164,7 +169,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (activity == null || activity.isFinishing()) {
             return;
         }
-        HMSLog.i(TAG, "finishBridgeActivity：" + i2);
+        HMSLog.m7717i(TAG, "finishBridgeActivity：" + i2);
         Intent intent = new Intent();
         intent.putExtra(BridgeActivity.EXTRA_RESULT, i2);
         activity.setResult(-1, intent);
@@ -201,9 +206,9 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (handler != null) {
             handler.removeMessages(2);
         } else {
-            this.mConnectTimeoutHandler = new Handler(Looper.getMainLooper(), new b());
+            this.mConnectTimeoutHandler = new Handler(Looper.getMainLooper(), new C2298b());
         }
-        this.mConnectTimeoutHandler.sendEmptyMessageDelayed(2, com.heytap.mcssdk.constant.a.r);
+        this.mConnectTimeoutHandler.sendEmptyMessageDelayed(2, C2084a.f6136r);
     }
 
     private void selfDestroyHandle() {
@@ -211,7 +216,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (handler != null) {
             handler.removeMessages(3);
         } else {
-            this.selfDestroyHandler = new Handler(Looper.getMainLooper(), new a());
+            this.selfDestroyHandler = new Handler(Looper.getMainLooper(), new C2297a());
         }
         this.selfDestroyHandler.sendEmptyMessageDelayed(3, 4000L);
     }
@@ -221,20 +226,20 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (activity == null || activity.isFinishing()) {
             return;
         }
-        d dVar = this.promptdlg;
-        if (dVar == null) {
-            this.promptdlg = new d(null);
+        C2300d c2300d = this.promptdlg;
+        if (c2300d == null) {
+            this.promptdlg = new C2300d(null);
         } else {
-            dVar.dismiss();
+            c2300d.dismiss();
         }
-        HMSLog.i(TAG, "showPromptdlg to resolve conn error");
-        this.promptdlg.show(activity, new c());
+        HMSLog.m7717i(TAG, "showPromptdlg to resolve conn error");
+        this.promptdlg.show(activity, new C2299c());
     }
 
     private void tryStartHmsActivity(Activity activity) {
         String hMSPackageNameForMultiService = HMSPackageManager.getInstance(activity.getApplicationContext()).getHMSPackageNameForMultiService();
         if (TextUtils.isEmpty(hMSPackageNameForMultiService)) {
-            HMSLog.w(TAG, "servicePackageName is empty, Service is invalid.");
+            HMSLog.m7718w(TAG, "servicePackageName is empty, Service is invalid.");
             Handler handler = this.selfDestroyHandler;
             if (handler != null) {
                 handler.removeMessages(3);
@@ -246,11 +251,11 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         Intent intent = new Intent();
         intent.putExtra(BridgeActivity.EXTRA_IS_FULLSCREEN, UIUtil.isActivityFullscreen(activity));
         intent.setClassName(hMSPackageNameForMultiService, HuaweiApiAvailability.ACTIVITY_NAME);
-        HMSLog.i(TAG, "onBridgeActivityCreate：try to start HMS");
+        HMSLog.m7717i(TAG, "onBridgeActivityCreate：try to start HMS");
         try {
             activity.startActivityForResult(intent, getRequestCode());
         } catch (Throwable th) {
-            HMSLog.e(TAG, "ActivityNotFoundException：" + th.getMessage());
+            HMSLog.m7715e(TAG, "ActivityNotFoundException：" + th.getMessage());
             Handler handler2 = this.selfDestroyHandler;
             if (handler2 != null) {
                 handler2.removeMessages(3);
@@ -272,12 +277,12 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
         if (activity == null) {
-            HMSLog.e(TAG, "activity is null");
+            HMSLog.m7715e(TAG, "activity is null");
             selfDestroyHandle();
             return;
         }
         if (activity.isFinishing()) {
-            HMSLog.e(TAG, "activity is finishing");
+            HMSLog.m7715e(TAG, "activity is finishing");
             return;
         }
         Intent intent = activity.getIntent();
@@ -286,12 +291,12 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
             try {
                 j2 = intent.getLongExtra(FailedBinderCallBack.CALLER_ID, 0L);
             } catch (Exception e2) {
-                HMSLog.e(TAG, "getExtras for callId exception:" + e2.getMessage());
+                HMSLog.m7715e(TAG, "getExtras for callId exception:" + e2.getMessage());
             }
             this.callBack = FailedBinderCallBack.getInstance().getCallBack(Long.valueOf(j2));
         }
         this.curActivity = activity;
-        BindingFailedResolveMgr.f6608b.a(activity);
+        BindingFailedResolveMgr.f7112b.m6608a(activity);
         selfDestroyHandle();
         tryStartHmsActivity(activity);
     }
@@ -299,7 +304,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityDestroy() {
         cancelConnDelayHandle();
-        BindingFailedResolveMgr.f6608b.b(this.curActivity);
+        BindingFailedResolveMgr.f7112b.m6609b(this.curActivity);
         this.curActivity = null;
     }
 
@@ -308,7 +313,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (i2 != getRequestCode()) {
             return false;
         }
-        HMSLog.i(TAG, "onBridgeActivityResult");
+        HMSLog.m7717i(TAG, "onBridgeActivityResult");
         Handler handler = this.selfDestroyHandler;
         if (handler != null) {
             handler.removeMessages(3);
@@ -323,13 +328,13 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (this.promptdlg == null) {
             return;
         }
-        HMSLog.i(TAG, "re show prompt dialog");
+        HMSLog.m7717i(TAG, "re show prompt dialog");
         showPromptdlg();
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onKeyUp(int i2, KeyEvent keyEvent) {
-        HMSLog.i(TAG, "On key up when resolve conn error");
+        HMSLog.m7717i(TAG, "On key up when resolve conn error");
     }
 
     @Override // android.content.ServiceConnection
@@ -339,7 +344,7 @@ public class BindingFailedResolution implements IBridgeActivityDelegate, Service
         if (getActivity() == null) {
             return;
         }
-        HMSLog.i(TAG, "test connect success, try to reConnect and reply message");
+        HMSLog.m7717i(TAG, "test connect success, try to reConnect and reply message");
         BindResolveClients.getInstance().notifyClientReconnect();
     }
 

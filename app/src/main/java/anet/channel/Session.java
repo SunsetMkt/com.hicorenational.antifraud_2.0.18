@@ -3,6 +3,8 @@ package anet.channel;
 import android.content.Context;
 import android.text.TextUtils;
 import androidx.core.app.NotificationCompat;
+import anet.channel.entity.C0781a;
+import anet.channel.entity.C0782b;
 import anet.channel.entity.ConnType;
 import anet.channel.entity.EventCb;
 import anet.channel.request.Cancelable;
@@ -15,6 +17,7 @@ import anet.channel.util.ALog;
 import anet.channel.util.HttpConstant;
 import anet.channel.util.HttpHelper;
 import anet.channel.util.StringUtils;
+import com.heytap.mcssdk.constant.C2084a;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,61 +33,88 @@ import org.android.spdy.SpdyVersion;
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
 public abstract class Session implements Comparable<Session> {
-    static ExecutorService v = Executors.newSingleThreadExecutor();
 
-    /* renamed from: a, reason: collision with root package name */
-    public Context f1621a;
+    /* renamed from: v */
+    static ExecutorService f682v = Executors.newSingleThreadExecutor();
 
-    /* renamed from: c, reason: collision with root package name */
-    public String f1623c;
+    /* renamed from: a */
+    public Context f683a;
 
-    /* renamed from: d, reason: collision with root package name */
-    public String f1624d;
+    /* renamed from: c */
+    public String f685c;
 
-    /* renamed from: e, reason: collision with root package name */
-    public String f1625e;
+    /* renamed from: d */
+    public String f686d;
 
-    /* renamed from: f, reason: collision with root package name */
-    public String f1626f;
+    /* renamed from: e */
+    public String f687e;
 
-    /* renamed from: g, reason: collision with root package name */
-    public int f1627g;
+    /* renamed from: f */
+    public String f688f;
 
-    /* renamed from: h, reason: collision with root package name */
-    public String f1628h;
+    /* renamed from: g */
+    public int f689g;
 
-    /* renamed from: i, reason: collision with root package name */
-    public int f1629i;
+    /* renamed from: h */
+    public String f690h;
 
-    /* renamed from: j, reason: collision with root package name */
-    public ConnType f1630j;
+    /* renamed from: i */
+    public int f691i;
 
-    /* renamed from: k, reason: collision with root package name */
-    public IConnStrategy f1631k;
+    /* renamed from: j */
+    public ConnType f692j;
 
-    /* renamed from: m, reason: collision with root package name */
-    public boolean f1633m;
-    protected Runnable o;
-    public final String p;
-    public final SessionStatistic q;
-    public int r;
-    public int s;
-    private Future<?> x;
+    /* renamed from: k */
+    public IConnStrategy f693k;
 
-    /* renamed from: b, reason: collision with root package name */
-    Map<EventCb, Integer> f1622b = new LinkedHashMap();
-    private boolean w = false;
+    /* renamed from: m */
+    public boolean f695m;
 
-    /* renamed from: l, reason: collision with root package name */
-    public String f1632l = null;
-    public int n = 6;
-    public boolean t = false;
-    protected boolean u = true;
-    private List<Long> y = null;
-    private long z = 0;
+    /* renamed from: o */
+    protected Runnable f697o;
+
+    /* renamed from: p */
+    public final String f698p;
+
+    /* renamed from: q */
+    public final SessionStatistic f699q;
+
+    /* renamed from: r */
+    public int f700r;
+
+    /* renamed from: s */
+    public int f701s;
+
+    /* renamed from: x */
+    private Future<?> f705x;
+
+    /* renamed from: b */
+    Map<EventCb, Integer> f684b = new LinkedHashMap();
+
+    /* renamed from: w */
+    private boolean f704w = false;
+
+    /* renamed from: l */
+    public String f694l = null;
+
+    /* renamed from: n */
+    public int f696n = 6;
+
+    /* renamed from: t */
+    public boolean f702t = false;
+
+    /* renamed from: u */
+    protected boolean f703u = true;
+
+    /* renamed from: y */
+    private List<Long> f706y = null;
+
+    /* renamed from: z */
+    private long f707z = 0;
 
     /* compiled from: Taobao */
-    public static class a {
+    /* renamed from: anet.channel.Session$a */
+    public static class C0737a {
         public static final int AUTHING = 3;
         public static final int AUTH_FAIL = 5;
         public static final int AUTH_SUCC = 4;
@@ -94,50 +124,52 @@ public abstract class Session implements Comparable<Session> {
         public static final int DISCONNECTED = 6;
         public static final int DISCONNECTING = 7;
 
-        /* renamed from: a, reason: collision with root package name */
-        static final String[] f1634a = {"CONNECTED", "CONNECTING", "CONNETFAIL", "AUTHING", "AUTH_SUCC", "AUTH_FAIL", "DISCONNECTED", "DISCONNECTING"};
+        /* renamed from: a */
+        static final String[] f708a = {"CONNECTED", "CONNECTING", "CONNETFAIL", "AUTHING", "AUTH_SUCC", "AUTH_FAIL", "DISCONNECTED", "DISCONNECTING"};
 
-        static String a(int i2) {
-            return f1634a[i2];
+        /* renamed from: a */
+        static String m410a(int i2) {
+            return f708a[i2];
         }
     }
 
-    public Session(Context context, anet.channel.entity.a aVar) {
+    public Session(Context context, C0781a c0781a) {
         boolean z = false;
-        this.f1633m = false;
-        this.f1621a = context;
-        this.f1625e = aVar.a();
-        this.f1626f = this.f1625e;
-        this.f1627g = aVar.b();
-        this.f1630j = aVar.c();
-        this.f1623c = aVar.f();
-        String str = this.f1623c;
-        this.f1624d = str.substring(str.indexOf(HttpConstant.SCHEME_SPLIT) + 3);
-        this.s = aVar.e();
-        this.r = aVar.d();
-        this.f1631k = aVar.f1761a;
-        IConnStrategy iConnStrategy = this.f1631k;
+        this.f695m = false;
+        this.f683a = context;
+        this.f687e = c0781a.m508a();
+        this.f688f = this.f687e;
+        this.f689g = c0781a.m509b();
+        this.f692j = c0781a.m510c();
+        this.f685c = c0781a.m513f();
+        String str = this.f685c;
+        this.f686d = str.substring(str.indexOf(HttpConstant.SCHEME_SPLIT) + 3);
+        this.f701s = c0781a.m512e();
+        this.f700r = c0781a.m511d();
+        this.f693k = c0781a.f835a;
+        IConnStrategy iConnStrategy = this.f693k;
         if (iConnStrategy != null && iConnStrategy.getIpType() == -1) {
             z = true;
         }
-        this.f1633m = z;
-        this.p = aVar.h();
-        this.q = new SessionStatistic(aVar);
-        this.q.host = this.f1624d;
+        this.f695m = z;
+        this.f698p = c0781a.m515h();
+        this.f699q = new SessionStatistic(c0781a);
+        this.f699q.host = this.f686d;
     }
 
     public static void configTnetALog(Context context, String str, int i2, int i3) {
         SpdyAgent spdyAgent = SpdyAgent.getInstance(context, SpdyVersion.SPDY3, SpdySessionKind.NONE_SESSION);
         if (spdyAgent == null || !SpdyAgent.checkLoadSucc()) {
-            ALog.e("agent null or configTnetALog load so fail!!!", null, "loadso", Boolean.valueOf(SpdyAgent.checkLoadSucc()));
+            ALog.m715e("agent null or configTnetALog load so fail!!!", null, "loadso", Boolean.valueOf(SpdyAgent.checkLoadSucc()));
         } else {
             spdyAgent.configLogFile(str, i2, i3);
         }
     }
 
-    protected void a() {
+    /* renamed from: a */
+    protected void m409a() {
         Future<?> future;
-        if (this.o == null || (future = this.x) == null) {
+        if (this.f697o == null || (future = this.f705x) == null) {
             return;
         }
         future.cancel(true);
@@ -150,7 +182,7 @@ public abstract class Session implements Comparable<Session> {
     public abstract void close();
 
     public void close(boolean z) {
-        this.t = z;
+        this.f702t = z;
         close();
     }
 
@@ -158,55 +190,55 @@ public abstract class Session implements Comparable<Session> {
     }
 
     public IConnStrategy getConnStrategy() {
-        return this.f1631k;
+        return this.f693k;
     }
 
     public ConnType getConnType() {
-        return this.f1630j;
+        return this.f692j;
     }
 
     public String getHost() {
-        return this.f1623c;
+        return this.f685c;
     }
 
     public String getIp() {
-        return this.f1625e;
+        return this.f687e;
     }
 
     public int getPort() {
-        return this.f1627g;
+        return this.f689g;
     }
 
     public String getRealHost() {
-        return this.f1624d;
+        return this.f686d;
     }
 
     public abstract Runnable getRecvTimeOutRunnable();
 
     public String getUnit() {
-        return this.f1632l;
+        return this.f694l;
     }
 
-    public void handleCallbacks(int i2, anet.channel.entity.b bVar) {
-        v.submit(new b(this, i2, bVar));
+    public void handleCallbacks(int i2, C0782b c0782b) {
+        f682v.submit(new RunnableC0747b(this, i2, c0782b));
     }
 
     public void handleResponseCode(Request request, int i2) {
         if (request.getHeaders().containsKey(HttpConstant.X_PV) && i2 >= 500 && i2 < 600) {
             synchronized (this) {
-                if (this.y == null) {
-                    this.y = new LinkedList();
+                if (this.f706y == null) {
+                    this.f706y = new LinkedList();
                 }
-                if (this.y.size() < 5) {
-                    this.y.add(Long.valueOf(System.currentTimeMillis()));
+                if (this.f706y.size() < 5) {
+                    this.f706y.add(Long.valueOf(System.currentTimeMillis()));
                 } else {
-                    long longValue = this.y.remove(0).longValue();
+                    long longValue = this.f706y.remove(0).longValue();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (currentTimeMillis - longValue <= com.heytap.mcssdk.constant.a.f5800d) {
+                    if (currentTimeMillis - longValue <= C2084a.f6122d) {
                         StrategyCenter.getInstance().forceRefreshStrategy(request.getHost());
-                        this.y.clear();
+                        this.f706y.clear();
                     } else {
-                        this.y.add(Long.valueOf(currentTimeMillis));
+                        this.f706y.add(Long.valueOf(currentTimeMillis));
                     }
                 }
             }
@@ -220,13 +252,13 @@ public abstract class Session implements Comparable<Session> {
                 if (TextUtils.isEmpty(singleHeaderFieldByKey)) {
                     singleHeaderFieldByKey = null;
                 }
-                if (StringUtils.isStringEqual(this.f1632l, singleHeaderFieldByKey)) {
+                if (StringUtils.isStringEqual(this.f694l, singleHeaderFieldByKey)) {
                     return;
                 }
                 long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - this.z > com.heytap.mcssdk.constant.a.f5800d) {
+                if (currentTimeMillis - this.f707z > C2084a.f6122d) {
                     StrategyCenter.getInstance().forceRefreshStrategy(request.getHost());
-                    this.z = currentTimeMillis;
+                    this.f707z = currentTimeMillis;
                 }
             }
         } catch (Exception unused) {
@@ -235,31 +267,31 @@ public abstract class Session implements Comparable<Session> {
 
     public abstract boolean isAvailable();
 
-    public synchronized void notifyStatus(int i2, anet.channel.entity.b bVar) {
-        ALog.e("awcn.Session", "notifyStatus", this.p, NotificationCompat.CATEGORY_STATUS, a.a(i2));
-        if (i2 == this.n) {
-            ALog.i("awcn.Session", "ignore notifyStatus", this.p, new Object[0]);
+    public synchronized void notifyStatus(int i2, C0782b c0782b) {
+        ALog.m715e("awcn.Session", "notifyStatus", this.f698p, NotificationCompat.CATEGORY_STATUS, C0737a.m410a(i2));
+        if (i2 == this.f696n) {
+            ALog.m716i("awcn.Session", "ignore notifyStatus", this.f698p, new Object[0]);
             return;
         }
-        this.n = i2;
-        switch (this.n) {
+        this.f696n = i2;
+        switch (this.f696n) {
             case 0:
-                handleCallbacks(1, bVar);
+                handleCallbacks(1, c0782b);
                 break;
             case 2:
-                handleCallbacks(256, bVar);
+                handleCallbacks(256, c0782b);
                 break;
             case 4:
-                this.f1632l = StrategyCenter.getInstance().getUnitByHost(this.f1624d);
-                handleCallbacks(512, bVar);
+                this.f694l = StrategyCenter.getInstance().getUnitByHost(this.f686d);
+                handleCallbacks(512, c0782b);
                 break;
             case 5:
-                handleCallbacks(1024, bVar);
+                handleCallbacks(1024, c0782b);
                 break;
             case 6:
                 onDisconnect();
-                if (!this.w) {
-                    handleCallbacks(2, bVar);
+                if (!this.f704w) {
+                    handleCallbacks(2, c0782b);
                     break;
                 }
                 break;
@@ -276,7 +308,7 @@ public abstract class Session implements Comparable<Session> {
     }
 
     public void registerEventcb(int i2, EventCb eventCb) {
-        Map<EventCb, Integer> map = this.f1622b;
+        Map<EventCb, Integer> map = this.f684b;
         if (map != null) {
             map.put(eventCb, Integer.valueOf(i2));
         }
@@ -288,22 +320,22 @@ public abstract class Session implements Comparable<Session> {
     }
 
     public void setPingTimeout(int i2) {
-        if (this.o == null) {
-            this.o = getRecvTimeOutRunnable();
+        if (this.f697o == null) {
+            this.f697o = getRecvTimeOutRunnable();
         }
-        a();
-        Runnable runnable = this.o;
+        m409a();
+        Runnable runnable = this.f697o;
         if (runnable != null) {
-            this.x = ThreadPoolExecutorFactory.submitScheduledTask(runnable, i2, TimeUnit.MILLISECONDS);
+            this.f705x = ThreadPoolExecutorFactory.submitScheduledTask(runnable, i2, TimeUnit.MILLISECONDS);
         }
     }
 
     public String toString() {
-        return "Session@[" + this.p + '|' + this.f1630j + ']';
+        return "Session@[" + this.f698p + '|' + this.f692j + ']';
     }
 
     @Override // java.lang.Comparable
     public int compareTo(Session session) {
-        return ConnType.compare(this.f1630j, session.f1630j);
+        return ConnType.compare(this.f692j, session.f692j);
     }
 }

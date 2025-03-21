@@ -23,6 +23,7 @@ import com.luck.picture.lib.tools.ValueOf;
 import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.util.ArrayList;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes.dex */
 public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
@@ -48,14 +49,14 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
     }
 
     private void onTakePhoto() {
-        if (!PermissionChecker.checkSelfPermission(this, util.permissionutil.a.f20909c)) {
-            PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f20909c}, 2);
+        if (!PermissionChecker.checkSelfPermission(this, C7308a.f25524c)) {
+            PermissionChecker.requestPermissions(this, new String[]{C7308a.f25524c}, 2);
             return;
         }
-        if (this.config.isUseCustomCamera ? PermissionChecker.checkSelfPermission(this, util.permissionutil.a.f20915i) : true) {
+        if (this.config.isUseCustomCamera ? PermissionChecker.checkSelfPermission(this, C7308a.f25530i) : true) {
             startCamera();
         } else {
-            PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f20915i}, 4);
+            PermissionChecker.requestPermissions(this, new String[]{C7308a.f25530i}, 4);
         }
     }
 
@@ -75,12 +76,12 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return R.layout.picture_empty;
+        return C2639R.layout.picture_empty;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public void immersive() {
-        ImmersiveManage.immersiveAboveAPI23(this, ContextCompat.getColor(this, R.color.picture_color_transparent), ContextCompat.getColor(this, R.color.picture_color_transparent), this.openWhiteStatusBar);
+        ImmersiveManage.immersiveAboveAPI23(this, ContextCompat.getColor(this, C2639R.color.picture_color_transparent), ContextCompat.getColor(this, C2639R.color.picture_color_transparent), this.openWhiteStatusBar);
     }
 
     @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
@@ -109,13 +110,13 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
         if (i3 != 96 || intent == null) {
             return;
         }
-        ToastUtils.s(getContext(), ((Throwable) intent.getSerializableExtra(UCrop.EXTRA_ERROR)).getMessage());
+        ToastUtils.m8140s(getContext(), ((Throwable) intent.getSerializableExtra(UCrop.EXTRA_ERROR)).getMessage());
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
     /* renamed from: onBackPressed */
-    public void a() {
-        super.a();
+    public void m8092a() {
+        super.m8092a();
         closeActivity();
     }
 
@@ -123,13 +124,13 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
     protected void onCreate(Bundle bundle) {
         if (!this.config.isUseCustomCamera && PictureSelectionConfig.onPictureSelectorInterfaceListener == null) {
             if (bundle == null) {
-                if (PermissionChecker.checkSelfPermission(this, util.permissionutil.a.z) && PermissionChecker.checkSelfPermission(this, util.permissionutil.a.A)) {
+                if (PermissionChecker.checkSelfPermission(this, C7308a.f25547z) && PermissionChecker.checkSelfPermission(this, C7308a.f25521A)) {
                     onTakePhoto();
                 } else {
-                    PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.z, util.permissionutil.a.A}, 1);
+                    PermissionChecker.requestPermissions(this, new String[]{C7308a.f25547z, C7308a.f25521A}, 1);
                 }
             }
-            setTheme(R.style.Picture_Theme_Translucent);
+            setTheme(C2639R.style.Picture_Theme_Translucent);
         }
         super.onCreate(bundle);
     }
@@ -139,10 +140,10 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
         super.onRequestPermissionsResult(i2, strArr, iArr);
         if (i2 == 1) {
             if (iArr.length > 0 && iArr[0] == 0) {
-                PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f20909c}, 2);
+                PermissionChecker.requestPermissions(this, new String[]{C7308a.f25524c}, 2);
                 return;
             } else {
-                ToastUtils.s(getContext(), getString(R.string.picture_jurisdiction));
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_jurisdiction));
                 closeActivity();
                 return;
             }
@@ -153,7 +154,7 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
                 return;
             } else {
                 closeActivity();
-                ToastUtils.s(getContext(), getString(R.string.picture_camera));
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_camera));
                 return;
             }
         }
@@ -164,7 +165,7 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
             onTakePhoto();
         } else {
             closeActivity();
-            ToastUtils.s(getContext(), getString(R.string.picture_audio));
+            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_audio));
         }
     }
 

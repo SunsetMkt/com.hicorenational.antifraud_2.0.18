@@ -6,9 +6,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintHelper;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.R;
 
 /* loaded from: classes.dex */
 public class MotionHelper extends ConstraintHelper implements Animatable, MotionLayout.TransitionListener {
@@ -32,13 +32,13 @@ public class MotionHelper extends ConstraintHelper implements Animatable, Motion
     protected void init(AttributeSet attributeSet) {
         super.init(attributeSet);
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.MotionHelper);
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.MotionHelper);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.MotionHelper_onShow) {
+                if (index == C0471R.styleable.MotionHelper_onShow) {
                     this.mUseOnShow = obtainStyledAttributes.getBoolean(index, this.mUseOnShow);
-                } else if (index == R.styleable.MotionHelper_onHide) {
+                } else if (index == C0471R.styleable.MotionHelper_onHide) {
                     this.mUseOnHide = obtainStyledAttributes.getBoolean(index, this.mUseOnHide);
                 }
             }

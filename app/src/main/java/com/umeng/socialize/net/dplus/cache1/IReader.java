@@ -3,12 +3,12 @@ package com.umeng.socialize.net.dplus.cache1;
 /* loaded from: classes2.dex */
 public abstract class IReader<T> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f11804a;
+    /* renamed from: a */
+    private String f13759a;
     public T result;
 
     public IReader(String str) {
-        this.f11804a = str;
+        this.f13759a = str;
     }
 
     public static double formatSize(long j2) {
@@ -18,6 +18,6 @@ public abstract class IReader<T> {
     public abstract void create(String str);
 
     public String getLogFileName() {
-        return this.f11804a;
+        return this.f13759a;
     }
 }

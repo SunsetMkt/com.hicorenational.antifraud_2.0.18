@@ -68,7 +68,7 @@ public final class IOUtils {
             try {
                 closeable.close();
             } catch (IOException unused) {
-                HMSLog.e("IOUtils", "An exception occurred while closing the 'Closeable' object.");
+                HMSLog.m7715e("IOUtils", "An exception occurred while closing the 'Closeable' object.");
             }
         }
     }

@@ -9,7 +9,9 @@ public class ReportWebBean extends BaseBean {
     private String caseInfoID;
     private String createTime;
     private String firm;
-    private String id;
+
+    /* renamed from: id */
+    private String f1618id;
     private List<LocalMedia> localMedias;
     private String updateTime;
     private String url;
@@ -27,7 +29,7 @@ public class ReportWebBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1618id;
     }
 
     public List<LocalMedia> getLocalMedias() {
@@ -55,7 +57,7 @@ public class ReportWebBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1618id = str;
     }
 
     public void setLocalMedias(List<LocalMedia> list) {

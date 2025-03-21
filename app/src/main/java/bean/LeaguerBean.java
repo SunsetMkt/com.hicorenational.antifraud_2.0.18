@@ -6,7 +6,9 @@ import network.BaseBean;
 public class LeaguerBean extends BaseBean {
     private String createTime;
     private long groupIdStr;
-    private long id;
+
+    /* renamed from: id */
+    private long f1601id;
     private String joinTime;
     private String leaguerMobile;
     private String leaguerName;
@@ -25,7 +27,7 @@ public class LeaguerBean extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1601id;
     }
 
     public String getJoinTime() {
@@ -69,7 +71,7 @@ public class LeaguerBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1601id = j2;
     }
 
     public void setJoinTime(String str) {

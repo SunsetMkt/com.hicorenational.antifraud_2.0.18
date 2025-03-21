@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.lifecycle.Lifecycle;
-import c.c.a.b.a.a;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
@@ -62,7 +62,7 @@ public class Lifecycling {
     }
 
     public static String getAdapterName(String str) {
-        return str.replace(".", a.s1) + "_LifecycleAdapter";
+        return str.replace(".", AbstractC1191a.f2606s1) + "_LifecycleAdapter";
     }
 
     @NonNull

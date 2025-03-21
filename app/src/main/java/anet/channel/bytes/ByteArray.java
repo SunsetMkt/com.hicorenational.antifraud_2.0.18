@@ -1,6 +1,6 @@
 package anet.channel.bytes;
 
-import anet.channel.bytes.a;
+import anet.channel.bytes.C0752a;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -51,7 +51,7 @@ public class ByteArray implements Comparable<ByteArray> {
         if (this.bufferLength == 0) {
             return;
         }
-        a.C0012a.f1691a.a(this);
+        C0752a.a.f765a.m448a(this);
     }
 
     public void setDataLength(int i2) {

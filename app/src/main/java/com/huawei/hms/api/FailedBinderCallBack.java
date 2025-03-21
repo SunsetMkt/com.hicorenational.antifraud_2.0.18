@@ -41,7 +41,7 @@ public class FailedBinderCallBack {
 
     private void putCallBackInMap(Long l2, BinderCallBack binderCallBack) {
         if (binderCallBackMap == null) {
-            HMSLog.e(TAG, "binderCallBackMap is null");
+            HMSLog.m7715e(TAG, "binderCallBackMap is null");
         } else {
             agingCheck();
             binderCallBackMap.put(l2, binderCallBack);
@@ -53,7 +53,7 @@ public class FailedBinderCallBack {
         if (map != null) {
             return map.remove(l2);
         }
-        HMSLog.e(TAG, "binderCallBackMap is null");
+        HMSLog.m7715e(TAG, "binderCallBackMap is null");
         return null;
     }
 

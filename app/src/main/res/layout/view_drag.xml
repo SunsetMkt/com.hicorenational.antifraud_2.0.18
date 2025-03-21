@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ui.view.drag.RemovableView xmlns:android="http://schemas.android.com/apk/res/android"
+<p388ui.view.drag.RemovableView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rv_drag"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -8,4 +8,4 @@
         android:id="@+id/iv_drag"
         android:layout_width="75dp"
         android:layout_height="75dp"/>
-</ui.view.drag.RemovableView>
+</p388ui.view.drag.RemovableView>

@@ -6,15 +6,23 @@ import androidx.annotation.NonNull;
 /* loaded from: classes2.dex */
 public class RotationGestureDetector {
     private static final int INVALID_POINTER_INDEX = -1;
-    private float fX;
-    private float fY;
+
+    /* renamed from: fX */
+    private float f16843fX;
+
+    /* renamed from: fY */
+    private float f16844fY;
     private float mAngle;
     private boolean mIsFirstTouch;
     private OnRotationGestureListener mListener;
     private int mPointerIndex1 = -1;
     private int mPointerIndex2 = -1;
-    private float sX;
-    private float sY;
+
+    /* renamed from: sX */
+    private float f16845sX;
+
+    /* renamed from: sY */
+    private float f16846sY;
 
     public interface OnRotationGestureListener {
         boolean onRotation(RotationGestureDetector rotationGestureDetector);
@@ -53,8 +61,8 @@ public class RotationGestureDetector {
     public boolean onTouchEvent(@NonNull MotionEvent motionEvent) {
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0) {
-            this.sX = motionEvent.getX();
-            this.sY = motionEvent.getY();
+            this.f16845sX = motionEvent.getX();
+            this.f16846sY = motionEvent.getY();
             this.mPointerIndex1 = motionEvent.findPointerIndex(motionEvent.getPointerId(0));
             this.mAngle = 0.0f;
             this.mIsFirstTouch = true;
@@ -62,8 +70,8 @@ public class RotationGestureDetector {
             this.mPointerIndex1 = -1;
         } else if (actionMasked != 2) {
             if (actionMasked == 5) {
-                this.fX = motionEvent.getX();
-                this.fY = motionEvent.getY();
+                this.f16843fX = motionEvent.getX();
+                this.f16844fY = motionEvent.getY();
                 this.mPointerIndex2 = motionEvent.findPointerIndex(motionEvent.getPointerId(motionEvent.getActionIndex()));
                 this.mAngle = 0.0f;
                 this.mIsFirstTouch = true;
@@ -79,16 +87,16 @@ public class RotationGestureDetector {
                 this.mAngle = 0.0f;
                 this.mIsFirstTouch = false;
             } else {
-                calculateAngleBetweenLines(this.fX, this.fY, this.sX, this.sY, x2, y2, x, y);
+                calculateAngleBetweenLines(this.f16843fX, this.f16844fY, this.f16845sX, this.f16846sY, x2, y2, x, y);
             }
             OnRotationGestureListener onRotationGestureListener = this.mListener;
             if (onRotationGestureListener != null) {
                 onRotationGestureListener.onRotation(this);
             }
-            this.fX = x2;
-            this.fY = y2;
-            this.sX = x;
-            this.sY = y;
+            this.f16843fX = x2;
+            this.f16844fY = y2;
+            this.f16845sX = x;
+            this.f16846sY = y;
         }
         return true;
     }

@@ -1,7 +1,7 @@
 package bean;
 
 import android.graphics.drawable.Drawable;
-import com.google.gson.e;
+import com.google.gson.C2051e;
 import network.BaseBean;
 
 /* loaded from: classes.dex */
@@ -35,11 +35,11 @@ public class AppBean extends BaseBean {
     }
 
     public static AppBean child2Parent(AppInfoBean appInfoBean) {
-        return (AppBean) new e().a(new e().a(appInfoBean), AppBean.class);
+        return (AppBean) new C2051e().m5569a(new C2051e().m5572a(appInfoBean), AppBean.class);
     }
 
     public static AppInfoBean parent2Child(AppBean appBean) {
-        return (AppInfoBean) new e().a(new e().a(appBean), AppInfoBean.class);
+        return (AppInfoBean) new C2051e().m5569a(new C2051e().m5572a(appBean), AppInfoBean.class);
     }
 
     public String getActivityName() {

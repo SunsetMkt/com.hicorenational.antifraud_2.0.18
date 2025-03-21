@@ -1,8 +1,9 @@
 package com.huawei.secure.android.common.ssl;
 
 import android.content.Context;
+import com.huawei.secure.android.common.ssl.util.C2559a;
+import com.huawei.secure.android.common.ssl.util.C2563e;
 import com.huawei.secure.android.common.ssl.util.ContextUtil;
-import com.huawei.secure.android.common.ssl.util.e;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -21,102 +22,103 @@ import javax.net.ssl.X509TrustManager;
 /* loaded from: classes.dex */
 public class SSFCompatiableSystemCA extends SSLSocketFactory {
 
-    /* renamed from: i, reason: collision with root package name */
-    private static final String f7547i = SSFCompatiableSystemCA.class.getSimpleName();
+    /* renamed from: i */
+    private static final String f8124i = SSFCompatiableSystemCA.class.getSimpleName();
 
-    /* renamed from: j, reason: collision with root package name */
-    private static volatile SSFCompatiableSystemCA f7548j = null;
+    /* renamed from: j */
+    private static volatile SSFCompatiableSystemCA f8125j = null;
 
-    /* renamed from: a, reason: collision with root package name */
-    private SSLContext f7549a;
+    /* renamed from: a */
+    private SSLContext f8126a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private SSLSocket f7550b;
+    /* renamed from: b */
+    private SSLSocket f8127b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private Context f7551c;
+    /* renamed from: c */
+    private Context f8128c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private String[] f7552d;
+    /* renamed from: d */
+    private String[] f8129d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private X509TrustManager f7553e;
+    /* renamed from: e */
+    private X509TrustManager f8130e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private String[] f7554f;
+    /* renamed from: f */
+    private String[] f8131f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String[] f7555g;
+    /* renamed from: g */
+    private String[] f8132g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private String[] f7556h;
+    /* renamed from: h */
+    private String[] f8133h;
 
     private SSFCompatiableSystemCA(Context context, SecureRandom secureRandom) throws NoSuchAlgorithmException, CertificateException, KeyStoreException, IOException, KeyManagementException {
-        this.f7549a = null;
-        this.f7550b = null;
+        this.f8126a = null;
+        this.f8127b = null;
         if (context == null) {
-            e.b(f7547i, "SecureSSLSocketFactory: context is null");
+            C2563e.m7986b(f8124i, "SecureSSLSocketFactory: context is null");
             return;
         }
         setContext(context);
         setSslContext(SSLUtil.setSSLContext());
-        this.f7553e = SSFSecureX509SingleInstance.getInstance(context);
-        this.f7549a.init(null, new X509TrustManager[]{this.f7553e}, secureRandom);
+        this.f8130e = SSFSecureX509SingleInstance.getInstance(context);
+        this.f8126a.init(null, new X509TrustManager[]{this.f8130e}, secureRandom);
     }
 
     @Deprecated
-    static void a(X509TrustManager x509TrustManager) {
-        e.c(f7547i, "ssfc update socket factory trust manager");
+    /* renamed from: a */
+    static void m7910a(X509TrustManager x509TrustManager) {
+        C2563e.m7987c(f8124i, "ssfc update socket factory trust manager");
         long currentTimeMillis = System.currentTimeMillis();
         try {
-            f7548j = new SSFCompatiableSystemCA(x509TrustManager);
+            f8125j = new SSFCompatiableSystemCA(x509TrustManager);
         } catch (KeyManagementException unused) {
-            e.b(f7547i, "KeyManagementException");
+            C2563e.m7986b(f8124i, "KeyManagementException");
         } catch (NoSuchAlgorithmException unused2) {
-            e.b(f7547i, "NoSuchAlgorithmException");
+            C2563e.m7986b(f8124i, "NoSuchAlgorithmException");
         }
-        e.a(f7547i, "SSF system ca update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7984a(f8124i, "SSF system ca update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 
     @Deprecated
     public static SSFCompatiableSystemCA getInstance(Context context) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException, IllegalArgumentException {
         ContextUtil.setContext(context);
-        if (f7548j == null) {
+        if (f8125j == null) {
             synchronized (SSFCompatiableSystemCA.class) {
-                if (f7548j == null) {
-                    f7548j = new SSFCompatiableSystemCA(context, (SecureRandom) null);
+                if (f8125j == null) {
+                    f8125j = new SSFCompatiableSystemCA(context, (SecureRandom) null);
                 }
             }
         }
-        if (f7548j.f7551c == null && context != null) {
-            f7548j.setContext(context);
+        if (f8125j.f8128c == null && context != null) {
+            f8125j.setContext(context);
         }
-        return f7548j;
+        return f8125j;
     }
 
     @Override // javax.net.SocketFactory
     public Socket createSocket(String str, int i2) throws IOException {
-        e.c(f7547i, "createSocket: host , port");
-        Socket createSocket = this.f7549a.getSocketFactory().createSocket(str, i2);
+        C2563e.m7987c(f8124i, "createSocket: host , port");
+        Socket createSocket = this.f8126a.getSocketFactory().createSocket(str, i2);
         if (createSocket instanceof SSLSocket) {
-            a(createSocket);
-            this.f7550b = (SSLSocket) createSocket;
-            this.f7552d = (String[]) this.f7550b.getEnabledCipherSuites().clone();
+            m7909a(createSocket);
+            this.f8127b = (SSLSocket) createSocket;
+            this.f8129d = (String[]) this.f8127b.getEnabledCipherSuites().clone();
         }
         return createSocket;
     }
 
     public String[] getBlackCiphers() {
-        return this.f7554f;
+        return this.f8131f;
     }
 
     public X509Certificate[] getChain() {
-        X509TrustManager x509TrustManager = this.f7553e;
+        X509TrustManager x509TrustManager = this.f8130e;
         return x509TrustManager instanceof SecureX509TrustManager ? ((SecureX509TrustManager) x509TrustManager).getChain() : new X509Certificate[0];
     }
 
     public Context getContext() {
-        return this.f7551c;
+        return this.f8128c;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
@@ -125,66 +127,67 @@ public class SSFCompatiableSystemCA extends SSLSocketFactory {
     }
 
     public String[] getProtocols() {
-        return this.f7556h;
+        return this.f8133h;
     }
 
     public SSLContext getSslContext() {
-        return this.f7549a;
+        return this.f8126a;
     }
 
     public SSLSocket getSslSocket() {
-        return this.f7550b;
+        return this.f8127b;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
     public String[] getSupportedCipherSuites() {
-        String[] strArr = this.f7552d;
+        String[] strArr = this.f8129d;
         return strArr != null ? strArr : new String[0];
     }
 
     public String[] getWhiteCiphers() {
-        return this.f7555g;
+        return this.f8132g;
     }
 
     public X509TrustManager getX509TrustManager() {
-        return this.f7553e;
+        return this.f8130e;
     }
 
     public void setBlackCiphers(String[] strArr) {
-        this.f7554f = strArr;
+        this.f8131f = strArr;
     }
 
     public void setContext(Context context) {
-        this.f7551c = context.getApplicationContext();
+        this.f8128c = context.getApplicationContext();
     }
 
     public void setProtocols(String[] strArr) {
-        this.f7556h = strArr;
+        this.f8133h = strArr;
     }
 
     public void setSslContext(SSLContext sSLContext) {
-        this.f7549a = sSLContext;
+        this.f8126a = sSLContext;
     }
 
     public void setWhiteCiphers(String[] strArr) {
-        this.f7555g = strArr;
+        this.f8132g = strArr;
     }
 
     public void setX509TrustManager(X509TrustManager x509TrustManager) {
-        this.f7553e = x509TrustManager;
+        this.f8130e = x509TrustManager;
     }
 
-    static void a(X509TrustManager x509TrustManager, SecureRandom secureRandom) {
-        e.c(f7547i, "ssfc update socket factory trust manager");
+    /* renamed from: a */
+    static void m7911a(X509TrustManager x509TrustManager, SecureRandom secureRandom) {
+        C2563e.m7987c(f8124i, "ssfc update socket factory trust manager");
         long currentTimeMillis = System.currentTimeMillis();
         try {
-            f7548j = new SSFCompatiableSystemCA(x509TrustManager, secureRandom);
+            f8125j = new SSFCompatiableSystemCA(x509TrustManager, secureRandom);
         } catch (KeyManagementException unused) {
-            e.b(f7547i, "KeyManagementException");
+            C2563e.m7986b(f8124i, "KeyManagementException");
         } catch (NoSuchAlgorithmException unused2) {
-            e.b(f7547i, "NoSuchAlgorithmException");
+            C2563e.m7986b(f8124i, "NoSuchAlgorithmException");
         }
-        e.a(f7547i, "SSF system ca update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7984a(f8124i, "SSF system ca update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 
     @Override // javax.net.SocketFactory
@@ -199,11 +202,11 @@ public class SSFCompatiableSystemCA extends SSLSocketFactory {
 
     @Deprecated
     public SSFCompatiableSystemCA(X509TrustManager x509TrustManager) throws NoSuchAlgorithmException, KeyManagementException, IllegalArgumentException {
-        this.f7549a = null;
-        this.f7550b = null;
-        this.f7549a = SSLUtil.setSSLContext();
+        this.f8126a = null;
+        this.f8127b = null;
+        this.f8126a = SSLUtil.setSSLContext();
         setX509TrustManager(x509TrustManager);
-        this.f7549a.init(null, new X509TrustManager[]{x509TrustManager}, null);
+        this.f8126a.init(null, new X509TrustManager[]{x509TrustManager}, null);
     }
 
     @Override // javax.net.SocketFactory
@@ -213,69 +216,70 @@ public class SSFCompatiableSystemCA extends SSLSocketFactory {
 
     public static SSFCompatiableSystemCA getInstance(Context context, SecureRandom secureRandom) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException, IllegalArgumentException {
         ContextUtil.setContext(context);
-        if (f7548j == null) {
+        if (f8125j == null) {
             synchronized (SSFCompatiableSystemCA.class) {
-                if (f7548j == null) {
-                    f7548j = new SSFCompatiableSystemCA(context, secureRandom);
+                if (f8125j == null) {
+                    f8125j = new SSFCompatiableSystemCA(context, secureRandom);
                 }
             }
         }
-        if (f7548j.f7551c == null && context != null) {
-            f7548j.setContext(context);
+        if (f8125j.f8128c == null && context != null) {
+            f8125j.setContext(context);
         }
-        return f7548j;
+        return f8125j;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
     public Socket createSocket(Socket socket, String str, int i2, boolean z) throws IOException {
-        e.c(f7547i, "createSocket: s , host , port , autoClose");
-        Socket createSocket = this.f7549a.getSocketFactory().createSocket(socket, str, i2, z);
+        C2563e.m7987c(f8124i, "createSocket: s , host , port , autoClose");
+        Socket createSocket = this.f8126a.getSocketFactory().createSocket(socket, str, i2, z);
         if (createSocket instanceof SSLSocket) {
-            a(createSocket);
-            this.f7550b = (SSLSocket) createSocket;
-            this.f7552d = (String[]) this.f7550b.getEnabledCipherSuites().clone();
+            m7909a(createSocket);
+            this.f8127b = (SSLSocket) createSocket;
+            this.f8129d = (String[]) this.f8127b.getEnabledCipherSuites().clone();
         }
         return createSocket;
     }
 
-    private void a(Socket socket) {
+    /* renamed from: a */
+    private void m7909a(Socket socket) {
         boolean z;
         boolean z2 = true;
-        if (com.huawei.secure.android.common.ssl.util.a.a(this.f7556h)) {
+        if (C2559a.m7955a(this.f8133h)) {
             z = false;
         } else {
-            e.c(f7547i, "set protocols");
-            SSLUtil.setEnabledProtocols((SSLSocket) socket, this.f7556h);
+            C2563e.m7987c(f8124i, "set protocols");
+            SSLUtil.setEnabledProtocols((SSLSocket) socket, this.f8133h);
             z = true;
         }
-        if (com.huawei.secure.android.common.ssl.util.a.a(this.f7555g) && com.huawei.secure.android.common.ssl.util.a.a(this.f7554f)) {
+        if (C2559a.m7955a(this.f8132g) && C2559a.m7955a(this.f8131f)) {
             z2 = false;
         } else {
-            e.c(f7547i, "set white cipher or black cipher");
+            C2563e.m7987c(f8124i, "set white cipher or black cipher");
             SSLSocket sSLSocket = (SSLSocket) socket;
             SSLUtil.setEnabledProtocols(sSLSocket);
-            if (!com.huawei.secure.android.common.ssl.util.a.a(this.f7555g)) {
-                SSLUtil.setWhiteListCipherSuites(sSLSocket, this.f7555g);
+            if (!C2559a.m7955a(this.f8132g)) {
+                SSLUtil.setWhiteListCipherSuites(sSLSocket, this.f8132g);
             } else {
-                SSLUtil.setBlackListCipherSuites(sSLSocket, this.f7554f);
+                SSLUtil.setBlackListCipherSuites(sSLSocket, this.f8131f);
             }
         }
         if (!z) {
-            e.c(f7547i, "set default protocols");
+            C2563e.m7987c(f8124i, "set default protocols");
             SSLUtil.setEnabledProtocols((SSLSocket) socket);
         }
         if (z2) {
             return;
         }
-        e.c(f7547i, "set default cipher suites");
+        C2563e.m7987c(f8124i, "set default cipher suites");
         SSLUtil.setEnableSafeCipherSuites((SSLSocket) socket);
     }
 
     public SSFCompatiableSystemCA(X509TrustManager x509TrustManager, SecureRandom secureRandom) throws NoSuchAlgorithmException, KeyManagementException, IllegalArgumentException {
-        this.f7549a = null;
-        this.f7550b = null;
-        this.f7549a = SSLUtil.setSSLContext();
+        this.f8126a = null;
+        this.f8127b = null;
+        this.f8126a = SSLUtil.setSSLContext();
         setX509TrustManager(x509TrustManager);
-        this.f7549a.init(null, new X509TrustManager[]{x509TrustManager}, secureRandom);
+        this.f8126a.init(null, new X509TrustManager[]{x509TrustManager}, secureRandom);
     }
 }

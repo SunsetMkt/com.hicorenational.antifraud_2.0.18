@@ -8,7 +8,9 @@ public class QATypeBean extends BaseBean {
     private int code;
     private String createTime;
     private String description;
-    private String id;
+
+    /* renamed from: id */
+    private String f1612id;
     private int isShow;
     private List<QABean> qaList;
     private int sort;
@@ -28,7 +30,7 @@ public class QATypeBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1612id;
     }
 
     public int getIsShow() {
@@ -64,7 +66,7 @@ public class QATypeBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1612id = str;
     }
 
     public void setIsShow(int i2) {

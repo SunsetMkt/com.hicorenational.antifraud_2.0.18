@@ -3,7 +3,7 @@ package com.luck.picture.lib.immersive;
 import android.os.Build;
 import android.view.Window;
 import androidx.appcompat.app.AppCompatActivity;
-import c.c.a.b.a.a;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class ImmersiveManage {
@@ -17,7 +17,7 @@ public class ImmersiveManage {
         try {
             Window window = appCompatActivity.getWindow();
             if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-                window.setFlags(a.B1, a.B1);
+                window.setFlags(AbstractC1191a.f2487B1, AbstractC1191a.f2487B1);
                 return;
             }
             if (Build.VERSION.SDK_INT >= 21) {

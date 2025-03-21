@@ -11,7 +11,9 @@ public class EvidenceResultInfo {
         private String create_time;
         private String forensic_number;
         private String forensic_time;
-        private int id;
+
+        /* renamed from: id */
+        private int f21458id;
         private String imei;
         private String phone;
         private List<ReportContentBean> report_content;
@@ -58,7 +60,7 @@ public class EvidenceResultInfo {
         }
 
         public int getId() {
-            return this.id;
+            return this.f21458id;
         }
 
         public String getImei() {
@@ -118,7 +120,7 @@ public class EvidenceResultInfo {
         }
 
         public void setId(int i2) {
-            this.id = i2;
+            this.f21458id = i2;
         }
 
         public void setImei(String str) {

@@ -8,6 +8,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.widget.Checkable;
 import android.widget.ImageButton;
 import androidx.annotation.RestrictTo;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
@@ -48,7 +49,7 @@ public class CheckableImageButton extends AppCompatImageButton implements Checka
     }
 
     public CheckableImageButton(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, androidx.appcompat.R.attr.imageButtonStyle);
+        this(context, attributeSet, C0120R.attr.imageButtonStyle);
     }
 
     public CheckableImageButton(Context context, AttributeSet attributeSet, int i2) {

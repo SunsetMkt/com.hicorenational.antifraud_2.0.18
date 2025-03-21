@@ -2,7 +2,7 @@ package cn.cloudwalk.libproject.dialog;
 
 import android.content.Context;
 import android.view.View;
-import cn.cloudwalk.libproject.R;
+import cn.cloudwalk.libproject.C1241R;
 
 /* loaded from: classes.dex */
 public class LivenessTimeOutDialog extends BaseDialog {
@@ -18,7 +18,7 @@ public class LivenessTimeOutDialog extends BaseDialog {
 
     @Override // cn.cloudwalk.libproject.dialog.BaseDialog
     public int getLayoutRes() {
-        return R.layout.dialog_time_out;
+        return C1241R.layout.dialog_time_out;
     }
 
     @Override // cn.cloudwalk.libproject.dialog.BaseDialog
@@ -31,7 +31,7 @@ public class LivenessTimeOutDialog extends BaseDialog {
 
     @Override // cn.cloudwalk.libproject.dialog.BaseDialog
     public void onCreateData() {
-        setOnCilckListener(R.id.tv_cancle, R.id.tv_again);
+        setOnCilckListener(C1241R.id.tv_cancle, C1241R.id.tv_again);
     }
 
     public LivenessTimeOutDialog(Context context, int i2) {

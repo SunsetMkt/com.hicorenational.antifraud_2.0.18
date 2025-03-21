@@ -1,8 +1,8 @@
 package androidx.core.util;
 
 import androidx.annotation.RestrictTo;
-import d.d;
 import java.io.PrintWriter;
+import p245d.C4443d;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
@@ -152,7 +152,7 @@ public final class TimeUtils {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static void formatDuration(long j2, long j3, PrintWriter printWriter) {
         if (j2 == 0) {
-            printWriter.print(d.D);
+            printWriter.print(C4443d.f16920D);
         } else {
             formatDuration(j2 - j3, printWriter, 0);
         }

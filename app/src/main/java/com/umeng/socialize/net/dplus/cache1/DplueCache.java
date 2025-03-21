@@ -16,7 +16,8 @@ import org.json.JSONObject;
 
 /* loaded from: classes2.dex */
 public class DplueCache {
-    private static JSONObject a(JSONObject jSONObject) {
+    /* renamed from: a */
+    private static JSONObject m12685a(JSONObject jSONObject) {
         JSONObject optJSONObject;
         return (jSONObject == null || (optJSONObject = jSONObject.optJSONObject("content")) == null) ? new JSONObject() : optJSONObject.optJSONObject("share");
     }
@@ -107,12 +108,13 @@ public class DplueCache {
     public static boolean save(JSONObject jSONObject, File file) throws JSONException, IOException {
         if (!file.exists()) {
             file.createNewFile();
-            return a(jSONObject.toString(), file);
+            return m12686a(jSONObject.toString(), file);
         }
-        return a(readFile(file) + Constants.ACCEPT_TIME_SEPARATOR_SP + jSONObject, file);
+        return m12686a(readFile(file) + Constants.ACCEPT_TIME_SEPARATOR_SP + jSONObject, file);
     }
 
-    private static boolean a(String str, File file) {
+    /* renamed from: a */
+    private static boolean m12686a(String str, File file) {
         BufferedWriter bufferedWriter = null;
         try {
             try {

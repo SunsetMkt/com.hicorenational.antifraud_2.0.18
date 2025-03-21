@@ -8,7 +8,7 @@ import android.util.LruCache;
 import androidx.core.app.NotificationCompat;
 import com.huawei.hms.push.constant.RemoteMessageConst;
 import com.tencent.open.SocialConstants;
-import com.umeng.analytics.pro.d;
+import com.umeng.analytics.pro.C3397d;
 import com.umeng.commonsdk.framework.UMWorkDispatch;
 import com.umeng.message.MessageSharedPrefs;
 import com.umeng.message.api.UPushMessageHandler;
@@ -17,36 +17,36 @@ import com.umeng.message.api.UPushSettingCallback;
 import com.umeng.message.api.UPushThirdTokenCallback;
 import com.umeng.message.common.UPLog;
 import com.umeng.message.entity.UMessage;
-import com.umeng.message.proguard.b;
-import com.umeng.message.proguard.f;
-import com.umeng.message.proguard.h;
-import com.umeng.message.proguard.j;
-import com.umeng.message.proguard.n;
-import com.umeng.message.proguard.q;
-import com.umeng.message.proguard.u;
-import com.umeng.message.proguard.v;
-import com.umeng.message.proguard.x;
-import com.umeng.message.proguard.y;
+import com.umeng.message.proguard.AbstractServiceC3597q;
+import com.umeng.message.proguard.C3578b;
+import com.umeng.message.proguard.C3586f;
+import com.umeng.message.proguard.C3588h;
+import com.umeng.message.proguard.C3590j;
+import com.umeng.message.proguard.C3594n;
+import com.umeng.message.proguard.C3601u;
+import com.umeng.message.proguard.C3602v;
+import com.umeng.message.proguard.C3604x;
+import com.umeng.message.proguard.C3605y;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import org.json.JSONObject;
 
 /* loaded from: classes2.dex */
-public final class UmengMessageHandlerService extends q {
+public final class UmengMessageHandlerService extends AbstractServiceC3597q {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final LruCache<String, String> f11138a = new LruCache<>(3);
+    /* renamed from: a */
+    private static final LruCache<String, String> f13053a = new LruCache<>(3);
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-    @Override // com.umeng.message.proguard.q
+    @Override // com.umeng.message.proguard.AbstractServiceC3597q
     public final void onHandleWork(Intent intent) {
         final String stringExtra;
         boolean booleanExtra;
         final UPushRegisterCallback registerCallback;
         UPushMessageHandler messageHandler;
         super.onHandleWork(intent);
-        final Application a2 = x.a();
-        if (a2 == null) {
-            UPLog.i("MsgHandlerService", "context null!");
+        final Application m12460a = C3604x.m12460a();
+        if (m12460a == null) {
+            UPLog.m12145i("MsgHandlerService", "context null!");
             return;
         }
         if (intent == null) {
@@ -54,7 +54,7 @@ public final class UmengMessageHandlerService extends q {
         }
         String action = intent.getAction();
         String stringExtra2 = intent.getStringExtra("um_command");
-        UPLog.i("MsgHandlerService", "action:", action, stringExtra2);
+        UPLog.m12145i("MsgHandlerService", "action:", action, stringExtra2);
         if (TextUtils.equals("com.umeng.message.action", action)) {
             if (stringExtra2 == null || stringExtra2.length() == 0) {
                 return;
@@ -102,89 +102,77 @@ public final class UmengMessageHandlerService extends q {
                 try {
                     stringExtra = intent.getStringExtra("registration_id");
                     booleanExtra = intent.getBooleanExtra(NotificationCompat.CATEGORY_STATUS, false);
-                    UPLog.i("MsgHandlerService", "deviceToken:", stringExtra, "status:", Boolean.valueOf(booleanExtra));
-                    registerCallback = u.a().getRegisterCallback();
+                    UPLog.m12145i("MsgHandlerService", "deviceToken:", stringExtra, "status:", Boolean.valueOf(booleanExtra));
+                    registerCallback = C3601u.m12450a().getRegisterCallback();
                 } catch (Throwable th) {
                     th = th;
                 }
                 try {
                     if (booleanExtra) {
-                        b.c(new Runnable() { // from class: com.umeng.message.component.UmengMessageHandlerService.1
+                        C3578b.m12327c(new Runnable() { // from class: com.umeng.message.component.UmengMessageHandlerService.1
                             @Override // java.lang.Runnable
                             public final void run() {
                                 final String str = "";
                                 try {
-                                    MessageSharedPrefs messageSharedPrefs = MessageSharedPrefs.getInstance(a2);
-                                    str = messageSharedPrefs.k();
+                                    MessageSharedPrefs messageSharedPrefs = MessageSharedPrefs.getInstance(m12460a);
+                                    str = messageSharedPrefs.m12131k();
                                     if (stringExtra != null && str != null && !stringExtra.equals(str)) {
                                         String str2 = stringExtra;
                                         if (str2 == null) {
-                                            messageSharedPrefs.f11128b.a(RemoteMessageConst.DEVICE_TOKEN);
+                                            messageSharedPrefs.f13043b.m12282a(RemoteMessageConst.DEVICE_TOKEN);
                                         } else {
-                                            messageSharedPrefs.f11128b.a(RemoteMessageConst.DEVICE_TOKEN, str2);
+                                            messageSharedPrefs.f13043b.m12285a(RemoteMessageConst.DEVICE_TOKEN, str2);
                                         }
-                                        Context context = a2;
-                                        messageSharedPrefs.f11128b.a("has_register");
-                                        messageSharedPrefs.f11128b.a(d.p);
-                                        messageSharedPrefs.f11128b.a("re_pop_times");
-                                        messageSharedPrefs.f11128b.a("re_pop_cfg");
-                                        messageSharedPrefs.f11128b.a(SocializeProtocolConstants.TAGS);
-                                        messageSharedPrefs.f11128b.a("tag_remain");
-                                        messageSharedPrefs.b("tag_add_");
-                                        messageSharedPrefs.b("tag_del_");
-                                        messageSharedPrefs.b("tag_get_");
-                                        messageSharedPrefs.b("alias_del_");
-                                        messageSharedPrefs.b("alias_set_");
-                                        messageSharedPrefs.b("alias_add_");
+                                        Context context = m12460a;
+                                        messageSharedPrefs.f13043b.m12282a("has_register");
+                                        messageSharedPrefs.f13043b.m12282a(C3397d.f11950p);
+                                        messageSharedPrefs.f13043b.m12282a("re_pop_times");
+                                        messageSharedPrefs.f13043b.m12282a("re_pop_cfg");
+                                        messageSharedPrefs.f13043b.m12282a(SocializeProtocolConstants.TAGS);
+                                        messageSharedPrefs.f13043b.m12282a("tag_remain");
+                                        messageSharedPrefs.m12121b("tag_add_");
+                                        messageSharedPrefs.m12121b("tag_del_");
+                                        messageSharedPrefs.m12121b("tag_get_");
+                                        messageSharedPrefs.m12121b("alias_del_");
+                                        messageSharedPrefs.m12121b("alias_set_");
+                                        messageSharedPrefs.m12121b("alias_add_");
                                         try {
-                                            context.getContentResolver().delete(h.b(context), null, null);
+                                            context.getContentResolver().delete(C3588h.m12403b(context), null, null);
                                         } catch (Throwable th2) {
-                                            UPLog.e("Prefs", th2);
+                                            UPLog.m12143e("Prefs", th2);
                                         }
                                     }
                                 } catch (Throwable th3) {
-                                    UPLog.e("MsgHandlerService", th3);
+                                    UPLog.m12143e("MsgHandlerService", th3);
                                 }
                                 try {
                                     if (registerCallback != null) {
                                         registerCallback.onSuccess(stringExtra);
                                     }
                                 } catch (Throwable th4) {
-                                    UPLog.e("MsgHandlerService", th4);
+                                    UPLog.m12143e("MsgHandlerService", th4);
                                 }
-                                final y a3 = y.a();
-                                if (!y.c()) {
-                                    final MessageSharedPrefs messageSharedPrefs2 = MessageSharedPrefs.getInstance(x.a());
-                                    if (!messageSharedPrefs2.f11128b.b("has_register", false) && !y.f11462b) {
-                                        y.f11462b = true;
-                                        b.c(new Runnable() { // from class: com.umeng.message.proguard.y.3
-
-                                            /* renamed from: a */
-                                            final /* synthetic */ String f11471a;
-
-                                            /* renamed from: b */
-                                            final /* synthetic */ MessageSharedPrefs f11472b;
-
-                                            public AnonymousClass3(final String str3, final MessageSharedPrefs messageSharedPrefs22) {
-                                                r2 = str3;
-                                                r3 = messageSharedPrefs22;
-                                            }
-
+                                final C3605y m12463a = C3605y.m12463a();
+                                if (!C3605y.m12470c()) {
+                                    final MessageSharedPrefs messageSharedPrefs2 = MessageSharedPrefs.getInstance(C3604x.m12460a());
+                                    if (!messageSharedPrefs2.f13043b.m12292b("has_register", false) && !C3605y.f13390b) {
+                                        C3605y.f13390b = true;
+                                        C3578b.m12327c(new Runnable() { // from class: com.umeng.message.proguard.y.3
                                             @Override // java.lang.Runnable
                                             public final void run() {
                                                 try {
-                                                    y.this.f11464d.a(r2);
-                                                    UPLog.d("Track", "trackRegister deviceToken:", r3.k());
+                                                    C3605y.this.f13392d.mo12223a(str);
+                                                    UPLog.m12142d("Track", "trackRegister deviceToken:", messageSharedPrefs2.m12131k());
                                                 } catch (Throwable th5) {
-                                                    UPLog.e("Track", th5);
-                                                    y.f11462b = false;
+                                                    UPLog.m12143e("Track", th5);
+                                                    C3605y.f13390b = false;
                                                 }
                                             }
                                         });
                                     }
                                 }
-                                u.a().onAppStart();
-                                n.a();
+                                C3601u.m12450a().onAppStart();
+                                C3594n.m12421a();
                             }
                         });
                         return;
@@ -197,15 +185,15 @@ public final class UmengMessageHandlerService extends q {
                     }
                 } catch (Throwable th2) {
                     th = th2;
-                    UPLog.e("MsgHandlerService", th);
+                    UPLog.m12143e("MsgHandlerService", th);
                     return;
                 }
             }
             if (c2 == 1) {
                 try {
                     boolean booleanExtra2 = intent.getBooleanExtra(NotificationCompat.CATEGORY_STATUS, false);
-                    UPushSettingCallback settingCallback = u.a().getSettingCallback();
-                    UPLog.i("MsgHandlerService", "push open status:".concat(String.valueOf(booleanExtra2)));
+                    UPushSettingCallback settingCallback = C3601u.m12450a().getSettingCallback();
+                    UPLog.m12145i("MsgHandlerService", "push open status:".concat(String.valueOf(booleanExtra2)));
                     if (booleanExtra2) {
                         if (settingCallback != null) {
                             settingCallback.onSuccess();
@@ -220,15 +208,15 @@ public final class UmengMessageHandlerService extends q {
                         return;
                     }
                 } catch (Throwable th3) {
-                    UPLog.e("MsgHandlerService", th3);
+                    UPLog.m12143e("MsgHandlerService", th3);
                     return;
                 }
             }
             if (c2 == 2) {
                 try {
                     boolean booleanExtra3 = intent.getBooleanExtra(NotificationCompat.CATEGORY_STATUS, false);
-                    UPushSettingCallback settingCallback2 = u.a().getSettingCallback();
-                    UPLog.i("MsgHandlerService", "push close status:".concat(String.valueOf(booleanExtra3)));
+                    UPushSettingCallback settingCallback2 = C3601u.m12450a().getSettingCallback();
+                    UPLog.m12145i("MsgHandlerService", "push close status:".concat(String.valueOf(booleanExtra3)));
                     if (booleanExtra3) {
                         if (settingCallback2 != null) {
                             settingCallback2.onSuccess();
@@ -243,7 +231,7 @@ public final class UmengMessageHandlerService extends q {
                         return;
                     }
                 } catch (Throwable th4) {
-                    UPLog.e("MsgHandlerService", th4);
+                    UPLog.m12143e("MsgHandlerService", th4);
                     return;
                 }
             }
@@ -254,13 +242,13 @@ public final class UmengMessageHandlerService extends q {
                         return;
                     }
                     UMessage uMessage = new UMessage(new JSONObject(stringExtra3));
-                    if (("notification".equals(uMessage.getDisplayType()) && uMessage.hasResourceFromInternet() && j.a().a(intent)) || (messageHandler = u.a().getMessageHandler()) == null) {
+                    if (("notification".equals(uMessage.getDisplayType()) && uMessage.hasResourceFromInternet() && C3590j.m12414a().m12417a(intent)) || (messageHandler = C3601u.m12450a().getMessageHandler()) == null) {
                         return;
                     }
-                    messageHandler.handleMessage(a2, uMessage);
+                    messageHandler.handleMessage(m12460a, uMessage);
                     return;
                 } catch (Throwable th5) {
-                    UPLog.e("MsgHandlerService", th5);
+                    UPLog.m12143e("MsgHandlerService", th5);
                     return;
                 }
             }
@@ -273,10 +261,10 @@ public final class UmengMessageHandlerService extends q {
                     String stringExtra5 = intent.getStringExtra("um_px_path");
                     JSONObject jSONObject = new JSONObject(stringExtra4);
                     jSONObject.put("um_px_path", stringExtra5);
-                    UMWorkDispatch.sendEvent(a2, 16388, v.a(), jSONObject.toString());
+                    UMWorkDispatch.sendEvent(m12460a, 16388, C3602v.m12452a(), jSONObject.toString());
                     return;
                 } catch (Throwable th6) {
-                    UPLog.e("MsgHandlerService", th6);
+                    UPLog.m12143e("MsgHandlerService", th6);
                     return;
                 }
             }
@@ -285,35 +273,35 @@ public final class UmengMessageHandlerService extends q {
             }
             try {
                 String stringExtra6 = intent.getStringExtra("third_token");
-                String a3 = f.a(intent.getStringExtra("type"));
-                if (!TextUtils.isEmpty(a3) && !TextUtils.isEmpty(stringExtra6)) {
-                    if (TextUtils.equals(f11138a.get(a3), stringExtra6)) {
-                        UPLog.i("MsgHandlerService", "third push callback skipped! already called.");
+                String m12383a = C3586f.m12383a(intent.getStringExtra("type"));
+                if (!TextUtils.isEmpty(m12383a) && !TextUtils.isEmpty(stringExtra6)) {
+                    if (TextUtils.equals(f13053a.get(m12383a), stringExtra6)) {
+                        UPLog.m12145i("MsgHandlerService", "third push callback skipped! already called.");
                         return;
                     }
-                    UPLog.i("MsgHandlerService", "third push type:", a3, "token:", stringExtra6);
-                    UPushThirdTokenCallback thirdTokenCallback = u.a().getThirdTokenCallback();
+                    UPLog.m12145i("MsgHandlerService", "third push type:", m12383a, "token:", stringExtra6);
+                    UPushThirdTokenCallback thirdTokenCallback = C3601u.m12450a().getThirdTokenCallback();
                     if (thirdTokenCallback != null) {
-                        thirdTokenCallback.onToken(a3, stringExtra6);
+                        thirdTokenCallback.onToken(m12383a, stringExtra6);
                     } else {
-                        String pushIntentServiceClass = u.a().getPushIntentServiceClass();
+                        String pushIntentServiceClass = C3601u.m12450a().getPushIntentServiceClass();
                         if (!TextUtils.isEmpty(pushIntentServiceClass)) {
                             Class<?> cls = Class.forName(pushIntentServiceClass);
                             Intent intent2 = new Intent();
-                            intent2.setPackage(a2.getPackageName());
+                            intent2.setPackage(m12460a.getPackageName());
                             intent2.putExtra("um_command", "third_token");
                             intent2.putExtra("third_token", stringExtra6);
-                            intent2.putExtra("type", a3);
-                            intent2.setClass(a2, cls);
-                            q.enqueueWork(a2, cls, intent2);
+                            intent2.putExtra("type", m12383a);
+                            intent2.setClass(m12460a, cls);
+                            AbstractServiceC3597q.enqueueWork(m12460a, cls, intent2);
                         }
                     }
-                    f11138a.put(a3, stringExtra6);
+                    f13053a.put(m12383a, stringExtra6);
                     return;
                 }
-                UPLog.i("MsgHandlerService", "third push skipped! type:", a3, "token:", stringExtra6);
+                UPLog.m12145i("MsgHandlerService", "third push skipped! type:", m12383a, "token:", stringExtra6);
             } catch (Throwable th7) {
-                UPLog.e("MsgHandlerService", th7);
+                UPLog.m12143e("MsgHandlerService", th7);
             }
         }
     }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* loaded from: classes2.dex */
-public class MiPushCommandMessage implements PushMessageHandler.a {
+public class MiPushCommandMessage implements PushMessageHandler.InterfaceC4046a {
     private static final String KEY_AUTO_MARK_PKGS = "autoMarkPkgs";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_COMMAND = "command";

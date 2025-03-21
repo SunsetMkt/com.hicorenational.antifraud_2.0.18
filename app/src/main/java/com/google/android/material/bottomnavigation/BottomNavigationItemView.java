@@ -25,6 +25,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.PointerIconCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -285,12 +286,12 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         super(context, attributeSet, i2);
         this.itemPosition = -1;
         Resources resources = getResources();
-        LayoutInflater.from(context).inflate(com.google.android.material.R.layout.design_bottom_navigation_item, (ViewGroup) this, true);
-        setBackgroundResource(com.google.android.material.R.drawable.design_bottom_navigation_item_background);
-        this.defaultMargin = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_bottom_navigation_margin);
-        this.icon = (ImageView) findViewById(com.google.android.material.R.id.icon);
-        this.smallLabel = (TextView) findViewById(com.google.android.material.R.id.smallLabel);
-        this.largeLabel = (TextView) findViewById(com.google.android.material.R.id.largeLabel);
+        LayoutInflater.from(context).inflate(C1921R.layout.design_bottom_navigation_item, (ViewGroup) this, true);
+        setBackgroundResource(C1921R.drawable.design_bottom_navigation_item_background);
+        this.defaultMargin = resources.getDimensionPixelSize(C1921R.dimen.design_bottom_navigation_margin);
+        this.icon = (ImageView) findViewById(C1921R.id.icon);
+        this.smallLabel = (TextView) findViewById(C1921R.id.smallLabel);
+        this.largeLabel = (TextView) findViewById(C1921R.id.largeLabel);
         ViewCompat.setImportantForAccessibility(this.smallLabel, 2);
         ViewCompat.setImportantForAccessibility(this.largeLabel, 2);
         setFocusable(true);

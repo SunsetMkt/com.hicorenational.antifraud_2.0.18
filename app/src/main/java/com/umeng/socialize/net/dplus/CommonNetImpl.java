@@ -2,15 +2,15 @@ package com.umeng.socialize.net.dplus;
 
 import android.content.Context;
 import android.util.Base64;
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3351bh;
 import com.umeng.commonsdk.debug.UMRTLog;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import com.umeng.commonsdk.framework.UMWorkDispatch;
-import com.umeng.socialize.a.h;
 import com.umeng.socialize.common.SocializeConstants;
-import com.umeng.socialize.net.dplus.db.DBConfig;
-import com.umeng.socialize.net.dplus.db.DBManager;
+import com.umeng.socialize.net.dplus.p220db.DBConfig;
+import com.umeng.socialize.net.dplus.p220db.DBManager;
+import com.umeng.socialize.p215a.C3622h;
 import com.umeng.socialize.utils.ContextUtil;
 import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
@@ -23,14 +23,22 @@ import org.json.JSONObject;
 /* loaded from: classes2.dex */
 public class CommonNetImpl implements UMLogDataProtocol {
     public static final String AID = "aid";
-    public static final String AM = "am";
-    public static final String AS = "as";
-    public static final String AT = "at";
+
+    /* renamed from: AM */
+    public static final String f13711AM = "am";
+
+    /* renamed from: AS */
+    public static final String f13712AS = "as";
+
+    /* renamed from: AT */
+    public static final String f13713AT = "at";
     public static final String AUTH = "auth";
     public static final String A_B = "a_b";
     public static final String CANCEL = "cancel";
     public static final String CONTENT = "content";
-    public static final String CT = "ct";
+
+    /* renamed from: CT */
+    public static final String f13714CT = "ct";
     public static final String DAU = "dau";
     public static final String DURL = "durl";
     public static final String E_M = "e_m";
@@ -50,7 +58,9 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public static final String M_U = "m_u";
     public static final String NAME = "name";
     public static final String PCV = "s_pcv";
-    public static final String PF = "pf";
+
+    /* renamed from: PF */
+    public static final String f13715PF = "pf";
     public static final String PIC = "pic";
     public static final String PICURL = "picurl";
     public static final String POSITION = "position";
@@ -61,7 +71,9 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public static final String SEX = "sex";
     public static final String SHARE = "share";
     public static final String SHARETYPE = "s_t";
-    public static final String SM = "sm";
+
+    /* renamed from: SM */
+    public static final String f13716SM = "sm";
     public static final String STATS = "stats";
     public static final String STATS_TAG = "stats";
     public static final String STYPE = "stype";
@@ -77,12 +89,18 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public static final String S_S_S = "s_s_s";
     public static final String TAG = "tag";
     public static final String TITLE = "title";
-    public static final String TS = "ts";
+
+    /* renamed from: TS */
+    public static final String f13717TS = "ts";
     public static final String UID = "uid";
     public static final String UMID = "umid";
-    public static final String UN = "un";
+
+    /* renamed from: UN */
+    public static final String f13718UN = "un";
     public static final String UNIONID = "unionid";
-    public static final String UP = "up";
+
+    /* renamed from: UP */
+    public static final String f13719UP = "up";
     public static final String URL = "url";
     public static final String USERINFO = "userinfo";
     public static final String U_C = "u_c";
@@ -144,29 +162,29 @@ public class CommonNetImpl implements UMLogDataProtocol {
             JSONObject jSONObject = (JSONObject) obj;
             switch (i2) {
                 case SocializeConstants.DAU_EVENT /* 24577 */:
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: DAU_EVENT");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: DAU_EVENT");
                     DBManager.get(this.mConetxt).insertDau(jSONObject);
                     break;
                 case SocializeConstants.SHARE_EVENT /* 24578 */:
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: SHARE_EVENT");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: SHARE_EVENT");
                     DBManager.get(this.mConetxt).insertS_E(jSONObject);
                     break;
                 case SocializeConstants.AUTH_EVENT /* 24579 */:
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: AUTH_EVENT");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: AUTH_EVENT");
                     DBManager.get(this.mConetxt).insertAuth(jSONObject);
                     break;
                 case SocializeConstants.GET_EVENT /* 24580 */:
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: GET_EVENT");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: GET_EVENT");
                     DBManager.get(this.mConetxt).insertUserInfo(jSONObject);
                     break;
                 case SocializeConstants.SAVE_STATS_EVENT /* 24581 */:
                 case SocializeConstants.SEND_DAU_STATS_EVENT /* 24583 */:
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: SAVE_STATS_EVENT");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: SAVE_STATS_EVENT");
                     DBManager.get(this.mConetxt).insertStats(jSONObject);
                     break;
                 case SocializeConstants.CHECK_STATS_EVENT /* 24582 */:
                 default:
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: default case.");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: default case.");
                     DBManager.get(this.mConetxt).insertStats(jSONObject);
                     break;
             }
@@ -292,40 +310,40 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public void workEvent(Object obj, int i2) {
         switch (i2) {
             case SocializeConstants.REGIST_TO_WORK_QUEUE /* 24592 */:
-                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: REGIST_TO_WORK_QUEUE");
+                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: REGIST_TO_WORK_QUEUE");
                 break;
             case SocializeConstants.BUILD_ENVELOPE /* 24593 */:
-                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: BUILD_ENVELOPE");
+                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: BUILD_ENVELOPE");
                 JSONObject constructHeader = constructHeader();
                 if (constructHeader != null) {
                     JSONObject readData = readData(this.mConetxt, i2);
                     if (readData != null) {
-                        JSONObject buildEnvelopeWithExtHeader = UMEnvelopeBuild.buildEnvelopeWithExtHeader(this.mConetxt, constructHeader, readData, "umpx_share", bh.aE, "7.3.2");
+                        JSONObject buildEnvelopeWithExtHeader = UMEnvelopeBuild.buildEnvelopeWithExtHeader(this.mConetxt, constructHeader, readData, "umpx_share", C3351bh.f11580aE, "7.3.2");
                         if (buildEnvelopeWithExtHeader != null) {
                             if (buildEnvelopeWithExtHeader.has("exception")) {
-                                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: 构建信封失败!");
+                                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: 构建信封失败!");
                                 if (readData.optInt("exception") != 101) {
                                     deleteData(this.mConetxt);
                                 }
                             } else {
-                                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: 构建信封成功，删除本地数据!");
+                                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: 构建信封成功，删除本地数据!");
                                 deleteData(this.mConetxt);
                             }
                         }
                     } else {
-                        SLog.E(UmengText.NET.BODYNULL);
+                        SLog.m12716E(UmengText.NET.BODYNULL);
                     }
                     clearAllList();
                     break;
                 }
                 break;
             case SocializeConstants.AZX_TRIGGER /* 24594 */:
-                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TRIGGER");
+                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TRIGGER");
                 try {
-                    h.a();
+                    C3622h.m12538a();
                     break;
                 } catch (Throwable th) {
-                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TASK invoke exception!");
+                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TASK invoke exception!");
                     th.printStackTrace();
                     return;
                 }

@@ -18,15 +18,15 @@ public class VivoMsgParseImpl implements BaseNotifyClickActivity.INotifyListener
     public String parseMsgFromIntent(Intent intent) {
         String str = null;
         if (intent == null) {
-            ALog.e(TAG, "parseMsgFromIntent null", new Object[0]);
+            ALog.m9182e(TAG, "parseMsgFromIntent null", new Object[0]);
             return null;
         }
         try {
             str = intent.getStringExtra(AgooConstants.MESSAGE_VIVO_PAYLOAD);
-            ALog.i(TAG, "parseMsgFromIntent", "msg", str);
+            ALog.m9183i(TAG, "parseMsgFromIntent", "msg", str);
             return str;
         } catch (Throwable th) {
-            ALog.e(TAG, "parseMsgFromIntent", th, new Object[0]);
+            ALog.m9181e(TAG, "parseMsgFromIntent", th, new Object[0]);
             return str;
         }
     }

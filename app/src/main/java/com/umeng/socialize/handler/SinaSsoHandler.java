@@ -86,7 +86,7 @@ public class SinaSsoHandler extends UMSSOHandler {
             SinaSsoHandler.this.setAuthData(bundle);
             if (this.mListener != null) {
                 bundle.putString(CommonNetImpl.AID, SinaSsoHandler.this.config.appId);
-                bundle.putString(CommonNetImpl.AS, SinaSsoHandler.this.config.appkey);
+                bundle.putString(CommonNetImpl.f13712AS, SinaSsoHandler.this.config.appkey);
                 bundle.putString(CommonNetImpl.NAME, bundle.getString(SinaSsoHandler.USERNAME));
                 bundle.putString("accessToken", bundle.getString("access_token"));
                 bundle.putString("refreshToken", bundle.getString("refresh_token"));
@@ -152,7 +152,7 @@ public class SinaSsoHandler extends UMSSOHandler {
                 QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.SinaSsoHandler.6.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        AnonymousClass6 anonymousClass6 = AnonymousClass6.this;
+                        C36576 c36576 = C36576.this;
                         SinaSsoHandler.this.userinfo(uMAuthListener);
                     }
                 }, false);
@@ -282,11 +282,11 @@ public class SinaSsoHandler extends UMSSOHandler {
         if (this.mWBAPI != null) {
             if (getShareConfig().isSinaAuthWithWebView()) {
                 this.startAuthRequest = true;
-                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> SINA:authorize: authorizeWeb");
+                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> SINA:authorize: authorizeWeb");
                 this.mWBAPI.authorizeWeb(this.activity, authListener);
             } else {
                 this.startAuthRequest = true;
-                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> SINA:authorize: authorize");
+                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> SINA:authorize: authorize");
                 this.mWBAPI.authorize(this.activity, authListener);
             }
         }
@@ -380,10 +380,10 @@ public class SinaSsoHandler extends UMSSOHandler {
     public void onActivityResult(int i2, int i3, Intent intent) {
         if (this.mWBAPI != null && getActivity()) {
             if (this.startAuthRequest) {
-                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> SINA:onActivityResult:auth callback.");
+                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> SINA:onActivityResult:auth callback.");
                 this.mWBAPI.authorizeCallback(this.activity, i2, i3, intent);
             } else {
-                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> SINA:onActivityResult:share callback.");
+                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> SINA:onActivityResult:share callback.");
                 this.mWBAPI.doResultIntent(intent, this.mShareListener);
             }
         }
@@ -397,7 +397,7 @@ public class SinaSsoHandler extends UMSSOHandler {
         PlatformConfig.APPIDPlatform aPPIDPlatform = (PlatformConfig.APPIDPlatform) platform;
         this.config = aPPIDPlatform;
         if (TextUtils.isEmpty(this.config.getFileProvider())) {
-            SLog.E(UmengText.SINA.SINA_FILE_PROVIDER_ERROR);
+            SLog.m12716E(UmengText.SINA.SINA_FILE_PROVIDER_ERROR);
         } else {
             this.mFileProvider = this.config.getFileProvider();
         }
@@ -458,7 +458,7 @@ public class SinaSsoHandler extends UMSSOHandler {
         this.mShareListener = new ShareListener(this.shareListener);
         this.startAuthRequest = false;
         if (this.mWeakAct.get() != null && !this.mWeakAct.get().isFinishing() && this.mWBAPI != null) {
-            UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> SINA: share");
+            UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> SINA: share");
             this.mWBAPI.shareMessage(this.activity, this.message, false);
         }
         return true;

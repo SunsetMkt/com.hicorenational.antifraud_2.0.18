@@ -35,8 +35,8 @@ class ShareBoardMenuHelper {
         if (snsPlatform != null) {
             ResContainer resContainer = ResContainer.get(context);
             View inflate = LayoutInflater.from(context).inflate(resContainer.layout("socialize_share_menu_item"), (ViewGroup) null);
-            SocializeImageView socializeImageView = (SocializeImageView) inflate.findViewById(resContainer.id("socialize_image_view"));
-            TextView textView = (TextView) inflate.findViewById(resContainer.id("socialize_text_view"));
+            SocializeImageView socializeImageView = (SocializeImageView) inflate.findViewById(resContainer.m12637id("socialize_image_view"));
+            TextView textView = (TextView) inflate.findViewById(resContainer.m12637id("socialize_text_view"));
             ShareBoardConfig shareBoardConfig = this.mShareBoardConfig;
             int i3 = shareBoardConfig.mMenuBgColor;
             if (i3 == 0 || shareBoardConfig.mMenuBgShape == ShareBoardConfig.BG_SHAPE_NONE) {

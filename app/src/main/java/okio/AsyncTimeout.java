@@ -1,21 +1,21 @@
 package okio;
 
 import androidx.exifinterface.media.ExifInterface;
-import h.n0;
-import h.q2.s.a;
-import h.q2.t.f0;
-import h.q2.t.i0;
-import h.q2.t.v;
-import h.y;
-import h.y1;
-import i.c.a.d;
-import i.c.a.e;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.concurrent.TimeUnit;
+import p286h.C5715y1;
+import p286h.InterfaceC5440n0;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.p310s.InterfaceC5495a;
+import p286h.p309q2.p311t.C5535f0;
+import p286h.p309q2.p311t.C5544i0;
+import p286h.p309q2.p311t.C5586v;
+import p324i.p336c.p337a.InterfaceC5816d;
+import p324i.p336c.p337a.InterfaceC5817e;
 
 /* compiled from: AsyncTimeout.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000@\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\t\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0004\b\u0016\u0018\u0000 \u001b2\u00020\u0001:\u0002\u001b\u001cB\u0005¢\u0006\u0002\u0010\u0002J\u0012\u0010\b\u001a\u00020\t2\b\u0010\n\u001a\u0004\u0018\u00010\tH\u0001J\u0006\u0010\u000b\u001a\u00020\fJ\u0006\u0010\r\u001a\u00020\u0004J\u0012\u0010\u000e\u001a\u00020\t2\b\u0010\n\u001a\u0004\u0018\u00010\tH\u0014J\u0010\u0010\u000f\u001a\u00020\u00072\u0006\u0010\u0010\u001a\u00020\u0007H\u0002J\u000e\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0011\u001a\u00020\u0012J\u000e\u0010\u0013\u001a\u00020\u00142\u0006\u0010\u0013\u001a\u00020\u0014J\b\u0010\u0015\u001a\u00020\fH\u0014J\"\u0010\u0016\u001a\u0002H\u0017\"\u0004\b\u0000\u0010\u00172\f\u0010\u0018\u001a\b\u0012\u0004\u0012\u0002H\u00170\u0019H\u0086\b¢\u0006\u0002\u0010\u001aR\u000e\u0010\u0003\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\u0005\u001a\u0004\u0018\u00010\u0000X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0007X\u0082\u000e¢\u0006\u0002\n\u0000¨\u0006\u001d"}, d2 = {"Lokio/AsyncTimeout;", "Lokio/Timeout;", "()V", "inQueue", "", "next", "timeoutAt", "", "access$newTimeoutException", "Ljava/io/IOException;", "cause", "enter", "", "exit", "newTimeoutException", "remainingNanos", "now", "sink", "Lokio/Sink;", "source", "Lokio/Source;", "timedOut", "withTimeout", ExifInterface.GPS_DIRECTION_TRUE, "block", "Lkotlin/Function0;", "(Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;", "Companion", "Watchdog", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000@\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\t\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0004\b\u0016\u0018\u0000 \u001b2\u00020\u0001:\u0002\u001b\u001cB\u0005¢\u0006\u0002\u0010\u0002J\u0012\u0010\b\u001a\u00020\t2\b\u0010\n\u001a\u0004\u0018\u00010\tH\u0001J\u0006\u0010\u000b\u001a\u00020\fJ\u0006\u0010\r\u001a\u00020\u0004J\u0012\u0010\u000e\u001a\u00020\t2\b\u0010\n\u001a\u0004\u0018\u00010\tH\u0014J\u0010\u0010\u000f\u001a\u00020\u00072\u0006\u0010\u0010\u001a\u00020\u0007H\u0002J\u000e\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0011\u001a\u00020\u0012J\u000e\u0010\u0013\u001a\u00020\u00142\u0006\u0010\u0013\u001a\u00020\u0014J\b\u0010\u0015\u001a\u00020\fH\u0014J\"\u0010\u0016\u001a\u0002H\u0017\"\u0004\b\u0000\u0010\u00172\f\u0010\u0018\u001a\b\u0012\u0004\u0012\u0002H\u00170\u0019H\u0086\b¢\u0006\u0002\u0010\u001aR\u000e\u0010\u0003\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\u0005\u001a\u0004\u0018\u00010\u0000X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0007X\u0082\u000e¢\u0006\u0002\n\u0000¨\u0006\u001d"}, m23546d2 = {"Lokio/AsyncTimeout;", "Lokio/Timeout;", "()V", "inQueue", "", "next", "timeoutAt", "", "access$newTimeoutException", "Ljava/io/IOException;", "cause", "enter", "", "exit", "newTimeoutException", "remainingNanos", "now", "sink", "Lokio/Sink;", "source", "Lokio/Source;", "timedOut", "withTimeout", ExifInterface.GPS_DIRECTION_TRUE, "block", "Lkotlin/Function0;", "(Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;", "Companion", "Watchdog", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public class AsyncTimeout extends Timeout {
     public static final Companion Companion = new Companion(null);
@@ -28,7 +28,7 @@ public class AsyncTimeout extends Timeout {
     private long timeoutAt;
 
     /* compiled from: AsyncTimeout.kt */
-    @y(bv = {1, 0, 3}, d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0003\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J\u000f\u0010\n\u001a\u0004\u0018\u00010\tH\u0000¢\u0006\u0002\b\u000bJ\u0010\u0010\f\u001a\u00020\r2\u0006\u0010\u000e\u001a\u00020\tH\u0002J \u0010\u000f\u001a\u00020\u00102\u0006\u0010\u000e\u001a\u00020\t2\u0006\u0010\u0011\u001a\u00020\u00042\u0006\u0010\u0012\u001a\u00020\rH\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0005\u001a\u00020\u0004X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0007X\u0082T¢\u0006\u0002\n\u0000R\u0010\u0010\b\u001a\u0004\u0018\u00010\tX\u0082\u000e¢\u0006\u0002\n\u0000¨\u0006\u0013"}, d2 = {"Lokio/AsyncTimeout$Companion;", "", "()V", "IDLE_TIMEOUT_MILLIS", "", "IDLE_TIMEOUT_NANOS", "TIMEOUT_WRITE_SIZE", "", "head", "Lokio/AsyncTimeout;", "awaitTimeout", "awaitTimeout$okio", "cancelScheduledTimeout", "", "node", "scheduleTimeout", "", "timeoutNanos", "hasDeadline", "okio"}, k = 1, mv = {1, 1, 16})
+    @InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0003\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J\u000f\u0010\n\u001a\u0004\u0018\u00010\tH\u0000¢\u0006\u0002\b\u000bJ\u0010\u0010\f\u001a\u00020\r2\u0006\u0010\u000e\u001a\u00020\tH\u0002J \u0010\u000f\u001a\u00020\u00102\u0006\u0010\u000e\u001a\u00020\t2\u0006\u0010\u0011\u001a\u00020\u00042\u0006\u0010\u0012\u001a\u00020\rH\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0005\u001a\u00020\u0004X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0007X\u0082T¢\u0006\u0002\n\u0000R\u0010\u0010\b\u001a\u0004\u0018\u00010\tX\u0082\u000e¢\u0006\u0002\n\u0000¨\u0006\u0013"}, m23546d2 = {"Lokio/AsyncTimeout$Companion;", "", "()V", "IDLE_TIMEOUT_MILLIS", "", "IDLE_TIMEOUT_NANOS", "TIMEOUT_WRITE_SIZE", "", "head", "Lokio/AsyncTimeout;", "awaitTimeout", "awaitTimeout$okio", "cancelScheduledTimeout", "", "node", "scheduleTimeout", "", "timeoutNanos", "hasDeadline", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
     public static final class Companion {
         private Companion() {
         }
@@ -68,19 +68,19 @@ public class AsyncTimeout extends Timeout {
                 long remainingNanos = asyncTimeout.remainingNanos(nanoTime);
                 AsyncTimeout asyncTimeout2 = AsyncTimeout.head;
                 if (asyncTimeout2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 while (asyncTimeout2.next != null) {
                     AsyncTimeout asyncTimeout3 = asyncTimeout2.next;
                     if (asyncTimeout3 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     if (remainingNanos < asyncTimeout3.remainingNanos(nanoTime)) {
                         break;
                     }
                     asyncTimeout2 = asyncTimeout2.next;
                     if (asyncTimeout2 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                 }
                 asyncTimeout.next = asyncTimeout2.next;
@@ -88,15 +88,15 @@ public class AsyncTimeout extends Timeout {
                 if (asyncTimeout2 == AsyncTimeout.head) {
                     AsyncTimeout.class.notify();
                 }
-                y1 y1Var = y1.f16671a;
+                C5715y1 c5715y1 = C5715y1.f20665a;
             }
         }
 
-        @e
+        @InterfaceC5817e
         public final AsyncTimeout awaitTimeout$okio() throws InterruptedException {
             AsyncTimeout asyncTimeout = AsyncTimeout.head;
             if (asyncTimeout == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             AsyncTimeout asyncTimeout2 = asyncTimeout.next;
             if (asyncTimeout2 == null) {
@@ -104,7 +104,7 @@ public class AsyncTimeout extends Timeout {
                 AsyncTimeout.class.wait(AsyncTimeout.IDLE_TIMEOUT_MILLIS);
                 AsyncTimeout asyncTimeout3 = AsyncTimeout.head;
                 if (asyncTimeout3 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 if (asyncTimeout3.next != null || System.nanoTime() - nanoTime < AsyncTimeout.IDLE_TIMEOUT_NANOS) {
                     return null;
@@ -119,20 +119,20 @@ public class AsyncTimeout extends Timeout {
             }
             AsyncTimeout asyncTimeout4 = AsyncTimeout.head;
             if (asyncTimeout4 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             asyncTimeout4.next = asyncTimeout2.next;
             asyncTimeout2.next = null;
             return asyncTimeout2;
         }
 
-        public /* synthetic */ Companion(v vVar) {
+        public /* synthetic */ Companion(C5586v c5586v) {
             this();
         }
     }
 
     /* compiled from: AsyncTimeout.kt */
-    @y(bv = {1, 0, 3}, d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\b\u0002\u0018\u00002\u00020\u0001B\u0007\b\u0000¢\u0006\u0002\u0010\u0002J\b\u0010\u0003\u001a\u00020\u0004H\u0016¨\u0006\u0005"}, d2 = {"Lokio/AsyncTimeout$Watchdog;", "Ljava/lang/Thread;", "()V", "run", "", "okio"}, k = 1, mv = {1, 1, 16})
+    @InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\b\u0002\u0018\u00002\u00020\u0001B\u0007\b\u0000¢\u0006\u0002\u0010\u0002J\b\u0010\u0003\u001a\u00020\u0004H\u0016¨\u0006\u0005"}, m23546d2 = {"Lokio/AsyncTimeout$Watchdog;", "Ljava/lang/Thread;", "()V", "run", "", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
     private static final class Watchdog extends Thread {
         public Watchdog() {
             super("Okio Watchdog");
@@ -150,7 +150,7 @@ public class AsyncTimeout extends Timeout {
                             AsyncTimeout.head = null;
                             return;
                         }
-                        y1 y1Var = y1.f16671a;
+                        C5715y1 c5715y1 = C5715y1.f20665a;
                     }
                     if (awaitTimeout$okio != null) {
                         awaitTimeout$okio.timedOut();
@@ -166,9 +166,9 @@ public class AsyncTimeout extends Timeout {
         return this.timeoutAt - j2;
     }
 
-    @n0
-    @d
-    public final IOException access$newTimeoutException(@e IOException iOException) {
+    @InterfaceC5440n0
+    @InterfaceC5816d
+    public final IOException access$newTimeoutException(@InterfaceC5817e IOException iOException) {
         return newTimeoutException(iOException);
     }
 
@@ -192,8 +192,8 @@ public class AsyncTimeout extends Timeout {
         return Companion.cancelScheduledTimeout(this);
     }
 
-    @d
-    protected IOException newTimeoutException(@e IOException iOException) {
+    @InterfaceC5816d
+    protected IOException newTimeoutException(@InterfaceC5817e IOException iOException) {
         InterruptedIOException interruptedIOException = new InterruptedIOException("timeout");
         if (iOException != null) {
             interruptedIOException.initCause(iOException);
@@ -201,9 +201,9 @@ public class AsyncTimeout extends Timeout {
         return interruptedIOException;
     }
 
-    @d
-    public final Sink sink(@d final Sink sink) {
-        i0.f(sink, "sink");
+    @InterfaceC5816d
+    public final Sink sink(@InterfaceC5816d final Sink sink) {
+        C5544i0.m22546f(sink, "sink");
         return new Sink() { // from class: okio.AsyncTimeout$sink$1
             @Override // okio.Sink, java.io.Closeable, java.lang.AutoCloseable
             public void close() {
@@ -211,7 +211,7 @@ public class AsyncTimeout extends Timeout {
                 asyncTimeout.enter();
                 try {
                     sink.close();
-                    y1 y1Var = y1.f16671a;
+                    C5715y1 c5715y1 = C5715y1.f20665a;
                     if (asyncTimeout.exit()) {
                         throw asyncTimeout.access$newTimeoutException(null);
                     }
@@ -231,7 +231,7 @@ public class AsyncTimeout extends Timeout {
                 asyncTimeout.enter();
                 try {
                     sink.flush();
-                    y1 y1Var = y1.f16671a;
+                    C5715y1 c5715y1 = C5715y1.f20665a;
                     if (asyncTimeout.exit()) {
                         throw asyncTimeout.access$newTimeoutException(null);
                     }
@@ -245,14 +245,14 @@ public class AsyncTimeout extends Timeout {
                 }
             }
 
-            @d
+            @InterfaceC5816d
             public String toString() {
                 return "AsyncTimeout.sink(" + sink + ')';
             }
 
             @Override // okio.Sink
-            public void write(@d Buffer buffer, long j2) {
-                i0.f(buffer, "source");
+            public void write(@InterfaceC5816d Buffer buffer, long j2) {
+                C5544i0.m22546f(buffer, "source");
                 Util.checkOffsetAndCount(buffer.size(), 0L, j2);
                 while (true) {
                     long j3 = 0;
@@ -261,7 +261,7 @@ public class AsyncTimeout extends Timeout {
                     }
                     Segment segment = buffer.head;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     while (true) {
                         if (j3 >= 65536) {
@@ -274,7 +274,7 @@ public class AsyncTimeout extends Timeout {
                         } else {
                             segment = segment.next;
                             if (segment == null) {
-                                i0.f();
+                                C5544i0.m22545f();
                             }
                         }
                     }
@@ -282,7 +282,7 @@ public class AsyncTimeout extends Timeout {
                     asyncTimeout.enter();
                     try {
                         sink.write(buffer, j3);
-                        y1 y1Var = y1.f16671a;
+                        C5715y1 c5715y1 = C5715y1.f20665a;
                         if (asyncTimeout.exit()) {
                             throw asyncTimeout.access$newTimeoutException(null);
                         }
@@ -299,16 +299,16 @@ public class AsyncTimeout extends Timeout {
             }
 
             @Override // okio.Sink
-            @d
+            @InterfaceC5816d
             public AsyncTimeout timeout() {
                 return AsyncTimeout.this;
             }
         };
     }
 
-    @d
-    public final Source source(@d final Source source) {
-        i0.f(source, "source");
+    @InterfaceC5816d
+    public final Source source(@InterfaceC5816d final Source source) {
+        C5544i0.m22546f(source, "source");
         return new Source() { // from class: okio.AsyncTimeout$source$1
             @Override // okio.Source, java.io.Closeable, java.lang.AutoCloseable
             public void close() {
@@ -316,7 +316,7 @@ public class AsyncTimeout extends Timeout {
                 asyncTimeout.enter();
                 try {
                     source.close();
-                    y1 y1Var = y1.f16671a;
+                    C5715y1 c5715y1 = C5715y1.f20665a;
                     if (asyncTimeout.exit()) {
                         throw asyncTimeout.access$newTimeoutException(null);
                     }
@@ -331,8 +331,8 @@ public class AsyncTimeout extends Timeout {
             }
 
             @Override // okio.Source
-            public long read(@d Buffer buffer, long j2) {
-                i0.f(buffer, "sink");
+            public long read(@InterfaceC5816d Buffer buffer, long j2) {
+                C5544i0.m22546f(buffer, "sink");
                 AsyncTimeout asyncTimeout = AsyncTimeout.this;
                 asyncTimeout.enter();
                 try {
@@ -351,13 +351,13 @@ public class AsyncTimeout extends Timeout {
                 }
             }
 
-            @d
+            @InterfaceC5816d
             public String toString() {
                 return "AsyncTimeout.source(" + source + ')';
             }
 
             @Override // okio.Source
-            @d
+            @InterfaceC5816d
             public AsyncTimeout timeout() {
                 return AsyncTimeout.this;
             }
@@ -367,17 +367,17 @@ public class AsyncTimeout extends Timeout {
     protected void timedOut() {
     }
 
-    public final <T> T withTimeout(@d a<? extends T> aVar) {
-        i0.f(aVar, "block");
+    public final <T> T withTimeout(@InterfaceC5816d InterfaceC5495a<? extends T> interfaceC5495a) {
+        C5544i0.m22546f(interfaceC5495a, "block");
         enter();
         try {
             try {
-                T invoke = aVar.invoke();
-                f0.b(1);
+                T invoke = interfaceC5495a.invoke();
+                C5535f0.m22474b(1);
                 if (exit()) {
                     throw access$newTimeoutException(null);
                 }
-                f0.a(1);
+                C5535f0.m22471a(1);
                 return invoke;
             } catch (IOException e2) {
                 if (exit()) {
@@ -386,9 +386,9 @@ public class AsyncTimeout extends Timeout {
                 throw e2;
             }
         } catch (Throwable th) {
-            f0.b(1);
+            C5535f0.m22474b(1);
             exit();
-            f0.a(1);
+            C5535f0.m22471a(1);
             throw th;
         }
     }

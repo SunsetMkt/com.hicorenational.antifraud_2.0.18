@@ -63,7 +63,7 @@ public class ArrayRow implements LinearSystem.Row {
             float variableValue = this.variables.getVariableValue(i2);
             if (variableValue < 0.0f) {
                 SolverVariable variable = this.variables.getVariable(i2);
-                if ((zArr == null || !zArr[variable.id]) && variable != solverVariable && (((type = variable.mType) == SolverVariable.Type.SLACK || type == SolverVariable.Type.ERROR) && variableValue < f2)) {
+                if ((zArr == null || !zArr[variable.f594id]) && variable != solverVariable && (((type = variable.mType) == SolverVariable.Type.SLACK || type == SolverVariable.Type.ERROR) && variableValue < f2)) {
                     f2 = variableValue;
                     solverVariable2 = variable;
                 }

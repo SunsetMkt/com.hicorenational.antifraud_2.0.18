@@ -8,7 +8,9 @@ public class TellNumHtyBean extends APIresult {
     private int caseCategory;
     private String caseCategoryText;
     private String createTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1632id;
     private String number;
     private String submitTime;
     private String submitterID;
@@ -31,7 +33,7 @@ public class TellNumHtyBean extends APIresult {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1632id;
     }
 
     public String getNumber() {
@@ -67,7 +69,7 @@ public class TellNumHtyBean extends APIresult {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1632id = str;
     }
 
     public void setNumber(String str) {

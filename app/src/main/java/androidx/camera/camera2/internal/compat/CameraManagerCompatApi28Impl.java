@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import java.util.concurrent.Executor;
-import util.permissionutil.a;
+import util.permissionutil.C7308a;
 
 @RequiresApi(28)
 /* loaded from: classes.dex */
@@ -18,7 +18,7 @@ class CameraManagerCompatApi28Impl extends CameraManagerCompatBaseImpl {
     }
 
     @Override // androidx.camera.camera2.internal.compat.CameraManagerCompatBaseImpl, androidx.camera.camera2.internal.compat.CameraManagerCompat.CameraManagerCompatImpl
-    @RequiresPermission(a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     public void openCamera(@NonNull String str, @NonNull Executor executor, @NonNull CameraDevice.StateCallback stateCallback) throws CameraAccessException {
         this.mCameraManager.openCamera(str, executor, stateCallback);
     }

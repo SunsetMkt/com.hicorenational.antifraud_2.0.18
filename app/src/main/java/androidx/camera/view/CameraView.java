@@ -33,10 +33,11 @@ import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.lifecycle.LifecycleOwner;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes.dex */
 public final class CameraView extends FrameLayout {
@@ -96,7 +97,7 @@ public final class CameraView extends FrameLayout {
 
     private class PinchToZoomGestureDetector extends ScaleGestureDetector implements ScaleGestureDetector.OnScaleGestureListener {
         PinchToZoomGestureDetector(CameraView cameraView, Context context) {
-            this(context, new S());
+            this(context, new C0420S());
         }
 
         @Override // android.view.ScaleGestureDetector.OnScaleGestureListener
@@ -117,16 +118,17 @@ public final class CameraView extends FrameLayout {
         public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
         }
 
-        PinchToZoomGestureDetector(Context context, S s) {
-            super(context, s);
-            s.setRealGestureDetector(this);
+        PinchToZoomGestureDetector(Context context, C0420S c0420s) {
+            super(context, c0420s);
+            c0420s.setRealGestureDetector(this);
         }
     }
 
-    static class S extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    /* renamed from: androidx.camera.view.CameraView$S */
+    static class C0420S extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         private ScaleGestureDetector.OnScaleGestureListener mListener;
 
-        S() {
+        C0420S() {
         }
 
         @Override // android.view.ScaleGestureDetector.SimpleOnScaleGestureListener, android.view.ScaleGestureDetector.OnScaleGestureListener
@@ -181,11 +183,11 @@ public final class CameraView extends FrameLayout {
         addView(this.mWeakReferencePreviewView.get(), 0);
         this.mCameraModule = new CameraXModule(this);
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = ((Context) weakReference.get()).obtainStyledAttributes(attributeSet, R.styleable.CameraView);
-            setScaleType(ScaleType.fromId(obtainStyledAttributes.getInteger(R.styleable.CameraView_scaleType, getScaleType().getId())));
-            setPinchToZoomEnabled(obtainStyledAttributes.getBoolean(R.styleable.CameraView_pinchToZoomEnabled, isPinchToZoomEnabled()));
-            setCaptureMode(CaptureMode.fromId(obtainStyledAttributes.getInteger(R.styleable.CameraView_captureMode, getCaptureMode().getId())));
-            int i2 = obtainStyledAttributes.getInt(R.styleable.CameraView_lensFacing, 2);
+            TypedArray obtainStyledAttributes = ((Context) weakReference.get()).obtainStyledAttributes(attributeSet, C2639R.styleable.CameraView);
+            setScaleType(ScaleType.fromId(obtainStyledAttributes.getInteger(C2639R.styleable.CameraView_scaleType, getScaleType().getId())));
+            setPinchToZoomEnabled(obtainStyledAttributes.getBoolean(C2639R.styleable.CameraView_pinchToZoomEnabled, isPinchToZoomEnabled()));
+            setCaptureMode(CaptureMode.fromId(obtainStyledAttributes.getInteger(C2639R.styleable.CameraView_captureMode, getCaptureMode().getId())));
+            int i2 = obtainStyledAttributes.getInt(C2639R.styleable.CameraView_lensFacing, 2);
             if (i2 == 0) {
                 setCameraLensFacing(null);
             } else if (i2 == 1) {
@@ -193,7 +195,7 @@ public final class CameraView extends FrameLayout {
             } else if (i2 == 2) {
                 setCameraLensFacing(1);
             }
-            int i3 = obtainStyledAttributes.getInt(R.styleable.CameraView_flash, 0);
+            int i3 = obtainStyledAttributes.getInt(C2639R.styleable.CameraView_flash, 0);
             if (i3 == 1) {
                 setFlash(0);
             } else if (i3 == 2) {
@@ -217,7 +219,7 @@ public final class CameraView extends FrameLayout {
         this.mCameraModule.setMaxVideoSize(j2);
     }
 
-    @RequiresPermission(util.permissionutil.a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     public void bindToLifecycle(@NonNull LifecycleOwner lifecycleOwner) {
         this.mCameraModule.bindToLifecycle(lifecycleOwner);
     }
@@ -274,7 +276,7 @@ public final class CameraView extends FrameLayout {
         return this.mCameraModule.getZoomRatio();
     }
 
-    @RequiresPermission(util.permissionutil.a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     public boolean hasCameraWithLensFacing(int i2) {
         return this.mCameraModule.hasCameraWithLensFacing(i2);
     }

@@ -3,7 +3,7 @@ package com.huawei.agconnect.config;
 import android.content.Context;
 import com.huawei.agconnect.AGCRoutePolicy;
 import com.huawei.agconnect.AGConnectOptions;
-import com.huawei.agconnect.config.impl.c;
+import com.huawei.agconnect.config.impl.C2250c;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ public abstract class AGConnectServicesConfig implements AGConnectOptions {
         synchronized (INSTANCES_LOCK) {
             aGConnectServicesConfig = INSTANCES.get(str);
             if (aGConnectServicesConfig == null) {
-                aGConnectServicesConfig = new c(context, str);
+                aGConnectServicesConfig = new C2250c(context, str);
                 INSTANCES.put(str, aGConnectServicesConfig);
             }
         }

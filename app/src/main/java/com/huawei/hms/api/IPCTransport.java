@@ -38,7 +38,7 @@ public class IPCTransport implements DatagramTransport {
                     aidlApiClient.getService().asyncCall(dataBuffer, iAIDLCallback);
                     return 0;
                 } catch (Exception e2) {
-                    HMSLog.e(TAG, "sync call ex:" + e2);
+                    HMSLog.m7715e(TAG, "sync call ex:" + e2);
                 }
             }
             return CommonCode.ErrorCode.INTERNAL_ERROR;
@@ -57,29 +57,29 @@ public class IPCTransport implements DatagramTransport {
         try {
             AidlApiClient aidlApiClient2 = (AidlApiClient) apiClient;
             if (aidlApiClient2.getService() == null) {
-                HMSLog.e(TAG, "HuaweiApiClient is not binded to service yet.");
+                HMSLog.m7715e(TAG, "HuaweiApiClient is not binded to service yet.");
                 return CommonCode.ErrorCode.INTERNAL_ERROR;
             }
             aidlApiClient2.getService().asyncCall(dataBuffer2, iAIDLCallback);
             return 0;
         } catch (Exception e3) {
-            HMSLog.e(TAG, "sync call ex:" + e3);
+            HMSLog.m7715e(TAG, "sync call ex:" + e3);
             return CommonCode.ErrorCode.INTERNAL_ERROR;
         }
     }
 
     @Override // com.huawei.hms.support.api.transport.DatagramTransport
-    public final void post(ApiClient apiClient, DatagramTransport.a aVar) {
-        send(apiClient, aVar);
+    public final void post(ApiClient apiClient, DatagramTransport.InterfaceC2523a interfaceC2523a) {
+        send(apiClient, interfaceC2523a);
     }
 
     @Override // com.huawei.hms.support.api.transport.DatagramTransport
-    public final void send(ApiClient apiClient, DatagramTransport.a aVar) {
-        int syncCall = syncCall(apiClient, new IPCCallback(this.mResponseClass, aVar));
-        if (syncCall == 0 || aVar == null) {
+    public final void send(ApiClient apiClient, DatagramTransport.InterfaceC2523a interfaceC2523a) {
+        int syncCall = syncCall(apiClient, new IPCCallback(this.mResponseClass, interfaceC2523a));
+        if (syncCall == 0 || interfaceC2523a == null) {
             return;
         }
-        aVar.a(syncCall, null);
+        interfaceC2523a.mo7669a(syncCall, null);
     }
 
     public IPCTransport(String str, IMessageEntity iMessageEntity, Class<? extends IMessageEntity> cls, int i2) {

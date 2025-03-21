@@ -24,45 +24,47 @@ public class ConstraintAnchor {
     public int mMargin = 0;
     int mGoneMargin = -1;
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.ConstraintAnchor$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = new int[Type.values().length];
+    /* renamed from: androidx.constraintlayout.solver.widgets.ConstraintAnchor$1 */
+    static /* synthetic */ class C04591 {
+
+        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
+        static final /* synthetic */ int[] f597x4c44d048 = new int[Type.values().length];
 
         static {
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.CENTER.ordinal()] = 1;
+                f597x4c44d048[Type.CENTER.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.LEFT.ordinal()] = 2;
+                f597x4c44d048[Type.LEFT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.RIGHT.ordinal()] = 3;
+                f597x4c44d048[Type.RIGHT.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.TOP.ordinal()] = 4;
+                f597x4c44d048[Type.TOP.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.BOTTOM.ordinal()] = 5;
+                f597x4c44d048[Type.BOTTOM.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.BASELINE.ordinal()] = 6;
+                f597x4c44d048[Type.BASELINE.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.CENTER_X.ordinal()] = 7;
+                f597x4c44d048[Type.CENTER_X.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.CENTER_Y.ordinal()] = 8;
+                f597x4c44d048[Type.CENTER_Y.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[Type.NONE.ordinal()] = 9;
+                f597x4c44d048[Type.NONE.ordinal()] = 9;
             } catch (NoSuchFieldError unused9) {
             }
         }
@@ -183,7 +185,7 @@ public class ConstraintAnchor {
     }
 
     public final ConstraintAnchor getOpposite() {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[this.mType.ordinal()]) {
+        switch (C04591.f597x4c44d048[this.mType.ordinal()]) {
             case 1:
             case 6:
             case 7:
@@ -251,7 +253,7 @@ public class ConstraintAnchor {
     }
 
     public boolean isSideAnchor() {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[this.mType.ordinal()]) {
+        switch (C04591.f597x4c44d048[this.mType.ordinal()]) {
             case 1:
             case 6:
             case 7:
@@ -274,7 +276,7 @@ public class ConstraintAnchor {
         if (type == type2) {
             return true;
         }
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[type2.ordinal()]) {
+        switch (C04591.f597x4c44d048[type2.ordinal()]) {
             case 1:
                 return type != Type.BASELINE;
             case 2:
@@ -302,7 +304,7 @@ public class ConstraintAnchor {
         if (type == type2) {
             return type2 != Type.BASELINE || (constraintAnchor.getOwner().hasBaseline() && getOwner().hasBaseline());
         }
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[type2.ordinal()]) {
+        switch (C04591.f597x4c44d048[type2.ordinal()]) {
             case 1:
                 return (type == Type.BASELINE || type == Type.CENTER_X || type == Type.CENTER_Y) ? false : true;
             case 2:
@@ -324,7 +326,7 @@ public class ConstraintAnchor {
     }
 
     public boolean isVerticalAnchor() {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[this.mType.ordinal()]) {
+        switch (C04591.f597x4c44d048[this.mType.ordinal()]) {
             case 1:
             case 2:
             case 3:

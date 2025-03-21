@@ -19,7 +19,7 @@ public abstract class DialogRedirect implements DialogInterface.OnClickListener 
                 if (dialogInterface == null) {
                 }
             } catch (Throwable unused) {
-                HMSLog.e("DialogRedirect", "Failed to start resolution intent");
+                HMSLog.m7715e("DialogRedirect", "Failed to start resolution intent");
             }
         } finally {
             if (dialogInterface != null) {

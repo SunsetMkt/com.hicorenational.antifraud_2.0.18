@@ -17,54 +17,54 @@ import com.umeng.socialize.utils.SocializeUtils;
 /* loaded from: classes2.dex */
 public class AnalyticsReqeust extends SocializeRequest {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f11748a = "/share/multi_add/";
+    /* renamed from: a */
+    private static final String f13694a = "/share/multi_add/";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final int f11749b = 9;
+    /* renamed from: b */
+    private static final int f13695b = 9;
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f11750c;
+    /* renamed from: c */
+    private String f13696c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private String f11751d;
+    /* renamed from: d */
+    private String f13697d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f11752e;
+    /* renamed from: e */
+    private String f13698e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private String f11753f;
+    /* renamed from: f */
+    private String f13699f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String f11754g;
+    /* renamed from: g */
+    private String f13700g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private String f11755h;
+    /* renamed from: h */
+    private String f13701h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private String f11756i;
+    /* renamed from: i */
+    private String f13702i;
 
-    /* renamed from: j, reason: collision with root package name */
-    private UMediaObject f11757j;
+    /* renamed from: j */
+    private UMediaObject f13703j;
 
     public AnalyticsReqeust(Context context, String str, String str2) {
         super(context, "", AnalyticsResponse.class, 9, URequest.RequestMethod.POST);
         this.mContext = context;
-        this.f11751d = str;
-        this.f11756i = str2;
+        this.f13697d = str;
+        this.f13702i = str2;
     }
 
     @Override // com.umeng.socialize.net.base.SocializeRequest
     protected String getPath() {
-        return f11748a + SocializeUtils.getAppkey(this.mContext) + "/" + Config.EntityKey + "/";
+        return f13694a + SocializeUtils.getAppkey(this.mContext) + "/" + Config.EntityKey + "/";
     }
 
     @Override // com.umeng.socialize.net.base.SocializeRequest, com.umeng.socialize.net.utils.URequest
     public void onPrepareRequest() {
         super.onPrepareRequest();
         Object[] objArr = new Object[2];
-        objArr[0] = this.f11751d;
-        String str = this.f11750c;
+        objArr[0] = this.f13697d;
+        String str = this.f13696c;
         if (str == null) {
             str = "";
         }
@@ -75,73 +75,73 @@ public class AnalyticsReqeust extends SocializeRequest {
         addStringParams("to", format);
         addStringParams(SocializeProtocolConstants.PROTOCOL_KEY_SHARE_SNS, format);
         addStringParams(SocializeProtocolConstants.PROTOCOL_KEY_AK, appkey);
-        addStringParams("type", this.f11753f);
-        addStringParams(SocializeProtocolConstants.PROTOCOL_KEY_SHARE_USID, this.f11750c);
-        addStringParams("ct", this.f11756i);
-        if (!TextUtils.isEmpty(this.f11755h)) {
-            addStringParams("url", this.f11755h);
+        addStringParams("type", this.f13699f);
+        addStringParams(SocializeProtocolConstants.PROTOCOL_KEY_SHARE_USID, this.f13696c);
+        addStringParams("ct", this.f13702i);
+        if (!TextUtils.isEmpty(this.f13701h)) {
+            addStringParams("url", this.f13701h);
         }
-        if (!TextUtils.isEmpty(this.f11754g)) {
-            addStringParams("title", this.f11754g);
+        if (!TextUtils.isEmpty(this.f13700g)) {
+            addStringParams("title", this.f13700g);
         }
-        addMediaParams(this.f11757j);
+        addMediaParams(this.f13703j);
     }
 
     public void setMedia(UMediaObject uMediaObject) {
         if (uMediaObject instanceof UMImage) {
-            this.f11757j = uMediaObject;
+            this.f13703j = uMediaObject;
             return;
         }
         if (uMediaObject instanceof UMusic) {
             UMusic uMusic = (UMusic) uMediaObject;
-            this.f11754g = uMusic.getTitle();
-            this.f11755h = uMusic.toUrl();
-            this.f11756i = uMusic.getDescription();
-            this.f11757j = uMusic.getThumbImage();
+            this.f13700g = uMusic.getTitle();
+            this.f13701h = uMusic.toUrl();
+            this.f13702i = uMusic.getDescription();
+            this.f13703j = uMusic.getThumbImage();
             return;
         }
         if (uMediaObject instanceof UMVideo) {
             UMVideo uMVideo = (UMVideo) uMediaObject;
-            this.f11754g = uMVideo.getTitle();
-            this.f11755h = uMVideo.toUrl();
-            this.f11756i = uMVideo.getDescription();
-            this.f11757j = uMVideo.getThumbImage();
+            this.f13700g = uMVideo.getTitle();
+            this.f13701h = uMVideo.toUrl();
+            this.f13702i = uMVideo.getDescription();
+            this.f13703j = uMVideo.getThumbImage();
             return;
         }
         if (uMediaObject instanceof UMWeb) {
             UMWeb uMWeb = (UMWeb) uMediaObject;
-            this.f11754g = uMWeb.getTitle();
-            this.f11755h = uMWeb.toUrl();
-            this.f11756i = uMWeb.getDescription();
-            this.f11757j = uMWeb.getThumbImage();
+            this.f13700g = uMWeb.getTitle();
+            this.f13701h = uMWeb.toUrl();
+            this.f13702i = uMWeb.getDescription();
+            this.f13703j = uMWeb.getThumbImage();
             return;
         }
         if (uMediaObject instanceof UMMin) {
             UMMin uMMin = (UMMin) uMediaObject;
-            this.f11754g = uMMin.getTitle();
-            this.f11755h = uMMin.toUrl();
-            this.f11756i = uMMin.getDescription();
-            this.f11757j = uMMin.getThumbImage();
+            this.f13700g = uMMin.getTitle();
+            this.f13701h = uMMin.toUrl();
+            this.f13702i = uMMin.getDescription();
+            this.f13703j = uMMin.getThumbImage();
         }
     }
 
     public void setPlatform(String str) {
-        this.f11751d = str;
+        this.f13697d = str;
     }
 
     public void setText(String str) {
-        this.f11756i = str;
+        this.f13702i = str;
     }
 
     public void setType(String str) {
-        this.f11753f = str;
+        this.f13699f = str;
     }
 
     public void setUID(String str) {
-        this.f11752e = str;
+        this.f13698e = str;
     }
 
     public void setmUsid(String str) {
-        this.f11750c = str;
+        this.f13696c = str;
     }
 }

@@ -3,12 +3,12 @@ package androidx.recyclerview.widget;
 import androidx.annotation.Nullable;
 import androidx.core.os.TraceCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import h.q2.t.m0;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes.dex */
 final class GapWorker implements Runnable {
@@ -185,7 +185,7 @@ final class GapWorker implements Runnable {
     }
 
     private void flushTaskWithDeadline(Task task, long j2) {
-        RecyclerView.ViewHolder prefetchPositionWithDeadline = prefetchPositionWithDeadline(task.view, task.position, task.immediate ? m0.f16408b : j2);
+        RecyclerView.ViewHolder prefetchPositionWithDeadline = prefetchPositionWithDeadline(task.view, task.position, task.immediate ? C5556m0.f20396b : j2);
         if (prefetchPositionWithDeadline == null || prefetchPositionWithDeadline.mNestedRecyclerView == null || !prefetchPositionWithDeadline.isBound() || prefetchPositionWithDeadline.isInvalid()) {
             return;
         }

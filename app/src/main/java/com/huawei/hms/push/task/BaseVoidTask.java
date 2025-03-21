@@ -26,10 +26,10 @@ public class BaseVoidTask extends TaskApiCall<PushClient, Void> {
     @Override // com.huawei.hms.common.internal.TaskApiCall
     public void doExecute(PushClient pushClient, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<Void> taskCompletionSource) {
         if (responseErrorCode.getErrorCode() == 0) {
-            HMSLog.i("BaseVoidTask", "Operate succeed");
+            HMSLog.m7717i("BaseVoidTask", "Operate succeed");
             taskCompletionSource.setResult(null);
         } else {
-            HMSLog.e("BaseVoidTask", "Operate failed with ret=" + responseErrorCode.getErrorCode());
+            HMSLog.m7715e("BaseVoidTask", "Operate failed with ret=" + responseErrorCode.getErrorCode());
             ErrorEnum fromCode = ErrorEnum.fromCode(responseErrorCode.getErrorCode());
             if (fromCode != ErrorEnum.ERROR_UNKNOWN) {
                 taskCompletionSource.setException(fromCode.toApiException());

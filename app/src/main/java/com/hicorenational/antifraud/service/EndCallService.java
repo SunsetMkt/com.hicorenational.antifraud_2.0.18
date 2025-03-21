@@ -12,36 +12,38 @@ import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
-import c.a.a.a.a;
+import p031c.p032a.p033a.p034a.InterfaceC0947a;
 
 /* loaded from: classes.dex */
 public class EndCallService extends Service {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f5951c = "HTC";
+    /* renamed from: c */
+    private static final String f6325c = "HTC";
 
-    /* renamed from: a, reason: collision with root package name */
-    private TelephonyManager f5952a;
+    /* renamed from: a */
+    private TelephonyManager f6326a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private b f5953b;
+    /* renamed from: b */
+    private C2118b f6327b;
 
-    private class b extends PhoneStateListener {
+    /* renamed from: com.hicorenational.antifraud.service.EndCallService$b */
+    private class C2118b extends PhoneStateListener {
 
+        /* renamed from: com.hicorenational.antifraud.service.EndCallService$b$a */
         class a implements DialogInterface.OnClickListener {
             a() {
             }
 
             @Override // android.content.DialogInterface.OnClickListener
             public void onClick(DialogInterface dialogInterface, int i2) {
-                EndCallService.this.c();
+                EndCallService.this.m5956c();
                 Toast.makeText(EndCallService.this.getApplicationContext(), "挂断电话", 0).show();
             }
         }
 
-        /* renamed from: com.hicorenational.antifraud.service.EndCallService$b$b, reason: collision with other inner class name */
-        class DialogInterfaceOnClickListenerC0097b implements DialogInterface.OnClickListener {
-            DialogInterfaceOnClickListenerC0097b() {
+        /* renamed from: com.hicorenational.antifraud.service.EndCallService$b$b */
+        class b implements DialogInterface.OnClickListener {
+            b() {
             }
 
             @Override // android.content.DialogInterface.OnClickListener
@@ -49,46 +51,47 @@ public class EndCallService extends Service {
                 EndCallService endCallService = EndCallService.this;
                 endCallService.startService(new Intent(endCallService.getApplicationContext(), (Class<?>) RecorderService.class));
                 Toast.makeText(EndCallService.this.getApplicationContext(), "开启电话录音", 0).show();
-                EndCallService.this.a();
+                EndCallService.this.m5954a();
             }
         }
 
+        /* renamed from: com.hicorenational.antifraud.service.EndCallService$b$c */
         class c extends ContentObserver {
 
-            /* renamed from: a, reason: collision with root package name */
-            final /* synthetic */ ContentResolver f5957a;
+            /* renamed from: a */
+            final /* synthetic */ ContentResolver f6331a;
 
-            /* renamed from: b, reason: collision with root package name */
-            final /* synthetic */ Uri f5958b;
+            /* renamed from: b */
+            final /* synthetic */ Uri f6332b;
 
-            /* renamed from: c, reason: collision with root package name */
-            final /* synthetic */ String f5959c;
+            /* renamed from: c */
+            final /* synthetic */ String f6333c;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             c(Handler handler, ContentResolver contentResolver, Uri uri, String str) {
                 super(handler);
-                this.f5957a = contentResolver;
-                this.f5958b = uri;
-                this.f5959c = str;
+                this.f6331a = contentResolver;
+                this.f6332b = uri;
+                this.f6333c = str;
             }
 
             @Override // android.database.ContentObserver
             public void onChange(boolean z) {
                 super.onChange(z);
-                this.f5957a.delete(this.f5958b, "number=?", new String[]{this.f5959c});
-                this.f5957a.unregisterContentObserver(this);
+                this.f6331a.delete(this.f6332b, "number=?", new String[]{this.f6333c});
+                this.f6331a.unregisterContentObserver(this);
             }
         }
 
-        private b() {
+        private C2118b() {
         }
 
         @Override // android.telephony.PhoneStateListener
         public void onCallStateChanged(int i2, String str) {
             super.onCallStateChanged(i2, str);
             if (i2 == 1) {
-                EndCallService.this.c();
-                AlertDialog create = new AlertDialog.Builder(EndCallService.this.getApplicationContext()).setTitle("title").setMessage("这是诈骗电话").setCancelable(false).setPositiveButton("开启电话录音", new DialogInterfaceOnClickListenerC0097b()).setNegativeButton("挂断", new a()).create();
+                EndCallService.this.m5956c();
+                AlertDialog create = new AlertDialog.Builder(EndCallService.this.getApplicationContext()).setTitle("title").setMessage("这是诈骗电话").setCancelable(false).setPositiveButton("开启电话录音", new b()).setNegativeButton("挂断", new a()).create();
                 create.getWindow().setType(2003);
                 create.show();
                 Toast.makeText(EndCallService.this.getApplicationContext(), "拦截号码:" + str, 0).show();
@@ -99,20 +102,23 @@ public class EndCallService extends Service {
         }
     }
 
-    public void a() {
+    /* renamed from: a */
+    public void m5954a() {
         try {
-            a.AbstractBinderC0031a.a((IBinder) Class.forName("android.os.ServiceManager").getMethod("getService", String.class).invoke(null, "phone")).i();
+            InterfaceC0947a.a.m1181a((IBinder) Class.forName("android.os.ServiceManager").getMethod("getService", String.class).invoke(null, "phone")).mo1180i();
         } catch (Exception unused) {
-            b();
+            m5955b();
         }
     }
 
-    public void b() {
+    /* renamed from: b */
+    public void m5955b() {
     }
 
-    public void c() {
+    /* renamed from: c */
+    public void m5956c() {
         try {
-            a.AbstractBinderC0031a.a((IBinder) EndCallService.class.getClassLoader().loadClass("android.os.ServiceManager").getDeclaredMethod("getService", String.class).invoke(null, "phone")).h();
+            InterfaceC0947a.a.m1181a((IBinder) EndCallService.class.getClassLoader().loadClass("android.os.ServiceManager").getDeclaredMethod("getService", String.class).invoke(null, "phone")).mo1179h();
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -126,15 +132,15 @@ public class EndCallService extends Service {
     @Override // android.app.Service
     public void onCreate() {
         super.onCreate();
-        this.f5952a = (TelephonyManager) getSystemService("phone");
-        this.f5953b = new b();
-        this.f5952a.listen(this.f5953b, 32);
+        this.f6326a = (TelephonyManager) getSystemService("phone");
+        this.f6327b = new C2118b();
+        this.f6326a.listen(this.f6327b, 32);
     }
 
     @Override // android.app.Service
     public void onDestroy() {
         super.onDestroy();
-        this.f5952a.listen(this.f5953b, 0);
+        this.f6326a.listen(this.f6327b, 0);
     }
 
     @Override // android.app.Service

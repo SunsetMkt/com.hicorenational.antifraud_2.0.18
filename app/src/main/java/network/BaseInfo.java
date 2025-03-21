@@ -1,15 +1,19 @@
 package network;
 
 import manager.AccountManager;
-import util.q1;
-import util.v1;
+import util.C7313q1;
+import util.C7328v1;
 
 /* loaded from: classes2.dex */
 public class BaseInfo extends BaseBean {
     private String appVersion;
     private String imei;
-    private String ip;
-    private int os;
+
+    /* renamed from: ip */
+    private String f21432ip;
+
+    /* renamed from: os */
+    private int f21433os;
     private String osVersion;
     private String submitTime;
     private String submitterID;
@@ -23,11 +27,11 @@ public class BaseInfo extends BaseBean {
     }
 
     public String getIp() {
-        return this.ip;
+        return this.f21432ip;
     }
 
     public int getOs() {
-        return this.os;
+        return this.f21433os;
     }
 
     public String getOsVersion() {
@@ -47,13 +51,13 @@ public class BaseInfo extends BaseBean {
     }
 
     public void setCommonParams() {
-        this.os = 0;
-        this.osVersion = v1.i();
-        this.imei = v1.l();
+        this.f21433os = 0;
+        this.osVersion = C7328v1.m26668i();
+        this.imei = C7328v1.m26674l();
         this.submitterID = AccountManager.getAccountId();
-        this.submitTime = v1.d();
-        this.appVersion = v1.o();
-        this.ip = q1.c();
+        this.submitTime = C7328v1.m26658d();
+        this.appVersion = C7328v1.m26678o();
+        this.f21432ip = C7313q1.m26531c();
     }
 
     public void setImei(String str) {
@@ -61,11 +65,11 @@ public class BaseInfo extends BaseBean {
     }
 
     public void setIp(String str) {
-        this.ip = str;
+        this.f21432ip = str;
     }
 
     public void setOs(int i2) {
-        this.os = i2;
+        this.f21433os = i2;
     }
 
     public void setOsVersion(String str) {

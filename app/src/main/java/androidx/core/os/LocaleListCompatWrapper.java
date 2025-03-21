@@ -145,7 +145,7 @@ final class LocaleListCompatWrapper implements LocaleListInterface {
         return LOCALE_EN_XA.equals(locale) || LOCALE_AR_XB.equals(locale);
     }
 
-    @IntRange(from = 0, to = 1)
+    @IntRange(from = 0, m294to = 1)
     private static int matchScore(Locale locale, Locale locale2) {
         if (locale.equals(locale2)) {
             return 1;

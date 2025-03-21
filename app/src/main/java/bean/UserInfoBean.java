@@ -9,14 +9,18 @@ public class UserInfoBean extends BaseBean {
     private String authFailReason;
     private boolean authenticated;
     private String email;
-    private String id;
+
+    /* renamed from: id */
+    private String f1636id;
     private String idNumber;
     private String mobileNumber;
     private String name;
     private int perfectProgress;
     private String position;
     private String professionName;
-    private String qq;
+
+    /* renamed from: qq */
+    private String f1637qq;
     private String region;
     private String regionCode;
     private String registerRegion;
@@ -45,7 +49,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1636id;
     }
 
     public String getIdNumber() {
@@ -69,7 +73,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public String getQq() {
-        return this.qq;
+        return this.f1637qq;
     }
 
     public String getRegion() {
@@ -125,7 +129,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1636id = str;
     }
 
     public void setIdNumber(String str) {
@@ -149,7 +153,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public void setQq(String str) {
-        this.qq = str;
+        this.f1637qq = str;
     }
 
     public void setRegion(String str) {

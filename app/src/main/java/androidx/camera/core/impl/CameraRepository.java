@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public final class CameraRepository implements UseCaseGroup.StateChangeCallback {
@@ -22,7 +23,7 @@ public final class CameraRepository implements UseCaseGroup.StateChangeCallback 
     private CallbackToFutureAdapter.Completer<Void> mDeinitCompleter;
 
     @GuardedBy("mCamerasLock")
-    private c.b.b.a.a.a<Void> mDeinitFuture;
+    private InterfaceFutureC0952a<Void> mDeinitFuture;
     private final Object mCamerasLock = new Object();
 
     @GuardedBy("mCamerasLock")
@@ -41,7 +42,8 @@ public final class CameraRepository implements UseCaseGroup.StateChangeCallback 
         cameraInternal.removeOnlineUseCase(set);
     }
 
-    public /* synthetic */ Object a(CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m364a(CallbackToFutureAdapter.Completer completer) throws Exception {
         Preconditions.checkState(Thread.holdsLock(this.mCamerasLock));
         this.mDeinitCompleter = completer;
         return "CameraRepository-deinit";
@@ -49,32 +51,32 @@ public final class CameraRepository implements UseCaseGroup.StateChangeCallback 
 
     @NonNull
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public c.b.b.a.a.a<Void> deinit() {
+    public InterfaceFutureC0952a<Void> deinit() {
         synchronized (this.mCamerasLock) {
             if (this.mCameras.isEmpty()) {
                 return this.mDeinitFuture == null ? Futures.immediateFuture(null) : this.mDeinitFuture;
             }
-            c.b.b.a.a.a<Void> aVar = this.mDeinitFuture;
-            if (aVar == null) {
-                aVar = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.a
+            InterfaceFutureC0952a<Void> interfaceFutureC0952a = this.mDeinitFuture;
+            if (interfaceFutureC0952a == null) {
+                interfaceFutureC0952a = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.a
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                        return CameraRepository.this.a(completer);
+                        return CameraRepository.this.m364a(completer);
                     }
                 });
-                this.mDeinitFuture = aVar;
+                this.mDeinitFuture = interfaceFutureC0952a;
             }
             this.mReleasingCameras.addAll(this.mCameras.values());
             for (final CameraInternal cameraInternal : this.mCameras.values()) {
                 cameraInternal.release().addListener(new Runnable() { // from class: androidx.camera.core.impl.b
                     @Override // java.lang.Runnable
                     public final void run() {
-                        CameraRepository.this.a(cameraInternal);
+                        CameraRepository.this.m365a(cameraInternal);
                     }
                 }, CameraXExecutors.directExecutor());
             }
             this.mCameras.clear();
-            return aVar;
+            return interfaceFutureC0952a;
         }
     }
 
@@ -136,7 +138,8 @@ public final class CameraRepository implements UseCaseGroup.StateChangeCallback 
         }
     }
 
-    public /* synthetic */ void a(CameraInternal cameraInternal) {
+    /* renamed from: a */
+    public /* synthetic */ void m365a(CameraInternal cameraInternal) {
         synchronized (this.mCamerasLock) {
             this.mReleasingCameras.remove(cameraInternal);
             if (this.mReleasingCameras.isEmpty()) {

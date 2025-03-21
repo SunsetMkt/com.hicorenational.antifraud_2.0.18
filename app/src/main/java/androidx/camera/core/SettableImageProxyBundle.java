@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 final class SettableImageProxyBundle implements ImageProxyBundle {
@@ -19,7 +20,7 @@ final class SettableImageProxyBundle implements ImageProxyBundle {
     final SparseArray<CallbackToFutureAdapter.Completer<ImageProxy>> mCompleters = new SparseArray<>();
 
     @GuardedBy("mLock")
-    private final SparseArray<c.b.b.a.a.a<ImageProxy>> mFutureResults = new SparseArray<>();
+    private final SparseArray<InterfaceFutureC0952a<ImageProxy>> mFutureResults = new SparseArray<>();
 
     @GuardedBy("mLock")
     private final List<ImageProxy> mOwnedImageProxies = new ArrayList();
@@ -93,18 +94,18 @@ final class SettableImageProxyBundle implements ImageProxyBundle {
 
     @Override // androidx.camera.core.impl.ImageProxyBundle
     @NonNull
-    public c.b.b.a.a.a<ImageProxy> getImageProxy(int i2) {
-        c.b.b.a.a.a<ImageProxy> aVar;
+    public InterfaceFutureC0952a<ImageProxy> getImageProxy(int i2) {
+        InterfaceFutureC0952a<ImageProxy> interfaceFutureC0952a;
         synchronized (this.mLock) {
             if (this.mClosed) {
                 throw new IllegalStateException("ImageProxyBundle already closed.");
             }
-            aVar = this.mFutureResults.get(i2);
-            if (aVar == null) {
+            interfaceFutureC0952a = this.mFutureResults.get(i2);
+            if (interfaceFutureC0952a == null) {
                 throw new IllegalArgumentException("ImageProxyBundle does not contain this id: " + i2);
             }
         }
-        return aVar;
+        return interfaceFutureC0952a;
     }
 
     void reset() {

@@ -1,9 +1,9 @@
 package com.umeng.commonsdk.statistics.proto;
 
-import com.umeng.analytics.pro.bu;
+import com.umeng.analytics.pro.InterfaceC3364bu;
 
 /* loaded from: classes2.dex */
-public enum Gender implements bu {
+public enum Gender implements InterfaceC3364bu {
     MALE(0),
     FEMALE(1),
     UNKNOWN(2);
@@ -27,7 +27,7 @@ public enum Gender implements bu {
         return UNKNOWN;
     }
 
-    @Override // com.umeng.analytics.pro.bu
+    @Override // com.umeng.analytics.pro.InterfaceC3364bu
     public int getValue() {
         return this.value;
     }

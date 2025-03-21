@@ -48,13 +48,13 @@ import androidx.loader.app.LoaderManager;
 import androidx.savedstate.SavedStateRegistry;
 import androidx.savedstate.SavedStateRegistryController;
 import androidx.savedstate.SavedStateRegistryOwner;
-import c.c.a.b.a.a;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuListener, LifecycleOwner, ViewModelStoreOwner, SavedStateRegistryOwner {
@@ -1511,7 +1511,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
             sb.append(Integer.toHexString(this.mFragmentId));
         }
         if (this.mTag != null) {
-            sb.append(a.f3100g);
+            sb.append(AbstractC1191a.f2568g);
             sb.append(this.mTag);
         }
         sb.append('}');

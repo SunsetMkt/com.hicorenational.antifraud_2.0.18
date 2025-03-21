@@ -65,19 +65,19 @@ public class CountryCodeBean {
             str = TAG;
             str2 = "EMUI 9.0 lower System, get countryCode form ro.product.locale.region or locale";
         }
-        Logger.i(str, str2);
+        Logger.m6799i(str, str2);
         this.countrySource = GrsBaseInfo.CountryCodeSource.LOCALE_INFO;
     }
 
     private void getProductCountryCode() {
         int lastIndexOf;
         this.countryCode = SystemPropUtils.getProperty("get", LOCALE_REGION_COUNTRYSYSTEMPROP, ANDRIOD_SYSTEMPROP, "UNKNOWN");
-        Logger.i(TAG, "countryCode by ro.product.locale.region is: " + this.countryCode);
+        Logger.m6799i(TAG, "countryCode by ro.product.locale.region is: " + this.countryCode);
         if (TextUtils.isEmpty(this.countryCode) || "UNKNOWN".equals(this.countryCode)) {
             String property = SystemPropUtils.getProperty("get", LOCALE_COUNTRYSYSTEMPROP, ANDRIOD_SYSTEMPROP, "UNKNOWN");
             if (!TextUtils.isEmpty(property) && (lastIndexOf = property.lastIndexOf(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) != -1) {
                 this.countryCode = property.substring(lastIndexOf + 1);
-                Logger.i(TAG, "countryCode by ro.product.locale is: " + this.countryCode);
+                Logger.m6799i(TAG, "countryCode by ro.product.locale is: " + this.countryCode);
             }
         }
         if ("cn".equalsIgnoreCase(this.countryCode)) {
@@ -88,7 +88,7 @@ public class CountryCodeBean {
 
     private void getRegionSettingCountryCode() {
         this.countryCode = Locale.getDefault().getCountry();
-        Logger.i(TAG, "countryCode by system's region setting is: " + this.countryCode);
+        Logger.m6799i(TAG, "countryCode by system's region setting is: " + this.countryCode);
         if (TextUtils.isEmpty(this.countryCode)) {
             this.countryCode = "UNKNOWN";
         }
@@ -119,7 +119,7 @@ public class CountryCodeBean {
             }
             sb.append(str2);
             sb.append(this.countryCode);
-            Logger.i(str, sb.toString());
+            Logger.m6799i(str, sb.toString());
         }
         checkCodeLenth();
     }
@@ -127,7 +127,7 @@ public class CountryCodeBean {
     private void getVendorCountryCode() {
         this.countrySource = GrsBaseInfo.CountryCodeSource.VENDOR_COUNTRY;
         this.countryCode = SystemPropUtils.getProperty("get", VENDORCOUNTRY_SYSTEMPROP, ANDRIOD_SYSTEMPROP, "UNKNOWN");
-        Logger.i(TAG, "countryCode by ro.hw.country is: " + this.countryCode);
+        Logger.m6799i(TAG, "countryCode by ro.hw.country is: " + this.countryCode);
         if (SPECIAL_COUNTRYCODE_EU.equalsIgnoreCase(this.countryCode) || SPECIAL_COUNTRYCODE_LA.equalsIgnoreCase(this.countryCode)) {
             this.countryCode = "UNKNOWN";
             this.countrySource = "UNKNOWN";
@@ -136,7 +136,7 @@ public class CountryCodeBean {
                 checkCodeLenth();
                 return;
             }
-            Logger.i(TAG, "special country of UK to map GB.");
+            Logger.m6799i(TAG, "special country of UK to map GB.");
             this.countryCode = SPECIAL_COUNTRYCODE_GB;
             this.countrySource = GrsBaseInfo.CountryCodeSource.VENDOR_COUNTRY;
         }
@@ -149,20 +149,20 @@ public class CountryCodeBean {
         try {
             getVendorCountryCode();
             if (isCodeValidate()) {
-                Logger.i(TAG, "get issue_country code from VENDOR_COUNTRY");
+                Logger.m6799i(TAG, "get issue_country code from VENDOR_COUNTRY");
                 return;
             }
             getSimCountryCode(context);
             if (isCodeValidate()) {
-                Logger.i(TAG, "get issue_country code from SIM_COUNTRY");
+                Logger.m6799i(TAG, "get issue_country code from SIM_COUNTRY");
                 return;
             }
             getLocaleCountryCode();
             if (isCodeValidate()) {
-                Logger.i(TAG, "get issue_country code from LOCALE_INFO");
+                Logger.m6799i(TAG, "get issue_country code from LOCALE_INFO");
             }
         } catch (Exception unused) {
-            Logger.w(TAG, "get CountryCode error");
+            Logger.m6803w(TAG, "get CountryCode error");
         }
     }
 

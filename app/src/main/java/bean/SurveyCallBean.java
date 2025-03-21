@@ -9,7 +9,9 @@ public class SurveyCallBean extends BaseBean {
     private String description;
     private String fileName;
     private long fileSize;
-    private String id;
+
+    /* renamed from: id */
+    private String f1627id;
     private String localPath;
     private long progress;
     private String startTime;
@@ -40,7 +42,7 @@ public class SurveyCallBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1627id;
     }
 
     public String getLocalPath() {
@@ -96,7 +98,7 @@ public class SurveyCallBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1627id = str;
     }
 
     public void setLocalPath(String str) {

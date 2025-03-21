@@ -2,7 +2,9 @@ package com.huawei.hms.adapter.internal;
 
 /* loaded from: classes.dex */
 public class CommonCode {
-    public static final int OK = 0;
+
+    /* renamed from: OK */
+    public static final int f7086OK = 0;
     public static final int UNBIND_SERVICE = 11;
 
     public interface BusInterceptor {

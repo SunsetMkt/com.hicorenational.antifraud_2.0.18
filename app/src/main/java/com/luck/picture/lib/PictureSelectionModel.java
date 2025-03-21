@@ -145,9 +145,9 @@ public class PictureSelectionModel {
         }
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.selectionConfig.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i3 = pictureWindowAnimationStyle.activityEnterAnimation) == 0) {
-            i3 = R.anim.picture_anim_enter;
+            i3 = C2639R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i3, R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i3, C2639R.anim.picture_anim_fade_in);
     }
 
     public PictureSelectionModel freeStyleCropEnabled(boolean z) {
@@ -623,9 +623,9 @@ public class PictureSelectionModel {
         }
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.selectionConfig.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i2 = pictureWindowAnimationStyle.activityEnterAnimation) == 0) {
-            i2 = R.anim.picture_anim_enter;
+            i2 = C2639R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i2, R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i2, C2639R.anim.picture_anim_fade_in);
     }
 
     public void forResult(int i2, OnResultCallbackListener onResultCallbackListener) {
@@ -651,8 +651,8 @@ public class PictureSelectionModel {
         }
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.selectionConfig.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i3 = pictureWindowAnimationStyle.activityEnterAnimation) == 0) {
-            i3 = R.anim.picture_anim_enter;
+            i3 = C2639R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i3, R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i3, C2639R.anim.picture_anim_fade_in);
     }
 }

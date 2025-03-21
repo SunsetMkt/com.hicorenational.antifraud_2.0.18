@@ -15,7 +15,7 @@ public abstract class SHA256 {
         try {
             return MessageDigest.getInstance("SHA-256").digest(bArr);
         } catch (NoSuchAlgorithmException e2) {
-            HMSLog.e("SHA256", "NoSuchAlgorithmException" + e2.getMessage());
+            HMSLog.m7715e("SHA256", "NoSuchAlgorithmException" + e2.getMessage());
             return new byte[0];
         }
     }
@@ -42,7 +42,7 @@ public abstract class SHA256 {
                     }
                 } catch (IOException | NoSuchAlgorithmException unused) {
                     bufferedInputStream2 = bufferedInputStream;
-                    HMSLog.e("SHA256", "An exception occurred while computing file 'SHA-256'.");
+                    HMSLog.m7715e("SHA256", "An exception occurred while computing file 'SHA-256'.");
                     IOUtils.closeQuietly((InputStream) bufferedInputStream2);
                     return new byte[0];
                 } catch (Throwable th) {

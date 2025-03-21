@@ -7,6 +7,7 @@ import androidx.annotation.RestrictTo;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import java.util.concurrent.atomic.AtomicInteger;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public abstract class DeferrableSurface {
@@ -24,10 +25,10 @@ public abstract class DeferrableSurface {
 
     @GuardedBy("mLock")
     private boolean mClosed = false;
-    private final c.b.b.a.a.a<Void> mTerminationFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.c
+    private final InterfaceFutureC0952a<Void> mTerminationFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.c
         @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
         public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-            return DeferrableSurface.this.a(completer);
+            return DeferrableSurface.this.m366a(completer);
         }
     });
 
@@ -66,7 +67,8 @@ public abstract class DeferrableSurface {
         String str2 = str + "[total_surfaces=" + i2 + ", used_surfaces=" + i3 + "](" + this + "}";
     }
 
-    public /* synthetic */ Object a(CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m366a(CallbackToFutureAdapter.Completer completer) throws Exception {
         synchronized (this.mLock) {
             this.mTerminationCompleter = completer;
         }
@@ -110,7 +112,7 @@ public abstract class DeferrableSurface {
     }
 
     @NonNull
-    public final c.b.b.a.a.a<Surface> getSurface() {
+    public final InterfaceFutureC0952a<Surface> getSurface() {
         synchronized (this.mLock) {
             if (this.mClosed) {
                 return Futures.immediateFailedFuture(new SurfaceClosedException("DeferrableSurface already closed.", this));
@@ -120,7 +122,7 @@ public abstract class DeferrableSurface {
     }
 
     @NonNull
-    public c.b.b.a.a.a<Void> getTerminationFuture() {
+    public InterfaceFutureC0952a<Void> getTerminationFuture() {
         return Futures.nonCancellationPropagating(this.mTerminationFuture);
     }
 
@@ -143,5 +145,5 @@ public abstract class DeferrableSurface {
     }
 
     @NonNull
-    protected abstract c.b.b.a.a.a<Surface> provideSurface();
+    protected abstract InterfaceFutureC0952a<Surface> provideSurface();
 }

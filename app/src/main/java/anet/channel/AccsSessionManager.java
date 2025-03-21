@@ -21,59 +21,60 @@ import java.util.concurrent.CopyOnWriteArraySet;
 /* loaded from: classes.dex */
 class AccsSessionManager {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static CopyOnWriteArraySet<ISessionListener> f1583c = new CopyOnWriteArraySet<>();
+    /* renamed from: c */
+    private static CopyOnWriteArraySet<ISessionListener> f632c = new CopyOnWriteArraySet<>();
 
-    /* renamed from: a, reason: collision with root package name */
-    SessionCenter f1584a;
+    /* renamed from: a */
+    SessionCenter f633a;
 
-    /* renamed from: b, reason: collision with root package name */
-    Set<String> f1585b = Collections.EMPTY_SET;
+    /* renamed from: b */
+    Set<String> f634b = Collections.EMPTY_SET;
 
     AccsSessionManager(SessionCenter sessionCenter) {
-        this.f1584a = null;
-        this.f1584a = sessionCenter;
+        this.f633a = null;
+        this.f633a = sessionCenter;
     }
 
-    private boolean b() {
+    /* renamed from: b */
+    private boolean m400b() {
         return !(GlobalAppRuntimeInfo.isAppBackground() && AwcnConfig.isAccsSessionCreateForbiddenInBg()) && NetworkStatusHelper.isConnected();
     }
 
     public synchronized void checkAndStartSession() {
-        Collection<SessionInfo> a2 = this.f1584a.f1642g.a();
+        Collection<SessionInfo> m450a = this.f633a.f716g.m450a();
         Set<String> set = Collections.EMPTY_SET;
-        if (!a2.isEmpty()) {
+        if (!m450a.isEmpty()) {
             set = new TreeSet<>();
         }
-        for (SessionInfo sessionInfo : a2) {
+        for (SessionInfo sessionInfo : m450a) {
             if (sessionInfo.isKeepAlive) {
                 set.add(StringUtils.concatString(StrategyCenter.getInstance().getSchemeByHost(sessionInfo.host, sessionInfo.isAccs ? HttpConstant.HTTPS : HttpConstant.HTTP), HttpConstant.SCHEME_SPLIT, sessionInfo.host));
             }
         }
-        for (String str : this.f1585b) {
+        for (String str : this.f634b) {
             if (!set.contains(str)) {
-                a(str);
+                m399a(str);
             }
         }
-        if (b()) {
+        if (m400b()) {
             for (String str2 : set) {
                 try {
-                    this.f1584a.get(str2, ConnType.TypeLevel.SPDY, 0L);
+                    this.f633a.get(str2, ConnType.TypeLevel.SPDY, 0L);
                 } catch (Exception unused) {
-                    ALog.e("start session failed", null, Constants.KEY_HOST, str2);
+                    ALog.m715e("start session failed", null, Constants.KEY_HOST, str2);
                 }
             }
-            this.f1585b = set;
+            this.f634b = set;
         }
     }
 
     public synchronized void forceCloseSession(boolean z) {
         if (ALog.isPrintLog(1)) {
-            ALog.d("awcn.AccsSessionManager", "forceCloseSession", this.f1584a.f1638c, "reCreate", Boolean.valueOf(z));
+            ALog.m713d("awcn.AccsSessionManager", "forceCloseSession", this.f633a.f712c, "reCreate", Boolean.valueOf(z));
         }
-        Iterator<String> it = this.f1585b.iterator();
+        Iterator<String> it = this.f634b.iterator();
         while (it.hasNext()) {
-            a(it.next());
+            m399a(it.next());
         }
         if (z) {
             checkAndStartSession();
@@ -81,24 +82,25 @@ class AccsSessionManager {
     }
 
     public void notifyListener(Intent intent) {
-        ThreadPoolExecutorFactory.submitScheduledTask(new a(this, intent));
+        ThreadPoolExecutorFactory.submitScheduledTask(new RunnableC0742a(this, intent));
     }
 
     public void registerListener(ISessionListener iSessionListener) {
         if (iSessionListener != null) {
-            f1583c.add(iSessionListener);
+            f632c.add(iSessionListener);
         }
     }
 
     public void unregisterListener(ISessionListener iSessionListener) {
-        f1583c.remove(iSessionListener);
+        f632c.remove(iSessionListener);
     }
 
-    private void a(String str) {
+    /* renamed from: a */
+    private void m399a(String str) {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        ALog.d("awcn.AccsSessionManager", "closeSessions", this.f1584a.f1638c, Constants.KEY_HOST, str);
-        this.f1584a.a(str).b(false);
+        ALog.m713d("awcn.AccsSessionManager", "closeSessions", this.f633a.f712c, Constants.KEY_HOST, str);
+        this.f633a.m418a(str).m439b(false);
     }
 }

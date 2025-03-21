@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.menu.MenuPresenter;
 
@@ -89,7 +89,7 @@ class MenuDialogHelper implements DialogInterface.OnKeyListener, DialogInterface
     public void show(IBinder iBinder) {
         MenuBuilder menuBuilder = this.mMenu;
         AlertDialog.Builder builder = new AlertDialog.Builder(menuBuilder.getContext());
-        this.mPresenter = new ListMenuPresenter(builder.getContext(), R.layout.abc_list_menu_item_layout);
+        this.mPresenter = new ListMenuPresenter(builder.getContext(), C0120R.layout.abc_list_menu_item_layout);
         this.mPresenter.setCallback(this);
         this.mMenu.addMenuPresenter(this.mPresenter);
         builder.setAdapter(this.mPresenter.getAdapter(), this);

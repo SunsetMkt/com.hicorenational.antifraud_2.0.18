@@ -7,7 +7,9 @@ public class HomeToolBean extends BaseBean {
     public static final int NEED_VERIFIED = 1;
     private String content;
     private boolean hasRedDot;
-    private String id;
+
+    /* renamed from: id */
+    private String f1639id;
     private String image;
     private int isNeedVerified;
     private int localIcon;
@@ -18,7 +20,7 @@ public class HomeToolBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1639id;
     }
 
     public String getImage() {
@@ -50,7 +52,7 @@ public class HomeToolBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1639id = str;
     }
 
     public void setImage(String str) {

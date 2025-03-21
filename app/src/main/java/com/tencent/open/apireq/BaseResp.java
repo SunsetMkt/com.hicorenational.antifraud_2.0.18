@@ -11,31 +11,32 @@ public class BaseResp {
     public static final int CODE_SUCCESS = 0;
     public static final int CODE_UNSUPPORTED_BRANCH = -1002;
 
-    /* renamed from: a, reason: collision with root package name */
-    private int f9776a = 0;
+    /* renamed from: a */
+    private int f11159a = 0;
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f9777b = "";
+    /* renamed from: b */
+    private String f11160b = "";
 
-    protected String a(int i2) {
+    /* renamed from: a */
+    protected String m10428a(int i2) {
         return "Api call failed.";
     }
 
     public int getCode() {
-        return this.f9776a;
+        return this.f11159a;
     }
 
     public String getErrorMsg() {
-        return this.f9777b;
+        return this.f11160b;
     }
 
     public boolean isSuccess() {
-        return this.f9776a == 0;
+        return this.f11159a == 0;
     }
 
     public void setCode(int i2) {
         String str;
-        this.f9776a = i2;
+        this.f11159a = i2;
         if (i2 == -2001) {
             str = "Not login.";
         } else if (i2 == -2000) {
@@ -52,7 +53,7 @@ public class BaseResp {
                     str = "QQ is not installed.";
                     break;
                 default:
-                    str = a(i2);
+                    str = m10428a(i2);
                     break;
             }
         } else {
@@ -62,10 +63,10 @@ public class BaseResp {
     }
 
     public void setErrorMsg(String str) {
-        this.f9777b = str;
+        this.f11160b = str;
     }
 
     public String toString() {
-        return "BaseResp{mCode=" + this.f9776a + ", mErrorMsg='" + this.f9777b + "'}";
+        return "BaseResp{mCode=" + this.f11159a + ", mErrorMsg='" + this.f11160b + "'}";
     }
 }

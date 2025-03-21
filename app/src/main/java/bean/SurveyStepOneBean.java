@@ -16,7 +16,9 @@ public class SurveyStepOneBean extends BaseBean {
     private String description;
     private long enTime;
     private String endTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1630id;
     private String policeMobile;
     private String processTime;
     private String scene;
@@ -70,7 +72,7 @@ public class SurveyStepOneBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1630id;
     }
 
     public String getPoliceMobile() {
@@ -134,7 +136,7 @@ public class SurveyStepOneBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1630id = str;
     }
 
     public void setPoliceMobile(String str) {

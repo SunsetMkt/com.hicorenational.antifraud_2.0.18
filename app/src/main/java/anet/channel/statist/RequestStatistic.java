@@ -40,8 +40,9 @@ public class RequestStatistic extends StatObject {
     @Dimension
     public volatile String host;
 
+    /* renamed from: ip */
     @Dimension
-    public volatile String ip;
+    public volatile String f1002ip;
 
     @Dimension
     public volatile String isBg;
@@ -303,7 +304,7 @@ public class RequestStatistic extends StatObject {
     }
 
     public void setIPAndPort(String str, int i2) {
-        this.ip = str;
+        this.f1002ip = str;
         this.port = i2;
         if (str != null) {
             this.isDNS = true;
@@ -332,7 +333,7 @@ public class RequestStatistic extends StatObject {
         sb.append(",host=");
         sb.append(this.host);
         sb.append(",ip=");
-        sb.append(this.ip);
+        sb.append(this.f1002ip);
         sb.append(",port=");
         sb.append(this.port);
         sb.append(",protocolType=");

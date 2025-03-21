@@ -26,7 +26,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.customview.view.AbsSavedState;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -572,7 +572,7 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
     }
 
     public BottomAppBar(Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.bottomAppBarStyle);
+        this(context, attributeSet, C1921R.attr.bottomAppBarStyle);
     }
 
     public BottomAppBar(Context context, @Nullable AttributeSet attributeSet, int i2) {
@@ -587,15 +587,15 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
                 bottomAppBar2.maybeAnimateMenuView(bottomAppBar2.fabAlignmentMode, BottomAppBar.this.fabAttached);
             }
         };
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.BottomAppBar, i2, R.style.Widget_MaterialComponents_BottomAppBar, new int[0]);
-        ColorStateList colorStateList = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.BottomAppBar_backgroundTint);
-        float dimensionPixelOffset = obtainStyledAttributes.getDimensionPixelOffset(R.styleable.BottomAppBar_fabCradleMargin, 0);
-        float dimensionPixelOffset2 = obtainStyledAttributes.getDimensionPixelOffset(R.styleable.BottomAppBar_fabCradleRoundedCornerRadius, 0);
-        float dimensionPixelOffset3 = obtainStyledAttributes.getDimensionPixelOffset(R.styleable.BottomAppBar_fabCradleVerticalOffset, 0);
-        this.fabAlignmentMode = obtainStyledAttributes.getInt(R.styleable.BottomAppBar_fabAlignmentMode, 0);
-        this.hideOnScroll = obtainStyledAttributes.getBoolean(R.styleable.BottomAppBar_hideOnScroll, false);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.BottomAppBar, i2, C1921R.style.Widget_MaterialComponents_BottomAppBar, new int[0]);
+        ColorStateList colorStateList = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.BottomAppBar_backgroundTint);
+        float dimensionPixelOffset = obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.BottomAppBar_fabCradleMargin, 0);
+        float dimensionPixelOffset2 = obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.BottomAppBar_fabCradleRoundedCornerRadius, 0);
+        float dimensionPixelOffset3 = obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.BottomAppBar_fabCradleVerticalOffset, 0);
+        this.fabAlignmentMode = obtainStyledAttributes.getInt(C1921R.styleable.BottomAppBar_fabAlignmentMode, 0);
+        this.hideOnScroll = obtainStyledAttributes.getBoolean(C1921R.styleable.BottomAppBar_hideOnScroll, false);
         obtainStyledAttributes.recycle();
-        this.fabOffsetEndMode = getResources().getDimensionPixelOffset(R.dimen.mtrl_bottomappbar_fabOffsetEndMode);
+        this.fabOffsetEndMode = getResources().getDimensionPixelOffset(C1921R.dimen.mtrl_bottomappbar_fabOffsetEndMode);
         this.topEdgeTreatment = new BottomAppBarTopEdgeTreatment(dimensionPixelOffset, dimensionPixelOffset2, dimensionPixelOffset3);
         ShapePathModel shapePathModel = new ShapePathModel();
         shapePathModel.setTopEdge(this.topEdgeTreatment);

@@ -35,8 +35,8 @@ public abstract class UseCase {
     private final Object mBoundCameraLock = new Object();
     private int mImageFormat = 34;
 
-    /* renamed from: androidx.camera.core.UseCase$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: androidx.camera.core.UseCase$1 */
+    static /* synthetic */ class C03261 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$UseCase$State = new int[State.values().length];
 
         static {
@@ -222,7 +222,7 @@ public abstract class UseCase {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     protected final void notifyState() {
-        int i2 = AnonymousClass1.$SwitchMap$androidx$camera$core$UseCase$State[this.mState.ordinal()];
+        int i2 = C03261.$SwitchMap$androidx$camera$core$UseCase$State[this.mState.ordinal()];
         if (i2 == 1) {
             Iterator<StateChangeCallback> it = this.mStateChangeCallbacks.iterator();
             while (it.hasNext()) {

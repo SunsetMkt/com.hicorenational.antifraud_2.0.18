@@ -82,7 +82,7 @@ public class AgentWebConfig {
         return new ValueCallback<Boolean>() { // from class: com.just.agentweb.AgentWebConfig.2
             @Override // android.webkit.ValueCallback
             public void onReceiveValue(Boolean bool) {
-                LogUtils.i(AgentWebConfig.TAG, "removeExpiredCookies:" + bool);
+                LogUtils.m8083i(AgentWebConfig.TAG, "removeExpiredCookies:" + bool);
             }
         };
     }

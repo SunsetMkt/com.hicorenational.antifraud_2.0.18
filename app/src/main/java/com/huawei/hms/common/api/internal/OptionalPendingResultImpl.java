@@ -11,11 +11,11 @@ import java.util.concurrent.TimeUnit;
 /* loaded from: classes.dex */
 public final class OptionalPendingResultImpl<R extends Result> extends OptionalPendingResult<R> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final PendingResult<R> f6714a;
+    /* renamed from: a */
+    private final PendingResult<R> f7234a;
 
     public OptionalPendingResultImpl(PendingResult<R> pendingResult) {
-        this.f6714a = pendingResult;
+        this.f7234a = pendingResult;
     }
 
     public final void addStatusListener() {
@@ -23,7 +23,7 @@ public final class OptionalPendingResultImpl<R extends Result> extends OptionalP
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public final R await() {
-        return this.f6714a.await();
+        return this.f7234a.await();
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -47,17 +47,17 @@ public final class OptionalPendingResultImpl<R extends Result> extends OptionalP
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public final void setResultCallback(ResultCallback<R> resultCallback) {
-        this.f6714a.setResultCallback(resultCallback);
+        this.f7234a.setResultCallback(resultCallback);
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public final R await(long j2, TimeUnit timeUnit) {
-        return this.f6714a.await(j2, timeUnit);
+        return this.f7234a.await(j2, timeUnit);
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public void setResultCallback(Looper looper, ResultCallback<R> resultCallback) {
-        this.f6714a.setResultCallback(looper, resultCallback);
+        this.f7234a.setResultCallback(looper, resultCallback);
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult

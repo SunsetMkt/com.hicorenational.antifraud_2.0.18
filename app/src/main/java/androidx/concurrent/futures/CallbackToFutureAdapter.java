@@ -2,12 +2,12 @@ package androidx.concurrent.futures;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import c.b.b.a.a.a;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public final class CallbackToFutureAdapter {
@@ -99,7 +99,7 @@ public final class CallbackToFutureAdapter {
         Object attachCompleter(@NonNull Completer<T> completer) throws Exception;
     }
 
-    private static final class SafeFuture<T> implements a<T> {
+    private static final class SafeFuture<T> implements InterfaceFutureC0952a<T> {
         final WeakReference<Completer<T>> completerWeakReference;
         private final AbstractResolvableFuture<T> delegate = new AbstractResolvableFuture<T>() { // from class: androidx.concurrent.futures.CallbackToFutureAdapter.SafeFuture.1
             @Override // androidx.concurrent.futures.AbstractResolvableFuture
@@ -116,7 +116,7 @@ public final class CallbackToFutureAdapter {
             this.completerWeakReference = new WeakReference<>(completer);
         }
 
-        @Override // c.b.b.a.a.a
+        @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
         public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
             this.delegate.addListener(runnable, executor);
         }
@@ -172,7 +172,7 @@ public final class CallbackToFutureAdapter {
     }
 
     @NonNull
-    public static <T> a<T> getFuture(@NonNull Resolver<T> resolver) {
+    public static <T> InterfaceFutureC0952a<T> getFuture(@NonNull Resolver<T> resolver) {
         Completer<T> completer = new Completer<>();
         SafeFuture<T> safeFuture = new SafeFuture<>(completer);
         completer.future = safeFuture;

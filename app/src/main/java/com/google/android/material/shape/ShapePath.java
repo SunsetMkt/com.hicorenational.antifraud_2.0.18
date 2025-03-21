@@ -44,15 +44,19 @@ public class ShapePath {
     }
 
     public static class PathLineOperation extends PathOperation {
-        private float x;
-        private float y;
+
+        /* renamed from: x */
+        private float f5644x;
+
+        /* renamed from: y */
+        private float f5645y;
 
         @Override // com.google.android.material.shape.ShapePath.PathOperation
         public void applyToPath(Matrix matrix, Path path) {
             Matrix matrix2 = this.matrix;
             matrix.invert(matrix2);
             path.transform(matrix2);
-            path.lineTo(this.x, this.y);
+            path.lineTo(this.f5644x, this.f5645y);
             path.transform(matrix);
         }
     }
@@ -102,8 +106,8 @@ public class ShapePath {
 
     public void lineTo(float f2, float f3) {
         PathLineOperation pathLineOperation = new PathLineOperation();
-        pathLineOperation.x = f2;
-        pathLineOperation.y = f3;
+        pathLineOperation.f5644x = f2;
+        pathLineOperation.f5645y = f3;
         this.operations.add(pathLineOperation);
         this.endX = f2;
         this.endY = f3;

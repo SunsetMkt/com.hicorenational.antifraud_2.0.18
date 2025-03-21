@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.engine.ImageEngine;
@@ -30,6 +30,7 @@ import com.luck.picture.lib.tools.VoiceUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* loaded from: classes.dex */
 public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -48,8 +49,8 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
         public CameraViewHolder(View view) {
             super(view);
             this.headerView = view;
-            this.tvCamera = (TextView) view.findViewById(R.id.tvCamera);
-            this.tvCamera.setText(PictureImageGridAdapter.this.config.chooseMode == PictureMimeType.ofAudio() ? PictureImageGridAdapter.this.context.getString(R.string.picture_tape) : PictureImageGridAdapter.this.context.getString(R.string.picture_take_picture));
+            this.tvCamera = (TextView) view.findViewById(C2639R.id.tvCamera);
+            this.tvCamera.setText(PictureImageGridAdapter.this.config.chooseMode == PictureMimeType.ofAudio() ? PictureImageGridAdapter.this.context.getString(C2639R.string.picture_tape) : PictureImageGridAdapter.this.context.getString(C2639R.string.picture_take_picture));
         }
     }
 
@@ -66,13 +67,13 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
         public ViewHolder(View view) {
             super(view);
             this.contentView = view;
-            this.ivPicture = (ImageView) view.findViewById(R.id.ivPicture);
-            this.tvCheck = (TextView) view.findViewById(R.id.tvCheck);
-            this.btnCheck = view.findViewById(R.id.btnCheck);
-            this.tvDuration = (TextView) view.findViewById(R.id.tv_duration);
-            this.tvIsGif = (TextView) view.findViewById(R.id.tv_isGif);
-            this.tvName = (TextView) view.findViewById(R.id.tv_name);
-            this.tvLongChart = (TextView) view.findViewById(R.id.tv_long_chart);
+            this.ivPicture = (ImageView) view.findViewById(C2639R.id.ivPicture);
+            this.tvCheck = (TextView) view.findViewById(C2639R.id.tvCheck);
+            this.btnCheck = view.findViewById(C2639R.id.btnCheck);
+            this.tvDuration = (TextView) view.findViewById(C2639R.id.tv_duration);
+            this.tvIsGif = (TextView) view.findViewById(C2639R.id.tv_isGif);
+            this.tvName = (TextView) view.findViewById(C2639R.id.tv_name);
+            this.tvLongChart = (TextView) view.findViewById(C2639R.id.tv_long_chart);
             if (PictureImageGridAdapter.this.config.style == null || PictureImageGridAdapter.this.config.style.pictureCheckedStyle == 0) {
                 return;
             }
@@ -108,56 +109,56 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                 int i8 = this.config.maxVideoSelectNum;
                 if (i8 <= 0) {
                     Context context = this.context;
-                    ToastUtils.s(context, context.getString(R.string.picture_rule));
+                    ToastUtils.m8140s(context, context.getString(C2639R.string.picture_rule));
                     return;
                 }
                 if (i6 >= i8 && !isSelected) {
                     Context context2 = this.context;
-                    ToastUtils.s(context2, StringUtils.getMsg(context2, localMedia.getMimeType(), this.config.maxVideoSelectNum));
+                    ToastUtils.m8140s(context2, StringUtils.getMsg(context2, localMedia.getMimeType(), this.config.maxVideoSelectNum));
                     return;
                 } else if (!isSelected && this.config.videoMinSecond > 0 && localMedia.getDuration() < this.config.videoMinSecond) {
-                    ToastUtils.s(this.context, viewHolder.itemView.getContext().getString(R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
+                    ToastUtils.m8140s(this.context, viewHolder.itemView.getContext().getString(C2639R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
                     return;
                 } else if (!isSelected && this.config.videoMaxSecond > 0 && localMedia.getDuration() > this.config.videoMaxSecond) {
-                    ToastUtils.s(this.context, viewHolder.itemView.getContext().getString(R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
+                    ToastUtils.m8140s(this.context, viewHolder.itemView.getContext().getString(C2639R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
                     return;
                 }
             }
             if (PictureMimeType.eqImage(localMedia.getMimeType()) && i5 >= this.config.maxSelectNum && !isSelected) {
                 Context context3 = this.context;
-                ToastUtils.s(context3, StringUtils.getMsg(context3, localMedia.getMimeType(), this.config.maxSelectNum));
+                ToastUtils.m8140s(context3, StringUtils.getMsg(context3, localMedia.getMimeType(), this.config.maxSelectNum));
                 return;
             }
         } else {
             if (!TextUtils.isEmpty(mimeType) && !PictureMimeType.isMimeTypeSame(mimeType, localMedia.getMimeType())) {
                 Context context4 = this.context;
-                ToastUtils.s(context4, context4.getString(R.string.picture_rule));
+                ToastUtils.m8140s(context4, context4.getString(C2639R.string.picture_rule));
                 return;
             }
             if (!PictureMimeType.eqVideo(mimeType) || (i2 = this.config.maxVideoSelectNum) <= 0) {
                 int i9 = this.config.maxSelectNum;
                 if (size >= i9 && !isSelected) {
                     Context context5 = this.context;
-                    ToastUtils.s(context5, StringUtils.getMsg(context5, mimeType, i9));
+                    ToastUtils.m8140s(context5, StringUtils.getMsg(context5, mimeType, i9));
                     return;
                 } else if (PictureMimeType.eqVideo(localMedia.getMimeType())) {
                     if (!isSelected && this.config.videoMinSecond > 0 && localMedia.getDuration() < this.config.videoMinSecond) {
-                        ToastUtils.s(this.context, viewHolder.itemView.getContext().getString(R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
+                        ToastUtils.m8140s(this.context, viewHolder.itemView.getContext().getString(C2639R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
                         return;
                     } else if (!isSelected && this.config.videoMaxSecond > 0 && localMedia.getDuration() > this.config.videoMaxSecond) {
-                        ToastUtils.s(this.context, viewHolder.itemView.getContext().getString(R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
+                        ToastUtils.m8140s(this.context, viewHolder.itemView.getContext().getString(C2639R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
                         return;
                     }
                 }
             } else if (size >= i2 && !isSelected) {
                 Context context6 = this.context;
-                ToastUtils.s(context6, StringUtils.getMsg(context6, mimeType, i2));
+                ToastUtils.m8140s(context6, StringUtils.getMsg(context6, mimeType, i2));
                 return;
             } else if (!isSelected && this.config.videoMinSecond > 0 && localMedia.getDuration() < this.config.videoMinSecond) {
-                ToastUtils.s(this.context, viewHolder.itemView.getContext().getString(R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
+                ToastUtils.m8140s(this.context, viewHolder.itemView.getContext().getString(C2639R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
                 return;
             } else if (!isSelected && this.config.videoMaxSecond > 0 && localMedia.getDuration() > this.config.videoMaxSecond) {
-                ToastUtils.s(this.context, viewHolder.itemView.getContext().getString(R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
+                ToastUtils.m8140s(this.context, viewHolder.itemView.getContext().getString(C2639R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
                 return;
             }
         }
@@ -215,7 +216,7 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
             localMedia.setNum(this.selectImages.size());
             VoiceUtils.getInstance().play();
             AnimUtils.zoom(viewHolder.ivPicture, this.config.zoomAnim);
-            viewHolder.tvCheck.startAnimation(AnimationUtils.loadAnimation(this.context, R.anim.picture_anim_modal_in));
+            viewHolder.tvCheck.startAnimation(AnimationUtils.loadAnimation(this.context, C2639R.anim.picture_anim_modal_in));
         }
         notifyItemChanged(viewHolder.getAdapterPosition());
         selectImage(viewHolder, !isSelected);
@@ -271,7 +272,8 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    public /* synthetic */ void a(View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8117a(View view) {
         OnPhotoSelectChangedListener onPhotoSelectChangedListener = this.imageSelectChangedListener;
         if (onPhotoSelectChangedListener != null) {
             onPhotoSelectChangedListener.onTakePhoto();
@@ -352,12 +354,12 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public void onBindViewHolder(@i.c.a.d RecyclerView.ViewHolder viewHolder, final int i2) {
+    public void onBindViewHolder(@InterfaceC5816d RecyclerView.ViewHolder viewHolder, final int i2) {
         if (getItemViewType(i2) == 1) {
             ((CameraViewHolder) viewHolder).headerView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.d
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    PictureImageGridAdapter.this.a(view);
+                    PictureImageGridAdapter.this.m8117a(view);
                 }
             });
             return;
@@ -392,12 +394,12 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (eqVideo || eqAudio) {
             viewHolder2.tvDuration.setVisibility(0);
             viewHolder2.tvDuration.setText(DateUtils.formatDurationTime(localMedia.getDuration()));
-            viewHolder2.tvDuration.setCompoundDrawablesRelativeWithIntrinsicBounds(eqVideo ? R.drawable.picture_icon_video : R.drawable.picture_icon_audio, 0, 0, 0);
+            viewHolder2.tvDuration.setCompoundDrawablesRelativeWithIntrinsicBounds(eqVideo ? C2639R.drawable.picture_icon_video : C2639R.drawable.picture_icon_audio, 0, 0, 0);
         } else {
             viewHolder2.tvDuration.setVisibility(8);
         }
         if (this.config.chooseMode == PictureMimeType.ofAudio()) {
-            viewHolder2.ivPicture.setImageResource(R.drawable.picture_audio_placeholder);
+            viewHolder2.ivPicture.setImageResource(C2639R.drawable.picture_audio_placeholder);
         } else {
             ImageEngine imageEngine = PictureSelectionConfig.imageEngine;
             if (imageEngine != null) {
@@ -409,29 +411,29 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
             viewHolder2.btnCheck.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.c
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    PictureImageGridAdapter.this.a(path, mimeType, localMedia, viewHolder2, view);
+                    PictureImageGridAdapter.this.m8119a(path, mimeType, localMedia, viewHolder2, view);
                 }
             });
         }
         viewHolder2.contentView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.b
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PictureImageGridAdapter.this.a(path, mimeType, i2, localMedia, viewHolder2, view);
+                PictureImageGridAdapter.this.m8118a(path, mimeType, i2, localMedia, viewHolder2, view);
             }
         });
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return i2 == 1 ? new CameraViewHolder(LayoutInflater.from(this.context).inflate(R.layout.picture_item_camera, viewGroup, false)) : new ViewHolder(LayoutInflater.from(this.context).inflate(R.layout.picture_image_grid_item, viewGroup, false));
+        return i2 == 1 ? new CameraViewHolder(LayoutInflater.from(this.context).inflate(C2639R.layout.picture_item_camera, viewGroup, false)) : new ViewHolder(LayoutInflater.from(this.context).inflate(C2639R.layout.picture_image_grid_item, viewGroup, false));
     }
 
     public void selectImage(ViewHolder viewHolder, boolean z) {
         viewHolder.tvCheck.setSelected(z);
         if (z) {
-            viewHolder.ivPicture.setColorFilter(ContextCompat.getColor(this.context, R.color.picture_color_80), PorterDuff.Mode.SRC_ATOP);
+            viewHolder.ivPicture.setColorFilter(ContextCompat.getColor(this.context, C2639R.color.picture_color_80), PorterDuff.Mode.SRC_ATOP);
         } else {
-            viewHolder.ivPicture.setColorFilter(ContextCompat.getColor(this.context, R.color.picture_color_20), PorterDuff.Mode.SRC_ATOP);
+            viewHolder.ivPicture.setColorFilter(ContextCompat.getColor(this.context, C2639R.color.picture_color_20), PorterDuff.Mode.SRC_ATOP);
         }
     }
 
@@ -443,13 +445,14 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.showCamera = z;
     }
 
-    public /* synthetic */ void a(String str, String str2, LocalMedia localMedia, ViewHolder viewHolder, View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8119a(String str, String str2, LocalMedia localMedia, ViewHolder viewHolder, View view) {
         if (SdkVersionUtils.checkedAndroid_Q()) {
             str = PictureFileUtils.getPath(this.context, Uri.parse(str));
         }
         if (!TextUtils.isEmpty(str) && !new File(str).exists()) {
             Context context = this.context;
-            ToastUtils.s(context, PictureMimeType.s(context, str2));
+            ToastUtils.m8140s(context, PictureMimeType.m8138s(context, str2));
         } else {
             if (SdkVersionUtils.checkedAndroid_Q()) {
                 localMedia.setRealPath(str);
@@ -469,15 +472,16 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
      */
     /* JADX WARN: Removed duplicated region for block: B:26:0x0076  */
     /* JADX WARN: Removed duplicated region for block: B:42:0x00ec  */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public /* synthetic */ void a(java.lang.String r5, java.lang.String r6, int r7, com.luck.picture.lib.entity.LocalMedia r8, com.luck.picture.lib.adapter.PictureImageGridAdapter.ViewHolder r9, android.view.View r10) {
+    public /* synthetic */ void m8118a(java.lang.String r5, java.lang.String r6, int r7, com.luck.picture.lib.entity.LocalMedia r8, com.luck.picture.lib.adapter.PictureImageGridAdapter.ViewHolder r9, android.view.View r10) {
         /*
             Method dump skipped, instructions count: 240
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.adapter.PictureImageGridAdapter.a(java.lang.String, java.lang.String, int, com.luck.picture.lib.entity.LocalMedia, com.luck.picture.lib.adapter.PictureImageGridAdapter$ViewHolder, android.view.View):void");
+        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.adapter.PictureImageGridAdapter.m8118a(java.lang.String, java.lang.String, int, com.luck.picture.lib.entity.LocalMedia, com.luck.picture.lib.adapter.PictureImageGridAdapter$ViewHolder, android.view.View):void");
     }
 }

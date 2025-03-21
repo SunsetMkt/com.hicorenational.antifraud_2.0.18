@@ -4,6 +4,9 @@ import android.content.Context;
 import android.text.TextUtils;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.huawei.hms.framework.common.Logger;
+import com.huawei.hms.framework.network.grs.local.model.C2389a;
+import com.huawei.hms.framework.network.grs.p174f.C2365b;
+import com.huawei.hms.framework.network.grs.p178h.C2383b;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Locale;
@@ -93,7 +96,7 @@ public class GrsBaseInfo implements Cloneable {
     }
 
     /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public GrsBaseInfo m39clone() {
+    public GrsBaseInfo m26853clone() {
         return (GrsBaseInfo) super.clone();
     }
 
@@ -141,9 +144,9 @@ public class GrsBaseInfo implements Cloneable {
 
     public String getGrsParasKey(boolean z, boolean z2, Context context) {
         StringBuffer stringBuffer = new StringBuffer();
-        com.huawei.hms.framework.network.grs.f.b a2 = com.huawei.hms.framework.network.grs.f.b.a(context.getPackageName());
-        com.huawei.hms.framework.network.grs.local.model.a a3 = a2 != null ? a2.a() : null;
-        String grsReqParamJoint = getGrsReqParamJoint(z, z2, a3 != null ? a3.a() : "", context);
+        C2365b m6881a = C2365b.m6881a(context.getPackageName());
+        C2389a m6883a = m6881a != null ? m6881a.m6883a() : null;
+        String grsReqParamJoint = getGrsReqParamJoint(z, z2, m6883a != null ? m6883a.m6991a() : "", context);
         if (!TextUtils.isEmpty(grsReqParamJoint)) {
             if (!TextUtils.isEmpty(stringBuffer.toString())) {
                 stringBuffer.append("&");
@@ -154,10 +157,10 @@ public class GrsBaseInfo implements Cloneable {
     }
 
     public String getGrsReqParamJoint(boolean z, boolean z2, String str, Context context) {
-        String a2;
+        String m6976a;
         StringBuffer stringBuffer = new StringBuffer();
         if ("1.0".equals(str)) {
-            Logger.v(TAG, "1.0 interface has no query param appname");
+            Logger.m6801v(TAG, "1.0 interface has no query param appname");
         } else {
             if (!TextUtils.isEmpty(str)) {
                 stringBuffer.append("app_name");
@@ -186,13 +189,13 @@ public class GrsBaseInfo implements Cloneable {
             stringBuffer.append("uid");
             stringBuffer.append(ContainerUtils.KEY_VALUE_DELIMITER);
             if (z) {
-                a2 = com.huawei.hms.framework.network.grs.h.b.b(uid);
+                m6976a = C2383b.m6979b(uid);
             } else if (z2) {
-                a2 = com.huawei.hms.framework.network.grs.h.b.a(uid);
+                m6976a = C2383b.m6976a(uid);
             } else {
                 stringBuffer.append(uid);
             }
-            stringBuffer.append(a2);
+            stringBuffer.append(m6976a);
         }
         String regCountry = getRegCountry();
         if (!TextUtils.isEmpty(regCountry) && !"UNKNOWN".equals(regCountry)) {
@@ -252,7 +255,7 @@ public class GrsBaseInfo implements Cloneable {
         try {
             return URLEncoder.encode(str, "utf-8");
         } catch (UnsupportedEncodingException unused) {
-            Logger.e(TAG, "UnsupportedEncodingException, Please check the params!");
+            Logger.m6796e(TAG, "UnsupportedEncodingException, Please check the params!");
             return "";
         }
     }

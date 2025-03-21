@@ -3,8 +3,8 @@ package androidx.constraintlayout.motion.widget;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.R;
 import java.util.HashMap;
 
 /* loaded from: classes.dex */
@@ -394,7 +394,7 @@ public class DesignTool implements ProxyInterface {
         if (motionLayout.mScene == null) {
             motionLayout.mScene = this.mSceneCache;
         }
-        int lookUpConstraintId = str != null ? this.mMotionLayout.lookUpConstraintId(str) : R.id.motion_base;
+        int lookUpConstraintId = str != null ? this.mMotionLayout.lookUpConstraintId(str) : C0471R.id.motion_base;
         this.mLastStartStateId = lookUpConstraintId;
         if (lookUpConstraintId != 0) {
             if (lookUpConstraintId == this.mMotionLayout.getStartState()) {

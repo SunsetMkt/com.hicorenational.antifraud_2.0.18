@@ -19,10 +19,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import androidx.constraintlayout.motion.utils.Easing;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.R;
 import androidx.constraintlayout.widget.StateSet;
-import c.c.a.b.a.a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class MotionScene {
@@ -298,13 +298,13 @@ public class MotionScene {
     }
 
     private void parseMotionSceneTags(Context context, XmlPullParser xmlPullParser) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.MotionScene);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0471R.styleable.MotionScene);
         int indexCount = obtainStyledAttributes.getIndexCount();
         for (int i2 = 0; i2 < indexCount; i2++) {
             int index = obtainStyledAttributes.getIndex(i2);
-            if (index == R.styleable.MotionScene_defaultDuration) {
+            if (index == C0471R.styleable.MotionScene_defaultDuration) {
                 this.mDefaultDuration = obtainStyledAttributes.getInt(index, this.mDefaultDuration);
-            } else if (index == R.styleable.MotionScene_layoutDuringTransition) {
+            } else if (index == C0471R.styleable.MotionScene_layoutDuringTransition) {
                 this.mLayoutDuringTransition = obtainStyledAttributes.getInteger(index, 0);
             }
         }
@@ -984,8 +984,8 @@ public class MotionScene {
     MotionScene(Context context, MotionLayout motionLayout, int i2) {
         this.mMotionLayout = motionLayout;
         load(context, i2);
-        this.mConstraintSetMap.put(R.id.motion_base, new ConstraintSet());
-        this.mConstraintSetIdMap.put("motion_base", Integer.valueOf(R.id.motion_base));
+        this.mConstraintSetMap.put(C0471R.id.motion_base, new ConstraintSet());
+        this.mConstraintSetIdMap.put("motion_base", Integer.valueOf(C0471R.id.motion_base));
     }
 
     public void setTransition(Transition transition) {
@@ -1037,13 +1037,13 @@ public class MotionScene {
                 this.mTargetId = -1;
                 this.mMode = 17;
                 this.mTransition = transition;
-                TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.OnClick);
+                TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0471R.styleable.OnClick);
                 int indexCount = obtainStyledAttributes.getIndexCount();
                 for (int i2 = 0; i2 < indexCount; i2++) {
                     int index = obtainStyledAttributes.getIndex(i2);
-                    if (index == R.styleable.OnClick_targetId) {
+                    if (index == C0471R.styleable.OnClick_targetId) {
                         this.mTargetId = obtainStyledAttributes.getResourceId(index, this.mTargetId);
-                    } else if (index == R.styleable.OnClick_clickAction) {
+                    } else if (index == C0471R.styleable.OnClick_clickAction) {
                         this.mMode = obtainStyledAttributes.getInt(index, this.mMode);
                     }
                 }
@@ -1193,21 +1193,21 @@ public class MotionScene {
             int indexCount = typedArray.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = typedArray.getIndex(i2);
-                if (index == R.styleable.Transition_constraintSetEnd) {
+                if (index == C0471R.styleable.Transition_constraintSetEnd) {
                     this.mConstraintSetEnd = typedArray.getResourceId(index, this.mConstraintSetEnd);
                     if ("layout".equals(context.getResources().getResourceTypeName(this.mConstraintSetEnd))) {
                         ConstraintSet constraintSet = new ConstraintSet();
                         constraintSet.load(context, this.mConstraintSetEnd);
                         motionScene.mConstraintSetMap.append(this.mConstraintSetEnd, constraintSet);
                     }
-                } else if (index == R.styleable.Transition_constraintSetStart) {
+                } else if (index == C0471R.styleable.Transition_constraintSetStart) {
                     this.mConstraintSetStart = typedArray.getResourceId(index, this.mConstraintSetStart);
                     if ("layout".equals(context.getResources().getResourceTypeName(this.mConstraintSetStart))) {
                         ConstraintSet constraintSet2 = new ConstraintSet();
                         constraintSet2.load(context, this.mConstraintSetStart);
                         motionScene.mConstraintSetMap.append(this.mConstraintSetStart, constraintSet2);
                     }
-                } else if (index == R.styleable.Transition_motionInterpolator) {
+                } else if (index == C0471R.styleable.Transition_motionInterpolator) {
                     int i3 = typedArray.peekValue(index).type;
                     if (i3 == 1) {
                         this.mDefaultInterpolatorID = typedArray.getResourceId(index, -1);
@@ -1225,21 +1225,21 @@ public class MotionScene {
                     } else {
                         this.mDefaultInterpolator = typedArray.getInteger(index, this.mDefaultInterpolator);
                     }
-                } else if (index == R.styleable.Transition_duration) {
+                } else if (index == C0471R.styleable.Transition_duration) {
                     this.mDuration = typedArray.getInt(index, this.mDuration);
-                } else if (index == R.styleable.Transition_staggered) {
+                } else if (index == C0471R.styleable.Transition_staggered) {
                     this.mStagger = typedArray.getFloat(index, this.mStagger);
-                } else if (index == R.styleable.Transition_autoTransition) {
+                } else if (index == C0471R.styleable.Transition_autoTransition) {
                     this.mAutoTransition = typedArray.getInteger(index, this.mAutoTransition);
-                } else if (index == R.styleable.Transition_android_id) {
+                } else if (index == C0471R.styleable.Transition_android_id) {
                     this.mId = typedArray.getResourceId(index, this.mId);
-                } else if (index == R.styleable.Transition_transitionDisable) {
+                } else if (index == C0471R.styleable.Transition_transitionDisable) {
                     this.mDisable = typedArray.getBoolean(index, this.mDisable);
-                } else if (index == R.styleable.Transition_pathMotionArc) {
+                } else if (index == C0471R.styleable.Transition_pathMotionArc) {
                     this.mPathMotionArc = typedArray.getInteger(index, -1);
-                } else if (index == R.styleable.Transition_layoutDuringTransition) {
+                } else if (index == C0471R.styleable.Transition_layoutDuringTransition) {
                     this.mLayoutDuringTransition = typedArray.getInteger(index, 0);
-                } else if (index == R.styleable.Transition_transitionFlags) {
+                } else if (index == C0471R.styleable.Transition_transitionFlags) {
                     this.mTransitionFlags = typedArray.getInteger(index, 0);
                 }
             }
@@ -1249,7 +1249,7 @@ public class MotionScene {
         }
 
         private void fillFromAttributeList(MotionScene motionScene, Context context, AttributeSet attributeSet) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Transition);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.Transition);
             fill(motionScene, context, obtainStyledAttributes);
             obtainStyledAttributes.recycle();
         }
@@ -1259,7 +1259,7 @@ public class MotionScene {
         }
 
         public String debugString(Context context) {
-            String resourceEntryName = this.mConstraintSetStart == -1 ? a.f3101h : context.getResources().getResourceEntryName(this.mConstraintSetStart);
+            String resourceEntryName = this.mConstraintSetStart == -1 ? AbstractC1191a.f2571h : context.getResources().getResourceEntryName(this.mConstraintSetStart);
             if (this.mConstraintSetEnd == -1) {
                 return resourceEntryName + " -> null";
             }

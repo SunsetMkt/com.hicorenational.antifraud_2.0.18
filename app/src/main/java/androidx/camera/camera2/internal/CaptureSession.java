@@ -40,6 +40,7 @@ import java.util.Objects;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 final class CaptureSession {
@@ -58,13 +59,13 @@ final class CaptureSession {
     CallbackToFutureAdapter.Completer<Void> mOpenCaptureSessionCompleter;
 
     @GuardedBy("mStateLock")
-    c.b.b.a.a.a<Void> mOpenFuture;
+    InterfaceFutureC0952a<Void> mOpenFuture;
 
     @GuardedBy("mStateLock")
     CallbackToFutureAdapter.Completer<Void> mReleaseCompleter;
 
     @GuardedBy("mStateLock")
-    c.b.b.a.a.a<Void> mReleaseFuture;
+    InterfaceFutureC0952a<Void> mReleaseFuture;
     private final ScheduledExecutorService mScheduleExecutor;
 
     @Nullable
@@ -85,8 +86,8 @@ final class CaptureSession {
     @GuardedBy("mStateLock")
     List<DeferrableSurface> mConfiguredDeferrableSurfaces = Collections.emptyList();
 
-    /* renamed from: androidx.camera.camera2.internal.CaptureSession$3, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass3 {
+    /* renamed from: androidx.camera.camera2.internal.CaptureSession$3 */
+    static /* synthetic */ class C02353 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$camera2$internal$CaptureSession$State = new int[State.values().length];
 
         static {
@@ -199,7 +200,7 @@ final class CaptureSession {
                 Preconditions.checkNotNull(CaptureSession.this.mOpenCaptureSessionCompleter, "OpenCaptureSession completer should not null");
                 CaptureSession.this.mOpenCaptureSessionCompleter.setException(new CancellationException("onConfigureFailed"));
                 CaptureSession.this.mOpenCaptureSessionCompleter = null;
-                switch (AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[CaptureSession.this.mState.ordinal()]) {
+                switch (C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[CaptureSession.this.mState.ordinal()]) {
                     case 1:
                     case 2:
                     case 3:
@@ -226,7 +227,7 @@ final class CaptureSession {
                 Preconditions.checkNotNull(CaptureSession.this.mOpenCaptureSessionCompleter, "OpenCaptureSession completer should not null");
                 CaptureSession.this.mOpenCaptureSessionCompleter.set(null);
                 CaptureSession.this.mOpenCaptureSessionCompleter = null;
-                switch (AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[CaptureSession.this.mState.ordinal()]) {
+                switch (C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[CaptureSession.this.mState.ordinal()]) {
                     case 1:
                     case 2:
                     case 3:
@@ -259,7 +260,7 @@ final class CaptureSession {
         @Override // android.hardware.camera2.CameraCaptureSession.StateCallback
         public void onReady(@NonNull CameraCaptureSession cameraCaptureSession) {
             synchronized (CaptureSession.this.mStateLock) {
-                if (AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[CaptureSession.this.mState.ordinal()] == 1) {
+                if (C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[CaptureSession.this.mState.ordinal()] == 1) {
                     throw new IllegalStateException("onReady() should not be possible in state: " + CaptureSession.this.mState);
                 }
                 String str = "CameraCaptureSession.onReady() " + CaptureSession.this.mState;
@@ -314,15 +315,15 @@ final class CaptureSession {
     /* JADX INFO: Access modifiers changed from: private */
     @NonNull
     /* renamed from: openCaptureSession, reason: merged with bridge method [inline-methods] */
-    public c.b.b.a.a.a<Void> a(final List<Surface> list, final SessionConfig sessionConfig, final CameraDevice cameraDevice) {
+    public InterfaceFutureC0952a<Void> m307a(final List<Surface> list, final SessionConfig sessionConfig, final CameraDevice cameraDevice) {
         synchronized (this.mStateLock) {
-            int i2 = AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()];
+            int i2 = C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()];
             if (i2 != 1 && i2 != 2) {
                 if (i2 == 3) {
                     return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.n
                         @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                         public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                            return CaptureSession.this.a(list, sessionConfig, cameraDevice, completer);
+                            return CaptureSession.this.m308a(list, sessionConfig, cameraDevice, completer);
                         }
                     });
                 }
@@ -356,7 +357,7 @@ final class CaptureSession {
 
     void close() {
         synchronized (this.mStateLock) {
-            int i2 = AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()];
+            int i2 = C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()];
             if (i2 == 1) {
                 throw new IllegalStateException("close() should not be possible in state: " + this.mState);
             }
@@ -482,7 +483,7 @@ final class CaptureSession {
 
     void issueCaptureRequests(List<CaptureConfig> list) {
         synchronized (this.mStateLock) {
-            switch (AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()]) {
+            switch (C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()]) {
                 case 1:
                     throw new IllegalStateException("issueCaptureRequests() should not be possible in state: " + this.mState);
                 case 2:
@@ -536,21 +537,21 @@ final class CaptureSession {
     }
 
     @NonNull
-    c.b.b.a.a.a<Void> open(final SessionConfig sessionConfig, final CameraDevice cameraDevice) {
+    InterfaceFutureC0952a<Void> open(final SessionConfig sessionConfig, final CameraDevice cameraDevice) {
         synchronized (this.mStateLock) {
-            if (AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()] == 2) {
+            if (C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()] == 2) {
                 this.mState = State.GET_SURFACE;
                 this.mConfiguredDeferrableSurfaces = new ArrayList(sessionConfig.getSurfaces());
                 this.mOpenFuture = FutureChain.from(DeferrableSurfaces.surfaceListWithTimeout(this.mConfiguredDeferrableSurfaces, false, 5000L, this.mExecutor, this.mScheduleExecutor)).transformAsync(new AsyncFunction() { // from class: androidx.camera.camera2.internal.m
                     @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
-                    public final c.b.b.a.a.a apply(Object obj) {
-                        return CaptureSession.this.a(sessionConfig, cameraDevice, (List) obj);
+                    public final InterfaceFutureC0952a apply(Object obj) {
+                        return CaptureSession.this.m307a(sessionConfig, cameraDevice, (List) obj);
                     }
                 }, this.mExecutor);
                 this.mOpenFuture.addListener(new Runnable() { // from class: androidx.camera.camera2.internal.o
                     @Override // java.lang.Runnable
                     public final void run() {
-                        CaptureSession.this.a();
+                        CaptureSession.this.m309a();
                     }
                 }, this.mExecutor);
                 return Futures.nonCancellationPropagating(this.mOpenFuture);
@@ -566,12 +567,12 @@ final class CaptureSession {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    c.b.b.a.a.a<java.lang.Void> release(boolean r4) {
+    p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a<java.lang.Void> release(boolean r4) {
         /*
             r3 = this;
             java.lang.Object r0 = r3.mStateLock
             monitor-enter(r0)
-            int[] r1 = androidx.camera.camera2.internal.CaptureSession.AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State     // Catch: java.lang.Throwable -> L67
+            int[] r1 = androidx.camera.camera2.internal.CaptureSession.C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State     // Catch: java.lang.Throwable -> L67
             androidx.camera.camera2.internal.CaptureSession$State r2 = r3.mState     // Catch: java.lang.Throwable -> L67
             int r2 = r2.ordinal()     // Catch: java.lang.Throwable -> L67
             r1 = r1[r2]     // Catch: java.lang.Throwable -> L67
@@ -646,7 +647,7 @@ final class CaptureSession {
 
     void setSessionConfig(SessionConfig sessionConfig) {
         synchronized (this.mStateLock) {
-            switch (AnonymousClass3.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()]) {
+            switch (C02353.$SwitchMap$androidx$camera$camera2$internal$CaptureSession$State[this.mState.ordinal()]) {
                 case 1:
                     throw new IllegalStateException("setSessionConfig() should not be possible in state: " + this.mState);
                 case 2:
@@ -685,14 +686,16 @@ final class CaptureSession {
         return arrayList;
     }
 
-    public /* synthetic */ void a() {
+    /* renamed from: a */
+    public /* synthetic */ void m309a() {
         synchronized (this.mStateLock) {
             this.mOpenFuture = null;
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public /* synthetic */ Object a(List list, SessionConfig sessionConfig, CameraDevice cameraDevice, CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m308a(List list, SessionConfig sessionConfig, CameraDevice cameraDevice, CallbackToFutureAdapter.Completer completer) throws Exception {
         Preconditions.checkState(Thread.holdsLock(this.mStateLock));
         if (list.contains(null)) {
             DeferrableSurface deferrableSurface = this.mConfiguredDeferrableSurfaces.get(list.indexOf(null));

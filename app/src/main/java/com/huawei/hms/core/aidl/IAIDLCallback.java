@@ -13,21 +13,22 @@ public interface IAIDLCallback extends IInterface {
     public static abstract class Stub extends Binder implements IAIDLCallback {
         static final int TRANSACTION_call = 1;
 
-        private static class a implements IAIDLCallback {
+        /* renamed from: com.huawei.hms.core.aidl.IAIDLCallback$Stub$a */
+        private static class C2341a implements IAIDLCallback {
 
-            /* renamed from: b, reason: collision with root package name */
-            public static IAIDLCallback f6793b;
+            /* renamed from: b */
+            public static IAIDLCallback f7313b;
 
-            /* renamed from: a, reason: collision with root package name */
-            private IBinder f6794a;
+            /* renamed from: a */
+            private IBinder f7314a;
 
-            a(IBinder iBinder) {
-                this.f6794a = iBinder;
+            C2341a(IBinder iBinder) {
+                this.f7314a = iBinder;
             }
 
             @Override // android.os.IInterface
             public IBinder asBinder() {
-                return this.f6794a;
+                return this.f7314a;
             }
 
             @Override // com.huawei.hms.core.aidl.IAIDLCallback
@@ -41,7 +42,7 @@ public interface IAIDLCallback extends IInterface {
                     } else {
                         obtain.writeInt(0);
                     }
-                    if (this.f6794a.transact(1, obtain, null, 1) || Stub.getDefaultImpl() == null) {
+                    if (this.f7314a.transact(1, obtain, null, 1) || Stub.getDefaultImpl() == null) {
                         return;
                     }
                     Stub.getDefaultImpl().call(dataBuffer);
@@ -60,21 +61,21 @@ public interface IAIDLCallback extends IInterface {
                 return null;
             }
             IInterface queryLocalInterface = iBinder.queryLocalInterface(IAIDLCallback.DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IAIDLCallback)) ? new a(iBinder) : (IAIDLCallback) queryLocalInterface;
+            return (queryLocalInterface == null || !(queryLocalInterface instanceof IAIDLCallback)) ? new C2341a(iBinder) : (IAIDLCallback) queryLocalInterface;
         }
 
         public static IAIDLCallback getDefaultImpl() {
-            return a.f6793b;
+            return C2341a.f7313b;
         }
 
         public static boolean setDefaultImpl(IAIDLCallback iAIDLCallback) {
-            if (a.f6793b != null) {
+            if (C2341a.f7313b != null) {
                 throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (iAIDLCallback == null) {
                 return false;
             }
-            a.f6793b = iAIDLCallback;
+            C2341a.f7313b = iAIDLCallback;
             return true;
         }
 

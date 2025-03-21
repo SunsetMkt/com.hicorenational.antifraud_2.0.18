@@ -2,9 +2,10 @@ package anet.channel.strategy;
 
 import anet.channel.appmonitor.AppMonitor;
 import anet.channel.statist.PolicyVersionStat;
+import anet.channel.strategy.C0842l;
 import anet.channel.strategy.dispatch.DispatchConstants;
-import anet.channel.strategy.l;
 import anet.channel.util.ALog;
+import com.heytap.mcssdk.constant.C2084a;
 import com.taobao.accs.common.Constants;
 import java.io.Serializable;
 import java.util.Collections;
@@ -14,92 +15,92 @@ import java.util.List;
 /* loaded from: classes.dex */
 class StrategyCollection implements Serializable {
 
-    /* renamed from: a, reason: collision with root package name */
-    String f1920a;
+    /* renamed from: a */
+    String f1040a;
 
-    /* renamed from: b, reason: collision with root package name */
-    volatile long f1921b;
+    /* renamed from: b */
+    volatile long f1041b;
 
-    /* renamed from: c, reason: collision with root package name */
-    volatile String f1922c;
+    /* renamed from: c */
+    volatile String f1042c;
 
-    /* renamed from: d, reason: collision with root package name */
-    boolean f1923d;
+    /* renamed from: d */
+    boolean f1043d;
 
-    /* renamed from: e, reason: collision with root package name */
-    int f1924e;
+    /* renamed from: e */
+    int f1044e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private StrategyList f1925f;
+    /* renamed from: f */
+    private StrategyList f1045f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private transient long f1926g;
+    /* renamed from: g */
+    private transient long f1046g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private transient boolean f1927h;
+    /* renamed from: h */
+    private transient boolean f1047h;
 
     public StrategyCollection() {
-        this.f1925f = null;
-        this.f1921b = 0L;
-        this.f1922c = null;
-        this.f1923d = false;
-        this.f1924e = 0;
-        this.f1926g = 0L;
-        this.f1927h = true;
+        this.f1045f = null;
+        this.f1041b = 0L;
+        this.f1042c = null;
+        this.f1043d = false;
+        this.f1044e = 0;
+        this.f1046g = 0L;
+        this.f1047h = true;
     }
 
     public synchronized void checkInit() {
-        if (System.currentTimeMillis() - this.f1921b > 172800000) {
-            this.f1925f = null;
+        if (System.currentTimeMillis() - this.f1041b > 172800000) {
+            this.f1045f = null;
         } else {
-            if (this.f1925f != null) {
-                this.f1925f.checkInit();
+            if (this.f1045f != null) {
+                this.f1045f.checkInit();
             }
         }
     }
 
     public boolean isExpired() {
-        return System.currentTimeMillis() > this.f1921b;
+        return System.currentTimeMillis() > this.f1041b;
     }
 
     public synchronized void notifyConnEvent(IConnStrategy iConnStrategy, ConnEvent connEvent) {
-        if (this.f1925f != null) {
-            this.f1925f.notifyConnEvent(iConnStrategy, connEvent);
-            if (!connEvent.isSuccess && this.f1925f.shouldRefresh()) {
+        if (this.f1045f != null) {
+            this.f1045f.notifyConnEvent(iConnStrategy, connEvent);
+            if (!connEvent.isSuccess && this.f1045f.shouldRefresh()) {
                 long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - this.f1926g > com.heytap.mcssdk.constant.a.f5800d) {
-                    StrategyCenter.getInstance().forceRefreshStrategy(this.f1920a);
-                    this.f1926g = currentTimeMillis;
+                if (currentTimeMillis - this.f1046g > C2084a.f6122d) {
+                    StrategyCenter.getInstance().forceRefreshStrategy(this.f1040a);
+                    this.f1046g = currentTimeMillis;
                 }
             }
         }
     }
 
     public synchronized List<IConnStrategy> queryStrategyList() {
-        if (this.f1925f == null) {
+        if (this.f1045f == null) {
             return Collections.EMPTY_LIST;
         }
-        if (this.f1927h) {
-            this.f1927h = false;
-            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.f1920a, this.f1924e);
+        if (this.f1047h) {
+            this.f1047h = false;
+            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.f1040a, this.f1044e);
             policyVersionStat.reportType = 0;
             AppMonitor.getInstance().commitStat(policyVersionStat);
         }
-        return this.f1925f.getStrategyList();
+        return this.f1045f.getStrategyList();
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder(32);
         sb.append("\nStrategyList = ");
-        sb.append(this.f1921b);
-        StrategyList strategyList = this.f1925f;
+        sb.append(this.f1041b);
+        StrategyList strategyList = this.f1045f;
         if (strategyList != null) {
             sb.append(strategyList.toString());
-        } else if (this.f1922c != null) {
+        } else if (this.f1042c != null) {
             sb.append('[');
-            sb.append(this.f1920a);
+            sb.append(this.f1040a);
             sb.append("=>");
-            sb.append(this.f1922c);
+            sb.append(this.f1042c);
             sb.append(']');
         } else {
             sb.append("[]");
@@ -107,38 +108,38 @@ class StrategyCollection implements Serializable {
         return sb.toString();
     }
 
-    public synchronized void update(l.b bVar) {
-        this.f1921b = System.currentTimeMillis() + (bVar.f1998b * 1000);
-        if (!bVar.f1997a.equalsIgnoreCase(this.f1920a)) {
-            ALog.e("StrategyCollection", "update error!", null, Constants.KEY_HOST, this.f1920a, "dnsInfo.host", bVar.f1997a);
+    public synchronized void update(C0842l.b bVar) {
+        this.f1041b = System.currentTimeMillis() + (bVar.f1118b * 1000);
+        if (!bVar.f1117a.equalsIgnoreCase(this.f1040a)) {
+            ALog.m715e("StrategyCollection", "update error!", null, Constants.KEY_HOST, this.f1040a, "dnsInfo.host", bVar.f1117a);
             return;
         }
-        if (this.f1924e != bVar.f2008l) {
-            this.f1924e = bVar.f2008l;
-            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.f1920a, this.f1924e);
+        if (this.f1044e != bVar.f1128l) {
+            this.f1044e = bVar.f1128l;
+            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.f1040a, this.f1044e);
             policyVersionStat.reportType = 1;
             AppMonitor.getInstance().commitStat(policyVersionStat);
         }
-        this.f1922c = bVar.f2000d;
-        if ((bVar.f2002f != null && bVar.f2002f.length != 0 && bVar.f2004h != null && bVar.f2004h.length != 0) || (bVar.f2005i != null && bVar.f2005i.length != 0)) {
-            if (this.f1925f == null) {
-                this.f1925f = new StrategyList();
+        this.f1042c = bVar.f1120d;
+        if ((bVar.f1122f != null && bVar.f1122f.length != 0 && bVar.f1124h != null && bVar.f1124h.length != 0) || (bVar.f1125i != null && bVar.f1125i.length != 0)) {
+            if (this.f1045f == null) {
+                this.f1045f = new StrategyList();
             }
-            this.f1925f.update(bVar);
+            this.f1045f.update(bVar);
             return;
         }
-        this.f1925f = null;
+        this.f1045f = null;
     }
 
     protected StrategyCollection(String str) {
-        this.f1925f = null;
-        this.f1921b = 0L;
-        this.f1922c = null;
-        this.f1923d = false;
-        this.f1924e = 0;
-        this.f1926g = 0L;
-        this.f1927h = true;
-        this.f1920a = str;
-        this.f1923d = DispatchConstants.isAmdcServerDomain(str);
+        this.f1045f = null;
+        this.f1041b = 0L;
+        this.f1042c = null;
+        this.f1043d = false;
+        this.f1044e = 0;
+        this.f1046g = 0L;
+        this.f1047h = true;
+        this.f1040a = str;
+        this.f1043d = DispatchConstants.isAmdcServerDomain(str);
     }
 }

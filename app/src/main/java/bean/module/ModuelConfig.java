@@ -3,19 +3,20 @@ package bean.module;
 import android.app.Activity;
 import android.text.TextUtils;
 import bean.RegionConfigBean;
-import com.google.gson.e;
-import d.a;
-import e.b;
+import com.google.gson.C2051e;
+import com.google.gson.p152d0.C2049a;
 import interfaces.IResultMuCallback;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import network.APIException;
 import network.MiddleSubscriber;
 import network.account.APIresult;
-import ui.basemvp.BaseView;
-import ui.model.ModelPresent;
-import util.p1;
-import util.w1;
+import p245d.C4440a;
+import p247e.C4445b;
+import p388ui.basemvp.BaseView;
+import p388ui.model.ModelPresent;
+import util.C7307p1;
+import util.C7331w1;
 
 /* loaded from: classes.dex */
 public class ModuelConfig extends ModelPresent {
@@ -45,7 +46,7 @@ public class ModuelConfig extends ModelPresent {
     }
 
     public void getRegionJsonApi(final boolean z, String str, final IResultMuCallback iResultMuCallback) {
-        String str2 = a.f13518d + b.f13567e;
+        String str2 = C4440a.f16882d + C4445b.f17079e;
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("regionCode", str);
         getRegionJson(str2, hashMap, new MiddleSubscriber<APIresult<RegionConfigBean>>() { // from class: bean.module.ModuelConfig.1
@@ -57,7 +58,7 @@ public class ModuelConfig extends ModelPresent {
             @Override // network.MiddleSubscriber
             protected void onErrorMiddle(APIException aPIException) {
                 super.onErrorMiddle(aPIException);
-                w1.a(aPIException.getMessage());
+                C7331w1.m26688a(aPIException.getMessage());
                 iResultMuCallback.onIRFail();
             }
 
@@ -76,7 +77,7 @@ public class ModuelConfig extends ModelPresent {
                     ModuelConfig.this.getRegionJsonData(data, iResultMuCallback);
                     return;
                 }
-                RegionMudelBean regionMudelBean = (RegionMudelBean) p1.a(data.getJsonRegionCode(), RegionMudelBean.class);
+                RegionMudelBean regionMudelBean = (RegionMudelBean) C7307p1.m26476a(data.getJsonRegionCode(), RegionMudelBean.class);
                 if (regionMudelBean == null) {
                     ModuelConfig.this.getRegionJsonData(data, iResultMuCallback);
                 } else if (TextUtils.equals(data.getJsonVersion(), regionMudelBean.getJsonVersion())) {
@@ -89,7 +90,7 @@ public class ModuelConfig extends ModelPresent {
     }
 
     public void getRegionJsonData(final RegionConfigBean regionConfigBean, final IResultMuCallback iResultMuCallback) {
-        String str = a.f13518d + b.f13568f;
+        String str = C4440a.f16882d + C4445b.f17083f;
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("jsonRegionCode", regionConfigBean.getJsonRegionCode());
         hashMap.put("jsonVersion", regionConfigBean.getJsonVersion());
@@ -102,7 +103,7 @@ public class ModuelConfig extends ModelPresent {
             @Override // network.MiddleSubscriber
             protected void onErrorMiddle(APIException aPIException) {
                 super.onErrorMiddle(aPIException);
-                w1.a(aPIException.getMessage());
+                C7331w1.m26688a(aPIException.getMessage());
                 iResultMuCallback.onIRFail();
             }
 
@@ -116,7 +117,7 @@ public class ModuelConfig extends ModelPresent {
                 }
                 String data = aPIresult.getData();
                 try {
-                    if (!TextUtils.isEmpty(data) && (regionMudelBean = (RegionMudelBean) new e().a(data, new com.google.gson.d0.a<RegionMudelBean>() { // from class: bean.module.ModuelConfig.2.1
+                    if (!TextUtils.isEmpty(data) && (regionMudelBean = (RegionMudelBean) new C2051e().m5570a(data, new C2049a<RegionMudelBean>() { // from class: bean.module.ModuelConfig.2.1
                     }.getType())) != null) {
                         regionMudelBean.setJsonRegionCode(regionConfigBean.getJsonRegionCode());
                         regionMudelBean.setJsonVersion(regionConfigBean.getJsonVersion());

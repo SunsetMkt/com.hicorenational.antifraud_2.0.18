@@ -2,7 +2,6 @@ package okhttp3;
 
 import anet.channel.util.HttpConstant;
 import com.xiaomi.mipush.sdk.Constants;
-import h.q2.t.m0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -14,6 +13,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import okhttp3.internal.Util;
 import okhttp3.internal.http.HttpDate;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes2.dex */
 public final class Cookie {
@@ -262,7 +262,7 @@ public final class Cookie {
             if (str.startsWith(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) {
                 return Long.MIN_VALUE;
             }
-            return m0.f16408b;
+            return C5556m0.f20396b;
         }
     }
 

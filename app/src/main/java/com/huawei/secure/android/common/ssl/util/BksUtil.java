@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
-import h.f1;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -18,53 +17,64 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class BksUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7641a = "BksUtil";
+    /* renamed from: a */
+    private static final String f8218a = "BksUtil";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7642b = "com.huawei.hwid";
+    /* renamed from: b */
+    private static final String f8219b = "com.huawei.hwid";
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7643c = "com.huawei.hwid";
+    /* renamed from: c */
+    private static final String f8220c = "com.huawei.hwid";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final String f7644d = "com.huawei.hms";
+    /* renamed from: d */
+    private static final String f8221d = "com.huawei.hms";
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final String f7645e = "com.huawei.hwid.tv";
+    /* renamed from: e */
+    private static final String f8222e = "com.huawei.hwid.tv";
 
-    /* renamed from: g, reason: collision with root package name */
-    private static final String f7647g = "files/hmsrootcas.bks";
+    /* renamed from: g */
+    private static final String f8224g = "files/hmsrootcas.bks";
 
-    /* renamed from: h, reason: collision with root package name */
-    private static final String f7648h = "4.0.2.300";
+    /* renamed from: h */
+    private static final String f8225h = "4.0.2.300";
 
-    /* renamed from: i, reason: collision with root package name */
-    private static final String f7649i = "aegis";
+    /* renamed from: i */
+    private static final String f8226i = "aegis";
 
-    /* renamed from: j, reason: collision with root package name */
-    private static final String f7650j = "hmsrootcas.bks";
+    /* renamed from: j */
+    private static final String f8227j = "hmsrootcas.bks";
 
-    /* renamed from: k, reason: collision with root package name */
-    private static final long f7651k = 604800000;
+    /* renamed from: k */
+    private static final long f8228k = 604800000;
 
-    /* renamed from: l, reason: collision with root package name */
-    private static final String f7652l = "last_update_time";
+    /* renamed from: l */
+    private static final String f8229l = "last_update_time";
 
-    /* renamed from: m, reason: collision with root package name */
-    private static final String f7653m = "B92825C2BD5D6D6D1E7F39EECD17843B7D9016F611136B75441BC6F4D3F00F05";
-    private static final String n = "3517262215D8D3008CBF888750B6418EDC4D562AC33ED6874E0D73ABA667BC3C";
-    private static final String o = "E49D5C2C0E11B3B1B96CA56C6DE2A14EC7DAB5CCC3B5F300D03E5B4DBA44F539";
-    private static final String q = "";
-    private static final String r = "bks_hash";
+    /* renamed from: m */
+    private static final String f8230m = "B92825C2BD5D6D6D1E7F39EECD17843B7D9016F611136B75441BC6F4D3F00F05";
 
-    /* renamed from: f, reason: collision with root package name */
-    private static final Uri f7646f = Uri.parse("content://com.huawei.hwid");
-    private static final String[] p = {"B92825C2BD5D6D6D1E7F39EECD17843B7D9016F611136B75441BC6F4D3F00F05", "E49D5C2C0E11B3B1B96CA56C6DE2A14EC7DAB5CCC3B5F300D03E5B4DBA44F539"};
+    /* renamed from: n */
+    private static final String f8231n = "3517262215D8D3008CBF888750B6418EDC4D562AC33ED6874E0D73ABA667BC3C";
+
+    /* renamed from: o */
+    private static final String f8232o = "E49D5C2C0E11B3B1B96CA56C6DE2A14EC7DAB5CCC3B5F300D03E5B4DBA44F539";
+
+    /* renamed from: q */
+    private static final String f8234q = "";
+
+    /* renamed from: r */
+    private static final String f8235r = "bks_hash";
+
+    /* renamed from: f */
+    private static final Uri f8223f = Uri.parse("content://com.huawei.hwid");
+
+    /* renamed from: p */
+    private static final String[] f8233p = {"B92825C2BD5D6D6D1E7F39EECD17843B7D9016F611136B75441BC6F4D3F00F05", "E49D5C2C0E11B3B1B96CA56C6DE2A14EC7DAB5CCC3B5F300D03E5B4DBA44F539"};
 
     private BksUtil() {
     }
@@ -76,16 +86,17 @@ public class BksUtil {
     /* JADX WARN: Type inference failed for: r6v10 */
     /* JADX WARN: Type inference failed for: r6v5, types: [java.io.OutputStream] */
     /* JADX WARN: Type inference failed for: r6v8 */
-    private static void a(InputStream inputStream, Context context) {
+    /* renamed from: a */
+    private static void m7945a(InputStream inputStream, Context context) {
         ?? r2;
         if (inputStream == null || context == null) {
             return;
         }
-        String a2 = a(context);
-        if (!new File(a2).exists()) {
-            a(a2);
+        String m7943a = m7943a(context);
+        if (!new File(m7943a).exists()) {
+            m7942a(m7943a);
         }
-        File file = new File(a2, "hmsrootcas.bks");
+        File file = new File(m7943a, "hmsrootcas.bks");
         if (file.exists()) {
             file.delete();
         }
@@ -93,7 +104,7 @@ public class BksUtil {
         ?? r6 = 0;
         try {
             try {
-                e.c(f7641a, "write output stream ");
+                C2563e.m7987c(f8218a, "write output stream ");
                 r2 = new FileOutputStream(file);
                 try {
                     byte[] bArr2 = new byte[2048];
@@ -105,16 +116,16 @@ public class BksUtil {
                             r2.write(bArr2, 0, read);
                         }
                     }
-                    d.a((OutputStream) r2);
+                    AbstractC2562d.m7978a((OutputStream) r2);
                     bArr = bArr2;
                 } catch (IOException unused) {
                     r6 = r2;
-                    e.b(f7641a, " IOException");
-                    d.a((OutputStream) r6);
+                    C2563e.m7986b(f8218a, " IOException");
+                    AbstractC2562d.m7978a((OutputStream) r6);
                     bArr = r6;
                 } catch (Throwable th) {
                     th = th;
-                    d.a((OutputStream) r2);
+                    AbstractC2562d.m7978a((OutputStream) r2);
                     throw th;
                 }
             } catch (IOException unused2) {
@@ -125,16 +136,19 @@ public class BksUtil {
         }
     }
 
-    private static boolean a(int i2) {
+    /* renamed from: a */
+    private static boolean m7946a(int i2) {
         return i2 >= 40002300;
     }
 
-    private static String b(Context context) {
-        return a(context) + File.separator + "hmsrootcas.bks";
+    /* renamed from: b */
+    private static String m7948b(Context context) {
+        return m7943a(context) + File.separator + "hmsrootcas.bks";
     }
 
-    private static boolean c(Context context) {
-        return new File(a(context) + File.separator + "hmsrootcas.bks").exists();
+    /* renamed from: c */
+    private static boolean m7953c(Context context) {
+        return new File(m7943a(context) + File.separator + "hmsrootcas.bks").exists();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -146,37 +160,37 @@ public class BksUtil {
         ByteArrayInputStream byteArrayInputStream;
         InputStream inputStream;
         ?? r2;
-        String a2;
-        String b2;
+        String m7994a;
+        String m7949b;
         synchronized (BksUtil.class) {
-            e.c(f7641a, "get bks from tss begin");
+            C2563e.m7987c(f8218a, "get bks from tss begin");
             if (context != null) {
                 ContextUtil.setContext(context);
             }
             Context contextUtil = ContextUtil.getInstance();
             ByteArrayInputStream byteArrayInputStream2 = null;
             if (contextUtil == null) {
-                e.b(f7641a, "context is null");
+                C2563e.m7986b(f8218a, "context is null");
                 return null;
             }
-            if (!b(f.a("com.huawei.hwid")) && !b(f.a("com.huawei.hms"))) {
-                e.b(f7641a, "hms version code is too low : " + f.a("com.huawei.hwid"));
+            if (!m7951b(C2564f.m7990a("com.huawei.hwid")) && !m7951b(C2564f.m7990a("com.huawei.hms"))) {
+                C2563e.m7986b(f8218a, "hms version code is too low : " + C2564f.m7990a("com.huawei.hwid"));
                 return null;
             }
-            boolean c2 = c(contextUtil, "com.huawei.hwid");
-            boolean z = c2;
-            if (!c2) {
-                boolean b3 = b(contextUtil, "com.huawei.hms");
-                z = b3;
-                if (!b3) {
-                    e.b(f7641a, "hms sign error");
+            boolean m7954c = m7954c(contextUtil, "com.huawei.hwid");
+            boolean z = m7954c;
+            if (!m7954c) {
+                boolean m7950b = m7950b(contextUtil, "com.huawei.hms");
+                z = m7950b;
+                if (!m7950b) {
+                    C2563e.m7986b(f8218a, "hms sign error");
                     return null;
                 }
             }
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
-                    inputStream = contextUtil.getContentResolver().openInputStream(Uri.withAppendedPath(f7646f, f7647g));
+                    inputStream = contextUtil.getContentResolver().openInputStream(Uri.withAppendedPath(f8223f, f8224g));
                     try {
                         byte[] bArr = new byte[1024];
                         while (true) {
@@ -189,22 +203,22 @@ public class BksUtil {
                         byteArrayOutputStream.flush();
                         byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
                         try {
-                            a2 = g.a(r, "", contextUtil);
-                            b2 = b(byteArrayOutputStream.toByteArray());
+                            m7994a = C2565g.m7994a(f8235r, "", contextUtil);
+                            m7949b = m7949b(byteArrayOutputStream.toByteArray());
                         } catch (Exception e2) {
                             e = e2;
                             byteArrayInputStream2 = byteArrayInputStream;
-                            e.b(f7641a, "Get bks from HMS_VERSION_CODE exception : No content provider" + e.getMessage());
-                            d.a(inputStream);
-                            d.a((OutputStream) byteArrayOutputStream);
-                            d.a((InputStream) byteArrayInputStream2);
+                            C2563e.m7986b(f8218a, "Get bks from HMS_VERSION_CODE exception : No content provider" + e.getMessage());
+                            AbstractC2562d.m7977a(inputStream);
+                            AbstractC2562d.m7978a((OutputStream) byteArrayOutputStream);
+                            AbstractC2562d.m7977a((InputStream) byteArrayInputStream2);
                             return getFilesBksIS(contextUtil);
                         } catch (Throwable th) {
                             th = th;
                             r2 = byteArrayOutputStream;
-                            d.a(inputStream);
-                            d.a((OutputStream) r2);
-                            d.a((InputStream) byteArrayInputStream);
+                            AbstractC2562d.m7977a(inputStream);
+                            AbstractC2562d.m7978a((OutputStream) r2);
+                            AbstractC2562d.m7977a((InputStream) byteArrayInputStream);
                             throw th;
                         }
                     } catch (Exception e3) {
@@ -219,19 +233,19 @@ public class BksUtil {
                     byteArrayInputStream = null;
                     r2 = byteArrayOutputStream;
                 }
-                if (c(contextUtil) && a2.equals(b2)) {
-                    e.c(f7641a, "bks not update");
-                    d.a(inputStream);
-                    d.a((OutputStream) byteArrayOutputStream);
-                    d.a((InputStream) byteArrayInputStream);
+                if (m7953c(contextUtil) && m7994a.equals(m7949b)) {
+                    C2563e.m7987c(f8218a, "bks not update");
+                    AbstractC2562d.m7977a(inputStream);
+                    AbstractC2562d.m7978a((OutputStream) byteArrayOutputStream);
+                    AbstractC2562d.m7977a((InputStream) byteArrayInputStream);
                     return getFilesBksIS(contextUtil);
                 }
-                e.c(f7641a, "update bks and sp");
-                a(byteArrayInputStream, contextUtil);
-                g.b(r, b2, contextUtil);
-                d.a(inputStream);
-                d.a((OutputStream) byteArrayOutputStream);
-                d.a((InputStream) byteArrayInputStream);
+                C2563e.m7987c(f8218a, "update bks and sp");
+                m7945a(byteArrayInputStream, contextUtil);
+                C2565g.m8000b(f8235r, m7949b, contextUtil);
+                AbstractC2562d.m7977a(inputStream);
+                AbstractC2562d.m7978a((OutputStream) byteArrayOutputStream);
+                AbstractC2562d.m7977a((InputStream) byteArrayInputStream);
                 return getFilesBksIS(contextUtil);
             } catch (Throwable th3) {
                 th = th3;
@@ -242,26 +256,27 @@ public class BksUtil {
     }
 
     public static InputStream getFilesBksIS(Context context) {
-        if (!c(context)) {
+        if (!m7953c(context)) {
             return null;
         }
-        e.c(f7641a, "getFilesBksIS ");
+        C2563e.m7987c(f8218a, "getFilesBksIS ");
         try {
-            return new FileInputStream(b(context));
+            return new FileInputStream(m7948b(context));
         } catch (FileNotFoundException unused) {
-            e.b(f7641a, "FileNotFoundExceptio: ");
+            C2563e.m7986b(f8218a, "FileNotFoundExceptio: ");
             return null;
         }
     }
 
-    private static boolean b(String str) {
+    /* renamed from: b */
+    private static boolean m7951b(String str) {
         int parseInt;
         if (TextUtils.isEmpty(str)) {
             return false;
         }
-        e.c(f7641a, "hms version code is : " + str);
+        C2563e.m7987c(f8218a, "hms version code is : " + str);
         String[] split = str.split("\\.");
-        String[] split2 = f7648h.split("\\.");
+        String[] split2 = f8225h.split("\\.");
         int length = split.length;
         int length2 = split2.length;
         int max = Math.max(length, length2);
@@ -271,7 +286,7 @@ public class BksUtil {
                 try {
                     parseInt = Integer.parseInt(split[i2]);
                 } catch (Exception e2) {
-                    e.b(f7641a, " exception : " + e2.getMessage());
+                    C2563e.m7986b(f8218a, " exception : " + e2.getMessage());
                     return i2 >= length2;
                 }
             } else {
@@ -289,71 +304,78 @@ public class BksUtil {
         return true;
     }
 
-    private static boolean c(Context context, String str) {
-        byte[] a2 = a(context, str);
-        for (String str2 : p) {
-            if (str2.equalsIgnoreCase(c(a2))) {
+    /* renamed from: c */
+    private static boolean m7954c(Context context, String str) {
+        byte[] m7947a = m7947a(context, str);
+        for (String str2 : f8233p) {
+            if (str2.equalsIgnoreCase(m7952c(m7947a))) {
                 return true;
             }
         }
         return false;
     }
 
-    private static String c(byte[] bArr) {
+    /* renamed from: c */
+    private static String m7952c(byte[] bArr) {
         if (bArr == null || bArr.length == 0) {
             return "";
         }
         try {
-            return a(MessageDigest.getInstance("SHA-256").digest(bArr));
+            return m7944a(MessageDigest.getInstance("SHA-256").digest(bArr));
         } catch (NoSuchAlgorithmException e2) {
             String str = "NoSuchAlgorithmException" + e2.getMessage();
             return "";
         }
     }
 
-    private static boolean b(Context context, String str) {
-        return "E49D5C2C0E11B3B1B96CA56C6DE2A14EC7DAB5CCC3B5F300D03E5B4DBA44F539".equalsIgnoreCase(c(a(context, str)));
+    /* renamed from: b */
+    private static boolean m7950b(Context context, String str) {
+        return "E49D5C2C0E11B3B1B96CA56C6DE2A14EC7DAB5CCC3B5F300D03E5B4DBA44F539".equalsIgnoreCase(m7952c(m7947a(context, str)));
     }
 
-    private static String b(byte[] bArr) {
+    /* renamed from: b */
+    private static String m7949b(byte[] bArr) {
         if (bArr == null) {
             return "";
         }
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(bArr);
-            return a(messageDigest.digest());
+            return m7944a(messageDigest.digest());
         } catch (NoSuchAlgorithmException unused) {
-            e.b(f7641a, "inputstraem exception");
+            C2563e.m7986b(f8218a, "inputstraem exception");
             return "";
         }
     }
 
-    private static int a(String str) {
+    /* renamed from: a */
+    private static int m7942a(String str) {
         if (TextUtils.isEmpty(str)) {
             return -1;
         }
         File file = new File(str);
         if (file.exists()) {
-            e.e(f7641a, "The directory  has already exists");
+            C2563e.m7989e(f8218a, "The directory  has already exists");
             return 1;
         }
         if (file.mkdirs()) {
-            e.a(f7641a, "create directory  success");
+            C2563e.m7984a(f8218a, "create directory  success");
             return 0;
         }
-        e.b(f7641a, "create directory  failed");
+        C2563e.m7986b(f8218a, "create directory  failed");
         return -1;
     }
 
-    private static String a(Context context) {
+    /* renamed from: a */
+    private static String m7943a(Context context) {
         if (Build.VERSION.SDK_INT >= 24) {
-            return context.createDeviceProtectedStorageContext().getFilesDir() + File.separator + f7649i;
+            return context.createDeviceProtectedStorageContext().getFilesDir() + File.separator + f8226i;
         }
-        return context.getApplicationContext().getFilesDir() + File.separator + f7649i;
+        return context.getApplicationContext().getFilesDir() + File.separator + f8226i;
     }
 
-    private static byte[] a(Context context, String str) {
+    /* renamed from: a */
+    private static byte[] m7947a(Context context, String str) {
         PackageInfo packageInfo;
         if (context == null || TextUtils.isEmpty(str)) {
             return new byte[0];
@@ -371,13 +393,14 @@ public class BksUtil {
         return new byte[0];
     }
 
-    private static String a(byte[] bArr) {
+    /* renamed from: a */
+    private static String m7944a(byte[] bArr) {
         if (bArr == null || bArr.length == 0) {
             return "";
         }
         StringBuilder sb = new StringBuilder();
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & f1.f16099c);
+            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
             if (hexString.length() == 1) {
                 sb.append('0');
             }

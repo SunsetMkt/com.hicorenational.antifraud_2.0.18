@@ -1,8 +1,8 @@
 package manager;
 
-import a.a.u.a;
 import android.media.MediaPlayer;
-import util.n1;
+import p000a.p001a.p014u.C0052a;
+import util.C7301n1;
 
 /* loaded from: classes2.dex */
 public class MediaPlayerManager {
@@ -40,7 +40,7 @@ public class MediaPlayerManager {
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() { // from class: manager.MediaPlayerManager.1
                 @Override // android.media.MediaPlayer.OnPreparedListener
                 public void onPrepared(MediaPlayer mediaPlayer2) {
-                    n1.c(a.n, "onPrepared        开始播放          ");
+                    C7301n1.m26459c(C0052a.f162n, "onPrepared        开始播放          ");
                     MediaPlayerManager.mediaPlayer.start();
                 }
             });

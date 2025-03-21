@@ -3,11 +3,11 @@ package com.umeng.socialize.net.dplus.cache1;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
-import com.umeng.socialize.c.b.a;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
-import com.umeng.socialize.net.dplus.db.DBConfig;
-import com.umeng.socialize.net.dplus.db.DBManager;
+import com.umeng.socialize.net.dplus.p220db.DBConfig;
+import com.umeng.socialize.net.dplus.p220db.DBManager;
+import com.umeng.socialize.p217c.p219b.C3634a;
 import com.umeng.socialize.utils.ContextUtil;
 import java.io.File;
 import java.util.ArrayList;
@@ -17,37 +17,37 @@ import org.json.JSONObject;
 /* loaded from: classes2.dex */
 public class DplusCacheApi {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f11778a = "DplusCacheApi";
+    /* renamed from: a */
+    private static final String f13733a = "DplusCacheApi";
 
-    /* renamed from: b, reason: collision with root package name */
-    private HandlerThread f11779b;
+    /* renamed from: b */
+    private HandlerThread f13734b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private Handler f11780c;
+    /* renamed from: c */
+    private Handler f13735c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private final int f11781d;
+    /* renamed from: d */
+    private final int f13736d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private ArrayList<Integer> f11782e;
+    /* renamed from: e */
+    private ArrayList<Integer> f13737e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private ArrayList<Integer> f11783f;
+    /* renamed from: f */
+    private ArrayList<Integer> f13738f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private ArrayList<Integer> f11784g;
+    /* renamed from: g */
+    private ArrayList<Integer> f13739g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private ArrayList<Integer> f11785h;
+    /* renamed from: h */
+    private ArrayList<Integer> f13740h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private ArrayList<Integer> f11786i;
+    /* renamed from: i */
+    private ArrayList<Integer> f13741i;
 
     private static class SingletonHolder {
 
-        /* renamed from: a, reason: collision with root package name */
-        private static final DplusCacheApi f11803a = new DplusCacheApi();
+        /* renamed from: a */
+        private static final DplusCacheApi f13758a = new DplusCacheApi();
 
         private SingletonHolder() {
         }
@@ -62,20 +62,20 @@ public class DplusCacheApi {
     }
 
     public static final DplusCacheApi getInstance() {
-        return SingletonHolder.f11803a;
+        return SingletonHolder.f13758a;
     }
 
     public void cleanCache(final Context context) {
-        this.f11780c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.2
+        this.f13735c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.2
             @Override // java.lang.Runnable
             public void run() {
-                a.a(context);
+                C3634a.m12629a(context);
             }
         });
     }
 
     public void closeDBConnection(final Context context) {
-        this.f11780c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.1
+        this.f13735c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.1
             @Override // java.lang.Runnable
             public void run() {
                 DBManager.get(context).closeDatabase();
@@ -84,7 +84,7 @@ public class DplusCacheApi {
     }
 
     public void deleteAll(Context context) {
-        this.f11780c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.6
+        this.f13735c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.6
             @Override // java.lang.Runnable
             public void run() {
                 DBManager.get(ContextUtil.getContext()).deleteTable("stats");
@@ -97,58 +97,58 @@ public class DplusCacheApi {
     }
 
     public void deleteFile(final Context context) {
-        this.f11780c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.5
+        this.f13735c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.5
             @Override // java.lang.Runnable
             public void run() {
-                if (DplusCacheApi.this.f11782e.size() > 0) {
-                    DBManager.get(context).delete(DplusCacheApi.this.f11782e, "s_e");
-                    DplusCacheApi.this.f11782e.clear();
+                if (DplusCacheApi.this.f13737e.size() > 0) {
+                    DBManager.get(context).delete(DplusCacheApi.this.f13737e, "s_e");
+                    DplusCacheApi.this.f13737e.clear();
                 }
-                if (DplusCacheApi.this.f11783f.size() > 0) {
-                    DBManager.get(context).delete(DplusCacheApi.this.f11783f, "auth");
-                    DplusCacheApi.this.f11783f.clear();
+                if (DplusCacheApi.this.f13738f.size() > 0) {
+                    DBManager.get(context).delete(DplusCacheApi.this.f13738f, "auth");
+                    DplusCacheApi.this.f13738f.clear();
                 }
-                if (DplusCacheApi.this.f11785h.size() > 0) {
-                    DBManager.get(context).delete(DplusCacheApi.this.f11785h, "dau");
-                    DplusCacheApi.this.f11785h.clear();
+                if (DplusCacheApi.this.f13740h.size() > 0) {
+                    DBManager.get(context).delete(DplusCacheApi.this.f13740h, "dau");
+                    DplusCacheApi.this.f13740h.clear();
                 }
-                if (DplusCacheApi.this.f11784g.size() > 0) {
-                    DBManager.get(context).delete(DplusCacheApi.this.f11784g, "userinfo");
-                    DplusCacheApi.this.f11784g.clear();
+                if (DplusCacheApi.this.f13739g.size() > 0) {
+                    DBManager.get(context).delete(DplusCacheApi.this.f13739g, "userinfo");
+                    DplusCacheApi.this.f13739g.clear();
                 }
-                if (DplusCacheApi.this.f11786i.size() > 0) {
-                    DBManager.get(context).delete(DplusCacheApi.this.f11786i, "stats");
-                    DplusCacheApi.this.f11786i.clear();
+                if (DplusCacheApi.this.f13741i.size() > 0) {
+                    DBManager.get(context).delete(DplusCacheApi.this.f13741i, "stats");
+                    DplusCacheApi.this.f13741i.clear();
                 }
             }
         });
     }
 
     public void deleteFileAsnc(Context context) {
-        if (this.f11782e.size() > 0) {
-            DBManager.get(context).delete(this.f11782e, "s_e");
-            this.f11782e.clear();
+        if (this.f13737e.size() > 0) {
+            DBManager.get(context).delete(this.f13737e, "s_e");
+            this.f13737e.clear();
         }
-        if (this.f11783f.size() > 0) {
-            DBManager.get(context).delete(this.f11783f, "auth");
-            this.f11783f.clear();
+        if (this.f13738f.size() > 0) {
+            DBManager.get(context).delete(this.f13738f, "auth");
+            this.f13738f.clear();
         }
-        if (this.f11785h.size() > 0) {
-            DBManager.get(context).delete(this.f11785h, "dau");
-            this.f11785h.clear();
+        if (this.f13740h.size() > 0) {
+            DBManager.get(context).delete(this.f13740h, "dau");
+            this.f13740h.clear();
         }
-        if (this.f11784g.size() > 0) {
-            DBManager.get(context).delete(this.f11784g, "userinfo");
-            this.f11784g.clear();
+        if (this.f13739g.size() > 0) {
+            DBManager.get(context).delete(this.f13739g, "userinfo");
+            this.f13739g.clear();
         }
-        if (this.f11786i.size() > 0) {
-            DBManager.get(context).delete(this.f11786i, "stats");
-            this.f11786i.clear();
+        if (this.f13741i.size() > 0) {
+            DBManager.get(context).delete(this.f13741i, "stats");
+            this.f13741i.clear();
         }
     }
 
     public void readFile(final Context context, final int i2, final DplusCacheListener dplusCacheListener) {
-        this.f11780c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.4
+        this.f13735c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.4
             /* JADX WARN: Removed duplicated region for block: B:39:0x015e  */
             @Override // java.lang.Runnable
             /*
@@ -160,7 +160,7 @@ public class DplusCacheApi {
                     Method dump skipped, instructions count: 386
                     To view this dump change 'Code comments level' option to 'DEBUG'
                 */
-                throw new UnsupportedOperationException("Method not decompiled: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.AnonymousClass4.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.RunnableC37464.run():void");
             }
         });
     }
@@ -179,7 +179,7 @@ public class DplusCacheApi {
     }
 
     public void saveFile(final Context context, final JSONObject jSONObject, final int i2, final DplusCacheListener dplusCacheListener) {
-        this.f11780c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.3
+        this.f13735c.post(new Runnable() { // from class: com.umeng.socialize.net.dplus.cache1.DplusCacheApi.3
             @Override // java.lang.Runnable
             public void run() {
                 switch (i2) {
@@ -210,18 +210,19 @@ public class DplusCacheApi {
     }
 
     private DplusCacheApi() {
-        this.f11781d = 1048576;
-        this.f11782e = new ArrayList<>();
-        this.f11783f = new ArrayList<>();
-        this.f11784g = new ArrayList<>();
-        this.f11785h = new ArrayList<>();
-        this.f11786i = new ArrayList<>();
-        this.f11779b = new HandlerThread(f11778a, 10);
-        this.f11779b.start();
-        this.f11780c = new Handler(this.f11779b.getLooper());
+        this.f13736d = 1048576;
+        this.f13737e = new ArrayList<>();
+        this.f13738f = new ArrayList<>();
+        this.f13739g = new ArrayList<>();
+        this.f13740h = new ArrayList<>();
+        this.f13741i = new ArrayList<>();
+        this.f13734b = new HandlerThread(f13733a, 10);
+        this.f13734b.start();
+        this.f13735c = new Handler(this.f13734b.getLooper());
     }
 
-    private static JSONObject a() throws JSONException {
+    /* renamed from: a */
+    private static JSONObject m12688a() throws JSONException {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("s_sdk_v", "7.3.2");
         jSONObject.put(CommonNetImpl.PCV, SocializeConstants.PROTOCOL_VERSON);

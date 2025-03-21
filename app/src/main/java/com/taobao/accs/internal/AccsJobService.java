@@ -5,8 +5,9 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.content.Intent;
 import com.taobao.accs.common.Constants;
+import com.taobao.accs.p197a.C2961a;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.j;
+import com.taobao.accs.utl.C3042j;
 
 /* compiled from: Taobao */
 @TargetApi(21)
@@ -19,17 +20,17 @@ public class AccsJobService extends JobService {
 
     @Override // android.app.job.JobService
     public boolean onStartJob(JobParameters jobParameters) {
-        ALog.d("AccsJobService", "onStartJob", new Object[0]);
+        ALog.m9180d("AccsJobService", "onStartJob", new Object[0]);
         try {
             String packageName = getPackageName();
             Intent intent = new Intent();
             intent.setPackage(packageName);
             intent.setAction(Constants.ACTION_COMMAND);
             intent.putExtra("command", 201);
-            intent.setClassName(packageName, j.channelService);
-            com.taobao.accs.a.a.a(getApplicationContext(), intent);
+            intent.setClassName(packageName, C3042j.channelService);
+            C2961a.m8908a(getApplicationContext(), intent);
         } catch (Throwable th) {
-            ALog.e("AccsJobService", "onStartJob", th, new Object[0]);
+            ALog.m9181e("AccsJobService", "onStartJob", th, new Object[0]);
         }
         return false;
     }
@@ -41,10 +42,10 @@ public class AccsJobService extends JobService {
             intent.setPackage(getPackageName());
             intent.setAction(Constants.ACTION_COMMAND);
             intent.putExtra("command", 201);
-            intent.setClassName(getPackageName(), j.channelService);
-            com.taobao.accs.a.a.a(getApplicationContext(), intent);
+            intent.setClassName(getPackageName(), C3042j.channelService);
+            C2961a.m8908a(getApplicationContext(), intent);
         } catch (Throwable th) {
-            ALog.e("AccsJobService", "onStopJob", th, new Object[0]);
+            ALog.m9181e("AccsJobService", "onStopJob", th, new Object[0]);
         }
         return false;
     }

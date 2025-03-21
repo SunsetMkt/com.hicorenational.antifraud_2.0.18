@@ -8,7 +8,9 @@ public class AccountListBean extends BaseBean {
     private String caseInfoID;
     private String createTime;
     private String description;
-    private String id;
+
+    /* renamed from: id */
+    private String f1579id;
     private boolean isEdit;
     private boolean isSelect;
     private List<UploadFileBean> paymentDetails;
@@ -41,7 +43,7 @@ public class AccountListBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1579id;
     }
 
     public List<UploadFileBean> getPaymentDetails() {
@@ -133,7 +135,7 @@ public class AccountListBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1579id = str;
     }
 
     public void setPaymentDetails(List<UploadFileBean> list) {

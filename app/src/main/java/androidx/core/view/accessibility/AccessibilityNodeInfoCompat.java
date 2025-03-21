@@ -16,14 +16,15 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.core.C0475R;
 import androidx.core.view.accessibility.AccessibilityViewCommand;
-import c.c.a.b.a.a;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class AccessibilityNodeInfoCompat {
@@ -216,7 +217,7 @@ public class AccessibilityNodeInfoCompat {
                     } catch (Exception unused) {
                         commandArguments = newInstance;
                         Class<? extends AccessibilityViewCommand.CommandArguments> cls2 = this.mViewCommandArgumentClass;
-                        String str = "Failed to execute command with argument class ViewCommandArgument: " + (cls2 == null ? a.f3101h : cls2.getName());
+                        String str = "Failed to execute command with argument class ViewCommandArgument: " + (cls2 == null ? AbstractC1191a.f2571h : cls2.getName());
                         return this.mCommand.perform(view, commandArguments);
                     }
                 } catch (Exception unused2) {
@@ -433,12 +434,12 @@ public class AccessibilityNodeInfoCompat {
             return spansFromViewTags;
         }
         SparseArray<WeakReference<ClickableSpan>> sparseArray = new SparseArray<>();
-        view.setTag(androidx.core.R.id.tag_accessibility_clickable_spans, sparseArray);
+        view.setTag(C0475R.id.tag_accessibility_clickable_spans, sparseArray);
         return sparseArray;
     }
 
     private SparseArray<WeakReference<ClickableSpan>> getSpansFromViewTags(View view) {
-        return (SparseArray) view.getTag(androidx.core.R.id.tag_accessibility_clickable_spans);
+        return (SparseArray) view.getTag(C0475R.id.tag_accessibility_clickable_spans);
     }
 
     private boolean hasSpans() {
@@ -519,7 +520,7 @@ public class AccessibilityNodeInfoCompat {
         if (clickableSpans == null || clickableSpans.length <= 0) {
             return;
         }
-        getExtras().putInt(SPANS_ACTION_ID_KEY, androidx.core.R.id.accessibility_action_clickable_span);
+        getExtras().putInt(SPANS_ACTION_ID_KEY, C0475R.id.accessibility_action_clickable_span);
         SparseArray<WeakReference<ClickableSpan>> orCreateSpansFromViewTags = getOrCreateSpansFromViewTags(view);
         for (int i3 = 0; clickableSpans != null && i3 < clickableSpans.length; i3++) {
             int idForClickableSpan = idForClickableSpan(clickableSpans[i3], orCreateSpansFromViewTags);

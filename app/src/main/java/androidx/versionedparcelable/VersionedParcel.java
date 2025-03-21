@@ -379,7 +379,7 @@ public abstract class VersionedParcel {
             return (Serializable) new ObjectInputStream(new ByteArrayInputStream(readByteArray())) { // from class: androidx.versionedparcelable.VersionedParcel.1
                 @Override // java.io.ObjectInputStream
                 protected Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws IOException, ClassNotFoundException {
-                    Class<?> cls = Class.forName(objectStreamClass.getName(), false, AnonymousClass1.class.getClassLoader());
+                    Class<?> cls = Class.forName(objectStreamClass.getName(), false, C07271.class.getClassLoader());
                     return cls != null ? cls : super.resolveClass(objectStreamClass);
                 }
             }.readObject();

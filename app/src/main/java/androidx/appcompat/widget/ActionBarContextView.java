@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.core.view.ViewCompat;
@@ -40,10 +40,10 @@ public class ActionBarContextView extends AbsActionBarView {
 
     private void initTitle() {
         if (this.mTitleLayout == null) {
-            LayoutInflater.from(getContext()).inflate(R.layout.abc_action_bar_title_item, this);
+            LayoutInflater.from(getContext()).inflate(C0120R.layout.abc_action_bar_title_item, this);
             this.mTitleLayout = (LinearLayout) getChildAt(getChildCount() - 1);
-            this.mTitleView = (TextView) this.mTitleLayout.findViewById(R.id.action_bar_title);
-            this.mSubtitleView = (TextView) this.mTitleLayout.findViewById(R.id.action_bar_subtitle);
+            this.mTitleView = (TextView) this.mTitleLayout.findViewById(C0120R.id.action_bar_title);
+            this.mSubtitleView = (TextView) this.mTitleLayout.findViewById(C0120R.id.action_bar_subtitle);
             if (this.mTitleStyleRes != 0) {
                 this.mTitleView.setTextAppearance(getContext(), this.mTitleStyleRes);
             }
@@ -133,7 +133,7 @@ public class ActionBarContextView extends AbsActionBarView {
         } else if (view.getParent() == null) {
             addView(this.mClose);
         }
-        this.mClose.findViewById(R.id.action_mode_close_button).setOnClickListener(new View.OnClickListener() { // from class: androidx.appcompat.widget.ActionBarContextView.1
+        this.mClose.findViewById(C0120R.id.action_mode_close_button).setOnClickListener(new View.OnClickListener() { // from class: androidx.appcompat.widget.ActionBarContextView.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
                 actionMode.finish();
@@ -387,17 +387,17 @@ public class ActionBarContextView extends AbsActionBarView {
     }
 
     public ActionBarContextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.actionModeStyle);
+        this(context, attributeSet, C0120R.attr.actionModeStyle);
     }
 
     public ActionBarContextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.ActionMode, i2, 0);
-        ViewCompat.setBackground(this, obtainStyledAttributes.getDrawable(R.styleable.ActionMode_background));
-        this.mTitleStyleRes = obtainStyledAttributes.getResourceId(R.styleable.ActionMode_titleTextStyle, 0);
-        this.mSubtitleStyleRes = obtainStyledAttributes.getResourceId(R.styleable.ActionMode_subtitleTextStyle, 0);
-        this.mContentHeight = obtainStyledAttributes.getLayoutDimension(R.styleable.ActionMode_height, 0);
-        this.mCloseItemLayout = obtainStyledAttributes.getResourceId(R.styleable.ActionMode_closeItemLayout, R.layout.abc_action_mode_close_item_material);
+        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0120R.styleable.ActionMode, i2, 0);
+        ViewCompat.setBackground(this, obtainStyledAttributes.getDrawable(C0120R.styleable.ActionMode_background));
+        this.mTitleStyleRes = obtainStyledAttributes.getResourceId(C0120R.styleable.ActionMode_titleTextStyle, 0);
+        this.mSubtitleStyleRes = obtainStyledAttributes.getResourceId(C0120R.styleable.ActionMode_subtitleTextStyle, 0);
+        this.mContentHeight = obtainStyledAttributes.getLayoutDimension(C0120R.styleable.ActionMode_height, 0);
+        this.mCloseItemLayout = obtainStyledAttributes.getResourceId(C0120R.styleable.ActionMode_closeItemLayout, C0120R.layout.abc_action_mode_close_item_material);
         obtainStyledAttributes.recycle();
     }
 }

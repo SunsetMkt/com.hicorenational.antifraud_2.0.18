@@ -12,10 +12,12 @@ import java.util.Set;
 /* loaded from: classes.dex */
 public class SPUtils {
     private static final Map<String, SPUtils> SP_UTILS_MAP = new HashMap();
-    private SharedPreferences sp;
+
+    /* renamed from: sp */
+    private SharedPreferences f8404sp;
 
     private SPUtils(String str) {
-        this.sp = getApplicationByReflect().getSharedPreferences(str, 0);
+        this.f8404sp = getApplicationByReflect().getSharedPreferences(str, 0);
     }
 
     private static Application getApplicationByReflect() {
@@ -67,11 +69,11 @@ public class SPUtils {
     }
 
     public boolean contains(@NonNull String str) {
-        return this.sp.contains(str);
+        return this.f8404sp.contains(str);
     }
 
     public Map<String, ?> getAll() {
-        return this.sp.getAll();
+        return this.f8404sp.getAll();
     }
 
     public boolean getBoolean(@NonNull String str) {
@@ -112,54 +114,54 @@ public class SPUtils {
 
     public void clear(boolean z) {
         if (z) {
-            this.sp.edit().clear().commit();
+            this.f8404sp.edit().clear().commit();
         } else {
-            this.sp.edit().clear().apply();
+            this.f8404sp.edit().clear().apply();
         }
     }
 
     public boolean getBoolean(@NonNull String str, boolean z) {
-        return this.sp.getBoolean(str, z);
+        return this.f8404sp.getBoolean(str, z);
     }
 
     public float getFloat(@NonNull String str, float f2) {
-        return this.sp.getFloat(str, f2);
+        return this.f8404sp.getFloat(str, f2);
     }
 
     public int getInt(@NonNull String str, int i2) {
-        return this.sp.getInt(str, i2);
+        return this.f8404sp.getInt(str, i2);
     }
 
     public long getLong(@NonNull String str, long j2) {
-        return this.sp.getLong(str, j2);
+        return this.f8404sp.getLong(str, j2);
     }
 
     public String getString(@NonNull String str, String str2) {
-        return this.sp.getString(str, str2);
+        return this.f8404sp.getString(str, str2);
     }
 
     public Set<String> getStringSet(@NonNull String str, Set<String> set) {
-        return this.sp.getStringSet(str, set);
+        return this.f8404sp.getStringSet(str, set);
     }
 
     public void put(@NonNull String str, String str2, boolean z) {
         if (z) {
-            this.sp.edit().putString(str, str2).commit();
+            this.f8404sp.edit().putString(str, str2).commit();
         } else {
-            this.sp.edit().putString(str, str2).apply();
+            this.f8404sp.edit().putString(str, str2).apply();
         }
     }
 
     public void remove(@NonNull String str, boolean z) {
         if (z) {
-            this.sp.edit().remove(str).commit();
+            this.f8404sp.edit().remove(str).commit();
         } else {
-            this.sp.edit().remove(str).apply();
+            this.f8404sp.edit().remove(str).apply();
         }
     }
 
     private SPUtils(String str, int i2) {
-        this.sp = getApplicationByReflect().getSharedPreferences(str, i2);
+        this.f8404sp = getApplicationByReflect().getSharedPreferences(str, i2);
     }
 
     public static SPUtils getInstance(String str) {
@@ -189,9 +191,9 @@ public class SPUtils {
 
     public void put(@NonNull String str, int i2, boolean z) {
         if (z) {
-            this.sp.edit().putInt(str, i2).commit();
+            this.f8404sp.edit().putInt(str, i2).commit();
         } else {
-            this.sp.edit().putInt(str, i2).apply();
+            this.f8404sp.edit().putInt(str, i2).apply();
         }
     }
 
@@ -201,9 +203,9 @@ public class SPUtils {
 
     public void put(@NonNull String str, long j2, boolean z) {
         if (z) {
-            this.sp.edit().putLong(str, j2).commit();
+            this.f8404sp.edit().putLong(str, j2).commit();
         } else {
-            this.sp.edit().putLong(str, j2).apply();
+            this.f8404sp.edit().putLong(str, j2).apply();
         }
     }
 
@@ -213,9 +215,9 @@ public class SPUtils {
 
     public void put(@NonNull String str, float f2, boolean z) {
         if (z) {
-            this.sp.edit().putFloat(str, f2).commit();
+            this.f8404sp.edit().putFloat(str, f2).commit();
         } else {
-            this.sp.edit().putFloat(str, f2).apply();
+            this.f8404sp.edit().putFloat(str, f2).apply();
         }
     }
 
@@ -225,9 +227,9 @@ public class SPUtils {
 
     public void put(@NonNull String str, boolean z, boolean z2) {
         if (z2) {
-            this.sp.edit().putBoolean(str, z).commit();
+            this.f8404sp.edit().putBoolean(str, z).commit();
         } else {
-            this.sp.edit().putBoolean(str, z).apply();
+            this.f8404sp.edit().putBoolean(str, z).apply();
         }
     }
 
@@ -237,9 +239,9 @@ public class SPUtils {
 
     public void put(@NonNull String str, Set<String> set, boolean z) {
         if (z) {
-            this.sp.edit().putStringSet(str, set).commit();
+            this.f8404sp.edit().putStringSet(str, set).commit();
         } else {
-            this.sp.edit().putStringSet(str, set).apply();
+            this.f8404sp.edit().putStringSet(str, set).apply();
         }
     }
 }

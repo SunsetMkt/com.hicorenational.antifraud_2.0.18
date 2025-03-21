@@ -63,14 +63,14 @@ public abstract class UMTencentSSOHandler extends UMSSOHandler {
         super.onCreate(context, platform);
         this.config = (PlatformConfig.APPIDPlatform) platform;
         if (TextUtils.isEmpty(this.config.getFileProvider())) {
-            SLog.E(UmengText.QQ.QQ_FILE_PROVIDER_ERROR);
+            SLog.m12716E(UmengText.C3778QQ.QQ_FILE_PROVIDER_ERROR);
             this.mTencent = Tencent.createInstance(this.config.appId, context);
         } else {
             PlatformConfig.APPIDPlatform aPPIDPlatform = this.config;
             this.mTencent = Tencent.createInstance(aPPIDPlatform.appId, context, aPPIDPlatform.getFileProvider());
         }
         if (this.mTencent == null) {
-            SLog.E(UmengText.QQ.QQ_TENCENT_ERROR);
+            SLog.m12716E(UmengText.C3778QQ.QQ_TENCENT_ERROR);
         }
     }
 

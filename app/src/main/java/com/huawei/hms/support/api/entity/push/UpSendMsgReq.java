@@ -27,8 +27,9 @@ public class UpSendMsgReq implements IMessageEntity {
     @Packed
     private int sendMode;
 
+    /* renamed from: to */
     @Packed
-    private String to;
+    private String f7851to;
 
     @Packed
     private String token;
@@ -65,7 +66,7 @@ public class UpSendMsgReq implements IMessageEntity {
     }
 
     public String getTo() {
-        return this.to;
+        return this.f7851to;
     }
 
     public String getToken() {
@@ -105,7 +106,7 @@ public class UpSendMsgReq implements IMessageEntity {
     }
 
     public void setTo(String str) {
-        this.to = str;
+        this.f7851to = str;
     }
 
     public void setToken(String str) {

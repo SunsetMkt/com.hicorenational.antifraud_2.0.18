@@ -27,7 +27,8 @@ public class NetSparseArray<E> implements Cloneable {
         return i7 == i5 ? ~i5 : iArr[i7] == i4 ? i7 : ~i7;
     }
 
-    private void gc() {
+    /* renamed from: gc */
+    private void m24974gc() {
         int i2 = this.mSize;
         int[] iArr = this.mKeys;
         Object[] objArr = this.mValues;
@@ -54,7 +55,7 @@ public class NetSparseArray<E> implements Cloneable {
             return;
         }
         if (this.mGarbage && this.mSize >= this.mKeys.length) {
-            gc();
+            m24974gc();
         }
         int i4 = this.mSize;
         int[] iArr = this.mKeys;
@@ -102,14 +103,14 @@ public class NetSparseArray<E> implements Cloneable {
 
     public int indexOfKey(int i2) {
         if (this.mGarbage) {
-            gc();
+            m24974gc();
         }
         return binarySearch(this.mKeys, 0, this.mSize, i2);
     }
 
     public int indexOfValue(E e2) {
         if (this.mGarbage) {
-            gc();
+            m24974gc();
         }
         for (int i2 = 0; i2 < this.mSize; i2++) {
             if (this.mValues[i2] == e2) {
@@ -121,7 +122,7 @@ public class NetSparseArray<E> implements Cloneable {
 
     public int keyAt(int i2) {
         if (this.mGarbage) {
-            gc();
+            m24974gc();
         }
         return this.mKeys[i2];
     }
@@ -142,7 +143,7 @@ public class NetSparseArray<E> implements Cloneable {
             }
         }
         if (this.mGarbage && this.mSize >= this.mKeys.length) {
-            gc();
+            m24974gc();
             i3 = ~binarySearch(this.mKeys, 0, this.mSize, i2);
         }
         int i4 = this.mSize;
@@ -186,14 +187,14 @@ public class NetSparseArray<E> implements Cloneable {
 
     public void setValueAt(int i2, E e2) {
         if (this.mGarbage) {
-            gc();
+            m24974gc();
         }
         this.mValues[i2] = e2;
     }
 
     public int size() {
         if (this.mGarbage) {
-            gc();
+            m24974gc();
         }
         return this.mSize;
     }
@@ -206,7 +207,7 @@ public class NetSparseArray<E> implements Cloneable {
 
     public E valueAt(int i2) {
         if (this.mGarbage) {
-            gc();
+            m24974gc();
         }
         return (E) this.mValues[i2];
     }

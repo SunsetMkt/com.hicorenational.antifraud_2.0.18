@@ -15,7 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import cn.cloudwalk.libproject.R;
+import cn.cloudwalk.libproject.C1241R;
 
 /* loaded from: classes.dex */
 public class CircleImageView extends ImageView {
@@ -230,9 +230,9 @@ public class CircleImageView extends ImageView {
         this.mBorderPaint = new Paint();
         this.mBorderColor = -16777216;
         this.mBorderWidth = 0;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.CircleImageView, i2, 0);
-        this.mBorderWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.CircleImageView_border_width, 0);
-        this.mBorderColor = obtainStyledAttributes.getColor(R.styleable.CircleImageView_border_color, -16777216);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1241R.styleable.CircleImageView, i2, 0);
+        this.mBorderWidth = obtainStyledAttributes.getDimensionPixelSize(C1241R.styleable.CircleImageView_border_width, 0);
+        this.mBorderColor = obtainStyledAttributes.getColor(C1241R.styleable.CircleImageView_border_color, -16777216);
         obtainStyledAttributes.recycle();
         init();
     }

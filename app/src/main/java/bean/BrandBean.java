@@ -4,12 +4,14 @@ import network.BaseBean;
 
 /* loaded from: classes.dex */
 public class BrandBean extends BaseBean {
-    private int ex;
+
+    /* renamed from: ex */
+    private int f1580ex;
     private String osBrandType;
     private String osBrandTypeText;
 
     public int getEx() {
-        return this.ex;
+        return this.f1580ex;
     }
 
     public String getOsBrandType() {
@@ -21,7 +23,7 @@ public class BrandBean extends BaseBean {
     }
 
     public void setEx(int i2) {
-        this.ex = i2;
+        this.f1580ex = i2;
     }
 
     public void setOsBrandType(String str) {

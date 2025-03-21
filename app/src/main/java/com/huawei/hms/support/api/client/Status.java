@@ -43,10 +43,11 @@ public final class Status extends Result implements Parcelable {
     public static final Status RESULT_TIMEOUT = new Status(15);
     public static final Status MessageNotFound = new Status(TinkerReport.KEY_LOADED_SUCC_COST_OTHER);
     public static final Status CoreException = new Status(500);
-    public static final Parcelable.Creator<Status> CREATOR = new a();
+    public static final Parcelable.Creator<Status> CREATOR = new C2513a();
 
-    class a implements Parcelable.Creator {
-        a() {
+    /* renamed from: com.huawei.hms.support.api.client.Status$a */
+    class C2513a implements Parcelable.Creator {
+        C2513a() {
         }
 
         @Override // android.os.Parcelable.Creator

@@ -26,11 +26,11 @@ public class ChannelService extends BaseService {
     /* compiled from: Taobao */
     public static class KernelService extends Service {
 
-        /* renamed from: a, reason: collision with root package name */
-        private static KernelService f8374a;
+        /* renamed from: a */
+        private static KernelService f9368a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private Context f8375b;
+        /* renamed from: b */
+        private Context f9369b;
 
         @Override // android.app.Service
         public IBinder onBind(Intent intent) {
@@ -40,8 +40,8 @@ public class ChannelService extends BaseService {
         @Override // android.app.Service
         public void onCreate() {
             super.onCreate();
-            f8374a = this;
-            this.f8375b = getApplicationContext();
+            f9368a = this;
+            this.f9369b = getApplicationContext();
         }
 
         @Override // android.app.Service
@@ -49,19 +49,19 @@ public class ChannelService extends BaseService {
             try {
                 stopForeground(true);
             } catch (Throwable th) {
-                ALog.e(ChannelService.TAG, "onDestroy", th, new Object[0]);
+                ALog.m9181e(ChannelService.TAG, "onDestroy", th, new Object[0]);
             }
-            f8374a = null;
+            f9368a = null;
             super.onDestroy();
         }
 
         @Override // android.app.Service
         public int onStartCommand(Intent intent, int i2, int i3) {
             try {
-                ThreadPoolExecutorFactory.execute(new a(this));
+                ThreadPoolExecutorFactory.execute(new RunnableC2960a(this));
                 return 2;
             } catch (Throwable th) {
-                ALog.e(ChannelService.TAG, " onStartCommand", th, new Object[0]);
+                ALog.m9181e(ChannelService.TAG, " onStartCommand", th, new Object[0]);
                 return 2;
             }
         }
@@ -75,7 +75,7 @@ public class ChannelService extends BaseService {
         try {
             return context.getSharedPreferences(Constants.SP_FILE_NAME, 0).getInt(SUPPORT_FOREGROUND_VERSION_KEY, 21);
         } catch (Throwable th) {
-            ALog.e(TAG, "getSupportForegroundVer fail:", th, "key", SUPPORT_FOREGROUND_VERSION_KEY);
+            ALog.m9181e(TAG, "getSupportForegroundVer fail:", th, "key", SUPPORT_FOREGROUND_VERSION_KEY);
             return 21;
         }
     }
@@ -88,7 +88,7 @@ public class ChannelService extends BaseService {
                 context.startService(intent);
             }
         } catch (Throwable th) {
-            ALog.e(TAG, "startKernel", th, new Object[0]);
+            ALog.m9181e(TAG, "startKernel", th, new Object[0]);
         }
     }
 
@@ -100,20 +100,20 @@ public class ChannelService extends BaseService {
                 context.stopService(intent);
             }
         } catch (Throwable th) {
-            ALog.e(TAG, "stopKernel", th, new Object[0]);
+            ALog.m9181e(TAG, "stopKernel", th, new Object[0]);
         }
     }
 
     @Override // com.taobao.accs.base.BaseService, android.app.Service
     public void onCreate() {
         super.onCreate();
-        GlobalClientInfo.f8392a = getApplicationContext();
+        GlobalClientInfo.f9386a = getApplicationContext();
         mInstance = this;
         if (Build.VERSION.SDK_INT < 18) {
             try {
                 startForeground(NOTIFY_ID, new Notification());
             } catch (Throwable th) {
-                ALog.e(TAG, "ChannelService onCreate", th, new Object[0]);
+                ALog.m9181e(TAG, "ChannelService onCreate", th, new Object[0]);
             }
         }
     }
@@ -124,7 +124,7 @@ public class ChannelService extends BaseService {
             try {
                 stopForeground(true);
             } catch (Throwable th) {
-                ALog.e(TAG, "ChannelService onDestroy", th, new Object[0]);
+                ALog.m9181e(TAG, "ChannelService onDestroy", th, new Object[0]);
             }
         }
         stopKernel(getApplicationContext());

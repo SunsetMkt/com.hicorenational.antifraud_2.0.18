@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.yalantis.ucrop.R;
+import com.yalantis.ucrop.C4415R;
 import com.yalantis.ucrop.callback.BitmapCropCallback;
 import com.yalantis.ucrop.callback.CropBoundsChangeListener;
 import com.yalantis.ucrop.model.CropParameters;
@@ -270,8 +270,8 @@ public class CropImageView extends TransformImageView {
     }
 
     protected void processStyledAttributes(@NonNull TypedArray typedArray) {
-        float abs = Math.abs(typedArray.getFloat(R.styleable.ucrop_UCropView_ucrop_aspect_ratio_x, 0.0f));
-        float abs2 = Math.abs(typedArray.getFloat(R.styleable.ucrop_UCropView_ucrop_aspect_ratio_y, 0.0f));
+        float abs = Math.abs(typedArray.getFloat(C4415R.styleable.ucrop_UCropView_ucrop_aspect_ratio_x, 0.0f));
+        float abs2 = Math.abs(typedArray.getFloat(C4415R.styleable.ucrop_UCropView_ucrop_aspect_ratio_y, 0.0f));
         if (abs == 0.0f || abs2 == 0.0f) {
             this.mTargetAspectRatio = 0.0f;
         } else {

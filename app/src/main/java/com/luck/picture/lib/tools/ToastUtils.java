@@ -17,7 +17,8 @@ public final class ToastUtils {
         return false;
     }
 
-    public static void s(Context context, String str) {
+    /* renamed from: s */
+    public static void m8140s(Context context, String str) {
         if (isShowToast()) {
             return;
         }

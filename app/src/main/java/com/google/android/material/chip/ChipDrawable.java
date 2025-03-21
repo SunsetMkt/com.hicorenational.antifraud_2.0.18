@@ -43,6 +43,7 @@ import androidx.core.graphics.drawable.TintAwareDrawable;
 import androidx.core.internal.view.SupportMenu;
 import androidx.core.text.BidiFormatter;
 import androidx.core.view.ViewCompat;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.MotionSpec;
 import com.google.android.material.canvas.CanvasCompat;
 import com.google.android.material.drawable.DrawableUtils;
@@ -346,9 +347,9 @@ public class ChipDrawable extends Drawable implements TintAwareDrawable, Drawabl
             AttributeSet asAttributeSet = Xml.asAttributeSet(xml);
             int styleAttribute = asAttributeSet.getStyleAttribute();
             if (styleAttribute == 0) {
-                styleAttribute = com.google.android.material.R.style.Widget_MaterialComponents_Chip_Entry;
+                styleAttribute = C1921R.style.Widget_MaterialComponents_Chip_Entry;
             }
-            return createFromAttributes(context, asAttributeSet, com.google.android.material.R.attr.chipStandaloneStyle, styleAttribute);
+            return createFromAttributes(context, asAttributeSet, C1921R.attr.chipStandaloneStyle, styleAttribute);
         } catch (IOException | XmlPullParserException e2) {
             Resources.NotFoundException notFoundException = new Resources.NotFoundException("Can't load chip resource ID #0x" + Integer.toHexString(i2));
             notFoundException.initCause(e2);
@@ -510,16 +511,16 @@ public class ChipDrawable extends Drawable implements TintAwareDrawable, Drawabl
     }
 
     private void loadFromAttributes(AttributeSet attributeSet, @AttrRes int i2, @StyleRes int i3) {
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(this.context, attributeSet, com.google.android.material.R.styleable.Chip, i2, i3, new int[0]);
-        setChipBackgroundColor(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_chipBackgroundColor));
-        setChipMinHeight(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_chipMinHeight, 0.0f));
-        setChipCornerRadius(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_chipCornerRadius, 0.0f));
-        setChipStrokeColor(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_chipStrokeColor));
-        setChipStrokeWidth(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_chipStrokeWidth, 0.0f));
-        setRippleColor(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_rippleColor));
-        setText(obtainStyledAttributes.getText(com.google.android.material.R.styleable.Chip_android_text));
-        setTextAppearance(MaterialResources.getTextAppearance(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_android_textAppearance));
-        int i4 = obtainStyledAttributes.getInt(com.google.android.material.R.styleable.Chip_android_ellipsize, 0);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(this.context, attributeSet, C1921R.styleable.Chip, i2, i3, new int[0]);
+        setChipBackgroundColor(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, C1921R.styleable.Chip_chipBackgroundColor));
+        setChipMinHeight(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_chipMinHeight, 0.0f));
+        setChipCornerRadius(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_chipCornerRadius, 0.0f));
+        setChipStrokeColor(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, C1921R.styleable.Chip_chipStrokeColor));
+        setChipStrokeWidth(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_chipStrokeWidth, 0.0f));
+        setRippleColor(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, C1921R.styleable.Chip_rippleColor));
+        setText(obtainStyledAttributes.getText(C1921R.styleable.Chip_android_text));
+        setTextAppearance(MaterialResources.getTextAppearance(this.context, obtainStyledAttributes, C1921R.styleable.Chip_android_textAppearance));
+        int i4 = obtainStyledAttributes.getInt(C1921R.styleable.Chip_android_ellipsize, 0);
         if (i4 == 1) {
             setEllipsize(TextUtils.TruncateAt.START);
         } else if (i4 == 2) {
@@ -527,37 +528,37 @@ public class ChipDrawable extends Drawable implements TintAwareDrawable, Drawabl
         } else if (i4 == 3) {
             setEllipsize(TextUtils.TruncateAt.END);
         }
-        setChipIconVisible(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_chipIconVisible, false));
+        setChipIconVisible(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_chipIconVisible, false));
         if (attributeSet != null && attributeSet.getAttributeValue(NAMESPACE_APP, "chipIconEnabled") != null && attributeSet.getAttributeValue(NAMESPACE_APP, "chipIconVisible") == null) {
-            setChipIconVisible(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_chipIconEnabled, false));
+            setChipIconVisible(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_chipIconEnabled, false));
         }
-        setChipIcon(MaterialResources.getDrawable(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_chipIcon));
-        setChipIconTint(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_chipIconTint));
-        setChipIconSize(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_chipIconSize, 0.0f));
-        setCloseIconVisible(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_closeIconVisible, false));
+        setChipIcon(MaterialResources.getDrawable(this.context, obtainStyledAttributes, C1921R.styleable.Chip_chipIcon));
+        setChipIconTint(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, C1921R.styleable.Chip_chipIconTint));
+        setChipIconSize(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_chipIconSize, 0.0f));
+        setCloseIconVisible(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_closeIconVisible, false));
         if (attributeSet != null && attributeSet.getAttributeValue(NAMESPACE_APP, "closeIconEnabled") != null && attributeSet.getAttributeValue(NAMESPACE_APP, "closeIconVisible") == null) {
-            setCloseIconVisible(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_closeIconEnabled, false));
+            setCloseIconVisible(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_closeIconEnabled, false));
         }
-        setCloseIcon(MaterialResources.getDrawable(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_closeIcon));
-        setCloseIconTint(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_closeIconTint));
-        setCloseIconSize(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_closeIconSize, 0.0f));
-        setCheckable(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_android_checkable, false));
-        setCheckedIconVisible(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_checkedIconVisible, false));
+        setCloseIcon(MaterialResources.getDrawable(this.context, obtainStyledAttributes, C1921R.styleable.Chip_closeIcon));
+        setCloseIconTint(MaterialResources.getColorStateList(this.context, obtainStyledAttributes, C1921R.styleable.Chip_closeIconTint));
+        setCloseIconSize(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_closeIconSize, 0.0f));
+        setCheckable(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_android_checkable, false));
+        setCheckedIconVisible(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_checkedIconVisible, false));
         if (attributeSet != null && attributeSet.getAttributeValue(NAMESPACE_APP, "checkedIconEnabled") != null && attributeSet.getAttributeValue(NAMESPACE_APP, "checkedIconVisible") == null) {
-            setCheckedIconVisible(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.Chip_checkedIconEnabled, false));
+            setCheckedIconVisible(obtainStyledAttributes.getBoolean(C1921R.styleable.Chip_checkedIconEnabled, false));
         }
-        setCheckedIcon(MaterialResources.getDrawable(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_checkedIcon));
-        setShowMotionSpec(MotionSpec.createFromAttribute(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_showMotionSpec));
-        setHideMotionSpec(MotionSpec.createFromAttribute(this.context, obtainStyledAttributes, com.google.android.material.R.styleable.Chip_hideMotionSpec));
-        setChipStartPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_chipStartPadding, 0.0f));
-        setIconStartPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_iconStartPadding, 0.0f));
-        setIconEndPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_iconEndPadding, 0.0f));
-        setTextStartPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_textStartPadding, 0.0f));
-        setTextEndPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_textEndPadding, 0.0f));
-        setCloseIconStartPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_closeIconStartPadding, 0.0f));
-        setCloseIconEndPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_closeIconEndPadding, 0.0f));
-        setChipEndPadding(obtainStyledAttributes.getDimension(com.google.android.material.R.styleable.Chip_chipEndPadding, 0.0f));
-        setMaxWidth(obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.Chip_android_maxWidth, Integer.MAX_VALUE));
+        setCheckedIcon(MaterialResources.getDrawable(this.context, obtainStyledAttributes, C1921R.styleable.Chip_checkedIcon));
+        setShowMotionSpec(MotionSpec.createFromAttribute(this.context, obtainStyledAttributes, C1921R.styleable.Chip_showMotionSpec));
+        setHideMotionSpec(MotionSpec.createFromAttribute(this.context, obtainStyledAttributes, C1921R.styleable.Chip_hideMotionSpec));
+        setChipStartPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_chipStartPadding, 0.0f));
+        setIconStartPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_iconStartPadding, 0.0f));
+        setIconEndPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_iconEndPadding, 0.0f));
+        setTextStartPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_textStartPadding, 0.0f));
+        setTextEndPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_textEndPadding, 0.0f));
+        setCloseIconStartPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_closeIconStartPadding, 0.0f));
+        setCloseIconEndPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_closeIconEndPadding, 0.0f));
+        setChipEndPadding(obtainStyledAttributes.getDimension(C1921R.styleable.Chip_chipEndPadding, 0.0f));
+        setMaxWidth(obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.Chip_android_maxWidth, Integer.MAX_VALUE));
         obtainStyledAttributes.recycle();
     }
 

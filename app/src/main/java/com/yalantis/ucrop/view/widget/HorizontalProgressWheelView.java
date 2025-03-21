@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
-import com.yalantis.ucrop.R;
+import com.yalantis.ucrop.C4415R;
 
 /* loaded from: classes2.dex */
 public class HorizontalProgressWheelView extends View {
@@ -39,18 +39,18 @@ public class HorizontalProgressWheelView extends View {
     }
 
     private void init() {
-        this.mMiddleLineColor = ContextCompat.getColor(getContext(), R.color.ucrop_color_widget_rotate_mid_line);
-        this.mProgressLineWidth = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_width_horizontal_wheel_progress_line);
-        this.mProgressLineHeight = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_height_horizontal_wheel_progress_line);
-        this.mProgressLineMargin = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_margin_horizontal_wheel_progress_line);
+        this.mMiddleLineColor = ContextCompat.getColor(getContext(), C4415R.color.ucrop_color_widget_rotate_mid_line);
+        this.mProgressLineWidth = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_width_horizontal_wheel_progress_line);
+        this.mProgressLineHeight = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_height_horizontal_wheel_progress_line);
+        this.mProgressLineMargin = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_margin_horizontal_wheel_progress_line);
         this.mProgressLinePaint = new Paint(1);
         this.mProgressLinePaint.setStyle(Paint.Style.STROKE);
         this.mProgressLinePaint.setStrokeWidth(this.mProgressLineWidth);
-        this.mProgressLinePaint.setColor(getResources().getColor(R.color.ucrop_color_progress_wheel_line));
+        this.mProgressLinePaint.setColor(getResources().getColor(C4415R.color.ucrop_color_progress_wheel_line));
         this.mProgressMiddleLinePaint = new Paint(this.mProgressLinePaint);
         this.mProgressMiddleLinePaint.setColor(this.mMiddleLineColor);
         this.mProgressMiddleLinePaint.setStrokeCap(Paint.Cap.ROUND);
-        this.mProgressMiddleLinePaint.setStrokeWidth(getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_width_middle_wheel_progress_line));
+        this.mProgressMiddleLinePaint.setStrokeWidth(getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_width_middle_wheel_progress_line));
     }
 
     private void onScrollEvent(MotionEvent motionEvent, float f2) {

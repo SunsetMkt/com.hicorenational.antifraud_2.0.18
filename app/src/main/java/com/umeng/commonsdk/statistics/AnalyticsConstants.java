@@ -7,7 +7,9 @@ public class AnalyticsConstants {
     public static final String CFG_FIELD_KEY = "cfgfd";
     public static boolean CHECK_DEVICE = true;
     public static final String LOG_TAG = "MobclickAgent";
-    public static final String OS = "Android";
+
+    /* renamed from: OS */
+    public static final String f12711OS = "Android";
     public static final String SDK_TYPE = "Android";
     public static boolean SUB_PROCESS_EVENT = false;
     public static final String ZERO_RESPONSE_FLAG = "iscfg";

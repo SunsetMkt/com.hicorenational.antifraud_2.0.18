@@ -6,7 +6,7 @@ import android.graphics.drawable.GradientDrawable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.annotation.RestrictTo;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -45,8 +45,8 @@ class MaterialCardViewHelper {
     }
 
     public void loadFromAttributes(TypedArray typedArray) {
-        this.strokeColor = typedArray.getColor(R.styleable.MaterialCardView_strokeColor, -1);
-        this.strokeWidth = typedArray.getDimensionPixelSize(R.styleable.MaterialCardView_strokeWidth, 0);
+        this.strokeColor = typedArray.getColor(C1921R.styleable.MaterialCardView_strokeColor, -1);
+        this.strokeWidth = typedArray.getDimensionPixelSize(C1921R.styleable.MaterialCardView_strokeWidth, 0);
         updateForeground();
         adjustContentPadding();
     }

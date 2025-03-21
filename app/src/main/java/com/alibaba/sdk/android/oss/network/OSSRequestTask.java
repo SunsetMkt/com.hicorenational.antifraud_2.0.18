@@ -21,8 +21,8 @@ public class OSSRequestTask<T extends OSSResult> implements Callable<T> {
     private ResponseParser<T> responseParser;
     private OSSRetryHandler retryHandler;
 
-    /* renamed from: com.alibaba.sdk.android.oss.network.OSSRequestTask$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: com.alibaba.sdk.android.oss.network.OSSRequestTask$1 */
+    static /* synthetic */ class C15621 {
         static final /* synthetic */ int[] $SwitchMap$com$alibaba$sdk$android$oss$common$HttpMethod = new int[HttpMethod.values().length];
 
         static {

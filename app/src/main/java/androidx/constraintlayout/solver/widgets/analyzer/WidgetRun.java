@@ -16,29 +16,31 @@ public abstract class WidgetRun implements Dependency {
     public DependencyNode end = new DependencyNode(this);
     protected RunType mRunType = RunType.NONE;
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.analyzer.WidgetRun$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = new int[ConstraintAnchor.Type.values().length];
+    /* renamed from: androidx.constraintlayout.solver.widgets.analyzer.WidgetRun$1 */
+    static /* synthetic */ class C04641 {
+
+        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
+        static final /* synthetic */ int[] f608x4c44d048 = new int[ConstraintAnchor.Type.values().length];
 
         static {
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
+                f608x4c44d048[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
+                f608x4c44d048[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.TOP.ordinal()] = 3;
+                f608x4c44d048[ConstraintAnchor.Type.TOP.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BASELINE.ordinal()] = 4;
+                f608x4c44d048[ConstraintAnchor.Type.BASELINE.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BOTTOM.ordinal()] = 5;
+                f608x4c44d048[ConstraintAnchor.Type.BOTTOM.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
         }
@@ -141,7 +143,7 @@ public abstract class WidgetRun implements Dependency {
             return null;
         }
         ConstraintWidget constraintWidget = constraintAnchor2.mOwner;
-        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[constraintAnchor2.mType.ordinal()];
+        int i2 = C04641.f608x4c44d048[constraintAnchor2.mType.ordinal()];
         if (i2 == 1) {
             return constraintWidget.horizontalRun.start;
         }
@@ -270,7 +272,7 @@ public abstract class WidgetRun implements Dependency {
         }
         ConstraintWidget constraintWidget = constraintAnchor2.mOwner;
         WidgetRun widgetRun = i2 == 0 ? constraintWidget.horizontalRun : constraintWidget.verticalRun;
-        int i3 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[constraintAnchor.mTarget.mType.ordinal()];
+        int i3 = C04641.f608x4c44d048[constraintAnchor.mTarget.mType.ordinal()];
         if (i3 != 1) {
             if (i3 != 2) {
                 if (i3 != 3) {

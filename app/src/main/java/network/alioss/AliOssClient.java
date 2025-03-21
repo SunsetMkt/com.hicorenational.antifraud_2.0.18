@@ -19,8 +19,8 @@ import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import java.util.ArrayList;
 import java.util.HashMap;
-import ui.Hicore;
-import util.n1;
+import p388ui.Hicore;
+import util.C7301n1;
 
 /* loaded from: classes2.dex */
 public class AliOssClient {
@@ -117,10 +117,10 @@ public class AliOssClient {
                     clientException.printStackTrace();
                 }
                 if (serviceException != null) {
-                    n1.b("ErrorCode", serviceException.getErrorCode());
-                    n1.b("RequestId", serviceException.getRequestId());
-                    n1.b("HostId", serviceException.getHostId());
-                    n1.b("RawMessage", serviceException.getRawMessage());
+                    C7301n1.m26457b("ErrorCode", serviceException.getErrorCode());
+                    C7301n1.m26457b("RequestId", serviceException.getRequestId());
+                    C7301n1.m26457b("HostId", serviceException.getHostId());
+                    C7301n1.m26457b("RawMessage", serviceException.getRawMessage());
                 }
                 ossUploadCallBack.onFailure();
             }
@@ -128,10 +128,10 @@ public class AliOssClient {
             @Override // com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
             public void onSuccess(PutObjectRequest putObjectRequest2, PutObjectResult putObjectResult) {
                 AliOssClient.this.myTime.removeCallbacksAndMessages(null);
-                n1.a("PutObject", "UploadSuccess");
-                n1.a(HttpHeaders.ETAG, putObjectResult.getETag());
-                n1.a("RequestId", putObjectResult.getRequestId());
-                n1.b("StatusCode", putObjectResult.getStatusCode() + "");
+                C7301n1.m26454a("PutObject", "UploadSuccess");
+                C7301n1.m26454a(HttpHeaders.ETAG, putObjectResult.getETag());
+                C7301n1.m26454a("RequestId", putObjectResult.getRequestId());
+                C7301n1.m26457b("StatusCode", putObjectResult.getStatusCode() + "");
                 if (putObjectResult.getStatusCode() == 200) {
                     ossUploadCallBack.onSuccess(putObjectRequest2, putObjectResult);
                 } else {

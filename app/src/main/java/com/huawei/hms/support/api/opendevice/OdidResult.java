@@ -4,13 +4,15 @@ import com.huawei.hms.support.api.client.Result;
 
 /* loaded from: classes.dex */
 public class OdidResult extends Result {
-    private String id;
+
+    /* renamed from: id */
+    private String f7852id;
 
     public String getId() {
-        return this.id;
+        return this.f7852id;
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f7852id = str;
     }
 }

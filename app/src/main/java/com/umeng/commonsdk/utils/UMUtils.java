@@ -21,23 +21,26 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import com.taobao.accs.utl.UtilityImpl;
-import com.umeng.analytics.pro.at;
-import com.umeng.analytics.pro.bh;
-import com.umeng.analytics.pro.cw;
+import com.umeng.analytics.C3311c;
+import com.umeng.analytics.pro.C3336at;
+import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.C3393cw;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.commonsdk.config.FieldManager;
 import com.umeng.commonsdk.debug.UMLog;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.framework.UMFrUtils;
+import com.umeng.commonsdk.internal.C3471b;
+import com.umeng.commonsdk.internal.C3472c;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
 import com.umeng.commonsdk.statistics.AnalyticsConstants;
+import com.umeng.commonsdk.statistics.C3494b;
 import com.umeng.commonsdk.statistics.SdkVersion;
 import com.umeng.commonsdk.statistics.common.DeviceConfig;
 import com.umeng.commonsdk.statistics.common.MLog;
-import com.umeng.commonsdk.statistics.idtracking.h;
+import com.umeng.commonsdk.statistics.idtracking.C3508h;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.xiaomi.mipush.sdk.Constants;
-import h.f1;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -58,6 +61,8 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.microedition.khronos.opengles.GL10;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import p286h.C5230f1;
 
 @SuppressLint({"NewApi"})
 /* loaded from: classes2.dex */
@@ -73,9 +78,9 @@ public class UMUtils {
     private static final String TAG = "UMUtils";
     public static final String UNKNOW = "";
     public static final String WIFI = "Wi-Fi";
-    private static final String KEY_SHARED_PREFERENCES_NAME = at.b().b(at.f10075i);
+    private static final String KEY_SHARED_PREFERENCES_NAME = C3336at.m10865b().m10868b(C3336at.f11495i);
     private static final Pattern pattern = Pattern.compile("UTDID\">([^<]+)");
-    private static final String SP_FILE_NAME = at.b().b(at.f10077k);
+    private static final String SP_FILE_NAME = C3336at.m10865b().m10868b(C3336at.f11497k);
     private static Object spLock = new Object();
     public static String VALUE_ANALYTICS_VERSION = "";
     public static String VALUE_GAME_VERSION = "";
@@ -150,7 +155,7 @@ public class UMUtils {
     private static String bytes2Hex(byte[] bArr) {
         String str = "";
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & f1.f16099c);
+            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
             if (hexString.length() == 1) {
                 str = str + "0";
             }
@@ -288,7 +293,7 @@ public class UMUtils {
     }
 
     public static String[] getActiveUser(Context context) {
-        return com.umeng.analytics.c.a(context);
+        return C3311c.m10792a(context);
     }
 
     public static String getApmFlag() {
@@ -338,9 +343,9 @@ public class UMUtils {
     public static String getAppVersinoCode(Context context, String str) {
         if (context != null && str != null) {
             try {
-                PackageInfo a2 = b.a().a(context, str, 64);
-                if (a2 != null) {
-                    return String.valueOf(a2.versionCode);
+                PackageInfo m12094a = C3529b.m12093a().m12094a(context, str, 64);
+                if (m12094a != null) {
+                    return String.valueOf(m12094a.versionCode);
                 }
             } catch (Exception e2) {
                 if (AnalyticsConstants.UM_DEBUG) {
@@ -363,11 +368,11 @@ public class UMUtils {
             return "";
         }
         try {
-            PackageInfo a2 = b.a().a(context, context.getPackageName(), 64);
-            if (a2 == null) {
+            PackageInfo m12094a = C3529b.m12093a().m12094a(context, context.getPackageName(), 64);
+            if (m12094a == null) {
                 return "";
             }
-            String valueOf = String.valueOf(a2.versionCode);
+            String valueOf = String.valueOf(m12094a.versionCode);
             sAppVersionCode = valueOf;
             return valueOf;
         } catch (Exception e2) {
@@ -393,11 +398,11 @@ public class UMUtils {
             return "";
         }
         try {
-            PackageInfo a2 = b.a().a(context, context.getPackageName(), 64);
-            if (a2 == null) {
+            PackageInfo m12094a = C3529b.m12093a().m12094a(context, context.getPackageName(), 64);
+            if (m12094a == null) {
                 return "";
             }
-            String str = a2.versionName;
+            String str = m12094a.versionName;
             sAppVersionName = str;
             return str;
         } catch (Throwable th) {
@@ -443,7 +448,7 @@ public class UMUtils {
             if (!AnalyticsConstants.UM_DEBUG) {
                 return null;
             }
-            MLog.i(AnalyticsConstants.LOG_TAG, "Could not read UMENG_APPKEY meta-data from AndroidManifest.xml.");
+            MLog.m11753i(AnalyticsConstants.LOG_TAG, "Could not read UMENG_APPKEY meta-data from AndroidManifest.xml.");
             return null;
         } catch (Throwable unused) {
             return null;
@@ -554,7 +559,7 @@ public class UMUtils {
             if (!AnalyticsConstants.UM_DEBUG) {
                 return null;
             }
-            MLog.i(AnalyticsConstants.LOG_TAG, "Could not read UMENG_CHANNEL meta-data from AndroidManifest.xml.");
+            MLog.m11753i(AnalyticsConstants.LOG_TAG, "Could not read UMENG_CHANNEL meta-data from AndroidManifest.xml.");
             return null;
         } catch (Throwable unused) {
             return null;
@@ -677,7 +682,7 @@ public class UMUtils {
         try {
             String lowerCase = properties.getProperty("ro.build.display.id").toLowerCase(Locale.getDefault());
             if (lowerCase.contains("flyme os")) {
-                return lowerCase.split(c.c.a.b.a.a.f3100g)[2];
+                return lowerCase.split(AbstractC1191a.f2568g)[2];
             }
             return null;
         } catch (Exception unused) {
@@ -787,7 +792,7 @@ public class UMUtils {
     }
 
     private static byte[] getMiniArray() {
-        return new byte[]{1, 6, 8, 12, cw.f10301k};
+        return new byte[]{1, 6, 8, 12, C3393cw.f11871k};
     }
 
     public static String getMultiProcessSP(Context context, String str) {
@@ -800,7 +805,7 @@ public class UMUtils {
                             sharedPreferences = context.getApplicationContext().getSharedPreferences(KEY_SHARED_PREFERENCES_NAME, 0);
                         } else {
                             String subProcessName = UMFrUtils.getSubProcessName(context);
-                            sharedPreferences = context.getApplicationContext().getSharedPreferences(subProcessName + c.c.a.b.a.a.s1 + KEY_SHARED_PREFERENCES_NAME, 0);
+                            sharedPreferences = context.getApplicationContext().getSharedPreferences(subProcessName + AbstractC1191a.f2606s1 + KEY_SHARED_PREFERENCES_NAME, 0);
                         }
                         if (sharedPreferences == null) {
                             return null;
@@ -860,13 +865,13 @@ public class UMUtils {
     }
 
     public static String getOaidRequiredTime(Context context) {
-        if (!FieldManager.allow(d.G)) {
+        if (!FieldManager.allow(C3531d.f12959G)) {
             return null;
         }
         try {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(h.f10946a, 0);
+            SharedPreferences sharedPreferences = context.getSharedPreferences(C3508h.f12800a, 0);
             if (sharedPreferences != null) {
-                return sharedPreferences.getString(h.f10948c, "");
+                return sharedPreferences.getString(C3508h.f12802c, "");
             }
             return null;
         } catch (Throwable unused) {
@@ -1022,7 +1027,7 @@ public class UMUtils {
         if (UMConfigure.needSendZcfgEnv(applicationContext)) {
             return null;
         }
-        return com.umeng.commonsdk.internal.b.a(applicationContext).a().a();
+        return C3471b.m11589a(applicationContext).m11590a().m11608a();
     }
 
     public static boolean isAppInstalled(Context context, String str) {
@@ -1030,7 +1035,7 @@ public class UMUtils {
             return false;
         }
         try {
-            return b.a().a(context, str, 0) != null;
+            return C3529b.m12093a().m12094a(context, str, 0) != null;
         } catch (Throwable unused) {
             return false;
         }
@@ -1133,11 +1138,11 @@ public class UMUtils {
             UMLog.mutlInfo(2, "统计SDK版本号: 9.6.4");
         }
         VALUE_ANALYTICS_VERSION = "9.6.4";
-        String b2 = com.umeng.commonsdk.internal.c.b();
-        if (!TextUtils.isEmpty(b2)) {
-            VALUE_ASMS_VERSION = b2;
+        String m11596b = C3472c.m11596b();
+        if (!TextUtils.isEmpty(m11596b)) {
+            VALUE_ASMS_VERSION = m11596b;
             if (UMConfigure.isDebugLog()) {
-                UMLog.mutlInfo(2, "ZID SDK版本号: " + b2);
+                UMLog.mutlInfo(2, "ZID SDK版本号: " + m11596b);
             }
         }
         Class<?> cls = getClass("com.umeng.analytics.game.GameSdkVersion");
@@ -1169,7 +1174,7 @@ public class UMUtils {
             }
         }
         if (getClass("com.umeng.message.PushAgent") != null) {
-            stringBuffer.append(bh.aA);
+            stringBuffer.append(C3351bh.f11576aA);
             Class<?> cls3 = getClass("com.umeng.message.MsgConstant");
             if (cls3 != null) {
                 try {
@@ -1186,7 +1191,7 @@ public class UMUtils {
         }
         Class<?> cls4 = getClass("com.umeng.socialize.UMShareAPI");
         if (cls4 != null) {
-            stringBuffer.append(bh.aE);
+            stringBuffer.append(C3351bh.f11580aE);
             Class<?> cls5 = getClass("com.umeng.a");
             if (cls5 != null) {
                 try {
@@ -1213,14 +1218,14 @@ public class UMUtils {
             stringBuffer.append("e");
         }
         if (getClass("com.umeng.umzid.ZIDManager") != null) {
-            stringBuffer.append(bh.aG);
+            stringBuffer.append(C3351bh.f11582aG);
         }
-        stringBuffer.append(bh.aF);
+        stringBuffer.append(C3351bh.f11581aF);
         if (SdkVersion.SDK_TYPE != 1 && getClass("com.umeng.commonsdk.internal.UMOplus") != null) {
             stringBuffer.append("o");
         }
         if (getClass("com.umeng.airec.RecAgent") != null) {
-            stringBuffer.append(bh.aK);
+            stringBuffer.append(C3351bh.f11586aK);
             Class<?> cls6 = getClass("com.umeng.airec.BuildConfig");
             if (cls6 != null) {
                 try {
@@ -1258,7 +1263,7 @@ public class UMUtils {
         try {
             Class<?> cls8 = getClass("com.umeng.umcrash.UMCrash");
             if (cls8 != null) {
-                stringBuffer.append(bh.aI);
+                stringBuffer.append(C3351bh.f11584aI);
                 Field declaredField = cls8.getDeclaredField("crashSdkVersion");
                 declaredField.setAccessible(true);
                 String str7 = (String) declaredField.get(cls8);
@@ -1325,8 +1330,8 @@ public class UMUtils {
         if (TextUtils.isEmpty(stringBuffer)) {
             return;
         }
-        com.umeng.commonsdk.statistics.b.f10869a = stringBuffer.toString();
-        String str11 = "module init:" + com.umeng.commonsdk.statistics.b.f10869a;
+        C3494b.f12715a = stringBuffer.toString();
+        String str11 = "module init:" + C3494b.f12715a;
     }
 
     public static void setAppkey(Context context, String str) {
@@ -1396,7 +1401,7 @@ public class UMUtils {
                             sharedPreferences = context.getApplicationContext().getSharedPreferences(KEY_SHARED_PREFERENCES_NAME, 0);
                         } else {
                             String subProcessName = UMFrUtils.getSubProcessName(context);
-                            sharedPreferences = context.getApplicationContext().getSharedPreferences(subProcessName + c.c.a.b.a.a.s1 + KEY_SHARED_PREFERENCES_NAME, 0);
+                            sharedPreferences = context.getApplicationContext().getSharedPreferences(subProcessName + AbstractC1191a.f2606s1 + KEY_SHARED_PREFERENCES_NAME, 0);
                         }
                         if (sharedPreferences != null) {
                             sharedPreferences.edit().putString(str, str2).commit();
@@ -1424,9 +1429,9 @@ public class UMUtils {
     public static String getAppVersionName(Context context, String str) {
         if (context != null && str != null) {
             try {
-                PackageInfo a2 = b.a().a(context, str, 64);
-                if (a2 != null) {
-                    return a2.versionName;
+                PackageInfo m12094a = C3529b.m12093a().m12094a(context, str, 64);
+                if (m12094a != null) {
+                    return m12094a.versionName;
                 }
             } catch (Throwable th) {
                 if (AnalyticsConstants.UM_DEBUG) {

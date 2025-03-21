@@ -11,9 +11,9 @@ import android.os.Messenger;
 import com.huawei.hms.support.api.entity.core.CommonCode;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.a;
-import com.taobao.accs.utl.t;
-import com.taobao.accs.utl.v;
+import com.taobao.accs.utl.C3033a;
+import com.taobao.accs.utl.C3052t;
+import com.taobao.accs.utl.C3054v;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -26,10 +26,10 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             if (message != null) {
-                ALog.i(TaoBaseService.TAG, "handleMessage on receive msg", "msg", message.toString());
+                ALog.m9183i(TaoBaseService.TAG, "handleMessage on receive msg", "msg", message.toString());
                 Intent intent = (Intent) message.getData().getParcelable(CommonCode.Resolution.HAS_RESOLUTION_FROM_APK);
                 if (intent != null) {
-                    ALog.i(TaoBaseService.TAG, "handleMessage get intent success", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent.toString());
+                    ALog.m9183i(TaoBaseService.TAG, "handleMessage get intent success", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent.toString());
                     TaoBaseService.this.onStartCommand(intent, 0, 0);
                 }
             }
@@ -96,7 +96,7 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        if (t.b() && v.a(this) && !isBinded) {
+        if (C3052t.m9277b() && C3054v.m9284a(this) && !isBinded) {
             isBinded = true;
             getApplicationContext().bindService(new Intent(this, getClass()), new ServiceConnection() { // from class: com.taobao.accs.base.TaoBaseService.2
                 @Override // android.content.ServiceConnection
@@ -135,7 +135,7 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
             @Override // java.lang.Runnable
             public void run() {
                 TaoBaseService taoBaseService = TaoBaseService.this;
-                a.a(taoBaseService, intent, taoBaseService);
+                C3033a.m9235a(taoBaseService, intent, taoBaseService);
             }
         });
         return 2;

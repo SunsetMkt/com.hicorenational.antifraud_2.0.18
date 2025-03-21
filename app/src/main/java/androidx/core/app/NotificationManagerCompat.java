@@ -69,26 +69,28 @@ public final class NotificationManagerCompat {
     private static final Object sLock = new Object();
 
     private static class NotifyTask implements Task {
-        final int id;
+
+        /* renamed from: id */
+        final int f615id;
         final Notification notif;
         final String packageName;
         final String tag;
 
         NotifyTask(String str, int i2, String str2, Notification notification) {
             this.packageName = str;
-            this.id = i2;
+            this.f615id = i2;
             this.tag = str2;
             this.notif = notification;
         }
 
         @Override // androidx.core.app.NotificationManagerCompat.Task
         public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
-            iNotificationSideChannel.notify(this.packageName, this.id, this.tag, this.notif);
+            iNotificationSideChannel.notify(this.packageName, this.f615id, this.tag, this.notif);
         }
 
         @NonNull
         public String toString() {
-            return "NotifyTask[packageName:" + this.packageName + ", id:" + this.id + ", tag:" + this.tag + "]";
+            return "NotifyTask[packageName:" + this.packageName + ", id:" + this.f615id + ", tag:" + this.tag + "]";
         }
     }
 
@@ -117,7 +119,7 @@ public final class NotificationManagerCompat {
             final ComponentName componentName;
 
             /* renamed from: service, reason: collision with root package name */
-            INotificationSideChannel f1581service;
+            INotificationSideChannel f25888service;
             boolean bound = false;
             ArrayDeque<Task> taskQueue = new ArrayDeque<>();
             int retryCount = 0;
@@ -152,7 +154,7 @@ public final class NotificationManagerCompat {
                 this.mContext.unbindService(this);
                 listenerRecord.bound = false;
             }
-            listenerRecord.f1581service = null;
+            listenerRecord.f25888service = null;
         }
 
         private void handleQueueTask(Task task) {
@@ -173,7 +175,7 @@ public final class NotificationManagerCompat {
         private void handleServiceConnected(ComponentName componentName, IBinder iBinder) {
             ListenerRecord listenerRecord = this.mRecordMap.get(componentName);
             if (listenerRecord != null) {
-                listenerRecord.f1581service = INotificationSideChannel.Stub.asInterface(iBinder);
+                listenerRecord.f25888service = INotificationSideChannel.Stub.asInterface(iBinder);
                 listenerRecord.retryCount = 0;
                 processListenerQueue(listenerRecord);
             }
@@ -193,7 +195,7 @@ public final class NotificationManagerCompat {
             if (listenerRecord.taskQueue.isEmpty()) {
                 return;
             }
-            if (!ensureServiceBound(listenerRecord) || listenerRecord.f1581service == null) {
+            if (!ensureServiceBound(listenerRecord) || listenerRecord.f25888service == null) {
                 scheduleListenerRetry(listenerRecord);
                 return;
             }
@@ -206,7 +208,7 @@ public final class NotificationManagerCompat {
                     if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
                         String str2 = "Sending task " + peek;
                     }
-                    peek.send(listenerRecord.f1581service);
+                    peek.send(listenerRecord.f25888service);
                     listenerRecord.taskQueue.remove();
                 } catch (DeadObjectException unused) {
                     if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
@@ -505,13 +507,15 @@ public final class NotificationManagerCompat {
 
     private static class CancelTask implements Task {
         final boolean all;
-        final int id;
+
+        /* renamed from: id */
+        final int f614id;
         final String packageName;
         final String tag;
 
         CancelTask(String str) {
             this.packageName = str;
-            this.id = 0;
+            this.f614id = 0;
             this.tag = null;
             this.all = true;
         }
@@ -521,18 +525,18 @@ public final class NotificationManagerCompat {
             if (this.all) {
                 iNotificationSideChannel.cancelAll(this.packageName);
             } else {
-                iNotificationSideChannel.cancel(this.packageName, this.id, this.tag);
+                iNotificationSideChannel.cancel(this.packageName, this.f614id, this.tag);
             }
         }
 
         @NonNull
         public String toString() {
-            return "CancelTask[packageName:" + this.packageName + ", id:" + this.id + ", tag:" + this.tag + ", all:" + this.all + "]";
+            return "CancelTask[packageName:" + this.packageName + ", id:" + this.f614id + ", tag:" + this.tag + ", all:" + this.all + "]";
         }
 
         CancelTask(String str, int i2, String str2) {
             this.packageName = str;
-            this.id = i2;
+            this.f614id = i2;
             this.tag = str2;
             this.all = false;
         }

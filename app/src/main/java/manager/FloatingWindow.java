@@ -9,9 +9,9 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
-import ui.Hicore;
-import ui.activity.BaseProgressUploadActivity;
-import util.c1;
+import p388ui.Hicore;
+import p388ui.activity.BaseProgressUploadActivity;
+import util.C7264c1;
 
 /* loaded from: classes2.dex */
 public class FloatingWindow implements IFloatingWindow {
@@ -60,7 +60,7 @@ public class FloatingWindow implements IFloatingWindow {
         layoutParams.gravity = 48;
         layoutParams.height = -2;
         layoutParams.x = 0;
-        layoutParams.y = c1.a(Hicore.getApp(), 35.0f);
+        layoutParams.y = C7264c1.m26285a(Hicore.getApp(), 35.0f);
         layoutParams.format = 1;
         layoutParams.flags = 7143848;
         return layoutParams;
@@ -108,7 +108,7 @@ public class FloatingWindow implements IFloatingWindow {
         layoutParams.gravity = 48;
         layoutParams.height = -2;
         layoutParams.x = 0;
-        layoutParams.y = c1.a(Hicore.getApp(), 35.0f);
+        layoutParams.y = C7264c1.m26285a(Hicore.getApp(), 35.0f);
         layoutParams.format = 1;
         layoutParams.flags = 7143848;
         return layoutParams;
@@ -125,7 +125,7 @@ public class FloatingWindow implements IFloatingWindow {
         layoutParams.gravity = 48;
         layoutParams.height = -2;
         layoutParams.x = 0;
-        layoutParams.y = c1.a(Hicore.getApp(), 35.0f);
+        layoutParams.y = C7264c1.m26285a(Hicore.getApp(), 35.0f);
         layoutParams.format = 1;
         layoutParams.flags = 7143848;
         return layoutParams;

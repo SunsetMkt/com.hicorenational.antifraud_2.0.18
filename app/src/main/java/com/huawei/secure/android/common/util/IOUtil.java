@@ -15,11 +15,11 @@ import java.io.Writer;
 /* loaded from: classes.dex */
 public class IOUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7683a = "IOUtil";
+    /* renamed from: a */
+    private static final String f8265a = "IOUtil";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final int f7684b = 4096;
+    /* renamed from: b */
+    private static final int f8266b = 4096;
 
     public static void close(Cursor cursor) {
         if (cursor != null) {

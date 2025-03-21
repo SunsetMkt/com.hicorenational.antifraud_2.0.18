@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import com.taobao.accs.client.GlobalClientInfo;
 import com.taobao.accs.common.Constants;
-import com.taobao.accs.data.g;
+import com.taobao.accs.data.C2989g;
 import com.taobao.accs.utl.ALog;
 import com.taobao.accs.utl.UtilityImpl;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
@@ -32,10 +32,10 @@ public class AntiBrush {
             try {
                 try {
                     String stringExtra = intent.getStringExtra("Result");
-                    ALog.e(AntiBrush.TAG, "anti onReceive result: " + stringExtra, new Object[0]);
+                    ALog.m9182e(AntiBrush.TAG, "anti onReceive result: " + stringExtra, new Object[0]);
                     AntiBrush.onResult(GlobalClientInfo.getContext(), stringExtra.equalsIgnoreCase("success"));
                 } catch (Exception e2) {
-                    ALog.e(AntiBrush.TAG, "anti onReceive", e2, new Object[0]);
+                    ALog.m9181e(AntiBrush.TAG, "anti onReceive", e2, new Object[0]);
                     AntiBrush.onResult(GlobalClientInfo.getContext(), false);
                 }
             } catch (Throwable th) {
@@ -51,7 +51,7 @@ public class AntiBrush {
 
     private void handleantiBrush(String str) {
         if (mIsInCheckCodeActivity) {
-            ALog.e(TAG, "handleantiBrush return", "mIsInCheckCodeActivity", Boolean.valueOf(mIsInCheckCodeActivity));
+            ALog.m9182e(TAG, "handleantiBrush return", "mIsInCheckCodeActivity", Boolean.valueOf(mIsInCheckCodeActivity));
             return;
         }
         try {
@@ -60,7 +60,7 @@ public class AntiBrush {
             intent.setPackage(this.mContext.getPackageName());
             intent.setFlags(CommonNetImpl.FLAG_AUTH);
             intent.putExtra("Location", str);
-            ALog.e(TAG, "handleAntiBrush:", new Object[0]);
+            ALog.m9182e(TAG, "handleAntiBrush:", new Object[0]);
             this.mContext.startActivity(intent);
             mIsInCheckCodeActivity = true;
             if (this.mAntiAttackReceiver == null) {
@@ -68,7 +68,7 @@ public class AntiBrush {
             }
             this.mContext.registerReceiver(this.mAntiAttackReceiver, new IntentFilter(ANTI_ATTACK_RESULT_ACTION));
         } catch (Throwable th) {
-            ALog.e(TAG, "handleantiBrush", th, new Object[0]);
+            ALog.m9181e(TAG, "handleantiBrush", th, new Object[0]);
         }
     }
 
@@ -78,7 +78,7 @@ public class AntiBrush {
         intent.setPackage(context.getPackageName());
         intent.putExtra("command", 104);
         intent.putExtra(Constants.KEY_ANTI_BRUSH_RET, z);
-        g.a().b(context, intent);
+        C2989g.m9041a().m9052b(context, intent);
         ScheduledFuture<?> scheduledFuture = mTimeoutTask;
         if (scheduledFuture != null) {
             scheduledFuture.cancel(true);
@@ -86,7 +86,7 @@ public class AntiBrush {
         }
         String str = mHost;
         if (str != null) {
-            UtilityImpl.b(context, b.a(str));
+            UtilityImpl.m9210b(context, C2964b.m8909a(str));
         }
     }
 
@@ -106,7 +106,7 @@ public class AntiBrush {
             java.lang.String r1 = "AntiBrush"
             r2 = 0
             if (r9 == 0) goto L88
-            boolean r3 = com.taobao.accs.utl.UtilityImpl.a()     // Catch: java.lang.Throwable -> L85
+            boolean r3 = com.taobao.accs.utl.UtilityImpl.m9203a()     // Catch: java.lang.Throwable -> L85
             if (r3 == 0) goto L88
             com.taobao.accs.base.TaoBaseService$ExtHeaderType r3 = com.taobao.accs.base.TaoBaseService.ExtHeaderType.TYPE_STATUS     // Catch: java.lang.Throwable -> L85
             int r3 = r3.ordinal()     // Catch: java.lang.Throwable -> L85
@@ -137,7 +137,7 @@ public class AntiBrush {
             r3.append(r9)     // Catch: java.lang.Throwable -> L85
             java.lang.String r3 = r3.toString()     // Catch: java.lang.Throwable -> L85
             java.lang.Object[] r4 = new java.lang.Object[r2]     // Catch: java.lang.Throwable -> L85
-            com.taobao.accs.utl.ALog.e(r1, r3, r4)     // Catch: java.lang.Throwable -> L85
+            com.taobao.accs.utl.ALog.m9182e(r1, r3, r4)     // Catch: java.lang.Throwable -> L85
             r7.handleantiBrush(r9)     // Catch: java.lang.Throwable -> L85
             java.util.concurrent.ScheduledFuture<?> r9 = com.taobao.accs.antibrush.AntiBrush.mTimeoutTask     // Catch: java.lang.Throwable -> L85
             r3 = 0
@@ -166,25 +166,25 @@ public class AntiBrush {
         L88:
             r0 = 0
         L89:
-            java.lang.String r8 = com.taobao.accs.client.GlobalClientInfo.f8394c     // Catch: java.lang.Throwable -> Laa
+            java.lang.String r8 = com.taobao.accs.client.GlobalClientInfo.f9388c     // Catch: java.lang.Throwable -> Laa
             boolean r8 = android.text.TextUtils.isEmpty(r8)     // Catch: java.lang.Throwable -> Laa
             if (r8 != 0) goto Lb2
             java.lang.String r8 = com.taobao.accs.antibrush.AntiBrush.mHost     // Catch: java.lang.Throwable -> Laa
-            java.lang.String r8 = com.taobao.accs.antibrush.b.a(r8)     // Catch: java.lang.Throwable -> Laa
+            java.lang.String r8 = com.taobao.accs.antibrush.C2964b.m8909a(r8)     // Catch: java.lang.Throwable -> Laa
             boolean r8 = android.text.TextUtils.isEmpty(r8)     // Catch: java.lang.Throwable -> Laa
             if (r8 == 0) goto Lb2
             java.lang.String r8 = "cookie invalid, clear"
             java.lang.Object[] r9 = new java.lang.Object[r2]     // Catch: java.lang.Throwable -> Laa
-            com.taobao.accs.utl.ALog.e(r1, r8, r9)     // Catch: java.lang.Throwable -> Laa
+            com.taobao.accs.utl.ALog.m9182e(r1, r8, r9)     // Catch: java.lang.Throwable -> Laa
             android.content.Context r8 = r7.mContext     // Catch: java.lang.Throwable -> Laa
-            com.taobao.accs.utl.UtilityImpl.n(r8)     // Catch: java.lang.Throwable -> Laa
+            com.taobao.accs.utl.UtilityImpl.m9232n(r8)     // Catch: java.lang.Throwable -> Laa
             goto Lb2
         Laa:
             r8 = move-exception
         Lab:
             java.lang.Object[] r9 = new java.lang.Object[r2]
             java.lang.String r2 = "checkAntiBrush error"
-            com.taobao.accs.utl.ALog.e(r1, r2, r8, r9)
+            com.taobao.accs.utl.ALog.m9181e(r1, r2, r8, r9)
         Lb2:
             return r0
         */

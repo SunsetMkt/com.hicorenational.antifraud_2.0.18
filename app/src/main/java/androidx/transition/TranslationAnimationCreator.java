@@ -29,9 +29,9 @@ class TranslationAnimationCreator {
             this.mStartY = i3 - Math.round(this.mMovingView.getTranslationY());
             this.mTerminalX = f2;
             this.mTerminalY = f3;
-            this.mTransitionPosition = (int[]) this.mViewInHierarchy.getTag(R.id.transition_position);
+            this.mTransitionPosition = (int[]) this.mViewInHierarchy.getTag(C0703R.id.transition_position);
             if (this.mTransitionPosition != null) {
-                this.mViewInHierarchy.setTag(R.id.transition_position, null);
+                this.mViewInHierarchy.setTag(C0703R.id.transition_position, null);
             }
         }
 
@@ -42,7 +42,7 @@ class TranslationAnimationCreator {
             }
             this.mTransitionPosition[0] = Math.round(this.mStartX + this.mMovingView.getTranslationX());
             this.mTransitionPosition[1] = Math.round(this.mStartY + this.mMovingView.getTranslationY());
-            this.mViewInHierarchy.setTag(R.id.transition_position, this.mTransitionPosition);
+            this.mViewInHierarchy.setTag(C0703R.id.transition_position, this.mTransitionPosition);
         }
 
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
@@ -74,7 +74,7 @@ class TranslationAnimationCreator {
         float f7;
         float translationX = view.getTranslationX();
         float translationY = view.getTranslationY();
-        if (((int[]) transitionValues.view.getTag(R.id.transition_position)) != null) {
+        if (((int[]) transitionValues.view.getTag(C0703R.id.transition_position)) != null) {
             f6 = (r4[0] - i2) + translationX;
             f7 = (r4[1] - i3) + translationY;
         } else {

@@ -24,7 +24,8 @@ public final class Headers {
         this.namesAndValues = (String[]) list.toArray(new String[list.size()]);
     }
 
-    public static Headers of(String... strArr) {
+    /* renamed from: of */
+    public static Headers m24924of(String... strArr) {
         if (strArr == null) {
             throw new NullPointerException("namesAndValues == null");
         }
@@ -255,7 +256,8 @@ public final class Headers {
         this.namesAndValues = strArr;
     }
 
-    public static Headers of(Map<String, String> map) {
+    /* renamed from: of */
+    public static Headers m24923of(Map<String, String> map) {
         if (map != null) {
             String[] strArr = new String[map.size() * 2];
             int i2 = 0;

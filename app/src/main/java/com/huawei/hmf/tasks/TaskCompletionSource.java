@@ -1,10 +1,10 @@
 package com.huawei.hmf.tasks;
 
-import com.huawei.hmf.tasks.a.i;
+import com.huawei.hmf.tasks.p170a.C2279i;
 
 /* loaded from: classes.dex */
 public class TaskCompletionSource<TResult> {
-    private final i<TResult> task = new i<>();
+    private final C2279i<TResult> task = new C2279i<>();
 
     public TaskCompletionSource() {
     }
@@ -13,7 +13,7 @@ public class TaskCompletionSource<TResult> {
         cancellationToken.register(new Runnable() { // from class: com.huawei.hmf.tasks.TaskCompletionSource.1
             @Override // java.lang.Runnable
             public void run() {
-                TaskCompletionSource.this.task.a();
+                TaskCompletionSource.this.task.m6489a();
             }
         });
     }
@@ -23,10 +23,10 @@ public class TaskCompletionSource<TResult> {
     }
 
     public void setException(Exception exc) {
-        this.task.a(exc);
+        this.task.m6487a(exc);
     }
 
     public void setResult(TResult tresult) {
-        this.task.a((i<TResult>) tresult);
+        this.task.m6488a((C2279i<TResult>) tresult);
     }
 }

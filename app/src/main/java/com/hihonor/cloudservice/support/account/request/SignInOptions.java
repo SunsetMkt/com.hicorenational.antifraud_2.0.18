@@ -10,11 +10,14 @@ import java.util.Set;
 
 /* loaded from: classes.dex */
 public class SignInOptions extends AbstractSignInOptions {
-    public static final SignInOptions q = new com.hihonor.cloudservice.support.account.request.a().c().d().a();
-    public static final Parcelable.Creator<SignInOptions> CREATOR = new a();
 
-    class a implements Parcelable.Creator<SignInOptions> {
-        a() {
+    /* renamed from: q */
+    public static final SignInOptions f6374q = new C2131a().m5989c().m5992d().m5981a();
+    public static final Parcelable.Creator<SignInOptions> CREATOR = new C2130a();
+
+    /* renamed from: com.hihonor.cloudservice.support.account.request.SignInOptions$a */
+    class C2130a implements Parcelable.Creator<SignInOptions> {
+        C2130a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
@@ -43,14 +46,14 @@ public class SignInOptions extends AbstractSignInOptions {
             return false;
         }
         SignInOptions signInOptions = (SignInOptions) obj;
-        return a(this.f6009a, signInOptions.f6009a) && a(this.f6010b, signInOptions.f6010b);
+        return m6025a(this.f6399a, signInOptions.f6399a) && m6025a(this.f6400b, signInOptions.f6400b);
     }
 
     @Override // com.hihonor.cloudservice.support.feature.request.AbstractSignInOptions
     public int hashCode() {
-        ArrayList<Scope> arrayList = this.f6009a;
+        ArrayList<Scope> arrayList = this.f6399a;
         int hashCode = ((arrayList == null ? 0 : arrayList.hashCode()) + 31) * 31;
-        ArrayList<PermissionInfo> arrayList2 = this.f6010b;
+        ArrayList<PermissionInfo> arrayList2 = this.f6400b;
         return hashCode + (arrayList2 != null ? arrayList2.hashCode() : 0);
     }
 

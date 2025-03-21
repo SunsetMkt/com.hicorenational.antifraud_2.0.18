@@ -9,7 +9,9 @@ public class PopupBean {
     private String content;
     private String createTime;
     private String endTime;
-    private long id;
+
+    /* renamed from: id */
+    private long f1606id;
     private int imgHeight;
     private int imgWidth;
     private String linkTitle;
@@ -18,7 +20,9 @@ public class PopupBean {
     private int popupCountType;
     private String startTime;
     private String title;
-    private String to;
+
+    /* renamed from: to */
+    private String f1607to;
     private int type;
     private String updateTime;
 
@@ -39,7 +43,7 @@ public class PopupBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1606id;
     }
 
     public int getImgHeight() {
@@ -75,7 +79,7 @@ public class PopupBean {
     }
 
     public String getTo() {
-        return this.to;
+        return this.f1607to;
     }
 
     public int getType() {
@@ -103,7 +107,7 @@ public class PopupBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1606id = j2;
     }
 
     public void setImgHeight(int i2) {
@@ -139,7 +143,7 @@ public class PopupBean {
     }
 
     public void setTo(String str) {
-        this.to = str;
+        this.f1607to = str;
     }
 
     public void setType(int i2) {

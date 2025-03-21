@@ -2,11 +2,11 @@ package com.umeng.commonsdk.statistics.internal;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.C3336at;
 
 /* loaded from: classes2.dex */
 public class PreferenceWrapper {
-    private static final String DEFAULT_PREFERENCE = at.b().b(at.f10076j);
+    private static final String DEFAULT_PREFERENCE = C3336at.m10865b().m10868b(C3336at.f11496j);
 
     private PreferenceWrapper() {
     }

@@ -9,9 +9,9 @@ import android.util.SparseArray;
 import android.view.View;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.HelperWidget;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.R;
 import androidx.constraintlayout.widget.VirtualLayout;
 
 /* loaded from: classes.dex */
@@ -43,65 +43,65 @@ public class Flow extends VirtualLayout {
         super.init(attributeSet);
         this.mFlow = new androidx.constraintlayout.solver.widgets.Flow();
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_Layout);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.ConstraintLayout_Layout_android_orientation) {
+                if (index == C0471R.styleable.ConstraintLayout_Layout_android_orientation) {
                     this.mFlow.setOrientation(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_padding) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_padding) {
                     this.mFlow.setPadding(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingStart) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_paddingStart) {
                     if (Build.VERSION.SDK_INT >= 17) {
                         this.mFlow.setPaddingStart(obtainStyledAttributes.getDimensionPixelSize(index, 0));
                     }
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingEnd) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_paddingEnd) {
                     if (Build.VERSION.SDK_INT >= 17) {
                         this.mFlow.setPaddingEnd(obtainStyledAttributes.getDimensionPixelSize(index, 0));
                     }
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingLeft) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_paddingLeft) {
                     this.mFlow.setPaddingLeft(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingTop) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_paddingTop) {
                     this.mFlow.setPaddingTop(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingRight) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_paddingRight) {
                     this.mFlow.setPaddingRight(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_paddingBottom) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_paddingBottom) {
                     this.mFlow.setPaddingBottom(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_wrapMode) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_wrapMode) {
                     this.mFlow.setWrapMode(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalStyle) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_horizontalStyle) {
                     this.mFlow.setHorizontalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalStyle) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_verticalStyle) {
                     this.mFlow.setVerticalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstHorizontalStyle) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_firstHorizontalStyle) {
                     this.mFlow.setFirstHorizontalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastHorizontalStyle) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_lastHorizontalStyle) {
                     this.mFlow.setLastHorizontalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstVerticalStyle) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_firstVerticalStyle) {
                     this.mFlow.setFirstVerticalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastVerticalStyle) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_lastVerticalStyle) {
                     this.mFlow.setLastVerticalStyle(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalBias) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_horizontalBias) {
                     this.mFlow.setHorizontalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstHorizontalBias) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_firstHorizontalBias) {
                     this.mFlow.setFirstHorizontalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastHorizontalBias) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_lastHorizontalBias) {
                     this.mFlow.setLastHorizontalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_firstVerticalBias) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_firstVerticalBias) {
                     this.mFlow.setFirstVerticalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_lastVerticalBias) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_lastVerticalBias) {
                     this.mFlow.setLastVerticalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalBias) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_verticalBias) {
                     this.mFlow.setVerticalBias(obtainStyledAttributes.getFloat(index, 0.5f));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalAlign) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_horizontalAlign) {
                     this.mFlow.setHorizontalAlign(obtainStyledAttributes.getInt(index, 2));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalAlign) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_verticalAlign) {
                     this.mFlow.setVerticalAlign(obtainStyledAttributes.getInt(index, 2));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_horizontalGap) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_horizontalGap) {
                     this.mFlow.setHorizontalGap(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_verticalGap) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_verticalGap) {
                     this.mFlow.setVerticalGap(obtainStyledAttributes.getDimensionPixelSize(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_flow_maxElementsWrap) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_flow_maxElementsWrap) {
                     this.mFlow.setMaxElementsWrap(obtainStyledAttributes.getInt(index, -1));
                 }
             }

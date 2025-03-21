@@ -1,6 +1,6 @@
 package com.huawei.agconnect.config.impl;
 
-import com.umeng.analytics.pro.cw;
+import com.umeng.analytics.pro.C3393cw;
 
 /* loaded from: classes.dex */
 public class Hex {
@@ -38,7 +38,7 @@ public class Hex {
         StringBuilder sb = new StringBuilder(bArr.length * 2);
         for (byte b2 : bArr) {
             sb.append(HEX_CODE[(b2 >> 4) & 15]);
-            sb.append(HEX_CODE[b2 & cw.f10303m]);
+            sb.append(HEX_CODE[b2 & C3393cw.f11873m]);
         }
         return sb.toString();
     }

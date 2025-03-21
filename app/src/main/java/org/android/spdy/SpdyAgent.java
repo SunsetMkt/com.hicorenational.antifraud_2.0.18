@@ -1,8 +1,6 @@
 package org.android.spdy;
 
 import android.content.Context;
-import h.f1;
-import h.z2.h0;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import okio.Utf8;
+import p286h.C5230f1;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes2.dex */
 public final class SpdyAgent {
@@ -39,8 +39,12 @@ public final class SpdyAgent {
     private AccsSSLCallback accsSSLCallback;
     private long agentNativePtr;
     private static final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
-    private static final Lock r = rwLock.readLock();
-    private static final Lock w = rwLock.writeLock();
+
+    /* renamed from: r */
+    private static final Lock f21519r = rwLock.readLock();
+
+    /* renamed from: w */
+    private static final Lock f21520w = rwLock.writeLock();
     private static volatile boolean loadSucc = false;
     private static volatile SpdyAgent gSingleInstance = null;
     private static Object lock = new Object();
@@ -71,12 +75,12 @@ public final class SpdyAgent {
 
     static void InvlidCharJudge(byte[] bArr, byte[] bArr2) {
         for (int i2 = 0; i2 < bArr.length; i2++) {
-            if ((bArr[i2] & f1.f16099c) < 32 || (bArr[i2] & f1.f16099c) > 126) {
+            if ((bArr[i2] & C5230f1.f20085c) < 32 || (bArr[i2] & C5230f1.f20085c) > 126) {
                 bArr[i2] = Utf8.REPLACEMENT_BYTE;
             }
         }
         for (int i3 = 0; i3 < bArr2.length; i3++) {
-            if ((bArr2[i3] & f1.f16099c) < 32 || (bArr2[i3] & f1.f16099c) > 126) {
+            if ((bArr2[i3] & C5230f1.f20085c) < 32 || (bArr2[i3] & C5230f1.f20085c) > 126) {
                 bArr2[i3] = Utf8.REPLACEMENT_BYTE;
             }
         }
@@ -248,7 +252,7 @@ public final class SpdyAgent {
             sb.append(key);
             sb.append('=');
             sb.append(value);
-            sb.append(h0.f16706c);
+            sb.append(C5736h0.f20714c);
             i2 += key.length() + 1 + value.length();
             tableListJudge(i2);
         }
@@ -557,7 +561,7 @@ public final class SpdyAgent {
 
     void clearSpdySession(String str, String str2, int i2) {
         if (str != null) {
-            w.lock();
+            f21520w.lock();
             if (str != null) {
                 try {
                     this.sessionMgr.remove(str + str2 + i2);
@@ -607,11 +611,11 @@ public final class SpdyAgent {
     }
 
     void removeSession(SpdySession spdySession) {
-        w.lock();
+        f21520w.lock();
         try {
             this.sessionQueue.remove(spdySession);
         } finally {
-            w.unlock();
+            f21520w.unlock();
         }
     }
 

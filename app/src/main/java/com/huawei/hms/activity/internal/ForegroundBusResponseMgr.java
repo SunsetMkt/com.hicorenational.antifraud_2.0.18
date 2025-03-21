@@ -7,14 +7,14 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class ForegroundBusResponseMgr {
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final ForegroundBusResponseMgr f6534b = new ForegroundBusResponseMgr();
+    /* renamed from: b */
+    private static final ForegroundBusResponseMgr f7034b = new ForegroundBusResponseMgr();
 
-    /* renamed from: a, reason: collision with root package name */
-    private final Map<String, BusResponseCallback> f6535a = new HashMap();
+    /* renamed from: a */
+    private final Map<String, BusResponseCallback> f7035a = new HashMap();
 
     public static ForegroundBusResponseMgr getInstance() {
-        return f6534b;
+        return f7034b;
     }
 
     public BusResponseCallback get(String str) {
@@ -22,8 +22,8 @@ public class ForegroundBusResponseMgr {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        synchronized (this.f6535a) {
-            busResponseCallback = this.f6535a.get(str);
+        synchronized (this.f7035a) {
+            busResponseCallback = this.f7035a.get(str);
         }
         return busResponseCallback;
     }
@@ -32,9 +32,9 @@ public class ForegroundBusResponseMgr {
         if (TextUtils.isEmpty(str) || busResponseCallback == null) {
             return;
         }
-        synchronized (this.f6535a) {
-            if (!this.f6535a.containsKey(str)) {
-                this.f6535a.put(str, busResponseCallback);
+        synchronized (this.f7035a) {
+            if (!this.f7035a.containsKey(str)) {
+                this.f7035a.put(str, busResponseCallback);
             }
         }
     }
@@ -43,8 +43,8 @@ public class ForegroundBusResponseMgr {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        synchronized (this.f6535a) {
-            this.f6535a.remove(str);
+        synchronized (this.f7035a) {
+            this.f7035a.remove(str);
         }
     }
 }

@@ -23,7 +23,9 @@ public class PlatformName {
     public static String MORE = "更多";
     public static String PINTEREST = "Pinterest";
     public static String POCKET = "Pocket";
-    public static String QQ = "QQ";
+
+    /* renamed from: QQ */
+    public static String f13581QQ = "QQ";
     public static String QZONE = "QQ空间";
     public static String SINA = "新浪";
     public static String SMS = "短信";

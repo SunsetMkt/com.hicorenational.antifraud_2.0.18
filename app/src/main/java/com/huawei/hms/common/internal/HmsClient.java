@@ -22,33 +22,33 @@ public abstract class HmsClient extends BaseHmsClient implements AnyClient {
     @Override // com.huawei.hms.common.internal.AnyClient
     public void post(IMessageEntity iMessageEntity, String str, AnyClient.CallBack callBack) {
         if (callBack == null) {
-            HMSLog.e("HmsClient", "callback is invalid, discard.");
+            HMSLog.m7715e("HmsClient", "callback is invalid, discard.");
             return;
         }
         if (!(iMessageEntity instanceof RequestHeader) || str == null) {
-            HMSLog.e("HmsClient", "arguments is invalid.");
+            HMSLog.m7715e("HmsClient", "arguments is invalid.");
             callBack.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "Args is invalid"), new JSONObject().toString());
             return;
         }
         if (!isConnected()) {
-            HMSLog.i("HmsClient", "No connection now, the connection status:" + getConnectionStatus());
+            HMSLog.m7717i("HmsClient", "No connection now, the connection status:" + getConnectionStatus());
             if (getConnectionStatus() != 6) {
-                HMSLog.e("HmsClient", "post failed for not connected.");
+                HMSLog.m7715e("HmsClient", "post failed for not connected.");
                 callBack.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.INTERNAL_ERROR, "Not Connected"), new JSONObject().toString());
                 return;
             } else {
-                HMSLog.i("HmsClient", "in timeout-disconnect status, need to bind again.");
-                a();
+                HMSLog.m7717i("HmsClient", "in timeout-disconnect status, need to bind again.");
+                m6735a();
             }
         }
         RequestHeader requestHeader = (RequestHeader) iMessageEntity;
-        HMSLog.i("HmsClient", "post msg " + requestHeader);
+        HMSLog.m7717i("HmsClient", "post msg " + requestHeader);
         Activity cpActivity = getClientSettings().getCpActivity();
         boolean z = cpActivity == null;
         if (z) {
-            HMSLog.i("HmsClient", "Activity is null for " + getClientSettings().getAppID());
+            HMSLog.m7717i("HmsClient", "Activity is null for " + getClientSettings().getAppID());
         }
-        (z ? new BaseAdapter(this) : new BaseAdapter(this, cpActivity)).baseRequest(requestHeader.toJson(), str, requestHeader.getParcelable(), new a(this, callBack));
+        (z ? new BaseAdapter(this) : new BaseAdapter(this, cpActivity)).baseRequest(requestHeader.toJson(), str, requestHeader.getParcelable(), new C2336a(this, callBack));
     }
 
     public void updateSessionId(String str) {
@@ -57,21 +57,23 @@ public abstract class HmsClient extends BaseHmsClient implements AnyClient {
         }
     }
 
-    private static class a implements BaseAdapter.BaseCallBack {
+    /* renamed from: com.huawei.hms.common.internal.HmsClient$a */
+    private static class C2336a implements BaseAdapter.BaseCallBack {
 
-        /* renamed from: a, reason: collision with root package name */
-        private final AnyClient.CallBack f6760a;
+        /* renamed from: a */
+        private final AnyClient.CallBack f7280a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private final WeakReference<HmsClient> f6761b;
+        /* renamed from: b */
+        private final WeakReference<HmsClient> f7281b;
 
-        a(HmsClient hmsClient, AnyClient.CallBack callBack) {
-            this.f6760a = callBack;
-            this.f6761b = new WeakReference<>(hmsClient);
+        C2336a(HmsClient hmsClient, AnyClient.CallBack callBack) {
+            this.f7280a = callBack;
+            this.f7281b = new WeakReference<>(hmsClient);
         }
 
-        private void a(String str) {
-            HmsClient hmsClient = this.f6761b.get();
+        /* renamed from: a */
+        private void m6739a(String str) {
+            HmsClient hmsClient = this.f7281b.get();
             if (hmsClient != null) {
                 hmsClient.updateSessionId(str);
             }
@@ -80,55 +82,57 @@ public abstract class HmsClient extends BaseHmsClient implements AnyClient {
         @Override // com.huawei.hms.adapter.BaseAdapter.BaseCallBack
         public void onComplete(String str, String str2, Parcelable parcelable) {
             if (parcelable == null) {
-                a(str, str2);
+                m6740a(str, str2);
             } else {
-                a(str, str2, parcelable);
+                m6741a(str, str2, parcelable);
             }
         }
 
         @Override // com.huawei.hms.adapter.BaseAdapter.BaseCallBack
         public void onError(String str) {
-            if (this.f6760a == null) {
+            if (this.f7280a == null) {
                 return;
             }
             ResponseWrap responseWrap = new ResponseWrap(new ResponseHeader());
             if (!responseWrap.fromJson(str)) {
-                this.f6760a.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "response header json error"), new JSONObject().toString());
+                this.f7280a.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "response header json error"), new JSONObject().toString());
                 return;
             }
-            HMSLog.i("HmsClient", "receive msg " + responseWrap);
+            HMSLog.m7717i("HmsClient", "receive msg " + responseWrap);
             ResponseHeader responseHeader = responseWrap.getResponseHeader();
-            a(responseHeader.getSessionId());
-            this.f6760a.onCallback(responseHeader, responseWrap.getBody());
+            m6739a(responseHeader.getSessionId());
+            this.f7280a.onCallback(responseHeader, responseWrap.getBody());
         }
 
-        private void a(String str, String str2) {
-            if (this.f6760a == null) {
+        /* renamed from: a */
+        private void m6740a(String str, String str2) {
+            if (this.f7280a == null) {
                 return;
             }
             ResponseHeader responseHeader = new ResponseHeader();
             if (responseHeader.fromJson(str)) {
-                HMSLog.i("HmsClient", "receive msg " + responseHeader);
-                a(responseHeader.getSessionId());
-                this.f6760a.onCallback(responseHeader, str2);
+                HMSLog.m7717i("HmsClient", "receive msg " + responseHeader);
+                m6739a(responseHeader.getSessionId());
+                this.f7280a.onCallback(responseHeader, str2);
                 return;
             }
-            this.f6760a.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "response header json error"), new JSONObject().toString());
+            this.f7280a.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "response header json error"), new JSONObject().toString());
         }
 
-        private void a(String str, String str2, Parcelable parcelable) {
-            if (this.f6760a == null) {
+        /* renamed from: a */
+        private void m6741a(String str, String str2, Parcelable parcelable) {
+            if (this.f7280a == null) {
                 return;
             }
             ResponseHeader responseHeader = new ResponseHeader();
             if (responseHeader.fromJson(str)) {
                 responseHeader.setParcelable(parcelable);
-                HMSLog.i("HmsClient", "receive msg " + responseHeader);
-                a(responseHeader.getSessionId());
-                this.f6760a.onCallback(responseHeader, str2);
+                HMSLog.m7717i("HmsClient", "receive msg " + responseHeader);
+                m6739a(responseHeader.getSessionId());
+                this.f7280a.onCallback(responseHeader, str2);
                 return;
             }
-            this.f6760a.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "response header json error"), new JSONObject().toString());
+            this.f7280a.onCallback(new ResponseHeader(1, CommonCode.ErrorCode.ARGUMENTS_INVALID, "response header json error"), new JSONObject().toString());
         }
     }
 }

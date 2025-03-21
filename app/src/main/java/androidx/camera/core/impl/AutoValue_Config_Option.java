@@ -6,7 +6,9 @@ import androidx.camera.core.impl.Config;
 
 /* loaded from: classes.dex */
 final class AutoValue_Config_Option<T> extends Config.Option<T> {
-    private final String id;
+
+    /* renamed from: id */
+    private final String f479id;
     private final Object token;
     private final Class<T> valueClass;
 
@@ -14,7 +16,7 @@ final class AutoValue_Config_Option<T> extends Config.Option<T> {
         if (str == null) {
             throw new NullPointerException("Null id");
         }
-        this.id = str;
+        this.f479id = str;
         if (cls == null) {
             throw new NullPointerException("Null valueClass");
         }
@@ -30,7 +32,7 @@ final class AutoValue_Config_Option<T> extends Config.Option<T> {
             return false;
         }
         Config.Option option = (Config.Option) obj;
-        if (this.id.equals(option.getId()) && this.valueClass.equals(option.getValueClass())) {
+        if (this.f479id.equals(option.getId()) && this.valueClass.equals(option.getValueClass())) {
             Object obj2 = this.token;
             if (obj2 == null) {
                 if (option.getToken() == null) {
@@ -46,7 +48,7 @@ final class AutoValue_Config_Option<T> extends Config.Option<T> {
     @Override // androidx.camera.core.impl.Config.Option
     @NonNull
     public String getId() {
-        return this.id;
+        return this.f479id;
     }
 
     @Override // androidx.camera.core.impl.Config.Option
@@ -62,12 +64,12 @@ final class AutoValue_Config_Option<T> extends Config.Option<T> {
     }
 
     public int hashCode() {
-        int hashCode = (((this.id.hashCode() ^ 1000003) * 1000003) ^ this.valueClass.hashCode()) * 1000003;
+        int hashCode = (((this.f479id.hashCode() ^ 1000003) * 1000003) ^ this.valueClass.hashCode()) * 1000003;
         Object obj = this.token;
         return hashCode ^ (obj == null ? 0 : obj.hashCode());
     }
 
     public String toString() {
-        return "Option{id=" + this.id + ", valueClass=" + this.valueClass + ", token=" + this.token + "}";
+        return "Option{id=" + this.f479id + ", valueClass=" + this.valueClass + ", token=" + this.token + "}";
     }
 }

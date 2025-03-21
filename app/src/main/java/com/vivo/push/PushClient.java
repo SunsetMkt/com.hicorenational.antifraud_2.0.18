@@ -3,6 +3,10 @@ package com.vivo.push;
 import android.content.Context;
 import android.text.TextUtils;
 import com.vivo.push.listener.IPushQueryActionListener;
+import com.vivo.push.p232b.C3834f;
+import com.vivo.push.p234d.C3869d;
+import com.vivo.push.p234d.InterfaceC3863a;
+import com.vivo.push.restructure.C3932a;
 import com.vivo.push.restructure.request.IPushRequestCallback;
 import com.vivo.push.util.ContextDelegate;
 import com.vivo.push.util.VivoPushException;
@@ -10,23 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* loaded from: classes2.dex */
-public class PushClient extends a implements com.vivo.push.d.a {
+public class PushClient extends C3824a implements InterfaceC3863a {
     public static final String DEFAULT_REQUEST_ID = "1";
     private static volatile PushClient sPushClient;
     private Context mContext;
     private boolean mIsInitSdk;
     private boolean mIsSdkInited = true;
-    private com.vivo.push.d.a mSyncProfileInfo;
+    private InterfaceC3863a mSyncProfileInfo;
 
     private PushClient(Context context) {
         this.mContext = ContextDelegate.getContext(context);
-        com.vivo.push.restructure.a.a().a(context);
-        m.a().a(context);
-        this.mSyncProfileInfo = new com.vivo.push.d.d();
+        C3932a.m13069a().m13070a(context);
+        C3924m.m13016a().m13030a(context);
+        this.mSyncProfileInfo = new C3869d();
     }
 
     private boolean checkAgreePrivacyStatementAndInitSdk() {
-        if (!com.vivo.push.restructure.a.a().e().l().isAgreePrivacyStatement()) {
+        if (!C3932a.m13069a().m13074e().mo13130l().isAgreePrivacyStatement()) {
             return false;
         }
         inidSdk(this.mContext);
@@ -40,11 +44,11 @@ public class PushClient extends a implements com.vivo.push.d.a {
     }
 
     private String getAppId(String str) {
-        return !TextUtils.isEmpty(str) ? str : com.vivo.push.restructure.a.a().e().a();
+        return !TextUtils.isEmpty(str) ? str : C3932a.m13069a().m13074e().mo13112a();
     }
 
     private String getAppKey(String str) {
-        return !TextUtils.isEmpty(str) ? str : com.vivo.push.restructure.a.a().e().c();
+        return !TextUtils.isEmpty(str) ? str : C3932a.m13069a().m13074e().mo13118c();
     }
 
     public static synchronized PushClient getInstance(Context context) {
@@ -61,7 +65,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
     private void inidSdk(Context context) {
         synchronized (this) {
             if (!this.mIsInitSdk) {
-                m.a().a(context);
+                C3924m.m13016a().m13030a(context);
                 this.mIsInitSdk = true;
             }
         }
@@ -71,7 +75,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
         return this.mIsSdkInited;
     }
 
-    @Override // com.vivo.push.d.a
+    @Override // com.vivo.push.p234d.InterfaceC3863a
     public void addProfileId(String str, IPushRequestCallback<Integer> iPushRequestCallback) {
         if (!checkAgreePrivacyStatementAndInitSdk()) {
             if (iPushRequestCallback != null) {
@@ -82,9 +86,9 @@ public class PushClient extends a implements com.vivo.push.d.a {
                 iPushRequestCallback.onError(8011);
             }
         } else {
-            com.vivo.push.d.a aVar = this.mSyncProfileInfo;
-            if (aVar != null) {
-                aVar.addProfileId(str, iPushRequestCallback);
+            InterfaceC3863a interfaceC3863a = this.mSyncProfileInfo;
+            if (interfaceC3863a != null) {
+                interfaceC3863a.addProfileId(str, iPushRequestCallback);
             }
         }
     }
@@ -96,7 +100,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
             }
         } else if (isSdkInited()) {
             checkParam(str);
-            m.a().a(str, getAppId(""), getAppKey(""), iPushActionListener);
+            C3924m.m13016a().m13036a(str, getAppId(""), getAppKey(""), iPushActionListener);
         } else if (iPushActionListener != null) {
             iPushActionListener.onStateChanged(8011);
         }
@@ -104,7 +108,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
 
     public void checkManifest() throws VivoPushException {
         if (checkAgreePrivacyStatementAndInitSdk() && isSdkInited()) {
-            m.a().b();
+            C3924m.m13016a().m13039b();
         }
     }
 
@@ -116,13 +120,13 @@ public class PushClient extends a implements com.vivo.push.d.a {
         } else if (isSdkInited()) {
             ArrayList<String> arrayList = new ArrayList<>(1);
             arrayList.add(str);
-            m.a().b(arrayList, getAppId(""), getAppKey(""), iPushActionListener);
+            C3924m.m13016a().m13042b(arrayList, getAppId(""), getAppKey(""), iPushActionListener);
         } else if (iPushActionListener != null) {
             iPushActionListener.onStateChanged(8011);
         }
     }
 
-    @Override // com.vivo.push.d.a
+    @Override // com.vivo.push.p234d.InterfaceC3863a
     public void deleteAllProfileId(IPushRequestCallback<Integer> iPushRequestCallback) {
         if (!checkAgreePrivacyStatementAndInitSdk()) {
             if (iPushRequestCallback != null) {
@@ -133,14 +137,14 @@ public class PushClient extends a implements com.vivo.push.d.a {
                 iPushRequestCallback.onError(8011);
             }
         } else {
-            com.vivo.push.d.a aVar = this.mSyncProfileInfo;
-            if (aVar != null) {
-                aVar.deleteAllProfileId(iPushRequestCallback);
+            InterfaceC3863a interfaceC3863a = this.mSyncProfileInfo;
+            if (interfaceC3863a != null) {
+                interfaceC3863a.deleteAllProfileId(iPushRequestCallback);
             }
         }
     }
 
-    @Override // com.vivo.push.d.a
+    @Override // com.vivo.push.p234d.InterfaceC3863a
     public void deleteProfileId(String str, IPushRequestCallback<Integer> iPushRequestCallback) {
         if (!checkAgreePrivacyStatementAndInitSdk()) {
             if (iPushRequestCallback != null) {
@@ -151,9 +155,9 @@ public class PushClient extends a implements com.vivo.push.d.a {
                 iPushRequestCallback.onError(8011);
             }
         } else {
-            com.vivo.push.d.a aVar = this.mSyncProfileInfo;
-            if (aVar != null) {
-                aVar.deleteProfileId(str, iPushRequestCallback);
+            InterfaceC3863a interfaceC3863a = this.mSyncProfileInfo;
+            if (interfaceC3863a != null) {
+                interfaceC3863a.deleteProfileId(str, iPushRequestCallback);
             }
         }
     }
@@ -172,12 +176,12 @@ public class PushClient extends a implements com.vivo.push.d.a {
 
     public String getAlias() {
         if (checkAgreePrivacyStatementAndInitSdk() && isSdkInited()) {
-            return m.a().i();
+            return C3924m.m13016a().m13050i();
         }
         return null;
     }
 
-    @Override // com.vivo.push.a
+    @Override // com.vivo.push.C3824a
     public void getRegId(IPushQueryActionListener iPushQueryActionListener) {
         if (!checkAgreePrivacyStatementAndInitSdk()) {
             if (iPushQueryActionListener != null) {
@@ -197,8 +201,8 @@ public class PushClient extends a implements com.vivo.push.d.a {
         if (!isSdkInited()) {
             return new ArrayList();
         }
-        m.a();
-        return m.c();
+        C3924m.m13016a();
+        return C3924m.m13026c();
     }
 
     public String getVersion() {
@@ -212,32 +216,32 @@ public class PushClient extends a implements com.vivo.push.d.a {
         if (pushConfig == null) {
             throw new VivoPushException("initialize error config is null");
         }
-        com.vivo.push.restructure.a.a().e().a(pushConfig);
+        C3932a.m13069a().m13074e().mo13114a(pushConfig);
         initialize();
     }
 
     public boolean isSupport() {
         if (checkAgreePrivacyStatementAndInitSdk() && isSdkInited()) {
-            return m.a().d();
+            return C3924m.m13016a().m13045d();
         }
         return false;
     }
 
     public int isSupportNewControlStrategies() {
         if (checkAgreePrivacyStatementAndInitSdk() && isSdkInited()) {
-            return com.vivo.push.restructure.a.a().g().a();
+            return C3932a.m13069a().m13076g().m12891a();
         }
         return -1;
     }
 
     public int isSupportSyncProfileInfo() {
         if (checkAgreePrivacyStatementAndInitSdk() && isSdkInited()) {
-            return com.vivo.push.restructure.a.a().g().b();
+            return C3932a.m13069a().m13076g().m12892b();
         }
         return -1;
     }
 
-    @Override // com.vivo.push.d.a
+    @Override // com.vivo.push.p234d.InterfaceC3863a
     public void queryProfileIds(IPushRequestCallback<List<String>> iPushRequestCallback) {
         if (!checkAgreePrivacyStatementAndInitSdk()) {
             if (iPushRequestCallback != null) {
@@ -248,14 +252,14 @@ public class PushClient extends a implements com.vivo.push.d.a {
                 iPushRequestCallback.onError(8011);
             }
         } else {
-            com.vivo.push.d.a aVar = this.mSyncProfileInfo;
-            if (aVar != null) {
-                aVar.queryProfileIds(iPushRequestCallback);
+            InterfaceC3863a interfaceC3863a = this.mSyncProfileInfo;
+            if (interfaceC3863a != null) {
+                interfaceC3863a.queryProfileIds(iPushRequestCallback);
             }
         }
     }
 
-    @Override // com.vivo.push.a
+    @Override // com.vivo.push.C3824a
     public void querySubscribeState(IPushActionListener iPushActionListener) {
         if (!checkAgreePrivacyStatementAndInitSdk() && iPushActionListener != null) {
             iPushActionListener.onStateChanged(104);
@@ -268,7 +272,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
 
     public void setSystemModel(boolean z) {
         if (checkAgreePrivacyStatementAndInitSdk() && isSdkInited()) {
-            m.a().a(z);
+            C3924m.m13016a().m13038a(z);
         }
     }
 
@@ -280,7 +284,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
         } else if (isSdkInited()) {
             ArrayList<String> arrayList = new ArrayList<>(1);
             arrayList.add(str);
-            m.a().a(arrayList, getAppId(""), getAppKey(""), iPushActionListener);
+            C3924m.m13016a().m13037a(arrayList, getAppId(""), getAppKey(""), iPushActionListener);
         } else if (iPushActionListener != null) {
             iPushActionListener.onStateChanged(8011);
         }
@@ -292,7 +296,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
                 iPushActionListener.onStateChanged(104);
             }
         } else if (isSdkInited()) {
-            m.a().c(iPushActionListener, getAppId(""), getAppKey(""));
+            C3924m.m13016a().m13043c(iPushActionListener, getAppId(""), getAppKey(""));
         } else if (iPushActionListener != null) {
             iPushActionListener.onStateChanged(8011);
         }
@@ -304,7 +308,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
                 iPushActionListener.onStateChanged(104);
             }
         } else if (isSdkInited()) {
-            m.a().a(iPushActionListener, getAppId(""), getAppKey(""));
+            C3924m.m13016a().m13031a(iPushActionListener, getAppId(""), getAppKey(""));
         } else if (iPushActionListener != null) {
             iPushActionListener.onStateChanged(8011);
         }
@@ -317,7 +321,7 @@ public class PushClient extends a implements com.vivo.push.d.a {
             }
         } else if (isSdkInited()) {
             checkParam(str);
-            m.a().b(str, getAppId(""), getAppKey(""), iPushActionListener);
+            C3924m.m13016a().m13041b(str, getAppId(""), getAppKey(""), iPushActionListener);
         } else if (iPushActionListener != null) {
             iPushActionListener.onStateChanged(8011);
         }
@@ -326,11 +330,11 @@ public class PushClient extends a implements com.vivo.push.d.a {
     private void initialize() throws VivoPushException {
         if (checkAgreePrivacyStatementAndInitSdk()) {
             checkManifest();
-            m a2 = m.a();
-            com.vivo.push.b.f fVar = new com.vivo.push.b.f();
-            com.vivo.push.restructure.a.a();
-            fVar.d();
-            a2.a(fVar);
+            C3924m m13016a = C3924m.m13016a();
+            C3834f c3834f = new C3834f();
+            C3932a.m13069a();
+            c3834f.m12845d();
+            m13016a.m13032a(c3834f);
             if (this.mIsSdkInited) {
                 return;
             }

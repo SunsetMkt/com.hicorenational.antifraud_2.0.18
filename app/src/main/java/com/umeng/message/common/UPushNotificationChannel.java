@@ -27,7 +27,7 @@ public class UPushNotificationChannel {
             notificationManager.createNotificationChannel(notificationChannel2);
             return notificationChannel2;
         } catch (Throwable th) {
-            UPLog.e("NotificationChannel", th);
+            UPLog.m12143e("NotificationChannel", th);
             return null;
         }
     }
@@ -46,7 +46,7 @@ public class UPushNotificationChannel {
             notificationManager.createNotificationChannel(notificationChannel2);
             return notificationChannel2;
         } catch (Throwable th) {
-            UPLog.e("NotificationChannel", th);
+            UPLog.m12143e("NotificationChannel", th);
             return null;
         }
     }

@@ -9,11 +9,12 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Process;
 import android.text.TextUtils;
-import com.umeng.analytics.pro.at;
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3336at;
+import com.umeng.analytics.pro.C3351bh;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
 import com.umeng.commonsdk.statistics.common.ULog;
+import com.umeng.commonsdk.statistics.internal.C3513a;
 import com.umeng.commonsdk.statistics.internal.PreferenceWrapper;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.BufferedReader;
@@ -34,7 +35,7 @@ public class UMFrUtils {
     private static final String KEY_LAST_INSTANT_SUCC_BUILD_TIME = "last_instant_build_time";
     private static final String KEY_LAST_SUCC_BUILD_TIME = "last_successful_build_time";
     private static Object mEnvelopeBuildTimeLock = new Object();
-    private static String mDefaultEnvelopeDir = at.b().b(at.f10067a);
+    private static String mDefaultEnvelopeDir = C3336at.m10865b().m10868b(C3336at.f11487a);
     private static String mDefaultEnvelopeDirPath = null;
     private static Object mEnvelopeFileLock = new Object();
     private static String sCurrentProcessName = "";
@@ -131,7 +132,7 @@ public class UMFrUtils {
                 }
                 File file = new File(mDefaultEnvelopeDirPath);
                 if (!file.exists() && !file.mkdir()) {
-                    ULog.d("--->>> Create Envelope Directory failed!!!");
+                    ULog.m11768d("--->>> Create Envelope Directory failed!!!");
                 }
             } finally {
                 return mDefaultEnvelopeDirPath;
@@ -185,10 +186,10 @@ public class UMFrUtils {
         try {
             String currentProcessName = getCurrentProcessName(context);
             if (!TextUtils.isEmpty(currentProcessName)) {
-                String b2 = at.b().b(at.B);
+                String m10868b = C3336at.m10865b().m10868b(C3336at.f11483B);
                 String replace = currentProcessName.replace(':', '_');
-                ULog.d("--->>> getEnvelopeDir: use current process name as envelope directory.");
-                return b2 + replace;
+                ULog.m11768d("--->>> getEnvelopeDir: use current process name as envelope directory.");
+                return m10868b + replace;
             }
         } catch (Throwable th) {
             UMCrashManager.reportCrash(context, th);
@@ -248,12 +249,12 @@ public class UMFrUtils {
 
     public static boolean hasEnvelopeFile(Context context, UMLogDataProtocol.UMBusinessType uMBusinessType) {
         File[] listFiles;
-        String str = uMBusinessType == UMLogDataProtocol.UMBusinessType.U_INTERNAL ? bh.aF : "a";
+        String str = uMBusinessType == UMLogDataProtocol.UMBusinessType.U_INTERNAL ? C3351bh.f11581aF : "a";
         if (uMBusinessType == UMLogDataProtocol.UMBusinessType.U_ZeroEnv) {
-            str = bh.aG;
+            str = C3351bh.f11582aG;
         }
         if (uMBusinessType == UMLogDataProtocol.UMBusinessType.U_Silent) {
-            str = bh.aJ;
+            str = C3351bh.f11585aJ;
         }
         String envelopeDirPath = getEnvelopeDirPath(context);
         if (envelopeDirPath == null) {
@@ -328,7 +329,7 @@ public class UMFrUtils {
                     for (int i3 = 0; i3 < listFiles.length - i2; i3++) {
                         try {
                             if (!listFiles[i3].delete()) {
-                                ULog.d("--->>> remove [" + i3 + "] file fail.");
+                                ULog.m11768d("--->>> remove [" + i3 + "] file fail.");
                             }
                         } catch (Throwable th) {
                             UMCrashManager.reportCrash(context, th);
@@ -352,12 +353,12 @@ public class UMFrUtils {
                     try {
                         fileOutputStream2.write(bArr);
                         fileOutputStream2.close();
-                        boolean a2 = com.umeng.commonsdk.statistics.internal.a.a(context).a(str);
-                        boolean b2 = com.umeng.commonsdk.statistics.internal.a.a(context).b(str);
-                        if (a2) {
+                        boolean m11881a = C3513a.m11877a(context).m11881a(str);
+                        boolean m11883b = C3513a.m11877a(context).m11883b(str);
+                        if (m11881a) {
                             updateLastSuccessfulBuildTime(context);
                         }
-                        if (b2) {
+                        if (m11883b) {
                             updateLastInstantBuildTime(context);
                         }
                         return 0;

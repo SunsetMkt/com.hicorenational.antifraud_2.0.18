@@ -4,86 +4,89 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
+import com.xiaomi.mipush.sdk.C4048b;
+import com.xiaomi.mipush.sdk.C4062p;
+import com.xiaomi.mipush.sdk.C4067u;
 import com.xiaomi.mipush.sdk.COSPushHelper;
+import com.xiaomi.mipush.sdk.EnumC4050d;
+import com.xiaomi.mipush.sdk.EnumC4068v;
 import com.xiaomi.mipush.sdk.FTOSPushHelper;
 import com.xiaomi.mipush.sdk.HWPushHelper;
 import com.xiaomi.mipush.sdk.MiPushClient;
-import com.xiaomi.mipush.sdk.b;
-import com.xiaomi.mipush.sdk.d;
-import com.xiaomi.mipush.sdk.p;
-import com.xiaomi.mipush.sdk.u;
-import com.xiaomi.mipush.sdk.v;
-import com.xiaomi.push.au;
-import com.xiaomi.push.fz;
-import com.xiaomi.push.m;
+import com.xiaomi.push.C4092au;
+import com.xiaomi.push.C4232fz;
+import com.xiaomi.push.C4303m;
 import com.xiaomi.push.service.ServiceClient;
 
 /* loaded from: classes2.dex */
 public class NetworkStatusReceiver extends BroadcastReceiver {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static boolean f13455a = false;
+    /* renamed from: a */
+    private static boolean f16767a = false;
 
-    /* renamed from: b, reason: collision with root package name */
-    private boolean f13456b;
+    /* renamed from: b */
+    private boolean f16768b;
 
     public NetworkStatusReceiver() {
-        this.f13456b = false;
-        this.f13456b = true;
+        this.f16768b = false;
+        this.f16768b = true;
     }
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(final Context context, Intent intent) {
-        if (this.f13456b) {
+        if (this.f16768b) {
             return;
         }
-        au.m150a();
-        m.a().post(new Runnable() { // from class: com.xiaomi.push.service.receivers.NetworkStatusReceiver.1
+        C4092au.m13797a();
+        C4303m.m15703a().post(new Runnable() { // from class: com.xiaomi.push.service.receivers.NetworkStatusReceiver.1
             @Override // java.lang.Runnable
             public void run() {
-                NetworkStatusReceiver.this.a(context);
+                NetworkStatusReceiver.this.m16224a(context);
             }
         });
     }
 
-    public static boolean a() {
-        return f13455a;
+    /* renamed from: a */
+    public static boolean m16226a() {
+        return f16767a;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void a(Context context) {
-        if (!u.a(context).m120a() && b.m75a(context).m84c() && !b.m75a(context).m87f()) {
+    /* renamed from: a */
+    public void m16224a(Context context) {
+        if (!C4067u.m13627a(context).m13671a() && C4048b.m13476a(context).m13496c() && !C4048b.m13476a(context).m13502f()) {
             try {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName(context, "com.xiaomi.push.service.XMPushService"));
                 intent.setAction("com.xiaomi.push.network_status_changed");
                 ServiceClient.getInstance(context).startServiceSafely(intent);
             } catch (Exception e2) {
-                com.xiaomi.channel.commonutils.logger.b.a(e2);
+                AbstractC4022b.m13351a(e2);
             }
         }
-        fz.m447a(context);
-        if (au.m151a(context) && u.a(context).m123b()) {
-            u.a(context).m124c();
+        C4232fz.m14915a(context);
+        if (C4092au.m13799a(context) && C4067u.m13627a(context).m13675b()) {
+            C4067u.m13627a(context).m13676c();
         }
-        if (au.m151a(context)) {
-            if ("syncing".equals(p.a(context).a(v.DISABLE_PUSH))) {
+        if (C4092au.m13799a(context)) {
+            if ("syncing".equals(C4062p.m13587a(context).m13589a(EnumC4068v.DISABLE_PUSH))) {
                 MiPushClient.disablePush(context);
             }
-            if ("syncing".equals(p.a(context).a(v.ENABLE_PUSH))) {
+            if ("syncing".equals(C4062p.m13587a(context).m13589a(EnumC4068v.ENABLE_PUSH))) {
                 MiPushClient.enablePush(context);
             }
-            if ("syncing".equals(p.a(context).a(v.UPLOAD_HUAWEI_TOKEN))) {
-                u.a(context).a((String) null, v.UPLOAD_HUAWEI_TOKEN, d.ASSEMBLE_PUSH_HUAWEI, "net");
+            if ("syncing".equals(C4062p.m13587a(context).m13589a(EnumC4068v.UPLOAD_HUAWEI_TOKEN))) {
+                C4067u.m13627a(context).m13667a((String) null, EnumC4068v.UPLOAD_HUAWEI_TOKEN, EnumC4050d.ASSEMBLE_PUSH_HUAWEI, "net");
             }
-            if ("syncing".equals(p.a(context).a(v.UPLOAD_FCM_TOKEN))) {
-                u.a(context).a((String) null, v.UPLOAD_HUAWEI_TOKEN, d.ASSEMBLE_PUSH_HUAWEI, "net");
+            if ("syncing".equals(C4062p.m13587a(context).m13589a(EnumC4068v.UPLOAD_FCM_TOKEN))) {
+                C4067u.m13627a(context).m13667a((String) null, EnumC4068v.UPLOAD_HUAWEI_TOKEN, EnumC4050d.ASSEMBLE_PUSH_HUAWEI, "net");
             }
-            if ("syncing".equals(p.a(context).a(v.UPLOAD_COS_TOKEN))) {
-                u.a(context).a((String) null, v.UPLOAD_COS_TOKEN, d.ASSEMBLE_PUSH_COS, "net");
+            if ("syncing".equals(C4062p.m13587a(context).m13589a(EnumC4068v.UPLOAD_COS_TOKEN))) {
+                C4067u.m13627a(context).m13667a((String) null, EnumC4068v.UPLOAD_COS_TOKEN, EnumC4050d.ASSEMBLE_PUSH_COS, "net");
             }
-            if ("syncing".equals(p.a(context).a(v.UPLOAD_FTOS_TOKEN))) {
-                u.a(context).a((String) null, v.UPLOAD_FTOS_TOKEN, d.ASSEMBLE_PUSH_FTOS, "net");
+            if ("syncing".equals(C4062p.m13587a(context).m13589a(EnumC4068v.UPLOAD_FTOS_TOKEN))) {
+                C4067u.m13627a(context).m13667a((String) null, EnumC4068v.UPLOAD_FTOS_TOKEN, EnumC4050d.ASSEMBLE_PUSH_FTOS, "net");
             }
             if (HWPushHelper.needConnect() && HWPushHelper.shouldTryConnect(context)) {
                 HWPushHelper.setConnectTime(context);
@@ -95,7 +98,7 @@ public class NetworkStatusReceiver extends BroadcastReceiver {
     }
 
     public NetworkStatusReceiver(Object obj) {
-        this.f13456b = false;
-        f13455a = true;
+        this.f16768b = false;
+        f16767a = true;
     }
 }

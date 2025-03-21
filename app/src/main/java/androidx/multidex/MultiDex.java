@@ -162,8 +162,9 @@ public final class MultiDex {
         }
     }
 
-    private static final class V4 {
-        private V4() {
+    /* renamed from: androidx.multidex.MultiDex$V4 */
+    private static final class C0613V4 {
+        private C0613V4() {
         }
 
         static void install(ClassLoader classLoader, List<? extends File> list) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, IOException {
@@ -381,7 +382,7 @@ public final class MultiDex {
         } else if (i2 >= 14) {
             V14.install(classLoader, list);
         } else {
-            V4.install(classLoader, list);
+            C0613V4.install(classLoader, list);
         }
     }
 

@@ -2,12 +2,12 @@ package com.taobao.accs.flowcontrol;
 
 import android.content.Context;
 import android.text.TextUtils;
-import c.c.a.b.a.a;
 import com.taobao.accs.utl.ALog;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* compiled from: Taobao */
 /* loaded from: classes2.dex */
@@ -24,11 +24,11 @@ public class FlowControl {
     public static final int STATUS_FLOW_CTRL_BRUSH = 422;
     public static final int STATUS_FLOW_CTRL_CUR = 421;
 
-    /* renamed from: a, reason: collision with root package name */
-    private Context f8478a;
+    /* renamed from: a */
+    private Context f9498a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private FlowCtrlInfoHolder f8479b;
+    /* renamed from: b */
+    private FlowCtrlInfoHolder f9499b;
 
     /* compiled from: Taobao */
     public static class FlowControlInfo implements Serializable {
@@ -81,14 +81,14 @@ public class FlowControl {
                 return null;
             }
             if (!TextUtils.isEmpty(str2)) {
-                str = str + a.s1 + str2;
+                str = str + AbstractC1191a.f2606s1 + str2;
             }
             return this.flowCtrlMap.get(str);
         }
 
         public void put(String str, String str2, FlowControlInfo flowControlInfo) {
             if (!TextUtils.isEmpty(str2)) {
-                str = str + a.s1 + str2;
+                str = str + AbstractC1191a.f2606s1 + str2;
             }
             if (this.flowCtrlMap == null) {
                 this.flowCtrlMap = new HashMap();
@@ -98,28 +98,30 @@ public class FlowControl {
     }
 
     public FlowControl(Context context) {
-        this.f8478a = context;
+        this.f9498a = context;
     }
 
     /* JADX WARN: Removed duplicated region for block: B:6:0x0142 A[RETURN] */
     /* JADX WARN: Removed duplicated region for block: B:8:0x0144  */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public int a(java.util.Map<java.lang.Integer, java.lang.String> r22, java.lang.String r23) {
+    public int m9055a(java.util.Map<java.lang.Integer, java.lang.String> r22, java.lang.String r23) {
         /*
             Method dump skipped, instructions count: 335
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.taobao.accs.flowcontrol.FlowControl.a(java.util.Map, java.lang.String):int");
+        throw new UnsupportedOperationException("Method not decompiled: com.taobao.accs.flowcontrol.FlowControl.m9055a(java.util.Map, java.lang.String):int");
     }
 
-    private boolean a(long j2, long j3) {
+    /* renamed from: a */
+    private boolean m9054a(long j2, long j3) {
         if (j2 != 0 && j3 > 0) {
             return true;
         }
-        ALog.e("FlowControl", "error flow ctrl info", new Object[0]);
+        ALog.m9182e("FlowControl", "error flow ctrl info", new Object[0]);
         return false;
     }
 
@@ -129,7 +131,7 @@ public class FlowControl {
      */
     /* JADX WARN: Code restructure failed: missing block: B:51:0x0096, code lost:
     
-        a();
+        m9053a();
      */
     /* JADX WARN: Code restructure failed: missing block: B:59:0x0094, code lost:
     
@@ -141,25 +143,27 @@ public class FlowControl {
     /* JADX WARN: Removed duplicated region for block: B:39:0x0075  */
     /* JADX WARN: Removed duplicated region for block: B:40:0x0078  */
     /* JADX WARN: Removed duplicated region for block: B:58:0x0090 A[Catch: all -> 0x00dc, TryCatch #0 {, blocks: (B:9:0x0013, B:11:0x0032, B:14:0x0039, B:16:0x003f, B:19:0x0046, B:21:0x004c, B:24:0x0053, B:26:0x0059, B:29:0x0060, B:49:0x0088, B:51:0x0096, B:52:0x0099, B:58:0x0090), top: B:8:0x0013 }] */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public long a(java.lang.String r14, java.lang.String r15) {
+    public long m9056a(java.lang.String r14, java.lang.String r15) {
         /*
             Method dump skipped, instructions count: 224
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.taobao.accs.flowcontrol.FlowControl.a(java.lang.String, java.lang.String):long");
+        throw new UnsupportedOperationException("Method not decompiled: com.taobao.accs.flowcontrol.FlowControl.m9056a(java.lang.String, java.lang.String):long");
     }
 
-    private void a() {
-        FlowCtrlInfoHolder flowCtrlInfoHolder = this.f8479b;
+    /* renamed from: a */
+    private void m9053a() {
+        FlowCtrlInfoHolder flowCtrlInfoHolder = this.f9499b;
         if (flowCtrlInfoHolder == null || flowCtrlInfoHolder.flowCtrlMap == null) {
             return;
         }
         synchronized (this) {
-            Iterator<Map.Entry<String, FlowControlInfo>> it = this.f8479b.flowCtrlMap.entrySet().iterator();
+            Iterator<Map.Entry<String, FlowControlInfo>> it = this.f9499b.flowCtrlMap.entrySet().iterator();
             while (it.hasNext()) {
                 if (it.next().getValue().isExpired()) {
                     it.remove();

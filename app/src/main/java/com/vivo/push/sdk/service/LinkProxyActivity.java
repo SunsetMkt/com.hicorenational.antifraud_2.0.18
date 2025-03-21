@@ -1,7 +1,7 @@
 package com.vivo.push.sdk.service;
 
 import android.app.Activity;
-import com.vivo.push.util.u;
+import com.vivo.push.util.C4010u;
 
 /* loaded from: classes2.dex */
 public class LinkProxyActivity extends Activity {
@@ -22,7 +22,7 @@ public class LinkProxyActivity extends Activity {
             java.lang.String r0 = "LinkProxyActivity"
             if (r7 != 0) goto L14
             java.lang.String r7 = "enter RequestPermissionsActivity onCreate, intent is null, finish"
-            com.vivo.push.util.u.d(r0, r7)
+            com.vivo.push.util.C4010u.m13309d(r0, r7)
             r6.finish()
             return
         L14:
@@ -41,7 +41,7 @@ public class LinkProxyActivity extends Activity {
         L30:
             r3 = move-exception
             java.lang.String r4 = "enter onCreate error "
-            com.vivo.push.util.u.b(r0, r4, r3)
+            com.vivo.push.util.C4010u.m13302b(r0, r4, r3)
         L36:
             java.lang.String r3 = r6.getPackageName()
             java.lang.StringBuilder r4 = new java.lang.StringBuilder
@@ -52,20 +52,20 @@ public class LinkProxyActivity extends Activity {
             r4.append(r5)
             r4.append(r3)
             java.lang.String r4 = r4.toString()
-            com.vivo.push.util.u.d(r0, r4)
+            com.vivo.push.util.C4010u.m13309d(r0, r4)
             java.lang.String r4 = "com.vivo.abe"
             boolean r3 = r4.equals(r3)
             java.lang.String r4 = "previous_intent"
             if (r3 == 0) goto L94
             if (r7 != 0) goto L68
             java.lang.String r7 = "adapterToService intent is null"
-            com.vivo.push.util.u.d(r0, r7)     // Catch: java.lang.Exception -> L8b
+            com.vivo.push.util.C4010u.m13309d(r0, r7)     // Catch: java.lang.Exception -> L8b
             goto Lea
         L68:
             android.os.Bundle r1 = r7.getExtras()     // Catch: java.lang.Exception -> L8b
             if (r1 != 0) goto L75
             java.lang.String r7 = "adapterToService getExtras() is null"
-            com.vivo.push.util.u.d(r0, r7)     // Catch: java.lang.Exception -> L8b
+            com.vivo.push.util.C4010u.m13309d(r0, r7)     // Catch: java.lang.Exception -> L8b
             goto Lea
         L75:
             android.os.Bundle r7 = r7.getExtras()     // Catch: java.lang.Exception -> L8b
@@ -73,15 +73,15 @@ public class LinkProxyActivity extends Activity {
             android.content.Intent r7 = (android.content.Intent) r7     // Catch: java.lang.Exception -> L8b
             if (r7 != 0) goto L87
             java.lang.String r7 = "adapterToService proxyIntent is null"
-            com.vivo.push.util.u.d(r0, r7)     // Catch: java.lang.Exception -> L8b
+            com.vivo.push.util.C4010u.m13309d(r0, r7)     // Catch: java.lang.Exception -> L8b
             goto Lea
         L87:
-            com.vivo.push.util.ag.a(r6, r7)     // Catch: java.lang.Exception -> L8b
+            com.vivo.push.util.C3990ag.m13211a(r6, r7)     // Catch: java.lang.Exception -> L8b
             goto Lea
         L8b:
             r7 = move-exception
             java.lang.String r1 = r7.toString()
-            com.vivo.push.util.u.a(r0, r1, r7)
+            com.vivo.push.util.C4010u.m13293a(r0, r1, r7)
             goto Lea
         L94:
             android.os.Bundle r3 = r7.getExtras()     // Catch: java.lang.Exception -> Le2
@@ -116,12 +116,12 @@ public class LinkProxyActivity extends Activity {
             java.lang.String r7 = "service's exported is "
             java.lang.String r1 = java.lang.String.valueOf(r2)     // Catch: java.lang.Exception -> Le2
             java.lang.String r7 = r7.concat(r1)     // Catch: java.lang.Exception -> Le2
-            com.vivo.push.util.u.b(r0, r7)     // Catch: java.lang.Exception -> Le2
+            com.vivo.push.util.C4010u.m13301b(r0, r7)     // Catch: java.lang.Exception -> Le2
             goto Lea
         Le2:
             r7 = move-exception
             java.lang.String r1 = r7.toString()
-            com.vivo.push.util.u.a(r0, r1, r7)
+            com.vivo.push.util.C4010u.m13293a(r0, r1, r7)
         Lea:
             r6.finish()
             return
@@ -132,6 +132,6 @@ public class LinkProxyActivity extends Activity {
     @Override // android.app.Activity
     protected void onDestroy() {
         super.onDestroy();
-        u.d("LinkProxyActivity", hashCode() + " onDestory " + getPackageName());
+        C4010u.m13309d("LinkProxyActivity", hashCode() + " onDestory " + getPackageName());
     }
 }

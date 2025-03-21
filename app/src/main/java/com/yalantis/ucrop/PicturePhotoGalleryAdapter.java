@@ -41,10 +41,10 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
 
         public ViewHolder(View view) {
             super(view);
-            this.mIvPhoto = (ImageView) view.findViewById(R.id.iv_photo);
-            this.mIvVideo = (ImageView) view.findViewById(R.id.iv_video);
-            this.iv_dot = (ImageView) view.findViewById(R.id.iv_dot);
-            this.tvGif = (TextView) view.findViewById(R.id.tv_gif);
+            this.mIvPhoto = (ImageView) view.findViewById(C4415R.id.iv_photo);
+            this.mIvVideo = (ImageView) view.findViewById(C4415R.id.iv_video);
+            this.iv_dot = (ImageView) view.findViewById(C4415R.id.iv_dot);
+            this.tvGif = (TextView) view.findViewById(C4415R.id.tv_gif);
         }
     }
 
@@ -78,14 +78,14 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
         String path = cutInfo != null ? cutInfo.getPath() : "";
         if (cutInfo.isCut()) {
             viewHolder.iv_dot.setVisibility(0);
-            viewHolder.iv_dot.setImageResource(R.drawable.ucrop_oval_true);
+            viewHolder.iv_dot.setImageResource(C4415R.drawable.ucrop_oval_true);
         } else {
             viewHolder.iv_dot.setVisibility(4);
         }
         if (MimeType.eqVideo(cutInfo.getMimeType())) {
             viewHolder.mIvPhoto.setVisibility(8);
             viewHolder.mIvVideo.setVisibility(0);
-            viewHolder.mIvVideo.setImageResource(R.drawable.ucrop_ic_default_video);
+            viewHolder.mIvVideo.setImageResource(C4415R.drawable.ucrop_ic_default_video);
         } else {
             viewHolder.mIvPhoto.setVisibility(0);
             viewHolder.mIvVideo.setVisibility(8);
@@ -105,7 +105,7 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
                 public void onFailure(@NonNull Exception exc) {
                     ImageView imageView = viewHolder.mIvPhoto;
                     if (imageView != null) {
-                        imageView.setImageResource(R.color.ucrop_color_ba3);
+                        imageView.setImageResource(C4415R.color.ucrop_color_ba3);
                     }
                 }
             });
@@ -122,6 +122,6 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return new ViewHolder(this.mInflater.inflate(R.layout.ucrop_picture_gf_adapter_edit_list, viewGroup, false));
+        return new ViewHolder(this.mInflater.inflate(C4415R.layout.ucrop_picture_gf_adapter_edit_list, viewGroup, false));
     }
 }

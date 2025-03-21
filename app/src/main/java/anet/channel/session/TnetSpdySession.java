@@ -11,9 +11,12 @@ import anet.channel.Session;
 import anet.channel.SessionInfo;
 import anet.channel.appmonitor.AppMonitor;
 import anet.channel.bytes.ByteArray;
-import anet.channel.bytes.a;
+import anet.channel.bytes.C0752a;
+import anet.channel.entity.C0781a;
+import anet.channel.entity.C0782b;
 import anet.channel.heartbeat.HeartbeatManager;
 import anet.channel.heartbeat.IHeartbeat;
+import anet.channel.heartbeat.RunnableC0791c;
 import anet.channel.request.Request;
 import anet.channel.security.ISecurity;
 import anet.channel.statist.ExceptionStatistic;
@@ -22,13 +25,14 @@ import anet.channel.statist.SessionStatistic;
 import anet.channel.status.NetworkStatusHelper;
 import anet.channel.strategy.ConnEvent;
 import anet.channel.strategy.StrategyCenter;
+import anet.channel.strategy.utils.C0848c;
 import anet.channel.util.ALog;
 import anet.channel.util.ErrorConstant;
 import anet.channel.util.HttpConstant;
 import anet.channel.util.HttpHelper;
 import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
 import com.taobao.accs.common.Constants;
-import h.f1;
+import com.umeng.analytics.pro.C3397d;
 import java.util.List;
 import java.util.Map;
 import org.android.spdy.SessionCb;
@@ -40,178 +44,209 @@ import org.android.spdy.SpdySessionKind;
 import org.android.spdy.SpdyVersion;
 import org.android.spdy.SuperviseConnectInfo;
 import org.android.spdy.SuperviseData;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import p286h.C5230f1;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
 public class TnetSpdySession extends Session implements SessionCb {
-    protected long A;
-    protected int B;
-    protected DataFrameCb C;
-    protected IHeartbeat D;
-    protected IAuth E;
-    protected String F;
-    protected ISecurity G;
-    private int H;
-    private boolean I;
-    protected SpdyAgent w;
-    protected SpdySession x;
-    protected volatile boolean y;
-    protected long z;
+
+    /* renamed from: A */
+    protected long f963A;
+
+    /* renamed from: B */
+    protected int f964B;
+
+    /* renamed from: C */
+    protected DataFrameCb f965C;
+
+    /* renamed from: D */
+    protected IHeartbeat f966D;
+
+    /* renamed from: E */
+    protected IAuth f967E;
+
+    /* renamed from: F */
+    protected String f968F;
+
+    /* renamed from: G */
+    protected ISecurity f969G;
+
+    /* renamed from: H */
+    private int f970H;
+
+    /* renamed from: I */
+    private boolean f971I;
+
+    /* renamed from: w */
+    protected SpdyAgent f972w;
+
+    /* renamed from: x */
+    protected SpdySession f973x;
+
+    /* renamed from: y */
+    protected volatile boolean f974y;
+
+    /* renamed from: z */
+    protected long f975z;
 
     /* compiled from: Taobao */
-    private class a extends anet.channel.session.a {
+    /* renamed from: anet.channel.session.TnetSpdySession$a */
+    private class C0809a extends C0810a {
 
-        /* renamed from: b, reason: collision with root package name */
-        private Request f1879b;
+        /* renamed from: b */
+        private Request f977b;
 
-        /* renamed from: c, reason: collision with root package name */
-        private RequestCb f1880c;
+        /* renamed from: c */
+        private RequestCb f978c;
 
-        /* renamed from: d, reason: collision with root package name */
-        private int f1881d = 0;
+        /* renamed from: d */
+        private int f979d = 0;
 
-        /* renamed from: e, reason: collision with root package name */
-        private long f1882e = 0;
+        /* renamed from: e */
+        private long f980e = 0;
 
-        public a(Request request, RequestCb requestCb) {
-            this.f1879b = request;
-            this.f1880c = requestCb;
+        public C0809a(Request request, RequestCb requestCb) {
+            this.f977b = request;
+            this.f978c = requestCb;
         }
 
-        private void a(SuperviseData superviseData, int i2, String str) {
+        /* renamed from: a */
+        private void m600a(SuperviseData superviseData, int i2, String str) {
             try {
-                this.f1879b.f1841a.rspEnd = System.currentTimeMillis();
-                if (this.f1879b.f1841a.isDone.get()) {
+                this.f977b.f916a.rspEnd = System.currentTimeMillis();
+                if (this.f977b.f916a.isDone.get()) {
                     return;
                 }
                 if (i2 > 0) {
-                    this.f1879b.f1841a.ret = 1;
+                    this.f977b.f916a.ret = 1;
                 }
-                this.f1879b.f1841a.statusCode = i2;
-                this.f1879b.f1841a.msg = str;
+                this.f977b.f916a.statusCode = i2;
+                this.f977b.f916a.msg = str;
                 if (superviseData != null) {
-                    this.f1879b.f1841a.rspEnd = superviseData.responseEnd;
-                    this.f1879b.f1841a.sendBeforeTime = superviseData.sendStart - superviseData.requestStart;
-                    this.f1879b.f1841a.sendDataTime = superviseData.sendEnd - this.f1879b.f1841a.sendStart;
-                    this.f1879b.f1841a.firstDataTime = superviseData.responseStart - superviseData.sendEnd;
-                    this.f1879b.f1841a.recDataTime = superviseData.responseEnd - superviseData.responseStart;
-                    this.f1879b.f1841a.sendDataSize = superviseData.bodySize + superviseData.compressSize;
-                    this.f1879b.f1841a.recDataSize = this.f1882e + superviseData.recvUncompressSize;
-                    this.f1879b.f1841a.reqHeadInflateSize = superviseData.uncompressSize;
-                    this.f1879b.f1841a.reqHeadDeflateSize = superviseData.compressSize;
-                    this.f1879b.f1841a.reqBodyInflateSize = superviseData.bodySize;
-                    this.f1879b.f1841a.reqBodyDeflateSize = superviseData.bodySize;
-                    this.f1879b.f1841a.rspHeadDeflateSize = superviseData.recvCompressSize;
-                    this.f1879b.f1841a.rspHeadInflateSize = superviseData.recvUncompressSize;
-                    this.f1879b.f1841a.rspBodyDeflateSize = superviseData.recvBodySize;
-                    this.f1879b.f1841a.rspBodyInflateSize = this.f1882e;
-                    if (this.f1879b.f1841a.contentLength == 0) {
-                        this.f1879b.f1841a.contentLength = superviseData.originContentLength;
+                    this.f977b.f916a.rspEnd = superviseData.responseEnd;
+                    this.f977b.f916a.sendBeforeTime = superviseData.sendStart - superviseData.requestStart;
+                    this.f977b.f916a.sendDataTime = superviseData.sendEnd - this.f977b.f916a.sendStart;
+                    this.f977b.f916a.firstDataTime = superviseData.responseStart - superviseData.sendEnd;
+                    this.f977b.f916a.recDataTime = superviseData.responseEnd - superviseData.responseStart;
+                    this.f977b.f916a.sendDataSize = superviseData.bodySize + superviseData.compressSize;
+                    this.f977b.f916a.recDataSize = this.f980e + superviseData.recvUncompressSize;
+                    this.f977b.f916a.reqHeadInflateSize = superviseData.uncompressSize;
+                    this.f977b.f916a.reqHeadDeflateSize = superviseData.compressSize;
+                    this.f977b.f916a.reqBodyInflateSize = superviseData.bodySize;
+                    this.f977b.f916a.reqBodyDeflateSize = superviseData.bodySize;
+                    this.f977b.f916a.rspHeadDeflateSize = superviseData.recvCompressSize;
+                    this.f977b.f916a.rspHeadInflateSize = superviseData.recvUncompressSize;
+                    this.f977b.f916a.rspBodyDeflateSize = superviseData.recvBodySize;
+                    this.f977b.f916a.rspBodyInflateSize = this.f980e;
+                    if (this.f977b.f916a.contentLength == 0) {
+                        this.f977b.f916a.contentLength = superviseData.originContentLength;
                     }
-                    TnetSpdySession.this.q.recvSizeCount += superviseData.recvBodySize + superviseData.recvCompressSize;
-                    TnetSpdySession.this.q.sendSizeCount += superviseData.bodySize + superviseData.compressSize;
+                    TnetSpdySession.this.f699q.recvSizeCount += superviseData.recvBodySize + superviseData.recvCompressSize;
+                    TnetSpdySession.this.f699q.sendSizeCount += superviseData.bodySize + superviseData.compressSize;
                 }
             } catch (Exception unused) {
             }
         }
 
-        @Override // anet.channel.session.a, org.android.spdy.Spdycb
+        @Override // anet.channel.session.C0810a, org.android.spdy.Spdycb
         public void spdyDataChunkRecvCB(SpdySession spdySession, boolean z, long j2, SpdyByteArray spdyByteArray, Object obj) {
             if (ALog.isPrintLog(1)) {
-                ALog.d("awcn.TnetSpdySession", "spdyDataChunkRecvCB", this.f1879b.getSeq(), "len", Integer.valueOf(spdyByteArray.getDataLength()), "fin", Boolean.valueOf(z));
+                ALog.m713d("awcn.TnetSpdySession", "spdyDataChunkRecvCB", this.f977b.getSeq(), "len", Integer.valueOf(spdyByteArray.getDataLength()), "fin", Boolean.valueOf(z));
             }
-            this.f1882e += spdyByteArray.getDataLength();
-            this.f1879b.f1841a.recDataSize += spdyByteArray.getDataLength();
-            IHeartbeat iHeartbeat = TnetSpdySession.this.D;
+            this.f980e += spdyByteArray.getDataLength();
+            this.f977b.f916a.recDataSize += spdyByteArray.getDataLength();
+            IHeartbeat iHeartbeat = TnetSpdySession.this.f966D;
             if (iHeartbeat != null) {
                 iHeartbeat.reSchedule();
             }
-            if (this.f1880c != null) {
-                ByteArray a2 = a.C0012a.f1691a.a(spdyByteArray.getByteArray(), spdyByteArray.getDataLength());
+            if (this.f978c != null) {
+                ByteArray m447a = C0752a.a.f765a.m447a(spdyByteArray.getByteArray(), spdyByteArray.getDataLength());
                 spdyByteArray.recycle();
-                this.f1880c.onDataReceive(a2, z);
+                this.f978c.onDataReceive(m447a, z);
             }
             TnetSpdySession.this.handleCallbacks(32, null);
         }
 
-        @Override // anet.channel.session.a, org.android.spdy.Spdycb
+        @Override // anet.channel.session.C0810a, org.android.spdy.Spdycb
         public void spdyOnStreamResponse(SpdySession spdySession, long j2, Map<String, List<String>> map, Object obj) {
-            this.f1879b.f1841a.firstDataTime = System.currentTimeMillis() - this.f1879b.f1841a.sendStart;
-            this.f1881d = HttpHelper.parseStatusCode(map);
-            TnetSpdySession.this.H = 0;
-            ALog.i("awcn.TnetSpdySession", "", this.f1879b.getSeq(), HiAnalyticsConstant.HaKey.BI_KEY_RESULT, Integer.valueOf(this.f1881d));
-            ALog.i("awcn.TnetSpdySession", "", this.f1879b.getSeq(), "response headers", map);
-            RequestCb requestCb = this.f1880c;
+            this.f977b.f916a.firstDataTime = System.currentTimeMillis() - this.f977b.f916a.sendStart;
+            this.f979d = HttpHelper.parseStatusCode(map);
+            TnetSpdySession.this.f970H = 0;
+            ALog.m716i("awcn.TnetSpdySession", "", this.f977b.getSeq(), HiAnalyticsConstant.HaKey.BI_KEY_RESULT, Integer.valueOf(this.f979d));
+            ALog.m716i("awcn.TnetSpdySession", "", this.f977b.getSeq(), "response headers", map);
+            RequestCb requestCb = this.f978c;
             if (requestCb != null) {
-                requestCb.onResponseCode(this.f1881d, HttpHelper.cloneMap(map));
+                requestCb.onResponseCode(this.f979d, HttpHelper.cloneMap(map));
             }
             TnetSpdySession.this.handleCallbacks(16, null);
-            this.f1879b.f1841a.contentEncoding = HttpHelper.getSingleHeaderFieldByKey(map, "Content-Encoding");
-            this.f1879b.f1841a.contentType = HttpHelper.getSingleHeaderFieldByKey(map, "Content-Type");
-            this.f1879b.f1841a.contentLength = HttpHelper.parseContentLength(map);
-            this.f1879b.f1841a.serverRT = HttpHelper.parseServerRT(map);
-            TnetSpdySession.this.handleResponseCode(this.f1879b, this.f1881d);
-            TnetSpdySession.this.handleResponseHeaders(this.f1879b, map);
-            IHeartbeat iHeartbeat = TnetSpdySession.this.D;
+            this.f977b.f916a.contentEncoding = HttpHelper.getSingleHeaderFieldByKey(map, "Content-Encoding");
+            this.f977b.f916a.contentType = HttpHelper.getSingleHeaderFieldByKey(map, "Content-Type");
+            this.f977b.f916a.contentLength = HttpHelper.parseContentLength(map);
+            this.f977b.f916a.serverRT = HttpHelper.parseServerRT(map);
+            TnetSpdySession.this.handleResponseCode(this.f977b, this.f979d);
+            TnetSpdySession.this.handleResponseHeaders(this.f977b, map);
+            IHeartbeat iHeartbeat = TnetSpdySession.this.f966D;
             if (iHeartbeat != null) {
                 iHeartbeat.reSchedule();
             }
         }
 
-        @Override // anet.channel.session.a, org.android.spdy.Spdycb
+        @Override // anet.channel.session.C0810a, org.android.spdy.Spdycb
         public void spdyStreamCloseCallback(SpdySession spdySession, long j2, int i2, Object obj, SuperviseData superviseData) {
             String str;
             if (ALog.isPrintLog(1)) {
-                ALog.d("awcn.TnetSpdySession", "spdyStreamCloseCallback", this.f1879b.getSeq(), "streamId", Long.valueOf(j2), Constants.KEY_ERROR_CODE, Integer.valueOf(i2));
+                ALog.m713d("awcn.TnetSpdySession", "spdyStreamCloseCallback", this.f977b.getSeq(), "streamId", Long.valueOf(j2), Constants.KEY_ERROR_CODE, Integer.valueOf(i2));
             }
             if (i2 != 0) {
-                this.f1881d = ErrorConstant.ERROR_TNET_REQUEST_FAIL;
+                this.f979d = ErrorConstant.ERROR_TNET_REQUEST_FAIL;
                 str = ErrorConstant.formatMsg(ErrorConstant.ERROR_TNET_REQUEST_FAIL, String.valueOf(i2));
                 if (i2 != -2005) {
-                    AppMonitor.getInstance().commitStat(new ExceptionStatistic(ErrorConstant.ERROR_TNET_EXCEPTION, str, this.f1879b.f1841a, null));
+                    AppMonitor.getInstance().commitStat(new ExceptionStatistic(ErrorConstant.ERROR_TNET_EXCEPTION, str, this.f977b.f916a, null));
                 }
-                ALog.e("awcn.TnetSpdySession", "spdyStreamCloseCallback error", this.f1879b.getSeq(), com.umeng.analytics.pro.d.aw, TnetSpdySession.this.p, "status code", Integer.valueOf(i2), "URL", this.f1879b.getHttpUrl().simpleUrlString());
+                ALog.m715e("awcn.TnetSpdySession", "spdyStreamCloseCallback error", this.f977b.getSeq(), C3397d.f11932aw, TnetSpdySession.this.f698p, "status code", Integer.valueOf(i2), "URL", this.f977b.getHttpUrl().simpleUrlString());
             } else {
                 str = HttpConstant.SUCCESS;
             }
-            this.f1879b.f1841a.tnetErrorCode = i2;
-            a(superviseData, this.f1881d, str);
-            RequestCb requestCb = this.f1880c;
+            this.f977b.f916a.tnetErrorCode = i2;
+            m600a(superviseData, this.f979d, str);
+            RequestCb requestCb = this.f978c;
             if (requestCb != null) {
-                requestCb.onFinish(this.f1881d, str, this.f1879b.f1841a);
+                requestCb.onFinish(this.f979d, str, this.f977b.f916a);
             }
             if (i2 == -2004) {
-                if (!TnetSpdySession.this.y) {
+                if (!TnetSpdySession.this.f974y) {
                     TnetSpdySession.this.ping(true);
                 }
-                if (TnetSpdySession.e(TnetSpdySession.this) >= 2) {
+                if (TnetSpdySession.m595e(TnetSpdySession.this) >= 2) {
                     ConnEvent connEvent = new ConnEvent();
                     connEvent.isSuccess = false;
-                    connEvent.isAccs = TnetSpdySession.this.I;
-                    StrategyCenter.getInstance().notifyConnEvent(TnetSpdySession.this.f1624d, TnetSpdySession.this.f1631k, connEvent);
+                    connEvent.isAccs = TnetSpdySession.this.f971I;
+                    StrategyCenter.getInstance().notifyConnEvent(TnetSpdySession.this.f686d, TnetSpdySession.this.f693k, connEvent);
                     TnetSpdySession.this.close(true);
                 }
             }
         }
     }
 
-    public TnetSpdySession(Context context, anet.channel.entity.a aVar) {
-        super(context, aVar);
-        this.y = false;
-        this.A = 0L;
-        this.H = 0;
-        this.B = -1;
-        this.C = null;
-        this.D = null;
-        this.E = null;
-        this.F = null;
-        this.G = null;
-        this.I = false;
+    public TnetSpdySession(Context context, C0781a c0781a) {
+        super(context, c0781a);
+        this.f974y = false;
+        this.f963A = 0L;
+        this.f970H = 0;
+        this.f964B = -1;
+        this.f965C = null;
+        this.f966D = null;
+        this.f967E = null;
+        this.f968F = null;
+        this.f969G = null;
+        this.f971I = false;
     }
 
-    static /* synthetic */ int e(TnetSpdySession tnetSpdySession) {
-        int i2 = tnetSpdySession.H + 1;
-        tnetSpdySession.H = i2;
+    /* renamed from: e */
+    static /* synthetic */ int m595e(TnetSpdySession tnetSpdySession) {
+        int i2 = tnetSpdySession.f970H + 1;
+        tnetSpdySession.f970H = i2;
         return i2;
     }
 
@@ -221,15 +256,15 @@ public class TnetSpdySession extends Session implements SessionCb {
 
     @Override // anet.channel.Session
     public void close() {
-        ALog.e("awcn.TnetSpdySession", "force close!", this.p, com.umeng.analytics.pro.d.aw, this);
+        ALog.m715e("awcn.TnetSpdySession", "force close!", this.f698p, C3397d.f11932aw, this);
         notifyStatus(7, null);
         try {
-            if (this.D != null) {
-                this.D.stop();
-                this.D = null;
+            if (this.f966D != null) {
+                this.f966D.stop();
+                this.f966D = null;
             }
-            if (this.x != null) {
-                this.x.closeSession();
+            if (this.f973x != null) {
+                this.f973x.closeSession();
             }
         } catch (Exception unused) {
         }
@@ -253,72 +288,72 @@ public class TnetSpdySession extends Session implements SessionCb {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // anet.channel.Session
     public Runnable getRecvTimeOutRunnable() {
-        return new h(this);
+        return new RunnableC0817h(this);
     }
 
     @Override // org.android.spdy.SessionCb
     public byte[] getSSLMeta(SpdySession spdySession) {
         String domain = spdySession.getDomain();
         if (TextUtils.isEmpty(domain)) {
-            ALog.i("awcn.TnetSpdySession", "get sslticket host is null", null, new Object[0]);
+            ALog.m716i("awcn.TnetSpdySession", "get sslticket host is null", null, new Object[0]);
             return null;
         }
         try {
-            if (this.G == null) {
+            if (this.f969G == null) {
                 return null;
             }
-            return this.G.getBytes(this.f1621a, "accs_ssl_key2_" + domain);
+            return this.f969G.getBytes(this.f683a, "accs_ssl_key2_" + domain);
         } catch (Throwable th) {
-            ALog.e("awcn.TnetSpdySession", "getSSLMeta", null, th, new Object[0]);
+            ALog.m714e("awcn.TnetSpdySession", "getSSLMeta", null, th, new Object[0]);
             return null;
         }
     }
 
     public void initConfig(Config config) {
         if (config != null) {
-            this.F = config.getAppkey();
-            this.G = config.getSecurity();
+            this.f968F = config.getAppkey();
+            this.f969G = config.getSecurity();
         }
     }
 
     public void initSessionInfo(SessionInfo sessionInfo) {
         if (sessionInfo != null) {
-            this.C = sessionInfo.dataFrameCb;
-            this.E = sessionInfo.auth;
+            this.f965C = sessionInfo.dataFrameCb;
+            this.f967E = sessionInfo.auth;
             if (sessionInfo.isKeepAlive) {
-                this.q.isKL = 1L;
-                this.t = true;
-                this.D = sessionInfo.heartbeat;
+                this.f699q.isKL = 1L;
+                this.f702t = true;
+                this.f966D = sessionInfo.heartbeat;
                 boolean z = sessionInfo.isAccs;
-                this.I = z;
-                if (this.D == null) {
+                this.f971I = z;
+                if (this.f966D == null) {
                     if (!z || AwcnConfig.isAccsSessionCreateForbiddenInBg()) {
-                        this.D = HeartbeatManager.getDefaultHeartbeat();
+                        this.f966D = HeartbeatManager.getDefaultHeartbeat();
                     } else {
-                        this.D = HeartbeatManager.getDefaultBackgroundAccsHeartbeat();
+                        this.f966D = HeartbeatManager.getDefaultBackgroundAccsHeartbeat();
                     }
                 }
             }
         }
-        if (AwcnConfig.isIdleSessionCloseEnable() && this.D == null) {
-            this.D = new anet.channel.heartbeat.c();
+        if (AwcnConfig.isIdleSessionCloseEnable() && this.f966D == null) {
+            this.f966D = new RunnableC0791c();
         }
     }
 
     @Override // anet.channel.Session
     public boolean isAvailable() {
-        return this.n == 4;
+        return this.f696n == 4;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // anet.channel.Session
     public void onDisconnect() {
-        this.y = false;
+        this.f974y = false;
     }
 
     @Override // anet.channel.Session
     public void ping(boolean z) {
-        ping(z, this.s);
+        ping(z, this.f701s);
     }
 
     @Override // org.android.spdy.SessionCb
@@ -328,17 +363,17 @@ public class TnetSpdySession extends Session implements SessionCb {
             return -1;
         }
         try {
-            if (this.G == null) {
+            if (this.f969G == null) {
                 return -1;
             }
-            ISecurity iSecurity = this.G;
-            Context context = this.f1621a;
+            ISecurity iSecurity = this.f969G;
+            Context context = this.f683a;
             StringBuilder sb = new StringBuilder();
             sb.append("accs_ssl_key2_");
             sb.append(domain);
             return iSecurity.saveBytes(context, sb.toString(), bArr) ? 0 : -1;
         } catch (Throwable th) {
-            ALog.e("awcn.TnetSpdySession", "putSSLMeta", null, th, new Object[0]);
+            ALog.m714e("awcn.TnetSpdySession", "putSSLMeta", null, th, new Object[0]);
             return -1;
         }
     }
@@ -363,64 +398,64 @@ public class TnetSpdySession extends Session implements SessionCb {
     @Override // anet.channel.Session
     public void sendCustomFrame(int i2, byte[] bArr, int i3) {
         try {
-            if (this.C == null) {
+            if (this.f965C == null) {
                 return;
             }
-            ALog.e("awcn.TnetSpdySession", "sendCustomFrame", this.p, Constants.KEY_DATA_ID, Integer.valueOf(i2), "type", Integer.valueOf(i3));
-            if (this.n != 4 || this.x == null) {
-                ALog.e("awcn.TnetSpdySession", "sendCustomFrame", this.p, "sendCustomFrame con invalid mStatus:" + this.n);
-                a(i2, ErrorConstant.ERROR_SESSION_INVALID, true, "session invalid");
+            ALog.m715e("awcn.TnetSpdySession", "sendCustomFrame", this.f698p, Constants.KEY_DATA_ID, Integer.valueOf(i2), "type", Integer.valueOf(i3));
+            if (this.f696n != 4 || this.f973x == null) {
+                ALog.m715e("awcn.TnetSpdySession", "sendCustomFrame", this.f698p, "sendCustomFrame con invalid mStatus:" + this.f696n);
+                m583a(i2, ErrorConstant.ERROR_SESSION_INVALID, true, "session invalid");
                 return;
             }
             if (bArr != null && bArr.length > 16384) {
-                a(i2, ErrorConstant.ERROR_DATA_TOO_LARGE, false, null);
+                m583a(i2, ErrorConstant.ERROR_DATA_TOO_LARGE, false, null);
                 return;
             }
-            this.x.sendCustomControlFrame(i2, i3, 0, bArr == null ? 0 : bArr.length, bArr);
-            this.q.requestCount++;
-            this.q.cfRCount++;
-            this.z = System.currentTimeMillis();
-            if (this.D != null) {
-                this.D.reSchedule();
+            this.f973x.sendCustomControlFrame(i2, i3, 0, bArr == null ? 0 : bArr.length, bArr);
+            this.f699q.requestCount++;
+            this.f699q.cfRCount++;
+            this.f975z = System.currentTimeMillis();
+            if (this.f966D != null) {
+                this.f966D.reSchedule();
             }
         } catch (SpdyErrorException e2) {
-            ALog.e("awcn.TnetSpdySession", "sendCustomFrame error", this.p, e2, new Object[0]);
-            a(i2, ErrorConstant.ERROR_TNET_EXCEPTION, true, "SpdyErrorException: " + e2.toString());
+            ALog.m714e("awcn.TnetSpdySession", "sendCustomFrame error", this.f698p, e2, new Object[0]);
+            m583a(i2, ErrorConstant.ERROR_TNET_EXCEPTION, true, "SpdyErrorException: " + e2.toString());
         } catch (Exception e3) {
-            ALog.e("awcn.TnetSpdySession", "sendCustomFrame error", this.p, e3, new Object[0]);
-            a(i2, -101, true, e3.toString());
+            ALog.m714e("awcn.TnetSpdySession", "sendCustomFrame error", this.f698p, e3, new Object[0]);
+            m583a(i2, -101, true, e3.toString());
         }
     }
 
     public void setTnetPublicKey(int i2) {
-        this.B = i2;
+        this.f964B = i2;
     }
 
     @Override // org.android.spdy.SessionCb
     public void spdyCustomControlFrameFailCallback(SpdySession spdySession, Object obj, int i2, int i3) {
-        ALog.e("awcn.TnetSpdySession", "spdyCustomControlFrameFailCallback", this.p, Constants.KEY_DATA_ID, Integer.valueOf(i2));
-        a(i2, i3, true, "tnet error");
+        ALog.m715e("awcn.TnetSpdySession", "spdyCustomControlFrameFailCallback", this.f698p, Constants.KEY_DATA_ID, Integer.valueOf(i2));
+        m583a(i2, i3, true, "tnet error");
     }
 
     @Override // org.android.spdy.SessionCb
     public void spdyCustomControlFrameRecvCallback(SpdySession spdySession, Object obj, int i2, int i3, int i4, int i5, byte[] bArr) {
-        ALog.e("awcn.TnetSpdySession", "[spdyCustomControlFrameRecvCallback]", this.p, "len", Integer.valueOf(i5), "frameCb", this.C);
+        ALog.m715e("awcn.TnetSpdySession", "[spdyCustomControlFrameRecvCallback]", this.f698p, "len", Integer.valueOf(i5), "frameCb", this.f965C);
         if (ALog.isPrintLog(1) && i5 < 512) {
             String str = "";
             for (byte b2 : bArr) {
-                str = str + Integer.toHexString(b2 & f1.f16099c) + c.c.a.b.a.a.f3100g;
+                str = str + Integer.toHexString(b2 & C5230f1.f20085c) + AbstractC1191a.f2568g;
             }
-            ALog.e("awcn.TnetSpdySession", null, this.p, "str", str);
+            ALog.m715e("awcn.TnetSpdySession", null, this.f698p, "str", str);
         }
-        DataFrameCb dataFrameCb = this.C;
+        DataFrameCb dataFrameCb = this.f965C;
         if (dataFrameCb != null) {
             dataFrameCb.onDataReceive(this, bArr, i2, i3);
         } else {
-            ALog.e("awcn.TnetSpdySession", "AccsFrameCb is null", this.p, new Object[0]);
+            ALog.m715e("awcn.TnetSpdySession", "AccsFrameCb is null", this.f698p, new Object[0]);
             AppMonitor.getInstance().commitStat(new ExceptionStatistic(-105, null, "rt"));
         }
-        this.q.inceptCount++;
-        IHeartbeat iHeartbeat = this.D;
+        this.f699q.inceptCount++;
+        IHeartbeat iHeartbeat = this.f966D;
         if (iHeartbeat != null) {
             iHeartbeat.reSchedule();
         }
@@ -429,14 +464,14 @@ public class TnetSpdySession extends Session implements SessionCb {
     @Override // org.android.spdy.SessionCb
     public void spdyPingRecvCallback(SpdySession spdySession, long j2, Object obj) {
         if (ALog.isPrintLog(2)) {
-            ALog.i("awcn.TnetSpdySession", "ping receive", this.p, "Host", this.f1623c, "id", Long.valueOf(j2));
+            ALog.m716i("awcn.TnetSpdySession", "ping receive", this.f698p, "Host", this.f685c, "id", Long.valueOf(j2));
         }
         if (j2 < 0) {
             return;
         }
-        this.y = false;
-        this.H = 0;
-        IHeartbeat iHeartbeat = this.D;
+        this.f974y = false;
+        this.f970H = 0;
+        IHeartbeat iHeartbeat = this.f966D;
         if (iHeartbeat != null) {
             iHeartbeat.reSchedule();
         }
@@ -445,72 +480,72 @@ public class TnetSpdySession extends Session implements SessionCb {
 
     @Override // org.android.spdy.SessionCb
     public void spdySessionCloseCallback(SpdySession spdySession, Object obj, SuperviseConnectInfo superviseConnectInfo, int i2) {
-        ALog.e("awcn.TnetSpdySession", "spdySessionCloseCallback", this.p, " errorCode:", Integer.valueOf(i2));
-        IHeartbeat iHeartbeat = this.D;
+        ALog.m715e("awcn.TnetSpdySession", "spdySessionCloseCallback", this.f698p, " errorCode:", Integer.valueOf(i2));
+        IHeartbeat iHeartbeat = this.f966D;
         if (iHeartbeat != null) {
             iHeartbeat.stop();
-            this.D = null;
+            this.f966D = null;
         }
         if (spdySession != null) {
             try {
                 spdySession.cleanUp();
             } catch (Exception e2) {
-                ALog.e("awcn.TnetSpdySession", "session clean up failed!", null, e2, new Object[0]);
+                ALog.m714e("awcn.TnetSpdySession", "session clean up failed!", null, e2, new Object[0]);
             }
         }
         if (i2 == -3516) {
             ConnEvent connEvent = new ConnEvent();
             connEvent.isSuccess = false;
-            StrategyCenter.getInstance().notifyConnEvent(this.f1624d, this.f1631k, connEvent);
+            StrategyCenter.getInstance().notifyConnEvent(this.f686d, this.f693k, connEvent);
         }
-        notifyStatus(6, new anet.channel.entity.b(2));
+        notifyStatus(6, new C0782b(2));
         if (superviseConnectInfo != null) {
-            SessionStatistic sessionStatistic = this.q;
+            SessionStatistic sessionStatistic = this.f699q;
             sessionStatistic.requestCount = superviseConnectInfo.reused_counter;
             sessionStatistic.liveTime = superviseConnectInfo.keepalive_period_second;
             try {
-                if (this.f1630j.isHTTP3()) {
+                if (this.f692j.isHTTP3()) {
                     if (spdySession != null) {
-                        ALog.e("awcn.TnetSpdySession", "[HTTP3 spdySessionCloseCallback]", this.p, "connectInfo", spdySession.getConnectInfoOnDisConnected());
+                        ALog.m715e("awcn.TnetSpdySession", "[HTTP3 spdySessionCloseCallback]", this.f698p, "connectInfo", spdySession.getConnectInfoOnDisConnected());
                     }
-                    this.q.xqc0RttStatus = superviseConnectInfo.xqc0RttStatus;
-                    this.q.retransmissionRate = superviseConnectInfo.retransmissionRate;
-                    this.q.lossRate = superviseConnectInfo.lossRate;
-                    this.q.tlpCount = superviseConnectInfo.tlpCount;
-                    this.q.rtoCount = superviseConnectInfo.rtoCount;
-                    this.q.srtt = superviseConnectInfo.srtt;
+                    this.f699q.xqc0RttStatus = superviseConnectInfo.xqc0RttStatus;
+                    this.f699q.retransmissionRate = superviseConnectInfo.retransmissionRate;
+                    this.f699q.lossRate = superviseConnectInfo.lossRate;
+                    this.f699q.tlpCount = superviseConnectInfo.tlpCount;
+                    this.f699q.rtoCount = superviseConnectInfo.rtoCount;
+                    this.f699q.srtt = superviseConnectInfo.srtt;
                 }
             } catch (Exception unused) {
             }
         }
-        SessionStatistic sessionStatistic2 = this.q;
+        SessionStatistic sessionStatistic2 = this.f699q;
         if (sessionStatistic2.errorCode == 0) {
             sessionStatistic2.errorCode = i2;
         }
-        this.q.lastPingInterval = (int) (System.currentTimeMillis() - this.z);
-        AppMonitor.getInstance().commitStat(this.q);
-        if (anet.channel.strategy.utils.c.b(this.q.ip)) {
-            AppMonitor.getInstance().commitStat(new SessionMonitor(this.q));
+        this.f699q.lastPingInterval = (int) (System.currentTimeMillis() - this.f975z);
+        AppMonitor.getInstance().commitStat(this.f699q);
+        if (C0848c.m708b(this.f699q.f1004ip)) {
+            AppMonitor.getInstance().commitStat(new SessionMonitor(this.f699q));
         }
-        AppMonitor.getInstance().commitAlarm(this.q.getAlarmObject());
+        AppMonitor.getInstance().commitAlarm(this.f699q.getAlarmObject());
     }
 
     @Override // org.android.spdy.SessionCb
     public void spdySessionConnectCB(SpdySession spdySession, SuperviseConnectInfo superviseConnectInfo) {
-        SessionStatistic sessionStatistic = this.q;
+        SessionStatistic sessionStatistic = this.f699q;
         sessionStatistic.connectionTime = superviseConnectInfo.connectTime;
         sessionStatistic.sslTime = superviseConnectInfo.handshakeTime;
         sessionStatistic.sslCalTime = superviseConnectInfo.doHandshakeTime;
         sessionStatistic.netType = NetworkStatusHelper.getNetworkSubType();
-        this.A = System.currentTimeMillis();
-        notifyStatus(0, new anet.channel.entity.b(1));
-        b();
-        ALog.e("awcn.TnetSpdySession", "spdySessionConnectCB connect", this.p, "connectTime", Integer.valueOf(superviseConnectInfo.connectTime), "sslTime", Integer.valueOf(superviseConnectInfo.handshakeTime));
-        if (this.f1630j.isHTTP3()) {
-            this.q.scid = superviseConnectInfo.scid;
-            this.q.dcid = superviseConnectInfo.dcid;
-            this.q.congControlKind = superviseConnectInfo.congControlKind;
-            ALog.e("awcn.TnetSpdySession", "[HTTP3 spdySessionConnectCB]", this.p, "connectInfo", spdySession.getConnectInfoOnConnected());
+        this.f963A = System.currentTimeMillis();
+        notifyStatus(0, new C0782b(1));
+        m599b();
+        ALog.m715e("awcn.TnetSpdySession", "spdySessionConnectCB connect", this.f698p, "connectTime", Integer.valueOf(superviseConnectInfo.connectTime), "sslTime", Integer.valueOf(superviseConnectInfo.handshakeTime));
+        if (this.f692j.isHTTP3()) {
+            this.f699q.scid = superviseConnectInfo.scid;
+            this.f699q.dcid = superviseConnectInfo.dcid;
+            this.f699q.congControlKind = superviseConnectInfo.congControlKind;
+            ALog.m715e("awcn.TnetSpdySession", "[HTTP3 spdySessionConnectCB]", this.f698p, "connectInfo", spdySession.getConnectInfoOnConnected());
         }
     }
 
@@ -520,100 +555,103 @@ public class TnetSpdySession extends Session implements SessionCb {
             try {
                 spdySession.cleanUp();
             } catch (Exception e2) {
-                ALog.e("awcn.TnetSpdySession", "[spdySessionFailedError]session clean up failed!", null, e2, new Object[0]);
+                ALog.m714e("awcn.TnetSpdySession", "[spdySessionFailedError]session clean up failed!", null, e2, new Object[0]);
             }
         }
-        notifyStatus(2, new anet.channel.entity.b(256, i2, "tnet connect fail"));
-        ALog.e("awcn.TnetSpdySession", null, this.p, " errorId:", Integer.valueOf(i2));
-        SessionStatistic sessionStatistic = this.q;
+        notifyStatus(2, new C0782b(256, i2, "tnet connect fail"));
+        ALog.m715e("awcn.TnetSpdySession", null, this.f698p, " errorId:", Integer.valueOf(i2));
+        SessionStatistic sessionStatistic = this.f699q;
         sessionStatistic.errorCode = i2;
         sessionStatistic.ret = 0;
         sessionStatistic.netType = NetworkStatusHelper.getNetworkSubType();
-        AppMonitor.getInstance().commitStat(this.q);
-        if (anet.channel.strategy.utils.c.b(this.q.ip)) {
-            AppMonitor.getInstance().commitStat(new SessionMonitor(this.q));
+        AppMonitor.getInstance().commitStat(this.f699q);
+        if (C0848c.m708b(this.f699q.f1004ip)) {
+            AppMonitor.getInstance().commitStat(new SessionMonitor(this.f699q));
         }
-        AppMonitor.getInstance().commitAlarm(this.q.getAlarmObject());
+        AppMonitor.getInstance().commitAlarm(this.f699q.getAlarmObject());
     }
 
     @Override // anet.channel.Session
     public void ping(boolean z, int i2) {
         if (ALog.isPrintLog(1)) {
-            ALog.d("awcn.TnetSpdySession", "ping", this.p, Constants.KEY_HOST, this.f1623c, "thread", Thread.currentThread().getName());
+            ALog.m713d("awcn.TnetSpdySession", "ping", this.f698p, Constants.KEY_HOST, this.f685c, "thread", Thread.currentThread().getName());
         }
         if (z) {
             try {
-                if (this.x == null) {
-                    if (this.q != null) {
-                        this.q.closeReason = "session null";
+                if (this.f973x == null) {
+                    if (this.f699q != null) {
+                        this.f699q.closeReason = "session null";
                     }
-                    ALog.e("awcn.TnetSpdySession", this.f1623c + " session null", this.p, new Object[0]);
+                    ALog.m715e("awcn.TnetSpdySession", this.f685c + " session null", this.f698p, new Object[0]);
                     close();
                     return;
                 }
-                if (this.n == 0 || this.n == 4) {
+                if (this.f696n == 0 || this.f696n == 4) {
                     handleCallbacks(64, null);
-                    if (this.y) {
+                    if (this.f974y) {
                         return;
                     }
-                    this.y = true;
-                    this.q.ppkgCount++;
-                    this.x.submitPing();
+                    this.f974y = true;
+                    this.f699q.ppkgCount++;
+                    this.f973x.submitPing();
                     if (ALog.isPrintLog(1)) {
-                        ALog.d("awcn.TnetSpdySession", this.f1623c + " submit ping ms:" + (System.currentTimeMillis() - this.z) + " force:" + z, this.p, new Object[0]);
+                        ALog.m713d("awcn.TnetSpdySession", this.f685c + " submit ping ms:" + (System.currentTimeMillis() - this.f975z) + " force:" + z, this.f698p, new Object[0]);
                     }
                     setPingTimeout(i2);
-                    this.z = System.currentTimeMillis();
-                    if (this.D != null) {
-                        this.D.reSchedule();
+                    this.f975z = System.currentTimeMillis();
+                    if (this.f966D != null) {
+                        this.f966D.reSchedule();
                     }
                 }
             } catch (SpdyErrorException e2) {
                 if (e2.SpdyErrorGetCode() == -1104 || e2.SpdyErrorGetCode() == -1103) {
-                    ALog.e("awcn.TnetSpdySession", "Send request on closed session!!!", this.p, new Object[0]);
-                    notifyStatus(6, new anet.channel.entity.b(2));
+                    ALog.m715e("awcn.TnetSpdySession", "Send request on closed session!!!", this.f698p, new Object[0]);
+                    notifyStatus(6, new C0782b(2));
                 }
-                ALog.e("awcn.TnetSpdySession", "ping", this.p, e2, new Object[0]);
+                ALog.m714e("awcn.TnetSpdySession", "ping", this.f698p, e2, new Object[0]);
             } catch (Exception e3) {
-                ALog.e("awcn.TnetSpdySession", "ping", this.p, e3, new Object[0]);
+                ALog.m714e("awcn.TnetSpdySession", "ping", this.f698p, e3, new Object[0]);
             }
         }
     }
 
-    private void c() {
+    /* renamed from: c */
+    private void m591c() {
         SpdyAgent.enableDebug = false;
-        this.w = SpdyAgent.getInstance(this.f1621a, SpdyVersion.SPDY3, SpdySessionKind.NONE_SESSION);
-        ISecurity iSecurity = this.G;
+        this.f972w = SpdyAgent.getInstance(this.f683a, SpdyVersion.SPDY3, SpdySessionKind.NONE_SESSION);
+        ISecurity iSecurity = this.f969G;
         if (iSecurity != null && !iSecurity.isSecOff()) {
-            this.w.setAccsSslCallback(new j(this));
+            this.f972w.setAccsSslCallback(new C0819j(this));
         }
         if (AwcnConfig.isTnetHeaderCacheEnable()) {
             return;
         }
         try {
-            this.w.getClass().getDeclaredMethod("disableHeaderCache", new Class[0]).invoke(this.w, new Object[0]);
-            ALog.i("awcn.TnetSpdySession", "tnet disableHeaderCache", null, new Object[0]);
+            this.f972w.getClass().getDeclaredMethod("disableHeaderCache", new Class[0]).invoke(this.f972w, new Object[0]);
+            ALog.m716i("awcn.TnetSpdySession", "tnet disableHeaderCache", null, new Object[0]);
         } catch (Exception e2) {
-            ALog.e("awcn.TnetSpdySession", "tnet disableHeaderCache", null, e2, new Object[0]);
+            ALog.m714e("awcn.TnetSpdySession", "tnet disableHeaderCache", null, e2, new Object[0]);
         }
     }
 
-    protected void b() {
-        IAuth iAuth = this.E;
+    /* renamed from: b */
+    protected void m599b() {
+        IAuth iAuth = this.f967E;
         if (iAuth != null) {
-            iAuth.auth(this, new i(this));
+            iAuth.auth(this, new C0818i(this));
             return;
         }
         notifyStatus(4, null);
-        this.q.ret = 1;
-        IHeartbeat iHeartbeat = this.D;
+        this.f699q.ret = 1;
+        IHeartbeat iHeartbeat = this.f966D;
         if (iHeartbeat != null) {
             iHeartbeat.start(this);
         }
     }
 
-    private void a(int i2, int i3, boolean z, String str) {
-        DataFrameCb dataFrameCb = this.C;
+    /* renamed from: a */
+    private void m583a(int i2, int i3, boolean z, String str) {
+        DataFrameCb dataFrameCb = this.f965C;
         if (dataFrameCb != null) {
             dataFrameCb.onException(i2, i3, z, str);
         }

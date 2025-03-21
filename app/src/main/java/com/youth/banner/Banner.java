@@ -27,7 +27,7 @@ import java.util.List;
 public class Banner extends FrameLayout implements ViewPager.OnPageChangeListener {
 
     /* renamed from: adapter, reason: collision with root package name */
-    private BannerPagerAdapter f13487adapter;
+    private BannerPagerAdapter f25899adapter;
     private int bannerBackgroundImage;
     private ImageView bannerDefaultImage;
     private OnBannerClickListener bannerListener;
@@ -37,7 +37,9 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     private int count;
     private int currentItem;
     private int delayTime;
-    private DisplayMetrics dm;
+
+    /* renamed from: dm */
+    private DisplayMetrics f16847dm;
     private int gravity;
     private WeakHandler handler;
     private ImageLoaderInterface imageLoader;
@@ -151,22 +153,22 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         if (attributeSet == null) {
             return;
         }
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Banner);
-        this.mIndicatorWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.Banner_indicator_width, this.indicatorSize);
-        this.mIndicatorHeight = obtainStyledAttributes.getDimensionPixelSize(R.styleable.Banner_indicator_height, this.indicatorSize);
-        this.mIndicatorMargin = obtainStyledAttributes.getDimensionPixelSize(R.styleable.Banner_indicator_margin, 5);
-        this.mIndicatorSelectedResId = obtainStyledAttributes.getResourceId(R.styleable.Banner_indicator_drawable_selected, R.drawable.gray_radius);
-        this.mIndicatorUnselectedResId = obtainStyledAttributes.getResourceId(R.styleable.Banner_indicator_drawable_unselected, R.drawable.white_radius);
-        this.scaleType = obtainStyledAttributes.getInt(R.styleable.Banner_image_scale_type, this.scaleType);
-        this.delayTime = obtainStyledAttributes.getInt(R.styleable.Banner_delay_time, 2000);
-        this.scrollTime = obtainStyledAttributes.getInt(R.styleable.Banner_scroll_time, BannerConfig.DURATION);
-        this.isAutoPlay = obtainStyledAttributes.getBoolean(R.styleable.Banner_is_auto_play, true);
-        this.titleBackground = obtainStyledAttributes.getColor(R.styleable.Banner_title_background, -1);
-        this.titleHeight = obtainStyledAttributes.getDimensionPixelSize(R.styleable.Banner_title_height, -1);
-        this.titleTextColor = obtainStyledAttributes.getColor(R.styleable.Banner_title_textcolor, -1);
-        this.titleTextSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.Banner_title_textsize, -1);
-        this.mLayoutResId = obtainStyledAttributes.getResourceId(R.styleable.Banner_banner_layout, this.mLayoutResId);
-        this.bannerBackgroundImage = obtainStyledAttributes.getResourceId(R.styleable.Banner_banner_default_image, R.drawable.no_banner);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C4433R.styleable.Banner);
+        this.mIndicatorWidth = obtainStyledAttributes.getDimensionPixelSize(C4433R.styleable.Banner_indicator_width, this.indicatorSize);
+        this.mIndicatorHeight = obtainStyledAttributes.getDimensionPixelSize(C4433R.styleable.Banner_indicator_height, this.indicatorSize);
+        this.mIndicatorMargin = obtainStyledAttributes.getDimensionPixelSize(C4433R.styleable.Banner_indicator_margin, 5);
+        this.mIndicatorSelectedResId = obtainStyledAttributes.getResourceId(C4433R.styleable.Banner_indicator_drawable_selected, C4433R.drawable.gray_radius);
+        this.mIndicatorUnselectedResId = obtainStyledAttributes.getResourceId(C4433R.styleable.Banner_indicator_drawable_unselected, C4433R.drawable.white_radius);
+        this.scaleType = obtainStyledAttributes.getInt(C4433R.styleable.Banner_image_scale_type, this.scaleType);
+        this.delayTime = obtainStyledAttributes.getInt(C4433R.styleable.Banner_delay_time, 2000);
+        this.scrollTime = obtainStyledAttributes.getInt(C4433R.styleable.Banner_scroll_time, BannerConfig.DURATION);
+        this.isAutoPlay = obtainStyledAttributes.getBoolean(C4433R.styleable.Banner_is_auto_play, true);
+        this.titleBackground = obtainStyledAttributes.getColor(C4433R.styleable.Banner_title_background, -1);
+        this.titleHeight = obtainStyledAttributes.getDimensionPixelSize(C4433R.styleable.Banner_title_height, -1);
+        this.titleTextColor = obtainStyledAttributes.getColor(C4433R.styleable.Banner_title_textcolor, -1);
+        this.titleTextSize = obtainStyledAttributes.getDimensionPixelSize(C4433R.styleable.Banner_title_textsize, -1);
+        this.mLayoutResId = obtainStyledAttributes.getResourceId(C4433R.styleable.Banner_banner_layout, this.mLayoutResId);
+        this.bannerBackgroundImage = obtainStyledAttributes.getResourceId(C4433R.styleable.Banner_banner_default_image, C4433R.drawable.no_banner);
         obtainStyledAttributes.recycle();
     }
 
@@ -190,14 +192,14 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         this.imageViews.clear();
         handleTypedArray(context, attributeSet);
         View inflate = LayoutInflater.from(context).inflate(this.mLayoutResId, (ViewGroup) this, true);
-        this.bannerDefaultImage = (ImageView) inflate.findViewById(R.id.bannerDefaultImage);
-        this.viewPager = (BannerViewPager) inflate.findViewById(R.id.bannerViewPager);
-        this.titleView = (LinearLayout) inflate.findViewById(R.id.titleView);
-        this.indicator = (LinearLayout) inflate.findViewById(R.id.circleIndicator);
-        this.indicatorInside = (LinearLayout) inflate.findViewById(R.id.indicatorInside);
-        this.bannerTitle = (TextView) inflate.findViewById(R.id.bannerTitle);
-        this.numIndicator = (TextView) inflate.findViewById(R.id.numIndicator);
-        this.numIndicatorInside = (TextView) inflate.findViewById(R.id.numIndicatorInside);
+        this.bannerDefaultImage = (ImageView) inflate.findViewById(C4433R.id.bannerDefaultImage);
+        this.viewPager = (BannerViewPager) inflate.findViewById(C4433R.id.bannerViewPager);
+        this.titleView = (LinearLayout) inflate.findViewById(C4433R.id.titleView);
+        this.indicator = (LinearLayout) inflate.findViewById(C4433R.id.circleIndicator);
+        this.indicatorInside = (LinearLayout) inflate.findViewById(C4433R.id.indicatorInside);
+        this.bannerTitle = (TextView) inflate.findViewById(C4433R.id.bannerTitle);
+        this.numIndicator = (TextView) inflate.findViewById(C4433R.id.numIndicator);
+        this.numIndicatorInside = (TextView) inflate.findViewById(C4433R.id.numIndicatorInside);
         this.bannerDefaultImage.setImageResource(this.bannerBackgroundImage);
         initViewPagerScroll();
     }
@@ -242,11 +244,11 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
 
     private void setData() {
         this.currentItem = 1;
-        if (this.f13487adapter == null) {
-            this.f13487adapter = new BannerPagerAdapter();
+        if (this.f25899adapter == null) {
+            this.f25899adapter = new BannerPagerAdapter();
             this.viewPager.addOnPageChangeListener(this);
         }
-        this.viewPager.setAdapter(this.f13487adapter);
+        this.viewPager.setAdapter(this.f25899adapter);
         this.viewPager.setFocusable(true);
         this.viewPager.setCurrentItem(1);
         int i2 = this.gravity;
@@ -587,9 +589,9 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         this.scrollTime = BannerConfig.DURATION;
         this.isAutoPlay = true;
         this.isScroll = true;
-        this.mIndicatorSelectedResId = R.drawable.gray_radius;
-        this.mIndicatorUnselectedResId = R.drawable.white_radius;
-        this.mLayoutResId = R.layout.banner;
+        this.mIndicatorSelectedResId = C4433R.drawable.gray_radius;
+        this.mIndicatorUnselectedResId = C4433R.drawable.white_radius;
+        this.mLayoutResId = C4433R.layout.banner;
         this.count = 0;
         this.gravity = -1;
         this.lastPosition = 1;
@@ -617,8 +619,8 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         this.imageUrls = new ArrayList();
         this.imageViews = new ArrayList();
         this.indicatorImages = new ArrayList();
-        this.dm = context.getResources().getDisplayMetrics();
-        this.indicatorSize = this.dm.widthPixels / 80;
+        this.f16847dm = context.getResources().getDisplayMetrics();
+        this.indicatorSize = this.f16847dm.widthPixels / 80;
         initView(context, attributeSet);
     }
 

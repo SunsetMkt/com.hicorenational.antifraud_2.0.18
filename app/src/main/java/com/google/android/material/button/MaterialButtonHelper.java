@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.ViewUtils;
 import com.google.android.material.resources.MaterialResources;
 import com.google.android.material.ripple.RippleUtils;
@@ -203,16 +203,16 @@ class MaterialButtonHelper {
     }
 
     public void loadFromAttributes(TypedArray typedArray) {
-        this.insetLeft = typedArray.getDimensionPixelOffset(R.styleable.MaterialButton_android_insetLeft, 0);
-        this.insetRight = typedArray.getDimensionPixelOffset(R.styleable.MaterialButton_android_insetRight, 0);
-        this.insetTop = typedArray.getDimensionPixelOffset(R.styleable.MaterialButton_android_insetTop, 0);
-        this.insetBottom = typedArray.getDimensionPixelOffset(R.styleable.MaterialButton_android_insetBottom, 0);
-        this.cornerRadius = typedArray.getDimensionPixelSize(R.styleable.MaterialButton_cornerRadius, 0);
-        this.strokeWidth = typedArray.getDimensionPixelSize(R.styleable.MaterialButton_strokeWidth, 0);
-        this.backgroundTintMode = ViewUtils.parseTintMode(typedArray.getInt(R.styleable.MaterialButton_backgroundTintMode, -1), PorterDuff.Mode.SRC_IN);
-        this.backgroundTint = MaterialResources.getColorStateList(this.materialButton.getContext(), typedArray, R.styleable.MaterialButton_backgroundTint);
-        this.strokeColor = MaterialResources.getColorStateList(this.materialButton.getContext(), typedArray, R.styleable.MaterialButton_strokeColor);
-        this.rippleColor = MaterialResources.getColorStateList(this.materialButton.getContext(), typedArray, R.styleable.MaterialButton_rippleColor);
+        this.insetLeft = typedArray.getDimensionPixelOffset(C1921R.styleable.MaterialButton_android_insetLeft, 0);
+        this.insetRight = typedArray.getDimensionPixelOffset(C1921R.styleable.MaterialButton_android_insetRight, 0);
+        this.insetTop = typedArray.getDimensionPixelOffset(C1921R.styleable.MaterialButton_android_insetTop, 0);
+        this.insetBottom = typedArray.getDimensionPixelOffset(C1921R.styleable.MaterialButton_android_insetBottom, 0);
+        this.cornerRadius = typedArray.getDimensionPixelSize(C1921R.styleable.MaterialButton_cornerRadius, 0);
+        this.strokeWidth = typedArray.getDimensionPixelSize(C1921R.styleable.MaterialButton_strokeWidth, 0);
+        this.backgroundTintMode = ViewUtils.parseTintMode(typedArray.getInt(C1921R.styleable.MaterialButton_backgroundTintMode, -1), PorterDuff.Mode.SRC_IN);
+        this.backgroundTint = MaterialResources.getColorStateList(this.materialButton.getContext(), typedArray, C1921R.styleable.MaterialButton_backgroundTint);
+        this.strokeColor = MaterialResources.getColorStateList(this.materialButton.getContext(), typedArray, C1921R.styleable.MaterialButton_strokeColor);
+        this.rippleColor = MaterialResources.getColorStateList(this.materialButton.getContext(), typedArray, C1921R.styleable.MaterialButton_rippleColor);
         this.buttonStrokePaint.setStyle(Paint.Style.STROKE);
         this.buttonStrokePaint.setStrokeWidth(this.strokeWidth);
         Paint paint = this.buttonStrokePaint;

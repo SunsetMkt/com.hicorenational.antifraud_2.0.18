@@ -7,14 +7,14 @@ public enum HmsCheckedState {
     NEED_UPDATE(2);
 
 
-    /* renamed from: a, reason: collision with root package name */
-    private final int f6677a;
+    /* renamed from: a */
+    private final int f7196a;
 
     HmsCheckedState(int i2) {
-        this.f6677a = i2;
+        this.f7196a = i2;
     }
 
     public int getState() {
-        return this.f6677a;
+        return this.f7196a;
     }
 }

@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp">
-        <ui.view.ShadowLinearLayout
+        <p388ui.view.ShadowLinearLayout
             android:orientation="horizontal"
             android:id="@+id/sl_level"
             android:background="@drawable/dialog_corner_bg"
@@ -106,7 +106,7 @@
                     android:layout_marginTop="5dp"
                     android:text="注册用户"/>
             </LinearLayout>
-        </ui.view.ShadowLinearLayout>
+        </p388ui.view.ShadowLinearLayout>
         <TextView
             android:textSize="18sp"
             android:textColor="#333333"
@@ -115,7 +115,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
             android:text="工作应用"/>
-        <ui.view.ShadowLinearLayout
+        <p388ui.view.ShadowLinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -152,8 +152,8 @@
                 android:layout_marginRight="15dp"
                 android:src="@mipmap/arrow_gray_right"
                 android:layout_centerVertical="true"/>
-        </ui.view.ShadowLinearLayout>
-        <ui.view.ShadowLinearLayout
+        </p388ui.view.ShadowLinearLayout>
+        <p388ui.view.ShadowLinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -189,8 +189,8 @@
                 android:layout_marginRight="15dp"
                 android:src="@mipmap/arrow_gray_right"
                 android:layout_centerVertical="true"/>
-        </ui.view.ShadowLinearLayout>
-        <ui.view.ShadowLinearLayout
+        </p388ui.view.ShadowLinearLayout>
+        <p388ui.view.ShadowLinearLayout
             android:orientation="horizontal"
             android:visibility="gone"
             android:layout_width="match_parent"
@@ -227,7 +227,7 @@
                 android:layout_marginRight="15dp"
                 android:src="@mipmap/arrow_gray_right"
                 android:layout_centerVertical="true"/>
-        </ui.view.ShadowLinearLayout>
+        </p388ui.view.ShadowLinearLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"

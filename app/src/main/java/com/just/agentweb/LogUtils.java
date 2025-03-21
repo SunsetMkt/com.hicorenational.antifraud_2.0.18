@@ -1,6 +1,6 @@
 package com.just.agentweb;
 
-import c.c.a.b.a.a;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 class LogUtils {
@@ -9,16 +9,19 @@ class LogUtils {
     LogUtils() {
     }
 
-    static void e(String str, String str2) {
+    /* renamed from: e */
+    static void m8081e(String str, String str2) {
         if (isDebug()) {
             PREFIX.concat(str);
         }
     }
 
-    static void e(String str, String str2, Throwable th) {
+    /* renamed from: e */
+    static void m8082e(String str, String str2, Throwable th) {
     }
 
-    static void i(String str, String str2) {
+    /* renamed from: i */
+    static void m8083i(String str, String str2) {
         if (isDebug()) {
             PREFIX.concat(str);
         }
@@ -33,10 +36,11 @@ class LogUtils {
             PREFIX.concat(str);
             return;
         }
-        throw new RuntimeException(PREFIX.concat(str) + a.f3100g + str2, th);
+        throw new RuntimeException(PREFIX.concat(str) + AbstractC1191a.f2568g + str2, th);
     }
 
-    static void v(String str, String str2) {
+    /* renamed from: v */
+    static void m8084v(String str, String str2) {
         if (isDebug()) {
             PREFIX.concat(str);
         }

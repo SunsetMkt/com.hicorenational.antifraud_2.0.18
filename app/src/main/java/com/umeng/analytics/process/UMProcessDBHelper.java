@@ -7,7 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import com.umeng.analytics.process.DBFileTraversalUtil;
-import com.umeng.analytics.process.a;
+import com.umeng.analytics.process.InterfaceC3431a;
+import com.umeng.common.C3442a;
 import com.umeng.commonsdk.framework.UMWorkDispatch;
 import com.umeng.commonsdk.statistics.AnalyticsConstants;
 import com.umeng.commonsdk.utils.FileLockCallback;
@@ -46,10 +47,10 @@ public class UMProcessDBHelper {
             if (TextUtils.isEmpty(str)) {
                 return true;
             }
-            if (str.startsWith(com.umeng.analytics.process.a.f10568c)) {
-                str = str.replaceFirst(com.umeng.analytics.process.a.f10568c, "");
+            if (str.startsWith(InterfaceC3431a.f12305c)) {
+                str = str.replaceFirst(InterfaceC3431a.f12305c, "");
             }
-            UMProcessDBHelper.this.insertEvents(str.replace(com.umeng.analytics.process.a.f10569d, ""), (JSONArray) obj);
+            UMProcessDBHelper.this.insertEvents(str.replace(InterfaceC3431a.f12306d, ""), (JSONArray) obj);
             return true;
         }
     }
@@ -68,10 +69,10 @@ public class UMProcessDBHelper {
             if (TextUtils.isEmpty(str)) {
                 return true;
             }
-            if (str.startsWith(com.umeng.analytics.process.a.f10568c)) {
-                str = str.replaceFirst(com.umeng.analytics.process.a.f10568c, "");
+            if (str.startsWith(InterfaceC3431a.f12305c)) {
+                str = str.replaceFirst(InterfaceC3431a.f12305c, "");
             }
-            UMProcessDBHelper.this.processToMain(str.replace(com.umeng.analytics.process.a.f10569d, ""));
+            UMProcessDBHelper.this.processToMain(str.replace(InterfaceC3431a.f12306d, ""));
             return true;
         }
 
@@ -81,40 +82,41 @@ public class UMProcessDBHelper {
         }
     }
 
-    private class a implements Serializable {
+    /* renamed from: com.umeng.analytics.process.UMProcessDBHelper$a */
+    private class C3430a implements Serializable {
 
-        /* renamed from: a, reason: collision with root package name */
-        int f10557a;
+        /* renamed from: a */
+        int f12294a;
 
-        /* renamed from: b, reason: collision with root package name */
-        String f10558b;
+        /* renamed from: b */
+        String f12295b;
 
-        /* renamed from: c, reason: collision with root package name */
-        String f10559c;
+        /* renamed from: c */
+        String f12296c;
 
-        /* renamed from: d, reason: collision with root package name */
-        String f10560d;
+        /* renamed from: d */
+        String f12297d;
 
-        /* renamed from: e, reason: collision with root package name */
-        int f10561e;
+        /* renamed from: e */
+        int f12298e;
 
-        /* renamed from: f, reason: collision with root package name */
-        String f10562f;
+        /* renamed from: f */
+        String f12299f;
 
-        /* renamed from: g, reason: collision with root package name */
-        String f10563g;
+        /* renamed from: g */
+        String f12300g;
 
-        /* renamed from: h, reason: collision with root package name */
-        String f10564h;
+        /* renamed from: h */
+        String f12301h;
 
-        private a() {
+        private C3430a() {
         }
     }
 
     private UMProcessDBHelper() {
     }
 
-    private List<a> datasAdapter(String str, JSONArray jSONArray) {
+    private List<C3430a> datasAdapter(String str, JSONArray jSONArray) {
         ArrayList arrayList = new ArrayList();
         if (TextUtils.isEmpty(str)) {
             return arrayList;
@@ -122,22 +124,22 @@ public class UMProcessDBHelper {
         for (int i2 = 0; i2 < jSONArray.length(); i2++) {
             try {
                 JSONObject jSONObject = jSONArray.getJSONObject(i2);
-                a aVar = new a();
-                aVar.f10559c = jSONObject.optString("id");
-                aVar.f10563g = UMUtils.getAppVersionName(this.mContext);
-                aVar.f10564h = UMUtils.getAppVersionCode(this.mContext);
-                aVar.f10558b = jSONObject.optString("__i");
-                aVar.f10561e = jSONObject.optInt("__t");
-                aVar.f10562f = str;
+                C3430a c3430a = new C3430a();
+                c3430a.f12296c = jSONObject.optString("id");
+                c3430a.f12300g = UMUtils.getAppVersionName(this.mContext);
+                c3430a.f12301h = UMUtils.getAppVersionCode(this.mContext);
+                c3430a.f12295b = jSONObject.optString("__i");
+                c3430a.f12298e = jSONObject.optInt("__t");
+                c3430a.f12299f = str;
                 if (jSONObject.has("ds")) {
                     jSONObject.remove("ds");
                 }
                 jSONObject.put("ds", getDataSource());
                 jSONObject.remove("__i");
                 jSONObject.remove("__t");
-                aVar.f10560d = com.umeng.common.a.a().a(jSONObject.toString());
+                c3430a.f12297d = C3442a.m11498a().m11500a(jSONObject.toString());
                 jSONObject.remove("ds");
-                arrayList.add(aVar);
+                arrayList.add(c3430a);
             } catch (Exception unused) {
             }
         }
@@ -146,7 +148,7 @@ public class UMProcessDBHelper {
 
     private boolean dbIsExists(String str) {
         try {
-            return new File(b.b(this.mContext, str)).exists();
+            return new File(C3432b.m11447b(this.mContext, str)).exists();
         } catch (Throwable unused) {
             return false;
         }
@@ -169,13 +171,13 @@ public class UMProcessDBHelper {
         return uMProcessDBHelper;
     }
 
-    private boolean insertEvents_(String str, List<a> list) {
+    private boolean insertEvents_(String str, List<C3430a> list) {
         SQLiteDatabase sQLiteDatabase;
         if (TextUtils.isEmpty(str) || list == null || list.isEmpty()) {
             return true;
         }
         try {
-            sQLiteDatabase = c.a(this.mContext).a(str);
+            sQLiteDatabase = C3433c.m11448a(this.mContext).m11450a(str);
         } catch (Exception unused) {
             sQLiteDatabase = null;
         } catch (Throwable th) {
@@ -185,17 +187,17 @@ public class UMProcessDBHelper {
         try {
             try {
                 sQLiteDatabase.beginTransaction();
-                for (a aVar : list) {
+                for (C3430a c3430a : list) {
                     try {
                         ContentValues contentValues = new ContentValues();
-                        contentValues.put("__i", aVar.f10558b);
-                        contentValues.put("__e", aVar.f10559c);
-                        contentValues.put("__t", Integer.valueOf(aVar.f10561e));
-                        contentValues.put(a.InterfaceC0139a.f10579f, aVar.f10562f);
-                        contentValues.put("__av", aVar.f10563g);
-                        contentValues.put("__vc", aVar.f10564h);
-                        contentValues.put("__s", aVar.f10560d);
-                        sQLiteDatabase.insert(a.InterfaceC0139a.f10574a, null, contentValues);
+                        contentValues.put("__i", c3430a.f12295b);
+                        contentValues.put("__e", c3430a.f12296c);
+                        contentValues.put("__t", Integer.valueOf(c3430a.f12298e));
+                        contentValues.put(InterfaceC3431a.a.f12316f, c3430a.f12299f);
+                        contentValues.put("__av", c3430a.f12300g);
+                        contentValues.put("__vc", c3430a.f12301h);
+                        contentValues.put("__s", c3430a.f12297d);
+                        sQLiteDatabase.insert(InterfaceC3431a.a.f12311a, null, contentValues);
                     } catch (Exception unused2) {
                     }
                 }
@@ -206,7 +208,7 @@ public class UMProcessDBHelper {
                     } catch (Throwable unused3) {
                     }
                 }
-                c.a(this.mContext).b(str);
+                C3433c.m11448a(this.mContext).m11451b(str);
                 return true;
             } catch (Exception unused4) {
                 if (sQLiteDatabase != null) {
@@ -215,7 +217,7 @@ public class UMProcessDBHelper {
                     } catch (Throwable unused5) {
                     }
                 }
-                c.a(this.mContext).b(str);
+                C3433c.m11448a(this.mContext).m11451b(str);
                 return false;
             }
         } catch (Throwable th2) {
@@ -226,7 +228,7 @@ public class UMProcessDBHelper {
                 } catch (Throwable unused6) {
                 }
             }
-            c.a(this.mContext).b(str);
+            C3433c.m11448a(this.mContext).m11451b(str);
             throw th;
         }
     }
@@ -238,8 +240,8 @@ public class UMProcessDBHelper {
     /* JADX INFO: Access modifiers changed from: private */
     public void processToMain(String str) {
         if (dbIsExists(str)) {
-            List<a> readEventByProcess = readEventByProcess(str);
-            if (!readEventByProcess.isEmpty() && insertEvents_(com.umeng.analytics.process.a.f10573h, readEventByProcess)) {
+            List<C3430a> readEventByProcess = readEventByProcess(str);
+            if (!readEventByProcess.isEmpty() && insertEvents_(InterfaceC3431a.f12310h, readEventByProcess)) {
                 deleteEventDatas(str, null, readEventByProcess);
             }
         }
@@ -263,15 +265,15 @@ public class UMProcessDBHelper {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private java.util.List<com.umeng.analytics.process.UMProcessDBHelper.a> readEventByProcess(java.lang.String r13) {
+    private java.util.List<com.umeng.analytics.process.UMProcessDBHelper.C3430a> readEventByProcess(java.lang.String r13) {
         /*
             r12 = this;
             java.util.ArrayList r0 = new java.util.ArrayList
             r0.<init>()
             r1 = 0
             android.content.Context r2 = r12.mContext     // Catch: java.lang.Throwable -> L9e java.lang.Exception -> La2
-            com.umeng.analytics.process.c r2 = com.umeng.analytics.process.c.a(r2)     // Catch: java.lang.Throwable -> L9e java.lang.Exception -> La2
-            android.database.sqlite.SQLiteDatabase r2 = r2.a(r13)     // Catch: java.lang.Throwable -> L9e java.lang.Exception -> La2
+            com.umeng.analytics.process.c r2 = com.umeng.analytics.process.C3433c.m11448a(r2)     // Catch: java.lang.Throwable -> L9e java.lang.Exception -> La2
+            android.database.sqlite.SQLiteDatabase r2 = r2.m11450a(r13)     // Catch: java.lang.Throwable -> L9e java.lang.Exception -> La2
             r2.beginTransaction()     // Catch: java.lang.Throwable -> L96 java.lang.Exception -> L99
             java.lang.String r4 = "__et_p"
             r5 = 0
@@ -290,35 +292,35 @@ public class UMProcessDBHelper {
             r4.<init>()     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             r5 = 0
             int r5 = r3.getInt(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10557a = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12294a = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__i"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = r3.getString(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10558b = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12295b = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__e"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = r3.getString(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10559c = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12296c = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__s"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = r3.getString(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10560d = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12297d = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__t"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             int r5 = r3.getInt(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10561e = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12298e = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__pn"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = r3.getString(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10562f = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12299f = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__av"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = r3.getString(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10563g = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12300g = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = "__vc"
             int r5 = r3.getColumnIndex(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             java.lang.String r5 = r3.getString(r5)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
-            r4.f10564h = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
+            r4.f12301h = r5     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             r0.add(r4)     // Catch: java.lang.Exception -> L8c java.lang.Throwable -> Lbd
             goto L22
         L8c:
@@ -360,8 +362,8 @@ public class UMProcessDBHelper {
             r2.endTransaction()     // Catch: java.lang.Exception -> Lb3
         Lb3:
             android.content.Context r1 = r12.mContext
-            com.umeng.analytics.process.c r1 = com.umeng.analytics.process.c.a(r1)
-            r1.b(r13)
+            com.umeng.analytics.process.c r1 = com.umeng.analytics.process.C3433c.m11448a(r1)
+            r1.m11451b(r13)
             return r0
         Lbd:
             r0 = move-exception
@@ -373,8 +375,8 @@ public class UMProcessDBHelper {
             r2.endTransaction()     // Catch: java.lang.Exception -> Lc8
         Lc8:
             android.content.Context r1 = r12.mContext
-            com.umeng.analytics.process.c r1 = com.umeng.analytics.process.c.a(r1)
-            r1.b(r13)
+            com.umeng.analytics.process.c r1 = com.umeng.analytics.process.C3433c.m11448a(r1)
+            r1.m11451b(r13)
             throw r0
         */
         throw new UnsupportedOperationException("Method not decompiled: com.umeng.analytics.process.UMProcessDBHelper.readEventByProcess(java.lang.String):java.util.List");
@@ -382,8 +384,8 @@ public class UMProcessDBHelper {
 
     public void createDBByProcess(String str) {
         try {
-            c.a(this.mContext).a(str);
-            c.a(this.mContext).b(str);
+            C3433c.m11448a(this.mContext).m11450a(str);
+            C3433c.m11448a(this.mContext).m11451b(str);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -395,7 +397,7 @@ public class UMProcessDBHelper {
      */
     /* JADX WARN: Code restructure failed: missing block: B:19:0x0066, code lost:
     
-        com.umeng.analytics.process.c.a(r4.mContext).b(r5);
+        com.umeng.analytics.process.C3433c.m11448a(r4.mContext).m11451b(r5);
      */
     /* JADX WARN: Code restructure failed: missing block: B:20:0x006f, code lost:
     
@@ -413,7 +415,7 @@ public class UMProcessDBHelper {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public void deleteEventDatas(java.lang.String r5, java.lang.String r6, java.util.List<com.umeng.analytics.process.UMProcessDBHelper.a> r7) {
+    public void deleteEventDatas(java.lang.String r5, java.lang.String r6, java.util.List<com.umeng.analytics.process.UMProcessDBHelper.C3430a> r7) {
         /*
             r4 = this;
             boolean r6 = android.text.TextUtils.isEmpty(r5)
@@ -422,8 +424,8 @@ public class UMProcessDBHelper {
         L7:
             r6 = 0
             android.content.Context r0 = r4.mContext     // Catch: java.lang.Throwable -> L4e java.lang.Exception -> L60
-            com.umeng.analytics.process.c r0 = com.umeng.analytics.process.c.a(r0)     // Catch: java.lang.Throwable -> L4e java.lang.Exception -> L60
-            android.database.sqlite.SQLiteDatabase r0 = r0.a(r5)     // Catch: java.lang.Throwable -> L4e java.lang.Exception -> L60
+            com.umeng.analytics.process.c r0 = com.umeng.analytics.process.C3433c.m11448a(r0)     // Catch: java.lang.Throwable -> L4e java.lang.Exception -> L60
+            android.database.sqlite.SQLiteDatabase r0 = r0.m11450a(r5)     // Catch: java.lang.Throwable -> L4e java.lang.Exception -> L60
             r0.beginTransaction()     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
             int r1 = r7.size()     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
             if (r7 == 0) goto L3f
@@ -436,8 +438,8 @@ public class UMProcessDBHelper {
             java.lang.String r3 = "delete from __et_p where rowid="
             r2.append(r3)     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
             java.lang.Object r3 = r7.get(r6)     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
-            com.umeng.analytics.process.UMProcessDBHelper$a r3 = (com.umeng.analytics.process.UMProcessDBHelper.a) r3     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
-            int r3 = r3.f10557a     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
+            com.umeng.analytics.process.UMProcessDBHelper$a r3 = (com.umeng.analytics.process.UMProcessDBHelper.C3430a) r3     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
+            int r3 = r3.f12294a     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
             r2.append(r3)     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
             java.lang.String r2 = r2.toString()     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
             r0.execSQL(r2)     // Catch: java.lang.Throwable -> L4a java.lang.Exception -> L4c
@@ -464,8 +466,8 @@ public class UMProcessDBHelper {
             r0.endTransaction()
         L56:
             android.content.Context r7 = r4.mContext
-            com.umeng.analytics.process.c r7 = com.umeng.analytics.process.c.a(r7)
-            r7.b(r5)
+            com.umeng.analytics.process.c r7 = com.umeng.analytics.process.C3433c.m11448a(r7)
+            r7.m11451b(r5)
             throw r6
         L60:
             r0 = r6
@@ -475,8 +477,8 @@ public class UMProcessDBHelper {
             r0.endTransaction()
         L66:
             android.content.Context r6 = r4.mContext
-            com.umeng.analytics.process.c r6 = com.umeng.analytics.process.c.a(r6)
-            r6.b(r5)
+            com.umeng.analytics.process.c r6 = com.umeng.analytics.process.C3433c.m11448a(r6)
+            r6.m11451b(r5)
             return
         */
         throw new UnsupportedOperationException("Method not decompiled: com.umeng.analytics.process.UMProcessDBHelper.deleteEventDatas(java.lang.String, java.lang.String, java.util.List):void");
@@ -484,7 +486,7 @@ public class UMProcessDBHelper {
 
     /* JADX WARN: Code restructure failed: missing block: B:10:0x004e, code lost:
     
-        com.umeng.analytics.process.c.a(r7.mContext).b(com.umeng.analytics.process.a.f10573h);
+        com.umeng.analytics.process.C3433c.m11448a(r7.mContext).m11451b(com.umeng.analytics.process.InterfaceC3431a.f12310h);
      */
     /* JADX WARN: Code restructure failed: missing block: B:11:0x0057, code lost:
     
@@ -512,8 +514,8 @@ public class UMProcessDBHelper {
             java.lang.String r0 = "_main_"
             r1 = 0
             android.content.Context r2 = r7.mContext     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
-            com.umeng.analytics.process.c r2 = com.umeng.analytics.process.c.a(r2)     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
-            android.database.sqlite.SQLiteDatabase r1 = r2.a(r0)     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
+            com.umeng.analytics.process.c r2 = com.umeng.analytics.process.C3433c.m11448a(r2)     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
+            android.database.sqlite.SQLiteDatabase r1 = r2.m11450a(r0)     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
             r1.beginTransaction()     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
             java.util.Iterator r8 = r8.iterator()     // Catch: java.lang.Throwable -> L38 java.lang.Exception -> L48
         L14:
@@ -540,8 +542,8 @@ public class UMProcessDBHelper {
             r1.endTransaction()
         L3e:
             android.content.Context r1 = r7.mContext
-            com.umeng.analytics.process.c r1 = com.umeng.analytics.process.c.a(r1)
-            r1.b(r0)
+            com.umeng.analytics.process.c r1 = com.umeng.analytics.process.C3433c.m11448a(r1)
+            r1.m11451b(r0)
             throw r8
         L48:
             if (r1 == 0) goto L4e
@@ -549,8 +551,8 @@ public class UMProcessDBHelper {
             r1.endTransaction()
         L4e:
             android.content.Context r8 = r7.mContext
-            com.umeng.analytics.process.c r8 = com.umeng.analytics.process.c.a(r8)
-            r8.b(r0)
+            com.umeng.analytics.process.c r8 = com.umeng.analytics.process.C3433c.m11448a(r8)
+            r8.m11451b(r0)
             return
         */
         throw new UnsupportedOperationException("Method not decompiled: com.umeng.analytics.process.UMProcessDBHelper.deleteMainProcessEventDatasByIds(java.util.List):void");
@@ -564,7 +566,7 @@ public class UMProcessDBHelper {
 
     public void insertEventsInSubProcess(String str, JSONArray jSONArray) {
         if (AnalyticsConstants.SUB_PROCESS_EVENT && !TextUtils.isEmpty(str)) {
-            File file = new File(b.b(this.mContext, str));
+            File file = new File(C3432b.m11447b(this.mContext, str));
             if (file.exists()) {
                 this.mFileLock.doFileOperateion(file, this.ekvCallBack, jSONArray);
             } else {
@@ -575,9 +577,10 @@ public class UMProcessDBHelper {
 
     public void processDBToMain() {
         try {
-            DBFileTraversalUtil.traverseDBFiles(b.a(this.mContext), new ProcessToMainCallback(), new DBFileTraversalUtil.a() { // from class: com.umeng.analytics.process.UMProcessDBHelper.1
-                @Override // com.umeng.analytics.process.DBFileTraversalUtil.a
-                public void a() {
+            DBFileTraversalUtil.traverseDBFiles(C3432b.m11445a(this.mContext), new ProcessToMainCallback(), new DBFileTraversalUtil.InterfaceC3427a() { // from class: com.umeng.analytics.process.UMProcessDBHelper.1
+                @Override // com.umeng.analytics.process.DBFileTraversalUtil.InterfaceC3427a
+                /* renamed from: a */
+                public void mo11443a() {
                     if (AnalyticsConstants.SUB_PROCESS_EVENT) {
                         UMWorkDispatch.sendEvent(UMProcessDBHelper.this.mContext, UMProcessDBDatasSender.UM_PROCESS_CONSTRUCTMESSAGE, UMProcessDBDatasSender.getInstance(UMProcessDBHelper.this.mContext), null);
                     }
@@ -611,11 +614,11 @@ public class UMProcessDBHelper {
         cursor2 = null;
         cursor2 = null;
         try {
-            sQLiteDatabase = c.a(this.mContext).a(com.umeng.analytics.process.a.f10573h);
+            sQLiteDatabase = C3433c.m11448a(this.mContext).m11450a(InterfaceC3431a.f12310h);
             try {
                 try {
                     sQLiteDatabase.beginTransaction();
-                    cursor = sQLiteDatabase.query(a.InterfaceC0139a.f10574a, null, "rowid=?", new String[]{String.valueOf(num)}, null, null, null);
+                    cursor = sQLiteDatabase.query(InterfaceC3431a.a.f12311a, null, "rowid=?", new String[]{String.valueOf(num)}, null, null, null);
                     if (cursor != null) {
                         try {
                             try {
@@ -639,14 +642,14 @@ public class UMProcessDBHelper {
                                             try {
                                                 cursor2.close();
                                             } catch (Exception unused) {
-                                                c.a(this.mContext).b(com.umeng.analytics.process.a.f10573h);
+                                                C3433c.m11448a(this.mContext).m11451b(InterfaceC3431a.f12310h);
                                                 return jSONObject;
                                             }
                                         }
                                         if (sQLiteDatabase != null) {
                                             sQLiteDatabase.endTransaction();
                                         }
-                                        c.a(this.mContext).b(com.umeng.analytics.process.a.f10573h);
+                                        C3433c.m11448a(this.mContext).m11451b(InterfaceC3431a.f12310h);
                                         return jSONObject;
                                     }
                                 }
@@ -656,14 +659,14 @@ public class UMProcessDBHelper {
                                     try {
                                         cursor.close();
                                     } catch (Exception unused2) {
-                                        c.a(this.mContext).b(com.umeng.analytics.process.a.f10573h);
+                                        C3433c.m11448a(this.mContext).m11451b(InterfaceC3431a.f12310h);
                                         throw th;
                                     }
                                 }
                                 if (sQLiteDatabase != null) {
                                     sQLiteDatabase.endTransaction();
                                 }
-                                c.a(this.mContext).b(com.umeng.analytics.process.a.f10573h);
+                                C3433c.m11448a(this.mContext).m11451b(InterfaceC3431a.f12310h);
                                 throw th;
                             }
                         } catch (Exception e3) {
@@ -680,7 +683,7 @@ public class UMProcessDBHelper {
                     if (sQLiteDatabase != null) {
                         sQLiteDatabase.endTransaction();
                     }
-                    c.a(this.mContext).b(com.umeng.analytics.process.a.f10573h);
+                    C3433c.m11448a(this.mContext).m11451b(InterfaceC3431a.f12310h);
                     return jSONObject2;
                 } catch (Throwable th2) {
                     th = th2;
@@ -702,6 +705,6 @@ public class UMProcessDBHelper {
     }
 
     private UMProcessDBHelper(Context context) {
-        com.umeng.common.a.a().a(context);
+        C3442a.m11498a().m11501a(context);
     }
 }

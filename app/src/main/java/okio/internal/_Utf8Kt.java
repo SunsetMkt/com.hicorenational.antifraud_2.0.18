@@ -1,21 +1,21 @@
 package okio.internal;
 
-import h.q2.t.i0;
-import h.y;
-import i.c.a.d;
 import java.util.Arrays;
 import okio.Utf8;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.p311t.C5544i0;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: -Utf8.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000\u0016\n\u0000\n\u0002\u0010\u0012\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\u001a\n\u0010\u0000\u001a\u00020\u0001*\u00020\u0002\u001a\u001e\u0010\u0003\u001a\u00020\u0002*\u00020\u00012\b\b\u0002\u0010\u0004\u001a\u00020\u00052\b\b\u0002\u0010\u0006\u001a\u00020\u0005¨\u0006\u0007"}, d2 = {"commonAsUtf8ToByteArray", "", "", "commonToUtf8String", "beginIndex", "", "endIndex", "okio"}, k = 2, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000\u0016\n\u0000\n\u0002\u0010\u0012\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\u001a\n\u0010\u0000\u001a\u00020\u0001*\u00020\u0002\u001a\u001e\u0010\u0003\u001a\u00020\u0002*\u00020\u00012\b\b\u0002\u0010\u0004\u001a\u00020\u00052\b\b\u0002\u0010\u0006\u001a\u00020\u0005¨\u0006\u0007"}, m23546d2 = {"commonAsUtf8ToByteArray", "", "", "commonToUtf8String", "beginIndex", "", "endIndex", "okio"}, m23547k = 2, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class _Utf8Kt {
-    @d
-    public static final byte[] commonAsUtf8ToByteArray(@d String str) {
+    @InterfaceC5816d
+    public static final byte[] commonAsUtf8ToByteArray(@InterfaceC5816d String str) {
         int i2;
         int i3;
         char charAt;
-        i0.f(str, "$this$commonAsUtf8ToByteArray");
+        C5544i0.m22546f(str, "$this$commonAsUtf8ToByteArray");
         byte[] bArr = new byte[str.length() * 4];
         int length = str.length();
         int i4 = 0;
@@ -73,14 +73,14 @@ public final class _Utf8Kt {
                     }
                 }
                 byte[] copyOf = Arrays.copyOf(bArr, i5);
-                i0.a((Object) copyOf, "java.util.Arrays.copyOf(this, newSize)");
+                C5544i0.m22521a((Object) copyOf, "java.util.Arrays.copyOf(this, newSize)");
                 return copyOf;
             }
             bArr[i4] = (byte) charAt2;
             i4++;
         }
         byte[] copyOf2 = Arrays.copyOf(bArr, str.length());
-        i0.a((Object) copyOf2, "java.util.Arrays.copyOf(this, newSize)");
+        C5544i0.m22521a((Object) copyOf2, "java.util.Arrays.copyOf(this, newSize)");
         return copyOf2;
     }
 
@@ -92,12 +92,12 @@ public final class _Utf8Kt {
     
         if (((r17[r5] & 192) == 128) == false) goto L22;
      */
-    @i.c.a.d
+    @p324i.p336c.p337a.InterfaceC5816d
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static final java.lang.String commonToUtf8String(@i.c.a.d byte[] r17, int r18, int r19) {
+    public static final java.lang.String commonToUtf8String(@p324i.p336c.p337a.InterfaceC5816d byte[] r17, int r18, int r19) {
         /*
             Method dump skipped, instructions count: 465
             To view this dump change 'Code comments level' option to 'DEBUG'

@@ -5,9 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import com.umeng.social.tool.UMImageMark;
-import com.umeng.socialize.c.a.a;
 import com.umeng.socialize.media.UMediaObject;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
+import com.umeng.socialize.p217c.p218a.C3633a;
 import com.umeng.socialize.utils.ContextUtil;
 import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.SocializeUtils;
@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes2.dex */
 public class UMImage extends BaseMediaObject {
@@ -31,40 +32,40 @@ public class UMImage extends BaseMediaObject {
     public Bitmap.CompressFormat compressFormat;
     public CompressStyle compressStyle;
 
-    /* renamed from: f, reason: collision with root package name */
-    private ConfiguredConvertor f11707f;
+    /* renamed from: f */
+    private ConfiguredConvertor f13653f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private UMImage f11708g;
+    /* renamed from: g */
+    private UMImage f13654g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private UMImageMark f11709h;
+    /* renamed from: h */
+    private UMImageMark f13655h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private int f11710i;
+    /* renamed from: i */
+    private int f13656i;
     public boolean isLoadImgByCompress;
 
-    /* renamed from: j, reason: collision with root package name */
-    private boolean f11711j;
+    /* renamed from: j */
+    private boolean f13657j;
 
     class BinaryConvertor extends ConfiguredConvertor {
 
-        /* renamed from: b, reason: collision with root package name */
-        private byte[] f11713b;
+        /* renamed from: b */
+        private byte[] f13659b;
 
         public BinaryConvertor(byte[] bArr) {
-            this.f11713b = bArr;
+            this.f13659b = bArr;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public byte[] asBinary() {
-            return this.f11713b;
+            return this.f13659b;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public Bitmap asBitmap() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.a(asBinary());
+                return C3633a.m12613a(asBinary());
             }
             return null;
         }
@@ -72,7 +73,7 @@ public class UMImage extends BaseMediaObject {
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public File asFile() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.b(asBinary());
+                return C3633a.m12622b(asBinary());
             }
             return null;
         }
@@ -85,28 +86,28 @@ public class UMImage extends BaseMediaObject {
 
     class BitmapConvertor extends ConfiguredConvertor {
 
-        /* renamed from: b, reason: collision with root package name */
-        private Bitmap f11715b;
+        /* renamed from: b */
+        private Bitmap f13661b;
 
         public BitmapConvertor(Bitmap bitmap) {
-            this.f11715b = bitmap;
+            this.f13661b = bitmap;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public byte[] asBinary() {
-            return a.a(this.f11715b, UMImage.this.compressFormat);
+            return C3633a.m12616a(this.f13661b, UMImage.this.compressFormat);
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public Bitmap asBitmap() {
-            return this.f11715b;
+            return this.f13661b;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public File asFile() {
-            byte[] a2 = a.a(this.f11715b, UMImage.this.compressFormat);
+            byte[] m12616a = C3633a.m12616a(this.f13661b, UMImage.this.compressFormat);
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.b(a2);
+                return C3633a.m12622b(m12616a);
             }
             return null;
         }
@@ -129,29 +130,29 @@ public class UMImage extends BaseMediaObject {
 
     class FileConvertor extends ConfiguredConvertor {
 
-        /* renamed from: b, reason: collision with root package name */
-        private File f11718b;
+        /* renamed from: b */
+        private File f13664b;
 
         public FileConvertor(File file) {
-            this.f11718b = file;
+            this.f13664b = file;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public byte[] asBinary() {
-            return a.a(this.f11718b, UMImage.this.compressFormat);
+            return C3633a.m12618a(this.f13664b, UMImage.this.compressFormat);
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public Bitmap asBitmap() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.a(UMImage.this.asBinImage());
+                return C3633a.m12613a(UMImage.this.asBinImage());
             }
             return null;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public File asFile() {
-            return this.f11718b;
+            return this.f13664b;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
@@ -172,30 +173,30 @@ public class UMImage extends BaseMediaObject {
 
     class ResConvertor extends ConfiguredConvertor {
 
-        /* renamed from: b, reason: collision with root package name */
-        private Context f11720b;
+        /* renamed from: b */
+        private Context f13666b;
 
-        /* renamed from: c, reason: collision with root package name */
-        private int f11721c;
+        /* renamed from: c */
+        private int f13667c;
 
         public ResConvertor(Context context, int i2) {
-            this.f11721c = 0;
-            this.f11720b = context;
-            this.f11721c = i2;
+            this.f13667c = 0;
+            this.f13666b = context;
+            this.f13667c = i2;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public byte[] asBinary() {
-            Context context = this.f11720b;
-            int i2 = this.f11721c;
+            Context context = this.f13666b;
+            int i2 = this.f13667c;
             UMImage uMImage = UMImage.this;
-            return a.a(context, i2, uMImage.isLoadImgByCompress, uMImage.compressFormat);
+            return C3633a.m12615a(context, i2, uMImage.isLoadImgByCompress, uMImage.compressFormat);
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public Bitmap asBitmap() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.a(asBinary());
+                return C3633a.m12613a(asBinary());
             }
             return null;
         }
@@ -203,7 +204,7 @@ public class UMImage extends BaseMediaObject {
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public File asFile() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.b(asBinary());
+                return C3633a.m12622b(asBinary());
             }
             return null;
         }
@@ -216,23 +217,23 @@ public class UMImage extends BaseMediaObject {
 
     class UrlConvertor extends ConfiguredConvertor {
 
-        /* renamed from: b, reason: collision with root package name */
-        private String f11723b;
+        /* renamed from: b */
+        private String f13669b;
 
         public UrlConvertor(String str) {
-            this.f11723b = null;
-            this.f11723b = str;
+            this.f13669b = null;
+            this.f13669b = str;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public byte[] asBinary() {
-            return a.a(this.f11723b);
+            return C3633a.m12619a(this.f13669b);
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public Bitmap asBitmap() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.a(asBinary());
+                return C3633a.m12613a(asBinary());
             }
             return null;
         }
@@ -240,27 +241,28 @@ public class UMImage extends BaseMediaObject {
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public File asFile() {
             if (SocializeUtils.assertBinaryInvalid(asBinary())) {
-                return a.b(asBinary());
+                return C3633a.m12622b(asBinary());
             }
             return null;
         }
 
         @Override // com.umeng.socialize.media.UMImage.IImageConvertor
         public String asUrl() {
-            return this.f11723b;
+            return this.f13669b;
         }
     }
 
     public UMImage(Context context, File file) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, file);
+        this.f13656i = 0;
+        m12654a(context, file);
     }
 
-    private float a(float f2, float f3, float f4, float f5) {
+    /* renamed from: a */
+    private float m12649a(float f2, float f3, float f4, float f5) {
         if (f2 <= f5 && f3 <= f5) {
             return -1.0f;
         }
@@ -269,11 +271,13 @@ public class UMImage extends BaseMediaObject {
         return f6 > f7 ? f6 : f7;
     }
 
-    private void a(Context context, Object obj) {
-        a(context, obj, null);
+    /* renamed from: a */
+    private void m12654a(Context context, Object obj) {
+        m12655a(context, obj, null);
     }
 
-    private void b(Bitmap bitmap) {
+    /* renamed from: b */
+    private void m12657b(Bitmap bitmap) {
         if (bitmap != null) {
             try {
                 if (bitmap.isRecycled()) {
@@ -287,7 +291,7 @@ public class UMImage extends BaseMediaObject {
     }
 
     public byte[] asBinImage() {
-        ConfiguredConvertor configuredConvertor = this.f11707f;
+        ConfiguredConvertor configuredConvertor = this.f13653f;
         if (configuredConvertor == null) {
             return null;
         }
@@ -295,7 +299,7 @@ public class UMImage extends BaseMediaObject {
     }
 
     public Bitmap asBitmap() {
-        ConfiguredConvertor configuredConvertor = this.f11707f;
+        ConfiguredConvertor configuredConvertor = this.f13653f;
         if (configuredConvertor == null) {
             return null;
         }
@@ -303,7 +307,7 @@ public class UMImage extends BaseMediaObject {
     }
 
     public File asFileImage() {
-        ConfiguredConvertor configuredConvertor = this.f11707f;
+        ConfiguredConvertor configuredConvertor = this.f13653f;
         if (configuredConvertor == null) {
             return null;
         }
@@ -311,7 +315,7 @@ public class UMImage extends BaseMediaObject {
     }
 
     public String asUrlImage() {
-        ConfiguredConvertor configuredConvertor = this.f11707f;
+        ConfiguredConvertor configuredConvertor = this.f13653f;
         if (configuredConvertor == null) {
             return null;
         }
@@ -319,7 +323,7 @@ public class UMImage extends BaseMediaObject {
     }
 
     public int getImageStyle() {
-        return this.f11710i;
+        return this.f13656i;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
@@ -329,16 +333,16 @@ public class UMImage extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public UMImage getThumbImage() {
-        return this.f11708g;
+        return this.f13654g;
     }
 
     public boolean isHasWaterMark() {
-        return this.f11711j;
+        return this.f13657j;
     }
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public void setThumb(UMImage uMImage) {
-        this.f11708g = uMImage;
+        this.f13654g = uMImage;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
@@ -350,109 +354,111 @@ public class UMImage extends BaseMediaObject {
     public final Map<String, Object> toUrlExtraParams() {
         HashMap hashMap = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f11689a);
+            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
             hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
         }
         return hashMap;
     }
 
-    private void a(Context context, Object obj, UMImageMark uMImageMark) {
-        Bitmap a2;
+    /* renamed from: a */
+    private void m12655a(Context context, Object obj, UMImageMark uMImageMark) {
+        Bitmap m12652a;
         if (uMImageMark != null) {
-            this.f11711j = true;
-            this.f11709h = uMImageMark;
-            this.f11709h.setContext(context);
+            this.f13657j = true;
+            this.f13655h = uMImageMark;
+            this.f13655h.setContext(context);
         }
         if (ContextUtil.getContext() == null) {
             ContextUtil.setContext(context.getApplicationContext());
         }
         if (obj instanceof File) {
-            this.f11710i = FILE_IMAGE;
-            this.f11707f = new FileConvertor((File) obj);
+            this.f13656i = FILE_IMAGE;
+            this.f13653f = new FileConvertor((File) obj);
             return;
         }
         if (obj instanceof String) {
-            this.f11710i = URL_IMAGE;
-            this.f11707f = new UrlConvertor((String) obj);
+            this.f13656i = URL_IMAGE;
+            this.f13653f = new UrlConvertor((String) obj);
             return;
         }
         if (obj instanceof Integer) {
-            this.f11710i = RES_IMAGE;
-            a2 = isHasWaterMark() ? a(context, ((Integer) obj).intValue()) : null;
-            if (a2 != null) {
-                this.f11707f = new BitmapConvertor(a2);
+            this.f13656i = RES_IMAGE;
+            m12652a = isHasWaterMark() ? m12650a(context, ((Integer) obj).intValue()) : null;
+            if (m12652a != null) {
+                this.f13653f = new BitmapConvertor(m12652a);
                 return;
             } else {
-                this.f11707f = new ResConvertor(context.getApplicationContext(), ((Integer) obj).intValue());
+                this.f13653f = new ResConvertor(context.getApplicationContext(), ((Integer) obj).intValue());
                 return;
             }
         }
         if (obj instanceof byte[]) {
-            this.f11710i = BINARY_IMAGE;
-            a2 = isHasWaterMark() ? a((byte[]) obj) : null;
-            if (a2 != null) {
-                this.f11707f = new BitmapConvertor(a2);
+            this.f13656i = BINARY_IMAGE;
+            m12652a = isHasWaterMark() ? m12653a((byte[]) obj) : null;
+            if (m12652a != null) {
+                this.f13653f = new BitmapConvertor(m12652a);
                 return;
             } else {
-                this.f11707f = new BinaryConvertor((byte[]) obj);
+                this.f13653f = new BinaryConvertor((byte[]) obj);
                 return;
             }
         }
         if (obj instanceof Bitmap) {
-            this.f11710i = BITMAP_IMAGE;
-            a2 = isHasWaterMark() ? a((Bitmap) obj, true) : null;
-            if (a2 == null) {
-                a2 = (Bitmap) obj;
+            this.f13656i = BITMAP_IMAGE;
+            m12652a = isHasWaterMark() ? m12652a((Bitmap) obj, true) : null;
+            if (m12652a == null) {
+                m12652a = (Bitmap) obj;
             }
-            this.f11707f = new BitmapConvertor(a2);
+            this.f13653f = new BitmapConvertor(m12652a);
             return;
         }
         if (obj != null) {
-            SLog.E(UmengText.IMAGE.UNKNOW_UMIMAGE + obj.getClass().getSimpleName());
+            SLog.m12716E(UmengText.IMAGE.UNKNOW_UMIMAGE + obj.getClass().getSimpleName());
             return;
         }
-        SLog.E(UmengText.IMAGE.UNKNOW_UMIMAGE + c.c.a.b.a.a.f3101h);
+        SLog.m12716E(UmengText.IMAGE.UNKNOW_UMIMAGE + AbstractC1191a.f2571h);
     }
 
     public UMImage(Context context, String str) {
         super(str);
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a((Context) new WeakReference(context).get(), str);
+        this.f13656i = 0;
+        m12654a((Context) new WeakReference(context).get(), str);
     }
 
     public UMImage(Context context, int i2) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, Integer.valueOf(i2));
+        this.f13656i = 0;
+        m12654a(context, Integer.valueOf(i2));
     }
 
     public UMImage(Context context, byte[] bArr) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, bArr);
+        this.f13656i = 0;
+        m12654a(context, bArr);
     }
 
     public UMImage(Context context, Bitmap bitmap) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, bitmap);
+        this.f13656i = 0;
+        m12654a(context, bitmap);
     }
 
-    private Bitmap a(Bitmap bitmap, boolean z) {
-        if (this.f11709h == null) {
+    /* renamed from: a */
+    private Bitmap m12652a(Bitmap bitmap, boolean z) {
+        if (this.f13655h == null) {
             return bitmap;
         }
         if (bitmap == null) {
@@ -460,57 +466,58 @@ public class UMImage extends BaseMediaObject {
         }
         if (z) {
             try {
-                bitmap = a(bitmap);
+                bitmap = m12651a(bitmap);
             } catch (Exception e2) {
                 SLog.error(e2);
                 return null;
             }
         }
-        return this.f11709h.compound(bitmap);
+        return this.f13655h.compound(bitmap);
     }
 
     public UMImage(Context context, Bitmap bitmap, UMImageMark uMImageMark) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, bitmap, uMImageMark);
+        this.f13656i = 0;
+        m12655a(context, bitmap, uMImageMark);
     }
 
-    private Bitmap a(Context context, int i2) {
+    /* renamed from: a */
+    private Bitmap m12650a(Context context, int i2) {
         InputStream inputStream;
         InputStream inputStream2;
         if (i2 != 0 && context != null) {
             try {
-                if (this.f11709h != null) {
+                if (this.f13655h != null) {
                     try {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = true;
                         inputStream2 = context.getResources().openRawResource(i2);
                         try {
                             BitmapFactory.decodeStream(inputStream2, null, options);
-                            a(inputStream2);
-                            int a2 = (int) a(options.outWidth, options.outHeight, MAX_WIDTH, MAX_HEIGHT);
-                            if (a2 > 0) {
-                                options.inSampleSize = a2;
+                            m12656a(inputStream2);
+                            int m12649a = (int) m12649a(options.outWidth, options.outHeight, MAX_WIDTH, MAX_HEIGHT);
+                            if (m12649a > 0) {
+                                options.inSampleSize = m12649a;
                             }
                             options.inJustDecodeBounds = false;
                             InputStream openRawResource = context.getResources().openRawResource(i2);
                             try {
-                                Bitmap a3 = a(BitmapFactory.decodeStream(openRawResource, null, options), false);
-                                a(openRawResource);
-                                return a3;
+                                Bitmap m12652a = m12652a(BitmapFactory.decodeStream(openRawResource, null, options), false);
+                                m12656a(openRawResource);
+                                return m12652a;
                             } catch (Exception e2) {
                                 inputStream2 = openRawResource;
                                 e = e2;
                                 SLog.error(e);
-                                a(inputStream2);
+                                m12656a(inputStream2);
                                 return null;
                             } catch (Throwable th) {
                                 inputStream = openRawResource;
                                 th = th;
-                                a(inputStream);
+                                m12656a(inputStream);
                                 throw th;
                             }
                         } catch (Exception e3) {
@@ -532,24 +539,25 @@ public class UMImage extends BaseMediaObject {
     }
 
     public UMImage(Context context, int i2, UMImageMark uMImageMark) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, Integer.valueOf(i2), uMImageMark);
+        this.f13656i = 0;
+        m12655a(context, Integer.valueOf(i2), uMImageMark);
     }
 
     public UMImage(Context context, byte[] bArr, UMImageMark uMImageMark) {
-        this.f11707f = null;
+        this.f13653f = null;
         this.isLoadImgByCompress = true;
         this.compressStyle = CompressStyle.SCALE;
         this.compressFormat = Bitmap.CompressFormat.JPEG;
-        this.f11710i = 0;
-        a(context, bArr, uMImageMark);
+        this.f13656i = 0;
+        m12655a(context, bArr, uMImageMark);
     }
 
-    private void a(Closeable closeable) {
+    /* renamed from: a */
+    private void m12656a(Closeable closeable) {
         if (closeable != null) {
             try {
                 closeable.close();
@@ -559,18 +567,19 @@ public class UMImage extends BaseMediaObject {
         }
     }
 
-    private Bitmap a(byte[] bArr) {
-        if (bArr != null && this.f11709h != null) {
+    /* renamed from: a */
+    private Bitmap m12653a(byte[] bArr) {
+        if (bArr != null && this.f13655h != null) {
             try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options);
-                int a2 = (int) a(options.outWidth, options.outHeight, MAX_WIDTH, MAX_HEIGHT);
-                if (a2 > 0) {
-                    options.inSampleSize = a2;
+                int m12649a = (int) m12649a(options.outWidth, options.outHeight, MAX_WIDTH, MAX_HEIGHT);
+                if (m12649a > 0) {
+                    options.inSampleSize = m12649a;
                 }
                 options.inJustDecodeBounds = false;
-                return a(BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options), false);
+                return m12652a(BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options), false);
             } catch (Exception e2) {
                 SLog.error(e2);
             }
@@ -578,18 +587,19 @@ public class UMImage extends BaseMediaObject {
         return null;
     }
 
-    private Bitmap a(Bitmap bitmap) {
+    /* renamed from: a */
+    private Bitmap m12651a(Bitmap bitmap) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        float a2 = a(width, height, MAX_WIDTH, MAX_HEIGHT);
-        if (a2 < 0.0f) {
+        float m12649a = m12649a(width, height, MAX_WIDTH, MAX_HEIGHT);
+        if (m12649a < 0.0f) {
             return bitmap;
         }
-        float f2 = 1.0f / a2;
+        float f2 = 1.0f / m12649a;
         Matrix matrix = new Matrix();
         matrix.postScale(f2, f2);
         Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
-        b(bitmap);
+        m12657b(bitmap);
         return createBitmap;
     }
 }

@@ -29,10 +29,15 @@ import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import com.lxj.xpermission.C2765b;
 import com.lxj.xpermission.XPermission;
-import com.lxj.xpopup.R;
-import com.lxj.xpopup.e.g;
-import com.lxj.xpopup.e.j;
+import com.lxj.xpopup.C2766R;
+import com.lxj.xpopup.C2768b;
+import com.lxj.xpopup.p185d.EnumC2805e;
+import com.lxj.xpopup.p186e.InterfaceC2810d;
+import com.lxj.xpopup.p186e.InterfaceC2813g;
+import com.lxj.xpopup.p186e.InterfaceC2816j;
+import com.lxj.xpopup.p187f.C2819c;
 import com.lxj.xpopup.photoview.PhotoView;
 import com.lxj.xpopup.widget.BlankView;
 import com.lxj.xpopup.widget.HackyViewPager;
@@ -41,40 +46,87 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* loaded from: classes.dex */
-public class ImageViewerPopupView extends BasePopupView implements com.lxj.xpopup.e.d, View.OnClickListener {
-    protected Rect A;
-    protected ImageView B;
-    protected PhotoView C;
-    protected boolean D;
-    protected int E;
-    protected int F;
-    protected int G;
-    protected boolean H;
-    protected boolean I;
-    protected boolean J;
-    protected View K;
-    protected int L;
-    protected FrameLayout p;
-    protected PhotoViewContainer q;
-    protected BlankView r;
-    protected TextView s;
-    protected TextView t;
-    protected HackyViewPager u;
-    protected ArgbEvaluator v;
-    protected List<Object> w;
-    protected j x;
-    protected g y;
-    protected int z;
+public class ImageViewerPopupView extends BasePopupView implements InterfaceC2810d, View.OnClickListener {
+
+    /* renamed from: A */
+    protected Rect f8652A;
+
+    /* renamed from: B */
+    protected ImageView f8653B;
+
+    /* renamed from: C */
+    protected PhotoView f8654C;
+
+    /* renamed from: D */
+    protected boolean f8655D;
+
+    /* renamed from: E */
+    protected int f8656E;
+
+    /* renamed from: F */
+    protected int f8657F;
+
+    /* renamed from: G */
+    protected int f8658G;
+
+    /* renamed from: H */
+    protected boolean f8659H;
+
+    /* renamed from: I */
+    protected boolean f8660I;
+
+    /* renamed from: J */
+    protected boolean f8661J;
+
+    /* renamed from: K */
+    protected View f8662K;
+
+    /* renamed from: L */
+    protected int f8663L;
+
+    /* renamed from: p */
+    protected FrameLayout f8664p;
+
+    /* renamed from: q */
+    protected PhotoViewContainer f8665q;
+
+    /* renamed from: r */
+    protected BlankView f8666r;
+
+    /* renamed from: s */
+    protected TextView f8667s;
+
+    /* renamed from: t */
+    protected TextView f8668t;
+
+    /* renamed from: u */
+    protected HackyViewPager f8669u;
+
+    /* renamed from: v */
+    protected ArgbEvaluator f8670v;
+
+    /* renamed from: w */
+    protected List<Object> f8671w;
+
+    /* renamed from: x */
+    protected InterfaceC2816j f8672x;
+
+    /* renamed from: y */
+    protected InterfaceC2813g f8673y;
+
+    /* renamed from: z */
+    protected int f8674z;
 
     public class PhotoViewAdapter extends PagerAdapter {
 
-        class a implements View.OnClickListener {
-            a() {
+        /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$PhotoViewAdapter$a */
+        class ViewOnClickListenerC2792a implements View.OnClickListener {
+            ViewOnClickListenerC2792a() {
             }
 
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                ImageViewerPopupView.this.b();
+                ImageViewerPopupView.this.mo8378b();
             }
         }
 
@@ -89,10 +141,10 @@ public class ImageViewerPopupView extends BasePopupView implements com.lxj.xpopu
         @Override // androidx.viewpager.widget.PagerAdapter
         public int getCount() {
             ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-            if (imageViewerPopupView.J) {
+            if (imageViewerPopupView.f8661J) {
                 return 1073741823;
             }
-            return imageViewerPopupView.w.size();
+            return imageViewerPopupView.f8671w.size();
         }
 
         @Override // androidx.viewpager.widget.PagerAdapter
@@ -100,13 +152,13 @@ public class ImageViewerPopupView extends BasePopupView implements com.lxj.xpopu
         public Object instantiateItem(@NonNull ViewGroup viewGroup, int i2) {
             PhotoView photoView = new PhotoView(viewGroup.getContext());
             ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-            j jVar = imageViewerPopupView.x;
-            if (jVar != null) {
-                List<Object> list = imageViewerPopupView.w;
-                jVar.a(i2, list.get(imageViewerPopupView.J ? i2 % list.size() : i2), photoView);
+            InterfaceC2816j interfaceC2816j = imageViewerPopupView.f8672x;
+            if (interfaceC2816j != null) {
+                List<Object> list = imageViewerPopupView.f8671w;
+                interfaceC2816j.m8437a(i2, list.get(imageViewerPopupView.f8661J ? i2 % list.size() : i2), photoView);
             }
             viewGroup.addView(photoView);
-            photoView.setOnClickListener(new a());
+            photoView.setOnClickListener(new ViewOnClickListenerC2792a());
             return photoView;
         }
 
@@ -116,265 +168,280 @@ public class ImageViewerPopupView extends BasePopupView implements com.lxj.xpopu
         }
     }
 
-    class a extends ViewPager.SimpleOnPageChangeListener {
-        a() {
+    /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$a */
+    class C2793a extends ViewPager.SimpleOnPageChangeListener {
+        C2793a() {
         }
 
         @Override // androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener, androidx.viewpager.widget.ViewPager.OnPageChangeListener
         public void onPageSelected(int i2) {
             ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-            imageViewerPopupView.z = i2;
-            imageViewerPopupView.x();
+            imageViewerPopupView.f8674z = i2;
+            imageViewerPopupView.m8410x();
             ImageViewerPopupView imageViewerPopupView2 = ImageViewerPopupView.this;
-            g gVar = imageViewerPopupView2.y;
-            if (gVar != null) {
-                gVar.a(imageViewerPopupView2, i2);
+            InterfaceC2813g interfaceC2813g = imageViewerPopupView2.f8673y;
+            if (interfaceC2813g != null) {
+                interfaceC2813g.m8432a(imageViewerPopupView2, i2);
             }
         }
     }
 
-    class b implements Runnable {
+    /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$b */
+    class RunnableC2794b implements Runnable {
 
+        /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$b$a */
         class a extends TransitionListenerAdapter {
             a() {
             }
 
             @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
             public void onTransitionEnd(@NonNull Transition transition) {
-                ImageViewerPopupView.this.u.setVisibility(0);
-                ImageViewerPopupView.this.C.setVisibility(4);
-                ImageViewerPopupView.this.x();
+                ImageViewerPopupView.this.f8669u.setVisibility(0);
+                ImageViewerPopupView.this.f8654C.setVisibility(4);
+                ImageViewerPopupView.this.m8410x();
                 ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-                imageViewerPopupView.q.f8166f = false;
-                ImageViewerPopupView.super.e();
+                imageViewerPopupView.f8665q.f8920f = false;
+                ImageViewerPopupView.super.mo8381e();
             }
         }
 
-        b() {
+        RunnableC2794b() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            TransitionManager.beginDelayedTransition((ViewGroup) ImageViewerPopupView.this.C.getParent(), new TransitionSet().setDuration(com.lxj.xpopup.b.a()).addTransition(new ChangeBounds()).addTransition(new ChangeTransform()).addTransition(new ChangeImageTransform()).setInterpolator((TimeInterpolator) new FastOutSlowInInterpolator()).addListener((Transition.TransitionListener) new a()));
-            ImageViewerPopupView.this.C.setTranslationY(0.0f);
-            ImageViewerPopupView.this.C.setTranslationX(0.0f);
-            ImageViewerPopupView.this.C.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            TransitionManager.beginDelayedTransition((ViewGroup) ImageViewerPopupView.this.f8654C.getParent(), new TransitionSet().setDuration(C2768b.m8294a()).addTransition(new ChangeBounds()).addTransition(new ChangeTransform()).addTransition(new ChangeImageTransform()).setInterpolator((TimeInterpolator) new FastOutSlowInInterpolator()).addListener((Transition.TransitionListener) new a()));
+            ImageViewerPopupView.this.f8654C.setTranslationY(0.0f);
+            ImageViewerPopupView.this.f8654C.setTranslationX(0.0f);
+            ImageViewerPopupView.this.f8654C.setScaleType(ImageView.ScaleType.FIT_CENTER);
             ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-            com.lxj.xpopup.f.c.a(imageViewerPopupView.C, imageViewerPopupView.q.getWidth(), ImageViewerPopupView.this.q.getHeight());
+            C2819c.m8457a(imageViewerPopupView.f8654C, imageViewerPopupView.f8665q.getWidth(), ImageViewerPopupView.this.f8665q.getHeight());
             ImageViewerPopupView imageViewerPopupView2 = ImageViewerPopupView.this;
-            imageViewerPopupView2.d(imageViewerPopupView2.L);
-            View view = ImageViewerPopupView.this.K;
+            imageViewerPopupView2.m8407d(imageViewerPopupView2.f8663L);
+            View view = ImageViewerPopupView.this.f8662K;
             if (view != null) {
-                view.animate().alpha(1.0f).setDuration(com.lxj.xpopup.b.a()).start();
+                view.animate().alpha(1.0f).setDuration(C2768b.m8294a()).start();
             }
         }
     }
 
-    class c implements ValueAnimator.AnimatorUpdateListener {
+    /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$c */
+    class C2795c implements ValueAnimator.AnimatorUpdateListener {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ int f8020a;
+        /* renamed from: a */
+        final /* synthetic */ int f8680a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ int f8021b;
+        /* renamed from: b */
+        final /* synthetic */ int f8681b;
 
-        c(int i2, int i3) {
-            this.f8020a = i2;
-            this.f8021b = i3;
+        C2795c(int i2, int i3) {
+            this.f8680a = i2;
+            this.f8681b = i3;
         }
 
         @Override // android.animation.ValueAnimator.AnimatorUpdateListener
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
             ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-            imageViewerPopupView.q.setBackgroundColor(((Integer) imageViewerPopupView.v.evaluate(valueAnimator.getAnimatedFraction(), Integer.valueOf(this.f8020a), Integer.valueOf(this.f8021b))).intValue());
+            imageViewerPopupView.f8665q.setBackgroundColor(((Integer) imageViewerPopupView.f8670v.evaluate(valueAnimator.getAnimatedFraction(), Integer.valueOf(this.f8680a), Integer.valueOf(this.f8681b))).intValue());
         }
     }
 
-    class d extends TransitionListenerAdapter {
-        d() {
+    /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$d */
+    class C2796d extends TransitionListenerAdapter {
+        C2796d() {
         }
 
         @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
         public void onTransitionEnd(@NonNull Transition transition) {
-            ImageViewerPopupView.this.d();
-            ImageViewerPopupView.this.u.setVisibility(4);
-            ImageViewerPopupView.this.C.setVisibility(0);
-            ImageViewerPopupView.this.u.setScaleX(1.0f);
-            ImageViewerPopupView.this.u.setScaleY(1.0f);
-            ImageViewerPopupView.this.C.setScaleX(1.0f);
-            ImageViewerPopupView.this.C.setScaleY(1.0f);
-            ImageViewerPopupView.this.r.setVisibility(4);
+            ImageViewerPopupView.this.m8380d();
+            ImageViewerPopupView.this.f8669u.setVisibility(4);
+            ImageViewerPopupView.this.f8654C.setVisibility(0);
+            ImageViewerPopupView.this.f8669u.setScaleX(1.0f);
+            ImageViewerPopupView.this.f8669u.setScaleY(1.0f);
+            ImageViewerPopupView.this.f8654C.setScaleX(1.0f);
+            ImageViewerPopupView.this.f8654C.setScaleY(1.0f);
+            ImageViewerPopupView.this.f8666r.setVisibility(4);
         }
     }
 
-    class e extends AnimatorListenerAdapter {
-        e() {
+    /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$e */
+    class C2797e extends AnimatorListenerAdapter {
+        C2797e() {
         }
 
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
         public void onAnimationEnd(Animator animator) {
             super.onAnimationEnd(animator);
-            View view = ImageViewerPopupView.this.K;
+            View view = ImageViewerPopupView.this.f8662K;
             if (view != null) {
                 view.setVisibility(4);
             }
         }
     }
 
-    class f implements XPermission.d {
-        f() {
+    /* renamed from: com.lxj.xpopup.core.ImageViewerPopupView$f */
+    class C2798f implements XPermission.InterfaceC2762d {
+        C2798f() {
         }
 
-        @Override // com.lxj.xpermission.XPermission.d
-        public void a() {
+        @Override // com.lxj.xpermission.XPermission.InterfaceC2762d
+        /* renamed from: a */
+        public void mo8291a() {
             Toast.makeText(ImageViewerPopupView.this.getContext(), "没有保存权限，保存功能无法使用！", 0).show();
         }
 
-        @Override // com.lxj.xpermission.XPermission.d
+        @Override // com.lxj.xpermission.XPermission.InterfaceC2762d
         public void onGranted() {
             Context context = ImageViewerPopupView.this.getContext();
             ImageViewerPopupView imageViewerPopupView = ImageViewerPopupView.this;
-            j jVar = imageViewerPopupView.x;
-            List<Object> list = imageViewerPopupView.w;
-            boolean z = imageViewerPopupView.J;
-            int i2 = imageViewerPopupView.z;
+            InterfaceC2816j interfaceC2816j = imageViewerPopupView.f8672x;
+            List<Object> list = imageViewerPopupView.f8671w;
+            boolean z = imageViewerPopupView.f8661J;
+            int i2 = imageViewerPopupView.f8674z;
             if (z) {
                 i2 %= list.size();
             }
-            com.lxj.xpopup.f.c.a(context, jVar, list.get(i2));
+            C2819c.m8456a(context, interfaceC2816j, list.get(i2));
         }
     }
 
     public ImageViewerPopupView(@NonNull Context context) {
         super(context);
-        this.v = new ArgbEvaluator();
-        this.w = new ArrayList();
-        this.A = null;
-        this.D = true;
-        this.E = -1;
-        this.F = -1;
-        this.G = -1;
-        this.H = true;
-        this.I = true;
-        this.J = false;
-        this.L = Color.rgb(32, 36, 46);
-        this.p = (FrameLayout) findViewById(R.id.container);
+        this.f8670v = new ArgbEvaluator();
+        this.f8671w = new ArrayList();
+        this.f8652A = null;
+        this.f8655D = true;
+        this.f8656E = -1;
+        this.f8657F = -1;
+        this.f8658G = -1;
+        this.f8659H = true;
+        this.f8660I = true;
+        this.f8661J = false;
+        this.f8663L = Color.rgb(32, 36, 46);
+        this.f8664p = (FrameLayout) findViewById(C2766R.id.container);
         if (getImplLayoutId() > 0) {
-            this.K = LayoutInflater.from(getContext()).inflate(getImplLayoutId(), (ViewGroup) this.p, false);
-            this.K.setVisibility(4);
-            this.K.setAlpha(0.0f);
-            this.p.addView(this.K);
+            this.f8662K = LayoutInflater.from(getContext()).inflate(getImplLayoutId(), (ViewGroup) this.f8664p, false);
+            this.f8662K.setVisibility(4);
+            this.f8662K.setAlpha(0.0f);
+            this.f8664p.addView(this.f8662K);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void d(int i2) {
-        int color = ((ColorDrawable) this.q.getBackground()).getColor();
+    /* renamed from: d */
+    public void m8407d(int i2) {
+        int color = ((ColorDrawable) this.f8665q.getBackground()).getColor();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new c(color, i2));
-        ofFloat.setDuration(com.lxj.xpopup.b.a()).setInterpolator(new LinearInterpolator());
+        ofFloat.addUpdateListener(new C2795c(color, i2));
+        ofFloat.setDuration(C2768b.m8294a()).setInterpolator(new LinearInterpolator());
         ofFloat.start();
     }
 
-    private void v() {
-        if (this.B == null) {
+    /* renamed from: v */
+    private void m8408v() {
+        if (this.f8653B == null) {
             return;
         }
-        if (this.C == null) {
-            this.C = new PhotoView(getContext());
-            this.q.addView(this.C);
-            this.C.setScaleType(this.B.getScaleType());
-            this.C.setTranslationX(this.A.left);
-            this.C.setTranslationY(this.A.top);
-            com.lxj.xpopup.f.c.a(this.C, this.A.width(), this.A.height());
+        if (this.f8654C == null) {
+            this.f8654C = new PhotoView(getContext());
+            this.f8665q.addView(this.f8654C);
+            this.f8654C.setScaleType(this.f8653B.getScaleType());
+            this.f8654C.setTranslationX(this.f8652A.left);
+            this.f8654C.setTranslationY(this.f8652A.top);
+            C2819c.m8457a(this.f8654C, this.f8652A.width(), this.f8652A.height());
         }
-        w();
-        this.C.setImageDrawable(this.B.getDrawable());
+        m8409w();
+        this.f8654C.setImageDrawable(this.f8653B.getDrawable());
     }
 
-    private void w() {
-        this.r.setVisibility(this.D ? 0 : 4);
-        if (this.D) {
-            int i2 = this.E;
+    /* renamed from: w */
+    private void m8409w() {
+        this.f8666r.setVisibility(this.f8655D ? 0 : 4);
+        if (this.f8655D) {
+            int i2 = this.f8656E;
             if (i2 != -1) {
-                this.r.f8137d = i2;
+                this.f8666r.f8891d = i2;
             }
-            int i3 = this.G;
+            int i3 = this.f8658G;
             if (i3 != -1) {
-                this.r.f8136c = i3;
+                this.f8666r.f8890c = i3;
             }
-            int i4 = this.F;
+            int i4 = this.f8657F;
             if (i4 != -1) {
-                this.r.f8138e = i4;
+                this.f8666r.f8892e = i4;
             }
-            com.lxj.xpopup.f.c.a(this.r, this.A.width(), this.A.height());
-            this.r.setTranslationX(this.A.left);
-            this.r.setTranslationY(this.A.top);
-            this.r.invalidate();
+            C2819c.m8457a(this.f8666r, this.f8652A.width(), this.f8652A.height());
+            this.f8666r.setTranslationX(this.f8652A.left);
+            this.f8666r.setTranslationY(this.f8652A.top);
+            this.f8666r.invalidate();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void x() {
-        if (this.w.size() > 1) {
-            int size = this.J ? this.z % this.w.size() : this.z;
-            this.s.setText((size + 1) + "/" + this.w.size());
+    /* renamed from: x */
+    public void m8410x() {
+        if (this.f8671w.size() > 1) {
+            int size = this.f8661J ? this.f8674z % this.f8671w.size() : this.f8674z;
+            this.f8667s.setText((size + 1) + "/" + this.f8671w.size());
         }
-        if (this.H) {
-            this.t.setVisibility(0);
+        if (this.f8659H) {
+            this.f8668t.setVisibility(0);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void e() {
+    /* renamed from: e */
+    public void mo8381e() {
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void f() {
-        if (this.B == null) {
-            this.q.setBackgroundColor(0);
-            d();
-            this.u.setVisibility(4);
-            this.r.setVisibility(4);
+    /* renamed from: f */
+    public void mo8382f() {
+        if (this.f8653B == null) {
+            this.f8665q.setBackgroundColor(0);
+            m8380d();
+            this.f8669u.setVisibility(4);
+            this.f8666r.setVisibility(4);
             return;
         }
-        this.s.setVisibility(4);
-        this.t.setVisibility(4);
-        this.u.setVisibility(4);
-        this.C.setVisibility(0);
-        this.q.f8166f = true;
-        TransitionManager.beginDelayedTransition((ViewGroup) this.C.getParent(), new TransitionSet().setDuration(com.lxj.xpopup.b.a()).addTransition(new ChangeBounds()).addTransition(new ChangeTransform()).addTransition(new ChangeImageTransform()).setInterpolator((TimeInterpolator) new FastOutSlowInInterpolator()).addListener((Transition.TransitionListener) new d()));
-        this.C.setTranslationY(this.A.top);
-        this.C.setTranslationX(this.A.left);
-        this.C.setScaleX(1.0f);
-        this.C.setScaleY(1.0f);
-        this.C.setScaleType(this.B.getScaleType());
-        com.lxj.xpopup.f.c.a(this.C, this.A.width(), this.A.height());
-        d(0);
-        View view = this.K;
+        this.f8667s.setVisibility(4);
+        this.f8668t.setVisibility(4);
+        this.f8669u.setVisibility(4);
+        this.f8654C.setVisibility(0);
+        this.f8665q.f8920f = true;
+        TransitionManager.beginDelayedTransition((ViewGroup) this.f8654C.getParent(), new TransitionSet().setDuration(C2768b.m8294a()).addTransition(new ChangeBounds()).addTransition(new ChangeTransform()).addTransition(new ChangeImageTransform()).setInterpolator((TimeInterpolator) new FastOutSlowInInterpolator()).addListener((Transition.TransitionListener) new C2796d()));
+        this.f8654C.setTranslationY(this.f8652A.top);
+        this.f8654C.setTranslationX(this.f8652A.left);
+        this.f8654C.setScaleX(1.0f);
+        this.f8654C.setScaleY(1.0f);
+        this.f8654C.setScaleType(this.f8653B.getScaleType());
+        C2819c.m8457a(this.f8654C, this.f8652A.width(), this.f8652A.height());
+        m8407d(0);
+        View view = this.f8662K;
         if (view != null) {
-            view.animate().alpha(0.0f).setDuration(com.lxj.xpopup.b.a()).setListener(new e()).start();
+            view.animate().alpha(0.0f).setDuration(C2768b.m8294a()).setListener(new C2797e()).start();
         }
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void g() {
-        if (this.B == null) {
-            this.q.setBackgroundColor(this.L);
-            this.u.setVisibility(0);
-            x();
-            this.q.f8166f = false;
-            super.e();
+    /* renamed from: g */
+    public void mo8383g() {
+        if (this.f8653B == null) {
+            this.f8665q.setBackgroundColor(this.f8663L);
+            this.f8669u.setVisibility(0);
+            m8410x();
+            this.f8665q.f8920f = false;
+            super.mo8381e();
             return;
         }
-        this.q.f8166f = true;
-        this.C.setVisibility(0);
-        View view = this.K;
+        this.f8665q.f8920f = true;
+        this.f8654C.setVisibility(0);
+        View view = this.f8662K;
         if (view != null) {
             view.setVisibility(0);
         }
-        this.C.post(new b());
+        this.f8654C.post(new RunnableC2794b());
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
@@ -384,164 +451,183 @@ public class ImageViewerPopupView extends BasePopupView implements com.lxj.xpopu
 
     @Override // com.lxj.xpopup.core.BasePopupView
     protected int getPopupLayoutId() {
-        return R.layout._xpopup_image_viewer_popup_view;
+        return C2766R.layout._xpopup_image_viewer_popup_view;
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    protected void k() {
-        super.k();
-        this.s = (TextView) findViewById(R.id.tv_pager_indicator);
-        this.t = (TextView) findViewById(R.id.tv_save);
-        this.r = (BlankView) findViewById(R.id.placeholderView);
-        this.q = (PhotoViewContainer) findViewById(R.id.photoViewContainer);
-        this.q.setOnDragChangeListener(this);
-        this.u = (HackyViewPager) findViewById(R.id.pager);
-        this.u.setAdapter(new PhotoViewAdapter());
-        this.u.setOffscreenPageLimit(this.w.size());
-        this.u.setCurrentItem(this.z);
-        this.u.setVisibility(4);
-        v();
-        if (this.J) {
-            this.u.setOffscreenPageLimit(this.w.size() / 2);
+    /* renamed from: k */
+    protected void mo8364k() {
+        super.mo8364k();
+        this.f8667s = (TextView) findViewById(C2766R.id.tv_pager_indicator);
+        this.f8668t = (TextView) findViewById(C2766R.id.tv_save);
+        this.f8666r = (BlankView) findViewById(C2766R.id.placeholderView);
+        this.f8665q = (PhotoViewContainer) findViewById(C2766R.id.photoViewContainer);
+        this.f8665q.setOnDragChangeListener(this);
+        this.f8669u = (HackyViewPager) findViewById(C2766R.id.pager);
+        this.f8669u.setAdapter(new PhotoViewAdapter());
+        this.f8669u.setOffscreenPageLimit(this.f8671w.size());
+        this.f8669u.setCurrentItem(this.f8674z);
+        this.f8669u.setVisibility(4);
+        m8408v();
+        if (this.f8661J) {
+            this.f8669u.setOffscreenPageLimit(this.f8671w.size() / 2);
         }
-        this.u.addOnPageChangeListener(new a());
-        if (!this.I) {
-            this.s.setVisibility(8);
+        this.f8669u.addOnPageChangeListener(new C2793a());
+        if (!this.f8660I) {
+            this.f8667s.setVisibility(8);
         }
-        if (this.H) {
-            this.t.setOnClickListener(this);
+        if (this.f8659H) {
+            this.f8668t.setOnClickListener(this);
         } else {
-            this.t.setVisibility(8);
+            this.f8668t.setVisibility(8);
         }
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    protected void o() {
-        super.o();
-        this.B = null;
+    /* renamed from: o */
+    protected void mo8390o() {
+        super.mo8390o();
+        this.f8653B = null;
     }
 
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
-        if (view == this.t) {
-            u();
+        if (view == this.f8668t) {
+            m8426u();
         }
     }
 
-    protected void u() {
-        XPermission.a(getContext(), com.lxj.xpermission.b.f7932i).a(new f()).e();
+    /* renamed from: u */
+    protected void m8426u() {
+        XPermission.m8249a(getContext(), C2765b.f8541i).m8275a(new C2798f()).m8285e();
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void b() {
-        if (this.f7991e != com.lxj.xpopup.d.e.Show) {
+    /* renamed from: b */
+    public void mo8378b() {
+        if (this.f8621e != EnumC2805e.Show) {
             return;
         }
-        this.f7991e = com.lxj.xpopup.d.e.Dismissing;
-        if (this.B != null) {
-            HackyViewPager hackyViewPager = this.u;
+        this.f8621e = EnumC2805e.Dismissing;
+        if (this.f8653B != null) {
+            HackyViewPager hackyViewPager = this.f8669u;
             PhotoView photoView = (PhotoView) hackyViewPager.getChildAt(hackyViewPager.getCurrentItem());
             if (photoView != null) {
                 Matrix matrix = new Matrix();
                 photoView.getSuppMatrix(matrix);
-                this.C.setSuppMatrix(matrix);
+                this.f8654C.setSuppMatrix(matrix);
             }
         }
-        f();
+        mo8382f();
     }
 
-    public ImageViewerPopupView c(boolean z) {
-        this.D = z;
+    /* renamed from: c */
+    public ImageViewerPopupView m8424c(boolean z) {
+        this.f8655D = z;
         return this;
     }
 
-    public ImageViewerPopupView a(List<Object> list) {
-        this.w = list;
+    /* renamed from: a */
+    public ImageViewerPopupView m8416a(List<Object> list) {
+        this.f8671w = list;
         return this;
     }
 
-    public ImageViewerPopupView c(int i2) {
-        this.F = i2;
+    /* renamed from: c */
+    public ImageViewerPopupView m8423c(int i2) {
+        this.f8657F = i2;
         return this;
     }
 
-    public ImageViewerPopupView a(g gVar) {
-        this.y = gVar;
+    /* renamed from: a */
+    public ImageViewerPopupView m8414a(InterfaceC2813g interfaceC2813g) {
+        this.f8673y = interfaceC2813g;
         return this;
     }
 
-    public ImageViewerPopupView a(j jVar) {
-        this.x = jVar;
+    /* renamed from: a */
+    public ImageViewerPopupView m8415a(InterfaceC2816j interfaceC2816j) {
+        this.f8672x = interfaceC2816j;
         return this;
     }
 
-    public ImageViewerPopupView a(boolean z) {
-        this.J = z;
+    /* renamed from: a */
+    public ImageViewerPopupView m8417a(boolean z) {
+        this.f8661J = z;
         return this;
     }
 
-    public ImageViewerPopupView a(int i2) {
-        this.E = i2;
+    /* renamed from: a */
+    public ImageViewerPopupView m8411a(int i2) {
+        this.f8656E = i2;
         return this;
     }
 
-    public ImageViewerPopupView d(boolean z) {
-        this.H = z;
+    /* renamed from: d */
+    public ImageViewerPopupView m8425d(boolean z) {
+        this.f8659H = z;
         return this;
     }
 
-    public ImageViewerPopupView a(ImageView imageView, Object obj) {
-        if (this.w == null) {
-            this.w = new ArrayList();
+    /* renamed from: a */
+    public ImageViewerPopupView m8413a(ImageView imageView, Object obj) {
+        if (this.f8671w == null) {
+            this.f8671w = new ArrayList();
         }
-        this.w.clear();
-        this.w.add(obj);
-        a(imageView, 0);
+        this.f8671w.clear();
+        this.f8671w.add(obj);
+        m8412a(imageView, 0);
         return this;
     }
 
-    public ImageViewerPopupView b(boolean z) {
-        this.I = z;
+    /* renamed from: b */
+    public ImageViewerPopupView m8422b(boolean z) {
+        this.f8660I = z;
         return this;
     }
 
-    public ImageViewerPopupView b(int i2) {
-        this.G = i2;
+    /* renamed from: b */
+    public ImageViewerPopupView m8421b(int i2) {
+        this.f8658G = i2;
         return this;
     }
 
-    public ImageViewerPopupView a(ImageView imageView, int i2) {
-        this.B = imageView;
-        this.z = i2;
+    /* renamed from: a */
+    public ImageViewerPopupView m8412a(ImageView imageView, int i2) {
+        this.f8653B = imageView;
+        this.f8674z = i2;
         if (imageView != null) {
             int[] iArr = new int[2];
-            this.B.getLocationInWindow(iArr);
-            this.A = new Rect(iArr[0], iArr[1], iArr[0] + imageView.getWidth(), iArr[1] + imageView.getHeight());
+            this.f8653B.getLocationInWindow(iArr);
+            this.f8652A = new Rect(iArr[0], iArr[1], iArr[0] + imageView.getWidth(), iArr[1] + imageView.getHeight());
         }
         return this;
     }
 
-    public void a(ImageView imageView) {
-        a(imageView, this.z);
-        v();
+    /* renamed from: a */
+    public void m8420a(ImageView imageView) {
+        m8412a(imageView, this.f8674z);
+        m8408v();
     }
 
-    @Override // com.lxj.xpopup.e.d
-    public void a() {
-        b();
+    @Override // com.lxj.xpopup.p186e.InterfaceC2810d
+    /* renamed from: a */
+    public void mo8418a() {
+        mo8378b();
     }
 
-    @Override // com.lxj.xpopup.e.d
-    public void a(int i2, float f2, float f3) {
+    @Override // com.lxj.xpopup.p186e.InterfaceC2810d
+    /* renamed from: a */
+    public void mo8419a(int i2, float f2, float f3) {
         float f4 = 1.0f - f3;
-        this.s.setAlpha(f4);
-        View view = this.K;
+        this.f8667s.setAlpha(f4);
+        View view = this.f8662K;
         if (view != null) {
             view.setAlpha(f4);
         }
-        if (this.H) {
-            this.t.setAlpha(f4);
+        if (this.f8659H) {
+            this.f8668t.setAlpha(f4);
         }
-        this.q.setBackgroundColor(((Integer) this.v.evaluate(f3 * 0.8f, Integer.valueOf(this.L), 0)).intValue());
+        this.f8665q.setBackgroundColor(((Integer) this.f8670v.evaluate(f3 * 0.8f, Integer.valueOf(this.f8663L), 0)).intValue());
     }
 }

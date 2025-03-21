@@ -19,22 +19,27 @@ public class WebData implements Parcelable, Serializable {
         }
     };
     private static final long serialVersionUID = -4038177938155795889L;
-    protected AuthInfo av;
-    protected String aw;
 
-    /* renamed from: i, reason: collision with root package name */
-    protected String f8373i;
+    /* renamed from: av */
+    protected AuthInfo f9351av;
+
+    /* renamed from: aw */
+    protected String f9352aw;
+
+    /* renamed from: i */
+    protected String f9353i;
     protected int type;
 
     public WebData(AuthInfo authInfo, int i2, String str, String str2) {
-        this.av = authInfo;
+        this.f9351av = authInfo;
         this.type = i2;
-        this.f8373i = str;
-        this.aw = str2;
+        this.f9353i = str;
+        this.f9352aw = str2;
     }
 
-    public final AuthInfo a() {
-        return this.av;
+    /* renamed from: a */
+    public final AuthInfo m8891a() {
+        return this.f9351av;
     }
 
     @Override // android.os.Parcelable
@@ -47,25 +52,26 @@ public class WebData implements Parcelable, Serializable {
     }
 
     public final String getUrl() {
-        return this.f8373i;
+        return this.f9353i;
     }
 
-    public final String r() {
-        return this.aw;
+    /* renamed from: r */
+    public final String m8892r() {
+        return this.f9352aw;
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeParcelable(this.av, i2);
+        parcel.writeParcelable(this.f9351av, i2);
         parcel.writeInt(this.type);
-        parcel.writeString(this.f8373i);
-        parcel.writeString(this.aw);
+        parcel.writeString(this.f9353i);
+        parcel.writeString(this.f9352aw);
     }
 
     protected WebData(Parcel parcel) {
-        this.av = (AuthInfo) parcel.readParcelable(AuthInfo.class.getClassLoader());
+        this.f9351av = (AuthInfo) parcel.readParcelable(AuthInfo.class.getClassLoader());
         this.type = parcel.readInt();
-        this.f8373i = parcel.readString();
-        this.aw = parcel.readString();
+        this.f9353i = parcel.readString();
+        this.f9352aw = parcel.readString();
     }
 }

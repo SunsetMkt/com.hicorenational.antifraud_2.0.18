@@ -13,21 +13,22 @@ public interface IAIDLInvoke extends IInterface {
 
     public static abstract class Stub extends Binder implements IAIDLInvoke {
 
-        private static class a implements IAIDLInvoke {
+        /* renamed from: com.huawei.hms.core.aidl.IAIDLInvoke$Stub$a */
+        private static class C2342a implements IAIDLInvoke {
 
-            /* renamed from: b, reason: collision with root package name */
-            public static IAIDLInvoke f6795b;
+            /* renamed from: b */
+            public static IAIDLInvoke f7315b;
 
-            /* renamed from: a, reason: collision with root package name */
-            private IBinder f6796a;
+            /* renamed from: a */
+            private IBinder f7316a;
 
-            a(IBinder iBinder) {
-                this.f6796a = iBinder;
+            C2342a(IBinder iBinder) {
+                this.f7316a = iBinder;
             }
 
             @Override // android.os.IInterface
             public IBinder asBinder() {
-                return this.f6796a;
+                return this.f7316a;
             }
 
             @Override // com.huawei.hms.core.aidl.IAIDLInvoke
@@ -42,7 +43,7 @@ public interface IAIDLInvoke extends IInterface {
                         obtain.writeInt(0);
                     }
                     obtain.writeStrongBinder(iAIDLCallback != null ? iAIDLCallback.asBinder() : null);
-                    if (this.f6796a.transact(2, obtain, null, 1) || Stub.getDefaultImpl() == null) {
+                    if (this.f7316a.transact(2, obtain, null, 1) || Stub.getDefaultImpl() == null) {
                         return;
                     }
                     Stub.getDefaultImpl().asyncCall(dataBuffer, iAIDLCallback);
@@ -63,7 +64,7 @@ public interface IAIDLInvoke extends IInterface {
                     } else {
                         obtain.writeInt(0);
                     }
-                    if (this.f6796a.transact(1, obtain, obtain2, 0) || Stub.getDefaultImpl() == null) {
+                    if (this.f7316a.transact(1, obtain, obtain2, 0) || Stub.getDefaultImpl() == null) {
                         obtain2.readException();
                     } else {
                         Stub.getDefaultImpl().syncCall(dataBuffer);
@@ -84,21 +85,21 @@ public interface IAIDLInvoke extends IInterface {
                 return null;
             }
             IInterface queryLocalInterface = iBinder.queryLocalInterface(IAIDLInvoke.DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IAIDLInvoke)) ? new a(iBinder) : (IAIDLInvoke) queryLocalInterface;
+            return (queryLocalInterface == null || !(queryLocalInterface instanceof IAIDLInvoke)) ? new C2342a(iBinder) : (IAIDLInvoke) queryLocalInterface;
         }
 
         public static IAIDLInvoke getDefaultImpl() {
-            return a.f6795b;
+            return C2342a.f7315b;
         }
 
         public static boolean setDefaultImpl(IAIDLInvoke iAIDLInvoke) {
-            if (a.f6795b != null) {
+            if (C2342a.f7315b != null) {
                 throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (iAIDLInvoke == null) {
                 return false;
             }
-            a.f6795b = iAIDLInvoke;
+            C2342a.f7315b = iAIDLInvoke;
             return true;
         }
 

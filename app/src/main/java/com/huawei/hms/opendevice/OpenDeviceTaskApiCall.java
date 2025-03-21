@@ -36,11 +36,11 @@ public class OpenDeviceTaskApiCall extends TaskApiCall<OpenDeviceHmsClient, Odid
         }
         HiAnalyticsClient.reportExit(openDeviceHmsClient.getContext(), getUri(), getTransactionId(), responseErrorCode.getStatusCode(), responseErrorCode.getErrorCode(), 61200300);
         if (responseErrorCode.getErrorCode() != 0) {
-            HMSLog.i("OpenDeviceTaskApiCall", "onResult, returnCode: " + responseErrorCode.getErrorCode());
+            HMSLog.m7717i("OpenDeviceTaskApiCall", "onResult, returnCode: " + responseErrorCode.getErrorCode());
             taskCompletionSource.setException(new ApiException(new Status(responseErrorCode.getErrorCode(), responseErrorCode.getErrorReason())));
             return;
         }
-        HMSLog.i("OpenDeviceTaskApiCall", "onResult, success");
+        HMSLog.m7717i("OpenDeviceTaskApiCall", "onResult, success");
         OdidResp odidResp = new OdidResp();
         JsonUtil.jsonToEntity(str, odidResp);
         OdidResult odidResult = new OdidResult();

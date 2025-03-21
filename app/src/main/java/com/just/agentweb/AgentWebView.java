@@ -248,7 +248,7 @@ public class AgentWebView extends LollipopFixedWebView {
             declaredMethod.setAccessible(false);
         } catch (Throwable th) {
             if (LogUtils.isDebug()) {
-                LogUtils.e(TAG, "setAccessibilityEnabled", th);
+                LogUtils.m8082e(TAG, "setAccessibilityEnabled", th);
             }
         }
     }
@@ -269,7 +269,7 @@ public class AgentWebView extends LollipopFixedWebView {
             return;
         }
         String str2 = "use mJsCallJavas:" + str;
-        LogUtils.i(TAG, "addJavascriptInterface:" + obj + "   interfaceName:" + str);
+        LogUtils.m8083i(TAG, "addJavascriptInterface:" + obj + "   interfaceName:" + str);
         if (this.mJsCallJavas == null) {
             this.mJsCallJavas = new HashMap();
         }
@@ -316,7 +316,7 @@ public class AgentWebView extends LollipopFixedWebView {
         releaseConfigCallback();
         if (this.mIsInited) {
             resetAccessibilityEnabled();
-            LogUtils.i(TAG, "destroy web");
+            LogUtils.m8083i(TAG, "destroy web");
             super.destroy();
         }
     }
@@ -342,7 +342,7 @@ public class AgentWebView extends LollipopFixedWebView {
                 }
             } catch (Throwable th) {
                 if (LogUtils.isDebug()) {
-                    LogUtils.e(TAG, "fixedAccessibilityInjectorExceptionForOnPageFinished", th);
+                    LogUtils.m8082e(TAG, "fixedAccessibilityInjectorExceptionForOnPageFinished", th);
                 }
             }
         }

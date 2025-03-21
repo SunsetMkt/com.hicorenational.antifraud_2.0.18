@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.ShareContent;
 import com.umeng.socialize.UMAuthListener;
@@ -36,7 +36,9 @@ public abstract class UMSSOHandler {
     protected static final String FIRST_NAME = "first_name";
     protected static final String GENDER = "gender";
     protected static final String ICON = "iconurl";
-    protected static final String ID = "id";
+
+    /* renamed from: ID */
+    protected static final String f13631ID = "id";
     protected static final String JSON = "json";
     protected static final String LAST_NAME = "last_name";
     protected static final String MIDDLE_NAME = "middle_name";
@@ -75,17 +77,17 @@ public abstract class UMSSOHandler {
         return uMAuthListener != null ? uMAuthListener : new UMAuthListener() { // from class: com.umeng.socialize.handler.UMSSOHandler.2
             @Override // com.umeng.socialize.UMAuthListener
             public void onCancel(SHARE_MEDIA share_media, int i2) {
-                SLog.E(UmengText.CHECK.LISTENRNULL);
+                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMAuthListener
             public void onComplete(SHARE_MEDIA share_media, int i2, Map<String, String> map) {
-                SLog.E(UmengText.CHECK.LISTENRNULL);
+                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMAuthListener
             public void onError(SHARE_MEDIA share_media, int i2, Throwable th) {
-                SLog.E(UmengText.CHECK.LISTENRNULL);
+                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMAuthListener
@@ -130,7 +132,7 @@ public abstract class UMSSOHandler {
     public Uri getImageContentUri(File file) {
         String absolutePath = file.getAbsolutePath();
         Context applicationContext = this.mContext.getApplicationContext();
-        Cursor query = applicationContext.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{bl.f10170d}, "_data=? ", new String[]{absolutePath}, null);
+        Cursor query = applicationContext.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{C3355bl.f11732d}, "_data=? ", new String[]{absolutePath}, null);
         if (query == null || !query.moveToFirst()) {
             if (!file.exists()) {
                 return null;
@@ -139,7 +141,7 @@ public abstract class UMSSOHandler {
             contentValues.put("_data", absolutePath);
             return applicationContext.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
         }
-        int i2 = query.getInt(query.getColumnIndex(bl.f10170d));
+        int i2 = query.getInt(query.getColumnIndex(C3355bl.f11732d));
         try {
             query.close();
         } catch (Throwable th) {
@@ -168,17 +170,17 @@ public abstract class UMSSOHandler {
         return uMShareListener != null ? uMShareListener : new UMShareListener() { // from class: com.umeng.socialize.handler.UMSSOHandler.1
             @Override // com.umeng.socialize.UMShareListener
             public void onCancel(SHARE_MEDIA share_media) {
-                SLog.E(UmengText.CHECK.LISTENRNULL);
+                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMShareListener
             public void onError(SHARE_MEDIA share_media, Throwable th) {
-                SLog.E(UmengText.CHECK.LISTENRNULL);
+                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMShareListener
             public void onResult(SHARE_MEDIA share_media) {
-                SLog.E(UmengText.CHECK.LISTENRNULL);
+                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMShareListener
@@ -190,7 +192,7 @@ public abstract class UMSSOHandler {
     public abstract String getVersion();
 
     public boolean isAuthorize() {
-        SLog.E(UmengText.CHECK.NO_SUPPORT_AUTH);
+        SLog.m12716E(UmengText.CHECK.NO_SUPPORT_AUTH);
         return true;
     }
 
@@ -199,12 +201,12 @@ public abstract class UMSSOHandler {
     }
 
     public boolean isInstall() {
-        SLog.E(UmengText.CHECK.NO_SUPPORT_INSTALL);
+        SLog.m12716E(UmengText.CHECK.NO_SUPPORT_INSTALL);
         return true;
     }
 
     public boolean isSupport() {
-        SLog.E(UmengText.CHECK.NO_SUPPORT_SDKL);
+        SLog.m12716E(UmengText.CHECK.NO_SUPPORT_SDKL);
         return true;
     }
 
@@ -216,7 +218,7 @@ public abstract class UMSSOHandler {
     }
 
     public void onCreate(Context context, PlatformConfig.Platform platform) {
-        SLog.E("xxxxxx UMSSOHandler 7.3.2");
+        SLog.m12716E("xxxxxx UMSSOHandler 7.3.2");
         this.mContext = ContextUtil.getContext();
         this.mConfig = platform;
         if (context instanceof Activity) {

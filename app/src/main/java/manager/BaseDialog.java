@@ -18,13 +18,17 @@ public class BaseDialog extends Dialog {
     public static final float WARPWIDTH = -2.0f;
     public Context context;
 
-    /* renamed from: d, reason: collision with root package name */
-    private Display f17303d;
-    public DisplayMetrics dm;
+    /* renamed from: d */
+    private Display f21428d;
+
+    /* renamed from: dm */
+    public DisplayMetrics f21429dm;
     public int gravityLayout;
     public double heightDialog;
     public float heightDialogdp;
-    public WindowManager.LayoutParams lp;
+
+    /* renamed from: lp */
+    public WindowManager.LayoutParams f21430lp;
     private Window mWindow;
     public double widthDialog;
     public float widthDialogdp;
@@ -42,11 +46,11 @@ public class BaseDialog extends Dialog {
 
     private void initWindowState() {
         this.mWindow = getWindow();
-        this.lp = this.mWindow.getAttributes();
+        this.f21430lp = this.mWindow.getAttributes();
         WindowManager windowManager = ((Activity) this.context).getWindowManager();
-        this.f17303d = windowManager.getDefaultDisplay();
-        this.dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(this.dm);
+        this.f21428d = windowManager.getDefaultDisplay();
+        this.f21429dm = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(this.f21429dm);
     }
 
     public int dp2px(float f2) {
@@ -68,10 +72,10 @@ public class BaseDialog extends Dialog {
     }
 
     public void initOnCreate() {
-        WindowManager.LayoutParams layoutParams = this.lp;
+        WindowManager.LayoutParams layoutParams = this.f21430lp;
         layoutParams.gravity = this.gravityLayout;
         if (this.widthDialog > 0.0d) {
-            layoutParams.width = (int) (this.f17303d.getWidth() * this.widthDialog);
+            layoutParams.width = (int) (this.f21428d.getWidth() * this.widthDialog);
         } else {
             float f2 = this.widthDialogdp;
             if (f2 > 0.0f) {
@@ -79,22 +83,22 @@ public class BaseDialog extends Dialog {
             } else if (f2 == -2.0f) {
                 layoutParams.width = -2;
             } else {
-                layoutParams.width = this.f17303d.getWidth();
+                layoutParams.width = this.f21428d.getWidth();
             }
         }
         if (this.heightDialog > 0.0d) {
-            this.lp.height = (int) (this.f17303d.getHeight() * this.heightDialog);
+            this.f21430lp.height = (int) (this.f21428d.getHeight() * this.heightDialog);
         } else {
             float f3 = this.heightDialogdp;
             if (f3 > 0.0f) {
-                this.lp.height = dp2px(f3);
+                this.f21430lp.height = dp2px(f3);
             } else if (f3 == -2.0f) {
-                this.lp.height = -2;
+                this.f21430lp.height = -2;
             } else {
-                this.lp.height = this.f17303d.getHeight() - getStatusBarHeight();
+                this.f21430lp.height = this.f21428d.getHeight() - getStatusBarHeight();
             }
         }
-        this.mWindow.setAttributes(this.lp);
+        this.mWindow.setAttributes(this.f21430lp);
     }
 
     public void setGravityLayout(int i2) {

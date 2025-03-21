@@ -10,7 +10,6 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
-import c.c.a.b.a.a;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,11 +17,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes2.dex */
 public class FileUtils {
     private static final String TAG = "FileUtils";
-    private static SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd_HHmmssSS");
+
+    /* renamed from: sf */
+    private static SimpleDateFormat f16841sf = new SimpleDateFormat("yyyyMMdd_HHmmssSS");
 
     private FileUtils() {
     }
@@ -89,7 +91,7 @@ public class FileUtils {
     }
 
     public static String getCreateFileName(String str) {
-        return str + sf.format(Long.valueOf(System.currentTimeMillis()));
+        return str + f16841sf.format(Long.valueOf(System.currentTimeMillis()));
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:19:0x0049, code lost:
@@ -242,14 +244,14 @@ public class FileUtils {
         String substring2 = str.substring(str.lastIndexOf("."));
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(substring);
-        stringBuffer.append(a.s1);
+        stringBuffer.append(AbstractC1191a.f2606s1);
         stringBuffer.append(getCreateFileName());
         stringBuffer.append(substring2);
         return stringBuffer.toString();
     }
 
     public static String getCreateFileName() {
-        return sf.format(Long.valueOf(System.currentTimeMillis()));
+        return f16841sf.format(Long.valueOf(System.currentTimeMillis()));
     }
 
     public static void copyFile(@NonNull String str, @NonNull String str2) throws IOException {

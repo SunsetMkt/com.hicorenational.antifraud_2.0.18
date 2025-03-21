@@ -36,7 +36,7 @@ public class CircularBorderDrawable extends Drawable {
     @ColorInt
     private int currentBorderTintColor;
 
-    @FloatRange(from = 0.0d, to = 360.0d)
+    @FloatRange(from = 0.0d, m293to = 360.0d)
     private float rotation;
 
     @ColorInt
@@ -140,7 +140,7 @@ public class CircularBorderDrawable extends Drawable {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public void setAlpha(@IntRange(from = 0, to = 255) int i2) {
+    public void setAlpha(@IntRange(from = 0, m294to = 255) int i2) {
         this.paint.setAlpha(i2);
         invalidateSelf();
     }

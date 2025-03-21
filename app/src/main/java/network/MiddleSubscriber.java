@@ -2,36 +2,40 @@ package network;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.hicorenational.antifraud.R;
-import g.a.i0;
+import com.google.gson.p152d0.C2049a;
+import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.C2114a;
 import interfaces.IOneClickListener;
 import java.lang.reflect.Type;
-import l.h;
 import manager.AccountManager;
 import manager.LoginManager;
 import network.account.APIresult;
-import ui.Hicore;
-import ui.activity.PoliceLoginActivity;
-import ui.c;
-import ui.presenter.JNIHandStamp;
-import util.b1;
-import util.n1;
+import p245d.C4441b;
+import p251g.p252a.InterfaceC4514i0;
+import p251g.p252a.p264u0.InterfaceC4552c;
+import p375l.C5879h;
+import p388ui.C6813c;
+import p388ui.Hicore;
+import p388ui.activity.PoliceLoginActivity;
+import p388ui.presenter.JNIHandStamp;
+import util.C7257b1;
+import util.C7301n1;
 
 /* loaded from: classes2.dex */
-public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
+public abstract class MiddleSubscriber<T extends APIresult> implements InterfaceC4514i0<T> {
     private static final String TAG = "MiddleSubscriber";
     private Context mContext = Hicore.getApp();
 
     private APIException accept(Throwable th) {
-        if (com.hicorenational.antifraud.a.n.booleanValue()) {
-            if (th instanceof h) {
-                h hVar = (h) th;
-                if (hVar.code() == 401) {
+        if (C2114a.f6317n.booleanValue()) {
+            if (th instanceof C5879h) {
+                C5879h c5879h = (C5879h) th;
+                if (c5879h.code() == 401) {
                     LoginManager.getInstance().exit("授权已过期,请重新登录");
                     return APIException.getApiExcept(401, "");
                 }
-                if (hVar.code() == 402) {
-                    return APIException.getApiExcept(hVar.code(), "请求已提交，请勿重复提交。");
+                if (c5879h.code() == 402) {
+                    return APIException.getApiExcept(c5879h.code(), "请求已提交，请勿重复提交。");
                 }
             }
             return APIException.getApiExcept(-102, th.getMessage());
@@ -40,28 +44,28 @@ public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
             if (th instanceof APIException) {
                 return (APIException) th;
             }
-            if (!(th instanceof h)) {
-                return APIException.getApiExcept(-102, this.mContext.getResources().getString(R.string.err_timeout));
+            if (!(th instanceof C5879h)) {
+                return APIException.getApiExcept(-102, this.mContext.getResources().getString(C2113R.string.err_timeout));
             }
-            if (((h) th).code() != 401) {
-                return ((h) th).code() == 402 ? APIException.getApiExcept(((h) th).code(), "请求已提交，请勿重复提交。") : ((h) th).code() == 480 ? APIException.getApiExcept(((h) th).code(), this.mContext.getResources().getString(R.string.err_timeout)) : APIException.getApiExcept(((h) th).code(), this.mContext.getResources().getString(R.string.err_timeout));
+            if (((C5879h) th).code() != 401) {
+                return ((C5879h) th).code() == 402 ? APIException.getApiExcept(((C5879h) th).code(), "请求已提交，请勿重复提交。") : ((C5879h) th).code() == 480 ? APIException.getApiExcept(((C5879h) th).code(), this.mContext.getResources().getString(C2113R.string.err_timeout)) : APIException.getApiExcept(((C5879h) th).code(), this.mContext.getResources().getString(C2113R.string.err_timeout));
             }
             LoginManager.getInstance().exit("授权已过期,请重新登录");
             return APIException.getApiExcept(401, "");
         } catch (Exception e2) {
             e2.printStackTrace();
-            return APIException.getApiExcept(-102, this.mContext.getResources().getString(R.string.err_timeout));
+            return APIException.getApiExcept(-102, this.mContext.getResources().getString(C2113R.string.err_timeout));
         }
     }
 
     protected boolean dealPoliceExit(APIException aPIException) {
         int code = aPIException.getCode();
         if (code == -3) {
-            b1.b(c.i().c(), aPIException.getMessage(), "确定", new IOneClickListener() { // from class: network.MiddleSubscriber.4
+            C7257b1.m26210b(C6813c.m25437i().m25446c(), aPIException.getMessage(), "确定", new IOneClickListener() { // from class: network.MiddleSubscriber.4
                 @Override // interfaces.IOneClickListener
                 public void clickOKBtn() {
-                    String b2 = d.b.b();
-                    if (TextUtils.equals(AccountManager.getAccountPhone(), b2) || (TextUtils.isEmpty(b2) && (c.i().c() instanceof PoliceLoginActivity))) {
+                    String m16414b = C4441b.m16414b();
+                    if (TextUtils.equals(AccountManager.getAccountPhone(), m16414b) || (TextUtils.isEmpty(m16414b) && (C6813c.m25437i().m25446c() instanceof PoliceLoginActivity))) {
                         LoginManager.getInstance().exitToLogin();
                     } else {
                         LoginManager.getInstance().exitToPoliceLogin();
@@ -71,7 +75,7 @@ public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
             return true;
         }
         if (code == -2) {
-            b1.b(c.i().c(), aPIException.getMessage(), "确定", new IOneClickListener() { // from class: network.MiddleSubscriber.3
+            C7257b1.m26210b(C6813c.m25437i().m25446c(), aPIException.getMessage(), "确定", new IOneClickListener() { // from class: network.MiddleSubscriber.3
                 @Override // interfaces.IOneClickListener
                 public void clickOKBtn() {
                     LoginManager.getInstance().exitToPoliceLogin();
@@ -80,10 +84,10 @@ public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
             return true;
         }
         if (code != 401) {
-            n1.b("onErrorMiddle switch dealPoliceExit");
+            C7301n1.m26456b("onErrorMiddle switch dealPoliceExit");
             return false;
         }
-        b1.b(c.i().c(), aPIException.getMessage(), "确定", new IOneClickListener() { // from class: network.MiddleSubscriber.2
+        C7257b1.m26210b(C6813c.m25437i().m25446c(), aPIException.getMessage(), "确定", new IOneClickListener() { // from class: network.MiddleSubscriber.2
             @Override // interfaces.IOneClickListener
             public void clickOKBtn() {
                 LoginManager.getInstance().exitToLogin();
@@ -93,14 +97,14 @@ public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
     }
 
     protected Type getType() {
-        return new com.google.gson.d0.a<String>() { // from class: network.MiddleSubscriber.1
+        return new C2049a<String>() { // from class: network.MiddleSubscriber.1
         }.getType();
     }
 
-    @Override // g.a.i0
+    @Override // p251g.p252a.InterfaceC4514i0
     public final void onComplete() {
         try {
-            b1.a();
+            C7257b1.m26191a();
             onCompleteMiddle();
         } catch (Exception e2) {
             e2.printStackTrace();
@@ -110,12 +114,12 @@ public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
     protected void onCompleteMiddle() {
     }
 
-    @Override // g.a.i0
+    @Override // p251g.p252a.InterfaceC4514i0
     public final void onError(Throwable th) {
-        b1.a();
+        C7257b1.m26191a();
         try {
             onErrorMiddle(accept(th));
-            n1.a(TAG, "onError: " + th.getMessage());
+            C7301n1.m26454a(TAG, "onError: " + th.getMessage());
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -127,21 +131,21 @@ public abstract class MiddleSubscriber<T extends APIresult> implements i0<T> {
     protected void onNextMiddle(T t) {
     }
 
-    protected void onStartMiddle(g.a.u0.c cVar) {
+    protected void onStartMiddle(InterfaceC4552c interfaceC4552c) {
     }
 
-    @Override // g.a.i0
-    public void onSubscribe(g.a.u0.c cVar) {
-        onStartMiddle(cVar);
+    @Override // p251g.p252a.InterfaceC4514i0
+    public void onSubscribe(InterfaceC4552c interfaceC4552c) {
+        onStartMiddle(interfaceC4552c);
     }
 
-    @Override // g.a.i0
+    @Override // p251g.p252a.InterfaceC4514i0
     public final void onNext(T t) {
-        b1.a();
+        C7257b1.m26191a();
         try {
             int code = t.getCode();
             if (code == 999) {
-                t.setMsg(Hicore.getApp().getResources().getString(R.string.err_system));
+                t.setMsg(Hicore.getApp().getResources().getString(C2113R.string.err_system));
             } else if (code == -102) {
                 t = (T) JNIHandStamp.getInstance().analyzeParam(t, getType());
             }

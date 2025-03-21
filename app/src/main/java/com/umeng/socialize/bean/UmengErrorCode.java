@@ -1,6 +1,6 @@
 package com.umeng.socialize.bean;
 
-import ui.activity.BaseProgressUploadActivity;
+import p388ui.activity.BaseProgressUploadActivity;
 
 /* loaded from: classes2.dex */
 public enum UmengErrorCode {
@@ -13,39 +13,40 @@ public enum UmengErrorCode {
     NotInstall(2008);
 
 
-    /* renamed from: a, reason: collision with root package name */
-    private final int f11648a;
+    /* renamed from: a */
+    private final int f13583a;
 
     UmengErrorCode(int i2) {
-        this.f11648a = i2;
+        this.f13583a = i2;
     }
 
-    private String a() {
-        return "错误码：" + this.f11648a + " 错误信息：";
+    /* renamed from: a */
+    private String m12609a() {
+        return "错误码：" + this.f13583a + " 错误信息：";
     }
 
     public String getMessage() {
         if (this == UnKnowCode) {
-            return a() + "未知错误----";
+            return m12609a() + "未知错误----";
         }
         if (this == AuthorizeFailed) {
-            return a() + "授权失败----";
+            return m12609a() + "授权失败----";
         }
         if (this == ShareFailed) {
-            return a() + "分享失败----";
+            return m12609a() + "分享失败----";
         }
         if (this == RequestForUserProfileFailed) {
-            return a() + "获取用户资料失败----";
+            return m12609a() + "获取用户资料失败----";
         }
         if (this == ShareDataNil) {
-            return a() + "分享内容为空";
+            return m12609a() + "分享内容为空";
         }
         if (this == ShareDataTypeIllegal) {
-            return a() + "分享内容不合法----";
+            return m12609a() + "分享内容不合法----";
         }
         if (this != NotInstall) {
             return "unkonw";
         }
-        return a() + "没有安装应用";
+        return m12609a() + "没有安装应用";
     }
 }

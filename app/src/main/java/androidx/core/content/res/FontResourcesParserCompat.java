@@ -10,7 +10,7 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.core.R;
+import androidx.core.C0475R;
 import androidx.core.provider.FontRequest;
 import java.io.IOException;
 import java.lang.annotation.Retention;
@@ -191,13 +191,13 @@ public class FontResourcesParserCompat {
 
     @Nullable
     private static FamilyResourceEntry readFamily(XmlPullParser xmlPullParser, Resources resources) throws XmlPullParserException, IOException {
-        TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.FontFamily);
-        String string = obtainAttributes.getString(R.styleable.FontFamily_fontProviderAuthority);
-        String string2 = obtainAttributes.getString(R.styleable.FontFamily_fontProviderPackage);
-        String string3 = obtainAttributes.getString(R.styleable.FontFamily_fontProviderQuery);
-        int resourceId = obtainAttributes.getResourceId(R.styleable.FontFamily_fontProviderCerts, 0);
-        int integer = obtainAttributes.getInteger(R.styleable.FontFamily_fontProviderFetchStrategy, 1);
-        int integer2 = obtainAttributes.getInteger(R.styleable.FontFamily_fontProviderFetchTimeout, 500);
+        TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlPullParser), C0475R.styleable.FontFamily);
+        String string = obtainAttributes.getString(C0475R.styleable.FontFamily_fontProviderAuthority);
+        String string2 = obtainAttributes.getString(C0475R.styleable.FontFamily_fontProviderPackage);
+        String string3 = obtainAttributes.getString(C0475R.styleable.FontFamily_fontProviderQuery);
+        int resourceId = obtainAttributes.getResourceId(C0475R.styleable.FontFamily_fontProviderCerts, 0);
+        int integer = obtainAttributes.getInteger(C0475R.styleable.FontFamily_fontProviderFetchStrategy, 1);
+        int integer2 = obtainAttributes.getInteger(C0475R.styleable.FontFamily_fontProviderFetchTimeout, 500);
         obtainAttributes.recycle();
         if (string != null && string2 != null && string3 != null) {
             while (xmlPullParser.next() != 3) {
@@ -222,13 +222,13 @@ public class FontResourcesParserCompat {
     }
 
     private static FontFileResourceEntry readFont(XmlPullParser xmlPullParser, Resources resources) throws XmlPullParserException, IOException {
-        TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.FontFamilyFont);
-        int i2 = obtainAttributes.getInt(obtainAttributes.hasValue(R.styleable.FontFamilyFont_fontWeight) ? R.styleable.FontFamilyFont_fontWeight : R.styleable.FontFamilyFont_android_fontWeight, 400);
-        boolean z = 1 == obtainAttributes.getInt(obtainAttributes.hasValue(R.styleable.FontFamilyFont_fontStyle) ? R.styleable.FontFamilyFont_fontStyle : R.styleable.FontFamilyFont_android_fontStyle, 0);
-        int i3 = obtainAttributes.hasValue(R.styleable.FontFamilyFont_ttcIndex) ? R.styleable.FontFamilyFont_ttcIndex : R.styleable.FontFamilyFont_android_ttcIndex;
-        String string = obtainAttributes.getString(obtainAttributes.hasValue(R.styleable.FontFamilyFont_fontVariationSettings) ? R.styleable.FontFamilyFont_fontVariationSettings : R.styleable.FontFamilyFont_android_fontVariationSettings);
+        TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlPullParser), C0475R.styleable.FontFamilyFont);
+        int i2 = obtainAttributes.getInt(obtainAttributes.hasValue(C0475R.styleable.FontFamilyFont_fontWeight) ? C0475R.styleable.FontFamilyFont_fontWeight : C0475R.styleable.FontFamilyFont_android_fontWeight, 400);
+        boolean z = 1 == obtainAttributes.getInt(obtainAttributes.hasValue(C0475R.styleable.FontFamilyFont_fontStyle) ? C0475R.styleable.FontFamilyFont_fontStyle : C0475R.styleable.FontFamilyFont_android_fontStyle, 0);
+        int i3 = obtainAttributes.hasValue(C0475R.styleable.FontFamilyFont_ttcIndex) ? C0475R.styleable.FontFamilyFont_ttcIndex : C0475R.styleable.FontFamilyFont_android_ttcIndex;
+        String string = obtainAttributes.getString(obtainAttributes.hasValue(C0475R.styleable.FontFamilyFont_fontVariationSettings) ? C0475R.styleable.FontFamilyFont_fontVariationSettings : C0475R.styleable.FontFamilyFont_android_fontVariationSettings);
         int i4 = obtainAttributes.getInt(i3, 0);
-        int i5 = obtainAttributes.hasValue(R.styleable.FontFamilyFont_font) ? R.styleable.FontFamilyFont_font : R.styleable.FontFamilyFont_android_font;
+        int i5 = obtainAttributes.hasValue(C0475R.styleable.FontFamilyFont_font) ? C0475R.styleable.FontFamilyFont_font : C0475R.styleable.FontFamilyFont_android_font;
         int resourceId = obtainAttributes.getResourceId(i5, 0);
         String string2 = obtainAttributes.getString(i5);
         obtainAttributes.recycle();

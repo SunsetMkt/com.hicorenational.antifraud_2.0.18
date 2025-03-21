@@ -1,8 +1,9 @@
 package com.huawei.secure.android.common.ssl;
 
 import android.content.Context;
+import com.huawei.secure.android.common.ssl.util.C2559a;
+import com.huawei.secure.android.common.ssl.util.C2563e;
 import com.huawei.secure.android.common.ssl.util.ContextUtil;
-import com.huawei.secure.android.common.ssl.util.e;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
@@ -32,101 +33,102 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
     @Deprecated
     public static final X509HostnameVerifier STRICT_HOSTNAME_VERIFIER = new StrictHostnameVerifier();
 
-    /* renamed from: i, reason: collision with root package name */
-    private static final String f7577i = SecureSSLSocketFactory.class.getSimpleName();
+    /* renamed from: i */
+    private static final String f8154i = SecureSSLSocketFactory.class.getSimpleName();
 
-    /* renamed from: j, reason: collision with root package name */
-    private static volatile SecureSSLSocketFactory f7578j = null;
+    /* renamed from: j */
+    private static volatile SecureSSLSocketFactory f8155j = null;
 
-    /* renamed from: a, reason: collision with root package name */
-    private SSLContext f7579a;
+    /* renamed from: a */
+    private SSLContext f8156a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private SSLSocket f7580b;
+    /* renamed from: b */
+    private SSLSocket f8157b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private Context f7581c;
+    /* renamed from: c */
+    private Context f8158c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private String[] f7582d;
+    /* renamed from: d */
+    private String[] f8159d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private X509TrustManager f7583e;
+    /* renamed from: e */
+    private X509TrustManager f8160e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private String[] f7584f;
+    /* renamed from: f */
+    private String[] f8161f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String[] f7585g;
+    /* renamed from: g */
+    private String[] f8162g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private String[] f7586h;
+    /* renamed from: h */
+    private String[] f8163h;
 
     @Deprecated
     public SecureSSLSocketFactory(InputStream inputStream, String str) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException, IllegalArgumentException {
-        this.f7579a = null;
-        this.f7580b = null;
-        this.f7579a = SSLUtil.setSSLContext();
+        this.f8156a = null;
+        this.f8157b = null;
+        this.f8156a = SSLUtil.setSSLContext();
         HiCloudX509TrustManager hiCloudX509TrustManager = new HiCloudX509TrustManager(inputStream, str);
         setX509TrustManager(hiCloudX509TrustManager);
-        this.f7579a.init(null, new X509TrustManager[]{hiCloudX509TrustManager}, null);
+        this.f8156a.init(null, new X509TrustManager[]{hiCloudX509TrustManager}, null);
     }
 
     @Deprecated
-    static void a(X509TrustManager x509TrustManager) {
-        e.c(f7577i, "ssf update socket factory trust manager");
+    /* renamed from: a */
+    static void m7916a(X509TrustManager x509TrustManager) {
+        C2563e.m7987c(f8154i, "ssf update socket factory trust manager");
         long currentTimeMillis = System.currentTimeMillis();
         try {
-            f7578j = new SecureSSLSocketFactory(x509TrustManager);
+            f8155j = new SecureSSLSocketFactory(x509TrustManager);
         } catch (KeyManagementException unused) {
-            e.b(f7577i, "KeyManagementException");
+            C2563e.m7986b(f8154i, "KeyManagementException");
         } catch (NoSuchAlgorithmException unused2) {
-            e.b(f7577i, "NoSuchAlgorithmException");
+            C2563e.m7986b(f8154i, "NoSuchAlgorithmException");
         }
-        e.a(f7577i, "update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7984a(f8154i, "update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 
     @Deprecated
     public static SecureSSLSocketFactory getInstance(Context context) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, IllegalAccessException, KeyManagementException, IllegalArgumentException {
         long currentTimeMillis = System.currentTimeMillis();
         ContextUtil.setContext(context);
-        if (f7578j == null) {
+        if (f8155j == null) {
             synchronized (SecureSSLSocketFactory.class) {
-                if (f7578j == null) {
-                    f7578j = new SecureSSLSocketFactory(context, (SecureRandom) null);
+                if (f8155j == null) {
+                    f8155j = new SecureSSLSocketFactory(context, (SecureRandom) null);
                 }
             }
         }
-        if (f7578j.f7581c == null && context != null) {
-            f7578j.setContext(context);
+        if (f8155j.f8158c == null && context != null) {
+            f8155j.setContext(context);
         }
-        e.a(f7577i, "getInstance: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
-        return f7578j;
+        C2563e.m7984a(f8154i, "getInstance: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        return f8155j;
     }
 
     @Override // javax.net.SocketFactory
     public Socket createSocket(String str, int i2) throws IOException {
-        e.c(f7577i, "createSocket: host , port");
-        Socket createSocket = this.f7579a.getSocketFactory().createSocket(str, i2);
+        C2563e.m7987c(f8154i, "createSocket: host , port");
+        Socket createSocket = this.f8156a.getSocketFactory().createSocket(str, i2);
         if (createSocket instanceof SSLSocket) {
-            a(createSocket);
-            this.f7580b = (SSLSocket) createSocket;
-            this.f7582d = (String[]) this.f7580b.getEnabledCipherSuites().clone();
+            m7915a(createSocket);
+            this.f8157b = (SSLSocket) createSocket;
+            this.f8159d = (String[]) this.f8157b.getEnabledCipherSuites().clone();
         }
         return createSocket;
     }
 
     public String[] getBlackCiphers() {
-        return this.f7584f;
+        return this.f8161f;
     }
 
     public X509Certificate[] getChain() {
-        X509TrustManager x509TrustManager = this.f7583e;
+        X509TrustManager x509TrustManager = this.f8160e;
         return x509TrustManager instanceof SecureX509TrustManager ? ((SecureX509TrustManager) x509TrustManager).getChain() : new X509Certificate[0];
     }
 
     public Context getContext() {
-        return this.f7581c;
+        return this.f8158c;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
@@ -135,66 +137,67 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
     }
 
     public String[] getProtocols() {
-        return this.f7586h;
+        return this.f8163h;
     }
 
     public SSLContext getSslContext() {
-        return this.f7579a;
+        return this.f8156a;
     }
 
     public SSLSocket getSslSocket() {
-        return this.f7580b;
+        return this.f8157b;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
     public String[] getSupportedCipherSuites() {
-        String[] strArr = this.f7582d;
+        String[] strArr = this.f8159d;
         return strArr != null ? strArr : new String[0];
     }
 
     public String[] getWhiteCiphers() {
-        return this.f7585g;
+        return this.f8162g;
     }
 
     public X509TrustManager getX509TrustManager() {
-        return this.f7583e;
+        return this.f8160e;
     }
 
     public void setBlackCiphers(String[] strArr) {
-        this.f7584f = strArr;
+        this.f8161f = strArr;
     }
 
     public void setContext(Context context) {
-        this.f7581c = context.getApplicationContext();
+        this.f8158c = context.getApplicationContext();
     }
 
     public void setProtocols(String[] strArr) {
-        this.f7586h = strArr;
+        this.f8163h = strArr;
     }
 
     public void setSslContext(SSLContext sSLContext) {
-        this.f7579a = sSLContext;
+        this.f8156a = sSLContext;
     }
 
     public void setWhiteCiphers(String[] strArr) {
-        this.f7585g = strArr;
+        this.f8162g = strArr;
     }
 
     public void setX509TrustManager(X509TrustManager x509TrustManager) {
-        this.f7583e = x509TrustManager;
+        this.f8160e = x509TrustManager;
     }
 
-    static void a(X509TrustManager x509TrustManager, SecureRandom secureRandom) {
-        e.c(f7577i, "ssf update socket factory trust manager");
+    /* renamed from: a */
+    static void m7917a(X509TrustManager x509TrustManager, SecureRandom secureRandom) {
+        C2563e.m7987c(f8154i, "ssf update socket factory trust manager");
         long currentTimeMillis = System.currentTimeMillis();
         try {
-            f7578j = new SecureSSLSocketFactory(x509TrustManager, secureRandom);
+            f8155j = new SecureSSLSocketFactory(x509TrustManager, secureRandom);
         } catch (KeyManagementException unused) {
-            e.b(f7577i, "KeyManagementException");
+            C2563e.m7986b(f8154i, "KeyManagementException");
         } catch (NoSuchAlgorithmException unused2) {
-            e.b(f7577i, "NoSuchAlgorithmException");
+            C2563e.m7986b(f8154i, "NoSuchAlgorithmException");
         }
-        e.a(f7577i, "update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7984a(f8154i, "update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 
     @Override // javax.net.SocketFactory
@@ -203,12 +206,12 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
     }
 
     public SecureSSLSocketFactory(InputStream inputStream, String str, SecureRandom secureRandom) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException, IllegalArgumentException {
-        this.f7579a = null;
-        this.f7580b = null;
-        this.f7579a = SSLUtil.setSSLContext();
+        this.f8156a = null;
+        this.f8157b = null;
+        this.f8156a = SSLUtil.setSSLContext();
         HiCloudX509TrustManager hiCloudX509TrustManager = new HiCloudX509TrustManager(inputStream, str);
         setX509TrustManager(hiCloudX509TrustManager);
-        this.f7579a.init(null, new X509TrustManager[]{hiCloudX509TrustManager}, secureRandom);
+        this.f8156a.init(null, new X509TrustManager[]{hiCloudX509TrustManager}, secureRandom);
     }
 
     @Override // javax.net.SocketFactory
@@ -223,12 +226,12 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
 
     @Override // javax.net.ssl.SSLSocketFactory
     public Socket createSocket(Socket socket, String str, int i2, boolean z) throws IOException {
-        e.c(f7577i, "createSocket s host port autoClose");
-        Socket createSocket = this.f7579a.getSocketFactory().createSocket(socket, str, i2, z);
+        C2563e.m7987c(f8154i, "createSocket s host port autoClose");
+        Socket createSocket = this.f8156a.getSocketFactory().createSocket(socket, str, i2, z);
         if (createSocket instanceof SSLSocket) {
-            a(createSocket);
-            this.f7580b = (SSLSocket) createSocket;
-            this.f7582d = (String[]) this.f7580b.getEnabledCipherSuites().clone();
+            m7915a(createSocket);
+            this.f8157b = (SSLSocket) createSocket;
+            this.f8159d = (String[]) this.f8157b.getEnabledCipherSuites().clone();
         }
         return createSocket;
     }
@@ -236,80 +239,81 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
     public static SecureSSLSocketFactory getInstance(Context context, SecureRandom secureRandom) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, IllegalAccessException, KeyManagementException, IllegalArgumentException {
         long currentTimeMillis = System.currentTimeMillis();
         ContextUtil.setContext(context);
-        if (f7578j == null) {
+        if (f8155j == null) {
             synchronized (SecureSSLSocketFactory.class) {
-                if (f7578j == null) {
-                    f7578j = new SecureSSLSocketFactory(context, secureRandom);
+                if (f8155j == null) {
+                    f8155j = new SecureSSLSocketFactory(context, secureRandom);
                 }
             }
         }
-        if (f7578j.f7581c == null && context != null) {
-            f7578j.setContext(context);
+        if (f8155j.f8158c == null && context != null) {
+            f8155j.setContext(context);
         }
-        e.a(f7577i, "getInstance: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
-        return f7578j;
+        C2563e.m7984a(f8154i, "getInstance: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        return f8155j;
     }
 
-    private void a(Socket socket) {
+    /* renamed from: a */
+    private void m7915a(Socket socket) {
         boolean z;
         boolean z2 = true;
-        if (com.huawei.secure.android.common.ssl.util.a.a(this.f7586h)) {
+        if (C2559a.m7955a(this.f8163h)) {
             z = false;
         } else {
-            e.c(f7577i, "set protocols");
-            SSLUtil.setEnabledProtocols((SSLSocket) socket, this.f7586h);
+            C2563e.m7987c(f8154i, "set protocols");
+            SSLUtil.setEnabledProtocols((SSLSocket) socket, this.f8163h);
             z = true;
         }
-        if (com.huawei.secure.android.common.ssl.util.a.a(this.f7585g) && com.huawei.secure.android.common.ssl.util.a.a(this.f7584f)) {
+        if (C2559a.m7955a(this.f8162g) && C2559a.m7955a(this.f8161f)) {
             z2 = false;
         } else {
-            e.c(f7577i, "set white cipher or black cipher");
+            C2563e.m7987c(f8154i, "set white cipher or black cipher");
             SSLSocket sSLSocket = (SSLSocket) socket;
             SSLUtil.setEnabledProtocols(sSLSocket);
-            if (!com.huawei.secure.android.common.ssl.util.a.a(this.f7585g)) {
-                SSLUtil.setWhiteListCipherSuites(sSLSocket, this.f7585g);
+            if (!C2559a.m7955a(this.f8162g)) {
+                SSLUtil.setWhiteListCipherSuites(sSLSocket, this.f8162g);
             } else {
-                SSLUtil.setBlackListCipherSuites(sSLSocket, this.f7584f);
+                SSLUtil.setBlackListCipherSuites(sSLSocket, this.f8161f);
             }
         }
         if (!z) {
-            e.c(f7577i, "set default protocols");
+            C2563e.m7987c(f8154i, "set default protocols");
             SSLUtil.setEnabledProtocols((SSLSocket) socket);
         }
         if (z2) {
             return;
         }
-        e.c(f7577i, "set default cipher suites");
+        C2563e.m7987c(f8154i, "set default cipher suites");
         SSLUtil.setEnableSafeCipherSuites((SSLSocket) socket);
     }
 
     private SecureSSLSocketFactory(Context context, SecureRandom secureRandom) throws NoSuchAlgorithmException, CertificateException, KeyStoreException, IOException, KeyManagementException {
-        this.f7579a = null;
-        this.f7580b = null;
+        this.f8156a = null;
+        this.f8157b = null;
         if (context == null) {
-            e.b(f7577i, "SecureSSLSocketFactory: context is null");
+            C2563e.m7986b(f8154i, "SecureSSLSocketFactory: context is null");
             return;
         }
         setContext(context);
         setSslContext(SSLUtil.setSSLContext());
-        this.f7583e = SecureX509SingleInstance.getInstance(context);
-        this.f7579a.init(null, new X509TrustManager[]{this.f7583e}, secureRandom);
+        this.f8160e = SecureX509SingleInstance.getInstance(context);
+        this.f8156a.init(null, new X509TrustManager[]{this.f8160e}, secureRandom);
     }
 
     @Deprecated
     public SecureSSLSocketFactory(X509TrustManager x509TrustManager) throws NoSuchAlgorithmException, KeyManagementException, IllegalArgumentException {
-        this.f7579a = null;
-        this.f7580b = null;
-        this.f7579a = SSLUtil.setSSLContext();
+        this.f8156a = null;
+        this.f8157b = null;
+        this.f8156a = SSLUtil.setSSLContext();
         setX509TrustManager(x509TrustManager);
-        this.f7579a.init(null, new X509TrustManager[]{x509TrustManager}, null);
+        this.f8156a.init(null, new X509TrustManager[]{x509TrustManager}, null);
     }
 
     public SecureSSLSocketFactory(X509TrustManager x509TrustManager, SecureRandom secureRandom) throws NoSuchAlgorithmException, KeyManagementException, IllegalArgumentException {
-        this.f7579a = null;
-        this.f7580b = null;
-        this.f7579a = SSLUtil.setSSLContext();
+        this.f8156a = null;
+        this.f8157b = null;
+        this.f8156a = SSLUtil.setSSLContext();
         setX509TrustManager(x509TrustManager);
-        this.f7579a.init(null, new X509TrustManager[]{x509TrustManager}, secureRandom);
+        this.f8156a.init(null, new X509TrustManager[]{x509TrustManager}, secureRandom);
     }
 }

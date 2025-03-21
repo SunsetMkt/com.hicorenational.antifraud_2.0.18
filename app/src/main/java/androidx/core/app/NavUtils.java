@@ -9,8 +9,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import c.c.a.b.a.a;
 import cn.cloudwalk.libproject.Contants;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public final class NavUtils {
@@ -62,7 +62,7 @@ public final class NavUtils {
             activity.navigateUpTo(intent);
             return;
         }
-        intent.addFlags(a.B1);
+        intent.addFlags(AbstractC1191a.f2487B1);
         activity.startActivity(intent);
         activity.finish();
     }

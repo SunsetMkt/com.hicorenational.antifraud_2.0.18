@@ -1,20 +1,20 @@
 package com.huawei.hmf.tasks;
 
-import com.huawei.hmf.tasks.a.c;
+import com.huawei.hmf.tasks.p170a.C2273c;
 import java.util.Iterator;
 
 /* loaded from: classes.dex */
 public class CancellationTokenSource {
-    private c impl = new c();
+    private C2273c impl = new C2273c();
 
     public void cancel() {
-        c cVar = this.impl;
-        if (cVar.f6454c) {
+        C2273c c2273c = this.impl;
+        if (c2273c.f6953c) {
             return;
         }
-        synchronized (cVar.f6453b) {
-            cVar.f6454c = true;
-            Iterator<Runnable> it = cVar.f6452a.iterator();
+        synchronized (c2273c.f6952b) {
+            c2273c.f6953c = true;
+            Iterator<Runnable> it = c2273c.f6951a.iterator();
             while (it.hasNext()) {
                 it.next().run();
             }

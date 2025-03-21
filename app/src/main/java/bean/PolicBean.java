@@ -4,7 +4,9 @@ import network.BaseBean;
 
 /* loaded from: classes.dex */
 public class PolicBean extends BaseBean {
-    private String id;
+
+    /* renamed from: id */
+    private String f1605id;
     private String policeName;
     private String policeNumber;
     private String policeToken;
@@ -12,7 +14,7 @@ public class PolicBean extends BaseBean {
     private String telNumber;
 
     public String getId() {
-        return this.id;
+        return this.f1605id;
     }
 
     public String getPoliceName() {
@@ -36,7 +38,7 @@ public class PolicBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1605id = str;
     }
 
     public void setPoliceName(String str) {

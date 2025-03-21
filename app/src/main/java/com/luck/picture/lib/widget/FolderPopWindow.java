@@ -11,7 +11,7 @@ import android.widget.PopupWindow;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.adapter.PictureAlbumDirectoryAdapter;
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -27,7 +27,7 @@ import java.util.List;
 public class FolderPopWindow extends PopupWindow {
 
     /* renamed from: adapter, reason: collision with root package name */
-    private PictureAlbumDirectoryAdapter f7824adapter;
+    private PictureAlbumDirectoryAdapter f25897adapter;
     private int chooseMode;
     private PictureSelectionConfig config;
     private Context context;
@@ -45,11 +45,11 @@ public class FolderPopWindow extends PopupWindow {
         this.context = context;
         this.config = pictureSelectionConfig;
         this.chooseMode = pictureSelectionConfig.chooseMode;
-        this.window = LayoutInflater.from(context).inflate(R.layout.picture_window_folder, (ViewGroup) null);
+        this.window = LayoutInflater.from(context).inflate(C2639R.layout.picture_window_folder, (ViewGroup) null);
         setContentView(this.window);
         setWidth(-1);
         setHeight(-2);
-        setAnimationStyle(R.style.PictureThemeWindowStyle);
+        setAnimationStyle(C2639R.style.PictureThemeWindowStyle);
         setFocusable(true);
         setOutsideTouchable(true);
         update();
@@ -64,37 +64,39 @@ public class FolderPopWindow extends PopupWindow {
                 this.drawableDown = ContextCompat.getDrawable(context, i3);
             }
         } else if (pictureSelectionConfig.isWeChatStyle) {
-            this.drawableUp = ContextCompat.getDrawable(context, R.drawable.picture_icon_wechat_up);
-            this.drawableDown = ContextCompat.getDrawable(context, R.drawable.picture_icon_wechat_down);
+            this.drawableUp = ContextCompat.getDrawable(context, C2639R.drawable.picture_icon_wechat_up);
+            this.drawableDown = ContextCompat.getDrawable(context, C2639R.drawable.picture_icon_wechat_down);
         } else {
             int i4 = pictureSelectionConfig.upResId;
             if (i4 != 0) {
                 this.drawableUp = ContextCompat.getDrawable(context, i4);
             } else {
-                this.drawableUp = AttrsUtils.getTypeValueDrawable(context, R.attr.picture_arrow_up_icon);
+                this.drawableUp = AttrsUtils.getTypeValueDrawable(context, C2639R.attr.picture_arrow_up_icon);
             }
             int i5 = pictureSelectionConfig.downResId;
             if (i5 != 0) {
                 this.drawableDown = ContextCompat.getDrawable(context, i5);
             } else {
-                this.drawableDown = AttrsUtils.getTypeValueDrawable(context, R.attr.picture_arrow_down_icon);
+                this.drawableDown = AttrsUtils.getTypeValueDrawable(context, C2639R.attr.picture_arrow_down_icon);
             }
         }
         this.maxHeight = (int) (ScreenUtils.getScreenHeight(context) * 0.6d);
         initView();
     }
 
-    public /* synthetic */ void a(View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8142a(View view) {
         dismiss();
     }
 
-    public /* synthetic */ void b(View view) {
+    /* renamed from: b */
+    public /* synthetic */ void m8143b(View view) {
         dismiss();
     }
 
     public void bindFolder(List<LocalMediaFolder> list) {
-        this.f7824adapter.setChooseMode(this.chooseMode);
-        this.f7824adapter.bindFolderData(list);
+        this.f25897adapter.setChooseMode(this.chooseMode);
+        this.f25897adapter.bindFolderData(list);
         this.recyclerView.getLayoutParams().height = (list == null || list.size() <= 8) ? -2 : this.maxHeight;
     }
 
@@ -112,23 +114,23 @@ public class FolderPopWindow extends PopupWindow {
     }
 
     public void initView() {
-        this.rootViewBg = this.window.findViewById(R.id.rootViewBg);
-        this.f7824adapter = new PictureAlbumDirectoryAdapter(this.config);
-        this.recyclerView = (RecyclerView) this.window.findViewById(R.id.folder_list);
+        this.rootViewBg = this.window.findViewById(C2639R.id.rootViewBg);
+        this.f25897adapter = new PictureAlbumDirectoryAdapter(this.config);
+        this.recyclerView = (RecyclerView) this.window.findViewById(C2639R.id.folder_list);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this.context));
-        this.recyclerView.setAdapter(this.f7824adapter);
-        this.rootView = this.window.findViewById(R.id.rootView);
+        this.recyclerView.setAdapter(this.f25897adapter);
+        this.rootView = this.window.findViewById(C2639R.id.rootView);
         this.rootViewBg.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.widget.b
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                FolderPopWindow.this.a(view);
+                FolderPopWindow.this.m8142a(view);
             }
         });
         if (Build.VERSION.SDK_INT < 21) {
             this.rootView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.widget.a
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    FolderPopWindow.this.b(view);
+                    FolderPopWindow.this.m8143b(view);
                 }
             });
         }
@@ -139,7 +141,7 @@ public class FolderPopWindow extends PopupWindow {
     }
 
     public void setOnAlbumItemClickListener(OnAlbumItemClickListener onAlbumItemClickListener) {
-        this.f7824adapter.setOnAlbumItemClickListener(onAlbumItemClickListener);
+        this.f25897adapter.setOnAlbumItemClickListener(onAlbumItemClickListener);
     }
 
     @Override // android.widget.PopupWindow
@@ -164,7 +166,7 @@ public class FolderPopWindow extends PopupWindow {
     public void updateFolderCheckStatus(List<LocalMedia> list) {
         int i2;
         try {
-            List<LocalMediaFolder> folderData = this.f7824adapter.getFolderData();
+            List<LocalMediaFolder> folderData = this.f25897adapter.getFolderData();
             int size = folderData.size();
             for (int i3 = 0; i3 < size; i3++) {
                 LocalMediaFolder localMediaFolder = folderData.get(i3);
@@ -183,7 +185,7 @@ public class FolderPopWindow extends PopupWindow {
                     }
                 }
             }
-            this.f7824adapter.bindFolderData(folderData);
+            this.f25897adapter.bindFolderData(folderData);
         } catch (Exception e2) {
             e2.printStackTrace();
         }

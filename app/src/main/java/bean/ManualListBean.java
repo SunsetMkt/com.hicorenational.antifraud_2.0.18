@@ -7,7 +7,9 @@ public class ManualListBean extends BaseBean {
     private String applytime;
     private int auditstatus;
     private String documentType;
-    private long id;
+
+    /* renamed from: id */
+    private long f1602id;
     private String idnumber;
     private String title;
     private String uasename;
@@ -25,7 +27,7 @@ public class ManualListBean extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1602id;
     }
 
     public String getIdnumber() {
@@ -53,7 +55,7 @@ public class ManualListBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1602id = j2;
     }
 
     public void setIdnumber(String str) {

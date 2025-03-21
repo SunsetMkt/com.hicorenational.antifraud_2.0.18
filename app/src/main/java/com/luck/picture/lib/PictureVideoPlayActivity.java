@@ -23,6 +23,7 @@ import com.luck.picture.lib.style.PictureParameterStyle;
 import com.luck.picture.lib.style.PictureWindowAnimationStyle;
 import com.luck.picture.lib.tools.SdkVersionUtils;
 import java.util.ArrayList;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class PictureVideoPlayActivity extends PictureBaseActivity implements MediaPlayer.OnErrorListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, View.OnClickListener {
@@ -34,7 +35,8 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
     private TextView tvConfirm;
     private String videoPath;
 
-    public /* synthetic */ boolean a(MediaPlayer mediaPlayer, int i2, int i3) {
+    /* renamed from: a */
+    public /* synthetic */ boolean m8115a(MediaPlayer mediaPlayer, int i2, int i3) {
         if (i2 != 3) {
             return false;
         }
@@ -54,7 +56,7 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return R.layout.picture_activity_video_play;
+        return C2639R.layout.picture_activity_video_play;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
@@ -85,11 +87,11 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
             closeActivity();
             return;
         }
-        this.ibLeftBack = (ImageButton) findViewById(R.id.picture_left_back);
-        this.mVideoView = (VideoView) findViewById(R.id.video_view);
-        this.tvConfirm = (TextView) findViewById(R.id.tv_confirm);
+        this.ibLeftBack = (ImageButton) findViewById(C2639R.id.picture_left_back);
+        this.mVideoView = (VideoView) findViewById(C2639R.id.video_view);
+        this.tvConfirm = (TextView) findViewById(C2639R.id.tv_confirm);
         this.mVideoView.setBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
-        this.iv_play = (ImageView) findViewById(R.id.iv_play);
+        this.iv_play = (ImageView) findViewById(C2639R.id.iv_play);
         this.mMediaController = new MediaController(this);
         this.mVideoView.setOnCompletionListener(this);
         this.mVideoView.setOnPreparedListener(this);
@@ -101,7 +103,7 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
         PictureSelectionConfig pictureSelectionConfig = this.config;
         textView.setVisibility((pictureSelectionConfig.selectionMode == 1 && pictureSelectionConfig.enPreviewVideo && !booleanExtra) ? 0 : 8);
         if (booleanExtra2) {
-            this.ibLeftBack.setImageResource(R.drawable.picture_icon_back);
+            this.ibLeftBack.setImageResource(C2639R.drawable.picture_icon_back);
         }
     }
 
@@ -116,8 +118,7 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
-    /* renamed from: onBackPressed */
-    public void a() {
+    public void onBackPressed() {
         int i2;
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.config.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || pictureWindowAnimationStyle.activityPreviewExitAnimation == 0) {
@@ -127,7 +128,7 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
         finish();
         PictureWindowAnimationStyle pictureWindowAnimationStyle2 = this.config.windowAnimationStyle;
         if (pictureWindowAnimationStyle2 == null || (i2 = pictureWindowAnimationStyle2.activityPreviewExitAnimation) == 0) {
-            i2 = R.anim.picture_anim_exit;
+            i2 = C2639R.anim.picture_anim_exit;
         }
         overridePendingTransition(0, i2);
     }
@@ -135,18 +136,18 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.picture_left_back) {
-            a();
+        if (id == C2639R.id.picture_left_back) {
+            onBackPressed();
             return;
         }
-        if (id == R.id.iv_play) {
+        if (id == C2639R.id.iv_play) {
             this.mVideoView.start();
             this.iv_play.setVisibility(4);
-        } else if (id == R.id.tv_confirm) {
+        } else if (id == C2639R.id.tv_confirm) {
             ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
             arrayList.add(getIntent().getParcelableExtra(PictureConfig.EXTRA_MEDIA_KEY));
             setResult(-1, new Intent().putParcelableArrayListExtra(PictureConfig.EXTRA_SELECT_LIST, arrayList));
-            a();
+            onBackPressed();
         }
     }
 
@@ -160,7 +161,7 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
 
     @Override // com.luck.picture.lib.PictureBaseActivity, androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     protected void onCreate(Bundle bundle) {
-        getWindow().addFlags(c.c.a.b.a.a.B1);
+        getWindow().addFlags(AbstractC1191a.f2487B1);
         super.onCreate(bundle);
     }
 
@@ -189,7 +190,7 @@ public class PictureVideoPlayActivity extends PictureBaseActivity implements Med
         mediaPlayer.setOnInfoListener(new MediaPlayer.OnInfoListener() { // from class: com.luck.picture.lib.x
             @Override // android.media.MediaPlayer.OnInfoListener
             public final boolean onInfo(MediaPlayer mediaPlayer2, int i2, int i3) {
-                return PictureVideoPlayActivity.this.a(mediaPlayer2, i2, i3);
+                return PictureVideoPlayActivity.this.m8115a(mediaPlayer2, i2, i3);
             }
         });
     }

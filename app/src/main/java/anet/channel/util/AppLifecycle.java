@@ -66,7 +66,7 @@ public class AppLifecycle {
 
         @Override // android.content.ComponentCallbacks2
         public void onTrimMemory(int i2) {
-            ALog.i(AppLifecycle.TAG, "onTrimMemory", null, "level", Integer.valueOf(i2));
+            ALog.m716i(AppLifecycle.TAG, "onTrimMemory", null, "level", Integer.valueOf(i2));
             if (i2 == 20) {
                 AppLifecycle.onBackground();
             }
@@ -92,7 +92,7 @@ public class AppLifecycle {
     }
 
     private static void notifyListener(final boolean z) {
-        ALog.i(TAG, "notifyListener", null, "foreground", Boolean.valueOf(z));
+        ALog.m716i(TAG, "notifyListener", null, "foreground", Boolean.valueOf(z));
         ThreadPoolExecutorFactory.submitScheduledTask(new Runnable() { // from class: anet.channel.util.AppLifecycle.1
             @Override // java.lang.Runnable
             public void run() {
@@ -106,7 +106,7 @@ public class AppLifecycle {
                             appLifecycleListener.background();
                         }
                     } catch (Exception e2) {
-                        ALog.e(AppLifecycle.TAG, "notifyListener exception.", null, e2, new Object[0]);
+                        ALog.m714e(AppLifecycle.TAG, "notifyListener exception.", null, e2, new Object[0]);
                     }
                 }
             }

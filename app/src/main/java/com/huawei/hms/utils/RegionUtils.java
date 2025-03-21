@@ -5,11 +5,12 @@ import com.huawei.hms.framework.network.grs.GrsApp;
 
 /* loaded from: classes.dex */
 public class RegionUtils {
-    private static String a(Context context) {
+    /* renamed from: a */
+    private static String m7808a(Context context) {
         return (context == null || context.getApplicationContext() == null) ? "" : GrsApp.getInstance().getIssueCountryCode(context);
     }
 
     public static boolean isChinaROM(Context context) {
-        return "CN".equalsIgnoreCase(a(context));
+        return "CN".equalsIgnoreCase(m7808a(context));
     }
 }

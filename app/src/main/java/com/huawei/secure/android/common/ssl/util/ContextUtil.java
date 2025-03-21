@@ -5,17 +5,17 @@ import android.content.Context;
 /* loaded from: classes.dex */
 public class ContextUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static Context f7655a;
+    /* renamed from: a */
+    private static Context f8237a;
 
     public static Context getInstance() {
-        return f7655a;
+        return f8237a;
     }
 
     public static void setContext(Context context) {
-        if (context == null || f7655a != null) {
+        if (context == null || f8237a != null) {
             return;
         }
-        f7655a = context.getApplicationContext();
+        f8237a = context.getApplicationContext();
     }
 }

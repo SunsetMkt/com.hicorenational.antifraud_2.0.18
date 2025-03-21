@@ -1,6 +1,6 @@
 package okhttp3;
 
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3351bh;
 import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.Socket;
@@ -30,10 +30,10 @@ import okhttp3.internal.cache.InternalCache;
 import okhttp3.internal.connection.RealConnection;
 import okhttp3.internal.connection.RouteDatabase;
 import okhttp3.internal.connection.StreamAllocation;
+import okhttp3.internal.p386ws.RealWebSocket;
 import okhttp3.internal.platform.Platform;
 import okhttp3.internal.tls.CertificateChainCleaner;
 import okhttp3.internal.tls.OkHostnameVerifier;
-import okhttp3.internal.ws.RealWebSocket;
 
 /* loaded from: classes2.dex */
 public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory {
@@ -531,7 +531,7 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
         }
 
         public Builder pingInterval(long j2, TimeUnit timeUnit) {
-            this.pingInterval = Util.checkDuration(bh.aX, j2, timeUnit);
+            this.pingInterval = Util.checkDuration(C3351bh.f11599aX, j2, timeUnit);
             return this;
         }
 

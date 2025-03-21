@@ -6,7 +6,9 @@ import network.BaseBean;
 public class SurveySmsBean extends BaseBean {
     private String caseInfoID;
     private String content;
-    private String id;
+
+    /* renamed from: id */
+    private String f1629id;
     private String mobileNumber;
     private String receivedTime;
 
@@ -19,7 +21,7 @@ public class SurveySmsBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1629id;
     }
 
     public String getMobileNumber() {
@@ -39,7 +41,7 @@ public class SurveySmsBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1629id = str;
     }
 
     public void setMobileNumber(String str) {

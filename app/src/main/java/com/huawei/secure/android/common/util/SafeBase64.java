@@ -5,8 +5,8 @@ import android.util.Base64;
 /* loaded from: classes.dex */
 public class SafeBase64 {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7693a = "SafeBase64";
+    /* renamed from: a */
+    private static final String f8275a = "SafeBase64";
 
     private SafeBase64() {
     }

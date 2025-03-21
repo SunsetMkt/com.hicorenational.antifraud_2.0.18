@@ -7,58 +7,59 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import com.lxj.xpopup.f.c;
+import com.lxj.xpopup.p187f.C2819c;
 
 /* loaded from: classes.dex */
 public class LoadingView extends View {
 
-    /* renamed from: a, reason: collision with root package name */
-    private Paint f8142a;
+    /* renamed from: a */
+    private Paint f8896a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private float f8143b;
+    /* renamed from: b */
+    private float f8897b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private float f8144c;
+    /* renamed from: c */
+    private float f8898c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private float f8145d;
+    /* renamed from: d */
+    private float f8899d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private ArgbEvaluator f8146e;
+    /* renamed from: e */
+    private ArgbEvaluator f8900e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private int f8147f;
+    /* renamed from: f */
+    private int f8901f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private int f8148g;
+    /* renamed from: g */
+    private int f8902g;
 
-    /* renamed from: h, reason: collision with root package name */
-    int f8149h;
+    /* renamed from: h */
+    int f8903h;
 
-    /* renamed from: i, reason: collision with root package name */
-    float f8150i;
+    /* renamed from: i */
+    float f8904i;
 
-    /* renamed from: j, reason: collision with root package name */
-    int f8151j;
+    /* renamed from: j */
+    int f8905j;
 
-    /* renamed from: k, reason: collision with root package name */
-    float f8152k;
+    /* renamed from: k */
+    float f8906k;
 
-    /* renamed from: l, reason: collision with root package name */
-    float f8153l;
+    /* renamed from: l */
+    float f8907l;
 
-    /* renamed from: m, reason: collision with root package name */
-    private Runnable f8154m;
+    /* renamed from: m */
+    private Runnable f8908m;
 
-    class a implements Runnable {
-        a() {
+    /* renamed from: com.lxj.xpopup.widget.LoadingView$a */
+    class RunnableC2841a implements Runnable {
+        RunnableC2841a() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
             LoadingView loadingView = LoadingView.this;
-            loadingView.f8151j++;
+            loadingView.f8905j++;
             loadingView.invalidate();
         }
     }
@@ -70,34 +71,34 @@ public class LoadingView extends View {
     @Override // android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        removeCallbacks(this.f8154m);
+        removeCallbacks(this.f8908m);
     }
 
     @Override // android.view.View
     protected void onDraw(Canvas canvas) {
-        for (int i2 = this.f8149h - 1; i2 >= 0; i2--) {
-            int abs = Math.abs(this.f8151j + i2);
-            this.f8142a.setColor(((Integer) this.f8146e.evaluate((((abs % r2) + 1) * 1.0f) / this.f8149h, Integer.valueOf(this.f8147f), Integer.valueOf(this.f8148g))).intValue());
-            float f2 = this.f8152k + this.f8144c;
-            float f3 = (this.f8143b / 3.0f) + f2;
-            float f4 = this.f8153l;
-            canvas.drawLine(f2, f4, f3, f4, this.f8142a);
-            canvas.drawCircle(f2, this.f8153l, this.f8145d / 2.0f, this.f8142a);
-            canvas.drawCircle(f3, this.f8153l, this.f8145d / 2.0f, this.f8142a);
-            canvas.rotate(this.f8150i, this.f8152k, this.f8153l);
+        for (int i2 = this.f8903h - 1; i2 >= 0; i2--) {
+            int abs = Math.abs(this.f8905j + i2);
+            this.f8896a.setColor(((Integer) this.f8900e.evaluate((((abs % r2) + 1) * 1.0f) / this.f8903h, Integer.valueOf(this.f8901f), Integer.valueOf(this.f8902g))).intValue());
+            float f2 = this.f8906k + this.f8898c;
+            float f3 = (this.f8897b / 3.0f) + f2;
+            float f4 = this.f8907l;
+            canvas.drawLine(f2, f4, f3, f4, this.f8896a);
+            canvas.drawCircle(f2, this.f8907l, this.f8899d / 2.0f, this.f8896a);
+            canvas.drawCircle(f3, this.f8907l, this.f8899d / 2.0f, this.f8896a);
+            canvas.rotate(this.f8904i, this.f8906k, this.f8907l);
         }
-        postDelayed(this.f8154m, 80L);
+        postDelayed(this.f8908m, 80L);
     }
 
     @Override // android.view.View
     protected void onSizeChanged(int i2, int i3, int i4, int i5) {
         super.onSizeChanged(i2, i3, i4, i5);
-        this.f8143b = getMeasuredWidth() / 2;
-        this.f8144c = this.f8143b / 2.5f;
-        this.f8152k = getMeasuredWidth() / 2;
-        this.f8153l = getMeasuredHeight() / 2;
-        this.f8145d *= (getMeasuredWidth() * 1.0f) / c.a(getContext(), 30.0f);
-        this.f8142a.setStrokeWidth(this.f8145d);
+        this.f8897b = getMeasuredWidth() / 2;
+        this.f8898c = this.f8897b / 2.5f;
+        this.f8906k = getMeasuredWidth() / 2;
+        this.f8907l = getMeasuredHeight() / 2;
+        this.f8899d *= (getMeasuredWidth() * 1.0f) / C2819c.m8449a(getContext(), 30.0f);
+        this.f8896a.setStrokeWidth(this.f8899d);
     }
 
     public LoadingView(Context context, AttributeSet attributeSet) {
@@ -106,16 +107,16 @@ public class LoadingView extends View {
 
     public LoadingView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f8145d = 2.0f;
-        this.f8146e = new ArgbEvaluator();
-        this.f8147f = Color.parseColor("#CCCCCC");
-        this.f8148g = Color.parseColor("#333333");
-        this.f8149h = 12;
-        this.f8150i = 360.0f / this.f8149h;
-        this.f8151j = 0;
-        this.f8154m = new a();
-        this.f8142a = new Paint(1);
-        this.f8145d = c.a(context, this.f8145d);
-        this.f8142a.setStrokeWidth(this.f8145d);
+        this.f8899d = 2.0f;
+        this.f8900e = new ArgbEvaluator();
+        this.f8901f = Color.parseColor("#CCCCCC");
+        this.f8902g = Color.parseColor("#333333");
+        this.f8903h = 12;
+        this.f8904i = 360.0f / this.f8903h;
+        this.f8905j = 0;
+        this.f8908m = new RunnableC2841a();
+        this.f8896a = new Paint(1);
+        this.f8899d = C2819c.m8449a(context, this.f8899d);
+        this.f8896a.setStrokeWidth(this.f8899d);
     }
 }

@@ -3,8 +3,8 @@ package com.huawei.secure.android.common.encrypt.keystore.aes;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.text.TextUtils;
+import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.HexUtil;
-import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -30,95 +30,97 @@ import javax.crypto.spec.GCMParameterSpec;
 /* loaded from: classes.dex */
 public class AesGcmKS {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7488a = "GCMKS";
+    /* renamed from: a */
+    private static final String f8065a = "GCMKS";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7489b = "AndroidKeyStore";
+    /* renamed from: b */
+    private static final String f8066b = "AndroidKeyStore";
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7490c = "AES/GCM/NoPadding";
+    /* renamed from: c */
+    private static final String f8067c = "AES/GCM/NoPadding";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final String f7491d = "";
+    /* renamed from: d */
+    private static final String f8068d = "";
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final int f7492e = 12;
+    /* renamed from: e */
+    private static final int f8069e = 12;
 
-    /* renamed from: f, reason: collision with root package name */
-    private static final int f7493f = 256;
+    /* renamed from: f */
+    private static final int f8070f = 256;
 
-    /* renamed from: g, reason: collision with root package name */
-    private static Map<String, SecretKey> f7494g = new HashMap();
+    /* renamed from: g */
+    private static Map<String, SecretKey> f8071g = new HashMap();
 
-    private static SecretKey a(String str) {
-        b.c(f7488a, "load key");
+    /* renamed from: a */
+    private static SecretKey m7856a(String str) {
+        C2551b.m7899c(f8065a, "load key");
         SecretKey secretKey = null;
         try {
-            KeyStore keyStore = KeyStore.getInstance(f7489b);
+            KeyStore keyStore = KeyStore.getInstance(f8066b);
             keyStore.load(null);
             Key key = keyStore.getKey(str, null);
             if (key instanceof SecretKey) {
                 secretKey = (SecretKey) key;
             } else {
-                b.c(f7488a, "generate key");
-                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", f7489b);
+                C2551b.m7899c(f8065a, "generate key");
+                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", f8066b);
                 keyGenerator.init(new KeyGenParameterSpec.Builder(str, 3).setBlockModes("GCM").setEncryptionPaddings("NoPadding").setKeySize(256).build());
                 secretKey = keyGenerator.generateKey();
             }
         } catch (IOException e2) {
-            b.b(f7488a, "IOException : " + e2.getMessage());
+            C2551b.m7898b(f8065a, "IOException : " + e2.getMessage());
         } catch (InvalidAlgorithmParameterException e3) {
-            b.b(f7488a, "InvalidAlgorithmParameterException : " + e3.getMessage());
+            C2551b.m7898b(f8065a, "InvalidAlgorithmParameterException : " + e3.getMessage());
         } catch (KeyStoreException e4) {
-            b.b(f7488a, "KeyStoreException : " + e4.getMessage());
+            C2551b.m7898b(f8065a, "KeyStoreException : " + e4.getMessage());
         } catch (NoSuchAlgorithmException e5) {
-            b.b(f7488a, "NoSuchAlgorithmException : " + e5.getMessage());
+            C2551b.m7898b(f8065a, "NoSuchAlgorithmException : " + e5.getMessage());
         } catch (NoSuchProviderException e6) {
-            b.b(f7488a, "NoSuchProviderException : " + e6.getMessage());
+            C2551b.m7898b(f8065a, "NoSuchProviderException : " + e6.getMessage());
         } catch (UnrecoverableKeyException e7) {
-            b.b(f7488a, "UnrecoverableKeyException : " + e7.getMessage());
+            C2551b.m7898b(f8065a, "UnrecoverableKeyException : " + e7.getMessage());
         } catch (CertificateException e8) {
-            b.b(f7488a, "CertificateException : " + e8.getMessage());
+            C2551b.m7898b(f8065a, "CertificateException : " + e8.getMessage());
         } catch (Exception e9) {
-            b.b(f7488a, "Exception: " + e9.getMessage());
+            C2551b.m7898b(f8065a, "Exception: " + e9.getMessage());
         }
-        f7494g.put(str, secretKey);
+        f8071g.put(str, secretKey);
         return secretKey;
     }
 
-    private static SecretKey b(String str) {
+    /* renamed from: b */
+    private static SecretKey m7858b(String str) {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        if (f7494g.get(str) == null) {
-            a(str);
+        if (f8071g.get(str) == null) {
+            m7856a(str);
         }
-        return f7494g.get(str);
+        return f8071g.get(str);
     }
 
     public static String decrypt(String str, String str2) {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
-            b.b(f7488a, "alias or encrypt content is null");
+            C2551b.m7898b(f8065a, "alias or encrypt content is null");
             return "";
         }
         try {
             return new String(decrypt(str, HexUtil.hexStr2ByteArray(str2)), "UTF-8");
         } catch (UnsupportedEncodingException e2) {
-            b.b(f7488a, "decrypt: UnsupportedEncodingException : " + e2.getMessage());
+            C2551b.m7898b(f8065a, "decrypt: UnsupportedEncodingException : " + e2.getMessage());
             return "";
         }
     }
 
     public static String encrypt(String str, String str2) {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
-            b.b(f7488a, "alias or encrypt content is null");
+            C2551b.m7898b(f8065a, "alias or encrypt content is null");
             return "";
         }
         try {
             return HexUtil.byteArray2HexStr(encrypt(str, str2.getBytes("UTF-8")));
         } catch (UnsupportedEncodingException e2) {
-            b.b(f7488a, "encrypt: UnsupportedEncodingException : " + e2.getMessage());
+            C2551b.m7898b(f8065a, "encrypt: UnsupportedEncodingException : " + e2.getMessage());
             return "";
         }
     }
@@ -126,49 +128,49 @@ public class AesGcmKS {
     public static byte[] decrypt(String str, byte[] bArr) {
         byte[] bArr2 = new byte[0];
         if (!TextUtils.isEmpty(str) && bArr != null) {
-            if (!a()) {
-                b.b(f7488a, "sdk version is too low");
+            if (!m7857a()) {
+                C2551b.m7898b(f8065a, "sdk version is too low");
                 return bArr2;
             }
             if (bArr.length <= 12) {
-                b.b(f7488a, "Decrypt source data is invalid.");
+                C2551b.m7898b(f8065a, "Decrypt source data is invalid.");
                 return bArr2;
             }
-            return decrypt(b(str), bArr);
+            return decrypt(m7858b(str), bArr);
         }
-        b.b(f7488a, "alias or encrypt content is null");
+        C2551b.m7898b(f8065a, "alias or encrypt content is null");
         return bArr2;
     }
 
     public static byte[] encrypt(String str, byte[] bArr) {
         byte[] bArr2 = new byte[0];
         if (!TextUtils.isEmpty(str) && bArr != null) {
-            if (!a()) {
-                b.b(f7488a, "sdk version is too low");
+            if (!m7857a()) {
+                C2551b.m7898b(f8065a, "sdk version is too low");
                 return bArr2;
             }
-            return encrypt(b(str), bArr);
+            return encrypt(m7858b(str), bArr);
         }
-        b.b(f7488a, "alias or encrypt content is null");
+        C2551b.m7898b(f8065a, "alias or encrypt content is null");
         return bArr2;
     }
 
     public static byte[] encrypt(SecretKey secretKey, byte[] bArr) {
         byte[] bArr2 = new byte[0];
         if (bArr == null) {
-            b.b(f7488a, "content is null");
+            C2551b.m7898b(f8065a, "content is null");
             return bArr2;
         }
         if (secretKey == null) {
-            b.b(f7488a, "secret key is null");
+            C2551b.m7898b(f8065a, "secret key is null");
             return bArr2;
         }
-        if (!a()) {
-            b.b(f7488a, "sdk version is too low");
+        if (!m7857a()) {
+            C2551b.m7898b(f8065a, "sdk version is too low");
             return bArr2;
         }
         try {
-            Cipher cipher = Cipher.getInstance(f7490c);
+            Cipher cipher = Cipher.getInstance(f8067c);
             cipher.init(1, secretKey);
             byte[] doFinal = cipher.doFinal(bArr);
             byte[] iv = cipher.getIV();
@@ -177,25 +179,25 @@ public class AesGcmKS {
                 System.arraycopy(doFinal, 0, copyOf, iv.length, doFinal.length);
                 return copyOf;
             }
-            b.b(f7488a, "IV is invalid.");
+            C2551b.m7898b(f8065a, "IV is invalid.");
             return bArr2;
         } catch (InvalidKeyException e2) {
-            b.b(f7488a, "InvalidKeyException : " + e2.getMessage());
+            C2551b.m7898b(f8065a, "InvalidKeyException : " + e2.getMessage());
             return bArr2;
         } catch (NoSuchAlgorithmException e3) {
-            b.b(f7488a, "NoSuchAlgorithmException : " + e3.getMessage());
+            C2551b.m7898b(f8065a, "NoSuchAlgorithmException : " + e3.getMessage());
             return bArr2;
         } catch (BadPaddingException e4) {
-            b.b(f7488a, "BadPaddingException : " + e4.getMessage());
+            C2551b.m7898b(f8065a, "BadPaddingException : " + e4.getMessage());
             return bArr2;
         } catch (IllegalBlockSizeException e5) {
-            b.b(f7488a, "IllegalBlockSizeException : " + e5.getMessage());
+            C2551b.m7898b(f8065a, "IllegalBlockSizeException : " + e5.getMessage());
             return bArr2;
         } catch (NoSuchPaddingException e6) {
-            b.b(f7488a, "NoSuchPaddingException : " + e6.getMessage());
+            C2551b.m7898b(f8065a, "NoSuchPaddingException : " + e6.getMessage());
             return bArr2;
         } catch (Exception e7) {
-            b.b(f7488a, "Exception: " + e7.getMessage());
+            C2551b.m7898b(f8065a, "Exception: " + e7.getMessage());
             return bArr2;
         }
     }
@@ -203,51 +205,52 @@ public class AesGcmKS {
     public static byte[] decrypt(SecretKey secretKey, byte[] bArr) {
         byte[] bArr2 = new byte[0];
         if (secretKey == null) {
-            b.b(f7488a, "Decrypt secret key is null");
+            C2551b.m7898b(f8065a, "Decrypt secret key is null");
             return bArr2;
         }
         if (bArr == null) {
-            b.b(f7488a, "content is null");
+            C2551b.m7898b(f8065a, "content is null");
             return bArr2;
         }
-        if (!a()) {
-            b.b(f7488a, "sdk version is too low");
+        if (!m7857a()) {
+            C2551b.m7898b(f8065a, "sdk version is too low");
             return bArr2;
         }
         if (bArr.length <= 12) {
-            b.b(f7488a, "Decrypt source data is invalid.");
+            C2551b.m7898b(f8065a, "Decrypt source data is invalid.");
             return bArr2;
         }
         byte[] copyOf = Arrays.copyOf(bArr, 12);
         try {
-            Cipher cipher = Cipher.getInstance(f7490c);
+            Cipher cipher = Cipher.getInstance(f8067c);
             cipher.init(2, secretKey, new GCMParameterSpec(128, copyOf));
             return cipher.doFinal(bArr, 12, bArr.length - 12);
         } catch (InvalidAlgorithmParameterException e2) {
-            b.b(f7488a, "InvalidAlgorithmParameterException : " + e2.getMessage());
+            C2551b.m7898b(f8065a, "InvalidAlgorithmParameterException : " + e2.getMessage());
             return bArr2;
         } catch (InvalidKeyException e3) {
-            b.b(f7488a, "InvalidKeyException : " + e3.getMessage());
+            C2551b.m7898b(f8065a, "InvalidKeyException : " + e3.getMessage());
             return bArr2;
         } catch (NoSuchAlgorithmException e4) {
-            b.b(f7488a, "NoSuchAlgorithmException : " + e4.getMessage());
+            C2551b.m7898b(f8065a, "NoSuchAlgorithmException : " + e4.getMessage());
             return bArr2;
         } catch (BadPaddingException e5) {
-            b.b(f7488a, "BadPaddingException : " + e5.getMessage());
+            C2551b.m7898b(f8065a, "BadPaddingException : " + e5.getMessage());
             return bArr2;
         } catch (IllegalBlockSizeException e6) {
-            b.b(f7488a, "IllegalBlockSizeException : " + e6.getMessage());
+            C2551b.m7898b(f8065a, "IllegalBlockSizeException : " + e6.getMessage());
             return bArr2;
         } catch (NoSuchPaddingException e7) {
-            b.b(f7488a, "NoSuchPaddingException : " + e7.getMessage());
+            C2551b.m7898b(f8065a, "NoSuchPaddingException : " + e7.getMessage());
             return bArr2;
         } catch (Exception e8) {
-            b.b(f7488a, "Exception: " + e8.getMessage());
+            C2551b.m7898b(f8065a, "Exception: " + e8.getMessage());
             return bArr2;
         }
     }
 
-    private static boolean a() {
+    /* renamed from: a */
+    private static boolean m7857a() {
         return Build.VERSION.SDK_INT >= 23;
     }
 }

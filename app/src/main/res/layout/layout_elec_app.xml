@@ -29,7 +29,7 @@
             android:drawableRight="@mipmap/arrow_gray_right"
             android:drawablePadding="@dimen/dp_15"
             android:layout_marginStart="@dimen/dp_100"/>
-        <ui.view.PicItemView
+        <p388ui.view.PicItemView
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:id="@+id/ll_app"

@@ -3,8 +3,8 @@ package manager;
 import android.text.TextUtils;
 import network.account.AccountInfo;
 import network.http.RegionConfigHttp;
-import util.p1;
-import util.u1;
+import util.C7307p1;
+import util.C7325u1;
 
 /* loaded from: classes2.dex */
 public class AccountManager {
@@ -20,7 +20,7 @@ public class AccountManager {
     }
 
     public static AccountInfo getAccountInfo() {
-        return (AccountInfo) u1.a(u1.y0, AccountInfo.class);
+        return (AccountInfo) C7325u1.m26615a(C7325u1.f25709y0, AccountInfo.class);
     }
 
     public static String getAccountPhone() {
@@ -93,14 +93,14 @@ public class AccountManager {
 
     public static void loginOut() {
         saveAccount(null);
-        u1.b(u1.M, "");
-        u1.b(u1.L, false);
-        p1.a(p1.f20902l, (Object) null);
+        C7325u1.m26630b(C7325u1.f25646M, "");
+        C7325u1.m26631b(C7325u1.f25645L, false);
+        C7307p1.m26478a(C7307p1.f25503l, (Object) null);
     }
 
     public static void saveAccount(AccountInfo accountInfo) {
         mToken = accountInfo == null ? "" : accountInfo.getToken();
-        u1.a(accountInfo, u1.y0);
+        C7325u1.m26619a(accountInfo, C7325u1.f25709y0);
     }
 
     public static void setRegion(String str) {
@@ -121,6 +121,6 @@ public class AccountManager {
         if (accountInfo != null) {
             accountInfo.setVisiblePhone(str);
         }
-        u1.a(accountInfo, u1.y0);
+        C7325u1.m26619a(accountInfo, C7325u1.f25709y0);
     }
 }

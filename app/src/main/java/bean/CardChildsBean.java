@@ -5,7 +5,9 @@ import network.BaseBean;
 /* loaded from: classes.dex */
 public class CardChildsBean extends BaseBean {
     private String createTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1581id;
     private String paymentInfoID;
     private String transferAmount;
     private String transferNumber;
@@ -17,7 +19,7 @@ public class CardChildsBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1581id;
     }
 
     public String getPaymentInfoID() {
@@ -45,7 +47,7 @@ public class CardChildsBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1581id = str;
     }
 
     public void setPaymentInfoID(String str) {

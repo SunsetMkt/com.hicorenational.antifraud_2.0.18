@@ -12,61 +12,71 @@ public class UMRTLog {
     private UMRTLog() {
     }
 
-    public static void d(String str, String str2) {
+    /* renamed from: d */
+    public static void m11554d(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, false);
         }
     }
 
-    public static void e(String str, String str2) {
+    /* renamed from: e */
+    public static void m11555e(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, false);
         }
     }
 
-    public static void i(String str, String str2) {
+    /* renamed from: i */
+    public static void m11556i(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, false);
         }
     }
 
-    public static void sd(String str, String str2) {
+    /* renamed from: sd */
+    public static void m11557sd(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, true);
         }
     }
 
-    public static void se(String str, String str2) {
+    /* renamed from: se */
+    public static void m11558se(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, true);
         }
     }
 
-    public static void si(String str, String str2) {
+    /* renamed from: si */
+    public static void m11559si(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, true);
         }
     }
 
-    public static void sv(String str, String str2) {
+    /* renamed from: sv */
+    public static void m11560sv(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, true);
         }
     }
 
-    public static void sw(String str, String str2) {
+    /* renamed from: sw */
+    public static void m11561sw(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, true);
         }
     }
 
-    public static void v(String str, String str2) {
+    /* renamed from: v */
+    public static void m11562v(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, false);
         }
     }
 
-    public static void w(String str, String str2) {
+    /* renamed from: w */
+    public static void m11563w(String str, String str2) {
         if (UMConfigure.shouldOutput()) {
             warpperMsg(str2, false);
         }

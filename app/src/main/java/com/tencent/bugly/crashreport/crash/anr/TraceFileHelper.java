@@ -1,44 +1,52 @@
 package com.tencent.bugly.crashreport.crash.anr;
 
-import com.tencent.bugly.proguard.an;
+import com.tencent.bugly.proguard.C3151an;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* compiled from: BUGLY */
 /* loaded from: classes2.dex */
 public class TraceFileHelper {
 
     /* compiled from: BUGLY */
-    public static class a {
+    /* renamed from: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$a */
+    public static class C3122a {
 
-        /* renamed from: a, reason: collision with root package name */
-        public long f9046a;
+        /* renamed from: a */
+        public long f10326a;
 
-        /* renamed from: b, reason: collision with root package name */
-        public String f9047b;
+        /* renamed from: b */
+        public String f10327b;
 
-        /* renamed from: c, reason: collision with root package name */
-        public long f9048c;
+        /* renamed from: c */
+        public long f10328c;
 
-        /* renamed from: d, reason: collision with root package name */
-        public Map<String, String[]> f9049d;
+        /* renamed from: d */
+        public Map<String, String[]> f10329d;
     }
 
     /* compiled from: BUGLY */
-    public interface b {
-        boolean a(long j2);
+    /* renamed from: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$b */
+    public interface InterfaceC3123b {
+        /* renamed from: a */
+        boolean mo9657a(long j2);
 
-        boolean a(long j2, long j3, String str);
+        /* renamed from: a */
+        boolean mo9658a(long j2, long j3, String str);
 
-        boolean a(String str, int i2, String str2, String str3, boolean z);
+        /* renamed from: a */
+        boolean mo9659a(String str, int i2, String str2, String str3, boolean z);
 
-        boolean a(String str, long j2, long j3);
+        /* renamed from: a */
+        boolean mo9660a(String str, long j2, long j3);
     }
 
-    protected static Object[] a(BufferedReader bufferedReader, Pattern... patternArr) throws IOException {
+    /* renamed from: a */
+    protected static Object[] m9655a(BufferedReader bufferedReader, Pattern... patternArr) throws IOException {
         if (bufferedReader != null && patternArr != null) {
             while (true) {
                 String readLine = bufferedReader.readLine();
@@ -55,7 +63,8 @@ public class TraceFileHelper {
         return null;
     }
 
-    protected static String b(BufferedReader bufferedReader) throws IOException {
+    /* renamed from: b */
+    protected static String m9656b(BufferedReader bufferedReader) throws IOException {
         StringBuffer stringBuffer = new StringBuffer();
         while (true) {
             String readLine = bufferedReader.readLine();
@@ -67,96 +76,104 @@ public class TraceFileHelper {
         return stringBuffer.toString();
     }
 
-    public static a readFirstDumpInfo(String str, final boolean z) {
+    public static C3122a readFirstDumpInfo(String str, final boolean z) {
         if (str == null) {
-            an.e("path:%s", str);
+            C3151an.m9923e("path:%s", str);
             return null;
         }
-        final a aVar = new a();
-        readTraceFile(str, new b() { // from class: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.2
-            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-            public boolean a(String str2, int i2, String str3, String str4, boolean z2) {
-                an.c("new thread %s", str2);
-                a aVar2 = a.this;
-                if (aVar2.f9049d == null) {
-                    aVar2.f9049d = new HashMap();
+        final C3122a c3122a = new C3122a();
+        readTraceFile(str, new InterfaceC3123b() { // from class: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.2
+            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+            /* renamed from: a */
+            public boolean mo9659a(String str2, int i2, String str3, String str4, boolean z2) {
+                C3151an.m9921c("new thread %s", str2);
+                C3122a c3122a2 = C3122a.this;
+                if (c3122a2.f10329d == null) {
+                    c3122a2.f10329d = new HashMap();
                 }
-                a.this.f9049d.put(str2, new String[]{str3, str4, "" + i2});
+                C3122a.this.f10329d.put(str2, new String[]{str3, str4, "" + i2});
                 return true;
             }
 
-            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-            public boolean a(String str2, long j2, long j3) {
+            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+            /* renamed from: a */
+            public boolean mo9660a(String str2, long j2, long j3) {
                 return true;
             }
 
-            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-            public boolean a(long j2, long j3, String str2) {
-                an.c("new process %s", str2);
-                a aVar2 = a.this;
-                aVar2.f9046a = j2;
-                aVar2.f9047b = str2;
-                aVar2.f9048c = j3;
+            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+            /* renamed from: a */
+            public boolean mo9658a(long j2, long j3, String str2) {
+                C3151an.m9921c("new process %s", str2);
+                C3122a c3122a2 = C3122a.this;
+                c3122a2.f10326a = j2;
+                c3122a2.f10327b = str2;
+                c3122a2.f10328c = j3;
                 return z;
             }
 
-            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-            public boolean a(long j2) {
-                an.c("process end %d", Long.valueOf(j2));
+            @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+            /* renamed from: a */
+            public boolean mo9657a(long j2) {
+                C3151an.m9921c("process end %d", Long.valueOf(j2));
                 return false;
             }
         });
-        if (aVar.f9046a > 0 && aVar.f9048c > 0 && aVar.f9047b != null) {
-            return aVar;
+        if (c3122a.f10326a > 0 && c3122a.f10328c > 0 && c3122a.f10327b != null) {
+            return c3122a;
         }
-        an.e("first dump error %s", aVar.f9046a + c.c.a.b.a.a.f3100g + aVar.f9048c + c.c.a.b.a.a.f3100g + aVar.f9047b);
+        C3151an.m9923e("first dump error %s", c3122a.f10326a + AbstractC1191a.f2568g + c3122a.f10328c + AbstractC1191a.f2568g + c3122a.f10327b);
         return null;
     }
 
-    public static a readTargetDumpInfo(final String str, String str2, final boolean z) {
+    public static C3122a readTargetDumpInfo(final String str, String str2, final boolean z) {
         if (str != null && str2 != null) {
-            final a aVar = new a();
-            readTraceFile(str2, new b() { // from class: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.1
-                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-                public boolean a(String str3, int i2, String str4, String str5, boolean z2) {
-                    an.c("new thread %s", str3);
-                    a aVar2 = a.this;
-                    if (aVar2.f9046a > 0 && aVar2.f9048c > 0 && aVar2.f9047b != null) {
-                        if (aVar2.f9049d == null) {
-                            aVar2.f9049d = new HashMap();
+            final C3122a c3122a = new C3122a();
+            readTraceFile(str2, new InterfaceC3123b() { // from class: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.1
+                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+                /* renamed from: a */
+                public boolean mo9659a(String str3, int i2, String str4, String str5, boolean z2) {
+                    C3151an.m9921c("new thread %s", str3);
+                    C3122a c3122a2 = C3122a.this;
+                    if (c3122a2.f10326a > 0 && c3122a2.f10328c > 0 && c3122a2.f10327b != null) {
+                        if (c3122a2.f10329d == null) {
+                            c3122a2.f10329d = new HashMap();
                         }
-                        a.this.f9049d.put(str3, new String[]{str4, str5, "" + i2});
+                        C3122a.this.f10329d.put(str3, new String[]{str4, str5, "" + i2});
                     }
                     return true;
                 }
 
-                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-                public boolean a(String str3, long j2, long j3) {
+                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+                /* renamed from: a */
+                public boolean mo9660a(String str3, long j2, long j3) {
                     return true;
                 }
 
-                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-                public boolean a(long j2, long j3, String str3) {
-                    an.c("new process %s", str3);
+                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+                /* renamed from: a */
+                public boolean mo9658a(long j2, long j3, String str3) {
+                    C3151an.m9921c("new process %s", str3);
                     if (!str3.equals(str)) {
                         return true;
                     }
-                    a aVar2 = a.this;
-                    aVar2.f9046a = j2;
-                    aVar2.f9047b = str3;
-                    aVar2.f9048c = j3;
+                    C3122a c3122a2 = C3122a.this;
+                    c3122a2.f10326a = j2;
+                    c3122a2.f10327b = str3;
+                    c3122a2.f10328c = j3;
                     return z;
                 }
 
-                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b
-                public boolean a(long j2) {
-                    an.c("process end %d", Long.valueOf(j2));
-                    a aVar2 = a.this;
-                    return aVar2.f9046a <= 0 || aVar2.f9048c <= 0 || aVar2.f9047b == null;
+                @Override // com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b
+                /* renamed from: a */
+                public boolean mo9657a(long j2) {
+                    C3151an.m9921c("process end %d", Long.valueOf(j2));
+                    C3122a c3122a2 = C3122a.this;
+                    return c3122a2.f10326a <= 0 || c3122a2.f10328c <= 0 || c3122a2.f10327b == null;
                 }
             });
-            if (aVar.f9046a > 0 && aVar.f9048c > 0 && aVar.f9047b != null) {
-                return aVar;
+            if (c3122a.f10326a > 0 && c3122a.f10328c > 0 && c3122a.f10327b != null) {
+                return c3122a;
             }
         }
         return null;
@@ -168,7 +185,7 @@ public class TraceFileHelper {
      */
     /* JADX WARN: Code restructure failed: missing block: B:35:0x0150, code lost:
     
-        if (com.tencent.bugly.proguard.an.a(r0) == false) goto L46;
+        if (com.tencent.bugly.proguard.C3151an.m9916a(r0) == false) goto L46;
      */
     /* JADX WARN: Code restructure failed: missing block: B:36:0x0152, code lost:
     
@@ -186,7 +203,7 @@ public class TraceFileHelper {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static void readTraceFile(java.lang.String r18, com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.b r19) {
+    public static void readTraceFile(java.lang.String r18, com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.InterfaceC3123b r19) {
         /*
             Method dump skipped, instructions count: 494
             To view this dump change 'Code comments level' option to 'DEBUG'
@@ -194,7 +211,8 @@ public class TraceFileHelper {
         throw new UnsupportedOperationException("Method not decompiled: com.tencent.bugly.crashreport.crash.anr.TraceFileHelper.readTraceFile(java.lang.String, com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$b):void");
     }
 
-    protected static String a(BufferedReader bufferedReader) throws IOException {
+    /* renamed from: a */
+    protected static String m9654a(BufferedReader bufferedReader) throws IOException {
         StringBuffer stringBuffer = new StringBuffer();
         for (int i2 = 0; i2 < 3; i2++) {
             String readLine = bufferedReader.readLine();

@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executor;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public final class ImageAnalysis extends UseCase {
@@ -361,7 +362,7 @@ public final class ImageAnalysis extends UseCase {
             deferrableSurface.close();
         }
         this.mDeferrableSurface = new ImmediateSurface(createIsolatedReader.getSurface());
-        c.b.b.a.a.a<Void> terminationFuture = this.mDeferrableSurface.getTerminationFuture();
+        InterfaceFutureC0952a<Void> terminationFuture = this.mDeferrableSurface.getTerminationFuture();
         createIsolatedReader.getClass();
         terminationFuture.addListener(new Runnable() { // from class: androidx.camera.core.f0
             @Override // java.lang.Runnable

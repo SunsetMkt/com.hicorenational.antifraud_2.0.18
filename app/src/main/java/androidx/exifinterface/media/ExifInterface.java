@@ -9,13 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.InputDeviceCompat;
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import com.luck.picture.lib.camera.CustomCameraView;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import com.tencent.bugly.beta.tinker.TinkerReport;
-import com.umeng.analytics.pro.cw;
+import com.umeng.analytics.pro.C3393cw;
 import com.xiaomi.mipush.sdk.Constants;
-import i.a.a.a.c;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.Closeable;
@@ -49,6 +48,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import p324i.p325a.p326a.p327a.C5758c;
 
 /* loaded from: classes.dex */
 public class ExifInterface {
@@ -565,7 +565,7 @@ public class ExifInterface {
         public final long numerator;
 
         Rational(double d2) {
-            this((long) (d2 * 10000.0d), a.q);
+            this((long) (d2 * 10000.0d), C2084a.f6135q);
         }
 
         public double calculate() {
@@ -598,7 +598,7 @@ public class ExifInterface {
         sExifTagMapsForWriting = new HashMap[exifTagArr2.length];
         sTagSetForCompatibility = new HashSet<>(Arrays.asList(TAG_F_NUMBER, TAG_DIGITAL_ZOOM_RATIO, TAG_EXPOSURE_TIME, TAG_SUBJECT_DISTANCE, TAG_GPS_TIMESTAMP));
         sExifPointerTagMap = new HashMap<>();
-        ASCII = Charset.forName(c.f16730b);
+        ASCII = Charset.forName(C5758c.f20751b);
         IDENTIFIER_EXIF_APP1 = "Exif\u0000\u0000".getBytes(ASCII);
         sFormatter = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
         sFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -1743,7 +1743,7 @@ public class ExifInterface {
             for (int i3 = 0; i3 < iArr.length; i3++) {
                 byte[] bArr = this.mThumbnailBytes;
                 int i4 = i3 * 3;
-                iArr[i3] = (bArr[i4] << cw.n) + 0 + (bArr[i4 + 1] << 8) + bArr[i4 + 2];
+                iArr[i3] = (bArr[i4] << C3393cw.f11874n) + 0 + (bArr[i4 + 1] << 8) + bArr[i4 + 2];
             }
             ExifAttribute exifAttribute = this.mAttributes[4].get(TAG_IMAGE_LENGTH);
             ExifAttribute exifAttribute2 = this.mAttributes[4].get(TAG_IMAGE_WIDTH);

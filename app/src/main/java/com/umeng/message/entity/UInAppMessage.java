@@ -1,7 +1,7 @@
 package com.umeng.message.entity;
 
-import com.umeng.analytics.pro.bh;
-import com.umeng.analytics.pro.d;
+import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.C3397d;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -97,10 +97,10 @@ public class UInAppMessage {
             this.customButtonActivity = jSONObject6.optString("activity", "");
             this.customButtonUrl = jSONObject6.optString("url", "");
         }
-        JSONObject jSONObject7 = jSONObject.getJSONObject(bh.bt);
+        JSONObject jSONObject7 = jSONObject.getJSONObject(C3351bh.f11648bt);
         this.show_type = jSONObject7.getInt("show_type");
         this.show_times = jSONObject7.getInt("show_times");
-        this.start_time = jSONObject7.getString(d.p);
+        this.start_time = jSONObject7.getString(C3397d.f11950p);
         this.expire_time = jSONObject7.getString("expire_time");
     }
 

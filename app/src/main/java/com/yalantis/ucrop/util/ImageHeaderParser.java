@@ -62,27 +62,29 @@ public class ImageHeaderParser {
     }
 
     private static class StreamReader implements Reader {
-        private final InputStream is;
+
+        /* renamed from: is */
+        private final InputStream f16842is;
 
         public StreamReader(InputStream inputStream) {
-            this.is = inputStream;
+            this.f16842is = inputStream;
         }
 
         @Override // com.yalantis.ucrop.util.ImageHeaderParser.Reader
         public int getUInt16() throws IOException {
-            return ((this.is.read() << 8) & MotionEventCompat.ACTION_POINTER_INDEX_MASK) | (this.is.read() & 255);
+            return ((this.f16842is.read() << 8) & MotionEventCompat.ACTION_POINTER_INDEX_MASK) | (this.f16842is.read() & 255);
         }
 
         @Override // com.yalantis.ucrop.util.ImageHeaderParser.Reader
         public short getUInt8() throws IOException {
-            return (short) (this.is.read() & 255);
+            return (short) (this.f16842is.read() & 255);
         }
 
         @Override // com.yalantis.ucrop.util.ImageHeaderParser.Reader
         public int read(byte[] bArr, int i2) throws IOException {
             int i3 = i2;
             while (i3 > 0) {
-                int read = this.is.read(bArr, i2 - i3, i3);
+                int read = this.f16842is.read(bArr, i2 - i3, i3);
                 if (read == -1) {
                     break;
                 }
@@ -98,9 +100,9 @@ public class ImageHeaderParser {
             }
             long j3 = j2;
             while (j3 > 0) {
-                long skip = this.is.skip(j3);
+                long skip = this.f16842is.skip(j3);
                 if (skip <= 0) {
-                    if (this.is.read() == -1) {
+                    if (this.f16842is.read() == -1) {
                         break;
                     }
                     skip = 1;

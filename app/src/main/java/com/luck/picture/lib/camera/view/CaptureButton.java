@@ -120,7 +120,7 @@ public class CaptureButton extends View {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.b
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CaptureButton.this.a(valueAnimator);
+                CaptureButton.this.m8129a(valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() { // from class: com.luck.picture.lib.camera.view.CaptureButton.1
@@ -149,13 +149,13 @@ public class CaptureButton extends View {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.a
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CaptureButton.this.b(valueAnimator);
+                CaptureButton.this.m8130b(valueAnimator);
             }
         });
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.c
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CaptureButton.this.c(valueAnimator);
+                CaptureButton.this.m8131c(valueAnimator);
             }
         });
         AnimatorSet animatorSet = new AnimatorSet();
@@ -187,17 +187,20 @@ public class CaptureButton extends View {
         invalidate();
     }
 
-    public /* synthetic */ void a(ValueAnimator valueAnimator) {
+    /* renamed from: a */
+    public /* synthetic */ void m8129a(ValueAnimator valueAnimator) {
         this.button_inside_radius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
-    public /* synthetic */ void b(ValueAnimator valueAnimator) {
+    /* renamed from: b */
+    public /* synthetic */ void m8130b(ValueAnimator valueAnimator) {
         this.button_outside_radius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
-    public /* synthetic */ void c(ValueAnimator valueAnimator) {
+    /* renamed from: c */
+    public /* synthetic */ void m8131c(ValueAnimator valueAnimator) {
         this.button_inside_radius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }

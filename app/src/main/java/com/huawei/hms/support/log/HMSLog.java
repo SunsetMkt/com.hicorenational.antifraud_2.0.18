@@ -4,16 +4,17 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.AndroidException;
-import com.huawei.hms.base.log.a;
-import com.huawei.hms.base.log.b;
+import com.huawei.hms.base.log.C2315a;
+import com.huawei.hms.base.log.C2316b;
 
 /* loaded from: classes.dex */
 public class HMSLog {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final b f7322a = new b();
+    /* renamed from: a */
+    private static final C2316b f7893a = new C2316b();
 
-    private static String a(Context context) {
+    /* renamed from: a */
+    private static String m7711a(Context context) {
         PackageManager packageManager = context.getPackageManager();
         if (packageManager != null) {
             try {
@@ -25,61 +26,68 @@ public class HMSLog {
         return "HMS-[unknown-version]";
     }
 
-    public static void d(String str, String str2) {
-        f7322a.a(3, str, str2);
+    /* renamed from: d */
+    public static void m7712d(String str, String str2) {
+        f7893a.m6667a(3, str, str2);
     }
 
-    public static void e(String str, String str2) {
-        f7322a.a(6, str, str2);
+    /* renamed from: e */
+    public static void m7715e(String str, String str2) {
+        f7893a.m6667a(6, str, str2);
     }
 
-    public static void i(String str, String str2) {
-        f7322a.a(4, str, str2);
+    /* renamed from: i */
+    public static void m7717i(String str, String str2) {
+        f7893a.m6667a(4, str, str2);
     }
 
     public static void init(Context context, int i2, String str) {
-        b bVar = f7322a;
-        bVar.a(context, i2, str);
-        bVar.a(str, "============================================================================\n====== " + a(context) + "\n============================================================================");
+        C2316b c2316b = f7893a;
+        c2316b.m6668a(context, i2, str);
+        c2316b.m6670a(str, "============================================================================\n====== " + m7711a(context) + "\n============================================================================");
     }
 
     public static boolean isErrorEnable() {
-        return f7322a.a(6);
+        return f7893a.m6671a(6);
     }
 
     public static boolean isInfoEnable() {
-        return f7322a.a(4);
+        return f7893a.m6671a(4);
     }
 
     public static boolean isWarnEnable() {
-        return f7322a.a(5);
+        return f7893a.m6671a(5);
     }
 
     public static void setExtLogger(HMSExtLogger hMSExtLogger, boolean z) throws IllegalArgumentException {
         if (hMSExtLogger == null) {
             throw new IllegalArgumentException("extLogger is not able to be null");
         }
-        a aVar = new a(hMSExtLogger);
+        C2315a c2315a = new C2315a(hMSExtLogger);
         if (z) {
-            f7322a.a(aVar);
+            f7893a.m6669a(c2315a);
         } else {
-            f7322a.a().a(aVar);
+            f7893a.m6666a().mo6662a(c2315a);
         }
     }
 
-    public static void w(String str, String str2) {
-        f7322a.a(5, str, str2);
+    /* renamed from: w */
+    public static void m7718w(String str, String str2) {
+        f7893a.m6667a(5, str, str2);
     }
 
-    public static void e(String str, String str2, Throwable th) {
-        f7322a.b(6, str, str2, th);
+    /* renamed from: e */
+    public static void m7716e(String str, String str2, Throwable th) {
+        f7893a.m6672b(6, str, str2, th);
     }
 
-    public static void e(String str, long j2, String str2) {
-        f7322a.a(6, str, "[" + j2 + "] " + str2);
+    /* renamed from: e */
+    public static void m7713e(String str, long j2, String str2) {
+        f7893a.m6667a(6, str, "[" + j2 + "] " + str2);
     }
 
-    public static void e(String str, long j2, String str2, Throwable th) {
-        f7322a.b(6, str, "[" + j2 + "] " + str2, th);
+    /* renamed from: e */
+    public static void m7714e(String str, long j2, String str2, Throwable th) {
+        f7893a.m6672b(6, str, "[" + j2 + "] " + str2, th);
     }
 }

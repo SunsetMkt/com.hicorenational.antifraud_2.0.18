@@ -10,7 +10,7 @@ public class RequestMonitor extends RequestStatistic {
             return;
         }
         this.host = requestStatistic.host;
-        this.ip = requestStatistic.ip;
+        this.f1002ip = requestStatistic.f1002ip;
         this.port = requestStatistic.port;
         this.isSSL = requestStatistic.isSSL;
         this.ipRefer = requestStatistic.ipRefer;

@@ -87,7 +87,7 @@ public class TransformImageView extends AppCompatImageView {
         return (float) Math.sqrt(Math.pow(getMatrixValue(matrix, 0), 2.0d) + Math.pow(getMatrixValue(matrix, 3), 2.0d));
     }
 
-    protected float getMatrixValue(@NonNull Matrix matrix, @IntRange(from = 0, to = 9) int i2) {
+    protected float getMatrixValue(@NonNull Matrix matrix, @IntRange(from = 0, m294to = 9) int i2) {
         matrix.getValues(this.mMatrixValues);
         return this.mMatrixValues[i2];
     }

@@ -33,7 +33,7 @@ public class DefaultUIController extends AbsAgentWebUIController {
             return;
         }
         if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
-            new AlertDialog.Builder(activity).setTitle(this.mResources.getString(R.string.agentweb_tips)).setMessage(this.mResources.getString(R.string.agentweb_honeycomblow)).setNegativeButton(this.mResources.getString(R.string.agentweb_download), new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.4
+            new AlertDialog.Builder(activity).setTitle(this.mResources.getString(C2605R.string.agentweb_tips)).setMessage(this.mResources.getString(C2605R.string.agentweb_honeycomblow)).setNegativeButton(this.mResources.getString(C2605R.string.agentweb_download), new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.4
                 @Override // android.content.DialogInterface.OnClickListener
                 public void onClick(DialogInterface dialogInterface, int i2) {
                     if (dialogInterface != null) {
@@ -44,7 +44,7 @@ public class DefaultUIController extends AbsAgentWebUIController {
                         callback2.handleMessage(Message.obtain());
                     }
                 }
-            }).setPositiveButton(this.mResources.getString(R.string.agentweb_cancel), new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.3
+            }).setPositiveButton(this.mResources.getString(C2605R.string.agentweb_cancel), new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.3
                 @Override // android.content.DialogInterface.OnClickListener
                 public void onClick(DialogInterface dialogInterface, int i2) {
                     if (dialogInterface != null) {
@@ -56,7 +56,7 @@ public class DefaultUIController extends AbsAgentWebUIController {
     }
 
     private void onJsConfirmInternal(String str, JsResult jsResult) {
-        LogUtils.i(this.TAG, "activity:" + this.mActivity.hashCode() + "  ");
+        LogUtils.m8083i(this.TAG, "activity:" + this.mActivity.hashCode() + "  ");
         Activity activity = this.mActivity;
         if (activity == null || activity.isFinishing()) {
             toCancelJsresult(jsResult);
@@ -151,7 +151,7 @@ public class DefaultUIController extends AbsAgentWebUIController {
                 @Override // android.content.DialogInterface.OnClickListener
                 public void onClick(DialogInterface dialogInterface, int i2) {
                     dialogInterface.dismiss();
-                    LogUtils.i(DefaultUIController.this.TAG, "which:" + i2);
+                    LogUtils.m8083i(DefaultUIController.this.TAG, "which:" + i2);
                     if (callback != null) {
                         Message obtain = Message.obtain();
                         obtain.what = i2;
@@ -240,7 +240,7 @@ public class DefaultUIController extends AbsAgentWebUIController {
 
     @Override // com.just.agentweb.AbsAgentWebUIController
     public void onMainFrameError(WebView webView, int i2, String str, String str2) {
-        LogUtils.i(this.TAG, "mWebParentLayout onMainFrameError:" + this.mWebParentLayout);
+        LogUtils.m8083i(this.TAG, "mWebParentLayout onMainFrameError:" + this.mWebParentLayout);
         WebParentLayout webParentLayout = this.mWebParentLayout;
         if (webParentLayout != null) {
             webParentLayout.showPageMainFrameError();
@@ -249,14 +249,14 @@ public class DefaultUIController extends AbsAgentWebUIController {
 
     @Override // com.just.agentweb.AbsAgentWebUIController
     public void onOpenPagePrompt(WebView webView, String str, final Handler.Callback callback) {
-        LogUtils.i(this.TAG, "onOpenPagePrompt");
+        LogUtils.m8083i(this.TAG, "onOpenPagePrompt");
         Activity activity = this.mActivity;
         if (activity == null || activity.isFinishing()) {
             return;
         }
         if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
             if (this.mAskOpenOtherAppDialog == null) {
-                this.mAskOpenOtherAppDialog = new AlertDialog.Builder(activity).setMessage(this.mResources.getString(R.string.agentweb_leave_app_and_go_other_page, AgentWebUtils.getApplicationName(activity))).setTitle(this.mResources.getString(R.string.agentweb_tips)).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.2
+                this.mAskOpenOtherAppDialog = new AlertDialog.Builder(activity).setMessage(this.mResources.getString(C2605R.string.agentweb_leave_app_and_go_other_page, AgentWebUtils.getApplicationName(activity))).setTitle(this.mResources.getString(C2605R.string.agentweb_tips)).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.2
                     @Override // android.content.DialogInterface.OnClickListener
                     public void onClick(DialogInterface dialogInterface, int i2) {
                         Handler.Callback callback2 = callback;
@@ -264,7 +264,7 @@ public class DefaultUIController extends AbsAgentWebUIController {
                             callback2.handleMessage(Message.obtain((Handler) null, -1));
                         }
                     }
-                }).setPositiveButton(this.mResources.getString(R.string.agentweb_leave), new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.1
+                }).setPositiveButton(this.mResources.getString(C2605R.string.agentweb_leave), new DialogInterface.OnClickListener() { // from class: com.just.agentweb.DefaultUIController.1
                     @Override // android.content.DialogInterface.OnClickListener
                     public void onClick(DialogInterface dialogInterface, int i2) {
                         Handler.Callback callback2 = callback;

@@ -1,5 +1,6 @@
 package anet.channel.util;
 
+import anet.channel.strategy.utils.C0848c;
 import com.xiaomi.mipush.sdk.Constants;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -83,15 +84,15 @@ public class HttpUrl {
             while (indexOf < this.url.length() && this.url.charAt(indexOf) != '/') {
                 indexOf++;
             }
-            boolean b2 = anet.channel.strategy.utils.c.b(str);
+            boolean m708b = C0848c.m708b(str);
             StringBuilder sb = new StringBuilder(this.url.length() + str.length());
             sb.append(this.scheme);
             sb.append(HttpConstant.SCHEME_SPLIT);
-            if (b2) {
+            if (m708b) {
                 sb.append('[');
             }
             sb.append(str);
-            if (b2) {
+            if (m708b) {
                 sb.append(']');
             }
             if (i2 != 0) {

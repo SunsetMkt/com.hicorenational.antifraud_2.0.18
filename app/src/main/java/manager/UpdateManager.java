@@ -11,11 +11,11 @@ import androidx.core.content.FileProvider;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 import java.io.File;
 import java.io.IOException;
-import ui.Hicore;
-import ui.c;
-import util.f1;
-import util.o1;
-import util.u1;
+import p388ui.C6813c;
+import p388ui.Hicore;
+import util.C7277f1;
+import util.C7304o1;
+import util.C7325u1;
 
 /* loaded from: classes2.dex */
 public class UpdateManager {
@@ -294,10 +294,10 @@ public class UpdateManager {
     /* JADX INFO: Access modifiers changed from: private */
     public void completed(String str) {
         try {
-            Activity c2 = c.i().c();
+            Activity m25446c = C6813c.m25437i().m25446c();
             try {
                 if (Build.VERSION.SDK_INT >= 26 && !Hicore.getApp().getPackageManager().canRequestPackageInstalls()) {
-                    c2.startActivityForResult(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + c2.getPackageName())), REQUESTCODE_INSTALL_PERMISS_CODE);
+                    m25446c.startActivityForResult(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + m25446c.getPackageName())), REQUESTCODE_INSTALL_PERMISS_CODE);
                     return;
                 }
             } catch (Exception e2) {
@@ -323,15 +323,15 @@ public class UpdateManager {
             } else {
                 intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
             }
-            c2.startActivity(intent);
+            m25446c.startActivity(intent);
         } catch (Exception e4) {
             e4.printStackTrace();
         }
-        c.i().d();
+        C6813c.m25437i().m25448d();
     }
 
     private boolean doNormalSignCheck(File file) {
-        return u1.b(u1.p).equalsIgnoreCase(o1.a(file));
+        return C7325u1.m26625b(C7325u1.f25690p).equalsIgnoreCase(C7304o1.m26466a(file));
     }
 
     public static UpdateManager getInstance() {
@@ -426,6 +426,6 @@ public class UpdateManager {
     }
 
     private UpdateManager() {
-        this.mDownloadPath = f1.a() + UPDATE_FILE_PATH;
+        this.mDownloadPath = C7277f1.m26345a() + UPDATE_FILE_PATH;
     }
 }

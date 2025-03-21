@@ -7,7 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.View;
-import cn.cloudwalk.libproject.R;
+import cn.cloudwalk.libproject.C1241R;
 
 /* loaded from: classes.dex */
 public class CircleView extends View {
@@ -43,7 +43,7 @@ public class CircleView extends View {
         this.mTimePaint = new Paint();
         this.mTimePaint.setAntiAlias(true);
         this.mTimePaint.setStrokeWidth(4.0f);
-        this.mTimePaint.setColor(getResources().getColor(R.color.color_black));
+        this.mTimePaint.setColor(getResources().getColor(C1241R.color.color_black));
         this.mTimePaint.setStyle(Paint.Style.FILL);
     }
 

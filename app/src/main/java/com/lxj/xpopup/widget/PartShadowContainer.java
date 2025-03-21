@@ -9,53 +9,53 @@ import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.lxj.xpopup.e.b;
-import com.lxj.xpopup.f.c;
+import com.lxj.xpopup.p186e.InterfaceC2808b;
+import com.lxj.xpopup.p187f.C2819c;
 
 /* loaded from: classes.dex */
 public class PartShadowContainer extends FrameLayout {
 
-    /* renamed from: a, reason: collision with root package name */
-    public boolean f8156a;
+    /* renamed from: a */
+    public boolean f8910a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private float f8157b;
+    /* renamed from: b */
+    private float f8911b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private float f8158c;
+    /* renamed from: c */
+    private float f8912c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private b f8159d;
+    /* renamed from: d */
+    private InterfaceC2808b f8913d;
 
     public PartShadowContainer(@NonNull Context context) {
         super(context);
-        this.f8156a = true;
+        this.f8910a = true;
     }
 
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        b bVar;
+        InterfaceC2808b interfaceC2808b;
         View childAt = getChildAt(0);
         int[] iArr = new int[2];
         childAt.getLocationInWindow(iArr);
-        if (!c.a(motionEvent.getRawX(), motionEvent.getRawY(), new Rect(iArr[0], iArr[1], iArr[0] + childAt.getMeasuredWidth(), iArr[1] + childAt.getMeasuredHeight()))) {
+        if (!C2819c.m8462a(motionEvent.getRawX(), motionEvent.getRawY(), new Rect(iArr[0], iArr[1], iArr[0] + childAt.getMeasuredWidth(), iArr[1] + childAt.getMeasuredHeight()))) {
             int action = motionEvent.getAction();
             if (action == 0) {
-                this.f8157b = motionEvent.getX();
-                this.f8158c = motionEvent.getY();
+                this.f8911b = motionEvent.getX();
+                this.f8912c = motionEvent.getY();
             } else if (action == 1) {
-                if (((float) Math.sqrt(Math.pow(motionEvent.getX() - this.f8157b, 2.0d) + Math.pow(motionEvent.getY() - this.f8158c, 2.0d))) < ViewConfiguration.get(getContext()).getScaledTouchSlop() && this.f8156a && (bVar = this.f8159d) != null) {
-                    bVar.a();
+                if (((float) Math.sqrt(Math.pow(motionEvent.getX() - this.f8911b, 2.0d) + Math.pow(motionEvent.getY() - this.f8912c, 2.0d))) < ViewConfiguration.get(getContext()).getScaledTouchSlop() && this.f8910a && (interfaceC2808b = this.f8913d) != null) {
+                    interfaceC2808b.mo8428a();
                 }
-                this.f8157b = 0.0f;
-                this.f8158c = 0.0f;
+                this.f8911b = 0.0f;
+                this.f8912c = 0.0f;
             }
         }
         return true;
     }
 
-    public void setOnClickOutsideListener(b bVar) {
-        this.f8159d = bVar;
+    public void setOnClickOutsideListener(InterfaceC2808b interfaceC2808b) {
+        this.f8913d = interfaceC2808b;
     }
 
     public PartShadowContainer(@NonNull Context context, @Nullable AttributeSet attributeSet) {
@@ -64,6 +64,6 @@ public class PartShadowContainer extends FrameLayout {
 
     public PartShadowContainer(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f8156a = true;
+        this.f8910a = true;
     }
 }

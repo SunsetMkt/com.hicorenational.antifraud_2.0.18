@@ -38,7 +38,7 @@ public final class AccountPicker {
         try {
             intent.setPackage(PackageConstants.SERVICES_PACKAGE_ALL_SCENE);
         } catch (IllegalArgumentException unused) {
-            HMSLog.e("AccountPicker", "IllegalArgumentException when newChooseAccountIntent intent.setPackage");
+            HMSLog.m7715e("AccountPicker", "IllegalArgumentException when newChooseAccountIntent intent.setPackage");
         }
         intent.putExtra(EXTRA_ALLOWABLE_ACCOUNTS_ARRAYLIST, arrayList);
         intent.putExtra(EXTRA_ALLOWABLE_ACCOUNT_TYPES_STRING_ARRAY, strArr);

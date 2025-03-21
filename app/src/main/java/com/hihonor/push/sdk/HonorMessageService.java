@@ -16,59 +16,61 @@ import java.lang.ref.WeakReference;
 /* loaded from: classes.dex */
 public abstract class HonorMessageService extends Service {
 
-    /* renamed from: c, reason: collision with root package name */
-    public static final /* synthetic */ int f6239c = 0;
+    /* renamed from: c */
+    public static final /* synthetic */ int f6738c = 0;
 
-    /* renamed from: a, reason: collision with root package name */
-    public final a f6240a;
+    /* renamed from: a */
+    public final HandlerC2181a f6739a;
 
-    /* renamed from: b, reason: collision with root package name */
-    public final Messenger f6241b;
+    /* renamed from: b */
+    public final Messenger f6740b;
 
-    public static class a extends Handler {
+    /* renamed from: com.hihonor.push.sdk.HonorMessageService$a */
+    public static class HandlerC2181a extends Handler {
 
-        /* renamed from: a, reason: collision with root package name */
-        public final WeakReference<HonorMessageService> f6242a;
+        /* renamed from: a */
+        public final WeakReference<HonorMessageService> f6741a;
 
-        public a(Looper looper, HonorMessageService honorMessageService) {
+        public HandlerC2181a(Looper looper, HonorMessageService honorMessageService) {
             super(looper);
-            this.f6242a = new WeakReference<>(honorMessageService);
+            this.f6741a = new WeakReference<>(honorMessageService);
         }
 
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             Bundle data;
-            HonorMessageService honorMessageService = this.f6242a.get();
+            HonorMessageService honorMessageService = this.f6741a.get();
             if (honorMessageService == null || (data = message.getData()) == null) {
                 return;
             }
             Intent intent = new Intent();
             intent.putExtras(data);
-            int i2 = HonorMessageService.f6239c;
-            honorMessageService.a(intent);
+            int i2 = HonorMessageService.f6738c;
+            honorMessageService.m6350a(intent);
         }
     }
 
     public HonorMessageService() {
-        a aVar = new a(Looper.getMainLooper(), this);
-        this.f6240a = aVar;
-        this.f6241b = new Messenger(aVar);
+        HandlerC2181a handlerC2181a = new HandlerC2181a(Looper.getMainLooper(), this);
+        this.f6739a = handlerC2181a;
+        this.f6740b = new Messenger(handlerC2181a);
     }
 
-    public final void a(Intent intent) {
+    /* renamed from: a */
+    public final void m6350a(Intent intent) {
         try {
             if (!TextUtils.equals(intent.getStringExtra("event_type"), DownMsgType.RECEIVE_TOKEN)) {
-                a1 a2 = b.a(new q0(intent));
-                com.hihonor.push.sdk.a aVar = new com.hihonor.push.sdk.a(this);
-                a2.getClass();
-                a2.a(new t0(o0.f6312c.f6313a, aVar));
+                C2185a1 m6360a = C2186b.m6360a(new CallableC2225q0(intent));
+                C2183a c2183a = new C2183a(this);
+                m6360a.getClass();
+                m6360a.m6353a(new C2231t0(C2221o0.f6811c.f6812a, c2183a));
                 return;
             }
             String stringExtra = intent.getStringExtra("push_token");
-            Context a3 = l.f6299e.a();
-            d dVar = d.f6260b;
-            if (!TextUtils.equals(stringExtra, dVar.b(a3))) {
-                dVar.a(a3, stringExtra);
+            Context m6393a = C2214l.f6798e.m6393a();
+            C2193d c2193d = C2193d.f6759b;
+            if (!TextUtils.equals(stringExtra, c2193d.m6381b(m6393a))) {
+                c2193d.m6380a(m6393a, stringExtra);
             }
             onNewToken(stringExtra);
         } catch (Exception e2) {
@@ -78,7 +80,7 @@ public abstract class HonorMessageService extends Service {
 
     @Override // android.app.Service
     public final IBinder onBind(Intent intent) {
-        return this.f6241b.getBinder();
+        return this.f6740b.getBinder();
     }
 
     public void onMessageReceived(HonorPushDataMsg honorPushDataMsg) {
@@ -90,7 +92,7 @@ public abstract class HonorMessageService extends Service {
     @Override // android.app.Service
     public final int onStartCommand(Intent intent, int i2, int i3) {
         super.onStartCommand(intent, i2, i3);
-        a(intent);
+        m6350a(intent);
         return 2;
     }
 }

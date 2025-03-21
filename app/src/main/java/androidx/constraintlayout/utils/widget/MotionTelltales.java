@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.ViewParent;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.R;
+import androidx.constraintlayout.widget.C0471R;
 
 /* loaded from: classes.dex */
 public class MotionTelltales extends MockView {
@@ -34,15 +34,15 @@ public class MotionTelltales extends MockView {
 
     private void init(Context context, AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.MotionTelltales);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.MotionTelltales);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.MotionTelltales_telltales_tailColor) {
+                if (index == C0471R.styleable.MotionTelltales_telltales_tailColor) {
                     this.mTailColor = obtainStyledAttributes.getColor(index, this.mTailColor);
-                } else if (index == R.styleable.MotionTelltales_telltales_velocityMode) {
+                } else if (index == C0471R.styleable.MotionTelltales_telltales_velocityMode) {
                     this.mVelocityMode = obtainStyledAttributes.getInt(index, this.mVelocityMode);
-                } else if (index == R.styleable.MotionTelltales_telltales_tailScale) {
+                } else if (index == C0471R.styleable.MotionTelltales_telltales_tailScale) {
                     this.mTailScale = obtainStyledAttributes.getFloat(index, this.mTailScale);
                 }
             }

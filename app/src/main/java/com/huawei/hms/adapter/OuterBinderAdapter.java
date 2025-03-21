@@ -5,17 +5,17 @@ import android.content.Context;
 /* loaded from: classes.dex */
 public class OuterBinderAdapter extends BinderAdapter {
 
-    /* renamed from: j, reason: collision with root package name */
-    private static final Object f6580j = new Object();
+    /* renamed from: j */
+    private static final Object f7080j = new Object();
 
-    /* renamed from: k, reason: collision with root package name */
-    private static BinderAdapter f6581k;
+    /* renamed from: k */
+    private static BinderAdapter f7081k;
 
-    /* renamed from: l, reason: collision with root package name */
-    private static String f6582l;
+    /* renamed from: l */
+    private static String f7082l;
 
-    /* renamed from: m, reason: collision with root package name */
-    private static String f6583m;
+    /* renamed from: m */
+    private static String f7083m;
 
     private OuterBinderAdapter(Context context, String str, String str2) {
         super(context, str, str2);
@@ -30,22 +30,22 @@ public class OuterBinderAdapter extends BinderAdapter {
         /*
             java.lang.String r0 = "OuterBinderAdapter"
             java.lang.String r1 = "OuterBinderAdapter getInstance."
-            com.huawei.hms.support.log.HMSLog.i(r0, r1)
-            java.lang.Object r0 = com.huawei.hms.adapter.OuterBinderAdapter.f6580j
+            com.huawei.hms.support.log.HMSLog.m7717i(r0, r1)
+            java.lang.Object r0 = com.huawei.hms.adapter.OuterBinderAdapter.f7080j
             monitor-enter(r0)
-            com.huawei.hms.adapter.BinderAdapter r1 = com.huawei.hms.adapter.OuterBinderAdapter.f6581k     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.BinderAdapter r1 = com.huawei.hms.adapter.OuterBinderAdapter.f7081k     // Catch: java.lang.Throwable -> L4b
             if (r1 != 0) goto L1a
-            com.huawei.hms.adapter.OuterBinderAdapter.f6582l = r4     // Catch: java.lang.Throwable -> L4b
-            com.huawei.hms.adapter.OuterBinderAdapter.f6583m = r5     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.OuterBinderAdapter.f7082l = r4     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.OuterBinderAdapter.f7083m = r5     // Catch: java.lang.Throwable -> L4b
             com.huawei.hms.adapter.OuterBinderAdapter r1 = new com.huawei.hms.adapter.OuterBinderAdapter     // Catch: java.lang.Throwable -> L4b
             r1.<init>(r3, r4, r5)     // Catch: java.lang.Throwable -> L4b
-            com.huawei.hms.adapter.OuterBinderAdapter.f6581k = r1     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.OuterBinderAdapter.f7081k = r1     // Catch: java.lang.Throwable -> L4b
             goto L47
         L1a:
-            java.lang.String r1 = com.huawei.hms.adapter.OuterBinderAdapter.f6582l     // Catch: java.lang.Throwable -> L4b
+            java.lang.String r1 = com.huawei.hms.adapter.OuterBinderAdapter.f7082l     // Catch: java.lang.Throwable -> L4b
             boolean r1 = com.huawei.hms.common.internal.Objects.equal(r1, r4)     // Catch: java.lang.Throwable -> L4b
             if (r1 == 0) goto L2d
-            java.lang.String r1 = com.huawei.hms.adapter.OuterBinderAdapter.f6583m     // Catch: java.lang.Throwable -> L4b
+            java.lang.String r1 = com.huawei.hms.adapter.OuterBinderAdapter.f7083m     // Catch: java.lang.Throwable -> L4b
             boolean r1 = com.huawei.hms.common.internal.Objects.equal(r1, r5)     // Catch: java.lang.Throwable -> L4b
             if (r1 != 0) goto L2b
             goto L2d
@@ -58,16 +58,16 @@ public class OuterBinderAdapter extends BinderAdapter {
             if (r1 == 0) goto L47
             java.lang.String r1 = "OuterBinderAdapter"
             java.lang.String r2 = "OuterBinderAdapter getInstance refresh adapter"
-            com.huawei.hms.support.log.HMSLog.i(r1, r2)     // Catch: java.lang.Throwable -> L4b
-            com.huawei.hms.adapter.OuterBinderAdapter.f6582l = r4     // Catch: java.lang.Throwable -> L4b
-            com.huawei.hms.adapter.OuterBinderAdapter.f6583m = r5     // Catch: java.lang.Throwable -> L4b
-            com.huawei.hms.adapter.BinderAdapter r1 = com.huawei.hms.adapter.OuterBinderAdapter.f6581k     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.support.log.HMSLog.m7717i(r1, r2)     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.OuterBinderAdapter.f7082l = r4     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.OuterBinderAdapter.f7083m = r5     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.BinderAdapter r1 = com.huawei.hms.adapter.OuterBinderAdapter.f7081k     // Catch: java.lang.Throwable -> L4b
             r1.unBind()     // Catch: java.lang.Throwable -> L4b
             com.huawei.hms.adapter.OuterBinderAdapter r1 = new com.huawei.hms.adapter.OuterBinderAdapter     // Catch: java.lang.Throwable -> L4b
             r1.<init>(r3, r4, r5)     // Catch: java.lang.Throwable -> L4b
-            com.huawei.hms.adapter.OuterBinderAdapter.f6581k = r1     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.OuterBinderAdapter.f7081k = r1     // Catch: java.lang.Throwable -> L4b
         L47:
-            com.huawei.hms.adapter.BinderAdapter r3 = com.huawei.hms.adapter.OuterBinderAdapter.f6581k     // Catch: java.lang.Throwable -> L4b
+            com.huawei.hms.adapter.BinderAdapter r3 = com.huawei.hms.adapter.OuterBinderAdapter.f7081k     // Catch: java.lang.Throwable -> L4b
             monitor-exit(r0)     // Catch: java.lang.Throwable -> L4b
             return r3
         L4b:

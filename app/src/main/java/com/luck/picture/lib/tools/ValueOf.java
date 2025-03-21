@@ -1,11 +1,12 @@
 package com.luck.picture.lib.tools;
 
-import a.a.u.a;
+import p000a.p001a.p014u.C0052a;
 
 /* loaded from: classes.dex */
 public class ValueOf {
     /* JADX WARN: Multi-variable type inference failed */
-    public static <T> T to(Object obj, T t) {
+    /* renamed from: to */
+    public static <T> T m8141to(Object obj, T t) {
         return obj == 0 ? t : obj;
     }
 
@@ -65,7 +66,7 @@ public class ValueOf {
             return false;
         }
         try {
-            return !a.f1254k.equals(obj.toString().trim().trim());
+            return !C0052a.f159k.equals(obj.toString().trim().trim());
         } catch (Exception unused) {
             return z;
         }

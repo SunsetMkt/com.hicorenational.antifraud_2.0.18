@@ -104,7 +104,7 @@
         android:theme="@style/AppTheme"
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
-        android:name="ui.Hicore"
+        android:name="p388ui.Hicore"
         android:taskAffinity=""
         android:allowTaskReparenting="true"
         android:allowBackup="false"
@@ -135,7 +135,7 @@
             android:required="false"/>
         <activity
             android:theme="@style/splash"
-            android:name="ui.activity.WelcomeActivity"
+            android:name="p388ui.activity.WelcomeActivity"
             android:screenOrientation="portrait"
             android:configChanges="fontScale|smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden">
             <intent-filter>
@@ -154,35 +154,35 @@
         </activity>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.AddressActivity"
+            android:name="p388ui.activity.AddressActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name="ui.activity.MainActivity"
+            android:name="p388ui.activity.MainActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:hardwareAccelerated="true"/>
         <activity
             android:theme="@style/TranslucentTheme"
-            android:name="ui.activity.PreviewShotScreenActivity"/>
+            android:name="p388ui.activity.PreviewShotScreenActivity"/>
         <activity
-            android:name="ui.activity.SmsRecordSelectActivity"
+            android:name="p388ui.activity.SmsRecordSelectActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <activity
-            android:name="ui.activity.CallRecordActivity"
+            android:name="p388ui.activity.CallRecordActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <activity
-            android:name="ui.activity.CallRecordNewActivity"
+            android:name="p388ui.activity.CallRecordNewActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.AppSelectedActivity"
+            android:name="p388ui.activity.AppSelectedActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <activity
-            android:name="ui.activity.H5AppSelectedActivity"
+            android:name="p388ui.activity.H5AppSelectedActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <receiver android:name="receiver.SmsReceiver">
@@ -193,11 +193,11 @@
         </receiver>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AboutUsActivity"
+            android:name="p388ui.activity.AboutUsActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.VirusKillingActivity"
+            android:name="p388ui.activity.VirusKillingActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
@@ -209,670 +209,670 @@
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.VirusDetailActivity"
+            android:name="p388ui.activity.VirusDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"/>
         <activity
-            android:name="ui.activity.LoginActivity"
+            android:name="p388ui.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.RegisterActivity"
+            android:name="p388ui.activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.OauthRegisterActivity"
+            android:name="p388ui.activity.OauthRegisterActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.VerifyFaceActivity"
+            android:name="p388ui.activity.VerifyFaceActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.MinePersonalActivity"
+            android:name="p388ui.activity.MinePersonalActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.PreviewPictureActivity"
+            android:name="p388ui.activity.PreviewPictureActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.HistoryDetailActivity"
+            android:name="p388ui.activity.HistoryDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.HistoryDKDetailActivity"
+            android:name="p388ui.activity.HistoryDKDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.WebActivity"
+            android:name="p388ui.activity.WebActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.WebFullActivity"
+            android:name="p388ui.activity.WebFullActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.FeedbackActivity"
+            android:name="p388ui.activity.FeedbackActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AudioActivity"
+            android:name="p388ui.activity.AudioActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.ReportNewActivity"
+            android:name="p388ui.activity.ReportNewActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.EvidenceDiscActivity"
+            android:name="p388ui.activity.EvidenceDiscActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.PictureActivity"
+            android:name="p388ui.activity.PictureActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.RecordHelpActivity"
+            android:name="p388ui.activity.RecordHelpActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.RecordHelpVideoActivity"
+            android:name="p388ui.activity.RecordHelpVideoActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.TagFlowLaoutActivity"
+            android:name="p388ui.activity.TagFlowLaoutActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.VideoActivity"
+            android:name="p388ui.activity.VideoActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.AppActivity"
+            android:name="p388ui.activity.AppActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.WebsiteActivity"
+            android:name="p388ui.activity.WebsiteActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.CallActivity"
+            android:name="p388ui.activity.CallActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.CallNewActivity"
+            android:name="p388ui.activity.CallNewActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.CallEditActivity"
+            android:name="p388ui.activity.CallEditActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.SmsActivity"
+            android:name="p388ui.activity.SmsActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.SmsAddActivity"
+            android:name="p388ui.activity.SmsAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.HistoryReportEvdListActivity"
+            android:name="p388ui.activity.HistoryReportEvdListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.SocialAccountActivity"
+            android:name="p388ui.activity.SocialAccountActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.SocialAccountEditActivity"
+            android:name="p388ui.activity.SocialAccountEditActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.TradAccountActivity"
+            android:name="p388ui.activity.TradAccountActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/normalTheme"
-            android:name="ui.activity.TradAccountEditActivity"
+            android:name="p388ui.activity.TradAccountEditActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ForgetPdwOneActivity"
+            android:name="p388ui.activity.ForgetPdwOneActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.VerifyPhoneCodeActivity"
+            android:name="p388ui.activity.VerifyPhoneCodeActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboard"
             android:windowSoftInputMode="adjustPan|stateVisible"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ForgetPdwResetActivity"
+            android:name="p388ui.activity.ForgetPdwResetActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan|stateVisible"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ResetPwdActivity"
+            android:name="p388ui.activity.ResetPwdActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan|stateVisible"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.PromosWebDetActivity"
+            android:name="p388ui.activity.PromosWebDetActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.WarnSettingActivity"
+            android:name="p388ui.activity.WarnSettingActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SearchAppActivity"
+            android:name="p388ui.activity.SearchAppActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.WarnPrimessActivity"
+            android:name="p388ui.activity.WarnPrimessActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.WarnGuideActivity"
+            android:name="p388ui.activity.WarnGuideActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CheckIDActivity"
+            android:name="p388ui.activity.CheckIDActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.IDVarfyListActivity"
+            android:name="p388ui.activity.IDVarfyListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.IDVarfyAceptListActivity"
+            android:name="p388ui.activity.IDVarfyAceptListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.HandleIDVerifyActivity"
+            android:name="p388ui.activity.HandleIDVerifyActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.BeforIdVerifyActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:theme="@style/trans_theme"
-            android:name="ui.activity.NoteListActivity"
-            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:theme="@style/trans_theme"
-            android:name="ui.activity.NoteDetailActivity"
-            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name="ui.activity.IDVarfyFaceActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name="ui.activity.IDVarfySuccessActivity"
+            android:name="p388ui.activity.BeforIdVerifyActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CheckFraudActivity"
+            android:name="p388ui.activity.NoteListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ChatFraudActivity"
+            android:name="p388ui.activity.NoteDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:theme="@style/trans_theme"
-            android:name="ui.activity.CheckFraudResultActivity"
+            android:name="p388ui.activity.IDVarfyFaceActivity"
+            android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:theme="@style/trans_theme"
-            android:name="ui.activity.SettingActivity"
-            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name="ui.activity.AppUploadActivity"
+            android:name="p388ui.activity.IDVarfySuccessActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SettingAccountActivity"
+            android:name="p388ui.activity.CheckFraudActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ResetPhoneNumActivity"
+            android:name="p388ui.activity.ChatFraudActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.LogoutActivity"
+            android:name="p388ui.activity.CheckFraudResultActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.LogoutReasonActivity"
+            android:name="p388ui.activity.SettingActivity"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="p388ui.activity.AppUploadActivity"
+            android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.LogoutSmsCodeActivity"
+            android:name="p388ui.activity.SettingAccountActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.LogoutConfirmActivity"
+            android:name="p388ui.activity.ResetPhoneNumActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.LogoutSuccActivity"
+            android:name="p388ui.activity.LogoutActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ManualCheckActivity"
+            android:name="p388ui.activity.LogoutReasonActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ManualPhoneActivity"
+            android:name="p388ui.activity.LogoutSmsCodeActivity"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:theme="@style/trans_theme"
+            android:name="p388ui.activity.LogoutConfirmActivity"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:theme="@style/trans_theme"
+            android:name="p388ui.activity.LogoutSuccActivity"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:theme="@style/trans_theme"
+            android:name="p388ui.activity.ManualCheckActivity"
+            android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:theme="@style/trans_theme"
+            android:name="p388ui.activity.ManualPhoneActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.TradFraudActivity"
+            android:name="p388ui.activity.TradFraudActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.FeedbackHelpActivity"
+            android:name="p388ui.activity.FeedbackHelpActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.FeedbackDetailActivity"
+            android:name="p388ui.activity.FeedbackDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.ManualListActivity"
+            android:name="p388ui.activity.ManualListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.ManualActivity"
+            android:name="p388ui.activity.ManualActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.ManualDetailActivity"
+            android:name="p388ui.activity.ManualDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.ManualAlreadyDetailActivity"
+            android:name="p388ui.activity.ManualAlreadyDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.UrlFraudActivity"
+            android:name="p388ui.activity.UrlFraudActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.PersonalInfoAddActivity"
+            android:name="p388ui.activity.PersonalInfoAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.IndustryListActivity"
+            android:name="p388ui.activity.IndustryListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReporterAidActivity"
+            android:name="p388ui.activity.ReporterAidActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportCaseInfoActivity"
+            android:name="p388ui.activity.ReportCaseInfoActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AccountListActivity"
+            android:name="p388ui.activity.AccountListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.PoliceInfoActivity"
+            android:name="p388ui.activity.PoliceInfoActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.InviteQrcodeActivity"
+            android:name="p388ui.activity.InviteQrcodeActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AccountListPreviewActivity"
+            android:name="p388ui.activity.AccountListPreviewActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AccountActivity"
+            android:name="p388ui.activity.AccountActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AccountPreviewActivity"
+            android:name="p388ui.activity.AccountPreviewActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.PaymentTypeActivity"
+            android:name="p388ui.activity.PaymentTypeActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalSmsActivity"
+            android:name="p388ui.activity.CriminalSmsActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalSmsSelectActivity"
+            android:name="p388ui.activity.CriminalSmsSelectActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalSmsAddActivity"
+            android:name="p388ui.activity.CriminalSmsAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalWebInfoActivity"
+            android:name="p388ui.activity.CriminalWebInfoActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalSocialActivity"
+            android:name="p388ui.activity.CriminalSocialActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalSocialEditActivity"
+            android:name="p388ui.activity.CriminalSocialEditActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportWebsiteActivity"
+            android:name="p388ui.activity.ReportWebsiteActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportWebsiteAddActivity"
+            android:name="p388ui.activity.ReportWebsiteAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportAppActivity"
+            android:name="p388ui.activity.ReportAppActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportAppAddActivity"
+            android:name="p388ui.activity.ReportAppAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportRecordsActivity"
+            android:name="p388ui.activity.ReportRecordsActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportRecordsReplyActivity"
+            android:name="p388ui.activity.ReportRecordsReplyActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportSignCommitActivity"
+            android:name="p388ui.activity.ReportSignCommitActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCommitCriminalActivity"
+            android:name="p388ui.activity.SignCommitCriminalActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCommitAppActivity"
+            android:name="p388ui.activity.SignCommitAppActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignAppDetailActivity"
+            android:name="p388ui.activity.SignAppDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCommitWebsiteActivity"
+            android:name="p388ui.activity.SignCommitWebsiteActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignWebsitDetialActivity"
+            android:name="p388ui.activity.SignWebsitDetialActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.VictimActivity"
+            android:name="p388ui.activity.VictimActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalListActivity"
+            android:name="p388ui.activity.CriminalListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCriminalDetialActivity"
+            android:name="p388ui.activity.SignCriminalDetialActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReportSuccessActivity"
+            android:name="p388ui.activity.ReportSuccessActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCommitVictimActivity"
+            android:name="p388ui.activity.SignCommitVictimActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.VictimDetialActivity"
+            android:name="p388ui.activity.VictimDetialActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.activity.SurveyDealActivity"
+            android:name="p388ui.activity.SurveyDealActivity"
             android:screenOrientation="portrait"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="ui.view.signature.SignatureActivity"
+            android:name="p388ui.view.signature.SignatureActivity"
             android:screenOrientation="landscape"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.PoliceLoginActivity"
+            android:name="p388ui.activity.PoliceLoginActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.CaseActivity"
+            android:name="p388ui.activity.CaseActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.CaseVerifyActivity"
+            android:name="p388ui.activity.CaseVerifyActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.QRcodeActivity"
+            android:name="p388ui.activity.QRcodeActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_smooth_finish_theme"
-            android:name="ui.activity.CaseDetailActivity"
+            android:name="p388ui.activity.CaseDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SurveyAudioActivity"
+            android:name="p388ui.activity.SurveyAudioActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.PayStopListActivity"
+            android:name="p388ui.activity.PayStopListActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.PayStopSelectActivity"
+            android:name="p388ui.activity.PayStopSelectActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.PayStopAddActivity"
+            android:name="p388ui.activity.PayStopAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.AddCrimePhoneActivity"
+            android:name="p388ui.activity.AddCrimePhoneActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.CriminalCallAddActivity"
+            android:name="p388ui.activity.CriminalCallAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.ReChargeActivity"
+            android:name="p388ui.activity.ReChargeActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.RechargeAddActivity"
+            android:name="p388ui.activity.RechargeAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.RelationActivity"
+            android:name="p388ui.activity.RelationActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.RelationAddActivity"
+            android:name="p388ui.activity.RelationAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.DeliveryActivity"
+            android:name="p388ui.activity.DeliveryActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.DeliveryAddActivity"
+            android:name="p388ui.activity.DeliveryAddActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCallActivity"
+            android:name="p388ui.activity.SignCallActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignCallDetailActivity"
+            android:name="p388ui.activity.SignCallDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignReChargeActivity"
+            android:name="p388ui.activity.SignReChargeActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignRechargeDetialActivity"
+            android:name="p388ui.activity.SignRechargeDetialActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignRelationActivity"
+            android:name="p388ui.activity.SignRelationActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignRelationDetialActivity"
+            android:name="p388ui.activity.SignRelationDetialActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignDeliveryActivity"
+            android:name="p388ui.activity.SignDeliveryActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:theme="@style/trans_theme"
-            android:name="ui.activity.SignDeliveryDetailActivity"
+            android:name="p388ui.activity.SignDeliveryDetailActivity"
             android:configChanges="smallestScreenSize|screenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan"/>
         <activity
@@ -1047,7 +1047,7 @@
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:theme="@android:style/Theme.Translucent"
-            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:name="com.tencent.bugly.beta.p205ui.BetaActivity"
             android:configChanges="screenSize|orientation|keyboardHidden|locale"/>
         <provider
             android:name="com.tencent.bugly.beta.utils.BuglyFileProvider"

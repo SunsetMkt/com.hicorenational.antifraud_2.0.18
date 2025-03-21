@@ -10,7 +10,7 @@ public class SessionMonitor extends SessionStatistic {
             return;
         }
         this.host = sessionStatistic.host;
-        this.ip = sessionStatistic.ip;
+        this.f1004ip = sessionStatistic.f1004ip;
         this.port = sessionStatistic.port;
         this.closeReason = sessionStatistic.closeReason;
         this.retryTimes = sessionStatistic.retryTimes;

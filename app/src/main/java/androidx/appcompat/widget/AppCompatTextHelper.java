@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.AutoSizeableTextView;
 import java.lang.ref.WeakReference;
@@ -134,17 +134,17 @@ class AppCompatTextHelper {
 
     private void updateTypefaceAndStyle(Context context, TintTypedArray tintTypedArray) {
         String string;
-        this.mStyle = tintTypedArray.getInt(R.styleable.TextAppearance_android_textStyle, this.mStyle);
+        this.mStyle = tintTypedArray.getInt(C0120R.styleable.TextAppearance_android_textStyle, this.mStyle);
         if (Build.VERSION.SDK_INT >= 28) {
-            this.mFontWeight = tintTypedArray.getInt(R.styleable.TextAppearance_android_textFontWeight, -1);
+            this.mFontWeight = tintTypedArray.getInt(C0120R.styleable.TextAppearance_android_textFontWeight, -1);
             if (this.mFontWeight != -1) {
                 this.mStyle = (this.mStyle & 2) | 0;
             }
         }
-        if (!tintTypedArray.hasValue(R.styleable.TextAppearance_android_fontFamily) && !tintTypedArray.hasValue(R.styleable.TextAppearance_fontFamily)) {
-            if (tintTypedArray.hasValue(R.styleable.TextAppearance_android_typeface)) {
+        if (!tintTypedArray.hasValue(C0120R.styleable.TextAppearance_android_fontFamily) && !tintTypedArray.hasValue(C0120R.styleable.TextAppearance_fontFamily)) {
+            if (tintTypedArray.hasValue(C0120R.styleable.TextAppearance_android_typeface)) {
                 this.mAsyncFontPending = false;
-                int i2 = tintTypedArray.getInt(R.styleable.TextAppearance_android_typeface, 1);
+                int i2 = tintTypedArray.getInt(C0120R.styleable.TextAppearance_android_typeface, 1);
                 if (i2 == 1) {
                     this.mFontTypeface = Typeface.SANS_SERIF;
                     return;
@@ -162,7 +162,7 @@ class AppCompatTextHelper {
             return;
         }
         this.mFontTypeface = null;
-        int i3 = tintTypedArray.hasValue(R.styleable.TextAppearance_fontFamily) ? R.styleable.TextAppearance_fontFamily : R.styleable.TextAppearance_android_fontFamily;
+        int i3 = tintTypedArray.hasValue(C0120R.styleable.TextAppearance_fontFamily) ? C0120R.styleable.TextAppearance_fontFamily : C0120R.styleable.TextAppearance_android_fontFamily;
         final int i4 = this.mFontWeight;
         final int i5 = this.mStyle;
         if (!context.isRestricted()) {
@@ -309,18 +309,18 @@ class AppCompatTextHelper {
     void onSetTextAppearance(Context context, int i2) {
         String string;
         ColorStateList colorStateList;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i2, R.styleable.TextAppearance);
-        if (obtainStyledAttributes.hasValue(R.styleable.TextAppearance_textAllCaps)) {
-            setAllCaps(obtainStyledAttributes.getBoolean(R.styleable.TextAppearance_textAllCaps, false));
+        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i2, C0120R.styleable.TextAppearance);
+        if (obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_textAllCaps)) {
+            setAllCaps(obtainStyledAttributes.getBoolean(C0120R.styleable.TextAppearance_textAllCaps, false));
         }
-        if (Build.VERSION.SDK_INT < 23 && obtainStyledAttributes.hasValue(R.styleable.TextAppearance_android_textColor) && (colorStateList = obtainStyledAttributes.getColorStateList(R.styleable.TextAppearance_android_textColor)) != null) {
+        if (Build.VERSION.SDK_INT < 23 && obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_android_textColor) && (colorStateList = obtainStyledAttributes.getColorStateList(C0120R.styleable.TextAppearance_android_textColor)) != null) {
             this.mView.setTextColor(colorStateList);
         }
-        if (obtainStyledAttributes.hasValue(R.styleable.TextAppearance_android_textSize) && obtainStyledAttributes.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, -1) == 0) {
+        if (obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_android_textSize) && obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.TextAppearance_android_textSize, -1) == 0) {
             this.mView.setTextSize(0, 0.0f);
         }
         updateTypefaceAndStyle(context, obtainStyledAttributes);
-        if (Build.VERSION.SDK_INT >= 26 && obtainStyledAttributes.hasValue(R.styleable.TextAppearance_fontVariationSettings) && (string = obtainStyledAttributes.getString(R.styleable.TextAppearance_fontVariationSettings)) != null) {
+        if (Build.VERSION.SDK_INT >= 26 && obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_fontVariationSettings) && (string = obtainStyledAttributes.getString(C0120R.styleable.TextAppearance_fontVariationSettings)) != null) {
             this.mView.setFontVariationSettings(string);
         }
         obtainStyledAttributes.recycle();

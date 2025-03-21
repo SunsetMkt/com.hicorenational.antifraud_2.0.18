@@ -101,15 +101,15 @@ public class TransitionManager {
             return;
         }
         sPendingTransitions.add(sceneRoot);
-        Transition mo6clone = transition.mo6clone();
-        mo6clone.setSceneRoot(sceneRoot);
+        Transition mo26847clone = transition.mo26847clone();
+        mo26847clone.setSceneRoot(sceneRoot);
         Scene currentScene = Scene.getCurrentScene(sceneRoot);
         if (currentScene != null && currentScene.isCreatedFromLayoutResource()) {
-            mo6clone.setCanRemoveViews(true);
+            mo26847clone.setCanRemoveViews(true);
         }
-        sceneChangeSetup(sceneRoot, mo6clone);
+        sceneChangeSetup(sceneRoot, mo26847clone);
         scene.enter();
-        sceneChangeRunTransition(sceneRoot, mo6clone);
+        sceneChangeRunTransition(sceneRoot, mo26847clone);
     }
 
     public static void endTransitions(ViewGroup viewGroup) {
@@ -147,7 +147,8 @@ public class TransitionManager {
         return transition2 != null ? transition2 : sDefaultTransition;
     }
 
-    public static void go(@NonNull Scene scene) {
+    /* renamed from: go */
+    public static void m396go(@NonNull Scene scene) {
         changeScene(scene, sDefaultTransition);
     }
 
@@ -193,13 +194,14 @@ public class TransitionManager {
         if (transition == null) {
             transition = sDefaultTransition;
         }
-        Transition mo6clone = transition.mo6clone();
-        sceneChangeSetup(viewGroup, mo6clone);
+        Transition mo26847clone = transition.mo26847clone();
+        sceneChangeSetup(viewGroup, mo26847clone);
         Scene.setCurrentScene(viewGroup, null);
-        sceneChangeRunTransition(viewGroup, mo6clone);
+        sceneChangeRunTransition(viewGroup, mo26847clone);
     }
 
-    public static void go(@NonNull Scene scene, @Nullable Transition transition) {
+    /* renamed from: go */
+    public static void m397go(@NonNull Scene scene, @Nullable Transition transition) {
         changeScene(scene, transition);
     }
 

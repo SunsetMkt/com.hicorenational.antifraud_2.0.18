@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.engine.ImageEngine;
@@ -30,9 +30,9 @@ public class PictureAlbumDirectoryAdapter extends RecyclerView.Adapter<ViewHolde
 
         public ViewHolder(View view) {
             super(view);
-            this.ivFirstImage = (ImageView) view.findViewById(R.id.first_image);
-            this.tvFolderName = (TextView) view.findViewById(R.id.tv_folder_name);
-            this.tvSign = (TextView) view.findViewById(R.id.tv_sign);
+            this.ivFirstImage = (ImageView) view.findViewById(C2639R.id.first_image);
+            this.tvFolderName = (TextView) view.findViewById(C2639R.id.tv_folder_name);
+            this.tvSign = (TextView) view.findViewById(C2639R.id.tv_sign);
             if (PictureAlbumDirectoryAdapter.this.config.style == null || PictureAlbumDirectoryAdapter.this.config.style.pictureFolderCheckedDotStyle == 0) {
                 return;
             }
@@ -45,7 +45,8 @@ public class PictureAlbumDirectoryAdapter extends RecyclerView.Adapter<ViewHolde
         this.chooseMode = pictureSelectionConfig.chooseMode;
     }
 
-    public /* synthetic */ void a(LocalMediaFolder localMediaFolder, View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8116a(LocalMediaFolder localMediaFolder, View view) {
         if (this.onAlbumItemClickListener != null) {
             int size = this.folders.size();
             for (int i2 = 0; i2 < size; i2++) {
@@ -90,7 +91,7 @@ public class PictureAlbumDirectoryAdapter extends RecyclerView.Adapter<ViewHolde
         viewHolder.tvSign.setVisibility(localMediaFolder.getCheckedNum() > 0 ? 0 : 4);
         viewHolder.itemView.setSelected(isChecked);
         if (this.chooseMode == PictureMimeType.ofAudio()) {
-            viewHolder.ivFirstImage.setImageResource(R.drawable.picture_audio_placeholder);
+            viewHolder.ivFirstImage.setImageResource(C2639R.drawable.picture_audio_placeholder);
         } else {
             ImageEngine imageEngine = PictureSelectionConfig.imageEngine;
             if (imageEngine != null) {
@@ -99,19 +100,19 @@ public class PictureAlbumDirectoryAdapter extends RecyclerView.Adapter<ViewHolde
         }
         Context context = viewHolder.itemView.getContext();
         if (localMediaFolder.getOfAllType() != -1) {
-            name = localMediaFolder.getOfAllType() == PictureMimeType.ofAudio() ? context.getString(R.string.picture_all_audio) : context.getString(R.string.picture_camera_roll);
+            name = localMediaFolder.getOfAllType() == PictureMimeType.ofAudio() ? context.getString(C2639R.string.picture_all_audio) : context.getString(C2639R.string.picture_camera_roll);
         }
-        viewHolder.tvFolderName.setText(context.getString(R.string.picture_camera_roll_num, name, Integer.valueOf(imageNum)));
+        viewHolder.tvFolderName.setText(context.getString(C2639R.string.picture_camera_roll_num, name, Integer.valueOf(imageNum)));
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.a
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PictureAlbumDirectoryAdapter.this.a(localMediaFolder, view);
+                PictureAlbumDirectoryAdapter.this.m8116a(localMediaFolder, view);
             }
         });
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.picture_album_folder_item, viewGroup, false));
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(C2639R.layout.picture_album_folder_item, viewGroup, false));
     }
 }

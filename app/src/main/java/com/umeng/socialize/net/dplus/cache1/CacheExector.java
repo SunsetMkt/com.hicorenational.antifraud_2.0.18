@@ -18,82 +18,88 @@ import java.util.Comparator;
 /* loaded from: classes2.dex */
 public class CacheExector {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f11772a = "CacheExector";
+    /* renamed from: a */
+    private static final String f13727a = "CacheExector";
 
-    /* renamed from: b, reason: collision with root package name */
-    private final int f11773b = 32;
+    /* renamed from: b */
+    private final int f13728b = 32;
 
-    /* renamed from: c, reason: collision with root package name */
-    private final int f11774c = 5120;
+    /* renamed from: c */
+    private final int f13729c = 5120;
 
-    /* renamed from: d, reason: collision with root package name */
-    private final int f11775d = 8;
+    /* renamed from: d */
+    private final int f13730d = 8;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f11776e;
+    /* renamed from: e */
+    private String f13731e;
 
     public CacheExector(String str) {
-        this.f11776e = null;
-        this.f11776e = str;
+        this.f13731e = null;
+        this.f13731e = str;
     }
 
-    private double a(long j2) {
+    /* renamed from: a */
+    private double m12673a(long j2) {
         if (j2 <= 0) {
             return 0.0d;
         }
         return j2 / 1024.0d;
     }
 
-    private File a() {
-        if (TextUtils.isEmpty(this.f11776e)) {
+    /* renamed from: a */
+    private File m12675a() {
+        if (TextUtils.isEmpty(this.f13731e)) {
             return null;
         }
-        File file = new File(this.f11776e);
+        File file = new File(this.f13731e);
         if (file.exists() || file.mkdirs()) {
             return file;
         }
-        String str = "Couldn't create directory" + this.f11776e;
+        String str = "Couldn't create directory" + this.f13731e;
         return null;
     }
 
-    private File b(File file, String str) {
+    /* renamed from: b */
+    private File m12680b(File file, String str) {
         if (file == null || !file.isDirectory()) {
             return null;
         }
         String[] list = file.list();
         if (list == null || list.length <= 0) {
-            return a(file, str);
+            return m12676a(file, str);
         }
-        File c2 = c(file, str);
-        return c2 == null ? a(file, str) : c2;
+        File m12682c = m12682c(file, str);
+        return m12682c == null ? m12676a(file, str) : m12682c;
     }
 
-    private File c(File file, String str) {
-        File[] a2 = a(file);
-        if (a2 == null || a2.length <= 0 || a2.length <= 0) {
+    /* renamed from: c */
+    private File m12682c(File file, String str) {
+        File[] m12679a = m12679a(file);
+        if (m12679a == null || m12679a.length <= 0 || m12679a.length <= 0) {
             return null;
         }
-        File file2 = a2[0];
-        if (a(file2.length()) > 32.0d) {
+        File file2 = m12679a[0];
+        if (m12673a(file2.length()) > 32.0d) {
             return null;
         }
         return file2;
     }
 
-    private File d(File file, String str) {
+    /* renamed from: d */
+    private File m12683d(File file, String str) {
         String[] list;
         if (file == null || !file.isDirectory() || (list = file.list()) == null || list.length <= 0) {
             return null;
         }
-        return e(file, str);
+        return m12684e(file, str);
     }
 
-    private File e(File file, String str) {
-        File[] a2 = a(file);
-        if (a2 != null && a2.length > 0) {
-            for (File file2 : a2) {
-                if (a(file2.length()) <= 40 && file2.getName().endsWith(str)) {
+    /* renamed from: e */
+    private File m12684e(File file, String str) {
+        File[] m12679a = m12679a(file);
+        if (m12679a != null && m12679a.length > 0) {
+            for (File file2 : m12679a) {
+                if (m12673a(file2.length()) <= 40 && file2.getName().endsWith(str)) {
                     return file2;
                 }
                 String str2 = "getReadableFileFromFiles:file length don't legal" + file2.length();
@@ -104,13 +110,13 @@ public class CacheExector {
     }
 
     public double checkSize(String str) {
-        File a2 = a();
+        File m12675a = m12675a();
         double d2 = 0.0d;
-        if (a2 != null && a2.isDirectory()) {
-            File[] listFiles = a2.listFiles();
+        if (m12675a != null && m12675a.isDirectory()) {
+            File[] listFiles = m12675a.listFiles();
             for (int i2 = 0; i2 < listFiles.length; i2++) {
                 if (listFiles[i2] != null && listFiles[i2].getName().contains(str)) {
-                    d2 += a(listFiles[i2].length());
+                    d2 += m12673a(listFiles[i2].length());
                 }
             }
         }
@@ -118,7 +124,7 @@ public class CacheExector {
     }
 
     public boolean deleteFile(String str) {
-        File[] listFiles = a().listFiles();
+        File[] listFiles = m12675a().listFiles();
         boolean z = false;
         for (int i2 = 0; i2 < listFiles.length; i2++) {
             if (listFiles[i2] != null && listFiles[i2].getName().contains(str)) {
@@ -146,16 +152,16 @@ public class CacheExector {
         BufferedReader bufferedReader;
         T t;
         int i2;
-        File d2 = d(a(), str);
-        if (d2 == null) {
+        File m12683d = m12683d(m12675a(), str);
+        if (m12683d == null) {
             return null;
         }
         try {
-            fileInputStream = new AtomicFile(d2).openRead();
+            fileInputStream = new AtomicFile(m12683d).openRead();
         } catch (IOException e2) {
             r2 = UmengText.CACHE.CACHEFILE;
             SLog.error(r2, e2);
-            deleteFile(d2.getName());
+            deleteFile(m12683d.getName());
             fileInputStream = null;
         }
         try {
@@ -163,7 +169,7 @@ public class CacheExector {
                 return null;
             }
             try {
-                t = (T) a(d2.getName(), cls);
+                t = (T) m12674a(m12683d.getName(), cls);
                 cls = (Class<T>) new InputStreamReader(fileInputStream);
             } catch (IOException e3) {
                 e = e3;
@@ -183,9 +189,9 @@ public class CacheExector {
             } catch (Throwable th2) {
                 th = th2;
                 r2 = 0;
-                a(fileInputStream);
-                a(cls);
-                a(r2);
+                m12678a(fileInputStream);
+                m12678a(cls);
+                m12678a(r2);
                 throw th;
             }
             try {
@@ -208,16 +214,16 @@ public class CacheExector {
                 if (t != null) {
                     t.create(sb.toString());
                 }
-                a(fileInputStream);
-                a(cls);
-                a(bufferedReader);
+                m12678a(fileInputStream);
+                m12678a(cls);
+                m12678a(bufferedReader);
                 return t;
             } catch (IOException e6) {
                 e = e6;
                 SLog.error(UmengText.CACHE.CACHEFILE, e);
-                a(fileInputStream);
-                a(cls);
-                a(bufferedReader);
+                m12678a(fileInputStream);
+                m12678a(cls);
+                m12678a(bufferedReader);
                 return null;
             }
         } catch (Throwable th3) {
@@ -241,19 +247,19 @@ public class CacheExector {
     /* JADX WARN: Type inference failed for: r6v0, types: [com.umeng.socialize.net.dplus.cache1.CacheExector] */
     public boolean save(String str, String str2) {
         FileOutputStream fileOutputStream;
-        File b2 = b(a(), str2);
+        File m12680b = m12680b(m12675a(), str2);
         boolean z = false;
-        if (b2 == null) {
+        if (m12680b == null) {
             return false;
         }
-        AtomicFile atomicFile = new AtomicFile(b2);
+        AtomicFile atomicFile = new AtomicFile(m12680b);
         BufferedWriter bufferedWriter = null;
         try {
             fileOutputStream = atomicFile.startWrite(true);
         } catch (IOException e2) {
             e = e2;
             SLog.error(UmengText.CACHE.CACHEFILE, e);
-            deleteFile(b2.getName());
+            deleteFile(m12680b.getName());
             fileOutputStream = null;
         }
         try {
@@ -270,9 +276,9 @@ public class CacheExector {
             }
             if (TextUtils.isEmpty(str)) {
                 e = 0;
-                a(bufferedWriter);
-                a(e);
-                a(fileOutputStream);
+                m12678a(bufferedWriter);
+                m12678a(e);
+                m12678a(fileOutputStream);
                 return z;
             }
             e = new OutputStreamWriter(fileOutputStream);
@@ -292,38 +298,40 @@ public class CacheExector {
                     atomicFile.failWrite(fileOutputStream);
                     SLog.error(UmengText.CACHE.CACHEFILE, e);
                     e = e;
-                    a(bufferedWriter);
-                    a(e);
-                    a(fileOutputStream);
+                    m12678a(bufferedWriter);
+                    m12678a(e);
+                    m12678a(fileOutputStream);
                     return z;
                 } catch (Throwable th2) {
                     th = th2;
                     bufferedWriter = bufferedWriter2;
-                    a(bufferedWriter);
-                    a(e);
-                    a(fileOutputStream);
+                    m12678a(bufferedWriter);
+                    m12678a(e);
+                    m12678a(fileOutputStream);
                     throw th;
                 }
             } catch (IOException e5) {
                 e = e5;
             }
-            a(bufferedWriter);
-            a(e);
-            a(fileOutputStream);
+            m12678a(bufferedWriter);
+            m12678a(e);
+            m12678a(fileOutputStream);
             return z;
         } catch (Throwable th3) {
             th = th3;
         }
     }
 
-    private File a(File file, String str) {
+    /* renamed from: a */
+    private File m12676a(File file, String str) {
         if (file == null || !file.isDirectory()) {
             return null;
         }
-        return new File(file, a(str));
+        return new File(file, m12677a(str));
     }
 
-    private Comparator<File> b() {
+    /* renamed from: b */
+    private Comparator<File> m12681b() {
         return new Comparator<File>() { // from class: com.umeng.socialize.net.dplus.cache1.CacheExector.1
             @Override // java.util.Comparator
             public int compare(File file, File file2) {
@@ -332,20 +340,23 @@ public class CacheExector {
         };
     }
 
-    private String a(String str) {
+    /* renamed from: a */
+    private String m12677a(String str) {
         return String.valueOf(System.currentTimeMillis()) + str;
     }
 
-    private File[] a(File file) {
+    /* renamed from: a */
+    private File[] m12679a(File file) {
         if (file == null || !file.isDirectory()) {
             return null;
         }
         File[] listFiles = file.listFiles();
-        Arrays.sort(listFiles, b());
+        Arrays.sort(listFiles, m12681b());
         return listFiles;
     }
 
-    private void a(Closeable closeable) {
+    /* renamed from: a */
+    private void m12678a(Closeable closeable) {
         if (closeable != null) {
             try {
                 closeable.close();
@@ -355,7 +366,8 @@ public class CacheExector {
         }
     }
 
-    private <T extends IReader> T a(String str, Class<T> cls) {
+    /* renamed from: a */
+    private <T extends IReader> T m12674a(String str, Class<T> cls) {
         try {
             return cls.getConstructor(String.class).newInstance(str);
         } catch (Throwable th) {

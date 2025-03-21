@@ -20,7 +20,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.internal.ViewUtils;
 import com.google.android.material.resources.MaterialResources;
@@ -376,18 +376,18 @@ public class MaterialButton extends AppCompatButton {
     }
 
     public MaterialButton(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.materialButtonStyle);
+        this(context, attributeSet, C1921R.attr.materialButtonStyle);
     }
 
     public MaterialButton(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.MaterialButton, i2, R.style.Widget_MaterialComponents_Button, new int[0]);
-        this.iconPadding = obtainStyledAttributes.getDimensionPixelSize(R.styleable.MaterialButton_iconPadding, 0);
-        this.iconTintMode = ViewUtils.parseTintMode(obtainStyledAttributes.getInt(R.styleable.MaterialButton_iconTintMode, -1), PorterDuff.Mode.SRC_IN);
-        this.iconTint = MaterialResources.getColorStateList(getContext(), obtainStyledAttributes, R.styleable.MaterialButton_iconTint);
-        this.icon = MaterialResources.getDrawable(getContext(), obtainStyledAttributes, R.styleable.MaterialButton_icon);
-        this.iconGravity = obtainStyledAttributes.getInteger(R.styleable.MaterialButton_iconGravity, 1);
-        this.iconSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.MaterialButton_iconSize, 0);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.MaterialButton, i2, C1921R.style.Widget_MaterialComponents_Button, new int[0]);
+        this.iconPadding = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.MaterialButton_iconPadding, 0);
+        this.iconTintMode = ViewUtils.parseTintMode(obtainStyledAttributes.getInt(C1921R.styleable.MaterialButton_iconTintMode, -1), PorterDuff.Mode.SRC_IN);
+        this.iconTint = MaterialResources.getColorStateList(getContext(), obtainStyledAttributes, C1921R.styleable.MaterialButton_iconTint);
+        this.icon = MaterialResources.getDrawable(getContext(), obtainStyledAttributes, C1921R.styleable.MaterialButton_icon);
+        this.iconGravity = obtainStyledAttributes.getInteger(C1921R.styleable.MaterialButton_iconGravity, 1);
+        this.iconSize = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.MaterialButton_iconSize, 0);
         this.materialButtonHelper = new MaterialButtonHelper(this);
         this.materialButtonHelper.loadFromAttributes(obtainStyledAttributes);
         obtainStyledAttributes.recycle();

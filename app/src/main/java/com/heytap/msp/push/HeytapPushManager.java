@@ -1,8 +1,8 @@
 package com.heytap.msp.push;
 
 import android.content.Context;
-import com.heytap.mcssdk.a;
-import com.heytap.mcssdk.k.b;
+import com.heytap.mcssdk.C2080a;
+import com.heytap.mcssdk.p160k.C2102b;
 import com.heytap.msp.push.callback.ICallBackResultService;
 import com.heytap.msp.push.callback.IGetAppNotificationCallBackService;
 import com.heytap.msp.push.callback.ISetAppNotificationCallBackService;
@@ -16,7 +16,7 @@ import org.json.JSONObject;
 /* loaded from: classes.dex */
 public class HeytapPushManager {
     public static void cancelNotification(JSONObject jSONObject) {
-        a.w().d(jSONObject);
+        C2080a.m5698w().mo5728d(jSONObject);
     }
 
     public static void clearNotificationType() {
@@ -24,7 +24,7 @@ public class HeytapPushManager {
     }
 
     public static void clearNotificationType(JSONObject jSONObject) {
-        a.w().b(jSONObject);
+        C2080a.m5698w().mo5721b(jSONObject);
     }
 
     public static void clearNotifications() {
@@ -32,23 +32,23 @@ public class HeytapPushManager {
     }
 
     public static void clearNotifications(JSONObject jSONObject) {
-        a.w().a(jSONObject);
+        C2080a.m5698w().mo5715a(jSONObject);
     }
 
     public static void disableAppNotificationSwitch(ISetAppNotificationCallBackService iSetAppNotificationCallBackService) {
-        a.w().a(iSetAppNotificationCallBackService);
+        C2080a.m5698w().mo5710a(iSetAppNotificationCallBackService);
     }
 
     public static void enableAppNotificationSwitch(ISetAppNotificationCallBackService iSetAppNotificationCallBackService) {
-        a.w().b(iSetAppNotificationCallBackService);
+        C2080a.m5698w().mo5720b(iSetAppNotificationCallBackService);
     }
 
     public static void getAppNotificationSwitch(IGetAppNotificationCallBackService iGetAppNotificationCallBackService) {
-        a.w().a(iGetAppNotificationCallBackService);
+        C2080a.m5698w().mo5709a(iGetAppNotificationCallBackService);
     }
 
     public static String getMcsPackageName(Context context) {
-        return a.w().a(context);
+        return C2080a.m5698w().m5702a(context);
     }
 
     public static void getNotificationStatus() {
@@ -56,11 +56,11 @@ public class HeytapPushManager {
     }
 
     public static void getNotificationStatus(JSONObject jSONObject) {
-        a.w().e(jSONObject);
+        C2080a.m5698w().mo5731e(jSONObject);
     }
 
     public static ICallBackResultService getPushCallback() {
-        return a.w().n();
+        return C2080a.m5698w().m5745n();
     }
 
     public static PushNotificationManager getPushNotificationManager() {
@@ -68,19 +68,19 @@ public class HeytapPushManager {
     }
 
     public static void getPushStatus() {
-        a.w().q();
+        C2080a.m5698w().m5748q();
     }
 
     public static int getPushVersionCode() {
-        return a.w().r();
+        return C2080a.m5698w().m5749r();
     }
 
     public static String getPushVersionName() {
-        return a.w().s();
+        return C2080a.m5698w().m5750s();
     }
 
     public static String getReceiveSdkAction(Context context) {
-        return a.w().b(context);
+        return C2080a.m5698w().m5716b(context);
     }
 
     public static void getRegister() {
@@ -88,27 +88,27 @@ public class HeytapPushManager {
     }
 
     public static void getRegister(JSONObject jSONObject) {
-        a.w().i(jSONObject);
+        C2080a.m5698w().mo5739i(jSONObject);
     }
 
     public static String getRegisterID() {
-        return a.w().d();
+        return C2080a.m5698w().mo5727d();
     }
 
     public static int getSDKVersionCode() {
-        return a.x();
+        return C2080a.m5699x();
     }
 
     public static String getSDKVersionName() {
-        return a.y();
+        return C2080a.m5700y();
     }
 
     public static void init(Context context, boolean z) {
-        a.w().a(context, z);
+        C2080a.m5698w().m5701a(context, z);
     }
 
     public static boolean isSupportPush(Context context) {
-        return a.w().d(context);
+        return C2080a.m5698w().m5729d(context);
     }
 
     public static void openNotificationSettings() {
@@ -116,7 +116,7 @@ public class HeytapPushManager {
     }
 
     public static void openNotificationSettings(JSONObject jSONObject) {
-        a.w().f(jSONObject);
+        C2080a.m5698w().mo5733f(jSONObject);
     }
 
     public static void pausePush() {
@@ -124,7 +124,7 @@ public class HeytapPushManager {
     }
 
     public static void pausePush(JSONObject jSONObject) {
-        a.w().g(jSONObject);
+        C2080a.m5698w().mo5735g(jSONObject);
     }
 
     public static void register(Context context, String str, String str2, ICallBackResultService iCallBackResultService) {
@@ -132,12 +132,12 @@ public class HeytapPushManager {
     }
 
     public static void register(Context context, String str, String str2, JSONObject jSONObject, ICallBackResultService iCallBackResultService) {
-        a.w().a(context, str, str2, jSONObject, iCallBackResultService);
+        C2080a.m5698w().mo5707a(context, str, str2, jSONObject, iCallBackResultService);
     }
 
     @Deprecated
     public static void requestNotificationPermission() {
-        a.w().e();
+        C2080a.m5698w().mo5730e();
     }
 
     public static void resumePush() {
@@ -145,11 +145,11 @@ public class HeytapPushManager {
     }
 
     public static void resumePush(JSONObject jSONObject) {
-        a.w().c(jSONObject);
+        C2080a.m5698w().mo5724c(jSONObject);
     }
 
     public static void setAppKeySecret(String str, String str2) {
-        a.w().a(str, str2);
+        C2080a.m5698w().m5712a(str, str2);
     }
 
     public static void setNotificationType(int i2) {
@@ -157,11 +157,11 @@ public class HeytapPushManager {
     }
 
     public static void setNotificationType(int i2, JSONObject jSONObject) {
-        a.w().a(i2, jSONObject);
+        C2080a.m5698w().mo5705a(i2, jSONObject);
     }
 
     public static void setPushCallback(ICallBackResultService iCallBackResultService) {
-        a.w().a(iCallBackResultService);
+        C2080a.m5698w().m5708a(iCallBackResultService);
     }
 
     public static void setPushTime(List<Integer> list, int i2, int i3, int i4, int i5) {
@@ -169,11 +169,11 @@ public class HeytapPushManager {
     }
 
     public static void setPushTime(List<Integer> list, int i2, int i3, int i4, int i5, JSONObject jSONObject) {
-        a.w().a(list, i2, i3, i4, i5, jSONObject);
+        C2080a.m5698w().mo5714a(list, i2, i3, i4, i5, jSONObject);
     }
 
     public static void setRegisterID(String str) {
-        a.w().a(str);
+        C2080a.m5698w().mo5711a(str);
     }
 
     public static void statisticEvent(Context context, String str, DataMessage dataMessage) {
@@ -182,12 +182,12 @@ public class HeytapPushManager {
 
     @Deprecated
     public static void statisticMessage(Context context, MessageStat messageStat) {
-        b.a(context, messageStat);
+        C2102b.m5855a(context, messageStat);
     }
 
     @Deprecated
     public static void statisticMessage(Context context, List<MessageStat> list) {
-        b.a(context, list);
+        C2102b.m5857a(context, list);
     }
 
     public static void unRegister() {
@@ -195,10 +195,10 @@ public class HeytapPushManager {
     }
 
     public static void unRegister(Context context, String str, String str2, JSONObject jSONObject, ICallBackResultService iCallBackResultService) {
-        a.w().b(context, str, str2, jSONObject, iCallBackResultService);
+        C2080a.m5698w().m5719b(context, str, str2, jSONObject, iCallBackResultService);
     }
 
     public static void unRegister(JSONObject jSONObject) {
-        a.w().h(jSONObject);
+        C2080a.m5698w().mo5737h(jSONObject);
     }
 }

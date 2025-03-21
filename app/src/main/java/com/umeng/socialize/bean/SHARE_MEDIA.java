@@ -5,7 +5,7 @@ import androidx.core.app.NotificationCompat;
 import bean.SurveyH5Bean;
 import com.huawei.hms.android.SystemUtils;
 import com.tencent.connect.common.Constants;
-import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.p208mm.opensdk.constants.ConstantsAPI;
 import com.umeng.socialize.shareboard.SnsPlatform;
 
 /* loaded from: classes2.dex */
@@ -118,7 +118,7 @@ public enum SHARE_MEDIA {
     public SnsPlatform toSnsPlatform() {
         SnsPlatform snsPlatform = new SnsPlatform();
         if (toString().equals(Constants.SOURCE_QQ)) {
-            snsPlatform.mShowWord = PlatformName.QQ;
+            snsPlatform.mShowWord = PlatformName.f13581QQ;
             snsPlatform.mIcon = "umeng_socialize_qq";
             snsPlatform.mGrayIcon = "umeng_socialize_qq";
             snsPlatform.mIndex = 0;

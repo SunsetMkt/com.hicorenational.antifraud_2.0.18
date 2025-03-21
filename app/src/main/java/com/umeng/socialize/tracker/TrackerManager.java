@@ -3,6 +3,7 @@ package com.umeng.socialize.tracker;
 import android.content.Context;
 import android.text.TextUtils;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.tracker.utils.EnumC3775a;
 import com.umeng.socialize.utils.CommonUtil;
 import com.umeng.socialize.utils.DeviceConfig;
 import java.util.Map;
@@ -30,9 +31,9 @@ public class TrackerManager {
         }
         if (map == null || map.size() <= 10) {
             if (DeviceConfig.isNetworkAvailable(context)) {
-                b.a().a(context, str, str2, str3, str4, map, 0, trackerResultHandler);
+                C3774b.m12699a().m12706a(context, str, str2, str3, str4, map, 0, trackerResultHandler);
             } else {
-                trackerResultHandler.codeGenerateFailed(new Throwable(com.umeng.socialize.tracker.utils.a.NetworkUnavailable.a()));
+                trackerResultHandler.codeGenerateFailed(new Throwable(EnumC3775a.NetworkUnavailable.m12712a()));
             }
         }
     }

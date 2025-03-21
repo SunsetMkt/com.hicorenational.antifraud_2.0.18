@@ -3,25 +3,25 @@ package com.huawei.hms.push.notification;
 /* loaded from: classes.dex */
 public class SubscribedItem {
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f7208a;
+    /* renamed from: a */
+    private String f7754a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private int f7209b;
+    /* renamed from: b */
+    private int f7755b;
 
     public String getEntityId() {
-        return this.f7208a;
+        return this.f7754a;
     }
 
     public int getResultCode() {
-        return this.f7209b;
+        return this.f7755b;
     }
 
     public void setEntityId(String str) {
-        this.f7208a = str;
+        this.f7754a = str;
     }
 
     public void setResultCode(int i2) {
-        this.f7209b = i2;
+        this.f7755b = i2;
     }
 }

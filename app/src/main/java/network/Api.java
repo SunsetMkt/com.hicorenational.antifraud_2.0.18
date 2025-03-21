@@ -1,14 +1,16 @@
 package network;
 
 import java.util.concurrent.TimeUnit;
-import l.n;
-import l.q.a.h;
 import network.interceptor.RequestParamInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import util.n1;
-import util.p1;
-import util.u1;
+import p245d.C4440a;
+import p375l.C5885n;
+import p375l.p376q.p377a.C5895h;
+import p375l.p378r.p379a.C5897a;
+import util.C7301n1;
+import util.C7307p1;
+import util.C7325u1;
 
 /* loaded from: classes2.dex */
 public class Api {
@@ -20,12 +22,12 @@ public class Api {
     HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() { // from class: network.a
         @Override // okhttp3.logging.HttpLoggingInterceptor.Logger
         public final void log(String str) {
-            n1.b("RetrofitLog", "retrofitBack = " + str);
+            C7301n1.m26457b("RetrofitLog", "retrofitBack = " + str);
         }
     });
     RequestParamInterceptor paramInterceptor = new RequestParamInterceptor();
-    private n mRetrofit = new n.b().a(d.a.i()).a(l.r.a.a.a()).a(h.a()).a(createClient()).a();
-    private n mRetrofitUnHeader = new n.b().a(d.a.i()).a(l.r.a.a.a()).a(h.a()).a(createClientUnHeader()).a();
+    private C5885n mRetrofit = new C5885n.b().m24814a(C4440a.m16407i()).m24817a(C5897a.m24871a()).m24816a(C5895h.m24868a()).m24820a(createClient()).m24822a();
+    private C5885n mRetrofitUnHeader = new C5885n.b().m24814a(C4440a.m16407i()).m24817a(C5897a.m24871a()).m24816a(C5895h.m24868a()).m24820a(createClientUnHeader()).m24822a();
 
     private static class SingleHodle {
         private static final Api mApi = new Api();
@@ -60,7 +62,7 @@ public class Api {
 
     public static synchronized Api getInstanceImei() {
         synchronized (Api.class) {
-            if (!u1.a(p1.y, true)) {
+            if (!C7325u1.m26623a(C7307p1.f25516y, true)) {
                 return SingleHodle.mApi;
             }
             if (mImeiApi == null) {
@@ -92,10 +94,10 @@ public class Api {
     }
 
     public IReportService getReportService() {
-        return (IReportService) this.mRetrofit.a(IReportService.class);
+        return (IReportService) this.mRetrofit.m24799a(IReportService.class);
     }
 
     public IReportService getReportServiceUnHeader() {
-        return (IReportService) this.mRetrofitUnHeader.a(IReportService.class);
+        return (IReportService) this.mRetrofitUnHeader.m24799a(IReportService.class);
     }
 }

@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
-import com.yalantis.ucrop.R;
+import com.yalantis.ucrop.C4415R;
 import com.yalantis.ucrop.callback.CropBoundsChangeListener;
 import com.yalantis.ucrop.callback.OverlayViewChangeListener;
 
@@ -61,10 +61,10 @@ public class UCropView extends FrameLayout {
 
     public UCropView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        LayoutInflater.from(context).inflate(R.layout.ucrop_view, (ViewGroup) this, true);
-        this.mGestureCropImageView = (GestureCropImageView) findViewById(R.id.image_view_crop);
-        this.mViewOverlay = (OverlayView) findViewById(R.id.view_overlay);
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ucrop_UCropView);
+        LayoutInflater.from(context).inflate(C4415R.layout.ucrop_view, (ViewGroup) this, true);
+        this.mGestureCropImageView = (GestureCropImageView) findViewById(C4415R.id.image_view_crop);
+        this.mViewOverlay = (OverlayView) findViewById(C4415R.id.view_overlay);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C4415R.styleable.ucrop_UCropView);
         this.mViewOverlay.processStyledAttributes(obtainStyledAttributes);
         this.mGestureCropImageView.processStyledAttributes(obtainStyledAttributes);
         obtainStyledAttributes.recycle();

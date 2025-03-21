@@ -5,7 +5,9 @@ import network.BaseBean;
 /* loaded from: classes.dex */
 public class CaseDivisonBean extends BaseBean {
     private String code;
-    private String id;
+
+    /* renamed from: id */
+    private String f1584id;
     private String name;
 
     public String getCode() {
@@ -13,7 +15,7 @@ public class CaseDivisonBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1584id;
     }
 
     public String getName() {
@@ -25,7 +27,7 @@ public class CaseDivisonBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1584id = str;
     }
 
     public void setName(String str) {

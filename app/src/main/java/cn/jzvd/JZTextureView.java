@@ -8,29 +8,30 @@ import android.view.View;
 /* loaded from: classes.dex */
 public class JZTextureView extends TextureView {
 
-    /* renamed from: c, reason: collision with root package name */
-    protected static final String f3185c = "JZResizeTextureView";
+    /* renamed from: c */
+    protected static final String f2714c = "JZResizeTextureView";
 
-    /* renamed from: a, reason: collision with root package name */
-    public int f3186a;
+    /* renamed from: a */
+    public int f2715a;
 
-    /* renamed from: b, reason: collision with root package name */
-    public int f3187b;
+    /* renamed from: b */
+    public int f2716b;
 
     public JZTextureView(Context context) {
         super(context);
-        this.f3186a = 0;
-        this.f3187b = 0;
-        this.f3186a = 0;
-        this.f3187b = 0;
+        this.f2715a = 0;
+        this.f2716b = 0;
+        this.f2715a = 0;
+        this.f2716b = 0;
     }
 
-    public void a(int i2, int i3) {
-        if (this.f3186a == i2 && this.f3187b == i3) {
+    /* renamed from: a */
+    public void m2436a(int i2, int i3) {
+        if (this.f2715a == i2 && this.f2716b == i3) {
             return;
         }
-        this.f3186a = i2;
-        this.f3187b = i3;
+        this.f2715a = i2;
+        this.f2716b = i3;
         requestLayout();
     }
 
@@ -44,11 +45,11 @@ public class JZTextureView extends TextureView {
         int i9;
         String str = "onMeasure  [" + hashCode() + "] ";
         int rotation = (int) getRotation();
-        int i10 = this.f3186a;
-        int i11 = this.f3187b;
+        int i10 = this.f2715a;
+        int i11 = this.f2716b;
         int measuredHeight = ((View) getParent()).getMeasuredHeight();
         int measuredWidth = ((View) getParent()).getMeasuredWidth();
-        if (measuredWidth != 0 && measuredHeight != 0 && i10 != 0 && i11 != 0 && Jzvd.v0 == 1) {
+        if (measuredWidth != 0 && measuredHeight != 0 && i10 != 0 && i11 != 0 && Jzvd.f2741v0 == 1) {
             if (rotation == 90 || rotation == 270) {
                 measuredWidth = measuredHeight;
                 measuredHeight = measuredWidth;
@@ -112,7 +113,7 @@ public class JZTextureView extends TextureView {
             }
         }
         if (measuredWidth != 0 && measuredHeight != 0 && i10 != 0 && i11 != 0) {
-            int i14 = Jzvd.v0;
+            int i14 = Jzvd.f2741v0;
             if (i14 != 3) {
                 if (i14 == 2) {
                     if (rotation == 90 || rotation == 270) {
@@ -150,9 +151,9 @@ public class JZTextureView extends TextureView {
 
     public JZTextureView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.f3186a = 0;
-        this.f3187b = 0;
-        this.f3186a = 0;
-        this.f3187b = 0;
+        this.f2715a = 0;
+        this.f2716b = 0;
+        this.f2715a = 0;
+        this.f2716b = 0;
     }
 }

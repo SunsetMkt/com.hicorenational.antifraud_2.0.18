@@ -46,7 +46,7 @@ public class ResolutionDelegate implements IBridgeActivityDelegate {
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
         if (activity == null || activity.isFinishing()) {
-            HMSLog.e(TAG, "activity is null or finishing");
+            HMSLog.m7715e(TAG, "activity is null or finishing");
             return;
         }
         this.mThisWeakRef = new WeakReference<>(activity);
@@ -54,7 +54,7 @@ public class ResolutionDelegate implements IBridgeActivityDelegate {
         try {
             bundle = activity.getIntent().getExtras();
         } catch (Exception e2) {
-            HMSLog.e(TAG, "getExtras exception:" + e2.getMessage());
+            HMSLog.m7715e(TAG, "getExtras exception:" + e2.getMessage());
         }
         if (bundle != null) {
             activity.startActivityForResult(IntentUtil.modifyIntentBehaviorsSafe((Intent) bundle.getParcelable("resolution")), 1002);
@@ -74,7 +74,7 @@ public class ResolutionDelegate implements IBridgeActivityDelegate {
         BusResponseCallback responseCallback = getResponseCallback(CALLBACK_METHOD);
         int isHuaweiMobileServicesAvailable = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(this.mThisWeakRef.get(), 30000000);
         if (i3 == -1 && isHuaweiMobileServicesAvailable == 0) {
-            HMSLog.i(TAG, "Make service available success.");
+            HMSLog.m7717i(TAG, "Make service available success.");
         } else {
             responseCallback.innerError(this.mThisWeakRef.get(), i3, "Make service available failed.");
         }

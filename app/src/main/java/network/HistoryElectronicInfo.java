@@ -16,7 +16,9 @@ public class HistoryElectronicInfo extends BaseBean {
         private String createTime;
         private String createUser;
         private FileDetailsBean fileDetails;
-        private String id;
+
+        /* renamed from: id */
+        private String f21448id;
         private boolean isDeleted;
         private String reporterIdNumber;
         private String reporterName;
@@ -107,7 +109,7 @@ public class HistoryElectronicInfo extends BaseBean {
         }
 
         public String getId() {
-            return this.id;
+            return this.f21448id;
         }
 
         public String getReporterIdNumber() {
@@ -175,7 +177,7 @@ public class HistoryElectronicInfo extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f21448id = str;
         }
 
         public void setIsDeleted(boolean z) {

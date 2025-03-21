@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import com.taobao.agoo.BaseNotifyClick;
 import com.umeng.message.common.UPLog;
 import com.umeng.message.entity.UMessage;
-import com.umeng.message.proguard.aw;
-import com.umeng.message.proguard.x;
+import com.umeng.message.proguard.C3574aw;
+import com.umeng.message.proguard.C3604x;
 import org.android.agoo.common.AgooConstants;
 import org.json.JSONObject;
 
@@ -16,13 +16,13 @@ public abstract class UmengNotifyClick extends BaseNotifyClick {
     private static final String TAG = "NotifyClickActivity";
 
     protected void onChangeBadgeNumber(UMessage uMessage) {
-        Application a2 = x.a();
-        MessageSharedPrefs messageSharedPrefs = MessageSharedPrefs.getInstance(a2);
-        if (TextUtils.equals(uMessage.getMsgId(), messageSharedPrefs.f())) {
+        Application m12460a = C3604x.m12460a();
+        MessageSharedPrefs messageSharedPrefs = MessageSharedPrefs.getInstance(m12460a);
+        if (TextUtils.equals(uMessage.getMsgId(), messageSharedPrefs.m12126f())) {
             return;
         }
-        messageSharedPrefs.c(uMessage.getMsgId());
-        aw.b(a2, -1);
+        messageSharedPrefs.m12123c(uMessage.getMsgId());
+        C3574aw.m12314b(m12460a, -1);
     }
 
     @Override // com.taobao.agoo.BaseNotifyClick
@@ -30,7 +30,7 @@ public abstract class UmengNotifyClick extends BaseNotifyClick {
         UMessage uMessage = null;
         try {
             String stringExtra = intent.getStringExtra("body");
-            UPLog.i(TAG, "msg:", stringExtra, "source:", intent.getStringExtra(AgooConstants.MESSAGE_SOURCE));
+            UPLog.m12145i(TAG, "msg:", stringExtra, "source:", intent.getStringExtra(AgooConstants.MESSAGE_SOURCE));
             onMessageReceived(intent);
             if (stringExtra != null && stringExtra.length() != 0) {
                 String stringExtra2 = intent.getStringExtra("id");
@@ -46,14 +46,14 @@ public abstract class UmengNotifyClick extends BaseNotifyClick {
                         onMessage(uMessage2);
                         return;
                     } catch (Throwable th) {
-                        UPLog.e(TAG, th);
+                        UPLog.m12143e(TAG, th);
                         return;
                     }
                 } catch (Throwable th2) {
                     uMessage = uMessage2;
                     th = th2;
                     try {
-                        UPLog.e(TAG, th);
+                        UPLog.m12143e(TAG, th);
                         if (uMessage == null) {
                             try {
                             } catch (Throwable th3) {
@@ -66,7 +66,7 @@ public abstract class UmengNotifyClick extends BaseNotifyClick {
                             try {
                                 uMessage = new UMessage(new JSONObject());
                             } catch (Throwable th32) {
-                                UPLog.e(TAG, th32);
+                                UPLog.m12143e(TAG, th32);
                             }
                         }
                         onMessage(uMessage);
@@ -76,7 +76,7 @@ public abstract class UmengNotifyClick extends BaseNotifyClick {
             try {
                 onMessage(new UMessage(new JSONObject()));
             } catch (Throwable th4) {
-                UPLog.e(TAG, th4);
+                UPLog.m12143e(TAG, th4);
             }
         } catch (Throwable th5) {
             th = th5;

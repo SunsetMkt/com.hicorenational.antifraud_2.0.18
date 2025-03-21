@@ -12,14 +12,14 @@ import com.luck.picture.lib.tools.DESUtils;
 import com.luck.picture.lib.tools.MediaUtils;
 import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.ValueOf;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
-import h.q2.t.m0;
 import java.io.File;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes.dex */
 public class LocalMediaLoader {
@@ -35,7 +35,7 @@ public class LocalMediaLoader {
     private boolean isAndroidQ = SdkVersionUtils.checkedAndroid_Q();
     private Context mContext;
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
-    private static final String[] PROJECTION = {bl.f10170d, "_data", "mime_type", SocializeProtocolConstants.WIDTH, SocializeProtocolConstants.HEIGHT, "duration", "_size", "bucket_display_name", "_display_name"};
+    private static final String[] PROJECTION = {C3355bl.f11732d, "_data", "mime_type", SocializeProtocolConstants.WIDTH, SocializeProtocolConstants.HEIGHT, "duration", "_size", "bucket_display_name", "_display_name"};
     private static final String[] SELECTION_ALL_ARGS = {String.valueOf(1), String.valueOf(3)};
 
     public LocalMediaLoader(Context context, PictureSelectionConfig pictureSelectionConfig) {
@@ -43,7 +43,8 @@ public class LocalMediaLoader {
         this.config = pictureSelectionConfig;
     }
 
-    static /* synthetic */ int a(LocalMediaFolder localMediaFolder, LocalMediaFolder localMediaFolder2) {
+    /* renamed from: a */
+    static /* synthetic */ int m8139a(LocalMediaFolder localMediaFolder, LocalMediaFolder localMediaFolder2) {
         if (localMediaFolder.getImages() == null || localMediaFolder2.getImages() == null) {
             return 0;
         }
@@ -52,7 +53,7 @@ public class LocalMediaLoader {
 
     private String getDurationCondition(long j2, long j3) {
         int i2 = this.config.videoMaxSecond;
-        long j4 = i2 == 0 ? m0.f16408b : i2;
+        long j4 = i2 == 0 ? C5556m0.f20396b : i2;
         if (j2 != 0) {
             j4 = Math.min(j4, j2);
         }
@@ -180,7 +181,7 @@ public class LocalMediaLoader {
         Collections.sort(list, new Comparator() { // from class: com.luck.picture.lib.model.a
             @Override // java.util.Comparator
             public final int compare(Object obj, Object obj2) {
-                return LocalMediaLoader.a((LocalMediaFolder) obj, (LocalMediaFolder) obj2);
+                return LocalMediaLoader.m8139a((LocalMediaFolder) obj, (LocalMediaFolder) obj2);
             }
         });
     }

@@ -12,7 +12,7 @@ import com.huawei.hms.support.api.entity.core.CommonCode;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.internal.ServiceImpl;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.v;
+import com.taobao.accs.utl.C3054v;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
@@ -24,10 +24,10 @@ public class BaseService extends Service {
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             if (message != null) {
-                ALog.i(BaseService.TAG, "handleMessage on receive msg", "msg", message.toString());
+                ALog.m9183i(BaseService.TAG, "handleMessage on receive msg", "msg", message.toString());
                 Intent intent = (Intent) message.getData().getParcelable(CommonCode.Resolution.HAS_RESOLUTION_FROM_APK);
                 if (intent != null) {
-                    ALog.i(BaseService.TAG, "handleMessage get intent success", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent.toString());
+                    ALog.m9183i(BaseService.TAG, "handleMessage get intent success", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent.toString());
                     BaseService.this.onStartCommand(intent, 0, 0);
                 }
             }
@@ -36,11 +36,11 @@ public class BaseService extends Service {
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        ALog.d(TAG, "onBind", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent);
+        ALog.m9180d(TAG, "onBind", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent);
         try {
-            if (v.a(this) && !isBinded) {
+            if (C3054v.m9284a(this) && !isBinded) {
                 isBinded = true;
-                ALog.i(TAG, "onBind bind service", new Object[0]);
+                ALog.m9183i(TAG, "onBind bind service", new Object[0]);
                 getApplicationContext().bindService(new Intent(this, getClass()), new ServiceConnection() { // from class: com.taobao.accs.base.BaseService.4
                     @Override // android.content.ServiceConnection
                     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -52,7 +52,7 @@ public class BaseService extends Service {
                 }, 1);
             }
         } catch (Throwable th) {
-            ALog.i(TAG, "onBind bind service with exception", th.toString());
+            ALog.m9183i(TAG, "onBind bind service with exception", th.toString());
         }
         return this.messenger.getBinder();
     }
@@ -67,7 +67,7 @@ public class BaseService extends Service {
                     BaseService.this.mBaseService = new ServiceImpl(BaseService.this);
                     BaseService.this.mBaseService.onCreate();
                 } catch (Exception e2) {
-                    ALog.e(BaseService.TAG, "create ServiceImpl error", e2.getMessage());
+                    ALog.m9182e(BaseService.TAG, "create ServiceImpl error", e2.getMessage());
                 }
             }
         });

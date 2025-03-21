@@ -320,7 +320,8 @@ public final class Preview extends UseCase {
         attachToCamera(str, createPipeline(str, previewConfig, size).build());
     }
 
-    public /* synthetic */ void a(SurfaceRequest surfaceRequest) {
+    /* renamed from: a */
+    public /* synthetic */ void m352a(SurfaceRequest surfaceRequest) {
         this.mSurfaceProvider.onSurfaceRequested(surfaceRequest);
     }
 
@@ -359,7 +360,7 @@ public final class Preview extends UseCase {
         this.mPreviewSurfaceProviderExecutor.execute(new Runnable() { // from class: androidx.camera.core.g0
             @Override // java.lang.Runnable
             public final void run() {
-                Preview.this.a(surfaceRequest);
+                Preview.this.m352a(surfaceRequest);
             }
         });
         if (captureProcessor != null) {

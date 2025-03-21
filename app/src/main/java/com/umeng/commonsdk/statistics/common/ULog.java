@@ -20,19 +20,21 @@ public class ULog {
     private ULog() {
     }
 
-    public static void d(Locale locale, String str, Object... objArr) {
+    /* renamed from: d */
+    public static void m11773d(Locale locale, String str, Object... objArr) {
         try {
-            d(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
+            m11769d(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void e(Locale locale, String str, Object... objArr) {
+    /* renamed from: e */
+    public static void m11779e(Locale locale, String str, Object... objArr) {
         try {
-            e(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
+            m11775e(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
@@ -74,11 +76,12 @@ public class ULog {
         }
     }
 
-    public static void i(Locale locale, String str, Object... objArr) {
+    /* renamed from: i */
+    public static void m11785i(Locale locale, String str, Object... objArr) {
         try {
-            i(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
+            m11781i(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
@@ -125,167 +128,194 @@ public class ULog {
         }
     }
 
-    public static void v(Locale locale, String str, Object... objArr) {
+    /* renamed from: v */
+    public static void m11791v(Locale locale, String str, Object... objArr) {
         try {
-            v(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
+            m11787v(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void w(Locale locale, String str, Object... objArr) {
+    /* renamed from: w */
+    public static void m11797w(Locale locale, String str, Object... objArr) {
         try {
-            w(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
+            m11793w(TAG, new Formatter(locale).format(str, objArr).toString(), (Throwable) null);
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void d(String str, Object... objArr) {
-        try {
-            if (str.contains("%")) {
-                d(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
-            } else {
-                d(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
-            }
-        } catch (Throwable th) {
-            e(th);
-        }
-    }
-
-    public static void e(String str, Object... objArr) {
+    /* renamed from: d */
+    public static void m11771d(String str, Object... objArr) {
         try {
             if (str.contains("%")) {
-                e(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
+                m11769d(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
             } else {
-                e(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
+                m11769d(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
             }
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void i(String str, Object... objArr) {
+    /* renamed from: e */
+    public static void m11777e(String str, Object... objArr) {
         try {
             if (str.contains("%")) {
-                i(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
+                m11775e(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
             } else {
-                i(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
+                m11775e(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
             }
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void v(String str, Object... objArr) {
+    /* renamed from: i */
+    public static void m11783i(String str, Object... objArr) {
         try {
             if (str.contains("%")) {
-                v(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
+                m11781i(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
             } else {
-                v(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
+                m11781i(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
             }
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void w(String str, Object... objArr) {
+    /* renamed from: v */
+    public static void m11789v(String str, Object... objArr) {
         try {
             if (str.contains("%")) {
-                w(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
+                m11787v(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
             } else {
-                w(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
+                m11787v(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
             }
         } catch (Throwable th) {
-            e(th);
+            m11778e(th);
         }
     }
 
-    public static void d(Throwable th) {
-        d(TAG, (String) null, th);
+    /* renamed from: w */
+    public static void m11795w(String str, Object... objArr) {
+        try {
+            if (str.contains("%")) {
+                m11793w(TAG, new Formatter().format(str, objArr).toString(), (Throwable) null);
+            } else {
+                m11793w(str, objArr != null ? (String) objArr[0] : "", (Throwable) null);
+            }
+        } catch (Throwable th) {
+            m11778e(th);
+        }
     }
 
-    public static void e(Throwable th) {
-        e(TAG, (String) null, th);
+    /* renamed from: d */
+    public static void m11772d(Throwable th) {
+        m11769d(TAG, (String) null, th);
     }
 
-    public static void i(Throwable th) {
-        i(TAG, (String) null, th);
+    /* renamed from: e */
+    public static void m11778e(Throwable th) {
+        m11775e(TAG, (String) null, th);
     }
 
-    public static void v(Throwable th) {
-        v(TAG, (String) null, th);
+    /* renamed from: i */
+    public static void m11784i(Throwable th) {
+        m11781i(TAG, (String) null, th);
     }
 
-    public static void w(Throwable th) {
-        w(TAG, (String) null, th);
+    /* renamed from: v */
+    public static void m11790v(Throwable th) {
+        m11787v(TAG, (String) null, th);
     }
 
-    public static void d(String str, Throwable th) {
-        d(TAG, str, th);
+    /* renamed from: w */
+    public static void m11796w(Throwable th) {
+        m11793w(TAG, (String) null, th);
     }
 
-    public static void e(String str, Throwable th) {
-        e(TAG, str, th);
+    /* renamed from: d */
+    public static void m11770d(String str, Throwable th) {
+        m11769d(TAG, str, th);
     }
 
-    public static void i(String str, Throwable th) {
-        i(TAG, str, th);
+    /* renamed from: e */
+    public static void m11776e(String str, Throwable th) {
+        m11775e(TAG, str, th);
     }
 
-    public static void v(String str, Throwable th) {
-        v(TAG, str, th);
+    /* renamed from: i */
+    public static void m11782i(String str, Throwable th) {
+        m11781i(TAG, str, th);
     }
 
-    public static void w(String str, Throwable th) {
-        w(TAG, str, th);
+    /* renamed from: v */
+    public static void m11788v(String str, Throwable th) {
+        m11787v(TAG, str, th);
     }
 
-    public static void d(String str) {
-        d(TAG, str, (Throwable) null);
+    /* renamed from: w */
+    public static void m11794w(String str, Throwable th) {
+        m11793w(TAG, str, th);
     }
 
-    public static void e(String str) {
-        e(TAG, str, (Throwable) null);
+    /* renamed from: d */
+    public static void m11768d(String str) {
+        m11769d(TAG, str, (Throwable) null);
     }
 
-    public static void i(String str) {
-        i(TAG, str, (Throwable) null);
+    /* renamed from: e */
+    public static void m11774e(String str) {
+        m11775e(TAG, str, (Throwable) null);
     }
 
-    public static void v(String str) {
-        v(TAG, str, (Throwable) null);
+    /* renamed from: i */
+    public static void m11780i(String str) {
+        m11781i(TAG, str, (Throwable) null);
     }
 
-    public static void w(String str) {
-        w(TAG, str, (Throwable) null);
+    /* renamed from: v */
+    public static void m11786v(String str) {
+        m11787v(TAG, str, (Throwable) null);
     }
 
-    public static void d(String str, String str2, Throwable th) {
+    /* renamed from: w */
+    public static void m11792w(String str) {
+        m11793w(TAG, str, (Throwable) null);
+    }
+
+    /* renamed from: d */
+    public static void m11769d(String str, String str2, Throwable th) {
         if (DEBUG) {
             print(2, str, str2, th);
         }
     }
 
-    public static void e(String str, String str2, Throwable th) {
+    /* renamed from: e */
+    public static void m11775e(String str, String str2, Throwable th) {
         if (DEBUG) {
             print(5, str, str2, th);
         }
     }
 
-    public static void i(String str, String str2, Throwable th) {
+    /* renamed from: i */
+    public static void m11781i(String str, String str2, Throwable th) {
         if (DEBUG) {
             print(3, str, str2, th);
         }
     }
 
-    public static void v(String str, String str2, Throwable th) {
+    /* renamed from: v */
+    public static void m11787v(String str, String str2, Throwable th) {
         if (DEBUG) {
             print(1, str, str2, th);
         }
     }
 
-    public static void w(String str, String str2, Throwable th) {
+    /* renamed from: w */
+    public static void m11793w(String str, String str2, Throwable th) {
         if (DEBUG) {
             print(4, str, str2, th);
         }

@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.view.menu.ShowableListMenu;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.PopupWindowCompat;
@@ -187,7 +187,7 @@ public class ListPopupWindow implements ShowableListMenu {
     }
 
     public ListPopupWindow(@NonNull Context context) {
-        this(context, null, R.attr.listPopupWindowStyle);
+        this(context, null, C0120R.attr.listPopupWindowStyle);
     }
 
     private int buildDropDown() {
@@ -814,7 +814,7 @@ public class ListPopupWindow implements ShowableListMenu {
     }
 
     public ListPopupWindow(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.listPopupWindowStyle);
+        this(context, attributeSet, C0120R.attr.listPopupWindowStyle);
     }
 
     public ListPopupWindow(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i2) {
@@ -837,9 +837,9 @@ public class ListPopupWindow implements ShowableListMenu {
         this.mTempRect = new Rect();
         this.mContext = context;
         this.mHandler = new Handler(context.getMainLooper());
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ListPopupWindow, i2, i3);
-        this.mDropDownHorizontalOffset = obtainStyledAttributes.getDimensionPixelOffset(R.styleable.ListPopupWindow_android_dropDownHorizontalOffset, 0);
-        this.mDropDownVerticalOffset = obtainStyledAttributes.getDimensionPixelOffset(R.styleable.ListPopupWindow_android_dropDownVerticalOffset, 0);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0120R.styleable.ListPopupWindow, i2, i3);
+        this.mDropDownHorizontalOffset = obtainStyledAttributes.getDimensionPixelOffset(C0120R.styleable.ListPopupWindow_android_dropDownHorizontalOffset, 0);
+        this.mDropDownVerticalOffset = obtainStyledAttributes.getDimensionPixelOffset(C0120R.styleable.ListPopupWindow_android_dropDownVerticalOffset, 0);
         if (this.mDropDownVerticalOffset != 0) {
             this.mDropDownVerticalOffsetSet = true;
         }

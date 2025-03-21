@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.view.GravityCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -164,13 +164,13 @@ public class ForegroundLinearLayout extends LinearLayoutCompat {
         this.foregroundGravity = 119;
         this.mForegroundInPadding = true;
         this.foregroundBoundsChanged = false;
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.ForegroundLinearLayout, i2, 0, new int[0]);
-        this.foregroundGravity = obtainStyledAttributes.getInt(R.styleable.ForegroundLinearLayout_android_foregroundGravity, this.foregroundGravity);
-        Drawable drawable = obtainStyledAttributes.getDrawable(R.styleable.ForegroundLinearLayout_android_foreground);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.ForegroundLinearLayout, i2, 0, new int[0]);
+        this.foregroundGravity = obtainStyledAttributes.getInt(C1921R.styleable.ForegroundLinearLayout_android_foregroundGravity, this.foregroundGravity);
+        Drawable drawable = obtainStyledAttributes.getDrawable(C1921R.styleable.ForegroundLinearLayout_android_foreground);
         if (drawable != null) {
             setForeground(drawable);
         }
-        this.mForegroundInPadding = obtainStyledAttributes.getBoolean(R.styleable.ForegroundLinearLayout_foregroundInsidePadding, true);
+        this.mForegroundInPadding = obtainStyledAttributes.getBoolean(C1921R.styleable.ForegroundLinearLayout_foregroundInsidePadding, true);
         obtainStyledAttributes.recycle();
     }
 }

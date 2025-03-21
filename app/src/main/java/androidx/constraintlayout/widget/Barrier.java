@@ -74,15 +74,15 @@ public class Barrier extends ConstraintHelper {
         super.init(attributeSet);
         this.mBarrier = new androidx.constraintlayout.solver.widgets.Barrier();
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_Layout);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.ConstraintLayout_Layout_barrierDirection) {
+                if (index == C0471R.styleable.ConstraintLayout_Layout_barrierDirection) {
                     setType(obtainStyledAttributes.getInt(index, 0));
-                } else if (index == R.styleable.ConstraintLayout_Layout_barrierAllowsGoneWidgets) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_barrierAllowsGoneWidgets) {
                     this.mBarrier.setAllowsGoneWidget(obtainStyledAttributes.getBoolean(index, true));
-                } else if (index == R.styleable.ConstraintLayout_Layout_barrierMargin) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_barrierMargin) {
                     this.mBarrier.setMargin(obtainStyledAttributes.getDimensionPixelSize(index, 0));
                 }
             }

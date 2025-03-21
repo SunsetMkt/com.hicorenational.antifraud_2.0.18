@@ -23,11 +23,11 @@ public class MiMsgParseImpl implements BaseNotifyClickActivity.INotifyListener {
         }
         if (miPushMessage != null) {
             str = miPushMessage.getContent();
-            ALog.i(MiPushRegistar.TAG, "parseMsgFromIntent", "msg", str);
+            ALog.m9183i(MiPushRegistar.TAG, "parseMsgFromIntent", "msg", str);
             return str;
         }
         str = null;
-        ALog.i(MiPushRegistar.TAG, "parseMsgFromIntent", "msg", str);
+        ALog.m9183i(MiPushRegistar.TAG, "parseMsgFromIntent", "msg", str);
         return str;
     }
 

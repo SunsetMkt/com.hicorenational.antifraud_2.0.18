@@ -41,9 +41,9 @@ public class PushProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
-        HMSLog.i("PushProvider", "use sdk PushProvider openFile");
+        HMSLog.m7717i("PushProvider", "use sdk PushProvider openFile");
         if (!"xml".equals(getType(uri))) {
-            HMSLog.w("PushProvider", "Incorrect file uri");
+            HMSLog.m7718w("PushProvider", "Incorrect file uri");
             throw new FileNotFoundException(uri.getPath());
         }
         if (Build.VERSION.SDK_INT >= 24) {

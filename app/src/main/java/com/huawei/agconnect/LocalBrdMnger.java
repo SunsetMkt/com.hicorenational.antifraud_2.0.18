@@ -37,15 +37,15 @@ public class LocalBrdMnger {
         final IntentFilter filter;
 
         /* renamed from: receiver, reason: collision with root package name */
-        final BroadcastReceiver f6369receiver;
+        final BroadcastReceiver f25893receiver;
 
         ReceiverRecord(IntentFilter intentFilter, BroadcastReceiver broadcastReceiver) {
             this.filter = intentFilter;
-            this.f6369receiver = broadcastReceiver;
+            this.f25893receiver = broadcastReceiver;
         }
 
         public String toString() {
-            return "Receiver{" + this.f6369receiver + " filter=" + this.filter + "}";
+            return "Receiver{" + this.f25893receiver + " filter=" + this.filter + "}";
         }
     }
 
@@ -78,7 +78,7 @@ public class LocalBrdMnger {
             }
             for (BroadcastRecord broadcastRecord : broadcastRecordArr) {
                 for (int i2 = 0; i2 < broadcastRecord.receivers.size(); i2++) {
-                    broadcastRecord.receivers.get(i2).f6369receiver.onReceive(this.mAppContext, broadcastRecord.intent);
+                    broadcastRecord.receivers.get(i2).f25893receiver.onReceive(this.mAppContext, broadcastRecord.intent);
                 }
             }
         }
@@ -197,7 +197,7 @@ public class LocalBrdMnger {
                     if (arrayList != null) {
                         int i4 = 0;
                         while (i4 < arrayList.size()) {
-                            if (arrayList.get(i4).f6369receiver == broadcastReceiver) {
+                            if (arrayList.get(i4).f25893receiver == broadcastReceiver) {
                                 arrayList.remove(i4);
                                 i4--;
                             }

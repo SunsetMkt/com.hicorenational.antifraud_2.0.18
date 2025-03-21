@@ -162,7 +162,9 @@ public class Constants {
     public static final String SOURCE_QZONE = "qzone";
     public static final String SPECIFY_UIN = "specify_uin";
     public static final String STR_EMPTY = "";
-    public static final String TS = "ts";
+
+    /* renamed from: TS */
+    public static final String f11019TS = "ts";
     public static final int UI_ACTIVITY = 1;
     public static final int UI_CHECK_TOKEN = 3;
     public static final int UI_DIALOG = 2;

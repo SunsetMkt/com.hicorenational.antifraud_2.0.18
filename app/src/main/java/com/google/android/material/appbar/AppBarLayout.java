@@ -25,7 +25,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.customview.view.AbsSavedState;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.internal.ThemeEnforcement;
 import java.lang.annotation.Retention;
@@ -770,8 +770,8 @@ public class AppBarLayout extends LinearLayout {
 
         public ScrollingViewBehavior(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ScrollingViewBehavior_Layout);
-            setOverlayTop(obtainStyledAttributes.getDimensionPixelSize(R.styleable.ScrollingViewBehavior_Layout_behavior_overlapTop, 0));
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.ScrollingViewBehavior_Layout);
+            setOverlayTop(obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.ScrollingViewBehavior_Layout_behavior_overlapTop, 0));
             obtainStyledAttributes.recycle();
         }
 
@@ -986,10 +986,10 @@ public class AppBarLayout extends LinearLayout {
         }
         int[] iArr = this.tmpStatesArray;
         int[] onCreateDrawableState = super.onCreateDrawableState(i2 + iArr.length);
-        iArr[0] = this.liftable ? R.attr.state_liftable : -R.attr.state_liftable;
-        iArr[1] = (this.liftable && this.lifted) ? R.attr.state_lifted : -R.attr.state_lifted;
-        iArr[2] = this.liftable ? R.attr.state_collapsible : -R.attr.state_collapsible;
-        iArr[3] = (this.liftable && this.lifted) ? R.attr.state_collapsed : -R.attr.state_collapsed;
+        iArr[0] = this.liftable ? C1921R.attr.state_liftable : -C1921R.attr.state_liftable;
+        iArr[1] = (this.liftable && this.lifted) ? C1921R.attr.state_lifted : -C1921R.attr.state_lifted;
+        iArr[2] = this.liftable ? C1921R.attr.state_collapsible : -C1921R.attr.state_collapsible;
+        iArr[3] = (this.liftable && this.lifted) ? C1921R.attr.state_collapsed : -C1921R.attr.state_collapsed;
         return LinearLayout.mergeDrawableStates(onCreateDrawableState, iArr);
     }
 
@@ -1093,25 +1093,25 @@ public class AppBarLayout extends LinearLayout {
         setOrientation(1);
         if (Build.VERSION.SDK_INT >= 21) {
             ViewUtilsLollipop.setBoundsViewOutlineProvider(this);
-            ViewUtilsLollipop.setStateListAnimatorFromAttrs(this, attributeSet, 0, R.style.Widget_Design_AppBarLayout);
+            ViewUtilsLollipop.setStateListAnimatorFromAttrs(this, attributeSet, 0, C1921R.style.Widget_Design_AppBarLayout);
         }
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.AppBarLayout, 0, R.style.Widget_Design_AppBarLayout, new int[0]);
-        ViewCompat.setBackground(this, obtainStyledAttributes.getDrawable(R.styleable.AppBarLayout_android_background));
-        if (obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_expanded)) {
-            setExpanded(obtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_expanded, false), false, false);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.AppBarLayout, 0, C1921R.style.Widget_Design_AppBarLayout, new int[0]);
+        ViewCompat.setBackground(this, obtainStyledAttributes.getDrawable(C1921R.styleable.AppBarLayout_android_background));
+        if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_expanded)) {
+            setExpanded(obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_expanded, false), false, false);
         }
-        if (Build.VERSION.SDK_INT >= 21 && obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_elevation)) {
-            ViewUtilsLollipop.setDefaultAppBarLayoutStateListAnimator(this, obtainStyledAttributes.getDimensionPixelSize(R.styleable.AppBarLayout_elevation, 0));
+        if (Build.VERSION.SDK_INT >= 21 && obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_elevation)) {
+            ViewUtilsLollipop.setDefaultAppBarLayoutStateListAnimator(this, obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.AppBarLayout_elevation, 0));
         }
         if (Build.VERSION.SDK_INT >= 26) {
-            if (obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_android_keyboardNavigationCluster)) {
-                setKeyboardNavigationCluster(obtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_android_keyboardNavigationCluster, false));
+            if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_android_keyboardNavigationCluster)) {
+                setKeyboardNavigationCluster(obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_android_keyboardNavigationCluster, false));
             }
-            if (obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_android_touchscreenBlocksFocus)) {
-                setTouchscreenBlocksFocus(obtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_android_touchscreenBlocksFocus, false));
+            if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_android_touchscreenBlocksFocus)) {
+                setTouchscreenBlocksFocus(obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_android_touchscreenBlocksFocus, false));
             }
         }
-        this.liftOnScroll = obtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_liftOnScroll, false);
+        this.liftOnScroll = obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_liftOnScroll, false);
         obtainStyledAttributes.recycle();
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() { // from class: com.google.android.material.appbar.AppBarLayout.1
             @Override // androidx.core.view.OnApplyWindowInsetsListener
@@ -1182,10 +1182,10 @@ public class AppBarLayout extends LinearLayout {
         public LayoutParams(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
             this.scrollFlags = 1;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.AppBarLayout_Layout);
-            this.scrollFlags = obtainStyledAttributes.getInt(R.styleable.AppBarLayout_Layout_layout_scrollFlags, 0);
-            if (obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator)) {
-                this.scrollInterpolator = android.view.animation.AnimationUtils.loadInterpolator(context, obtainStyledAttributes.getResourceId(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator, 0));
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.AppBarLayout_Layout);
+            this.scrollFlags = obtainStyledAttributes.getInt(C1921R.styleable.AppBarLayout_Layout_layout_scrollFlags, 0);
+            if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_Layout_layout_scrollInterpolator)) {
+                this.scrollInterpolator = android.view.animation.AnimationUtils.loadInterpolator(context, obtainStyledAttributes.getResourceId(C1921R.styleable.AppBarLayout_Layout_layout_scrollInterpolator, 0));
             }
             obtainStyledAttributes.recycle();
         }

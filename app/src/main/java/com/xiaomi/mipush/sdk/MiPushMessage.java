@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /* loaded from: classes2.dex */
-public class MiPushMessage implements PushMessageHandler.a {
+public class MiPushMessage implements PushMessageHandler.InterfaceC4046a {
     private static final String KEY_ALIAS = "alias";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_CONTENT = "content";

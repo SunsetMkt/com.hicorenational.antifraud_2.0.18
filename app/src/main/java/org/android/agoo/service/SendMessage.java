@@ -17,18 +17,19 @@ public interface SendMessage extends IInterface {
         static final int TRANSACTION_doSend = 1;
 
         /* compiled from: Taobao */
-        private static class a implements SendMessage {
+        /* renamed from: org.android.agoo.service.SendMessage$Stub$a */
+        private static class C6036a implements SendMessage {
 
-            /* renamed from: a, reason: collision with root package name */
-            private IBinder f17358a;
+            /* renamed from: a */
+            private IBinder f21514a;
 
-            a(IBinder iBinder) {
-                this.f17358a = iBinder;
+            C6036a(IBinder iBinder) {
+                this.f21514a = iBinder;
             }
 
             @Override // android.os.IInterface
             public IBinder asBinder() {
-                return this.f17358a;
+                return this.f21514a;
             }
 
             @Override // org.android.agoo.service.SendMessage
@@ -43,7 +44,7 @@ public interface SendMessage extends IInterface {
                     } else {
                         obtain.writeInt(0);
                     }
-                    this.f17358a.transact(1, obtain, obtain2, 0);
+                    this.f21514a.transact(1, obtain, obtain2, 0);
                     obtain2.readException();
                     return obtain2.readInt();
                 } finally {
@@ -62,7 +63,7 @@ public interface SendMessage extends IInterface {
                 return null;
             }
             IInterface queryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
-            return queryLocalInterface instanceof SendMessage ? (SendMessage) queryLocalInterface : new a(iBinder);
+            return queryLocalInterface instanceof SendMessage ? (SendMessage) queryLocalInterface : new C6036a(iBinder);
         }
 
         @Override // android.os.IInterface

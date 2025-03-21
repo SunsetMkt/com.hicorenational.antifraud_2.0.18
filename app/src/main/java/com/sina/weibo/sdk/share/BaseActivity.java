@@ -10,7 +10,8 @@ import java.lang.reflect.Method;
 
 /* loaded from: classes.dex */
 public class BaseActivity extends Activity {
-    private boolean h() {
+    /* renamed from: h */
+    private boolean m8861h() {
         Method method;
         boolean booleanValue;
         boolean z = false;
@@ -33,7 +34,8 @@ public class BaseActivity extends Activity {
         }
     }
 
-    private boolean i() {
+    /* renamed from: i */
+    private boolean m8862i() {
         try {
             Field declaredField = Activity.class.getDeclaredField("mActivityInfo");
             declaredField.setAccessible(true);
@@ -48,15 +50,15 @@ public class BaseActivity extends Activity {
 
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
-        if (Build.VERSION.SDK_INT == 26 && h()) {
-            i();
+        if (Build.VERSION.SDK_INT == 26 && m8861h()) {
+            m8862i();
         }
         super.onCreate(bundle);
     }
 
     @Override // android.app.Activity
     public void setRequestedOrientation(int i2) {
-        if (Build.VERSION.SDK_INT == 26 && h()) {
+        if (Build.VERSION.SDK_INT == 26 && m8861h()) {
             return;
         }
         super.setRequestedOrientation(i2);

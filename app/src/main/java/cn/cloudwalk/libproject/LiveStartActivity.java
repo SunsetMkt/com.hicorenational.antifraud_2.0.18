@@ -12,7 +12,7 @@ public class LiveStartActivity extends BaseActivity {
     private TextView tv_start;
 
     private void initView() {
-        this.tv_start = (TextView) findViewById(R.id.tv_start);
+        this.tv_start = (TextView) findViewById(C1241R.id.tv_start);
         this.tv_start.setOnClickListener(new View.OnClickListener() { // from class: cn.cloudwalk.libproject.LiveStartActivity.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
@@ -31,7 +31,7 @@ public class LiveStartActivity extends BaseActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         activity = this;
-        setContentView(R.layout.cloudwalk_layout_facedect_start);
+        setContentView(C1241R.layout.cloudwalk_layout_facedect_start);
         getWindow().addFlags(128);
         setRequestedOrientation(14);
         initView();

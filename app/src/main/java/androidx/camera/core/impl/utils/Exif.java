@@ -4,7 +4,6 @@ import android.location.Location;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
-import c.c.a.b.a.a;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public final class Exif {
@@ -151,7 +151,7 @@ public final class Exif {
                 return -1L;
             }
         }
-        return parseTimestamp(str + a.f3100g + str2);
+        return parseTimestamp(str + AbstractC1191a.f2568g + str2);
     }
 
     public void attachLocation(@NonNull Location location) {

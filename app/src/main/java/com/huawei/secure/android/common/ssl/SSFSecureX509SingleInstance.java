@@ -3,8 +3,8 @@ package com.huawei.secure.android.common.ssl;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import com.huawei.secure.android.common.ssl.util.BksUtil;
+import com.huawei.secure.android.common.ssl.util.C2563e;
 import com.huawei.secure.android.common.ssl.util.ContextUtil;
-import com.huawei.secure.android.common.ssl.util.e;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStoreException;
@@ -15,11 +15,11 @@ import java.security.cert.CertificateException;
 /* loaded from: classes.dex */
 public class SSFSecureX509SingleInstance {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7557a = "SSFSecureX509SingleInstance";
+    /* renamed from: a */
+    private static final String f8134a = "SSFSecureX509SingleInstance";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static volatile SecureX509TrustManager f7558b;
+    /* renamed from: b */
+    private static volatile SecureX509TrustManager f8135b;
 
     private SSFSecureX509SingleInstance() {
     }
@@ -30,45 +30,45 @@ public class SSFSecureX509SingleInstance {
             throw new NullPointerException("context is null");
         }
         ContextUtil.setContext(context);
-        if (f7558b == null) {
+        if (f8135b == null) {
             synchronized (SSFSecureX509SingleInstance.class) {
-                if (f7558b == null) {
+                if (f8135b == null) {
                     InputStream filesBksIS = BksUtil.getFilesBksIS(context);
                     if (filesBksIS == null) {
-                        e.c(f7557a, "get assets bks");
+                        C2563e.m7987c(f8134a, "get assets bks");
                         filesBksIS = context.getAssets().open("hmsrootcas.bks");
                     } else {
-                        e.c(f7557a, "get files bks");
+                        C2563e.m7987c(f8134a, "get files bks");
                     }
-                    f7558b = new SecureX509TrustManager(filesBksIS, "", true);
+                    f8135b = new SecureX509TrustManager(filesBksIS, "", true);
                 }
             }
         }
-        return f7558b;
+        return f8135b;
     }
 
     @Deprecated
     public static void updateBks(InputStream inputStream) {
-        e.c(f7557a, "update bks");
+        C2563e.m7987c(f8134a, "update bks");
         long currentTimeMillis = System.currentTimeMillis();
-        if (inputStream != null && f7558b != null) {
-            f7558b = new SecureX509TrustManager(inputStream, "", true);
-            e.a(f7557a, "updateBks: new SecureX509TrustManager cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
-            SSFCompatiableSystemCA.a(f7558b);
-            SASFCompatiableSystemCA.a(f7558b);
+        if (inputStream != null && f8135b != null) {
+            f8135b = new SecureX509TrustManager(inputStream, "", true);
+            C2563e.m7984a(f8134a, "updateBks: new SecureX509TrustManager cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+            SSFCompatiableSystemCA.m7910a(f8135b);
+            SASFCompatiableSystemCA.m7907a(f8135b);
         }
-        e.a(f7557a, "update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7984a(f8134a, "update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 
     public static void updateBks(InputStream inputStream, SecureRandom secureRandom) {
-        e.c(f7557a, "update bks");
+        C2563e.m7987c(f8134a, "update bks");
         long currentTimeMillis = System.currentTimeMillis();
-        if (inputStream != null && f7558b != null) {
-            f7558b = new SecureX509TrustManager(inputStream, "", true);
-            e.a(f7557a, "updateBks: new SecureX509TrustManager cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
-            SSFCompatiableSystemCA.a(f7558b, secureRandom);
-            SASFCompatiableSystemCA.a(f7558b, secureRandom);
+        if (inputStream != null && f8135b != null) {
+            f8135b = new SecureX509TrustManager(inputStream, "", true);
+            C2563e.m7984a(f8134a, "updateBks: new SecureX509TrustManager cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+            SSFCompatiableSystemCA.m7911a(f8135b, secureRandom);
+            SASFCompatiableSystemCA.m7908a(f8135b, secureRandom);
         }
-        e.a(f7557a, "update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7984a(f8134a, "update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 }

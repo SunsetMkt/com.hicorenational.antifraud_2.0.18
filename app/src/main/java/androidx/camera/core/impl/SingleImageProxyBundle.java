@@ -6,6 +6,7 @@ import androidx.camera.core.ImageProxy;
 import androidx.camera.core.impl.utils.futures.Futures;
 import java.util.Collections;
 import java.util.List;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public final class SingleImageProxyBundle implements ImageProxyBundle {
@@ -40,7 +41,7 @@ public final class SingleImageProxyBundle implements ImageProxyBundle {
 
     @Override // androidx.camera.core.impl.ImageProxyBundle
     @NonNull
-    public c.b.b.a.a.a<ImageProxy> getImageProxy(int i2) {
+    public InterfaceFutureC0952a<ImageProxy> getImageProxy(int i2) {
         return i2 != this.mCaptureId ? Futures.immediateFailedFuture(new IllegalArgumentException("Capture id does not exist in the bundle")) : Futures.immediateFuture(this.mImageProxy);
     }
 

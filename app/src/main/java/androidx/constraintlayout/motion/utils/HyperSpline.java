@@ -14,24 +14,32 @@ public class HyperSpline {
     public static class Cubic {
         public static final double HALF = 0.5d;
         public static final double THIRD = 0.3333333333333333d;
-        double mA;
-        double mB;
-        double mC;
-        double mD;
+
+        /* renamed from: mA */
+        double f580mA;
+
+        /* renamed from: mB */
+        double f581mB;
+
+        /* renamed from: mC */
+        double f582mC;
+
+        /* renamed from: mD */
+        double f583mD;
 
         public Cubic(double d2, double d3, double d4, double d5) {
-            this.mA = d2;
-            this.mB = d3;
-            this.mC = d4;
-            this.mD = d5;
+            this.f580mA = d2;
+            this.f581mB = d3;
+            this.f582mC = d4;
+            this.f583mD = d5;
         }
 
         public double eval(double d2) {
-            return (((((this.mD * d2) + this.mC) * d2) + this.mB) * d2) + this.mA;
+            return (((((this.f583mD * d2) + this.f582mC) * d2) + this.f581mB) * d2) + this.f580mA;
         }
 
         public double vel(double d2) {
-            return (((this.mD * 0.3333333333333333d * d2) + (this.mC * 0.5d)) * d2) + this.mB;
+            return (((this.f583mD * 0.3333333333333333d * d2) + (this.f582mC * 0.5d)) * d2) + this.f581mB;
         }
     }
 

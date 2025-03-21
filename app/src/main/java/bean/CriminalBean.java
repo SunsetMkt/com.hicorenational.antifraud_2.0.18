@@ -7,7 +7,9 @@ import network.BaseBean;
 public class CriminalBean extends BaseBean {
     private List<UploadFileBean> audios;
     private String caseInfoID;
-    private String id;
+
+    /* renamed from: id */
+    private String f1591id;
     private List<CallCriminalBean> mobiles;
     private List<UploadFileBean> printscreens;
     private List<SocialCriminalBean> socialAccounts;
@@ -21,7 +23,7 @@ public class CriminalBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1591id;
     }
 
     public List<CallCriminalBean> getMobiles() {
@@ -45,7 +47,7 @@ public class CriminalBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1591id = str;
     }
 
     public void setMobiles(List<CallCriminalBean> list) {

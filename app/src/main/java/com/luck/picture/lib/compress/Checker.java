@@ -3,12 +3,12 @@ package com.luck.picture.lib.compress;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
-import h.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 enum Checker {
@@ -37,7 +37,7 @@ enum Checker {
             if (i3 <= 0) {
                 return i5;
             }
-            i5 = (bArr[i2] & f1.f16099c) | (i5 << 8);
+            i5 = (bArr[i2] & C5230f1.f20085c) | (i5 << 8);
             i2 += i4;
             i3 = i6;
         }
@@ -124,8 +124,8 @@ enum Checker {
         int i4 = 0;
         while (i4 + 3 < bArr.length) {
             int i5 = i4 + 1;
-            if ((bArr[i4] & f1.f16099c) == 255) {
-                int i6 = bArr[i5] & f1.f16099c;
+            if ((bArr[i4] & C5230f1.f20085c) == 255) {
+                int i6 = bArr[i5] & C5230f1.f20085c;
                 if (i6 != 255) {
                     i5++;
                     if (i6 != 216 && i6 != 1) {

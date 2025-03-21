@@ -2,8 +2,8 @@ package com.huawei.secure.android.common.encrypt.rsa;
 
 import android.text.TextUtils;
 import android.util.Base64;
+import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.EncryptUtil;
-import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.Key;
@@ -22,29 +22,29 @@ import javax.crypto.Cipher;
 /* loaded from: classes.dex */
 public abstract class RSAEncrypt {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7507a = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
+    /* renamed from: a */
+    private static final String f8084a = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7508b = "RSAEncrypt";
+    /* renamed from: b */
+    private static final String f8085b = "RSAEncrypt";
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7509c = "UTF-8";
+    /* renamed from: c */
+    private static final String f8086c = "UTF-8";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final String f7510d = "";
+    /* renamed from: d */
+    private static final String f8087d = "";
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final int f7511e = 2048;
+    /* renamed from: e */
+    private static final int f8088e = 2048;
 
-    /* renamed from: f, reason: collision with root package name */
-    private static final String f7512f = "RSA";
+    /* renamed from: f */
+    private static final String f8089f = "RSA";
 
     public static String decrypt(String str, String str2) {
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
             return decrypt(str, EncryptUtil.getPrivateKey(str2));
         }
-        b.b(f7508b, "content or private key is null");
+        C2551b.m7898b(f8085b, "content or private key is null");
         return "";
     }
 
@@ -52,18 +52,18 @@ public abstract class RSAEncrypt {
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
             return encrypt(str, EncryptUtil.getPublicKey(str2));
         }
-        b.b(f7508b, "content or public key is null");
+        C2551b.m7898b(f8085b, "content or public key is null");
         return "";
     }
 
     public static Map<String, Key> generateRSAKeyPair(int i2) throws NoSuchAlgorithmException {
         HashMap hashMap = new HashMap(2);
         if (i2 < 2048) {
-            b.b(f7508b, "generateRSAKeyPair: key length is too short");
+            C2551b.m7898b(f8085b, "generateRSAKeyPair: key length is too short");
             return hashMap;
         }
         SecureRandom genSecureRandom = EncryptUtil.genSecureRandom();
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(f7512f);
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(f8089f);
         keyPairGenerator.initialize(i2, genSecureRandom);
         KeyPair generateKeyPair = keyPairGenerator.generateKeyPair();
         PublicKey publicKey = generateKeyPair.getPublic();
@@ -86,14 +86,14 @@ public abstract class RSAEncrypt {
             try {
                 return new String(decrypt(Base64.decode(str, 0), privateKey), "UTF-8");
             } catch (UnsupportedEncodingException e2) {
-                b.b(f7508b, "RSA decrypt exception : " + e2.getMessage());
+                C2551b.m7898b(f8085b, "RSA decrypt exception : " + e2.getMessage());
                 return "";
             } catch (Exception e3) {
-                b.b(f7508b, "exception : " + e3.getMessage());
+                C2551b.m7898b(f8085b, "exception : " + e3.getMessage());
                 return "";
             }
         }
-        b.b(f7508b, "content or privateKey is null , or length is too short");
+        C2551b.m7898b(f8085b, "content or privateKey is null , or length is too short");
         return "";
     }
 
@@ -102,14 +102,14 @@ public abstract class RSAEncrypt {
             try {
                 return Base64.encodeToString(encrypt(str.getBytes("UTF-8"), publicKey), 0);
             } catch (UnsupportedEncodingException unused) {
-                b.b(f7508b, "encrypt: UnsupportedEncodingException");
+                C2551b.m7898b(f8085b, "encrypt: UnsupportedEncodingException");
                 return "";
             } catch (Exception e2) {
-                b.b(f7508b, "exception : " + e2.getMessage());
+                C2551b.m7898b(f8085b, "exception : " + e2.getMessage());
                 return "";
             }
         }
-        b.b(f7508b, "content or PublicKey is null , or length is too short");
+        C2551b.m7898b(f8085b, "content or PublicKey is null , or length is too short");
         return "";
     }
 
@@ -117,15 +117,15 @@ public abstract class RSAEncrypt {
         byte[] bArr2 = new byte[0];
         if (bArr != null && privateKey != null && isPrivateKeyLengthRight((RSAPrivateKey) privateKey)) {
             try {
-                Cipher cipher = Cipher.getInstance(f7507a);
+                Cipher cipher = Cipher.getInstance(f8084a);
                 cipher.init(2, privateKey);
                 return cipher.doFinal(bArr);
             } catch (GeneralSecurityException e2) {
-                b.b(f7508b, "RSA decrypt exception : " + e2.getMessage());
+                C2551b.m7898b(f8085b, "RSA decrypt exception : " + e2.getMessage());
                 return bArr2;
             }
         }
-        b.b(f7508b, "content or privateKey is null , or length is too short");
+        C2551b.m7898b(f8085b, "content or privateKey is null , or length is too short");
         return bArr2;
     }
 
@@ -133,15 +133,15 @@ public abstract class RSAEncrypt {
         byte[] bArr2 = new byte[0];
         if (bArr != null && publicKey != null && isPublicKeyLengthRight((RSAPublicKey) publicKey)) {
             try {
-                Cipher cipher = Cipher.getInstance(f7507a);
+                Cipher cipher = Cipher.getInstance(f8084a);
                 cipher.init(1, publicKey);
                 return cipher.doFinal(bArr);
             } catch (GeneralSecurityException e2) {
-                b.b(f7508b, "RSA encrypt exception : " + e2.getMessage());
+                C2551b.m7898b(f8085b, "RSA encrypt exception : " + e2.getMessage());
                 return bArr2;
             }
         }
-        b.b(f7508b, "content or PublicKey is null , or length is too short");
+        C2551b.m7898b(f8085b, "content or PublicKey is null , or length is too short");
         return bArr2;
     }
 }

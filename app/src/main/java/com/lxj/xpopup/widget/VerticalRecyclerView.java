@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.lxj.xpopup.R;
-import com.lxj.xpopup.f.c;
+import com.lxj.xpopup.C2766R;
+import com.lxj.xpopup.p187f.C2819c;
 
 /* loaded from: classes.dex */
 public class VerticalRecyclerView extends RecyclerView {
@@ -27,8 +27,8 @@ public class VerticalRecyclerView extends RecyclerView {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), 1);
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(0);
-        gradientDrawable.setColor(getResources().getColor(R.color._xpopup_list_divider));
-        gradientDrawable.setSize(10, c.a(context, 0.4f));
+        gradientDrawable.setColor(getResources().getColor(C2766R.color._xpopup_list_divider));
+        gradientDrawable.setSize(10, C2819c.m8449a(context, 0.4f));
         dividerItemDecoration.setDrawable(gradientDrawable);
         addItemDecoration(dividerItemDecoration);
     }

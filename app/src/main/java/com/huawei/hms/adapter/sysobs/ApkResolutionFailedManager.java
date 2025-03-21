@@ -9,49 +9,49 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class ApkResolutionFailedManager {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final ApkResolutionFailedManager f6584c = new ApkResolutionFailedManager();
+    /* renamed from: c */
+    private static final ApkResolutionFailedManager f7088c = new ApkResolutionFailedManager();
 
-    /* renamed from: a, reason: collision with root package name */
-    private final Handler f6585a = new Handler(Looper.getMainLooper());
+    /* renamed from: a */
+    private final Handler f7089a = new Handler(Looper.getMainLooper());
 
-    /* renamed from: b, reason: collision with root package name */
-    private final Map<String, Runnable> f6586b = new HashMap(2);
+    /* renamed from: b */
+    private final Map<String, Runnable> f7090b = new HashMap(2);
 
     private ApkResolutionFailedManager() {
     }
 
     public static ApkResolutionFailedManager getInstance() {
-        return f6584c;
+        return f7088c;
     }
 
     public void postTask(String str, Runnable runnable) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            HMSLog.e("ApkResolutionFailedManager", "postTask is not in main thread");
+            HMSLog.m7715e("ApkResolutionFailedManager", "postTask is not in main thread");
         } else {
-            this.f6586b.put(str, runnable);
-            this.f6585a.postDelayed(runnable, 2000L);
+            this.f7090b.put(str, runnable);
+            this.f7089a.postDelayed(runnable, 2000L);
         }
     }
 
     public void removeTask(String str) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            HMSLog.e("ApkResolutionFailedManager", "removeTask is not in main thread");
+            HMSLog.m7715e("ApkResolutionFailedManager", "removeTask is not in main thread");
             return;
         }
-        Runnable remove = this.f6586b.remove(str);
+        Runnable remove = this.f7090b.remove(str);
         if (remove == null) {
-            HMSLog.e("ApkResolutionFailedManager", "cancel runnable is null");
+            HMSLog.m7715e("ApkResolutionFailedManager", "cancel runnable is null");
         } else {
-            this.f6585a.removeCallbacks(remove);
+            this.f7089a.removeCallbacks(remove);
         }
     }
 
     public void removeValueOnly(String str) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            HMSLog.e("ApkResolutionFailedManager", "removeValueOnly is not in main thread");
+            HMSLog.m7715e("ApkResolutionFailedManager", "removeValueOnly is not in main thread");
         } else {
-            this.f6586b.remove(str);
+            this.f7090b.remove(str);
         }
     }
 }

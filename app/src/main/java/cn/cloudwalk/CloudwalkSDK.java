@@ -47,12 +47,14 @@ public class CloudwalkSDK {
     private Thread videoThread = null;
     private volatile boolean bDetecting = false;
     private PriorityBlockingQueue<Frame> mFrameQueue = new PriorityBlockingQueue<>();
-    volatile int op = 4068;
+
+    /* renamed from: op */
+    volatile int f2708op = 4068;
     private volatile int stageflag = 1;
     FaceDetTrack faceDetTrack = new FaceDetTrack();
 
-    /* renamed from: cn.cloudwalk.CloudwalkSDK$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: cn.cloudwalk.CloudwalkSDK$1 */
+    static /* synthetic */ class C12271 {
         static final /* synthetic */ int[] $SwitchMap$cn$cloudwalk$CloudwalkSDK$DetectType = new int[DetectType.values().length];
 
         static {
@@ -107,7 +109,7 @@ public class CloudwalkSDK {
                     break;
                 }
                 try {
-                    int i2 = AnonymousClass1.$SwitchMap$cn$cloudwalk$CloudwalkSDK$DetectType[CloudwalkSDK.this.mWorkType.ordinal()];
+                    int i2 = C12271.$SwitchMap$cn$cloudwalk$CloudwalkSDK$DetectType[CloudwalkSDK.this.mWorkType.ordinal()];
                     if (i2 != 1) {
                         if (i2 == 2) {
                             CloudwalkSDK.this.mPreviewFrame = this.mFrameQueue.take();
@@ -152,7 +154,7 @@ public class CloudwalkSDK {
         this.bDetecting = true;
         this.faceLivingImgs = null;
         this.stageflag = 1;
-        this.op = 4068;
+        this.f2708op = 4068;
         this.mPushFrame = true;
         if (this.videoThread != null) {
             cn.cloudwalk.util.TestLog.netd(TAG, "cwStart null != videoThread");
@@ -231,7 +233,7 @@ public class CloudwalkSDK {
             if (frame.data != null && this.bDetecting) {
                 this.faceNum = 0;
                 if (this.bDetecting || this.mPushFrame) {
-                    int cwFaceDetectTrack = cwFaceDetectTrack(frame.data, frame.time, this.frameW, this.frameH, this.frameFormat, this.frameAngle, this.frameMirror, this.op);
+                    int cwFaceDetectTrack = cwFaceDetectTrack(frame.data, frame.time, this.frameW, this.frameH, this.frameFormat, this.frameAngle, this.frameMirror, this.f2708op);
                     if (cwFaceDetectTrack == 1) {
                         int i2 = this.actionCount;
                         this.actionCount = i2 - 1;
@@ -463,7 +465,7 @@ public class CloudwalkSDK {
             this.mStartTime = currentTimeMillis;
         }
         try {
-            int i7 = AnonymousClass1.$SwitchMap$cn$cloudwalk$CloudwalkSDK$DetectType[this.mWorkType.ordinal()];
+            int i7 = C12271.$SwitchMap$cn$cloudwalk$CloudwalkSDK$DetectType[this.mWorkType.ordinal()];
             if (i7 != 1) {
                 if (i7 != 2) {
                     return;
@@ -676,7 +678,7 @@ public class CloudwalkSDK {
     }
 
     public void setOperator(int i2) {
-        this.op = i2;
+        this.f2708op = i2;
     }
 
     public void setPushFrame(boolean z) {
@@ -706,8 +708,8 @@ public class CloudwalkSDK {
             }
             int height = bitmap.getHeight();
             int width = bitmap.getWidth();
-            int i3 = this.faceDetTrack.faceInfos[0].x;
-            int i4 = this.faceDetTrack.faceInfos[0].y;
+            int i3 = this.faceDetTrack.faceInfos[0].f2709x;
+            int i4 = this.faceDetTrack.faceInfos[0].f2710y;
             int i5 = this.faceDetTrack.faceInfos[0].width;
             int i6 = this.faceDetTrack.faceInfos[0].height;
             int i7 = i3 - (i5 / 4) > 0 ? i3 - (i5 / 4) : 0;

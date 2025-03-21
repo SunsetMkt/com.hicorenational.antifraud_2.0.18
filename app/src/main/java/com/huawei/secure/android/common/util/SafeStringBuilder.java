@@ -5,11 +5,11 @@ import android.text.TextUtils;
 /* loaded from: classes.dex */
 public class SafeStringBuilder {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7698a = "SafeStringBuilder";
+    /* renamed from: a */
+    private static final String f8280a = "SafeStringBuilder";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7699b = "";
+    /* renamed from: b */
+    private static final String f8281b = "";
 
     public static String substring(StringBuilder sb, int i2) {
         if (!TextUtils.isEmpty(sb) && sb.length() >= i2 && i2 >= 0) {

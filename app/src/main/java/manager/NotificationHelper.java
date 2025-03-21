@@ -12,11 +12,11 @@ import android.content.pm.ApplicationInfo;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import androidx.core.app.NotificationManagerCompat;
-import c.c.a.b.a.a;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
-import ui.activity.MainActivity;
-import util.k1;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import p388ui.activity.MainActivity;
+import util.C7292k1;
 
 /* loaded from: classes2.dex */
 public class NotificationHelper {
@@ -56,12 +56,12 @@ public class NotificationHelper {
             builder = new Notification.Builder(context);
         }
         Intent intent = new Intent(context, (Class<?>) MainActivity.class);
-        intent.putExtra(k1.f20846d, "10010");
-        intent.putExtra(k1.Q, "https://www.baidu.com");
+        intent.putExtra(C7292k1.f25394d, "10010");
+        intent.putExtra(C7292k1.f25365Q, "https://www.baidu.com");
         intent.setFlags(CommonNetImpl.FLAG_AUTH);
-        intent.addFlags(a.B1);
+        intent.addFlags(AbstractC1191a.f2487B1);
         intent.addFlags(CommonNetImpl.FLAG_SHARE);
-        Notification build = builder.setContentTitle("通知栏标题").setContentText("打击防范网络诈骗").setWhen(System.currentTimeMillis()).setSmallIcon(R.mipmap.logo).setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher)).setTicker(CHANEL_NAME).setAutoCancel(false).setContentIntent(PendingIntent.getActivity(context, 0, intent, 0)).build();
+        Notification build = builder.setContentTitle("通知栏标题").setContentText("打击防范网络诈骗").setWhen(System.currentTimeMillis()).setSmallIcon(C2113R.mipmap.logo).setLargeIcon(BitmapFactory.decodeResource(context.getResources(), C2113R.mipmap.ic_launcher)).setTicker(CHANEL_NAME).setAutoCancel(false).setContentIntent(PendingIntent.getActivity(context, 0, intent, 0)).build();
         notificationManager.notify(NOTICE_ID, build);
         return build;
     }

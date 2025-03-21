@@ -8,94 +8,104 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lxj.easyadapter.ViewHolder;
-import h.q2.s.q;
-import h.q2.t.i0;
-import h.q2.t.j0;
-import h.q2.t.v;
-import h.y;
 import java.util.List;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.p310s.InterfaceC5511q;
+import p286h.p309q2.p311t.AbstractC5547j0;
+import p286h.p309q2.p311t.C5544i0;
+import p286h.p309q2.p311t.C5586v;
+import p324i.p336c.p337a.InterfaceC5816d;
+import p324i.p336c.p337a.InterfaceC5817e;
 
 /* compiled from: MultiItemTypeAdapter.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000d\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010 \n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0010\u000b\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\f\b\u0016\u0018\u0000 D*\u0004\b\u0000\u0010\u00012\b\u0012\u0004\u0012\u00020\u00030\u0002:\u0003DEFB\u0013\u0012\f\u0010\u0004\u001a\b\u0012\u0004\u0012\u00028\u00000\u0005¢\u0006\u0002\u0010\u0006J\u000e\u0010\"\u001a\u00020#2\u0006\u0010$\u001a\u00020\u0012J\u000e\u0010%\u001a\u00020#2\u0006\u0010$\u001a\u00020\u0012J\u001a\u0010&\u001a\b\u0012\u0004\u0012\u00028\u00000\u00002\f\u0010'\u001a\b\u0012\u0004\u0012\u00028\u00000(J\"\u0010&\u001a\b\u0012\u0004\u0012\u00028\u00000\u00002\u0006\u0010)\u001a\u00020\u000b2\f\u0010'\u001a\b\u0012\u0004\u0012\u00028\u00000(J\u001b\u0010*\u001a\u00020#2\u0006\u0010+\u001a\u00020\u00032\u0006\u0010,\u001a\u00028\u0000¢\u0006\u0002\u0010-J\b\u0010.\u001a\u00020\u000bH\u0016J\u0010\u0010/\u001a\u00020\u000b2\u0006\u00100\u001a\u00020\u000bH\u0016J\u0010\u00101\u001a\u0002022\u0006\u0010)\u001a\u00020\u000bH\u0004J\u0010\u00103\u001a\u0002022\u0006\u00100\u001a\u00020\u000bH\u0002J\u0010\u00104\u001a\u0002022\u0006\u00100\u001a\u00020\u000bH\u0002J\u0010\u00105\u001a\u00020#2\u0006\u00106\u001a\u000207H\u0016J\u0018\u00108\u001a\u00020#2\u0006\u0010+\u001a\u00020\u00032\u0006\u00100\u001a\u00020\u000bH\u0016J\u0018\u00109\u001a\u00020\u00032\u0006\u0010:\u001a\u00020;2\u0006\u0010)\u001a\u00020\u000bH\u0016J\u0010\u0010<\u001a\u00020#2\u0006\u0010+\u001a\u00020\u0003H\u0016J\u0016\u0010=\u001a\u00020#2\u0006\u0010+\u001a\u00020\u00032\u0006\u0010>\u001a\u00020\u0012J \u0010?\u001a\u00020#2\u0006\u0010:\u001a\u00020;2\u0006\u0010@\u001a\u00020\u00032\u0006\u0010)\u001a\u00020\u000bH\u0004J\u000e\u0010A\u001a\u00020#2\u0006\u0010B\u001a\u00020\u001bJ\b\u0010C\u001a\u000202H\u0004R \u0010\u0004\u001a\b\u0012\u0004\u0012\u00028\u00000\u0005X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0007\u0010\b\"\u0004\b\t\u0010\u0006R\u0011\u0010\n\u001a\u00020\u000b8F¢\u0006\u0006\u001a\u0004\b\f\u0010\rR\u0011\u0010\u000e\u001a\u00020\u000b8F¢\u0006\u0006\u001a\u0004\b\u000f\u0010\rR\u0014\u0010\u0010\u001a\b\u0012\u0004\u0012\u00020\u00120\u0011X\u0082\u0004¢\u0006\u0002\n\u0000R\u0014\u0010\u0013\u001a\b\u0012\u0004\u0012\u00020\u00120\u0011X\u0082\u0004¢\u0006\u0002\n\u0000R \u0010\u0014\u001a\b\u0012\u0004\u0012\u00028\u00000\u0015X\u0084\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0016\u0010\u0017\"\u0004\b\u0018\u0010\u0019R\u001c\u0010\u001a\u001a\u0004\u0018\u00010\u001bX\u0084\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u001d\"\u0004\b\u001e\u0010\u001fR\u0014\u0010 \u001a\u00020\u000b8BX\u0082\u0004¢\u0006\u0006\u001a\u0004\b!\u0010\r¨\u0006G"}, d2 = {"Lcom/lxj/easyadapter/MultiItemTypeAdapter;", ExifInterface.GPS_DIRECTION_TRUE, "Landroidx/recyclerview/widget/RecyclerView$Adapter;", "Lcom/lxj/easyadapter/ViewHolder;", "data", "", "(Ljava/util/List;)V", "getData", "()Ljava/util/List;", "setData", "footersCount", "", "getFootersCount", "()I", "headersCount", "getHeadersCount", "mFootViews", "Landroidx/collection/SparseArrayCompat;", "Landroid/view/View;", "mHeaderViews", "mItemDelegateManager", "Lcom/lxj/easyadapter/ItemDelegateManager;", "getMItemDelegateManager", "()Lcom/lxj/easyadapter/ItemDelegateManager;", "setMItemDelegateManager", "(Lcom/lxj/easyadapter/ItemDelegateManager;)V", "mOnItemClickListener", "Lcom/lxj/easyadapter/MultiItemTypeAdapter$OnItemClickListener;", "getMOnItemClickListener", "()Lcom/lxj/easyadapter/MultiItemTypeAdapter$OnItemClickListener;", "setMOnItemClickListener", "(Lcom/lxj/easyadapter/MultiItemTypeAdapter$OnItemClickListener;)V", "realItemCount", "getRealItemCount", "addFootView", "", "view", "addHeaderView", "addItemDelegate", "itemViewDelegate", "Lcom/lxj/easyadapter/ItemDelegate;", "viewType", "convert", "holder", "t", "(Lcom/lxj/easyadapter/ViewHolder;Ljava/lang/Object;)V", "getItemCount", "getItemViewType", "position", "isEnabled", "", "isFooterViewPos", "isHeaderViewPos", "onAttachedToRecyclerView", "recyclerView", "Landroidx/recyclerview/widget/RecyclerView;", "onBindViewHolder", "onCreateViewHolder", "parent", "Landroid/view/ViewGroup;", "onViewAttachedToWindow", "onViewHolderCreated", "itemView", "setListener", "viewHolder", "setOnItemClickListener", "onItemClickListener", "useItemDelegateManager", "Companion", "OnItemClickListener", "SimpleOnItemClickListener", "easy-adapter_release"}, k = 1, mv = {1, 1, 13})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000d\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010 \n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0010\u000b\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\f\b\u0016\u0018\u0000 D*\u0004\b\u0000\u0010\u00012\b\u0012\u0004\u0012\u00020\u00030\u0002:\u0003DEFB\u0013\u0012\f\u0010\u0004\u001a\b\u0012\u0004\u0012\u00028\u00000\u0005¢\u0006\u0002\u0010\u0006J\u000e\u0010\"\u001a\u00020#2\u0006\u0010$\u001a\u00020\u0012J\u000e\u0010%\u001a\u00020#2\u0006\u0010$\u001a\u00020\u0012J\u001a\u0010&\u001a\b\u0012\u0004\u0012\u00028\u00000\u00002\f\u0010'\u001a\b\u0012\u0004\u0012\u00028\u00000(J\"\u0010&\u001a\b\u0012\u0004\u0012\u00028\u00000\u00002\u0006\u0010)\u001a\u00020\u000b2\f\u0010'\u001a\b\u0012\u0004\u0012\u00028\u00000(J\u001b\u0010*\u001a\u00020#2\u0006\u0010+\u001a\u00020\u00032\u0006\u0010,\u001a\u00028\u0000¢\u0006\u0002\u0010-J\b\u0010.\u001a\u00020\u000bH\u0016J\u0010\u0010/\u001a\u00020\u000b2\u0006\u00100\u001a\u00020\u000bH\u0016J\u0010\u00101\u001a\u0002022\u0006\u0010)\u001a\u00020\u000bH\u0004J\u0010\u00103\u001a\u0002022\u0006\u00100\u001a\u00020\u000bH\u0002J\u0010\u00104\u001a\u0002022\u0006\u00100\u001a\u00020\u000bH\u0002J\u0010\u00105\u001a\u00020#2\u0006\u00106\u001a\u000207H\u0016J\u0018\u00108\u001a\u00020#2\u0006\u0010+\u001a\u00020\u00032\u0006\u00100\u001a\u00020\u000bH\u0016J\u0018\u00109\u001a\u00020\u00032\u0006\u0010:\u001a\u00020;2\u0006\u0010)\u001a\u00020\u000bH\u0016J\u0010\u0010<\u001a\u00020#2\u0006\u0010+\u001a\u00020\u0003H\u0016J\u0016\u0010=\u001a\u00020#2\u0006\u0010+\u001a\u00020\u00032\u0006\u0010>\u001a\u00020\u0012J \u0010?\u001a\u00020#2\u0006\u0010:\u001a\u00020;2\u0006\u0010@\u001a\u00020\u00032\u0006\u0010)\u001a\u00020\u000bH\u0004J\u000e\u0010A\u001a\u00020#2\u0006\u0010B\u001a\u00020\u001bJ\b\u0010C\u001a\u000202H\u0004R \u0010\u0004\u001a\b\u0012\u0004\u0012\u00028\u00000\u0005X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0007\u0010\b\"\u0004\b\t\u0010\u0006R\u0011\u0010\n\u001a\u00020\u000b8F¢\u0006\u0006\u001a\u0004\b\f\u0010\rR\u0011\u0010\u000e\u001a\u00020\u000b8F¢\u0006\u0006\u001a\u0004\b\u000f\u0010\rR\u0014\u0010\u0010\u001a\b\u0012\u0004\u0012\u00020\u00120\u0011X\u0082\u0004¢\u0006\u0002\n\u0000R\u0014\u0010\u0013\u001a\b\u0012\u0004\u0012\u00020\u00120\u0011X\u0082\u0004¢\u0006\u0002\n\u0000R \u0010\u0014\u001a\b\u0012\u0004\u0012\u00028\u00000\u0015X\u0084\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0016\u0010\u0017\"\u0004\b\u0018\u0010\u0019R\u001c\u0010\u001a\u001a\u0004\u0018\u00010\u001bX\u0084\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u001d\"\u0004\b\u001e\u0010\u001fR\u0014\u0010 \u001a\u00020\u000b8BX\u0082\u0004¢\u0006\u0006\u001a\u0004\b!\u0010\r¨\u0006G"}, m23546d2 = {"Lcom/lxj/easyadapter/MultiItemTypeAdapter;", ExifInterface.GPS_DIRECTION_TRUE, "Landroidx/recyclerview/widget/RecyclerView$Adapter;", "Lcom/lxj/easyadapter/ViewHolder;", "data", "", "(Ljava/util/List;)V", "getData", "()Ljava/util/List;", "setData", "footersCount", "", "getFootersCount", "()I", "headersCount", "getHeadersCount", "mFootViews", "Landroidx/collection/SparseArrayCompat;", "Landroid/view/View;", "mHeaderViews", "mItemDelegateManager", "Lcom/lxj/easyadapter/ItemDelegateManager;", "getMItemDelegateManager", "()Lcom/lxj/easyadapter/ItemDelegateManager;", "setMItemDelegateManager", "(Lcom/lxj/easyadapter/ItemDelegateManager;)V", "mOnItemClickListener", "Lcom/lxj/easyadapter/MultiItemTypeAdapter$OnItemClickListener;", "getMOnItemClickListener", "()Lcom/lxj/easyadapter/MultiItemTypeAdapter$OnItemClickListener;", "setMOnItemClickListener", "(Lcom/lxj/easyadapter/MultiItemTypeAdapter$OnItemClickListener;)V", "realItemCount", "getRealItemCount", "addFootView", "", "view", "addHeaderView", "addItemDelegate", "itemViewDelegate", "Lcom/lxj/easyadapter/ItemDelegate;", "viewType", "convert", "holder", "t", "(Lcom/lxj/easyadapter/ViewHolder;Ljava/lang/Object;)V", "getItemCount", "getItemViewType", "position", "isEnabled", "", "isFooterViewPos", "isHeaderViewPos", "onAttachedToRecyclerView", "recyclerView", "Landroidx/recyclerview/widget/RecyclerView;", "onBindViewHolder", "onCreateViewHolder", "parent", "Landroid/view/ViewGroup;", "onViewAttachedToWindow", "onViewHolderCreated", "itemView", "setListener", "viewHolder", "setOnItemClickListener", "onItemClickListener", "useItemDelegateManager", "Companion", "OnItemClickListener", "SimpleOnItemClickListener", "easy-adapter_release"}, m23547k = 1, m23548mv = {1, 1, 13})
 /* loaded from: classes.dex */
 public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
-    /* renamed from: f, reason: collision with root package name */
-    private static final int f7874f = 100000;
+    /* renamed from: f */
+    private static final int f8480f = 100000;
 
-    /* renamed from: g, reason: collision with root package name */
-    private static final int f7875g = 200000;
+    /* renamed from: g */
+    private static final int f8481g = 200000;
 
-    /* renamed from: h, reason: collision with root package name */
-    public static final a f7876h = new a(null);
+    /* renamed from: h */
+    public static final C2747a f8482h = new C2747a(null);
 
-    /* renamed from: a, reason: collision with root package name */
-    private final SparseArrayCompat<View> f7877a;
+    /* renamed from: a */
+    private final SparseArrayCompat<View> f8483a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final SparseArrayCompat<View> f7878b;
+    /* renamed from: b */
+    private final SparseArrayCompat<View> f8484b;
 
-    /* renamed from: c, reason: collision with root package name */
-    @i.c.a.d
-    private com.lxj.easyadapter.c<T> f7879c;
+    /* renamed from: c */
+    @InterfaceC5816d
+    private C2757c<T> f8485c;
 
-    /* renamed from: d, reason: collision with root package name */
-    @i.c.a.e
-    private b f7880d;
+    /* renamed from: d */
+    @InterfaceC5817e
+    private InterfaceC2748b f8486d;
 
-    /* renamed from: e, reason: collision with root package name */
-    @i.c.a.d
-    private List<? extends T> f7881e;
+    /* renamed from: e */
+    @InterfaceC5816d
+    private List<? extends T> f8487e;
 
     /* compiled from: MultiItemTypeAdapter.kt */
-    public static final class a {
-        private a() {
+    /* renamed from: com.lxj.easyadapter.MultiItemTypeAdapter$a */
+    public static final class C2747a {
+        private C2747a() {
         }
 
-        public /* synthetic */ a(v vVar) {
+        public /* synthetic */ C2747a(C5586v c5586v) {
             this();
         }
     }
 
     /* compiled from: MultiItemTypeAdapter.kt */
-    public interface b {
-        void a(@i.c.a.d View view, @i.c.a.d RecyclerView.ViewHolder viewHolder, int i2);
+    /* renamed from: com.lxj.easyadapter.MultiItemTypeAdapter$b */
+    public interface InterfaceC2748b {
+        /* renamed from: a */
+        void mo8228a(@InterfaceC5816d View view, @InterfaceC5816d RecyclerView.ViewHolder viewHolder, int i2);
 
-        boolean b(@i.c.a.d View view, @i.c.a.d RecyclerView.ViewHolder viewHolder, int i2);
+        /* renamed from: b */
+        boolean mo8229b(@InterfaceC5816d View view, @InterfaceC5816d RecyclerView.ViewHolder viewHolder, int i2);
     }
 
     /* compiled from: MultiItemTypeAdapter.kt */
-    public static class c implements b {
-        @Override // com.lxj.easyadapter.MultiItemTypeAdapter.b
-        public void a(@i.c.a.d View view, @i.c.a.d RecyclerView.ViewHolder viewHolder, int i2) {
-            i0.f(view, "view");
-            i0.f(viewHolder, "holder");
+    /* renamed from: com.lxj.easyadapter.MultiItemTypeAdapter$c */
+    public static class C2749c implements InterfaceC2748b {
+        @Override // com.lxj.easyadapter.MultiItemTypeAdapter.InterfaceC2748b
+        /* renamed from: a */
+        public void mo8228a(@InterfaceC5816d View view, @InterfaceC5816d RecyclerView.ViewHolder viewHolder, int i2) {
+            C5544i0.m22546f(view, "view");
+            C5544i0.m22546f(viewHolder, "holder");
         }
 
-        @Override // com.lxj.easyadapter.MultiItemTypeAdapter.b
-        public boolean b(@i.c.a.d View view, @i.c.a.d RecyclerView.ViewHolder viewHolder, int i2) {
-            i0.f(view, "view");
-            i0.f(viewHolder, "holder");
+        @Override // com.lxj.easyadapter.MultiItemTypeAdapter.InterfaceC2748b
+        /* renamed from: b */
+        public boolean mo8229b(@InterfaceC5816d View view, @InterfaceC5816d RecyclerView.ViewHolder viewHolder, int i2) {
+            C5544i0.m22546f(view, "view");
+            C5544i0.m22546f(viewHolder, "holder");
             return false;
         }
     }
 
     /* compiled from: MultiItemTypeAdapter.kt */
-    static final class d extends j0 implements q<GridLayoutManager, GridLayoutManager.SpanSizeLookup, Integer, Integer> {
-        d() {
+    /* renamed from: com.lxj.easyadapter.MultiItemTypeAdapter$d */
+    static final class C2750d extends AbstractC5547j0 implements InterfaceC5511q<GridLayoutManager, GridLayoutManager.SpanSizeLookup, Integer, Integer> {
+        C2750d() {
             super(3);
         }
 
-        @Override // h.q2.s.q
+        @Override // p286h.p309q2.p310s.InterfaceC5511q
         public /* bridge */ /* synthetic */ Integer invoke(GridLayoutManager gridLayoutManager, GridLayoutManager.SpanSizeLookup spanSizeLookup, Integer num) {
             return Integer.valueOf(invoke(gridLayoutManager, spanSizeLookup, num.intValue()));
         }
 
-        public final int invoke(@i.c.a.d GridLayoutManager gridLayoutManager, @i.c.a.d GridLayoutManager.SpanSizeLookup spanSizeLookup, int i2) {
-            i0.f(gridLayoutManager, "layoutManager");
-            i0.f(spanSizeLookup, "oldLookup");
+        public final int invoke(@InterfaceC5816d GridLayoutManager gridLayoutManager, @InterfaceC5816d GridLayoutManager.SpanSizeLookup spanSizeLookup, int i2) {
+            C5544i0.m22546f(gridLayoutManager, "layoutManager");
+            C5544i0.m22546f(spanSizeLookup, "oldLookup");
             int itemViewType = MultiItemTypeAdapter.this.getItemViewType(i2);
-            if (MultiItemTypeAdapter.this.f7877a.get(itemViewType) == null && MultiItemTypeAdapter.this.f7878b.get(itemViewType) == null) {
+            if (MultiItemTypeAdapter.this.f8483a.get(itemViewType) == null && MultiItemTypeAdapter.this.f8484b.get(itemViewType) == null) {
                 return spanSizeLookup.getSpanSize(i2);
             }
             return gridLayoutManager.getSpanCount();
@@ -103,234 +113,254 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     }
 
     /* compiled from: MultiItemTypeAdapter.kt */
-    static final class e implements View.OnClickListener {
+    /* renamed from: com.lxj.easyadapter.MultiItemTypeAdapter$e */
+    static final class ViewOnClickListenerC2751e implements View.OnClickListener {
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ ViewHolder f7883b;
+        /* renamed from: b */
+        final /* synthetic */ ViewHolder f8489b;
 
-        e(ViewHolder viewHolder) {
-            this.f7883b = viewHolder;
+        ViewOnClickListenerC2751e(ViewHolder viewHolder) {
+            this.f8489b = viewHolder;
         }
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            if (MultiItemTypeAdapter.this.e() != null) {
-                int adapterPosition = this.f7883b.getAdapterPosition() - MultiItemTypeAdapter.this.c();
-                b e2 = MultiItemTypeAdapter.this.e();
-                if (e2 == null) {
-                    i0.f();
+            if (MultiItemTypeAdapter.this.m8226e() != null) {
+                int adapterPosition = this.f8489b.getAdapterPosition() - MultiItemTypeAdapter.this.m8224c();
+                InterfaceC2748b m8226e = MultiItemTypeAdapter.this.m8226e();
+                if (m8226e == null) {
+                    C5544i0.m22545f();
                 }
-                i0.a((Object) view, "v");
-                e2.a(view, this.f7883b, adapterPosition);
+                C5544i0.m22521a((Object) view, "v");
+                m8226e.mo8228a(view, this.f8489b, adapterPosition);
             }
         }
     }
 
     /* compiled from: MultiItemTypeAdapter.kt */
-    static final class f implements View.OnLongClickListener {
+    /* renamed from: com.lxj.easyadapter.MultiItemTypeAdapter$f */
+    static final class ViewOnLongClickListenerC2752f implements View.OnLongClickListener {
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ ViewHolder f7885b;
+        /* renamed from: b */
+        final /* synthetic */ ViewHolder f8491b;
 
-        f(ViewHolder viewHolder) {
-            this.f7885b = viewHolder;
+        ViewOnLongClickListenerC2752f(ViewHolder viewHolder) {
+            this.f8491b = viewHolder;
         }
 
         @Override // android.view.View.OnLongClickListener
         public final boolean onLongClick(View view) {
-            if (MultiItemTypeAdapter.this.e() == null) {
+            if (MultiItemTypeAdapter.this.m8226e() == null) {
                 return false;
             }
-            int adapterPosition = this.f7885b.getAdapterPosition() - MultiItemTypeAdapter.this.c();
-            b e2 = MultiItemTypeAdapter.this.e();
-            if (e2 == null) {
-                i0.f();
+            int adapterPosition = this.f8491b.getAdapterPosition() - MultiItemTypeAdapter.this.m8224c();
+            InterfaceC2748b m8226e = MultiItemTypeAdapter.this.m8226e();
+            if (m8226e == null) {
+                C5544i0.m22545f();
             }
-            i0.a((Object) view, "v");
-            return e2.b(view, this.f7885b, adapterPosition);
+            C5544i0.m22521a((Object) view, "v");
+            return m8226e.mo8229b(view, this.f8491b, adapterPosition);
         }
     }
 
-    public MultiItemTypeAdapter(@i.c.a.d List<? extends T> list) {
-        i0.f(list, "data");
-        this.f7881e = list;
-        this.f7877a = new SparseArrayCompat<>();
-        this.f7878b = new SparseArrayCompat<>();
-        this.f7879c = new com.lxj.easyadapter.c<>();
+    public MultiItemTypeAdapter(@InterfaceC5816d List<? extends T> list) {
+        C5544i0.m22546f(list, "data");
+        this.f8487e = list;
+        this.f8483a = new SparseArrayCompat<>();
+        this.f8484b = new SparseArrayCompat<>();
+        this.f8485c = new C2757c<>();
     }
 
-    private final int g() {
-        return (getItemCount() - c()) - b();
+    /* renamed from: g */
+    private final int m8210g() {
+        return (getItemCount() - m8224c()) - m8222b();
     }
 
-    public final void a(@i.c.a.d ViewHolder viewHolder, @i.c.a.d View view) {
-        i0.f(viewHolder, "holder");
-        i0.f(view, "itemView");
+    /* renamed from: a */
+    public final void m8218a(@InterfaceC5816d ViewHolder viewHolder, @InterfaceC5816d View view) {
+        C5544i0.m22546f(viewHolder, "holder");
+        C5544i0.m22546f(view, "itemView");
     }
 
-    protected final boolean a(int i2) {
+    /* renamed from: a */
+    protected final boolean m8221a(int i2) {
         return true;
     }
 
-    public final int c() {
-        return this.f7877a.size();
+    /* renamed from: c */
+    public final int m8224c() {
+        return this.f8483a.size();
     }
 
-    @i.c.a.d
-    protected final com.lxj.easyadapter.c<T> d() {
-        return this.f7879c;
+    @InterfaceC5816d
+    /* renamed from: d */
+    protected final C2757c<T> m8225d() {
+        return this.f8485c;
     }
 
-    @i.c.a.e
-    protected final b e() {
-        return this.f7880d;
+    @InterfaceC5817e
+    /* renamed from: e */
+    protected final InterfaceC2748b m8226e() {
+        return this.f8486d;
     }
 
-    protected final boolean f() {
-        return this.f7879c.a() > 0;
+    /* renamed from: f */
+    protected final boolean m8227f() {
+        return this.f8485c.m8238a() > 0;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
-        return c() + b() + this.f7881e.size();
+        return m8224c() + m8222b() + this.f8487e.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int i2) {
-        return c(i2) ? this.f7877a.keyAt(i2) : b(i2) ? this.f7878b.keyAt((i2 - c()) - g()) : !f() ? super.getItemViewType(i2) : this.f7879c.a((com.lxj.easyadapter.c<T>) this.f7881e.get(i2 - c()), i2 - c());
+        return m8209c(i2) ? this.f8483a.keyAt(i2) : m8208b(i2) ? this.f8484b.keyAt((i2 - m8224c()) - m8210g()) : !m8227f() ? super.getItemViewType(i2) : this.f8485c.m8240a((C2757c<T>) this.f8487e.get(i2 - m8224c()), i2 - m8224c());
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public void onAttachedToRecyclerView(@i.c.a.d RecyclerView recyclerView) {
-        i0.f(recyclerView, "recyclerView");
+    public void onAttachedToRecyclerView(@InterfaceC5816d RecyclerView recyclerView) {
+        C5544i0.m22546f(recyclerView, "recyclerView");
         super.onAttachedToRecyclerView(recyclerView);
-        WrapperUtils.f7889a.a(recyclerView, new d());
+        WrapperUtils.f8496a.m8237a(recyclerView, new C2750d());
     }
 
-    public final void setData(@i.c.a.d List<? extends T> list) {
-        i0.f(list, "<set-?>");
-        this.f7881e = list;
+    public final void setData(@InterfaceC5816d List<? extends T> list) {
+        C5544i0.m22546f(list, "<set-?>");
+        this.f8487e = list;
     }
 
-    protected final void setMOnItemClickListener(@i.c.a.e b bVar) {
-        this.f7880d = bVar;
+    protected final void setMOnItemClickListener(@InterfaceC5817e InterfaceC2748b interfaceC2748b) {
+        this.f8486d = interfaceC2748b;
     }
 
-    public final void setOnItemClickListener(@i.c.a.d b bVar) {
-        i0.f(bVar, "onItemClickListener");
-        this.f7880d = bVar;
+    public final void setOnItemClickListener(@InterfaceC5816d InterfaceC2748b interfaceC2748b) {
+        C5544i0.m22546f(interfaceC2748b, "onItemClickListener");
+        this.f8486d = interfaceC2748b;
     }
 
-    private final boolean c(int i2) {
-        return i2 < c();
+    /* renamed from: c */
+    private final boolean m8209c(int i2) {
+        return i2 < m8224c();
     }
 
-    @i.c.a.d
-    public final List<T> a() {
-        return this.f7881e;
+    @InterfaceC5816d
+    /* renamed from: a */
+    public final List<T> m8213a() {
+        return this.f8487e;
     }
 
-    public final int b() {
-        return this.f7878b.size();
+    /* renamed from: b */
+    public final int m8222b() {
+        return this.f8484b.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    @i.c.a.d
-    public ViewHolder onCreateViewHolder(@i.c.a.d ViewGroup viewGroup, int i2) {
-        i0.f(viewGroup, "parent");
-        if (this.f7877a.get(i2) != null) {
-            ViewHolder.a aVar = ViewHolder.f7886c;
-            View view = this.f7877a.get(i2);
+    @InterfaceC5816d
+    public ViewHolder onCreateViewHolder(@InterfaceC5816d ViewGroup viewGroup, int i2) {
+        C5544i0.m22546f(viewGroup, "parent");
+        if (this.f8483a.get(i2) != null) {
+            ViewHolder.C2754a c2754a = ViewHolder.f8493c;
+            View view = this.f8483a.get(i2);
             if (view == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
-            return aVar.a(view);
+            return c2754a.m8235a(view);
         }
-        if (this.f7878b.get(i2) != null) {
-            ViewHolder.a aVar2 = ViewHolder.f7886c;
-            View view2 = this.f7878b.get(i2);
+        if (this.f8484b.get(i2) != null) {
+            ViewHolder.C2754a c2754a2 = ViewHolder.f8493c;
+            View view2 = this.f8484b.get(i2);
             if (view2 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
-            return aVar2.a(view2);
+            return c2754a2.m8235a(view2);
         }
-        int a2 = this.f7879c.b(i2).a();
-        ViewHolder.a aVar3 = ViewHolder.f7886c;
+        int mo8203a = this.f8485c.m8245b(i2).mo8203a();
+        ViewHolder.C2754a c2754a3 = ViewHolder.f8493c;
         Context context = viewGroup.getContext();
-        i0.a((Object) context, "parent.context");
-        ViewHolder a3 = aVar3.a(context, viewGroup, a2);
-        a(a3, a3.a());
-        a(viewGroup, a3, i2);
-        return a3;
+        C5544i0.m22521a((Object) context, "parent.context");
+        ViewHolder m8234a = c2754a3.m8234a(context, viewGroup, mo8203a);
+        m8218a(m8234a, m8234a.m8230a());
+        m8215a(viewGroup, m8234a, i2);
+        return m8234a;
     }
 
-    private final boolean b(int i2) {
-        return i2 >= c() + g();
+    /* renamed from: b */
+    private final boolean m8208b(int i2) {
+        return i2 >= m8224c() + m8210g();
     }
 
-    protected final void a(@i.c.a.d com.lxj.easyadapter.c<T> cVar) {
-        i0.f(cVar, "<set-?>");
-        this.f7879c = cVar;
+    /* renamed from: a */
+    protected final void m8220a(@InterfaceC5816d C2757c<T> c2757c) {
+        C5544i0.m22546f(c2757c, "<set-?>");
+        this.f8485c = c2757c;
     }
 
-    public final void a(@i.c.a.d ViewHolder viewHolder, T t) {
-        i0.f(viewHolder, "holder");
-        this.f7879c.a(viewHolder, t, viewHolder.getAdapterPosition() - c());
+    /* renamed from: a */
+    public final void m8219a(@InterfaceC5816d ViewHolder viewHolder, T t) {
+        C5544i0.m22546f(viewHolder, "holder");
+        this.f8485c.m8243a(viewHolder, t, viewHolder.getAdapterPosition() - m8224c());
     }
 
-    public final void b(@i.c.a.d View view) {
-        i0.f(view, "view");
-        SparseArrayCompat<View> sparseArrayCompat = this.f7877a;
-        sparseArrayCompat.put(sparseArrayCompat.size() + f7874f, view);
+    /* renamed from: b */
+    public final void m8223b(@InterfaceC5816d View view) {
+        C5544i0.m22546f(view, "view");
+        SparseArrayCompat<View> sparseArrayCompat = this.f8483a;
+        sparseArrayCompat.put(sparseArrayCompat.size() + f8480f, view);
     }
 
-    protected final void a(@i.c.a.d ViewGroup viewGroup, @i.c.a.d ViewHolder viewHolder, int i2) {
-        i0.f(viewGroup, "parent");
-        i0.f(viewHolder, "viewHolder");
-        if (a(i2)) {
-            viewHolder.a().setOnClickListener(new e(viewHolder));
-            viewHolder.a().setOnLongClickListener(new f(viewHolder));
+    /* renamed from: a */
+    protected final void m8215a(@InterfaceC5816d ViewGroup viewGroup, @InterfaceC5816d ViewHolder viewHolder, int i2) {
+        C5544i0.m22546f(viewGroup, "parent");
+        C5544i0.m22546f(viewHolder, "viewHolder");
+        if (m8221a(i2)) {
+            viewHolder.m8230a().setOnClickListener(new ViewOnClickListenerC2751e(viewHolder));
+            viewHolder.m8230a().setOnLongClickListener(new ViewOnLongClickListenerC2752f(viewHolder));
         }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* renamed from: a, reason: merged with bridge method [inline-methods] */
-    public void onBindViewHolder(@i.c.a.d ViewHolder viewHolder, int i2) {
-        i0.f(viewHolder, "holder");
-        if (c(i2) || b(i2)) {
+    public void onBindViewHolder(@InterfaceC5816d ViewHolder viewHolder, int i2) {
+        C5544i0.m22546f(viewHolder, "holder");
+        if (m8209c(i2) || m8208b(i2)) {
             return;
         }
-        a(viewHolder, (ViewHolder) this.f7881e.get(i2 - c()));
+        m8219a(viewHolder, (ViewHolder) this.f8487e.get(i2 - m8224c()));
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* renamed from: a, reason: merged with bridge method [inline-methods] */
-    public void onViewAttachedToWindow(@i.c.a.d ViewHolder viewHolder) {
-        i0.f(viewHolder, "holder");
+    public void onViewAttachedToWindow(@InterfaceC5816d ViewHolder viewHolder) {
+        C5544i0.m22546f(viewHolder, "holder");
         super.onViewAttachedToWindow(viewHolder);
         int layoutPosition = viewHolder.getLayoutPosition();
-        if (c(layoutPosition) || b(layoutPosition)) {
-            WrapperUtils.f7889a.a(viewHolder);
+        if (m8209c(layoutPosition) || m8208b(layoutPosition)) {
+            WrapperUtils.f8496a.m8236a(viewHolder);
         }
     }
 
-    public final void a(@i.c.a.d View view) {
-        i0.f(view, "view");
-        SparseArrayCompat<View> sparseArrayCompat = this.f7878b;
-        sparseArrayCompat.put(sparseArrayCompat.size() + f7875g, view);
+    /* renamed from: a */
+    public final void m8214a(@InterfaceC5816d View view) {
+        C5544i0.m22546f(view, "view");
+        SparseArrayCompat<View> sparseArrayCompat = this.f8484b;
+        sparseArrayCompat.put(sparseArrayCompat.size() + f8481g, view);
     }
 
-    @i.c.a.d
-    public final MultiItemTypeAdapter<T> a(@i.c.a.d com.lxj.easyadapter.b<T> bVar) {
-        i0.f(bVar, "itemViewDelegate");
-        this.f7879c.a(bVar);
+    @InterfaceC5816d
+    /* renamed from: a */
+    public final MultiItemTypeAdapter<T> m8212a(@InterfaceC5816d InterfaceC2756b<T> interfaceC2756b) {
+        C5544i0.m22546f(interfaceC2756b, "itemViewDelegate");
+        this.f8485c.m8242a(interfaceC2756b);
         return this;
     }
 
-    @i.c.a.d
-    public final MultiItemTypeAdapter<T> a(int i2, @i.c.a.d com.lxj.easyadapter.b<T> bVar) {
-        i0.f(bVar, "itemViewDelegate");
-        this.f7879c.a(i2, bVar);
+    @InterfaceC5816d
+    /* renamed from: a */
+    public final MultiItemTypeAdapter<T> m8211a(int i2, @InterfaceC5816d InterfaceC2756b<T> interfaceC2756b) {
+        C5544i0.m22546f(interfaceC2756b, "itemViewDelegate");
+        this.f8485c.m8241a(i2, interfaceC2756b);
         return this;
     }
 }

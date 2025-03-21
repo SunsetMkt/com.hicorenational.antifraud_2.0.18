@@ -7,7 +7,9 @@ public class QABean extends BaseBean {
     private String answer;
     private String createTime;
     private String description;
-    private String id;
+
+    /* renamed from: id */
+    private String f1611id;
     private int isShow;
     private int qaClassifyCode;
     private String question;
@@ -27,7 +29,7 @@ public class QABean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1611id;
     }
 
     public int getIsShow() {
@@ -63,7 +65,7 @@ public class QABean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1611id = str;
     }
 
     public void setIsShow(int i2) {

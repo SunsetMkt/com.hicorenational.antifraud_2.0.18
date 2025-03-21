@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="报案人签字："/>
-    <ui.view.signature.GestureSignatureView
+    <p388ui.view.signature.GestureSignatureView
         android:id="@+id/gsv_signature"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

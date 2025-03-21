@@ -38,32 +38,32 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
             initCompleteText(list);
             PictureParameterStyle pictureParameterStyle = this.config.style;
             if (pictureParameterStyle == null) {
-                this.mPictureSendView.setBackgroundResource(R.drawable.picture_send_button_bg);
-                this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_white));
-                this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_white));
-                this.mTvPicturePreview.setText(getString(R.string.picture_preview_num, new Object[]{Integer.valueOf(size)}));
+                this.mPictureSendView.setBackgroundResource(C2639R.drawable.picture_send_button_bg);
+                this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_white));
+                this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_white));
+                this.mTvPicturePreview.setText(getString(C2639R.string.picture_preview_num, new Object[]{Integer.valueOf(size)}));
                 return;
             }
             int i2 = pictureParameterStyle.pictureCompleteBackgroundStyle;
             if (i2 != 0) {
                 this.mPictureSendView.setBackgroundResource(i2);
             } else {
-                this.mPictureSendView.setBackgroundResource(R.drawable.picture_send_button_bg);
+                this.mPictureSendView.setBackgroundResource(C2639R.drawable.picture_send_button_bg);
             }
             int i3 = this.config.style.pictureCompleteTextColor;
             if (i3 != 0) {
                 this.mPictureSendView.setTextColor(i3);
             } else {
-                this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_white));
+                this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_white));
             }
             int i4 = this.config.style.picturePreviewTextColor;
             if (i4 != 0) {
                 this.mTvPicturePreview.setTextColor(i4);
             } else {
-                this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_white));
+                this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_white));
             }
             if (TextUtils.isEmpty(this.config.style.picturePreviewText)) {
-                this.mTvPicturePreview.setText(getString(R.string.picture_preview_num, new Object[]{Integer.valueOf(size)}));
+                this.mTvPicturePreview.setText(getString(C2639R.string.picture_preview_num, new Object[]{Integer.valueOf(size)}));
                 return;
             } else {
                 this.mTvPicturePreview.setText(this.config.style.picturePreviewText);
@@ -76,38 +76,38 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
         this.mTvPicturePreview.setSelected(false);
         PictureParameterStyle pictureParameterStyle2 = this.config.style;
         if (pictureParameterStyle2 == null) {
-            this.mPictureSendView.setBackgroundResource(R.drawable.picture_send_button_default_bg);
-            this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_53575e));
-            this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_9b));
-            this.mTvPicturePreview.setText(getString(R.string.picture_preview));
-            this.mPictureSendView.setText(getString(R.string.picture_send));
+            this.mPictureSendView.setBackgroundResource(C2639R.drawable.picture_send_button_default_bg);
+            this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_53575e));
+            this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_9b));
+            this.mTvPicturePreview.setText(getString(C2639R.string.picture_preview));
+            this.mPictureSendView.setText(getString(C2639R.string.picture_send));
             return;
         }
         int i5 = pictureParameterStyle2.pictureUnCompleteBackgroundStyle;
         if (i5 != 0) {
             this.mPictureSendView.setBackgroundResource(i5);
         } else {
-            this.mPictureSendView.setBackgroundResource(R.drawable.picture_send_button_default_bg);
+            this.mPictureSendView.setBackgroundResource(C2639R.drawable.picture_send_button_default_bg);
         }
         int i6 = this.config.style.pictureUnCompleteTextColor;
         if (i6 != 0) {
             this.mPictureSendView.setTextColor(i6);
         } else {
-            this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_53575e));
+            this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_53575e));
         }
         int i7 = this.config.style.pictureUnPreviewTextColor;
         if (i7 != 0) {
             this.mTvPicturePreview.setTextColor(i7);
         } else {
-            this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_9b));
+            this.mTvPicturePreview.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_9b));
         }
         if (TextUtils.isEmpty(this.config.style.pictureUnCompleteText)) {
-            this.mPictureSendView.setText(getString(R.string.picture_send));
+            this.mPictureSendView.setText(getString(C2639R.string.picture_send));
         } else {
             this.mPictureSendView.setText(this.config.style.pictureUnCompleteText);
         }
         if (TextUtils.isEmpty(this.config.style.pictureUnPreviewText)) {
-            this.mTvPicturePreview.setText(getString(R.string.picture_preview));
+            this.mTvPicturePreview.setText(getString(C2639R.string.picture_preview));
         } else {
             this.mTvPicturePreview.setText(this.config.style.pictureUnPreviewText);
         }
@@ -115,7 +115,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
 
     @Override // com.luck.picture.lib.PictureSelectorActivity, com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return R.layout.picture_wechat_style_selector;
+        return C2639R.layout.picture_wechat_style_selector;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
@@ -132,7 +132,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
             PictureSelectionConfig pictureSelectionConfig2 = this.config;
             if (pictureSelectionConfig2.selectionMode == 1) {
                 if (!(z && pictureSelectionConfig2.style.isCompleteReplaceNum) || TextUtils.isEmpty(this.config.style.pictureCompleteText)) {
-                    this.mPictureSendView.setText((!z || TextUtils.isEmpty(this.config.style.pictureCompleteText)) ? getString(R.string.picture_send) : this.config.style.pictureCompleteText);
+                    this.mPictureSendView.setText((!z || TextUtils.isEmpty(this.config.style.pictureCompleteText)) ? getString(C2639R.string.picture_send) : this.config.style.pictureCompleteText);
                     return;
                 } else {
                     this.mPictureSendView.setText(String.format(this.config.style.pictureCompleteText, Integer.valueOf(size), 1));
@@ -140,7 +140,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
                 }
             }
             if (!(z && pictureSelectionConfig2.style.isCompleteReplaceNum) || TextUtils.isEmpty(this.config.style.pictureCompleteText)) {
-                this.mPictureSendView.setText((!z || TextUtils.isEmpty(this.config.style.pictureUnCompleteText)) ? getString(R.string.picture_send_num, new Object[]{Integer.valueOf(size), Integer.valueOf(i2)}) : this.config.style.pictureUnCompleteText);
+                this.mPictureSendView.setText((!z || TextUtils.isEmpty(this.config.style.pictureUnCompleteText)) ? getString(C2639R.string.picture_send_num, new Object[]{Integer.valueOf(size), Integer.valueOf(i2)}) : this.config.style.pictureUnCompleteText);
                 return;
             } else {
                 this.mPictureSendView.setText(String.format(this.config.style.pictureCompleteText, Integer.valueOf(size), Integer.valueOf(i2)));
@@ -149,11 +149,11 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
         }
         if (pictureSelectionConfig.selectionMode == 1) {
             if (size <= 0) {
-                this.mPictureSendView.setText((!z || TextUtils.isEmpty(pictureSelectionConfig.style.pictureUnCompleteText)) ? getString(R.string.picture_send) : this.config.style.pictureUnCompleteText);
+                this.mPictureSendView.setText((!z || TextUtils.isEmpty(pictureSelectionConfig.style.pictureUnCompleteText)) ? getString(C2639R.string.picture_send) : this.config.style.pictureUnCompleteText);
                 return;
             }
             if (!(z && pictureSelectionConfig.style.isCompleteReplaceNum) || TextUtils.isEmpty(this.config.style.pictureCompleteText)) {
-                this.mPictureSendView.setText((!z || TextUtils.isEmpty(this.config.style.pictureCompleteText)) ? getString(R.string.picture_send) : this.config.style.pictureCompleteText);
+                this.mPictureSendView.setText((!z || TextUtils.isEmpty(this.config.style.pictureCompleteText)) ? getString(C2639R.string.picture_send) : this.config.style.pictureCompleteText);
                 return;
             } else {
                 this.mPictureSendView.setText(String.format(this.config.style.pictureCompleteText, Integer.valueOf(size), 1));
@@ -169,7 +169,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
         }
         TextView textView2 = this.mPictureSendView;
         if (!z || TextUtils.isEmpty(this.config.style.pictureUnCompleteText)) {
-            int i3 = R.string.picture_send_num;
+            int i3 = C2639R.string.picture_send_num;
             PictureSelectionConfig pictureSelectionConfig4 = this.config;
             string = getString(i3, new Object[]{Integer.valueOf(size), Integer.valueOf(pictureSelectionConfig4.maxVideoSelectNum + pictureSelectionConfig4.maxSelectNum)});
         } else {
@@ -186,13 +186,13 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
             if (i2 != 0) {
                 this.mPictureSendView.setBackgroundResource(i2);
             } else {
-                this.mPictureSendView.setBackgroundResource(R.drawable.picture_send_button_default_bg);
+                this.mPictureSendView.setBackgroundResource(C2639R.drawable.picture_send_button_default_bg);
             }
             int i3 = this.config.style.pictureBottomBgColor;
             if (i3 != 0) {
                 this.mBottomLayout.setBackgroundColor(i3);
             } else {
-                this.mBottomLayout.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.picture_color_grey));
+                this.mBottomLayout.setBackgroundColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_grey));
             }
             PictureParameterStyle pictureParameterStyle2 = this.config.style;
             int i4 = pictureParameterStyle2.pictureUnCompleteTextColor;
@@ -203,7 +203,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
                 if (i5 != 0) {
                     this.mPictureSendView.setTextColor(i5);
                 } else {
-                    this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_53575e));
+                    this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_53575e));
                 }
             }
             int i6 = this.config.style.pictureRightTextSize;
@@ -211,11 +211,11 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
                 this.mPictureSendView.setTextSize(i6);
             }
             if (this.config.style.pictureOriginalFontColor == 0) {
-                this.mCbOriginal.setTextColor(ContextCompat.getColor(this, R.color.picture_color_white));
+                this.mCbOriginal.setTextColor(ContextCompat.getColor(this, C2639R.color.picture_color_white));
             }
             PictureSelectionConfig pictureSelectionConfig = this.config;
             if (pictureSelectionConfig.isOriginalControl && pictureSelectionConfig.style.pictureOriginalControlStyle == 0) {
-                this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, R.drawable.picture_original_wechat_checkbox));
+                this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, C2639R.drawable.picture_original_wechat_checkbox));
             }
             int i7 = this.config.style.pictureContainerBackgroundColor;
             if (i7 != 0) {
@@ -225,25 +225,25 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
             if (i8 != 0) {
                 this.rlAlbum.setBackgroundResource(i8);
             } else {
-                this.rlAlbum.setBackgroundResource(R.drawable.picture_album_bg);
+                this.rlAlbum.setBackgroundResource(C2639R.drawable.picture_album_bg);
             }
             if (!TextUtils.isEmpty(this.config.style.pictureUnCompleteText)) {
                 this.mPictureSendView.setText(this.config.style.pictureUnCompleteText);
             }
         } else {
-            this.mPictureSendView.setBackgroundResource(R.drawable.picture_send_button_default_bg);
-            this.rlAlbum.setBackgroundResource(R.drawable.picture_album_bg);
-            this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_53575e));
-            int typeValueColor = AttrsUtils.getTypeValueColor(getContext(), R.attr.picture_bottom_bg);
+            this.mPictureSendView.setBackgroundResource(C2639R.drawable.picture_send_button_default_bg);
+            this.rlAlbum.setBackgroundResource(C2639R.drawable.picture_album_bg);
+            this.mPictureSendView.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_53575e));
+            int typeValueColor = AttrsUtils.getTypeValueColor(getContext(), C2639R.attr.picture_bottom_bg);
             RelativeLayout relativeLayout = this.mBottomLayout;
             if (typeValueColor == 0) {
-                typeValueColor = ContextCompat.getColor(getContext(), R.color.picture_color_grey);
+                typeValueColor = ContextCompat.getColor(getContext(), C2639R.color.picture_color_grey);
             }
             relativeLayout.setBackgroundColor(typeValueColor);
-            this.mCbOriginal.setTextColor(ContextCompat.getColor(this, R.color.picture_color_white));
-            this.mIvArrow.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.picture_icon_wechat_down));
+            this.mCbOriginal.setTextColor(ContextCompat.getColor(this, C2639R.color.picture_color_white));
+            this.mIvArrow.setImageDrawable(ContextCompat.getDrawable(this, C2639R.drawable.picture_icon_wechat_down));
             if (this.config.isOriginalControl) {
-                this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, R.drawable.picture_original_wechat_checkbox));
+                this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, C2639R.drawable.picture_original_wechat_checkbox));
             }
         }
         super.initPictureSelectorStyle();
@@ -253,10 +253,10 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
     @Override // com.luck.picture.lib.PictureSelectorActivity, com.luck.picture.lib.PictureBaseActivity
     protected void initWidgets() {
         super.initWidgets();
-        this.rlAlbum = (RelativeLayout) findViewById(R.id.rlAlbum);
-        this.mPictureSendView = (TextView) findViewById(R.id.picture_send);
+        this.rlAlbum = (RelativeLayout) findViewById(C2639R.id.rlAlbum);
+        this.mPictureSendView = (TextView) findViewById(C2639R.id.picture_send);
         this.mPictureSendView.setOnClickListener(this);
-        this.mPictureSendView.setText(getString(R.string.picture_send));
+        this.mPictureSendView.setText(getString(C2639R.string.picture_send));
         this.mTvPicturePreview.setTextSize(16.0f);
         this.mCbOriginal.setTextSize(16.0f);
         PictureSelectionConfig pictureSelectionConfig = this.config;
@@ -269,7 +269,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
         if (z) {
             layoutParams.addRule(14);
         } else {
-            layoutParams.addRule(1, R.id.picture_left_back);
+            layoutParams.addRule(1, C2639R.id.picture_left_back);
         }
     }
 
@@ -282,7 +282,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
     @Override // com.luck.picture.lib.PictureSelectorActivity, android.view.View.OnClickListener
     public void onClick(View view) {
         super.onClick(view);
-        if (view.getId() == R.id.picture_send) {
+        if (view.getId() == C2639R.id.picture_send) {
             FolderPopWindow folderPopWindow = this.folderWindow;
             if (folderPopWindow == null || !folderPopWindow.isShowing()) {
                 this.mTvPictureOk.performClick();

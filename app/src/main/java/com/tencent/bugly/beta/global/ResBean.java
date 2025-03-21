@@ -9,27 +9,28 @@ import java.util.concurrent.ConcurrentHashMap;
 /* loaded from: classes2.dex */
 public class ResBean implements Parcelable, Parcelable.Creator<ResBean> {
 
-    /* renamed from: a, reason: collision with root package name */
-    public static ResBean f8780a;
+    /* renamed from: a */
+    public static ResBean f9856a;
 
-    /* renamed from: b, reason: collision with root package name */
-    public static final String[] f8781b = {"IMG_title", "VAL_style"};
+    /* renamed from: b */
+    public static final String[] f9857b = {"IMG_title", "VAL_style"};
     public static final Parcelable.Creator<ResBean> CREATOR = new ResBean();
 
-    /* renamed from: e, reason: collision with root package name */
-    private Map<String, String> f8784e = new ConcurrentHashMap();
+    /* renamed from: e */
+    private Map<String, String> f9860e = new ConcurrentHashMap();
 
-    /* renamed from: c, reason: collision with root package name */
-    public final String f8782c = "#273238";
+    /* renamed from: c */
+    public final String f9858c = "#273238";
 
-    /* renamed from: d, reason: collision with root package name */
-    public final String f8783d = "#757575";
+    /* renamed from: d */
+    public final String f9859d = "#757575";
 
     public ResBean() {
     }
 
-    public String a(String str) {
-        return this.f8784e.get(str);
+    /* renamed from: a */
+    public String m9318a(String str) {
+        return this.f9860e.get(str);
     }
 
     @Override // android.os.Parcelable.Creator
@@ -45,14 +46,15 @@ public class ResBean implements Parcelable, Parcelable.Creator<ResBean> {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        for (String str : f8781b) {
-            parcel.writeString(this.f8784e.get(str));
+        for (String str : f9857b) {
+            parcel.writeString(this.f9860e.get(str));
         }
     }
 
-    public void a(String str, Object obj) {
+    /* renamed from: a */
+    public void m9319a(String str, Object obj) {
         if (obj instanceof String) {
-            this.f8784e.put(str, (String) obj);
+            this.f9860e.put(str, (String) obj);
         }
     }
 
@@ -64,8 +66,8 @@ public class ResBean implements Parcelable, Parcelable.Creator<ResBean> {
 
     public ResBean(Parcel parcel) {
         try {
-            for (String str : f8781b) {
-                this.f8784e.put(str, parcel.readString());
+            for (String str : f9857b) {
+                this.f9860e.put(str, parcel.readString());
             }
         } catch (Exception e2) {
             e2.printStackTrace();

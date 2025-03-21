@@ -6,66 +6,73 @@ import org.xmlpull.v1.XmlPullParser;
 
 /* loaded from: classes.dex */
 public class UserLoginInfo implements Parcelable {
-    public static final Parcelable.Creator<UserLoginInfo> CREATOR = new a();
+    public static final Parcelable.Creator<UserLoginInfo> CREATOR = new C2162a();
 
-    /* renamed from: i, reason: collision with root package name */
-    public static final String f6190i = "userID";
+    /* renamed from: i */
+    public static final String f6638i = "userID";
 
-    /* renamed from: j, reason: collision with root package name */
-    public static final String f6191j = "registerTime";
+    /* renamed from: j */
+    public static final String f6639j = "registerTime";
 
-    /* renamed from: k, reason: collision with root package name */
-    public static final String f6192k = "unRegisterTime";
+    /* renamed from: k */
+    public static final String f6640k = "unRegisterTime";
 
-    /* renamed from: l, reason: collision with root package name */
-    public static final String f6193l = "lastLoginTime";
+    /* renamed from: l */
+    public static final String f6641l = "lastLoginTime";
 
-    /* renamed from: m, reason: collision with root package name */
-    public static final String f6194m = "registerClientType";
-    public static final String n = "registerClientIP";
-    public static final String o = "registerFrom";
-    public static final String p = "lastLoginIP";
+    /* renamed from: m */
+    public static final String f6642m = "registerClientType";
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f6195a;
+    /* renamed from: n */
+    public static final String f6643n = "registerClientIP";
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f6196b;
+    /* renamed from: o */
+    public static final String f6644o = "registerFrom";
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f6197c;
+    /* renamed from: p */
+    public static final String f6645p = "lastLoginIP";
 
-    /* renamed from: d, reason: collision with root package name */
-    private String f6198d;
+    /* renamed from: a */
+    private String f6646a;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f6199e;
+    /* renamed from: b */
+    private String f6647b;
 
-    /* renamed from: f, reason: collision with root package name */
-    private String f6200f;
+    /* renamed from: c */
+    private String f6648c;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String f6201g;
+    /* renamed from: d */
+    private String f6649d;
 
-    /* renamed from: h, reason: collision with root package name */
-    private String f6202h;
+    /* renamed from: e */
+    private String f6650e;
 
-    class a implements Parcelable.Creator<UserLoginInfo> {
-        a() {
+    /* renamed from: f */
+    private String f6651f;
+
+    /* renamed from: g */
+    private String f6652g;
+
+    /* renamed from: h */
+    private String f6653h;
+
+    /* renamed from: com.hihonor.honorid.core.data.UserLoginInfo$a */
+    class C2162a implements Parcelable.Creator<UserLoginInfo> {
+        C2162a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public UserLoginInfo createFromParcel(Parcel parcel) {
             UserLoginInfo userLoginInfo = new UserLoginInfo();
-            userLoginInfo.f6202h = parcel.readString();
-            userLoginInfo.f6198d = parcel.readString();
-            userLoginInfo.f6200f = parcel.readString();
-            userLoginInfo.f6199e = parcel.readString();
-            userLoginInfo.f6201g = parcel.readString();
-            userLoginInfo.f6196b = parcel.readString();
-            userLoginInfo.f6197c = parcel.readString();
-            userLoginInfo.f6195a = parcel.readString();
+            userLoginInfo.f6653h = parcel.readString();
+            userLoginInfo.f6649d = parcel.readString();
+            userLoginInfo.f6651f = parcel.readString();
+            userLoginInfo.f6650e = parcel.readString();
+            userLoginInfo.f6652g = parcel.readString();
+            userLoginInfo.f6647b = parcel.readString();
+            userLoginInfo.f6648c = parcel.readString();
+            userLoginInfo.f6646a = parcel.readString();
             return userLoginInfo;
         }
 
@@ -83,78 +90,87 @@ public class UserLoginInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6202h);
-        parcel.writeString(this.f6198d);
-        parcel.writeString(this.f6200f);
-        parcel.writeString(this.f6199e);
-        parcel.writeString(this.f6201g);
-        parcel.writeString(this.f6196b);
-        parcel.writeString(this.f6197c);
-        parcel.writeString(this.f6195a);
+        parcel.writeString(this.f6653h);
+        parcel.writeString(this.f6649d);
+        parcel.writeString(this.f6651f);
+        parcel.writeString(this.f6650e);
+        parcel.writeString(this.f6652g);
+        parcel.writeString(this.f6647b);
+        parcel.writeString(this.f6648c);
+        parcel.writeString(this.f6646a);
     }
 
-    public static void a(XmlPullParser xmlPullParser, UserLoginInfo userLoginInfo, String str) {
+    /* renamed from: a */
+    public static void m6280a(XmlPullParser xmlPullParser, UserLoginInfo userLoginInfo, String str) {
         if (xmlPullParser == null || userLoginInfo == null || str == null) {
             return;
         }
-        if (f6190i.equals(str)) {
-            userLoginInfo.h(xmlPullParser.nextText());
+        if (f6638i.equals(str)) {
+            userLoginInfo.m6294h(xmlPullParser.nextText());
             return;
         }
-        if (f6191j.equals(str)) {
-            userLoginInfo.f(xmlPullParser.nextText());
+        if (f6639j.equals(str)) {
+            userLoginInfo.m6290f(xmlPullParser.nextText());
             return;
         }
-        if (f6192k.equals(str)) {
-            userLoginInfo.g(xmlPullParser.nextText());
+        if (f6640k.equals(str)) {
+            userLoginInfo.m6292g(xmlPullParser.nextText());
             return;
         }
-        if (f6193l.equals(str)) {
-            userLoginInfo.b(xmlPullParser.nextText());
+        if (f6641l.equals(str)) {
+            userLoginInfo.m6282b(xmlPullParser.nextText());
             return;
         }
-        if (f6194m.equals(str)) {
-            userLoginInfo.d(xmlPullParser.nextText());
+        if (f6642m.equals(str)) {
+            userLoginInfo.m6286d(xmlPullParser.nextText());
             return;
         }
-        if (p.equals(str)) {
-            userLoginInfo.a(xmlPullParser.nextText());
-        } else if (n.equals(str)) {
-            userLoginInfo.c(xmlPullParser.nextText());
-        } else if (o.equals(str)) {
-            userLoginInfo.e(xmlPullParser.nextText());
+        if (f6645p.equals(str)) {
+            userLoginInfo.m6279a(xmlPullParser.nextText());
+        } else if (f6643n.equals(str)) {
+            userLoginInfo.m6284c(xmlPullParser.nextText());
+        } else if (f6644o.equals(str)) {
+            userLoginInfo.m6288e(xmlPullParser.nextText());
         }
     }
 
-    private void b(String str) {
-        this.f6198d = str;
+    /* renamed from: b */
+    private void m6282b(String str) {
+        this.f6649d = str;
     }
 
-    private void c(String str) {
-        this.f6200f = str;
+    /* renamed from: c */
+    private void m6284c(String str) {
+        this.f6651f = str;
     }
 
-    private void d(String str) {
-        this.f6199e = str;
+    /* renamed from: d */
+    private void m6286d(String str) {
+        this.f6650e = str;
     }
 
-    private void e(String str) {
-        this.f6201g = str;
+    /* renamed from: e */
+    private void m6288e(String str) {
+        this.f6652g = str;
     }
 
-    private void f(String str) {
-        this.f6196b = str;
+    /* renamed from: f */
+    private void m6290f(String str) {
+        this.f6647b = str;
     }
 
-    private void g(String str) {
-        this.f6197c = str;
+    /* renamed from: g */
+    private void m6292g(String str) {
+        this.f6648c = str;
     }
 
-    private void h(String str) {
-        this.f6195a = str;
+    /* renamed from: h */
+    private void m6294h(String str) {
+        this.f6646a = str;
     }
 
-    private void a(String str) {
-        this.f6202h = str;
+    /* renamed from: a */
+    private void m6279a(String str) {
+        this.f6653h = str;
     }
 }

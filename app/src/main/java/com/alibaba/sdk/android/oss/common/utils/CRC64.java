@@ -1,8 +1,8 @@
 package com.alibaba.sdk.android.oss.common.utils;
 
-import h.f1;
 import java.lang.reflect.Array;
 import java.util.zip.Checksum;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class CRC64 implements Checksum {
@@ -111,7 +111,7 @@ public class CRC64 implements Checksum {
             long[][] jArr = table;
             long[] jArr2 = jArr[7];
             long j2 = this.value;
-            this.value = ((((((jArr[6][(int) ((bArr[i4 + 1] & f1.f16099c) ^ ((j2 >>> 8) & 255))] ^ jArr2[(int) ((j2 & 255) ^ (bArr[i4] & f1.f16099c))]) ^ jArr[5][(int) (((j2 >>> 16) & 255) ^ (bArr[i4 + 2] & f1.f16099c))]) ^ jArr[4][(int) (((j2 >>> 24) & 255) ^ (bArr[i4 + 3] & f1.f16099c))]) ^ jArr[3][(int) (((j2 >>> 32) & 255) ^ (bArr[i4 + 4] & f1.f16099c))]) ^ jArr[2][(int) (((j2 >>> 40) & 255) ^ (bArr[i4 + 5] & f1.f16099c))]) ^ jArr[1][(int) ((255 & (j2 >>> 48)) ^ (bArr[i4 + 6] & f1.f16099c))]) ^ jArr[0][(int) ((j2 >>> 56) ^ (bArr[i4 + 7] & f1.f16099c))];
+            this.value = ((((((jArr[6][(int) ((bArr[i4 + 1] & C5230f1.f20085c) ^ ((j2 >>> 8) & 255))] ^ jArr2[(int) ((j2 & 255) ^ (bArr[i4] & C5230f1.f20085c))]) ^ jArr[5][(int) (((j2 >>> 16) & 255) ^ (bArr[i4 + 2] & C5230f1.f20085c))]) ^ jArr[4][(int) (((j2 >>> 24) & 255) ^ (bArr[i4 + 3] & C5230f1.f20085c))]) ^ jArr[3][(int) (((j2 >>> 32) & 255) ^ (bArr[i4 + 4] & C5230f1.f20085c))]) ^ jArr[2][(int) (((j2 >>> 40) & 255) ^ (bArr[i4 + 5] & C5230f1.f20085c))]) ^ jArr[1][(int) ((255 & (j2 >>> 48)) ^ (bArr[i4 + 6] & C5230f1.f20085c))]) ^ jArr[0][(int) ((j2 >>> 56) ^ (bArr[i4 + 7] & C5230f1.f20085c))];
             i4 += 8;
             i5 -= 8;
         }

@@ -41,17 +41,17 @@ public final class LocalBroadcastManager {
         final IntentFilter filter;
 
         /* renamed from: receiver, reason: collision with root package name */
-        final BroadcastReceiver f1582receiver;
+        final BroadcastReceiver f25889receiver;
 
         ReceiverRecord(IntentFilter intentFilter, BroadcastReceiver broadcastReceiver) {
             this.filter = intentFilter;
-            this.f1582receiver = broadcastReceiver;
+            this.f25889receiver = broadcastReceiver;
         }
 
         public String toString() {
             StringBuilder sb = new StringBuilder(128);
             sb.append("Receiver{");
-            sb.append(this.f1582receiver);
+            sb.append(this.f25889receiver);
             sb.append(" filter=");
             sb.append(this.filter);
             if (this.dead) {
@@ -105,7 +105,7 @@ public final class LocalBroadcastManager {
                 for (int i2 = 0; i2 < size2; i2++) {
                     ReceiverRecord receiverRecord = broadcastRecord.receivers.get(i2);
                     if (!receiverRecord.dead) {
-                        receiverRecord.f1582receiver.onReceive(this.mAppContext, broadcastRecord.intent);
+                        receiverRecord.f25889receiver.onReceive(this.mAppContext, broadcastRecord.intent);
                     }
                 }
             }
@@ -232,7 +232,7 @@ public final class LocalBroadcastManager {
                     if (arrayList != null) {
                         for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
                             ReceiverRecord receiverRecord2 = arrayList.get(size2);
-                            if (receiverRecord2.f1582receiver == broadcastReceiver) {
+                            if (receiverRecord2.f25889receiver == broadcastReceiver) {
                                 receiverRecord2.dead = true;
                                 arrayList.remove(size2);
                             }

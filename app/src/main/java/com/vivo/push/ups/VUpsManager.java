@@ -7,32 +7,33 @@ import com.vivo.push.PushClient;
 /* loaded from: classes2.dex */
 public class VUpsManager {
 
-    private static class a {
+    /* renamed from: com.vivo.push.ups.VUpsManager$a */
+    private static class C3977a {
 
-        /* renamed from: a, reason: collision with root package name */
-        private static VUpsManager f12222a = new VUpsManager();
+        /* renamed from: a */
+        private static VUpsManager f14201a = new VUpsManager();
     }
 
     public static VUpsManager getInstance() {
-        return a.f12222a;
+        return C3977a.f14201a;
     }
 
     public void onCommandResult(Context context, Bundle bundle) {
     }
 
     public void registerToken(Context context, String str, String str2, String str3, UPSRegisterCallback uPSRegisterCallback) {
-        PushClient.getInstance(context).turnOnPush(new com.vivo.push.ups.a(this, uPSRegisterCallback));
+        PushClient.getInstance(context).turnOnPush(new C3978a(this, uPSRegisterCallback));
     }
 
     public void turnOffPush(Context context, UPSTurnCallback uPSTurnCallback) {
-        PushClient.getInstance(context).turnOffPush(new d(this, uPSTurnCallback));
+        PushClient.getInstance(context).turnOffPush(new C3981d(this, uPSTurnCallback));
     }
 
     public void turnOnPush(Context context, UPSTurnCallback uPSTurnCallback) {
-        PushClient.getInstance(context).turnOnPush(new c(this, uPSTurnCallback));
+        PushClient.getInstance(context).turnOnPush(new C3980c(this, uPSTurnCallback));
     }
 
     public void unRegisterToken(Context context, UPSRegisterCallback uPSRegisterCallback) {
-        PushClient.getInstance(context).turnOffPush(new b(this, uPSRegisterCallback));
+        PushClient.getInstance(context).turnOffPush(new C3979b(this, uPSRegisterCallback));
     }
 }

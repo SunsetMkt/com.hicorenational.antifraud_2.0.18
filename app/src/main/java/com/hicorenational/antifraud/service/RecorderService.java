@@ -10,57 +10,60 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import util.f1;
+import util.C7277f1;
 
 /* loaded from: classes.dex */
 public class RecorderService extends Service {
 
-    /* renamed from: a, reason: collision with root package name */
-    private MediaRecorder f5961a;
+    /* renamed from: a */
+    private MediaRecorder f6335a;
 
-    class a extends PhoneStateListener {
-        a() {
+    /* renamed from: com.hicorenational.antifraud.service.RecorderService$a */
+    class C2119a extends PhoneStateListener {
+        C2119a() {
         }
 
-        private void a() {
-            File file = new File(f1.b() + "/recorder");
+        /* renamed from: a */
+        private void m5959a() {
+            File file = new File(C7277f1.m26357b() + "/recorder");
             if (file.exists()) {
                 return;
             }
             file.mkdir();
         }
 
-        private String b() {
+        /* renamed from: b */
+        private String m5960b() {
             return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         }
 
         @Override // android.telephony.PhoneStateListener
         public void onCallStateChanged(int i2, String str) {
             if (i2 == 0) {
-                if (RecorderService.this.f5961a != null) {
-                    RecorderService.this.f5961a.stop();
-                    RecorderService.this.f5961a.release();
-                    RecorderService.this.f5961a = null;
+                if (RecorderService.this.f6335a != null) {
+                    RecorderService.this.f6335a.stop();
+                    RecorderService.this.f6335a.release();
+                    RecorderService.this.f6335a = null;
                     return;
                 }
                 return;
             }
             if (i2 != 1) {
-                if (i2 == 2 && RecorderService.this.f5961a != null) {
-                    RecorderService.this.f5961a.start();
+                if (i2 == 2 && RecorderService.this.f6335a != null) {
+                    RecorderService.this.f6335a.start();
                     return;
                 }
                 return;
             }
-            if (RecorderService.this.f5961a == null) {
-                RecorderService.this.f5961a = new MediaRecorder();
-                RecorderService.this.f5961a.setAudioSource(1);
-                RecorderService.this.f5961a.setOutputFormat(1);
-                a();
-                RecorderService.this.f5961a.setOutputFile("sdcard/recorder/" + b() + ".3gp");
-                RecorderService.this.f5961a.setAudioEncoder(1);
+            if (RecorderService.this.f6335a == null) {
+                RecorderService.this.f6335a = new MediaRecorder();
+                RecorderService.this.f6335a.setAudioSource(1);
+                RecorderService.this.f6335a.setOutputFormat(1);
+                m5959a();
+                RecorderService.this.f6335a.setOutputFile("sdcard/recorder/" + m5960b() + ".3gp");
+                RecorderService.this.f6335a.setAudioEncoder(1);
                 try {
-                    RecorderService.this.f5961a.prepare();
+                    RecorderService.this.f6335a.prepare();
                 } catch (IOException e2) {
                     e2.printStackTrace();
                 }
@@ -76,6 +79,6 @@ public class RecorderService extends Service {
     @Override // android.app.Service
     public void onCreate() {
         super.onCreate();
-        ((TelephonyManager) getSystemService("phone")).listen(new a(), 32);
+        ((TelephonyManager) getSystemService("phone")).listen(new C2119a(), 32);
     }
 }

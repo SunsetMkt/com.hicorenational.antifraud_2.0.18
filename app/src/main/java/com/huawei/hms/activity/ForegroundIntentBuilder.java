@@ -16,35 +16,35 @@ import com.huawei.hms.utils.Util;
 /* loaded from: classes.dex */
 public class ForegroundIntentBuilder {
 
-    /* renamed from: a, reason: collision with root package name */
-    private Activity f6526a;
+    /* renamed from: a */
+    private Activity f7026a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private RequestHeader f6527b;
+    /* renamed from: b */
+    private RequestHeader f7027b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f6528c;
+    /* renamed from: c */
+    private String f7028c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private ForegroundInnerHeader f6529d;
+    /* renamed from: d */
+    private ForegroundInnerHeader f7029d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f6530e;
+    /* renamed from: e */
+    private String f7030e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private Context f6531f;
+    /* renamed from: f */
+    private Context f7031f;
 
     public ForegroundIntentBuilder(Activity activity) throws IllegalArgumentException {
         if (activity == null) {
             throw new IllegalArgumentException("listener must not be null.");
         }
-        this.f6526a = activity;
+        this.f7026a = activity;
         RequestHeader requestHeader = new RequestHeader();
-        this.f6527b = requestHeader;
+        this.f7027b = requestHeader;
         requestHeader.setSdkVersion(61100302);
-        this.f6528c = "";
+        this.f7028c = "";
         ForegroundInnerHeader foregroundInnerHeader = new ForegroundInnerHeader();
-        this.f6529d = foregroundInnerHeader;
+        this.f7029d = foregroundInnerHeader;
         foregroundInnerHeader.setApkVersion(30000000);
     }
 
@@ -59,92 +59,92 @@ public class ForegroundIntentBuilder {
     public Intent build() {
         String packageName;
         String appId;
-        Intent intentStartBridgeActivity = BridgeActivity.getIntentStartBridgeActivity(this.f6526a, ForegroundBusDelegate.class.getName());
-        Context context = this.f6531f;
+        Intent intentStartBridgeActivity = BridgeActivity.getIntentStartBridgeActivity(this.f7026a, ForegroundBusDelegate.class.getName());
+        Context context = this.f7031f;
         if (context != null) {
             packageName = context.getPackageName();
-            appId = Util.getAppId(this.f6531f);
+            appId = Util.getAppId(this.f7031f);
         } else {
-            packageName = this.f6526a.getPackageName();
-            appId = Util.getAppId(this.f6526a);
+            packageName = this.f7026a.getPackageName();
+            appId = Util.getAppId(this.f7026a);
         }
-        if (this.f6527b.getAppID() == null) {
-            this.f6527b.setAppID(appId + HiAnalyticsConstant.REPORT_VAL_SEPARATOR);
+        if (this.f7027b.getAppID() == null) {
+            this.f7027b.setAppID(appId + HiAnalyticsConstant.REPORT_VAL_SEPARATOR);
         } else {
-            this.f6527b.setAppID(appId + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + this.f6527b.getAppID());
+            this.f7027b.setAppID(appId + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + this.f7027b.getAppID());
         }
-        if (TextUtils.isEmpty(this.f6527b.getTransactionId())) {
-            RequestHeader requestHeader = this.f6527b;
+        if (TextUtils.isEmpty(this.f7027b.getTransactionId())) {
+            RequestHeader requestHeader = this.f7027b;
             requestHeader.setTransactionId(TransactionIdCreater.getId(requestHeader.getAppID(), CoreNaming.HUBREQUEST));
         }
-        this.f6527b.setPkgName(packageName);
-        intentStartBridgeActivity.putExtra(ForegroundBusDelegate.HMS_FOREGROUND_REQ_HEADER, this.f6527b.toJson());
-        intentStartBridgeActivity.putExtra(ForegroundBusDelegate.HMS_FOREGROUND_REQ_BODY, this.f6528c);
-        intentStartBridgeActivity.putExtra(ForegroundBusDelegate.HMS_FOREGROUND_REQ_INNER, this.f6529d.toJson());
-        if (!TextUtils.isEmpty(this.f6530e)) {
-            intentStartBridgeActivity.putExtra(ForegroundBusDelegate.INNER_PKG_NAME, this.f6530e);
+        this.f7027b.setPkgName(packageName);
+        intentStartBridgeActivity.putExtra(ForegroundBusDelegate.HMS_FOREGROUND_REQ_HEADER, this.f7027b.toJson());
+        intentStartBridgeActivity.putExtra(ForegroundBusDelegate.HMS_FOREGROUND_REQ_BODY, this.f7028c);
+        intentStartBridgeActivity.putExtra(ForegroundBusDelegate.HMS_FOREGROUND_REQ_INNER, this.f7029d.toJson());
+        if (!TextUtils.isEmpty(this.f7030e)) {
+            intentStartBridgeActivity.putExtra(ForegroundBusDelegate.INNER_PKG_NAME, this.f7030e);
         }
         return intentStartBridgeActivity;
     }
 
     public ForegroundIntentBuilder setAction(String str) {
-        this.f6527b.setApiName(str);
+        this.f7027b.setApiName(str);
         return this;
     }
 
     public ForegroundIntentBuilder setApiLevel(int i2) {
-        this.f6527b.setApiLevel(i2);
+        this.f7027b.setApiLevel(i2);
         return this;
     }
 
     public ForegroundIntentBuilder setApplicationContext(Context context) {
-        this.f6531f = context;
+        this.f7031f = context;
         return this;
     }
 
     public ForegroundIntentBuilder setInnerHms() {
-        this.f6530e = this.f6526a.getPackageName();
+        this.f7030e = this.f7026a.getPackageName();
         return this;
     }
 
     public ForegroundIntentBuilder setKitSdkVersion(int i2) {
-        this.f6527b.setKitSdkVersion(i2);
+        this.f7027b.setKitSdkVersion(i2);
         return this;
     }
 
     public ForegroundIntentBuilder setMinApkVersion(int i2) {
-        this.f6529d.setApkVersion(i2);
+        this.f7029d.setApkVersion(i2);
         return this;
     }
 
     public ForegroundIntentBuilder setRequestBody(String str) {
-        this.f6528c = str;
+        this.f7028c = str;
         return this;
     }
 
     public ForegroundIntentBuilder setResponseCallback(String str, BusResponseCallback busResponseCallback) {
-        this.f6529d.setResponseCallbackKey(str);
+        this.f7029d.setResponseCallbackKey(str);
         ForegroundBusResponseMgr.getInstance().registerObserver(str, busResponseCallback);
         return this;
     }
 
     public ForegroundIntentBuilder setServiceName(String str) {
-        this.f6527b.setSrvName(str);
+        this.f7027b.setSrvName(str);
         return this;
     }
 
     public ForegroundIntentBuilder setSubAppId(String str) {
-        this.f6527b.setAppID(str);
+        this.f7027b.setAppID(str);
         return this;
     }
 
     public ForegroundIntentBuilder setTransactionId(String str) {
-        this.f6527b.setTransactionId(str);
+        this.f7027b.setTransactionId(str);
         return this;
     }
 
     public ForegroundIntentBuilder setResponseCallback(String str) {
-        this.f6529d.setResponseCallbackKey(str);
+        this.f7029d.setResponseCallbackKey(str);
         return this;
     }
 }

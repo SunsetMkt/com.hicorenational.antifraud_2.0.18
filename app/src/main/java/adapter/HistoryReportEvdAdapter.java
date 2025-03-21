@@ -8,65 +8,76 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
 import java.util.List;
 import network.HistoryListInfo;
+import p245d.C4440a;
 
 /* loaded from: classes.dex */
 public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.RowsBean, BaseViewHolder> {
-    private List<HistoryListInfo.RowsBean> V;
-    private b W;
-    private boolean X;
 
-    class a implements View.OnClickListener {
+    /* renamed from: V */
+    private List<HistoryListInfo.RowsBean> f217V;
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ int f1284a;
+    /* renamed from: W */
+    private InterfaceC0065b f218W;
 
-        a(int i2) {
-            this.f1284a = i2;
+    /* renamed from: X */
+    private boolean f219X;
+
+    /* renamed from: adapter.HistoryReportEvdAdapter$a */
+    class ViewOnClickListenerC0064a implements View.OnClickListener {
+
+        /* renamed from: a */
+        final /* synthetic */ int f220a;
+
+        ViewOnClickListenerC0064a(int i2) {
+            this.f220a = i2;
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            if (HistoryReportEvdAdapter.this.W != null) {
-                HistoryListInfo.RowsBean rowsBean = (HistoryListInfo.RowsBean) HistoryReportEvdAdapter.this.V.get(this.f1284a);
-                HistoryReportEvdAdapter.this.W.onItemClickListener(rowsBean);
+            if (HistoryReportEvdAdapter.this.f218W != null) {
+                HistoryListInfo.RowsBean rowsBean = (HistoryListInfo.RowsBean) HistoryReportEvdAdapter.this.f217V.get(this.f220a);
+                HistoryReportEvdAdapter.this.f218W.onItemClickListener(rowsBean);
                 rowsBean.getInfo().setRedPoint(0);
-                HistoryReportEvdAdapter.this.notifyItemChanged(this.f1284a);
+                HistoryReportEvdAdapter.this.notifyItemChanged(this.f220a);
             }
         }
     }
 
-    public interface b {
+    /* renamed from: adapter.HistoryReportEvdAdapter$b */
+    public interface InterfaceC0065b {
         void onItemClickListener(HistoryListInfo.RowsBean rowsBean);
     }
 
     public HistoryReportEvdAdapter(List<HistoryListInfo.RowsBean> list) {
-        super(R.layout.item_history_report, list);
-        this.X = false;
-        this.V = list;
-        this.X = d.a.k();
+        super(C2113R.layout.item_history_report, list);
+        this.f219X = false;
+        this.f217V = list;
+        this.f219X = C4440a.m16409k();
     }
 
-    public void setOnItemClickListener(b bVar) {
-        this.W = bVar;
+    public void setOnItemClickListener(InterfaceC0065b interfaceC0065b) {
+        this.f218W = interfaceC0065b;
     }
 
-    public void a(List<HistoryListInfo.RowsBean> list) {
-        this.V.clear();
-        this.V.addAll(list);
+    /* renamed from: a */
+    public void m244a(List<HistoryListInfo.RowsBean> list) {
+        this.f217V.clear();
+        this.f217V.addAll(list);
         notifyDataSetChanged();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.chad.library.adapter.base.BaseQuickAdapter
-    public void a(BaseViewHolder baseViewHolder, HistoryListInfo.RowsBean rowsBean) {
-        TextView textView = (TextView) baseViewHolder.c(R.id.tv_self);
-        TextView textView2 = (TextView) baseViewHolder.c(R.id.tv_case_num);
-        ImageView imageView = (ImageView) baseViewHolder.c(R.id.iv_dk_tag);
-        TextView textView3 = (TextView) baseViewHolder.c(R.id.tv_reply);
-        TextView textView4 = (TextView) baseViewHolder.c(R.id.red_tip);
+    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
+    public void mo204a(BaseViewHolder baseViewHolder, HistoryListInfo.RowsBean rowsBean) {
+        TextView textView = (TextView) baseViewHolder.m5224c(C2113R.id.tv_self);
+        TextView textView2 = (TextView) baseViewHolder.m5224c(C2113R.id.tv_case_num);
+        ImageView imageView = (ImageView) baseViewHolder.m5224c(C2113R.id.iv_dk_tag);
+        TextView textView3 = (TextView) baseViewHolder.m5224c(C2113R.id.tv_reply);
+        TextView textView4 = (TextView) baseViewHolder.m5224c(C2113R.id.red_tip);
         HistoryListInfo.RowsBean.DetailsBean info = rowsBean.getInfo();
         String evidenceCount = rowsBean.getEvidenceCount();
         info.getCaseNumber();
@@ -77,10 +88,10 @@ public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.Ro
         if (TextUtils.isEmpty(caseCategoryText)) {
             caseCategoryText = "其他诈骗";
         }
-        baseViewHolder.a(R.id.casecategory, (CharSequence) caseCategoryText);
-        baseViewHolder.a(R.id.report_size, (CharSequence) ("(" + evidenceCount + "项举报内容)"));
+        baseViewHolder.m5211a(C2113R.id.casecategory, (CharSequence) caseCategoryText);
+        baseViewHolder.m5211a(C2113R.id.report_size, (CharSequence) ("(" + evidenceCount + "项举报内容)"));
         TextUtils.isEmpty(caseDescription);
-        baseViewHolder.a(R.id.report_time, (CharSequence) submitTime);
+        baseViewHolder.m5211a(C2113R.id.report_time, (CharSequence) submitTime);
         textView.setVisibility(8);
         textView2.setVisibility(8);
         imageView.setVisibility(8);
@@ -89,7 +100,7 @@ public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.Ro
         } else {
             textView4.setVisibility(8);
         }
-        if (this.X) {
+        if (this.f219X) {
             if (info.getReplyStatus() == 1) {
                 textView3.setText("待受理");
                 textView3.setTextColor(Color.parseColor("#999999"));
@@ -114,6 +125,6 @@ public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.Ro
     /* renamed from: a */
     public void onBindViewHolder(BaseViewHolder baseViewHolder, @SuppressLint({"RecyclerView"}) int i2) {
         super.onBindViewHolder((HistoryReportEvdAdapter) baseViewHolder, i2);
-        baseViewHolder.itemView.setOnClickListener(new a(i2));
+        baseViewHolder.itemView.setOnClickListener(new ViewOnClickListenerC0064a(i2));
     }
 }

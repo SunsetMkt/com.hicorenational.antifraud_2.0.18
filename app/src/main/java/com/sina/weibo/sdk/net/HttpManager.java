@@ -9,7 +9,8 @@ public class HttpManager {
         System.loadLibrary("weibosdkcore");
     }
 
-    public static String a(Context context, String str, String str2, String str3, String str4) {
+    /* renamed from: a */
+    public static String m8850a(Context context, String str, String str2, String str3, String str4) {
         StringBuilder sb = new StringBuilder();
         if (!TextUtils.isEmpty(str)) {
             sb.append(str);

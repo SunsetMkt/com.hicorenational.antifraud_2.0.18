@@ -11,18 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import bean.CallWarnBean;
 import bean.WhiteTelBean;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import manager.AccountManager;
 import manager.FloatingWindow;
 import manager.IFloatingWindow;
-import ui.callview.CallWarnCallView;
-import ui.presenter.WarnPresenter;
-import ui.presenter.WelocmPresenter;
-import util.n1;
-import util.u1;
+import p388ui.callview.CallWarnCallView;
+import p388ui.presenter.WarnPresenter;
+import p388ui.presenter.WelocmPresenter;
+import util.C7301n1;
+import util.C7325u1;
 
 /* loaded from: classes.dex */
 public class CallIntercepeUtil implements CallWarnCallView {
@@ -34,7 +34,7 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private int mWhiteResult = 0;
     private IFloatingWindow mWindowCall;
     private IFloatingWindow mWindowWhite;
-    private a myPhoneStateListener;
+    private C2116a myPhoneStateListener;
     private boolean phoneIsWorn;
     private TelephonyManager telephonyManager;
     private TextView tvNumTag;
@@ -43,21 +43,22 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private TextView tvWarnType;
     private WarnPresenter warnPresenter;
 
-    class a extends PhoneStateListener {
-        a() {
+    /* renamed from: com.hicorenational.antifraud.service.CallIntercepeUtil$a */
+    class C2116a extends PhoneStateListener {
+        C2116a() {
         }
 
         @Override // android.telephony.PhoneStateListener
         public void onCallStateChanged(int i2, String str) {
             super.onCallStateChanged(i2, str);
-            n1.a("hsc", "onReceive   state---------------   " + i2 + " / " + str);
+            C7301n1.m26454a("hsc", "onReceive   state---------------   " + i2 + " / " + str);
             CallIntercepeUtil.this.mIsBound = false;
             CallIntercepeUtil.this.phoneIsWorn = false;
             CallIntercepeUtil.this.inPhoneNum = str;
             if (i2 != 0) {
                 if (i2 == 1 && !CallIntercepeUtil.this.calling) {
                     CallIntercepeUtil.this.judgeWhiteTel();
-                    if (CallIntercepeUtil.this.mWhiteResult == 2 && !TextUtils.isEmpty(str) && u1.a(u1.F, false)) {
+                    if (CallIntercepeUtil.this.mWhiteResult == 2 && !TextUtils.isEmpty(str) && C7325u1.m26623a(C7325u1.f25633F, false)) {
                         CallIntercepeUtil.this.warnPresenter.requestOKHttp(CallIntercepeUtil.this.inPhoneNum);
                     }
                     CallIntercepeUtil.this.calling = true;
@@ -129,12 +130,12 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private IFloatingWindow showCallWindow() {
         final FloatingWindow floatingWindow = new FloatingWindow(this.mContext);
         floatingWindow.setParams(floatingWindow.getCallWarnLayoutParams());
-        View inflate = LayoutInflater.from(this.mContext).inflate(R.layout.layout_call_intercepter, (ViewGroup) null);
-        this.mClose = (ImageView) inflate.findViewById(R.id.iv_closee);
-        this.tvPhone = (TextView) inflate.findViewById(R.id.tv_dialog_phone);
-        this.tvNumTag = (TextView) inflate.findViewById(R.id.tv_num_tag);
-        this.tvWarnType = (TextView) inflate.findViewById(R.id.tv_warn_type);
-        this.tvRecordTip = (TextView) inflate.findViewById(R.id.tv_record_tip);
+        View inflate = LayoutInflater.from(this.mContext).inflate(C2113R.layout.layout_call_intercepter, (ViewGroup) null);
+        this.mClose = (ImageView) inflate.findViewById(C2113R.id.iv_closee);
+        this.tvPhone = (TextView) inflate.findViewById(C2113R.id.tv_dialog_phone);
+        this.tvNumTag = (TextView) inflate.findViewById(C2113R.id.tv_num_tag);
+        this.tvWarnType = (TextView) inflate.findViewById(C2113R.id.tv_warn_type);
+        this.tvRecordTip = (TextView) inflate.findViewById(C2113R.id.tv_record_tip);
         this.mClose.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.b
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
@@ -148,10 +149,10 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private IFloatingWindow showWhiteListWindow(String str, String str2) {
         final FloatingWindow floatingWindow = new FloatingWindow(this.mContext);
         floatingWindow.setParams(floatingWindow.getCallWarnLayoutParams());
-        View inflate = LayoutInflater.from(this.mContext).inflate(R.layout.layout_white_list, (ViewGroup) null);
-        ImageView imageView = (ImageView) inflate.findViewById(R.id.iv_closee);
-        TextView textView = (TextView) inflate.findViewById(R.id.tv_dialog_phone);
-        TextView textView2 = (TextView) inflate.findViewById(R.id.tv_dialog_describe);
+        View inflate = LayoutInflater.from(this.mContext).inflate(C2113R.layout.layout_white_list, (ViewGroup) null);
+        ImageView imageView = (ImageView) inflate.findViewById(C2113R.id.iv_closee);
+        TextView textView = (TextView) inflate.findViewById(C2113R.id.tv_dialog_phone);
+        TextView textView2 = (TextView) inflate.findViewById(C2113R.id.tv_dialog_describe);
         if (floatingWindow.getAllWindow() != null) {
             textView.setText(str);
             textView2.setText(str2);
@@ -171,12 +172,12 @@ public class CallIntercepeUtil implements CallWarnCallView {
         this.mContext = context;
         this.mWhiteResult = 0;
         this.telephonyManager = (TelephonyManager) this.mContext.getSystemService("phone");
-        this.myPhoneStateListener = new a();
+        this.myPhoneStateListener = new C2116a();
         this.telephonyManager.listen(this.myPhoneStateListener, 32);
         this.warnPresenter = new WarnPresenter(this.mContext, this);
     }
 
-    @Override // ui.callview.CallWarnCallView
+    @Override // p388ui.callview.CallWarnCallView
     public void onSuccRequest(CallWarnBean callWarnBean) {
         IFloatingWindow iFloatingWindow = this.mWindowWhite;
         if ((iFloatingWindow != null && iFloatingWindow.isShowing()) || callWarnBean == null || this.mIsBound) {

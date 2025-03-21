@@ -16,11 +16,12 @@ import com.xiaomi.mipush.sdk.Constants;
 public class AGCUtils {
     /* JADX WARN: Removed duplicated region for block: B:6:0x0069 A[RETURN] */
     /* JADX WARN: Removed duplicated region for block: B:8:0x006a  */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static java.lang.String a(android.content.Context r7, java.lang.String r8) {
+    private static java.lang.String m6759a(android.content.Context r7, java.lang.String r8) {
         /*
             java.lang.String r0 = "Get "
             java.lang.String r1 = ""
@@ -49,7 +50,7 @@ public class AGCUtils {
             r4.append(r0)     // Catch: java.lang.Throwable -> L26
             r4.append(r7)     // Catch: java.lang.Throwable -> L26
             java.lang.String r7 = r4.toString()     // Catch: java.lang.Throwable -> L26
-            com.huawei.hms.support.log.HMSLog.e(r2, r7)     // Catch: java.lang.Throwable -> L26
+            com.huawei.hms.support.log.HMSLog.m7715e(r2, r7)     // Catch: java.lang.Throwable -> L26
             goto L5f
         L44:
             r7 = move-exception
@@ -61,7 +62,7 @@ public class AGCUtils {
             r4.append(r0)     // Catch: java.lang.Throwable -> L26
             r4.append(r7)     // Catch: java.lang.Throwable -> L26
             java.lang.String r7 = r4.toString()     // Catch: java.lang.Throwable -> L26
-            com.huawei.hms.support.log.HMSLog.e(r2, r7)     // Catch: java.lang.Throwable -> L26
+            com.huawei.hms.support.log.HMSLog.m7715e(r2, r7)     // Catch: java.lang.Throwable -> L26
         L5f:
             r7 = r1
         L60:
@@ -78,52 +79,54 @@ public class AGCUtils {
             java.lang.String r8 = " is null."
             r7.append(r8)
             java.lang.String r7 = r7.toString()
-            com.huawei.hms.support.log.HMSLog.e(r2, r7)
+            com.huawei.hms.support.log.HMSLog.m7715e(r2, r7)
             return r1
         L84:
             com.huawei.hms.utils.IOUtils.closeQuietly(r3)
             throw r7
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.huawei.hms.common.util.AGCUtils.a(android.content.Context, java.lang.String):java.lang.String");
+        throw new UnsupportedOperationException("Method not decompiled: com.huawei.hms.common.util.AGCUtils.m6759a(android.content.Context, java.lang.String):java.lang.String");
     }
 
-    private static String b(Context context) {
+    /* renamed from: b */
+    private static String m6760b(Context context) {
         Bundle bundle;
         Object obj;
         PackageManager packageManager = context.getPackageManager();
         if (packageManager == null) {
-            HMSLog.e("AGCUtils", "In getMetaDataCpId, Failed to get 'PackageManager' instance.");
+            HMSLog.m7715e("AGCUtils", "In getMetaDataCpId, Failed to get 'PackageManager' instance.");
             return "";
         }
         try {
             ApplicationInfo applicationInfo = packageManager.getPackageInfo(context.getPackageName(), 128).applicationInfo;
             if (applicationInfo == null || (bundle = applicationInfo.metaData) == null || (obj = bundle.get("com.huawei.hms.client.cpid")) == null) {
-                HMSLog.i("AGCUtils", "In getMetaDataCpId, Failed to read meta data for the CpId.");
+                HMSLog.m7717i("AGCUtils", "In getMetaDataCpId, Failed to read meta data for the CpId.");
                 return "";
             }
             String valueOf = String.valueOf(obj);
             return valueOf.startsWith("cpid=") ? valueOf.substring(5) : valueOf;
         } catch (AndroidException unused) {
-            HMSLog.e("AGCUtils", "In getMetaDataCpId, Failed to read meta data for the CpId.");
+            HMSLog.m7715e("AGCUtils", "In getMetaDataCpId, Failed to read meta data for the CpId.");
             return "";
         } catch (RuntimeException e2) {
-            HMSLog.e("AGCUtils", "In getMetaDataCpId, Failed to read meta data for the CpId.", e2);
+            HMSLog.m7716e("AGCUtils", "In getMetaDataCpId, Failed to read meta data for the CpId.", e2);
             return "";
         }
     }
 
-    private static boolean c(Context context) {
+    /* renamed from: c */
+    private static boolean m6761c(Context context) {
         return context.getPackageName().equals(HMSPackageManager.getInstance(context).getHMSPackageNameForMultiService());
     }
 
     public static String getAppId(Context context) {
         if (context == null) {
-            HMSLog.w("AGCUtils", "getAppId context is null");
+            HMSLog.m7718w("AGCUtils", "getAppId context is null");
             return "";
         }
         String str = null;
-        if (c(context)) {
-            str = a(context, "client/app_id");
+        if (m6761c(context)) {
+            str = m6759a(context, "client/app_id");
             if (!TextUtils.isEmpty(str)) {
                 return str;
             }
@@ -135,22 +138,22 @@ public class AGCUtils {
             }
             str = aGConnectInstance.getOptions().getString("client/app_id");
         } catch (NullPointerException unused) {
-            HMSLog.e("AGCUtils", "Get appId with AGConnectServicesConfig failed");
+            HMSLog.m7715e("AGCUtils", "Get appId with AGConnectServicesConfig failed");
         }
         if (!TextUtils.isEmpty(str)) {
             return str;
         }
-        String a2 = a(context);
-        return !TextUtils.isEmpty(a2) ? a2 : a(context, "client/app_id");
+        String m6758a = m6758a(context);
+        return !TextUtils.isEmpty(m6758a) ? m6758a : m6759a(context, "client/app_id");
     }
 
     public static String getCpId(Context context) {
         if (context == null) {
-            HMSLog.w("AGCUtils", "getCpId context is null");
+            HMSLog.m7718w("AGCUtils", "getCpId context is null");
             return "";
         }
-        if (c(context)) {
-            return a(context, "client/cp_id");
+        if (m6761c(context)) {
+            return m6759a(context, "client/cp_id");
         }
         String str = null;
         try {
@@ -160,21 +163,22 @@ public class AGCUtils {
             }
             str = aGConnectInstance.getOptions().getString("client/cp_id");
         } catch (NullPointerException unused) {
-            HMSLog.e("AGCUtils", "Get cpid with AGConnectServicesConfig failed");
+            HMSLog.m7715e("AGCUtils", "Get cpid with AGConnectServicesConfig failed");
         }
         if (!TextUtils.isEmpty(str)) {
             return str;
         }
-        String b2 = b(context);
-        return !TextUtils.isEmpty(b2) ? b2 : a(context, "client/cp_id");
+        String m6760b = m6760b(context);
+        return !TextUtils.isEmpty(m6760b) ? m6760b : m6759a(context, "client/cp_id");
     }
 
-    private static String a(Context context) {
+    /* renamed from: a */
+    private static String m6758a(Context context) {
         Bundle bundle;
         Object obj;
         PackageManager packageManager = context.getPackageManager();
         if (packageManager == null) {
-            HMSLog.e("AGCUtils", "In getMetaDataAppId, Failed to get 'PackageManager' instance.");
+            HMSLog.m7715e("AGCUtils", "In getMetaDataAppId, Failed to get 'PackageManager' instance.");
             return "";
         }
         try {
@@ -183,13 +187,13 @@ public class AGCUtils {
                 String valueOf = String.valueOf(obj);
                 return valueOf.startsWith("appid=") ? valueOf.substring(6) : valueOf;
             }
-            HMSLog.e("AGCUtils", "In getMetaDataAppId, Failed to read meta data for the AppID.");
+            HMSLog.m7715e("AGCUtils", "In getMetaDataAppId, Failed to read meta data for the AppID.");
             return "";
         } catch (AndroidException unused) {
-            HMSLog.e("AGCUtils", "In getMetaDataAppId, Failed to read meta data for the AppID.");
+            HMSLog.m7715e("AGCUtils", "In getMetaDataAppId, Failed to read meta data for the AppID.");
             return "";
         } catch (RuntimeException e2) {
-            HMSLog.e("AGCUtils", "In getMetaDataAppId, Failed to read meta data for the AppID.", e2);
+            HMSLog.m7716e("AGCUtils", "In getMetaDataAppId, Failed to read meta data for the AppID.", e2);
             return "";
         }
     }

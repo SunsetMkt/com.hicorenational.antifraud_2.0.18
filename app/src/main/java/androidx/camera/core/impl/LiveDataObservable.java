@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public final class LiveDataObservable<T> implements Observable<T> {
@@ -116,7 +117,7 @@ public final class LiveDataObservable<T> implements Observable<T> {
 
     @Override // androidx.camera.core.impl.Observable
     @NonNull
-    public c.b.b.a.a.a<T> fetchData() {
+    public InterfaceFutureC0952a<T> fetchData() {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<T>() { // from class: androidx.camera.core.impl.LiveDataObservable.1
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             @Nullable

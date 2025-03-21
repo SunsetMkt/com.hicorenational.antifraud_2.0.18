@@ -23,6 +23,7 @@ import android.view.animation.Interpolator;
 import android.widget.SpinnerAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ActionBarPolicy;
@@ -45,9 +46,9 @@ import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
 import androidx.core.view.ViewPropertyAnimatorUpdateListener;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import c.c.a.b.a.a;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
@@ -490,7 +491,7 @@ public class WindowDecorActionBar extends ActionBar implements ActionBarOverlayL
         }
         StringBuilder sb = new StringBuilder();
         sb.append("Can't make a decor toolbar out of ");
-        sb.append(view != 0 ? view.getClass().getSimpleName() : a.f3101h);
+        sb.append(view != 0 ? view.getClass().getSimpleName() : AbstractC1191a.f2571h);
         throw new IllegalStateException(sb.toString());
     }
 
@@ -506,14 +507,14 @@ public class WindowDecorActionBar extends ActionBar implements ActionBarOverlayL
     }
 
     private void init(View view) {
-        this.mOverlayLayout = (ActionBarOverlayLayout) view.findViewById(androidx.appcompat.R.id.decor_content_parent);
+        this.mOverlayLayout = (ActionBarOverlayLayout) view.findViewById(C0120R.id.decor_content_parent);
         ActionBarOverlayLayout actionBarOverlayLayout = this.mOverlayLayout;
         if (actionBarOverlayLayout != null) {
             actionBarOverlayLayout.setActionBarVisibilityCallback(this);
         }
-        this.mDecorToolbar = getDecorToolbar(view.findViewById(androidx.appcompat.R.id.action_bar));
-        this.mContextView = (ActionBarContextView) view.findViewById(androidx.appcompat.R.id.action_context_bar);
-        this.mContainerView = (ActionBarContainer) view.findViewById(androidx.appcompat.R.id.action_bar_container);
+        this.mDecorToolbar = getDecorToolbar(view.findViewById(C0120R.id.action_bar));
+        this.mContextView = (ActionBarContextView) view.findViewById(C0120R.id.action_context_bar);
+        this.mContainerView = (ActionBarContainer) view.findViewById(C0120R.id.action_bar_container);
         DecorToolbar decorToolbar = this.mDecorToolbar;
         if (decorToolbar == null || this.mContextView == null || this.mContainerView == null) {
             throw new IllegalStateException(WindowDecorActionBar.class.getSimpleName() + " can only be used with a compatible window decor layout");
@@ -526,11 +527,11 @@ public class WindowDecorActionBar extends ActionBar implements ActionBarOverlayL
         ActionBarPolicy actionBarPolicy = ActionBarPolicy.get(this.mContext);
         setHomeButtonEnabled(actionBarPolicy.enableHomeButtonByDefault() || z);
         setHasEmbeddedTabs(actionBarPolicy.hasEmbeddedTabs());
-        TypedArray obtainStyledAttributes = this.mContext.obtainStyledAttributes(null, androidx.appcompat.R.styleable.ActionBar, androidx.appcompat.R.attr.actionBarStyle, 0);
-        if (obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.ActionBar_hideOnContentScroll, false)) {
+        TypedArray obtainStyledAttributes = this.mContext.obtainStyledAttributes(null, C0120R.styleable.ActionBar, C0120R.attr.actionBarStyle, 0);
+        if (obtainStyledAttributes.getBoolean(C0120R.styleable.ActionBar_hideOnContentScroll, false)) {
             setHideOnContentScrollEnabled(true);
         }
-        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.ActionBar_elevation, 0);
+        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.ActionBar_elevation, 0);
         if (dimensionPixelSize != 0) {
             setElevation(dimensionPixelSize);
         }
@@ -824,7 +825,7 @@ public class WindowDecorActionBar extends ActionBar implements ActionBarOverlayL
     public Context getThemedContext() {
         if (this.mThemedContext == null) {
             TypedValue typedValue = new TypedValue();
-            this.mContext.getTheme().resolveAttribute(androidx.appcompat.R.attr.actionBarWidgetTheme, typedValue, true);
+            this.mContext.getTheme().resolveAttribute(C0120R.attr.actionBarWidgetTheme, typedValue, true);
             int i2 = typedValue.resourceId;
             if (i2 != 0) {
                 this.mThemedContext = new ContextThemeWrapper(this.mContext, i2);

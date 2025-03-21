@@ -6,7 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.huawei.hms.common.internal.Preconditions;
 import com.huawei.hms.common.util.Base64Utils;
-import com.xiaomi.push.service.f;
+import com.xiaomi.push.service.C4383f;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -39,7 +39,7 @@ public final class SafeParcelableSerializer {
         if (bundle == null || (arrayList = (ArrayList) bundle.getSerializable(str)) == null) {
             return null;
         }
-        f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
+        C4383f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             anonymousClass3.add(deserializeFromBytes((byte[]) it.next(), creator));
@@ -52,7 +52,7 @@ public final class SafeParcelableSerializer {
         if (intent == null || (arrayList = (ArrayList) intent.getSerializableExtra(str)) == null) {
             return null;
         }
-        f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
+        C4383f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             anonymousClass3.add(deserializeFromBytes((byte[]) it.next(), creator));

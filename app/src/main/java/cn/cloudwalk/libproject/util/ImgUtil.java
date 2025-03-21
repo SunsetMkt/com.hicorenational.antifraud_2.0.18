@@ -29,7 +29,6 @@ import androidx.core.view.ViewCompat;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.xiaomi.mipush.sdk.Constants;
-import h.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,6 +40,7 @@ import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class ImgUtil {
@@ -101,9 +101,9 @@ public class ImgUtil {
         int[] iArr = new int[i4];
         for (int i5 = 0; i5 < i4; i5++) {
             int i6 = i5 * 3;
-            int i7 = bArr[i6] & f1.f16099c;
-            int i8 = bArr[i6 + 1] & f1.f16099c;
-            int i9 = bArr[i6 + 2] & f1.f16099c;
+            int i7 = bArr[i6] & C5230f1.f20085c;
+            int i8 = bArr[i6 + 1] & C5230f1.f20085c;
+            int i9 = bArr[i6 + 2] & C5230f1.f20085c;
             if (i7 < 0) {
                 i7 = 0;
             } else if (i7 > 255) {
@@ -129,7 +129,7 @@ public class ImgUtil {
     public static String byteToHexString(byte[] bArr) {
         StringBuffer stringBuffer = new StringBuffer();
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & f1.f16099c);
+            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
             if (hexString.length() == 1) {
                 hexString = '0' + hexString;
             }

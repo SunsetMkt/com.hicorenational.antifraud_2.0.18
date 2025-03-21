@@ -2,9 +2,9 @@ package androidx.camera.core.internal;
 
 import androidx.annotation.NonNull;
 import androidx.camera.core.ZoomState;
-import c.b.a.a.c;
+import p031c.p035b.p036a.p037a.InterfaceC0950c;
 
-@c
+@InterfaceC0950c
 /* loaded from: classes.dex */
 public abstract class ImmutableZoomState implements ZoomState {
     @NonNull

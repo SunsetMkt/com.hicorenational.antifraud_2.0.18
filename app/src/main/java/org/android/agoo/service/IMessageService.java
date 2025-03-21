@@ -17,18 +17,19 @@ public interface IMessageService extends IInterface {
         static final int TRANSACTION_probe = 2;
 
         /* compiled from: Taobao */
-        private static class a implements IMessageService {
+        /* renamed from: org.android.agoo.service.IMessageService$Stub$a */
+        private static class C6035a implements IMessageService {
 
-            /* renamed from: a, reason: collision with root package name */
-            private IBinder f17357a;
+            /* renamed from: a */
+            private IBinder f21513a;
 
-            a(IBinder iBinder) {
-                this.f17357a = iBinder;
+            C6035a(IBinder iBinder) {
+                this.f21513a = iBinder;
             }
 
             @Override // android.os.IInterface
             public IBinder asBinder() {
-                return this.f17357a;
+                return this.f21513a;
             }
 
             @Override // org.android.agoo.service.IMessageService
@@ -37,7 +38,7 @@ public interface IMessageService extends IInterface {
                 Parcel obtain2 = Parcel.obtain();
                 try {
                     obtain.writeInterfaceToken(Stub.DESCRIPTOR);
-                    this.f17357a.transact(1, obtain, obtain2, 0);
+                    this.f21513a.transact(1, obtain, obtain2, 0);
                     obtain2.readException();
                     return obtain2.readInt() != 0;
                 } finally {
@@ -52,7 +53,7 @@ public interface IMessageService extends IInterface {
                 Parcel obtain2 = Parcel.obtain();
                 try {
                     obtain.writeInterfaceToken(Stub.DESCRIPTOR);
-                    this.f17357a.transact(2, obtain, obtain2, 0);
+                    this.f21513a.transact(2, obtain, obtain2, 0);
                     obtain2.readException();
                 } finally {
                     obtain2.recycle();
@@ -70,7 +71,7 @@ public interface IMessageService extends IInterface {
                 return null;
             }
             IInterface queryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
-            return queryLocalInterface instanceof IMessageService ? (IMessageService) queryLocalInterface : new a(iBinder);
+            return queryLocalInterface instanceof IMessageService ? (IMessageService) queryLocalInterface : new C6035a(iBinder);
         }
 
         @Override // android.os.IInterface

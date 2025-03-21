@@ -9,8 +9,8 @@ import com.umeng.message.entity.UMessage;
 /* loaded from: classes2.dex */
 public abstract class UmengNotifyClickActivity extends Activity {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final UmengNotifyClick f11132a = new UmengNotifyClick() { // from class: com.umeng.message.UmengNotifyClickActivity.1
+    /* renamed from: a */
+    private final UmengNotifyClick f13047a = new UmengNotifyClick() { // from class: com.umeng.message.UmengNotifyClickActivity.1
         @Override // com.umeng.message.UmengNotifyClick
         protected final void onChangeBadgeNumber(UMessage uMessage) {
             if (UmengNotifyClickActivity.this.canChangeBadgeNum(uMessage)) {
@@ -29,7 +29,7 @@ public abstract class UmengNotifyClickActivity extends Activity {
                     try {
                         UmengNotifyClickActivity.this.onMessage(uMessage);
                     } catch (Throwable th) {
-                        UPLog.e("UmengNotifyClickActivity", th);
+                        UPLog.m12143e("UmengNotifyClickActivity", th);
                     }
                 }
             });
@@ -48,7 +48,7 @@ public abstract class UmengNotifyClickActivity extends Activity {
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        this.f11132a.onCreate(this, getIntent());
+        this.f13047a.onCreate(this, getIntent());
     }
 
     @Deprecated
@@ -61,6 +61,6 @@ public abstract class UmengNotifyClickActivity extends Activity {
     @Override // android.app.Activity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        this.f11132a.onNewIntent(intent);
+        this.f13047a.onNewIntent(intent);
     }
 }

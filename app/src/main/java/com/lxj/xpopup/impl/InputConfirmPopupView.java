@@ -6,25 +6,35 @@ import android.text.TextUtils;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
-import com.lxj.xpopup.R;
-import com.lxj.xpopup.b;
-import com.lxj.xpopup.e.e;
-import com.lxj.xpopup.f.c;
+import com.lxj.xpopup.C2766R;
+import com.lxj.xpopup.C2768b;
+import com.lxj.xpopup.p186e.InterfaceC2807a;
+import com.lxj.xpopup.p186e.InterfaceC2811e;
+import com.lxj.xpopup.p187f.C2819c;
 
 /* loaded from: classes.dex */
 public class InputConfirmPopupView extends ConfirmPopupView implements View.OnClickListener {
-    AppCompatEditText E;
-    public String F;
-    com.lxj.xpopup.e.a G;
-    e H;
 
-    class a implements Runnable {
-        a() {
+    /* renamed from: E */
+    AppCompatEditText f8796E;
+
+    /* renamed from: F */
+    public String f8797F;
+
+    /* renamed from: G */
+    InterfaceC2807a f8798G;
+
+    /* renamed from: H */
+    InterfaceC2811e f8799H;
+
+    /* renamed from: com.lxj.xpopup.impl.InputConfirmPopupView$a */
+    class RunnableC2826a implements Runnable {
+        RunnableC2826a() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            InputConfirmPopupView.this.E.setBackgroundDrawable(c.a(c.a(InputConfirmPopupView.this.getResources(), InputConfirmPopupView.this.E.getMeasuredWidth(), Color.parseColor("#888888")), c.a(InputConfirmPopupView.this.getResources(), InputConfirmPopupView.this.E.getMeasuredWidth(), b.b())));
+            InputConfirmPopupView.this.f8796E.setBackgroundDrawable(C2819c.m8453a(C2819c.m8452a(InputConfirmPopupView.this.getResources(), InputConfirmPopupView.this.f8796E.getMeasuredWidth(), Color.parseColor("#888888")), C2819c.m8452a(InputConfirmPopupView.this.getResources(), InputConfirmPopupView.this.f8796E.getMeasuredWidth(), C2768b.m8296b())));
         }
     }
 
@@ -33,59 +43,63 @@ public class InputConfirmPopupView extends ConfirmPopupView implements View.OnCl
     }
 
     public AppCompatEditText getEditText() {
-        return this.E;
+        return this.f8796E;
     }
 
     @Override // com.lxj.xpopup.impl.ConfirmPopupView, com.lxj.xpopup.core.CenterPopupView, com.lxj.xpopup.core.BasePopupView
-    protected void k() {
-        super.k();
-        this.E = (AppCompatEditText) findViewById(R.id.et_input);
-        this.E.setVisibility(0);
-        if (!TextUtils.isEmpty(this.A)) {
-            this.E.setHint(this.A);
+    /* renamed from: k */
+    protected void mo8364k() {
+        super.mo8364k();
+        this.f8796E = (AppCompatEditText) findViewById(C2766R.id.et_input);
+        this.f8796E.setVisibility(0);
+        if (!TextUtils.isEmpty(this.f8782A)) {
+            this.f8796E.setHint(this.f8782A);
         }
-        if (!TextUtils.isEmpty(this.F)) {
-            this.E.setText(this.F);
-            this.E.setSelection(this.F.length());
+        if (!TextUtils.isEmpty(this.f8797F)) {
+            this.f8796E.setText(this.f8797F);
+            this.f8796E.setSelection(this.f8797F.length());
         }
-        w();
+        m8501w();
     }
 
     @Override // com.lxj.xpopup.impl.ConfirmPopupView, android.view.View.OnClickListener
     public void onClick(View view) {
-        if (view == this.w) {
-            com.lxj.xpopup.e.a aVar = this.G;
-            if (aVar != null) {
-                aVar.onCancel();
+        if (view == this.f8790w) {
+            InterfaceC2807a interfaceC2807a = this.f8798G;
+            if (interfaceC2807a != null) {
+                interfaceC2807a.onCancel();
             }
-            b();
+            mo8378b();
             return;
         }
-        if (view == this.x) {
-            e eVar = this.H;
-            if (eVar != null) {
-                eVar.a(this.E.getText().toString().trim());
+        if (view == this.f8791x) {
+            InterfaceC2811e interfaceC2811e = this.f8799H;
+            if (interfaceC2811e != null) {
+                interfaceC2811e.m8430a(this.f8796E.getText().toString().trim());
             }
-            if (this.f7987a.f8030d.booleanValue()) {
-                b();
+            if (this.f8617a.f8691d.booleanValue()) {
+                mo8378b();
             }
         }
     }
 
-    protected void w() {
-        super.u();
-        c.a(this.E, b.b());
-        this.E.post(new a());
+    /* renamed from: w */
+    protected void m8501w() {
+        super.m8498u();
+        C2819c.m8460a(this.f8796E, C2768b.m8296b());
+        this.f8796E.post(new RunnableC2826a());
     }
 
     @Override // com.lxj.xpopup.impl.ConfirmPopupView
-    public InputConfirmPopupView a(int i2) {
-        this.q = i2;
+    /* renamed from: a */
+    public InputConfirmPopupView mo8493a(int i2) {
+        this.f8646q = i2;
         return this;
     }
 
-    public void a(e eVar, com.lxj.xpopup.e.a aVar) {
-        this.G = aVar;
-        this.H = eVar;
+    /* renamed from: a */
+    public void m8500a(InterfaceC2811e interfaceC2811e, InterfaceC2807a interfaceC2807a) {
+        this.f8798G = interfaceC2807a;
+        this.f8799H = interfaceC2811e;
     }
 }

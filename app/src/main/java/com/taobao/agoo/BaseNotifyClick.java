@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.k;
+import com.taobao.accs.utl.C3043k;
 import com.taobao.agoo.BaseNotifyClickActivity;
 import java.util.Iterator;
 import java.util.Set;
@@ -24,7 +24,7 @@ public abstract class BaseNotifyClick {
     private NotifManager notifyManager;
 
     private void buildMessage(Intent intent) {
-        ThreadPoolExecutorFactory.execute(new a(this, intent));
+        ThreadPoolExecutorFactory.execute(new RunnableC3056a(this, intent));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -48,33 +48,33 @@ public abstract class BaseNotifyClick {
                 parseMsgFromIntent = parseMsgFromIntent2;
             }
         } else {
-            ALog.e(TAG, "no impl, try use default impl to parse intent!", new Object[0]);
-            BaseNotifyClickActivity.INotifyListener bVar = new b();
-            parseMsgFromIntent = bVar.parseMsgFromIntent(intent);
+            ALog.m9182e(TAG, "no impl, try use default impl to parse intent!", new Object[0]);
+            BaseNotifyClickActivity.INotifyListener c3063b = new C3063b();
+            parseMsgFromIntent = c3063b.parseMsgFromIntent(intent);
             if (TextUtils.isEmpty(parseMsgFromIntent)) {
-                bVar = new f();
-                parseMsgFromIntent = bVar.parseMsgFromIntent(intent);
+                c3063b = new C3067f();
+                parseMsgFromIntent = c3063b.parseMsgFromIntent(intent);
             }
             if (TextUtils.isEmpty(parseMsgFromIntent)) {
-                bVar = new d();
-                parseMsgFromIntent = bVar.parseMsgFromIntent(intent);
+                c3063b = new C3065d();
+                parseMsgFromIntent = c3063b.parseMsgFromIntent(intent);
             }
             if (TextUtils.isEmpty(parseMsgFromIntent)) {
-                bVar = new e();
-                parseMsgFromIntent = bVar.parseMsgFromIntent(intent);
+                c3063b = new C3066e();
+                parseMsgFromIntent = c3063b.parseMsgFromIntent(intent);
             }
             if (TextUtils.isEmpty(parseMsgFromIntent)) {
-                bVar = new c();
-                parseMsgFromIntent = bVar.parseMsgFromIntent(intent);
+                c3063b = new C3064c();
+                parseMsgFromIntent = c3063b.parseMsgFromIntent(intent);
             }
             if (TextUtils.isEmpty(parseMsgFromIntent)) {
-                k.a("accs", "error", "parse 3push error", 0.0d);
+                C3043k.m9250a("accs", "error", "parse 3push error", 0.0d);
             } else {
-                this.msgSource = bVar.getMsgSource();
-                k.a("accs", "error", "parse 3push default " + this.msgSource, 0.0d);
+                this.msgSource = c3063b.getMsgSource();
+                C3043k.m9250a("accs", "error", "parse 3push default " + this.msgSource, 0.0d);
             }
         }
-        ALog.i(TAG, "parseMsgByThirdPush", "result", parseMsgFromIntent, "msgSource", this.msgSource);
+        ALog.m9183i(TAG, "parseMsgByThirdPush", "result", parseMsgFromIntent, "msgSource", this.msgSource);
         return parseMsgFromIntent;
     }
 
@@ -91,15 +91,15 @@ public abstract class BaseNotifyClick {
             msgDO.messageSource = stringExtra2;
             msgDO.reportStr = stringExtra3;
             msgDO.msgStatus = "8";
-            ALog.i(TAG, "reportClickNotifyMsg messageId:" + stringExtra + " source:" + stringExtra2 + " reportStr:" + stringExtra3 + " status:" + msgDO.msgStatus, new Object[0]);
+            ALog.m9183i(TAG, "reportClickNotifyMsg messageId:" + stringExtra + " source:" + stringExtra2 + " reportStr:" + stringExtra3 + " status:" + msgDO.msgStatus, new Object[0]);
             this.notifyManager.report(msgDO, null);
         } catch (Exception e2) {
-            ALog.e(TAG, "reportClickNotifyMsg exception: " + e2, new Object[0]);
+            ALog.m9182e(TAG, "reportClickNotifyMsg exception: " + e2, new Object[0]);
         }
     }
 
     public void onCreate(Context context, Intent intent) {
-        ALog.i(TAG, "onCreate", new Object[0]);
+        ALog.m9183i(TAG, "onCreate", new Object[0]);
         this.context = context;
         buildMessage(intent);
     }
@@ -107,7 +107,7 @@ public abstract class BaseNotifyClick {
     public abstract void onMessage(Intent intent);
 
     public void onNewIntent(Intent intent) {
-        ALog.i(TAG, "onNewIntent", new Object[0]);
+        ALog.m9183i(TAG, "onNewIntent", new Object[0]);
         buildMessage(intent);
     }
 }

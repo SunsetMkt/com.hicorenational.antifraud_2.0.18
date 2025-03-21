@@ -8,94 +8,94 @@ import java.util.Map;
 /* loaded from: classes2.dex */
 public abstract class BaseMediaObject implements UMediaObject {
 
-    /* renamed from: a, reason: collision with root package name */
-    protected String f11689a;
+    /* renamed from: a */
+    protected String f13632a;
 
-    /* renamed from: b, reason: collision with root package name */
-    protected String f11690b;
+    /* renamed from: b */
+    protected String f13633b;
 
-    /* renamed from: c, reason: collision with root package name */
-    protected Map<String, Object> f11691c;
+    /* renamed from: c */
+    protected Map<String, Object> f13634c;
 
-    /* renamed from: d, reason: collision with root package name */
-    protected String f11692d;
+    /* renamed from: d */
+    protected String f13635d;
 
-    /* renamed from: e, reason: collision with root package name */
-    protected UMImage f11693e;
+    /* renamed from: e */
+    protected UMImage f13636e;
     public String mText;
 
     public BaseMediaObject() {
         this.mText = null;
-        this.f11689a = "";
-        this.f11690b = "";
-        this.f11691c = new HashMap();
-        this.f11692d = "";
+        this.f13632a = "";
+        this.f13633b = "";
+        this.f13634c = new HashMap();
+        this.f13635d = "";
     }
 
     public String getDescription() {
-        return this.f11692d;
+        return this.f13635d;
     }
 
     public UMImage getThumbImage() {
-        return this.f11693e;
+        return this.f13636e;
     }
 
     public String getTitle() {
-        return this.f11690b;
+        return this.f13633b;
     }
 
     public Map<String, Object> getmExtra() {
-        return this.f11691c;
+        return this.f13634c;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public boolean isUrlMedia() {
-        return !TextUtils.isEmpty(this.f11689a);
+        return !TextUtils.isEmpty(this.f13632a);
     }
 
     public void setDescription(String str) {
-        this.f11692d = str;
+        this.f13635d = str;
     }
 
     public void setThumb(UMImage uMImage) {
-        this.f11693e = uMImage;
+        this.f13636e = uMImage;
     }
 
     public void setTitle(String str) {
-        this.f11690b = str;
+        this.f13633b = str;
     }
 
     public void setmExtra(String str, Object obj) {
-        this.f11691c.put(str, obj);
+        this.f13634c.put(str, obj);
     }
 
     public String toString() {
-        return "BaseMediaObject [media_url=" + this.f11689a + ", qzone_title=" + this.f11690b + ", qzone_thumb=]";
+        return "BaseMediaObject [media_url=" + this.f13632a + ", qzone_title=" + this.f13633b + ", qzone_thumb=]";
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public String toUrl() {
-        return this.f11689a;
+        return this.f13632a;
     }
 
     public BaseMediaObject(String str) {
         this.mText = null;
-        this.f11689a = "";
-        this.f11690b = "";
-        this.f11691c = new HashMap();
-        this.f11692d = "";
-        this.f11689a = str;
+        this.f13632a = "";
+        this.f13633b = "";
+        this.f13634c = new HashMap();
+        this.f13635d = "";
+        this.f13632a = str;
     }
 
     protected BaseMediaObject(Parcel parcel) {
         this.mText = null;
-        this.f11689a = "";
-        this.f11690b = "";
-        this.f11691c = new HashMap();
-        this.f11692d = "";
+        this.f13632a = "";
+        this.f13633b = "";
+        this.f13634c = new HashMap();
+        this.f13635d = "";
         if (parcel != null) {
-            this.f11689a = parcel.readString();
-            this.f11690b = parcel.readString();
+            this.f13632a = parcel.readString();
+            this.f13633b = parcel.readString();
         }
     }
 }

@@ -16,6 +16,7 @@ import androidx.camera.core.impl.SingleImageProxyBundle;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 final class ProcessingSurface extends DeferrableSurface {
@@ -155,7 +156,7 @@ final class ProcessingSurface extends DeferrableSurface {
 
     @Override // androidx.camera.core.impl.DeferrableSurface
     @NonNull
-    public c.b.b.a.a.a<Surface> provideSurface() {
+    public InterfaceFutureC0952a<Surface> provideSurface() {
         return Futures.immediateFuture(this.mInputSurface);
     }
 }

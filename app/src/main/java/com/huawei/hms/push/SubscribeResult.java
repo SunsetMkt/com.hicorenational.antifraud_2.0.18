@@ -7,25 +7,25 @@ import java.util.List;
 /* loaded from: classes.dex */
 public class SubscribeResult extends Result {
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f7194a;
+    /* renamed from: a */
+    private String f7739a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private List<SubscribedItem> f7195b;
+    /* renamed from: b */
+    private List<SubscribedItem> f7740b;
 
     public String getErrorMsg() {
-        return this.f7194a;
+        return this.f7739a;
     }
 
     public List<SubscribedItem> getSubscribedItems() {
-        return this.f7195b;
+        return this.f7740b;
     }
 
     public void setErrorMsg(String str) {
-        this.f7194a = str;
+        this.f7739a = str;
     }
 
     public void setSubscribedItems(List<SubscribedItem> list) {
-        this.f7195b = list;
+        this.f7740b = list;
     }
 }

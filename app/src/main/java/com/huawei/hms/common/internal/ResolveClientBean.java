@@ -3,23 +3,23 @@ package com.huawei.hms.common.internal;
 /* loaded from: classes.dex */
 public class ResolveClientBean {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final int f6772a;
+    /* renamed from: a */
+    private final int f7292a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final AnyClient f6773b;
+    /* renamed from: b */
+    private final AnyClient f7293b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private int f6774c;
+    /* renamed from: c */
+    private int f7294c;
 
     public ResolveClientBean(AnyClient anyClient, int i2) {
-        this.f6773b = anyClient;
-        this.f6772a = Objects.hashCode(anyClient);
-        this.f6774c = i2;
+        this.f7293b = anyClient;
+        this.f7292a = Objects.hashCode(anyClient);
+        this.f7294c = i2;
     }
 
     public void clientReconnect() {
-        this.f6773b.connect(this.f6774c, true);
+        this.f7293b.connect(this.f7294c, true);
     }
 
     public boolean equals(Object obj) {
@@ -29,14 +29,14 @@ public class ResolveClientBean {
         if (obj == null || !(obj instanceof ResolveClientBean)) {
             return false;
         }
-        return this.f6773b.equals(((ResolveClientBean) obj).f6773b);
+        return this.f7293b.equals(((ResolveClientBean) obj).f7293b);
     }
 
     public AnyClient getClient() {
-        return this.f6773b;
+        return this.f7293b;
     }
 
     public int hashCode() {
-        return this.f6772a;
+        return this.f7292a;
     }
 }

@@ -12,7 +12,9 @@ public class UploadFileBean extends BaseBean {
     private long fileSize;
     private int fileType;
     private String fileUrl;
-    private String id;
+
+    /* renamed from: id */
+    private String f1635id;
     private String localPath;
     private String mailingTelDetailID;
     private String paymentInfoID;
@@ -52,7 +54,7 @@ public class UploadFileBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1635id;
     }
 
     public String getLocalPath() {
@@ -108,7 +110,7 @@ public class UploadFileBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1635id = str;
     }
 
     public void setLocalPath(String str) {

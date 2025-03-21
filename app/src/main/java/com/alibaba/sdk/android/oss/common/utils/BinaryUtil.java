@@ -1,13 +1,13 @@
 package com.alibaba.sdk.android.oss.common.utils;
 
 import android.util.Base64;
-import h.f1;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class BinaryUtil {
@@ -40,7 +40,7 @@ public class BinaryUtil {
     private static String convertHashToString(byte[] bArr) {
         String str = "";
         for (byte b2 : bArr) {
-            str = str + Integer.toString((b2 & f1.f16099c) + 256, 16).substring(1);
+            str = str + Integer.toString((b2 & C5230f1.f20085c) + 256, 16).substring(1);
         }
         return str.toLowerCase();
     }

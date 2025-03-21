@@ -12,7 +12,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import java.lang.annotation.Retention;
@@ -602,26 +602,26 @@ public class LinearLayoutCompat extends ViewGroup {
         this.mBaselineAlignedChildIndex = -1;
         this.mBaselineChildTop = 0;
         this.mGravity = 8388659;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.LinearLayoutCompat, i2, 0);
-        ViewCompat.saveAttributeDataForStyleable(this, context, R.styleable.LinearLayoutCompat, attributeSet, obtainStyledAttributes.getWrappedTypeArray(), i2, 0);
-        int i3 = obtainStyledAttributes.getInt(R.styleable.LinearLayoutCompat_android_orientation, -1);
+        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0120R.styleable.LinearLayoutCompat, i2, 0);
+        ViewCompat.saveAttributeDataForStyleable(this, context, C0120R.styleable.LinearLayoutCompat, attributeSet, obtainStyledAttributes.getWrappedTypeArray(), i2, 0);
+        int i3 = obtainStyledAttributes.getInt(C0120R.styleable.LinearLayoutCompat_android_orientation, -1);
         if (i3 >= 0) {
             setOrientation(i3);
         }
-        int i4 = obtainStyledAttributes.getInt(R.styleable.LinearLayoutCompat_android_gravity, -1);
+        int i4 = obtainStyledAttributes.getInt(C0120R.styleable.LinearLayoutCompat_android_gravity, -1);
         if (i4 >= 0) {
             setGravity(i4);
         }
-        boolean z = obtainStyledAttributes.getBoolean(R.styleable.LinearLayoutCompat_android_baselineAligned, true);
+        boolean z = obtainStyledAttributes.getBoolean(C0120R.styleable.LinearLayoutCompat_android_baselineAligned, true);
         if (!z) {
             setBaselineAligned(z);
         }
-        this.mWeightSum = obtainStyledAttributes.getFloat(R.styleable.LinearLayoutCompat_android_weightSum, -1.0f);
-        this.mBaselineAlignedChildIndex = obtainStyledAttributes.getInt(R.styleable.LinearLayoutCompat_android_baselineAlignedChildIndex, -1);
-        this.mUseLargestChild = obtainStyledAttributes.getBoolean(R.styleable.LinearLayoutCompat_measureWithLargestChild, false);
-        setDividerDrawable(obtainStyledAttributes.getDrawable(R.styleable.LinearLayoutCompat_divider));
-        this.mShowDividers = obtainStyledAttributes.getInt(R.styleable.LinearLayoutCompat_showDividers, 0);
-        this.mDividerPadding = obtainStyledAttributes.getDimensionPixelSize(R.styleable.LinearLayoutCompat_dividerPadding, 0);
+        this.mWeightSum = obtainStyledAttributes.getFloat(C0120R.styleable.LinearLayoutCompat_android_weightSum, -1.0f);
+        this.mBaselineAlignedChildIndex = obtainStyledAttributes.getInt(C0120R.styleable.LinearLayoutCompat_android_baselineAlignedChildIndex, -1);
+        this.mUseLargestChild = obtainStyledAttributes.getBoolean(C0120R.styleable.LinearLayoutCompat_measureWithLargestChild, false);
+        setDividerDrawable(obtainStyledAttributes.getDrawable(C0120R.styleable.LinearLayoutCompat_divider));
+        this.mShowDividers = obtainStyledAttributes.getInt(C0120R.styleable.LinearLayoutCompat_showDividers, 0);
+        this.mDividerPadding = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.LinearLayoutCompat_dividerPadding, 0);
         obtainStyledAttributes.recycle();
     }
 
@@ -643,9 +643,9 @@ public class LinearLayoutCompat extends ViewGroup {
         public LayoutParams(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
             this.gravity = -1;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.LinearLayoutCompat_Layout);
-            this.weight = obtainStyledAttributes.getFloat(R.styleable.LinearLayoutCompat_Layout_android_layout_weight, 0.0f);
-            this.gravity = obtainStyledAttributes.getInt(R.styleable.LinearLayoutCompat_Layout_android_layout_gravity, -1);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0120R.styleable.LinearLayoutCompat_Layout);
+            this.weight = obtainStyledAttributes.getFloat(C0120R.styleable.LinearLayoutCompat_Layout_android_layout_weight, 0.0f);
+            this.gravity = obtainStyledAttributes.getInt(C0120R.styleable.LinearLayoutCompat_Layout_android_layout_gravity, -1);
             obtainStyledAttributes.recycle();
         }
 

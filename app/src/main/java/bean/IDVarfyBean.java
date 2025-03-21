@@ -11,7 +11,9 @@ public class IDVarfyBean extends BaseBean {
 
     public static class Rows extends BaseBean {
         private String deadline;
-        private String id;
+
+        /* renamed from: id */
+        private String f1600id;
         private String intivedMobile;
         private String intivedPhotoFileUrl;
         private String launchTime;
@@ -23,7 +25,7 @@ public class IDVarfyBean extends BaseBean {
         }
 
         public String getId() {
-            return this.id;
+            return this.f1600id;
         }
 
         public String getIntivedMobile() {
@@ -51,7 +53,7 @@ public class IDVarfyBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f1600id = str;
         }
 
         public void setIntivedMobile(String str) {

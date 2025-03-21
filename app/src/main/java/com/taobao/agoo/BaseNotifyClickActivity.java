@@ -36,7 +36,7 @@ public class BaseNotifyClickActivity extends Activity {
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        ALog.i(TAG, "onCreate", new Object[0]);
+        ALog.m9183i(TAG, "onCreate", new Object[0]);
         this.baseNotifyClick.onCreate(this, getIntent());
     }
 
@@ -46,7 +46,7 @@ public class BaseNotifyClickActivity extends Activity {
     @Override // android.app.Activity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        ALog.i(TAG, "onNewIntent", new Object[0]);
+        ALog.m9183i(TAG, "onNewIntent", new Object[0]);
         this.baseNotifyClick.onNewIntent(intent);
     }
 }

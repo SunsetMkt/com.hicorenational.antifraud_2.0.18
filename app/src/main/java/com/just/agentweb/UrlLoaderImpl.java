@@ -139,7 +139,7 @@ public class UrlLoaderImpl implements IUrlLoader {
                 }
             });
         }
-        LogUtils.i(TAG, "loadUrl:" + str + " headers:" + map);
+        LogUtils.m8083i(TAG, "loadUrl:" + str + " headers:" + map);
         if (map == null || map.isEmpty()) {
             this.mWebView.loadUrl(str);
         } else {

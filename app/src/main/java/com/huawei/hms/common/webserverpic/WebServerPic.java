@@ -11,19 +11,19 @@ import java.util.Locale;
 public class WebServerPic {
     public static final Parcelable.Creator<WebServerPic> CREATOR = new WebServerPicCreator();
 
-    /* renamed from: a, reason: collision with root package name */
-    private final Uri f6788a;
+    /* renamed from: a */
+    private final Uri f7308a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final int f6789b;
+    /* renamed from: b */
+    private final int f7309b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private final int f6790c;
+    /* renamed from: c */
+    private final int f7310c;
 
     public WebServerPic(Uri uri, int i2, int i3) throws IllegalArgumentException {
-        this.f6788a = uri;
-        this.f6789b = i2;
-        this.f6790c = i3;
+        this.f7308a = uri;
+        this.f7309b = i2;
+        this.f7310c = i3;
         if (uri == null) {
             throw new IllegalArgumentException("url is not able to be null");
         }
@@ -33,19 +33,19 @@ public class WebServerPic {
     }
 
     public final int getHeight() {
-        return this.f6790c;
+        return this.f7310c;
     }
 
     public final Uri getUrl() {
-        return this.f6788a;
+        return this.f7308a;
     }
 
     public final int getWidth() {
-        return this.f6789b;
+        return this.f7309b;
     }
 
     public final String toString() {
-        return String.format(Locale.ENGLISH, "Image %dx%d %s", Integer.valueOf(this.f6789b), Integer.valueOf(this.f6790c), this.f6788a.toString());
+        return String.format(Locale.ENGLISH, "Image %dx%d %s", Integer.valueOf(this.f7309b), Integer.valueOf(this.f7310c), this.f7308a.toString());
     }
 
     public final void writeToParcel(Parcel parcel, int i2) {

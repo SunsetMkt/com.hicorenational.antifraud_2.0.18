@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
-import androidx.recyclerview.R;
+import androidx.recyclerview.C0619R;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,9 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
     public static final int RIGHT = 8;
     public static final int START = 16;
     private static final String TAG = "ItemTouchHelper";
-    public static final int UP = 1;
+
+    /* renamed from: UP */
+    public static final int f623UP = 1;
 
     @NonNull
     Callback mCallback;
@@ -105,8 +107,8 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
                 ItemTouchHelper itemTouchHelper = ItemTouchHelper.this;
                 if (itemTouchHelper.mSelected == null && (findAnimation = itemTouchHelper.findAnimation(motionEvent)) != null) {
                     ItemTouchHelper itemTouchHelper2 = ItemTouchHelper.this;
-                    itemTouchHelper2.mInitialTouchX -= findAnimation.mX;
-                    itemTouchHelper2.mInitialTouchY -= findAnimation.mY;
+                    itemTouchHelper2.mInitialTouchX -= findAnimation.f624mX;
+                    itemTouchHelper2.mInitialTouchY -= findAnimation.f625mY;
                     itemTouchHelper2.endRecoverAnimation(findAnimation.mViewHolder, true);
                     if (ItemTouchHelper.this.mPendingCleanup.remove(findAnimation.mViewHolder.itemView)) {
                         ItemTouchHelper itemTouchHelper3 = ItemTouchHelper.this;
@@ -241,7 +243,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
 
         private int getMaxDragScroll(RecyclerView recyclerView) {
             if (this.mCachedMaxScrollSpeed == -1) {
-                this.mCachedMaxScrollSpeed = recyclerView.getResources().getDimensionPixelSize(R.dimen.item_touch_helper_max_drag_scroll_per_frame);
+                this.mCachedMaxScrollSpeed = recyclerView.getResources().getDimensionPixelSize(C0619R.dimen.item_touch_helper_max_drag_scroll_per_frame);
             }
             return this.mCachedMaxScrollSpeed;
         }
@@ -384,7 +386,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
                 RecoverAnimation recoverAnimation = list.get(i3);
                 recoverAnimation.update();
                 int save = canvas.save();
-                onChildDraw(canvas, recyclerView, recoverAnimation.mViewHolder, recoverAnimation.mX, recoverAnimation.mY, recoverAnimation.mActionState, false);
+                onChildDraw(canvas, recyclerView, recoverAnimation.mViewHolder, recoverAnimation.f624mX, recoverAnimation.f625mY, recoverAnimation.mActionState, false);
                 canvas.restoreToCount(save);
             }
             if (viewHolder != null) {
@@ -400,7 +402,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
             for (int i3 = 0; i3 < size; i3++) {
                 RecoverAnimation recoverAnimation = list.get(i3);
                 int save = canvas.save();
-                onChildDrawOver(canvas, recyclerView, recoverAnimation.mViewHolder, recoverAnimation.mX, recoverAnimation.mY, recoverAnimation.mActionState, false);
+                onChildDrawOver(canvas, recyclerView, recoverAnimation.mViewHolder, recoverAnimation.f624mX, recoverAnimation.f625mY, recoverAnimation.mActionState, false);
                 canvas.restoreToCount(save);
             }
             if (viewHolder != null) {
@@ -510,8 +512,12 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
         final float mTargetX;
         final float mTargetY;
         final RecyclerView.ViewHolder mViewHolder;
-        float mX;
-        float mY;
+
+        /* renamed from: mX */
+        float f624mX;
+
+        /* renamed from: mY */
+        float f625mY;
         boolean mOverridden = false;
         boolean mEnded = false;
         private final ValueAnimator mValueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -577,16 +583,16 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
             float f2 = this.mStartDx;
             float f3 = this.mTargetX;
             if (f2 == f3) {
-                this.mX = this.mViewHolder.itemView.getTranslationX();
+                this.f624mX = this.mViewHolder.itemView.getTranslationX();
             } else {
-                this.mX = f2 + (this.mFraction * (f3 - f2));
+                this.f624mX = f2 + (this.mFraction * (f3 - f2));
             }
             float f4 = this.mStartDy;
             float f5 = this.mTargetY;
             if (f4 == f5) {
-                this.mY = this.mViewHolder.itemView.getTranslationY();
+                this.f625mY = this.mViewHolder.itemView.getTranslationY();
             } else {
-                this.mY = f4 + (this.mFraction * (f5 - f4));
+                this.f625mY = f4 + (this.mFraction * (f5 - f4));
             }
         }
     }
@@ -876,8 +882,8 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
         this.mRecyclerView = recyclerView;
         if (recyclerView != null) {
             Resources resources = recyclerView.getResources();
-            this.mSwipeEscapeVelocity = resources.getDimension(R.dimen.item_touch_helper_swipe_escape_velocity);
-            this.mMaxSwipeVelocity = resources.getDimension(R.dimen.item_touch_helper_swipe_escape_max_velocity);
+            this.mSwipeEscapeVelocity = resources.getDimension(C0619R.dimen.item_touch_helper_swipe_escape_velocity);
+            this.mMaxSwipeVelocity = resources.getDimension(C0619R.dimen.item_touch_helper_swipe_escape_max_velocity);
             setupCallbacks();
         }
     }
@@ -959,7 +965,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
         for (int size = this.mRecoverAnimations.size() - 1; size >= 0; size--) {
             RecoverAnimation recoverAnimation = this.mRecoverAnimations.get(size);
             View view2 = recoverAnimation.mViewHolder.itemView;
-            if (hitTest(view2, x, y, recoverAnimation.mX, recoverAnimation.mY)) {
+            if (hitTest(view2, x, y, recoverAnimation.f624mX, recoverAnimation.f625mY)) {
                 return view2;
             }
         }

@@ -46,7 +46,7 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
         if (file.exists()) {
             return file.delete();
         }
-        Logger.i(TAG, "db is not exists");
+        Logger.m6799i(TAG, "db is not exists");
         return false;
     }
 
@@ -68,7 +68,7 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
         if (new File(replace).exists()) {
             return SQLiteDatabase.openDatabase(replace, null, 0);
         }
-        Logger.i(TAG, "old db is not exists");
+        Logger.m6799i(TAG, "old db is not exists");
         return networkKitReadableDatabase;
     }
 
@@ -85,11 +85,11 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
         try {
             sQLiteDatabase = getReadableDatabase();
         } catch (Throwable th) {
-            Logger.e(TAG, "getReadableDatabase db error:" + th.getMessage());
+            Logger.m6796e(TAG, "getReadableDatabase db error:" + th.getMessage());
             sQLiteDatabase = null;
         }
         if (sQLiteDatabase == null) {
-            Logger.e(TAG, "getReadableDatabase db is null");
+            Logger.m6796e(TAG, "getReadableDatabase db is null");
         }
         return sQLiteDatabase;
     }
@@ -99,11 +99,11 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
         try {
             sQLiteDatabase = getWritableDatabase();
         } catch (Throwable th) {
-            Logger.e(TAG, "getWritableDatabase db error:" + th.getMessage());
+            Logger.m6796e(TAG, "getWritableDatabase db error:" + th.getMessage());
             sQLiteDatabase = null;
         }
         if (sQLiteDatabase == null) {
-            Logger.e(TAG, "getWritableDatabase db is null");
+            Logger.m6796e(TAG, "getWritableDatabase db is null");
         }
         return sQLiteDatabase;
     }

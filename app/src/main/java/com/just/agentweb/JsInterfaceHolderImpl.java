@@ -19,7 +19,7 @@ public class JsInterfaceHolderImpl extends JsBaseInterfaceHolder {
     }
 
     private JsInterfaceHolder addJavaObjectDirect(String str, Object obj) {
-        LogUtils.i(TAG, "k:" + str + "  v:" + obj);
+        LogUtils.m8083i(TAG, "k:" + str + "  v:" + obj);
         this.mWebView.addJavascriptInterface(obj, str);
         return this;
     }
@@ -43,7 +43,7 @@ public class JsInterfaceHolderImpl extends JsBaseInterfaceHolder {
     @Override // com.just.agentweb.JsInterfaceHolder
     public JsInterfaceHolder addJavaObjects(Map<String, Object> map) {
         if (!checkSecurity()) {
-            LogUtils.e(TAG, "The injected object is not safe, give up injection");
+            LogUtils.m8081e(TAG, "The injected object is not safe, give up injection");
             return this;
         }
         for (Map.Entry<String, Object> entry : map.entrySet()) {

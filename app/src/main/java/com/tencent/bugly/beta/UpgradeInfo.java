@@ -1,8 +1,8 @@
 package com.tencent.bugly.beta;
 
-import com.tencent.bugly.proguard.u;
-import com.tencent.bugly.proguard.v;
-import com.tencent.bugly.proguard.y;
+import com.tencent.bugly.proguard.C3196u;
+import com.tencent.bugly.proguard.C3197v;
+import com.tencent.bugly.proguard.C3200y;
 
 /* compiled from: BUGLY */
 /* loaded from: classes2.dex */
@@ -10,7 +10,9 @@ public class UpgradeInfo {
     public String apkMd5;
     public String apkUrl;
     public long fileSize;
-    public String id;
+
+    /* renamed from: id */
+    public String f9838id;
     public String imageUrl;
     public String newFeature;
     public long popInterval;
@@ -23,8 +25,8 @@ public class UpgradeInfo {
     public int versionCode;
     public String versionName;
 
-    public UpgradeInfo(y yVar) {
-        this.id = "";
+    public UpgradeInfo(C3200y c3200y) {
+        this.f9838id = "";
         this.title = "";
         this.newFeature = "";
         this.publishTime = 0L;
@@ -33,24 +35,24 @@ public class UpgradeInfo {
         this.popTimes = 0;
         this.popInterval = 0L;
         this.versionName = "";
-        if (yVar != null) {
-            this.id = yVar.f9487m;
-            this.title = yVar.f9475a;
-            this.newFeature = yVar.f9476b;
-            this.publishTime = yVar.f9477c;
-            this.publishType = yVar.f9478d;
-            this.upgradeType = yVar.f9481g;
-            this.popTimes = yVar.f9482h;
-            this.popInterval = yVar.f9483i;
-            v vVar = yVar.f9479e;
-            this.versionCode = vVar.f9452c;
-            this.versionName = vVar.f9453d;
-            this.apkMd5 = vVar.f9458i;
-            u uVar = yVar.f9480f;
-            this.apkUrl = uVar.f9445b;
-            this.fileSize = uVar.f9447d;
-            this.imageUrl = yVar.f9486l.get("IMG_title");
-            this.updateType = yVar.p;
+        if (c3200y != null) {
+            this.f9838id = c3200y.f10844m;
+            this.title = c3200y.f10832a;
+            this.newFeature = c3200y.f10833b;
+            this.publishTime = c3200y.f10834c;
+            this.publishType = c3200y.f10835d;
+            this.upgradeType = c3200y.f10838g;
+            this.popTimes = c3200y.f10839h;
+            this.popInterval = c3200y.f10840i;
+            C3197v c3197v = c3200y.f10836e;
+            this.versionCode = c3197v.f10804c;
+            this.versionName = c3197v.f10805d;
+            this.apkMd5 = c3197v.f10810i;
+            C3196u c3196u = c3200y.f10837f;
+            this.apkUrl = c3196u.f10797b;
+            this.fileSize = c3196u.f10799d;
+            this.imageUrl = c3200y.f10843l.get("IMG_title");
+            this.updateType = c3200y.f10847p;
         }
     }
 }

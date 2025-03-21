@@ -19,6 +19,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.p142a.C1904a;
+import com.chad.library.adapter.base.p142a.C1906c;
+import com.chad.library.adapter.base.p142a.C1907d;
+import com.chad.library.adapter.base.p142a.C1908e;
+import com.chad.library.adapter.base.p142a.C1909f;
+import com.chad.library.adapter.base.p142a.InterfaceC1905b;
+import com.chad.library.adapter.base.p143b.InterfaceC1911b;
+import com.chad.library.adapter.base.p144c.AbstractC1914a;
+import com.chad.library.adapter.base.p144c.C1915b;
+import com.chad.library.adapter.base.p145d.AbstractC1916a;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Constructor;
@@ -32,319 +42,414 @@ import java.util.List;
 
 /* loaded from: classes.dex */
 public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends RecyclerView.Adapter<K> {
-    public static final int L = 1;
-    public static final int M = 2;
-    public static final int N = 3;
-    public static final int O = 4;
-    public static final int P = 5;
-    protected static final String Q = "BaseQuickAdapter";
-    public static final int R = 273;
-    public static final int S = 546;
-    public static final int T = 819;
-    public static final int U = 1365;
-    protected List<T> A;
-    private RecyclerView B;
-    private boolean C;
-    private boolean D;
-    private o E;
-    private int F;
-    private boolean G;
-    private boolean H;
-    private n I;
-    private com.chad.library.adapter.base.d.a<T> J;
-    private int K;
 
-    /* renamed from: a, reason: collision with root package name */
-    private boolean f5412a;
+    /* renamed from: L */
+    public static final int f5536L = 1;
 
-    /* renamed from: b, reason: collision with root package name */
-    private boolean f5413b;
+    /* renamed from: M */
+    public static final int f5537M = 2;
 
-    /* renamed from: c, reason: collision with root package name */
-    private boolean f5414c;
+    /* renamed from: N */
+    public static final int f5538N = 3;
 
-    /* renamed from: d, reason: collision with root package name */
-    private com.chad.library.adapter.base.c.a f5415d;
+    /* renamed from: O */
+    public static final int f5539O = 4;
 
-    /* renamed from: e, reason: collision with root package name */
-    private m f5416e;
+    /* renamed from: P */
+    public static final int f5540P = 5;
 
-    /* renamed from: f, reason: collision with root package name */
-    private boolean f5417f;
+    /* renamed from: Q */
+    protected static final String f5541Q = "BaseQuickAdapter";
 
-    /* renamed from: g, reason: collision with root package name */
-    private k f5418g;
+    /* renamed from: R */
+    public static final int f5542R = 273;
 
-    /* renamed from: h, reason: collision with root package name */
-    private l f5419h;
+    /* renamed from: S */
+    public static final int f5543S = 546;
 
-    /* renamed from: i, reason: collision with root package name */
-    private i f5420i;
+    /* renamed from: T */
+    public static final int f5544T = 819;
 
-    /* renamed from: j, reason: collision with root package name */
-    private j f5421j;
+    /* renamed from: U */
+    public static final int f5545U = 1365;
 
-    /* renamed from: k, reason: collision with root package name */
-    private boolean f5422k;
+    /* renamed from: A */
+    protected List<T> f5546A;
 
-    /* renamed from: l, reason: collision with root package name */
-    private boolean f5423l;
+    /* renamed from: B */
+    private RecyclerView f5547B;
 
-    /* renamed from: m, reason: collision with root package name */
-    private Interpolator f5424m;
-    private int n;
-    private int o;
-    private com.chad.library.adapter.base.a.b p;
-    private com.chad.library.adapter.base.a.b q;
-    private LinearLayout r;
-    private LinearLayout s;
-    private FrameLayout t;
-    private boolean u;
-    private boolean v;
-    private boolean w;
-    protected Context x;
-    protected int y;
-    protected LayoutInflater z;
+    /* renamed from: C */
+    private boolean f5548C;
 
-    class a implements Runnable {
+    /* renamed from: D */
+    private boolean f5549D;
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ LinearLayoutManager f5425a;
+    /* renamed from: E */
+    private InterfaceC1901o f5550E;
 
-        a(LinearLayoutManager linearLayoutManager) {
-            this.f5425a = linearLayoutManager;
+    /* renamed from: F */
+    private int f5551F;
+
+    /* renamed from: G */
+    private boolean f5552G;
+
+    /* renamed from: H */
+    private boolean f5553H;
+
+    /* renamed from: I */
+    private InterfaceC1900n f5554I;
+
+    /* renamed from: J */
+    private AbstractC1916a<T> f5555J;
+
+    /* renamed from: K */
+    private int f5556K;
+
+    /* renamed from: a */
+    private boolean f5557a;
+
+    /* renamed from: b */
+    private boolean f5558b;
+
+    /* renamed from: c */
+    private boolean f5559c;
+
+    /* renamed from: d */
+    private AbstractC1914a f5560d;
+
+    /* renamed from: e */
+    private InterfaceC1899m f5561e;
+
+    /* renamed from: f */
+    private boolean f5562f;
+
+    /* renamed from: g */
+    private InterfaceC1897k f5563g;
+
+    /* renamed from: h */
+    private InterfaceC1898l f5564h;
+
+    /* renamed from: i */
+    private InterfaceC1895i f5565i;
+
+    /* renamed from: j */
+    private InterfaceC1896j f5566j;
+
+    /* renamed from: k */
+    private boolean f5567k;
+
+    /* renamed from: l */
+    private boolean f5568l;
+
+    /* renamed from: m */
+    private Interpolator f5569m;
+
+    /* renamed from: n */
+    private int f5570n;
+
+    /* renamed from: o */
+    private int f5571o;
+
+    /* renamed from: p */
+    private InterfaceC1905b f5572p;
+
+    /* renamed from: q */
+    private InterfaceC1905b f5573q;
+
+    /* renamed from: r */
+    private LinearLayout f5574r;
+
+    /* renamed from: s */
+    private LinearLayout f5575s;
+
+    /* renamed from: t */
+    private FrameLayout f5576t;
+
+    /* renamed from: u */
+    private boolean f5577u;
+
+    /* renamed from: v */
+    private boolean f5578v;
+
+    /* renamed from: w */
+    private boolean f5579w;
+
+    /* renamed from: x */
+    protected Context f5580x;
+
+    /* renamed from: y */
+    protected int f5581y;
+
+    /* renamed from: z */
+    protected LayoutInflater f5582z;
+
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$a */
+    class RunnableC1887a implements Runnable {
+
+        /* renamed from: a */
+        final /* synthetic */ LinearLayoutManager f5583a;
+
+        RunnableC1887a(LinearLayoutManager linearLayoutManager) {
+            this.f5583a = linearLayoutManager;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            if (this.f5425a.findLastCompletelyVisibleItemPosition() + 1 != BaseQuickAdapter.this.getItemCount()) {
-                BaseQuickAdapter.this.e(true);
+            if (this.f5583a.findLastCompletelyVisibleItemPosition() + 1 != BaseQuickAdapter.this.getItemCount()) {
+                BaseQuickAdapter.this.m5148e(true);
             }
         }
     }
 
-    class b implements Runnable {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$b */
+    class RunnableC1888b implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ StaggeredGridLayoutManager f5427a;
+        /* renamed from: a */
+        final /* synthetic */ StaggeredGridLayoutManager f5585a;
 
-        b(StaggeredGridLayoutManager staggeredGridLayoutManager) {
-            this.f5427a = staggeredGridLayoutManager;
+        RunnableC1888b(StaggeredGridLayoutManager staggeredGridLayoutManager) {
+            this.f5585a = staggeredGridLayoutManager;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            int[] iArr = new int[this.f5427a.getSpanCount()];
-            this.f5427a.findLastCompletelyVisibleItemPositions(iArr);
-            if (BaseQuickAdapter.this.a(iArr) + 1 != BaseQuickAdapter.this.getItemCount()) {
-                BaseQuickAdapter.this.e(true);
+            int[] iArr = new int[this.f5585a.getSpanCount()];
+            this.f5585a.findLastCompletelyVisibleItemPositions(iArr);
+            if (BaseQuickAdapter.this.m5063a(iArr) + 1 != BaseQuickAdapter.this.getItemCount()) {
+                BaseQuickAdapter.this.m5148e(true);
             }
         }
     }
 
-    class c implements View.OnClickListener {
-        c() {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$c */
+    class ViewOnClickListenerC1889c implements View.OnClickListener {
+        ViewOnClickListenerC1889c() {
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            if (BaseQuickAdapter.this.f5415d.d() == 3) {
-                BaseQuickAdapter.this.C();
+            if (BaseQuickAdapter.this.f5560d.m5257d() == 3) {
+                BaseQuickAdapter.this.m5084C();
             }
-            if (BaseQuickAdapter.this.f5417f && BaseQuickAdapter.this.f5415d.d() == 4) {
-                BaseQuickAdapter.this.C();
+            if (BaseQuickAdapter.this.f5562f && BaseQuickAdapter.this.f5560d.m5257d() == 4) {
+                BaseQuickAdapter.this.m5084C();
             }
         }
     }
 
-    class d extends GridLayoutManager.SpanSizeLookup {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$d */
+    class C1890d extends GridLayoutManager.SpanSizeLookup {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ GridLayoutManager f5430a;
+        /* renamed from: a */
+        final /* synthetic */ GridLayoutManager f5588a;
 
-        d(GridLayoutManager gridLayoutManager) {
-            this.f5430a = gridLayoutManager;
+        C1890d(GridLayoutManager gridLayoutManager) {
+            this.f5588a = gridLayoutManager;
         }
 
         @Override // androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
         public int getSpanSize(int i2) {
             int itemViewType = BaseQuickAdapter.this.getItemViewType(i2);
-            if (itemViewType == 273 && BaseQuickAdapter.this.u()) {
+            if (itemViewType == 273 && BaseQuickAdapter.this.m5179u()) {
                 return 1;
             }
-            if (itemViewType == 819 && BaseQuickAdapter.this.t()) {
+            if (itemViewType == 819 && BaseQuickAdapter.this.m5178t()) {
                 return 1;
             }
-            if (BaseQuickAdapter.this.I != null) {
-                return BaseQuickAdapter.this.d(itemViewType) ? this.f5430a.getSpanCount() : BaseQuickAdapter.this.I.a(this.f5430a, i2 - BaseQuickAdapter.this.j());
+            if (BaseQuickAdapter.this.f5554I != null) {
+                return BaseQuickAdapter.this.mo5143d(itemViewType) ? this.f5588a.getSpanCount() : BaseQuickAdapter.this.f5554I.m5188a(this.f5588a, i2 - BaseQuickAdapter.this.m5164j());
             }
-            if (BaseQuickAdapter.this.d(itemViewType)) {
-                return this.f5430a.getSpanCount();
+            if (BaseQuickAdapter.this.mo5143d(itemViewType)) {
+                return this.f5588a.getSpanCount();
             }
             return 1;
         }
     }
 
-    class e implements View.OnClickListener {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$e */
+    class ViewOnClickListenerC1891e implements View.OnClickListener {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ BaseViewHolder f5432a;
+        /* renamed from: a */
+        final /* synthetic */ BaseViewHolder f5590a;
 
-        e(BaseViewHolder baseViewHolder) {
-            this.f5432a = baseViewHolder;
+        ViewOnClickListenerC1891e(BaseViewHolder baseViewHolder) {
+            this.f5590a = baseViewHolder;
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            BaseQuickAdapter.this.e(view, this.f5432a.getLayoutPosition() - BaseQuickAdapter.this.j());
+            BaseQuickAdapter.this.m5147e(view, this.f5590a.getLayoutPosition() - BaseQuickAdapter.this.m5164j());
         }
     }
 
-    class f implements View.OnLongClickListener {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$f */
+    class ViewOnLongClickListenerC1892f implements View.OnLongClickListener {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ BaseViewHolder f5434a;
+        /* renamed from: a */
+        final /* synthetic */ BaseViewHolder f5592a;
 
-        f(BaseViewHolder baseViewHolder) {
-            this.f5434a = baseViewHolder;
+        ViewOnLongClickListenerC1892f(BaseViewHolder baseViewHolder) {
+            this.f5592a = baseViewHolder;
         }
 
         @Override // android.view.View.OnLongClickListener
         public boolean onLongClick(View view) {
-            return BaseQuickAdapter.this.f(view, this.f5434a.getLayoutPosition() - BaseQuickAdapter.this.j());
+            return BaseQuickAdapter.this.m5152f(view, this.f5592a.getLayoutPosition() - BaseQuickAdapter.this.m5164j());
         }
     }
 
-    class g implements Runnable {
-        g() {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$g */
+    class RunnableC1893g implements Runnable {
+        RunnableC1893g() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            BaseQuickAdapter.this.f5416e.a();
+            BaseQuickAdapter.this.f5561e.m5187a();
         }
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    public @interface h {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$h */
+    public @interface InterfaceC1894h {
     }
 
-    public interface i {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$i */
+    public interface InterfaceC1895i {
         void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i2);
     }
 
-    public interface j {
-        boolean a(BaseQuickAdapter baseQuickAdapter, View view, int i2);
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$j */
+    public interface InterfaceC1896j {
+        /* renamed from: a */
+        boolean m5185a(BaseQuickAdapter baseQuickAdapter, View view, int i2);
     }
 
-    public interface k {
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$k */
+    public interface InterfaceC1897k {
         void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i2);
     }
 
-    public interface l {
-        boolean a(BaseQuickAdapter baseQuickAdapter, View view, int i2);
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$l */
+    public interface InterfaceC1898l {
+        /* renamed from: a */
+        boolean m5186a(BaseQuickAdapter baseQuickAdapter, View view, int i2);
     }
 
-    public interface m {
-        void a();
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$m */
+    public interface InterfaceC1899m {
+        /* renamed from: a */
+        void m5187a();
     }
 
-    public interface n {
-        int a(GridLayoutManager gridLayoutManager, int i2);
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$n */
+    public interface InterfaceC1900n {
+        /* renamed from: a */
+        int m5188a(GridLayoutManager gridLayoutManager, int i2);
     }
 
-    public interface o {
-        void a();
+    /* renamed from: com.chad.library.adapter.base.BaseQuickAdapter$o */
+    public interface InterfaceC1901o {
+        /* renamed from: a */
+        void m5189a();
     }
 
     public BaseQuickAdapter(@LayoutRes int i2, @Nullable List<T> list) {
-        this.f5412a = false;
-        this.f5413b = false;
-        this.f5414c = false;
-        this.f5415d = new com.chad.library.adapter.base.c.b();
-        this.f5417f = false;
-        this.f5422k = true;
-        this.f5423l = false;
-        this.f5424m = new LinearInterpolator();
-        this.n = 300;
-        this.o = -1;
-        this.q = new com.chad.library.adapter.base.a.a();
-        this.u = true;
-        this.F = 1;
-        this.K = 1;
-        this.A = list == null ? new ArrayList<>() : list;
+        this.f5557a = false;
+        this.f5558b = false;
+        this.f5559c = false;
+        this.f5560d = new C1915b();
+        this.f5562f = false;
+        this.f5567k = true;
+        this.f5568l = false;
+        this.f5569m = new LinearInterpolator();
+        this.f5570n = 300;
+        this.f5571o = -1;
+        this.f5573q = new C1904a();
+        this.f5577u = true;
+        this.f5551F = 1;
+        this.f5556K = 1;
+        this.f5546A = list == null ? new ArrayList<>() : list;
         if (i2 != 0) {
-            this.y = i2;
+            this.f5581y = i2;
         }
     }
 
-    private void G() {
-        if (s() == null) {
+    /* renamed from: G */
+    private void m5058G() {
+        if (m5177s() == null) {
             throw new RuntimeException("please bind recyclerView first!");
         }
     }
 
-    private int H() {
+    /* renamed from: H */
+    private int m5059H() {
         int i2 = 1;
-        if (e() != 1) {
-            return j() + this.A.size();
+        if (m5144e() != 1) {
+            return m5164j() + this.f5546A.size();
         }
-        if (this.v && j() != 0) {
+        if (this.f5578v && m5164j() != 0) {
             i2 = 2;
         }
-        if (this.w) {
+        if (this.f5579w) {
             return i2;
         }
         return -1;
     }
 
-    private int I() {
-        return (e() != 1 || this.v) ? 0 : -1;
+    /* renamed from: I */
+    private int m5060I() {
+        return (m5144e() != 1 || this.f5578v) ? 0 : -1;
     }
 
-    private void n(int i2) {
-        o oVar;
-        if (!x() || y() || i2 > this.F || (oVar = this.E) == null) {
+    /* renamed from: n */
+    private void m5078n(int i2) {
+        InterfaceC1901o interfaceC1901o;
+        if (!m5182x() || m5183y() || i2 > this.f5551F || (interfaceC1901o = this.f5550E) == null) {
             return;
         }
-        oVar.a();
+        interfaceC1901o.m5189a();
     }
 
-    private void o(int i2) {
-        List<T> list = this.A;
+    /* renamed from: o */
+    private void m5079o(int i2) {
+        List<T> list = this.f5546A;
         if ((list == null ? 0 : list.size()) == i2) {
             notifyDataSetChanged();
         }
     }
 
-    private com.chad.library.adapter.base.b.b p(int i2) {
+    /* renamed from: p */
+    private InterfaceC1911b m5080p(int i2) {
         T item = getItem(i2);
-        if (c((BaseQuickAdapter<T, K>) item)) {
-            return (com.chad.library.adapter.base.b.b) item;
+        if (m5137c((BaseQuickAdapter<T, K>) item)) {
+            return (InterfaceC1911b) item;
         }
         return null;
     }
 
-    private int q(@IntRange(from = 0) int i2) {
+    /* renamed from: q */
+    private int m5081q(@IntRange(from = 0) int i2) {
         T item = getItem(i2);
         int i3 = 0;
-        if (!c((BaseQuickAdapter<T, K>) item)) {
+        if (!m5137c((BaseQuickAdapter<T, K>) item)) {
             return 0;
         }
-        com.chad.library.adapter.base.b.b bVar = (com.chad.library.adapter.base.b.b) item;
-        if (bVar.isExpanded()) {
-            List<T> a2 = bVar.a();
-            if (a2 == null) {
+        InterfaceC1911b interfaceC1911b = (InterfaceC1911b) item;
+        if (interfaceC1911b.isExpanded()) {
+            List<T> mo5237a = interfaceC1911b.mo5237a();
+            if (mo5237a == null) {
                 return 0;
             }
-            for (int size = a2.size() - 1; size >= 0; size--) {
-                T t = a2.get(size);
-                int d2 = d((BaseQuickAdapter<T, K>) t);
-                if (d2 >= 0) {
-                    if (t instanceof com.chad.library.adapter.base.b.b) {
-                        i3 += q(d2);
+            for (int size = mo5237a.size() - 1; size >= 0; size--) {
+                T t = mo5237a.get(size);
+                int m5075d = m5075d((BaseQuickAdapter<T, K>) t);
+                if (m5075d >= 0) {
+                    if (t instanceof InterfaceC1911b) {
+                        i3 += m5081q(m5075d);
                     }
-                    this.A.remove(d2);
+                    this.f5546A.remove(m5075d);
                     i3++;
                 }
             }
@@ -352,90 +457,101 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         return i3;
     }
 
-    public void A() {
-        d(false);
+    /* renamed from: A */
+    public void m5082A() {
+        m5142d(false);
     }
 
-    public void B() {
-        if (l() == 0) {
+    /* renamed from: B */
+    public void m5083B() {
+        if (m5169l() == 0) {
             return;
         }
-        this.f5414c = false;
-        this.f5415d.a(3);
-        notifyItemChanged(m());
+        this.f5559c = false;
+        this.f5560d.m5252a(3);
+        notifyItemChanged(m5171m());
     }
 
-    public void C() {
-        if (this.f5415d.d() == 2) {
+    /* renamed from: C */
+    public void m5084C() {
+        if (this.f5560d.m5257d() == 2) {
             return;
         }
-        this.f5415d.a(1);
-        notifyItemChanged(m());
+        this.f5560d.m5252a(1);
+        notifyItemChanged(m5171m());
     }
 
-    public void D() {
-        this.f5423l = true;
+    /* renamed from: D */
+    public void m5085D() {
+        this.f5568l = true;
     }
 
-    public void E() {
-        if (g() == 0) {
+    /* renamed from: E */
+    public void m5086E() {
+        if (m5153g() == 0) {
             return;
         }
-        this.s.removeAllViews();
-        int H = H();
-        if (H != -1) {
-            notifyItemRemoved(H);
+        this.f5575s.removeAllViews();
+        int m5059H = m5059H();
+        if (m5059H != -1) {
+            notifyItemRemoved(m5059H);
         }
     }
 
-    public void F() {
-        if (j() == 0) {
+    /* renamed from: F */
+    public void m5087F() {
+        if (m5164j() == 0) {
             return;
         }
-        this.r.removeAllViews();
-        int I = I();
-        if (I != -1) {
-            notifyItemRemoved(I);
+        this.f5574r.removeAllViews();
+        int m5060I = m5060I();
+        if (m5060I != -1) {
+            notifyItemRemoved(m5060I);
         }
     }
 
-    protected abstract void a(K k2, T t);
+    /* renamed from: a */
+    protected abstract void mo204a(K k2, T t);
 
-    protected boolean d(int i2) {
+    /* renamed from: d */
+    protected boolean mo5143d(int i2) {
         return i2 == 1365 || i2 == 273 || i2 == 819 || i2 == 546;
     }
 
-    public void e(boolean z) {
-        int l2 = l();
-        this.f5413b = z;
-        int l3 = l();
-        if (l2 == 1) {
-            if (l3 == 0) {
-                notifyItemRemoved(m());
+    /* renamed from: e */
+    public void m5148e(boolean z) {
+        int m5169l = m5169l();
+        this.f5558b = z;
+        int m5169l2 = m5169l();
+        if (m5169l == 1) {
+            if (m5169l2 == 0) {
+                notifyItemRemoved(m5171m());
             }
-        } else if (l3 == 1) {
-            this.f5415d.a(1);
-            notifyItemInserted(m());
+        } else if (m5169l2 == 1) {
+            this.f5560d.m5252a(1);
+            notifyItemInserted(m5171m());
         }
     }
 
-    public void f(@IntRange(from = 0) int i2) {
-        this.A.remove(i2);
-        int j2 = i2 + j();
-        notifyItemRemoved(j2);
-        o(0);
-        notifyItemRangeChanged(j2, this.A.size() - j2);
+    /* renamed from: f */
+    public void mo5056f(@IntRange(from = 0) int i2) {
+        this.f5546A.remove(i2);
+        int m5164j = i2 + m5164j();
+        notifyItemRemoved(m5164j);
+        m5079o(0);
+        notifyItemRangeChanged(m5164j, this.f5546A.size() - m5164j);
     }
 
-    public int g() {
-        LinearLayout linearLayout = this.s;
+    /* renamed from: g */
+    public int m5153g() {
+        LinearLayout linearLayout = this.f5575s;
         return (linearLayout == null || linearLayout.getChildCount() == 0) ? 0 : 1;
     }
 
     @Nullable
     public T getItem(@IntRange(from = 0) int i2) {
-        if (i2 < this.A.size()) {
-            return this.A.get(i2);
+        if (i2 < this.f5546A.size()) {
+            return this.f5546A.get(i2);
         }
         return null;
     }
@@ -443,13 +559,13 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
         int i2 = 1;
-        if (e() != 1) {
-            return l() + j() + this.A.size() + g();
+        if (m5144e() != 1) {
+            return m5169l() + m5164j() + this.f5546A.size() + m5153g();
         }
-        if (this.v && j() != 0) {
+        if (this.f5578v && m5164j() != 0) {
             i2 = 2;
         }
-        return (!this.w || g() == 0) ? i2 : i2 + 1;
+        return (!this.f5579w || m5153g() == 0) ? i2 : i2 + 1;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -459,48 +575,54 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int i2) {
-        if (e() == 1) {
-            boolean z = this.v && j() != 0;
+        if (m5144e() == 1) {
+            boolean z = this.f5578v && m5164j() != 0;
             if (i2 != 0) {
-                return i2 != 1 ? i2 != 2 ? U : T : z ? U : T;
+                return i2 != 1 ? i2 != 2 ? f5545U : f5544T : z ? f5545U : f5544T;
             }
             if (z) {
                 return 273;
             }
-            return U;
+            return f5545U;
         }
-        int j2 = j();
-        if (i2 < j2) {
+        int m5164j = m5164j();
+        if (i2 < m5164j) {
             return 273;
         }
-        int i3 = i2 - j2;
-        int size = this.A.size();
-        return i3 < size ? c(i3) : i3 - size < g() ? T : S;
+        int i3 = i2 - m5164j;
+        int size = this.f5546A.size();
+        return i3 < size ? mo5055c(i3) : i3 - size < m5153g() ? f5544T : f5543S;
     }
 
-    public void h(int i2) {
-        this.n = i2;
+    /* renamed from: h */
+    public void m5159h(int i2) {
+        this.f5570n = i2;
     }
 
-    public void i(boolean z) {
-        this.C = z;
+    /* renamed from: i */
+    public void m5163i(boolean z) {
+        this.f5548C = z;
     }
 
-    public void j(boolean z) {
-        this.D = z;
+    /* renamed from: j */
+    public void m5166j(boolean z) {
+        this.f5549D = z;
     }
 
     @Deprecated
-    public int k() {
-        return j();
+    /* renamed from: k */
+    public int m5167k() {
+        return m5164j();
     }
 
-    public void l(int i2) {
-        this.F = i2;
+    /* renamed from: l */
+    public void m5170l(int i2) {
+        this.f5551F = i2;
     }
 
-    public int m() {
-        return j() + this.A.size() + g();
+    /* renamed from: m */
+    public int m5171m() {
+        return m5164j() + this.f5546A.size() + m5153g();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -509,367 +631,415 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
             GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
-            gridLayoutManager.setSpanSizeLookup(new d(gridLayoutManager));
+            gridLayoutManager.setSpanSizeLookup(new C1890d(gridLayoutManager));
         }
     }
 
-    public final l r() {
-        return this.f5419h;
+    /* renamed from: r */
+    public final InterfaceC1898l m5176r() {
+        return this.f5564h;
     }
 
-    protected RecyclerView s() {
-        return this.B;
+    /* renamed from: s */
+    protected RecyclerView m5177s() {
+        return this.f5547B;
     }
 
     public void setNewData(@Nullable List<T> list) {
         if (list == null) {
             list = new ArrayList<>();
         }
-        this.A = list;
-        if (this.f5416e != null) {
-            this.f5412a = true;
-            this.f5413b = true;
-            this.f5414c = false;
-            this.f5415d.a(1);
+        this.f5546A = list;
+        if (this.f5561e != null) {
+            this.f5557a = true;
+            this.f5558b = true;
+            this.f5559c = false;
+            this.f5560d.m5252a(1);
         }
-        this.o = -1;
+        this.f5571o = -1;
         notifyDataSetChanged();
     }
 
-    public void setOnItemChildClickListener(i iVar) {
-        this.f5420i = iVar;
+    public void setOnItemChildClickListener(InterfaceC1895i interfaceC1895i) {
+        this.f5565i = interfaceC1895i;
     }
 
-    public void setOnItemChildLongClickListener(j jVar) {
-        this.f5421j = jVar;
+    public void setOnItemChildLongClickListener(InterfaceC1896j interfaceC1896j) {
+        this.f5566j = interfaceC1896j;
     }
 
-    public void setOnItemClickListener(@Nullable k kVar) {
-        this.f5418g = kVar;
+    public void setOnItemClickListener(@Nullable InterfaceC1897k interfaceC1897k) {
+        this.f5563g = interfaceC1897k;
     }
 
-    public void setOnItemLongClickListener(l lVar) {
-        this.f5419h = lVar;
+    public void setOnItemLongClickListener(InterfaceC1898l interfaceC1898l) {
+        this.f5564h = interfaceC1898l;
     }
 
-    public boolean t() {
-        return this.H;
+    /* renamed from: t */
+    public boolean m5178t() {
+        return this.f5553H;
     }
 
-    public boolean u() {
-        return this.G;
+    /* renamed from: u */
+    public boolean m5179u() {
+        return this.f5552G;
     }
 
-    public boolean v() {
-        return this.f5413b;
+    /* renamed from: v */
+    public boolean m5180v() {
+        return this.f5558b;
     }
 
-    public boolean w() {
-        return this.f5414c;
+    /* renamed from: w */
+    public boolean m5181w() {
+        return this.f5559c;
     }
 
-    public boolean x() {
-        return this.C;
+    /* renamed from: x */
+    public boolean m5182x() {
+        return this.f5548C;
     }
 
-    public boolean y() {
-        return this.D;
+    /* renamed from: y */
+    public boolean m5183y() {
+        return this.f5549D;
     }
 
-    public void z() {
-        if (l() == 0) {
+    /* renamed from: z */
+    public void m5184z() {
+        if (m5169l() == 0) {
             return;
         }
-        this.f5414c = false;
-        this.f5412a = true;
-        this.f5415d.a(1);
-        notifyItemChanged(m());
+        this.f5559c = false;
+        this.f5557a = true;
+        this.f5560d.m5252a(1);
+        notifyItemChanged(m5171m());
     }
 
-    private void b(m mVar) {
-        this.f5416e = mVar;
-        this.f5412a = true;
-        this.f5413b = true;
-        this.f5414c = false;
+    /* renamed from: b */
+    private void m5070b(InterfaceC1899m interfaceC1899m) {
+        this.f5561e = interfaceC1899m;
+        this.f5557a = true;
+        this.f5558b = true;
+        this.f5559c = false;
     }
 
-    private void c(RecyclerView recyclerView) {
-        this.B = recyclerView;
+    /* renamed from: c */
+    private void m5074c(RecyclerView recyclerView) {
+        this.f5547B = recyclerView;
     }
 
-    private void m(int i2) {
-        if (l() != 0 && i2 >= getItemCount() - this.K && this.f5415d.d() == 1) {
-            this.f5415d.a(2);
-            if (this.f5414c) {
+    /* renamed from: m */
+    private void m5077m(int i2) {
+        if (m5169l() != 0 && i2 >= getItemCount() - this.f5556K && this.f5560d.m5257d() == 1) {
+            this.f5560d.m5252a(2);
+            if (this.f5559c) {
                 return;
             }
-            this.f5414c = true;
-            if (s() != null) {
-                s().post(new g());
+            this.f5559c = true;
+            if (m5177s() != null) {
+                m5177s().post(new RunnableC1893g());
             } else {
-                this.f5416e.a();
+                this.f5561e.m5187a();
             }
         }
     }
 
-    public void d(boolean z) {
-        if (l() == 0) {
+    /* renamed from: d */
+    public void m5142d(boolean z) {
+        if (m5169l() == 0) {
             return;
         }
-        this.f5414c = false;
-        this.f5412a = false;
-        this.f5415d.a(z);
+        this.f5559c = false;
+        this.f5557a = false;
+        this.f5560d.m5254a(z);
         if (z) {
-            notifyItemRemoved(m());
+            notifyItemRemoved(m5171m());
         } else {
-            this.f5415d.a(4);
-            notifyItemChanged(m());
+            this.f5560d.m5252a(4);
+            notifyItemChanged(m5171m());
         }
     }
 
-    public int g(View view) {
-        return c(view, 0, 1);
+    /* renamed from: g */
+    public int m5154g(View view) {
+        return m5132c(view, 0, 1);
     }
 
     @Deprecated
-    public int h() {
-        return g();
+    /* renamed from: h */
+    public int m5157h() {
+        return m5153g();
     }
 
-    public LinearLayout i() {
-        return this.r;
+    /* renamed from: i */
+    public LinearLayout m5161i() {
+        return this.f5574r;
     }
 
-    public void j(int i2) {
-        this.o = i2;
+    /* renamed from: j */
+    public void m5165j(int i2) {
+        this.f5571o = i2;
     }
 
-    public void k(int i2) {
+    /* renamed from: k */
+    public void m5168k(int i2) {
         if (i2 > 1) {
-            this.K = i2;
+            this.f5556K = i2;
         }
     }
 
-    public int l() {
-        if (this.f5416e == null || !this.f5413b) {
+    /* renamed from: l */
+    public int m5169l() {
+        if (this.f5561e == null || !this.f5558b) {
             return 0;
         }
-        return ((this.f5412a || !this.f5415d.g()) && this.A.size() != 0) ? 1 : 0;
+        return ((this.f5557a || !this.f5560d.m5260g()) && this.f5546A.size() != 0) ? 1 : 0;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public K onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        K c2;
-        this.x = viewGroup.getContext();
-        this.z = LayoutInflater.from(this.x);
+        K m5133c;
+        this.f5580x = viewGroup.getContext();
+        this.f5582z = LayoutInflater.from(this.f5580x);
         if (i2 == 273) {
-            c2 = c((View) this.r);
+            m5133c = m5133c((View) this.f5574r);
         } else if (i2 == 546) {
-            c2 = a(viewGroup);
+            m5133c = m5064a(viewGroup);
         } else if (i2 == 819) {
-            c2 = c((View) this.s);
+            m5133c = m5133c((View) this.f5575s);
         } else if (i2 != 1365) {
-            c2 = b(viewGroup, i2);
-            b((BaseViewHolder) c2);
+            m5133c = mo5053b(viewGroup, i2);
+            m5071b((BaseViewHolder) m5133c);
         } else {
-            c2 = c((View) this.t);
+            m5133c = m5133c((View) this.f5576t);
         }
-        c2.a(this);
-        return c2;
+        m5133c.m5215a(this);
+        return m5133c;
     }
 
-    public void a(RecyclerView recyclerView) {
-        if (s() == null) {
-            c(recyclerView);
-            s().setAdapter(this);
+    /* renamed from: a */
+    public void m5103a(RecyclerView recyclerView) {
+        if (m5177s() == null) {
+            m5074c(recyclerView);
+            m5177s().setAdapter(this);
             return;
         }
         throw new RuntimeException("Don't bind twice");
     }
 
-    public void c(@IntRange(from = 0) int i2, @NonNull T t) {
-        this.A.set(i2, t);
-        notifyItemChanged(i2 + j());
+    /* renamed from: c */
+    public void m5135c(@IntRange(from = 0) int i2, @NonNull T t) {
+        this.f5546A.set(i2, t);
+        notifyItemChanged(i2 + m5164j());
     }
 
-    public void g(boolean z) {
-        a(z, false);
+    /* renamed from: g */
+    public void m5156g(boolean z) {
+        m5115a(z, false);
     }
 
-    public void h(boolean z) {
-        this.G = z;
+    /* renamed from: h */
+    public void m5160h(boolean z) {
+        this.f5552G = z;
     }
 
-    public void i(int i2) {
-        G();
-        b(i2, (ViewGroup) s());
+    /* renamed from: i */
+    public void m5162i(int i2) {
+        m5058G();
+        m5124b(i2, (ViewGroup) m5177s());
     }
 
-    public int j() {
-        LinearLayout linearLayout = this.r;
+    /* renamed from: j */
+    public int m5164j() {
+        LinearLayout linearLayout = this.f5574r;
         return (linearLayout == null || linearLayout.getChildCount() == 0) ? 0 : 1;
     }
 
     @Nullable
-    public final i o() {
-        return this.f5420i;
+    /* renamed from: o */
+    public final InterfaceC1895i m5173o() {
+        return this.f5565i;
     }
 
     @Deprecated
-    public void g(int i2) {
-        k(i2);
+    /* renamed from: g */
+    public void m5155g(int i2) {
+        m5168k(i2);
     }
 
-    public int h(View view) {
-        return d(view, 0, 1);
+    /* renamed from: h */
+    public int m5158h(View view) {
+        return m5139d(view, 0, 1);
     }
 
-    public com.chad.library.adapter.base.d.a<T> n() {
-        return this.J;
+    /* renamed from: n */
+    public AbstractC1916a<T> m5172n() {
+        return this.f5555J;
     }
 
     @Nullable
-    public final j p() {
-        return this.f5421j;
+    /* renamed from: p */
+    public final InterfaceC1896j m5174p() {
+        return this.f5566j;
     }
 
     @NonNull
-    public List<T> c() {
-        return this.A;
+    /* renamed from: c */
+    public List<T> m5134c() {
+        return this.f5546A;
     }
 
-    public void b(RecyclerView recyclerView) {
+    /* renamed from: b */
+    public void m5126b(RecyclerView recyclerView) {
         RecyclerView.LayoutManager layoutManager;
-        e(false);
+        m5148e(false);
         if (recyclerView == null || (layoutManager = recyclerView.getLayoutManager()) == null) {
             return;
         }
         if (layoutManager instanceof LinearLayoutManager) {
-            recyclerView.postDelayed(new a((LinearLayoutManager) layoutManager), 50L);
+            recyclerView.postDelayed(new RunnableC1887a((LinearLayoutManager) layoutManager), 50L);
         } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-            recyclerView.postDelayed(new b((StaggeredGridLayoutManager) layoutManager), 50L);
+            recyclerView.postDelayed(new RunnableC1888b((StaggeredGridLayoutManager) layoutManager), 50L);
         }
     }
 
-    protected int c(int i2) {
-        com.chad.library.adapter.base.d.a<T> aVar = this.J;
-        if (aVar != null) {
-            return aVar.a(this.A, i2);
+    /* renamed from: c */
+    protected int mo5055c(int i2) {
+        AbstractC1916a<T> abstractC1916a = this.f5555J;
+        if (abstractC1916a != null) {
+            return abstractC1916a.m5270a(this.f5546A, i2);
         }
         return super.getItemViewType(i2);
     }
 
-    public void f(boolean z) {
-        this.H = z;
+    /* renamed from: f */
+    public void m5151f(boolean z) {
+        this.f5553H = z;
     }
 
     @Deprecated
-    public void a(m mVar) {
-        b(mVar);
+    /* renamed from: a */
+    public void m5104a(InterfaceC1899m interfaceC1899m) {
+        m5070b(interfaceC1899m);
     }
 
-    public int e() {
-        FrameLayout frameLayout = this.t;
-        return (frameLayout == null || frameLayout.getChildCount() == 0 || !this.u || this.A.size() != 0) ? 0 : 1;
+    /* renamed from: e */
+    public int m5144e() {
+        FrameLayout frameLayout = this.f5576t;
+        return (frameLayout == null || frameLayout.getChildCount() == 0 || !this.f5577u || this.f5546A.size() != 0) ? 0 : 1;
     }
 
-    public boolean f(View view, int i2) {
-        return r().a(this, view, i2);
+    /* renamed from: f */
+    public boolean m5152f(View view, int i2) {
+        return m5176r().m5186a(this, view, i2);
     }
 
-    public void a(m mVar, RecyclerView recyclerView) {
-        b(mVar);
-        if (s() == null) {
-            c(recyclerView);
+    /* renamed from: a */
+    public void m5105a(InterfaceC1899m interfaceC1899m, RecyclerView recyclerView) {
+        m5070b(interfaceC1899m);
+        if (m5177s() == null) {
+            m5074c(recyclerView);
         }
     }
 
-    public LinearLayout f() {
-        return this.s;
+    /* renamed from: f */
+    public LinearLayout m5149f() {
+        return this.f5575s;
     }
 
-    protected K c(View view) {
-        K a2;
+    /* renamed from: c */
+    protected K m5133c(View view) {
+        K m5065a;
         Class cls = null;
         for (Class<?> cls2 = getClass(); cls == null && cls2 != null; cls2 = cls2.getSuperclass()) {
-            cls = a((Class) cls2);
+            cls = m5067a((Class) cls2);
         }
         if (cls == null) {
-            a2 = (K) new BaseViewHolder(view);
+            m5065a = (K) new BaseViewHolder(view);
         } else {
-            a2 = a(cls, view);
+            m5065a = m5065a(cls, view);
         }
-        return a2 != null ? a2 : (K) new BaseViewHolder(view);
+        return m5065a != null ? m5065a : (K) new BaseViewHolder(view);
     }
 
-    public int d(View view, int i2) {
-        return d(view, i2, 1);
+    /* renamed from: d */
+    public int m5138d(View view, int i2) {
+        return m5139d(view, i2, 1);
     }
 
-    public void f(View view) {
+    /* renamed from: f */
+    public void m5150f(View view) {
         boolean z;
         int i2 = 0;
-        if (this.t == null) {
-            this.t = new FrameLayout(view.getContext());
+        if (this.f5576t == null) {
+            this.f5576t = new FrameLayout(view.getContext());
             RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -1);
             ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
             if (layoutParams2 != null) {
                 ((ViewGroup.MarginLayoutParams) layoutParams).width = layoutParams2.width;
                 ((ViewGroup.MarginLayoutParams) layoutParams).height = layoutParams2.height;
             }
-            this.t.setLayoutParams(layoutParams);
+            this.f5576t.setLayoutParams(layoutParams);
             z = true;
         } else {
             z = false;
         }
-        this.t.removeAllViews();
-        this.t.addView(view);
-        this.u = true;
-        if (z && e() == 1) {
-            if (this.v && j() != 0) {
+        this.f5576t.removeAllViews();
+        this.f5576t.addView(view);
+        this.f5577u = true;
+        if (z && m5144e() == 1) {
+            if (this.f5578v && m5164j() != 0) {
                 i2 = 1;
             }
             notifyItemInserted(i2);
         }
     }
 
-    public int d(View view, int i2, int i3) {
-        LinearLayout linearLayout = this.r;
+    /* renamed from: d */
+    public int m5139d(View view, int i2, int i3) {
+        LinearLayout linearLayout = this.f5574r;
         if (linearLayout != null && linearLayout.getChildCount() > i2) {
-            this.r.removeViewAt(i2);
-            this.r.addView(view, i2);
+            this.f5574r.removeViewAt(i2);
+            this.f5574r.addView(view, i2);
             return i2;
         }
-        return b(view, i2, i3);
+        return m5121b(view, i2, i3);
     }
 
-    public void e(View view, int i2) {
-        q().onItemClick(this, view, i2);
+    /* renamed from: e */
+    public void m5147e(View view, int i2) {
+        m5175q().onItemClick(this, view, i2);
     }
 
-    public void a() {
-        G();
-        b(s());
+    /* renamed from: a */
+    public void m5098a() {
+        m5058G();
+        m5126b(m5177s());
     }
 
-    public void e(View view) {
-        int I;
-        if (j() == 0) {
+    /* renamed from: e */
+    public void m5146e(View view) {
+        int m5060I;
+        if (m5164j() == 0) {
             return;
         }
-        this.r.removeView(view);
-        if (this.r.getChildCount() != 0 || (I = I()) == -1) {
+        this.f5574r.removeView(view);
+        if (this.f5574r.getChildCount() != 0 || (m5060I = m5060I()) == -1) {
             return;
         }
-        notifyItemRemoved(I);
+        notifyItemRemoved(m5060I);
     }
 
-    public final k q() {
-        return this.f5418g;
+    /* renamed from: q */
+    public final InterfaceC1897k m5175q() {
+        return this.f5563g;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public int a(int[] iArr) {
+    /* renamed from: a */
+    public int m5063a(int[] iArr) {
         int i2 = -1;
         if (iArr != null && iArr.length != 0) {
             for (int i3 : iArr) {
@@ -881,79 +1051,88 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         return i2;
     }
 
-    public void b(@IntRange(from = 0) int i2, @NonNull T t) {
-        this.A.add(i2, t);
-        notifyItemInserted(i2 + j());
-        o(1);
+    /* renamed from: b */
+    public void m5125b(@IntRange(from = 0) int i2, @NonNull T t) {
+        this.f5546A.add(i2, t);
+        notifyItemInserted(i2 + m5164j());
+        m5079o(1);
     }
 
-    public void d(View view) {
-        int H;
-        if (g() == 0) {
+    /* renamed from: d */
+    public void m5141d(View view) {
+        int m5059H;
+        if (m5153g() == 0) {
             return;
         }
-        this.s.removeView(view);
-        if (this.s.getChildCount() != 0 || (H = H()) == -1) {
+        this.f5575s.removeView(view);
+        if (this.f5575s.getChildCount() != 0 || (m5059H = m5059H()) == -1) {
             return;
         }
-        notifyItemRemoved(H);
+        notifyItemRemoved(m5059H);
     }
 
-    public void a(o oVar) {
-        this.E = oVar;
+    /* renamed from: a */
+    public void m5107a(InterfaceC1901o interfaceC1901o) {
+        this.f5550E = interfaceC1901o;
     }
 
-    public int c(View view, int i2) {
-        return c(view, i2, 1);
+    /* renamed from: c */
+    public int m5131c(View view, int i2) {
+        return m5132c(view, i2, 1);
     }
 
-    public void a(com.chad.library.adapter.base.c.a aVar) {
-        this.f5415d = aVar;
+    /* renamed from: a */
+    public void m5110a(AbstractC1914a abstractC1914a) {
+        this.f5560d = abstractC1914a;
     }
 
-    public int c(View view, int i2, int i3) {
-        LinearLayout linearLayout = this.s;
+    /* renamed from: c */
+    public int m5132c(View view, int i2, int i3) {
+        LinearLayout linearLayout = this.f5575s;
         if (linearLayout != null && linearLayout.getChildCount() > i2) {
-            this.s.removeViewAt(i2);
-            this.s.addView(view, i2);
+            this.f5575s.removeViewAt(i2);
+            this.f5575s.addView(view, i2);
             return i2;
         }
-        return a(view, i2, i3);
+        return m5093a(view, i2, i3);
     }
 
-    public void e(int i2) {
-        this.f5423l = true;
-        this.p = null;
+    /* renamed from: e */
+    public void m5145e(int i2) {
+        this.f5568l = true;
+        this.f5572p = null;
         if (i2 == 1) {
-            this.q = new com.chad.library.adapter.base.a.a();
+            this.f5573q = new C1904a();
             return;
         }
         if (i2 == 2) {
-            this.q = new com.chad.library.adapter.base.a.c();
+            this.f5573q = new C1906c();
             return;
         }
         if (i2 == 3) {
-            this.q = new com.chad.library.adapter.base.a.d();
+            this.f5573q = new C1907d();
         } else if (i2 == 4) {
-            this.q = new com.chad.library.adapter.base.a.e();
+            this.f5573q = new C1908e();
         } else {
             if (i2 != 5) {
                 return;
             }
-            this.q = new com.chad.library.adapter.base.a.f();
+            this.f5573q = new C1909f();
         }
     }
 
     @Deprecated
-    public void a(@IntRange(from = 0) int i2, @NonNull T t) {
-        b(i2, (int) t);
+    /* renamed from: a */
+    public void m5099a(@IntRange(from = 0) int i2, @NonNull T t) {
+        m5125b(i2, (int) t);
     }
 
-    public void b(@NonNull Collection<? extends T> collection) {
-        List<T> list = this.A;
+    /* renamed from: b */
+    public void m5127b(@NonNull Collection<? extends T> collection) {
+        List<T> list = this.f5546A;
         if (collection != list) {
             list.clear();
-            this.A.addAll(collection);
+            this.f5546A.addAll(collection);
         }
         notifyDataSetChanged();
     }
@@ -962,109 +1141,121 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         this(0, list);
     }
 
-    public void a(@NonNull T t) {
-        this.A.add(t);
-        notifyItemInserted(this.A.size() + j());
-        o(1);
+    /* renamed from: a */
+    public void m5112a(@NonNull T t) {
+        this.f5546A.add(t);
+        notifyItemInserted(this.f5546A.size() + m5164j());
+        m5079o(1);
     }
 
     public BaseQuickAdapter(@LayoutRes int i2) {
         this(i2, null);
     }
 
-    public View d() {
-        return this.t;
+    /* renamed from: d */
+    public View m5140d() {
+        return this.f5576t;
     }
 
-    private int d(T t) {
+    /* renamed from: d */
+    private int m5075d(T t) {
         List<T> list;
-        if (t == null || (list = this.A) == null || list.isEmpty()) {
+        if (t == null || (list = this.f5546A) == null || list.isEmpty()) {
             return -1;
         }
-        return this.A.indexOf(t);
+        return this.f5546A.indexOf(t);
     }
 
-    public void c(boolean z) {
-        this.u = z;
+    /* renamed from: c */
+    public void m5136c(boolean z) {
+        this.f5577u = z;
     }
 
-    private void b(BaseViewHolder baseViewHolder) {
+    /* renamed from: b */
+    private void m5071b(BaseViewHolder baseViewHolder) {
         View view;
         if (baseViewHolder == null || (view = baseViewHolder.itemView) == null) {
             return;
         }
-        if (q() != null) {
-            view.setOnClickListener(new e(baseViewHolder));
+        if (m5175q() != null) {
+            view.setOnClickListener(new ViewOnClickListenerC1891e(baseViewHolder));
         }
-        if (r() != null) {
-            view.setOnLongClickListener(new f(baseViewHolder));
+        if (m5176r() != null) {
+            view.setOnLongClickListener(new ViewOnLongClickListenerC1892f(baseViewHolder));
         }
     }
 
-    public void a(@IntRange(from = 0) int i2, @NonNull Collection<? extends T> collection) {
-        this.A.addAll(i2, collection);
-        notifyItemRangeInserted(i2 + j(), collection.size());
-        o(collection.size());
+    /* renamed from: a */
+    public void m5100a(@IntRange(from = 0) int i2, @NonNull Collection<? extends T> collection) {
+        this.f5546A.addAll(i2, collection);
+        notifyItemRangeInserted(i2 + m5164j(), collection.size());
+        m5079o(collection.size());
     }
 
-    public int c(int i2, boolean z, boolean z2) {
+    /* renamed from: c */
+    public int m5130c(int i2, boolean z, boolean z2) {
         T item;
-        int j2 = i2 - j();
-        int i3 = j2 + 1;
-        T item2 = i3 < this.A.size() ? getItem(i3) : null;
-        com.chad.library.adapter.base.b.b p = p(j2);
-        if (p == null) {
+        int m5164j = i2 - m5164j();
+        int i3 = m5164j + 1;
+        T item2 = i3 < this.f5546A.size() ? getItem(i3) : null;
+        InterfaceC1911b m5080p = m5080p(m5164j);
+        if (m5080p == null) {
             return 0;
         }
-        if (!a(p)) {
-            p.setExpanded(true);
-            notifyItemChanged(j2);
+        if (!m5068a(m5080p)) {
+            m5080p.setExpanded(true);
+            notifyItemChanged(m5164j);
             return 0;
         }
-        int b2 = b(j() + j2, false, false);
-        while (i3 < this.A.size() && (item = getItem(i3)) != item2) {
-            if (c((BaseQuickAdapter<T, K>) item)) {
-                b2 += b(j() + i3, false, false);
+        int m5118b = m5118b(m5164j() + m5164j, false, false);
+        while (i3 < this.f5546A.size() && (item = getItem(i3)) != item2) {
+            if (m5137c((BaseQuickAdapter<T, K>) item)) {
+                m5118b += m5118b(m5164j() + i3, false, false);
             }
             i3++;
         }
         if (z2) {
             if (z) {
-                notifyItemRangeInserted(j2 + j() + 1, b2);
+                notifyItemRangeInserted(m5164j + m5164j() + 1, m5118b);
             } else {
                 notifyDataSetChanged();
             }
         }
-        return b2;
+        return m5118b;
     }
 
-    public void a(@NonNull Collection<? extends T> collection) {
-        this.A.addAll(collection);
-        notifyItemRangeInserted((this.A.size() - collection.size()) + j(), collection.size());
-        o(collection.size());
+    /* renamed from: a */
+    public void m5113a(@NonNull Collection<? extends T> collection) {
+        this.f5546A.addAll(collection);
+        notifyItemRangeInserted((this.f5546A.size() - collection.size()) + m5164j(), collection.size());
+        m5079o(collection.size());
     }
 
-    protected K b(ViewGroup viewGroup, int i2) {
-        int i3 = this.y;
-        com.chad.library.adapter.base.d.a<T> aVar = this.J;
-        if (aVar != null) {
-            i3 = aVar.a(i2);
+    /* renamed from: b */
+    protected K mo5053b(ViewGroup viewGroup, int i2) {
+        int i3 = this.f5581y;
+        AbstractC1916a<T> abstractC1916a = this.f5555J;
+        if (abstractC1916a != null) {
+            i3 = abstractC1916a.m5268a(i2);
         }
-        return a(viewGroup, i3);
+        return m5097a(viewGroup, i3);
     }
 
-    private K a(ViewGroup viewGroup) {
-        K c2 = c(a(this.f5415d.a(), viewGroup));
-        c2.itemView.setOnClickListener(new c());
-        return c2;
+    /* renamed from: a */
+    private K m5064a(ViewGroup viewGroup) {
+        K m5133c = m5133c(m5095a(this.f5560d.mo5251a(), viewGroup));
+        m5133c.itemView.setOnClickListener(new ViewOnClickListenerC1889c());
+        return m5133c;
     }
 
-    public void a(boolean z) {
-        this.f5417f = z;
+    /* renamed from: a */
+    public void m5114a(boolean z) {
+        this.f5562f = z;
     }
 
-    public int b(View view) {
-        return b(view, -1);
+    /* renamed from: b */
+    public int m5119b(View view) {
+        return m5120b(view, -1);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -1073,107 +1264,118 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         super.onViewAttachedToWindow(k2);
         int itemViewType = k2.getItemViewType();
         if (itemViewType != 1365 && itemViewType != 273 && itemViewType != 819 && itemViewType != 546) {
-            b((RecyclerView.ViewHolder) k2);
+            m5069b((RecyclerView.ViewHolder) k2);
         } else {
-            a((RecyclerView.ViewHolder) k2);
+            m5102a((RecyclerView.ViewHolder) k2);
         }
     }
 
-    public int b(View view, int i2) {
-        return b(view, i2, 1);
+    /* renamed from: b */
+    public int m5120b(View view, int i2) {
+        return m5121b(view, i2, 1);
     }
 
-    public int b(View view, int i2, int i3) {
-        int I;
-        if (this.r == null) {
-            this.r = new LinearLayout(view.getContext());
+    /* renamed from: b */
+    public int m5121b(View view, int i2, int i3) {
+        int m5060I;
+        if (this.f5574r == null) {
+            this.f5574r = new LinearLayout(view.getContext());
             if (i3 == 1) {
-                this.r.setOrientation(1);
-                this.r.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                this.f5574r.setOrientation(1);
+                this.f5574r.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             } else {
-                this.r.setOrientation(0);
-                this.r.setLayoutParams(new RecyclerView.LayoutParams(-2, -1));
+                this.f5574r.setOrientation(0);
+                this.f5574r.setLayoutParams(new RecyclerView.LayoutParams(-2, -1));
             }
         }
-        int childCount = this.r.getChildCount();
+        int childCount = this.f5574r.getChildCount();
         if (i2 < 0 || i2 > childCount) {
             i2 = childCount;
         }
-        this.r.addView(view, i2);
-        if (this.r.getChildCount() == 1 && (I = I()) != -1) {
-            notifyItemInserted(I);
+        this.f5574r.addView(view, i2);
+        if (this.f5574r.getChildCount() == 1 && (m5060I = m5060I()) != -1) {
+            notifyItemInserted(m5060I);
         }
         return i2;
     }
 
-    protected void a(RecyclerView.ViewHolder viewHolder) {
+    /* renamed from: a */
+    protected void m5102a(RecyclerView.ViewHolder viewHolder) {
         if (viewHolder.itemView.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
             ((StaggeredGridLayoutManager.LayoutParams) viewHolder.itemView.getLayoutParams()).setFullSpan(true);
         }
     }
 
-    public int c(int i2, boolean z) {
-        return c(i2, true, !z);
+    /* renamed from: c */
+    public int m5129c(int i2, boolean z) {
+        return m5130c(i2, true, !z);
     }
 
-    public boolean c(T t) {
-        return t != null && (t instanceof com.chad.library.adapter.base.b.b);
+    /* renamed from: c */
+    public boolean m5137c(T t) {
+        return t != null && (t instanceof InterfaceC1911b);
     }
 
-    public void a(n nVar) {
-        this.I = nVar;
+    /* renamed from: a */
+    public void m5106a(InterfaceC1900n interfaceC1900n) {
+        this.f5554I = interfaceC1900n;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* renamed from: a, reason: merged with bridge method [inline-methods] */
     public void onBindViewHolder(K k2, int i2) {
-        n(i2);
-        m(i2);
+        m5078n(i2);
+        m5077m(i2);
         int itemViewType = k2.getItemViewType();
         if (itemViewType == 0) {
-            a((BaseQuickAdapter<T, K>) k2, (K) getItem(i2 - j()));
+            mo204a((BaseQuickAdapter<T, K>) k2, (K) getItem(i2 - m5164j()));
             return;
         }
         if (itemViewType != 273) {
             if (itemViewType == 546) {
-                this.f5415d.a(k2);
+                this.f5560d.m5253a(k2);
             } else {
                 if (itemViewType == 819 || itemViewType == 1365) {
                     return;
                 }
-                a((BaseQuickAdapter<T, K>) k2, (K) getItem(i2 - j()));
+                mo204a((BaseQuickAdapter<T, K>) k2, (K) getItem(i2 - m5164j()));
             }
         }
     }
 
-    public void b(int i2, ViewGroup viewGroup) {
-        f(LayoutInflater.from(viewGroup.getContext()).inflate(i2, viewGroup, false));
+    /* renamed from: b */
+    public void m5124b(int i2, ViewGroup viewGroup) {
+        m5150f(LayoutInflater.from(viewGroup.getContext()).inflate(i2, viewGroup, false));
     }
 
-    private void b(RecyclerView.ViewHolder viewHolder) {
-        if (this.f5423l) {
-            if (!this.f5422k || viewHolder.getLayoutPosition() > this.o) {
-                com.chad.library.adapter.base.a.b bVar = this.p;
-                if (bVar == null) {
-                    bVar = this.q;
+    /* renamed from: b */
+    private void m5069b(RecyclerView.ViewHolder viewHolder) {
+        if (this.f5568l) {
+            if (!this.f5567k || viewHolder.getLayoutPosition() > this.f5571o) {
+                InterfaceC1905b interfaceC1905b = this.f5572p;
+                if (interfaceC1905b == null) {
+                    interfaceC1905b = this.f5573q;
                 }
-                for (Animator animator : bVar.a(viewHolder.itemView)) {
-                    a(animator, viewHolder.getLayoutPosition());
+                for (Animator animator : interfaceC1905b.mo5235a(viewHolder.itemView)) {
+                    m5101a(animator, viewHolder.getLayoutPosition());
                 }
-                this.o = viewHolder.getLayoutPosition();
+                this.f5571o = viewHolder.getLayoutPosition();
             }
         }
     }
 
-    public void a(com.chad.library.adapter.base.d.a<T> aVar) {
-        this.J = aVar;
+    /* renamed from: a */
+    public void m5111a(AbstractC1916a<T> abstractC1916a) {
+        this.f5555J = abstractC1916a;
     }
 
-    protected K a(ViewGroup viewGroup, int i2) {
-        return c(a(i2, viewGroup));
+    /* renamed from: a */
+    protected K m5097a(ViewGroup viewGroup, int i2) {
+        return m5133c(m5095a(i2, viewGroup));
     }
 
-    private K a(Class cls, View view) {
+    /* renamed from: a */
+    private K m5065a(Class cls, View view) {
         try {
             if (cls.isMemberClass() && !Modifier.isStatic(cls.getModifiers())) {
                 Constructor<T> declaredConstructor = cls.getDeclaredConstructor(getClass(), View.class);
@@ -1198,34 +1400,36 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         }
     }
 
-    public void b(boolean z) {
-        this.f5422k = z;
+    /* renamed from: b */
+    public void m5128b(boolean z) {
+        this.f5567k = z;
     }
 
-    public int b(@IntRange(from = 0) int i2, boolean z, boolean z2) {
-        int j2 = i2 - j();
-        com.chad.library.adapter.base.b.b p = p(j2);
+    /* renamed from: b */
+    public int m5118b(@IntRange(from = 0) int i2, boolean z, boolean z2) {
+        int m5164j = i2 - m5164j();
+        InterfaceC1911b m5080p = m5080p(m5164j);
         int i3 = 0;
-        if (p == null) {
+        if (m5080p == null) {
             return 0;
         }
-        if (!a(p)) {
-            p.setExpanded(true);
-            notifyItemChanged(j2);
+        if (!m5068a(m5080p)) {
+            m5080p.setExpanded(true);
+            notifyItemChanged(m5164j);
             return 0;
         }
-        if (!p.isExpanded()) {
-            List<T> a2 = p.a();
-            int i4 = j2 + 1;
-            this.A.addAll(i4, a2);
-            i3 = 0 + a(i4, (List) a2);
-            p.setExpanded(true);
+        if (!m5080p.isExpanded()) {
+            List<T> mo5237a = m5080p.mo5237a();
+            int i4 = m5164j + 1;
+            this.f5546A.addAll(i4, mo5237a);
+            i3 = 0 + m5061a(i4, (List) mo5237a);
+            m5080p.setExpanded(true);
         }
-        int j3 = j2 + j();
+        int m5164j2 = m5164j + m5164j();
         if (z2) {
             if (z) {
-                notifyItemChanged(j3);
-                notifyItemRangeInserted(j3 + 1, i3);
+                notifyItemChanged(m5164j2);
+                notifyItemRangeInserted(m5164j2 + 1, i3);
             } else {
                 notifyDataSetChanged();
             }
@@ -1233,7 +1437,8 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         return i3;
     }
 
-    private Class a(Class cls) {
+    /* renamed from: a */
+    private Class m5067a(Class cls) {
         Type genericSuperclass = cls.getGenericSuperclass();
         if (!(genericSuperclass instanceof ParameterizedType)) {
             return null;
@@ -1261,122 +1466,136 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         return null;
     }
 
-    public int b(@IntRange(from = 0) int i2, boolean z) {
-        return b(i2, z, true);
+    /* renamed from: b */
+    public int m5117b(@IntRange(from = 0) int i2, boolean z) {
+        return m5118b(i2, z, true);
     }
 
-    public int b(@IntRange(from = 0) int i2) {
-        return b(i2, true, true);
+    /* renamed from: b */
+    public int m5116b(@IntRange(from = 0) int i2) {
+        return m5118b(i2, true, true);
     }
 
-    public int a(View view) {
-        return a(view, -1, 1);
+    /* renamed from: a */
+    public int m5091a(View view) {
+        return m5093a(view, -1, 1);
     }
 
-    public void b() {
-        for (int size = (this.A.size() - 1) + j(); size >= j(); size--) {
-            c(size, false, false);
+    /* renamed from: b */
+    public void m5123b() {
+        for (int size = (this.f5546A.size() - 1) + m5164j(); size >= m5164j(); size--) {
+            m5130c(size, false, false);
         }
     }
 
-    public int a(View view, int i2) {
-        return a(view, i2, 1);
+    /* renamed from: a */
+    public int m5092a(View view, int i2) {
+        return m5093a(view, i2, 1);
     }
 
-    public int a(View view, int i2, int i3) {
-        int H;
-        if (this.s == null) {
-            this.s = new LinearLayout(view.getContext());
+    /* renamed from: a */
+    public int m5093a(View view, int i2, int i3) {
+        int m5059H;
+        if (this.f5575s == null) {
+            this.f5575s = new LinearLayout(view.getContext());
             if (i3 == 1) {
-                this.s.setOrientation(1);
-                this.s.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                this.f5575s.setOrientation(1);
+                this.f5575s.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             } else {
-                this.s.setOrientation(0);
-                this.s.setLayoutParams(new RecyclerView.LayoutParams(-2, -1));
+                this.f5575s.setOrientation(0);
+                this.f5575s.setLayoutParams(new RecyclerView.LayoutParams(-2, -1));
             }
         }
-        int childCount = this.s.getChildCount();
+        int childCount = this.f5575s.getChildCount();
         if (i2 < 0 || i2 > childCount) {
             i2 = childCount;
         }
-        this.s.addView(view, i2);
-        if (this.s.getChildCount() == 1 && (H = H()) != -1) {
-            notifyItemInserted(H);
+        this.f5575s.addView(view, i2);
+        if (this.f5575s.getChildCount() == 1 && (m5059H = m5059H()) != -1) {
+            notifyItemInserted(m5059H);
         }
         return i2;
     }
 
-    public int b(@NonNull T t) {
-        int d2 = d((BaseQuickAdapter<T, K>) t);
-        if (d2 == -1) {
+    /* renamed from: b */
+    public int m5122b(@NonNull T t) {
+        int m5075d = m5075d((BaseQuickAdapter<T, K>) t);
+        if (m5075d == -1) {
             return -1;
         }
-        int b2 = t instanceof com.chad.library.adapter.base.b.b ? ((com.chad.library.adapter.base.b.b) t).b() : Integer.MAX_VALUE;
-        if (b2 == 0) {
-            return d2;
+        int m5246b = t instanceof InterfaceC1911b ? ((InterfaceC1911b) t).m5246b() : Integer.MAX_VALUE;
+        if (m5246b == 0) {
+            return m5075d;
         }
-        if (b2 == -1) {
+        if (m5246b == -1) {
             return -1;
         }
-        while (d2 >= 0) {
-            T t2 = this.A.get(d2);
-            if (t2 instanceof com.chad.library.adapter.base.b.b) {
-                com.chad.library.adapter.base.b.b bVar = (com.chad.library.adapter.base.b.b) t2;
-                if (bVar.b() >= 0 && bVar.b() < b2) {
-                    return d2;
+        while (m5075d >= 0) {
+            T t2 = this.f5546A.get(m5075d);
+            if (t2 instanceof InterfaceC1911b) {
+                InterfaceC1911b interfaceC1911b = (InterfaceC1911b) t2;
+                if (interfaceC1911b.m5246b() >= 0 && interfaceC1911b.m5246b() < m5246b) {
+                    return m5075d;
                 }
             }
-            d2--;
+            m5075d--;
         }
         return -1;
     }
 
-    public void a(boolean z, boolean z2) {
-        this.v = z;
-        this.w = z2;
+    /* renamed from: a */
+    public void m5115a(boolean z, boolean z2) {
+        this.f5578v = z;
+        this.f5579w = z2;
     }
 
-    protected void a(Animator animator, int i2) {
-        animator.setDuration(this.n).start();
-        animator.setInterpolator(this.f5424m);
+    /* renamed from: a */
+    protected void m5101a(Animator animator, int i2) {
+        animator.setDuration(this.f5570n).start();
+        animator.setInterpolator(this.f5569m);
     }
 
-    protected View a(@LayoutRes int i2, ViewGroup viewGroup) {
-        return this.z.inflate(i2, viewGroup, false);
+    /* renamed from: a */
+    protected View m5095a(@LayoutRes int i2, ViewGroup viewGroup) {
+        return this.f5582z.inflate(i2, viewGroup, false);
     }
 
-    public void a(com.chad.library.adapter.base.a.b bVar) {
-        this.f5423l = true;
-        this.p = bVar;
+    /* renamed from: a */
+    public void m5109a(InterfaceC1905b interfaceC1905b) {
+        this.f5568l = true;
+        this.f5572p = interfaceC1905b;
     }
 
     @Nullable
-    public View a(int i2, @IdRes int i3) {
-        G();
-        return a(s(), i2, i3);
+    /* renamed from: a */
+    public View m5094a(int i2, @IdRes int i3) {
+        m5058G();
+        return m5096a(m5177s(), i2, i3);
     }
 
     @Nullable
-    public View a(RecyclerView recyclerView, int i2, @IdRes int i3) {
+    /* renamed from: a */
+    public View m5096a(RecyclerView recyclerView, int i2, @IdRes int i3) {
         BaseViewHolder baseViewHolder;
         if (recyclerView == null || (baseViewHolder = (BaseViewHolder) recyclerView.findViewHolderForLayoutPosition(i2)) == null) {
             return null;
         }
-        return baseViewHolder.c(i3);
+        return baseViewHolder.m5224c(i3);
     }
 
-    private int a(int i2, @NonNull List list) {
+    /* renamed from: a */
+    private int m5061a(int i2, @NonNull List list) {
         int size = list.size();
         int size2 = (i2 + list.size()) - 1;
         int size3 = list.size() - 1;
         while (size3 >= 0) {
-            if (list.get(size3) instanceof com.chad.library.adapter.base.b.b) {
-                com.chad.library.adapter.base.b.b bVar = (com.chad.library.adapter.base.b.b) list.get(size3);
-                if (bVar.isExpanded() && a(bVar)) {
-                    List<T> a2 = bVar.a();
+            if (list.get(size3) instanceof InterfaceC1911b) {
+                InterfaceC1911b interfaceC1911b = (InterfaceC1911b) list.get(size3);
+                if (interfaceC1911b.isExpanded() && m5068a(interfaceC1911b)) {
+                    List<T> mo5237a = interfaceC1911b.mo5237a();
                     int i3 = size2 + 1;
-                    this.A.addAll(i3, a2);
-                    size += a(i3, (List) a2);
+                    this.f5546A.addAll(i3, mo5237a);
+                    size += m5061a(i3, (List) mo5237a);
                 }
             }
             size3--;
@@ -1385,36 +1604,40 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         return size;
     }
 
-    public int a(@IntRange(from = 0) int i2, boolean z, boolean z2) {
-        int j2 = i2 - j();
-        com.chad.library.adapter.base.b.b p = p(j2);
-        if (p == null) {
+    /* renamed from: a */
+    public int m5090a(@IntRange(from = 0) int i2, boolean z, boolean z2) {
+        int m5164j = i2 - m5164j();
+        InterfaceC1911b m5080p = m5080p(m5164j);
+        if (m5080p == null) {
             return 0;
         }
-        int q = q(j2);
-        p.setExpanded(false);
-        int j3 = j2 + j();
+        int m5081q = m5081q(m5164j);
+        m5080p.setExpanded(false);
+        int m5164j2 = m5164j + m5164j();
         if (z2) {
             if (z) {
-                notifyItemChanged(j3);
-                notifyItemRangeRemoved(j3 + 1, q);
+                notifyItemChanged(m5164j2);
+                notifyItemRangeRemoved(m5164j2 + 1, m5081q);
             } else {
                 notifyDataSetChanged();
             }
         }
-        return q;
+        return m5081q;
     }
 
-    public int a(@IntRange(from = 0) int i2) {
-        return a(i2, true, true);
+    /* renamed from: a */
+    public int m5088a(@IntRange(from = 0) int i2) {
+        return m5090a(i2, true, true);
     }
 
-    public int a(@IntRange(from = 0) int i2, boolean z) {
-        return a(i2, z, true);
+    /* renamed from: a */
+    public int m5089a(@IntRange(from = 0) int i2, boolean z) {
+        return m5090a(i2, z, true);
     }
 
-    private boolean a(com.chad.library.adapter.base.b.b bVar) {
-        List<T> a2;
-        return (bVar == null || (a2 = bVar.a()) == null || a2.size() <= 0) ? false : true;
+    /* renamed from: a */
+    private boolean m5068a(InterfaceC1911b interfaceC1911b) {
+        List<T> mo5237a;
+        return (interfaceC1911b == null || (mo5237a = interfaceC1911b.mo5237a()) == null || mo5237a.size() <= 0) ? false : true;
     }
 }

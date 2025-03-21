@@ -665,7 +665,7 @@ public abstract class MediaBrowserServiceCompat extends Service {
                                 return;
                             }
                         }
-                        String str3 = "No root for client " + str + " from service " + AnonymousClass1.class.getName();
+                        String str3 = "No root for client " + str + " from service " + RunnableC06011.class.getName();
                         try {
                             serviceCallbacks.onConnectFailed();
                         } catch (RemoteException unused2) {

@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import com.huawei.hms.activity.BridgeActivity;
 import com.huawei.hms.api.BindingFailedResolution;
 import com.huawei.hms.support.log.HMSLog;
@@ -18,32 +18,32 @@ import com.huawei.hms.utils.Util;
 /* loaded from: classes.dex */
 public class BinderAdapter implements ServiceConnection {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final Context f6567a;
+    /* renamed from: a */
+    private final Context f7067a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final String f6568b;
+    /* renamed from: b */
+    private final String f7068b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private final String f6569c;
+    /* renamed from: c */
+    private final String f7069c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private BinderCallBack f6570d;
+    /* renamed from: d */
+    private BinderCallBack f7070d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private IBinder f6571e;
+    /* renamed from: e */
+    private IBinder f7071e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private final Object f6572f = new Object();
+    /* renamed from: f */
+    private final Object f7072f = new Object();
 
-    /* renamed from: g, reason: collision with root package name */
-    private boolean f6573g = false;
+    /* renamed from: g */
+    private boolean f7073g = false;
 
-    /* renamed from: h, reason: collision with root package name */
-    private Handler f6574h = null;
+    /* renamed from: h */
+    private Handler f7074h = null;
 
-    /* renamed from: i, reason: collision with root package name */
-    private Handler f6575i = null;
+    /* renamed from: i */
+    private Handler f7075i = null;
 
     public interface BinderCallBack {
         void onBinderFailed(int i2);
@@ -60,87 +60,93 @@ public class BinderAdapter implements ServiceConnection {
     }
 
     public BinderAdapter(Context context, String str, String str2) {
-        this.f6567a = context;
-        this.f6568b = str;
-        this.f6569c = str2;
+        this.f7067a = context;
+        this.f7068b = str;
+        this.f7069c = str2;
     }
 
-    private void c() {
-        synchronized (this.f6572f) {
-            Handler handler = this.f6574h;
+    /* renamed from: c */
+    private void m6586c() {
+        synchronized (this.f7072f) {
+            Handler handler = this.f7074h;
             if (handler != null) {
                 handler.removeMessages(getConnTimeOut());
-                this.f6574h = null;
+                this.f7074h = null;
             }
         }
     }
 
-    private void d() {
+    /* renamed from: d */
+    private void m6587d() {
         Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() { // from class: com.huawei.hms.adapter.BinderAdapter.2
             @Override // android.os.Handler.Callback
             public boolean handleMessage(Message message) {
                 if (message == null || message.what != BinderAdapter.this.getMsgDelayDisconnect()) {
                     return false;
                 }
-                HMSLog.i("BinderAdapter", "The serviceConnection has been bind for 1800s, need to unbind.");
+                HMSLog.m7717i("BinderAdapter", "The serviceConnection has been bind for 1800s, need to unbind.");
                 BinderAdapter.this.unBind();
-                BinderCallBack f2 = BinderAdapter.this.f();
-                if (f2 == null) {
+                BinderCallBack m6589f = BinderAdapter.this.m6589f();
+                if (m6589f == null) {
                     return true;
                 }
-                f2.onTimedDisconnected();
+                m6589f.onTimedDisconnected();
                 return true;
             }
         });
-        this.f6575i = handler;
+        this.f7075i = handler;
         handler.sendEmptyMessageDelayed(getMsgDelayDisconnect(), 1800000L);
     }
 
-    private void e() {
-        HMSLog.e("BinderAdapter", "In connect, bind core service fail");
+    /* renamed from: e */
+    private void m6588e() {
+        HMSLog.m7715e("BinderAdapter", "In connect, bind core service fail");
         try {
-            ComponentName componentName = new ComponentName(this.f6567a.getApplicationInfo().packageName, "com.huawei.hms.activity.BridgeActivity");
+            ComponentName componentName = new ComponentName(this.f7067a.getApplicationInfo().packageName, "com.huawei.hms.activity.BridgeActivity");
             Intent intent = new Intent();
             intent.setComponent(componentName);
             intent.putExtra(BridgeActivity.EXTRA_DELEGATE_CLASS_NAME, BindingFailedResolution.class.getName());
-            BinderCallBack f2 = f();
-            if (f2 != null) {
-                f2.onBinderFailed(-1, intent);
+            BinderCallBack m6589f = m6589f();
+            if (m6589f != null) {
+                m6589f.onBinderFailed(-1, intent);
             }
         } catch (RuntimeException e2) {
-            HMSLog.e("BinderAdapter", "getBindFailPendingIntent failed " + e2.getMessage());
+            HMSLog.m7715e("BinderAdapter", "getBindFailPendingIntent failed " + e2.getMessage());
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public BinderCallBack f() {
-        return this.f6570d;
+    /* renamed from: f */
+    public BinderCallBack m6589f() {
+        return this.f7070d;
     }
 
-    private void g() {
-        Handler handler = this.f6574h;
+    /* renamed from: g */
+    private void m6590g() {
+        Handler handler = this.f7074h;
         if (handler != null) {
             handler.removeMessages(getConnTimeOut());
         } else {
-            this.f6574h = new Handler(Looper.getMainLooper(), new Handler.Callback() { // from class: com.huawei.hms.adapter.BinderAdapter.1
+            this.f7074h = new Handler(Looper.getMainLooper(), new Handler.Callback() { // from class: com.huawei.hms.adapter.BinderAdapter.1
                 @Override // android.os.Handler.Callback
                 public boolean handleMessage(Message message) {
                     if (message == null || message.what != BinderAdapter.this.getConnTimeOut()) {
                         return false;
                     }
-                    HMSLog.e("BinderAdapter", "In connect, bind core service time out");
-                    BinderAdapter.this.b();
+                    HMSLog.m7715e("BinderAdapter", "In connect, bind core service time out");
+                    BinderAdapter.this.m6585b();
                     return true;
                 }
             });
         }
-        this.f6574h.sendEmptyMessageDelayed(getConnTimeOut(), a.q);
+        this.f7074h.sendEmptyMessageDelayed(getConnTimeOut(), C2084a.f6135q);
     }
 
-    private void h() {
-        HMSLog.d("BinderAdapter", "removeDelayDisconnectTask.");
+    /* renamed from: h */
+    private void m6591h() {
+        HMSLog.m7712d("BinderAdapter", "removeDelayDisconnectTask.");
         synchronized (BinderAdapter.class) {
-            Handler handler = this.f6575i;
+            Handler handler = this.f7075i;
             if (handler != null) {
                 handler.removeMessages(getMsgDelayDisconnect());
             }
@@ -151,8 +157,8 @@ public class BinderAdapter implements ServiceConnection {
         if (binderCallBack == null) {
             return;
         }
-        this.f6570d = binderCallBack;
-        a();
+        this.f7070d = binderCallBack;
+        m6582a();
     }
 
     protected int getConnTimeOut() {
@@ -164,91 +170,93 @@ public class BinderAdapter implements ServiceConnection {
     }
 
     public String getServiceAction() {
-        return this.f6568b;
+        return this.f7068b;
     }
 
     public IBinder getServiceBinder() {
-        return this.f6571e;
+        return this.f7071e;
     }
 
     @Override // android.content.ServiceConnection
     public void onNullBinding(ComponentName componentName) {
-        HMSLog.e("BinderAdapter", "Enter onNullBinding, than unBind.");
-        if (this.f6573g) {
-            this.f6573g = false;
+        HMSLog.m7715e("BinderAdapter", "Enter onNullBinding, than unBind.");
+        if (this.f7073g) {
+            this.f7073g = false;
             return;
         }
         unBind();
-        c();
-        BinderCallBack f2 = f();
-        if (f2 != null) {
-            f2.onNullBinding(componentName);
+        m6586c();
+        BinderCallBack m6589f = m6589f();
+        if (m6589f != null) {
+            m6589f.onNullBinding(componentName);
         }
     }
 
     @Override // android.content.ServiceConnection
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        HMSLog.i("BinderAdapter", "BinderAdapter Enter onServiceConnected.");
-        this.f6571e = iBinder;
-        c();
-        BinderCallBack f2 = f();
-        if (f2 != null) {
-            f2.onServiceConnected(componentName, iBinder);
+        HMSLog.m7717i("BinderAdapter", "BinderAdapter Enter onServiceConnected.");
+        this.f7071e = iBinder;
+        m6586c();
+        BinderCallBack m6589f = m6589f();
+        if (m6589f != null) {
+            m6589f.onServiceConnected(componentName, iBinder);
         }
-        d();
+        m6587d();
     }
 
     @Override // android.content.ServiceConnection
     public void onServiceDisconnected(ComponentName componentName) {
-        HMSLog.i("BinderAdapter", "Enter onServiceDisconnected.");
-        BinderCallBack f2 = f();
-        if (f2 != null) {
-            f2.onServiceDisconnected(componentName);
+        HMSLog.m7717i("BinderAdapter", "Enter onServiceDisconnected.");
+        BinderCallBack m6589f = m6589f();
+        if (m6589f != null) {
+            m6589f.onServiceDisconnected(componentName);
         }
-        h();
+        m6591h();
     }
 
     public void unBind() {
-        Util.unBindServiceCatchException(this.f6567a, this);
+        Util.unBindServiceCatchException(this.f7067a, this);
     }
 
     public void updateDelayTask() {
-        HMSLog.d("BinderAdapter", "updateDelayTask.");
+        HMSLog.m7712d("BinderAdapter", "updateDelayTask.");
         synchronized (BinderAdapter.class) {
-            Handler handler = this.f6575i;
+            Handler handler = this.f7075i;
             if (handler != null) {
                 handler.removeMessages(getMsgDelayDisconnect());
-                this.f6575i.sendEmptyMessageDelayed(getMsgDelayDisconnect(), 1800000L);
+                this.f7075i.sendEmptyMessageDelayed(getMsgDelayDisconnect(), 1800000L);
             }
         }
     }
 
-    private void a() {
-        if (TextUtils.isEmpty(this.f6568b) || TextUtils.isEmpty(this.f6569c)) {
-            e();
+    /* renamed from: a */
+    private void m6582a() {
+        if (TextUtils.isEmpty(this.f7068b) || TextUtils.isEmpty(this.f7069c)) {
+            m6588e();
         }
-        Intent intent = new Intent(this.f6568b);
+        Intent intent = new Intent(this.f7068b);
         try {
-            intent.setPackage(this.f6569c);
+            intent.setPackage(this.f7069c);
         } catch (IllegalArgumentException unused) {
-            HMSLog.e("BinderAdapter", "IllegalArgumentException when bindCoreService intent.setPackage");
-            e();
+            HMSLog.m7715e("BinderAdapter", "IllegalArgumentException when bindCoreService intent.setPackage");
+            m6588e();
         }
-        synchronized (this.f6572f) {
-            if (this.f6567a.bindService(intent, this, 1)) {
-                g();
+        synchronized (this.f7072f) {
+            if (this.f7067a.bindService(intent, this, 1)) {
+                m6590g();
             } else {
-                this.f6573g = true;
-                e();
+                this.f7073g = true;
+                m6588e();
             }
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void b() {
-        BinderCallBack f2 = f();
-        if (f2 != null) {
-            f2.onBinderFailed(-1);
+    /* renamed from: b */
+    public void m6585b() {
+        BinderCallBack m6589f = m6589f();
+        if (m6589f != null) {
+            m6589f.onBinderFailed(-1);
         }
     }
 }

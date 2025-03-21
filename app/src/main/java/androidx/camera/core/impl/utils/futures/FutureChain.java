@@ -9,30 +9,31 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
-public class FutureChain<V> implements c.b.b.a.a.a<V> {
+public class FutureChain<V> implements InterfaceFutureC0952a<V> {
 
     @Nullable
     CallbackToFutureAdapter.Completer<V> mCompleter;
 
     @NonNull
-    private final c.b.b.a.a.a<V> mDelegate;
+    private final InterfaceFutureC0952a<V> mDelegate;
 
-    FutureChain(@NonNull c.b.b.a.a.a<V> aVar) {
-        this.mDelegate = (c.b.b.a.a.a) Preconditions.checkNotNull(aVar);
+    FutureChain(@NonNull InterfaceFutureC0952a<V> interfaceFutureC0952a) {
+        this.mDelegate = (InterfaceFutureC0952a) Preconditions.checkNotNull(interfaceFutureC0952a);
     }
 
     @NonNull
-    public static <V> FutureChain<V> from(@NonNull c.b.b.a.a.a<V> aVar) {
-        return aVar instanceof FutureChain ? (FutureChain) aVar : new FutureChain<>(aVar);
+    public static <V> FutureChain<V> from(@NonNull InterfaceFutureC0952a<V> interfaceFutureC0952a) {
+        return interfaceFutureC0952a instanceof FutureChain ? (FutureChain) interfaceFutureC0952a : new FutureChain<>(interfaceFutureC0952a);
     }
 
     public final void addCallback(@NonNull FutureCallback<? super V> futureCallback, @NonNull Executor executor) {
         Futures.addCallback(this, futureCallback, executor);
     }
 
-    @Override // c.b.b.a.a.a
+    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
     public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
         this.mDelegate.addListener(runnable, executor);
     }

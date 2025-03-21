@@ -1,6 +1,6 @@
 package com.heytap.msp.push.notification;
 
-import com.heytap.mcssdk.g.b;
+import com.heytap.mcssdk.p156g.C2092b;
 import com.heytap.msp.push.notification.PushNotification;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -30,13 +30,13 @@ public class PushNotificationManager {
         this.executor.execute(new Runnable() { // from class: com.heytap.msp.push.notification.PushNotificationManager.1
             @Override // java.lang.Runnable
             public void run() {
-                b.a().a(PushNotificationManager.this.builder, iSortListener);
+                C2092b.m5821a().m5838a(PushNotificationManager.this.builder, iSortListener);
             }
         });
     }
 
     public void execute(ISortListener iSortListener) {
-        b.a().a(this.builder, iSortListener);
+        C2092b.m5821a().m5838a(this.builder, iSortListener);
     }
 
     public PushNotificationManager with(PushNotification.Builder builder) {

@@ -22,7 +22,9 @@ public class HttpdnsMini {
 
     class HostObject {
         private String hostName;
-        private String ip;
+
+        /* renamed from: ip */
+        private String f4018ip;
         private long queryTime;
         private long ttl;
 
@@ -34,7 +36,7 @@ public class HttpdnsMini {
         }
 
         public String getIp() {
-            return this.ip;
+            return this.f4018ip;
         }
 
         public long getQueryTime() {
@@ -58,7 +60,7 @@ public class HttpdnsMini {
         }
 
         public void setIp(String str) {
-            this.ip = str;
+            this.f4018ip = str;
         }
 
         public void setQueryTime(long j2) {
@@ -70,7 +72,7 @@ public class HttpdnsMini {
         }
 
         public String toString() {
-            return "[hostName=" + getHostName() + ", ip=" + this.ip + ", ttl=" + getTtl() + ", queryTime=" + this.queryTime + "]";
+            return "[hostName=" + getHostName() + ", ip=" + this.f4018ip + ", ttl=" + getTtl() + ", queryTime=" + this.queryTime + "]";
         }
     }
 

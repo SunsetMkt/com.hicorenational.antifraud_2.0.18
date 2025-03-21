@@ -2,24 +2,25 @@ package com.vivo.push.cache;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.vivo.push.model.C3925a;
+import com.vivo.push.util.C4010u;
 import com.vivo.push.util.ContextDelegate;
-import com.vivo.push.util.u;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.HashSet;
 import java.util.Set;
 
 /* loaded from: classes2.dex */
-public class ClientConfigManagerImpl implements d {
+public class ClientConfigManagerImpl implements InterfaceC3860d {
     private static final String TAG = "ClientConfigManager";
     private static volatile ClientConfigManagerImpl sClientConfigManagerImpl;
-    private a mAppConfigSettings;
+    private C3857a mAppConfigSettings;
     private Context mContext;
-    private e mPushConfigSettings;
+    private C3861e mPushConfigSettings;
 
     private ClientConfigManagerImpl(Context context) {
         this.mContext = ContextDelegate.getContext(context);
-        this.mAppConfigSettings = new a(this.mContext);
-        this.mPushConfigSettings = new e(this.mContext);
+        this.mAppConfigSettings = new C3857a(this.mContext);
+        this.mPushConfigSettings = new C3861e(this.mContext);
     }
 
     public static synchronized ClientConfigManagerImpl getInstance(Context context) {
@@ -34,26 +35,26 @@ public class ClientConfigManagerImpl implements d {
     }
 
     private void prepareAppConfig() {
-        a aVar = this.mAppConfigSettings;
-        if (aVar == null) {
-            this.mAppConfigSettings = new a(this.mContext);
+        C3857a c3857a = this.mAppConfigSettings;
+        if (c3857a == null) {
+            this.mAppConfigSettings = new C3857a(this.mContext);
         } else {
-            aVar.c();
+            c3857a.m12906c();
         }
     }
 
-    private e preparePushConfigSettings() {
-        e eVar = this.mPushConfigSettings;
-        if (eVar == null) {
-            this.mPushConfigSettings = new e(this.mContext);
+    private C3861e preparePushConfigSettings() {
+        C3861e c3861e = this.mPushConfigSettings;
+        if (c3861e == null) {
+            this.mPushConfigSettings = new C3861e(this.mContext);
         } else {
-            eVar.c();
+            c3861e.m12906c();
         }
         return this.mPushConfigSettings;
     }
 
     public void clearPush() {
-        this.mAppConfigSettings.d();
+        this.mAppConfigSettings.m12907d();
     }
 
     public Set<String> getBlackEventList() {
@@ -61,15 +62,15 @@ public class ClientConfigManagerImpl implements d {
     }
 
     public String getSuitTag() {
-        return preparePushConfigSettings().c("CSPT");
+        return preparePushConfigSettings().m12910c("CSPT");
     }
 
     public String getValueByKey(String str) {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        this.mPushConfigSettings.c();
-        return this.mPushConfigSettings.c(str);
+        this.mPushConfigSettings.m12906c();
+        return this.mPushConfigSettings.m12910c(str);
     }
 
     public Set<Long> getWhiteLogList() {
@@ -83,7 +84,7 @@ public class ClientConfigManagerImpl implements d {
                 }
             }
         }
-        u.d(TAG, " initWhiteLogList ".concat(String.valueOf(hashSet)));
+        C4010u.m13309d(TAG, " initWhiteLogList ".concat(String.valueOf(hashSet)));
         return hashSet;
     }
 
@@ -98,7 +99,7 @@ public class ClientConfigManagerImpl implements d {
             r3 = this;
             com.vivo.push.cache.e r0 = r3.preparePushConfigSettings()
             java.lang.String r1 = "PSM"
-            java.lang.String r0 = r0.c(r1)
+            java.lang.String r0 = r0.m12910c(r1)
             boolean r1 = android.text.TextUtils.isEmpty(r0)
             r2 = 0
             if (r1 != 0) goto L1a
@@ -121,24 +122,24 @@ public class ClientConfigManagerImpl implements d {
     }
 
     public boolean isDebug() {
-        this.mAppConfigSettings.c();
-        return a.a(this.mAppConfigSettings.b());
+        this.mAppConfigSettings.m12906c();
+        return C3857a.m12895a(this.mAppConfigSettings.m12898b());
     }
 
     public boolean isEnablePush() {
         prepareAppConfig();
-        com.vivo.push.model.a c2 = this.mAppConfigSettings.c(this.mContext.getPackageName());
-        if (c2 != null) {
-            return "1".equals(c2.b());
+        C3925a m12900c = this.mAppConfigSettings.m12900c(this.mContext.getPackageName());
+        if (m12900c != null) {
+            return "1".equals(m12900c.m13059b());
         }
         return true;
     }
 
-    @Override // com.vivo.push.cache.d
+    @Override // com.vivo.push.cache.InterfaceC3860d
     public boolean isInBlackList(long j2) {
-        String c2 = preparePushConfigSettings().c("BL");
-        if (!TextUtils.isEmpty(c2)) {
-            for (String str : c2.split(Constants.ACCEPT_TIME_SEPARATOR_SP)) {
+        String m12910c = preparePushConfigSettings().m12910c("BL");
+        if (!TextUtils.isEmpty(m12910c)) {
+            for (String str : m12910c.split(Constants.ACCEPT_TIME_SEPARATOR_SP)) {
                 try {
                     if (!TextUtils.isEmpty(str) && Long.parseLong(str) == j2) {
                         return true;
@@ -152,6 +153,6 @@ public class ClientConfigManagerImpl implements d {
     }
 
     public boolean isDebug(int i2) {
-        return a.a(i2);
+        return C3857a.m12895a(i2);
     }
 }

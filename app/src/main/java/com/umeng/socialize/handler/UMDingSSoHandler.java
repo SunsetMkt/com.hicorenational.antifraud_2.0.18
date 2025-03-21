@@ -89,7 +89,7 @@ public class UMDingSSoHandler extends UMSSOHandler {
         this.mAppContext = context.getApplicationContext();
         this.config = (PlatformConfig.APPIDPlatform) platform;
         if (TextUtils.isEmpty(this.config.getFileProvider())) {
-            SLog.E(UmengText.DING.Ding_FILE_PROVIDER_ERROR);
+            SLog.m12716E(UmengText.DING.Ding_FILE_PROVIDER_ERROR);
         } else {
             this.mFileProvider = this.config.getFileProvider();
         }

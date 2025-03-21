@@ -29,6 +29,32 @@ public final class ConnectionPool {
     private final int maxIdleConnections;
     final RouteDatabase routeDatabase;
 
+    /* renamed from: okhttp3.ConnectionPool$1 */
+    class RunnableC59761 implements Runnable {
+        RunnableC59761() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            while (true) {
+                long cleanup = ConnectionPool.this.cleanup(System.nanoTime());
+                if (cleanup == -1) {
+                    return;
+                }
+                if (cleanup > 0) {
+                    long j2 = cleanup / 1000000;
+                    long j3 = cleanup - (1000000 * j2);
+                    synchronized (ConnectionPool.this) {
+                        try {
+                            ConnectionPool.this.wait(j2, (int) j3);
+                        } catch (InterruptedException unused) {
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public ConnectionPool() {
         this(5, 5L, TimeUnit.MINUTES);
     }
@@ -162,6 +188,9 @@ public final class ConnectionPool {
 
     public ConnectionPool(int i2, long j2, TimeUnit timeUnit) {
         this.cleanupRunnable = new Runnable() { // from class: okhttp3.ConnectionPool.1
+            RunnableC59761() {
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 while (true) {
@@ -170,11 +199,11 @@ public final class ConnectionPool {
                         return;
                     }
                     if (cleanup > 0) {
-                        long j3 = cleanup / 1000000;
-                        long j4 = cleanup - (1000000 * j3);
+                        long j22 = cleanup / 1000000;
+                        long j3 = cleanup - (1000000 * j22);
                         synchronized (ConnectionPool.this) {
                             try {
-                                ConnectionPool.this.wait(j3, (int) j4);
+                                ConnectionPool.this.wait(j22, (int) j3);
                             } catch (InterruptedException unused) {
                             }
                         }

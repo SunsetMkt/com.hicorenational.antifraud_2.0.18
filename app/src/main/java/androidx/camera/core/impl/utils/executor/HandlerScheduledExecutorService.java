@@ -6,7 +6,6 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
-import c.b.b.a.a.a;
 import java.util.List;
 import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.Callable;
@@ -19,6 +18,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 final class HandlerScheduledExecutorService extends AbstractExecutorService implements ScheduledExecutorService {
@@ -38,7 +38,7 @@ final class HandlerScheduledExecutorService extends AbstractExecutorService impl
 
     private static class HandlerScheduledFuture<V> implements RunnableScheduledFuture<V> {
         final AtomicReference<CallbackToFutureAdapter.Completer<V>> mCompleter = new AtomicReference<>(null);
-        private final a<V> mDelegate;
+        private final InterfaceFutureC0952a<V> mDelegate;
         private final long mRunAtMillis;
         private final Callable<V> mTask;
 
@@ -52,7 +52,7 @@ final class HandlerScheduledExecutorService extends AbstractExecutorService impl
                         @Override // java.lang.Runnable
                         public void run() {
                             if (HandlerScheduledFuture.this.mCompleter.getAndSet(null) != null) {
-                                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                                C03731 c03731 = C03731.this;
                                 handler.removeCallbacks(HandlerScheduledFuture.this);
                             }
                         }

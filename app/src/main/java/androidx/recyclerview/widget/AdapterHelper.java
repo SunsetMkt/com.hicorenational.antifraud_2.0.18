@@ -61,7 +61,7 @@ class AdapterHelper implements OpReorderer.Callback {
 
         String cmdToString() {
             int i2 = this.cmd;
-            return i2 != 1 ? i2 != 2 ? i2 != 4 ? i2 != 8 ? "??" : "mv" : CommonNetImpl.UP : "rm" : "add";
+            return i2 != 1 ? i2 != 2 ? i2 != 4 ? i2 != 8 ? "??" : "mv" : CommonNetImpl.f13719UP : "rm" : "add";
         }
 
         public boolean equals(Object obj) {

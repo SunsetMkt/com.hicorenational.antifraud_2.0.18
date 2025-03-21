@@ -29,21 +29,23 @@ final class ImageSaver implements Runnable {
     @NonNull
     private final ImageCapture.OutputFileOptions mOutputFileOptions;
 
-    /* renamed from: androidx.camera.core.ImageSaver$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$ImageUtil$CodecFailedException$FailureType = new int[ImageUtil.CodecFailedException.FailureType.values().length];
+    /* renamed from: androidx.camera.core.ImageSaver$1 */
+    static /* synthetic */ class C03081 {
+
+        /* renamed from: $SwitchMap$androidx$camera$core$ImageUtil$CodecFailedException$FailureType */
+        static final /* synthetic */ int[] f437x9a1ac3a4 = new int[ImageUtil.CodecFailedException.FailureType.values().length];
 
         static {
             try {
-                $SwitchMap$androidx$camera$core$ImageUtil$CodecFailedException$FailureType[ImageUtil.CodecFailedException.FailureType.ENCODE_FAILED.ordinal()] = 1;
+                f437x9a1ac3a4[ImageUtil.CodecFailedException.FailureType.ENCODE_FAILED.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$androidx$camera$core$ImageUtil$CodecFailedException$FailureType[ImageUtil.CodecFailedException.FailureType.DECODE_FAILED.ordinal()] = 2;
+                f437x9a1ac3a4[ImageUtil.CodecFailedException.FailureType.DECODE_FAILED.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$androidx$camera$core$ImageUtil$CodecFailedException$FailureType[ImageUtil.CodecFailedException.FailureType.UNKNOWN.ordinal()] = 3;
+                f437x9a1ac3a4[ImageUtil.CodecFailedException.FailureType.UNKNOWN.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }
@@ -143,7 +145,7 @@ final class ImageSaver implements Runnable {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.core.e0
             @Override // java.lang.Runnable
             public final void run() {
-                ImageSaver.this.a(saveError, str, th);
+                ImageSaver.this.m351a(saveError, str, th);
             }
         });
     }
@@ -152,7 +154,7 @@ final class ImageSaver implements Runnable {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.core.d0
             @Override // java.lang.Runnable
             public final void run() {
-                ImageSaver.this.a(uri);
+                ImageSaver.this.m350a(uri);
             }
         });
     }
@@ -165,7 +167,8 @@ final class ImageSaver implements Runnable {
         }
     }
 
-    public /* synthetic */ void a(Uri uri) {
+    /* renamed from: a */
+    public /* synthetic */ void m350a(Uri uri) {
         this.mCallback.onImageSaved(new ImageCapture.OutputFileResults(uri));
     }
 
@@ -221,7 +224,8 @@ final class ImageSaver implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: androidx.camera.core.ImageSaver.run():void");
     }
 
-    public /* synthetic */ void a(SaveError saveError, String str, Throwable th) {
+    /* renamed from: a */
+    public /* synthetic */ void m351a(SaveError saveError, String str, Throwable th) {
         this.mCallback.onError(saveError, str, th);
     }
 }

@@ -1,18 +1,18 @@
 package com.huawei.secure.android.common.util;
 
 import android.text.TextUtils;
-import h.f1;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public final class HexUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7681a = "";
+    /* renamed from: a */
+    private static final String f8263a = "";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7682b = "HexUtil";
+    /* renamed from: b */
+    private static final String f8264b = "HexUtil";
 
     private HexUtil() {
     }
@@ -23,7 +23,7 @@ public final class HexUtil {
         }
         StringBuilder sb = new StringBuilder();
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & f1.f16099c);
+            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
             if (hexString.length() == 1) {
                 sb.append('0');
             }

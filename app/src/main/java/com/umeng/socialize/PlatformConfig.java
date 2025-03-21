@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes2.dex */
 public class PlatformConfig {
@@ -13,7 +14,9 @@ public class PlatformConfig {
     private static String sFileProvider;
 
     public static class APPIDPlatform implements Platform {
-        private SHARE_MEDIA p;
+
+        /* renamed from: p */
+        private SHARE_MEDIA f13426p;
         public String appId = null;
         public String appkey = null;
         public String redirectUrl = null;
@@ -23,7 +26,7 @@ public class PlatformConfig {
         public String schema = null;
 
         public APPIDPlatform(SHARE_MEDIA share_media) {
-            this.p = share_media;
+            this.f13426p = share_media;
         }
 
         @Override // com.umeng.socialize.PlatformConfig.Platform
@@ -48,7 +51,7 @@ public class PlatformConfig {
 
         @Override // com.umeng.socialize.PlatformConfig.Platform
         public SHARE_MEDIA getName() {
-            return this.p;
+            return this.f13426p;
         }
 
         @Override // com.umeng.socialize.PlatformConfig.Platform
@@ -70,10 +73,12 @@ public class PlatformConfig {
         public String appId = null;
         public String appkey = null;
         public String click_key = null;
-        private SHARE_MEDIA p;
+
+        /* renamed from: p */
+        private SHARE_MEDIA f13427p;
 
         public CustomPlatform(SHARE_MEDIA share_media) {
-            this.p = share_media;
+            this.f13427p = share_media;
         }
 
         @Override // com.umeng.socialize.PlatformConfig.Platform
@@ -93,7 +98,7 @@ public class PlatformConfig {
 
         @Override // com.umeng.socialize.PlatformConfig.Platform
         public SHARE_MEDIA getName() {
-            return this.p;
+            return this.f13427p;
         }
 
         @Override // com.umeng.socialize.PlatformConfig.Platform
@@ -250,42 +255,42 @@ public class PlatformConfig {
     }
 
     public static void setAlipay(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.ALIPAY)).appId = str.replace(c.c.a.b.a.a.f3100g, "");
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.ALIPAY)).appId = str.replace(AbstractC1191a.f2568g, "");
     }
 
     public static void setBytedance(String str, String str2, String str3, String str4) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.BYTEDANCE);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.click_key = str2.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str3.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.setFileProvider(str4.replace(c.c.a.b.a.a.f3100g, ""));
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.click_key = str2.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str3.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.setFileProvider(str4.replace(AbstractC1191a.f2568g, ""));
         APPIDPlatform aPPIDPlatform2 = (APPIDPlatform) configs.get(SHARE_MEDIA.BYTEDANCE_PUBLISH);
-        aPPIDPlatform2.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform2.click_key = str2.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform2.appkey = str3.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform2.setFileProvider(str4.replace(c.c.a.b.a.a.f3100g, ""));
+        aPPIDPlatform2.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform2.click_key = str2.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform2.appkey = str3.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform2.setFileProvider(str4.replace(AbstractC1191a.f2568g, ""));
         APPIDPlatform aPPIDPlatform3 = (APPIDPlatform) configs.get(SHARE_MEDIA.BYTEDANCE_FRIENDS);
-        aPPIDPlatform3.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform3.click_key = str2.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform3.appkey = str3.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform3.setFileProvider(str4.replace(c.c.a.b.a.a.f3100g, ""));
+        aPPIDPlatform3.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform3.click_key = str2.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform3.appkey = str3.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform3.setFileProvider(str4.replace(AbstractC1191a.f2568g, ""));
         setFileProvider(str4);
     }
 
     public static void setDing(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.DINGTALK)).appId = str.replace(c.c.a.b.a.a.f3100g, "");
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.DINGTALK)).appId = str.replace(AbstractC1191a.f2568g, "");
     }
 
     @Deprecated
     public static void setDingFileProvider(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.DINGTALK)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.DINGTALK)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
         setFileProvider(str);
     }
 
     public static void setDropbox(String str, String str2) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.DROPBOX);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
     }
 
     public static void setFileProvider(String str) {
@@ -297,8 +302,8 @@ public class PlatformConfig {
 
     public static void setHonor(String str, String str2) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.HONOR);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
     }
 
     public static void setHonorRedirectUrl(String str) {
@@ -306,90 +311,90 @@ public class PlatformConfig {
     }
 
     public static void setKakao(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.KAKAO)).appId = str.replace(c.c.a.b.a.a.f3100g, "");
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.KAKAO)).appId = str.replace(AbstractC1191a.f2568g, "");
     }
 
     public static void setPinterest(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.PINTEREST)).appId = str.replace(c.c.a.b.a.a.f3100g, "");
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.PINTEREST)).appId = str.replace(AbstractC1191a.f2568g, "");
     }
 
     @Deprecated
     public static void setQQFileProvider(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.QZONE)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.QQ)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.QZONE)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.QQ)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
         setFileProvider(str);
     }
 
     public static void setQQZone(String str, String str2) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.QZONE);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
         APPIDPlatform aPPIDPlatform2 = (APPIDPlatform) configs.get(SHARE_MEDIA.QQ);
-        aPPIDPlatform2.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform2.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform2.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform2.appkey = str2.replace(AbstractC1191a.f2568g, "");
     }
 
     @Deprecated
     public static void setSinaFileProvider(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.SINA)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.SINA)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
         setFileProvider(str);
     }
 
     public static void setSinaWeibo(String str, String str2, String str3) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.SINA);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
         aPPIDPlatform.redirectUrl = str3;
     }
 
     public static void setTwitter(String str, String str2) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.TWITTER);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
     }
 
     public static void setVKontakte(String str, String str2) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.VKONTAKTE);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
     }
 
     @Deprecated
     public static void setWXFileProvider(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN_CIRCLE)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN_FAVORITE)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN_CIRCLE)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN_FAVORITE)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
         setFileProvider(str);
     }
 
     public static void setWXWork(String str, String str2, String str3, String str4) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.WXWORK);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.agentId = str3.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.schema = str4.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.agentId = str3.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.schema = str4.replace(AbstractC1191a.f2568g, "");
     }
 
     @Deprecated
     public static void setWXWorkFileProvider(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.WXWORK)).setFileProvider(str.replace(c.c.a.b.a.a.f3100g, ""));
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.WXWORK)).setFileProvider(str.replace(AbstractC1191a.f2568g, ""));
         setFileProvider(str);
     }
 
     public static void setWeixin(String str, String str2) {
         APPIDPlatform aPPIDPlatform = (APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN);
-        aPPIDPlatform.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform.appkey = str2.replace(AbstractC1191a.f2568g, "");
         APPIDPlatform aPPIDPlatform2 = (APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN_CIRCLE);
-        aPPIDPlatform2.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform2.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform2.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform2.appkey = str2.replace(AbstractC1191a.f2568g, "");
         APPIDPlatform aPPIDPlatform3 = (APPIDPlatform) configs.get(SHARE_MEDIA.WEIXIN_FAVORITE);
-        aPPIDPlatform3.appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        aPPIDPlatform3.appkey = str2.replace(c.c.a.b.a.a.f3100g, "");
+        aPPIDPlatform3.appId = str.replace(AbstractC1191a.f2568g, "");
+        aPPIDPlatform3.appkey = str2.replace(AbstractC1191a.f2568g, "");
     }
 
     public static void setYixin(String str) {
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.YIXIN)).appId = str.replace(c.c.a.b.a.a.f3100g, "");
-        ((APPIDPlatform) configs.get(SHARE_MEDIA.YIXIN_CIRCLE)).appId = str.replace(c.c.a.b.a.a.f3100g, "");
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.YIXIN)).appId = str.replace(AbstractC1191a.f2568g, "");
+        ((APPIDPlatform) configs.get(SHARE_MEDIA.YIXIN_CIRCLE)).appId = str.replace(AbstractC1191a.f2568g, "");
     }
 }

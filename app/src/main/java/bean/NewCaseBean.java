@@ -14,7 +14,9 @@ public class NewCaseBean extends BaseBean {
     private String createTime;
     private String description;
     private String icon;
-    private String id;
+
+    /* renamed from: id */
+    private String f1603id;
     private int isTop;
     private int itemType;
     private String keyWord;
@@ -67,7 +69,7 @@ public class NewCaseBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1603id;
     }
 
     public int getIsTop() {
@@ -151,7 +153,7 @@ public class NewCaseBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1603id = str;
     }
 
     public void setIsTop(int i2) {

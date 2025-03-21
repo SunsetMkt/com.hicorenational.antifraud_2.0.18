@@ -61,7 +61,7 @@ public class RequestHeader implements IMessageEntity {
             this.transaction_id = JsonUtil.getStringValue(jSONObject, CommonCode.MapKey.TRANSACTION_ID);
             return true;
         } catch (JSONException e2) {
-            HMSLog.e(TAG, "fromJson failed: " + e2.getMessage());
+            HMSLog.m7715e(TAG, "fromJson failed: " + e2.getMessage());
             return false;
         }
     }
@@ -178,7 +178,7 @@ public class RequestHeader implements IMessageEntity {
             }
             jSONObject.put(CommonCode.MapKey.TRANSACTION_ID, this.transaction_id);
         } catch (JSONException e2) {
-            HMSLog.e(TAG, "toJson failed: " + e2.getMessage());
+            HMSLog.m7715e(TAG, "toJson failed: " + e2.getMessage());
         }
         return jSONObject.toString();
     }

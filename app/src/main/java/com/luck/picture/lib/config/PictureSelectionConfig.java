@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.StyleRes;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.camera.CustomCameraView;
 import com.luck.picture.lib.engine.CacheResourcesEngine;
 import com.luck.picture.lib.engine.ImageEngine;
@@ -198,7 +198,7 @@ public final class PictureSelectionConfig implements Parcelable {
     protected void initDefaultValue() {
         this.chooseMode = PictureMimeType.ofImage();
         this.camera = false;
-        this.themeStyleId = R.style.picture_default_style;
+        this.themeStyleId = C2639R.style.picture_default_style;
         this.selectionMode = 2;
         this.maxSelectNum = 9;
         this.minSelectNum = 0;

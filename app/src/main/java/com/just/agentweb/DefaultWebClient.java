@@ -126,7 +126,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             z = false;
         }
         HAS_ALIPAY_LIB = z;
-        LogUtils.i(TAG, "HAS_ALIPAY_LIB:" + HAS_ALIPAY_LIB);
+        LogUtils.m8083i(TAG, "HAS_ALIPAY_LIB:" + HAS_ALIPAY_LIB);
     }
 
     DefaultWebClient(Builder builder) {
@@ -172,7 +172,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             return false;
         }
         ActivityInfo activityInfo = lookupResolveInfo.activityInfo;
-        LogUtils.e(TAG, "resolve package:" + lookupResolveInfo.activityInfo.packageName + " app package:" + activity.getPackageName());
+        LogUtils.m8081e(TAG, "resolve package:" + lookupResolveInfo.activityInfo.packageName + " app package:" + activity.getPackageName());
         if (activityInfo != null && !TextUtils.isEmpty(activityInfo.packageName) && activityInfo.packageName.equals(activity.getPackageName())) {
             return lookup(str);
         }
@@ -262,7 +262,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
                 }
             });
             if (payInterceptorWithUrl) {
-                LogUtils.i(TAG, "alipay-isIntercepted:" + payInterceptorWithUrl + "  url:" + str);
+                LogUtils.m8083i(TAG, "alipay-isIntercepted:" + payInterceptorWithUrl + "  url:" + str);
             }
             return payInterceptorWithUrl;
         } catch (Throwable th) {
@@ -445,7 +445,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
 
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
     public void onReceivedError(WebView webView, int i2, String str, String str2) {
-        LogUtils.i(TAG, "onReceivedError：" + str + "  CODE:" + i2);
+        LogUtils.m8083i(TAG, "onReceivedError：" + str + "  CODE:" + i2);
         onMainFrameError(webView, i2, str, str2);
     }
 
@@ -461,7 +461,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
 
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
     public void onScaleChanged(WebView webView, float f2, float f3) {
-        LogUtils.i(TAG, "onScaleChanged:" + f2 + "   n:" + f3);
+        LogUtils.m8083i(TAG, "onScaleChanged:" + f2 + "   n:" + f3);
         if (f3 - f2 > 7.0f) {
             webView.setInitialScale((int) ((f2 / f3) * 100.0f));
         }
@@ -492,26 +492,26 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
         }
         if (uri.startsWith(INTENT_SCHEME)) {
             handleIntentUrl(uri);
-            LogUtils.i(TAG, "intent url ");
+            LogUtils.m8083i(TAG, "intent url ");
             return true;
         }
         if (uri.startsWith(WEBCHAT_PAY_SCHEME)) {
-            LogUtils.i(TAG, "lookup wechat to pay ~~");
+            LogUtils.m8083i(TAG, "lookup wechat to pay ~~");
             startActivity(uri);
             return true;
         }
         if (uri.startsWith(ALIPAYS_SCHEME) && lookup(uri)) {
-            LogUtils.i(TAG, "alipays url lookup alipay ~~ ");
+            LogUtils.m8083i(TAG, "alipays url lookup alipay ~~ ");
             return true;
         }
         if (queryActiviesNumber(uri) > 0 && deepLink(uri)) {
-            LogUtils.i(TAG, "intercept url:" + uri);
+            LogUtils.m8083i(TAG, "intercept url:" + uri);
             return true;
         }
         if (!this.mIsInterceptUnkownUrl) {
             return super.shouldOverrideUrlLoading(webView, webResourceRequest);
         }
-        LogUtils.i(TAG, "intercept UnkownUrl :" + webResourceRequest.getUrl());
+        LogUtils.m8083i(TAG, "intercept UnkownUrl :" + webResourceRequest.getUrl());
         return true;
     }
 
@@ -527,7 +527,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
         if (webResourceRequest.isForMainFrame()) {
             onMainFrameError(webView, webResourceError.getErrorCode(), webResourceError.getDescription().toString(), webResourceRequest.getUrl().toString());
         }
-        LogUtils.i(TAG, "onReceivedError:" + ((Object) webResourceError.getDescription()) + " code:" + webResourceError.getErrorCode());
+        LogUtils.m8083i(TAG, "onReceivedError:" + ((Object) webResourceError.getDescription()) + " code:" + webResourceError.getErrorCode());
     }
 
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
@@ -553,11 +553,11 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             return true;
         }
         if (queryActiviesNumber(str) > 0 && deepLink(str)) {
-            LogUtils.i(TAG, "intercept OtherAppScheme");
+            LogUtils.m8083i(TAG, "intercept OtherAppScheme");
             return true;
         }
         if (this.mIsInterceptUnkownUrl) {
-            LogUtils.i(TAG, "intercept InterceptUnkownScheme : " + str);
+            LogUtils.m8083i(TAG, "intercept InterceptUnkownScheme : " + str);
             return true;
         }
         return super.shouldOverrideUrlLoading(webView, str);

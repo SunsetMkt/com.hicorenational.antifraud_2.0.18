@@ -43,6 +43,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StringRes;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.TooltipCompat;
@@ -55,6 +56,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.internal.ViewUtils;
@@ -802,7 +804,7 @@ public class TabLayout extends HorizontalScrollView {
             boolean z = false;
             if (this.customView == null) {
                 if (this.iconView == null) {
-                    ImageView imageView2 = (ImageView) LayoutInflater.from(getContext()).inflate(com.google.android.material.R.layout.design_layout_tab_icon, (ViewGroup) this, false);
+                    ImageView imageView2 = (ImageView) LayoutInflater.from(getContext()).inflate(C1921R.layout.design_layout_tab_icon, (ViewGroup) this, false);
                     addView(imageView2, 0);
                     this.iconView = imageView2;
                 }
@@ -817,7 +819,7 @@ public class TabLayout extends HorizontalScrollView {
                     }
                 }
                 if (this.textView == null) {
-                    TextView textView3 = (TextView) LayoutInflater.from(getContext()).inflate(com.google.android.material.R.layout.design_layout_tab_text, (ViewGroup) this, false);
+                    TextView textView3 = (TextView) LayoutInflater.from(getContext()).inflate(C1921R.layout.design_layout_tab_text, (ViewGroup) this, false);
                     addView(textView3);
                     this.textView = textView3;
                     this.defaultMaxLines = TextViewCompat.getMaxLines(this.textView);
@@ -1661,7 +1663,7 @@ public class TabLayout extends HorizontalScrollView {
     }
 
     public TabLayout(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, com.google.android.material.R.attr.tabStyle);
+        this(context, attributeSet, C1921R.attr.tabStyle);
     }
 
     public void addTab(@NonNull Tab tab, int i2) {
@@ -1740,49 +1742,49 @@ public class TabLayout extends HorizontalScrollView {
         setHorizontalScrollBarEnabled(false);
         this.slidingTabIndicator = new SlidingTabIndicator(context);
         super.addView(this.slidingTabIndicator, 0, new FrameLayout.LayoutParams(-2, -1));
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, com.google.android.material.R.styleable.TabLayout, i2, com.google.android.material.R.style.Widget_Design_TabLayout, com.google.android.material.R.styleable.TabLayout_tabTextAppearance);
-        this.slidingTabIndicator.setSelectedIndicatorHeight(obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabIndicatorHeight, -1));
-        this.slidingTabIndicator.setSelectedIndicatorColor(obtainStyledAttributes.getColor(com.google.android.material.R.styleable.TabLayout_tabIndicatorColor, 0));
-        setSelectedTabIndicator(MaterialResources.getDrawable(context, obtainStyledAttributes, com.google.android.material.R.styleable.TabLayout_tabIndicator));
-        setSelectedTabIndicatorGravity(obtainStyledAttributes.getInt(com.google.android.material.R.styleable.TabLayout_tabIndicatorGravity, 0));
-        setTabIndicatorFullWidth(obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.TabLayout_tabIndicatorFullWidth, true));
-        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabPadding, 0);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.TabLayout, i2, C1921R.style.Widget_Design_TabLayout, C1921R.styleable.TabLayout_tabTextAppearance);
+        this.slidingTabIndicator.setSelectedIndicatorHeight(obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabIndicatorHeight, -1));
+        this.slidingTabIndicator.setSelectedIndicatorColor(obtainStyledAttributes.getColor(C1921R.styleable.TabLayout_tabIndicatorColor, 0));
+        setSelectedTabIndicator(MaterialResources.getDrawable(context, obtainStyledAttributes, C1921R.styleable.TabLayout_tabIndicator));
+        setSelectedTabIndicatorGravity(obtainStyledAttributes.getInt(C1921R.styleable.TabLayout_tabIndicatorGravity, 0));
+        setTabIndicatorFullWidth(obtainStyledAttributes.getBoolean(C1921R.styleable.TabLayout_tabIndicatorFullWidth, true));
+        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabPadding, 0);
         this.tabPaddingBottom = dimensionPixelSize;
         this.tabPaddingEnd = dimensionPixelSize;
         this.tabPaddingTop = dimensionPixelSize;
         this.tabPaddingStart = dimensionPixelSize;
-        this.tabPaddingStart = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabPaddingStart, this.tabPaddingStart);
-        this.tabPaddingTop = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabPaddingTop, this.tabPaddingTop);
-        this.tabPaddingEnd = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabPaddingEnd, this.tabPaddingEnd);
-        this.tabPaddingBottom = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabPaddingBottom, this.tabPaddingBottom);
-        this.tabTextAppearance = obtainStyledAttributes.getResourceId(com.google.android.material.R.styleable.TabLayout_tabTextAppearance, com.google.android.material.R.style.TextAppearance_Design_Tab);
-        TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(this.tabTextAppearance, androidx.appcompat.R.styleable.TextAppearance);
+        this.tabPaddingStart = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabPaddingStart, this.tabPaddingStart);
+        this.tabPaddingTop = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabPaddingTop, this.tabPaddingTop);
+        this.tabPaddingEnd = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabPaddingEnd, this.tabPaddingEnd);
+        this.tabPaddingBottom = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabPaddingBottom, this.tabPaddingBottom);
+        this.tabTextAppearance = obtainStyledAttributes.getResourceId(C1921R.styleable.TabLayout_tabTextAppearance, C1921R.style.TextAppearance_Design_Tab);
+        TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(this.tabTextAppearance, C0120R.styleable.TextAppearance);
         try {
-            this.tabTextSize = obtainStyledAttributes2.getDimensionPixelSize(androidx.appcompat.R.styleable.TextAppearance_android_textSize, 0);
-            this.tabTextColors = MaterialResources.getColorStateList(context, obtainStyledAttributes2, androidx.appcompat.R.styleable.TextAppearance_android_textColor);
+            this.tabTextSize = obtainStyledAttributes2.getDimensionPixelSize(C0120R.styleable.TextAppearance_android_textSize, 0);
+            this.tabTextColors = MaterialResources.getColorStateList(context, obtainStyledAttributes2, C0120R.styleable.TextAppearance_android_textColor);
             obtainStyledAttributes2.recycle();
-            if (obtainStyledAttributes.hasValue(com.google.android.material.R.styleable.TabLayout_tabTextColor)) {
-                this.tabTextColors = MaterialResources.getColorStateList(context, obtainStyledAttributes, com.google.android.material.R.styleable.TabLayout_tabTextColor);
+            if (obtainStyledAttributes.hasValue(C1921R.styleable.TabLayout_tabTextColor)) {
+                this.tabTextColors = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TabLayout_tabTextColor);
             }
-            if (obtainStyledAttributes.hasValue(com.google.android.material.R.styleable.TabLayout_tabSelectedTextColor)) {
-                this.tabTextColors = createColorStateList(this.tabTextColors.getDefaultColor(), obtainStyledAttributes.getColor(com.google.android.material.R.styleable.TabLayout_tabSelectedTextColor, 0));
+            if (obtainStyledAttributes.hasValue(C1921R.styleable.TabLayout_tabSelectedTextColor)) {
+                this.tabTextColors = createColorStateList(this.tabTextColors.getDefaultColor(), obtainStyledAttributes.getColor(C1921R.styleable.TabLayout_tabSelectedTextColor, 0));
             }
-            this.tabIconTint = MaterialResources.getColorStateList(context, obtainStyledAttributes, com.google.android.material.R.styleable.TabLayout_tabIconTint);
-            this.tabIconTintMode = ViewUtils.parseTintMode(obtainStyledAttributes.getInt(com.google.android.material.R.styleable.TabLayout_tabIconTintMode, -1), null);
-            this.tabRippleColorStateList = MaterialResources.getColorStateList(context, obtainStyledAttributes, com.google.android.material.R.styleable.TabLayout_tabRippleColor);
-            this.tabIndicatorAnimationDuration = obtainStyledAttributes.getInt(com.google.android.material.R.styleable.TabLayout_tabIndicatorAnimationDuration, 300);
-            this.requestedTabMinWidth = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabMinWidth, -1);
-            this.requestedTabMaxWidth = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabMaxWidth, -1);
-            this.tabBackgroundResId = obtainStyledAttributes.getResourceId(com.google.android.material.R.styleable.TabLayout_tabBackground, 0);
-            this.contentInsetStart = obtainStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.TabLayout_tabContentStart, 0);
-            this.mode = obtainStyledAttributes.getInt(com.google.android.material.R.styleable.TabLayout_tabMode, 1);
-            this.tabGravity = obtainStyledAttributes.getInt(com.google.android.material.R.styleable.TabLayout_tabGravity, 0);
-            this.inlineLabel = obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.TabLayout_tabInlineLabel, false);
-            this.unboundedRipple = obtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.TabLayout_tabUnboundedRipple, false);
+            this.tabIconTint = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TabLayout_tabIconTint);
+            this.tabIconTintMode = ViewUtils.parseTintMode(obtainStyledAttributes.getInt(C1921R.styleable.TabLayout_tabIconTintMode, -1), null);
+            this.tabRippleColorStateList = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.TabLayout_tabRippleColor);
+            this.tabIndicatorAnimationDuration = obtainStyledAttributes.getInt(C1921R.styleable.TabLayout_tabIndicatorAnimationDuration, 300);
+            this.requestedTabMinWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabMinWidth, -1);
+            this.requestedTabMaxWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabMaxWidth, -1);
+            this.tabBackgroundResId = obtainStyledAttributes.getResourceId(C1921R.styleable.TabLayout_tabBackground, 0);
+            this.contentInsetStart = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.TabLayout_tabContentStart, 0);
+            this.mode = obtainStyledAttributes.getInt(C1921R.styleable.TabLayout_tabMode, 1);
+            this.tabGravity = obtainStyledAttributes.getInt(C1921R.styleable.TabLayout_tabGravity, 0);
+            this.inlineLabel = obtainStyledAttributes.getBoolean(C1921R.styleable.TabLayout_tabInlineLabel, false);
+            this.unboundedRipple = obtainStyledAttributes.getBoolean(C1921R.styleable.TabLayout_tabUnboundedRipple, false);
             obtainStyledAttributes.recycle();
             Resources resources = getResources();
-            this.tabTextMultiLineSize = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_tab_text_size_2line);
-            this.scrollableTabMinWidth = resources.getDimensionPixelSize(com.google.android.material.R.dimen.design_tab_scrollable_min_width);
+            this.tabTextMultiLineSize = resources.getDimensionPixelSize(C1921R.dimen.design_tab_text_size_2line);
+            this.scrollableTabMinWidth = resources.getDimensionPixelSize(C1921R.dimen.design_tab_scrollable_min_width);
             applyModeAndGravity();
         } catch (Throwable th) {
             obtainStyledAttributes2.recycle();

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -27,9 +27,9 @@ public class FlowLayout extends ViewGroup {
     }
 
     private void loadFromAttributes(Context context, AttributeSet attributeSet) {
-        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R.styleable.FlowLayout, 0, 0);
-        this.lineSpacing = obtainStyledAttributes.getDimensionPixelSize(R.styleable.FlowLayout_lineSpacing, 0);
-        this.itemSpacing = obtainStyledAttributes.getDimensionPixelSize(R.styleable.FlowLayout_itemSpacing, 0);
+        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, C1921R.styleable.FlowLayout, 0, 0);
+        this.lineSpacing = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.FlowLayout_lineSpacing, 0);
+        this.itemSpacing = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.FlowLayout_itemSpacing, 0);
         obtainStyledAttributes.recycle();
     }
 

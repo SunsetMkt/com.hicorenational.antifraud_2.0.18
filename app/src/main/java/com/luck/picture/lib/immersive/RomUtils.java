@@ -2,11 +2,11 @@ package com.luck.picture.lib.immersive;
 
 import android.os.Build;
 import android.text.TextUtils;
-import c.c.a.b.a.a;
 import com.luck.picture.lib.tools.StringUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class RomUtils {
@@ -16,7 +16,9 @@ public class RomUtils {
         public static final int ANDROID_NATIVE = 3;
         public static final int FLYME = 2;
         public static final int MIUI = 1;
-        public static final int NA = 4;
+
+        /* renamed from: NA */
+        public static final int f8384NA = 4;
 
         public AvailableRomType() {
         }
@@ -25,7 +27,7 @@ public class RomUtils {
     public static int getFlymeVersion() {
         String substring;
         String str = Build.DISPLAY;
-        if (TextUtils.isEmpty(str) || !str.contains("Flyme") || (substring = str.replaceAll("Flyme", "").replaceAll("OS", "").replaceAll(a.f3100g, "").substring(0, 1)) == null) {
+        if (TextUtils.isEmpty(str) || !str.contains("Flyme") || (substring = str.replaceAll("Flyme", "").replaceAll("OS", "").replaceAll(AbstractC1191a.f2568g, "").substring(0, 1)) == null) {
             return 0;
         }
         return StringUtils.stringToInt(substring);

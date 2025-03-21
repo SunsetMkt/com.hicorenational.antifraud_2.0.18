@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import java.util.concurrent.Executor;
-import util.permissionutil.a;
+import util.permissionutil.C7308a;
 
 @RequiresApi(21)
 /* loaded from: classes.dex */
@@ -62,7 +62,7 @@ public final class CameraManagerCompat {
         @NonNull
         CameraManager getCameraManager();
 
-        @RequiresPermission(a.f20909c)
+        @RequiresPermission(C7308a.f25524c)
         void openCamera(@NonNull String str, @NonNull Executor executor, @NonNull CameraDevice.StateCallback stateCallback) throws CameraAccessException;
 
         void registerAvailabilityCallback(@NonNull Executor executor, @NonNull CameraManager.AvailabilityCallback availabilityCallback);
@@ -79,7 +79,7 @@ public final class CameraManagerCompat {
         return Build.VERSION.SDK_INT >= 28 ? new CameraManagerCompat(new CameraManagerCompatApi28Impl(context)) : new CameraManagerCompat(new CameraManagerCompatBaseImpl(context));
     }
 
-    @RequiresPermission(a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     public void openCamera(@NonNull String str, @NonNull Executor executor, @NonNull CameraDevice.StateCallback stateCallback) throws CameraAccessException {
         this.mImpl.openCamera(str, executor, stateCallback);
     }

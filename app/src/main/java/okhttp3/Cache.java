@@ -26,7 +26,7 @@ import okhttp3.internal.cache.InternalCache;
 import okhttp3.internal.http.HttpHeaders;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.http.StatusLine;
-import okhttp3.internal.io.FileSystem;
+import okhttp3.internal.p385io.FileSystem;
 import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSink;
@@ -500,7 +500,7 @@ public final class Cache implements Closeable, Flushable {
                 bufferedSink.writeDecimalLong(list.size()).writeByte(10);
                 int size = list.size();
                 for (int i2 = 0; i2 < size; i2++) {
-                    bufferedSink.writeUtf8(ByteString.of(list.get(i2).getEncoded()).base64()).writeByte(10);
+                    bufferedSink.writeUtf8(ByteString.m24926of(list.get(i2).getEncoded()).base64()).writeByte(10);
                 }
             } catch (CertificateEncodingException e2) {
                 throw new IOException(e2.getMessage());

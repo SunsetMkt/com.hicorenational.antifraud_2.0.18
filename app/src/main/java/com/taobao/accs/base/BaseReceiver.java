@@ -26,7 +26,7 @@ public class BaseReceiver extends BroadcastReceiver {
                 }
             });
         } catch (Exception e2) {
-            ALog.e(TAG, "build ReceiverImpl error", e2.getMessage());
+            ALog.m9182e(TAG, "build ReceiverImpl error", e2.getMessage());
         }
     }
 }

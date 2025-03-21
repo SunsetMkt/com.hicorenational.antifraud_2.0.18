@@ -6,23 +6,24 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Build;
 import android.text.TextUtils;
-import c.c.a.b.a.a;
 import com.huawei.secure.android.common.util.LogsUtil;
-import h.f1;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class HiPkgSignManager {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7536a = "HiPkgSignManager";
+    /* renamed from: a */
+    private static final String f8113a = "HiPkgSignManager";
 
-    private static PackageInfo a(Context context, String str) {
+    /* renamed from: a */
+    private static PackageInfo m7902a(Context context, String str) {
         try {
             PackageManager packageManager = context.getPackageManager();
             if (packageManager != null) {
@@ -30,26 +31,27 @@ public class HiPkgSignManager {
             }
             return null;
         } catch (Exception e2) {
-            LogsUtil.e(f7536a, "Exception : " + e2.getMessage(), true);
+            LogsUtil.m8026e(f8113a, "Exception : " + e2.getMessage(), true);
             return null;
         }
     }
 
-    private static String b(byte[] bArr) {
+    /* renamed from: b */
+    private static String m7905b(byte[] bArr) {
         try {
-            return a(MessageDigest.getInstance("SHA-256").digest(bArr));
+            return m7903a(MessageDigest.getInstance("SHA-256").digest(bArr));
         } catch (NoSuchAlgorithmException e2) {
-            LogsUtil.e(f7536a, "NoSuchAlgorithmException" + e2.getMessage());
+            LogsUtil.m8021e(f8113a, "NoSuchAlgorithmException" + e2.getMessage());
             return "";
         }
     }
 
     public static boolean doCheckArchiveApk(Context context, String str, String str2, String str3) {
-        PackageInfo a2;
-        if (TextUtils.isEmpty(str2) || TextUtils.isEmpty(str) || context == null || TextUtils.isEmpty(str3) || (a2 = a(context, str2)) == null) {
+        PackageInfo m7902a;
+        if (TextUtils.isEmpty(str2) || TextUtils.isEmpty(str) || context == null || TextUtils.isEmpty(str3) || (m7902a = m7902a(context, str2)) == null) {
             return false;
         }
-        return str.equalsIgnoreCase(b(a2.signatures[0].toByteArray())) && str3.equals(a2.packageName);
+        return str.equalsIgnoreCase(m7905b(m7902a.signatures[0].toByteArray())) && str3.equals(m7902a.packageName);
     }
 
     public static boolean doCheckInstalled(Context context, String str, String str2) {
@@ -81,7 +83,7 @@ public class HiPkgSignManager {
     public static byte[] getInstalledAPPSignature(Context context, String str) {
         PackageInfo packageInfo;
         if (context == null || TextUtils.isEmpty(str)) {
-            LogsUtil.e(f7536a, "packageName is null or context is null");
+            LogsUtil.m8021e(f8113a, "packageName is null or context is null");
             return new byte[0];
         }
         try {
@@ -90,16 +92,16 @@ public class HiPkgSignManager {
                 return packageInfo.signatures[0].toByteArray();
             }
         } catch (PackageManager.NameNotFoundException e2) {
-            LogsUtil.e(f7536a, "PackageManager.NameNotFoundException : " + e2.getMessage(), true);
+            LogsUtil.m8026e(f8113a, "PackageManager.NameNotFoundException : " + e2.getMessage(), true);
         } catch (Exception e3) {
-            LogsUtil.e(f7536a, "Exception : " + e3.getMessage(), true);
+            LogsUtil.m8026e(f8113a, "Exception : " + e3.getMessage(), true);
         }
         return new byte[0];
     }
 
     public static String getInstalledAppHash(Context context, String str) {
         byte[] installedAPPSignature = getInstalledAPPSignature(context, str);
-        return (installedAPPSignature == null || installedAPPSignature.length <= 0) ? "" : b(installedAPPSignature);
+        return (installedAPPSignature == null || installedAPPSignature.length <= 0) ? "" : m7905b(installedAPPSignature);
     }
 
     public static List<String> getInstalledAppHashV2V3(Context context, String str) {
@@ -109,71 +111,73 @@ public class HiPkgSignManager {
         } catch (Throwable unused) {
         }
         if (Build.VERSION.SDK_INT >= 28) {
-            PackageInfo packageInfo = packageManager.getPackageInfo(str, a.C1);
+            PackageInfo packageInfo = packageManager.getPackageInfo(str, AbstractC1191a.f2490C1);
             if (packageInfo != null && packageInfo.signingInfo != null) {
-                return packageInfo.signingInfo.hasMultipleSigners() ? a(packageInfo.signingInfo.getApkContentsSigners()) : a(packageInfo.signingInfo.getSigningCertificateHistory());
+                return packageInfo.signingInfo.hasMultipleSigners() ? m7904a(packageInfo.signingInfo.getApkContentsSigners()) : m7904a(packageInfo.signingInfo.getSigningCertificateHistory());
             }
             return null;
         }
         PackageInfo packageInfo2 = packageManager.getPackageInfo(str, 64);
         if (packageInfo2 != null && packageInfo2.signatures != null && packageInfo2.signatures.length != 0 && packageInfo2.signatures[0] != null) {
-            return a(packageInfo2.signatures);
+            return m7904a(packageInfo2.signatures);
         }
         return null;
     }
 
     public static String getUnInstalledAPPPackageName(Context context, String str) {
         if (context == null || TextUtils.isEmpty(str)) {
-            LogsUtil.e(f7536a, "archiveFilePath is null or context is null");
+            LogsUtil.m8021e(f8113a, "archiveFilePath is null or context is null");
             return "";
         }
-        PackageInfo a2 = a(context, str);
-        return a2 != null ? a2.packageName : "";
+        PackageInfo m7902a = m7902a(context, str);
+        return m7902a != null ? m7902a.packageName : "";
     }
 
     public static byte[] getUnInstalledAPPSignature(Context context, String str) {
         if (context == null || TextUtils.isEmpty(str)) {
-            LogsUtil.e(f7536a, "archiveFilePath is null or context is null");
+            LogsUtil.m8021e(f8113a, "archiveFilePath is null or context is null");
             return new byte[0];
         }
-        PackageInfo a2 = a(context, str);
-        if (a2 != null) {
-            Signature signature = a2.signatures[0];
+        PackageInfo m7902a = m7902a(context, str);
+        if (m7902a != null) {
+            Signature signature = m7902a.signatures[0];
             if (signature != null) {
                 return signature.toByteArray();
             }
         } else {
-            LogsUtil.e(f7536a, "PackageInfo is null ");
+            LogsUtil.m8021e(f8113a, "PackageInfo is null ");
         }
         return new byte[0];
     }
 
     public static String getUnInstalledAppHash(Context context, String str) {
         byte[] unInstalledAPPSignature = getUnInstalledAPPSignature(context, str);
-        return (unInstalledAPPSignature == null || unInstalledAPPSignature.length <= 0) ? "" : b(unInstalledAPPSignature);
+        return (unInstalledAPPSignature == null || unInstalledAPPSignature.length <= 0) ? "" : m7905b(unInstalledAPPSignature);
     }
 
-    private static String a(byte[] bArr) {
+    /* renamed from: a */
+    private static String m7903a(byte[] bArr) {
         if (bArr == null) {
             return null;
         }
         int length = bArr.length;
         StringBuffer stringBuffer = new StringBuffer();
         for (int i2 = 0; i2 < length; i2++) {
-            if ((bArr[i2] & f1.f16099c) < 16) {
-                stringBuffer.append("0" + Integer.toHexString(bArr[i2] & f1.f16099c));
+            if ((bArr[i2] & C5230f1.f20085c) < 16) {
+                stringBuffer.append("0" + Integer.toHexString(bArr[i2] & C5230f1.f20085c));
             } else {
-                stringBuffer.append(Integer.toHexString(bArr[i2] & f1.f16099c));
+                stringBuffer.append(Integer.toHexString(bArr[i2] & C5230f1.f20085c));
             }
         }
         return stringBuffer.toString().toUpperCase(Locale.ENGLISH);
     }
 
-    private static List<String> a(Signature[] signatureArr) {
+    /* renamed from: a */
+    private static List<String> m7904a(Signature[] signatureArr) {
         ArrayList arrayList = new ArrayList();
         if (signatureArr != null && signatureArr.length != 0) {
             for (Signature signature : signatureArr) {
-                arrayList.add(b(signature.toByteArray()));
+                arrayList.add(m7905b(signature.toByteArray()));
             }
         }
         return arrayList;

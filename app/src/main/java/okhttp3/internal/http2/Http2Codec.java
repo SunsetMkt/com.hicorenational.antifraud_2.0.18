@@ -41,11 +41,13 @@ public final class Http2Codec implements HttpCodec {
     private static final ByteString KEEP_ALIVE = ByteString.encodeUtf8("keep-alive");
     private static final ByteString PROXY_CONNECTION = ByteString.encodeUtf8("proxy-connection");
     private static final ByteString TRANSFER_ENCODING = ByteString.encodeUtf8("transfer-encoding");
-    private static final ByteString TE = ByteString.encodeUtf8("te");
+
+    /* renamed from: TE */
+    private static final ByteString f21460TE = ByteString.encodeUtf8("te");
     private static final ByteString ENCODING = ByteString.encodeUtf8("encoding");
     private static final ByteString UPGRADE = ByteString.encodeUtf8("upgrade");
-    private static final List<ByteString> HTTP_2_SKIPPED_REQUEST_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, TE, TRANSFER_ENCODING, ENCODING, UPGRADE, Header.TARGET_METHOD, Header.TARGET_PATH, Header.TARGET_SCHEME, Header.TARGET_AUTHORITY);
-    private static final List<ByteString> HTTP_2_SKIPPED_RESPONSE_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, TE, TRANSFER_ENCODING, ENCODING, UPGRADE);
+    private static final List<ByteString> HTTP_2_SKIPPED_REQUEST_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, f21460TE, TRANSFER_ENCODING, ENCODING, UPGRADE, Header.TARGET_METHOD, Header.TARGET_PATH, Header.TARGET_SCHEME, Header.TARGET_AUTHORITY);
+    private static final List<ByteString> HTTP_2_SKIPPED_RESPONSE_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, f21460TE, TRANSFER_ENCODING, ENCODING, UPGRADE);
 
     class StreamFinishingSource extends ForwardingSource {
         long bytesRead;

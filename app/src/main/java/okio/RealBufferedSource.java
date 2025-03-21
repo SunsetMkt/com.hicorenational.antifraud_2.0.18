@@ -1,38 +1,39 @@
 package okio;
 
 import com.tencent.open.SocialConstants;
-import h.f1;
-import h.q2.c;
-import h.q2.t.i0;
-import h.q2.t.m0;
-import h.y;
-import i.c.a.d;
-import i.c.a.e;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import okio.internal.BufferKt;
+import p286h.C5230f1;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.InterfaceC5479c;
+import p286h.p309q2.p311t.C5544i0;
+import p286h.p309q2.p311t.C5556m0;
+import p286h.p323z2.C5727d;
+import p324i.p336c.p337a.InterfaceC5816d;
+import p324i.p336c.p337a.InterfaceC5817e;
 
 /* compiled from: RealBufferedSource.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000\u0086\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u0005\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\u0010\u0012\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u000b\n\u0002\u0010\n\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\b\u0010\u0005\u001a\u00020\u0006H\u0016J\b\u0010\u000e\u001a\u00020\u000fH\u0016J\b\u0010\u0010\u001a\u00020\rH\u0016J\u0010\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u0014H\u0016J\u0018\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u00142\u0006\u0010\u0015\u001a\u00020\u0012H\u0016J \u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u00142\u0006\u0010\u0015\u001a\u00020\u00122\u0006\u0010\u0016\u001a\u00020\u0012H\u0016J\u0010\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u0018H\u0016J\u0018\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u00182\u0006\u0010\u0015\u001a\u00020\u0012H\u0016J\u0010\u0010\u0019\u001a\u00020\u00122\u0006\u0010\u001a\u001a\u00020\u0018H\u0016J\u0018\u0010\u0019\u001a\u00020\u00122\u0006\u0010\u001a\u001a\u00020\u00182\u0006\u0010\u0015\u001a\u00020\u0012H\u0016J\b\u0010\u001b\u001a\u00020\u001cH\u0016J\b\u0010\u001d\u001a\u00020\rH\u0016J\b\u0010\u001e\u001a\u00020\u0001H\u0016J\u0018\u0010\u001f\u001a\u00020\r2\u0006\u0010 \u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u0018H\u0016J(\u0010\u001f\u001a\u00020\r2\u0006\u0010 \u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u00182\u0006\u0010!\u001a\u00020\"2\u0006\u0010#\u001a\u00020\"H\u0016J\u0010\u0010$\u001a\u00020\"2\u0006\u0010%\u001a\u00020&H\u0016J\u0010\u0010$\u001a\u00020\"2\u0006\u0010%\u001a\u00020'H\u0016J \u0010$\u001a\u00020\"2\u0006\u0010%\u001a\u00020'2\u0006\u0010 \u001a\u00020\"2\u0006\u0010#\u001a\u00020\"H\u0016J\u0018\u0010$\u001a\u00020\u00122\u0006\u0010%\u001a\u00020\u00062\u0006\u0010#\u001a\u00020\u0012H\u0016J\u0010\u0010(\u001a\u00020\u00122\u0006\u0010%\u001a\u00020)H\u0016J\b\u0010*\u001a\u00020\u0014H\u0016J\b\u0010+\u001a\u00020'H\u0016J\u0010\u0010+\u001a\u00020'2\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010,\u001a\u00020\u0018H\u0016J\u0010\u0010,\u001a\u00020\u00182\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010-\u001a\u00020\u0012H\u0016J\u0010\u0010.\u001a\u00020\u000f2\u0006\u0010%\u001a\u00020'H\u0016J\u0018\u0010.\u001a\u00020\u000f2\u0006\u0010%\u001a\u00020\u00062\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010/\u001a\u00020\u0012H\u0016J\b\u00100\u001a\u00020\"H\u0016J\b\u00101\u001a\u00020\"H\u0016J\b\u00102\u001a\u00020\u0012H\u0016J\b\u00103\u001a\u00020\u0012H\u0016J\b\u00104\u001a\u000205H\u0016J\b\u00106\u001a\u000205H\u0016J\u0010\u00107\u001a\u0002082\u0006\u00109\u001a\u00020:H\u0016J\u0018\u00107\u001a\u0002082\u0006\u0010#\u001a\u00020\u00122\u0006\u00109\u001a\u00020:H\u0016J\b\u0010;\u001a\u000208H\u0016J\u0010\u0010;\u001a\u0002082\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010<\u001a\u00020\"H\u0016J\n\u0010=\u001a\u0004\u0018\u000108H\u0016J\b\u0010>\u001a\u000208H\u0016J\u0010\u0010>\u001a\u0002082\u0006\u0010?\u001a\u00020\u0012H\u0016J\u0010\u0010@\u001a\u00020\r2\u0006\u0010#\u001a\u00020\u0012H\u0016J\u0010\u0010A\u001a\u00020\u000f2\u0006\u0010#\u001a\u00020\u0012H\u0016J\u0010\u0010B\u001a\u00020\"2\u0006\u0010C\u001a\u00020DH\u0016J\u0010\u0010E\u001a\u00020\u000f2\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010F\u001a\u00020GH\u0016J\b\u0010H\u001a\u000208H\u0016R\u001b\u0010\u0005\u001a\u00020\u00068Ö\u0002X\u0096\u0004¢\u0006\f\u0012\u0004\b\u0007\u0010\b\u001a\u0004\b\t\u0010\nR\u0010\u0010\u000b\u001a\u00020\u00068\u0006X\u0087\u0004¢\u0006\u0002\n\u0000R\u0012\u0010\f\u001a\u00020\r8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\u0002\u001a\u00020\u00038\u0006X\u0087\u0004¢\u0006\u0002\n\u0000¨\u0006I"}, d2 = {"Lokio/RealBufferedSource;", "Lokio/BufferedSource;", "source", "Lokio/Source;", "(Lokio/Source;)V", "buffer", "Lokio/Buffer;", "buffer$annotations", "()V", "getBuffer", "()Lokio/Buffer;", "bufferField", "closed", "", "close", "", "exhausted", "indexOf", "", "b", "", "fromIndex", "toIndex", "bytes", "Lokio/ByteString;", "indexOfElement", "targetBytes", "inputStream", "Ljava/io/InputStream;", "isOpen", "peek", "rangeEquals", "offset", "bytesOffset", "", "byteCount", "read", "sink", "Ljava/nio/ByteBuffer;", "", "readAll", "Lokio/Sink;", "readByte", "readByteArray", "readByteString", "readDecimalLong", "readFully", "readHexadecimalUnsignedLong", "readInt", "readIntLe", "readLong", "readLongLe", "readShort", "", "readShortLe", "readString", "", "charset", "Ljava/nio/charset/Charset;", "readUtf8", "readUtf8CodePoint", "readUtf8Line", "readUtf8LineStrict", "limit", SocialConstants.TYPE_REQUEST, "require", "select", "options", "Lokio/Options;", "skip", "timeout", "Lokio/Timeout;", "toString", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000\u0086\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u0005\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\u0010\u0012\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u000b\n\u0002\u0010\n\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\b\u0010\u0005\u001a\u00020\u0006H\u0016J\b\u0010\u000e\u001a\u00020\u000fH\u0016J\b\u0010\u0010\u001a\u00020\rH\u0016J\u0010\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u0014H\u0016J\u0018\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u00142\u0006\u0010\u0015\u001a\u00020\u0012H\u0016J \u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0013\u001a\u00020\u00142\u0006\u0010\u0015\u001a\u00020\u00122\u0006\u0010\u0016\u001a\u00020\u0012H\u0016J\u0010\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u0018H\u0016J\u0018\u0010\u0011\u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u00182\u0006\u0010\u0015\u001a\u00020\u0012H\u0016J\u0010\u0010\u0019\u001a\u00020\u00122\u0006\u0010\u001a\u001a\u00020\u0018H\u0016J\u0018\u0010\u0019\u001a\u00020\u00122\u0006\u0010\u001a\u001a\u00020\u00182\u0006\u0010\u0015\u001a\u00020\u0012H\u0016J\b\u0010\u001b\u001a\u00020\u001cH\u0016J\b\u0010\u001d\u001a\u00020\rH\u0016J\b\u0010\u001e\u001a\u00020\u0001H\u0016J\u0018\u0010\u001f\u001a\u00020\r2\u0006\u0010 \u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u0018H\u0016J(\u0010\u001f\u001a\u00020\r2\u0006\u0010 \u001a\u00020\u00122\u0006\u0010\u0017\u001a\u00020\u00182\u0006\u0010!\u001a\u00020\"2\u0006\u0010#\u001a\u00020\"H\u0016J\u0010\u0010$\u001a\u00020\"2\u0006\u0010%\u001a\u00020&H\u0016J\u0010\u0010$\u001a\u00020\"2\u0006\u0010%\u001a\u00020'H\u0016J \u0010$\u001a\u00020\"2\u0006\u0010%\u001a\u00020'2\u0006\u0010 \u001a\u00020\"2\u0006\u0010#\u001a\u00020\"H\u0016J\u0018\u0010$\u001a\u00020\u00122\u0006\u0010%\u001a\u00020\u00062\u0006\u0010#\u001a\u00020\u0012H\u0016J\u0010\u0010(\u001a\u00020\u00122\u0006\u0010%\u001a\u00020)H\u0016J\b\u0010*\u001a\u00020\u0014H\u0016J\b\u0010+\u001a\u00020'H\u0016J\u0010\u0010+\u001a\u00020'2\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010,\u001a\u00020\u0018H\u0016J\u0010\u0010,\u001a\u00020\u00182\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010-\u001a\u00020\u0012H\u0016J\u0010\u0010.\u001a\u00020\u000f2\u0006\u0010%\u001a\u00020'H\u0016J\u0018\u0010.\u001a\u00020\u000f2\u0006\u0010%\u001a\u00020\u00062\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010/\u001a\u00020\u0012H\u0016J\b\u00100\u001a\u00020\"H\u0016J\b\u00101\u001a\u00020\"H\u0016J\b\u00102\u001a\u00020\u0012H\u0016J\b\u00103\u001a\u00020\u0012H\u0016J\b\u00104\u001a\u000205H\u0016J\b\u00106\u001a\u000205H\u0016J\u0010\u00107\u001a\u0002082\u0006\u00109\u001a\u00020:H\u0016J\u0018\u00107\u001a\u0002082\u0006\u0010#\u001a\u00020\u00122\u0006\u00109\u001a\u00020:H\u0016J\b\u0010;\u001a\u000208H\u0016J\u0010\u0010;\u001a\u0002082\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010<\u001a\u00020\"H\u0016J\n\u0010=\u001a\u0004\u0018\u000108H\u0016J\b\u0010>\u001a\u000208H\u0016J\u0010\u0010>\u001a\u0002082\u0006\u0010?\u001a\u00020\u0012H\u0016J\u0010\u0010@\u001a\u00020\r2\u0006\u0010#\u001a\u00020\u0012H\u0016J\u0010\u0010A\u001a\u00020\u000f2\u0006\u0010#\u001a\u00020\u0012H\u0016J\u0010\u0010B\u001a\u00020\"2\u0006\u0010C\u001a\u00020DH\u0016J\u0010\u0010E\u001a\u00020\u000f2\u0006\u0010#\u001a\u00020\u0012H\u0016J\b\u0010F\u001a\u00020GH\u0016J\b\u0010H\u001a\u000208H\u0016R\u001b\u0010\u0005\u001a\u00020\u00068Ö\u0002X\u0096\u0004¢\u0006\f\u0012\u0004\b\u0007\u0010\b\u001a\u0004\b\t\u0010\nR\u0010\u0010\u000b\u001a\u00020\u00068\u0006X\u0087\u0004¢\u0006\u0002\n\u0000R\u0012\u0010\f\u001a\u00020\r8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\u0002\u001a\u00020\u00038\u0006X\u0087\u0004¢\u0006\u0002\n\u0000¨\u0006I"}, m23546d2 = {"Lokio/RealBufferedSource;", "Lokio/BufferedSource;", "source", "Lokio/Source;", "(Lokio/Source;)V", "buffer", "Lokio/Buffer;", "buffer$annotations", "()V", "getBuffer", "()Lokio/Buffer;", "bufferField", "closed", "", "close", "", "exhausted", "indexOf", "", "b", "", "fromIndex", "toIndex", "bytes", "Lokio/ByteString;", "indexOfElement", "targetBytes", "inputStream", "Ljava/io/InputStream;", "isOpen", "peek", "rangeEquals", "offset", "bytesOffset", "", "byteCount", "read", "sink", "Ljava/nio/ByteBuffer;", "", "readAll", "Lokio/Sink;", "readByte", "readByteArray", "readByteString", "readDecimalLong", "readFully", "readHexadecimalUnsignedLong", "readInt", "readIntLe", "readLong", "readLongLe", "readShort", "", "readShortLe", "readString", "", "charset", "Ljava/nio/charset/Charset;", "readUtf8", "readUtf8CodePoint", "readUtf8Line", "readUtf8LineStrict", "limit", SocialConstants.TYPE_REQUEST, "require", "select", "options", "Lokio/Options;", "skip", "timeout", "Lokio/Timeout;", "toString", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class RealBufferedSource implements BufferedSource {
 
-    @c
-    @d
+    @InterfaceC5479c
+    @InterfaceC5816d
     public final Buffer bufferField;
 
-    @c
+    @InterfaceC5479c
     public boolean closed;
 
-    @c
-    @d
+    @InterfaceC5479c
+    @InterfaceC5816d
     public final Source source;
 
-    public RealBufferedSource(@d Source source) {
-        i0.f(source, "source");
+    public RealBufferedSource(@InterfaceC5816d Source source) {
+        C5544i0.m22546f(source, "source");
         this.source = source;
         this.bufferField = new Buffer();
     }
@@ -41,7 +42,7 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource, okio.BufferedSink
-    @d
+    @InterfaceC5816d
     public Buffer buffer() {
         return this.bufferField;
     }
@@ -65,24 +66,24 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource, okio.BufferedSink
-    @d
+    @InterfaceC5816d
     public Buffer getBuffer() {
         return this.bufferField;
     }
 
     @Override // okio.BufferedSource
     public long indexOf(byte b2) {
-        return indexOf(b2, 0L, m0.f16408b);
+        return indexOf(b2, 0L, C5556m0.f20396b);
     }
 
     @Override // okio.BufferedSource
-    public long indexOfElement(@d ByteString byteString) {
-        i0.f(byteString, "targetBytes");
+    public long indexOfElement(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "targetBytes");
         return indexOfElement(byteString, 0L);
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public InputStream inputStream() {
         return new InputStream() { // from class: okio.RealBufferedSource$inputStream$1
             @Override // java.io.InputStream
@@ -111,17 +112,17 @@ public final class RealBufferedSource implements BufferedSource {
                         return -1;
                     }
                 }
-                return RealBufferedSource.this.bufferField.readByte() & f1.f16099c;
+                return RealBufferedSource.this.bufferField.readByte() & C5230f1.f20085c;
             }
 
-            @d
+            @InterfaceC5816d
             public String toString() {
                 return RealBufferedSource.this + ".inputStream()";
             }
 
             @Override // java.io.InputStream
-            public int read(@d byte[] bArr, int i2, int i3) {
-                i0.f(bArr, "data");
+            public int read(@InterfaceC5816d byte[] bArr, int i2, int i3) {
+                C5544i0.m22546f(bArr, "data");
                 if (!RealBufferedSource.this.closed) {
                     Util.checkOffsetAndCount(bArr.length, i2, i3);
                     if (RealBufferedSource.this.bufferField.size() == 0) {
@@ -143,26 +144,26 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public BufferedSource peek() {
         return Okio.buffer(new PeekSource(this));
     }
 
     @Override // okio.BufferedSource
-    public boolean rangeEquals(long j2, @d ByteString byteString) {
-        i0.f(byteString, "bytes");
+    public boolean rangeEquals(long j2, @InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "bytes");
         return rangeEquals(j2, byteString, 0, byteString.size());
     }
 
     @Override // okio.BufferedSource
-    public int read(@d byte[] bArr) {
-        i0.f(bArr, "sink");
+    public int read(@InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(bArr, "sink");
         return read(bArr, 0, bArr.length);
     }
 
     @Override // okio.BufferedSource
-    public long readAll(@d Sink sink) {
-        i0.f(sink, "sink");
+    public long readAll(@InterfaceC5816d Sink sink) {
+        C5544i0.m22546f(sink, "sink");
         long j2 = 0;
         while (this.source.read(this.bufferField, 8192) != -1) {
             long completeSegmentByteCount = this.bufferField.completeSegmentByteCount();
@@ -187,14 +188,14 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public byte[] readByteArray() {
         this.bufferField.writeAll(this.source);
         return this.bufferField.readByteArray();
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public ByteString readByteString() {
         this.bufferField.writeAll(this.source);
         return this.bufferField.readByteString();
@@ -208,10 +209,10 @@ public final class RealBufferedSource implements BufferedSource {
     
         r0 = new java.lang.StringBuilder();
         r0.append("Expected leading [0-9] or '-' character but was 0x");
-        r1 = h.z2.d.a(16);
-        r1 = h.z2.d.a(r1);
+        r1 = p286h.p323z2.C5727d.m23807a(16);
+        r1 = p286h.p323z2.C5727d.m23807a(r1);
         r1 = java.lang.Integer.toString(r8, r1);
-        h.q2.t.i0.a((java.lang.Object) r1, "java.lang.Integer.toStri…(this, checkRadix(radix))");
+        p286h.p309q2.p311t.C5544i0.m22521a((java.lang.Object) r1, "java.lang.Integer.toStri…(this, checkRadix(radix))");
         r0.append(r1);
      */
     /* JADX WARN: Code restructure failed: missing block: B:17:0x0058, code lost:
@@ -261,11 +262,11 @@ public final class RealBufferedSource implements BufferedSource {
             java.lang.String r1 = "Expected leading [0-9] or '-' character but was 0x"
             r0.append(r1)
             r1 = 16
-            int r1 = h.z2.c.a(r1)
-            int r1 = h.z2.c.a(r1)
+            int r1 = p286h.p323z2.C5725c.m23648a(r1)
+            int r1 = p286h.p323z2.C5725c.m23648a(r1)
             java.lang.String r1 = java.lang.Integer.toString(r8, r1)
             java.lang.String r2 = "java.lang.Integer.toStri…(this, checkRadix(radix))"
-            h.q2.t.i0.a(r1, r2)
+            p286h.p309q2.p311t.C5544i0.m22521a(r1, r2)
             r0.append(r1)
             java.lang.String r0 = r0.toString()
             java.lang.NumberFormatException r1 = new java.lang.NumberFormatException
@@ -280,8 +281,8 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    public void readFully(@d byte[] bArr) {
-        i0.f(bArr, "sink");
+    public void readFully(@InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(bArr, "sink");
         try {
             require(bArr.length);
             this.bufferField.readFully(bArr);
@@ -302,8 +303,8 @@ public final class RealBufferedSource implements BufferedSource {
     @Override // okio.BufferedSource
     public long readHexadecimalUnsignedLong() {
         byte b2;
-        int a2;
-        int a3;
+        int m23807a;
+        int m23807a2;
         require(1L);
         int i2 = 0;
         while (true) {
@@ -320,10 +321,10 @@ public final class RealBufferedSource implements BufferedSource {
         if (i2 == 0) {
             StringBuilder sb = new StringBuilder();
             sb.append("Expected leading [0-9a-fA-F] character but was 0x");
-            a2 = h.z2.d.a(16);
-            a3 = h.z2.d.a(a2);
-            String num = Integer.toString(b2, a3);
-            i0.a((Object) num, "java.lang.Integer.toStri…(this, checkRadix(radix))");
+            m23807a = C5727d.m23807a(16);
+            m23807a2 = C5727d.m23807a(m23807a);
+            String num = Integer.toString(b2, m23807a2);
+            C5544i0.m22521a((Object) num, "java.lang.Integer.toStri…(this, checkRadix(radix))");
             sb.append(num);
             throw new NumberFormatException(sb.toString());
         }
@@ -367,15 +368,15 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @d
-    public String readString(long j2, @d Charset charset) {
-        i0.f(charset, "charset");
+    @InterfaceC5816d
+    public String readString(long j2, @InterfaceC5816d Charset charset) {
+        C5544i0.m22546f(charset, "charset");
         require(j2);
         return this.bufferField.readString(j2, charset);
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public String readUtf8() {
         this.bufferField.writeAll(this.source);
         return this.bufferField.readUtf8();
@@ -396,7 +397,7 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @e
+    @InterfaceC5817e
     public String readUtf8Line() {
         long indexOf = indexOf((byte) 10);
         if (indexOf != -1) {
@@ -409,9 +410,9 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public String readUtf8LineStrict() {
-        return readUtf8LineStrict(m0.f16408b);
+        return readUtf8LineStrict(C5556m0.f20396b);
     }
 
     @Override // okio.BufferedSource
@@ -438,8 +439,8 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    public int select(@d Options options) {
-        i0.f(options, "options");
+    public int select(@InterfaceC5816d Options options) {
+        C5544i0.m22546f(options, "options");
         if (!(!this.closed)) {
             throw new IllegalStateException("closed".toString());
         }
@@ -472,24 +473,24 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.Source
-    @d
+    @InterfaceC5816d
     public Timeout timeout() {
         return this.source.timeout();
     }
 
-    @d
+    @InterfaceC5816d
     public String toString() {
         return "buffer(" + this.source + ')';
     }
 
     @Override // okio.BufferedSource
     public long indexOf(byte b2, long j2) {
-        return indexOf(b2, j2, m0.f16408b);
+        return indexOf(b2, j2, C5556m0.f20396b);
     }
 
     @Override // okio.BufferedSource
-    public long indexOfElement(@d ByteString byteString, long j2) {
-        i0.f(byteString, "targetBytes");
+    public long indexOfElement(@InterfaceC5816d ByteString byteString, long j2) {
+        C5544i0.m22546f(byteString, "targetBytes");
         if (!(!this.closed)) {
             throw new IllegalStateException("closed".toString());
         }
@@ -507,8 +508,8 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.Source
-    public long read(@d Buffer buffer, long j2) {
-        i0.f(buffer, "sink");
+    public long read(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "sink");
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("byteCount < 0: " + j2).toString());
         }
@@ -522,18 +523,18 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public String readUtf8LineStrict(long j2) {
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("limit < 0: " + j2).toString());
         }
-        long j3 = j2 == m0.f16408b ? Long.MAX_VALUE : j2 + 1;
+        long j3 = j2 == C5556m0.f20396b ? Long.MAX_VALUE : j2 + 1;
         byte b2 = (byte) 10;
         long indexOf = indexOf(b2, 0L, j3);
         if (indexOf != -1) {
             return BufferKt.readUtf8Line(this.bufferField, indexOf);
         }
-        if (j3 < m0.f16408b && request(j3) && this.bufferField.getByte(j3 - 1) == ((byte) 13) && request(1 + j3) && this.bufferField.getByte(j3) == b2) {
+        if (j3 < C5556m0.f20396b && request(j3) && this.bufferField.getByte(j3 - 1) == ((byte) 13) && request(1 + j3) && this.bufferField.getByte(j3) == b2) {
             return BufferKt.readUtf8Line(this.bufferField, j3);
         }
         Buffer buffer = new Buffer();
@@ -543,14 +544,14 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    public long indexOf(@d ByteString byteString) {
-        i0.f(byteString, "bytes");
+    public long indexOf(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "bytes");
         return indexOf(byteString, 0L);
     }
 
     @Override // okio.BufferedSource
-    public boolean rangeEquals(long j2, @d ByteString byteString, int i2, int i3) {
-        i0.f(byteString, "bytes");
+    public boolean rangeEquals(long j2, @InterfaceC5816d ByteString byteString, int i2, int i3) {
+        C5544i0.m22546f(byteString, "bytes");
         if (!this.closed) {
             if (j2 < 0 || i2 < 0 || i3 < 0 || byteString.size() - i2 < i3) {
                 return false;
@@ -589,37 +590,37 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    @d
-    public String readString(@d Charset charset) {
-        i0.f(charset, "charset");
+    @InterfaceC5816d
+    public String readString(@InterfaceC5816d Charset charset) {
+        C5544i0.m22546f(charset, "charset");
         this.bufferField.writeAll(this.source);
         return this.bufferField.readString(charset);
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public byte[] readByteArray(long j2) {
         require(j2);
         return this.bufferField.readByteArray(j2);
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public ByteString readByteString(long j2) {
         require(j2);
         return this.bufferField.readByteString(j2);
     }
 
     @Override // okio.BufferedSource
-    @d
+    @InterfaceC5816d
     public String readUtf8(long j2) {
         require(j2);
         return this.bufferField.readUtf8(j2);
     }
 
     @Override // okio.BufferedSource
-    public void readFully(@d Buffer buffer, long j2) {
-        i0.f(buffer, "sink");
+    public void readFully(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "sink");
         try {
             require(j2);
             this.bufferField.readFully(buffer, j2);
@@ -630,8 +631,8 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    public int read(@d byte[] bArr, int i2, int i3) {
-        i0.f(bArr, "sink");
+    public int read(@InterfaceC5816d byte[] bArr, int i2, int i3) {
+        C5544i0.m22546f(bArr, "sink");
         long j2 = i3;
         Util.checkOffsetAndCount(bArr.length, i2, j2);
         if (this.bufferField.size() == 0 && this.source.read(this.bufferField, 8192) == -1) {
@@ -641,8 +642,8 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // okio.BufferedSource
-    public long indexOf(@d ByteString byteString, long j2) {
-        i0.f(byteString, "bytes");
+    public long indexOf(@InterfaceC5816d ByteString byteString, long j2) {
+        C5544i0.m22546f(byteString, "bytes");
         if (!(!this.closed)) {
             throw new IllegalStateException("closed".toString());
         }
@@ -660,8 +661,8 @@ public final class RealBufferedSource implements BufferedSource {
     }
 
     @Override // java.nio.channels.ReadableByteChannel
-    public int read(@d ByteBuffer byteBuffer) {
-        i0.f(byteBuffer, "sink");
+    public int read(@InterfaceC5816d ByteBuffer byteBuffer) {
+        C5544i0.m22546f(byteBuffer, "sink");
         if (this.bufferField.size() == 0 && this.source.read(this.bufferField, 8192) == -1) {
             return -1;
         }

@@ -3,65 +3,67 @@ package com.xiaomi.mipush.sdk;
 import android.content.Context;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
 import java.util.Map;
 
 /* loaded from: classes2.dex */
 public class FTOSPushHelper {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static long f12338a = 0;
+    /* renamed from: a */
+    private static long f14341a = 0;
 
-    /* renamed from: a, reason: collision with other field name */
-    private static volatile boolean f89a = false;
+    /* renamed from: a */
+    private static volatile boolean f14342a = false;
 
-    private static void a(Context context) {
-        AbstractPushManager a2 = e.a(context).a(d.ASSEMBLE_PUSH_FTOS);
-        if (a2 != null) {
-            com.xiaomi.channel.commonutils.logger.b.m50a("ASSEMBLE_PUSH :  register fun touch os when network change!");
-            a2.register();
+    /* renamed from: a */
+    private static void m13427a(Context context) {
+        AbstractPushManager m13522a = C4051e.m13518a(context).m13522a(EnumC4050d.ASSEMBLE_PUSH_FTOS);
+        if (m13522a != null) {
+            AbstractC4022b.m13347a("ASSEMBLE_PUSH :  register fun touch os when network change!");
+            m13522a.register();
         }
     }
 
     public static void doInNetworkChange(Context context) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (getNeedRegister()) {
-            long j2 = f12338a;
+            long j2 = f14341a;
             if (j2 <= 0 || j2 + 300000 <= elapsedRealtime) {
-                f12338a = elapsedRealtime;
-                a(context);
+                f14341a = elapsedRealtime;
+                m13427a(context);
             }
         }
     }
 
     public static boolean getNeedRegister() {
-        return f89a;
+        return f14342a;
     }
 
     public static boolean hasNetwork(Context context) {
-        return f.m98a(context);
+        return C4052f.m13542a(context);
     }
 
     public static void notifyFTOSNotificationClicked(Context context, Map<String, String> map) {
-        PushMessageReceiver a2;
+        PushMessageReceiver m13531a;
         if (map == null || !map.containsKey("pushMsg")) {
             return;
         }
         String str = map.get("pushMsg");
-        if (TextUtils.isEmpty(str) || (a2 = f.a(context)) == null) {
+        if (TextUtils.isEmpty(str) || (m13531a = C4052f.m13531a(context)) == null) {
             return;
         }
-        MiPushMessage a3 = f.a(str);
-        if (a3.getExtra().containsKey("notify_effect")) {
+        MiPushMessage m13530a = C4052f.m13530a(str);
+        if (m13530a.getExtra().containsKey("notify_effect")) {
             return;
         }
-        a2.onNotificationMessageClicked(context, a3);
+        m13531a.onNotificationMessageClicked(context, m13530a);
     }
 
     public static void setNeedRegister(boolean z) {
-        f89a = z;
+        f14342a = z;
     }
 
     public static void uploadToken(Context context, String str) {
-        f.m97a(context, d.ASSEMBLE_PUSH_FTOS, str);
+        C4052f.m13538a(context, EnumC4050d.ASSEMBLE_PUSH_FTOS, str);
     }
 }

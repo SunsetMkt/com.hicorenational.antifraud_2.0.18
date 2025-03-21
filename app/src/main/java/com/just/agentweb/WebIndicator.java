@@ -179,7 +179,7 @@ public class WebIndicator extends BaseIndicatorView implements BaseIndicatorSpec
             this.mCurrentMaxDecelerateSpeedDuration = (int) (450.0f * floatValue);
             this.mCurrentDoEndAnimationDuration = (int) (floatValue * 600.0f);
         }
-        LogUtils.i("WebProgress", "CURRENT_MAX_UNIFORM_SPEED_DURATION" + this.mCurrentMaxUniformSpeedDuration);
+        LogUtils.m8083i("WebProgress", "CURRENT_MAX_UNIFORM_SPEED_DURATION" + this.mCurrentMaxUniformSpeedDuration);
     }
 
     @Override // com.just.agentweb.BaseIndicatorView, com.just.agentweb.BaseIndicatorSpec

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -81,8 +81,8 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
     @Override // android.view.View
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.messageView = (TextView) findViewById(R.id.snackbar_text);
-        this.actionView = (Button) findViewById(R.id.snackbar_action);
+        this.messageView = (TextView) findViewById(C1921R.id.snackbar_text);
+        this.actionView = (Button) findViewById(C1921R.id.snackbar_action);
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:15:0x0053, code lost:
@@ -116,10 +116,10 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
             super.onMeasure(r8, r9)
         L18:
             android.content.res.Resources r0 = r7.getResources()
-            int r1 = com.google.android.material.R.dimen.design_snackbar_padding_vertical_2lines
+            int r1 = com.google.android.material.C1921R.dimen.design_snackbar_padding_vertical_2lines
             int r0 = r0.getDimensionPixelSize(r1)
             android.content.res.Resources r1 = r7.getResources()
-            int r2 = com.google.android.material.R.dimen.design_snackbar_padding_vertical
+            int r2 = com.google.android.material.C1921R.dimen.design_snackbar_padding_vertical
             int r1 = r1.getDimensionPixelSize(r2)
             android.widget.TextView r2 = r7.messageView
             android.text.Layout r2 = r2.getLayout()
@@ -165,9 +165,9 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
 
     public SnackbarContentLayout(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.SnackbarLayout);
-        this.maxWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.SnackbarLayout_android_maxWidth, -1);
-        this.maxInlineActionWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.SnackbarLayout_maxActionInlineWidth, -1);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.SnackbarLayout);
+        this.maxWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.SnackbarLayout_android_maxWidth, -1);
+        this.maxInlineActionWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.SnackbarLayout_maxActionInlineWidth, -1);
         obtainStyledAttributes.recycle();
     }
 }

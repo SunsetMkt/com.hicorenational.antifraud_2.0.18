@@ -9,37 +9,37 @@ import com.huawei.hms.support.log.HMSLog;
 /* loaded from: classes.dex */
 public abstract class TaskApiCall<ClientT extends AnyClient, ResultT> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final String f6777a;
+    /* renamed from: a */
+    private final String f7297a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final String f6778b;
+    /* renamed from: b */
+    private final String f7298b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private Parcelable f6779c;
+    /* renamed from: c */
+    private Parcelable f7299c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private String f6780d;
+    /* renamed from: d */
+    private String f7300d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private CancellationToken f6781e;
+    /* renamed from: e */
+    private CancellationToken f7301e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private int f6782f;
+    /* renamed from: f */
+    private int f7302f;
 
     @Deprecated
     public TaskApiCall(String str, String str2) {
-        this.f6782f = 1;
-        this.f6777a = str;
-        this.f6778b = str2;
-        this.f6779c = null;
-        this.f6780d = null;
+        this.f7302f = 1;
+        this.f7297a = str;
+        this.f7298b = str2;
+        this.f7299c = null;
+        this.f7300d = null;
     }
 
     protected abstract void doExecute(ClientT clientt, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<ResultT> taskCompletionSource);
 
     public int getApiLevel() {
-        return this.f6782f;
+        return this.f7302f;
     }
 
     @Deprecated
@@ -48,64 +48,64 @@ public abstract class TaskApiCall<ClientT extends AnyClient, ResultT> {
     }
 
     public Parcelable getParcelable() {
-        return this.f6779c;
+        return this.f7299c;
     }
 
     public String getRequestJson() {
-        return this.f6778b;
+        return this.f7298b;
     }
 
     public CancellationToken getToken() {
-        return this.f6781e;
+        return this.f7301e;
     }
 
     public String getTransactionId() {
-        return this.f6780d;
+        return this.f7300d;
     }
 
     public String getUri() {
-        return this.f6777a;
+        return this.f7297a;
     }
 
     public final void onResponse(ClientT clientt, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<ResultT> taskCompletionSource) {
-        CancellationToken cancellationToken = this.f6781e;
+        CancellationToken cancellationToken = this.f7301e;
         if (cancellationToken != null && cancellationToken.isCancellationRequested()) {
-            HMSLog.i("TaskApiCall", "This Task has been canceled, uri:" + this.f6777a + ", transactionId:" + this.f6780d);
+            HMSLog.m7717i("TaskApiCall", "This Task has been canceled, uri:" + this.f7297a + ", transactionId:" + this.f7300d);
             return;
         }
-        HMSLog.i("TaskApiCall", "doExecute, uri:" + this.f6777a + ", errorCode:" + responseErrorCode.getErrorCode() + ", transactionId:" + this.f6780d);
+        HMSLog.m7717i("TaskApiCall", "doExecute, uri:" + this.f7297a + ", errorCode:" + responseErrorCode.getErrorCode() + ", transactionId:" + this.f7300d);
         doExecute(clientt, responseErrorCode, str, taskCompletionSource);
     }
 
     public void setApiLevel(int i2) {
-        this.f6782f = i2;
+        this.f7302f = i2;
     }
 
     public void setParcelable(Parcelable parcelable) {
-        this.f6779c = parcelable;
+        this.f7299c = parcelable;
     }
 
     public void setToken(CancellationToken cancellationToken) {
-        this.f6781e = cancellationToken;
+        this.f7301e = cancellationToken;
     }
 
     public void setTransactionId(String str) {
-        this.f6780d = str;
+        this.f7300d = str;
     }
 
     public TaskApiCall(String str, String str2, String str3) {
-        this.f6782f = 1;
-        this.f6777a = str;
-        this.f6778b = str2;
-        this.f6779c = null;
-        this.f6780d = str3;
+        this.f7302f = 1;
+        this.f7297a = str;
+        this.f7298b = str2;
+        this.f7299c = null;
+        this.f7300d = str3;
     }
 
     public TaskApiCall(String str, String str2, String str3, int i2) {
-        this.f6777a = str;
-        this.f6778b = str2;
-        this.f6779c = null;
-        this.f6780d = str3;
-        this.f6782f = i2;
+        this.f7297a = str;
+        this.f7298b = str2;
+        this.f7299c = null;
+        this.f7300d = str3;
+        this.f7302f = i2;
     }
 }

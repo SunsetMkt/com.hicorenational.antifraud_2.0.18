@@ -5,15 +5,15 @@ import com.huawei.hms.common.internal.Objects;
 /* loaded from: classes.dex */
 public class Size {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final int f6785a;
+    /* renamed from: a */
+    private final int f7305a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final int f6786b;
+    /* renamed from: b */
+    private final int f7306b;
 
     public Size(int i2, int i3) {
-        this.f6785a = i2;
-        this.f6786b = i3;
+        this.f7305a = i2;
+        this.f7306b = i3;
     }
 
     public static Size parseSize(String str) {
@@ -39,15 +39,15 @@ public class Size {
             return false;
         }
         Size size = (Size) obj;
-        return this.f6785a == size.f6785a && this.f6786b == size.f6786b;
+        return this.f7305a == size.f7305a && this.f7306b == size.f7306b;
     }
 
     public final int getHeight() {
-        return this.f6786b;
+        return this.f7306b;
     }
 
     public final int getWidth() {
-        return this.f6785a;
+        return this.f7305a;
     }
 
     public int hashCode() {
@@ -55,6 +55,6 @@ public class Size {
     }
 
     public final String toString() {
-        return "Width is " + this.f6785a + " Height is " + this.f6786b;
+        return "Width is " + this.f7305a + " Height is " + this.f7306b;
     }
 }

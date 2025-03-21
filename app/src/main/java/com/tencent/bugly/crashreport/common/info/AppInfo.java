@@ -6,8 +6,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import com.tencent.bugly.proguard.an;
-import com.tencent.bugly.proguard.aq;
+import com.tencent.bugly.proguard.C3151an;
+import com.tencent.bugly.proguard.C3154aq;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.ByteArrayInputStream;
 import java.io.FileReader;
@@ -30,23 +30,24 @@ import java.util.Properties;
 /* loaded from: classes2.dex */
 public class AppInfo {
 
-    /* renamed from: a, reason: collision with root package name */
-    public static final String[] f8968a = "@buglyAllChannel@".split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+    /* renamed from: a */
+    public static final String[] f10127a = "@buglyAllChannel@".split(Constants.ACCEPT_TIME_SEPARATOR_SP);
 
-    /* renamed from: b, reason: collision with root package name */
-    public static final String[] f8969b = "@buglyAllChannelPriority@".split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+    /* renamed from: b */
+    public static final String[] f10128b = "@buglyAllChannelPriority@".split(Constants.ACCEPT_TIME_SEPARATOR_SP);
 
-    /* renamed from: c, reason: collision with root package name */
-    private static ActivityManager f8970c;
+    /* renamed from: c */
+    private static ActivityManager f10129c;
 
-    public static String a(Context context) {
+    /* renamed from: a */
+    public static String m9516a(Context context) {
         if (context == null) {
             return null;
         }
         try {
             return context.getPackageName();
         } catch (Throwable th) {
-            if (an.a(th)) {
+            if (C3151an.m9916a(th)) {
                 return "fail";
             }
             th.printStackTrace();
@@ -54,11 +55,12 @@ public class AppInfo {
         }
     }
 
-    public static PackageInfo b(Context context) {
+    /* renamed from: b */
+    public static PackageInfo m9521b(Context context) {
         try {
-            return context.getPackageManager().getPackageInfo(a(context), 0);
+            return context.getPackageManager().getPackageInfo(m9516a(context), 0);
         } catch (Throwable th) {
-            if (an.a(th)) {
+            if (C3151an.m9916a(th)) {
                 return null;
             }
             th.printStackTrace();
@@ -66,7 +68,8 @@ public class AppInfo {
         }
     }
 
-    public static String c(Context context) {
+    /* renamed from: c */
+    public static String m9522c(Context context) {
         CharSequence applicationLabel;
         if (context == null) {
             return null;
@@ -78,14 +81,15 @@ public class AppInfo {
                 return applicationLabel.toString();
             }
         } catch (Throwable th) {
-            if (!an.a(th)) {
+            if (!C3151an.m9916a(th)) {
                 th.printStackTrace();
             }
         }
         return null;
     }
 
-    public static Map<String, String> d(Context context) {
+    /* renamed from: d */
+    public static Map<String, String> m9523d(Context context) {
         if (context == null) {
             return null;
         }
@@ -129,78 +133,82 @@ public class AppInfo {
             }
             return hashMap;
         } catch (Throwable th) {
-            if (!an.a(th)) {
+            if (!C3151an.m9916a(th)) {
                 th.printStackTrace();
             }
             return null;
         }
     }
 
-    public static String e(Context context) {
+    /* renamed from: e */
+    public static String m9524e(Context context) {
         Signature[] signatureArr;
-        String a2 = a(context);
-        if (a2 == null) {
+        String m9516a = m9516a(context);
+        if (m9516a == null) {
             return null;
         }
         try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(a2, 64);
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(m9516a, 64);
             if (packageInfo != null && (signatureArr = packageInfo.signatures) != null && signatureArr.length != 0) {
-                return a(signatureArr[0].toByteArray());
+                return m9518a(signatureArr[0].toByteArray());
             }
         } catch (PackageManager.NameNotFoundException unused) {
         }
         return null;
     }
 
-    public static boolean f(Context context) {
+    /* renamed from: f */
+    public static boolean m9525f(Context context) {
         if (context == null) {
             return false;
         }
-        if (f8970c == null) {
-            f8970c = (ActivityManager) context.getSystemService("activity");
+        if (f10129c == null) {
+            f10129c = (ActivityManager) context.getSystemService("activity");
         }
         try {
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            f8970c.getMemoryInfo(memoryInfo);
+            f10129c.getMemoryInfo(memoryInfo);
             if (!memoryInfo.lowMemory) {
                 return false;
             }
-            an.c("Memory is low.", new Object[0]);
+            C3151an.m9921c("Memory is low.", new Object[0]);
             return true;
         } catch (Throwable th) {
-            if (!an.a(th)) {
+            if (!C3151an.m9916a(th)) {
                 th.printStackTrace();
             }
             return false;
         }
     }
 
-    public static String g(Context context) {
+    /* renamed from: g */
+    public static String m9526g(Context context) {
         if (context == null) {
             return "";
         }
-        String h2 = h(context);
-        return !aq.a(h2) ? h2 : i(context);
+        String m9527h = m9527h(context);
+        return !C3154aq.m9970a(m9527h) ? m9527h : m9528i(context);
     }
 
-    private static String h(Context context) {
+    /* renamed from: h */
+    private static String m9527h(Context context) {
         String str = "";
         InputStream inputStream = null;
         try {
             try {
                 try {
-                    String string = aq.a("DENGTA_META", context).getString("key_channelpath", "");
-                    if (aq.a(string)) {
+                    String string = C3154aq.m9947a("DENGTA_META", context).getString("key_channelpath", "");
+                    if (C3154aq.m9970a(string)) {
                         string = "channel.ini";
                     }
-                    an.a("[AppInfo] Beacon channel file path: " + string, new Object[0]);
+                    C3151an.m9915a("[AppInfo] Beacon channel file path: " + string, new Object[0]);
                     if (!string.equals("")) {
                         inputStream = context.getAssets().open(string);
                         Properties properties = new Properties();
                         properties.load(inputStream);
                         str = properties.getProperty("CHANNEL", "");
-                        an.a("[AppInfo] Beacon channel read from assert: " + str, new Object[0]);
-                        if (!aq.a(str)) {
+                        C3151an.m9915a("[AppInfo] Beacon channel read from assert: " + str, new Object[0]);
+                        if (!C3154aq.m9970a(str)) {
                             return str;
                         }
                     }
@@ -212,33 +220,35 @@ public class AppInfo {
                         try {
                             inputStream.close();
                         } catch (IOException e2) {
-                            an.a(e2);
+                            C3151an.m9916a(e2);
                         }
                     }
                 }
             } catch (Exception unused) {
-                an.d("[AppInfo] Failed to get get beacon channel", new Object[0]);
+                C3151an.m9922d("[AppInfo] Failed to get get beacon channel", new Object[0]);
                 if (inputStream != null) {
                     inputStream.close();
                 }
             }
         } catch (IOException e3) {
-            an.a(e3);
+            C3151an.m9916a(e3);
         }
         return str;
     }
 
-    private static String i(Context context) {
+    /* renamed from: i */
+    private static String m9528i(Context context) {
         try {
             Object obj = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData.get("CHANNEL_DENGTA");
             return obj != null ? obj.toString() : "";
         } catch (Throwable unused) {
-            an.d("[AppInfo] Failed to read beacon channel from manifest.", new Object[0]);
+            C3151an.m9922d("[AppInfo] Failed to read beacon channel from manifest.", new Object[0]);
             return "";
         }
     }
 
-    public static boolean a(Context context, String str) {
+    /* renamed from: a */
+    public static boolean m9520a(Context context, String str) {
         if (context != null && str != null && str.trim().length() > 0) {
             try {
                 String[] strArr = context.getPackageManager().getPackageInfo(context.getPackageName(), 4096).requestedPermissions;
@@ -250,7 +260,7 @@ public class AppInfo {
                     }
                 }
             } catch (Throwable th) {
-                if (!an.a(th)) {
+                if (!C3151an.m9916a(th)) {
                     th.printStackTrace();
                 }
             }
@@ -258,7 +268,8 @@ public class AppInfo {
         return false;
     }
 
-    public static String a(Context context, int i2) {
+    /* renamed from: a */
+    public static String m9517a(Context context, int i2) {
         FileReader fileReader = null;
         try {
             FileReader fileReader2 = new FileReader("/proc/" + i2 + "/cmdline");
@@ -279,7 +290,7 @@ public class AppInfo {
                 th = th;
                 fileReader = fileReader2;
                 try {
-                    if (!an.a(th)) {
+                    if (!C3151an.m9916a(th)) {
                         th.printStackTrace();
                     }
                     String valueOf = String.valueOf(i2);
@@ -305,7 +316,8 @@ public class AppInfo {
         }
     }
 
-    public static List<String> a(Map<String, String> map) {
+    /* renamed from: a */
+    public static List<String> m9519a(Map<String, String> map) {
         if (map == null) {
             return null;
         }
@@ -320,14 +332,15 @@ public class AppInfo {
             }
             return null;
         } catch (Throwable th) {
-            if (!an.a(th)) {
+            if (!C3151an.m9916a(th)) {
                 th.printStackTrace();
             }
             return null;
         }
     }
 
-    public static String a(byte[] bArr) {
+    /* renamed from: a */
+    public static String m9518a(byte[] bArr) {
         X509Certificate x509Certificate;
         StringBuilder sb = new StringBuilder();
         if (bArr != null && bArr.length > 0) {
@@ -369,26 +382,26 @@ public class AppInfo {
                 }
                 sb.append("\n");
                 sb.append("SHA1|");
-                String a2 = aq.a(MessageDigest.getInstance("SHA1").digest(x509Certificate.getEncoded()));
-                if (a2 != null && a2.length() > 0) {
-                    sb.append(a2.toString());
+                String m9959a = C3154aq.m9959a(MessageDigest.getInstance("SHA1").digest(x509Certificate.getEncoded()));
+                if (m9959a != null && m9959a.length() > 0) {
+                    sb.append(m9959a.toString());
                 } else {
                     sb.append("unknown");
                 }
                 sb.append("\n");
                 sb.append("MD5|");
-                String a3 = aq.a(MessageDigest.getInstance("MD5").digest(x509Certificate.getEncoded()));
-                if (a3 != null && a3.length() > 0) {
-                    sb.append(a3.toString());
+                String m9959a2 = C3154aq.m9959a(MessageDigest.getInstance("MD5").digest(x509Certificate.getEncoded()));
+                if (m9959a2 != null && m9959a2.length() > 0) {
+                    sb.append(m9959a2.toString());
                 } else {
                     sb.append("unknown");
                 }
             } catch (CertificateException e2) {
-                if (!an.a(e2)) {
+                if (!C3151an.m9916a(e2)) {
                     e2.printStackTrace();
                 }
             } catch (Throwable th) {
-                if (!an.a(th)) {
+                if (!C3151an.m9916a(th)) {
                     th.printStackTrace();
                 }
             }

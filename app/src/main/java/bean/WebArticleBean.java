@@ -10,7 +10,9 @@ public class WebArticleBean extends BaseBean {
     private String createTime;
     private String description;
     private String icon;
-    private String id;
+
+    /* renamed from: id */
+    private String f1638id;
     private int isTop;
     private Object keyWord;
     private Object mediaPlayTime;
@@ -42,7 +44,7 @@ public class WebArticleBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1638id;
     }
 
     public int getIsTop() {
@@ -90,7 +92,7 @@ public class WebArticleBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1638id = str;
     }
 
     public void setIsTop(int i2) {

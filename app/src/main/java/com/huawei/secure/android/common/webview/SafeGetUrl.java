@@ -1,39 +1,40 @@
 package com.huawei.secure.android.common.webview;
 
 import android.webkit.WebView;
-import com.huawei.secure.android.common.util.b;
-import com.huawei.secure.android.common.util.c;
+import com.huawei.secure.android.common.util.C2570b;
+import com.huawei.secure.android.common.util.C2571c;
 import java.util.concurrent.CountDownLatch;
 
 /* loaded from: classes.dex */
 public class SafeGetUrl {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7720c = "SafeGetUrl";
+    /* renamed from: c */
+    private static final String f8302c = "SafeGetUrl";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final long f7721d = 200;
+    /* renamed from: d */
+    private static final long f8303d = 200;
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f7722a;
+    /* renamed from: a */
+    private String f8304a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private WebView f7723b;
+    /* renamed from: b */
+    private WebView f8305b;
 
-    class a implements Runnable {
+    /* renamed from: com.huawei.secure.android.common.webview.SafeGetUrl$a */
+    class RunnableC2573a implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ CountDownLatch f7724a;
+        /* renamed from: a */
+        final /* synthetic */ CountDownLatch f8306a;
 
-        a(CountDownLatch countDownLatch) {
-            this.f7724a = countDownLatch;
+        RunnableC2573a(CountDownLatch countDownLatch) {
+            this.f8306a = countDownLatch;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SafeGetUrl safeGetUrl = SafeGetUrl.this;
-            safeGetUrl.setUrl(safeGetUrl.f7723b.getUrl());
-            this.f7724a.countDown();
+            safeGetUrl.setUrl(safeGetUrl.f8305b.getUrl());
+            this.f8306a.countDown();
         }
     }
 
@@ -41,35 +42,35 @@ public class SafeGetUrl {
     }
 
     public String getUrlMethod() {
-        if (this.f7723b == null) {
+        if (this.f8305b == null) {
             return "";
         }
-        if (b.a()) {
-            return this.f7723b.getUrl();
+        if (C2570b.m8072a()) {
+            return this.f8305b.getUrl();
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        c.a(new a(countDownLatch));
+        C2571c.m8073a(new RunnableC2573a(countDownLatch));
         try {
             countDownLatch.await();
         } catch (InterruptedException e2) {
             String str = "getUrlMethod: InterruptedException " + e2.getMessage();
         }
-        return this.f7722a;
+        return this.f8304a;
     }
 
     public WebView getWebView() {
-        return this.f7723b;
+        return this.f8305b;
     }
 
     public void setUrl(String str) {
-        this.f7722a = str;
+        this.f8304a = str;
     }
 
     public void setWebView(WebView webView) {
-        this.f7723b = webView;
+        this.f8305b = webView;
     }
 
     public SafeGetUrl(WebView webView) {
-        this.f7723b = webView;
+        this.f8305b = webView;
     }
 }

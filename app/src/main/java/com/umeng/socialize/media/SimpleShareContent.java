@@ -3,8 +3,8 @@ package com.umeng.socialize.media;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import com.umeng.socialize.ShareContent;
-import com.umeng.socialize.c.a.a;
 import com.umeng.socialize.interfaces.CompressListener;
+import com.umeng.socialize.p217c.p218a.C3633a;
 import com.umeng.socialize.utils.ContextUtil;
 import com.umeng.socialize.utils.DefaultClass;
 import com.umeng.socialize.utils.SLog;
@@ -14,47 +14,53 @@ import java.io.File;
 /* loaded from: classes2.dex */
 public class SimpleShareContent {
 
-    /* renamed from: a, reason: collision with root package name */
-    private UMImage f11694a;
+    /* renamed from: a */
+    private UMImage f13637a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private UMImage[] f11695b;
+    /* renamed from: b */
+    private UMImage[] f13638b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f11696c;
+    /* renamed from: c */
+    private String f13639c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private UMVideo f11697d;
+    /* renamed from: d */
+    private UMVideo f13640d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private UMVideo[] f11698e;
+    /* renamed from: e */
+    private UMVideo[] f13641e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private UMEmoji f11699f;
+    /* renamed from: f */
+    private UMEmoji f13642f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private UMusic f11700g;
+    /* renamed from: g */
+    private UMusic f13643g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private UMMin f11701h;
+    /* renamed from: h */
+    private UMMin f13644h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private UMQQMini f11702i;
+    /* renamed from: i */
+    private UMQQMini f13645i;
 
-    /* renamed from: j, reason: collision with root package name */
-    private UMWeb f11703j;
+    /* renamed from: j */
+    private UMWeb f13646j;
 
-    /* renamed from: k, reason: collision with root package name */
-    private File f11704k;
+    /* renamed from: k */
+    private File f13647k;
 
-    /* renamed from: l, reason: collision with root package name */
-    private BaseMediaObject f11705l;
+    /* renamed from: l */
+    private BaseMediaObject f13648l;
 
-    /* renamed from: m, reason: collision with root package name */
-    private int f11706m;
-    private String n;
-    private String o;
-    private CompressListener p;
+    /* renamed from: m */
+    private int f13649m;
+
+    /* renamed from: n */
+    private String f13650n;
+
+    /* renamed from: o */
+    private String f13651o;
+
+    /* renamed from: p */
+    private CompressListener f13652p;
     public int THUMB_LIMIT = 24576;
     public int WX_THUMB_LIMIT = 18432;
     public int WX_MIN_LIMIT = 131072;
@@ -63,83 +69,85 @@ public class SimpleShareContent {
     public final String DEFAULT_DESCRIPTION = "这里是描述";
 
     public SimpleShareContent(ShareContent shareContent) {
-        this.f11696c = shareContent.mText;
+        this.f13639c = shareContent.mText;
         UMediaObject uMediaObject = shareContent.mMedia;
         if (uMediaObject == null || !(uMediaObject instanceof UMImage) || shareContent.Video_mMedias == null) {
             UMediaObject uMediaObject2 = shareContent.mMedia;
             if (uMediaObject2 != null && (uMediaObject2 instanceof UMImage)) {
-                this.f11694a = (UMImage) uMediaObject2;
-                this.f11705l = this.f11694a;
+                this.f13637a = (UMImage) uMediaObject2;
+                this.f13648l = this.f13637a;
                 UMImage[] uMImageArr = shareContent.mMedias;
                 if (uMImageArr != null && uMImageArr.length > 0) {
-                    this.f11695b = uMImageArr;
+                    this.f13638b = uMImageArr;
                 }
             }
             UMediaObject uMediaObject3 = shareContent.mMedia;
             if (uMediaObject3 != null && (uMediaObject3 instanceof UMusic)) {
-                this.f11700g = (UMusic) uMediaObject3;
-                this.f11705l = this.f11700g;
+                this.f13643g = (UMusic) uMediaObject3;
+                this.f13648l = this.f13643g;
             }
             UMediaObject uMediaObject4 = shareContent.mMedia;
             if (uMediaObject4 != null && (uMediaObject4 instanceof UMVideo)) {
-                this.f11697d = (UMVideo) uMediaObject4;
-                this.f11705l = this.f11697d;
+                this.f13640d = (UMVideo) uMediaObject4;
+                this.f13648l = this.f13640d;
                 UMVideo[] uMVideoArr = shareContent.Video_mMedias;
                 if (uMVideoArr != null && uMVideoArr.length > 0) {
-                    this.f11698e = uMVideoArr;
+                    this.f13641e = uMVideoArr;
                 }
             }
             UMediaObject uMediaObject5 = shareContent.mMedia;
             if (uMediaObject5 != null && (uMediaObject5 instanceof UMEmoji)) {
-                this.f11699f = (UMEmoji) uMediaObject5;
-                this.f11705l = this.f11699f;
+                this.f13642f = (UMEmoji) uMediaObject5;
+                this.f13648l = this.f13642f;
             }
             UMediaObject uMediaObject6 = shareContent.mMedia;
             if (uMediaObject6 != null && (uMediaObject6 instanceof UMWeb)) {
-                this.f11703j = (UMWeb) uMediaObject6;
-                this.f11705l = this.f11703j;
+                this.f13646j = (UMWeb) uMediaObject6;
+                this.f13648l = this.f13646j;
             }
             UMediaObject uMediaObject7 = shareContent.mMedia;
             if (uMediaObject7 != null && (uMediaObject7 instanceof UMMin)) {
-                this.f11701h = (UMMin) uMediaObject7;
-                this.f11705l = this.f11703j;
+                this.f13644h = (UMMin) uMediaObject7;
+                this.f13648l = this.f13646j;
             }
             UMediaObject uMediaObject8 = shareContent.mMedia;
             if (uMediaObject8 != null && (uMediaObject8 instanceof UMQQMini)) {
-                this.f11702i = (UMQQMini) uMediaObject8;
-                this.f11705l = this.f11703j;
+                this.f13645i = (UMQQMini) uMediaObject8;
+                this.f13648l = this.f13646j;
             }
             File file = shareContent.file;
             if (file != null) {
-                this.f11704k = file;
+                this.f13647k = file;
             }
         } else {
-            this.f11694a = (UMImage) uMediaObject;
-            this.f11705l = this.f11694a;
+            this.f13637a = (UMImage) uMediaObject;
+            this.f13648l = this.f13637a;
             UMImage[] uMImageArr2 = shareContent.mMedias;
             if (uMImageArr2 != null && uMImageArr2.length > 0) {
-                this.f11695b = uMImageArr2;
+                this.f13638b = uMImageArr2;
             }
-            this.f11705l = this.f11697d;
+            this.f13648l = this.f13640d;
             UMVideo[] uMVideoArr2 = shareContent.Video_mMedias;
             if (uMVideoArr2 != null && uMVideoArr2.length > 0) {
-                this.f11698e = uMVideoArr2;
+                this.f13641e = uMVideoArr2;
             }
         }
-        this.o = shareContent.subject;
-        this.f11706m = shareContent.getShareType();
-        this.n = a();
+        this.f13651o = shareContent.subject;
+        this.f13649m = shareContent.getShareType();
+        this.f13650n = m12647a();
     }
 
-    private String a() {
-        int i2 = this.f11706m;
+    /* renamed from: a */
+    private String m12647a() {
+        int i2 = this.f13649m;
         return i2 != 1 ? i2 != 2 ? i2 != 3 ? i2 != 4 ? i2 != 8 ? i2 != 16 ? i2 != 32 ? i2 != 64 ? i2 != 128 ? i2 != 256 ? "error" : "qqMini" : "minapp" : "emoji" : "file" : "web" : "video" : "music" : "textandimage" : "image" : "text";
     }
 
-    private byte[] b() {
+    /* renamed from: b */
+    private byte[] m12648b() {
         byte[] bytes = DefaultClass.getBytes();
-        if (ContextUtil.getIcon() != 0 && ((bytes = a.a(new UMImage(ContextUtil.getContext(), ContextUtil.getIcon()), this.WX_THUMB_LIMIT)) == null || bytes.length <= 0)) {
-            SLog.E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
+        if (ContextUtil.getIcon() != 0 && ((bytes = C3633a.m12617a(new UMImage(ContextUtil.getContext(), ContextUtil.getIcon()), this.WX_THUMB_LIMIT)) == null || bytes.length <= 0)) {
+            SLog.m12716E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
         }
         return bytes;
     }
@@ -149,19 +157,19 @@ public class SimpleShareContent {
     }
 
     public String getAssertSubject() {
-        return TextUtils.isEmpty(this.o) ? "umengshare" : this.o;
+        return TextUtils.isEmpty(this.f13651o) ? "umengshare" : this.f13651o;
     }
 
     public BaseMediaObject getBaseMediaObject() {
-        return this.f11705l;
+        return this.f13648l;
     }
 
     public File getFile() {
-        return this.f11704k;
+        return this.f13647k;
     }
 
     public UMImage getImage() {
-        return this.f11694a;
+        return this.f13637a;
     }
 
     public byte[] getImageData(UMImage uMImage) {
@@ -170,18 +178,18 @@ public class SimpleShareContent {
 
     public byte[] getImageThumb(UMImage uMImage) {
         if (uMImage.getThumbImage() == null) {
-            return b();
+            return m12648b();
         }
-        byte[] a2 = a.a(uMImage.getThumbImage(), this.WX_THUMB_LIMIT);
-        if (a2 != null && a2.length > 0) {
-            return a2;
+        byte[] m12617a = C3633a.m12617a(uMImage.getThumbImage(), this.WX_THUMB_LIMIT);
+        if (m12617a != null && m12617a.length > 0) {
+            return m12617a;
         }
-        SLog.E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
-        return b();
+        SLog.m12716E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
+        return m12648b();
     }
 
     public UMusic getMusic() {
-        return this.f11700g;
+        return this.f13643g;
     }
 
     public String getMusicTargetUrl(UMusic uMusic) {
@@ -189,63 +197,63 @@ public class SimpleShareContent {
     }
 
     public UMQQMini getQQMini() {
-        return this.f11702i;
+        return this.f13645i;
     }
 
     public String getStrStyle() {
-        return this.n;
+        return this.f13650n;
     }
 
     public byte[] getStrictImageData(UMImage uMImage) {
         if (getUMImageScale(uMImage) <= 491520) {
             return getImageData(uMImage);
         }
-        byte[] a2 = a.a(getImage(), 491520);
-        if (a2 != null && a2.length > 0) {
-            return a2;
+        byte[] m12617a = C3633a.m12617a(getImage(), 491520);
+        if (m12617a != null && m12617a.length > 0) {
+            return m12617a;
         }
-        SLog.E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
+        SLog.m12716E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
         return null;
     }
 
     public String getSubject() {
-        return this.o;
+        return this.f13651o;
     }
 
     public String getText() {
-        return this.f11696c;
+        return this.f13639c;
     }
 
     public int getUMImageScale(UMImage uMImage) {
-        return a.a(uMImage);
+        return C3633a.m12610a(uMImage);
     }
 
     public UMEmoji getUmEmoji() {
-        return this.f11699f;
+        return this.f13642f;
     }
 
     public UMMin getUmMin() {
-        return this.f11701h;
+        return this.f13644h;
     }
 
     public UMVideo[] getUmVideos() {
-        return this.f11698e;
+        return this.f13641e;
     }
 
     public UMWeb getUmWeb() {
-        return this.f11703j;
+        return this.f13646j;
     }
 
     public UMVideo getVideo() {
-        return this.f11697d;
+        return this.f13640d;
     }
 
     public UMImage[] getmImages() {
-        return this.f11695b;
+        return this.f13638b;
     }
 
     public int getmStyle() {
-        return this.f11706m;
+        return this.f13649m;
     }
 
     public String objectSetDescription(BaseMediaObject baseMediaObject) {
@@ -260,20 +268,20 @@ public class SimpleShareContent {
         if (baseMediaObject.getThumbImage() == null) {
             return DefaultClass.getBytes();
         }
-        if (this.p != null) {
+        if (this.f13652p != null) {
             UMImage thumbImage = baseMediaObject.getThumbImage();
             if (thumbImage == null) {
                 return DefaultClass.getBytes();
             }
             byte[] asBinImage = thumbImage.asBinImage();
-            return (asBinImage == null || a.a(thumbImage) > this.WX_MIN_LIMIT) ? this.p.compressThumb(asBinImage) : asBinImage;
+            return (asBinImage == null || C3633a.m12610a(thumbImage) > this.WX_MIN_LIMIT) ? this.f13652p.compressThumb(asBinImage) : asBinImage;
         }
-        byte[] a2 = a.a(baseMediaObject.getThumbImage().asBinImage(), this.WX_MIN_LIMIT, Bitmap.CompressFormat.JPEG);
-        if (a2 != null && a2.length > 0) {
-            return a2;
+        byte[] m12620a = C3633a.m12620a(baseMediaObject.getThumbImage().asBinImage(), this.WX_MIN_LIMIT, Bitmap.CompressFormat.JPEG);
+        if (m12620a != null && m12620a.length > 0) {
+            return m12620a;
         }
-        SLog.E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
-        return a2;
+        SLog.m12716E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
+        return m12620a;
     }
 
     public String objectSetText(String str, int i2) {
@@ -282,22 +290,22 @@ public class SimpleShareContent {
 
     public byte[] objectSetThumb(BaseMediaObject baseMediaObject) {
         if (baseMediaObject.getThumbImage() == null) {
-            return b();
+            return m12648b();
         }
-        if (this.p != null) {
+        if (this.f13652p != null) {
             UMImage thumbImage = baseMediaObject.getThumbImage();
             if (thumbImage == null) {
                 return DefaultClass.getBytes();
             }
             byte[] asBinImage = thumbImage.asBinImage();
-            return (asBinImage == null || a.a(thumbImage) > this.THUMB_LIMIT) ? this.p.compressThumb(asBinImage) : asBinImage;
+            return (asBinImage == null || C3633a.m12610a(thumbImage) > this.THUMB_LIMIT) ? this.f13652p.compressThumb(asBinImage) : asBinImage;
         }
-        byte[] a2 = a.a(baseMediaObject.getThumbImage(), this.THUMB_LIMIT);
-        if (a2 != null && a2.length > 0) {
-            return a2;
+        byte[] m12617a = C3633a.m12617a(baseMediaObject.getThumbImage(), this.THUMB_LIMIT);
+        if (m12617a != null && m12617a.length > 0) {
+            return m12617a;
         }
-        SLog.E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
-        return b();
+        SLog.m12716E(UmengText.IMAGE.SHARECONTENT_THUMB_ERROR);
+        return m12648b();
     }
 
     public String objectSetTitle(BaseMediaObject baseMediaObject) {
@@ -309,23 +317,23 @@ public class SimpleShareContent {
     }
 
     public void setCompressListener(CompressListener compressListener) {
-        this.p = compressListener;
+        this.f13652p = compressListener;
     }
 
     public void setImage(UMImage uMImage) {
-        this.f11694a = uMImage;
+        this.f13637a = uMImage;
     }
 
     public void setMusic(UMusic uMusic) {
-        this.f11700g = uMusic;
+        this.f13643g = uMusic;
     }
 
     public void setText(String str) {
-        this.f11696c = str;
+        this.f13639c = str;
     }
 
     public void setVideo(UMVideo uMVideo) {
-        this.f11697d = uMVideo;
+        this.f13640d = uMVideo;
     }
 
     public String subString(String str, int i2) {

@@ -5,7 +5,9 @@ import network.BaseBean;
 /* loaded from: classes.dex */
 public class NoteListBean extends BaseBean {
     private String content;
-    private String id;
+
+    /* renamed from: id */
+    private String f1604id;
     private boolean isRead;
     private String title;
     private String url;
@@ -17,7 +19,7 @@ public class NoteListBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1604id;
     }
 
     public String getTitle() {
@@ -45,7 +47,7 @@ public class NoteListBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1604id = str;
     }
 
     public void setRead(boolean z) {

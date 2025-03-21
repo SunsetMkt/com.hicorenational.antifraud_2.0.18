@@ -118,7 +118,7 @@ public class AsyncListDiffer<T> {
                     AsyncListDiffer.this.mMainThreadExecutor.execute(new Runnable() { // from class: androidx.recyclerview.widget.AsyncListDiffer.1.2
                         @Override // java.lang.Runnable
                         public void run() {
-                            AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                            RunnableC06201 runnableC06201 = RunnableC06201.this;
                             AsyncListDiffer asyncListDiffer = AsyncListDiffer.this;
                             if (asyncListDiffer.mMaxScheduledGeneration == i2) {
                                 asyncListDiffer.latchList(list, calculateDiff);

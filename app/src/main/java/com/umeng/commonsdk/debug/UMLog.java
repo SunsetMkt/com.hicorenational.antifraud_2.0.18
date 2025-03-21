@@ -8,7 +8,9 @@ import org.json.JSONObject;
 
 /* loaded from: classes2.dex */
 public class UMLog {
-    private static final String AQ = "├───────────────────解决方案─────────────────────────────────────────────────────────────────────────────";
+
+    /* renamed from: AQ */
+    private static final String f12548AQ = "├───────────────────解决方案─────────────────────────────────────────────────────────────────────────────";
     private static final String BOTTOM_BORDER = "└────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
     private static final char BOTTOM_LEFT_CORNER = 9492;
     private static final String DOUBLE_DIVIDER = "────────────────────────────────────────────────────────";
@@ -26,13 +28,14 @@ public class UMLog {
     private static final String TOP_BORDER_AQ = "┌───────────────────问题─────────────────────────────────────────────────────────────────────────────";
     private static final char TOP_LEFT_CORNER = 9484;
 
-    public static void aq(int i2, String str, String str2) {
+    /* renamed from: aq */
+    public static void m11548aq(int i2, String str, String str2) {
         try {
             if (UMConfigure.isDebugLog()) {
                 UInterface logger = getLogger(i2);
                 logger.log(TAG, TOP_BORDER_AQ);
                 logger.log(TAG, "│     " + str);
-                logger.log(TAG, AQ);
+                logger.log(TAG, f12548AQ);
                 logger.log(TAG, "│     " + str2);
                 logger.log(TAG, BOTTOM_BORDER);
             }
@@ -45,7 +48,7 @@ public class UMLog {
     }
 
     public static UInterface getLogger(int i2) {
-        return i2 != 0 ? i2 != 1 ? i2 != 2 ? i2 != 3 ? new D() : new D() : new I() : new W() : new E();
+        return i2 != 0 ? i2 != 1 ? i2 != 2 ? i2 != 3 ? new C3462D() : new C3462D() : new C3464I() : new C3465W() : new C3463E();
     }
 
     public static void jsonArry(JSONArray jSONArray) {
@@ -132,14 +135,15 @@ public class UMLog {
         }
     }
 
-    public static void aq(String str, int i2, String str2, String str3) {
+    /* renamed from: aq */
+    public static void m11550aq(String str, int i2, String str2, String str3) {
         try {
             if (UMConfigure.isDebugLog()) {
                 UInterface logger = getLogger(i2);
                 String str4 = "UMLog_" + str;
                 logger.log(str4, TOP_BORDER_AQ);
                 logger.log(str4, "│     " + str2);
-                logger.log(str4, AQ);
+                logger.log(str4, f12548AQ);
                 logger.log(str4, "│     " + str3);
                 logger.log(str4, BOTTOM_BORDER);
             }
@@ -172,23 +176,27 @@ public class UMLog {
         }
     }
 
-    public static void aq(String str, int i2, String str2) {
-        aq((String) null, str, i2, str2);
+    /* renamed from: aq */
+    public static void m11549aq(String str, int i2, String str2) {
+        m11552aq((String) null, str, i2, str2);
     }
 
-    public static void aq(String str, int i2, String str2, String[] strArr, String[] strArr2, String[] strArr3, String[] strArr4) {
-        aq(null, str, i2, str2, strArr, strArr2, strArr3, strArr4);
+    /* renamed from: aq */
+    public static void m11551aq(String str, int i2, String str2, String[] strArr, String[] strArr2, String[] strArr3, String[] strArr4) {
+        m11553aq(null, str, i2, str2, strArr, strArr2, strArr3, strArr4);
     }
 
-    public static void aq(String str, String str2, int i2, String str3) {
-        aq(str, str2, i2, str3, null, null, null, null);
+    /* renamed from: aq */
+    public static void m11552aq(String str, String str2, int i2, String str3) {
+        m11553aq(str, str2, i2, str3, null, null, null, null);
     }
 
     public static void mutlInfo(String str, int i2, String str2) {
         mutlInfo(null, str, i2, str2);
     }
 
-    public static void aq(String str, String str2, int i2, String str3, String[] strArr, String[] strArr2, String[] strArr3, String[] strArr4) {
+    /* renamed from: aq */
+    public static void m11553aq(String str, String str2, int i2, String str3, String[] strArr, String[] strArr2, String[] strArr3, String[] strArr4) {
         String[] split;
         try {
             if (UMConfigure.isDebugLog()) {
@@ -209,7 +217,7 @@ public class UMLog {
                 UInterface logger = getLogger(i2);
                 logger.log(str4, TOP_BORDER_AQ);
                 logger.log(str4, "│     " + split[0]);
-                logger.log(str4, AQ);
+                logger.log(str4, f12548AQ);
                 logger.log(str4, "│     " + split[1]);
                 logger.log(str4, BOTTOM_BORDER);
             }

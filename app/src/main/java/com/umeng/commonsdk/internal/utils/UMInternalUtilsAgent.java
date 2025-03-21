@@ -5,6 +5,6 @@ import android.content.Context;
 /* loaded from: classes2.dex */
 public class UMInternalUtilsAgent {
     public static void saveBattery(Context context, String str) {
-        j.a(context, str);
+        C3484j.m11665a(context, str);
     }
 }

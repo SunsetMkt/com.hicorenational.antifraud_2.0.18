@@ -13,15 +13,17 @@ import org.json.JSONObject;
 public class PLSharedPreferences {
     private static final String MOVE_TO_DE_RECORDS = "grs_move2DE_records";
     private static final String TAG = "PLSharedPreferences";
-    private final SharedPreferences sp;
+
+    /* renamed from: sp */
+    private final SharedPreferences f7317sp;
 
     public PLSharedPreferences(Context context, String str) {
-        this.sp = getSharedPreferences(context, str);
+        this.f7317sp = getSharedPreferences(context, str);
     }
 
     private SharedPreferences getSharedPreferences(Context context, String str) {
         if (context == null) {
-            Logger.e(TAG, "context is null, must call init method to set context");
+            Logger.m6796e(TAG, "context is null, must call init method to set context");
             return null;
         }
         if (Build.VERSION.SDK_INT >= 24) {
@@ -40,7 +42,7 @@ public class PLSharedPreferences {
     }
 
     public void clear() {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return;
         }
@@ -48,7 +50,7 @@ public class PLSharedPreferences {
     }
 
     public SharedPreferences.Editor edit() {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return null;
         }
@@ -56,7 +58,7 @@ public class PLSharedPreferences {
     }
 
     public Map<String, ?> getAll() {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return null;
         }
@@ -64,13 +66,13 @@ public class PLSharedPreferences {
         StringBuilder sb = new StringBuilder();
         sb.append("sp size ");
         sb.append(all == null ? 0 : all.size());
-        Logger.i(TAG, sb.toString());
+        Logger.m6799i(TAG, sb.toString());
         return all;
     }
 
     public Map<String, String> getHashMap(String str) {
         HashMap hashMap = new HashMap();
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return hashMap;
         }
@@ -87,13 +89,13 @@ public class PLSharedPreferences {
                 }
             }
         } catch (JSONException e2) {
-            Logger.w(TAG, "getHashMap parse Json to map error: %s", StringUtils.anonymizeMessage(e2.getMessage()));
+            Logger.m6805w(TAG, "getHashMap parse Json to map error: %s", StringUtils.anonymizeMessage(e2.getMessage()));
         }
         return hashMap;
     }
 
     public long getLong(String str, long j2) {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         return sharedPreferences == null ? j2 : sharedPreferences.getLong(str, j2);
     }
 
@@ -102,7 +104,7 @@ public class PLSharedPreferences {
     }
 
     public void putHashMap(String str, Map<String, String> map) {
-        if (this.sp == null || map == null) {
+        if (this.f7317sp == null || map == null) {
             return;
         }
         JSONArray jSONArray = new JSONArray();
@@ -111,15 +113,15 @@ public class PLSharedPreferences {
             try {
                 jSONObject.put(entry.getKey(), entry.getValue());
             } catch (JSONException e2) {
-                Logger.w(TAG, "putHashMap one object error: %s", StringUtils.anonymizeMessage(e2.getMessage()));
+                Logger.m6805w(TAG, "putHashMap one object error: %s", StringUtils.anonymizeMessage(e2.getMessage()));
             }
         }
         jSONArray.put(jSONObject);
-        this.sp.edit().putString(str, jSONArray.toString()).apply();
+        this.f7317sp.edit().putString(str, jSONArray.toString()).apply();
     }
 
     public void putLong(String str, long j2) {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return;
         }
@@ -127,7 +129,7 @@ public class PLSharedPreferences {
     }
 
     public void putString(String str, String str2) {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return;
         }
@@ -135,7 +137,7 @@ public class PLSharedPreferences {
     }
 
     public void remove(String str) {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return;
         }
@@ -143,7 +145,7 @@ public class PLSharedPreferences {
     }
 
     public void removeKeyValue(String str) {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         if (sharedPreferences == null) {
             return;
         }
@@ -151,7 +153,7 @@ public class PLSharedPreferences {
     }
 
     public String getString(String str, String str2) {
-        SharedPreferences sharedPreferences = this.sp;
+        SharedPreferences sharedPreferences = this.f7317sp;
         return sharedPreferences == null ? str2 : sharedPreferences.getString(str, str2);
     }
 }

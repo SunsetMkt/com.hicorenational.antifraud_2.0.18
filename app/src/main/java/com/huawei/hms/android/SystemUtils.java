@@ -7,12 +7,12 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AndroidException;
-import c.c.a.b.a.a;
 import com.huawei.hms.android.HwBuildEx;
 import com.huawei.hms.support.log.HMSLog;
 import com.taobao.accs.AccsClientConfig;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class SystemUtils {
@@ -21,11 +21,13 @@ public class SystemUtils {
     public static final String PRODUCT_HUAWEI = "HUAWEI";
     public static final String UNKNOWN = "unknown";
 
-    private static String a() {
+    /* renamed from: a */
+    private static String m6606a() {
         return getSystemProperties("ro.product.locale", "");
     }
 
-    private static String b() {
+    /* renamed from: b */
+    private static String m6607b() {
         return getSystemProperties("ro.product.locale.region", "");
     }
 
@@ -62,26 +64,26 @@ public class SystemUtils {
             Class<?> cls = Class.forName("android.os.SystemProperties");
             return (String) cls.getDeclaredMethod("get", String.class, String.class).invoke(cls, str, str2);
         } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException unused) {
-            HMSLog.e("SystemUtils", "An exception occurred while reading: getSystemProperties:" + str);
+            HMSLog.m7715e("SystemUtils", "An exception occurred while reading: getSystemProperties:" + str);
             return str2;
         }
     }
 
     @Deprecated
     public static boolean isChinaROM() {
-        String b2 = b();
-        if (!TextUtils.isEmpty(b2)) {
-            return a.J.equalsIgnoreCase(b2);
+        String m6607b = m6607b();
+        if (!TextUtils.isEmpty(m6607b)) {
+            return AbstractC1191a.f2509J.equalsIgnoreCase(m6607b);
         }
-        String a2 = a();
-        if (!TextUtils.isEmpty(a2)) {
-            return a2.toLowerCase(Locale.US).contains(a.J);
+        String m6606a = m6606a();
+        if (!TextUtils.isEmpty(m6606a)) {
+            return m6606a.toLowerCase(Locale.US).contains(AbstractC1191a.f2509J);
         }
         String localCountry = getLocalCountry();
         if (TextUtils.isEmpty(localCountry)) {
             return false;
         }
-        return a.J.equalsIgnoreCase(localCountry);
+        return AbstractC1191a.f2509J.equalsIgnoreCase(localCountry);
     }
 
     public static boolean isEMUI() {
@@ -89,7 +91,7 @@ public class SystemUtils {
         sb.append("is Emui :");
         int i2 = HwBuildEx.VERSION.EMUI_SDK_INT;
         sb.append(i2);
-        HMSLog.i("SystemUtils", sb.toString());
+        HMSLog.m7717i("SystemUtils", sb.toString());
         return i2 > 0;
     }
 
@@ -100,16 +102,16 @@ public class SystemUtils {
 
     public static boolean isSystemApp(Context context, String str) {
         if (context == null) {
-            HMSLog.w("SystemUtils", "isSystemApp context is null");
+            HMSLog.m7718w("SystemUtils", "isSystemApp context is null");
             return false;
         }
         PackageInfo packageInfo = null;
         try {
             packageInfo = context.getPackageManager().getPackageInfo(str, 16384);
         } catch (AndroidException e2) {
-            HMSLog.e("SystemUtils", "isSystemApp Exception: " + e2);
+            HMSLog.m7715e("SystemUtils", "isSystemApp Exception: " + e2);
         } catch (RuntimeException e3) {
-            HMSLog.e("SystemUtils", "isSystemApp RuntimeException:" + e3);
+            HMSLog.m7715e("SystemUtils", "isSystemApp RuntimeException:" + e3);
         }
         return packageInfo != null && (packageInfo.applicationInfo.flags & 1) > 0;
     }

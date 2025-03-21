@@ -7,7 +7,6 @@ import android.os.Parcelable;
 import androidx.annotation.RestrictTo;
 import androidx.collection.ArrayMap;
 import androidx.versionedparcelable.VersionedParcel;
-import i.a.a.a.c;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,6 +17,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.Set;
+import p324i.p325a.p326a.p327a.C5758c;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY})
 /* loaded from: classes.dex */
@@ -37,7 +37,7 @@ class VersionedParcelStream extends VersionedParcel {
     private static final int TYPE_STRING_ARRAY = 4;
     private static final int TYPE_SUB_BUNDLE = 1;
     private static final int TYPE_SUB_PERSISTABLE_BUNDLE = 2;
-    private static final Charset UTF_16 = Charset.forName(c.f16731c);
+    private static final Charset UTF_16 = Charset.forName(C5758c.f20752c);
     int mCount;
     private DataInputStream mCurrentInput;
     private DataOutputStream mCurrentOutput;

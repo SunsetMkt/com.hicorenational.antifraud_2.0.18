@@ -15,7 +15,8 @@ public class SparseArrayCompat<E> implements Cloneable {
         this(10);
     }
 
-    private void gc() {
+    /* renamed from: gc */
+    private void m384gc() {
         int i2 = this.mSize;
         int[] iArr = this.mKeys;
         Object[] objArr = this.mValues;
@@ -42,7 +43,7 @@ public class SparseArrayCompat<E> implements Cloneable {
             return;
         }
         if (this.mGarbage && this.mSize >= this.mKeys.length) {
-            gc();
+            m384gc();
         }
         int i4 = this.mSize;
         if (i4 >= this.mKeys.length) {
@@ -91,14 +92,14 @@ public class SparseArrayCompat<E> implements Cloneable {
 
     public int indexOfKey(int i2) {
         if (this.mGarbage) {
-            gc();
+            m384gc();
         }
         return ContainerHelpers.binarySearch(this.mKeys, this.mSize, i2);
     }
 
     public int indexOfValue(E e2) {
         if (this.mGarbage) {
-            gc();
+            m384gc();
         }
         for (int i2 = 0; i2 < this.mSize; i2++) {
             if (this.mValues[i2] == e2) {
@@ -114,7 +115,7 @@ public class SparseArrayCompat<E> implements Cloneable {
 
     public int keyAt(int i2) {
         if (this.mGarbage) {
-            gc();
+            m384gc();
         }
         return this.mKeys[i2];
     }
@@ -135,7 +136,7 @@ public class SparseArrayCompat<E> implements Cloneable {
             }
         }
         if (this.mGarbage && this.mSize >= this.mKeys.length) {
-            gc();
+            m384gc();
             i3 = ~ContainerHelpers.binarySearch(this.mKeys, this.mSize, i2);
         }
         int i4 = this.mSize;
@@ -224,14 +225,14 @@ public class SparseArrayCompat<E> implements Cloneable {
 
     public void setValueAt(int i2, E e2) {
         if (this.mGarbage) {
-            gc();
+            m384gc();
         }
         this.mValues[i2] = e2;
     }
 
     public int size() {
         if (this.mGarbage) {
-            gc();
+            m384gc();
         }
         return this.mSize;
     }
@@ -261,7 +262,7 @@ public class SparseArrayCompat<E> implements Cloneable {
 
     public E valueAt(int i2) {
         if (this.mGarbage) {
-            gc();
+            m384gc();
         }
         return (E) this.mValues[i2];
     }
@@ -279,7 +280,7 @@ public class SparseArrayCompat<E> implements Cloneable {
     }
 
     /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public SparseArrayCompat<E> m2clone() {
+    public SparseArrayCompat<E> m26843clone() {
         try {
             SparseArrayCompat<E> sparseArrayCompat = (SparseArrayCompat) super.clone();
             sparseArrayCompat.mKeys = (int[]) this.mKeys.clone();

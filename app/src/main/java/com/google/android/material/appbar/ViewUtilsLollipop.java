@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import androidx.annotation.RequiresApi;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.ThemeEnforcement;
 
 @RequiresApi(21)
@@ -25,10 +26,10 @@ class ViewUtilsLollipop {
     }
 
     static void setDefaultAppBarLayoutStateListAnimator(View view, float f2) {
-        int integer = view.getResources().getInteger(com.google.android.material.R.integer.app_bar_elevation_anim_duration);
+        int integer = view.getResources().getInteger(C1921R.integer.app_bar_elevation_anim_duration);
         StateListAnimator stateListAnimator = new StateListAnimator();
         long j2 = integer;
-        stateListAnimator.addState(new int[]{R.attr.enabled, com.google.android.material.R.attr.state_liftable, -com.google.android.material.R.attr.state_lifted}, ObjectAnimator.ofFloat(view, "elevation", 0.0f).setDuration(j2));
+        stateListAnimator.addState(new int[]{R.attr.enabled, C1921R.attr.state_liftable, -C1921R.attr.state_lifted}, ObjectAnimator.ofFloat(view, "elevation", 0.0f).setDuration(j2));
         stateListAnimator.addState(new int[]{R.attr.enabled}, ObjectAnimator.ofFloat(view, "elevation", f2).setDuration(j2));
         stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(view, "elevation", 0.0f).setDuration(0L));
         view.setStateListAnimator(stateListAnimator);

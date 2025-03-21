@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wheel_lable">
-        <ui.view.RegionWheelView
+        <p388ui.view.RegionWheelView
             android:orientation="horizontal"
             android:id="@+id/ll_region"
             android:paddingTop="@dimen/dp_25"

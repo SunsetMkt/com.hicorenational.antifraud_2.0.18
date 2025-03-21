@@ -9,7 +9,7 @@ public class MScroller extends Scroller {
     private static final Interpolator sInterpolator = new Interpolator() { // from class: com.luck.picture.lib.widget.c
         @Override // android.animation.TimeInterpolator
         public final float getInterpolation(float f2) {
-            return MScroller.a(f2);
+            return MScroller.m8144a(f2);
         }
     };
     public boolean noDuration;
@@ -18,7 +18,8 @@ public class MScroller extends Scroller {
         this(context, sInterpolator);
     }
 
-    static /* synthetic */ float a(float f2) {
+    /* renamed from: a */
+    static /* synthetic */ float m8144a(float f2) {
         float f3 = f2 - 1.0f;
         return (f3 * f3 * f3 * f3 * f3) + 1.0f;
     }

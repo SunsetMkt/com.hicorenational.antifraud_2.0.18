@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
@@ -28,6 +28,7 @@ import com.luck.picture.lib.widget.longimage.ImageViewState;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import java.io.File;
 import java.util.List;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* loaded from: classes.dex */
 public class PictureSimpleFragmentAdapter extends PagerAdapter {
@@ -47,7 +48,8 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
         this.onBackPressed = onCallBackActivity;
     }
 
-    static /* synthetic */ void a(LocalMedia localMedia, String str, @i.c.a.d ViewGroup viewGroup, View view) {
+    /* renamed from: a */
+    static /* synthetic */ void m8120a(LocalMedia localMedia, String str, @InterfaceC5816d ViewGroup viewGroup, View view) {
         OnVideoSelectedPlayCallback onVideoSelectedPlayCallback = PictureSelectionConfig.customVideoPlayCallback;
         if (onVideoSelectedPlayCallback != null) {
             onVideoSelectedPlayCallback.startPlayVideo(localMedia);
@@ -102,18 +104,18 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
     }
 
     @Override // androidx.viewpager.widget.PagerAdapter
-    @i.c.a.d
-    public Object instantiateItem(@i.c.a.d final ViewGroup viewGroup, int i2) {
+    @InterfaceC5816d
+    public Object instantiateItem(@InterfaceC5816d final ViewGroup viewGroup, int i2) {
         ImageEngine imageEngine;
         ImageEngine imageEngine2;
         View view = this.mCacheView.get(i2);
         if (view == null) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.picture_image_preview, viewGroup, false);
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(C2639R.layout.picture_image_preview, viewGroup, false);
             this.mCacheView.put(i2, view);
         }
-        PhotoView photoView = (PhotoView) view.findViewById(R.id.preview_image);
-        SubsamplingScaleImageView subsamplingScaleImageView = (SubsamplingScaleImageView) view.findViewById(R.id.longImg);
-        ImageView imageView = (ImageView) view.findViewById(R.id.iv_play);
+        PhotoView photoView = (PhotoView) view.findViewById(C2639R.id.preview_image);
+        SubsamplingScaleImageView subsamplingScaleImageView = (SubsamplingScaleImageView) view.findViewById(C2639R.id.longImg);
+        ImageView imageView = (ImageView) view.findViewById(C2639R.id.iv_play);
         final LocalMedia localMedia = this.images.get(i2);
         if (localMedia != null) {
             String mimeType = localMedia.getMimeType();
@@ -124,7 +126,7 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
             imageView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.f
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view2) {
-                    PictureSimpleFragmentAdapter.a(LocalMedia.this, compressPath, viewGroup, view2);
+                    PictureSimpleFragmentAdapter.m8120a(LocalMedia.this, compressPath, viewGroup, view2);
                 }
             });
             boolean isLongImg = MediaUtils.isLongImg(localMedia);
@@ -132,7 +134,7 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
             photoView.setOnViewTapListener(new OnViewTapListener() { // from class: com.luck.picture.lib.adapter.g
                 @Override // com.luck.picture.lib.photoview.OnViewTapListener
                 public final void onViewTap(View view2, float f2, float f3) {
-                    PictureSimpleFragmentAdapter.this.a(view2, f2, f3);
+                    PictureSimpleFragmentAdapter.this.m8122a(view2, f2, f3);
                 }
             });
             if (isLongImg && !isGif) {
@@ -142,7 +144,7 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
             subsamplingScaleImageView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.e
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view2) {
-                    PictureSimpleFragmentAdapter.this.a(view2);
+                    PictureSimpleFragmentAdapter.this.m8121a(view2);
                 }
             });
             if (!isGif || localMedia.isCompressed()) {
@@ -162,7 +164,7 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
     }
 
     @Override // androidx.viewpager.widget.PagerAdapter
-    public boolean isViewFromObject(@i.c.a.d View view, @i.c.a.d Object obj) {
+    public boolean isViewFromObject(@InterfaceC5816d View view, @InterfaceC5816d Object obj) {
         return view == obj;
     }
 
@@ -174,14 +176,16 @@ public class PictureSimpleFragmentAdapter extends PagerAdapter {
         this.mCacheView.removeAt(i2);
     }
 
-    public /* synthetic */ void a(View view, float f2, float f3) {
+    /* renamed from: a */
+    public /* synthetic */ void m8122a(View view, float f2, float f3) {
         OnCallBackActivity onCallBackActivity = this.onBackPressed;
         if (onCallBackActivity != null) {
             onCallBackActivity.onActivityBackPressed();
         }
     }
 
-    public /* synthetic */ void a(View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8121a(View view) {
         OnCallBackActivity onCallBackActivity = this.onBackPressed;
         if (onCallBackActivity != null) {
             onCallBackActivity.onActivityBackPressed();

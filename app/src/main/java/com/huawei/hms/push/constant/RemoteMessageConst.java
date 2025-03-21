@@ -27,7 +27,9 @@ public class RemoteMessageConst {
     public static final String RECEIPT_MODE = "receiptMode";
     public static final String SEND_MODE = "sendMode";
     public static final String SEND_TIME = "sendTime";
-    public static final String TO = "to";
+
+    /* renamed from: TO */
+    public static final String f7742TO = "to";
     public static final String TTL = "ttl";
     public static final String URGENCY = "urgency";
 

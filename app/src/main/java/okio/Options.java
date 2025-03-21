@@ -1,27 +1,28 @@
 package okio;
 
-import h.f1;
-import h.g2.d;
-import h.q2.h;
-import h.q2.t.v;
-import h.y;
 import java.util.List;
 import java.util.RandomAccess;
+import p286h.C5230f1;
+import p286h.InterfaceC5713y;
+import p286h.p289g2.AbstractC5252d;
+import p286h.p309q2.InterfaceC5484h;
+import p286h.p309q2.p311t.C5586v;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: Options.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0000\n\u0002\u0010\u0015\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\b\u0018\u0000 \u00152\b\u0012\u0004\u0012\u00020\u00020\u00012\u00060\u0003j\u0002`\u0004:\u0001\u0015B\u001f\b\u0002\u0012\u000e\u0010\u0005\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00020\u0006\u0012\u0006\u0010\u0007\u001a\u00020\b¢\u0006\u0002\u0010\tJ\u0011\u0010\u0013\u001a\u00020\u00022\u0006\u0010\u0014\u001a\u00020\u000eH\u0096\u0002R\u001e\u0010\u0005\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00020\u0006X\u0080\u0004¢\u0006\n\n\u0002\u0010\f\u001a\u0004\b\n\u0010\u000bR\u0014\u0010\r\u001a\u00020\u000e8VX\u0096\u0004¢\u0006\u0006\u001a\u0004\b\u000f\u0010\u0010R\u0014\u0010\u0007\u001a\u00020\bX\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0011\u0010\u0012¨\u0006\u0016"}, d2 = {"Lokio/Options;", "Lkotlin/collections/AbstractList;", "Lokio/ByteString;", "Ljava/util/RandomAccess;", "Lkotlin/collections/RandomAccess;", "byteStrings", "", "trie", "", "([Lokio/ByteString;[I)V", "getByteStrings$okio", "()[Lokio/ByteString;", "[Lokio/ByteString;", "size", "", "getSize", "()I", "getTrie$okio", "()[I", "get", "index", "Companion", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0000\n\u0002\u0010\u0015\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\b\u0018\u0000 \u00152\b\u0012\u0004\u0012\u00020\u00020\u00012\u00060\u0003j\u0002`\u0004:\u0001\u0015B\u001f\b\u0002\u0012\u000e\u0010\u0005\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00020\u0006\u0012\u0006\u0010\u0007\u001a\u00020\b¢\u0006\u0002\u0010\tJ\u0011\u0010\u0013\u001a\u00020\u00022\u0006\u0010\u0014\u001a\u00020\u000eH\u0096\u0002R\u001e\u0010\u0005\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00020\u0006X\u0080\u0004¢\u0006\n\n\u0002\u0010\f\u001a\u0004\b\n\u0010\u000bR\u0014\u0010\r\u001a\u00020\u000e8VX\u0096\u0004¢\u0006\u0006\u001a\u0004\b\u000f\u0010\u0010R\u0014\u0010\u0007\u001a\u00020\bX\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0011\u0010\u0012¨\u0006\u0016"}, m23546d2 = {"Lokio/Options;", "Lkotlin/collections/AbstractList;", "Lokio/ByteString;", "Ljava/util/RandomAccess;", "Lkotlin/collections/RandomAccess;", "byteStrings", "", "trie", "", "([Lokio/ByteString;[I)V", "getByteStrings$okio", "()[Lokio/ByteString;", "[Lokio/ByteString;", "size", "", "getSize", "()I", "getTrie$okio", "()[I", "get", "index", "Companion", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
-public final class Options extends d<ByteString> implements RandomAccess {
+public final class Options extends AbstractC5252d<ByteString> implements RandomAccess {
     public static final Companion Companion = new Companion(null);
 
-    @i.c.a.d
+    @InterfaceC5816d
     private final ByteString[] byteStrings;
 
-    @i.c.a.d
+    @InterfaceC5816d
     private final int[] trie;
 
     /* compiled from: Options.kt */
-    @y(bv = {1, 0, 3}, d1 = {"\u0000>\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0002\b\u0003\n\u0002\u0010\b\n\u0000\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0010\u0011\n\u0002\b\u0002\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002JT\u0010\b\u001a\u00020\t2\b\b\u0002\u0010\n\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\u00052\b\b\u0002\u0010\f\u001a\u00020\r2\f\u0010\u000e\u001a\b\u0012\u0004\u0012\u00020\u00100\u000f2\b\b\u0002\u0010\u0011\u001a\u00020\r2\b\b\u0002\u0010\u0012\u001a\u00020\r2\f\u0010\u0013\u001a\b\u0012\u0004\u0012\u00020\r0\u000fH\u0002J!\u0010\u0014\u001a\u00020\u00152\u0012\u0010\u000e\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00100\u0016\"\u00020\u0010H\u0007¢\u0006\u0002\u0010\u0017R\u0018\u0010\u0003\u001a\u00020\u0004*\u00020\u00058BX\u0082\u0004¢\u0006\u0006\u001a\u0004\b\u0006\u0010\u0007¨\u0006\u0018"}, d2 = {"Lokio/Options$Companion;", "", "()V", "intCount", "", "Lokio/Buffer;", "getIntCount", "(Lokio/Buffer;)J", "buildTrieRecursive", "", "nodeOffset", "node", "byteStringOffset", "", "byteStrings", "", "Lokio/ByteString;", "fromIndex", "toIndex", "indexes", "of", "Lokio/Options;", "", "([Lokio/ByteString;)Lokio/Options;", "okio"}, k = 1, mv = {1, 1, 16})
+    @InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000>\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0002\b\u0003\n\u0002\u0010\b\n\u0000\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0010\u0011\n\u0002\b\u0002\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002JT\u0010\b\u001a\u00020\t2\b\b\u0002\u0010\n\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\u00052\b\b\u0002\u0010\f\u001a\u00020\r2\f\u0010\u000e\u001a\b\u0012\u0004\u0012\u00020\u00100\u000f2\b\b\u0002\u0010\u0011\u001a\u00020\r2\b\b\u0002\u0010\u0012\u001a\u00020\r2\f\u0010\u0013\u001a\b\u0012\u0004\u0012\u00020\r0\u000fH\u0002J!\u0010\u0014\u001a\u00020\u00152\u0012\u0010\u000e\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00100\u0016\"\u00020\u0010H\u0007¢\u0006\u0002\u0010\u0017R\u0018\u0010\u0003\u001a\u00020\u0004*\u00020\u00058BX\u0082\u0004¢\u0006\u0006\u001a\u0004\b\u0006\u0010\u0007¨\u0006\u0018"}, m23546d2 = {"Lokio/Options$Companion;", "", "()V", "intCount", "", "Lokio/Buffer;", "getIntCount", "(Lokio/Buffer;)J", "buildTrieRecursive", "", "nodeOffset", "node", "byteStringOffset", "", "byteStrings", "", "Lokio/ByteString;", "fromIndex", "toIndex", "indexes", "of", "Lokio/Options;", "", "([Lokio/ByteString;)Lokio/Options;", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
     public static final class Companion {
         private Companion() {
         }
@@ -65,7 +66,7 @@ public final class Options extends d<ByteString> implements RandomAccess {
                 buffer.writeInt(i6);
                 int i14 = i9 + i12;
                 while (i9 < i14) {
-                    buffer.writeInt(byteString.getByte(i9) & f1.f16099c);
+                    buffer.writeInt(byteString.getByte(i9) & C5230f1.f20085c);
                     i9++;
                 }
                 if (i5 + 1 == i4) {
@@ -94,7 +95,7 @@ public final class Options extends d<ByteString> implements RandomAccess {
             for (int i17 = i5; i17 < i4; i17++) {
                 byte b2 = list.get(i17).getByte(i9);
                 if (i17 == i5 || b2 != list.get(i17 - 1).getByte(i9)) {
-                    buffer.writeInt(b2 & f1.f16099c);
+                    buffer.writeInt(b2 & C5230f1.f20085c);
                 }
             }
             Buffer buffer4 = new Buffer();
@@ -134,7 +135,7 @@ public final class Options extends d<ByteString> implements RandomAccess {
             companion.buildTrieRecursive((i5 & 1) != 0 ? 0L : j2, buffer, (i5 & 4) != 0 ? 0 : i2, list, (i5 & 16) != 0 ? 0 : i3, (i5 & 32) != 0 ? list.size() : i4, list2);
         }
 
-        private final long getIntCount(@i.c.a.d Buffer buffer) {
+        private final long getIntCount(@InterfaceC5816d Buffer buffer) {
             return buffer.size() / 4;
         }
 
@@ -142,36 +143,38 @@ public final class Options extends d<ByteString> implements RandomAccess {
         
             continue;
          */
-        @h.q2.h
-        @i.c.a.d
+        @p286h.p309q2.InterfaceC5484h
+        @p324i.p336c.p337a.InterfaceC5816d
+        /* renamed from: of */
         /*
             Code decompiled incorrectly, please refer to instructions dump.
             To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public final okio.Options of(@i.c.a.d okio.ByteString... r17) {
+        public final okio.Options m24932of(@p324i.p336c.p337a.InterfaceC5816d okio.ByteString... r17) {
             /*
                 Method dump skipped, instructions count: 336
                 To view this dump change 'Code comments level' option to 'DEBUG'
             */
-            throw new UnsupportedOperationException("Method not decompiled: okio.Options.Companion.of(okio.ByteString[]):okio.Options");
+            throw new UnsupportedOperationException("Method not decompiled: okio.Options.Companion.m24932of(okio.ByteString[]):okio.Options");
         }
 
-        public /* synthetic */ Companion(v vVar) {
+        public /* synthetic */ Companion(C5586v c5586v) {
             this();
         }
     }
 
-    public /* synthetic */ Options(ByteString[] byteStringArr, int[] iArr, v vVar) {
+    public /* synthetic */ Options(ByteString[] byteStringArr, int[] iArr, C5586v c5586v) {
         this(byteStringArr, iArr);
     }
 
-    @h
-    @i.c.a.d
-    public static final Options of(@i.c.a.d ByteString... byteStringArr) {
-        return Companion.of(byteStringArr);
+    @InterfaceC5484h
+    @InterfaceC5816d
+    /* renamed from: of */
+    public static final Options m24931of(@InterfaceC5816d ByteString... byteStringArr) {
+        return Companion.m24932of(byteStringArr);
     }
 
-    @Override // h.g2.a, java.util.Collection
+    @Override // p286h.p289g2.AbstractC5240a, java.util.Collection
     public final /* bridge */ boolean contains(Object obj) {
         if (obj instanceof ByteString) {
             return contains((ByteString) obj);
@@ -179,22 +182,22 @@ public final class Options extends d<ByteString> implements RandomAccess {
         return false;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString[] getByteStrings$okio() {
         return this.byteStrings;
     }
 
-    @Override // h.g2.d, h.g2.a
+    @Override // p286h.p289g2.AbstractC5252d, p286h.p289g2.AbstractC5240a
     public int getSize() {
         return this.byteStrings.length;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final int[] getTrie$okio() {
         return this.trie;
     }
 
-    @Override // h.g2.d, java.util.List
+    @Override // p286h.p289g2.AbstractC5252d, java.util.List
     public final /* bridge */ int indexOf(Object obj) {
         if (obj instanceof ByteString) {
             return indexOf((ByteString) obj);
@@ -202,7 +205,7 @@ public final class Options extends d<ByteString> implements RandomAccess {
         return -1;
     }
 
-    @Override // h.g2.d, java.util.List
+    @Override // p286h.p289g2.AbstractC5252d, java.util.List
     public final /* bridge */ int lastIndexOf(Object obj) {
         if (obj instanceof ByteString) {
             return lastIndexOf((ByteString) obj);
@@ -219,8 +222,8 @@ public final class Options extends d<ByteString> implements RandomAccess {
         return super.contains((Object) byteString);
     }
 
-    @Override // h.g2.d, java.util.List
-    @i.c.a.d
+    @Override // p286h.p289g2.AbstractC5252d, java.util.List
+    @InterfaceC5816d
     public ByteString get(int i2) {
         return this.byteStrings[i2];
     }

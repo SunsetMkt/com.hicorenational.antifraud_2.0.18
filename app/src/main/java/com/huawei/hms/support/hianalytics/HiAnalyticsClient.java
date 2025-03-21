@@ -16,13 +16,13 @@ public class HiAnalyticsClient extends HiAnalyticsBase {
         if (context != null) {
             return reportEntry(context, str, Util.getAppId(context), 0);
         }
-        HMSLog.e(TAG, "<reportEntry 2 param> context is null.");
+        HMSLog.m7715e(TAG, "<reportEntry 2 param> context is null.");
         return "";
     }
 
     public static void reportExit(Context context, String str, String str2, int i2, int i3) {
         if (context == null) {
-            HMSLog.e(TAG, "<reportExit 5 param> context is null.");
+            HMSLog.m7715e(TAG, "<reportExit 5 param> context is null.");
         } else {
             reportExit(context, str, str2, Util.getAppId(context), i2, i3, 0);
         }
@@ -30,7 +30,7 @@ public class HiAnalyticsClient extends HiAnalyticsBase {
 
     public static String reportEntry(Context context, String str, int i2) {
         if (context == null) {
-            HMSLog.e(TAG, "<reportEntry 3 param> context is null.");
+            HMSLog.m7715e(TAG, "<reportEntry 3 param> context is null.");
             return "";
         }
         return reportEntry(context, str, Util.getAppId(context), i2);
@@ -38,7 +38,7 @@ public class HiAnalyticsClient extends HiAnalyticsBase {
 
     public static void reportExit(Context context, String str, String str2, int i2, int i3, int i4) {
         if (context == null) {
-            HMSLog.e(TAG, "<reportExit 6 param> context is null.");
+            HMSLog.m7715e(TAG, "<reportExit 6 param> context is null.");
         } else {
             reportExit(context, str, str2, Util.getAppId(context), i2, i3, i4);
         }
@@ -46,7 +46,7 @@ public class HiAnalyticsClient extends HiAnalyticsBase {
 
     public static String reportEntry(Context context, String str, String str2, int i2) {
         if (context == null) {
-            HMSLog.e(TAG, "<reportEntry 4 param> context is null.");
+            HMSLog.m7715e(TAG, "<reportEntry 4 param> context is null.");
             return "";
         }
         String id = TransactionIdCreater.getId(str2, str);
@@ -62,7 +62,7 @@ public class HiAnalyticsClient extends HiAnalyticsBase {
 
     public static void reportExit(Context context, String str, String str2, String str3, int i2, int i3, int i4) {
         if (context == null) {
-            HMSLog.e(TAG, "<reportExit 7 param> context is null.");
+            HMSLog.m7715e(TAG, "<reportExit 7 param> context is null.");
             return;
         }
         Map<String, String> mapForBi = HiAnalyticsBase.getMapForBi(context, str);

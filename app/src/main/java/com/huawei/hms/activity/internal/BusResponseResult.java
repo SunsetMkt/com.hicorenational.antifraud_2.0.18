@@ -5,25 +5,25 @@ import android.content.Intent;
 /* loaded from: classes.dex */
 public class BusResponseResult {
 
-    /* renamed from: a, reason: collision with root package name */
-    private Intent f6532a;
+    /* renamed from: a */
+    private Intent f7032a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private int f6533b;
+    /* renamed from: b */
+    private int f7033b;
 
     public int getCode() {
-        return this.f6533b;
+        return this.f7033b;
     }
 
     public Intent getIntent() {
-        return this.f6532a;
+        return this.f7032a;
     }
 
     public void setCode(int i2) {
-        this.f6533b = i2;
+        this.f7033b = i2;
     }
 
     public void setIntent(Intent intent) {
-        this.f6532a = intent;
+        this.f7032a = intent;
     }
 }

@@ -3,26 +3,28 @@ package com.xiaomi.mipush.sdk;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import com.heytap.mcssdk.constant.C2084a;
+import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
 import org.json.JSONObject;
 
 /* loaded from: classes2.dex */
 public class HWPushHelper {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static boolean f12339a = false;
+    /* renamed from: a */
+    private static boolean f14343a = false;
 
     public static void convertMessage(Intent intent) {
-        f.a(intent);
+        C4052f.m13540a(intent);
     }
 
     public static boolean hasNetwork(Context context) {
-        return f.m98a(context);
+        return C4052f.m13542a(context);
     }
 
     public static boolean isHmsTokenSynced(Context context) {
-        String a2 = f.a(context, d.ASSEMBLE_PUSH_HUAWEI, false);
-        String a3 = p.a(context).a(v.UPLOAD_HUAWEI_TOKEN);
-        return (TextUtils.isEmpty(a2) || TextUtils.isEmpty(a3) || !"synced".equals(a3)) ? false : true;
+        String m13533a = C4052f.m13533a(context, EnumC4050d.ASSEMBLE_PUSH_HUAWEI, false);
+        String m13589a = C4062p.m13587a(context).m13589a(EnumC4068v.UPLOAD_HUAWEI_TOKEN);
+        return (TextUtils.isEmpty(m13533a) || TextUtils.isEmpty(m13589a) || !"synced".equals(m13589a)) ? false : true;
     }
 
     public static boolean isUserOpenHmsPush(Context context) {
@@ -30,7 +32,7 @@ public class HWPushHelper {
     }
 
     public static boolean needConnect() {
-        return f12339a;
+        return f14343a;
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:23:0x002a, code lost:
@@ -67,11 +69,11 @@ public class HWPushHelper {
         L2f:
             r6 = move-exception
             java.lang.String r6 = r6.toString()
-            com.xiaomi.channel.commonutils.logger.b.d(r6)
+            com.xiaomi.channel.commonutils.logger.AbstractC4022b.m13361d(r6)
         L37:
-            com.xiaomi.mipush.sdk.PushMessageReceiver r6 = com.xiaomi.mipush.sdk.f.a(r5)
+            com.xiaomi.mipush.sdk.PushMessageReceiver r6 = com.xiaomi.mipush.sdk.C4052f.m13531a(r5)
             if (r6 == 0) goto L51
-            com.xiaomi.mipush.sdk.MiPushMessage r0 = com.xiaomi.mipush.sdk.f.a(r2)
+            com.xiaomi.mipush.sdk.MiPushMessage r0 = com.xiaomi.mipush.sdk.C4052f.m13530a(r2)
             java.util.Map r1 = r0.getExtra()
             java.lang.String r2 = "notify_effect"
             boolean r1 = r1.containsKey(r2)
@@ -95,23 +97,23 @@ public class HWPushHelper {
                 }
             }
         } catch (Exception e2) {
-            com.xiaomi.channel.commonutils.logger.b.d(e2.toString());
+            AbstractC4022b.m13361d(e2.toString());
         }
-        PushMessageReceiver a2 = f.a(context);
-        if (a2 != null) {
-            a2.onReceivePassThroughMessage(context, f.a(str2));
+        PushMessageReceiver m13531a = C4052f.m13531a(context);
+        if (m13531a != null) {
+            m13531a.onReceivePassThroughMessage(context, C4052f.m13530a(str2));
         }
     }
 
     public static void registerHuaWeiAssemblePush(Context context) {
-        AbstractPushManager a2 = e.a(context).a(d.ASSEMBLE_PUSH_HUAWEI);
-        if (a2 != null) {
-            a2.register();
+        AbstractPushManager m13522a = C4051e.m13518a(context).m13522a(EnumC4050d.ASSEMBLE_PUSH_HUAWEI);
+        if (m13522a != null) {
+            m13522a.register();
         }
     }
 
     public static void reportError(String str, int i2) {
-        f.a(str, i2);
+        C4052f.m13541a(str, i2);
     }
 
     public static synchronized void setConnectTime(Context context) {
@@ -127,7 +129,7 @@ public class HWPushHelper {
     }
 
     public static void setNeedConnect(boolean z) {
-        f12339a = z;
+        f14343a = z;
     }
 
     public static synchronized boolean shouldGetToken(Context context) {
@@ -141,12 +143,12 @@ public class HWPushHelper {
     public static synchronized boolean shouldTryConnect(Context context) {
         boolean z;
         synchronized (HWPushHelper.class) {
-            z = Math.abs(System.currentTimeMillis() - context.getSharedPreferences("mipush_extra", 0).getLong("last_connect_time", -1L)) > com.heytap.mcssdk.constant.a.r;
+            z = Math.abs(System.currentTimeMillis() - context.getSharedPreferences("mipush_extra", 0).getLong("last_connect_time", -1L)) > C2084a.f6136r;
         }
         return z;
     }
 
     public static void uploadToken(Context context, String str) {
-        f.m97a(context, d.ASSEMBLE_PUSH_HUAWEI, str);
+        C4052f.m13538a(context, EnumC4050d.ASSEMBLE_PUSH_HUAWEI, str);
     }
 }

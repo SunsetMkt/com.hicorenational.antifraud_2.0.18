@@ -8,7 +8,9 @@ public class ReportZPBean extends BaseBean {
     private List<ReportZPEleBean> children;
     private String clusterID;
     private int code;
-    private long id;
+
+    /* renamed from: id */
+    private long f1619id;
     private String isShow;
     private String name;
     private String parentClusterID;
@@ -28,7 +30,7 @@ public class ReportZPBean extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1619id;
     }
 
     public String getIsShow() {
@@ -64,7 +66,7 @@ public class ReportZPBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1619id = j2;
     }
 
     public void setIsShow(String str) {

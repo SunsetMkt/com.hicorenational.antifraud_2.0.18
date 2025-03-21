@@ -14,7 +14,7 @@ public class PackageUtils {
         try {
             return context.getPackageManager().getPackageInfo(context.getPackageName(), 16384).versionName;
         } catch (PackageManager.NameNotFoundException e2) {
-            Logger.w(TAG, "", e2);
+            Logger.m6804w(TAG, "", e2);
             return "";
         }
     }

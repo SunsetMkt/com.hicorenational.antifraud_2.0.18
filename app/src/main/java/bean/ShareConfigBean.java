@@ -8,7 +8,9 @@ public class ShareConfigBean extends BaseBean {
     public String description;
     public String downloadUrl;
     public String iconUrl;
-    public String id;
+
+    /* renamed from: id */
+    public String f1621id;
     public String initiatorName;
     public String saveImgUrl;
     public String title;

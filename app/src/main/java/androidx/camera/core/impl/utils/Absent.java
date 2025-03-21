@@ -41,7 +41,8 @@ final class Absent<T> extends Optional<T> {
     }
 
     @Override // androidx.camera.core.impl.utils.Optional
-    public T or(T t) {
+    /* renamed from: or */
+    public T mo373or(T t) {
         return (T) Preconditions.checkNotNull(t, "use Optional.orNull() instead of Optional.or(null)");
     }
 
@@ -57,12 +58,14 @@ final class Absent<T> extends Optional<T> {
     }
 
     @Override // androidx.camera.core.impl.utils.Optional
-    public Optional<T> or(Optional<? extends T> optional) {
+    /* renamed from: or */
+    public Optional<T> mo371or(Optional<? extends T> optional) {
         return (Optional) Preconditions.checkNotNull(optional);
     }
 
     @Override // androidx.camera.core.impl.utils.Optional
-    public T or(Supplier<? extends T> supplier) {
+    /* renamed from: or */
+    public T mo372or(Supplier<? extends T> supplier) {
         return (T) Preconditions.checkNotNull(supplier.get(), "use Optional.orNull() instead of a Supplier that returns null");
     }
 }

@@ -11,8 +11,9 @@ public class QuicDetectStat extends StatObject {
     @Dimension
     public String host;
 
+    /* renamed from: ip */
     @Dimension
-    public String ip;
+    public String f1001ip;
 
     @Dimension
     public volatile String netType;
@@ -26,7 +27,7 @@ public class QuicDetectStat extends StatObject {
     public QuicDetectStat(String str, IConnStrategy iConnStrategy) {
         this.host = str;
         if (iConnStrategy != null) {
-            this.ip = iConnStrategy.getIp();
+            this.f1001ip = iConnStrategy.getIp();
             this.protocol = iConnStrategy.getProtocol().protocol;
         }
         this.netType = NetworkStatusHelper.getNetworkSubType();

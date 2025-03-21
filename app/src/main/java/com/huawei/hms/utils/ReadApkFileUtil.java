@@ -7,7 +7,6 @@ import android.util.AndroidException;
 import android.util.Base64;
 import com.huawei.hms.support.log.HMSLog;
 import com.xiaomi.mipush.sdk.Constants;
-import h.f1;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -31,6 +30,7 @@ import java.util.Collections;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class ReadApkFileUtil {
@@ -40,77 +40,79 @@ public class ReadApkFileUtil {
     public static final String KEY_SIGNATURE2 = "Signature2:";
     public static final String KEY_SIGNATURE3 = "Signature3:";
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7398a = "ReadApkFileUtil";
+    /* renamed from: a */
+    private static final String f7975a = "ReadApkFileUtil";
 
-    /* renamed from: c, reason: collision with root package name */
-    private static String f7400c;
+    /* renamed from: c */
+    private static String f7977c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private static String f7401d;
+    /* renamed from: d */
+    private static String f7978d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private static String f7402e;
+    /* renamed from: e */
+    private static String f7979e;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final Pattern f7399b = Pattern.compile("\\s*|\t|\r|\n");
+    /* renamed from: b */
+    private static final Pattern f7976b = Pattern.compile("\\s*|\t|\r|\n");
 
-    /* renamed from: f, reason: collision with root package name */
-    private static String f7403f = null;
+    /* renamed from: f */
+    private static String f7980f = null;
 
-    /* renamed from: g, reason: collision with root package name */
-    private static String f7404g = null;
+    /* renamed from: g */
+    private static String f7981g = null;
 
-    private static byte[] a(ZipFile zipFile) {
-        return a(zipFile, "META-INF/MANIFEST.MF");
+    /* renamed from: a */
+    private static byte[] m7802a(ZipFile zipFile) {
+        return m7803a(zipFile, "META-INF/MANIFEST.MF");
     }
 
     @TargetApi(19)
-    private static void b(byte[] bArr) {
+    /* renamed from: b */
+    private static void m7804b(byte[] bArr) {
         Throwable th;
         ByteArrayInputStream byteArrayInputStream;
         BufferedReader bufferedReader;
         if (bArr == null) {
-            HMSLog.e(f7398a, "manifest is null！");
+            HMSLog.m7715e(f7975a, "manifest is null！");
             return;
         }
         StringBuffer stringBuffer = new StringBuffer();
         BufferedReader bufferedReader2 = null;
-        f7400c = null;
-        f7401d = null;
-        f7402e = null;
+        f7977c = null;
+        f7978d = null;
+        f7979e = null;
         try {
             byteArrayInputStream = new ByteArrayInputStream(bArr);
             try {
                 try {
                     bufferedReader = new BufferedReader(new InputStreamReader(byteArrayInputStream, StandardCharsets.UTF_8));
                     try {
-                        String a2 = a(bufferedReader);
-                        while (a2 != null) {
-                            if (a2.length() != 0) {
-                                if (a2.startsWith("ApkHash:")) {
-                                    f7403f = a(a2.substring(a2.indexOf(Constants.COLON_SEPARATOR) + 1));
+                        String m7794a = m7794a(bufferedReader);
+                        while (m7794a != null) {
+                            if (m7794a.length() != 0) {
+                                if (m7794a.startsWith("ApkHash:")) {
+                                    f7980f = m7795a(m7794a.substring(m7794a.indexOf(Constants.COLON_SEPARATOR) + 1));
                                 }
-                                if (a2.startsWith(KEY_SIGNATURE)) {
-                                    f7400c = a(a2.substring(a2.indexOf(Constants.COLON_SEPARATOR) + 1));
-                                    a2 = a(bufferedReader);
-                                } else if (a2.startsWith(KEY_SIGNATURE2)) {
-                                    f7401d = a(a2.substring(a2.indexOf(Constants.COLON_SEPARATOR) + 1));
-                                    a2 = a(bufferedReader);
-                                } else if (a2.startsWith(KEY_SIGNATURE3)) {
-                                    f7402e = a(a2.substring(a2.indexOf(Constants.COLON_SEPARATOR) + 1));
-                                    a2 = a(bufferedReader);
+                                if (m7794a.startsWith(KEY_SIGNATURE)) {
+                                    f7977c = m7795a(m7794a.substring(m7794a.indexOf(Constants.COLON_SEPARATOR) + 1));
+                                    m7794a = m7794a(bufferedReader);
+                                } else if (m7794a.startsWith(KEY_SIGNATURE2)) {
+                                    f7978d = m7795a(m7794a.substring(m7794a.indexOf(Constants.COLON_SEPARATOR) + 1));
+                                    m7794a = m7794a(bufferedReader);
+                                } else if (m7794a.startsWith(KEY_SIGNATURE3)) {
+                                    f7979e = m7795a(m7794a.substring(m7794a.indexOf(Constants.COLON_SEPARATOR) + 1));
+                                    m7794a = m7794a(bufferedReader);
                                 } else {
-                                    stringBuffer.append(a2);
+                                    stringBuffer.append(m7794a);
                                     stringBuffer.append("\r\n");
                                 }
                             }
-                            a2 = a(bufferedReader);
+                            m7794a = m7794a(bufferedReader);
                         }
-                        f7404g = stringBuffer.toString();
+                        f7981g = stringBuffer.toString();
                     } catch (Exception unused) {
                         bufferedReader2 = bufferedReader;
-                        HMSLog.e(f7398a, "loadApkCert Exception!");
+                        HMSLog.m7715e(f7975a, "loadApkCert Exception!");
                         bufferedReader = bufferedReader2;
                         IOUtils.closeQuietly((InputStream) byteArrayInputStream);
                         IOUtils.closeQuietly((Reader) bufferedReader);
@@ -143,7 +145,7 @@ public class ReadApkFileUtil {
         char[] cArr = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         char[] cArr2 = new char[bArr.length * 2];
         for (int i2 = 0; i2 < bArr.length; i2++) {
-            int i3 = bArr[i2] & f1.f16099c;
+            int i3 = bArr[i2] & C5230f1.f20085c;
             int i4 = i2 * 2;
             cArr2[i4] = cArr[i3 >>> 4];
             cArr2[i4 + 1] = cArr[i3 & 15];
@@ -151,28 +153,29 @@ public class ReadApkFileUtil {
         return String.valueOf(cArr2);
     }
 
-    private static boolean c() {
+    /* renamed from: c */
+    private static boolean m7807c() {
         try {
         } catch (Exception e2) {
-            HMSLog.i(f7398a, "verifyMDMSignatureV3 MDM verify Exception!:" + e2.getMessage());
+            HMSLog.m7717i(f7975a, "verifyMDMSignatureV3 MDM verify Exception!:" + e2.getMessage());
         }
-        if (a(Base64.decode(EMUI11_PK, 0), a(f7404g, "SHA-384"), b(f7402e), "SHA384withRSA")) {
-            HMSLog.i(f7398a, "verifyMDMSignatureV3 verify successful!");
+        if (m7799a(Base64.decode(EMUI11_PK, 0), m7800a(f7981g, "SHA-384"), m7806b(f7979e), "SHA384withRSA")) {
+            HMSLog.m7717i(f7975a, "verifyMDMSignatureV3 verify successful!");
             return true;
         }
-        HMSLog.i(f7398a, "verifyMDMSignatureV3 verify failure!");
+        HMSLog.m7717i(f7975a, "verifyMDMSignatureV3 verify failure!");
         return false;
     }
 
     public static boolean checkSignature() {
-        if (f7402e != null) {
-            return c();
+        if (f7979e != null) {
+            return m7807c();
         }
-        if (f7401d != null) {
-            return b();
+        if (f7978d != null) {
+            return m7805b();
         }
-        if (f7400c != null) {
-            return a();
+        if (f7977c != null) {
+            return m7797a();
         }
         return false;
     }
@@ -181,7 +184,7 @@ public class ReadApkFileUtil {
         try {
             return context.getPackageManager().getApplicationInfo("com.huawei.hwid", 128).sourceDir;
         } catch (AndroidException | RuntimeException unused) {
-            HMSLog.e(f7398a, "HMS is not found!");
+            HMSLog.m7715e(f7975a, "HMS is not found!");
             return null;
         }
     }
@@ -200,33 +203,33 @@ public class ReadApkFileUtil {
                 try {
                     z = zipFile.getEntry("META-INF/HUAWEI.CER") != null;
                     if (z) {
-                        b(a(zipFile, "META-INF/HUAWEI.CER"));
+                        m7804b(m7803a(zipFile, "META-INF/HUAWEI.CER"));
                     }
                     try {
                         zipFile.close();
                     } catch (IOException e2) {
-                        String str2 = f7398a;
+                        String str2 = f7975a;
                         StringBuilder sb = new StringBuilder();
                         sb.append("zipFile.close Exception!");
                         sb.append(e2.getMessage());
-                        HMSLog.e(str2, sb.toString());
+                        HMSLog.m7715e(str2, sb.toString());
                         zipFile2 = sb;
                     }
                 } catch (Exception e3) {
                     e = e3;
                     zipFile3 = zipFile;
-                    HMSLog.e(f7398a, "isCertFound Exception!" + e.getMessage());
+                    HMSLog.m7715e(f7975a, "isCertFound Exception!" + e.getMessage());
                     ZipFile zipFile4 = zipFile3;
                     if (zipFile3 != null) {
                         try {
                             zipFile3.close();
                             zipFile4 = zipFile3;
                         } catch (IOException e4) {
-                            String str3 = f7398a;
+                            String str3 = f7975a;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append("zipFile.close Exception!");
                             sb2.append(e4.getMessage());
-                            HMSLog.e(str3, sb2.toString());
+                            HMSLog.m7715e(str3, sb2.toString());
                             zipFile4 = sb2;
                         }
                     }
@@ -239,7 +242,7 @@ public class ReadApkFileUtil {
                         try {
                             zipFile.close();
                         } catch (IOException e5) {
-                            HMSLog.e(f7398a, "zipFile.close Exception!" + e5.getMessage());
+                            HMSLog.m7715e(f7975a, "zipFile.close Exception!" + e5.getMessage());
                         }
                     }
                     throw th;
@@ -263,21 +266,21 @@ public class ReadApkFileUtil {
             try {
                 zipFile = new ZipFile(str);
                 try {
-                    byte[] a2 = a(zipFile);
-                    ArrayList<String> a3 = a(a2);
-                    if (a3 != null) {
-                        a2 = a(a3);
+                    byte[] m7802a = m7802a(zipFile);
+                    ArrayList<String> m7796a = m7796a(m7802a);
+                    if (m7796a != null) {
+                        m7802a = m7801a(m7796a);
                     }
                     MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-                    messageDigest.update(a2);
+                    messageDigest.update(m7802a);
                     String bytesToString = bytesToString(messageDigest.digest());
-                    String str3 = f7403f;
+                    String str3 = f7980f;
                     if (str3 != null) {
                         if (str3.equals(bytesToString)) {
                             try {
                                 zipFile.close();
                             } catch (Exception e2) {
-                                HMSLog.i(f7398a, "close stream Exception!" + e2.getMessage());
+                                HMSLog.m7717i(f7975a, "close stream Exception!" + e2.getMessage());
                             }
                             return true;
                         }
@@ -286,13 +289,13 @@ public class ReadApkFileUtil {
                         zipFile.close();
                         return false;
                     } catch (Exception e3) {
-                        HMSLog.i(f7398a, "close stream Exception!" + e3.getMessage());
+                        HMSLog.m7717i(f7975a, "close stream Exception!" + e3.getMessage());
                         return false;
                     }
                 } catch (Exception e4) {
                     e = e4;
                     zipFile2 = zipFile;
-                    HMSLog.i(f7398a, "verifyApkHash Exception!" + e.getMessage());
+                    HMSLog.m7717i(f7975a, "verifyApkHash Exception!" + e.getMessage());
                     if (zipFile2 == null) {
                         return false;
                     }
@@ -300,8 +303,8 @@ public class ReadApkFileUtil {
                         zipFile2.close();
                         return false;
                     } catch (Exception e5) {
-                        str2 = f7398a;
-                        HMSLog.i(str2, "close stream Exception!" + e5.getMessage());
+                        str2 = f7975a;
+                        HMSLog.m7717i(str2, "close stream Exception!" + e5.getMessage());
                         return false;
                     }
                 } catch (Throwable th) {
@@ -310,7 +313,7 @@ public class ReadApkFileUtil {
                         try {
                             zipFile.close();
                         } catch (Exception e6) {
-                            HMSLog.i(f7398a, "close stream Exception!" + e6.getMessage());
+                            HMSLog.m7717i(f7975a, "close stream Exception!" + e6.getMessage());
                         }
                     }
                     throw th;
@@ -329,7 +332,8 @@ public class ReadApkFileUtil {
     /* JADX WARN: Type inference failed for: r4v3, types: [java.io.OutputStream] */
     /* JADX WARN: Type inference failed for: r4v5 */
     /* JADX WARN: Type inference failed for: r4v6, types: [java.io.BufferedOutputStream, java.io.OutputStream] */
-    private static byte[] a(ZipFile zipFile, String str) {
+    /* renamed from: a */
+    private static byte[] m7803a(ZipFile zipFile, String str) {
         Throwable th;
         InputStream inputStream;
         Exception e2;
@@ -361,7 +365,7 @@ public class ReadApkFileUtil {
                 byteArrayOutputStream = null;
                 r4 = byteArrayOutputStream;
                 try {
-                    HMSLog.i(f7398a, "getManifestBytes Exception!" + e2.getMessage());
+                    HMSLog.m7717i(f7975a, "getManifestBytes Exception!" + e2.getMessage());
                     IOUtils.closeQuietly(inputStream);
                     IOUtils.closeQuietly((InputStream) bufferedInputStream);
                     IOUtils.closeQuietly((OutputStream) byteArrayOutputStream);
@@ -419,7 +423,7 @@ public class ReadApkFileUtil {
                     return byteArray;
                 } catch (Exception e5) {
                     e2 = e5;
-                    HMSLog.i(f7398a, "getManifestBytes Exception!" + e2.getMessage());
+                    HMSLog.m7717i(f7975a, "getManifestBytes Exception!" + e2.getMessage());
                     IOUtils.closeQuietly(inputStream);
                     IOUtils.closeQuietly((InputStream) bufferedInputStream);
                     IOUtils.closeQuietly((OutputStream) byteArrayOutputStream);
@@ -439,7 +443,7 @@ public class ReadApkFileUtil {
                 e2 = e6;
                 byteArrayOutputStream = null;
                 r4 = byteArrayOutputStream;
-                HMSLog.i(f7398a, "getManifestBytes Exception!" + e2.getMessage());
+                HMSLog.m7717i(f7975a, "getManifestBytes Exception!" + e2.getMessage());
                 IOUtils.closeQuietly(inputStream);
                 IOUtils.closeQuietly((InputStream) bufferedInputStream);
                 IOUtils.closeQuietly((OutputStream) byteArrayOutputStream);
@@ -468,9 +472,10 @@ public class ReadApkFileUtil {
     }
 
     @TargetApi(19)
-    private static ArrayList<String> a(byte[] bArr) {
+    /* renamed from: a */
+    private static ArrayList<String> m7796a(byte[] bArr) {
         if (bArr == null) {
-            HMSLog.e(f7398a, "manifest is null！");
+            HMSLog.m7715e(f7975a, "manifest is null！");
             return null;
         }
         ArrayList<String> arrayList = new ArrayList<>();
@@ -479,7 +484,7 @@ public class ReadApkFileUtil {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(byteArrayInputStream, StandardCharsets.UTF_8));
                 try {
-                    if (a(bufferedReader, arrayList)) {
+                    if (m7798a(bufferedReader, arrayList)) {
                         bufferedReader.close();
                         byteArrayInputStream.close();
                         return arrayList;
@@ -492,26 +497,28 @@ public class ReadApkFileUtil {
             } finally {
             }
         } catch (IOException unused) {
-            HMSLog.e(f7398a, "getManifestLinesArrary IOException!");
+            HMSLog.m7715e(f7975a, "getManifestLinesArrary IOException!");
             return null;
         }
     }
 
-    private static boolean b() {
+    /* renamed from: b */
+    private static boolean m7805b() {
         try {
         } catch (Exception e2) {
-            HMSLog.i(f7398a, "verifyMDMSignatureV2 MDM verify Exception!:" + e2.getMessage());
+            HMSLog.m7717i(f7975a, "verifyMDMSignatureV2 MDM verify Exception!:" + e2.getMessage());
         }
-        if (a(Base64.decode(EMUI10_PK, 0), a(f7404g, "SHA-256"), b(f7401d), "SHA256withRSA")) {
-            HMSLog.i(f7398a, "verifyMDMSignatureV2 verify successful!");
+        if (m7799a(Base64.decode(EMUI10_PK, 0), m7800a(f7981g, "SHA-256"), m7806b(f7978d), "SHA256withRSA")) {
+            HMSLog.m7717i(f7975a, "verifyMDMSignatureV2 verify successful!");
             return true;
         }
-        HMSLog.i(f7398a, "verifyMDMSignatureV2 verify failure!");
+        HMSLog.m7717i(f7975a, "verifyMDMSignatureV2 verify failure!");
         return false;
     }
 
     @TargetApi(19)
-    private static byte[] a(ArrayList<String> arrayList) {
+    /* renamed from: a */
+    private static byte[] m7801a(ArrayList<String> arrayList) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(byteArrayOutputStream, StandardCharsets.UTF_8));
         try {
@@ -525,7 +532,7 @@ public class ReadApkFileUtil {
                 }
                 bufferedWriter.flush();
             } catch (Exception e2) {
-                HMSLog.i(f7398a, "getManifestBytesbySorted Exception!" + e2.getMessage());
+                HMSLog.m7717i(f7975a, "getManifestBytesbySorted Exception!" + e2.getMessage());
             }
             IOUtils.closeQuietly((OutputStream) byteArrayOutputStream);
             IOUtils.closeQuietly((Writer) bufferedWriter);
@@ -537,7 +544,8 @@ public class ReadApkFileUtil {
         }
     }
 
-    private static byte[] b(String str) {
+    /* renamed from: b */
+    private static byte[] m7806b(String str) {
         int i2;
         if (TextUtils.isEmpty(str)) {
             return new byte[0];
@@ -560,33 +568,35 @@ public class ReadApkFileUtil {
         return bArr;
     }
 
-    private static boolean a(BufferedReader bufferedReader, ArrayList<String> arrayList) throws IOException {
-        String a2 = a(bufferedReader);
+    /* renamed from: a */
+    private static boolean m7798a(BufferedReader bufferedReader, ArrayList<String> arrayList) throws IOException {
+        String m7794a = m7794a(bufferedReader);
         boolean z = false;
-        while (a2 != null) {
-            if (a2.equals("Name: META-INF/HUAWEI.CER")) {
+        while (m7794a != null) {
+            if (m7794a.equals("Name: META-INF/HUAWEI.CER")) {
                 z = true;
-                String a3 = a(bufferedReader);
+                String m7794a2 = m7794a(bufferedReader);
                 while (true) {
-                    if (a3 == null) {
+                    if (m7794a2 == null) {
                         break;
                     }
-                    if (a3.startsWith("Name:")) {
-                        a2 = a3;
+                    if (m7794a2.startsWith("Name:")) {
+                        m7794a = m7794a2;
                         break;
                     }
-                    a3 = a(bufferedReader);
+                    m7794a2 = m7794a(bufferedReader);
                 }
             }
-            if (a2.length() != 0) {
-                arrayList.add(a2);
+            if (m7794a.length() != 0) {
+                arrayList.add(m7794a);
             }
-            a2 = a(bufferedReader);
+            m7794a = m7794a(bufferedReader);
         }
         return z;
     }
 
-    private static String a(BufferedReader bufferedReader) throws IOException {
+    /* renamed from: a */
+    private static String m7794a(BufferedReader bufferedReader) throws IOException {
         int read;
         if (bufferedReader == null || (read = bufferedReader.read()) == -1) {
             return null;
@@ -608,21 +618,23 @@ public class ReadApkFileUtil {
         return (sb2.isEmpty() || !sb2.endsWith("\r")) ? sb2 : sb2.substring(0, sb2.length() - 1);
     }
 
-    private static boolean a() {
+    /* renamed from: a */
+    private static boolean m7797a() {
         try {
-            if (a(b("30820122300d06092a864886f70d01010105000382010f003082010a0282010100a3d269348ac59923f65e8111c337605e29a1d1bc54fa96c1445050dd14d8d63b10f9f0230bb87ef348183660bedcabfdec045e235ed96935799fcdb4af5c97717ff3b0954eaf1b723225b3a00f81cbd67ce6dc5a4c07f7741ad3bf1913a480c6e267ab1740f409edd2dc33c8b718a8e30e56d9a93f321723c1d0c9ea62115f996812ceef186954595e39a19b74245542c407f7dddb1d12e6eedcfc0bd7cd945ef7255ad0fc9e796258e0fb5e52a23013d15033a32b4071b65f3f924ae5c5761e22327b4d2ae60f4158a5eb15565ba079de29b81540f5fbb3be101a95357f367fc661d797074ff3826950029c52223e4594673a24a334cae62d63b838ba3df9770203010001"), a(f7404g, "SHA-256"), b(f7400c), "SHA256withRSA")) {
-                HMSLog.i(f7398a, "verifyMDMSignatureV1 verify successful!");
+            if (m7799a(m7806b("30820122300d06092a864886f70d01010105000382010f003082010a0282010100a3d269348ac59923f65e8111c337605e29a1d1bc54fa96c1445050dd14d8d63b10f9f0230bb87ef348183660bedcabfdec045e235ed96935799fcdb4af5c97717ff3b0954eaf1b723225b3a00f81cbd67ce6dc5a4c07f7741ad3bf1913a480c6e267ab1740f409edd2dc33c8b718a8e30e56d9a93f321723c1d0c9ea62115f996812ceef186954595e39a19b74245542c407f7dddb1d12e6eedcfc0bd7cd945ef7255ad0fc9e796258e0fb5e52a23013d15033a32b4071b65f3f924ae5c5761e22327b4d2ae60f4158a5eb15565ba079de29b81540f5fbb3be101a95357f367fc661d797074ff3826950029c52223e4594673a24a334cae62d63b838ba3df9770203010001"), m7800a(f7981g, "SHA-256"), m7806b(f7977c), "SHA256withRSA")) {
+                HMSLog.m7717i(f7975a, "verifyMDMSignatureV1 verify successful!");
                 return true;
             }
-            HMSLog.i(f7398a, "verifyMDMSignatureV1 verify failure!");
+            HMSLog.m7717i(f7975a, "verifyMDMSignatureV1 verify failure!");
             return false;
         } catch (Exception e2) {
-            HMSLog.i(f7398a, "verifyMDMSignatureV1 MDM verify Exception!:" + e2.getMessage());
+            HMSLog.m7717i(f7975a, "verifyMDMSignatureV1 MDM verify Exception!:" + e2.getMessage());
             return false;
         }
     }
 
-    private static boolean a(byte[] bArr, byte[] bArr2, byte[] bArr3, String str) throws Exception {
+    /* renamed from: a */
+    private static boolean m7799a(byte[] bArr, byte[] bArr2, byte[] bArr3, String str) throws Exception {
         Signature signature = Signature.getInstance(str);
         signature.initVerify(KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(bArr)));
         signature.update(bArr2);
@@ -630,13 +642,15 @@ public class ReadApkFileUtil {
     }
 
     @TargetApi(19)
-    private static byte[] a(String str, String str2) throws Exception {
+    /* renamed from: a */
+    private static byte[] m7800a(String str, String str2) throws Exception {
         MessageDigest messageDigest = MessageDigest.getInstance(str2);
         messageDigest.update(str.getBytes(StandardCharsets.UTF_8.name()));
         return messageDigest.digest();
     }
 
-    private static String a(String str) {
-        return str != null ? f7399b.matcher(str).replaceAll("") : "";
+    /* renamed from: a */
+    private static String m7795a(String str) {
+        return str != null ? f7976b.matcher(str).replaceAll("") : "";
     }
 }

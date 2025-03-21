@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.cardview.widget.CardView;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.ThemeEnforcement;
 
 /* loaded from: classes.dex */
@@ -42,12 +42,12 @@ public class MaterialCardView extends CardView {
     }
 
     public MaterialCardView(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.materialCardViewStyle);
+        this(context, attributeSet, C1921R.attr.materialCardViewStyle);
     }
 
     public MaterialCardView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.MaterialCardView, i2, R.style.Widget_MaterialComponents_CardView, new int[0]);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.MaterialCardView, i2, C1921R.style.Widget_MaterialComponents_CardView, new int[0]);
         this.cardViewHelper = new MaterialCardViewHelper(this);
         this.cardViewHelper.loadFromAttributes(obtainStyledAttributes);
         obtainStyledAttributes.recycle();

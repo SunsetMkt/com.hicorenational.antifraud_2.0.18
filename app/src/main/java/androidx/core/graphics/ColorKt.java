@@ -4,18 +4,18 @@ import android.graphics.Color;
 import android.graphics.ColorSpace;
 import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
-import com.umeng.analytics.pro.bh;
-import h.q2.t.i0;
-import h.y;
-import i.c.a.d;
+import com.umeng.analytics.pro.C3351bh;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.p311t.C5544i0;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: Color.kt */
-@y(bv = {1, 0, 2}, d1 = {"\u00006\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\u0007\n\u0002\u0010\t\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0010\u000e\n\u0002\b\u0002\u001a\r\u0010\u0018\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u0018\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u0018\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\r\u0010\u001a\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u001a\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u001a\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\r\u0010\u001b\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u001b\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u001b\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\r\u0010\u001c\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u001c\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u001c\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\u0015\u0010\u001d\u001a\u00020\u0019*\u00020\u00192\u0006\u0010\u001e\u001a\u00020\u0019H\u0087\u0002\u001a\r\u0010\u001f\u001a\u00020\u0019*\u00020\u0001H\u0087\b\u001a\r\u0010\u001f\u001a\u00020\u0019*\u00020\u0005H\u0087\b\u001a\r\u0010 \u001a\u00020\u0001*\u00020\u0005H\u0087\b\u001a\r\u0010 \u001a\u00020\u0001*\u00020!H\u0087\b\u001a\r\u0010\"\u001a\u00020\u0005*\u00020\u0001H\u0087\b\"\u0016\u0010\u0000\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\u0002\u0010\u0003\"\u0016\u0010\u0000\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0002\u0010\u0006\"\u0016\u0010\u0007\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\b\u0010\u0003\"\u0016\u0010\u0007\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\b\u0010\u0006\"\u0016\u0010\t\u001a\u00020\n*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u000b\u0010\f\"\u0016\u0010\r\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\u000e\u0010\u0003\"\u0016\u0010\r\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u000e\u0010\u0006\"\u0016\u0010\u000f\u001a\u00020\u0010*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u000f\u0010\u0011\"\u0016\u0010\u0012\u001a\u00020\u0010*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0012\u0010\u0011\"\u0016\u0010\u0013\u001a\u00020\u0004*\u00020\u00018Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0014\u0010\u0015\"\u0016\u0010\u0013\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0014\u0010\u0006\"\u0016\u0010\u0016\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\u0017\u0010\u0003\"\u0016\u0010\u0016\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0017\u0010\u0006¨\u0006#"}, d2 = {"alpha", "", "getAlpha", "(I)I", "", "", "(J)F", "blue", "getBlue", "colorSpace", "Landroid/graphics/ColorSpace;", "getColorSpace", "(J)Landroid/graphics/ColorSpace;", "green", "getGreen", "isSrgb", "", "(J)Z", "isWideGamut", "luminance", "getLuminance", "(I)F", "red", "getRed", "component1", "Landroid/graphics/Color;", "component2", "component3", "component4", "plus", bh.aI, "toColor", "toColorInt", "", "toColorLong", "core-ktx_release"}, k = 2, mv = {1, 1, 10})
+@InterfaceC5713y(m23544bv = {1, 0, 2}, m23545d1 = {"\u00006\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\u0007\n\u0002\u0010\t\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0010\u000e\n\u0002\b\u0002\u001a\r\u0010\u0018\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u0018\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u0018\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\r\u0010\u001a\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u001a\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u001a\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\r\u0010\u001b\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u001b\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u001b\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\r\u0010\u001c\u001a\u00020\u0001*\u00020\u0001H\u0086\n\u001a\r\u0010\u001c\u001a\u00020\u0004*\u00020\u0005H\u0087\n\u001a\r\u0010\u001c\u001a\u00020\u0004*\u00020\u0019H\u0087\n\u001a\u0015\u0010\u001d\u001a\u00020\u0019*\u00020\u00192\u0006\u0010\u001e\u001a\u00020\u0019H\u0087\u0002\u001a\r\u0010\u001f\u001a\u00020\u0019*\u00020\u0001H\u0087\b\u001a\r\u0010\u001f\u001a\u00020\u0019*\u00020\u0005H\u0087\b\u001a\r\u0010 \u001a\u00020\u0001*\u00020\u0005H\u0087\b\u001a\r\u0010 \u001a\u00020\u0001*\u00020!H\u0087\b\u001a\r\u0010\"\u001a\u00020\u0005*\u00020\u0001H\u0087\b\"\u0016\u0010\u0000\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\u0002\u0010\u0003\"\u0016\u0010\u0000\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0002\u0010\u0006\"\u0016\u0010\u0007\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\b\u0010\u0003\"\u0016\u0010\u0007\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\b\u0010\u0006\"\u0016\u0010\t\u001a\u00020\n*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u000b\u0010\f\"\u0016\u0010\r\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\u000e\u0010\u0003\"\u0016\u0010\r\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u000e\u0010\u0006\"\u0016\u0010\u000f\u001a\u00020\u0010*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u000f\u0010\u0011\"\u0016\u0010\u0012\u001a\u00020\u0010*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0012\u0010\u0011\"\u0016\u0010\u0013\u001a\u00020\u0004*\u00020\u00018Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0014\u0010\u0015\"\u0016\u0010\u0013\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0014\u0010\u0006\"\u0016\u0010\u0016\u001a\u00020\u0001*\u00020\u00018Æ\u0002¢\u0006\u0006\u001a\u0004\b\u0017\u0010\u0003\"\u0016\u0010\u0016\u001a\u00020\u0004*\u00020\u00058Ç\u0002¢\u0006\u0006\u001a\u0004\b\u0017\u0010\u0006¨\u0006#"}, m23546d2 = {"alpha", "", "getAlpha", "(I)I", "", "", "(J)F", "blue", "getBlue", "colorSpace", "Landroid/graphics/ColorSpace;", "getColorSpace", "(J)Landroid/graphics/ColorSpace;", "green", "getGreen", "isSrgb", "", "(J)Z", "isWideGamut", "luminance", "getLuminance", "(I)F", "red", "getRed", "component1", "Landroid/graphics/Color;", "component2", "component3", "component4", "plus", C3351bh.f11584aI, "toColor", "toColorInt", "", "toColorLong", "core-ktx_release"}, m23547k = 2, m23548mv = {1, 1, 10})
 /* loaded from: classes.dex */
 public final class ColorKt {
     @RequiresApi(26)
-    public static final float component1(@d Color color) {
-        i0.f(color, "$receiver");
+    public static final float component1(@InterfaceC5816d Color color) {
+        C5544i0.m22546f(color, "$receiver");
         return color.getComponent(0);
     }
 
@@ -24,8 +24,8 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final float component2(@d Color color) {
-        i0.f(color, "$receiver");
+    public static final float component2(@InterfaceC5816d Color color) {
+        C5544i0.m22546f(color, "$receiver");
         return color.getComponent(1);
     }
 
@@ -34,8 +34,8 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final float component3(@d Color color) {
-        i0.f(color, "$receiver");
+    public static final float component3(@InterfaceC5816d Color color) {
+        C5544i0.m22546f(color, "$receiver");
         return color.getComponent(2);
     }
 
@@ -44,8 +44,8 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final float component4(@d Color color) {
-        i0.f(color, "$receiver");
+    public static final float component4(@InterfaceC5816d Color color) {
+        C5544i0.m22546f(color, "$receiver");
         return color.getComponent(3);
     }
 
@@ -72,10 +72,10 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    @d
+    @InterfaceC5816d
     public static final ColorSpace getColorSpace(long j2) {
         ColorSpace colorSpace = Color.colorSpace(j2);
-        i0.a((Object) colorSpace, "Color.colorSpace(this)");
+        C5544i0.m22521a((Object) colorSpace, "Color.colorSpace(this)");
         return colorSpace;
     }
 
@@ -113,20 +113,20 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    @d
-    public static final Color plus(@d Color color, @d Color color2) {
-        i0.f(color, "$receiver");
-        i0.f(color2, bh.aI);
+    @InterfaceC5816d
+    public static final Color plus(@InterfaceC5816d Color color, @InterfaceC5816d Color color2) {
+        C5544i0.m22546f(color, "$receiver");
+        C5544i0.m22546f(color2, C3351bh.f11584aI);
         Color compositeColors = ColorUtils.compositeColors(color2, color);
-        i0.a((Object) compositeColors, "ColorUtils.compositeColors(c, this)");
+        C5544i0.m22521a((Object) compositeColors, "ColorUtils.compositeColors(c, this)");
         return compositeColors;
     }
 
     @RequiresApi(26)
-    @d
+    @InterfaceC5816d
     public static final Color toColor(@ColorInt int i2) {
         Color valueOf = Color.valueOf(i2);
-        i0.a((Object) valueOf, "Color.valueOf(this)");
+        C5544i0.m22521a((Object) valueOf, "Color.valueOf(this)");
         return valueOf;
     }
 
@@ -167,16 +167,16 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    @d
+    @InterfaceC5816d
     public static final Color toColor(long j2) {
         Color valueOf = Color.valueOf(j2);
-        i0.a((Object) valueOf, "Color.valueOf(this)");
+        C5544i0.m22521a((Object) valueOf, "Color.valueOf(this)");
         return valueOf;
     }
 
     @ColorInt
-    public static final int toColorInt(@d String str) {
-        i0.f(str, "$receiver");
+    public static final int toColorInt(@InterfaceC5816d String str) {
+        C5544i0.m22546f(str, "$receiver");
         return Color.parseColor(str);
     }
 }

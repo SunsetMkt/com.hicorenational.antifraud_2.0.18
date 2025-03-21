@@ -27,16 +27,16 @@ public class InitReport {
                 }
             });
         } catch (RejectedExecutionException unused) {
-            Logger.e(TAG, "the thread submit has rejectedExecutionException!");
+            Logger.m6796e(TAG, "the thread submit has rejectedExecutionException!");
         } catch (Throwable unused2) {
-            Logger.e(TAG, "the thread submit has fatal error!");
+            Logger.m6796e(TAG, "the thread submit has fatal error!");
         }
     }
 
     public static void reportWhenInit(Runnable runnable) {
         if (!hasConnectNet) {
             if (eventsToReport.size() > 10) {
-                Logger.e("TAG", "the event to be report when init exceed the limit!");
+                Logger.m6796e("TAG", "the event to be report when init exceed the limit!");
                 return;
             } else {
                 eventsToReport.add(runnable);
@@ -46,9 +46,9 @@ public class InitReport {
         try {
             HianalyticsHelper.getInstance().getReportExecutor().execute(runnable);
         } catch (RejectedExecutionException unused) {
-            Logger.e(TAG, "the thread submit has rejectedExecutionException!");
+            Logger.m6796e(TAG, "the thread submit has rejectedExecutionException!");
         } catch (Throwable unused2) {
-            Logger.e(TAG, "the thread submit has fatal error!");
+            Logger.m6796e(TAG, "the thread submit has fatal error!");
         }
     }
 
@@ -61,11 +61,11 @@ public class InitReport {
             }
             eventsToReport.clear();
         } catch (NullPointerException unused) {
-            Logger.e(TAG, "event is null occured");
+            Logger.m6796e(TAG, "event is null occured");
         } catch (RejectedExecutionException unused2) {
-            Logger.e(TAG, "submit failed of rejected execution exception");
+            Logger.m6796e(TAG, "submit failed of rejected execution exception");
         } catch (Exception unused3) {
-            Logger.e(TAG, "submit failed because of some exception");
+            Logger.m6796e(TAG, "submit failed because of some exception");
         }
     }
 }

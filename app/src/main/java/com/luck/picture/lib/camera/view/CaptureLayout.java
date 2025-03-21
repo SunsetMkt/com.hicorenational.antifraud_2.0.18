@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.camera.listener.CaptureListener;
 import com.luck.picture.lib.camera.listener.ClickListener;
 import com.luck.picture.lib.camera.listener.TypeListener;
@@ -43,7 +43,7 @@ public class CaptureLayout extends FrameLayout {
     /* JADX INFO: Access modifiers changed from: private */
     public String getCaptureTip() {
         int buttonFeatures = this.btn_capture.getButtonFeatures();
-        return buttonFeatures != 257 ? buttonFeatures != 258 ? getContext().getString(R.string.picture_photo_camera) : getContext().getString(R.string.picture_photo_recording) : getContext().getString(R.string.picture_photo_pictures);
+        return buttonFeatures != 257 ? buttonFeatures != 258 ? getContext().getString(C2639R.string.picture_photo_camera) : getContext().getString(C2639R.string.picture_photo_recording) : getContext().getString(C2639R.string.picture_photo_pictures);
     }
 
     private void initView() {
@@ -106,7 +106,7 @@ public class CaptureLayout extends FrameLayout {
         this.btn_cancel.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.f
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.a(view);
+                CaptureLayout.this.m8132a(view);
             }
         });
         this.btn_confirm = new TypeButton(getContext(), 2, this.button_size);
@@ -117,7 +117,7 @@ public class CaptureLayout extends FrameLayout {
         this.btn_confirm.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.d
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.b(view);
+                CaptureLayout.this.m8133b(view);
             }
         });
         this.btn_return = new ReturnButton(getContext(), (int) (this.button_size / 2.5f));
@@ -128,7 +128,7 @@ public class CaptureLayout extends FrameLayout {
         this.btn_return.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.e
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.c(view);
+                CaptureLayout.this.m8134c(view);
             }
         });
         this.iv_custom_left = new ImageView(getContext());
@@ -140,7 +140,7 @@ public class CaptureLayout extends FrameLayout {
         this.iv_custom_left.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.g
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.d(view);
+                CaptureLayout.this.m8135d(view);
             }
         });
         this.iv_custom_right = new ImageView(getContext());
@@ -152,7 +152,7 @@ public class CaptureLayout extends FrameLayout {
         this.iv_custom_right.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.h
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.e(view);
+                CaptureLayout.this.m8136e(view);
             }
         });
         this.txt_tip = new TextView(getContext());
@@ -172,35 +172,40 @@ public class CaptureLayout extends FrameLayout {
         addView(this.txt_tip);
     }
 
-    public /* synthetic */ void a(View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8132a(View view) {
         TypeListener typeListener = this.typeListener;
         if (typeListener != null) {
             typeListener.cancel();
         }
     }
 
-    public /* synthetic */ void b(View view) {
+    /* renamed from: b */
+    public /* synthetic */ void m8133b(View view) {
         TypeListener typeListener = this.typeListener;
         if (typeListener != null) {
             typeListener.confirm();
         }
     }
 
-    public /* synthetic */ void c(View view) {
+    /* renamed from: c */
+    public /* synthetic */ void m8134c(View view) {
         ClickListener clickListener = this.leftClickListener;
         if (clickListener != null) {
             clickListener.onClick();
         }
     }
 
-    public /* synthetic */ void d(View view) {
+    /* renamed from: d */
+    public /* synthetic */ void m8135d(View view) {
         ClickListener clickListener = this.leftClickListener;
         if (clickListener != null) {
             clickListener.onClick();
         }
     }
 
-    public /* synthetic */ void e(View view) {
+    /* renamed from: e */
+    public /* synthetic */ void m8136e(View view) {
         ClickListener clickListener = this.rightClickListener;
         if (clickListener != null) {
             clickListener.onClick();

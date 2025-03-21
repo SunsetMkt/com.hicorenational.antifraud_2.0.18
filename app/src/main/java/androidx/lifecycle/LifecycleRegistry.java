@@ -21,8 +21,8 @@ public class LifecycleRegistry extends Lifecycle {
     private ArrayList<Lifecycle.State> mParentStates = new ArrayList<>();
     private Lifecycle.State mState = Lifecycle.State.INITIALIZED;
 
-    /* renamed from: androidx.lifecycle.LifecycleRegistry$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: androidx.lifecycle.LifecycleRegistry$1 */
+    static /* synthetic */ class C05691 {
         static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$Event;
         static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$State = new int[Lifecycle.State.values().length];
 
@@ -125,7 +125,7 @@ public class LifecycleRegistry extends Lifecycle {
     }
 
     private static Lifecycle.Event downEvent(Lifecycle.State state) {
-        int i2 = AnonymousClass1.$SwitchMap$androidx$lifecycle$Lifecycle$State[state.ordinal()];
+        int i2 = C05691.$SwitchMap$androidx$lifecycle$Lifecycle$State[state.ordinal()];
         if (i2 == 1) {
             throw new IllegalArgumentException();
         }
@@ -159,7 +159,7 @@ public class LifecycleRegistry extends Lifecycle {
     }
 
     static Lifecycle.State getStateAfter(Lifecycle.Event event2) {
-        switch (AnonymousClass1.$SwitchMap$androidx$lifecycle$Lifecycle$Event[event2.ordinal()]) {
+        switch (C05691.$SwitchMap$androidx$lifecycle$Lifecycle$Event[event2.ordinal()]) {
             case 1:
             case 2:
                 return Lifecycle.State.CREATED;
@@ -229,7 +229,7 @@ public class LifecycleRegistry extends Lifecycle {
     }
 
     private static Lifecycle.Event upEvent(Lifecycle.State state) {
-        int i2 = AnonymousClass1.$SwitchMap$androidx$lifecycle$Lifecycle$State[state.ordinal()];
+        int i2 = C05691.$SwitchMap$androidx$lifecycle$Lifecycle$State[state.ordinal()];
         if (i2 != 1) {
             if (i2 == 2) {
                 return Lifecycle.Event.ON_START;

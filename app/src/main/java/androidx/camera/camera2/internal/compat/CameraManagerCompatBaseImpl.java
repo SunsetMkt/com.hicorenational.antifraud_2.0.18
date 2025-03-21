@@ -16,7 +16,7 @@ import androidx.core.util.Preconditions;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
-import util.permissionutil.a;
+import util.permissionutil.C7308a;
 
 @RequiresApi(21)
 /* loaded from: classes.dex */
@@ -45,7 +45,7 @@ class CameraManagerCompatBaseImpl implements CameraManagerCompat.CameraManagerCo
     }
 
     @Override // androidx.camera.camera2.internal.compat.CameraManagerCompat.CameraManagerCompatImpl
-    @RequiresPermission(a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     public void openCamera(@NonNull String str, @NonNull Executor executor, @NonNull CameraDevice.StateCallback stateCallback) throws CameraAccessException {
         Preconditions.checkNotNull(executor);
         Preconditions.checkNotNull(stateCallback);

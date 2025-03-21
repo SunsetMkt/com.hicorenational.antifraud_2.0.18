@@ -34,7 +34,7 @@ public class StringUtils {
         try {
             return new String(bArr, "UTF-8");
         } catch (UnsupportedEncodingException e2) {
-            Logger.w("StringUtils.byte2str error: UnsupportedEncodingException", anonymizeMessage(e2.getMessage()));
+            Logger.m6803w("StringUtils.byte2str error: UnsupportedEncodingException", anonymizeMessage(e2.getMessage()));
             return "";
         }
     }
@@ -92,7 +92,7 @@ public class StringUtils {
             try {
                 return SafeString.replace(str, charSequence, charSequence2);
             } catch (Throwable unused) {
-                Logger.w(TAG, "SafeString.substring error");
+                Logger.m6803w(TAG, "SafeString.substring error");
             }
         }
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(charSequence)) {
@@ -112,7 +112,7 @@ public class StringUtils {
         try {
             return str.getBytes("UTF-8");
         } catch (UnsupportedEncodingException e2) {
-            Logger.w("StringUtils.str2Byte error: UnsupportedEncodingException", anonymizeMessage(e2.getMessage()));
+            Logger.m6803w("StringUtils.str2Byte error: UnsupportedEncodingException", anonymizeMessage(e2.getMessage()));
             return new byte[0];
         }
     }
@@ -128,7 +128,7 @@ public class StringUtils {
         try {
             return Boolean.valueOf(str).booleanValue();
         } catch (NumberFormatException e2) {
-            Logger.w(TAG, "String to Integer catch NumberFormatException." + anonymizeMessage(e2.getMessage()));
+            Logger.m6803w(TAG, "String to Integer catch NumberFormatException." + anonymizeMessage(e2.getMessage()));
             return z;
         }
     }
@@ -140,7 +140,7 @@ public class StringUtils {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e2) {
-            Logger.w(TAG, "String to Integer catch NumberFormatException." + anonymizeMessage(e2.getMessage()));
+            Logger.m6803w(TAG, "String to Integer catch NumberFormatException." + anonymizeMessage(e2.getMessage()));
             return i2;
         }
     }
@@ -152,7 +152,7 @@ public class StringUtils {
         try {
             return Long.parseLong(str);
         } catch (NumberFormatException e2) {
-            Logger.w(TAG, "String to Long catch NumberFormatException." + anonymizeMessage(e2.getMessage()));
+            Logger.m6803w(TAG, "String to Long catch NumberFormatException." + anonymizeMessage(e2.getMessage()));
             return j2;
         }
     }
@@ -162,7 +162,7 @@ public class StringUtils {
             try {
                 return SafeString.substring(str, i2);
             } catch (Throwable unused) {
-                Logger.w(TAG, "SafeString.substring error");
+                Logger.m6803w(TAG, "SafeString.substring error");
             }
         }
         if (!TextUtils.isEmpty(str) && str.length() >= i2 && i2 >= 0) {
@@ -186,7 +186,7 @@ public class StringUtils {
         try {
             return str.getBytes("utf-8");
         } catch (UnsupportedEncodingException unused) {
-            Logger.w(TAG, "the content has error while it is converted to bytes");
+            Logger.m6803w(TAG, "the content has error while it is converted to bytes");
             return bArr;
         }
     }
@@ -196,7 +196,7 @@ public class StringUtils {
             try {
                 return SafeString.substring(str, i2, i3);
             } catch (Throwable unused) {
-                Logger.w(TAG, "SafeString.substring error");
+                Logger.m6803w(TAG, "SafeString.substring error");
             }
         }
         if (!TextUtils.isEmpty(str) && i2 >= 0 && i3 <= str.length() && i3 >= i2) {

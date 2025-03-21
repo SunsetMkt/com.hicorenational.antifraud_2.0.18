@@ -148,7 +148,6 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
             FragmentActivity.this.supportInvalidateOptionsMenu();
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.fragment.app.FragmentHostCallback
         public FragmentActivity onGetHost() {
             return FragmentActivity.this;

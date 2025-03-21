@@ -6,7 +6,9 @@ import java.io.Serializable;
 public class Owner implements Serializable {
     private static final long serialVersionUID = -1942759024112448066L;
     private String displayName;
-    private String id;
+
+    /* renamed from: id */
+    private String f4020id;
 
     public Owner() {
         this(null, null);
@@ -41,11 +43,11 @@ public class Owner implements Serializable {
     }
 
     public String getId() {
-        return this.id;
+        return this.f4020id;
     }
 
     public int hashCode() {
-        String str = this.id;
+        String str = this.f4020id;
         if (str != null) {
             return str.hashCode();
         }
@@ -57,7 +59,7 @@ public class Owner implements Serializable {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f4020id = str;
     }
 
     public String toString() {
@@ -65,7 +67,7 @@ public class Owner implements Serializable {
     }
 
     public Owner(String str, String str2) {
-        this.id = str;
+        this.f4020id = str;
         this.displayName = str2;
     }
 }

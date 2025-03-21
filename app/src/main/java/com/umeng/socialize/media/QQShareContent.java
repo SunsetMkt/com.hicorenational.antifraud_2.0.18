@@ -37,7 +37,7 @@ public class QQShareContent extends SimpleShareContent {
             if (thumbImage.isUrlMedia()) {
                 bundle.putString("imageUrl", thumbImage.toUrl());
             } else if (thumbImage == null || thumbImage.asFileImage() == null) {
-                bundle.putString("error", UmengText.QQ.QQ_PERMISSION);
+                bundle.putString("error", UmengText.C3778QQ.QQ_PERMISSION);
             } else if (Build.VERSION.SDK_INT >= 30) {
                 bundle.putString("imageUrl", thumbImage.asFileImage().toString());
             } else {
@@ -55,13 +55,13 @@ public class QQShareContent extends SimpleShareContent {
     private void buildImageParams(Bundle bundle) {
         if (getImage() != null) {
             if (getImage().asFileImage() == null) {
-                bundle.putString("error", UmengText.QQ.QQ_PERMISSION);
+                bundle.putString("error", UmengText.C3778QQ.QQ_PERMISSION);
                 return;
             }
             try {
                 bundle.putString("imageLocalUrl", getImage().asFileImage().toString());
             } catch (Exception unused) {
-                bundle.putString("error", UmengText.QQ.QQ_PERMISSION);
+                bundle.putString("error", UmengText.C3778QQ.QQ_PERMISSION);
             }
         }
     }
@@ -78,7 +78,7 @@ public class QQShareContent extends SimpleShareContent {
             if (thumbImage.isUrlMedia()) {
                 bundle.putString("imageUrl", thumbImage.toUrl());
             } else if (thumbImage == null || thumbImage.asFileImage() == null) {
-                bundle.putString("error", UmengText.QQ.QQ_PERMISSION);
+                bundle.putString("error", UmengText.C3778QQ.QQ_PERMISSION);
             } else if (Build.VERSION.SDK_INT >= 30) {
                 bundle.putString("imageUrl", thumbImage.asFileImage().toString());
             } else {
@@ -113,7 +113,7 @@ public class QQShareContent extends SimpleShareContent {
             if (thumbImage.isUrlMedia()) {
                 bundle.putString("imageUrl", thumbImage.toUrl());
             } else if (thumbImage == null || thumbImage.asFileImage() == null) {
-                bundle.putString("error", UmengText.QQ.QQ_PERMISSION);
+                bundle.putString("error", UmengText.C3778QQ.QQ_PERMISSION);
             } else if (Build.VERSION.SDK_INT >= 30) {
                 bundle.putString("imageUrl", thumbImage.asFileImage().toString());
             } else {
@@ -131,7 +131,7 @@ public class QQShareContent extends SimpleShareContent {
             if (thumbImage.isUrlMedia()) {
                 bundle.putString("imageUrl", thumbImage.toUrl());
             } else if (thumbImage == null || thumbImage.asFileImage() == null) {
-                bundle.putString("error", UmengText.QQ.QQ_PERMISSION);
+                bundle.putString("error", UmengText.C3778QQ.QQ_PERMISSION);
             } else if (Build.VERSION.SDK_INT >= 30) {
                 bundle.putString("imageUrl", thumbImage.asFileImage().toString());
             } else {

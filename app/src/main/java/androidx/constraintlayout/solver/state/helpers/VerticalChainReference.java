@@ -11,8 +11,8 @@ public class VerticalChainReference extends ChainReference {
     private Object mTopToBottom;
     private Object mTopToTop;
 
-    /* renamed from: androidx.constraintlayout.solver.state.helpers.VerticalChainReference$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: androidx.constraintlayout.solver.state.helpers.VerticalChainReference$1 */
+    static /* synthetic */ class C04581 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Chain = new int[State.Chain.values().length];
 
         static {
@@ -85,7 +85,7 @@ public class VerticalChainReference extends ChainReference {
                 constraintReference2.verticalBias(f2);
             }
         }
-        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
+        int i2 = C04581.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
         if (i2 == 1) {
             constraintReference2.setVerticalChainStyle(0);
         } else if (i2 == 2) {

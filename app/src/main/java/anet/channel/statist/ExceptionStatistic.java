@@ -22,8 +22,9 @@ public class ExceptionStatistic extends StatObject {
     @Dimension
     public String host;
 
+    /* renamed from: ip */
     @Dimension
-    public String ip;
+    public String f998ip;
 
     @Dimension
     public boolean isDNS;
@@ -68,7 +69,7 @@ public class ExceptionStatistic extends StatObject {
         this.exceptionStack = th != null ? th.toString() : "";
         if (requestStatistic != null) {
             this.host = requestStatistic.host;
-            this.ip = requestStatistic.ip;
+            this.f998ip = requestStatistic.f1002ip;
             this.port = requestStatistic.port;
             this.isSSL = requestStatistic.isSSL;
             this.isProxy = requestStatistic.isProxy;

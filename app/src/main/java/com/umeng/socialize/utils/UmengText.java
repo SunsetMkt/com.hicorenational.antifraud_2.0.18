@@ -20,9 +20,11 @@ public class UmengText {
     }
 
     public static class CACHE {
-        private static String id = "[SCC10000]";
-        public static String CACHEFILE = id + "缓存文件错误，请勿担心，不影响正常使用";
-        public static String CLOSE = id + "关闭流异常";
+
+        /* renamed from: id */
+        private static String f13819id = "[SCC10000]";
+        public static String CACHEFILE = f13819id + "缓存文件错误，请勿担心，不影响正常使用";
+        public static String CLOSE = f13819id + "关闭流异常";
         public static String SD_NOT_FOUNT = "[SCC10001]没有找到存储设备，存储图片";
         public static String MSANDCACHE_FOUNT = "[SCC10002]mSandCache 找不到";
     }
@@ -80,16 +82,18 @@ public class UmengText {
     }
 
     public static class IMAGE {
-        private static String id = "[SI10000]";
-        public static String BINARYTOFILE = id + "字节流转文件错误";
-        public static String BITMAOTOBINARY = id + "bitmap转字节流错误";
-        public static String CLOSE = id + "流关闭错误";
-        public static String GET_FILE_FROM_BINARY = id + "字节流输出文件出错";
-        public static String TOOBIG = id + "加载文件过大";
-        public static String FILE_TO_BINARY_ERROR = id + "文件转入字节流，先要进行压缩出错";
-        public static String GET_IMAGE_SCALE_ERROR = id + "获取文件大小出错";
-        public static String READ_IMAGE_ERROR = id + "读取图片文件出错";
-        public static String CHECK_FORMAT_ERROR = id + "checkFormat出错";
+
+        /* renamed from: id */
+        private static String f13820id = "[SI10000]";
+        public static String BINARYTOFILE = f13820id + "字节流转文件错误";
+        public static String BITMAOTOBINARY = f13820id + "bitmap转字节流错误";
+        public static String CLOSE = f13820id + "流关闭错误";
+        public static String GET_FILE_FROM_BINARY = f13820id + "字节流输出文件出错";
+        public static String TOOBIG = f13820id + "加载文件过大";
+        public static String FILE_TO_BINARY_ERROR = f13820id + "文件转入字节流，先要进行压缩出错";
+        public static String GET_IMAGE_SCALE_ERROR = f13820id + "获取文件大小出错";
+        public static String READ_IMAGE_ERROR = f13820id + "读取图片文件出错";
+        public static String CHECK_FORMAT_ERROR = f13820id + "checkFormat出错";
         public static String THUMB_ERROR = "[SI10001]您的原始图片太大,导致缩略图压缩过后还大于32KB,请将分享到微信的图片进行适当缩小.";
         public static String SHARECONTENT_THUMB_ERROR = "[SI10002]缩略图参数有误，您没有设置缩略图，或者设置的缩略图内容有误，不能被解析";
         public static String SHARECONTENT_IMAGE_ERROR = "[SI10003]图片参数有误，您没有设置缩略图，或者设置的缩略图内容有误，不能被解析";
@@ -110,12 +114,14 @@ public class UmengText {
     }
 
     public static class NET {
-        private static String id = "[SN10000]";
-        public static String PARSEERROR = id + "返回字符串不是json，可能是由于服务器不通造成";
-        public static String TOOL = id + "工具类内的错误，不影响用户使用";
+
+        /* renamed from: id */
+        private static String f13821id = "[SN10000]";
+        public static String PARSEERROR = f13821id + "返回字符串不是json，可能是由于服务器不通造成";
+        public static String TOOL = f13821id + "工具类内的错误，不影响用户使用";
         public static String IMAGEDOWN = "[SN10004]图片下载错误,请检查网址";
-        public static String CLOSE = id + "关闭流异常";
-        public static String CREATE = id + "构建response出错,不影响用户使用，但需要查明原因";
+        public static String CLOSE = f13821id + "关闭流异常";
+        public static String CREATE = f13821id + "构建response出错,不影响用户使用，但需要查明原因";
         public static String NET_AGAIN_ERROR = "[SN10001]重定向问题：url和重定向url相同";
         public static String JSONNULL = "[SN10002]后台返回json为空";
         public static String MACNULL = "[SN10003]由于权限问题，没有获取到mac";
@@ -131,11 +137,12 @@ public class UmengText {
         }
 
         public static String getURLERROR(String str) {
-            return id + "baseurl=" + str + " 该url不正确";
+            return f13821id + "baseurl=" + str + " 该url不正确";
         }
     }
 
-    public static class QQ {
+    /* renamed from: com.umeng.socialize.utils.UmengText$QQ */
+    public static class C3778QQ {
         public static String ERRORCALLBACK = "为什么qq分享成功却回调取消？";
         public static String ERRORDATA = "[SQ10011]qq配置不正确，AndroidManifest中AuthActivity的data中要加入自己的qq应用id";
         public static String ERRORINFO = "错误信息:";
@@ -220,7 +227,8 @@ public class UmengText {
         public static String TWITTER_NULL_SESSION = "当前无活动会话，请确保已经完成授权申请。";
     }
 
-    public static class WX {
+    /* renamed from: com.umeng.socialize.utils.UmengText$WX */
+    public static class C3779WX {
         public static String WEIXIN_FILE_PROVIDER_ERROR = "[SX10003]微信分享初始化缺少FileProvider authorities参数，请检查是否调用PlatformConfig.setWXFileProvider方法设置相关参数。";
         public static String WX_40125 = "为什么微信提示40125/invalid APPsecret？";
         public static String WX_CIRCLE_NOCONTENT = "为什么微信朋友圈链接不显示描述文字？";

@@ -1,6 +1,6 @@
 package com.tencent.bugly.beta.tinker;
 
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 
@@ -122,7 +122,7 @@ public class TinkerReport {
             TinkerLog.e(TAG, "hp_report report apply cost failed, invalid cost", new Object[0]);
             return;
         }
-        if (j2 <= a.r) {
+        if (j2 <= C2084a.f6136r) {
             if (z) {
                 reporter.onReport(200);
                 return;
@@ -131,7 +131,7 @@ public class TinkerReport {
                 return;
             }
         }
-        if (j2 <= a.q) {
+        if (j2 <= C2084a.f6135q) {
             if (z) {
                 reporter.onReport(201);
                 return;
@@ -149,7 +149,7 @@ public class TinkerReport {
                 return;
             }
         }
-        if (j2 <= a.f5800d) {
+        if (j2 <= C2084a.f6122d) {
             if (z) {
                 reporter.onReport(203);
                 return;
@@ -519,7 +519,7 @@ public class TinkerReport {
         }
         if (j2 <= 3000) {
             reporter.onReport(402);
-        } else if (j2 <= a.r) {
+        } else if (j2 <= C2084a.f6136r) {
             reporter.onReport(403);
         } else {
             reporter.onReport(KEY_LOADED_SUCC_COST_OTHER);

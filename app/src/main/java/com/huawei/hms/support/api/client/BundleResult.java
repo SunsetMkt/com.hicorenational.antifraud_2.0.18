@@ -5,30 +5,30 @@ import android.os.Bundle;
 /* loaded from: classes.dex */
 public class BundleResult {
 
-    /* renamed from: a, reason: collision with root package name */
-    private int f7276a;
+    /* renamed from: a */
+    private int f7841a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private Bundle f7277b;
+    /* renamed from: b */
+    private Bundle f7842b;
 
     public BundleResult(int i2, Bundle bundle) {
-        this.f7276a = i2;
-        this.f7277b = bundle;
+        this.f7841a = i2;
+        this.f7842b = bundle;
     }
 
     public int getResultCode() {
-        return this.f7276a;
+        return this.f7841a;
     }
 
     public Bundle getRspBody() {
-        return this.f7277b;
+        return this.f7842b;
     }
 
     public void setResultCode(int i2) {
-        this.f7276a = i2;
+        this.f7841a = i2;
     }
 
     public void setRspBody(Bundle bundle) {
-        this.f7277b = bundle;
+        this.f7842b = bundle;
     }
 }

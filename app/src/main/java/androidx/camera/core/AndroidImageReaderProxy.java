@@ -106,7 +106,7 @@ final class AndroidImageReaderProxy implements ImageReaderProxy {
                 executor.execute(new Runnable() { // from class: androidx.camera.core.AndroidImageReaderProxy.1.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                        C02881 c02881 = C02881.this;
                         onImageAvailableListener.onImageAvailable(AndroidImageReaderProxy.this);
                     }
                 });

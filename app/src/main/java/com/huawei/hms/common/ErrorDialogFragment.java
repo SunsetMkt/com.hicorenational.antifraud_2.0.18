@@ -10,11 +10,11 @@ import com.huawei.hms.common.internal.Preconditions;
 /* loaded from: classes.dex */
 public class ErrorDialogFragment extends DialogFragment {
 
-    /* renamed from: a, reason: collision with root package name */
-    private Dialog f6674a = null;
+    /* renamed from: a */
+    private Dialog f7193a = null;
 
-    /* renamed from: b, reason: collision with root package name */
-    private DialogInterface.OnCancelListener f6675b = null;
+    /* renamed from: b */
+    private DialogInterface.OnCancelListener f7194b = null;
 
     public static ErrorDialogFragment newInstance(Dialog dialog) {
         return newInstance(dialog, null);
@@ -22,7 +22,7 @@ public class ErrorDialogFragment extends DialogFragment {
 
     @Override // android.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.f6675b;
+        DialogInterface.OnCancelListener onCancelListener = this.f7194b;
         if (onCancelListener != null) {
             onCancelListener.onCancel(dialogInterface);
         }
@@ -30,10 +30,10 @@ public class ErrorDialogFragment extends DialogFragment {
 
     @Override // android.app.DialogFragment
     public Dialog onCreateDialog(Bundle bundle) {
-        if (this.f6674a == null) {
+        if (this.f7193a == null) {
             setShowsDialog(false);
         }
-        return this.f6674a;
+        return this.f7193a;
     }
 
     @Override // android.app.DialogFragment
@@ -45,11 +45,11 @@ public class ErrorDialogFragment extends DialogFragment {
     public static ErrorDialogFragment newInstance(Dialog dialog, DialogInterface.OnCancelListener onCancelListener) {
         Preconditions.checkNotNull(dialog, "Dialog cannot be null!");
         ErrorDialogFragment errorDialogFragment = new ErrorDialogFragment();
-        errorDialogFragment.f6674a = dialog;
+        errorDialogFragment.f7193a = dialog;
         dialog.setOnCancelListener(null);
-        errorDialogFragment.f6674a.setOnDismissListener(null);
+        errorDialogFragment.f7193a.setOnDismissListener(null);
         if (onCancelListener != null) {
-            errorDialogFragment.f6675b = onCancelListener;
+            errorDialogFragment.f7194b = onCancelListener;
         }
         return errorDialogFragment;
     }

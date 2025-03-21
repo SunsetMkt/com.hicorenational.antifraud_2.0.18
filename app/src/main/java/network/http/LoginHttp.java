@@ -2,8 +2,6 @@ package network.http;
 
 import android.app.Activity;
 import android.text.TextUtils;
-import d.a;
-import e.b;
 import interfaces.IOneClickListener;
 import java.lang.reflect.Type;
 import manager.AccountManager;
@@ -13,12 +11,15 @@ import network.MiddleSubscriber;
 import network.account.APIresult;
 import network.account.AccountInfo;
 import network.account.RegisterBody;
-import ui.basemvp.BaseView;
-import ui.c;
-import ui.model.ModelPresent;
-import util.b1;
-import util.d1;
-import util.n1;
+import p245d.C4440a;
+import p247e.C4445b;
+import p251g.p252a.p264u0.InterfaceC4552c;
+import p388ui.C6813c;
+import p388ui.basemvp.BaseView;
+import p388ui.model.ModelPresent;
+import util.C7257b1;
+import util.C7268d1;
+import util.C7301n1;
 
 /* loaded from: classes2.dex */
 public class LoginHttp extends ModelPresent {
@@ -44,7 +45,7 @@ public class LoginHttp extends ModelPresent {
     }
 
     private void loginHttp(final RegisterBody registerBody) {
-        loginHttp(a.f13517c + b.f13575m, registerBody, new MiddleSubscriber<APIresult<AccountInfo>>() { // from class: network.http.LoginHttp.1
+        loginHttp(C4440a.f16881c + C4445b.f17105m, registerBody, new MiddleSubscriber<APIresult<AccountInfo>>() { // from class: network.http.LoginHttp.1
             @Override // network.MiddleSubscriber
             protected Type getType() {
                 return AccountInfo.class;
@@ -52,20 +53,20 @@ public class LoginHttp extends ModelPresent {
 
             @Override // network.MiddleSubscriber
             protected void onCompleteMiddle() {
-                n1.a(LoginHttp.TAG, "-->onComplete");
-                b1.a();
+                C7301n1.m26454a(LoginHttp.TAG, "-->onComplete");
+                C7257b1.m26191a();
             }
 
             @Override // network.MiddleSubscriber
             protected void onErrorMiddle(APIException aPIException) {
-                n1.a(LoginHttp.TAG, "-->onError");
-                b1.a();
+                C7301n1.m26454a(LoginHttp.TAG, "-->onError");
+                C7257b1.m26191a();
                 LoginHttp.this.intentLogin();
             }
 
             @Override // network.MiddleSubscriber
             protected void onNextMiddle(APIresult<AccountInfo> aPIresult) {
-                n1.a(LoginHttp.TAG, "-->onNext");
+                C7301n1.m26454a(LoginHttp.TAG, "-->onNext");
                 if (aPIresult.getCode() != 0) {
                     LoginHttp.this.intentLogin();
                     return;
@@ -73,14 +74,14 @@ public class LoginHttp extends ModelPresent {
                 AccountInfo data = aPIresult.getData();
                 data.setLoginType(AccountManager.LOGIN_NORMAL);
                 AccountManager.saveAccount(data, registerBody.getPhoneNum());
-                c.i().e();
+                C6813c.m25437i().m25450e();
                 LoginHttp.this.clickListener.clickOKBtn();
             }
 
             @Override // network.MiddleSubscriber
-            protected void onStartMiddle(g.a.u0.c cVar) {
-                n1.a(LoginHttp.TAG, "-->onSubscribe");
-                b1.a("请稍后...", false, LoginHttp.this.mContext);
+            protected void onStartMiddle(InterfaceC4552c interfaceC4552c) {
+                C7301n1.m26454a(LoginHttp.TAG, "-->onSubscribe");
+                C7257b1.m26203a("请稍后...", false, LoginHttp.this.mContext);
             }
         });
     }
@@ -109,13 +110,13 @@ public class LoginHttp extends ModelPresent {
                 registerBody.setSmsVerifyCode(str3);
             }
         } else {
-            if (TextUtils.isEmpty(str2) || str2.length() < 6 || str2.length() > 16 || d1.a(str2)) {
+            if (TextUtils.isEmpty(str2) || str2.length() < 6 || str2.length() > 16 || C7268d1.m26312a(str2)) {
                 intentLogin();
                 return;
             }
             registerBody.setPassword(str2);
         }
-        n1.b("RegisterBody-->", registerBody.toString());
+        C7301n1.m26457b("RegisterBody-->", registerBody.toString());
         this.clickListener = iOneClickListener;
         loginHttp(registerBody);
     }

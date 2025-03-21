@@ -79,7 +79,7 @@
             app:layout_constraintLeft_toRightOf="@+id/account_phone"
             app:layout_constraintRight_toLeftOf="@+id/tv_resend"
             app:layout_constraintTop_toTopOf="@+id/account_phone"/>
-        <ui.view.CodeCutTimeTextView
+        <p388ui.view.CodeCutTimeTextView
             android:textColor="#2b4cff"
             android:id="@+id/tv_resend"
             android:layout_width="wrap_content"

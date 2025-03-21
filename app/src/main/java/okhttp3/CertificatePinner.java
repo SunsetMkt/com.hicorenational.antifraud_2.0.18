@@ -120,11 +120,11 @@ public final class CertificatePinner {
     }
 
     static ByteString sha1(X509Certificate x509Certificate) {
-        return ByteString.of(x509Certificate.getPublicKey().getEncoded()).sha1();
+        return ByteString.m24926of(x509Certificate.getPublicKey().getEncoded()).sha1();
     }
 
     static ByteString sha256(X509Certificate x509Certificate) {
-        return ByteString.of(x509Certificate.getPublicKey().getEncoded()).sha256();
+        return ByteString.m24926of(x509Certificate.getPublicKey().getEncoded()).sha256();
     }
 
     public void check(String str, List<Certificate> list) throws SSLPeerUnverifiedException {

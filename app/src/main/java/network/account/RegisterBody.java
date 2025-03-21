@@ -10,7 +10,9 @@ public class RegisterBody extends BaseBean {
     private String innerversion;
     private int loginType;
     private String name;
-    private int os;
+
+    /* renamed from: os */
+    private int f21453os;
     private String osVersion;
     private String pCode;
     private String password;
@@ -46,7 +48,7 @@ public class RegisterBody extends BaseBean {
     }
 
     public int getOs() {
-        return this.os;
+        return this.f21453os;
     }
 
     public String getOsVersion() {
@@ -110,7 +112,7 @@ public class RegisterBody extends BaseBean {
     }
 
     public void setOs(int i2) {
-        this.os = i2;
+        this.f21453os = i2;
     }
 
     public void setOsVersion(String str) {
@@ -150,6 +152,6 @@ public class RegisterBody extends BaseBean {
     }
 
     public String toString() {
-        return "RegisterBody{phoneNum='" + this.phoneNum + "', password='" + this.password + "', appVersion='" + this.appVersion + "', os=" + this.os + ", osVersion='" + this.osVersion + "', imei='" + this.imei + "', requestIP='" + this.requestIP + "', region='" + this.region + "'}";
+        return "RegisterBody{phoneNum='" + this.phoneNum + "', password='" + this.password + "', appVersion='" + this.appVersion + "', os=" + this.f21453os + ", osVersion='" + this.osVersion + "', imei='" + this.imei + "', requestIP='" + this.requestIP + "', region='" + this.region + "'}";
     }
 }

@@ -1,6 +1,6 @@
 package anet.channel.util;
 
-import com.umeng.analytics.pro.cw;
+import com.umeng.analytics.pro.C3393cw;
 import java.security.MessageDigest;
 
 /* compiled from: Taobao */
@@ -20,7 +20,7 @@ public class StringUtils {
             int i4 = i2 + 1;
             cArr2[i2] = cArr[(bArr[i3] & 240) >>> 4];
             i2 = i4 + 1;
-            cArr2[i4] = cArr[bArr[i3] & cw.f10303m];
+            cArr2[i4] = cArr[bArr[i3] & C3393cw.f11873m];
         }
         return new String(cArr2);
     }

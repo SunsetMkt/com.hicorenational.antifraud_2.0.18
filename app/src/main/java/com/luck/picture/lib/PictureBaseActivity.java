@@ -43,6 +43,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import p324i.p336c.p337a.InterfaceC5816d;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes.dex */
 public abstract class PictureBaseActivity extends AppCompatActivity {
@@ -152,28 +154,28 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
         } else {
             this.openWhiteStatusBar = pictureSelectionConfig.isChangeStatusBarFontColor;
             if (!this.openWhiteStatusBar) {
-                this.openWhiteStatusBar = AttrsUtils.getTypeValueBoolean(this, R.attr.picture_statusFontColor);
+                this.openWhiteStatusBar = AttrsUtils.getTypeValueBoolean(this, C2639R.attr.picture_statusFontColor);
             }
             this.numComplete = this.config.isOpenStyleNumComplete;
             if (!this.numComplete) {
-                this.numComplete = AttrsUtils.getTypeValueBoolean(this, R.attr.picture_style_numComplete);
+                this.numComplete = AttrsUtils.getTypeValueBoolean(this, C2639R.attr.picture_style_numComplete);
             }
             PictureSelectionConfig pictureSelectionConfig3 = this.config;
             pictureSelectionConfig3.checkNumMode = pictureSelectionConfig3.isOpenStyleCheckNumMode;
             if (!pictureSelectionConfig3.checkNumMode) {
-                pictureSelectionConfig3.checkNumMode = AttrsUtils.getTypeValueBoolean(this, R.attr.picture_style_checkNumMode);
+                pictureSelectionConfig3.checkNumMode = AttrsUtils.getTypeValueBoolean(this, C2639R.attr.picture_style_checkNumMode);
             }
             int i4 = this.config.titleBarBackgroundColor;
             if (i4 != 0) {
                 this.colorPrimary = i4;
             } else {
-                this.colorPrimary = AttrsUtils.getTypeValueColor(this, R.attr.colorPrimary);
+                this.colorPrimary = AttrsUtils.getTypeValueColor(this, C2639R.attr.colorPrimary);
             }
             int i5 = this.config.pictureStatusBarColor;
             if (i5 != 0) {
                 this.colorPrimaryDark = i5;
             } else {
-                this.colorPrimaryDark = AttrsUtils.getTypeValueColor(this, R.attr.colorPrimaryDark);
+                this.colorPrimaryDark = AttrsUtils.getTypeValueColor(this, C2639R.attr.colorPrimaryDark);
             }
         }
         if (this.config.openClickSound) {
@@ -257,9 +259,9 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
                 str = StringUtils.rename(str);
             }
         }
-        UCrop withOptions = UCrop.of(fromFile, Uri.fromFile(new File(diskCacheDir, str))).withOptions(options);
+        UCrop withOptions = UCrop.m16371of(fromFile, Uri.fromFile(new File(diskCacheDir, str))).withOptions(options);
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.config.windowAnimationStyle;
-        withOptions.startAnimationMultipleCropActivity(this, pictureWindowAnimationStyle != null ? pictureWindowAnimationStyle.activityCropEnterAnimation : R.anim.picture_anim_enter);
+        withOptions.startAnimationMultipleCropActivity(this, pictureWindowAnimationStyle != null ? pictureWindowAnimationStyle.activityCropEnterAnimation : C2639R.anim.picture_anim_enter);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -273,9 +275,9 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
         } else {
             str4 = this.config.renameCropFileName;
         }
-        UCrop withOptions = UCrop.of(!TextUtils.isEmpty(str2) ? Uri.fromFile(new File(str2)) : (isHttp || SdkVersionUtils.checkedAndroid_Q()) ? Uri.parse(str) : Uri.fromFile(new File(str)), Uri.fromFile(new File(diskCacheDir, str4))).withOptions(options);
+        UCrop withOptions = UCrop.m16371of(!TextUtils.isEmpty(str2) ? Uri.fromFile(new File(str2)) : (isHttp || SdkVersionUtils.checkedAndroid_Q()) ? Uri.parse(str) : Uri.fromFile(new File(str)), Uri.fromFile(new File(diskCacheDir, str4))).withOptions(options);
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.config.windowAnimationStyle;
-        withOptions.startAnimationActivity(this, pictureWindowAnimationStyle != null ? pictureWindowAnimationStyle.activityCropEnterAnimation : R.anim.picture_anim_enter);
+        withOptions.startAnimationActivity(this, pictureWindowAnimationStyle != null ? pictureWindowAnimationStyle.activityCropEnterAnimation : C2639R.anim.picture_anim_enter);
     }
 
     @Override // androidx.appcompat.app.AppCompatActivity, android.app.Activity, android.view.ContextThemeWrapper, android.content.ContextWrapper
@@ -292,11 +294,11 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
         finish();
         PictureSelectionConfig pictureSelectionConfig = this.config;
         if (pictureSelectionConfig.camera) {
-            overridePendingTransition(0, R.anim.picture_anim_fade_out);
+            overridePendingTransition(0, C2639R.anim.picture_anim_fade_out);
         } else {
             PictureWindowAnimationStyle pictureWindowAnimationStyle = pictureSelectionConfig.windowAnimationStyle;
             if (pictureWindowAnimationStyle == null || (i2 = pictureWindowAnimationStyle.activityExitAnimation) == 0) {
-                i2 = R.anim.picture_anim_exit;
+                i2 = C2639R.anim.picture_anim_exit;
             }
             overridePendingTransition(0, i2);
         }
@@ -345,7 +347,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
     protected void createNewFolder(List<LocalMediaFolder> list) {
         if (list.size() == 0) {
             LocalMediaFolder localMediaFolder = new LocalMediaFolder();
-            localMediaFolder.setName(getString(this.config.chooseMode == PictureMimeType.ofAudio() ? R.string.picture_all_audio : R.string.picture_camera_roll));
+            localMediaFolder.setName(getString(this.config.chooseMode == PictureMimeType.ofAudio() ? C2639R.string.picture_all_audio : C2639R.string.picture_camera_roll));
             localMediaFolder.setFirstImagePath("");
             list.add(localMediaFolder);
         }
@@ -485,7 +487,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
             return;
         }
         if (iArr[0] != 0) {
-            ToastUtils.s(getContext(), getString(R.string.picture_audio));
+            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_audio));
             return;
         }
         Intent intent = new Intent("android.provider.MediaStore.RECORD_SOUND");
@@ -523,7 +525,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
     }
 
     @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
-    protected void onSaveInstanceState(@i.c.a.d Bundle bundle) {
+    protected void onSaveInstanceState(@InterfaceC5816d Bundle bundle) {
         super.onSaveInstanceState(bundle);
         this.isOnSaveInstanceState = true;
         bundle.putParcelable(PictureConfig.EXTRA_CONFIG, this.config);
@@ -555,7 +557,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
 
     protected void startCrop(final String str, final String str2) {
         if (TextUtils.isEmpty(str)) {
-            ToastUtils.s(this, getString(R.string.picture_not_crop_data));
+            ToastUtils.m8140s(this, getString(C2639R.string.picture_not_crop_data));
             return;
         }
         final UCrop.Options basicOptions = basicOptions();
@@ -585,7 +587,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
             if (SdkVersionUtils.checkedAndroid_Q()) {
                 parUri = MediaUtils.createImageUri(getApplicationContext());
                 if (parUri == null) {
-                    ToastUtils.s(getContext(), "open is camera error，the uri is empty ");
+                    ToastUtils.m8140s(getContext(), "open is camera error，the uri is empty ");
                     if (this.config.camera) {
                         closeActivity();
                         return;
@@ -615,7 +617,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
                 PictureSelectionConfig pictureSelectionConfig3 = this.config;
                 File createCameraFile = PictureFileUtils.createCameraFile(applicationContext, i2, str, pictureSelectionConfig3.suffixType, pictureSelectionConfig3.outPutCameraPath);
                 if (createCameraFile == null) {
-                    ToastUtils.s(getContext(), "open is camera error，the uri is empty ");
+                    ToastUtils.m8140s(getContext(), "open is camera error，the uri is empty ");
                     if (this.config.camera) {
                         closeActivity();
                         return;
@@ -635,8 +637,8 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
     }
 
     public void startOpenCameraAudio() {
-        if (!PermissionChecker.checkSelfPermission(this, util.permissionutil.a.f20915i)) {
-            PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f20915i}, 3);
+        if (!PermissionChecker.checkSelfPermission(this, C7308a.f25530i)) {
+            PermissionChecker.requestPermissions(this, new String[]{C7308a.f25530i}, 3);
             return;
         }
         Intent intent = new Intent("android.provider.MediaStore.RECORD_SOUND");
@@ -654,7 +656,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
             if (SdkVersionUtils.checkedAndroid_Q()) {
                 parUri = MediaUtils.createVideoUri(getApplicationContext());
                 if (parUri == null) {
-                    ToastUtils.s(getContext(), "open is camera error，the uri is empty ");
+                    ToastUtils.m8140s(getContext(), "open is camera error，the uri is empty ");
                     if (this.config.camera) {
                         closeActivity();
                         return;
@@ -684,7 +686,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
                 PictureSelectionConfig pictureSelectionConfig3 = this.config;
                 File createCameraFile = PictureFileUtils.createCameraFile(applicationContext, i2, str, pictureSelectionConfig3.suffixType, pictureSelectionConfig3.outPutCameraPath);
                 if (createCameraFile == null) {
-                    ToastUtils.s(getContext(), "open is camera error，the uri is empty ");
+                    ToastUtils.m8140s(getContext(), "open is camera error，the uri is empty ");
                     if (this.config.camera) {
                         closeActivity();
                         return;
@@ -730,19 +732,19 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
         } else {
             i2 = pictureSelectionConfig.cropTitleBarBackgroundColor;
             if (i2 == 0) {
-                i2 = AttrsUtils.getTypeValueColor(this, R.attr.picture_crop_toolbar_bg);
+                i2 = AttrsUtils.getTypeValueColor(this, C2639R.attr.picture_crop_toolbar_bg);
             }
             i3 = this.config.cropStatusBarColorPrimaryDark;
             if (i3 == 0) {
-                i3 = AttrsUtils.getTypeValueColor(this, R.attr.picture_crop_status_color);
+                i3 = AttrsUtils.getTypeValueColor(this, C2639R.attr.picture_crop_status_color);
             }
             i4 = this.config.cropTitleColor;
             if (i4 == 0) {
-                i4 = AttrsUtils.getTypeValueColor(this, R.attr.picture_crop_title_color);
+                i4 = AttrsUtils.getTypeValueColor(this, C2639R.attr.picture_crop_title_color);
             }
             z = this.config.isChangeStatusBarFontColor;
             if (!z) {
-                z = AttrsUtils.getTypeValueBoolean(this, R.attr.picture_statusFontColor);
+                z = AttrsUtils.getTypeValueBoolean(this, C2639R.attr.picture_statusFontColor);
             }
         }
         UCrop.Options options = this.config.uCropOptions;
@@ -839,6 +841,6 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
             }
             return;
         }
-        ToastUtils.s(this, getString(R.string.picture_not_crop_data));
+        ToastUtils.m8140s(this, getString(C2639R.string.picture_not_crop_data));
     }
 }

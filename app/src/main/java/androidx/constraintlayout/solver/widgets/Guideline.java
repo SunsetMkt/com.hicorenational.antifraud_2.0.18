@@ -22,45 +22,47 @@ public class Guideline extends ConstraintWidget {
     private int mOrientation = 0;
     private int mMinimumPosition = 0;
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.Guideline$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = new int[ConstraintAnchor.Type.values().length];
+    /* renamed from: androidx.constraintlayout.solver.widgets.Guideline$1 */
+    static /* synthetic */ class C04611 {
+
+        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
+        static final /* synthetic */ int[] f602x4c44d048 = new int[ConstraintAnchor.Type.values().length];
 
         static {
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
+                f602x4c44d048[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
+                f602x4c44d048[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.TOP.ordinal()] = 3;
+                f602x4c44d048[ConstraintAnchor.Type.TOP.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BOTTOM.ordinal()] = 4;
+                f602x4c44d048[ConstraintAnchor.Type.BOTTOM.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BASELINE.ordinal()] = 5;
+                f602x4c44d048[ConstraintAnchor.Type.BASELINE.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER.ordinal()] = 6;
+                f602x4c44d048[ConstraintAnchor.Type.CENTER.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER_X.ordinal()] = 7;
+                f602x4c44d048[ConstraintAnchor.Type.CENTER_X.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER_Y.ordinal()] = 8;
+                f602x4c44d048[ConstraintAnchor.Type.CENTER_Y.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
-                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.NONE.ordinal()] = 9;
+                f602x4c44d048[ConstraintAnchor.Type.NONE.ordinal()] = 9;
             } catch (NoSuchFieldError unused9) {
             }
         }
@@ -297,7 +299,7 @@ public class Guideline extends ConstraintWidget {
 
     @Override // androidx.constraintlayout.solver.widgets.ConstraintWidget
     public ConstraintAnchor getAnchor(ConstraintAnchor.Type type) {
-        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[type.ordinal()]) {
+        switch (C04611.f602x4c44d048[type.ordinal()]) {
             case 1:
             case 2:
                 if (this.mOrientation == 1) {

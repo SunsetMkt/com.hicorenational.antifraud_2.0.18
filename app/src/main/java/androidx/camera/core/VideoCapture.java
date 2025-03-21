@@ -26,6 +26,7 @@ import androidx.camera.core.impl.UseCaseConfig;
 import androidx.camera.core.impl.VideoCaptureConfig;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.internal.utils.UseCaseConfigUtil;
+import com.heytap.mcssdk.constant.C2084a;
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Retention;
@@ -35,6 +36,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -140,7 +142,8 @@ public class VideoCapture extends UseCase {
             this.mOnVideoSavedCallback = onVideoSavedCallback;
         }
 
-        public /* synthetic */ void a(File file) {
+        /* renamed from: a */
+        public /* synthetic */ void m363a(File file) {
             this.mOnVideoSavedCallback.onVideoSaved(file);
         }
 
@@ -150,7 +153,7 @@ public class VideoCapture extends UseCase {
                 this.mExecutor.execute(new Runnable() { // from class: androidx.camera.core.o0
                     @Override // java.lang.Runnable
                     public final void run() {
-                        VideoCapture.VideoSavedListenerWrapper.this.a(i2, str, th);
+                        VideoCapture.VideoSavedListenerWrapper.this.m362a(i2, str, th);
                     }
                 });
             } catch (RejectedExecutionException unused) {
@@ -163,14 +166,15 @@ public class VideoCapture extends UseCase {
                 this.mExecutor.execute(new Runnable() { // from class: androidx.camera.core.p0
                     @Override // java.lang.Runnable
                     public final void run() {
-                        VideoCapture.VideoSavedListenerWrapper.this.a(file);
+                        VideoCapture.VideoSavedListenerWrapper.this.m363a(file);
                     }
                 });
             } catch (RejectedExecutionException unused) {
             }
         }
 
-        public /* synthetic */ void a(int i2, String str, Throwable th) {
+        /* renamed from: a */
+        public /* synthetic */ void m362a(int i2, String str, Throwable th) {
             this.mOnVideoSavedCallback.onError(i2, str, th);
         }
     }
@@ -195,7 +199,8 @@ public class VideoCapture extends UseCase {
         this.mAudioHandler = new Handler(this.mAudioHandlerThread.getLooper());
     }
 
-    static /* synthetic */ void a(boolean z, MediaCodec mediaCodec) {
+    /* renamed from: a */
+    static /* synthetic */ void m361a(boolean z, MediaCodec mediaCodec) {
         if (!z || mediaCodec == null) {
             return;
         }
@@ -261,7 +266,7 @@ public class VideoCapture extends UseCase {
         this.mDeferrableSurface.getTerminationFuture().addListener(new Runnable() { // from class: androidx.camera.core.q0
             @Override // java.lang.Runnable
             public final void run() {
-                VideoCapture.a(z, mediaCodec);
+                VideoCapture.m361a(z, mediaCodec);
             }
         }, CameraXExecutors.mainThreadExecutor());
         if (z) {
@@ -486,7 +491,7 @@ public class VideoCapture extends UseCase {
             deferrableSurface.close();
         }
         this.mDeferrableSurface = new ImmediateSurface(this.mCameraSurface);
-        c.b.b.a.a.a<Void> terminationFuture = this.mDeferrableSurface.getTerminationFuture();
+        InterfaceFutureC0952a<Void> terminationFuture = this.mDeferrableSurface.getTerminationFuture();
         createInputSurface.getClass();
         terminationFuture.addListener(new Runnable() { // from class: androidx.camera.core.s0
             @Override // java.lang.Runnable
@@ -540,7 +545,7 @@ public class VideoCapture extends UseCase {
                 this.mVideoEncoder.signalEndOfInputStream();
                 this.mEndOfVideoStreamSignal.set(false);
             }
-            int dequeueOutputBuffer = this.mVideoEncoder.dequeueOutputBuffer(this.mVideoBufferInfo, com.heytap.mcssdk.constant.a.q);
+            int dequeueOutputBuffer = this.mVideoEncoder.dequeueOutputBuffer(this.mVideoBufferInfo, C2084a.f6135q);
             if (dequeueOutputBuffer != -2) {
                 z = writeVideoEncodedBuffer(dequeueOutputBuffer);
             } else {

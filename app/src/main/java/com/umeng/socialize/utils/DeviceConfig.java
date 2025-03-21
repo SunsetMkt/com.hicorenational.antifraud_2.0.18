@@ -2,7 +2,7 @@ package com.umeng.socialize.utils;
 
 import android.content.Context;
 import android.os.Build;
-import util.permissionutil.a;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes2.dex */
 public class DeviceConfig {
@@ -44,7 +44,7 @@ public class DeviceConfig {
 
     public static boolean hasFineLocationPermissionInQ(Context context) {
         if (Build.VERSION.SDK_INT > 28) {
-            return checkPermission(context, a.f20913g);
+            return checkPermission(context, C7308a.f25528g);
         }
         return true;
     }

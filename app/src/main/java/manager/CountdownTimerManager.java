@@ -2,8 +2,8 @@ package manager;
 
 import android.os.CountDownTimer;
 import android.widget.TextView;
-import com.heytap.mcssdk.constant.a;
-import com.hicorenational.antifraud.R;
+import com.heytap.mcssdk.constant.C2084a;
+import com.hicorenational.antifraud.C2113R;
 
 /* loaded from: classes2.dex */
 public class CountdownTimerManager {
@@ -47,14 +47,14 @@ public class CountdownTimerManager {
     public void startCountDownTimer(final TextView textView, final int i2) {
         try {
             endCountDownTimer();
-            this.mCountDownTimer = new CountDownTimer(a.f5800d, 1000L) { // from class: manager.CountdownTimerManager.1
+            this.mCountDownTimer = new CountDownTimer(C2084a.f6122d, 1000L) { // from class: manager.CountdownTimerManager.1
                 @Override // android.os.CountDownTimer
                 public void onFinish() {
                     try {
                         textView.setEnabled(true);
                         textView.setText("获取验证码");
                         if (i2 == -1) {
-                            textView.setTextColor(textView.getResources().getColor(R.color.blue));
+                            textView.setTextColor(textView.getResources().getColor(C2113R.color.blue));
                         } else {
                             textView.setTextColor(textView.getResources().getColor(i2));
                         }
@@ -66,13 +66,13 @@ public class CountdownTimerManager {
 
                 @Override // android.os.CountDownTimer
                 public void onTick(long j2) {
-                    if (j2 == a.f5800d) {
+                    if (j2 == C2084a.f6122d) {
                         j2 -= 100;
                     }
                     try {
                         textView.setEnabled(false);
                         textView.setText("重新获取(" + (j2 / 1000) + "s)");
-                        textView.setTextColor(textView.getResources().getColor(R.color.colorGray));
+                        textView.setTextColor(textView.getResources().getColor(C2113R.color.colorGray));
                     } catch (Exception e2) {
                         e2.printStackTrace();
                     }

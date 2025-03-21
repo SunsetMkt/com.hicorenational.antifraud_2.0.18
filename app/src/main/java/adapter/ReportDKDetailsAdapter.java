@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import bean.DetailBean;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
 import java.util.List;
 import network.HistoryDetailInfo;
 import network.HistoryListInfo;
@@ -19,171 +19,172 @@ import network.HistoryListInfo;
 /* loaded from: classes.dex */
 public class ReportDKDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    /* renamed from: h, reason: collision with root package name */
-    public static final int f1305h = -1;
+    /* renamed from: h */
+    public static final int f255h = -1;
 
-    /* renamed from: i, reason: collision with root package name */
-    public static final int f1306i = 1;
+    /* renamed from: i */
+    public static final int f256i = 1;
 
-    /* renamed from: j, reason: collision with root package name */
-    public static final int f1307j = 8;
+    /* renamed from: j */
+    public static final int f257j = 8;
 
-    /* renamed from: k, reason: collision with root package name */
-    public static final int f1308k = 9;
+    /* renamed from: k */
+    public static final int f258k = 9;
 
-    /* renamed from: a, reason: collision with root package name */
-    public Typeface f1309a;
+    /* renamed from: a */
+    public Typeface f259a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final Context f1310b;
+    /* renamed from: b */
+    private final Context f260b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private HistoryListInfo.RowsBean.DetailsBean f1311c;
+    /* renamed from: c */
+    private HistoryListInfo.RowsBean.DetailsBean f261c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private HistoryListInfo.RowsBean f1312d;
+    /* renamed from: d */
+    private HistoryListInfo.RowsBean f262d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private HistoryDetailInfo f1313e;
+    /* renamed from: e */
+    private HistoryDetailInfo f263e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private final List<HistoryDetailInfo> f1314f;
+    /* renamed from: f */
+    private final List<HistoryDetailInfo> f264f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private List<List<DetailBean>> f1315g;
+    /* renamed from: g */
+    private List<List<DetailBean>> f265g;
 
     public class DefineViewHolder extends RecyclerView.ViewHolder {
 
-        /* renamed from: a, reason: collision with root package name */
-        TextView f1316a;
+        /* renamed from: a */
+        TextView f266a;
 
-        /* renamed from: b, reason: collision with root package name */
-        TextView f1317b;
+        /* renamed from: b */
+        TextView f267b;
 
-        /* renamed from: c, reason: collision with root package name */
-        TextView f1318c;
+        /* renamed from: c */
+        TextView f268c;
 
-        /* renamed from: d, reason: collision with root package name */
-        TextView f1319d;
+        /* renamed from: d */
+        TextView f269d;
 
-        /* renamed from: e, reason: collision with root package name */
-        TextView f1320e;
+        /* renamed from: e */
+        TextView f270e;
 
-        /* renamed from: f, reason: collision with root package name */
-        TextView f1321f;
+        /* renamed from: f */
+        TextView f271f;
 
-        /* renamed from: g, reason: collision with root package name */
-        ImageView f1322g;
+        /* renamed from: g */
+        ImageView f272g;
 
-        /* renamed from: h, reason: collision with root package name */
-        TextView f1323h;
+        /* renamed from: h */
+        TextView f273h;
 
-        /* renamed from: i, reason: collision with root package name */
-        LinearLayout f1324i;
+        /* renamed from: i */
+        LinearLayout f274i;
 
-        /* renamed from: j, reason: collision with root package name */
-        LinearLayout f1325j;
+        /* renamed from: j */
+        LinearLayout f275j;
 
-        /* renamed from: k, reason: collision with root package name */
-        LinearLayout f1326k;
+        /* renamed from: k */
+        LinearLayout f276k;
 
         public DefineViewHolder(View view) {
             super(view);
-            this.f1316a = (TextView) view.findViewById(R.id.tv_case_type);
-            this.f1317b = (TextView) view.findViewById(R.id.casecategory);
-            this.f1318c = (TextView) view.findViewById(R.id.tv_report_name);
-            this.f1319d = (TextView) view.findViewById(R.id.tv_self);
-            this.f1320e = (TextView) view.findViewById(R.id.report_size);
-            this.f1321f = (TextView) view.findViewById(R.id.tv_case_num);
-            this.f1325j = (LinearLayout) view.findViewById(R.id.ll_report_prog);
-            this.f1322g = (ImageView) view.findViewById(R.id.iv_dk_tag);
-            this.f1323h = (TextView) view.findViewById(R.id.report_time);
-            this.f1324i = (LinearLayout) view.findViewById(R.id.ll_progress);
-            this.f1326k = (LinearLayout) view.findViewById(R.id.ll_report_progress);
-            this.f1316a.setText("举报详情");
-            this.f1325j.setVisibility(8);
+            this.f266a = (TextView) view.findViewById(C2113R.id.tv_case_type);
+            this.f267b = (TextView) view.findViewById(C2113R.id.casecategory);
+            this.f268c = (TextView) view.findViewById(C2113R.id.tv_report_name);
+            this.f269d = (TextView) view.findViewById(C2113R.id.tv_self);
+            this.f270e = (TextView) view.findViewById(C2113R.id.report_size);
+            this.f271f = (TextView) view.findViewById(C2113R.id.tv_case_num);
+            this.f275j = (LinearLayout) view.findViewById(C2113R.id.ll_report_prog);
+            this.f272g = (ImageView) view.findViewById(C2113R.id.iv_dk_tag);
+            this.f273h = (TextView) view.findViewById(C2113R.id.report_time);
+            this.f274i = (LinearLayout) view.findViewById(C2113R.id.ll_progress);
+            this.f276k = (LinearLayout) view.findViewById(C2113R.id.ll_report_progress);
+            this.f266a.setText("举报详情");
+            this.f275j.setVisibility(8);
         }
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        /* renamed from: a, reason: collision with root package name */
-        public RecyclerView f1328a;
+        /* renamed from: a */
+        public RecyclerView f278a;
 
-        /* renamed from: b, reason: collision with root package name */
-        public int f1329b;
+        /* renamed from: b */
+        public int f279b;
 
-        /* renamed from: c, reason: collision with root package name */
-        public TextView f1330c;
+        /* renamed from: c */
+        public TextView f280c;
 
-        /* renamed from: d, reason: collision with root package name */
-        public TextView f1331d;
+        /* renamed from: d */
+        public TextView f281d;
 
-        /* renamed from: e, reason: collision with root package name */
-        public View f1332e;
+        /* renamed from: e */
+        public View f282e;
 
         public RecyclerViewHolder(View view, int i2) {
             super(view);
-            this.f1329b = i2;
-            this.f1328a = (RecyclerView) view.findViewById(R.id.recyclerview);
-            this.f1330c = (TextView) view.findViewById(R.id.group_report);
-            this.f1331d = (TextView) view.findViewById(R.id.group_report_count);
-            this.f1332e = view.findViewById(R.id.item_line);
+            this.f279b = i2;
+            this.f278a = (RecyclerView) view.findViewById(C2113R.id.recyclerview);
+            this.f280c = (TextView) view.findViewById(C2113R.id.group_report);
+            this.f281d = (TextView) view.findViewById(C2113R.id.group_report_count);
+            this.f282e = view.findViewById(C2113R.id.item_line);
         }
     }
 
     public ReportDKDetailsAdapter(Typeface typeface, HistoryListInfo.RowsBean rowsBean, HistoryDetailInfo historyDetailInfo, Context context, List<HistoryDetailInfo> list, List<List<DetailBean>> list2) {
-        this.f1310b = context;
-        this.f1309a = typeface;
-        this.f1312d = rowsBean;
-        this.f1311c = rowsBean == null ? null : rowsBean.getInfo();
-        this.f1313e = historyDetailInfo;
-        this.f1314f = list;
-        this.f1315g = list2;
+        this.f260b = context;
+        this.f259a = typeface;
+        this.f262d = rowsBean;
+        this.f261c = rowsBean == null ? null : rowsBean.getInfo();
+        this.f263e = historyDetailInfo;
+        this.f264f = list;
+        this.f265g = list2;
     }
 
-    private void a(DefineViewHolder defineViewHolder) {
-        HistoryListInfo.RowsBean.DetailsBean detailsBean = this.f1311c;
+    /* renamed from: a */
+    private void m267a(DefineViewHolder defineViewHolder) {
+        HistoryListInfo.RowsBean.DetailsBean detailsBean = this.f261c;
         if (detailsBean != null) {
             String caseCategoryText = detailsBean.getCaseCategoryText();
             if (TextUtils.isEmpty(caseCategoryText)) {
                 caseCategoryText = "其他诈骗";
             }
-            defineViewHolder.f1317b.setText(caseCategoryText);
-            defineViewHolder.f1320e.setText("(" + this.f1312d.getEvidenceCount() + "项举报内容)");
-            defineViewHolder.f1323h.setText(this.f1311c.getSubmitTime());
-            this.f1311c.getRegion();
-            this.f1311c.getCaseDescription();
-            defineViewHolder.f1322g.setVisibility(0);
+            defineViewHolder.f267b.setText(caseCategoryText);
+            defineViewHolder.f270e.setText("(" + this.f262d.getEvidenceCount() + "项举报内容)");
+            defineViewHolder.f273h.setText(this.f261c.getSubmitTime());
+            this.f261c.getRegion();
+            this.f261c.getCaseDescription();
+            defineViewHolder.f272g.setVisibility(0);
         }
-        if (this.f1313e.replys == null) {
-            defineViewHolder.f1324i.setVisibility(8);
+        if (this.f263e.replys == null) {
+            defineViewHolder.f274i.setVisibility(8);
             return;
         }
-        defineViewHolder.f1324i.setVisibility(0);
-        for (int i2 = 0; i2 < this.f1313e.replys.size(); i2++) {
-            View inflate = LayoutInflater.from(this.f1310b).inflate(R.layout.report_reply_item, (ViewGroup) null, false);
-            ImageView imageView = (ImageView) inflate.findViewById(R.id.iv_reply_img);
-            TextView textView = (TextView) inflate.findViewById(R.id.tv_title);
-            TextView textView2 = (TextView) inflate.findViewById(R.id.tv_time);
-            TextView textView3 = (TextView) inflate.findViewById(R.id.tv_content);
-            TextView textView4 = (TextView) inflate.findViewById(R.id.tv_line);
-            textView.setTypeface(this.f1309a);
-            HistoryDetailInfo.Replay replay = this.f1313e.replys.get(i2);
+        defineViewHolder.f274i.setVisibility(0);
+        for (int i2 = 0; i2 < this.f263e.replys.size(); i2++) {
+            View inflate = LayoutInflater.from(this.f260b).inflate(C2113R.layout.report_reply_item, (ViewGroup) null, false);
+            ImageView imageView = (ImageView) inflate.findViewById(C2113R.id.iv_reply_img);
+            TextView textView = (TextView) inflate.findViewById(C2113R.id.tv_title);
+            TextView textView2 = (TextView) inflate.findViewById(C2113R.id.tv_time);
+            TextView textView3 = (TextView) inflate.findViewById(C2113R.id.tv_content);
+            TextView textView4 = (TextView) inflate.findViewById(C2113R.id.tv_line);
+            textView.setTypeface(this.f259a);
+            HistoryDetailInfo.Replay replay = this.f263e.replys.get(i2);
             int i3 = replay.processType;
             if (i3 == 3) {
-                imageView.setImageResource(R.drawable.iv_gray_polic);
+                imageView.setImageResource(C2113R.drawable.iv_gray_polic);
                 textView.setText(replay.text);
                 textView2.setText(replay.replyTime);
                 textView3.setText(replay.description);
             } else if (i3 == 2) {
-                imageView.setImageResource(R.drawable.iv_gray_polic);
+                imageView.setImageResource(C2113R.drawable.iv_gray_polic);
                 textView.setText(replay.text);
                 textView2.setText(replay.replyTime);
                 textView3.setText(replay.description);
-                textView4.setBackgroundResource(R.color.divide_line);
+                textView4.setBackgroundResource(C2113R.color.divide_line);
             } else {
-                imageView.setImageResource(R.drawable.iv_gray_default_img);
+                imageView.setImageResource(C2113R.drawable.iv_gray_default_img);
                 textView.setText(replay.text);
                 textView2.setText(replay.replyTime);
                 textView3.setText(replay.description);
@@ -194,62 +195,63 @@ public class ReportDKDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             } else {
                 textView3.setVisibility(0);
             }
-            defineViewHolder.f1326k.addView(inflate);
+            defineViewHolder.f276k.addView(inflate);
         }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
-        return this.f1314f.size();
+        return this.f264f.size();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int i2) {
-        if (this.f1314f.get(i2).getItemType() == -1) {
+        if (this.f264f.get(i2).getItemType() == -1) {
             return -1;
         }
-        if (this.f1314f.get(i2).getItemType() == 1) {
+        if (this.f264f.get(i2).getItemType() == 1) {
             return 1;
         }
-        if (this.f1314f.get(i2).getItemType() == 8) {
+        if (this.f264f.get(i2).getItemType() == 8) {
             return 8;
         }
-        return this.f1314f.get(i2).getItemType() == 9 ? 9 : 0;
+        return this.f264f.get(i2).getItemType() == 9 ? 9 : 0;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
         if (viewHolder instanceof DefineViewHolder) {
-            a((DefineViewHolder) viewHolder);
+            m267a((DefineViewHolder) viewHolder);
         } else if (viewHolder instanceof RecyclerViewHolder) {
-            a((RecyclerViewHolder) viewHolder, i2 - 1);
+            m268a((RecyclerViewHolder) viewHolder, i2 - 1);
         }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
         if (i2 == -1) {
-            return new DefineViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.history_list_head, viewGroup, false));
+            return new DefineViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(C2113R.layout.history_list_head, viewGroup, false));
         }
         if (i2 == 1 || i2 == 8 || i2 == 9) {
-            return new RecyclerViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_report_list, viewGroup, false), i2);
+            return new RecyclerViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(C2113R.layout.recyclerview_report_list, viewGroup, false), i2);
         }
         return null;
     }
 
-    private void a(RecyclerViewHolder recyclerViewHolder, int i2) {
-        String title = this.f1314f.get(i2 + 1).getTitle();
+    /* renamed from: a */
+    private void m268a(RecyclerViewHolder recyclerViewHolder, int i2) {
+        String title = this.f264f.get(i2 + 1).getTitle();
         if (!TextUtils.isEmpty(title)) {
-            recyclerViewHolder.f1330c.setText(title);
+            recyclerViewHolder.f280c.setText(title);
         }
-        List<List<DetailBean>> list = this.f1315g;
+        List<List<DetailBean>> list = this.f265g;
         if (list != null && list.get(i2) != null) {
-            recyclerViewHolder.f1331d.setText(this.f1315g.get(i2).size() + "个");
+            recyclerViewHolder.f281d.setText(this.f265g.get(i2).size() + "个");
         } else {
-            recyclerViewHolder.f1331d.setText("0个");
+            recyclerViewHolder.f281d.setText("0个");
         }
         if (i2 == 0) {
-            recyclerViewHolder.f1332e.setVisibility(8);
+            recyclerViewHolder.f282e.setVisibility(8);
         }
     }
 }

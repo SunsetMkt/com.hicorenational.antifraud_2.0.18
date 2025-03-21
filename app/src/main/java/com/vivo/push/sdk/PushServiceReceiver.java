@@ -6,62 +6,65 @@ import android.content.Intent;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.HandlerThread;
+import com.vivo.push.C3924m;
 import com.vivo.push.PushClient;
 import com.vivo.push.cache.ClientConfigManagerImpl;
-import com.vivo.push.m;
+import com.vivo.push.restructure.C3932a;
+import com.vivo.push.util.C4010u;
+import com.vivo.push.util.C4013x;
 import com.vivo.push.util.ContextDelegate;
 import com.vivo.push.util.VivoPushException;
-import com.vivo.push.util.u;
-import com.vivo.push.util.x;
 import com.xiaomi.mipush.sdk.Constants;
 
 /* loaded from: classes2.dex */
 public class PushServiceReceiver extends BroadcastReceiver {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static HandlerThread f12210a;
+    /* renamed from: a */
+    private static HandlerThread f14189a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static Handler f12211b;
+    /* renamed from: b */
+    private static Handler f14190b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static a f12212c = new a();
+    /* renamed from: c */
+    private static RunnableC3972a f14191c = new RunnableC3972a();
 
-    static class a implements Runnable {
+    /* renamed from: com.vivo.push.sdk.PushServiceReceiver$a */
+    static class RunnableC3972a implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        private Context f12213a;
+        /* renamed from: a */
+        private Context f14192a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private String f12214b;
+        /* renamed from: b */
+        private String f14193b;
 
-        a() {
+        RunnableC3972a() {
         }
 
-        static /* synthetic */ void a(a aVar, Context context, String str) {
-            aVar.f12213a = ContextDelegate.getContext(context);
-            aVar.f12214b = str;
+        /* renamed from: a */
+        static /* synthetic */ void m13161a(RunnableC3972a runnableC3972a, Context context, String str) {
+            runnableC3972a.f14192a = ContextDelegate.getContext(context);
+            runnableC3972a.f14193b = str;
         }
 
         @Override // java.lang.Runnable
         public final void run() {
-            NetworkInfo a2 = x.a(this.f12213a);
-            if (!(a2 != null ? a2.isConnectedOrConnecting() : false)) {
-                u.d("PushServiceReceiver", this.f12213a.getPackageName() + ": 无网络  by " + this.f12214b);
-                u.a(this.f12213a, "触发静态广播:无网络(" + this.f12214b + Constants.ACCEPT_TIME_SEPARATOR_SP + this.f12213a.getPackageName() + ")");
+            NetworkInfo m13315a = C4013x.m13315a(this.f14192a);
+            if (!(m13315a != null ? m13315a.isConnectedOrConnecting() : false)) {
+                C4010u.m13309d("PushServiceReceiver", this.f14192a.getPackageName() + ": 无网络  by " + this.f14193b);
+                C4010u.m13297a(this.f14192a, "触发静态广播:无网络(" + this.f14193b + Constants.ACCEPT_TIME_SEPARATOR_SP + this.f14192a.getPackageName() + ")");
                 return;
             }
-            u.d("PushServiceReceiver", this.f12213a.getPackageName() + ": 执行开始出发动作: " + this.f12214b);
-            u.a(this.f12213a, "触发静态广播(" + this.f12214b + Constants.ACCEPT_TIME_SEPARATOR_SP + this.f12213a.getPackageName() + ")");
-            m.a().a(this.f12213a);
-            if (ClientConfigManagerImpl.getInstance(this.f12213a).isCancleBroadcastReceiver()) {
+            C4010u.m13309d("PushServiceReceiver", this.f14192a.getPackageName() + ": 执行开始出发动作: " + this.f14193b);
+            C4010u.m13297a(this.f14192a, "触发静态广播(" + this.f14193b + Constants.ACCEPT_TIME_SEPARATOR_SP + this.f14192a.getPackageName() + ")");
+            C3924m.m13016a().m13030a(this.f14192a);
+            if (ClientConfigManagerImpl.getInstance(this.f14192a).isCancleBroadcastReceiver()) {
                 return;
             }
             try {
-                PushClient.getInstance(this.f12213a).initialize(com.vivo.push.restructure.a.a().e().l());
+                PushClient.getInstance(this.f14192a).initialize(C3932a.m13069a().m13074e().mo13130l());
             } catch (VivoPushException e2) {
                 e2.printStackTrace();
-                u.a(this.f12213a, " 初始化异常 error= " + e2.getMessage());
+                C4010u.m13297a(this.f14192a, " 初始化异常 error= " + e2.getMessage());
             }
         }
     }
@@ -71,16 +74,16 @@ public class PushServiceReceiver extends BroadcastReceiver {
         Context context2 = ContextDelegate.getContext(context);
         String action = intent.getAction();
         if ("android.net.conn.CONNECTIVITY_CHANGE".equals(action) || "android.intent.action.ACTION_POWER_CONNECTED".equals(action) || "android.intent.action.ACTION_POWER_DISCONNECTED".equals(action)) {
-            if (f12210a == null) {
+            if (f14189a == null) {
                 HandlerThread handlerThread = new HandlerThread("PushServiceReceiver");
-                f12210a = handlerThread;
+                f14189a = handlerThread;
                 handlerThread.start();
-                f12211b = new Handler(f12210a.getLooper());
+                f14190b = new Handler(f14189a.getLooper());
             }
-            u.d("PushServiceReceiver", context2.getPackageName() + ": start PushSerevice for by " + action + "  ; handler : " + f12211b);
-            a.a(f12212c, context2, action);
-            f12211b.removeCallbacks(f12212c);
-            f12211b.postDelayed(f12212c, 2000L);
+            C4010u.m13309d("PushServiceReceiver", context2.getPackageName() + ": start PushSerevice for by " + action + "  ; handler : " + f14190b);
+            RunnableC3972a.m13161a(f14191c, context2, action);
+            f14190b.removeCallbacks(f14191c);
+            f14190b.postDelayed(f14191c, 2000L);
         }
     }
 }

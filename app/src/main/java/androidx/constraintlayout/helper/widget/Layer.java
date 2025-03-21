@@ -6,9 +6,9 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintHelper;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.R;
 
 /* loaded from: classes.dex */
 public class Layer extends ConstraintHelper {
@@ -144,13 +144,13 @@ public class Layer extends ConstraintHelper {
         super.init(attributeSet);
         this.mUseViewMeasure = false;
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_Layout);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.ConstraintLayout_Layout_android_visibility) {
+                if (index == C0471R.styleable.ConstraintLayout_Layout_android_visibility) {
                     this.mApplyVisibilityOnAttach = true;
-                } else if (index == R.styleable.ConstraintLayout_Layout_android_elevation) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_elevation) {
                     this.mApplyElevationOnAttach = true;
                 }
             }

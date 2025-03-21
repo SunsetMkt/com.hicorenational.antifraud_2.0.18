@@ -5,19 +5,20 @@ import android.os.Parcelable;
 
 /* loaded from: classes.dex */
 public class PermissionInfo implements Parcelable {
-    public static final Parcelable.Creator<PermissionInfo> CREATOR = new a();
+    public static final Parcelable.Creator<PermissionInfo> CREATOR = new C2136a();
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f6004a;
+    /* renamed from: a */
+    private String f6391a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f6005b;
+    /* renamed from: b */
+    private String f6392b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f6006c;
+    /* renamed from: c */
+    private String f6393c;
 
-    class a implements Parcelable.Creator {
-        a() {
+    /* renamed from: com.hihonor.cloudservice.support.api.entity.auth.PermissionInfo$a */
+    class C2136a implements Parcelable.Creator {
+        C2136a() {
         }
 
         @Override // android.os.Parcelable.Creator
@@ -34,8 +35,9 @@ public class PermissionInfo implements Parcelable {
     public PermissionInfo() {
     }
 
-    public String a() {
-        return this.f6006c;
+    /* renamed from: a */
+    public String m6018a() {
+        return this.f6393c;
     }
 
     @Override // android.os.Parcelable
@@ -45,19 +47,20 @@ public class PermissionInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6004a);
-        parcel.writeString(this.f6005b);
-        parcel.writeString(this.f6006c);
+        parcel.writeString(this.f6391a);
+        parcel.writeString(this.f6392b);
+        parcel.writeString(this.f6393c);
     }
 
     public PermissionInfo(Parcel parcel) {
-        this.f6004a = parcel.readString();
-        this.f6005b = parcel.readString();
-        this.f6006c = parcel.readString();
+        this.f6391a = parcel.readString();
+        this.f6392b = parcel.readString();
+        this.f6393c = parcel.readString();
     }
 
-    public PermissionInfo a(String str) {
-        this.f6006c = str;
+    /* renamed from: a */
+    public PermissionInfo m6017a(String str) {
+        this.f6393c = str;
         return this;
     }
 }

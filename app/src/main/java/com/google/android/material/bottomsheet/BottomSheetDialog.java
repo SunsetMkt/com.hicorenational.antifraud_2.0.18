@@ -1,5 +1,6 @@
 package com.google.android.material.bottomsheet;
 
+import android.R;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -19,9 +20,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import c.c.a.b.a.a;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class BottomSheetDialog extends AppCompatDialog {
@@ -40,16 +41,16 @@ public class BottomSheetDialog extends AppCompatDialog {
             return i2;
         }
         TypedValue typedValue = new TypedValue();
-        return context.getTheme().resolveAttribute(R.attr.bottomSheetDialogTheme, typedValue, true) ? typedValue.resourceId : R.style.Theme_Design_Light_BottomSheetDialog;
+        return context.getTheme().resolveAttribute(C1921R.attr.bottomSheetDialogTheme, typedValue, true) ? typedValue.resourceId : C1921R.style.Theme_Design_Light_BottomSheetDialog;
     }
 
     private View wrapInBottomSheet(int i2, View view, ViewGroup.LayoutParams layoutParams) {
-        FrameLayout frameLayout = (FrameLayout) View.inflate(getContext(), R.layout.design_bottom_sheet_dialog, null);
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) frameLayout.findViewById(R.id.coordinator);
+        FrameLayout frameLayout = (FrameLayout) View.inflate(getContext(), C1921R.layout.design_bottom_sheet_dialog, null);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) frameLayout.findViewById(C1921R.id.coordinator);
         if (i2 != 0 && view == null) {
             view = getLayoutInflater().inflate(i2, (ViewGroup) coordinatorLayout, false);
         }
-        FrameLayout frameLayout2 = (FrameLayout) coordinatorLayout.findViewById(R.id.design_bottom_sheet);
+        FrameLayout frameLayout2 = (FrameLayout) coordinatorLayout.findViewById(C1921R.id.design_bottom_sheet);
         this.behavior = BottomSheetBehavior.from(frameLayout2);
         this.behavior.setBottomSheetCallback(this.bottomSheetCallback);
         this.behavior.setHideable(this.cancelable);
@@ -58,7 +59,7 @@ public class BottomSheetDialog extends AppCompatDialog {
         } else {
             frameLayout2.addView(view, layoutParams);
         }
-        coordinatorLayout.findViewById(R.id.touch_outside).setOnClickListener(new View.OnClickListener() { // from class: com.google.android.material.bottomsheet.BottomSheetDialog.1
+        coordinatorLayout.findViewById(C1921R.id.touch_outside).setOnClickListener(new View.OnClickListener() { // from class: com.google.android.material.bottomsheet.BottomSheetDialog.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
                 BottomSheetDialog bottomSheetDialog = BottomSheetDialog.this;
@@ -106,7 +107,7 @@ public class BottomSheetDialog extends AppCompatDialog {
         Window window = getWindow();
         if (window != null) {
             if (Build.VERSION.SDK_INT >= 21) {
-                window.clearFlags(a.B1);
+                window.clearFlags(AbstractC1191a.f2487B1);
                 window.addFlags(Integer.MIN_VALUE);
             }
             window.setLayout(-1, -1);
@@ -152,7 +153,7 @@ public class BottomSheetDialog extends AppCompatDialog {
 
     boolean shouldWindowCloseOnTouchOutside() {
         if (!this.canceledOnTouchOutsideSet) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(new int[]{android.R.attr.windowCloseOnTouchOutside});
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(new int[]{R.attr.windowCloseOnTouchOutside});
             this.canceledOnTouchOutside = obtainStyledAttributes.getBoolean(0, true);
             obtainStyledAttributes.recycle();
             this.canceledOnTouchOutsideSet = true;

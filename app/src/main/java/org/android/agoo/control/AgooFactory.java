@@ -9,15 +9,19 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Base64;
 import com.taobao.accs.base.TaoBaseService;
+import com.taobao.accs.client.C2978a;
 import com.taobao.accs.common.Constants;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
+import com.taobao.accs.p197a.C2961a;
 import com.taobao.accs.utl.ALog;
+import com.taobao.accs.utl.C3042j;
 import com.taobao.accs.utl.UTMini;
 import com.taobao.accs.utl.UtilityImpl;
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3351bh;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import javax.crypto.spec.SecretKeySpec;
 import org.android.agoo.common.AgooConstants;
+import org.android.agoo.common.C6011a;
 import org.android.agoo.common.Config;
 import org.android.agoo.common.MsgDO;
 import org.android.agoo.message.MessageService;
@@ -35,83 +39,85 @@ public class AgooFactory {
     private MessageService messageService = null;
 
     /* compiled from: Taobao */
-    static class a implements ServiceConnection {
+    /* renamed from: org.android.agoo.control.AgooFactory$a */
+    static class ServiceConnectionC6012a implements ServiceConnection {
 
-        /* renamed from: a, reason: collision with root package name */
-        private Intent f17317a;
+        /* renamed from: a */
+        private Intent f21473a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private String f17318b;
+        /* renamed from: b */
+        private String f21474b;
 
-        /* renamed from: c, reason: collision with root package name */
-        private SendMessage f17319c;
+        /* renamed from: c */
+        private SendMessage f21475c;
 
-        /* renamed from: d, reason: collision with root package name */
-        private ServiceConnection f17320d = this;
+        /* renamed from: d */
+        private ServiceConnection f21476d = this;
 
-        public a(String str, Intent intent) {
-            this.f17318b = str;
-            this.f17317a = intent;
+        public ServiceConnectionC6012a(String str, Intent intent) {
+            this.f21474b = str;
+            this.f21473a = intent;
         }
 
         @Override // android.content.ServiceConnection
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            ALog.d(AgooFactory.TAG, "MessageConnection conneted:" + componentName, new Object[0]);
-            this.f17319c = SendMessage.Stub.asInterface(iBinder);
-            ALog.d(AgooFactory.TAG, "onConnected current tid:" + Thread.currentThread().getId(), new Object[0]);
-            ALog.d(AgooFactory.TAG, "MessageConnection sent:" + this.f17317a, new Object[0]);
-            if (this.f17319c != null) {
-                ThreadPoolExecutorFactory.execute(new f(this));
+            ALog.m9180d(AgooFactory.TAG, "MessageConnection conneted:" + componentName, new Object[0]);
+            this.f21475c = SendMessage.Stub.asInterface(iBinder);
+            ALog.m9180d(AgooFactory.TAG, "onConnected current tid:" + Thread.currentThread().getId(), new Object[0]);
+            ALog.m9180d(AgooFactory.TAG, "MessageConnection sent:" + this.f21473a, new Object[0]);
+            if (this.f21475c != null) {
+                ThreadPoolExecutorFactory.execute(new RunnableC6019f(this));
             }
         }
 
         @Override // android.content.ServiceConnection
         public void onServiceDisconnected(ComponentName componentName) {
-            ALog.d(AgooFactory.TAG, "MessageConnection disConnected", new Object[0]);
+            ALog.m9180d(AgooFactory.TAG, "MessageConnection disConnected", new Object[0]);
         }
     }
 
     /* compiled from: Taobao */
-    class b implements Runnable {
+    /* renamed from: org.android.agoo.control.AgooFactory$b */
+    class RunnableC6013b implements Runnable {
 
-        /* renamed from: b, reason: collision with root package name */
-        private String f17322b;
+        /* renamed from: b */
+        private String f21478b;
 
-        /* renamed from: c, reason: collision with root package name */
-        private Intent f17323c;
+        /* renamed from: c */
+        private Intent f21479c;
 
-        public b(String str, Intent intent) {
-            this.f17322b = str;
-            this.f17323c = intent;
+        public RunnableC6013b(String str, Intent intent) {
+            this.f21478b = str;
+            this.f21479c = intent;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             try {
-                ALog.d(AgooFactory.TAG, "running tid:" + Thread.currentThread().getId() + ",pack=" + this.f17322b, new Object[0]);
-                AgooFactory.mContext.sendBroadcast(this.f17323c);
+                ALog.m9180d(AgooFactory.TAG, "running tid:" + Thread.currentThread().getId() + ",pack=" + this.f21478b, new Object[0]);
+                AgooFactory.mContext.sendBroadcast(this.f21479c);
                 StringBuilder sb = new StringBuilder();
                 sb.append("SendMessageRunnable for accs,pack=");
-                sb.append(this.f17322b);
-                ALog.d(AgooFactory.TAG, sb.toString(), new Object[0]);
+                sb.append(this.f21478b);
+                ALog.m9180d(AgooFactory.TAG, sb.toString(), new Object[0]);
                 try {
-                    this.f17323c.setPackage(this.f17322b);
-                    this.f17323c.setAction(AgooConstants.INTENT_FROM_AGOO_MESSAGE);
-                    com.taobao.accs.a.a.a(AgooFactory.mContext, this.f17323c);
+                    this.f21479c.setPackage(this.f21478b);
+                    this.f21479c.setAction(AgooConstants.INTENT_FROM_AGOO_MESSAGE);
+                    C2961a.m8908a(AgooFactory.mContext, this.f21479c);
                 } catch (Throwable unused) {
                 }
                 Intent intent = new Intent(AgooConstants.BINDER_MSGRECEIVER_ACTION);
-                intent.setPackage(this.f17322b);
-                ALog.d(AgooFactory.TAG, "this message pack:" + this.f17322b, new Object[0]);
-                ALog.d(AgooFactory.TAG, "start to service...", new Object[0]);
-                boolean bindService = AgooFactory.mContext.bindService(intent, new a(this.f17323c.getStringExtra("id"), this.f17323c), 17);
-                ALog.d(AgooFactory.TAG, "start service ret:" + bindService, new Object[0]);
+                intent.setPackage(this.f21478b);
+                ALog.m9180d(AgooFactory.TAG, "this message pack:" + this.f21478b, new Object[0]);
+                ALog.m9180d(AgooFactory.TAG, "start to service...", new Object[0]);
+                boolean bindService = AgooFactory.mContext.bindService(intent, new ServiceConnectionC6012a(this.f21479c.getStringExtra("id"), this.f21479c), 17);
+                ALog.m9180d(AgooFactory.TAG, "start service ret:" + bindService, new Object[0]);
                 if (bindService) {
                     return;
                 }
-                ALog.d(AgooFactory.TAG, "SendMessageRunnable is error", new Object[0]);
+                ALog.m9180d(AgooFactory.TAG, "SendMessageRunnable is error", new Object[0]);
             } catch (Throwable th) {
-                ALog.e(AgooFactory.TAG, "SendMessageRunnable is error,e=" + th.toString(), new Object[0]);
+                ALog.m9182e(AgooFactory.TAG, "SendMessageRunnable is error,e=" + th.toString(), new Object[0]);
             }
         }
     }
@@ -157,22 +163,22 @@ public class AgooFactory {
         byte[] bArr;
         String str2 = null;
         try {
-            String a2 = Config.a(mContext);
-            String b2 = Config.b(mContext);
-            String j2 = UtilityImpl.j(mContext);
-            if (TextUtils.isEmpty(b2)) {
-                ALog.e(TAG, "getAppsign secret null", new Object[0]);
+            String m24934a = Config.m24934a(mContext);
+            String m24938b = Config.m24938b(mContext);
+            String m9228j = UtilityImpl.m9228j(mContext);
+            if (TextUtils.isEmpty(m24938b)) {
+                ALog.m9182e(TAG, "getAppsign secret null", new Object[0]);
                 bArr = null;
             } else {
-                bArr = org.android.agoo.common.a.a(b2.getBytes("utf-8"), (a2 + j2).getBytes("utf-8"));
+                bArr = C6011a.m24952a(m24938b.getBytes("utf-8"), (m24934a + m9228j).getBytes("utf-8"));
             }
             if (bArr == null || bArr.length <= 0) {
-                ALog.e(TAG, "aesDecrypt key is null!", new Object[0]);
+                ALog.m9182e(TAG, "aesDecrypt key is null!", new Object[0]);
             } else {
-                str2 = new String(org.android.agoo.common.a.a(Base64.decode(str, 8), new SecretKeySpec(org.android.agoo.common.a.a(bArr), "AES"), org.android.agoo.common.a.a(a2.getBytes("utf-8"))), "utf-8");
+                str2 = new String(C6011a.m24951a(Base64.decode(str, 8), new SecretKeySpec(C6011a.m24950a(bArr), "AES"), C6011a.m24950a(m24934a.getBytes("utf-8"))), "utf-8");
             }
         } catch (Throwable th) {
-            ALog.e(TAG, "parseEncryptedMsg failure: ", th, new Object[0]);
+            ALog.m9181e(TAG, "parseEncryptedMsg failure: ", th, new Object[0]);
         }
         return TextUtils.isEmpty(str2) ? parseEncryptedMsgByOldDid(str) : str2;
     }
@@ -180,25 +186,25 @@ public class AgooFactory {
     private static String parseEncryptedMsgByOldDid(String str) {
         byte[] bArr;
         try {
-            String d2 = UtilityImpl.d(Constants.SP_FILE_NAME, mContext);
-            if (TextUtils.isEmpty(d2) || TextUtils.equals(d2, UtilityImpl.j(mContext))) {
+            String m9216d = UtilityImpl.m9216d(Constants.SP_FILE_NAME, mContext);
+            if (TextUtils.isEmpty(m9216d) || TextUtils.equals(m9216d, UtilityImpl.m9228j(mContext))) {
                 return null;
             }
-            String a2 = Config.a(mContext);
-            String b2 = Config.b(mContext);
-            if (TextUtils.isEmpty(b2)) {
-                ALog.e(TAG, "oldDid getAppsign secret null", new Object[0]);
+            String m24934a = Config.m24934a(mContext);
+            String m24938b = Config.m24938b(mContext);
+            if (TextUtils.isEmpty(m24938b)) {
+                ALog.m9182e(TAG, "oldDid getAppsign secret null", new Object[0]);
                 bArr = null;
             } else {
-                bArr = org.android.agoo.common.a.a(b2.getBytes("utf-8"), (a2 + d2).getBytes("utf-8"));
+                bArr = C6011a.m24952a(m24938b.getBytes("utf-8"), (m24934a + m9216d).getBytes("utf-8"));
             }
             if (bArr != null && bArr.length > 0) {
-                return new String(org.android.agoo.common.a.a(Base64.decode(str, 8), new SecretKeySpec(org.android.agoo.common.a.a(bArr), "AES"), org.android.agoo.common.a.a(a2.getBytes("utf-8"))), "utf-8");
+                return new String(C6011a.m24951a(Base64.decode(str, 8), new SecretKeySpec(C6011a.m24950a(bArr), "AES"), C6011a.m24950a(m24934a.getBytes("utf-8"))), "utf-8");
             }
-            ALog.e(TAG, "oldDid aesDecrypt key is null!", new Object[0]);
+            ALog.m9182e(TAG, "oldDid aesDecrypt key is null!", new Object[0]);
             return null;
         } catch (Throwable th) {
-            ALog.e(TAG, "oldDid parseEncryptedMsg failure: ", th, new Object[0]);
+            ALog.m9181e(TAG, "oldDid parseEncryptedMsg failure: ", th, new Object[0]);
             return null;
         }
     }
@@ -206,11 +212,11 @@ public class AgooFactory {
     private void sendMsgByBindService(String str, Intent intent) {
         try {
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.d(TAG, "onHandleMessage current tid:" + Thread.currentThread().getId(), new Object[0]);
+                ALog.m9180d(TAG, "onHandleMessage current tid:" + Thread.currentThread().getId(), new Object[0]);
             }
-            ThreadPoolExecutorFactory.execute(new b(str, intent));
+            ThreadPoolExecutorFactory.execute(new RunnableC6013b(str, intent));
         } catch (Throwable th) {
-            ALog.e(TAG, "sendMsgByBindService error >>", th, new Object[0]);
+            ALog.m9181e(TAG, "sendMsgByBindService error >>", th, new Object[0]);
         }
     }
 
@@ -227,17 +233,17 @@ public class AgooFactory {
             bundle2.putSerializable(AgooConstants.MESSAGE_ACCS_EXTRA, extraInfo);
             intent.putExtra(AgooConstants.MESSAGE_AGOO_BUNDLE, bundle2);
         } catch (Throwable th) {
-            ALog.e(TAG, "sendMsgToBussiness", th, new Object[0]);
+            ALog.m9181e(TAG, "sendMsgToBussiness", th, new Object[0]);
         }
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.i(TAG, "sendMsgToBussiness intent:" + bundle.toString() + ",utdid=" + com.taobao.accs.utl.j.b(context) + ",pack=" + str + ",agooFlag=" + z, new Object[0]);
+            ALog.m9183i(TAG, "sendMsgToBussiness intent:" + bundle.toString() + ",utdid=" + C3042j.m9247b(context) + ",pack=" + str + ",agooFlag=" + z, new Object[0]);
         }
         if (z) {
-            UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, com.taobao.accs.utl.j.b(context), "agooMsg", "15");
+            UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, C3042j.m9247b(context), "agooMsg", "15");
             sendMsgByBindService(str, intent);
         } else {
-            intent.setClassName(str, com.taobao.accs.client.a.b());
-            com.taobao.accs.a.a.a(context, intent);
+            intent.setClassName(str, C2978a.m8977b());
+            C2961a.m8908a(context, intent);
         }
     }
 
@@ -252,7 +258,7 @@ public class AgooFactory {
         if (this.messageService == null) {
             this.messageService = new MessageService();
         }
-        this.messageService.a(mContext);
+        this.messageService.m24963a(mContext);
     }
 
     public Bundle msgReceiverPreHandler(byte[] bArr, String str, TaoBaseService.ExtraInfo extraInfo, boolean z) {
@@ -273,11 +279,11 @@ public class AgooFactory {
                 if (bArr.length > 0) {
                     String str6 = new String(bArr, "utf-8");
                     if (ALog.isPrintLog(ALog.Level.I)) {
-                        ALog.i(TAG, "msgRecevie,message--->[" + str6 + "],utdid=" + com.taobao.accs.utl.j.b(mContext), new Object[0]);
+                        ALog.m9183i(TAG, "msgRecevie,message--->[" + str6 + "],utdid=" + C3042j.m9247b(mContext), new Object[0]);
                     }
                     if (TextUtils.isEmpty(str6)) {
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, com.taobao.accs.utl.j.b(mContext), "message==null");
-                        ALog.i(TAG, "handleMessage message==null,utdid=" + com.taobao.accs.utl.j.b(mContext), new Object[0]);
+                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, C3042j.m9247b(mContext), "message==null");
+                        ALog.m9183i(TAG, "handleMessage message==null,utdid=" + C3042j.m9247b(mContext), new Object[0]);
                         return null;
                     }
                     JSONArray jSONArray2 = new JSONArray(str6);
@@ -304,9 +310,9 @@ public class AgooFactory {
                         } else {
                             MsgDO msgDO = new MsgDO();
                             jSONArray = jSONArray2;
-                            String string = jSONObject.getString(bh.aA);
+                            String string = jSONObject.getString(C3351bh.f11576aA);
                             String str8 = str7;
-                            String string2 = jSONObject.getString(bh.aF);
+                            String string2 = jSONObject.getString(C3351bh.f11581aF);
                             String str9 = str6;
                             String string3 = jSONObject.getString("b");
                             StringBuilder sb7 = sb6;
@@ -343,8 +349,8 @@ public class AgooFactory {
                                     } else if (TextUtils.equals(string5, Integer.toString(4))) {
                                         z2 = false;
                                     } else {
-                                        ALog.e(TAG, "msgRecevie msg encrypted flag not exist, cannot prase!!!", new Object[0]);
-                                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, com.taobao.accs.utl.j.b(mContext), "encrypted!=4", "15");
+                                        ALog.m9182e(TAG, "msgRecevie msg encrypted flag not exist, cannot prase!!!", new Object[0]);
+                                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, C3042j.m9247b(mContext), "encrypted!=4", "15");
                                         msgDO.errorCode = "24";
                                         this.notifyManager.handlerACKMessage(msgDO, extraInfo);
                                         str4 = string4;
@@ -365,14 +371,14 @@ public class AgooFactory {
                                         }
                                     } catch (Throwable unused) {
                                         if (ALog.isPrintLog(ALog.Level.I)) {
-                                            ALog.i(TAG, "agoo msg has no time", new Object[0]);
+                                            ALog.m9183i(TAG, "agoo msg has no time", new Object[0]);
                                         }
                                     }
                                     bundle.putLong(AgooConstants.MESSAGE_TRACE, System.currentTimeMillis());
                                     bundle.putString("id", string2);
                                     bundle.putString("body", string3);
                                     bundle.putString("source", string);
-                                    bundle.putString(AgooConstants.MESSAGE_FROM_APPKEY, Config.a(mContext));
+                                    bundle.putString(AgooConstants.MESSAGE_FROM_APPKEY, Config.m24934a(mContext));
                                     bundle.putString(AgooConstants.MESSAGE_EXT, string4);
                                     str3 = str9;
                                     bundle.putString(AgooConstants.MESSAGE_ORI, str3);
@@ -396,8 +402,8 @@ public class AgooFactory {
                                     }
                                     str7 = str4;
                                 } else {
-                                    ALog.d(TAG, "msgRecevie checkpackage is del,pack=" + string, new Object[0]);
-                                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, com.taobao.accs.utl.j.b(mContext), "deletePack", string);
+                                    ALog.m9180d(TAG, "msgRecevie checkpackage is del,pack=" + string, new Object[0]);
+                                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, C3042j.m9247b(mContext), "deletePack", string);
                                     sb7.append(string);
                                     sb8.append(string2);
                                     if (i4 < i5) {
@@ -451,12 +457,12 @@ public class AgooFactory {
                 if (!ALog.isPrintLog(ALog.Level.E)) {
                     return null;
                 }
-                ALog.e(TAG, "msgRecevie is error,e=" + th, new Object[0]);
+                ALog.m9182e(TAG, "msgRecevie is error,e=" + th, new Object[0]);
                 return null;
             }
         }
-        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, com.taobao.accs.utl.j.b(mContext), "data==null");
-        ALog.i(TAG, "handleMessage data==null,utdid=" + com.taobao.accs.utl.j.b(mContext), new Object[0]);
+        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, DEAL_MESSAGE, C3042j.m9247b(mContext), "data==null");
+        ALog.m9183i(TAG, "handleMessage data==null,utdid=" + C3042j.m9247b(mContext), new Object[0]);
         return null;
     }
 
@@ -466,9 +472,9 @@ public class AgooFactory {
 
     public void reportCacheMsg() {
         try {
-            ThreadPoolExecutorFactory.execute(new c(this));
+            ThreadPoolExecutorFactory.execute(new RunnableC6016c(this));
         } catch (Throwable th) {
-            ALog.e(TAG, "reportCacheMsg fail:" + th.toString(), new Object[0]);
+            ALog.m9182e(TAG, "reportCacheMsg fail:" + th.toString(), new Object[0]);
         }
     }
 
@@ -477,38 +483,38 @@ public class AgooFactory {
     }
 
     public void updateMsg(byte[] bArr, boolean z) {
-        ThreadPoolExecutorFactory.execute(new d(this, bArr, z));
+        ThreadPoolExecutorFactory.execute(new RunnableC6017d(this, bArr, z));
     }
 
     public void updateMsgStatus(String str, String str2) {
         try {
             if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
                 if (ALog.isPrintLog(ALog.Level.I)) {
-                    ALog.i(TAG, "updateNotifyMsg begin,messageId=" + str + ",status=" + str2 + ",reportTimes=" + Config.f(mContext), new Object[0]);
+                    ALog.m9183i(TAG, "updateNotifyMsg begin,messageId=" + str + ",status=" + str2 + ",reportTimes=" + Config.m24945f(mContext), new Object[0]);
                 }
                 if (TextUtils.equals(str2, "8")) {
-                    this.messageService.a(str, "2");
+                    this.messageService.m24964a(str, "2");
                 } else if (TextUtils.equals(str2, "9")) {
-                    this.messageService.a(str, "3");
+                    this.messageService.m24964a(str, "3");
                 }
             }
         } catch (Throwable th) {
-            ALog.e(TAG, "updateNotifyMsg e=" + th.toString(), new Object[0]);
+            ALog.m9182e(TAG, "updateNotifyMsg e=" + th.toString(), new Object[0]);
         }
     }
 
     public void updateNotifyMsg(String str, String str2) {
-        ThreadPoolExecutorFactory.execute(new e(this, str, str2));
+        ThreadPoolExecutorFactory.execute(new RunnableC6018e(this, str, str2));
     }
 
     public void msgRecevie(byte[] bArr, String str, TaoBaseService.ExtraInfo extraInfo) {
         try {
             if (ALog.isPrintLog(ALog.Level.I)) {
-                ALog.i(TAG, "into--[AgooFactory,msgRecevie]:messageSource=" + str, new Object[0]);
+                ALog.m9183i(TAG, "into--[AgooFactory,msgRecevie]:messageSource=" + str, new Object[0]);
             }
-            ThreadPoolExecutorFactory.execute(new org.android.agoo.control.b(this, bArr, str, extraInfo));
+            ThreadPoolExecutorFactory.execute(new RunnableC6015b(this, bArr, str, extraInfo));
         } catch (Throwable th) {
-            ALog.e(TAG, "serviceImpl init task fail:" + th.toString(), new Object[0]);
+            ALog.m9182e(TAG, "serviceImpl init task fail:" + th.toString(), new Object[0]);
         }
     }
 
@@ -516,6 +522,6 @@ public class AgooFactory {
         if (bArr == null || bArr.length <= 0) {
             return;
         }
-        ThreadPoolExecutorFactory.execute(new org.android.agoo.control.a(this, bArr, str));
+        ThreadPoolExecutorFactory.execute(new RunnableC6014a(this, bArr, str));
     }
 }

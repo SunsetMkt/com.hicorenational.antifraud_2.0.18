@@ -23,51 +23,56 @@ import org.json.JSONObject;
 /* loaded from: classes2.dex */
 public class LinkcardRequest extends SocializeRequest {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f11744a = "/share/linkcard/";
+    /* renamed from: a */
+    private static final String f13690a = "/share/linkcard/";
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f11745b;
+    /* renamed from: b */
+    private String f13691b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private BaseMediaObject f11746c;
+    /* renamed from: c */
+    private BaseMediaObject f13692c;
 
     public LinkcardRequest(Context context) {
         super(context, "", LinkCardResponse.class, 0, URequest.RequestMethod.POST);
     }
 
-    private JSONObject a() {
+    /* renamed from: a */
+    private JSONObject m12658a() {
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("display_name", this.f11746c.getTitle());
-            jSONObject.put("image", f());
-            jSONObject.put("summary", d());
-            jSONObject.put(SocializeProtocolConstants.FULL_IMAGE, h());
-            jSONObject.put("url", this.f11746c.toUrl());
-            jSONObject.put(SocializeProtocolConstants.LINKS, i());
-            jSONObject.put(SocializeProtocolConstants.TAGS, e());
-            jSONObject.put(SocializeProtocolConstants.CREATE_AT, c());
-            jSONObject.put(SocializeProtocolConstants.OBJECT_TYPE, b());
+            jSONObject.put("display_name", this.f13692c.getTitle());
+            jSONObject.put("image", m12663f());
+            jSONObject.put("summary", m12661d());
+            jSONObject.put(SocializeProtocolConstants.FULL_IMAGE, m12665h());
+            jSONObject.put("url", this.f13692c.toUrl());
+            jSONObject.put(SocializeProtocolConstants.LINKS, m12666i());
+            jSONObject.put(SocializeProtocolConstants.TAGS, m12662e());
+            jSONObject.put(SocializeProtocolConstants.CREATE_AT, m12660c());
+            jSONObject.put(SocializeProtocolConstants.OBJECT_TYPE, m12659b());
         } catch (JSONException e2) {
             SLog.error(e2);
         }
         return jSONObject;
     }
 
-    private String b() {
-        BaseMediaObject baseMediaObject = this.f11746c;
+    /* renamed from: b */
+    private String m12659b() {
+        BaseMediaObject baseMediaObject = this.f13692c;
         return baseMediaObject instanceof UMWeb ? "webpage" : baseMediaObject instanceof UMVideo ? "video" : baseMediaObject instanceof UMusic ? "audio" : "webpage";
     }
 
-    private String c() {
+    /* renamed from: c */
+    private String m12660c() {
         return new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
     }
 
-    private String d() {
-        return (TextUtils.isEmpty(this.f11746c.getDescription()) || this.f11746c.getDescription().length() <= 300) ? this.f11746c.getDescription() : this.f11746c.getDescription().substring(0, 300);
+    /* renamed from: d */
+    private String m12661d() {
+        return (TextUtils.isEmpty(this.f13692c.getDescription()) || this.f13692c.getDescription().length() <= 300) ? this.f13692c.getDescription() : this.f13692c.getDescription().substring(0, 300);
     }
 
-    private JSONArray e() {
+    /* renamed from: e */
+    private JSONArray m12662e() {
         JSONArray jSONArray = new JSONArray();
         try {
             JSONObject jSONObject = new JSONObject();
@@ -79,29 +84,31 @@ public class LinkcardRequest extends SocializeRequest {
         return jSONArray;
     }
 
-    private JSONObject f() {
+    /* renamed from: f */
+    private JSONObject m12663f() {
         JSONObject jSONObject = new JSONObject();
         try {
-            UMImage thumbImage = this.f11746c.getThumbImage();
+            UMImage thumbImage = this.f13692c.getThumbImage();
             if (thumbImage == null || !thumbImage.isUrlMedia()) {
                 jSONObject.put("url", "https://mobile.umeng.com/images/pic/home/social/img-1.png");
             } else {
                 jSONObject.put("url", thumbImage.asUrlImage());
             }
-            int[] g2 = g();
-            jSONObject.put(SocializeProtocolConstants.WIDTH, g2[0]);
-            jSONObject.put(SocializeProtocolConstants.HEIGHT, g2[1]);
+            int[] m12664g = m12664g();
+            jSONObject.put(SocializeProtocolConstants.WIDTH, m12664g[0]);
+            jSONObject.put(SocializeProtocolConstants.HEIGHT, m12664g[1]);
         } catch (JSONException e2) {
             SLog.error(e2);
         }
         return jSONObject;
     }
 
-    private int[] g() {
+    /* renamed from: g */
+    private int[] m12664g() {
         int[] iArr = {120, 120};
-        BaseMediaObject baseMediaObject = this.f11746c;
+        BaseMediaObject baseMediaObject = this.f13692c;
         if (baseMediaObject != null && baseMediaObject.getmExtra() != null) {
-            Map<String, Object> map = this.f11746c.getmExtra();
+            Map<String, Object> map = this.f13692c.getmExtra();
             if (map.containsKey(SocializeProtocolConstants.WIDTH)) {
                 iArr[0] = ((Integer) map.get(SocializeProtocolConstants.WIDTH)).intValue();
             }
@@ -112,28 +119,30 @@ public class LinkcardRequest extends SocializeRequest {
         return iArr;
     }
 
-    private JSONObject h() {
+    /* renamed from: h */
+    private JSONObject m12665h() {
         JSONObject jSONObject = new JSONObject();
         try {
-            UMImage thumbImage = this.f11746c.getThumbImage();
+            UMImage thumbImage = this.f13692c.getThumbImage();
             if (thumbImage == null || !thumbImage.isUrlMedia()) {
                 jSONObject.put("url", "https://mobile.umeng.com/images/pic/home/social/img-1.png");
             } else {
                 jSONObject.put("url", thumbImage.asUrlImage());
             }
-            int[] g2 = g();
-            jSONObject.put(SocializeProtocolConstants.WIDTH, g2[0]);
-            jSONObject.put(SocializeProtocolConstants.HEIGHT, g2[1]);
+            int[] m12664g = m12664g();
+            jSONObject.put(SocializeProtocolConstants.WIDTH, m12664g[0]);
+            jSONObject.put(SocializeProtocolConstants.HEIGHT, m12664g[1]);
         } catch (JSONException e2) {
             SLog.error(e2);
         }
         return jSONObject;
     }
 
-    private JSONObject i() {
+    /* renamed from: i */
+    private JSONObject m12666i() {
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("url", this.f11746c.toUrl());
+            jSONObject.put("url", this.f13692c.toUrl());
         } catch (JSONException e2) {
             SLog.error(e2);
         }
@@ -142,16 +151,16 @@ public class LinkcardRequest extends SocializeRequest {
 
     @Override // com.umeng.socialize.net.base.SocializeRequest
     protected String getPath() {
-        return f11744a + SocializeUtils.getAppkey(this.mContext) + "/" + Config.EntityKey + "/";
+        return f13690a + SocializeUtils.getAppkey(this.mContext) + "/" + Config.EntityKey + "/";
     }
 
     @Override // com.umeng.socialize.net.base.SocializeRequest, com.umeng.socialize.net.utils.URequest
     public void onPrepareRequest() {
         super.onPrepareRequest();
-        addStringParams("linkcard_info", a().toString());
+        addStringParams("linkcard_info", m12658a().toString());
     }
 
     public void setMedia(BaseMediaObject baseMediaObject) {
-        this.f11746c = baseMediaObject;
+        this.f13692c = baseMediaObject;
     }
 }

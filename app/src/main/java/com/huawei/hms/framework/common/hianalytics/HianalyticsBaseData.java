@@ -28,7 +28,7 @@ public abstract class HianalyticsBaseData {
 
     public HianalyticsBaseData put(String str, String str2) {
         if (str == null || str2 == null) {
-            Logger.v(TAG, "key = " + str + " : value = " + str2);
+            Logger.m6801v(TAG, "key = " + str + " : value = " + str2);
         } else {
             this.data.put(str, str2);
         }
@@ -46,14 +46,14 @@ public abstract class HianalyticsBaseData {
                 jSONObject.put(entry.getKey(), entry.getValue());
             }
         } catch (JSONException e2) {
-            Logger.w(TAG, "catch JSONException", e2);
+            Logger.m6804w(TAG, "catch JSONException", e2);
         }
         return jSONObject.toString();
     }
 
     public HianalyticsBaseData put(String str, long j2) {
         if (str == null) {
-            Logger.v(TAG, "key = null : value = " + j2);
+            Logger.m6801v(TAG, "key = null : value = " + j2);
         } else {
             this.data.put(str, "" + j2);
         }
@@ -64,7 +64,7 @@ public abstract class HianalyticsBaseData {
         if (linkedHashMap != null && !linkedHashMap.isEmpty()) {
             this.data.putAll(linkedHashMap);
         } else {
-            Logger.v(TAG, "data is null");
+            Logger.m6801v(TAG, "data is null");
         }
         return this;
     }

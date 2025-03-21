@@ -14,8 +14,8 @@ import java.util.Map;
 public class PushPreferences {
     public static final String TAG = "PushPreferences";
 
-    /* renamed from: a, reason: collision with root package name */
-    protected SharedPreferences f6514a;
+    /* renamed from: a */
+    protected SharedPreferences f7014a;
 
     public PushPreferences(Context context, String str) {
         if (context == null) {
@@ -33,15 +33,16 @@ public class PushPreferences {
             }
             context = createDeviceProtectedStorageContext;
         }
-        SharedPreferences b2 = b(context, str);
-        this.f6514a = b2;
-        if (b2 == null) {
-            HMSLog.w(TAG, "get new sharedPreferences failed,start to get from context. ");
-            this.f6514a = context.getSharedPreferences(str, 0);
+        SharedPreferences m6506b = m6506b(context, str);
+        this.f7014a = m6506b;
+        if (m6506b == null) {
+            HMSLog.m7718w(TAG, "get new sharedPreferences failed,start to get from context. ");
+            this.f7014a = context.getSharedPreferences(str, 0);
         }
     }
 
-    private File a(Context context, String str) {
+    /* renamed from: a */
+    private File m6505a(Context context, String str) {
         File file;
         try {
             if (Build.VERSION.SDK_INT >= 24) {
@@ -54,28 +55,29 @@ public class PushPreferences {
             }
             return null;
         } catch (Exception e2) {
-            HMSLog.e(TAG, "get failed error." + e2.getMessage());
+            HMSLog.m7715e(TAG, "get failed error." + e2.getMessage());
             return null;
         }
     }
 
-    private SharedPreferences b(Context context, String str) {
-        File a2 = a(context, str);
-        if (a2 == null) {
+    /* renamed from: b */
+    private SharedPreferences m6506b(Context context, String str) {
+        File m6505a = m6505a(context, str);
+        if (m6505a == null) {
             return null;
         }
         try {
             Constructor<?> declaredConstructor = Class.forName("android.app.SharedPreferencesImpl").getDeclaredConstructor(File.class, Integer.TYPE);
             declaredConstructor.setAccessible(true);
-            return (SharedPreferences) declaredConstructor.newInstance(a2, 0);
+            return (SharedPreferences) declaredConstructor.newInstance(m6505a, 0);
         } catch (Exception e2) {
-            HMSLog.e(TAG, "get SharedPreferences error." + e2.getMessage());
+            HMSLog.m7715e(TAG, "get SharedPreferences error." + e2.getMessage());
             return null;
         }
     }
 
     public boolean clear() {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences != null) {
             return sharedPreferences.edit().clear().commit();
         }
@@ -83,22 +85,22 @@ public class PushPreferences {
     }
 
     public boolean containsKey(String str) {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         return sharedPreferences != null && sharedPreferences.contains(str);
     }
 
     public Map<String, ?> getAll() {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         return sharedPreferences != null ? sharedPreferences.getAll() : new HashMap();
     }
 
     public boolean getBoolean(String str) {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         return sharedPreferences != null && sharedPreferences.getBoolean(str, false);
     }
 
     public int getInt(String str) {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences != null) {
             return sharedPreferences.getInt(str, 0);
         }
@@ -106,7 +108,7 @@ public class PushPreferences {
     }
 
     public long getLong(String str) {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences != null) {
             return sharedPreferences.getLong(str, 0L);
         }
@@ -114,13 +116,13 @@ public class PushPreferences {
     }
 
     public String getString(String str) {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         return sharedPreferences != null ? sharedPreferences.getString(str, "") : "";
     }
 
     public ContentValues read() {
         Map<String, ?> all;
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences == null || (all = sharedPreferences.getAll()) == null) {
             return null;
         }
@@ -147,15 +149,15 @@ public class PushPreferences {
 
     public boolean removeKey(String str) {
         SharedPreferences.Editor edit;
-        SharedPreferences sharedPreferences = this.f6514a;
-        if (sharedPreferences == null || !sharedPreferences.contains(str) || (edit = this.f6514a.edit()) == null) {
+        SharedPreferences sharedPreferences = this.f7014a;
+        if (sharedPreferences == null || !sharedPreferences.contains(str) || (edit = this.f7014a.edit()) == null) {
             return false;
         }
         return edit.remove(str).commit();
     }
 
     public boolean save(String str, Object obj) {
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences == null) {
             return false;
         }
@@ -182,7 +184,7 @@ public class PushPreferences {
 
     public void saveBoolean(String str, boolean z) {
         SharedPreferences.Editor edit;
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences == null || (edit = sharedPreferences.edit()) == null) {
             return;
         }
@@ -191,7 +193,7 @@ public class PushPreferences {
 
     public void saveInt(String str, Integer num) {
         SharedPreferences.Editor edit;
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences == null || (edit = sharedPreferences.edit()) == null) {
             return;
         }
@@ -200,7 +202,7 @@ public class PushPreferences {
 
     public void saveLong(String str, Long l2) {
         SharedPreferences.Editor edit;
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences == null || (edit = sharedPreferences.edit()) == null) {
             return;
         }
@@ -215,7 +217,7 @@ public class PushPreferences {
 
     public boolean saveString(String str, String str2) {
         SharedPreferences.Editor edit;
-        SharedPreferences sharedPreferences = this.f6514a;
+        SharedPreferences sharedPreferences = this.f7014a;
         if (sharedPreferences == null || (edit = sharedPreferences.edit()) == null) {
             return false;
         }
@@ -223,7 +225,7 @@ public class PushPreferences {
     }
 
     public boolean write(ContentValues contentValues) {
-        if (this.f6514a == null || contentValues == null) {
+        if (this.f7014a == null || contentValues == null) {
             return false;
         }
         boolean z = true;
@@ -236,15 +238,15 @@ public class PushPreferences {
     }
 
     public boolean removeKey(String[] strArr) {
-        if (this.f6514a == null) {
+        if (this.f7014a == null) {
             return false;
         }
         for (String str : strArr) {
-            if (this.f6514a.contains(str)) {
-                this.f6514a.edit().remove(str);
+            if (this.f7014a.contains(str)) {
+                this.f7014a.edit().remove(str);
             }
         }
-        this.f6514a.edit().commit();
+        this.f7014a.edit().commit();
         return true;
     }
 }

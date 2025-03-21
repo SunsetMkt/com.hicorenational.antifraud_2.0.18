@@ -1,9 +1,9 @@
 package network;
 
 import android.text.TextUtils;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
 import network.account.APIresult;
-import ui.Hicore;
+import p388ui.Hicore;
 
 /* loaded from: classes2.dex */
 public class APIException extends RuntimeException {
@@ -17,7 +17,7 @@ public class APIException extends RuntimeException {
     }
 
     public static APIException getApiExcept() {
-        return getApiExcept(-102, Hicore.getApp().getResources().getString(R.string.err_timeout));
+        return getApiExcept(-102, Hicore.getApp().getResources().getString(C2113R.string.err_timeout));
     }
 
     public int getCode() {
@@ -34,14 +34,14 @@ public class APIException extends RuntimeException {
 
     public static APIException getApiExcept(String str) {
         if (TextUtils.isEmpty(str)) {
-            str = Hicore.getApp().getResources().getString(R.string.err_timeout);
+            str = Hicore.getApp().getResources().getString(C2113R.string.err_timeout);
         }
         return getApiExcept(-102, str);
     }
 
     public static APIException getApiExcept(APIresult aPIresult) {
         int i2;
-        String string = Hicore.getApp().getString(R.string.err_timeout);
+        String string = Hicore.getApp().getString(C2113R.string.err_timeout);
         if (aPIresult != null) {
             i2 = aPIresult.getCode();
             if (!TextUtils.isEmpty(aPIresult.getMsg())) {

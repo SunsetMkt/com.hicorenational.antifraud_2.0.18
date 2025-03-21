@@ -7,7 +7,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.view.ViewConfiguration;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
@@ -56,22 +56,22 @@ public class ActionBarPolicy {
     }
 
     public int getStackedTabMaxWidth() {
-        return this.mContext.getResources().getDimensionPixelSize(R.dimen.abc_action_bar_stacked_tab_max_width);
+        return this.mContext.getResources().getDimensionPixelSize(C0120R.dimen.abc_action_bar_stacked_tab_max_width);
     }
 
     public int getTabContainerHeight() {
-        TypedArray obtainStyledAttributes = this.mContext.obtainStyledAttributes(null, R.styleable.ActionBar, R.attr.actionBarStyle, 0);
-        int layoutDimension = obtainStyledAttributes.getLayoutDimension(R.styleable.ActionBar_height, 0);
+        TypedArray obtainStyledAttributes = this.mContext.obtainStyledAttributes(null, C0120R.styleable.ActionBar, C0120R.attr.actionBarStyle, 0);
+        int layoutDimension = obtainStyledAttributes.getLayoutDimension(C0120R.styleable.ActionBar_height, 0);
         Resources resources = this.mContext.getResources();
         if (!hasEmbeddedTabs()) {
-            layoutDimension = Math.min(layoutDimension, resources.getDimensionPixelSize(R.dimen.abc_action_bar_stacked_max_height));
+            layoutDimension = Math.min(layoutDimension, resources.getDimensionPixelSize(C0120R.dimen.abc_action_bar_stacked_max_height));
         }
         obtainStyledAttributes.recycle();
         return layoutDimension;
     }
 
     public boolean hasEmbeddedTabs() {
-        return this.mContext.getResources().getBoolean(R.bool.abc_action_bar_embed_tabs);
+        return this.mContext.getResources().getBoolean(C0120R.bool.abc_action_bar_embed_tabs);
     }
 
     public boolean showsOverflowMenuButton() {

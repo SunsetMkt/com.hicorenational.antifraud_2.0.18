@@ -3,6 +3,7 @@ package com.alibaba.sdk.android.beacon;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import com.heytap.mcssdk.constant.C2084a;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +11,8 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public final class Beacon {
 
-    /* renamed from: a, reason: collision with root package name */
-    private final b f3993a;
+    /* renamed from: a */
+    private final C1497b f3834a;
 
     private final class BeaconHandler extends Handler {
         BeaconHandler(Looper looper) {
@@ -45,8 +46,8 @@ public final class Beacon {
         }
 
         public Builder loopInterval(long j2) {
-            if (j2 < com.heytap.mcssdk.constant.a.f5800d) {
-                this.mLoopInterval = com.heytap.mcssdk.constant.a.f5800d;
+            if (j2 < C2084a.f6122d) {
+                this.mLoopInterval = C2084a.f6122d;
             } else {
                 this.mLoopInterval = j2;
             }
@@ -83,11 +84,11 @@ public final class Beacon {
     }
 
     private Beacon(Builder builder) {
-        this.f3993a = new b(this);
+        this.f3834a = new C1497b(this);
     }
 
     public static final void setPrepare(boolean z) {
-        a.f3994a = z;
+        C1496a.f3835a = z;
     }
 
     public void addServiceErrListener(OnServiceErrListener onServiceErrListener) {
@@ -97,7 +98,7 @@ public final class Beacon {
     }
 
     public List<Config> getConfigs() {
-        return this.f3993a.a();
+        return this.f3834a.m3413a();
     }
 
     public void start(Context context) {

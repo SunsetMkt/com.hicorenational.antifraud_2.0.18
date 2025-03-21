@@ -3,7 +3,6 @@ package com.just.agentweb;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.webkit.WebView;
-import c.c.a.b.a.a;
 import com.xiaomi.mipush.sdk.Constants;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -11,6 +10,7 @@ import org.android.agoo.common.AgooConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class JsCallJava {
@@ -113,7 +113,7 @@ public class JsCallJava {
     }
 
     private String getReturn(JSONObject jSONObject, int i2, Object obj, long j2) {
-        String format = String.format(RETURN_RESULT_FORMAT, Integer.valueOf(i2), obj == null ? a.f3101h : obj instanceof String ? "\"".concat(String.valueOf(((String) obj).replace("\"", "\\\""))).concat("\"") : String.valueOf(obj));
+        String format = String.format(RETURN_RESULT_FORMAT, Integer.valueOf(i2), obj == null ? AbstractC1191a.f2571h : obj instanceof String ? "\"".concat(String.valueOf(((String) obj).replace("\"", "\\\""))).concat("\"") : String.valueOf(obj));
         if (LogUtils.isDebug()) {
             String str = "call time: " + (SystemClock.uptimeMillis() - j2) + ", request: " + jSONObject + ", result:" + format;
         }

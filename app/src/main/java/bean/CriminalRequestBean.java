@@ -5,13 +5,15 @@ import network.BaseBean;
 
 /* loaded from: classes.dex */
 public class CriminalRequestBean extends BaseBean {
-    private String id;
+
+    /* renamed from: id */
+    private String f1592id;
     private List<CallBean> mobiles;
     private List<SocialAccBean> socialAccounts;
     private String suspectInfoID;
 
     public String getId() {
-        return this.id;
+        return this.f1592id;
     }
 
     public List<CallBean> getMobiles() {
@@ -27,7 +29,7 @@ public class CriminalRequestBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1592id = str;
     }
 
     public void setMobiles(List<CallBean> list) {

@@ -259,9 +259,9 @@ public class AgentWebUtils {
                 file.mkdirs();
             }
         } catch (Throwable unused) {
-            LogUtils.i(TAG, "create dir exception");
+            LogUtils.m8083i(TAG, "create dir exception");
         }
-        LogUtils.i(TAG, "path:" + file.getAbsolutePath() + "  path:" + file.getPath());
+        LogUtils.m8083i(TAG, "path:" + file.getAbsolutePath() + "  path:" + file.getPath());
         String absolutePath = file.getAbsolutePath();
         AgentWebConfig.AGENTWEB_FILE_PATH = absolutePath;
         return absolutePath;
@@ -360,7 +360,7 @@ public class AgentWebUtils {
     static String getFileAbsolutePath(Activity activity, Uri uri) {
         Uri uri2 = null;
         if (activity != null && uri != null) {
-            LogUtils.i(TAG, "getAuthority:" + uri.getAuthority() + "  getHost:" + uri.getHost() + "   getPath:" + uri.getPath() + "  getScheme:" + uri.getScheme() + "  query:" + uri.getQuery());
+            LogUtils.m8083i(TAG, "getAuthority:" + uri.getAuthority() + "  getHost:" + uri.getHost() + "   getPath:" + uri.getPath() + "  getScheme:" + uri.getScheme() + "  query:" + uri.getQuery());
             if (Build.VERSION.SDK_INT < 19 || !DocumentsContract.isDocumentUri(activity, uri)) {
                 if (uri.getAuthority().equalsIgnoreCase(activity.getPackageName() + ".AgentWebFileProvider")) {
                     String path = uri.getPath();
@@ -428,7 +428,7 @@ public class AgentWebUtils {
 
     private static String getRealPathBelowVersion(Context context, Uri uri) {
         String str;
-        LogUtils.i(TAG, "method -> getRealPathBelowVersion " + uri + "   path:" + uri.getPath() + "    getAuthority:" + uri.getAuthority());
+        LogUtils.m8083i(TAG, "method -> getRealPathBelowVersion " + uri + "   path:" + uri.getPath() + "    getAuthority:" + uri.getAuthority());
         String[] strArr = {"_data"};
         Cursor loadInBackground = new CursorLoader(context, uri, strArr, null, null, null).loadInBackground();
         if (loadInBackground != null) {
@@ -444,7 +444,7 @@ public class AgentWebUtils {
     @Deprecated
     static void getUIControllerAndShowMessage(Activity activity, String str, String str2) {
         AbsAgentWebUIController provide;
-        if (activity == null || activity.isFinishing() || (provide = ((WebParentLayout) activity.findViewById(R.id.web_parent_layout_id)).provide()) == null) {
+        if (activity == null || activity.isFinishing() || (provide = ((WebParentLayout) activity.findViewById(C2605R.id.web_parent_layout_id)).provide()) == null) {
             return;
         }
         provide.onShowMessage(str, str2);
@@ -464,10 +464,10 @@ public class AgentWebUtils {
         }
         ViewGroup viewGroup = (ViewGroup) webView.getParent();
         while (viewGroup != null) {
-            LogUtils.i(TAG, "ViewGroup:" + viewGroup);
-            if (viewGroup.getId() == R.id.web_parent_layout_id) {
+            LogUtils.m8083i(TAG, "ViewGroup:" + viewGroup);
+            if (viewGroup.getId() == C2605R.id.web_parent_layout_id) {
                 WebParentLayout webParentLayout = (WebParentLayout) viewGroup;
-                LogUtils.i(TAG, "found WebParentLayout");
+                LogUtils.m8083i(TAG, "found WebParentLayout");
                 return webParentLayout;
             }
             ViewParent parent = viewGroup.getParent();
@@ -543,7 +543,7 @@ public class AgentWebUtils {
     }
 
     static boolean isOverriedMethod(Object obj, String str, String str2, Class... clsArr) {
-        LogUtils.i(TAG, "  methodName:" + str + "   method:" + str2);
+        LogUtils.m8083i(TAG, "  methodName:" + str + "   method:" + str2);
         boolean z = false;
         if (obj == null) {
             return false;
@@ -555,7 +555,7 @@ public class AgentWebUtils {
                 e2.printStackTrace();
             }
         }
-        LogUtils.i(TAG, "isOverriedMethod:" + z);
+        LogUtils.m8083i(TAG, "isOverriedMethod:" + z);
         return z;
     }
 
@@ -664,10 +664,10 @@ public class AgentWebUtils {
                 th.printStackTrace();
             }
             if (th instanceof ClassNotFoundException) {
-                LogUtils.e(TAG, "Please check whether compile'com.just.agentweb:filechooser:x.x.x' dependency was added.");
+                LogUtils.m8081e(TAG, "Please check whether compile'com.just.agentweb:filechooser:x.x.x' dependency was added.");
             }
             if (valueCallback != null) {
-                LogUtils.i(TAG, "onReceiveValue empty");
+                LogUtils.m8083i(TAG, "onReceiveValue empty");
                 return false;
             }
             if (valueCallback2 != null) {

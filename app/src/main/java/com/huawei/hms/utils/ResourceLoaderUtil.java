@@ -8,38 +8,38 @@ import com.huawei.hms.support.log.HMSLog;
 /* loaded from: classes.dex */
 public abstract class ResourceLoaderUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static Context f7408a;
+    /* renamed from: a */
+    private static Context f7985a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static String f7409b;
+    /* renamed from: b */
+    private static String f7986b;
 
     public static int getAnimId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "anim", f7409b);
+        return context.getResources().getIdentifier(str, "anim", f7986b);
     }
 
     public static int getColorId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, RemoteMessageConst.Notification.COLOR, f7409b);
+        return context.getResources().getIdentifier(str, RemoteMessageConst.Notification.COLOR, f7986b);
     }
 
     public static int getDimenId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "dimen", f7409b);
+        return context.getResources().getIdentifier(str, "dimen", f7986b);
     }
 
     public static Drawable getDrawable(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return null;
         }
@@ -47,66 +47,66 @@ public abstract class ResourceLoaderUtil {
     }
 
     public static int getDrawableId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "drawable", f7409b);
+        return context.getResources().getIdentifier(str, "drawable", f7986b);
     }
 
     public static int getIdId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "id", f7409b);
+        return context.getResources().getIdentifier(str, "id", f7986b);
     }
 
     public static int getLayoutId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "layout", f7409b);
+        return context.getResources().getIdentifier(str, "layout", f7986b);
     }
 
     public static String getString(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         return context == null ? "" : context.getResources().getString(getStringId(str));
     }
 
     public static int getStringId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "string", f7409b);
+        return context.getResources().getIdentifier(str, "string", f7986b);
     }
 
     public static int getStyleId(String str) {
-        Context context = f7408a;
+        Context context = f7985a;
         if (context == null) {
             return 0;
         }
-        return context.getResources().getIdentifier(str, "style", f7409b);
+        return context.getResources().getIdentifier(str, "style", f7986b);
     }
 
     public static Context getmContext() {
-        return f7408a;
+        return f7985a;
     }
 
     public static void setmContext(Context context) {
-        f7408a = context;
+        f7985a = context;
         if (context != null) {
-            f7409b = context.getPackageName();
+            f7986b = context.getPackageName();
         } else {
-            f7409b = null;
-            HMSLog.e("ResourceLoaderUtil", "context is null");
+            f7986b = null;
+            HMSLog.m7715e("ResourceLoaderUtil", "context is null");
         }
     }
 
     public static String getString(String str, Object... objArr) {
-        Context context = f7408a;
+        Context context = f7985a;
         return context == null ? "" : context.getResources().getString(getStringId(str), objArr);
     }
 }

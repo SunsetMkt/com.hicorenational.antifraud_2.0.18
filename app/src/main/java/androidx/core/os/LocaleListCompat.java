@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
-import c.c.a.b.a.a;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.Locale;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public final class LocaleListCompat {
@@ -38,10 +38,10 @@ public final class LocaleListCompat {
                 return new Locale(split[0]);
             }
         } else {
-            if (!str.contains(a.s1)) {
+            if (!str.contains(AbstractC1191a.f2606s1)) {
                 return new Locale(str);
             }
-            String[] split2 = str.split(a.s1, -1);
+            String[] split2 = str.split(AbstractC1191a.f2606s1, -1);
             if (split2.length > 2) {
                 return new Locale(split2[0], split2[1], split2[2]);
             }

@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
                 android:text="反馈内容"/>
-            <ui.view.MyEdittext
+            <p388ui.view.MyEdittext
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/black_dark"
                 android:gravity="top"

@@ -1,6 +1,5 @@
 package okhttp3.internal.publicsuffix;
 
-import h.f1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
@@ -12,6 +11,7 @@ import okhttp3.internal.platform.Platform;
 import okio.BufferedSource;
 import okio.GzipSource;
 import okio.Okio;
+import p286h.C5230f1;
 
 /* loaded from: classes2.dex */
 public final class PublicSuffixDatabase {
@@ -56,9 +56,9 @@ public final class PublicSuffixDatabase {
                     z = false;
                     i4 = 46;
                 } else {
-                    i4 = bArr2[i11][i12] & f1.f16099c;
+                    i4 = bArr2[i11][i12] & C5230f1.f20085c;
                 }
-                i5 = i4 - (bArr[i8 + i13] & f1.f16099c);
+                i5 = i4 - (bArr[i8 + i13] & C5230f1.f20085c);
                 if (i5 == 0) {
                     i13++;
                     i12++;

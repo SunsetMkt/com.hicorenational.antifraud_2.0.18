@@ -5,37 +5,38 @@ import android.os.Parcelable;
 
 /* loaded from: classes.dex */
 public class ParamInfo implements Parcelable {
-    public static final Parcelable.Creator<ParamInfo> CREATOR = new a();
+    public static final Parcelable.Creator<ParamInfo> CREATOR = new C2157a();
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f6142a;
+    /* renamed from: a */
+    private String f6553a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f6143b;
+    /* renamed from: b */
+    private String f6554b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f6144c;
+    /* renamed from: c */
+    private String f6555c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private int f6145d;
+    /* renamed from: d */
+    private int f6556d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f6146e;
+    /* renamed from: e */
+    private String f6557e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private boolean f6147f;
+    /* renamed from: f */
+    private boolean f6558f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private boolean f6148g;
+    /* renamed from: g */
+    private boolean f6559g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private String f6149h;
+    /* renamed from: h */
+    private String f6560h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private String f6150i;
+    /* renamed from: i */
+    private String f6561i;
 
-    class a implements Parcelable.Creator<ParamInfo> {
-        a() {
+    /* renamed from: com.hihonor.honorid.core.data.ParamInfo$a */
+    class C2157a implements Parcelable.Creator<ParamInfo> {
+        C2157a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
@@ -52,15 +53,15 @@ public class ParamInfo implements Parcelable {
     }
 
     protected ParamInfo(Parcel parcel) {
-        this.f6142a = parcel.readString();
-        this.f6143b = parcel.readString();
-        this.f6144c = parcel.readString();
-        this.f6145d = parcel.readInt();
-        this.f6146e = parcel.readString();
-        this.f6147f = parcel.readByte() != 0;
-        this.f6148g = parcel.readByte() != 0;
-        this.f6149h = parcel.readString();
-        this.f6150i = parcel.readString();
+        this.f6553a = parcel.readString();
+        this.f6554b = parcel.readString();
+        this.f6555c = parcel.readString();
+        this.f6556d = parcel.readInt();
+        this.f6557e = parcel.readString();
+        this.f6558f = parcel.readByte() != 0;
+        this.f6559g = parcel.readByte() != 0;
+        this.f6560h = parcel.readString();
+        this.f6561i = parcel.readString();
     }
 
     @Override // android.os.Parcelable
@@ -70,14 +71,14 @@ public class ParamInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6142a);
-        parcel.writeString(this.f6143b);
-        parcel.writeString(this.f6144c);
-        parcel.writeInt(this.f6145d);
-        parcel.writeString(this.f6146e);
-        parcel.writeByte(this.f6147f ? (byte) 1 : (byte) 0);
-        parcel.writeByte(this.f6148g ? (byte) 1 : (byte) 0);
-        parcel.writeString(this.f6149h);
-        parcel.writeString(this.f6150i);
+        parcel.writeString(this.f6553a);
+        parcel.writeString(this.f6554b);
+        parcel.writeString(this.f6555c);
+        parcel.writeInt(this.f6556d);
+        parcel.writeString(this.f6557e);
+        parcel.writeByte(this.f6558f ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.f6559g ? (byte) 1 : (byte) 0);
+        parcel.writeString(this.f6560h);
+        parcel.writeString(this.f6561i);
     }
 }

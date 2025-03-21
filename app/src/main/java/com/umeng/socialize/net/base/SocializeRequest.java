@@ -5,12 +5,12 @@ import android.os.Build;
 import android.text.TextUtils;
 import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.Config;
-import com.umeng.socialize.c.a.a;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.media.BaseMediaObject;
 import com.umeng.socialize.media.UMediaObject;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.umeng.socialize.net.utils.URequest;
+import com.umeng.socialize.p217c.p218a.C3633a;
 import com.umeng.socialize.utils.DefaultClass;
 import com.umeng.socialize.utils.DeviceConfig;
 import com.umeng.socialize.utils.SLog;
@@ -32,8 +32,8 @@ public abstract class SocializeRequest extends URequest {
     public int mOpId;
     private int mReqType;
 
-    /* renamed from: com.umeng.socialize.net.base.SocializeRequest$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: com.umeng.socialize.net.base.SocializeRequest$1 */
+    static /* synthetic */ class C37311 {
         static final /* synthetic */ int[] $SwitchMap$com$umeng$socialize$net$utils$URequest$RequestMethod = new int[URequest.RequestMethod.values().length];
 
         static {
@@ -73,7 +73,7 @@ public abstract class SocializeRequest extends URequest {
         String mac = DeviceConfig.getMac(context);
         if (TextUtils.isEmpty(mac)) {
             mac = DefaultClass.getMac();
-            SLog.I(UmengText.NET.MACNULL);
+            SLog.m12717I(UmengText.NET.MACNULL);
         }
         hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_MAC, mac);
         if (!TextUtils.isEmpty(SocializeConstants.UID)) {
@@ -122,11 +122,11 @@ public abstract class SocializeRequest extends URequest {
 
     public void addFileParams(byte[] bArr, FILE_TYPE file_type, String str) {
         if (FILE_TYPE.IMAGE == file_type) {
-            String c2 = a.c(bArr);
-            if (TextUtils.isEmpty(c2)) {
-                c2 = "png";
+            String m12625c = C3633a.m12625c(bArr);
+            if (TextUtils.isEmpty(m12625c)) {
+                m12625c = "png";
             }
-            this.mFileMap.put(SocializeProtocolConstants.PROTOCOL_KEY_IMAGE, new URequest.FilePair(SocializeUtils.md5(bArr) + "." + c2, bArr));
+            this.mFileMap.put(SocializeProtocolConstants.PROTOCOL_KEY_IMAGE, new URequest.FilePair(SocializeUtils.md5(bArr) + "." + m12625c, bArr));
         }
     }
 
@@ -177,7 +177,7 @@ public abstract class SocializeRequest extends URequest {
 
     @Override // com.umeng.socialize.net.utils.URequest
     protected String getHttpMethod() {
-        return AnonymousClass1.$SwitchMap$com$umeng$socialize$net$utils$URequest$RequestMethod[this.mMethod.ordinal()] != 1 ? URequest.GET : URequest.POST;
+        return C37311.$SwitchMap$com$umeng$socialize$net$utils$URequest$RequestMethod[this.mMethod.ordinal()] != 1 ? URequest.GET : URequest.POST;
     }
 
     protected abstract String getPath();

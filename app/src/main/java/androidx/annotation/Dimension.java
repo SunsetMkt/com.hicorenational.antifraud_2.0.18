@@ -11,9 +11,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.CLASS)
 /* loaded from: classes.dex */
 public @interface Dimension {
-    public static final int DP = 0;
-    public static final int PX = 1;
-    public static final int SP = 2;
+
+    /* renamed from: DP */
+    public static final int f357DP = 0;
+
+    /* renamed from: PX */
+    public static final int f358PX = 1;
+
+    /* renamed from: SP */
+    public static final int f359SP = 2;
 
     int unit() default 1;
 }

@@ -8,6 +8,7 @@ import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.FocusMeteringResult;
 import androidx.camera.core.impl.utils.futures.Futures;
 import java.util.List;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public interface CameraControlInternal extends CameraControl {
@@ -18,13 +19,13 @@ public interface CameraControlInternal extends CameraControl {
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public c.b.b.a.a.a<Void> cancelFocusAndMetering() {
+        public InterfaceFutureC0952a<Void> cancelFocusAndMetering() {
             return Futures.immediateFuture(null);
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public c.b.b.a.a.a<Void> enableTorch(boolean z) {
+        public InterfaceFutureC0952a<Void> enableTorch(boolean z) {
             return Futures.immediateFuture(null);
         }
 
@@ -43,19 +44,19 @@ public interface CameraControlInternal extends CameraControl {
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public c.b.b.a.a.a<Void> setLinearZoom(float f2) {
+        public InterfaceFutureC0952a<Void> setLinearZoom(float f2) {
             return Futures.immediateFuture(null);
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public c.b.b.a.a.a<Void> setZoomRatio(float f2) {
+        public InterfaceFutureC0952a<Void> setZoomRatio(float f2) {
             return Futures.immediateFuture(null);
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public c.b.b.a.a.a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
+        public InterfaceFutureC0952a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
             return Futures.immediateFuture(FocusMeteringResult.emptyInstance());
         }
 

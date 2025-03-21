@@ -73,8 +73,8 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         }
     };
 
-    /* renamed from: androidx.loader.content.ModernAsyncTask$4, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass4 {
+    /* renamed from: androidx.loader.content.ModernAsyncTask$4 */
+    static /* synthetic */ class C05844 {
         static final /* synthetic */ int[] $SwitchMap$androidx$loader$content$ModernAsyncTask$Status = new int[Status.values().length];
 
         static {
@@ -171,7 +171,7 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
             executor.execute(this.mFuture);
             return this;
         }
-        int i2 = AnonymousClass4.$SwitchMap$androidx$loader$content$ModernAsyncTask$Status[this.mStatus.ordinal()];
+        int i2 = C05844.$SwitchMap$androidx$loader$content$ModernAsyncTask$Status[this.mStatus.ordinal()];
         if (i2 == 1) {
             throw new IllegalStateException("Cannot execute task: the task is already running.");
         }

@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.R;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.core.widget.NestedScrollView;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -65,44 +65,44 @@ class TouchResponse {
         int indexCount = typedArray.getIndexCount();
         for (int i2 = 0; i2 < indexCount; i2++) {
             int index = typedArray.getIndex(i2);
-            if (index == R.styleable.OnSwipe_touchAnchorId) {
+            if (index == C0471R.styleable.OnSwipe_touchAnchorId) {
                 this.mTouchAnchorId = typedArray.getResourceId(index, this.mTouchAnchorId);
-            } else if (index == R.styleable.OnSwipe_touchAnchorSide) {
+            } else if (index == C0471R.styleable.OnSwipe_touchAnchorSide) {
                 this.mTouchAnchorSide = typedArray.getInt(index, this.mTouchAnchorSide);
                 float[][] fArr = TOUCH_SIDES;
                 int i3 = this.mTouchAnchorSide;
                 this.mTouchAnchorX = fArr[i3][0];
                 this.mTouchAnchorY = fArr[i3][1];
-            } else if (index == R.styleable.OnSwipe_dragDirection) {
+            } else if (index == C0471R.styleable.OnSwipe_dragDirection) {
                 this.mTouchSide = typedArray.getInt(index, this.mTouchSide);
                 float[][] fArr2 = TOUCH_DIRECTION;
                 int i4 = this.mTouchSide;
                 this.mTouchDirectionX = fArr2[i4][0];
                 this.mTouchDirectionY = fArr2[i4][1];
-            } else if (index == R.styleable.OnSwipe_maxVelocity) {
+            } else if (index == C0471R.styleable.OnSwipe_maxVelocity) {
                 this.mMaxVelocity = typedArray.getFloat(index, this.mMaxVelocity);
-            } else if (index == R.styleable.OnSwipe_maxAcceleration) {
+            } else if (index == C0471R.styleable.OnSwipe_maxAcceleration) {
                 this.mMaxAcceleration = typedArray.getFloat(index, this.mMaxAcceleration);
-            } else if (index == R.styleable.OnSwipe_moveWhenScrollAtTop) {
+            } else if (index == C0471R.styleable.OnSwipe_moveWhenScrollAtTop) {
                 this.mMoveWhenScrollAtTop = typedArray.getBoolean(index, this.mMoveWhenScrollAtTop);
-            } else if (index == R.styleable.OnSwipe_dragScale) {
+            } else if (index == C0471R.styleable.OnSwipe_dragScale) {
                 this.mDragScale = typedArray.getFloat(index, this.mDragScale);
-            } else if (index == R.styleable.OnSwipe_dragThreshold) {
+            } else if (index == C0471R.styleable.OnSwipe_dragThreshold) {
                 this.mDragThreshold = typedArray.getFloat(index, this.mDragThreshold);
-            } else if (index == R.styleable.OnSwipe_touchRegionId) {
+            } else if (index == C0471R.styleable.OnSwipe_touchRegionId) {
                 this.mTouchRegionId = typedArray.getResourceId(index, this.mTouchRegionId);
-            } else if (index == R.styleable.OnSwipe_onTouchUp) {
+            } else if (index == C0471R.styleable.OnSwipe_onTouchUp) {
                 this.mOnTouchUp = typedArray.getInt(index, this.mOnTouchUp);
-            } else if (index == R.styleable.OnSwipe_nestedScrollFlags) {
+            } else if (index == C0471R.styleable.OnSwipe_nestedScrollFlags) {
                 this.mFlags = typedArray.getInteger(index, 0);
-            } else if (index == R.styleable.OnSwipe_limitBoundsTo) {
+            } else if (index == C0471R.styleable.OnSwipe_limitBoundsTo) {
                 this.mLimitBoundsTo = typedArray.getResourceId(index, 0);
             }
         }
     }
 
     private void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.OnSwipe);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.OnSwipe);
         fill(obtainStyledAttributes);
         obtainStyledAttributes.recycle();
     }

@@ -44,17 +44,17 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
 
     public static class Builder {
 
-        /* renamed from: a, reason: collision with root package name */
-        private String[] f6716a;
+        /* renamed from: a */
+        private String[] f7236a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private final ArrayList<HashMap<String, Object>> f6717b;
+        /* renamed from: b */
+        private final ArrayList<HashMap<String, Object>> f7237b;
 
-        /* renamed from: c, reason: collision with root package name */
-        private final String f6718c;
+        /* renamed from: c */
+        private final String f7238c;
 
-        /* renamed from: d, reason: collision with root package name */
-        private final HashMap<Object, Integer> f6719d;
+        /* renamed from: d */
+        private final HashMap<Object, Integer> f7239d;
 
         public DataHolder build(int i2) {
             return new DataHolder(this, i2, (Bundle) null);
@@ -71,12 +71,12 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
                 r4 = this;
                 java.lang.String r0 = "contentValuesHashMap cannot be null"
                 com.huawei.hms.common.internal.Preconditions.checkNotNull(r5, r0)
-                java.lang.String r0 = r4.f6718c
+                java.lang.String r0 = r4.f7238c
                 r1 = 0
                 if (r0 == 0) goto L2f
                 java.lang.Object r0 = r5.get(r0)
                 if (r0 == 0) goto L2f
-                java.util.HashMap<java.lang.Object, java.lang.Integer> r2 = r4.f6719d
+                java.util.HashMap<java.lang.Object, java.lang.Integer> r2 = r4.f7239d
                 java.lang.Object r2 = r2.get(r0)
                 java.lang.Integer r2 = (java.lang.Integer) r2
                 if (r2 == 0) goto L20
@@ -84,8 +84,8 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
                 r0 = 1
                 goto L30
             L20:
-                java.util.HashMap<java.lang.Object, java.lang.Integer> r2 = r4.f6719d
-                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r3 = r4.f6717b
+                java.util.HashMap<java.lang.Object, java.lang.Integer> r2 = r4.f7239d
+                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r3 = r4.f7237b
                 int r3 = r3.size()
                 java.lang.Integer r3 = java.lang.Integer.valueOf(r3)
                 r2.put(r0, r3)
@@ -93,13 +93,13 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
                 r0 = 0
             L30:
                 if (r0 == 0) goto L3d
-                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r0 = r4.f6717b
+                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r0 = r4.f7237b
                 r0.remove(r1)
-                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r0 = r4.f6717b
+                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r0 = r4.f7237b
                 r0.add(r1, r5)
                 goto L42
             L3d:
-                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r0 = r4.f6717b
+                java.util.ArrayList<java.util.HashMap<java.lang.String, java.lang.Object>> r0 = r4.f7237b
                 r0.add(r5)
             L42:
                 return r4
@@ -118,10 +118,10 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
 
         private Builder(String[] strArr, String str) {
             Preconditions.checkNotNull(strArr, "builderColumnsP cannot be null");
-            this.f6716a = strArr;
-            this.f6717b = new ArrayList<>();
-            this.f6718c = str;
-            this.f6719d = new HashMap<>();
+            this.f7236a = strArr;
+            this.f7237b = new ArrayList<>();
+            this.f7238c = str;
+            this.f7239d = new HashMap<>();
         }
 
         public DataHolder build(int i2, Bundle bundle) {
@@ -180,7 +180,7 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
             return (CursorWindow[]) arrayList.toArray(new CursorWindow[arrayList.size()]);
         } catch (Throwable th) {
             try {
-                HMSLog.e(TAG, "fail to getCursorWindows: " + th.getMessage());
+                HMSLog.m7715e(TAG, "fail to getCursorWindows: " + th.getMessage());
                 return new CursorWindow[0];
             } finally {
                 hMSCursorWrapper.close();
@@ -193,19 +193,19 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
         boolean z;
         ArrayList<CursorWindow> arrayList = new ArrayList<>();
         CursorWindow cursorWindow2 = new CursorWindow((String) null);
-        cursorWindow2.setNumColumns(builder.f6716a.length);
+        cursorWindow2.setNumColumns(builder.f7236a.length);
         arrayList.add(cursorWindow2);
         CursorWindow cursorWindow3 = cursorWindow2;
         for (int i3 = 0; i3 < i2; i3++) {
             try {
                 if (!cursorWindow3.allocRow()) {
-                    HMSLog.d(TAG, "Failed to allocate a row");
+                    HMSLog.m7712d(TAG, "Failed to allocate a row");
                     cursorWindow = new CursorWindow((String) null);
                     try {
                         cursorWindow.setStartPosition(i3);
-                        cursorWindow.setNumColumns(builder.f6716a.length);
+                        cursorWindow.setNumColumns(builder.f7236a.length);
                         if (!cursorWindow.allocRow()) {
-                            HMSLog.e(TAG, "Failed to retry to allocate a row");
+                            HMSLog.m7715e(TAG, "Failed to retry to allocate a row");
                             return arrayList;
                         }
                         arrayList.add(cursorWindow);
@@ -215,23 +215,23 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
                         while (it.hasNext()) {
                             it.next().close();
                         }
-                        HMSLog.w(TAG, "iter CursorWindow failed, RuntimeException occured.");
+                        HMSLog.m7718w(TAG, "iter CursorWindow failed, RuntimeException occured.");
                         cursorWindow3 = cursorWindow;
                     }
                 }
                 HashMap hashMap = (HashMap) list.get(i3);
                 z = true;
-                for (int i4 = 0; i4 < builder.f6716a.length && (z = putValue(cursorWindow3, hashMap.get(builder.f6716a[i4]), i3, i4)); i4++) {
+                for (int i4 = 0; i4 < builder.f7236a.length && (z = putValue(cursorWindow3, hashMap.get(builder.f7236a[i4]), i3, i4)); i4++) {
                 }
             } catch (RuntimeException unused2) {
                 cursorWindow = cursorWindow3;
             }
             if (!z) {
-                HMSLog.d(TAG, "fail to put data for row " + i3);
+                HMSLog.m7712d(TAG, "fail to put data for row " + i3);
                 cursorWindow3.freeLastRow();
                 CursorWindow cursorWindow4 = new CursorWindow((String) null);
                 cursorWindow4.setStartPosition(i3);
-                cursorWindow4.setNumColumns(builder.f6716a.length);
+                cursorWindow4.setNumColumns(builder.f7236a.length);
                 arrayList.add(cursorWindow4);
                 break;
             }
@@ -518,13 +518,13 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
     }
 
     private static CursorWindow[] getCursorWindows(Builder builder, int i2) {
-        if (builder.f6716a.length == 0) {
+        if (builder.f7236a.length == 0) {
             return new CursorWindow[0];
         }
-        if (i2 < 0 || i2 >= builder.f6717b.size()) {
-            i2 = builder.f6717b.size();
+        if (i2 < 0 || i2 >= builder.f7237b.size()) {
+            i2 = builder.f7237b.size();
         }
-        ArrayList<CursorWindow> iterCursorWindow = iterCursorWindow(builder, i2, builder.f6717b.subList(0, i2));
+        ArrayList<CursorWindow> iterCursorWindow = iterCursorWindow(builder, i2, builder.f7237b.subList(0, i2));
         return (CursorWindow[]) iterCursorWindow.toArray(new CursorWindow[iterCursorWindow.size()]);
     }
 
@@ -537,10 +537,10 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
     }
 
     private DataHolder(Builder builder, int i2, Bundle bundle) {
-        this(builder.f6716a, getCursorWindows(builder, -1), i2, (Bundle) null);
+        this(builder.f7236a, getCursorWindows(builder, -1), i2, (Bundle) null);
     }
 
     private DataHolder(Builder builder, int i2, Bundle bundle, int i3) {
-        this(builder.f6716a, getCursorWindows(builder, -1), i2, bundle);
+        this(builder.f7236a, getCursorWindows(builder, -1), i2, bundle);
     }
 }

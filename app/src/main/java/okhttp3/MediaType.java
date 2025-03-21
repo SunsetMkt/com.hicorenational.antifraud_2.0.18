@@ -1,11 +1,11 @@
 package okhttp3;
 
-import h.z2.h0;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes2.dex */
 public final class MediaType {
@@ -30,7 +30,7 @@ public final class MediaType {
     public static MediaType get(String str) {
         Matcher matcher = TYPE_SUBTYPE.matcher(str);
         if (!matcher.lookingAt()) {
-            throw new IllegalArgumentException("No subtype found for: \"" + str + h0.f16704a);
+            throw new IllegalArgumentException("No subtype found for: \"" + str + C5736h0.f20712a);
         }
         String lowerCase = matcher.group(1).toLowerCase(Locale.US);
         String lowerCase2 = matcher.group(2).toLowerCase(Locale.US);
@@ -39,7 +39,7 @@ public final class MediaType {
         for (int end = matcher.end(); end < str.length(); end = matcher2.end()) {
             matcher2.region(end, str.length());
             if (!matcher2.lookingAt()) {
-                throw new IllegalArgumentException("Parameter is not formatted correctly: \"" + str.substring(end) + "\" for: \"" + str + h0.f16704a);
+                throw new IllegalArgumentException("Parameter is not formatted correctly: \"" + str.substring(end) + "\" for: \"" + str + C5736h0.f20712a);
             }
             String group = matcher2.group(1);
             if (group != null && group.equalsIgnoreCase("charset")) {
@@ -50,7 +50,7 @@ public final class MediaType {
                     group2 = group2.substring(1, group2.length() - 1);
                 }
                 if (str2 != null && !group2.equalsIgnoreCase(str2)) {
-                    throw new IllegalArgumentException("Multiple charsets defined: \"" + str2 + "\" and: \"" + group2 + "\" for: \"" + str + h0.f16704a);
+                    throw new IllegalArgumentException("Multiple charsets defined: \"" + str2 + "\" and: \"" + group2 + "\" for: \"" + str + C5736h0.f20712a);
                 }
                 str2 = group2;
             }

@@ -1,8 +1,7 @@
 package okhttp3;
 
 import com.alibaba.sdk.android.oss.common.utils.HttpHeaders;
-import com.umeng.analytics.pro.cw;
-import h.z2.h0;
+import com.umeng.analytics.pro.C3393cw;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,7 @@ import okhttp3.internal.Util;
 import okio.Buffer;
 import okio.BufferedSink;
 import okio.ByteString;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes2.dex */
 public final class MultipartBody extends RequestBody {
@@ -26,7 +26,7 @@ public final class MultipartBody extends RequestBody {
     public static final MediaType PARALLEL = MediaType.get("multipart/parallel");
     public static final MediaType FORM = MediaType.get("multipart/form-data");
     private static final byte[] COLONSPACE = {58, 32};
-    private static final byte[] CRLF = {cw.f10301k, 10};
+    private static final byte[] CRLF = {C3393cw.f11871k, 10};
     private static final byte[] DASHDASH = {45, 45};
 
     public static final class Builder {
@@ -138,7 +138,7 @@ public final class MultipartBody extends RequestBody {
                 sb.append("; filename=");
                 MultipartBody.appendQuotedString(sb, str2);
             }
-            return create(Headers.of(HttpHeaders.CONTENT_DISPOSITION, sb.toString()), requestBody);
+            return create(Headers.m24924of(HttpHeaders.CONTENT_DISPOSITION, sb.toString()), requestBody);
         }
     }
 
@@ -150,7 +150,7 @@ public final class MultipartBody extends RequestBody {
     }
 
     static StringBuilder appendQuotedString(StringBuilder sb, String str) {
-        sb.append(h0.f16704a);
+        sb.append(C5736h0.f20712a);
         int length = str.length();
         for (int i2 = 0; i2 < length; i2++) {
             char charAt = str.charAt(i2);
@@ -164,7 +164,7 @@ public final class MultipartBody extends RequestBody {
                 sb.append("%22");
             }
         }
-        sb.append(h0.f16704a);
+        sb.append(C5736h0.f20712a);
         return sb;
     }
 

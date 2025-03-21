@@ -5,7 +5,9 @@ import network.BaseBean;
 /* loaded from: classes.dex */
 public class SocialTypeBean extends BaseBean {
     private String createTime;
-    private long id;
+
+    /* renamed from: id */
+    private long f1625id;
     private boolean isShow;
     private int sort;
     private String text;
@@ -19,7 +21,7 @@ public class SocialTypeBean extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1625id;
     }
 
     public int getSort() {
@@ -43,7 +45,7 @@ public class SocialTypeBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1625id = j2;
     }
 
     public void setIsShow(boolean z) {

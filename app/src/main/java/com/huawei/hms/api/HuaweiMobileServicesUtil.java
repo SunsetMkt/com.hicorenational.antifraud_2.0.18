@@ -64,19 +64,19 @@ public abstract class HuaweiMobileServicesUtil {
             return 21;
         }
         if (HMSPackageManager.getInstance(context).isUseOldCertificate()) {
-            HMSLog.e(TAG, "The CP uses the old certificate to terminate the connection.");
+            HMSLog.m7715e(TAG, "The CP uses the old certificate to terminate the connection.");
             return 13;
         }
         PackageManagerHelper packageManagerHelper = new PackageManagerHelper(context);
         String hMSPackageNameForMultiService = HMSPackageManager.getInstance(context).getHMSPackageNameForMultiService();
         if (TextUtils.isEmpty(hMSPackageNameForMultiService)) {
-            HMSLog.w(TAG, "hmsPackageName is empty, Service is invalid.");
+            HMSLog.m7718w(TAG, "hmsPackageName is empty, Service is invalid.");
             return 1;
         }
-        HMSLog.i(TAG, "hmsPackageName is " + hMSPackageNameForMultiService);
+        HMSLog.m7717i(TAG, "hmsPackageName is " + hMSPackageNameForMultiService);
         PackageManagerHelper.PackageStates hMSPackageStatesForMultiService = HMSPackageManager.getInstance(context).getHMSPackageStatesForMultiService();
         if (PackageManagerHelper.PackageStates.NOT_INSTALLED.equals(hMSPackageStatesForMultiService)) {
-            HMSLog.w(TAG, "HMS is not installed");
+            HMSLog.m7718w(TAG, "HMS is not installed");
             return 1;
         }
         String hmsPath = ReadApkFileUtil.getHmsPath(context);
@@ -85,11 +85,11 @@ public abstract class HuaweiMobileServicesUtil {
             return ("B92825C2BD5D6D6D1E7F39EECD17843B7D9016F611136B75441BC6F4D3F00F05".equalsIgnoreCase(packageSignature) || "3517262215D8D3008CBF888750B6418EDC4D562AC33ED6874E0D73ABA667BC3C".equalsIgnoreCase(packageSignature) || "3517262215D8D3008CBF888750B6418EDC4D562AC33ED6874E0D73ABA667BC3C".equalsIgnoreCase(packageSignature)) ? 2 : 9;
         }
         if (PackageManagerHelper.PackageStates.SPOOF.equals(hMSPackageStatesForMultiService)) {
-            HMSLog.i(TAG, "HMS is spoofed");
+            HMSLog.m7717i(TAG, "HMS is spoofed");
             return 9;
         }
         if (PackageManagerHelper.PackageStates.DISABLED.equals(hMSPackageStatesForMultiService)) {
-            HMSLog.i(TAG, "HMS is disabled");
+            HMSLog.m7717i(TAG, "HMS is disabled");
             return 3;
         }
         if (PackageManagerHelper.PackageStates.NOT_INSTALLED.equals(hMSPackageStatesForMultiService)) {
@@ -98,11 +98,11 @@ public abstract class HuaweiMobileServicesUtil {
                 return 9;
             }
         }
-        HMSLog.i(TAG, "connect versionCode:" + HMSPackageManager.getInstance(context).getHmsMultiServiceVersion());
+        HMSLog.m7717i(TAG, "connect versionCode:" + HMSPackageManager.getInstance(context).getHmsMultiServiceVersion());
         if (!HMSPackageManager.getInstance(context).isApkUpdateNecessary(i2)) {
             return 0;
         }
-        HMSLog.i(TAG, "The current version does not meet the minimum version requirements");
+        HMSLog.m7717i(TAG, "The current version does not meet the minimum version requirements");
         return 2;
     }
 

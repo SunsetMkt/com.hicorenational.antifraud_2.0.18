@@ -2,7 +2,6 @@ package com.umeng.commonsdk.statistics.common;
 
 import android.text.TextUtils;
 import androidx.core.view.InputDeviceCompat;
-import h.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +14,7 @@ import java.io.StringWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import p286h.C5230f1;
 
 /* loaded from: classes2.dex */
 public class HelperUtils {
@@ -80,11 +80,11 @@ public class HelperUtils {
             byte[] digest = messageDigest.digest();
             StringBuffer stringBuffer = new StringBuffer();
             for (byte b2 : digest) {
-                stringBuffer.append(Integer.toHexString((b2 & f1.f16099c) | InputDeviceCompat.SOURCE_ANY).substring(6));
+                stringBuffer.append(Integer.toHexString((b2 & C5230f1.f20085c) | InputDeviceCompat.SOURCE_ANY).substring(6));
             }
             return stringBuffer.toString();
         } catch (NoSuchAlgorithmException e2) {
-            MLog.i(TAG, "getMD5 error", e2);
+            MLog.m11751i(TAG, "getMD5 error", e2);
             return "";
         }
     }
@@ -96,11 +96,11 @@ public class HelperUtils {
             byte[] digest = messageDigest.digest();
             StringBuffer stringBuffer = new StringBuffer();
             for (byte b2 : digest) {
-                stringBuffer.append(Integer.toHexString(b2 & f1.f16099c));
+                stringBuffer.append(Integer.toHexString(b2 & C5230f1.f20085c));
             }
             return stringBuffer.toString();
         } catch (Throwable th) {
-            MLog.i(TAG, "getMD5 error", th);
+            MLog.m11751i(TAG, "getMD5 error", th);
             return "";
         }
     }
@@ -177,7 +177,7 @@ public class HelperUtils {
                 return str2;
             }
         } catch (Exception e2) {
-            MLog.e(e2);
+            MLog.m11748e(e2);
         }
         return str2;
     }

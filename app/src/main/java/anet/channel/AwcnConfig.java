@@ -3,6 +3,7 @@ package anet.channel;
 import android.text.TextUtils;
 import anet.channel.strategy.ConnProtocol;
 import anet.channel.strategy.StrategyTemplate;
+import anet.channel.strategy.utils.C0848c;
 import anet.channel.util.ALog;
 import com.taobao.accs.common.Constants;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -15,158 +16,182 @@ public class AwcnConfig {
     public static final String HTTP3_ENABLE = "HTTP3_ENABLE";
     public static final String NEXT_LAUNCH_FORBID = "NEXT_LAUNCH_FORBID";
 
-    /* renamed from: a, reason: collision with root package name */
-    private static volatile boolean f1586a = false;
+    /* renamed from: a */
+    private static volatile boolean f635a = false;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static volatile boolean f1587b = true;
+    /* renamed from: b */
+    private static volatile boolean f636b = true;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static volatile boolean f1588c = true;
+    /* renamed from: c */
+    private static volatile boolean f637c = true;
 
-    /* renamed from: d, reason: collision with root package name */
-    private static volatile boolean f1589d = true;
+    /* renamed from: d */
+    private static volatile boolean f638d = true;
 
-    /* renamed from: e, reason: collision with root package name */
-    private static volatile boolean f1590e = false;
+    /* renamed from: e */
+    private static volatile boolean f639e = false;
 
-    /* renamed from: f, reason: collision with root package name */
-    private static volatile boolean f1591f = true;
+    /* renamed from: f */
+    private static volatile boolean f640f = true;
 
-    /* renamed from: g, reason: collision with root package name */
-    private static volatile long f1592g = 43200000;
+    /* renamed from: g */
+    private static volatile long f641g = 43200000;
 
-    /* renamed from: h, reason: collision with root package name */
-    private static volatile boolean f1593h = true;
+    /* renamed from: h */
+    private static volatile boolean f642h = true;
 
-    /* renamed from: i, reason: collision with root package name */
-    private static volatile boolean f1594i = true;
+    /* renamed from: i */
+    private static volatile boolean f643i = true;
 
-    /* renamed from: j, reason: collision with root package name */
-    private static boolean f1595j = true;
+    /* renamed from: j */
+    private static boolean f644j = true;
 
-    /* renamed from: k, reason: collision with root package name */
-    private static boolean f1596k = false;
+    /* renamed from: k */
+    private static boolean f645k = false;
 
-    /* renamed from: l, reason: collision with root package name */
-    private static volatile boolean f1597l = false;
+    /* renamed from: l */
+    private static volatile boolean f646l = false;
 
-    /* renamed from: m, reason: collision with root package name */
-    private static volatile boolean f1598m = true;
-    private static volatile boolean n = false;
-    private static volatile int o = 10000;
-    private static volatile boolean p = false;
-    private static volatile boolean q = true;
-    private static volatile int r = -1;
-    private static volatile boolean s = true;
-    private static volatile boolean t = true;
-    private static volatile boolean u = false;
-    private static volatile boolean v = true;
-    private static volatile CopyOnWriteArrayList<String> w = null;
-    private static volatile boolean x = true;
-    private static volatile boolean y = true;
+    /* renamed from: m */
+    private static volatile boolean f647m = true;
+
+    /* renamed from: n */
+    private static volatile boolean f648n = false;
+
+    /* renamed from: o */
+    private static volatile int f649o = 10000;
+
+    /* renamed from: p */
+    private static volatile boolean f650p = false;
+
+    /* renamed from: q */
+    private static volatile boolean f651q = true;
+
+    /* renamed from: r */
+    private static volatile int f652r = -1;
+
+    /* renamed from: s */
+    private static volatile boolean f653s = true;
+
+    /* renamed from: t */
+    private static volatile boolean f654t = true;
+
+    /* renamed from: u */
+    private static volatile boolean f655u = false;
+
+    /* renamed from: v */
+    private static volatile boolean f656v = true;
+
+    /* renamed from: w */
+    private static volatile CopyOnWriteArrayList<String> f657w = null;
+
+    /* renamed from: x */
+    private static volatile boolean f658x = true;
+
+    /* renamed from: y */
+    private static volatile boolean f659y = true;
 
     public static int getAccsReconnectionDelayPeriod() {
-        return o;
+        return f649o;
     }
 
     public static long getIpv6BlackListTtl() {
-        return f1592g;
+        return f641g;
     }
 
     public static int getXquicCongControl() {
-        return r;
+        return f652r;
     }
 
     public static boolean isAccsSessionCreateForbiddenInBg() {
-        return f1586a;
+        return f635a;
     }
 
     public static boolean isAllowHttpDnsNotify(String str) {
-        if (w == null || TextUtils.isEmpty(str)) {
+        if (f657w == null || TextUtils.isEmpty(str)) {
             return false;
         }
-        return w.contains(str);
+        return f657w.contains(str);
     }
 
     public static boolean isAppLifeCycleListenerEnable() {
-        return f1595j;
+        return f644j;
     }
 
     public static boolean isAsyncLoadStrategyEnable() {
-        return f1596k;
+        return f645k;
     }
 
     public static boolean isCarrierInfoEnable() {
-        return y;
+        return f659y;
     }
 
     public static boolean isCookieHeaderRedundantFix() {
-        return t;
+        return f654t;
     }
 
     public static boolean isHorseRaceEnable() {
-        return f1588c;
+        return f637c;
     }
 
     public static boolean isHttp3Enable() {
-        return p;
+        return f650p;
     }
 
     public static boolean isHttp3OrangeEnable() {
-        return q;
+        return f651q;
     }
 
     public static boolean isHttpsSniEnable() {
-        return f1587b;
+        return f636b;
     }
 
     public static boolean isIdleSessionCloseEnable() {
-        return f1591f;
+        return f640f;
     }
 
     public static boolean isIpStackDetectByUdpConnect() {
-        return s;
+        return f653s;
     }
 
     public static boolean isIpv6BlackListEnable() {
-        return f1594i;
+        return f643i;
     }
 
     public static boolean isIpv6Enable() {
-        return f1593h;
+        return f642h;
     }
 
     public static boolean isNetworkDetectEnable() {
-        return n;
+        return f648n;
     }
 
     public static boolean isPing6Enable() {
-        return f1598m;
+        return f647m;
     }
 
     public static boolean isQuicEnable() {
-        return f1590e;
+        return f639e;
     }
 
     public static boolean isSendConnectInfoByBroadcast() {
-        return u;
+        return f655u;
     }
 
     public static boolean isSendConnectInfoByService() {
-        return v;
+        return f656v;
     }
 
     public static boolean isTbNextLaunch() {
-        return f1597l;
+        return f646l;
     }
 
     public static boolean isTnetHeaderCacheEnable() {
-        return f1589d;
+        return f638d;
     }
 
     public static boolean isWifiInfoEnable() {
-        return x;
+        return f658x;
     }
 
     public static void registerPresetSessions(String str) {
@@ -177,7 +202,7 @@ public class AwcnConfig {
                 for (int i2 = 0; i2 < length; i2++) {
                     JSONObject jSONObject = jSONArray.getJSONObject(i2);
                     String string = jSONObject.getString(Constants.KEY_HOST);
-                    if (!anet.channel.strategy.utils.c.c(string)) {
+                    if (!C0848c.m709c(string)) {
                         return;
                     }
                     StrategyTemplate.getInstance().registerConnProtocol(string, ConnProtocol.valueOf(jSONObject.getString("protocol"), jSONObject.getString("rtt"), jSONObject.getString("publicKey")));
@@ -197,40 +222,40 @@ public class AwcnConfig {
         if (i2 > 10000) {
             i2 = 10000;
         }
-        o = i2;
+        f649o = i2;
     }
 
     public static void setAccsSessionCreateForbiddenInBg(boolean z) {
-        f1586a = z;
+        f635a = z;
     }
 
     public static void setAppLifeCycleListenerEnable(boolean z) {
-        f1595j = z;
+        f644j = z;
     }
 
     public static void setAsyncLoadStrategyEnable(boolean z) {
-        f1596k = z;
+        f645k = z;
     }
 
     public static void setCarrierInfoEnable(boolean z) {
-        y = z;
+        f659y = z;
     }
 
     public static void setCookieHeaderRedundantFix(boolean z) {
-        t = z;
+        f654t = z;
     }
 
     public static void setHorseRaceEnable(boolean z) {
-        f1588c = z;
+        f637c = z;
     }
 
     public static void setHttp3Enable(boolean z) {
-        p = z;
-        ALog.e("awcn.AwcnConfig", "[setHttp3Enable]", null, "enable", Boolean.valueOf(z));
+        f650p = z;
+        ALog.m715e("awcn.AwcnConfig", "[setHttp3Enable]", null, "enable", Boolean.valueOf(z));
     }
 
     public static void setHttp3OrangeEnable(boolean z) {
-        q = z;
+        f651q = z;
     }
 
     public static void setHttpDnsNotifyWhiteList(String str) {
@@ -246,72 +271,72 @@ public class AwcnConfig {
                     copyOnWriteArrayList.add(string);
                 }
             }
-            w = copyOnWriteArrayList;
+            f657w = copyOnWriteArrayList;
         } catch (Exception e2) {
-            ALog.e("awcn.AwcnConfig", "[setHttpDnsNotifyWhiteList] error", null, e2, new Object[0]);
+            ALog.m714e("awcn.AwcnConfig", "[setHttpDnsNotifyWhiteList] error", null, e2, new Object[0]);
         }
     }
 
     public static void setHttpsSniEnable(boolean z) {
-        f1587b = z;
+        f636b = z;
     }
 
     public static void setIdleSessionCloseEnable(boolean z) {
-        f1591f = z;
+        f640f = z;
     }
 
     public static void setIpStackDetectByUdpConnect(boolean z) {
-        s = z;
+        f653s = z;
     }
 
     public static void setIpv6BlackListEnable(boolean z) {
-        f1594i = z;
+        f643i = z;
     }
 
     public static void setIpv6BlackListTtl(long j2) {
-        f1592g = j2;
+        f641g = j2;
     }
 
     public static void setIpv6Enable(boolean z) {
-        f1593h = z;
+        f642h = z;
     }
 
     public static void setNetworkDetectEnable(boolean z) {
-        n = z;
+        f648n = z;
     }
 
     public static void setPing6Enable(boolean z) {
-        f1598m = z;
+        f647m = z;
     }
 
     public static void setQuicEnable(boolean z) {
-        f1590e = z;
+        f639e = z;
     }
 
     public static void setSendConnectInfoByBroadcast(boolean z) {
-        u = z;
+        f655u = z;
     }
 
     public static void setSendConnectInfoByService(boolean z) {
-        v = z;
+        f656v = z;
     }
 
     public static void setTbNextLaunch(boolean z) {
-        f1597l = z;
+        f646l = z;
     }
 
     public static void setTnetHeaderCacheEnable(boolean z) {
-        f1589d = z;
+        f638d = z;
     }
 
     public static void setWifiInfoEnable(boolean z) {
-        x = z;
+        f658x = z;
     }
 
     public static void setXquicCongControl(int i2) {
         if (i2 < 0) {
             return;
         }
-        r = i2;
+        f652r = i2;
     }
 }

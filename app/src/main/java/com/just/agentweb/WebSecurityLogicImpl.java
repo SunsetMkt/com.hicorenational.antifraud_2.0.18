@@ -36,7 +36,7 @@ public class WebSecurityLogicImpl implements WebSecurityCheckLogic {
         if (securityType != AgentWeb.SecurityType.STRICT_CHECK || this.webviewType == 2 || Build.VERSION.SDK_INT >= 17) {
             return;
         }
-        LogUtils.e(this.TAG, "Give up all inject objects");
+        LogUtils.m8081e(this.TAG, "Give up all inject objects");
         arrayMap.clear();
         System.gc();
     }

@@ -1,14 +1,14 @@
 package com.huawei.hms.utils;
 
-import c.c.a.b.a.a;
 import com.huawei.hms.framework.common.ExceptionCode;
 import java.util.regex.Pattern;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class StringUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final Pattern f7410a = Pattern.compile("(^([0-9]{1,2}\\.){2}[0-9]{1,2}$)|(^([0-9]{1,2}\\.){3}[0-9]{1,3}$)");
+    /* renamed from: a */
+    private static final Pattern f7987a = Pattern.compile("(^([0-9]{1,2}\\.){2}[0-9]{1,2}$)|(^([0-9]{1,2}\\.){3}[0-9]{1,3}$)");
 
     private StringUtil() {
     }
@@ -34,7 +34,7 @@ public class StringUtil {
     }
 
     public static boolean checkVersion(String str) {
-        return f7410a.matcher(str).find();
+        return f7987a.matcher(str).find();
     }
 
     public static int convertVersion2Integer(String str) {
@@ -51,7 +51,7 @@ public class StringUtil {
 
     public static String objDesc(Object obj) {
         if (obj == null) {
-            return a.f3101h;
+            return AbstractC1191a.f2571h;
         }
         return obj.getClass().getName() + '@' + Integer.toHexString(obj.hashCode());
     }

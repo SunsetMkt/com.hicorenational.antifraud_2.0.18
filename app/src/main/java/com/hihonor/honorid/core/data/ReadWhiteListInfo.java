@@ -5,10 +5,11 @@ import android.os.Parcelable;
 
 /* loaded from: classes.dex */
 public class ReadWhiteListInfo implements Parcelable {
-    public static final Parcelable.Creator<ReadWhiteListInfo> CREATOR = new a();
+    public static final Parcelable.Creator<ReadWhiteListInfo> CREATOR = new C2158a();
 
-    class a implements Parcelable.Creator<ReadWhiteListInfo> {
-        a() {
+    /* renamed from: com.hihonor.honorid.core.data.ReadWhiteListInfo$a */
+    class C2158a implements Parcelable.Creator<ReadWhiteListInfo> {
+        C2158a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */

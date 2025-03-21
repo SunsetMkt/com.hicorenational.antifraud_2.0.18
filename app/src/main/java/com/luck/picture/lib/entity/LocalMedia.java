@@ -28,7 +28,9 @@ public class LocalMedia implements Parcelable {
     public String fileMd5;
     private String fileName;
     private int height;
-    private long id;
+
+    /* renamed from: id */
+    private long f8373id;
     private boolean isChecked;
     private boolean isCut;
     public boolean isLongImage;
@@ -88,7 +90,7 @@ public class LocalMedia implements Parcelable {
     }
 
     public long getId() {
-        return this.id;
+        return this.f8373id;
     }
 
     public String getMimeType() {
@@ -192,7 +194,7 @@ public class LocalMedia implements Parcelable {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f8373id = j2;
     }
 
     public void setMimeType(String str) {
@@ -241,7 +243,7 @@ public class LocalMedia implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeLong(this.id);
+        parcel.writeLong(this.f8373id);
         parcel.writeString(this.path);
         parcel.writeString(this.fileMd5);
         parcel.writeString(this.realPath);
@@ -280,7 +282,7 @@ public class LocalMedia implements Parcelable {
     public LocalMedia(long j2, String str, String str2, String str3, long j3, int i2, String str4, int i3, int i4, long j4) {
         this.orientation = -1;
         this.loadLongImageStatus = -1;
-        this.id = j2;
+        this.f8373id = j2;
         this.path = str;
         this.fileName = str2;
         this.parentFolderName = str3;
@@ -306,7 +308,7 @@ public class LocalMedia implements Parcelable {
     protected LocalMedia(Parcel parcel) {
         this.orientation = -1;
         this.loadLongImageStatus = -1;
-        this.id = parcel.readLong();
+        this.f8373id = parcel.readLong();
         this.path = parcel.readString();
         this.fileMd5 = parcel.readString();
         this.realPath = parcel.readString();

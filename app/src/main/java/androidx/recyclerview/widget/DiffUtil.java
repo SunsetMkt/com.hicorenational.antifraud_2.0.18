@@ -5,21 +5,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.recyclerview.widget.RecyclerView;
-import c.c.a.b.a.a;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class DiffUtil {
     private static final Comparator<Snake> SNAKE_COMPARATOR = new Comparator<Snake>() { // from class: androidx.recyclerview.widget.DiffUtil.1
         @Override // java.util.Comparator
         public int compare(Snake snake, Snake snake2) {
-            int i2 = snake.x - snake2.x;
-            return i2 == 0 ? snake.y - snake2.y : i2;
+            int i2 = snake.f621x - snake2.f621x;
+            return i2 == 0 ? snake.f622y - snake2.f622y : i2;
         }
     };
 
@@ -71,12 +71,12 @@ public class DiffUtil {
 
         private void addRootSnake() {
             Snake snake = this.mSnakes.isEmpty() ? null : this.mSnakes.get(0);
-            if (snake != null && snake.x == 0 && snake.y == 0) {
+            if (snake != null && snake.f621x == 0 && snake.f622y == 0) {
                 return;
             }
             Snake snake2 = new Snake();
-            snake2.x = 0;
-            snake2.y = 0;
+            snake2.f621x = 0;
+            snake2.f622y = 0;
             snake2.removal = false;
             snake2.size = 0;
             snake2.reverse = false;
@@ -105,7 +105,7 @@ public class DiffUtil {
                     }
                 } else {
                     if (i7 != 16) {
-                        throw new IllegalStateException("unknown flag for pos " + i6 + a.f3100g + Long.toBinaryString(i7));
+                        throw new IllegalStateException("unknown flag for pos " + i6 + AbstractC1191a.f2568g + Long.toBinaryString(i7));
                     }
                     list.add(new PostponedUpdate(i6, i2, false));
                 }
@@ -135,7 +135,7 @@ public class DiffUtil {
                     }
                 } else {
                     if (i7 != 16) {
-                        throw new IllegalStateException("unknown flag for pos " + i6 + a.f3100g + Long.toBinaryString(i7));
+                        throw new IllegalStateException("unknown flag for pos " + i6 + AbstractC1191a.f2568g + Long.toBinaryString(i7));
                     }
                     list.add(new PostponedUpdate(i6, i2 + i5, true));
                 }
@@ -163,10 +163,10 @@ public class DiffUtil {
             }
             while (i4 >= 0) {
                 Snake snake = this.mSnakes.get(i4);
-                int i8 = snake.x;
+                int i8 = snake.f621x;
                 int i9 = snake.size;
                 int i10 = i8 + i9;
-                int i11 = snake.y + i9;
+                int i11 = snake.f622y + i9;
                 if (z) {
                     for (int i12 = i5 - 1; i12 >= i10; i12--) {
                         if (this.mCallback.areItemsTheSame(i12, i6)) {
@@ -187,8 +187,8 @@ public class DiffUtil {
                         }
                     }
                 }
-                i5 = snake.x;
-                i3 = snake.y;
+                i5 = snake.f621x;
+                i3 = snake.f622y;
                 i4--;
             }
             return false;
@@ -199,10 +199,10 @@ public class DiffUtil {
             int i3 = this.mNewListSize;
             for (int size = this.mSnakes.size() - 1; size >= 0; size--) {
                 Snake snake = this.mSnakes.get(size);
-                int i4 = snake.x;
+                int i4 = snake.f621x;
                 int i5 = snake.size;
                 int i6 = i4 + i5;
-                int i7 = snake.y + i5;
+                int i7 = snake.f622y + i5;
                 if (this.mDetectMoves) {
                     while (i2 > i6) {
                         findAddition(i2, i3, size);
@@ -214,14 +214,14 @@ public class DiffUtil {
                     }
                 }
                 for (int i8 = 0; i8 < snake.size; i8++) {
-                    int i9 = snake.x + i8;
-                    int i10 = snake.y + i8;
+                    int i9 = snake.f621x + i8;
+                    int i10 = snake.f622y + i8;
                     int i11 = this.mCallback.areContentsTheSame(i9, i10) ? 1 : 2;
                     this.mOldItemStatuses[i9] = (i10 << 5) | i11;
                     this.mNewItemStatuses[i10] = (i9 << 5) | i11;
                 }
-                i2 = snake.x;
-                i3 = snake.y;
+                i2 = snake.f621x;
+                i3 = snake.f622y;
             }
         }
 
@@ -294,8 +294,8 @@ public class DiffUtil {
             for (int size = this.mSnakes.size() - 1; size >= 0; size--) {
                 Snake snake = this.mSnakes.get(size);
                 int i4 = snake.size;
-                int i5 = snake.x + i4;
-                int i6 = snake.y + i4;
+                int i5 = snake.f621x + i4;
+                int i6 = snake.f622y + i4;
                 if (i5 < i2) {
                     dispatchRemovals(arrayList, batchingListUpdateCallback, i5, i2 - i5, i5);
                 }
@@ -304,13 +304,13 @@ public class DiffUtil {
                 }
                 for (int i7 = i4 - 1; i7 >= 0; i7--) {
                     int[] iArr = this.mOldItemStatuses;
-                    int i8 = snake.x;
+                    int i8 = snake.f621x;
                     if ((iArr[i8 + i7] & 31) == 2) {
-                        batchingListUpdateCallback.onChanged(i8 + i7, 1, this.mCallback.getChangePayload(i8 + i7, snake.y + i7));
+                        batchingListUpdateCallback.onChanged(i8 + i7, 1, this.mCallback.getChangePayload(i8 + i7, snake.f622y + i7));
                     }
                 }
-                i2 = snake.x;
-                i3 = snake.y;
+                i2 = snake.f621x;
+                i3 = snake.f622y;
             }
             batchingListUpdateCallback.dispatchLastEvent();
         }
@@ -360,8 +360,12 @@ public class DiffUtil {
         boolean removal;
         boolean reverse;
         int size;
-        int x;
-        int y;
+
+        /* renamed from: x */
+        int f621x;
+
+        /* renamed from: y */
+        int f622y;
 
         Snake() {
         }
@@ -416,37 +420,37 @@ public class DiffUtil {
                 if (diffPartial.size > 0) {
                     arrayList.add(diffPartial);
                 }
-                diffPartial.x += range.oldListStart;
-                diffPartial.y += range.newListStart;
+                diffPartial.f621x += range.oldListStart;
+                diffPartial.f622y += range.newListStart;
                 Range range2 = arrayList3.isEmpty() ? new Range() : (Range) arrayList3.remove(arrayList3.size() - 1);
                 range2.oldListStart = range.oldListStart;
                 range2.newListStart = range.newListStart;
                 if (diffPartial.reverse) {
-                    range2.oldListEnd = diffPartial.x;
-                    range2.newListEnd = diffPartial.y;
+                    range2.oldListEnd = diffPartial.f621x;
+                    range2.newListEnd = diffPartial.f622y;
                 } else if (diffPartial.removal) {
-                    range2.oldListEnd = diffPartial.x - 1;
-                    range2.newListEnd = diffPartial.y;
+                    range2.oldListEnd = diffPartial.f621x - 1;
+                    range2.newListEnd = diffPartial.f622y;
                 } else {
-                    range2.oldListEnd = diffPartial.x;
-                    range2.newListEnd = diffPartial.y - 1;
+                    range2.oldListEnd = diffPartial.f621x;
+                    range2.newListEnd = diffPartial.f622y - 1;
                 }
                 arrayList2.add(range2);
                 if (!diffPartial.reverse) {
-                    int i3 = diffPartial.x;
+                    int i3 = diffPartial.f621x;
                     int i4 = diffPartial.size;
                     range.oldListStart = i3 + i4;
-                    range.newListStart = diffPartial.y + i4;
+                    range.newListStart = diffPartial.f622y + i4;
                 } else if (diffPartial.removal) {
-                    int i5 = diffPartial.x;
+                    int i5 = diffPartial.f621x;
                     int i6 = diffPartial.size;
                     range.oldListStart = i5 + i6 + 1;
-                    range.newListStart = diffPartial.y + i6;
+                    range.newListStart = diffPartial.f622y + i6;
                 } else {
-                    int i7 = diffPartial.x;
+                    int i7 = diffPartial.f621x;
                     int i8 = diffPartial.size;
                     range.oldListStart = i7 + i8;
-                    range.newListStart = diffPartial.y + i8 + 1;
+                    range.newListStart = diffPartial.f622y + i8 + 1;
                 }
                 arrayList2.add(range);
             } else {

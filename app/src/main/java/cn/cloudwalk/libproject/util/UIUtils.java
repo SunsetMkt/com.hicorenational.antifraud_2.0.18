@@ -11,9 +11,9 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 import anet.channel.strategy.dispatch.DispatchConstants;
-import c.c.a.b.a.a;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class UIUtils {
@@ -118,7 +118,7 @@ public class UIUtils {
                 window.getDecorView().setSystemUiVisibility(8);
             } else if (Build.VERSION.SDK_INT >= 19) {
                 window.getDecorView().setSystemUiVisibility(3846);
-                window.addFlags(a.C1);
+                window.addFlags(AbstractC1191a.f2490C1);
             }
         }
     }

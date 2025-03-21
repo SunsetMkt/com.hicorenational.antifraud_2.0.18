@@ -12,6 +12,7 @@ import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 final class TorchControl {
@@ -67,7 +68,8 @@ final class TorchControl {
         }
     }
 
-    public /* synthetic */ Object a(boolean z, CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m319a(boolean z, CallbackToFutureAdapter.Completer completer) throws Exception {
         CallbackToFutureAdapter.Completer<Void> completer2;
         synchronized (this.mEnableTorchLock) {
             completer2 = this.mEnableTorchCompleter != null ? this.mEnableTorchCompleter : null;
@@ -82,7 +84,7 @@ final class TorchControl {
         return "enableTorch: " + z;
     }
 
-    c.b.b.a.a.a<Void> enableTorch(final boolean z) {
+    InterfaceFutureC0952a<Void> enableTorch(final boolean z) {
         if (!this.mHasFlashUnit) {
             return Futures.immediateFailedFuture(new IllegalStateException("No flash unit"));
         }
@@ -91,7 +93,7 @@ final class TorchControl {
                 return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.y
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                        return TorchControl.this.a(z, completer);
+                        return TorchControl.this.m319a(z, completer);
                     }
                 });
             }

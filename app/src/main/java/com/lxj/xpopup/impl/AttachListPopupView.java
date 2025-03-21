@@ -7,56 +7,72 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lxj.easyadapter.EasyAdapter;
 import com.lxj.easyadapter.MultiItemTypeAdapter;
 import com.lxj.easyadapter.ViewHolder;
-import com.lxj.xpopup.R;
+import com.lxj.xpopup.C2766R;
 import com.lxj.xpopup.core.AttachPopupView;
-import com.lxj.xpopup.e.f;
+import com.lxj.xpopup.p186e.InterfaceC2812f;
 import java.util.Arrays;
 import java.util.List;
 
 /* loaded from: classes.dex */
 public class AttachListPopupView extends AttachPopupView {
-    protected int A;
-    protected int B;
-    String[] C;
-    int[] D;
-    private f E;
-    RecyclerView z;
 
-    class a extends EasyAdapter<String> {
-        a(List list, int i2) {
+    /* renamed from: A */
+    protected int f8750A;
+
+    /* renamed from: B */
+    protected int f8751B;
+
+    /* renamed from: C */
+    String[] f8752C;
+
+    /* renamed from: D */
+    int[] f8753D;
+
+    /* renamed from: E */
+    private InterfaceC2812f f8754E;
+
+    /* renamed from: z */
+    RecyclerView f8755z;
+
+    /* renamed from: com.lxj.xpopup.impl.AttachListPopupView$a */
+    class C2820a extends EasyAdapter<String> {
+        C2820a(List list, int i2) {
             super(list, i2);
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.lxj.easyadapter.EasyAdapter
-        public void a(@NonNull ViewHolder viewHolder, @NonNull String str, int i2) {
-            viewHolder.a(R.id.tv_text, str);
-            int[] iArr = AttachListPopupView.this.D;
+        /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
+        public void mo8200a(@NonNull ViewHolder viewHolder, @NonNull String str, int i2) {
+            viewHolder.m8233a(C2766R.id.tv_text, str);
+            int[] iArr = AttachListPopupView.this.f8753D;
             if (iArr == null || iArr.length <= i2) {
-                viewHolder.a(R.id.iv_image).setVisibility(8);
+                viewHolder.m8231a(C2766R.id.iv_image).setVisibility(8);
             } else {
-                viewHolder.a(R.id.iv_image).setVisibility(0);
-                viewHolder.a(R.id.iv_image).setBackgroundResource(AttachListPopupView.this.D[i2]);
+                viewHolder.m8231a(C2766R.id.iv_image).setVisibility(0);
+                viewHolder.m8231a(C2766R.id.iv_image).setBackgroundResource(AttachListPopupView.this.f8753D[i2]);
             }
         }
     }
 
-    class b extends MultiItemTypeAdapter.c {
+    /* renamed from: com.lxj.xpopup.impl.AttachListPopupView$b */
+    class C2821b extends MultiItemTypeAdapter.C2749c {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ EasyAdapter f8079a;
+        /* renamed from: a */
+        final /* synthetic */ EasyAdapter f8757a;
 
-        b(EasyAdapter easyAdapter) {
-            this.f8079a = easyAdapter;
+        C2821b(EasyAdapter easyAdapter) {
+            this.f8757a = easyAdapter;
         }
 
-        @Override // com.lxj.easyadapter.MultiItemTypeAdapter.c, com.lxj.easyadapter.MultiItemTypeAdapter.b
-        public void a(View view, RecyclerView.ViewHolder viewHolder, int i2) {
-            if (AttachListPopupView.this.E != null) {
-                AttachListPopupView.this.E.a(i2, (String) this.f8079a.a().get(i2));
+        @Override // com.lxj.easyadapter.MultiItemTypeAdapter.C2749c, com.lxj.easyadapter.MultiItemTypeAdapter.InterfaceC2748b
+        /* renamed from: a */
+        public void mo8228a(View view, RecyclerView.ViewHolder viewHolder, int i2) {
+            if (AttachListPopupView.this.f8754E != null) {
+                AttachListPopupView.this.f8754E.m8431a(i2, (String) this.f8757a.m8213a().get(i2));
             }
-            if (AttachListPopupView.this.f7987a.f8030d.booleanValue()) {
-                AttachListPopupView.this.b();
+            if (AttachListPopupView.this.f8617a.f8691d.booleanValue()) {
+                AttachListPopupView.this.mo8378b();
             }
         }
     }
@@ -65,50 +81,56 @@ public class AttachListPopupView extends AttachPopupView {
         super(context);
     }
 
-    public AttachListPopupView b(int i2) {
-        this.A = i2;
+    /* renamed from: b */
+    public AttachListPopupView m8480b(int i2) {
+        this.f8750A = i2;
         return this;
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
     protected int getImplLayoutId() {
-        int i2 = this.A;
-        return i2 == 0 ? R.layout._xpopup_attach_impl_list : i2;
+        int i2 = this.f8750A;
+        return i2 == 0 ? C2766R.layout._xpopup_attach_impl_list : i2;
     }
 
     @Override // com.lxj.xpopup.core.AttachPopupView, com.lxj.xpopup.core.BasePopupView
-    protected void k() {
-        super.k();
-        this.z = (RecyclerView) findViewById(R.id.recyclerView);
-        List asList = Arrays.asList(this.C);
-        int i2 = this.B;
+    /* renamed from: k */
+    protected void mo8364k() {
+        super.mo8364k();
+        this.f8755z = (RecyclerView) findViewById(C2766R.id.recyclerView);
+        List asList = Arrays.asList(this.f8752C);
+        int i2 = this.f8751B;
         if (i2 == 0) {
-            i2 = R.layout._xpopup_adapter_text;
+            i2 = C2766R.layout._xpopup_adapter_text;
         }
-        a aVar = new a(asList, i2);
-        aVar.setOnItemClickListener(new b(aVar));
-        this.z.setAdapter(aVar);
+        C2820a c2820a = new C2820a(asList, i2);
+        c2820a.setOnItemClickListener(new C2821b(c2820a));
+        this.f8755z.setAdapter(c2820a);
     }
 
-    public AttachListPopupView a(int i2) {
-        this.B = i2;
+    /* renamed from: a */
+    public AttachListPopupView m8476a(int i2) {
+        this.f8751B = i2;
         return this;
     }
 
-    public AttachListPopupView a(String[] strArr, int[] iArr) {
-        this.C = strArr;
-        this.D = iArr;
+    /* renamed from: a */
+    public AttachListPopupView m8479a(String[] strArr, int[] iArr) {
+        this.f8752C = strArr;
+        this.f8753D = iArr;
         return this;
     }
 
-    public AttachListPopupView a(int i2, int i3) {
-        this.q += i2;
-        this.p += i3;
+    /* renamed from: a */
+    public AttachListPopupView m8477a(int i2, int i3) {
+        this.f8603q += i2;
+        this.f8602p += i3;
         return this;
     }
 
-    public AttachListPopupView a(f fVar) {
-        this.E = fVar;
+    /* renamed from: a */
+    public AttachListPopupView m8478a(InterfaceC2812f interfaceC2812f) {
+        this.f8754E = interfaceC2812f;
         return this;
     }
 }

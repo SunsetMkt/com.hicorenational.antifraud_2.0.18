@@ -1,18 +1,18 @@
 package com.huawei.secure.android.common.encrypt.utils;
 
 import android.text.TextUtils;
-import h.f1;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public final class HexUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7528a = "";
+    /* renamed from: a */
+    private static final String f8105a = "";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7529b = "HexUtil";
+    /* renamed from: b */
+    private static final String f8106b = "HexUtil";
 
     private HexUtil() {
     }
@@ -23,7 +23,7 @@ public final class HexUtil {
         }
         StringBuilder sb = new StringBuilder();
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & f1.f16099c);
+            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
             if (hexString.length() == 1) {
                 sb.append('0');
             }
@@ -50,11 +50,11 @@ public final class HexUtil {
                 }
                 return bArr;
             } catch (UnsupportedEncodingException | NumberFormatException e2) {
-                b.b(f7529b, "hex string 2 byte array exception : " + e2.getMessage());
+                C2551b.m7898b(f8106b, "hex string 2 byte array exception : " + e2.getMessage());
                 return new byte[0];
             }
         } catch (Throwable th) {
-            b.b(f7529b, "hex string toUpperCase exception : " + th.getMessage());
+            C2551b.m7898b(f8106b, "hex string toUpperCase exception : " + th.getMessage());
             return new byte[0];
         }
     }
@@ -66,7 +66,7 @@ public final class HexUtil {
         try {
             return byteArray2HexStr(str.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e2) {
-            b.b(f7529b, "byte array 2 hex string exception : " + e2.getMessage());
+            C2551b.m7898b(f8106b, "byte array 2 hex string exception : " + e2.getMessage());
             return "";
         }
     }

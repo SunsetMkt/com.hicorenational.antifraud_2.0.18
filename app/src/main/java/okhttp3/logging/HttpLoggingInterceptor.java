@@ -1,6 +1,5 @@
 package okhttp3.logging;
 
-import h.q2.t.m0;
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -19,6 +18,7 @@ import okhttp3.internal.http.HttpHeaders;
 import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSource;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes2.dex */
 public final class HttpLoggingInterceptor implements Interceptor {
@@ -177,7 +177,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
                     this.logger.log("<-- END HTTP (encoded body omitted)");
                 } else {
                     BufferedSource source = body2.source();
-                    source.request(m0.f16408b);
+                    source.request(C5556m0.f20396b);
                     Buffer buffer2 = source.buffer();
                     Charset charset2 = UTF8;
                     MediaType contentType2 = body2.contentType();

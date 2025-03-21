@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.text.TextUtils;
-import com.vivo.push.m;
+import com.vivo.push.C3924m;
 import com.vivo.push.model.UnvarnishedMessage;
+import com.vivo.push.util.C3984aa;
+import com.vivo.push.util.C4010u;
 import com.vivo.push.util.ContextDelegate;
-import com.vivo.push.util.aa;
-import com.vivo.push.util.u;
 import java.util.List;
 
 /* loaded from: classes2.dex */
@@ -19,21 +19,21 @@ public abstract class BasePushMessageReceiver extends BroadcastReceiver implemen
     @Override // com.vivo.push.sdk.PushMessageCallback
     public boolean isAllowNet(Context context) {
         if (context == null) {
-            u.a(TAG, "isAllowNet sContext is null");
+            C4010u.m13292a(TAG, "isAllowNet sContext is null");
             return false;
         }
         String packageName = context.getPackageName();
         if (TextUtils.isEmpty(packageName)) {
-            u.a(TAG, "isAllowNet pkgName is null");
+            C4010u.m13292a(TAG, "isAllowNet pkgName is null");
             return false;
         }
         Intent intent = new Intent("com.vivo.pushservice.action.PUSH_SERVICE");
         intent.setPackage(packageName);
         List<ResolveInfo> queryIntentServices = context.getPackageManager().queryIntentServices(intent, 576);
         if (queryIntentServices != null && queryIntentServices.size() > 0) {
-            return aa.a(context, packageName);
+            return C3984aa.m13182a(context, packageName);
         }
-        u.a(TAG, "this is client sdk");
+        C4010u.m13292a(TAG, "this is client sdk");
         return true;
     }
 
@@ -64,12 +64,12 @@ public abstract class BasePushMessageReceiver extends BroadcastReceiver implemen
     @Override // android.content.BroadcastReceiver
     public final void onReceive(Context context, Intent intent) {
         Context context2 = ContextDelegate.getContext(context);
-        m.a().a(context2);
-        u.d(TAG, "PushMessageReceiver " + context2.getPackageName() + " ; requestId = " + intent.getStringExtra("req_id"));
+        C3924m.m13016a().m13030a(context2);
+        C4010u.m13309d(TAG, "PushMessageReceiver " + context2.getPackageName() + " ; requestId = " + intent.getStringExtra("req_id"));
         try {
-            m.a().a(intent, this);
+            C3924m.m13016a().m13029a(intent, this);
         } catch (Exception e2) {
-            u.d(TAG, "onReceive doReceiveCommand erroe" + e2.getMessage());
+            C4010u.m13309d(TAG, "onReceive doReceiveCommand erroe" + e2.getMessage());
         }
     }
 

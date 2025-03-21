@@ -13,6 +13,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable {
@@ -21,16 +22,16 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
     private AsyncFunction<? super I, ? extends O> mFunction;
 
     @Nullable
-    private c.b.b.a.a.a<? extends I> mInputFuture;
+    private InterfaceFutureC0952a<? extends I> mInputFuture;
     private final BlockingQueue<Boolean> mMayInterruptIfRunningChannel = new LinkedBlockingQueue(1);
     private final CountDownLatch mOutputCreated = new CountDownLatch(1);
 
     @Nullable
-    volatile c.b.b.a.a.a<? extends O> mOutputFuture;
+    volatile InterfaceFutureC0952a<? extends O> mOutputFuture;
 
-    ChainingListenableFuture(@NonNull AsyncFunction<? super I, ? extends O> asyncFunction, @NonNull c.b.b.a.a.a<? extends I> aVar) {
+    ChainingListenableFuture(@NonNull AsyncFunction<? super I, ? extends O> asyncFunction, @NonNull InterfaceFutureC0952a<? extends I> interfaceFutureC0952a) {
         this.mFunction = (AsyncFunction) Preconditions.checkNotNull(asyncFunction);
-        this.mInputFuture = (c.b.b.a.a.a) Preconditions.checkNotNull(aVar);
+        this.mInputFuture = (InterfaceFutureC0952a) Preconditions.checkNotNull(interfaceFutureC0952a);
     }
 
     private <E> void putUninterruptibly(@NonNull BlockingQueue<E> blockingQueue, @NonNull E e2) {
@@ -90,14 +91,14 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
     @Nullable
     public O get() throws InterruptedException, ExecutionException {
         if (!isDone()) {
-            c.b.b.a.a.a<? extends I> aVar = this.mInputFuture;
-            if (aVar != null) {
-                aVar.get();
+            InterfaceFutureC0952a<? extends I> interfaceFutureC0952a = this.mInputFuture;
+            if (interfaceFutureC0952a != null) {
+                interfaceFutureC0952a.get();
             }
             this.mOutputCreated.await();
-            c.b.b.a.a.a<? extends O> aVar2 = this.mOutputFuture;
-            if (aVar2 != null) {
-                aVar2.get();
+            InterfaceFutureC0952a<? extends O> interfaceFutureC0952a2 = this.mOutputFuture;
+            if (interfaceFutureC0952a2 != null) {
+                interfaceFutureC0952a2.get();
             }
         }
         return (O) super.get();
@@ -105,7 +106,7 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
 
     @Override // java.lang.Runnable
     public void run() {
-        final c.b.b.a.a.a<? extends O> apply;
+        final InterfaceFutureC0952a<? extends O> apply;
         try {
         } catch (Exception e2) {
             setException(e2);
@@ -179,18 +180,18 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
                 j2 = timeUnit2.convert(j2, timeUnit);
                 timeUnit = TimeUnit.NANOSECONDS;
             }
-            c.b.b.a.a.a<? extends I> aVar = this.mInputFuture;
-            if (aVar != null) {
+            InterfaceFutureC0952a<? extends I> interfaceFutureC0952a = this.mInputFuture;
+            if (interfaceFutureC0952a != null) {
                 long nanoTime = System.nanoTime();
-                aVar.get(j2, timeUnit);
+                interfaceFutureC0952a.get(j2, timeUnit);
                 j2 -= Math.max(0L, System.nanoTime() - nanoTime);
             }
             long nanoTime2 = System.nanoTime();
             if (this.mOutputCreated.await(j2, timeUnit)) {
                 j2 -= Math.max(0L, System.nanoTime() - nanoTime2);
-                c.b.b.a.a.a<? extends O> aVar2 = this.mOutputFuture;
-                if (aVar2 != null) {
-                    aVar2.get(j2, timeUnit);
+                InterfaceFutureC0952a<? extends O> interfaceFutureC0952a2 = this.mOutputFuture;
+                if (interfaceFutureC0952a2 != null) {
+                    interfaceFutureC0952a2.get(j2, timeUnit);
                 }
             } else {
                 throw new TimeoutException();

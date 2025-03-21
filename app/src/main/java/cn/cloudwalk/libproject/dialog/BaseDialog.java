@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.LayoutRes;
-import cn.cloudwalk.libproject.R;
+import cn.cloudwalk.libproject.C1241R;
 
 /* loaded from: classes.dex */
 public abstract class BaseDialog extends Dialog implements View.OnClickListener {
@@ -189,16 +189,16 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener 
         Window window = getWindow();
         if (2 == i2) {
             setGravity(80);
-            window.setWindowAnimations(R.style.dialog_anim_bottom2top);
+            window.setWindowAnimations(C1241R.style.dialog_anim_bottom2top);
         } else if (3 == i2) {
             setGravity(48);
-            window.setWindowAnimations(R.style.dialog_anim_top2bottom);
+            window.setWindowAnimations(C1241R.style.dialog_anim_top2bottom);
         } else if (1 == i2) {
             setGravity(17);
-            window.setWindowAnimations(R.style.dialog_anim_scale);
+            window.setWindowAnimations(C1241R.style.dialog_anim_scale);
         } else if (i2 == 0) {
             setGravity(17);
-            window.setWindowAnimations(R.style.dialog_anim_alpha);
+            window.setWindowAnimations(C1241R.style.dialog_anim_alpha);
         }
         super.show();
     }

@@ -3,6 +3,7 @@ package anet.channel.util;
 import android.text.TextUtils;
 import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
 import com.xiaomi.mipush.sdk.Constants;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
@@ -15,13 +16,17 @@ public class ALog {
 
     /* compiled from: Taobao */
     public interface ILog {
-        void d(String str, String str2);
+        /* renamed from: d */
+        void mo456d(String str, String str2);
 
-        void e(String str, String str2);
+        /* renamed from: e */
+        void mo457e(String str, String str2);
 
-        void e(String str, String str2, Throwable th);
+        /* renamed from: e */
+        void mo458e(String str, String str2, Throwable th);
 
-        void i(String str, String str2);
+        /* renamed from: i */
+        void mo459i(String str, String str2);
 
         boolean isPrintLog(int i2);
 
@@ -29,19 +34,33 @@ public class ALog {
 
         void setLogLevel(int i2);
 
-        void w(String str, String str2);
+        /* renamed from: w */
+        void mo460w(String str, String str2);
 
-        void w(String str, String str2, Throwable th);
+        /* renamed from: w */
+        void mo461w(String str, String str2, Throwable th);
     }
 
     /* compiled from: Taobao */
     public static class Level {
-        public static final int D = 1;
-        public static final int E = 4;
-        public static final int I = 2;
-        public static final int N = 5;
-        public static final int V = 0;
-        public static final int W = 3;
+
+        /* renamed from: D */
+        public static final int f1163D = 1;
+
+        /* renamed from: E */
+        public static final int f1164E = 4;
+
+        /* renamed from: I */
+        public static final int f1165I = 2;
+
+        /* renamed from: N */
+        public static final int f1166N = 5;
+
+        /* renamed from: V */
+        public static final int f1167V = 0;
+
+        /* renamed from: W */
+        public static final int f1168W = 3;
     }
 
     /* compiled from: Taobao */
@@ -49,19 +68,23 @@ public class ALog {
         int defaultLevel = 1;
 
         @Override // anet.channel.util.ALog.ILog
-        public void d(String str, String str2) {
+        /* renamed from: d */
+        public void mo456d(String str, String str2) {
         }
 
         @Override // anet.channel.util.ALog.ILog
-        public void e(String str, String str2) {
+        /* renamed from: e */
+        public void mo457e(String str, String str2) {
         }
 
         @Override // anet.channel.util.ALog.ILog
-        public void e(String str, String str2, Throwable th) {
+        /* renamed from: e */
+        public void mo458e(String str, String str2, Throwable th) {
         }
 
         @Override // anet.channel.util.ALog.ILog
-        public void i(String str, String str2) {
+        /* renamed from: i */
+        public void mo459i(String str, String str2) {
         }
 
         @Override // anet.channel.util.ALog.ILog
@@ -84,11 +107,13 @@ public class ALog {
         }
 
         @Override // anet.channel.util.ALog.ILog
-        public void w(String str, String str2) {
+        /* renamed from: w */
+        public void mo460w(String str, String str2) {
         }
 
         @Override // anet.channel.util.ALog.ILog
-        public void w(String str, String str2, Throwable th) {
+        /* renamed from: w */
+        public void mo461w(String str, String str2, Throwable th) {
         }
     }
 
@@ -104,7 +129,7 @@ public class ALog {
             sb.append("]");
         }
         if (str != null) {
-            sb.append(c.c.a.b.a.a.f3100g);
+            sb.append(AbstractC1191a.f2568g);
             sb.append(str);
         }
         if (objArr != null) {
@@ -114,14 +139,14 @@ public class ALog {
                 if (i3 >= objArr.length) {
                     break;
                 }
-                sb.append(c.c.a.b.a.a.f3100g);
+                sb.append(AbstractC1191a.f2568g);
                 sb.append(objArr[i2] != null ? objArr[i2] : "");
                 sb.append(Constants.COLON_SEPARATOR);
                 sb.append(objArr[i3] != null ? objArr[i3] : "");
                 i2 += 2;
             }
             if (i2 < objArr.length) {
-                sb.append(c.c.a.b.a.a.f3100g);
+                sb.append(AbstractC1191a.f2568g);
                 sb.append(objArr[i2]);
             }
         }
@@ -132,29 +157,32 @@ public class ALog {
         return str;
     }
 
-    public static void d(String str, String str2, String str3, Object... objArr) {
+    /* renamed from: d */
+    public static void m713d(String str, String str2, String str3, Object... objArr) {
         if (!isPrintLog(1) || log == null) {
             return;
         }
-        log.d(buildLogTag(str), buildLogMsg(str2, str3, objArr));
+        log.mo456d(buildLogTag(str), buildLogMsg(str2, str3, objArr));
     }
 
-    public static void e(String str, String str2, String str3, Object... objArr) {
+    /* renamed from: e */
+    public static void m715e(String str, String str2, String str3, Object... objArr) {
         if (!isPrintLog(4) || log == null) {
             return;
         }
-        log.e(buildLogTag(str), buildLogMsg(str2, str3, objArr));
+        log.mo457e(buildLogTag(str), buildLogMsg(str2, str3, objArr));
     }
 
     public static ILog getLog() {
         return log;
     }
 
-    public static void i(String str, String str2, String str3, Object... objArr) {
+    /* renamed from: i */
+    public static void m716i(String str, String str2, String str3, Object... objArr) {
         if (!isPrintLog(2) || log == null) {
             return;
         }
-        log.i(buildLogTag(str), buildLogMsg(str2, str3, objArr));
+        log.mo459i(buildLogTag(str), buildLogMsg(str2, str3, objArr));
     }
 
     public static boolean isPrintLog(int i2) {
@@ -193,24 +221,27 @@ public class ALog {
         }
     }
 
-    public static void w(String str, String str2, String str3, Object... objArr) {
+    /* renamed from: w */
+    public static void m718w(String str, String str2, String str3, Object... objArr) {
         if (!isPrintLog(3) || log == null) {
             return;
         }
-        log.w(buildLogTag(str), buildLogMsg(str2, str3, objArr));
+        log.mo460w(buildLogTag(str), buildLogMsg(str2, str3, objArr));
     }
 
-    public static void e(String str, String str2, String str3, Throwable th, Object... objArr) {
+    /* renamed from: e */
+    public static void m714e(String str, String str2, String str3, Throwable th, Object... objArr) {
         if (!isPrintLog(4) || log == null) {
             return;
         }
-        log.e(buildLogTag(str), buildLogMsg(str2, str3, objArr), th);
+        log.mo458e(buildLogTag(str), buildLogMsg(str2, str3, objArr), th);
     }
 
-    public static void w(String str, String str2, String str3, Throwable th, Object... objArr) {
+    /* renamed from: w */
+    public static void m717w(String str, String str2, String str3, Throwable th, Object... objArr) {
         if (!isPrintLog(3) || log == null) {
             return;
         }
-        log.w(buildLogTag(str), buildLogMsg(str2, str3, objArr), th);
+        log.mo461w(buildLogTag(str), buildLogMsg(str2, str3, objArr), th);
     }
 }

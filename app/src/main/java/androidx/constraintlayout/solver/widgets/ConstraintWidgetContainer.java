@@ -330,8 +330,8 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         boolean z3;
         ?? r8;
         ConstraintWidget.DimensionBehaviour dimensionBehaviour;
-        this.mX = 0;
-        this.mY = 0;
+        this.f598mX = 0;
+        this.f599mY = 0;
         this.mWidthMeasuredTooSmall = false;
         this.mHeightMeasuredTooSmall = false;
         int size = this.mChildren.size();
@@ -449,8 +449,8 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                 int i11 = 0;
                 for (int i12 = 0; i12 < size; i12++) {
                     ConstraintWidget constraintWidget3 = this.mChildren.get(i12);
-                    i10 = Math.max(i10, constraintWidget3.mX + constraintWidget3.getWidth());
-                    i11 = Math.max(i11, constraintWidget3.mY + constraintWidget3.getHeight());
+                    i10 = Math.max(i10, constraintWidget3.f598mX + constraintWidget3.getWidth());
+                    i11 = Math.max(i11, constraintWidget3.f599mY + constraintWidget3.getHeight());
                 }
                 int max3 = Math.max(this.mMinWidth, i10);
                 int max4 = Math.max(this.mMinHeight, i11);

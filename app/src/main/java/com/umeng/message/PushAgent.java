@@ -10,14 +10,14 @@ import com.umeng.message.api.UPushRegisterCallback;
 import com.umeng.message.api.UPushSettingCallback;
 import com.umeng.message.api.UPushThirdTokenCallback;
 import com.umeng.message.common.UPLog;
-import com.umeng.message.proguard.aw;
-import com.umeng.message.proguard.d;
-import com.umeng.message.proguard.f;
-import com.umeng.message.proguard.i;
-import com.umeng.message.proguard.o;
-import com.umeng.message.proguard.t;
-import com.umeng.message.proguard.u;
-import com.umeng.message.proguard.x;
+import com.umeng.message.proguard.C3574aw;
+import com.umeng.message.proguard.C3584d;
+import com.umeng.message.proguard.C3586f;
+import com.umeng.message.proguard.C3589i;
+import com.umeng.message.proguard.C3595o;
+import com.umeng.message.proguard.C3600t;
+import com.umeng.message.proguard.C3601u;
+import com.umeng.message.proguard.C3604x;
 import com.umeng.message.tag.TagManager;
 import org.android.spdy.SpdyAgent;
 
@@ -31,25 +31,25 @@ public class PushAgent {
 
     static {
         try {
-            o oVar = new o();
-            ALog.setLog(oVar);
-            anet.channel.util.ALog.setLog(oVar);
+            C3595o c3595o = new C3595o();
+            ALog.setLog(c3595o);
+            anet.channel.util.ALog.setLog(c3595o);
         } catch (Throwable th) {
-            UPLog.e(TAG, th);
+            UPLog.m12143e(TAG, th);
         }
     }
 
     private PushAgent(Context context) {
         if (context == null) {
             try {
-                context = x.a();
+                context = C3604x.m12460a();
             } catch (Throwable th) {
-                UPLog.e(TAG, th);
+                UPLog.m12143e(TAG, th);
             }
         }
-        x.a(context);
-        t.a();
-        this.api = u.a();
+        C3604x.m12461a(context);
+        C3600t.m12440a();
+        this.api = C3601u.m12450a();
     }
 
     public static PushAgent getInstance(Context context) {
@@ -67,14 +67,14 @@ public class PushAgent {
         if (sInit) {
             return;
         }
-        f.c();
+        C3586f.m12391c();
         sInit = true;
     }
 
     public static void setup(Context context, String str, String str2) {
-        UPLog.d("Core", "setup appkey:", str, "appSecret:", str2);
-        x.a(context);
-        t.a();
+        UPLog.m12142d("Core", "setup appkey:", str, "appSecret:", str2);
+        C3604x.m12461a(context);
+        C3600t.m12440a();
     }
 
     public void addAlias(String str, String str2, UPushAliasCallback uPushAliasCallback) {
@@ -82,7 +82,7 @@ public class PushAgent {
     }
 
     public void changeBadgeNum(int i2) {
-        aw.b(x.a(), i2);
+        C3574aw.m12314b(C3604x.m12460a(), i2);
     }
 
     public void deleteAlias(String str, String str2, UPushAliasCallback uPushAliasCallback) {
@@ -194,7 +194,7 @@ public class PushAgent {
     }
 
     public boolean isNotificationEnabled() {
-        return d.q(x.a()) == 1;
+        return C3584d.m12373q(C3604x.m12460a()) == 1;
     }
 
     public boolean isPushCheck() {
@@ -210,7 +210,7 @@ public class PushAgent {
     }
 
     public boolean openNotificationSettings() {
-        return d.r(x.a());
+        return C3584d.m12374r(C3604x.m12460a());
     }
 
     public void register(UPushRegisterCallback uPushRegisterCallback) {
@@ -226,7 +226,7 @@ public class PushAgent {
     }
 
     public void setBadgeNum(int i2) {
-        aw.a(x.a(), i2);
+        C3574aw.m12312a(C3604x.m12460a(), i2);
     }
 
     public void setCallback(UPushSettingCallback uPushSettingCallback) {
@@ -238,7 +238,7 @@ public class PushAgent {
         try {
             SpdyAgent.enableDebug = z;
         } catch (Throwable th) {
-            UPLog.e(TAG, th);
+            UPLog.m12143e(TAG, th);
         }
     }
 
@@ -259,7 +259,7 @@ public class PushAgent {
     }
 
     public void setLogUploadEnable(boolean z) {
-        f.f11349b = z;
+        C3586f.f13277b = z;
     }
 
     public void setMessageHandler(UPushMessageHandler uPushMessageHandler) {
@@ -303,7 +303,7 @@ public class PushAgent {
     }
 
     public void setPackageListenerEnable(boolean z) {
-        i.a(z);
+        C3589i.m12411a(z);
     }
 
     public void setPullUpEnable(boolean z) {
@@ -327,7 +327,7 @@ public class PushAgent {
     }
 
     public void setSmartEnable(boolean z) {
-        f.f11348a = z;
+        C3586f.f13276a = z;
     }
 
     public void setThirdTokenCallback(UPushThirdTokenCallback uPushThirdTokenCallback) {

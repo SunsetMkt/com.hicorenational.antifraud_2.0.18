@@ -1,7 +1,7 @@
 package com.huawei.hms.framework.common;
 
-import c.c.a.b.a.a;
 import java.util.regex.Pattern;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class CheckParamUtils {
@@ -20,7 +20,7 @@ public class CheckParamUtils {
         if (i2 > i4 || i2 < i3) {
             return i5;
         }
-        Logger.d(TAG, str);
+        Logger.m6794d(TAG, str);
         return i2;
     }
 
@@ -31,7 +31,7 @@ public class CheckParamUtils {
     }
 
     public static boolean isIpV4(String str) {
-        if (str == null || str.isEmpty() || str.length() > 15 || !str.replace(".", "").matches(a.u1)) {
+        if (str == null || str.isEmpty() || str.length() > 15 || !str.replace(".", "").matches(AbstractC1191a.f2612u1)) {
             return false;
         }
         String[] split = str.split("\\.");
@@ -57,7 +57,7 @@ public class CheckParamUtils {
         if (j2 > j4 || j2 < j3) {
             return j5;
         }
-        Logger.d(TAG, str);
+        Logger.m6794d(TAG, str);
         return j2;
     }
 }

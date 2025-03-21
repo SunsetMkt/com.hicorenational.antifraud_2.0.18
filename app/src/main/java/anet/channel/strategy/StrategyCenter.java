@@ -12,7 +12,7 @@ public class StrategyCenter {
         if (instance == null) {
             synchronized (StrategyCenter.class) {
                 if (instance == null) {
-                    instance = new g();
+                    instance = new C0837g();
                 }
             }
         }

@@ -157,7 +157,7 @@ public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor 
                 QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMAPIShareHandler.2.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        AnonymousClass2 anonymousClass2 = AnonymousClass2.this;
+                        C36602 c36602 = C36602.this;
                         UMAPIShareHandler.this.doShare(shareContent, uMShareListener);
                     }
                 }, true);

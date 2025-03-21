@@ -18,7 +18,7 @@ public final class UmengMessageReceiverService extends MessageReceiverService {
         try {
             return super.onBind(intent);
         } catch (Exception e2) {
-            UPLog.e("MessageReceiverService", e2);
+            UPLog.m12143e("MessageReceiverService", e2);
             return null;
         }
     }

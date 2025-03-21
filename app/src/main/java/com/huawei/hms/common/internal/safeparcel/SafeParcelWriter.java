@@ -19,7 +19,8 @@ public class SafeParcelWriter {
     private SafeParcelWriter() {
     }
 
-    private static void a(Parcel parcel, int i2, int i3) {
+    /* renamed from: a */
+    private static void m6755a(Parcel parcel, int i2, int i3) {
         if (parcel == null) {
             return;
         }
@@ -31,7 +32,8 @@ public class SafeParcelWriter {
         }
     }
 
-    private static void b(Parcel parcel, int i2) {
+    /* renamed from: b */
+    private static void m6757b(Parcel parcel, int i2) {
         if (parcel == null) {
             return;
         }
@@ -42,11 +44,11 @@ public class SafeParcelWriter {
     }
 
     public static int beginObjectHeader(Parcel parcel) {
-        return a(parcel, 20293);
+        return m6754a(parcel, 20293);
     }
 
     public static void finishObjectHeader(Parcel parcel, int i2) {
-        b(parcel, i2);
+        m6757b(parcel, i2);
     }
 
     public static void writeBigDecimal(Parcel parcel, int i2, BigDecimal bigDecimal, boolean z) {
@@ -55,13 +57,13 @@ public class SafeParcelWriter {
         }
         if (bigDecimal == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
             }
         } else {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeByteArray(bigDecimal.unscaledValue().toByteArray());
             parcel.writeInt(bigDecimal.scale());
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         }
     }
 
@@ -71,19 +73,19 @@ public class SafeParcelWriter {
         }
         if (bigDecimalArr == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int length = bigDecimalArr.length;
         parcel.writeInt(length);
         for (int i3 = 0; i3 < length; i3++) {
             parcel.writeByteArray(bigDecimalArr[i3].unscaledValue().toByteArray());
             parcel.writeInt(bigDecimalArr[i3].scale());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeBigInteger(Parcel parcel, int i2, BigInteger bigInteger, boolean z) {
@@ -91,11 +93,11 @@ public class SafeParcelWriter {
             return;
         }
         if (bigInteger != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeByteArray(bigInteger.toByteArray());
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -105,24 +107,24 @@ public class SafeParcelWriter {
         }
         if (bigIntegerArr == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         parcel.writeInt(bigIntegerArr.length);
         for (BigInteger bigInteger : bigIntegerArr) {
             parcel.writeByteArray(bigInteger.toByteArray());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeBoolean(Parcel parcel, int i2, boolean z) {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 4);
+        m6755a(parcel, i2, 4);
         if (z) {
             parcel.writeInt(1);
         } else {
@@ -135,11 +137,11 @@ public class SafeParcelWriter {
             return;
         }
         if (zArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeBooleanArray(zArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -149,18 +151,18 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(list.get(i3).booleanValue() ? 1 : 0);
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeBooleanObject(Parcel parcel, int i2, Boolean bool, boolean z) {
@@ -168,10 +170,10 @@ public class SafeParcelWriter {
             return;
         }
         if (bool != null) {
-            a(parcel, i2, 4);
+            m6755a(parcel, i2, 4);
             parcel.writeInt(bool.booleanValue() ? 1 : 0);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -180,11 +182,11 @@ public class SafeParcelWriter {
             return;
         }
         if (bundle != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeBundle(bundle);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -192,7 +194,7 @@ public class SafeParcelWriter {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 4);
+        m6755a(parcel, i2, 4);
         parcel.writeInt(b2);
     }
 
@@ -201,11 +203,11 @@ public class SafeParcelWriter {
             return;
         }
         if (bArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeByteArray(bArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -215,17 +217,17 @@ public class SafeParcelWriter {
         }
         if (bArr == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         parcel.writeInt(bArr.length);
         for (byte[] bArr2 : bArr) {
             parcel.writeByteArray(bArr2);
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeByteArraySparseArray(Parcel parcel, int i2, SparseArray<byte[]> sparseArray, boolean z) {
@@ -234,26 +236,26 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseArray.keyAt(i3));
             parcel.writeByteArray(sparseArray.valueAt(i3));
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeChar(Parcel parcel, int i2, char c2) {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 4);
+        m6755a(parcel, i2, 4);
         parcel.writeInt(c2);
     }
 
@@ -262,11 +264,11 @@ public class SafeParcelWriter {
             return;
         }
         if (cArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeCharArray(cArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -274,7 +276,7 @@ public class SafeParcelWriter {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 8);
+        m6755a(parcel, i2, 8);
         parcel.writeDouble(d2);
     }
 
@@ -283,11 +285,11 @@ public class SafeParcelWriter {
             return;
         }
         if (dArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeDoubleArray(dArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -297,18 +299,18 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeDouble(list.get(i3).doubleValue());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeDoubleObject(Parcel parcel, int i2, Double d2, boolean z) {
@@ -316,10 +318,10 @@ public class SafeParcelWriter {
             return;
         }
         if (d2 != null) {
-            a(parcel, i2, 8);
+            m6755a(parcel, i2, 8);
             parcel.writeDouble(d2.doubleValue());
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -329,26 +331,26 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseArray.keyAt(i3));
             parcel.writeDouble(sparseArray.valueAt(i3).doubleValue());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeFloat(Parcel parcel, int i2, float f2) {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 4);
+        m6755a(parcel, i2, 4);
         parcel.writeFloat(f2);
     }
 
@@ -357,11 +359,11 @@ public class SafeParcelWriter {
             return;
         }
         if (fArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeFloatArray(fArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -371,18 +373,18 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeFloat(list.get(i3).floatValue());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeFloatObject(Parcel parcel, int i2, Float f2, boolean z) {
@@ -390,10 +392,10 @@ public class SafeParcelWriter {
             return;
         }
         if (f2 != null) {
-            a(parcel, i2, 4);
+            m6755a(parcel, i2, 4);
             parcel.writeFloat(f2.floatValue());
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -403,19 +405,19 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseArray.keyAt(i3));
             parcel.writeFloat(sparseArray.valueAt(i3).floatValue());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeIBinder(Parcel parcel, int i2, IBinder iBinder, boolean z) {
@@ -423,11 +425,11 @@ public class SafeParcelWriter {
             return;
         }
         if (iBinder != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeStrongBinder(iBinder);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -436,11 +438,11 @@ public class SafeParcelWriter {
             return;
         }
         if (iBinderArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeBinderArray(iBinderArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -449,11 +451,11 @@ public class SafeParcelWriter {
             return;
         }
         if (list != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeBinderList(list);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -463,26 +465,26 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseArray.keyAt(i3));
             parcel.writeStrongBinder(sparseArray.valueAt(i3));
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeInt(Parcel parcel, int i2, int i3) {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 4);
+        m6755a(parcel, i2, 4);
         parcel.writeInt(i3);
     }
 
@@ -491,11 +493,11 @@ public class SafeParcelWriter {
             return;
         }
         if (iArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeIntArray(iArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -505,18 +507,18 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(list.get(i3).intValue());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeIntegerObject(Parcel parcel, int i2, Integer num, boolean z) {
@@ -524,10 +526,10 @@ public class SafeParcelWriter {
             return;
         }
         if (num != null) {
-            a(parcel, i2, 4);
+            m6755a(parcel, i2, 4);
             parcel.writeInt(num.intValue());
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -536,11 +538,11 @@ public class SafeParcelWriter {
             return;
         }
         if (list != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeList(list);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -548,7 +550,7 @@ public class SafeParcelWriter {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 8);
+        m6755a(parcel, i2, 8);
         parcel.writeLong(j2);
     }
 
@@ -557,11 +559,11 @@ public class SafeParcelWriter {
             return;
         }
         if (jArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeLongArray(jArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -571,18 +573,18 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeLong(list.get(i3).longValue());
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeLongObject(Parcel parcel, int i2, Long l2, boolean z) {
@@ -590,10 +592,10 @@ public class SafeParcelWriter {
             return;
         }
         if (l2 != null) {
-            a(parcel, i2, 8);
+            m6755a(parcel, i2, 8);
             parcel.writeLong(l2.longValue());
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -602,11 +604,11 @@ public class SafeParcelWriter {
             return;
         }
         if (parcel2 != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.appendFrom(parcel2, 0, parcel2.dataSize());
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -616,12 +618,12 @@ public class SafeParcelWriter {
         }
         if (parcelArr == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int length = parcelArr.length;
         parcel.writeInt(length);
         for (int i3 = 0; i3 < length; i3++) {
@@ -632,7 +634,7 @@ public class SafeParcelWriter {
                 parcel.appendFrom(parcelArr[i3], 0, parcelArr[i3].dataSize());
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeParcelList(Parcel parcel, int i2, List<Parcel> list, boolean z) {
@@ -641,12 +643,12 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
@@ -658,7 +660,7 @@ public class SafeParcelWriter {
                 parcel.appendFrom(parcel2, 0, parcel2.dataSize());
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeParcelSparseArray(Parcel parcel, int i2, SparseArray<Parcel> sparseArray, boolean z) {
@@ -667,12 +669,12 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
@@ -685,7 +687,7 @@ public class SafeParcelWriter {
                 parcel.appendFrom(valueAt, 0, valueAt.dataSize());
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeParcelable(Parcel parcel, int i2, Parcelable parcelable, int i3, boolean z) {
@@ -693,11 +695,11 @@ public class SafeParcelWriter {
             return;
         }
         if (parcelable != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcelable.writeToParcel(parcel, i3);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -705,7 +707,7 @@ public class SafeParcelWriter {
         if (parcel == null) {
             return;
         }
-        a(parcel, i2, 4);
+        m6755a(parcel, i2, 4);
         parcel.writeInt(s);
     }
 
@@ -714,11 +716,11 @@ public class SafeParcelWriter {
             return;
         }
         if (sparseBooleanArray != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeSparseBooleanArray(sparseBooleanArray);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -728,19 +730,19 @@ public class SafeParcelWriter {
         }
         if (sparseIntArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseIntArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseIntArray.keyAt(i3));
             parcel.writeInt(sparseIntArray.valueAt(i3));
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeSparseLongArray(Parcel parcel, int i2, SparseLongArray sparseLongArray, boolean z) {
@@ -749,12 +751,12 @@ public class SafeParcelWriter {
         }
         if (sparseLongArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = Build.VERSION.SDK_INT >= 18 ? sparseLongArray.size() : 0;
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
@@ -766,7 +768,7 @@ public class SafeParcelWriter {
                 parcel.writeLong(sparseLongArray.valueAt(i3));
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static void writeString(Parcel parcel, int i2, String str, boolean z) {
@@ -774,11 +776,11 @@ public class SafeParcelWriter {
             return;
         }
         if (str != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeString(str);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -787,11 +789,11 @@ public class SafeParcelWriter {
             return;
         }
         if (strArr != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeStringArray(strArr);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -800,11 +802,11 @@ public class SafeParcelWriter {
             return;
         }
         if (list != null) {
-            int a2 = a(parcel, i2);
+            int m6754a = m6754a(parcel, i2);
             parcel.writeStringList(list);
-            b(parcel, a2);
+            m6757b(parcel, m6754a);
         } else if (z) {
-            a(parcel, i2, 0);
+            m6755a(parcel, i2, 0);
         }
     }
 
@@ -814,19 +816,19 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseArray.keyAt(i3));
             parcel.writeString(sparseArray.valueAt(i3));
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static <P extends Parcelable> void writeTypedArray(Parcel parcel, int i2, P[] pArr, int i3, boolean z) {
@@ -835,22 +837,22 @@ public class SafeParcelWriter {
         }
         if (pArr == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
-        parcel.writeInt(a2);
+        int m6754a = m6754a(parcel, i2);
+        parcel.writeInt(m6754a);
         int length = pArr.length;
         for (int i4 = 0; i4 < length; i4++) {
             if (pArr[i4] != null) {
-                a(parcel, pArr[i4], i3);
+                m6756a(parcel, pArr[i4], i3);
             } else {
                 parcel.writeInt(0);
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static <T extends Parcelable> void writeTypedList(Parcel parcel, int i2, List<T> list, boolean z) {
@@ -859,23 +861,23 @@ public class SafeParcelWriter {
         }
         if (list == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = list.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             T t = list.get(i3);
             if (t != null) {
-                a(parcel, t, 0);
+                m6756a(parcel, t, 0);
             } else {
                 parcel.writeInt(0);
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
     public static <T extends Parcelable> void writeTypedSparseArray(Parcel parcel, int i2, SparseArray<T> sparseArray, boolean z) {
@@ -884,33 +886,35 @@ public class SafeParcelWriter {
         }
         if (sparseArray == null) {
             if (z) {
-                a(parcel, i2, 0);
+                m6755a(parcel, i2, 0);
                 return;
             }
             return;
         }
-        int a2 = a(parcel, i2);
+        int m6754a = m6754a(parcel, i2);
         int size = sparseArray.size();
         parcel.writeInt(size);
         for (int i3 = 0; i3 < size; i3++) {
             parcel.writeInt(sparseArray.keyAt(i3));
             T valueAt = sparseArray.valueAt(i3);
             if (valueAt != null) {
-                a(parcel, valueAt, 0);
+                m6756a(parcel, valueAt, 0);
             } else {
                 parcel.writeInt(0);
             }
         }
-        b(parcel, a2);
+        m6757b(parcel, m6754a);
     }
 
-    private static int a(Parcel parcel, int i2) {
+    /* renamed from: a */
+    private static int m6754a(Parcel parcel, int i2) {
         parcel.writeInt(i2 | SupportMenu.CATEGORY_MASK);
         parcel.writeInt(0);
         return parcel.dataPosition();
     }
 
-    private static <P extends Parcelable> void a(Parcel parcel, P p, int i2) {
+    /* renamed from: a */
+    private static <P extends Parcelable> void m6756a(Parcel parcel, P p, int i2) {
         if (parcel == null) {
             return;
         }

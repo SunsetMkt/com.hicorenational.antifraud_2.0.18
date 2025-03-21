@@ -1,25 +1,25 @@
 package com.huawei.agconnect;
 
 import android.content.Context;
-import com.huawei.agconnect.config.impl.a;
+import com.huawei.agconnect.config.impl.C2248a;
 
 @Deprecated
 /* loaded from: classes.dex */
 public abstract class AGConnectApp {
     public static AGConnectApp getInstance() {
-        return a.a();
+        return C2248a.m6408a();
     }
 
     private static AGConnectApp getInstance(String str) {
-        return a.a(str);
+        return C2248a.m6411a(str);
     }
 
     public static AGConnectApp initialize(Context context) {
-        return a.a(context);
+        return C2248a.m6409a(context);
     }
 
     private static AGConnectApp initialize(Context context, String str) {
-        return a.a(context, str);
+        return C2248a.m6410a(context, str);
     }
 
     public abstract void setApiKey(String str);

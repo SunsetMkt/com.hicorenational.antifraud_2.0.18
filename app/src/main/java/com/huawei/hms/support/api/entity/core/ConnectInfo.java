@@ -8,61 +8,61 @@ import java.util.List;
 /* loaded from: classes.dex */
 public class ConnectInfo implements IMessageEntity {
 
-    /* renamed from: a, reason: collision with root package name */
+    /* renamed from: a */
     @Packed
-    private List<String> f7278a;
+    private List<String> f7845a;
 
-    /* renamed from: b, reason: collision with root package name */
+    /* renamed from: b */
     @Packed
-    private List<Scope> f7279b;
+    private List<Scope> f7846b;
 
-    /* renamed from: c, reason: collision with root package name */
+    /* renamed from: c */
     @Packed
-    private String f7280c;
+    private String f7847c;
 
-    /* renamed from: d, reason: collision with root package name */
+    /* renamed from: d */
     @Packed
-    private String f7281d;
+    private String f7848d;
 
     public ConnectInfo() {
     }
 
     public List<String> getApiNameList() {
-        return this.f7278a;
+        return this.f7845a;
     }
 
     public String getFingerprint() {
-        return this.f7280c;
+        return this.f7847c;
     }
 
     public List<Scope> getScopeList() {
-        return this.f7279b;
+        return this.f7846b;
     }
 
     public String getSubAppID() {
-        return this.f7281d;
+        return this.f7848d;
     }
 
     public void setApiNameList(List<String> list) {
-        this.f7278a = list;
+        this.f7845a = list;
     }
 
     public void setFingerprint(String str) {
-        this.f7280c = str;
+        this.f7847c = str;
     }
 
     public void setScopeList(List<Scope> list) {
-        this.f7279b = list;
+        this.f7846b = list;
     }
 
     public void setSubAppID(String str) {
-        this.f7281d = str;
+        this.f7848d = str;
     }
 
     public ConnectInfo(List<String> list, List<Scope> list2, String str, String str2) {
-        this.f7278a = list;
-        this.f7279b = list2;
-        this.f7280c = str;
-        this.f7281d = str2;
+        this.f7845a = list;
+        this.f7846b = list2;
+        this.f7847c = str;
+        this.f7848d = str2;
     }
 }

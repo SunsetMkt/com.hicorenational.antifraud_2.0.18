@@ -7,8 +7,9 @@ import com.huawei.hms.core.aidl.annotation.Packed;
 /* loaded from: classes.dex */
 public class OaidResp extends AbstractMessageEntity {
 
+    /* renamed from: id */
     @Packed
-    private String id;
+    private String f7849id;
 
     @Packed
     private boolean isTrackLimited;
@@ -17,7 +18,7 @@ public class OaidResp extends AbstractMessageEntity {
     private PendingIntent settingIntent;
 
     public String getId() {
-        return this.id;
+        return this.f7849id;
     }
 
     public PendingIntent getSettingIntent() {
@@ -29,7 +30,7 @@ public class OaidResp extends AbstractMessageEntity {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f7849id = str;
     }
 
     public void setSettingIntent(PendingIntent pendingIntent) {

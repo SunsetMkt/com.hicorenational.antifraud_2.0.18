@@ -66,14 +66,14 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import c.c.a.b.a.a;
 import com.taobao.accs.utl.UtilityImpl;
-import com.umeng.analytics.pro.at;
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3336at;
+import com.umeng.analytics.pro.C3351bh;
 import java.io.File;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.RejectedExecutionException;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class ContextCompat {
@@ -112,7 +112,7 @@ public class ContextCompat {
             }
             if (Build.VERSION.SDK_INT >= 17) {
                 SERVICES.put(DisplayManager.class, "display");
-                SERVICES.put(UserManager.class, at.f10079m);
+                SERVICES.put(UserManager.class, C3336at.f11499m);
             }
             if (Build.VERSION.SDK_INT >= 16) {
                 SERVICES.put(InputManager.class, "input");
@@ -120,7 +120,7 @@ public class ContextCompat {
                 SERVICES.put(NsdManager.class, "servicediscovery");
             }
             SERVICES.put(AccessibilityManager.class, "accessibility");
-            SERVICES.put(AccountManager.class, a.P);
+            SERVICES.put(AccountManager.class, AbstractC1191a.f2527P);
             SERVICES.put(ActivityManager.class, "activity");
             SERVICES.put(AlarmManager.class, NotificationCompat.CATEGORY_ALARM);
             SERVICES.put(AudioManager.class, "audio");
@@ -137,7 +137,7 @@ public class ContextCompat {
             SERVICES.put(NotificationManager.class, "notification");
             SERVICES.put(PowerManager.class, "power");
             SERVICES.put(SearchManager.class, "search");
-            SERVICES.put(SensorManager.class, bh.ac);
+            SERVICES.put(SensorManager.class, C3351bh.f11604ac);
             SERVICES.put(StorageManager.class, "storage");
             SERVICES.put(TelephonyManager.class, "phone");
             SERVICES.put(TextServicesManager.class, "textservices");

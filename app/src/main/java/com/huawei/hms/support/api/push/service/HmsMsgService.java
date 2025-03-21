@@ -9,10 +9,10 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import com.huawei.hms.push.c;
+import com.huawei.hms.push.C2483c;
+import com.huawei.hms.push.C2489i;
+import com.huawei.hms.push.C2500t;
 import com.huawei.hms.push.constant.RemoteMessageConst;
-import com.huawei.hms.push.i;
-import com.huawei.hms.push.t;
 import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.HMSPackageManager;
 import com.huawei.hms.utils.PackageManagerHelper;
@@ -22,13 +22,14 @@ import java.util.Objects;
 /* loaded from: classes.dex */
 public class HmsMsgService extends Service {
 
-    private static class a extends Handler {
+    /* renamed from: com.huawei.hms.support.api.push.service.HmsMsgService$a */
+    private static class HandlerC2522a extends Handler {
 
-        /* renamed from: a, reason: collision with root package name */
-        private Context f7286a;
+        /* renamed from: a */
+        private Context f7857a;
 
-        a(Context context) {
-            this.f7286a = context;
+        HandlerC2522a(Context context) {
+            this.f7857a = context;
         }
 
         @Override // android.os.Handler
@@ -37,20 +38,20 @@ public class HmsMsgService extends Service {
                 return;
             }
             Bundle data = message.getData();
-            if (Objects.equals(this.f7286a.getApplicationContext().getPackageManager().getNameForUid(message.sendingUid), HMSPackageManager.getInstance(this.f7286a).getHMSPackageName()) && data != null && HMSPackageManager.getInstance(this.f7286a).getHMSPackageStates() == PackageManagerHelper.PackageStates.ENABLED) {
-                if (HMSPackageManager.getInstance(this.f7286a).getHMSPackageStates() != PackageManagerHelper.PackageStates.ENABLED) {
-                    HMSLog.i("HmsMsgService", "service not start by hms");
+            if (Objects.equals(this.f7857a.getApplicationContext().getPackageManager().getNameForUid(message.sendingUid), HMSPackageManager.getInstance(this.f7857a).getHMSPackageName()) && data != null && HMSPackageManager.getInstance(this.f7857a).getHMSPackageStates() == PackageManagerHelper.PackageStates.ENABLED) {
+                if (HMSPackageManager.getInstance(this.f7857a).getHMSPackageStates() != PackageManagerHelper.PackageStates.ENABLED) {
+                    HMSLog.m7717i("HmsMsgService", "service not start by hms");
                 } else {
-                    HMSLog.i("HmsMsgService", "chose push type");
-                    if (Objects.equals(c.b(data, "push_action"), "com.huawei.push.msg.NOTIFY_MSG")) {
+                    HMSLog.m7717i("HmsMsgService", "chose push type");
+                    if (Objects.equals(C2483c.m7541b(data, "push_action"), "com.huawei.push.msg.NOTIFY_MSG")) {
                         if (ResourceLoaderUtil.getmContext() == null) {
-                            ResourceLoaderUtil.setmContext(this.f7286a.getApplicationContext());
+                            ResourceLoaderUtil.setmContext(this.f7857a.getApplicationContext());
                         }
-                        HMSLog.i("HmsMsgService", "invokeSelfShow");
-                        HmsMsgService.c(this.f7286a, data);
-                    } else if (Objects.equals(c.b(data, "push_action"), "com.huawei.push.msg.PASSBY_MSG")) {
-                        HMSLog.i("HmsMsgService", "sendBroadcastToHms");
-                        HmsMsgService.d(this.f7286a, data);
+                        HMSLog.m7717i("HmsMsgService", "invokeSelfShow");
+                        HmsMsgService.m7691c(this.f7857a, data);
+                    } else if (Objects.equals(C2483c.m7541b(data, "push_action"), "com.huawei.push.msg.PASSBY_MSG")) {
+                        HMSLog.m7717i("HmsMsgService", "sendBroadcastToHms");
+                        HmsMsgService.m7692d(this.f7857a, data);
                     }
                 }
             }
@@ -59,48 +60,50 @@ public class HmsMsgService extends Service {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public static void c(Context context, Bundle bundle) {
-        if (!i.a(context)) {
-            HMSLog.i("HmsMsgService", context.getPackageName() + " disable display notification.");
+    /* renamed from: c */
+    public static void m7691c(Context context, Bundle bundle) {
+        if (!C2489i.m7565a(context)) {
+            HMSLog.m7717i("HmsMsgService", context.getPackageName() + " disable display notification.");
             return;
         }
         Intent intent = new Intent();
         intent.setAction("com.huawei.push.msg.NOTIFY_MSG");
-        intent.putExtra("selfshow_info", c.a(bundle, "selfshow_info"));
-        intent.putExtra("selfshow_token", c.a(bundle, "selfshow_token"));
-        intent.setPackage(c.c(bundle, "push_package"));
-        t.a(context, intent);
-        HMSLog.i("HmsMsgService", "invokeSelfShow done");
+        intent.putExtra("selfshow_info", C2483c.m7540a(bundle, "selfshow_info"));
+        intent.putExtra("selfshow_token", C2483c.m7540a(bundle, "selfshow_token"));
+        intent.setPackage(C2483c.m7542c(bundle, "push_package"));
+        C2500t.m7636a(context, intent);
+        HMSLog.m7717i("HmsMsgService", "invokeSelfShow done");
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public static void d(Context context, Bundle bundle) {
+    /* renamed from: d */
+    public static void m7692d(Context context, Bundle bundle) {
         try {
             Intent intent = new Intent();
             intent.setAction("com.huawei.android.push.intent.RECEIVE");
-            intent.putExtra("msg_data", c.a(bundle, "msg_data"));
-            intent.putExtra(RemoteMessageConst.DEVICE_TOKEN, c.a(bundle, RemoteMessageConst.DEVICE_TOKEN));
-            intent.putExtra("msgIdStr", c.c(bundle, "msgIdStr"));
+            intent.putExtra("msg_data", C2483c.m7540a(bundle, "msg_data"));
+            intent.putExtra(RemoteMessageConst.DEVICE_TOKEN, C2483c.m7540a(bundle, RemoteMessageConst.DEVICE_TOKEN));
+            intent.putExtra("msgIdStr", C2483c.m7542c(bundle, "msgIdStr"));
             intent.setFlags(32);
-            intent.setPackage(c.c(bundle, "push_package"));
+            intent.setPackage(C2483c.m7542c(bundle, "push_package"));
             context.sendBroadcast(intent, context.getPackageName() + ".permission.PROCESS_PUSH_MSG");
-            HMSLog.i("HmsMsgService", "send broadcast passby done");
+            HMSLog.m7717i("HmsMsgService", "send broadcast passby done");
         } catch (SecurityException unused) {
-            HMSLog.i("HmsMsgService", "send broadcast SecurityException");
+            HMSLog.m7717i("HmsMsgService", "send broadcast SecurityException");
         } catch (Exception unused2) {
-            HMSLog.i("HmsMsgService", "send broadcast Exception");
+            HMSLog.m7717i("HmsMsgService", "send broadcast Exception");
         }
     }
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        HMSLog.i("HmsMsgService", "onBind");
-        return new Messenger(new a(this)).getBinder();
+        HMSLog.m7717i("HmsMsgService", "onBind");
+        return new Messenger(new HandlerC2522a(this)).getBinder();
     }
 
     @Override // android.app.Service
     public int onStartCommand(Intent intent, int i2, int i3) {
-        HMSLog.i("HmsMsgService", "Enter onStartCommand.");
+        HMSLog.m7717i("HmsMsgService", "Enter onStartCommand.");
         return 2;
     }
 }

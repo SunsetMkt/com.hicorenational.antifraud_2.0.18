@@ -1,35 +1,37 @@
 package okio;
 
-import h.c;
-import h.e1;
-import h.o0;
-import h.q2.s.l;
-import h.q2.t.f0;
-import h.q2.t.i0;
-import h.y;
-import h.y1;
-import i.c.a.d;
-import i.c.a.e;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import p286h.C5226e1;
+import p286h.C5715y1;
+import p286h.EnumC5220d;
+import p286h.InterfaceC5216c;
+import p286h.InterfaceC5467o0;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.InterfaceC5481e;
+import p286h.p309q2.p310s.InterfaceC5506l;
+import p286h.p309q2.p311t.C5535f0;
+import p286h.p309q2.p311t.C5544i0;
+import p324i.p336c.p337a.InterfaceC5816d;
+import p324i.p336c.p337a.InterfaceC5817e;
 
 /* compiled from: Pipe.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000D\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u000b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\u000e\u0010\u001e\u001a\u00020\u001f2\u0006\u0010\u0011\u001a\u00020\nJ\r\u0010\u0011\u001a\u00020\nH\u0007¢\u0006\u0002\b J\r\u0010\u0018\u001a\u00020\u0019H\u0007¢\u0006\u0002\b!J&\u0010\"\u001a\u00020\u001f*\u00020\n2\u0017\u0010#\u001a\u0013\u0012\u0004\u0012\u00020\n\u0012\u0004\u0012\u00020\u001f0$¢\u0006\u0002\b%H\u0082\bR\u0014\u0010\u0005\u001a\u00020\u0006X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u001c\u0010\t\u001a\u0004\u0018\u00010\nX\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u0014\u0010\u0002\u001a\u00020\u0003X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u000f\u0010\u0010R\u0013\u0010\u0011\u001a\u00020\n8G¢\u0006\b\n\u0000\u001a\u0004\b\u0011\u0010\fR\u001a\u0010\u0012\u001a\u00020\u0013X\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0014\u0010\u0015\"\u0004\b\u0016\u0010\u0017R\u0013\u0010\u0018\u001a\u00020\u00198G¢\u0006\b\n\u0000\u001a\u0004\b\u0018\u0010\u001aR\u001a\u0010\u001b\u001a\u00020\u0013X\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u0015\"\u0004\b\u001d\u0010\u0017¨\u0006&"}, d2 = {"Lokio/Pipe;", "", "maxBufferSize", "", "(J)V", "buffer", "Lokio/Buffer;", "getBuffer$okio", "()Lokio/Buffer;", "foldedSink", "Lokio/Sink;", "getFoldedSink$okio", "()Lokio/Sink;", "setFoldedSink$okio", "(Lokio/Sink;)V", "getMaxBufferSize$okio", "()J", "sink", "sinkClosed", "", "getSinkClosed$okio", "()Z", "setSinkClosed$okio", "(Z)V", "source", "Lokio/Source;", "()Lokio/Source;", "sourceClosed", "getSourceClosed$okio", "setSourceClosed$okio", "fold", "", "-deprecated_sink", "-deprecated_source", "forward", "block", "Lkotlin/Function1;", "Lkotlin/ExtensionFunctionType;", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000D\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u000b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\u000e\u0010\u001e\u001a\u00020\u001f2\u0006\u0010\u0011\u001a\u00020\nJ\r\u0010\u0011\u001a\u00020\nH\u0007¢\u0006\u0002\b J\r\u0010\u0018\u001a\u00020\u0019H\u0007¢\u0006\u0002\b!J&\u0010\"\u001a\u00020\u001f*\u00020\n2\u0017\u0010#\u001a\u0013\u0012\u0004\u0012\u00020\n\u0012\u0004\u0012\u00020\u001f0$¢\u0006\u0002\b%H\u0082\bR\u0014\u0010\u0005\u001a\u00020\u0006X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u001c\u0010\t\u001a\u0004\u0018\u00010\nX\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u0014\u0010\u0002\u001a\u00020\u0003X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u000f\u0010\u0010R\u0013\u0010\u0011\u001a\u00020\n8G¢\u0006\b\n\u0000\u001a\u0004\b\u0011\u0010\fR\u001a\u0010\u0012\u001a\u00020\u0013X\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0014\u0010\u0015\"\u0004\b\u0016\u0010\u0017R\u0013\u0010\u0018\u001a\u00020\u00198G¢\u0006\b\n\u0000\u001a\u0004\b\u0018\u0010\u001aR\u001a\u0010\u001b\u001a\u00020\u0013X\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u0015\"\u0004\b\u001d\u0010\u0017¨\u0006&"}, m23546d2 = {"Lokio/Pipe;", "", "maxBufferSize", "", "(J)V", "buffer", "Lokio/Buffer;", "getBuffer$okio", "()Lokio/Buffer;", "foldedSink", "Lokio/Sink;", "getFoldedSink$okio", "()Lokio/Sink;", "setFoldedSink$okio", "(Lokio/Sink;)V", "getMaxBufferSize$okio", "()J", "sink", "sinkClosed", "", "getSinkClosed$okio", "()Z", "setSinkClosed$okio", "(Z)V", "source", "Lokio/Source;", "()Lokio/Source;", "sourceClosed", "getSourceClosed$okio", "setSourceClosed$okio", "fold", "", "-deprecated_sink", "-deprecated_source", "forward", "block", "Lkotlin/Function1;", "Lkotlin/ExtensionFunctionType;", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class Pipe {
 
-    @d
+    @InterfaceC5816d
     private final Buffer buffer = new Buffer();
 
-    @e
+    @InterfaceC5817e
     private Sink foldedSink;
     private final long maxBufferSize;
 
-    @d
+    @InterfaceC5816d
     private final Sink sink;
     private boolean sinkClosed;
 
-    @d
+    @InterfaceC5816d
     private final Source source;
     private boolean sourceClosed;
 
@@ -54,12 +56,12 @@ public final class Pipe {
                             Pipe.this.setSinkClosed$okio(true);
                             Buffer buffer$okio = Pipe.this.getBuffer$okio();
                             if (buffer$okio == null) {
-                                throw new e1("null cannot be cast to non-null type java.lang.Object");
+                                throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
                             }
                             buffer$okio.notifyAll();
                             foldedSink$okio = null;
                         }
-                        y1 y1Var = y1.f16671a;
+                        C5715y1 c5715y1 = C5715y1.f20665a;
                         if (foldedSink$okio != null) {
                             Pipe pipe = Pipe.this;
                             Timeout timeout = foldedSink$okio.timeout();
@@ -115,7 +117,7 @@ public final class Pipe {
                             }
                             foldedSink$okio = null;
                         }
-                        y1 y1Var = y1.f16671a;
+                        C5715y1 c5715y1 = C5715y1.f20665a;
                     }
                     if (foldedSink$okio != null) {
                         Pipe pipe = Pipe.this;
@@ -157,16 +159,16 @@ public final class Pipe {
                 }
 
                 @Override // okio.Sink
-                @d
+                @InterfaceC5816d
                 public Timeout timeout() {
                     return this.timeout;
                 }
 
                 @Override // okio.Sink
-                public void write(@d Buffer buffer, long j3) {
+                public void write(@InterfaceC5816d Buffer buffer, long j3) {
                     Sink sink;
                     boolean hasDeadline;
-                    i0.f(buffer, "source");
+                    C5544i0.m22546f(buffer, "source");
                     synchronized (Pipe.this.getBuffer$okio()) {
                         if (!(!Pipe.this.getSinkClosed$okio())) {
                             throw new IllegalStateException("closed".toString());
@@ -192,12 +194,12 @@ public final class Pipe {
                                 j3 -= min;
                                 Buffer buffer$okio = Pipe.this.getBuffer$okio();
                                 if (buffer$okio == null) {
-                                    throw new e1("null cannot be cast to non-null type java.lang.Object");
+                                    throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
                                 }
                                 buffer$okio.notifyAll();
                             }
                         }
-                        y1 y1Var = y1.f16671a;
+                        C5715y1 c5715y1 = C5715y1.f20665a;
                     }
                     if (sink != null) {
                         Pipe pipe = Pipe.this;
@@ -247,16 +249,16 @@ public final class Pipe {
                         Pipe.this.setSourceClosed$okio(true);
                         Buffer buffer$okio = Pipe.this.getBuffer$okio();
                         if (buffer$okio == null) {
-                            throw new e1("null cannot be cast to non-null type java.lang.Object");
+                            throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
                         }
                         buffer$okio.notifyAll();
-                        y1 y1Var = y1.f16671a;
+                        C5715y1 c5715y1 = C5715y1.f20665a;
                     }
                 }
 
                 @Override // okio.Source
-                public long read(@d Buffer buffer, long j3) {
-                    i0.f(buffer, "sink");
+                public long read(@InterfaceC5816d Buffer buffer, long j3) {
+                    C5544i0.m22546f(buffer, "sink");
                     synchronized (Pipe.this.getBuffer$okio()) {
                         if (!(!Pipe.this.getSourceClosed$okio())) {
                             throw new IllegalStateException("closed".toString());
@@ -270,7 +272,7 @@ public final class Pipe {
                         long read = Pipe.this.getBuffer$okio().read(buffer, j3);
                         Buffer buffer$okio = Pipe.this.getBuffer$okio();
                         if (buffer$okio == null) {
-                            throw new e1("null cannot be cast to non-null type java.lang.Object");
+                            throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
                         }
                         buffer$okio.notifyAll();
                         return read;
@@ -278,7 +280,7 @@ public final class Pipe {
                 }
 
                 @Override // okio.Source
-                @d
+                @InterfaceC5816d
                 public Timeout timeout() {
                     return this.timeout;
                 }
@@ -289,7 +291,7 @@ public final class Pipe {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public final void forward(@d Sink sink, l<? super Sink, y1> lVar) {
+    public final void forward(@InterfaceC5816d Sink sink, InterfaceC5506l<? super Sink, C5715y1> interfaceC5506l) {
         Timeout timeout = sink.timeout();
         Timeout timeout2 = sink().timeout();
         long timeoutNanos = timeout.timeoutNanos();
@@ -299,15 +301,15 @@ public final class Pipe {
                 timeout.deadlineNanoTime(timeout2.deadlineNanoTime());
             }
             try {
-                lVar.invoke(sink);
+                interfaceC5506l.invoke(sink);
                 return;
             } finally {
-                f0.b(1);
+                C5535f0.m22474b(1);
                 timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
                 if (timeout2.hasDeadline()) {
                     timeout.clearDeadline();
                 }
-                f0.a(1);
+                C5535f0.m22471a(1);
             }
         }
         long deadlineNanoTime = timeout.deadlineNanoTime();
@@ -315,37 +317,37 @@ public final class Pipe {
             timeout.deadlineNanoTime(Math.min(timeout.deadlineNanoTime(), timeout2.deadlineNanoTime()));
         }
         try {
-            lVar.invoke(sink);
+            interfaceC5506l.invoke(sink);
         } finally {
-            f0.b(1);
+            C5535f0.m22474b(1);
             timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
             if (timeout2.hasDeadline()) {
                 timeout.deadlineNanoTime(deadlineNanoTime);
             }
-            f0.a(1);
+            C5535f0.m22471a(1);
         }
     }
 
-    @h.q2.e(name = "-deprecated_sink")
-    @c(level = h.d.ERROR, message = "moved to val", replaceWith = @o0(expression = "sink", imports = {}))
-    @d
+    @InterfaceC5481e(name = "-deprecated_sink")
+    @InterfaceC5216c(level = EnumC5220d.ERROR, message = "moved to val", replaceWith = @InterfaceC5467o0(expression = "sink", imports = {}))
+    @InterfaceC5816d
     /* renamed from: -deprecated_sink, reason: not valid java name */
-    public final Sink m805deprecated_sink() {
+    public final Sink m26884deprecated_sink() {
         return this.sink;
     }
 
-    @h.q2.e(name = "-deprecated_source")
-    @c(level = h.d.ERROR, message = "moved to val", replaceWith = @o0(expression = "source", imports = {}))
-    @d
+    @InterfaceC5481e(name = "-deprecated_source")
+    @InterfaceC5216c(level = EnumC5220d.ERROR, message = "moved to val", replaceWith = @InterfaceC5467o0(expression = "source", imports = {}))
+    @InterfaceC5816d
     /* renamed from: -deprecated_source, reason: not valid java name */
-    public final Source m806deprecated_source() {
+    public final Source m26885deprecated_source() {
         return this.source;
     }
 
-    public final void fold(@d Sink sink) throws IOException {
+    public final void fold(@InterfaceC5816d Sink sink) throws IOException {
         boolean z;
         Buffer buffer;
-        i0.f(sink, "sink");
+        C5544i0.m22546f(sink, "sink");
         while (true) {
             synchronized (this.buffer) {
                 if (!(this.foldedSink == null)) {
@@ -361,10 +363,10 @@ public final class Pipe {
                 buffer.write(this.buffer, this.buffer.size());
                 Buffer buffer2 = this.buffer;
                 if (buffer2 == null) {
-                    throw new e1("null cannot be cast to non-null type java.lang.Object");
+                    throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
                 }
                 buffer2.notifyAll();
-                y1 y1Var = y1.f16671a;
+                C5715y1 c5715y1 = C5715y1.f20665a;
             }
             try {
                 sink.write(buffer, buffer.size());
@@ -378,22 +380,22 @@ public final class Pipe {
                     this.sourceClosed = true;
                     Buffer buffer3 = this.buffer;
                     if (buffer3 == null) {
-                        throw new e1("null cannot be cast to non-null type java.lang.Object");
+                        throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
                     }
                     buffer3.notifyAll();
-                    y1 y1Var2 = y1.f16671a;
+                    C5715y1 c5715y12 = C5715y1.f20665a;
                     throw th;
                 }
             }
         }
     }
 
-    @d
+    @InterfaceC5816d
     public final Buffer getBuffer$okio() {
         return this.buffer;
     }
 
-    @e
+    @InterfaceC5817e
     public final Sink getFoldedSink$okio() {
         return this.foldedSink;
     }
@@ -410,7 +412,7 @@ public final class Pipe {
         return this.sourceClosed;
     }
 
-    public final void setFoldedSink$okio(@e Sink sink) {
+    public final void setFoldedSink$okio(@InterfaceC5817e Sink sink) {
         this.foldedSink = sink;
     }
 
@@ -422,14 +424,14 @@ public final class Pipe {
         this.sourceClosed = z;
     }
 
-    @h.q2.e(name = "sink")
-    @d
+    @InterfaceC5481e(name = "sink")
+    @InterfaceC5816d
     public final Sink sink() {
         return this.sink;
     }
 
-    @h.q2.e(name = "source")
-    @d
+    @InterfaceC5481e(name = "source")
+    @InterfaceC5816d
     public final Source source() {
         return this.source;
     }

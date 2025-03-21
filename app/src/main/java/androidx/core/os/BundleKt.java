@@ -7,24 +7,25 @@ import android.os.IBinder;
 import android.os.Parcelable;
 import android.util.Size;
 import android.util.SizeF;
-import h.e1;
-import h.i0;
-import h.y;
-import h.z2.h0;
-import i.c.a.d;
 import java.io.Serializable;
+import p286h.C5226e1;
+import p286h.C5334i0;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.p311t.C5544i0;
+import p286h.p323z2.C5736h0;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: Bundle.kt */
-@y(bv = {1, 0, 2}, d1 = {"\u0000\u001c\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0010\u0000\n\u0002\b\u0002\u001a;\u0010\u0000\u001a\u00020\u00012.\u0010\u0002\u001a\u0018\u0012\u0014\b\u0001\u0012\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u00040\u0003\"\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u0004¢\u0006\u0002\u0010\u0007¨\u0006\b"}, d2 = {"bundleOf", "Landroid/os/Bundle;", "pairs", "", "Lkotlin/Pair;", "", "", "([Lkotlin/Pair;)Landroid/os/Bundle;", "core-ktx_release"}, k = 2, mv = {1, 1, 10})
+@InterfaceC5713y(m23544bv = {1, 0, 2}, m23545d1 = {"\u0000\u001c\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0010\u0000\n\u0002\b\u0002\u001a;\u0010\u0000\u001a\u00020\u00012.\u0010\u0002\u001a\u0018\u0012\u0014\b\u0001\u0012\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u00040\u0003\"\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u0004¢\u0006\u0002\u0010\u0007¨\u0006\b"}, m23546d2 = {"bundleOf", "Landroid/os/Bundle;", "pairs", "", "Lkotlin/Pair;", "", "", "([Lkotlin/Pair;)Landroid/os/Bundle;", "core-ktx_release"}, m23547k = 2, m23548mv = {1, 1, 10})
 /* loaded from: classes.dex */
 public final class BundleKt {
-    @d
-    public static final Bundle bundleOf(@d i0<String, ? extends Object>... i0VarArr) {
-        h.q2.t.i0.f(i0VarArr, "pairs");
-        Bundle bundle = new Bundle(i0VarArr.length);
-        for (i0<String, ? extends Object> i0Var : i0VarArr) {
-            String component1 = i0Var.component1();
-            Object component2 = i0Var.component2();
+    @InterfaceC5816d
+    public static final Bundle bundleOf(@InterfaceC5816d C5334i0<String, ? extends Object>... c5334i0Arr) {
+        C5544i0.m22546f(c5334i0Arr, "pairs");
+        Bundle bundle = new Bundle(c5334i0Arr.length);
+        for (C5334i0<String, ? extends Object> c5334i0 : c5334i0Arr) {
+            String component1 = c5334i0.component1();
+            Object component2 = c5334i0.component2();
             if (component2 == null) {
                 bundle.putString(component1, null);
             } else if (component2 instanceof Boolean) {
@@ -69,23 +70,23 @@ public final class BundleKt {
                 Class<?> componentType = component2.getClass().getComponentType();
                 if (Parcelable.class.isAssignableFrom(componentType)) {
                     if (component2 == null) {
-                        throw new e1("null cannot be cast to non-null type kotlin.Array<android.os.Parcelable>");
+                        throw new C5226e1("null cannot be cast to non-null type kotlin.Array<android.os.Parcelable>");
                     }
                     bundle.putParcelableArray(component1, (Parcelable[]) component2);
                 } else if (String.class.isAssignableFrom(componentType)) {
                     if (component2 == null) {
-                        throw new e1("null cannot be cast to non-null type kotlin.Array<kotlin.String>");
+                        throw new C5226e1("null cannot be cast to non-null type kotlin.Array<kotlin.String>");
                     }
                     bundle.putStringArray(component1, (String[]) component2);
                 } else if (CharSequence.class.isAssignableFrom(componentType)) {
                     if (component2 == null) {
-                        throw new e1("null cannot be cast to non-null type kotlin.Array<kotlin.CharSequence>");
+                        throw new C5226e1("null cannot be cast to non-null type kotlin.Array<kotlin.CharSequence>");
                     }
                     bundle.putCharSequenceArray(component1, (CharSequence[]) component2);
                 } else {
                     if (!Serializable.class.isAssignableFrom(componentType)) {
-                        h.q2.t.i0.a((Object) componentType, "componentType");
-                        throw new IllegalArgumentException("Illegal value array type " + componentType.getCanonicalName() + " for key \"" + component1 + h0.f16704a);
+                        C5544i0.m22521a((Object) componentType, "componentType");
+                        throw new IllegalArgumentException("Illegal value array type " + componentType.getCanonicalName() + " for key \"" + component1 + C5736h0.f20712a);
                     }
                     bundle.putSerializable(component1, (Serializable) component2);
                 }
@@ -97,7 +98,7 @@ public final class BundleKt {
                 bundle.putSize(component1, (Size) component2);
             } else {
                 if (Build.VERSION.SDK_INT < 21 || !(component2 instanceof SizeF)) {
-                    throw new IllegalArgumentException("Illegal value type " + component2.getClass().getCanonicalName() + " for key \"" + component1 + h0.f16704a);
+                    throw new IllegalArgumentException("Illegal value type " + component2.getClass().getCanonicalName() + " for key \"" + component1 + C5736h0.f20712a);
                 }
                 bundle.putSizeF(component1, (SizeF) component2);
             }

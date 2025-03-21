@@ -2,7 +2,7 @@ package androidx.core.util;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import c.c.a.b.a.a;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class Pair<F, S> {
@@ -40,6 +40,6 @@ public class Pair<F, S> {
 
     @NonNull
     public String toString() {
-        return "Pair{" + String.valueOf(this.first) + a.f3100g + String.valueOf(this.second) + "}";
+        return "Pair{" + String.valueOf(this.first) + AbstractC1191a.f2568g + String.valueOf(this.second) + "}";
     }
 }

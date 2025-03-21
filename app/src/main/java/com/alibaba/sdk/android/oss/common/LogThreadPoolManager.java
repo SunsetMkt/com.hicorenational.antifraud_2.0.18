@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.common;
 
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -32,7 +32,7 @@ public class LogThreadPoolManager {
         }
     };
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    private final ThreadPoolExecutor mThreadPool = new ThreadPoolExecutor(1, 1, a.r, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(500), new ThreadFactory() { // from class: com.alibaba.sdk.android.oss.common.LogThreadPoolManager.2
+    private final ThreadPoolExecutor mThreadPool = new ThreadPoolExecutor(1, 1, C2084a.f6136r, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(500), new ThreadFactory() { // from class: com.alibaba.sdk.android.oss.common.LogThreadPoolManager.2
         @Override // java.util.concurrent.ThreadFactory
         public Thread newThread(Runnable runnable) {
             return new Thread(runnable, "oss-android-log-thread");

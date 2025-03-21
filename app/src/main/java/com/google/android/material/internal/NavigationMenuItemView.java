@@ -15,6 +15,7 @@ import android.view.ViewStub;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
 import androidx.annotation.RestrictTo;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -25,6 +26,7 @@ import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.widget.TextViewCompat;
+import com.google.android.material.C1921R;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
@@ -68,7 +70,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
 
     private StateListDrawable createDefaultBackground() {
         TypedValue typedValue = new TypedValue();
-        if (!getContext().getTheme().resolveAttribute(androidx.appcompat.R.attr.colorControlHighlight, typedValue, true)) {
+        if (!getContext().getTheme().resolveAttribute(C0120R.attr.colorControlHighlight, typedValue, true)) {
             return null;
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
@@ -80,7 +82,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     private void setActionView(View view) {
         if (view != null) {
             if (this.actionArea == null) {
-                this.actionArea = (FrameLayout) ((ViewStub) findViewById(com.google.android.material.R.id.design_menu_item_action_area_stub)).inflate();
+                this.actionArea = (FrameLayout) ((ViewStub) findViewById(C1921R.id.design_menu_item_action_area_stub)).inflate();
             }
             this.actionArea.removeAllViews();
             this.actionArea.addView(view);
@@ -171,7 +173,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
             drawable.setBounds(0, 0, i2, i2);
         } else if (this.needsEmptyIcon) {
             if (this.emptyDrawable == null) {
-                this.emptyDrawable = ResourcesCompat.getDrawable(getResources(), com.google.android.material.R.drawable.navigation_empty_icon, getContext().getTheme());
+                this.emptyDrawable = ResourcesCompat.getDrawable(getResources(), C1921R.drawable.navigation_empty_icon, getContext().getTheme());
                 Drawable drawable2 = this.emptyDrawable;
                 if (drawable2 != null) {
                     int i3 = this.iconSize;
@@ -236,9 +238,9 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
             }
         };
         setOrientation(0);
-        LayoutInflater.from(context).inflate(com.google.android.material.R.layout.design_navigation_menu_item, (ViewGroup) this, true);
-        this.iconSize = context.getResources().getDimensionPixelSize(com.google.android.material.R.dimen.design_navigation_icon_size);
-        this.textView = (CheckedTextView) findViewById(com.google.android.material.R.id.design_menu_item_text);
+        LayoutInflater.from(context).inflate(C1921R.layout.design_navigation_menu_item, (ViewGroup) this, true);
+        this.iconSize = context.getResources().getDimensionPixelSize(C1921R.dimen.design_navigation_icon_size);
+        this.textView = (CheckedTextView) findViewById(C1921R.id.design_menu_item_text);
         this.textView.setDuplicateParentStateEnabled(true);
         ViewCompat.setAccessibilityDelegate(this.textView, this.accessibilityDelegate);
     }

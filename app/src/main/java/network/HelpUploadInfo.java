@@ -1,6 +1,6 @@
 package network;
 
-import util.q1;
+import util.C7313q1;
 
 /* loaded from: classes2.dex */
 public class HelpUploadInfo extends BaseBean {
@@ -8,8 +8,8 @@ public class HelpUploadInfo extends BaseBean {
     private String fileName;
     private int fileStatus;
     private int heartTimes = -1;
-    private String networkG = q1.a();
-    private String networkType = q1.e();
+    private String networkG = C7313q1.m26529a();
+    private String networkType = C7313q1.m26533e();
     private int source;
     private String sourceID;
     private int status;

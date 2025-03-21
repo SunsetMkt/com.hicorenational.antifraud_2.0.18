@@ -4,7 +4,9 @@ package network;
 public class BannerInfo extends BaseBean {
     private String createTime;
     private long extraID;
-    private long id;
+
+    /* renamed from: id */
+    private long f21431id;
     private String imgPath;
     private int isNeedVerified;
     private int isShow;
@@ -23,7 +25,7 @@ public class BannerInfo extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f21431id;
     }
 
     public String getImgPath() {
@@ -67,7 +69,7 @@ public class BannerInfo extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f21431id = j2;
     }
 
     public void setImgPath(String str) {

@@ -4,12 +4,14 @@ import network.BaseBean;
 
 /* loaded from: classes.dex */
 public class RechargePlatBean extends BaseBean {
-    private String ex;
+
+    /* renamed from: ex */
+    private String f1614ex;
     private String platform;
     private String platformText;
 
     public String getEx() {
-        return this.ex;
+        return this.f1614ex;
     }
 
     public String getPlatform() {
@@ -21,7 +23,7 @@ public class RechargePlatBean extends BaseBean {
     }
 
     public void setEx(String str) {
-        this.ex = str;
+        this.f1614ex = str;
     }
 
     public void setPlatform(String str) {

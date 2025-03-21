@@ -41,7 +41,6 @@ import com.alibaba.sdk.android.oss.model.PutBucketLoggingRequest;
 import com.alibaba.sdk.android.oss.model.PutBucketRefererRequest;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.xiaomi.mipush.sdk.Constants;
-import h.z2.h0;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
@@ -52,6 +51,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.json.JSONObject;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes.dex */
 public class OSSUtils {
@@ -534,7 +534,7 @@ public class OSSUtils {
                         sb.append(ContainerUtils.KEY_VALUE_DELIMITER);
                         sb.append(str3);
                     }
-                    c2 = h0.f16706c;
+                    c2 = C5736h0.f20714c;
                 }
             }
         }

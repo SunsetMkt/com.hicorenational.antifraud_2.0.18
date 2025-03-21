@@ -9,5 +9,5 @@ public interface IFullTraceAnalysis {
 
     String createRequest();
 
-    b getSceneInfo();
+    C0786b getSceneInfo();
 }

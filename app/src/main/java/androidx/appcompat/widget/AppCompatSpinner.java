@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.TintableBackgroundView;
@@ -782,7 +783,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
     }
 
     public AppCompatSpinner(@NonNull Context context, int i2) {
-        this(context, null, androidx.appcompat.R.attr.spinnerStyle, i2);
+        this(context, null, C0120R.attr.spinnerStyle, i2);
     }
 
     @Override // android.widget.AdapterView
@@ -802,7 +803,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
     }
 
     public AppCompatSpinner(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, androidx.appcompat.R.attr.spinnerStyle);
+        this(context, attributeSet, C0120R.attr.spinnerStyle);
     }
 
     public AppCompatSpinner(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
@@ -838,7 +839,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
             r5.mTempRect = r0
             android.content.Context r0 = r5.getContext()
             androidx.appcompat.widget.ThemeUtils.checkAppCompatTheme(r5, r0)
-            int[] r0 = androidx.appcompat.R.styleable.Spinner
+            int[] r0 = androidx.appcompat.C0120R.styleable.Spinner
             r1 = 0
             androidx.appcompat.widget.TintTypedArray r0 = androidx.appcompat.widget.TintTypedArray.obtainStyledAttributes(r6, r7, r0, r8, r1)
             androidx.appcompat.widget.AppCompatBackgroundHelper r2 = new androidx.appcompat.widget.AppCompatBackgroundHelper
@@ -850,7 +851,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
             r5.mPopupContext = r2
             goto L3b
         L29:
-            int r10 = androidx.appcompat.R.styleable.Spinner_popupTheme
+            int r10 = androidx.appcompat.C0120R.styleable.Spinner_popupTheme
             int r10 = r0.getResourceId(r10, r1)
             if (r10 == 0) goto L39
             androidx.appcompat.view.ContextThemeWrapper r2 = new androidx.appcompat.view.ContextThemeWrapper
@@ -899,16 +900,16 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
             android.content.Context r3 = r5.mPopupContext
             r9.<init>(r3, r7, r8)
             android.content.Context r3 = r5.mPopupContext
-            int[] r4 = androidx.appcompat.R.styleable.Spinner
+            int[] r4 = androidx.appcompat.C0120R.styleable.Spinner
             androidx.appcompat.widget.TintTypedArray r1 = androidx.appcompat.widget.TintTypedArray.obtainStyledAttributes(r3, r7, r4, r8, r1)
-            int r3 = androidx.appcompat.R.styleable.Spinner_android_dropDownWidth
+            int r3 = androidx.appcompat.C0120R.styleable.Spinner_android_dropDownWidth
             r4 = -2
             int r3 = r1.getLayoutDimension(r3, r4)
             r5.mDropDownWidth = r3
-            int r3 = androidx.appcompat.R.styleable.Spinner_android_popupBackground
+            int r3 = androidx.appcompat.C0120R.styleable.Spinner_android_popupBackground
             android.graphics.drawable.Drawable r3 = r1.getDrawable(r3)
             r9.setBackgroundDrawable(r3)
-            int r3 = androidx.appcompat.R.styleable.Spinner_android_prompt
+            int r3 = androidx.appcompat.C0120R.styleable.Spinner_android_prompt
             java.lang.String r3 = r0.getString(r3)
             r9.setPromptText(r3)
             r1.recycle()
@@ -922,17 +923,17 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
             r9.<init>()
             r5.mPopup = r9
             androidx.appcompat.widget.AppCompatSpinner$SpinnerPopup r9 = r5.mPopup
-            int r1 = androidx.appcompat.R.styleable.Spinner_android_prompt
+            int r1 = androidx.appcompat.C0120R.styleable.Spinner_android_prompt
             java.lang.String r1 = r0.getString(r1)
             r9.setPromptText(r1)
         Lb2:
-            int r9 = androidx.appcompat.R.styleable.Spinner_android_entries
+            int r9 = androidx.appcompat.C0120R.styleable.Spinner_android_entries
             java.lang.CharSequence[] r9 = r0.getTextArray(r9)
             if (r9 == 0) goto Lca
             android.widget.ArrayAdapter r1 = new android.widget.ArrayAdapter
             r3 = 17367048(0x1090008, float:2.5162948E-38)
             r1.<init>(r6, r3, r9)
-            int r6 = androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
+            int r6 = androidx.appcompat.C0120R.layout.support_simple_spinner_dropdown_item
             r1.setDropDownViewResource(r6)
             r5.setAdapter(r1)
         Lca:

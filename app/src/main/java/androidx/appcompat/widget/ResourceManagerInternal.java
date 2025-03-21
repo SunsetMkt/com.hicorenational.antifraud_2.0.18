@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.appcompat.graphics.drawable.AnimatedStateListDrawableCompat;
-import androidx.appcompat.resources.R;
+import androidx.appcompat.resources.C0149R;
 import androidx.collection.LongSparseArray;
 import androidx.collection.LruCache;
 import androidx.collection.SimpleArrayMap;
@@ -165,7 +165,7 @@ public final class ResourceManagerInternal {
             return;
         }
         this.mHasCheckedVectorDrawableSetup = true;
-        Drawable drawable = getDrawable(context, R.drawable.abc_vector_test);
+        Drawable drawable = getDrawable(context, C0149R.drawable.abc_vector_test);
         if (drawable == null || !isVectorDrawable(drawable)) {
             this.mHasCheckedVectorDrawableSetup = false;
             throw new IllegalStateException("This app has been built with an incorrect configuration. Please configure your build for VectorDrawableCompat.");

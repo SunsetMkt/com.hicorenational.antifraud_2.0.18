@@ -9,6 +9,7 @@ import androidx.concurrent.futures.CallbackToFutureAdapter;
 import androidx.core.os.OperationCanceledException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 abstract class ImageAnalysisAbstractAnalyzer implements ImageReaderProxy.OnImageAvailableListener {
@@ -25,17 +26,18 @@ abstract class ImageAnalysisAbstractAnalyzer implements ImageReaderProxy.OnImage
     ImageAnalysisAbstractAnalyzer() {
     }
 
-    public /* synthetic */ Object a(Executor executor, final ImageProxy imageProxy, final ImageAnalysis.Analyzer analyzer, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m330a(Executor executor, final ImageProxy imageProxy, final ImageAnalysis.Analyzer analyzer, final CallbackToFutureAdapter.Completer completer) throws Exception {
         executor.execute(new Runnable() { // from class: androidx.camera.core.k
             @Override // java.lang.Runnable
             public final void run() {
-                ImageAnalysisAbstractAnalyzer.this.a(imageProxy, analyzer, completer);
+                ImageAnalysisAbstractAnalyzer.this.m331a(imageProxy, analyzer, completer);
             }
         });
         return "analyzeImage";
     }
 
-    c.b.b.a.a.a<Void> analyzeImage(final ImageProxy imageProxy) {
+    InterfaceFutureC0952a<Void> analyzeImage(final ImageProxy imageProxy) {
         final Executor executor;
         final ImageAnalysis.Analyzer analyzer;
         synchronized (this.mAnalyzerLock) {
@@ -45,7 +47,7 @@ abstract class ImageAnalysisAbstractAnalyzer implements ImageReaderProxy.OnImage
         return (analyzer == null || executor == null) ? Futures.immediateFailedFuture(new OperationCanceledException("No analyzer or executor currently set.")) : CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.j
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return ImageAnalysisAbstractAnalyzer.this.a(executor, imageProxy, analyzer, completer);
+                return ImageAnalysisAbstractAnalyzer.this.m330a(executor, imageProxy, analyzer, completer);
             }
         });
     }
@@ -73,7 +75,8 @@ abstract class ImageAnalysisAbstractAnalyzer implements ImageReaderProxy.OnImage
         this.mRelativeRotation = i2;
     }
 
-    public /* synthetic */ void a(ImageProxy imageProxy, ImageAnalysis.Analyzer analyzer, CallbackToFutureAdapter.Completer completer) {
+    /* renamed from: a */
+    public /* synthetic */ void m331a(ImageProxy imageProxy, ImageAnalysis.Analyzer analyzer, CallbackToFutureAdapter.Completer completer) {
         if (isClosed()) {
             completer.setException(new OperationCanceledException("Closed before analysis"));
         } else {

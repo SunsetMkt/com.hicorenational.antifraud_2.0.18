@@ -3,10 +3,10 @@ package anet.channel.request;
 import android.text.TextUtils;
 import anet.channel.AwcnConfig;
 import anet.channel.statist.RequestStatistic;
+import anet.channel.strategy.utils.C0848c;
 import anet.channel.util.ALog;
 import anet.channel.util.HttpConstant;
 import anet.channel.util.HttpUrl;
-import h.z2.h0;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,170 +17,191 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSocketFactory;
+import p286h.p323z2.C5736h0;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
 public class Request {
     public static final String DEFAULT_CHARSET = "UTF-8";
 
-    /* renamed from: a, reason: collision with root package name */
-    public final RequestStatistic f1841a;
+    /* renamed from: a */
+    public final RequestStatistic f916a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private HttpUrl f1842b;
+    /* renamed from: b */
+    private HttpUrl f917b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private HttpUrl f1843c;
+    /* renamed from: c */
+    private HttpUrl f918c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private HttpUrl f1844d;
+    /* renamed from: d */
+    private HttpUrl f919d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private URL f1845e;
+    /* renamed from: e */
+    private URL f920e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private String f1846f;
+    /* renamed from: f */
+    private String f921f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private Map<String, String> f1847g;
+    /* renamed from: g */
+    private Map<String, String> f922g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private Map<String, String> f1848h;
+    /* renamed from: h */
+    private Map<String, String> f923h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private String f1849i;
+    /* renamed from: i */
+    private String f924i;
 
-    /* renamed from: j, reason: collision with root package name */
-    private BodyEntry f1850j;
+    /* renamed from: j */
+    private BodyEntry f925j;
 
-    /* renamed from: k, reason: collision with root package name */
-    private boolean f1851k;
+    /* renamed from: k */
+    private boolean f926k;
 
-    /* renamed from: l, reason: collision with root package name */
-    private String f1852l;
+    /* renamed from: l */
+    private String f927l;
 
-    /* renamed from: m, reason: collision with root package name */
-    private String f1853m;
-    private int n;
-    private int o;
-    private int p;
-    private HostnameVerifier q;
-    private SSLSocketFactory r;
-    private boolean s;
+    /* renamed from: m */
+    private String f928m;
+
+    /* renamed from: n */
+    private int f929n;
+
+    /* renamed from: o */
+    private int f930o;
+
+    /* renamed from: p */
+    private int f931p;
+
+    /* renamed from: q */
+    private HostnameVerifier f932q;
+
+    /* renamed from: r */
+    private SSLSocketFactory f933r;
+
+    /* renamed from: s */
+    private boolean f934s;
 
     /* compiled from: Taobao */
     public static class Builder {
 
-        /* renamed from: a, reason: collision with root package name */
-        private HttpUrl f1854a;
+        /* renamed from: a */
+        private HttpUrl f935a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private HttpUrl f1855b;
+        /* renamed from: b */
+        private HttpUrl f936b;
 
-        /* renamed from: e, reason: collision with root package name */
-        private Map<String, String> f1858e;
+        /* renamed from: e */
+        private Map<String, String> f939e;
 
-        /* renamed from: f, reason: collision with root package name */
-        private String f1859f;
+        /* renamed from: f */
+        private String f940f;
 
-        /* renamed from: g, reason: collision with root package name */
-        private BodyEntry f1860g;
+        /* renamed from: g */
+        private BodyEntry f941g;
 
-        /* renamed from: j, reason: collision with root package name */
-        private HostnameVerifier f1863j;
+        /* renamed from: j */
+        private HostnameVerifier f944j;
 
-        /* renamed from: k, reason: collision with root package name */
-        private SSLSocketFactory f1864k;
+        /* renamed from: k */
+        private SSLSocketFactory f945k;
 
-        /* renamed from: l, reason: collision with root package name */
-        private String f1865l;
+        /* renamed from: l */
+        private String f946l;
 
-        /* renamed from: m, reason: collision with root package name */
-        private String f1866m;
-        private boolean q;
+        /* renamed from: m */
+        private String f947m;
 
-        /* renamed from: c, reason: collision with root package name */
-        private String f1856c = "GET";
+        /* renamed from: q */
+        private boolean f951q;
 
-        /* renamed from: d, reason: collision with root package name */
-        private Map<String, String> f1857d = new HashMap();
+        /* renamed from: c */
+        private String f937c = "GET";
 
-        /* renamed from: h, reason: collision with root package name */
-        private boolean f1861h = true;
+        /* renamed from: d */
+        private Map<String, String> f938d = new HashMap();
 
-        /* renamed from: i, reason: collision with root package name */
-        private int f1862i = 0;
-        private int n = 10000;
-        private int o = 10000;
-        private RequestStatistic p = null;
+        /* renamed from: h */
+        private boolean f942h = true;
+
+        /* renamed from: i */
+        private int f943i = 0;
+
+        /* renamed from: n */
+        private int f948n = 10000;
+
+        /* renamed from: o */
+        private int f949o = 10000;
+
+        /* renamed from: p */
+        private RequestStatistic f950p = null;
 
         public Builder addHeader(String str, String str2) {
-            this.f1857d.put(str, str2);
+            this.f938d.put(str, str2);
             return this;
         }
 
         public Builder addParam(String str, String str2) {
-            if (this.f1858e == null) {
-                this.f1858e = new HashMap();
+            if (this.f939e == null) {
+                this.f939e = new HashMap();
             }
-            this.f1858e.put(str, str2);
-            this.f1855b = null;
+            this.f939e.put(str, str2);
+            this.f936b = null;
             return this;
         }
 
         public Request build() {
-            if (this.f1860g == null && this.f1858e == null && Method.a(this.f1856c)) {
-                ALog.e("awcn.Request", "method " + this.f1856c + " must have a request body", null, new Object[0]);
+            if (this.f941g == null && this.f939e == null && Method.m577a(this.f937c)) {
+                ALog.m715e("awcn.Request", "method " + this.f937c + " must have a request body", null, new Object[0]);
             }
-            if (this.f1860g != null && !Method.b(this.f1856c)) {
-                ALog.e("awcn.Request", "method " + this.f1856c + " should not have a request body", null, new Object[0]);
-                this.f1860g = null;
+            if (this.f941g != null && !Method.m578b(this.f937c)) {
+                ALog.m715e("awcn.Request", "method " + this.f937c + " should not have a request body", null, new Object[0]);
+                this.f941g = null;
             }
-            BodyEntry bodyEntry = this.f1860g;
+            BodyEntry bodyEntry = this.f941g;
             if (bodyEntry != null && bodyEntry.getContentType() != null) {
-                addHeader("Content-Type", this.f1860g.getContentType());
+                addHeader("Content-Type", this.f941g.getContentType());
             }
             return new Request(this);
         }
 
         public Builder setAllowRequestInBg(boolean z) {
-            this.q = z;
+            this.f951q = z;
             return this;
         }
 
         public Builder setBizId(String str) {
-            this.f1865l = str;
+            this.f946l = str;
             return this;
         }
 
         public Builder setBody(BodyEntry bodyEntry) {
-            this.f1860g = bodyEntry;
+            this.f941g = bodyEntry;
             return this;
         }
 
         public Builder setCharset(String str) {
-            this.f1859f = str;
-            this.f1855b = null;
+            this.f940f = str;
+            this.f936b = null;
             return this;
         }
 
         public Builder setConnectTimeout(int i2) {
             if (i2 > 0) {
-                this.n = i2;
+                this.f948n = i2;
             }
             return this;
         }
 
         public Builder setHeaders(Map<String, String> map) {
-            this.f1857d.clear();
+            this.f938d.clear();
             if (map != null) {
-                this.f1857d.putAll(map);
+                this.f938d.putAll(map);
             }
             return this;
         }
 
         public Builder setHostnameVerifier(HostnameVerifier hostnameVerifier) {
-            this.f1863j = hostnameVerifier;
+            this.f944j = hostnameVerifier;
             return this;
         }
 
@@ -189,71 +210,71 @@ public class Request {
                 throw new IllegalArgumentException("method is null or empty");
             }
             if ("GET".equalsIgnoreCase(str)) {
-                this.f1856c = "GET";
+                this.f937c = "GET";
             } else if ("POST".equalsIgnoreCase(str)) {
-                this.f1856c = "POST";
+                this.f937c = "POST";
             } else if (Method.OPTION.equalsIgnoreCase(str)) {
-                this.f1856c = Method.OPTION;
+                this.f937c = Method.OPTION;
             } else if (Method.HEAD.equalsIgnoreCase(str)) {
-                this.f1856c = Method.HEAD;
+                this.f937c = Method.HEAD;
             } else if (Method.PUT.equalsIgnoreCase(str)) {
-                this.f1856c = Method.PUT;
+                this.f937c = Method.PUT;
             } else if (Method.DELETE.equalsIgnoreCase(str)) {
-                this.f1856c = Method.DELETE;
+                this.f937c = Method.DELETE;
             } else {
-                this.f1856c = "GET";
+                this.f937c = "GET";
             }
             return this;
         }
 
         public Builder setParams(Map<String, String> map) {
-            this.f1858e = map;
-            this.f1855b = null;
+            this.f939e = map;
+            this.f936b = null;
             return this;
         }
 
         public Builder setReadTimeout(int i2) {
             if (i2 > 0) {
-                this.o = i2;
+                this.f949o = i2;
             }
             return this;
         }
 
         public Builder setRedirectEnable(boolean z) {
-            this.f1861h = z;
+            this.f942h = z;
             return this;
         }
 
         public Builder setRedirectTimes(int i2) {
-            this.f1862i = i2;
+            this.f943i = i2;
             return this;
         }
 
         public Builder setRequestStatistic(RequestStatistic requestStatistic) {
-            this.p = requestStatistic;
+            this.f950p = requestStatistic;
             return this;
         }
 
         public Builder setSeq(String str) {
-            this.f1866m = str;
+            this.f947m = str;
             return this;
         }
 
         public Builder setSslSocketFactory(SSLSocketFactory sSLSocketFactory) {
-            this.f1864k = sSLSocketFactory;
+            this.f945k = sSLSocketFactory;
             return this;
         }
 
         public Builder setUrl(HttpUrl httpUrl) {
-            this.f1854a = httpUrl;
-            this.f1855b = null;
+            this.f935a = httpUrl;
+            this.f936b = null;
             return this;
         }
 
         public Builder setUrl(String str) {
-            this.f1854a = HttpUrl.parse(str);
-            this.f1855b = null;
-            if (this.f1854a != null) {
+            this.f935a = HttpUrl.parse(str);
+            this.f936b = null;
+            if (this.f935a != null) {
                 return this;
             }
             throw new IllegalArgumentException("toURL is invalid! toURL = " + str);
@@ -269,58 +290,62 @@ public class Request {
         public static final String POST = "POST";
         public static final String PUT = "PUT";
 
-        static boolean a(String str) {
+        /* renamed from: a */
+        static boolean m577a(String str) {
             return str.equals("POST") || str.equals(PUT);
         }
 
-        static boolean b(String str) {
-            return a(str) || str.equals(DELETE) || str.equals(OPTION);
+        /* renamed from: b */
+        static boolean m578b(String str) {
+            return m577a(str) || str.equals(DELETE) || str.equals(OPTION);
         }
     }
 
-    private Map<String, String> a() {
-        return AwcnConfig.isCookieHeaderRedundantFix() ? new HashMap(this.f1847g) : this.f1847g;
+    /* renamed from: a */
+    private Map<String, String> m541a() {
+        return AwcnConfig.isCookieHeaderRedundantFix() ? new HashMap(this.f922g) : this.f922g;
     }
 
-    private void b() {
-        String a2 = anet.channel.strategy.utils.c.a(this.f1848h, getContentEncoding());
-        if (!TextUtils.isEmpty(a2)) {
-            if (Method.a(this.f1846f) && this.f1850j == null) {
+    /* renamed from: b */
+    private void m542b() {
+        String m706a = C0848c.m706a(this.f923h, getContentEncoding());
+        if (!TextUtils.isEmpty(m706a)) {
+            if (Method.m577a(this.f921f) && this.f925j == null) {
                 try {
-                    this.f1850j = new ByteArrayEntry(a2.getBytes(getContentEncoding()));
-                    this.f1847g.put("Content-Type", "application/x-www-form-urlencoded; charset=" + getContentEncoding());
+                    this.f925j = new ByteArrayEntry(m706a.getBytes(getContentEncoding()));
+                    this.f922g.put("Content-Type", "application/x-www-form-urlencoded; charset=" + getContentEncoding());
                 } catch (UnsupportedEncodingException unused) {
                 }
             } else {
-                String urlString = this.f1842b.urlString();
+                String urlString = this.f917b.urlString();
                 StringBuilder sb = new StringBuilder(urlString);
                 if (sb.indexOf("?") == -1) {
                     sb.append('?');
                 } else if (urlString.charAt(urlString.length() - 1) != '&') {
-                    sb.append(h0.f16706c);
+                    sb.append(C5736h0.f20714c);
                 }
-                sb.append(a2);
+                sb.append(m706a);
                 HttpUrl parse = HttpUrl.parse(sb.toString());
                 if (parse != null) {
-                    this.f1843c = parse;
+                    this.f918c = parse;
                 }
             }
         }
-        if (this.f1843c == null) {
-            this.f1843c = this.f1842b;
+        if (this.f918c == null) {
+            this.f918c = this.f917b;
         }
     }
 
     public boolean containsBody() {
-        return this.f1850j != null;
+        return this.f925j != null;
     }
 
     public String getBizId() {
-        return this.f1852l;
+        return this.f927l;
     }
 
     public byte[] getBodyBytes() {
-        if (this.f1850j == null) {
+        if (this.f925j == null) {
             return null;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(128);
@@ -332,97 +357,97 @@ public class Request {
     }
 
     public int getConnectTimeout() {
-        return this.o;
+        return this.f930o;
     }
 
     public String getContentEncoding() {
-        String str = this.f1849i;
+        String str = this.f924i;
         return str != null ? str : "UTF-8";
     }
 
     public Map<String, String> getHeaders() {
-        return Collections.unmodifiableMap(this.f1847g);
+        return Collections.unmodifiableMap(this.f922g);
     }
 
     public String getHost() {
-        return this.f1843c.host();
+        return this.f918c.host();
     }
 
     public HostnameVerifier getHostnameVerifier() {
-        return this.q;
+        return this.f932q;
     }
 
     public HttpUrl getHttpUrl() {
-        return this.f1843c;
+        return this.f918c;
     }
 
     public String getMethod() {
-        return this.f1846f;
+        return this.f921f;
     }
 
     public int getReadTimeout() {
-        return this.p;
+        return this.f931p;
     }
 
     public int getRedirectTimes() {
-        return this.n;
+        return this.f929n;
     }
 
     public String getSeq() {
-        return this.f1853m;
+        return this.f928m;
     }
 
     public SSLSocketFactory getSslSocketFactory() {
-        return this.r;
+        return this.f933r;
     }
 
     public URL getUrl() {
-        if (this.f1845e == null) {
-            HttpUrl httpUrl = this.f1844d;
+        if (this.f920e == null) {
+            HttpUrl httpUrl = this.f919d;
             if (httpUrl == null) {
-                httpUrl = this.f1843c;
+                httpUrl = this.f918c;
             }
-            this.f1845e = httpUrl.toURL();
+            this.f920e = httpUrl.toURL();
         }
-        return this.f1845e;
+        return this.f920e;
     }
 
     public String getUrlString() {
-        return this.f1843c.urlString();
+        return this.f918c.urlString();
     }
 
     public boolean isAllowRequestInBg() {
-        return this.s;
+        return this.f934s;
     }
 
     public boolean isRedirectEnable() {
-        return this.f1851k;
+        return this.f926k;
     }
 
     public Builder newBuilder() {
         Builder builder = new Builder();
-        builder.f1856c = this.f1846f;
-        builder.f1857d = a();
-        builder.f1858e = this.f1848h;
-        builder.f1860g = this.f1850j;
-        builder.f1859f = this.f1849i;
-        builder.f1861h = this.f1851k;
-        builder.f1862i = this.n;
-        builder.f1863j = this.q;
-        builder.f1864k = this.r;
-        builder.f1854a = this.f1842b;
-        builder.f1855b = this.f1843c;
-        builder.f1865l = this.f1852l;
-        builder.f1866m = this.f1853m;
-        builder.n = this.o;
-        builder.o = this.p;
-        builder.p = this.f1841a;
-        builder.q = this.s;
+        builder.f937c = this.f921f;
+        builder.f938d = m541a();
+        builder.f939e = this.f923h;
+        builder.f941g = this.f925j;
+        builder.f940f = this.f924i;
+        builder.f942h = this.f926k;
+        builder.f943i = this.f929n;
+        builder.f944j = this.f932q;
+        builder.f945k = this.f933r;
+        builder.f935a = this.f917b;
+        builder.f936b = this.f918c;
+        builder.f946l = this.f927l;
+        builder.f947m = this.f928m;
+        builder.f948n = this.f930o;
+        builder.f949o = this.f931p;
+        builder.f950p = this.f916a;
+        builder.f951q = this.f934s;
         return builder;
     }
 
     public int postBody(OutputStream outputStream) throws IOException {
-        BodyEntry bodyEntry = this.f1850j;
+        BodyEntry bodyEntry = this.f925j;
         if (bodyEntry != null) {
             return bodyEntry.writeTo(outputStream);
         }
@@ -431,50 +456,50 @@ public class Request {
 
     public void setDnsOptimize(String str, int i2) {
         if (str != null) {
-            if (this.f1844d == null) {
-                this.f1844d = new HttpUrl(this.f1843c);
+            if (this.f919d == null) {
+                this.f919d = new HttpUrl(this.f918c);
             }
-            this.f1844d.replaceIpAndPort(str, i2);
+            this.f919d.replaceIpAndPort(str, i2);
         } else {
-            this.f1844d = null;
+            this.f919d = null;
         }
-        this.f1845e = null;
-        this.f1841a.setIPAndPort(str, i2);
+        this.f920e = null;
+        this.f916a.setIPAndPort(str, i2);
     }
 
     public void setUrlScheme(boolean z) {
-        if (this.f1844d == null) {
-            this.f1844d = new HttpUrl(this.f1843c);
+        if (this.f919d == null) {
+            this.f919d = new HttpUrl(this.f918c);
         }
-        this.f1844d.setScheme(z ? HttpConstant.HTTPS : HttpConstant.HTTP);
-        this.f1845e = null;
+        this.f919d.setScheme(z ? HttpConstant.HTTPS : HttpConstant.HTTP);
+        this.f920e = null;
     }
 
     private Request(Builder builder) {
-        this.f1846f = "GET";
-        this.f1851k = true;
-        this.n = 0;
-        this.o = 10000;
-        this.p = 10000;
-        this.f1846f = builder.f1856c;
-        this.f1847g = builder.f1857d;
-        this.f1848h = builder.f1858e;
-        this.f1850j = builder.f1860g;
-        this.f1849i = builder.f1859f;
-        this.f1851k = builder.f1861h;
-        this.n = builder.f1862i;
-        this.q = builder.f1863j;
-        this.r = builder.f1864k;
-        this.f1852l = builder.f1865l;
-        this.f1853m = builder.f1866m;
-        this.o = builder.n;
-        this.p = builder.o;
-        this.f1842b = builder.f1854a;
-        this.f1843c = builder.f1855b;
-        if (this.f1843c == null) {
-            b();
+        this.f921f = "GET";
+        this.f926k = true;
+        this.f929n = 0;
+        this.f930o = 10000;
+        this.f931p = 10000;
+        this.f921f = builder.f937c;
+        this.f922g = builder.f938d;
+        this.f923h = builder.f939e;
+        this.f925j = builder.f941g;
+        this.f924i = builder.f940f;
+        this.f926k = builder.f942h;
+        this.f929n = builder.f943i;
+        this.f932q = builder.f944j;
+        this.f933r = builder.f945k;
+        this.f927l = builder.f946l;
+        this.f928m = builder.f947m;
+        this.f930o = builder.f948n;
+        this.f931p = builder.f949o;
+        this.f917b = builder.f935a;
+        this.f918c = builder.f936b;
+        if (this.f918c == null) {
+            m542b();
         }
-        this.f1841a = builder.p != null ? builder.p : new RequestStatistic(getHost(), this.f1852l);
-        this.s = builder.q;
+        this.f916a = builder.f950p != null ? builder.f950p : new RequestStatistic(getHost(), this.f927l);
+        this.f934s = builder.f951q;
     }
 }

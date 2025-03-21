@@ -97,7 +97,7 @@ public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallbac
     @Override // androidx.camera.core.impl.MultiValueSet
     @NonNull
     /* renamed from: clone */
-    public MultiValueSet<CameraEventCallback> mo0clone() {
+    public MultiValueSet<CameraEventCallback> mo26841clone() {
         CameraEventCallbacks createEmptyCallback = createEmptyCallback();
         createEmptyCallback.addAll(getAllItems());
         return createEmptyCallback;

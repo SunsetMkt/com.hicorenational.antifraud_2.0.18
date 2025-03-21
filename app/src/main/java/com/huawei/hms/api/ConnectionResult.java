@@ -14,7 +14,7 @@ public final class ConnectionResult implements Parcelable {
     public static final int BINDFAIL_RESOLUTION_BACKGROUND = 7;
     public static final int BINDFAIL_RESOLUTION_REQUIRED = 6;
     public static final int CANCELED = 13;
-    public static final Parcelable.Creator<ConnectionResult> CREATOR = new a();
+    public static final Parcelable.Creator<ConnectionResult> CREATOR = new C2301a();
     public static final int DEVELOPER_ERROR = 10;
     public static final int DRIVE_EXTERNAL_STORAGE_REQUIRED = 9002;
     public static final int INTERNAL_ERROR = 8;
@@ -40,14 +40,15 @@ public final class ConnectionResult implements Parcelable {
     private String connectionErrorMessage;
     private PendingIntent pendingIntent;
 
-    class a implements Parcelable.Creator<ConnectionResult> {
-        a() {
+    /* renamed from: com.huawei.hms.api.ConnectionResult$a */
+    class C2301a implements Parcelable.Creator<ConnectionResult> {
+        C2301a() {
         }
 
         @Override // android.os.Parcelable.Creator
         /* renamed from: a, reason: merged with bridge method [inline-methods] */
         public ConnectionResult createFromParcel(Parcel parcel) {
-            return new ConnectionResult(parcel, (a) null);
+            return new ConnectionResult(parcel, (C2301a) null);
         }
 
         @Override // android.os.Parcelable.Creator
@@ -57,7 +58,7 @@ public final class ConnectionResult implements Parcelable {
         }
     }
 
-    /* synthetic */ ConnectionResult(Parcel parcel, a aVar) {
+    /* synthetic */ ConnectionResult(Parcel parcel, C2301a c2301a) {
         this(parcel);
     }
 

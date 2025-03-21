@@ -34,12 +34,13 @@ final class ImageAnalysisNonBlockingAnalyzer extends ImageAnalysisAbstractAnalyz
             addOnImageCloseListener(new ForwardingImageProxy.OnImageCloseListener() { // from class: androidx.camera.core.l
                 @Override // androidx.camera.core.ForwardingImageProxy.OnImageCloseListener
                 public final void onImageClose(ImageProxy imageProxy2) {
-                    ImageAnalysisNonBlockingAnalyzer.CacheAnalyzingImageProxy.this.a(imageProxy2);
+                    ImageAnalysisNonBlockingAnalyzer.CacheAnalyzingImageProxy.this.m332a(imageProxy2);
                 }
             });
         }
 
-        public /* synthetic */ void a(ImageProxy imageProxy) {
+        /* renamed from: a */
+        public /* synthetic */ void m332a(ImageProxy imageProxy) {
             this.mClosed = true;
             final ImageAnalysisNonBlockingAnalyzer imageAnalysisNonBlockingAnalyzer = this.mNonBlockingAnalyzerWeakReference.get();
             if (imageAnalysisNonBlockingAnalyzer != null) {

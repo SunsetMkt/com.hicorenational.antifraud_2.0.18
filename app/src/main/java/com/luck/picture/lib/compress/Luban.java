@@ -418,7 +418,7 @@ public class Luban implements Handler.Callback {
             AsyncTask.SERIAL_EXECUTOR.execute(new Runnable() { // from class: com.luck.picture.lib.compress.a
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Luban.this.a(next, context);
+                    Luban.this.m8137a(next, context);
                 }
             });
             it.remove();
@@ -435,11 +435,12 @@ public class Luban implements Handler.Callback {
     /* JADX WARN: Removed duplicated region for block: B:33:? A[RETURN, SYNTHETIC] */
     /* JADX WARN: Removed duplicated region for block: B:34:0x00c6  */
     /* JADX WARN: Removed duplicated region for block: B:35:0x00b6  */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public /* synthetic */ void a(com.luck.picture.lib.compress.InputStreamProvider r7, android.content.Context r8) {
+    public /* synthetic */ void m8137a(com.luck.picture.lib.compress.InputStreamProvider r7, android.content.Context r8) {
         /*
             r6 = this;
             r0 = 2
@@ -557,7 +558,7 @@ public class Luban implements Handler.Callback {
         Lf2:
             return
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.compress.Luban.a(com.luck.picture.lib.compress.InputStreamProvider, android.content.Context):void");
+        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.compress.Luban.m8137a(com.luck.picture.lib.compress.InputStreamProvider, android.content.Context):void");
     }
 
     @Override // android.os.Handler.Callback

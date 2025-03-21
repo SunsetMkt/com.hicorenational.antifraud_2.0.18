@@ -1,10 +1,10 @@
 package com.huawei.agconnect;
 
-import com.huawei.agconnect.core.a.a;
+import com.huawei.agconnect.core.p169a.C2263a;
 
 /* loaded from: classes.dex */
 public abstract class AGCInitFinishManager {
-    private static final AGCInitFinishManager INSTANCE = new a();
+    private static final AGCInitFinishManager INSTANCE = new C2263a();
 
     public interface AGCInitFinishCallback {
         void onFinish();

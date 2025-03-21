@@ -17,7 +17,7 @@ public class LinkCardResponse extends SocializeReseponse {
     public void parseJsonObject() {
         JSONObject jSONObject = this.mJsonData;
         if (jSONObject == null) {
-            SLog.E(UmengText.NET.JSONNULL);
+            SLog.m12716E(UmengText.NET.JSONNULL);
         } else {
             this.url = jSONObject.optString("linkcard_url");
         }

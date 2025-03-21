@@ -6,7 +6,9 @@ import network.BaseBean;
 public class DeviceInfoBean extends BaseBean {
     private DeviceBean androidExtra;
     private String currentType;
-    private String ip;
+
+    /* renamed from: ip */
+    private String f1597ip;
 
     public DeviceBean getAndroidExtra() {
         return this.androidExtra;
@@ -17,7 +19,7 @@ public class DeviceInfoBean extends BaseBean {
     }
 
     public String getIp() {
-        return this.ip;
+        return this.f1597ip;
     }
 
     public void setAndroidExtra(DeviceBean deviceBean) {
@@ -29,6 +31,6 @@ public class DeviceInfoBean extends BaseBean {
     }
 
     public void setIp(String str) {
-        this.ip = str;
+        this.f1597ip = str;
     }
 }

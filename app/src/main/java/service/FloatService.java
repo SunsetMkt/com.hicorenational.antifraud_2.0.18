@@ -6,15 +6,16 @@ import android.view.accessibility.AccessibilityEvent;
 /* loaded from: classes2.dex */
 public class FloatService extends AccessibilityService {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static AccessibilityService f17551a;
+    /* renamed from: a */
+    private static AccessibilityService f21719a;
 
     public FloatService() {
-        f17551a = this;
+        f21719a = this;
     }
 
-    public static AccessibilityService a() {
-        AccessibilityService accessibilityService = f17551a;
+    /* renamed from: a */
+    public static AccessibilityService m25192a() {
+        AccessibilityService accessibilityService = f21719a;
         if (accessibilityService == null) {
             return null;
         }

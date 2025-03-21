@@ -21,7 +21,7 @@ import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
 import androidx.customview.view.AbsSavedState;
 import androidx.customview.widget.ViewDragHelper;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
@@ -442,7 +442,7 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         this.parentHeight = coordinatorLayout.getHeight();
         if (this.peekHeightAuto) {
             if (this.peekHeightMin == 0) {
-                this.peekHeightMin = coordinatorLayout.getResources().getDimensionPixelSize(R.dimen.design_bottom_sheet_peek_height_min);
+                this.peekHeightMin = coordinatorLayout.getResources().getDimensionPixelSize(C1921R.dimen.design_bottom_sheet_peek_height_min);
             }
             this.lastPeekHeight = Math.max(this.peekHeightMin, this.parentHeight - ((coordinatorLayout.getWidth() * 9) / 16));
         } else {
@@ -850,16 +850,16 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
                 return ((i3 == 3 && bottomSheetBehavior.activePointerId == i22 && (view2 = bottomSheetBehavior.nestedScrollingChildRef.get()) != null && view2.canScrollVertically(-1)) || (weakReference = BottomSheetBehavior.this.viewRef) == null || weakReference.get() != view) ? false : true;
             }
         };
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.BottomSheetBehavior_Layout);
-        TypedValue peekValue = obtainStyledAttributes.peekValue(R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.BottomSheetBehavior_Layout);
+        TypedValue peekValue = obtainStyledAttributes.peekValue(C1921R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight);
         if (peekValue != null && (i2 = peekValue.data) == -1) {
             setPeekHeight(i2);
         } else {
-            setPeekHeight(obtainStyledAttributes.getDimensionPixelSize(R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight, -1));
+            setPeekHeight(obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight, -1));
         }
-        setHideable(obtainStyledAttributes.getBoolean(R.styleable.BottomSheetBehavior_Layout_behavior_hideable, false));
-        setFitToContents(obtainStyledAttributes.getBoolean(R.styleable.BottomSheetBehavior_Layout_behavior_fitToContents, true));
-        setSkipCollapsed(obtainStyledAttributes.getBoolean(R.styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed, false));
+        setHideable(obtainStyledAttributes.getBoolean(C1921R.styleable.BottomSheetBehavior_Layout_behavior_hideable, false));
+        setFitToContents(obtainStyledAttributes.getBoolean(C1921R.styleable.BottomSheetBehavior_Layout_behavior_fitToContents, true));
+        setSkipCollapsed(obtainStyledAttributes.getBoolean(C1921R.styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed, false));
         obtainStyledAttributes.recycle();
         this.maximumVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
     }

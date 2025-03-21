@@ -28,7 +28,7 @@ import androidx.core.graphics.TypefaceCompat;
 import androidx.core.graphics.TypefaceCompatUtil;
 import androidx.core.provider.SelfDestructiveThread;
 import androidx.core.util.Preconditions;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 import com.xiaomi.mipush.sdk.Constants;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -123,7 +123,7 @@ public class FontsContractCompat {
         private final int mWeight;
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-        public FontInfo(@NonNull Uri uri, @IntRange(from = 0) int i2, @IntRange(from = 1, to = 1000) int i3, boolean z, int i4) {
+        public FontInfo(@NonNull Uri uri, @IntRange(from = 0) int i2, @IntRange(from = 1, m294to = 1000) int i3, boolean z, int i4) {
             this.mUri = (Uri) Preconditions.checkNotNull(uri);
             this.mTtcIndex = i2;
             this.mWeight = i3;
@@ -145,7 +145,7 @@ public class FontsContractCompat {
             return this.mUri;
         }
 
-        @IntRange(from = 1, to = 1000)
+        @IntRange(from = 1, m294to = 1000)
         public int getWeight() {
             return this.mWeight;
         }
@@ -235,11 +235,11 @@ public class FontsContractCompat {
         Uri build2 = new Uri.Builder().scheme("content").authority(str).appendPath("file").build();
         Cursor cursor = null;
         try {
-            cursor = Build.VERSION.SDK_INT > 16 ? context.getContentResolver().query(build, new String[]{bl.f10170d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null, cancellationSignal) : context.getContentResolver().query(build, new String[]{bl.f10170d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null);
+            cursor = Build.VERSION.SDK_INT > 16 ? context.getContentResolver().query(build, new String[]{C3355bl.f11732d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null, cancellationSignal) : context.getContentResolver().query(build, new String[]{C3355bl.f11732d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null);
             if (cursor != null && cursor.getCount() > 0) {
                 int columnIndex = cursor.getColumnIndex(Columns.RESULT_CODE);
                 ArrayList arrayList2 = new ArrayList();
-                int columnIndex2 = cursor.getColumnIndex(bl.f10170d);
+                int columnIndex2 = cursor.getColumnIndex(C3355bl.f11732d);
                 int columnIndex3 = cursor.getColumnIndex("file_id");
                 int columnIndex4 = cursor.getColumnIndex(Columns.TTC_INDEX);
                 int columnIndex5 = cursor.getColumnIndex(Columns.WEIGHT);

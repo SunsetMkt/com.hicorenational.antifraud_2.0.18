@@ -1,7 +1,7 @@
 package androidx.core.util;
 
 import androidx.annotation.RestrictTo;
-import c.c.a.b.a.a;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
@@ -12,7 +12,7 @@ public class DebugUtils {
     public static void buildShortClassTag(Object obj, StringBuilder sb) {
         int lastIndexOf;
         if (obj == null) {
-            sb.append(a.f3101h);
+            sb.append(AbstractC1191a.f2571h);
             return;
         }
         String simpleName = obj.getClass().getSimpleName();

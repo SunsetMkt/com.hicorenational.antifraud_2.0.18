@@ -16,7 +16,9 @@ public class HistoryInfo extends BaseBean {
         private String createTime;
         private String createUser;
         private DetailsBean details;
-        private String id;
+
+        /* renamed from: id */
+        private String f21449id;
         private boolean isDeleted;
         private int objectType;
         private String reporterID;
@@ -101,7 +103,7 @@ public class HistoryInfo extends BaseBean {
         }
 
         public String getId() {
-            return this.id;
+            return this.f21449id;
         }
 
         public int getObjectType() {
@@ -157,7 +159,7 @@ public class HistoryInfo extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f21449id = str;
         }
 
         public void setIsDeleted(boolean z) {

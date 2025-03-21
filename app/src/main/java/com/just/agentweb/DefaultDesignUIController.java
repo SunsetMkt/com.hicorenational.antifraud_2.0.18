@@ -75,7 +75,7 @@ public class DefaultDesignUIController extends DefaultUIController {
         }
         if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
             try {
-                AgentWebUtils.show(webView, str, -1, -1, activity.getResources().getColor(R.color.black), null, -1, null);
+                AgentWebUtils.show(webView, str, -1, -1, activity.getResources().getColor(C2605R.color.black), null, -1, null);
             } catch (Throwable th) {
                 if (LogUtils.isDebug()) {
                     th.printStackTrace();
@@ -90,7 +90,7 @@ public class DefaultDesignUIController extends DefaultUIController {
             return;
         }
         if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
-            LogUtils.i(this.TAG, "url:" + str + "  ways:" + strArr[0]);
+            LogUtils.m8083i(this.TAG, "url:" + str + "  ways:" + strArr[0]);
             if (this.mBottomSheetDialog == null) {
                 this.mBottomSheetDialog = new BottomSheetDialog(activity);
                 RecyclerView recyclerView = new RecyclerView(activity);

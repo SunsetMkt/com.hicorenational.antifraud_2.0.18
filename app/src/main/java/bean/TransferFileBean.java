@@ -7,7 +7,9 @@ public class TransferFileBean extends BaseBean {
     public static final int TRANSFER_FILE_TYPE_1 = 1;
     public static final int TRANSFER_FILE_TYPE_2 = 2;
     private String fileName;
-    private Long id;
+
+    /* renamed from: id */
+    private Long f1634id;
     private String localPath;
     private Long transferRecordID;
     private int type;
@@ -17,7 +19,7 @@ public class TransferFileBean extends BaseBean {
     }
 
     public Long getId() {
-        return this.id;
+        return this.f1634id;
     }
 
     public String getLocalPath() {
@@ -37,7 +39,7 @@ public class TransferFileBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.id = l2;
+        this.f1634id = l2;
     }
 
     public void setLocalPath(String str) {

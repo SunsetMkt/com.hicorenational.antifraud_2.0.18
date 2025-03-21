@@ -5,7 +5,7 @@ import android.os.Build;
 import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import h.q2.t.m0;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes.dex */
 public abstract class AbsAgentWebSettings implements IAgentWebSettings, WebListenerManager {
@@ -66,13 +66,13 @@ public abstract class AbsAgentWebSettings implements IAgentWebSettings, WebListe
         this.mWebSettings.setMinimumFontSize(12);
         this.mWebSettings.setGeolocationEnabled(true);
         String cachePath = AgentWebConfig.getCachePath(webView.getContext());
-        LogUtils.i(TAG, "dir:" + cachePath + "   appcache:" + AgentWebConfig.getCachePath(webView.getContext()));
+        LogUtils.m8083i(TAG, "dir:" + cachePath + "   appcache:" + AgentWebConfig.getCachePath(webView.getContext()));
         this.mWebSettings.setGeolocationDatabasePath(cachePath);
         this.mWebSettings.setDatabasePath(cachePath);
         this.mWebSettings.setAppCachePath(cachePath);
-        this.mWebSettings.setAppCacheMaxSize(m0.f16408b);
+        this.mWebSettings.setAppCacheMaxSize(C5556m0.f20396b);
         this.mWebSettings.setUserAgentString(getWebSettings().getUserAgentString().concat(USERAGENT_AGENTWEB).concat(USERAGENT_UC));
-        LogUtils.i(TAG, "UserAgentString : " + this.mWebSettings.getUserAgentString());
+        LogUtils.m8083i(TAG, "UserAgentString : " + this.mWebSettings.getUserAgentString());
         if (Build.VERSION.SDK_INT >= 28) {
             Context context = webView.getContext();
             String currentProcessName = ProcessUtils.getCurrentProcessName(context);

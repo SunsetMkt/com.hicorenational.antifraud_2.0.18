@@ -1,6 +1,5 @@
 package com.alibaba.sdk.android.oss.internal;
 
-import a.a.u.a;
 import android.net.Uri;
 import android.text.TextUtils;
 import anet.channel.util.HttpConstant;
@@ -22,6 +21,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import p000a.p001a.p014u.C0052a;
 
 /* loaded from: classes.dex */
 public class RequestMessage extends HttpMessage {
@@ -34,7 +34,7 @@ public class RequestMessage extends HttpMessage {
     private String objectKey;
 
     /* renamed from: service, reason: collision with root package name */
-    private URI f4122service;
+    private URI f25891service;
     private byte[] uploadData;
     private String uploadFilePath;
     private Uri uploadUri;
@@ -120,9 +120,9 @@ public class RequestMessage extends HttpMessage {
     }
 
     public String buildOSSServiceURL() {
-        OSSUtils.assertTrue(this.f4122service != null, "Service haven't been set!");
-        String host = this.f4122service.getHost();
-        String scheme = this.f4122service.getScheme();
+        OSSUtils.assertTrue(this.f25891service != null, "Service haven't been set!");
+        String host = this.f25891service.getHost();
+        String scheme = this.f25891service.getScheme();
         String str = null;
         if (isHttpDnsEnable() && scheme.equalsIgnoreCase(HttpConstant.HTTP)) {
             str = HttpdnsMini.getInstance().getIpByHostAsync(host);
@@ -228,7 +228,7 @@ public class RequestMessage extends HttpMessage {
     }
 
     public URI getService() {
-        return this.f4122service;
+        return this.f25891service;
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.HttpMessage
@@ -340,7 +340,7 @@ public class RequestMessage extends HttpMessage {
         stringBuffer.append("<RefererConfiguration>");
         StringBuilder sb = new StringBuilder();
         sb.append("<AllowEmptyReferer>");
-        sb.append(z ? a.f1253j : a.f1254k);
+        sb.append(z ? C0052a.f158j : C0052a.f159k);
         sb.append("</AllowEmptyReferer>");
         stringBuffer.append(sb.toString());
         if (arrayList != null && arrayList.size() > 0) {
@@ -426,7 +426,7 @@ public class RequestMessage extends HttpMessage {
     }
 
     public void setService(URI uri) {
-        this.f4122service = uri;
+        this.f25891service = uri;
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.HttpMessage

@@ -3,11 +3,11 @@ package com.huawei.secure.android.common.util;
 /* loaded from: classes.dex */
 public class SafeStringBuffer {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7696a = "SafeStringBuffer";
+    /* renamed from: a */
+    private static final String f8278a = "SafeStringBuffer";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7697b = "";
+    /* renamed from: b */
+    private static final String f8279b = "";
 
     public static String substring(StringBuffer stringBuffer, int i2) {
         if (stringBuffer != null && stringBuffer.length() >= i2 && i2 >= 0) {

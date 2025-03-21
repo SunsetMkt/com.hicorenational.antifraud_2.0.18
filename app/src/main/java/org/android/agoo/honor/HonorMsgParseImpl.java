@@ -16,13 +16,13 @@ public class HonorMsgParseImpl implements BaseNotifyClickActivity.INotifyListene
     @Override // com.taobao.agoo.BaseNotifyClickActivity.INotifyListener
     public String parseMsgFromIntent(Intent intent) {
         if (intent == null) {
-            ALog.e(TAG, "parseMsgFromIntent null", new Object[0]);
+            ALog.m9182e(TAG, "parseMsgFromIntent null", new Object[0]);
             return null;
         }
         try {
             return intent.getStringExtra("extras");
         } catch (Throwable th) {
-            ALog.e(TAG, "parseMsgFromIntent", th, new Object[0]);
+            ALog.m9181e(TAG, "parseMsgFromIntent", th, new Object[0]);
             return null;
         }
     }

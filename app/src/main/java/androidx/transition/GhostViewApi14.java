@@ -77,7 +77,7 @@ class GhostViewApi14 extends View implements GhostViewImpl {
     }
 
     static GhostViewApi14 getGhostView(@NonNull View view) {
-        return (GhostViewApi14) view.getTag(R.id.ghost_view);
+        return (GhostViewApi14) view.getTag(C0703R.id.ghost_view);
     }
 
     static void removeGhost(View view) {
@@ -96,7 +96,7 @@ class GhostViewApi14 extends View implements GhostViewImpl {
     }
 
     private static void setGhostView(@NonNull View view, GhostViewApi14 ghostViewApi14) {
-        view.setTag(R.id.ghost_view, ghostViewApi14);
+        view.setTag(C0703R.id.ghost_view, ghostViewApi14);
     }
 
     @Override // android.view.View

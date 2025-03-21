@@ -90,7 +90,7 @@ public class LimitQueue<E> extends ConcurrentLinkedQueue<E> {
         try {
             return (E) super.remove();
         } catch (NoSuchElementException unused) {
-            Logger.w(TAG, "remove failed, limitQueue is empty");
+            Logger.m6803w(TAG, "remove failed, limitQueue is empty");
             return null;
         }
     }

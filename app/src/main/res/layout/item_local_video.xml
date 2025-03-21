@@ -13,7 +13,7 @@
         android:layout_height="@dimen/qb_px_160"
         android:maxWidth="@dimen/dp_150"
         android:minWidth="@dimen/dp_80">
-        <ui.view.RecordItemJzvd
+        <p388ui.view.RecordItemJzvd
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

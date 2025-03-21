@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.text.TextUtils;
+import com.heytap.mcssdk.constant.C2084a;
 import com.huawei.hms.api.Api;
 import com.huawei.hms.api.HuaweiApiClient;
 import com.huawei.hms.common.api.ConnectionPostProcessor;
@@ -66,66 +67,97 @@ import java.util.concurrent.locks.ReentrantLock;
 @Deprecated
 /* loaded from: classes.dex */
 public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClient, ServiceConnection {
-    private static final Object A = new Object();
-    private static final Object B = new Object();
+
+    /* renamed from: A */
+    private static final Object f7126A = new Object();
+
+    /* renamed from: B */
+    private static final Object f7127B = new Object();
     public static final String DEFAULT_ACCOUNT = "<<default account>>";
     public static final int SIGN_IN_MODE_OPTIONAL = 2;
     public static final int SIGN_IN_MODE_REQUIRED = 1;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final Context f6623b;
+    /* renamed from: b */
+    private final Context f7129b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private final String f6624c;
+    /* renamed from: c */
+    private final String f7130c;
 
-    /* renamed from: d, reason: collision with root package name */
-    private String f6625d;
+    /* renamed from: d */
+    private String f7131d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f6626e;
+    /* renamed from: e */
+    private String f7132e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private volatile IAIDLInvoke f6627f;
+    /* renamed from: f */
+    private volatile IAIDLInvoke f7133f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String f6628g;
+    /* renamed from: g */
+    private String f7134g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private WeakReference<Activity> f6629h;
+    /* renamed from: h */
+    private WeakReference<Activity> f7135h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private WeakReference<Activity> f6630i;
+    /* renamed from: i */
+    private WeakReference<Activity> f7136i;
 
-    /* renamed from: l, reason: collision with root package name */
-    private List<Scope> f6633l;
+    /* renamed from: l */
+    private List<Scope> f7139l;
 
-    /* renamed from: m, reason: collision with root package name */
-    private List<PermissionInfo> f6634m;
-    private Map<Api<?>, Api.ApiOptions> n;
-    private SubAppInfo o;
-    private final ReentrantLock s;
-    private final Condition t;
-    private ConnectionResult u;
-    private HuaweiApiClient.ConnectionCallbacks v;
-    private HuaweiApiClient.OnConnectionFailedListener w;
-    private Handler x;
-    private Handler y;
-    private CheckUpdatelistener z;
+    /* renamed from: m */
+    private List<PermissionInfo> f7140m;
 
-    /* renamed from: a, reason: collision with root package name */
-    private int f6622a = -1;
+    /* renamed from: n */
+    private Map<Api<?>, Api.ApiOptions> f7141n;
 
-    /* renamed from: j, reason: collision with root package name */
-    private boolean f6631j = false;
+    /* renamed from: o */
+    private SubAppInfo f7142o;
 
-    /* renamed from: k, reason: collision with root package name */
-    private AtomicInteger f6632k = new AtomicInteger(1);
-    private long p = 0;
-    private int q = 0;
-    private final Object r = new Object();
+    /* renamed from: s */
+    private final ReentrantLock f7146s;
 
-    class a implements Handler.Callback {
-        a() {
+    /* renamed from: t */
+    private final Condition f7147t;
+
+    /* renamed from: u */
+    private ConnectionResult f7148u;
+
+    /* renamed from: v */
+    private HuaweiApiClient.ConnectionCallbacks f7149v;
+
+    /* renamed from: w */
+    private HuaweiApiClient.OnConnectionFailedListener f7150w;
+
+    /* renamed from: x */
+    private Handler f7151x;
+
+    /* renamed from: y */
+    private Handler f7152y;
+
+    /* renamed from: z */
+    private CheckUpdatelistener f7153z;
+
+    /* renamed from: a */
+    private int f7128a = -1;
+
+    /* renamed from: j */
+    private boolean f7137j = false;
+
+    /* renamed from: k */
+    private AtomicInteger f7138k = new AtomicInteger(1);
+
+    /* renamed from: p */
+    private long f7143p = 0;
+
+    /* renamed from: q */
+    private int f7144q = 0;
+
+    /* renamed from: r */
+    private final Object f7145r = new Object();
+
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$a */
+    class C2303a implements Handler.Callback {
+        C2303a() {
         }
 
         @Override // android.os.Handler.Callback
@@ -133,17 +165,18 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
             if (message == null || message.what != 2) {
                 return false;
             }
-            HMSLog.e("HuaweiApiClientImpl", "In connect, bind core service time out");
-            if (HuaweiApiClientImpl.this.f6632k.get() == 5) {
-                HuaweiApiClientImpl.this.c(1);
-                HuaweiApiClientImpl.this.b();
+            HMSLog.m7715e("HuaweiApiClientImpl", "In connect, bind core service time out");
+            if (HuaweiApiClientImpl.this.f7138k.get() == 5) {
+                HuaweiApiClientImpl.this.m6635c(1);
+                HuaweiApiClientImpl.this.m6628b();
             }
             return true;
         }
     }
 
-    class b implements Handler.Callback {
-        b() {
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$b */
+    class C2304b implements Handler.Callback {
+        C2304b() {
         }
 
         @Override // android.os.Handler.Callback
@@ -151,42 +184,44 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
             if (message == null || message.what != 3) {
                 return false;
             }
-            HMSLog.e("HuaweiApiClientImpl", "In connect, process time out");
-            if (HuaweiApiClientImpl.this.f6632k.get() == 2) {
-                HuaweiApiClientImpl.this.c(1);
-                HuaweiApiClientImpl.this.b();
+            HMSLog.m7715e("HuaweiApiClientImpl", "In connect, process time out");
+            if (HuaweiApiClientImpl.this.f7138k.get() == 2) {
+                HuaweiApiClientImpl.this.m6635c(1);
+                HuaweiApiClientImpl.this.m6628b();
             }
             return true;
         }
     }
 
-    class c extends IAIDLCallback.Stub {
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$c */
+    class BinderC2305c extends IAIDLCallback.Stub {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ ResultCallback f6637a;
+        /* renamed from: a */
+        final /* synthetic */ ResultCallback f7156a;
 
-        c(ResultCallback resultCallback) {
-            this.f6637a = resultCallback;
+        BinderC2305c(ResultCallback resultCallback) {
+            this.f7156a = resultCallback;
         }
 
         @Override // com.huawei.hms.core.aidl.IAIDLCallback
         public void call(DataBuffer dataBuffer) {
             if (dataBuffer == null) {
-                HMSLog.i("HuaweiApiClientImpl", "Exit asyncRequest onResult -1");
-                this.f6637a.onResult(new BundleResult(-1, null));
+                HMSLog.m7717i("HuaweiApiClientImpl", "Exit asyncRequest onResult -1");
+                this.f7156a.onResult(new BundleResult(-1, null));
                 return;
             }
             MessageCodec find = CodecLookup.find(dataBuffer.getProtocol());
             ResponseHeader responseHeader = new ResponseHeader();
             find.decode(dataBuffer.header, responseHeader);
             BundleResult bundleResult = new BundleResult(responseHeader.getStatusCode(), dataBuffer.getBody());
-            HMSLog.i("HuaweiApiClientImpl", "Exit asyncRequest onResult");
-            this.f6637a.onResult(bundleResult);
+            HMSLog.m7717i("HuaweiApiClientImpl", "Exit asyncRequest onResult");
+            this.f7156a.onResult(bundleResult);
         }
     }
 
-    static class d extends PendingResultImpl<Status, IMessageEntity> {
-        public d(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$d */
+    static class C2306d extends PendingResultImpl<Status, IMessageEntity> {
+        public C2306d(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
             super(apiClient, str, iMessageEntity);
         }
 
@@ -197,24 +232,26 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         }
     }
 
-    private class e implements ResultCallback<ResolveResult<ConnectResp>> {
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$e */
+    private class C2307e implements ResultCallback<ResolveResult<ConnectResp>> {
 
+        /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$e$a */
         class a implements Runnable {
 
-            /* renamed from: a, reason: collision with root package name */
-            final /* synthetic */ ResolveResult f6640a;
+            /* renamed from: a */
+            final /* synthetic */ ResolveResult f7159a;
 
             a(ResolveResult resolveResult) {
-                this.f6640a = resolveResult;
+                this.f7159a = resolveResult;
             }
 
             @Override // java.lang.Runnable
             public void run() {
-                HuaweiApiClientImpl.this.a((ResolveResult<ConnectResp>) this.f6640a);
+                HuaweiApiClientImpl.this.m6626a((ResolveResult<ConnectResp>) this.f7159a);
             }
         }
 
-        private e() {
+        private C2307e() {
         }
 
         @Override // com.huawei.hms.support.api.client.ResultCallback
@@ -223,29 +260,31 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
             new Handler(Looper.getMainLooper()).post(new a(resolveResult));
         }
 
-        /* synthetic */ e(HuaweiApiClientImpl huaweiApiClientImpl, a aVar) {
+        /* synthetic */ C2307e(HuaweiApiClientImpl huaweiApiClientImpl, C2303a c2303a) {
             this();
         }
     }
 
-    private class f implements ResultCallback<ResolveResult<DisconnectResp>> {
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$f */
+    private class C2308f implements ResultCallback<ResolveResult<DisconnectResp>> {
 
+        /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$f$a */
         class a implements Runnable {
 
-            /* renamed from: a, reason: collision with root package name */
-            final /* synthetic */ ResolveResult f6643a;
+            /* renamed from: a */
+            final /* synthetic */ ResolveResult f7162a;
 
             a(ResolveResult resolveResult) {
-                this.f6643a = resolveResult;
+                this.f7162a = resolveResult;
             }
 
             @Override // java.lang.Runnable
             public void run() {
-                HuaweiApiClientImpl.this.b((ResolveResult<DisconnectResp>) this.f6643a);
+                HuaweiApiClientImpl.this.m6632b((ResolveResult<DisconnectResp>) this.f7162a);
             }
         }
 
-        private f() {
+        private C2308f() {
         }
 
         @Override // com.huawei.hms.support.api.client.ResultCallback
@@ -254,13 +293,14 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
             new Handler(Looper.getMainLooper()).post(new a(resolveResult));
         }
 
-        /* synthetic */ f(HuaweiApiClientImpl huaweiApiClientImpl, a aVar) {
+        /* synthetic */ C2308f(HuaweiApiClientImpl huaweiApiClientImpl, C2303a c2303a) {
             this();
         }
     }
 
-    private class g implements ResultCallback<ResolveResult<JosGetNoticeResp>> {
-        private g() {
+    /* renamed from: com.huawei.hms.api.HuaweiApiClientImpl$g */
+    private class C2309g implements ResultCallback<ResolveResult<JosGetNoticeResp>> {
+        private C2309g() {
         }
 
         @Override // com.huawei.hms.support.api.client.ResultCallback
@@ -271,66 +311,69 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
             if (resolveResult == null || !resolveResult.getStatus().isSuccess() || (noticeIntent = (value = resolveResult.getValue()).getNoticeIntent()) == null || value.getStatusCode() != 0) {
                 return;
             }
-            HMSLog.i("HuaweiApiClientImpl", "get notice has intent.");
-            Activity validActivity = Util.getValidActivity((Activity) HuaweiApiClientImpl.this.f6629h.get(), HuaweiApiClientImpl.this.getTopActivity());
+            HMSLog.m7717i("HuaweiApiClientImpl", "get notice has intent.");
+            Activity validActivity = Util.getValidActivity((Activity) HuaweiApiClientImpl.this.f7135h.get(), HuaweiApiClientImpl.this.getTopActivity());
             if (validActivity == null) {
-                HMSLog.e("HuaweiApiClientImpl", "showNotice no valid activity!");
+                HMSLog.m7715e("HuaweiApiClientImpl", "showNotice no valid activity!");
             } else {
-                HuaweiApiClientImpl.this.f6631j = true;
+                HuaweiApiClientImpl.this.f7137j = true;
                 validActivity.startActivity(noticeIntent);
             }
         }
 
-        /* synthetic */ g(HuaweiApiClientImpl huaweiApiClientImpl, a aVar) {
+        /* synthetic */ C2309g(HuaweiApiClientImpl huaweiApiClientImpl, C2303a c2303a) {
             this();
         }
     }
 
     public HuaweiApiClientImpl(Context context) {
         ReentrantLock reentrantLock = new ReentrantLock();
-        this.s = reentrantLock;
-        this.t = reentrantLock.newCondition();
-        this.x = null;
-        this.y = null;
-        this.z = null;
-        this.f6623b = context;
+        this.f7146s = reentrantLock;
+        this.f7147t = reentrantLock.newCondition();
+        this.f7151x = null;
+        this.f7152y = null;
+        this.f7153z = null;
+        this.f7129b = context;
         String appId = Util.getAppId(context);
-        this.f6624c = appId;
-        this.f6625d = appId;
-        this.f6626e = Util.getCpId(context);
+        this.f7130c = appId;
+        this.f7131d = appId;
+        this.f7132e = Util.getCpId(context);
     }
 
-    private DisconnectInfo d() {
+    /* renamed from: d */
+    private DisconnectInfo m6637d() {
         ArrayList arrayList = new ArrayList();
-        Map<Api<?>, Api.ApiOptions> map = this.n;
+        Map<Api<?>, Api.ApiOptions> map = this.f7141n;
         if (map != null) {
             Iterator<Api<?>> it = map.keySet().iterator();
             while (it.hasNext()) {
                 arrayList.add(it.next().getApiName());
             }
         }
-        return new DisconnectInfo(this.f6633l, arrayList);
+        return new DisconnectInfo(this.f7139l, arrayList);
     }
 
-    private int e() {
-        int hmsVersion = Util.getHmsVersion(this.f6623b);
+    /* renamed from: e */
+    private int m6638e() {
+        int hmsVersion = Util.getHmsVersion(this.f7129b);
         if (hmsVersion != 0 && hmsVersion >= 20503000) {
             return hmsVersion;
         }
-        int f2 = f();
-        if (g()) {
-            if (f2 < 20503000) {
+        int m6639f = m6639f();
+        if (m6640g()) {
+            if (m6639f < 20503000) {
                 return 20503000;
             }
-            return f2;
+            return m6639f;
         }
-        if (f2 < 20600000) {
+        if (m6639f < 20600000) {
             return 20600000;
         }
-        return f2;
+        return m6639f;
     }
 
-    private int f() {
+    /* renamed from: f */
+    private int m6639f() {
         Integer num;
         int intValue;
         Map<Api<?>, Api.ApiOptions> apiMap = getApiMap();
@@ -348,8 +391,9 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         return i2;
     }
 
-    private boolean g() {
-        Map<Api<?>, Api.ApiOptions> map = this.n;
+    /* renamed from: g */
+    private boolean m6640g() {
+        Map<Api<?>, Api.ApiOptions> map = this.f7141n;
         if (map == null) {
             return false;
         }
@@ -362,63 +406,70 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         return false;
     }
 
-    private void h() {
-        Handler handler = this.x;
+    /* renamed from: h */
+    private void m6641h() {
+        Handler handler = this.f7151x;
         if (handler != null) {
             handler.removeMessages(2);
         } else {
-            this.x = new Handler(Looper.getMainLooper(), new a());
+            this.f7151x = new Handler(Looper.getMainLooper(), new C2303a());
         }
-        this.x.sendEmptyMessageDelayed(2, com.heytap.mcssdk.constant.a.r);
+        this.f7151x.sendEmptyMessageDelayed(2, C2084a.f6136r);
     }
 
-    private void i() {
-        synchronized (B) {
-            Handler handler = this.y;
+    /* renamed from: i */
+    private void m6642i() {
+        synchronized (f7127B) {
+            Handler handler = this.f7152y;
             if (handler != null) {
                 handler.removeMessages(3);
             } else {
-                this.y = new Handler(Looper.getMainLooper(), new b());
+                this.f7152y = new Handler(Looper.getMainLooper(), new C2304b());
             }
-            HMSLog.d("HuaweiApiClientImpl", "sendEmptyMessageDelayed for onConnectionResult 3 seconds. the result is : " + this.y.sendEmptyMessageDelayed(3, 3000L));
+            HMSLog.m7712d("HuaweiApiClientImpl", "sendEmptyMessageDelayed for onConnectionResult 3 seconds. the result is : " + this.f7152y.sendEmptyMessageDelayed(3, 3000L));
         }
     }
 
-    private void j() {
-        HMSLog.i("HuaweiApiClientImpl", "Enter sendConnectApiServceRequest.");
-        ConnectService.connect(this, c()).setResultCallback(new e(this, null));
+    /* renamed from: j */
+    private void m6643j() {
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter sendConnectApiServceRequest.");
+        ConnectService.connect(this, m6633c()).setResultCallback(new C2307e(this, null));
     }
 
-    private void k() {
-        ConnectService.disconnect(this, d()).setResultCallback(new f(this, null));
+    /* renamed from: k */
+    private void m6644k() {
+        ConnectService.disconnect(this, m6637d()).setResultCallback(new C2308f(this, null));
     }
 
-    private void l() {
-        HMSLog.i("HuaweiApiClientImpl", "Enter sendForceConnectApiServceRequest.");
-        ConnectService.forceConnect(this, c()).setResultCallback(new e(this, null));
+    /* renamed from: l */
+    private void m6645l() {
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter sendForceConnectApiServceRequest.");
+        ConnectService.forceConnect(this, m6633c()).setResultCallback(new C2307e(this, null));
     }
 
-    private void m() {
-        if (this.f6631j) {
-            HMSLog.i("HuaweiApiClientImpl", "Connect notice has been shown.");
-        } else if (HuaweiApiAvailability.getInstance().isHuaweiMobileNoticeAvailable(this.f6623b) == 0) {
-            ConnectService.getNotice(this, 0, "6.11.0.302").setResultCallback(new g(this, null));
+    /* renamed from: m */
+    private void m6646m() {
+        if (this.f7137j) {
+            HMSLog.m7717i("HuaweiApiClientImpl", "Connect notice has been shown.");
+        } else if (HuaweiApiAvailability.getInstance().isHuaweiMobileNoticeAvailable(this.f7129b) == 0) {
+            ConnectService.getNotice(this, 0, "6.11.0.302").setResultCallback(new C2309g(this, null));
         }
     }
 
-    private void n() {
-        Util.unBindServiceCatchException(this.f6623b, this);
-        this.f6627f = null;
+    /* renamed from: n */
+    private void m6647n() {
+        Util.unBindServiceCatchException(this.f7129b, this);
+        this.f7133f = null;
     }
 
     public int asyncRequest(Bundle bundle, String str, int i2, ResultCallback<BundleResult> resultCallback) {
-        HMSLog.i("HuaweiApiClientImpl", "Enter asyncRequest.");
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter asyncRequest.");
         if (resultCallback == null || str == null || bundle == null) {
-            HMSLog.e("HuaweiApiClientImpl", "arguments is invalid.");
+            HMSLog.m7715e("HuaweiApiClientImpl", "arguments is invalid.");
             return CommonCode.ErrorCode.ARGUMENTS_INVALID;
         }
         if (!innerIsConnected()) {
-            HMSLog.e("HuaweiApiClientImpl", "client is unConnect.");
+            HMSLog.m7715e("HuaweiApiClientImpl", "client is unConnect.");
             return CommonCode.ErrorCode.CLIENT_API_INVALID;
         }
         DataBuffer dataBuffer = new DataBuffer(str, i2);
@@ -428,10 +479,10 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         requestHeader.setApiNameList(getApiNameList());
         dataBuffer.header = find.encode(requestHeader, new Bundle());
         try {
-            getService().asyncCall(dataBuffer, new c(resultCallback));
+            getService().asyncCall(dataBuffer, new BinderC2305c(resultCallback));
             return 0;
         } catch (RemoteException e2) {
-            HMSLog.e("HuaweiApiClientImpl", "remote exception:" + e2.getMessage());
+            HMSLog.m7715e("HuaweiApiClientImpl", "remote exception:" + e2.getMessage());
             return CommonCode.ErrorCode.INTERNAL_ERROR;
         }
     }
@@ -439,114 +490,114 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void checkUpdate(Activity activity, CheckUpdatelistener checkUpdatelistener) {
         if (checkUpdatelistener == null) {
-            HMSLog.e("HuaweiApiClientImpl", "listener is null!");
+            HMSLog.m7715e("HuaweiApiClientImpl", "listener is null!");
             return;
         }
         if (activity == null || activity.isFinishing()) {
-            HMSLog.e("HuaweiApiClientImpl", "checkUpdate, activity is illegal: " + activity);
+            HMSLog.m7715e("HuaweiApiClientImpl", "checkUpdate, activity is illegal: " + activity);
             checkUpdatelistener.onResult(-1);
             return;
         }
-        this.z = checkUpdatelistener;
+        this.f7153z = checkUpdatelistener;
         try {
             Class<?> cls = Class.forName("com.huawei.hms.update.manager.CheckUpdateLegacy");
             cls.getMethod("initCheckUpdateCallBack", Object.class, Activity.class).invoke(cls.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]), this, activity);
         } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | InvocationTargetException e2) {
-            HMSLog.e("HuaweiApiClientImpl", "invoke CheckUpdateLegacy.initCheckUpdateCallBack fail. " + e2.getMessage());
+            HMSLog.m7715e("HuaweiApiClientImpl", "invoke CheckUpdateLegacy.initCheckUpdateCallBack fail. " + e2.getMessage());
             checkUpdatelistener.onResult(-1);
         }
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void connect(Activity activity) {
-        HMSLog.i("HuaweiApiClientImpl", "====== HMSSDK version: 61100302 ======");
-        int i2 = this.f6632k.get();
-        HMSLog.i("HuaweiApiClientImpl", "Enter connect, Connection Status: " + i2);
+        HMSLog.m7717i("HuaweiApiClientImpl", "====== HMSSDK version: 61100302 ======");
+        int i2 = this.f7138k.get();
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter connect, Connection Status: " + i2);
         if (i2 == 3 || i2 == 5 || i2 == 2 || i2 == 4) {
             return;
         }
         if (activity != null) {
-            this.f6629h = new WeakReference<>(activity);
-            this.f6630i = new WeakReference<>(activity);
+            this.f7135h = new WeakReference<>(activity);
+            this.f7136i = new WeakReference<>(activity);
         }
-        this.f6625d = TextUtils.isEmpty(this.f6624c) ? Util.getAppId(this.f6623b) : this.f6624c;
-        int e2 = e();
-        HMSLog.i("HuaweiApiClientImpl", "connect minVersion:" + e2);
-        HuaweiApiAvailability.setServicesVersionCode(e2);
-        int isHuaweiMobileServicesAvailable = HuaweiMobileServicesUtil.isHuaweiMobileServicesAvailable(this.f6623b, e2);
-        HMSLog.i("HuaweiApiClientImpl", "In connect, isHuaweiMobileServicesAvailable result: " + isHuaweiMobileServicesAvailable);
-        this.q = HMSPackageManager.getInstance(this.f6623b).getHmsMultiServiceVersion();
+        this.f7131d = TextUtils.isEmpty(this.f7130c) ? Util.getAppId(this.f7129b) : this.f7130c;
+        int m6638e = m6638e();
+        HMSLog.m7717i("HuaweiApiClientImpl", "connect minVersion:" + m6638e);
+        HuaweiApiAvailability.setServicesVersionCode(m6638e);
+        int isHuaweiMobileServicesAvailable = HuaweiMobileServicesUtil.isHuaweiMobileServicesAvailable(this.f7129b, m6638e);
+        HMSLog.m7717i("HuaweiApiClientImpl", "In connect, isHuaweiMobileServicesAvailable result: " + isHuaweiMobileServicesAvailable);
+        this.f7144q = HMSPackageManager.getInstance(this.f7129b).getHmsMultiServiceVersion();
         if (isHuaweiMobileServicesAvailable != 0) {
-            if (this.w != null) {
-                b(isHuaweiMobileServicesAvailable);
+            if (this.f7150w != null) {
+                m6629b(isHuaweiMobileServicesAvailable);
                 return;
             }
             return;
         }
-        c(5);
-        if (this.f6627f == null) {
-            a();
+        m6635c(5);
+        if (this.f7133f == null) {
+            m6622a();
             return;
         }
-        c(2);
-        j();
-        i();
+        m6635c(2);
+        m6643j();
+        m6642i();
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void connectForeground() {
-        HMSLog.i("HuaweiApiClientImpl", "====== HMSSDK version: 61100302 ======");
-        int i2 = this.f6632k.get();
-        HMSLog.i("HuaweiApiClientImpl", "Enter forceConnect, Connection Status: " + i2);
+        HMSLog.m7717i("HuaweiApiClientImpl", "====== HMSSDK version: 61100302 ======");
+        int i2 = this.f7138k.get();
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter forceConnect, Connection Status: " + i2);
         if (i2 == 3 || i2 == 5 || i2 == 2 || i2 == 4) {
             return;
         }
-        this.f6625d = TextUtils.isEmpty(this.f6624c) ? Util.getAppId(this.f6623b) : this.f6624c;
-        l();
+        this.f7131d = TextUtils.isEmpty(this.f7130c) ? Util.getAppId(this.f7129b) : this.f7130c;
+        m6645l();
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void disableLifeCycleManagement(Activity activity) {
-        if (this.f6622a < 0) {
+        if (this.f7128a < 0) {
             throw new IllegalStateException("disableLifeCycleManagement failed");
         }
-        AutoLifecycleFragment.getInstance(activity).stopAutoManage(this.f6622a);
+        AutoLifecycleFragment.getInstance(activity).stopAutoManage(this.f7128a);
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public PendingResult<Status> discardAndReconnect() {
-        return new d(this, null, null);
+        return new C2306d(this, null, null);
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void disconnect() {
-        int i2 = this.f6632k.get();
-        HMSLog.i("HuaweiApiClientImpl", "Enter disconnect, Connection Status: " + i2);
+        int i2 = this.f7138k.get();
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter disconnect, Connection Status: " + i2);
         if (i2 == 2) {
-            c(4);
+            m6635c(4);
             return;
         }
         if (i2 == 3) {
-            c(4);
-            k();
+            m6635c(4);
+            m6644k();
         } else {
             if (i2 != 5) {
                 return;
             }
-            a(2);
-            c(4);
+            m6623a(2);
+            m6635c(4);
         }
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public Map<Api<?>, Api.ApiOptions> getApiMap() {
-        return this.n;
+        return this.f7141n;
     }
 
     @Override // com.huawei.hms.support.api.client.AidlApiClient
     public List<String> getApiNameList() {
         ArrayList arrayList = new ArrayList();
-        Map<Api<?>, Api.ApiOptions> map = this.n;
+        Map<Api<?>, Api.ApiOptions> map = this.f7141n;
         if (map != null) {
             Iterator<Api<?>> it = map.keySet().iterator();
             while (it.hasNext()) {
@@ -558,62 +609,62 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getAppID() {
-        return this.f6625d;
+        return this.f7131d;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public ConnectionResult getConnectionResult(Api<?> api) {
         if (isConnected()) {
-            this.u = null;
+            this.f7148u = null;
             return new ConnectionResult(0, (PendingIntent) null);
         }
-        ConnectionResult connectionResult = this.u;
+        ConnectionResult connectionResult = this.f7148u;
         return connectionResult != null ? connectionResult : new ConnectionResult(13, (PendingIntent) null);
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public Context getContext() {
-        return this.f6623b;
+        return this.f7129b;
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getCpID() {
-        return this.f6626e;
+        return this.f7132e;
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getPackageName() {
-        return this.f6623b.getPackageName();
+        return this.f7129b.getPackageName();
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public List<PermissionInfo> getPermissionInfos() {
-        return this.f6634m;
+        return this.f7140m;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public List<Scope> getScopes() {
-        return this.f6633l;
+        return this.f7139l;
     }
 
     @Override // com.huawei.hms.support.api.client.AidlApiClient
     public IAIDLInvoke getService() {
-        return this.f6627f;
+        return this.f7133f;
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getSessionId() {
-        return this.f6628g;
+        return this.f7134g;
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public final SubAppInfo getSubAppInfo() {
-        return this.o;
+        return this.f7142o;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public Activity getTopActivity() {
-        WeakReference<Activity> weakReference = this.f6630i;
+        WeakReference<Activity> weakReference = this.f7136i;
         if (weakReference == null) {
             return null;
         }
@@ -633,16 +684,16 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
     @Override // com.huawei.hms.api.HuaweiApiClient
     public boolean hasConnectionFailureListener(HuaweiApiClient.OnConnectionFailedListener onConnectionFailedListener) {
         Checker.checkNonNull(onConnectionFailedListener, "onConnectionFailedListener should not be null");
-        synchronized (this.r) {
-            return this.w == onConnectionFailedListener;
+        synchronized (this.f7145r) {
+            return this.f7150w == onConnectionFailedListener;
         }
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public boolean hasConnectionSuccessListener(HuaweiApiClient.ConnectionCallbacks connectionCallbacks) {
         Checker.checkNonNull(connectionCallbacks, "connectionCallbacksListener should not be null");
-        synchronized (this.r) {
-            return this.v == connectionCallbacks;
+        synchronized (this.f7145r) {
+            return this.f7149v == connectionCallbacks;
         }
     }
 
@@ -651,40 +702,40 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         if (Looper.myLooper() == Looper.getMainLooper()) {
             throw new IllegalStateException("blockingConnect must not be called on the UI thread");
         }
-        this.s.lock();
+        this.f7146s.lock();
         try {
             connect((Activity) null);
             while (isConnecting()) {
-                this.t.await();
+                this.f7147t.await();
             }
             if (isConnected()) {
-                this.u = null;
+                this.f7148u = null;
                 return new ConnectionResult(0, (PendingIntent) null);
             }
-            ConnectionResult connectionResult = this.u;
+            ConnectionResult connectionResult = this.f7148u;
             return connectionResult != null ? connectionResult : new ConnectionResult(13, (PendingIntent) null);
         } catch (InterruptedException unused) {
             Thread.currentThread().interrupt();
             return new ConnectionResult(15, (PendingIntent) null);
         } finally {
-            this.s.unlock();
+            this.f7146s.unlock();
         }
     }
 
     @Override // com.huawei.hms.support.api.client.InnerApiClient
     public boolean innerIsConnected() {
-        return this.f6632k.get() == 3 || this.f6632k.get() == 4;
+        return this.f7138k.get() == 3 || this.f7138k.get() == 4;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient, com.huawei.hms.support.api.client.ApiClient
     public boolean isConnected() {
-        if (this.q == 0) {
-            this.q = HMSPackageManager.getInstance(this.f6623b).getHmsMultiServiceVersion();
+        if (this.f7144q == 0) {
+            this.f7144q = HMSPackageManager.getInstance(this.f7129b).getHmsMultiServiceVersion();
         }
-        if (this.q >= 20504000) {
+        if (this.f7144q >= 20504000) {
             return innerIsConnected();
         }
-        long currentTimeMillis = System.currentTimeMillis() - this.p;
+        long currentTimeMillis = System.currentTimeMillis() - this.f7143p;
         if (currentTimeMillis > 0 && currentTimeMillis < 300000) {
             return innerIsConnected();
         }
@@ -693,83 +744,83 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         }
         Status status = ConnectService.checkconnect(this, new CheckConnectInfo()).awaitOnAnyThread(2000L, TimeUnit.MILLISECONDS).getStatus();
         if (status.isSuccess()) {
-            this.p = System.currentTimeMillis();
+            this.f7143p = System.currentTimeMillis();
             return true;
         }
         int statusCode = status.getStatusCode();
-        HMSLog.i("HuaweiApiClientImpl", "isConnected is false, statuscode:" + statusCode);
+        HMSLog.m7717i("HuaweiApiClientImpl", "isConnected is false, statuscode:" + statusCode);
         if (statusCode == 907135004) {
             return false;
         }
-        n();
-        c(1);
-        this.p = System.currentTimeMillis();
+        m6647n();
+        m6635c(1);
+        this.f7143p = System.currentTimeMillis();
         return false;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public boolean isConnecting() {
-        int i2 = this.f6632k.get();
+        int i2 = this.f7138k.get();
         return i2 == 2 || i2 == 5;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void onPause(Activity activity) {
-        HMSLog.i("HuaweiApiClientImpl", "onPause");
+        HMSLog.m7717i("HuaweiApiClientImpl", "onPause");
     }
 
     public void onResult(int i2) {
-        this.z.onResult(i2);
+        this.f7153z.onResult(i2);
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void onResume(Activity activity) {
         if (activity != null) {
-            HMSLog.i("HuaweiApiClientImpl", "onResume");
-            this.f6630i = new WeakReference<>(activity);
+            HMSLog.m7717i("HuaweiApiClientImpl", "onResume");
+            this.f7136i = new WeakReference<>(activity);
         }
     }
 
     @Override // android.content.ServiceConnection
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        HMSLog.i("HuaweiApiClientImpl", "HuaweiApiClientImpl Enter onServiceConnected.");
-        a(2);
-        this.f6627f = IAIDLInvoke.Stub.asInterface(iBinder);
-        if (this.f6627f != null) {
-            if (this.f6632k.get() == 5) {
-                c(2);
-                j();
-                i();
+        HMSLog.m7717i("HuaweiApiClientImpl", "HuaweiApiClientImpl Enter onServiceConnected.");
+        m6623a(2);
+        this.f7133f = IAIDLInvoke.Stub.asInterface(iBinder);
+        if (this.f7133f != null) {
+            if (this.f7138k.get() == 5) {
+                m6635c(2);
+                m6643j();
+                m6642i();
                 return;
             } else {
-                if (this.f6632k.get() != 3) {
-                    n();
+                if (this.f7138k.get() != 3) {
+                    m6647n();
                     return;
                 }
                 return;
             }
         }
-        HMSLog.e("HuaweiApiClientImpl", "In onServiceConnected, mCoreService must not be null.");
-        n();
-        c(1);
-        if (this.w != null) {
+        HMSLog.m7715e("HuaweiApiClientImpl", "In onServiceConnected, mCoreService must not be null.");
+        m6647n();
+        m6635c(1);
+        if (this.f7150w != null) {
             PendingIntent pendingIntent = null;
-            WeakReference<Activity> weakReference = this.f6629h;
+            WeakReference<Activity> weakReference = this.f7135h;
             if (weakReference != null && weakReference.get() != null) {
-                pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f6629h.get(), 10);
+                pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f7135h.get(), 10);
             }
             ConnectionResult connectionResult = new ConnectionResult(10, pendingIntent);
-            this.w.onConnectionFailed(connectionResult);
-            this.u = connectionResult;
+            this.f7150w.onConnectionFailed(connectionResult);
+            this.f7148u = connectionResult;
         }
     }
 
     @Override // android.content.ServiceConnection
     public void onServiceDisconnected(ComponentName componentName) {
-        HMSLog.i("HuaweiApiClientImpl", "Enter onServiceDisconnected.");
-        this.f6627f = null;
-        c(1);
-        HuaweiApiClient.ConnectionCallbacks connectionCallbacks = this.v;
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter onServiceDisconnected.");
+        this.f7133f = null;
+        m6635c(1);
+        HuaweiApiClient.ConnectionCallbacks connectionCallbacks = this.f7149v;
         if (connectionCallbacks != null) {
             connectionCallbacks.onConnectionSuspended(1);
         }
@@ -788,11 +839,11 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void removeConnectionFailureListener(HuaweiApiClient.OnConnectionFailedListener onConnectionFailedListener) {
         Checker.checkNonNull(onConnectionFailedListener, "onConnectionFailedListener should not be null");
-        synchronized (this.r) {
-            if (this.w != onConnectionFailedListener) {
-                HMSLog.w("HuaweiApiClientImpl", "unregisterConnectionFailedListener: this onConnectionFailedListener has not been registered");
+        synchronized (this.f7145r) {
+            if (this.f7150w != onConnectionFailedListener) {
+                HMSLog.m7718w("HuaweiApiClientImpl", "unregisterConnectionFailedListener: this onConnectionFailedListener has not been registered");
             } else {
-                this.w = null;
+                this.f7150w = null;
             }
         }
     }
@@ -800,185 +851,192 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void removeConnectionSuccessListener(HuaweiApiClient.ConnectionCallbacks connectionCallbacks) {
         Checker.checkNonNull(connectionCallbacks, "connectionCallbacksListener should not be null");
-        synchronized (this.r) {
-            if (this.v != connectionCallbacks) {
-                HMSLog.w("HuaweiApiClientImpl", "unregisterConnectionCallback: this connectionCallbacksListener has not been registered");
+        synchronized (this.f7145r) {
+            if (this.f7149v != connectionCallbacks) {
+                HMSLog.m7718w("HuaweiApiClientImpl", "unregisterConnectionCallback: this connectionCallbacksListener has not been registered");
             } else {
-                this.v = null;
+                this.f7149v = null;
             }
         }
     }
 
     public void resetListener() {
-        this.z = null;
+        this.f7153z = null;
     }
 
     public void setApiMap(Map<Api<?>, Api.ApiOptions> map) {
-        this.n = map;
+        this.f7141n = map;
     }
 
     protected void setAutoLifecycleClientId(int i2) {
-        this.f6622a = i2;
+        this.f7128a = i2;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void setConnectionCallbacks(HuaweiApiClient.ConnectionCallbacks connectionCallbacks) {
-        this.v = connectionCallbacks;
+        this.f7149v = connectionCallbacks;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public void setConnectionFailedListener(HuaweiApiClient.OnConnectionFailedListener onConnectionFailedListener) {
-        this.w = onConnectionFailedListener;
+        this.f7150w = onConnectionFailedListener;
     }
 
     public void setHasShowNotice(boolean z) {
-        this.f6631j = z;
+        this.f7137j = z;
     }
 
     public void setPermissionInfos(List<PermissionInfo> list) {
-        this.f6634m = list;
+        this.f7140m = list;
     }
 
     public void setScopes(List<Scope> list) {
-        this.f6633l = list;
+        this.f7139l = list;
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public boolean setSubAppInfo(SubAppInfo subAppInfo) {
-        HMSLog.i("HuaweiApiClientImpl", "Enter setSubAppInfo");
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter setSubAppInfo");
         if (subAppInfo == null) {
-            HMSLog.e("HuaweiApiClientImpl", "subAppInfo is null");
+            HMSLog.m7715e("HuaweiApiClientImpl", "subAppInfo is null");
             return false;
         }
         String subAppID = subAppInfo.getSubAppID();
         if (TextUtils.isEmpty(subAppID)) {
-            HMSLog.e("HuaweiApiClientImpl", "subAppId is empty");
+            HMSLog.m7715e("HuaweiApiClientImpl", "subAppId is empty");
             return false;
         }
-        if (subAppID.equals(TextUtils.isEmpty(this.f6624c) ? Util.getAppId(this.f6623b) : this.f6624c)) {
-            HMSLog.e("HuaweiApiClientImpl", "subAppId is host appid");
+        if (subAppID.equals(TextUtils.isEmpty(this.f7130c) ? Util.getAppId(this.f7129b) : this.f7130c)) {
+            HMSLog.m7715e("HuaweiApiClientImpl", "subAppId is host appid");
             return false;
         }
-        this.o = new SubAppInfo(subAppInfo);
+        this.f7142o = new SubAppInfo(subAppInfo);
         return true;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void c(int i2) {
-        this.f6632k.set(i2);
+    /* renamed from: c */
+    public void m6635c(int i2) {
+        this.f7138k.set(i2);
         if (i2 == 1 || i2 == 3 || i2 == 2) {
-            this.s.lock();
+            this.f7146s.lock();
             try {
-                this.t.signalAll();
+                this.f7147t.signalAll();
             } finally {
-                this.s.unlock();
+                this.f7146s.unlock();
             }
         }
     }
 
-    private void b(int i2) {
+    /* renamed from: b */
+    private void m6629b(int i2) {
         PendingIntent pendingIntent;
-        WeakReference<Activity> weakReference = this.f6629h;
+        WeakReference<Activity> weakReference = this.f7135h;
         if (weakReference == null || weakReference.get() == null) {
             pendingIntent = null;
         } else {
-            pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f6629h.get(), i2);
-            HMSLog.i("HuaweiApiClientImpl", "connect 2.0 fail: " + i2);
+            pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f7135h.get(), i2);
+            HMSLog.m7717i("HuaweiApiClientImpl", "connect 2.0 fail: " + i2);
         }
         ConnectionResult connectionResult = new ConnectionResult(i2, pendingIntent);
-        this.w.onConnectionFailed(connectionResult);
-        this.u = connectionResult;
+        this.f7150w.onConnectionFailed(connectionResult);
+        this.f7148u = connectionResult;
     }
 
-    private void a() {
-        Intent intent = new Intent(HMSPackageManager.getInstance(this.f6623b).getServiceAction());
-        HMSPackageManager.getInstance(this.f6623b).refreshForMultiService();
+    /* renamed from: a */
+    private void m6622a() {
+        Intent intent = new Intent(HMSPackageManager.getInstance(this.f7129b).getServiceAction());
+        HMSPackageManager.getInstance(this.f7129b).refreshForMultiService();
         try {
-            String hMSPackageNameForMultiService = HMSPackageManager.getInstance(this.f6623b).getHMSPackageNameForMultiService();
+            String hMSPackageNameForMultiService = HMSPackageManager.getInstance(this.f7129b).getHMSPackageNameForMultiService();
             if (TextUtils.isEmpty(hMSPackageNameForMultiService)) {
-                HMSLog.e("HuaweiApiClientImpl", "servicePackageName is empty, Service is invalid, bind core service fail.");
-                c(1);
-                b();
+                HMSLog.m7715e("HuaweiApiClientImpl", "servicePackageName is empty, Service is invalid, bind core service fail.");
+                m6635c(1);
+                m6628b();
                 return;
             }
             intent.setPackage(hMSPackageNameForMultiService);
-            synchronized (A) {
-                if (this.f6623b.bindService(intent, this, 1)) {
-                    h();
+            synchronized (f7126A) {
+                if (this.f7129b.bindService(intent, this, 1)) {
+                    m6641h();
                     return;
                 }
-                c(1);
-                HMSLog.e("HuaweiApiClientImpl", "In connect, bind core service fail");
-                b();
+                m6635c(1);
+                HMSLog.m7715e("HuaweiApiClientImpl", "In connect, bind core service fail");
+                m6628b();
             }
         } catch (IllegalArgumentException unused) {
-            HMSLog.e("HuaweiApiClientImpl", "IllegalArgumentException when bindCoreService intent.setPackage");
-            c(1);
-            HMSLog.e("HuaweiApiClientImpl", "In connect, bind core service fail");
-            b();
+            HMSLog.m7715e("HuaweiApiClientImpl", "IllegalArgumentException when bindCoreService intent.setPackage");
+            m6635c(1);
+            HMSLog.m7715e("HuaweiApiClientImpl", "In connect, bind core service fail");
+            m6628b();
         }
     }
 
-    private ConnectInfo c() {
-        String packageSignature = new PackageManagerHelper(this.f6623b).getPackageSignature(this.f6623b.getPackageName());
+    /* renamed from: c */
+    private ConnectInfo m6633c() {
+        String packageSignature = new PackageManagerHelper(this.f7129b).getPackageSignature(this.f7129b.getPackageName());
         if (packageSignature == null) {
             packageSignature = "";
         }
-        SubAppInfo subAppInfo = this.o;
-        return new ConnectInfo(getApiNameList(), this.f6633l, packageSignature, subAppInfo == null ? null : subAppInfo.getSubAppID());
+        SubAppInfo subAppInfo = this.f7142o;
+        return new ConnectInfo(getApiNameList(), this.f7139l, packageSignature, subAppInfo == null ? null : subAppInfo.getSubAppID());
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void b() {
-        n();
-        if (this.w != null) {
-            int i2 = UIUtil.isBackground(this.f6623b) ? 7 : 6;
+    /* renamed from: b */
+    public void m6628b() {
+        m6647n();
+        if (this.f7150w != null) {
+            int i2 = UIUtil.isBackground(this.f7129b) ? 7 : 6;
             PendingIntent pendingIntent = null;
-            WeakReference<Activity> weakReference = this.f6629h;
+            WeakReference<Activity> weakReference = this.f7135h;
             if (weakReference != null && weakReference.get() != null) {
-                pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f6629h.get(), i2);
+                pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f7135h.get(), i2);
             }
             ConnectionResult connectionResult = new ConnectionResult(i2, pendingIntent);
-            this.w.onConnectionFailed(connectionResult);
-            this.u = connectionResult;
+            this.f7150w.onConnectionFailed(connectionResult);
+            this.f7148u = connectionResult;
         }
     }
 
-    private void c(ResolveResult<ConnectResp> resolveResult) {
+    /* renamed from: c */
+    private void m6636c(ResolveResult<ConnectResp> resolveResult) {
         if (resolveResult.getValue() != null) {
             ProtocolNegotiate.getInstance().negotiate(resolveResult.getValue().protocolVersion);
         }
-        c(3);
-        this.u = null;
-        HuaweiApiClient.ConnectionCallbacks connectionCallbacks = this.v;
+        m6635c(3);
+        this.f7148u = null;
+        HuaweiApiClient.ConnectionCallbacks connectionCallbacks = this.f7149v;
         if (connectionCallbacks != null) {
             connectionCallbacks.onConnected();
         }
-        if (this.f6629h != null) {
-            m();
+        if (this.f7135h != null) {
+            m6646m();
         }
         for (Map.Entry<Api<?>, Api.ApiOptions> entry : getApiMap().entrySet()) {
             if (entry.getKey().getmConnetctPostList() != null && !entry.getKey().getmConnetctPostList().isEmpty()) {
-                HMSLog.i("HuaweiApiClientImpl", "Enter onConnectionResult, get the ConnetctPostList ");
+                HMSLog.m7717i("HuaweiApiClientImpl", "Enter onConnectionResult, get the ConnetctPostList ");
                 for (ConnectionPostProcessor connectionPostProcessor : entry.getKey().getmConnetctPostList()) {
-                    HMSLog.i("HuaweiApiClientImpl", "Enter onConnectionResult, processor.run");
-                    connectionPostProcessor.run(this, this.f6629h);
+                    HMSLog.m7717i("HuaweiApiClientImpl", "Enter onConnectionResult, processor.run");
+                    connectionPostProcessor.run(this, this.f7135h);
                 }
             }
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void b(ResolveResult<DisconnectResp> resolveResult) {
-        HMSLog.i("HuaweiApiClientImpl", "Enter onDisconnectionResult, disconnect from server result: " + resolveResult.getStatus().getStatusCode());
-        n();
-        c(1);
+    /* renamed from: b */
+    public void m6632b(ResolveResult<DisconnectResp> resolveResult) {
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter onDisconnectionResult, disconnect from server result: " + resolveResult.getStatus().getStatusCode());
+        m6647n();
+        m6635c(1);
     }
 
     @Override // com.huawei.hms.api.HuaweiApiClient
     public ConnectionResult holdUpConnect(long j2, TimeUnit timeUnit) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            this.s.lock();
+            this.f7146s.lock();
             try {
                 connect((Activity) null);
                 long nanos = timeUnit.toNanos(j2);
@@ -987,19 +1045,19 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
                         disconnect();
                         return new ConnectionResult(14, (PendingIntent) null);
                     }
-                    nanos = this.t.awaitNanos(nanos);
+                    nanos = this.f7147t.awaitNanos(nanos);
                 }
                 if (isConnected()) {
-                    this.u = null;
+                    this.f7148u = null;
                     return new ConnectionResult(0, (PendingIntent) null);
                 }
-                ConnectionResult connectionResult = this.u;
+                ConnectionResult connectionResult = this.f7148u;
                 return connectionResult != null ? connectionResult : new ConnectionResult(13, (PendingIntent) null);
             } catch (InterruptedException unused) {
                 Thread.currentThread().interrupt();
                 return new ConnectionResult(15, (PendingIntent) null);
             } finally {
-                this.s.unlock();
+                this.f7146s.unlock();
             }
         }
         throw new IllegalStateException("blockingConnect must not be called on the UI thread");
@@ -1010,79 +1068,81 @@ public class HuaweiApiClientImpl extends HuaweiApiClient implements InnerApiClie
         connect((Activity) null);
     }
 
-    private void a(int i2) {
+    /* renamed from: a */
+    private void m6623a(int i2) {
         if (i2 == 2) {
-            synchronized (A) {
-                Handler handler = this.x;
+            synchronized (f7126A) {
+                Handler handler = this.f7151x;
                 if (handler != null) {
                     handler.removeMessages(i2);
-                    this.x = null;
+                    this.f7151x = null;
                 }
             }
         }
         if (i2 == 3) {
-            synchronized (B) {
-                Handler handler2 = this.y;
+            synchronized (f7127B) {
+                Handler handler2 = this.f7152y;
                 if (handler2 != null) {
                     handler2.removeMessages(i2);
-                    this.y = null;
+                    this.f7152y = null;
                 }
             }
         }
-        synchronized (A) {
-            Handler handler3 = this.x;
+        synchronized (f7126A) {
+            Handler handler3 = this.f7151x;
             if (handler3 != null) {
                 handler3.removeMessages(2);
-                this.x = null;
+                this.f7151x = null;
             }
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void a(ResolveResult<ConnectResp> resolveResult) {
-        HMSLog.i("HuaweiApiClientImpl", "Enter onConnectionResult");
-        if (this.f6627f != null && this.f6632k.get() == 2) {
-            a(3);
+    /* renamed from: a */
+    public void m6626a(ResolveResult<ConnectResp> resolveResult) {
+        HMSLog.m7717i("HuaweiApiClientImpl", "Enter onConnectionResult");
+        if (this.f7133f != null && this.f7138k.get() == 2) {
+            m6623a(3);
             ConnectResp value = resolveResult.getValue();
             if (value != null) {
-                this.f6628g = value.sessionId;
+                this.f7134g = value.sessionId;
             }
-            SubAppInfo subAppInfo = this.o;
+            SubAppInfo subAppInfo = this.f7142o;
             PendingIntent pendingIntent = null;
             String subAppID = subAppInfo == null ? null : subAppInfo.getSubAppID();
             if (!TextUtils.isEmpty(subAppID)) {
-                this.f6625d = subAppID;
+                this.f7131d = subAppID;
             }
             int statusCode = resolveResult.getStatus().getStatusCode();
-            HMSLog.i("HuaweiApiClientImpl", "Enter onConnectionResult, connect to server result: " + statusCode);
+            HMSLog.m7717i("HuaweiApiClientImpl", "Enter onConnectionResult, connect to server result: " + statusCode);
             if (Status.SUCCESS.equals(resolveResult.getStatus())) {
-                c(resolveResult);
+                m6636c(resolveResult);
                 return;
             }
             if (resolveResult.getStatus() != null && resolveResult.getStatus().getStatusCode() == 1001) {
-                n();
-                c(1);
-                HuaweiApiClient.ConnectionCallbacks connectionCallbacks = this.v;
+                m6647n();
+                m6635c(1);
+                HuaweiApiClient.ConnectionCallbacks connectionCallbacks = this.f7149v;
                 if (connectionCallbacks != null) {
                     connectionCallbacks.onConnectionSuspended(3);
                     return;
                 }
                 return;
             }
-            n();
-            c(1);
-            if (this.w != null) {
-                WeakReference<Activity> weakReference = this.f6629h;
+            m6647n();
+            m6635c(1);
+            if (this.f7150w != null) {
+                WeakReference<Activity> weakReference = this.f7135h;
                 if (weakReference != null && weakReference.get() != null) {
-                    pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f6629h.get(), statusCode);
+                    pendingIntent = HuaweiApiAvailability.getInstance().getResolveErrorPendingIntent(this.f7135h.get(), statusCode);
                 }
                 ConnectionResult connectionResult = new ConnectionResult(statusCode, pendingIntent);
-                this.w.onConnectionFailed(connectionResult);
-                this.u = connectionResult;
+                this.f7150w.onConnectionFailed(connectionResult);
+                this.f7148u = connectionResult;
                 return;
             }
             return;
         }
-        HMSLog.e("HuaweiApiClientImpl", "Invalid onConnectionResult");
+        HMSLog.m7715e("HuaweiApiClientImpl", "Invalid onConnectionResult");
     }
 }

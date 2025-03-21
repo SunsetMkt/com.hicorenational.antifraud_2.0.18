@@ -38,30 +38,30 @@ public class Config {
 
     @Deprecated
     public static int LinkedInShareCode = 0;
-    public static int connectionTimeOut = BuglyStrategy.a.MAX_USERDATA_VALUE_LENGTH;
-    public static int readSocketTimeOut = BuglyStrategy.a.MAX_USERDATA_VALUE_LENGTH;
+    public static int connectionTimeOut = BuglyStrategy.C3070a.MAX_USERDATA_VALUE_LENGTH;
+    public static int readSocketTimeOut = BuglyStrategy.C3070a.MAX_USERDATA_VALUE_LENGTH;
 
     @Deprecated
     public static boolean isNeedAuth = false;
     public static boolean isJumptoAppStore = false;
     public static boolean isFacebookRead = false;
 
-    /* renamed from: a, reason: collision with root package name */
-    private static int f11496a = 0;
+    /* renamed from: a */
+    private static int f13425a = 0;
 
     public static int getMINITYPE() {
-        return f11496a;
+        return f13425a;
     }
 
     public static void setMini() {
-        f11496a = 0;
+        f13425a = 0;
     }
 
     public static void setMiniPreView() {
-        f11496a = 2;
+        f13425a = 2;
     }
 
     public static void setMiniTest() {
-        f11496a = 1;
+        f13425a = 1;
     }
 }

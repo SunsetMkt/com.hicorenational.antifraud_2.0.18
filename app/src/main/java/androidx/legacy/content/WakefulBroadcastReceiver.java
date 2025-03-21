@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.util.SparseArray;
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 
 @Deprecated
 /* loaded from: classes.dex */
@@ -46,7 +46,7 @@ public abstract class WakefulBroadcastReceiver extends BroadcastReceiver {
             }
             PowerManager.WakeLock newWakeLock = ((PowerManager) context.getSystemService("power")).newWakeLock(1, "androidx.core:wake:" + startService.flattenToShortString());
             newWakeLock.setReferenceCounted(false);
-            newWakeLock.acquire(a.f5800d);
+            newWakeLock.acquire(C2084a.f6122d);
             sActiveWakeLocks.put(i2, newWakeLock);
             return startService;
         }

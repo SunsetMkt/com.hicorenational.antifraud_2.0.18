@@ -5,11 +5,12 @@ import android.text.TextUtils;
 import com.umeng.commonsdk.config.FieldManager;
 import com.umeng.commonsdk.framework.UMFrUtils;
 import com.umeng.commonsdk.framework.UMModuleRegister;
+import com.umeng.commonsdk.internal.C3474d;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
-import com.umeng.commonsdk.internal.utils.c;
-import com.umeng.commonsdk.internal.utils.k;
+import com.umeng.commonsdk.internal.utils.C3477c;
+import com.umeng.commonsdk.internal.utils.C3485k;
 import com.umeng.commonsdk.statistics.common.ULog;
-import com.umeng.commonsdk.utils.d;
+import com.umeng.commonsdk.utils.C3531d;
 
 /* loaded from: classes2.dex */
 public class UMInnerImpl {
@@ -30,16 +31,16 @@ public class UMInnerImpl {
                                         return;
                                     }
                                     try {
-                                        if (FieldManager.allow(d.ao) && !c.a(context).a()) {
-                                            c.a(context).b();
+                                        if (FieldManager.allow(C3531d.f12994ao) && !C3477c.m11646a(context).m11648a()) {
+                                            C3477c.m11646a(context).m11649b();
                                         }
                                     } catch (Throwable th) {
-                                        ULog.e(UMModuleRegister.INNER, "e is " + th);
+                                        ULog.m11777e(UMModuleRegister.INNER, "e is " + th);
                                     }
                                     try {
-                                        k.b(context);
+                                        C3485k.m11671b(context);
                                     } catch (Throwable th2) {
-                                        ULog.e(UMModuleRegister.INNER, "e is " + th2);
+                                        ULog.m11777e(UMModuleRegister.INNER, "e is " + th2);
                                     }
                                 } catch (Throwable th3) {
                                     UMCrashManager.reportCrash(context, th3);
@@ -67,9 +68,9 @@ public class UMInnerImpl {
                                 String packageName = context.getPackageName();
                                 if (!TextUtils.isEmpty(currentProcessName) && !TextUtils.isEmpty(packageName) && currentProcessName.equals(packageName)) {
                                     try {
-                                        com.umeng.commonsdk.internal.d.b(context);
+                                        C3474d.m11615b(context);
                                     } catch (Throwable th) {
-                                        ULog.e(UMModuleRegister.INNER, "e is " + th);
+                                        ULog.m11777e(UMModuleRegister.INNER, "e is " + th);
                                     }
                                 }
                             } catch (Throwable th2) {

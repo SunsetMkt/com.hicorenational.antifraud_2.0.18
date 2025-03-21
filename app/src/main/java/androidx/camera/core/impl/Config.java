@@ -3,11 +3,12 @@ package androidx.camera.core.impl;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.Set;
+import p031c.p035b.p036a.p037a.InterfaceC0950c;
 
 /* loaded from: classes.dex */
 public interface Config {
 
-    @c.b.a.a.c
+    @InterfaceC0950c
     public static abstract class Option<T> {
         Option() {
         }

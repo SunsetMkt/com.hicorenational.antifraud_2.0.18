@@ -18,7 +18,7 @@ public class DateUtil {
         try {
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(l2);
         } catch (Exception e2) {
-            HMSLog.e("DateUtil", "parseMilliSecondToString Exception.", e2);
+            HMSLog.m7716e("DateUtil", "parseMilliSecondToString Exception.", e2);
             return null;
         }
     }

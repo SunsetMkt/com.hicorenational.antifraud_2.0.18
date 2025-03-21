@@ -50,7 +50,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.customview.view.AbsSavedState;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.internal.CheckableImageButton;
 import com.google.android.material.internal.CollapsingTextHelper;
@@ -597,7 +597,7 @@ public class TextInputLayout extends LinearLayout {
             return;
         }
         if (this.passwordToggleView == null) {
-            this.passwordToggleView = (CheckableImageButton) LayoutInflater.from(getContext()).inflate(R.layout.design_text_input_password_icon, (ViewGroup) this.inputFrame, false);
+            this.passwordToggleView = (CheckableImageButton) LayoutInflater.from(getContext()).inflate(C1921R.layout.design_text_input_password_icon, (ViewGroup) this.inputFrame, false);
             this.passwordToggleView.setImageDrawable(this.passwordToggleDrawable);
             this.passwordToggleView.setContentDescription(this.passwordToggleContentDesc);
             this.inputFrame.addView(this.passwordToggleView);
@@ -1009,7 +1009,7 @@ public class TextInputLayout extends LinearLayout {
         if (this.counterEnabled != z) {
             if (z) {
                 this.counterView = new AppCompatTextView(getContext());
-                this.counterView.setId(R.id.textinput_counter);
+                this.counterView.setId(C1921R.id.textinput_counter);
                 Typeface typeface = this.typeface;
                 if (typeface != null) {
                     this.counterView.setTypeface(typeface);
@@ -1216,10 +1216,10 @@ public class TextInputLayout extends LinearLayout {
         L1b:
         L1c:
             if (r0 == 0) goto L30
-            int r4 = com.google.android.material.R.style.TextAppearance_AppCompat_Caption
+            int r4 = com.google.android.material.C1921R.style.TextAppearance_AppCompat_Caption
             androidx.core.widget.TextViewCompat.setTextAppearance(r3, r4)
             android.content.Context r4 = r2.getContext()
-            int r0 = com.google.android.material.R.color.design_error
+            int r0 = com.google.android.material.C1921R.color.design_error
             int r4 = androidx.core.content.ContextCompat.getColor(r4, r0)
             r3.setTextColor(r4)
         L30:
@@ -1265,8 +1265,8 @@ public class TextInputLayout extends LinearLayout {
                     ViewCompat.setAccessibilityLiveRegion(this.counterView, 1);
                 }
             }
-            this.counterView.setText(getContext().getString(R.string.character_counter_pattern, Integer.valueOf(i2), Integer.valueOf(this.counterMaxLength)));
-            this.counterView.setContentDescription(getContext().getString(R.string.character_counter_content_description, Integer.valueOf(i2), Integer.valueOf(this.counterMaxLength)));
+            this.counterView.setText(getContext().getString(C1921R.string.character_counter_pattern, Integer.valueOf(i2), Integer.valueOf(this.counterMaxLength)));
+            this.counterView.setContentDescription(getContext().getString(C1921R.string.character_counter_content_description, Integer.valueOf(i2), Integer.valueOf(this.counterMaxLength)));
         }
         if (this.editText == null || z == this.counterOverflowed) {
             return;
@@ -1334,7 +1334,7 @@ public class TextInputLayout extends LinearLayout {
     }
 
     public TextInputLayout(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.textInputStyle);
+        this(context, attributeSet, C1921R.attr.textInputStyle);
     }
 
     private void updateLabelState(boolean z, boolean z2) {
@@ -1388,53 +1388,53 @@ public class TextInputLayout extends LinearLayout {
         this.collapsingTextHelper.setTextSizeInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
         this.collapsingTextHelper.setPositionInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
         this.collapsingTextHelper.setCollapsedTextGravity(8388659);
-        TintTypedArray obtainTintedStyledAttributes = ThemeEnforcement.obtainTintedStyledAttributes(context, attributeSet, R.styleable.TextInputLayout, i2, R.style.Widget_Design_TextInputLayout, new int[0]);
-        this.hintEnabled = obtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_hintEnabled, true);
-        setHint(obtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_android_hint));
-        this.hintAnimationEnabled = obtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_hintAnimationEnabled, true);
-        this.boxBottomOffsetPx = context.getResources().getDimensionPixelOffset(R.dimen.mtrl_textinput_box_bottom_offset);
-        this.boxLabelCutoutPaddingPx = context.getResources().getDimensionPixelOffset(R.dimen.mtrl_textinput_box_label_cutout_padding);
-        this.boxCollapsedPaddingTopPx = obtainTintedStyledAttributes.getDimensionPixelOffset(R.styleable.TextInputLayout_boxCollapsedPaddingTop, 0);
-        this.boxCornerRadiusTopStart = obtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusTopStart, 0.0f);
-        this.boxCornerRadiusTopEnd = obtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusTopEnd, 0.0f);
-        this.boxCornerRadiusBottomEnd = obtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusBottomEnd, 0.0f);
-        this.boxCornerRadiusBottomStart = obtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusBottomStart, 0.0f);
-        this.boxBackgroundColor = obtainTintedStyledAttributes.getColor(R.styleable.TextInputLayout_boxBackgroundColor, 0);
-        this.focusedStrokeColor = obtainTintedStyledAttributes.getColor(R.styleable.TextInputLayout_boxStrokeColor, 0);
-        this.boxStrokeWidthDefaultPx = context.getResources().getDimensionPixelSize(R.dimen.mtrl_textinput_box_stroke_width_default);
-        this.boxStrokeWidthFocusedPx = context.getResources().getDimensionPixelSize(R.dimen.mtrl_textinput_box_stroke_width_focused);
+        TintTypedArray obtainTintedStyledAttributes = ThemeEnforcement.obtainTintedStyledAttributes(context, attributeSet, C1921R.styleable.TextInputLayout, i2, C1921R.style.Widget_Design_TextInputLayout, new int[0]);
+        this.hintEnabled = obtainTintedStyledAttributes.getBoolean(C1921R.styleable.TextInputLayout_hintEnabled, true);
+        setHint(obtainTintedStyledAttributes.getText(C1921R.styleable.TextInputLayout_android_hint));
+        this.hintAnimationEnabled = obtainTintedStyledAttributes.getBoolean(C1921R.styleable.TextInputLayout_hintAnimationEnabled, true);
+        this.boxBottomOffsetPx = context.getResources().getDimensionPixelOffset(C1921R.dimen.mtrl_textinput_box_bottom_offset);
+        this.boxLabelCutoutPaddingPx = context.getResources().getDimensionPixelOffset(C1921R.dimen.mtrl_textinput_box_label_cutout_padding);
+        this.boxCollapsedPaddingTopPx = obtainTintedStyledAttributes.getDimensionPixelOffset(C1921R.styleable.TextInputLayout_boxCollapsedPaddingTop, 0);
+        this.boxCornerRadiusTopStart = obtainTintedStyledAttributes.getDimension(C1921R.styleable.TextInputLayout_boxCornerRadiusTopStart, 0.0f);
+        this.boxCornerRadiusTopEnd = obtainTintedStyledAttributes.getDimension(C1921R.styleable.TextInputLayout_boxCornerRadiusTopEnd, 0.0f);
+        this.boxCornerRadiusBottomEnd = obtainTintedStyledAttributes.getDimension(C1921R.styleable.TextInputLayout_boxCornerRadiusBottomEnd, 0.0f);
+        this.boxCornerRadiusBottomStart = obtainTintedStyledAttributes.getDimension(C1921R.styleable.TextInputLayout_boxCornerRadiusBottomStart, 0.0f);
+        this.boxBackgroundColor = obtainTintedStyledAttributes.getColor(C1921R.styleable.TextInputLayout_boxBackgroundColor, 0);
+        this.focusedStrokeColor = obtainTintedStyledAttributes.getColor(C1921R.styleable.TextInputLayout_boxStrokeColor, 0);
+        this.boxStrokeWidthDefaultPx = context.getResources().getDimensionPixelSize(C1921R.dimen.mtrl_textinput_box_stroke_width_default);
+        this.boxStrokeWidthFocusedPx = context.getResources().getDimensionPixelSize(C1921R.dimen.mtrl_textinput_box_stroke_width_focused);
         this.boxStrokeWidthPx = this.boxStrokeWidthDefaultPx;
-        setBoxBackgroundMode(obtainTintedStyledAttributes.getInt(R.styleable.TextInputLayout_boxBackgroundMode, 0));
-        if (obtainTintedStyledAttributes.hasValue(R.styleable.TextInputLayout_android_textColorHint)) {
-            ColorStateList colorStateList = obtainTintedStyledAttributes.getColorStateList(R.styleable.TextInputLayout_android_textColorHint);
+        setBoxBackgroundMode(obtainTintedStyledAttributes.getInt(C1921R.styleable.TextInputLayout_boxBackgroundMode, 0));
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.TextInputLayout_android_textColorHint)) {
+            ColorStateList colorStateList = obtainTintedStyledAttributes.getColorStateList(C1921R.styleable.TextInputLayout_android_textColorHint);
             this.focusedTextColor = colorStateList;
             this.defaultHintTextColor = colorStateList;
         }
-        this.defaultStrokeColor = ContextCompat.getColor(context, R.color.mtrl_textinput_default_box_stroke_color);
-        this.disabledColor = ContextCompat.getColor(context, R.color.mtrl_textinput_disabled_color);
-        this.hoveredStrokeColor = ContextCompat.getColor(context, R.color.mtrl_textinput_hovered_box_stroke_color);
-        if (obtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_hintTextAppearance, -1) != -1) {
-            setHintTextAppearance(obtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_hintTextAppearance, 0));
+        this.defaultStrokeColor = ContextCompat.getColor(context, C1921R.color.mtrl_textinput_default_box_stroke_color);
+        this.disabledColor = ContextCompat.getColor(context, C1921R.color.mtrl_textinput_disabled_color);
+        this.hoveredStrokeColor = ContextCompat.getColor(context, C1921R.color.mtrl_textinput_hovered_box_stroke_color);
+        if (obtainTintedStyledAttributes.getResourceId(C1921R.styleable.TextInputLayout_hintTextAppearance, -1) != -1) {
+            setHintTextAppearance(obtainTintedStyledAttributes.getResourceId(C1921R.styleable.TextInputLayout_hintTextAppearance, 0));
         }
-        int resourceId = obtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_errorTextAppearance, 0);
-        boolean z = obtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_errorEnabled, false);
-        int resourceId2 = obtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_helperTextTextAppearance, 0);
-        boolean z2 = obtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_helperTextEnabled, false);
-        CharSequence text = obtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_helperText);
-        boolean z3 = obtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_counterEnabled, false);
-        setCounterMaxLength(obtainTintedStyledAttributes.getInt(R.styleable.TextInputLayout_counterMaxLength, -1));
-        this.counterTextAppearance = obtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_counterTextAppearance, 0);
-        this.counterOverflowTextAppearance = obtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_counterOverflowTextAppearance, 0);
-        this.passwordToggleEnabled = obtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_passwordToggleEnabled, false);
-        this.passwordToggleDrawable = obtainTintedStyledAttributes.getDrawable(R.styleable.TextInputLayout_passwordToggleDrawable);
-        this.passwordToggleContentDesc = obtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_passwordToggleContentDescription);
-        if (obtainTintedStyledAttributes.hasValue(R.styleable.TextInputLayout_passwordToggleTint)) {
+        int resourceId = obtainTintedStyledAttributes.getResourceId(C1921R.styleable.TextInputLayout_errorTextAppearance, 0);
+        boolean z = obtainTintedStyledAttributes.getBoolean(C1921R.styleable.TextInputLayout_errorEnabled, false);
+        int resourceId2 = obtainTintedStyledAttributes.getResourceId(C1921R.styleable.TextInputLayout_helperTextTextAppearance, 0);
+        boolean z2 = obtainTintedStyledAttributes.getBoolean(C1921R.styleable.TextInputLayout_helperTextEnabled, false);
+        CharSequence text = obtainTintedStyledAttributes.getText(C1921R.styleable.TextInputLayout_helperText);
+        boolean z3 = obtainTintedStyledAttributes.getBoolean(C1921R.styleable.TextInputLayout_counterEnabled, false);
+        setCounterMaxLength(obtainTintedStyledAttributes.getInt(C1921R.styleable.TextInputLayout_counterMaxLength, -1));
+        this.counterTextAppearance = obtainTintedStyledAttributes.getResourceId(C1921R.styleable.TextInputLayout_counterTextAppearance, 0);
+        this.counterOverflowTextAppearance = obtainTintedStyledAttributes.getResourceId(C1921R.styleable.TextInputLayout_counterOverflowTextAppearance, 0);
+        this.passwordToggleEnabled = obtainTintedStyledAttributes.getBoolean(C1921R.styleable.TextInputLayout_passwordToggleEnabled, false);
+        this.passwordToggleDrawable = obtainTintedStyledAttributes.getDrawable(C1921R.styleable.TextInputLayout_passwordToggleDrawable);
+        this.passwordToggleContentDesc = obtainTintedStyledAttributes.getText(C1921R.styleable.TextInputLayout_passwordToggleContentDescription);
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.TextInputLayout_passwordToggleTint)) {
             this.hasPasswordToggleTintList = true;
-            this.passwordToggleTintList = obtainTintedStyledAttributes.getColorStateList(R.styleable.TextInputLayout_passwordToggleTint);
+            this.passwordToggleTintList = obtainTintedStyledAttributes.getColorStateList(C1921R.styleable.TextInputLayout_passwordToggleTint);
         }
-        if (obtainTintedStyledAttributes.hasValue(R.styleable.TextInputLayout_passwordToggleTintMode)) {
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.TextInputLayout_passwordToggleTintMode)) {
             this.hasPasswordToggleTintMode = true;
-            this.passwordToggleTintMode = ViewUtils.parseTintMode(obtainTintedStyledAttributes.getInt(R.styleable.TextInputLayout_passwordToggleTintMode, -1), null);
+            this.passwordToggleTintMode = ViewUtils.parseTintMode(obtainTintedStyledAttributes.getInt(C1921R.styleable.TextInputLayout_passwordToggleTintMode, -1), null);
         }
         obtainTintedStyledAttributes.recycle();
         setHelperTextEnabled(z2);

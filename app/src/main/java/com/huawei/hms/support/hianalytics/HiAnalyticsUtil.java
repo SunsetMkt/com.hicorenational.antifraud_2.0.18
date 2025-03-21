@@ -15,27 +15,28 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class HiAnalyticsUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final Object f7288a = new Object();
+    /* renamed from: a */
+    private static final Object f7859a = new Object();
 
-    /* renamed from: b, reason: collision with root package name */
-    private static HiAnalyticsUtil f7289b;
+    /* renamed from: b */
+    private static HiAnalyticsUtil f7860b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static HiAnalyticsUtils f7290c;
+    /* renamed from: c */
+    private static HiAnalyticsUtils f7861c;
 
-    private String a(Context context, String str) {
+    /* renamed from: a */
+    private String m7694a(Context context, String str) {
         return "01|" + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + context.getPackageName() + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + Util.getAppId(context) + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + 61100302 + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + str;
     }
 
     public static HiAnalyticsUtil getInstance() {
         HiAnalyticsUtil hiAnalyticsUtil;
-        synchronized (f7288a) {
-            if (f7289b == null) {
-                f7289b = new HiAnalyticsUtil();
-                f7290c = HiAnalyticsUtils.getInstance();
+        synchronized (f7859a) {
+            if (f7860b == null) {
+                f7860b = new HiAnalyticsUtil();
+                f7861c = HiAnalyticsUtils.getInstance();
             }
-            hiAnalyticsUtil = f7289b;
+            hiAnalyticsUtil = f7860b;
         }
         return hiAnalyticsUtil;
     }
@@ -127,34 +128,34 @@ public class HiAnalyticsUtil {
         if (SystemUtils.isChinaROM()) {
             return false;
         }
-        HMSLog.i("HiAnalyticsUtil", "not ChinaROM ");
+        HMSLog.m7717i("HiAnalyticsUtil", "not ChinaROM ");
         return true;
     }
 
     public void onBuoyEvent(Context context, String str, String str2) {
-        f7290c.onBuoyEvent(context, str, str2);
+        f7861c.onBuoyEvent(context, str, str2);
     }
 
     public void onEvent(Context context, String str, Map<String, String> map) {
-        f7290c.onEvent(context, str, map);
+        f7861c.onEvent(context, str, map);
     }
 
     public void onEvent2(Context context, String str, String str2) {
-        f7290c.onEvent2(context, str, str2);
+        f7861c.onEvent2(context, str, str2);
     }
 
     public void onNewEvent(Context context, String str, Map map) {
-        f7290c.onNewEvent(context, str, map);
+        f7861c.onNewEvent(context, str, map);
     }
 
     public void onEvent(Context context, String str, String str2) {
         if (context != null) {
-            onEvent2(context, str, a(context, str2));
+            onEvent2(context, str, m7694a(context, str2));
         }
     }
 
     public boolean hasError(Context context) {
-        return f7290c.hasError(context);
+        return f7861c.hasError(context);
     }
 
     public Map<String, String> getMapFromRequestHeader(RequestHeader requestHeader) {

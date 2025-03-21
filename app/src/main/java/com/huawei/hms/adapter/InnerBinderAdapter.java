@@ -2,16 +2,16 @@ package com.huawei.hms.adapter;
 
 import android.content.Context;
 import com.huawei.hms.support.log.HMSLog;
-import ui.activity.BaseProgressUploadActivity;
+import p388ui.activity.BaseProgressUploadActivity;
 
 /* loaded from: classes.dex */
 public class InnerBinderAdapter extends BinderAdapter {
 
-    /* renamed from: j, reason: collision with root package name */
-    private static final Object f6578j = new Object();
+    /* renamed from: j */
+    private static final Object f7078j = new Object();
 
-    /* renamed from: k, reason: collision with root package name */
-    private static BinderAdapter f6579k;
+    /* renamed from: k */
+    private static BinderAdapter f7079k;
 
     private InnerBinderAdapter(Context context, String str, String str2) {
         super(context, str, str2);
@@ -19,12 +19,12 @@ public class InnerBinderAdapter extends BinderAdapter {
 
     public static BinderAdapter getInstance(Context context, String str, String str2) {
         BinderAdapter binderAdapter;
-        HMSLog.i("InnerBinderAdapter", "InnerBinderAdapter getInstance.");
-        synchronized (f6578j) {
-            if (f6579k == null) {
-                f6579k = new InnerBinderAdapter(context, str, str2);
+        HMSLog.m7717i("InnerBinderAdapter", "InnerBinderAdapter getInstance.");
+        synchronized (f7078j) {
+            if (f7079k == null) {
+                f7079k = new InnerBinderAdapter(context, str, str2);
             }
-            binderAdapter = f6579k;
+            binderAdapter = f7079k;
         }
         return binderAdapter;
     }

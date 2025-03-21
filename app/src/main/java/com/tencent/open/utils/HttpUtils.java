@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.tencent.connect.auth.QQToken;
+import com.tencent.connect.p207a.C3203a;
+import com.tencent.open.log.C3277d;
 import com.tencent.open.log.SLog;
+import com.tencent.open.p211a.C3255f;
+import com.tencent.open.p211a.InterfaceC3256g;
 import com.tencent.tauth.IRequestListener;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.CharConversionException;
@@ -66,30 +70,33 @@ public class HttpUtils {
     }
 
     /* compiled from: ProGuard */
-    public static class a {
+    /* renamed from: com.tencent.open.utils.HttpUtils$a */
+    public static class C3282a {
 
-        /* renamed from: a, reason: collision with root package name */
-        public final String f9898a;
+        /* renamed from: a */
+        public final String f11283a;
 
-        /* renamed from: b, reason: collision with root package name */
-        public final int f9899b;
+        /* renamed from: b */
+        public final int f11284b;
 
-        private a(String str, int i2) {
-            this.f9898a = str;
-            this.f9899b = i2;
+        private C3282a(String str, int i2) {
+            this.f11283a = str;
+            this.f11284b = i2;
         }
     }
 
     private HttpUtils() {
     }
 
-    private static void a(Context context, QQToken qQToken, String str) {
+    /* renamed from: a */
+    private static void m10569a(Context context, QQToken qQToken, String str) {
         if (str.indexOf("add_share") > -1 || str.indexOf("upload_pic") > -1 || str.indexOf("add_topic") > -1 || str.indexOf("set_user_face") > -1 || str.indexOf("add_t") > -1 || str.indexOf("add_pic_t") > -1 || str.indexOf("add_pic_url") > -1 || str.indexOf("add_video") > -1) {
-            com.tencent.connect.a.a.a(context, qQToken, "requireApi", str);
+            C3203a.m10154a(context, qQToken, "requireApi", str);
         }
     }
 
-    private static Map<String, byte[]> b(Bundle bundle) {
+    /* renamed from: b */
+    private static Map<String, byte[]> m10571b(Bundle bundle) {
         HashMap hashMap = new HashMap(0);
         if (bundle != null && bundle.size() != 0) {
             for (String str : bundle.keySet()) {
@@ -103,7 +110,7 @@ public class HttpUtils {
     }
 
     public static String encodeUrl(Bundle bundle) {
-        return encodeUrl(a(bundle));
+        return encodeUrl(m10568a(bundle));
     }
 
     public static int getErrorCodeFromException(IOException iOException) {
@@ -206,7 +213,7 @@ public class HttpUtils {
         return iOException instanceof ZipException ? -54 : -2;
     }
 
-    public static a getProxy(Context context) {
+    public static C3282a getProxy(Context context) {
         ConnectivityManager connectivityManager;
         NetworkInfo networkInfo;
         if (context == null || (connectivityManager = (ConnectivityManager) context.getSystemService("connectivity")) == null) {
@@ -218,10 +225,10 @@ public class HttpUtils {
             networkInfo = null;
         }
         if (networkInfo != null && networkInfo.getType() == 0) {
-            String b2 = b(context);
-            int a2 = a(context);
-            if (!TextUtils.isEmpty(b2) && a2 >= 0) {
-                return new a(b2, a2);
+            String m10570b = m10570b(context);
+            int m10566a = m10566a(context);
+            if (!TextUtils.isEmpty(m10570b) && m10566a >= 0) {
+                return new C3282a(m10570b, m10566a);
             }
         }
         return null;
@@ -242,57 +249,57 @@ public class HttpUtils {
     }
 
     public static void requestAsync(final QQToken qQToken, final Context context, final String str, final Bundle bundle, final String str2, final IRequestListener iRequestListener) {
-        SLog.i("openSDK_LOG.HttpUtils", "OpenApi requestAsync");
-        l.a(new Runnable() { // from class: com.tencent.open.utils.HttpUtils.1
+        SLog.m10502i("openSDK_LOG.HttpUtils", "OpenApi requestAsync");
+        C3294l.m10654a(new Runnable() { // from class: com.tencent.open.utils.HttpUtils.1
             @Override // java.lang.Runnable
             public void run() {
                 try {
                     JSONObject request = HttpUtils.request(QQToken.this, context, str, bundle, str2);
                     if (iRequestListener != null) {
                         iRequestListener.onComplete(request);
-                        SLog.i("openSDK_LOG.HttpUtils", "OpenApi onComplete");
+                        SLog.m10502i("openSDK_LOG.HttpUtils", "OpenApi onComplete");
                     }
                 } catch (HttpStatusException e2) {
                     IRequestListener iRequestListener2 = iRequestListener;
                     if (iRequestListener2 != null) {
                         iRequestListener2.onHttpStatusException(e2);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onHttpStatusException" + e2.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onHttpStatusException" + e2.toString());
                     }
                 } catch (NetworkUnavailableException e3) {
                     IRequestListener iRequestListener3 = iRequestListener;
                     if (iRequestListener3 != null) {
                         iRequestListener3.onNetworkUnavailableException(e3);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onNetworkUnavailableException" + e3.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onNetworkUnavailableException" + e3.toString());
                     }
                 } catch (MalformedURLException e4) {
                     IRequestListener iRequestListener4 = iRequestListener;
                     if (iRequestListener4 != null) {
                         iRequestListener4.onMalformedURLException(e4);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync MalformedURLException" + e4.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync MalformedURLException" + e4.toString());
                     }
                 } catch (SocketTimeoutException e5) {
                     IRequestListener iRequestListener5 = iRequestListener;
                     if (iRequestListener5 != null) {
                         iRequestListener5.onSocketTimeoutException(e5);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onSocketTimeoutException" + e5.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onSocketTimeoutException" + e5.toString());
                     }
                 } catch (IOException e6) {
                     IRequestListener iRequestListener6 = iRequestListener;
                     if (iRequestListener6 != null) {
                         iRequestListener6.onIOException(e6);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync IOException" + e6.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync IOException" + e6.toString());
                     }
                 } catch (JSONException e7) {
                     IRequestListener iRequestListener7 = iRequestListener;
                     if (iRequestListener7 != null) {
                         iRequestListener7.onJSONException(e7);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync JSONException" + e7.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync JSONException" + e7.toString());
                     }
                 } catch (Exception e8) {
                     IRequestListener iRequestListener8 = iRequestListener;
                     if (iRequestListener8 != null) {
                         iRequestListener8.onUnknowException(e8);
-                        SLog.e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onUnknowException" + e8.toString());
+                        SLog.m10500e("openSDK_LOG.HttpUtils", "OpenApi requestAsync onUnknowException" + e8.toString());
                     }
                 }
             }
@@ -334,7 +341,8 @@ public class HttpUtils {
         return sb.toString();
     }
 
-    private static String b(Context context) {
+    /* renamed from: b */
+    private static String m10570b(Context context) {
         if (Build.VERSION.SDK_INT >= 11) {
             return System.getProperty("http.proxyHost");
         }
@@ -345,7 +353,8 @@ public class HttpUtils {
         return Proxy.getDefaultHost();
     }
 
-    private static com.tencent.open.a.g a(String str, String str2, Bundle bundle) throws IOException {
+    /* renamed from: a */
+    private static InterfaceC3256g m10567a(String str, String str2, Bundle bundle) throws IOException {
         Bundle bundle2;
         if (bundle != null) {
             bundle2 = new Bundle(bundle);
@@ -353,35 +362,36 @@ public class HttpUtils {
             bundle2 = new Bundle();
         }
         if (str2.equalsIgnoreCase("GET")) {
-            Map<String, String> a2 = a(bundle2);
-            Bundle b2 = com.tencent.open.log.d.b(bundle2);
-            if (b2 != bundle2) {
-                SLog.i("openSDK_LOG.HttpUtils", "-->openUrl encodedParam =" + b2.toString() + " -- url = " + str);
+            Map<String, String> m10568a = m10568a(bundle2);
+            Bundle m10548b = C3277d.m10548b(bundle2);
+            if (m10548b != bundle2) {
+                SLog.m10502i("openSDK_LOG.HttpUtils", "-->openUrl encodedParam =" + m10548b.toString() + " -- url = " + str);
             } else {
-                SLog.i("openSDK_LOG.HttpUtils", "-->openUrl encodedParam =" + a2.toString() + " -- url = " + str);
+                SLog.m10502i("openSDK_LOG.HttpUtils", "-->openUrl encodedParam =" + m10568a.toString() + " -- url = " + str);
             }
-            return com.tencent.open.a.f.a().a(str, a2);
+            return C3255f.m10416a().m10420a(str, m10568a);
         }
         if (str2.equalsIgnoreCase("POST")) {
-            Map<String, String> a3 = a(bundle2);
-            Map<String, byte[]> b3 = b(bundle2);
-            if (b3 != null && b3.size() != 0) {
-                SLog.w("openSDK_LOG.HttpUtils", "openUrl: has binary " + b3.size());
-                return com.tencent.open.a.f.a().a(str, a3, b3);
+            Map<String, String> m10568a2 = m10568a(bundle2);
+            Map<String, byte[]> m10571b = m10571b(bundle2);
+            if (m10571b != null && m10571b.size() != 0) {
+                SLog.m10508w("openSDK_LOG.HttpUtils", "openUrl: has binary " + m10571b.size());
+                return C3255f.m10416a().m10421a(str, m10568a2, m10571b);
             }
-            return com.tencent.open.a.f.a().b(str, a3);
+            return C3255f.m10416a().m10424b(str, m10568a2);
         }
-        SLog.e("openSDK_LOG.HttpUtils", "openUrl: http method " + str2 + " is not supported.");
+        SLog.m10500e("openSDK_LOG.HttpUtils", "openUrl: http method " + str2 + " is not supported.");
         throw new IOException("http method is not supported.");
     }
 
-    private static Map<String, String> a(Bundle bundle) {
+    /* renamed from: a */
+    private static Map<String, String> m10568a(Bundle bundle) {
         HashMap hashMap = new HashMap();
         if (bundle != null && bundle.size() != 0) {
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
                 if (!(obj instanceof String) && !(obj instanceof String[])) {
-                    SLog.w("openSDK_LOG.HttpUtils", "parseBundleToMap: the type " + obj.getClass() + " is unsupported");
+                    SLog.m10508w("openSDK_LOG.HttpUtils", "parseBundleToMap: the type " + obj.getClass() + " is unsupported");
                 } else if (obj instanceof String[]) {
                     String[] strArr = (String[]) obj;
                     StringBuilder sb = new StringBuilder();
@@ -400,7 +410,8 @@ public class HttpUtils {
         return hashMap;
     }
 
-    private static int a(Context context) {
+    /* renamed from: a */
+    private static int m10566a(Context context) {
         if (Build.VERSION.SDK_INT < 11) {
             if (context != null) {
                 int port = Proxy.getPort(context);

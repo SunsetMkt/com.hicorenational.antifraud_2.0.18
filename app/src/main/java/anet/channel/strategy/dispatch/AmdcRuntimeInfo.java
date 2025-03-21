@@ -79,7 +79,7 @@ public class AmdcRuntimeInfo {
     }
 
     public static void updateAmdcLimit(int i2, int i3) {
-        ALog.i(TAG, "set amdc limit", null, "level", Integer.valueOf(i2), "time", Integer.valueOf(i3));
+        ALog.m716i(TAG, "set amdc limit", null, "level", Integer.valueOf(i2), "time", Integer.valueOf(i3));
         if (i2 < 0 || i2 > 3) {
             return;
         }

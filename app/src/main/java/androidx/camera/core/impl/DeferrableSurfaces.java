@@ -17,21 +17,23 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 public final class DeferrableSurfaces {
     private DeferrableSurfaces() {
     }
 
-    static /* synthetic */ Object a(List list, ScheduledExecutorService scheduledExecutorService, final Executor executor, final long j2, final boolean z, final CallbackToFutureAdapter.Completer completer) throws Exception {
-        final c.b.b.a.a.a successfulAsList = Futures.successfulAsList(list);
+    /* renamed from: a */
+    static /* synthetic */ Object m367a(List list, ScheduledExecutorService scheduledExecutorService, final Executor executor, final long j2, final boolean z, final CallbackToFutureAdapter.Completer completer) throws Exception {
+        final InterfaceFutureC0952a successfulAsList = Futures.successfulAsList(list);
         final ScheduledFuture<?> schedule = scheduledExecutorService.schedule(new Runnable() { // from class: androidx.camera.core.impl.d
             @Override // java.lang.Runnable
             public final void run() {
                 executor.execute(new Runnable() { // from class: androidx.camera.core.impl.g
                     @Override // java.lang.Runnable
                     public final void run() {
-                        DeferrableSurfaces.a(c.b.b.a.a.a.this, r2, r3);
+                        DeferrableSurfaces.m369a(InterfaceFutureC0952a.this, r2, r3);
                     }
                 });
             }
@@ -39,7 +41,7 @@ public final class DeferrableSurfaces {
         completer.addCancellationListener(new Runnable() { // from class: androidx.camera.core.impl.e
             @Override // java.lang.Runnable
             public final void run() {
-                c.b.b.a.a.a.this.cancel(true);
+                InterfaceFutureC0952a.this.cancel(true);
             }
         }, executor);
         Futures.addCallback(successfulAsList, new FutureCallback<List<Surface>>() { // from class: androidx.camera.core.impl.DeferrableSurfaces.1
@@ -88,7 +90,7 @@ public final class DeferrableSurfaces {
     }
 
     @NonNull
-    public static c.b.b.a.a.a<List<Surface>> surfaceListWithTimeout(@NonNull Collection<DeferrableSurface> collection, final boolean z, final long j2, @NonNull final Executor executor, @NonNull final ScheduledExecutorService scheduledExecutorService) {
+    public static InterfaceFutureC0952a<List<Surface>> surfaceListWithTimeout(@NonNull Collection<DeferrableSurface> collection, final boolean z, final long j2, @NonNull final Executor executor, @NonNull final ScheduledExecutorService scheduledExecutorService) {
         final ArrayList arrayList = new ArrayList();
         Iterator<DeferrableSurface> it = collection.iterator();
         while (it.hasNext()) {
@@ -97,7 +99,7 @@ public final class DeferrableSurfaces {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.f
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return DeferrableSurfaces.a(arrayList, scheduledExecutorService, executor, j2, z, completer);
+                return DeferrableSurfaces.m367a(arrayList, scheduledExecutorService, executor, j2, z, completer);
             }
         });
     }
@@ -111,11 +113,12 @@ public final class DeferrableSurfaces {
         }
     }
 
-    static /* synthetic */ void a(c.b.b.a.a.a aVar, CallbackToFutureAdapter.Completer completer, long j2) {
-        if (aVar.isDone()) {
+    /* renamed from: a */
+    static /* synthetic */ void m369a(InterfaceFutureC0952a interfaceFutureC0952a, CallbackToFutureAdapter.Completer completer, long j2) {
+        if (interfaceFutureC0952a.isDone()) {
             return;
         }
         completer.setException(new TimeoutException("Cannot complete surfaceList within " + j2));
-        aVar.cancel(true);
+        interfaceFutureC0952a.cancel(true);
     }
 }

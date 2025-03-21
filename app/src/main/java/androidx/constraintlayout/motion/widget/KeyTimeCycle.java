@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
-import androidx.constraintlayout.widget.R;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.core.app.NotificationCompat;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -57,25 +57,25 @@ public class KeyTimeCycle extends Key {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_alpha, 1);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_elevation, 2);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_rotation, 4);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_rotationX, 5);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_rotationY, 6);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_scaleX, 7);
-            mAttrMap.append(R.styleable.KeyTimeCycle_transitionPathRotate, 8);
-            mAttrMap.append(R.styleable.KeyTimeCycle_transitionEasing, 9);
-            mAttrMap.append(R.styleable.KeyTimeCycle_motionTarget, 10);
-            mAttrMap.append(R.styleable.KeyTimeCycle_framePosition, 12);
-            mAttrMap.append(R.styleable.KeyTimeCycle_curveFit, 13);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_scaleY, 14);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_translationX, 15);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_translationY, 16);
-            mAttrMap.append(R.styleable.KeyTimeCycle_android_translationZ, 17);
-            mAttrMap.append(R.styleable.KeyTimeCycle_motionProgress, 18);
-            mAttrMap.append(R.styleable.KeyTimeCycle_wavePeriod, 20);
-            mAttrMap.append(R.styleable.KeyTimeCycle_waveOffset, 21);
-            mAttrMap.append(R.styleable.KeyTimeCycle_waveShape, 19);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_alpha, 1);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_elevation, 2);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_rotation, 4);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_rotationX, 5);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_rotationY, 6);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_scaleX, 7);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_transitionPathRotate, 8);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_transitionEasing, 9);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_motionTarget, 10);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_framePosition, 12);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_curveFit, 13);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_scaleY, 14);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_translationX, 15);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_translationY, 16);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_android_translationZ, 17);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_motionProgress, 18);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_wavePeriod, 20);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_waveOffset, 21);
+            mAttrMap.append(C0471R.styleable.KeyTimeCycle_waveShape, 19);
         }
 
         private Loader() {
@@ -250,7 +250,7 @@ public class KeyTimeCycle extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyTimeCycle));
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyTimeCycle));
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key

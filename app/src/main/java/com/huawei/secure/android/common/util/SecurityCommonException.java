@@ -3,24 +3,24 @@ package com.huawei.secure.android.common.util;
 /* loaded from: classes.dex */
 public class SecurityCommonException extends Exception {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final long f7703c = 1;
+    /* renamed from: c */
+    private static final long f8285c = 1;
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f7704a;
+    /* renamed from: a */
+    private String f8286a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f7705b;
+    /* renamed from: b */
+    private String f8287b;
 
     public SecurityCommonException() {
     }
 
     public String getMsgDes() {
-        return this.f7705b;
+        return this.f8287b;
     }
 
     public String getRetCd() {
-        return this.f7704a;
+        return this.f8286a;
     }
 
     public SecurityCommonException(Throwable th) {
@@ -33,11 +33,11 @@ public class SecurityCommonException extends Exception {
 
     public SecurityCommonException(String str) {
         super(str);
-        this.f7705b = str;
+        this.f8287b = str;
     }
 
     public SecurityCommonException(String str, String str2) {
-        this.f7704a = str;
-        this.f7705b = str2;
+        this.f8286a = str;
+        this.f8287b = str2;
     }
 }

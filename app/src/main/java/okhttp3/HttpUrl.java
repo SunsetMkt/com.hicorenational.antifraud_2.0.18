@@ -2,8 +2,6 @@ package okhttp3;
 
 import anet.channel.util.HttpConstant;
 import com.taobao.accs.common.Constants;
-import h.f1;
-import h.z2.h0;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,6 +16,8 @@ import javax.annotation.Nullable;
 import okhttp3.internal.Util;
 import okhttp3.internal.publicsuffix.PublicSuffixDatabase;
 import okio.Buffer;
+import p286h.C5230f1;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes2.dex */
 public final class HttpUrl {
@@ -98,7 +98,7 @@ public final class HttpUrl {
             String str = list.get(i2);
             String str2 = list.get(i2 + 1);
             if (i2 > 0) {
-                sb.append(h0.f16706c);
+                sb.append(C5736h0.f20714c);
             }
             sb.append(str);
             if (str2 != null) {
@@ -750,14 +750,14 @@ public final class HttpUrl {
                     this.host = canonicalizeHost(str, i3, portColonOffset);
                     this.port = parsePort(str, i4, delimiterOffset);
                     if (this.port == -1) {
-                        throw new IllegalArgumentException("Invalid URL port: \"" + str.substring(i4, delimiterOffset) + h0.f16704a);
+                        throw new IllegalArgumentException("Invalid URL port: \"" + str.substring(i4, delimiterOffset) + C5736h0.f20712a);
                     }
                 } else {
                     this.host = canonicalizeHost(str, i3, portColonOffset);
                     this.port = HttpUrl.defaultPort(this.scheme);
                 }
                 if (this.host == null) {
-                    throw new IllegalArgumentException("Invalid URL host: \"" + str.substring(i3, portColonOffset) + h0.f16704a);
+                    throw new IllegalArgumentException("Invalid URL host: \"" + str.substring(i3, portColonOffset) + C5736h0.f20712a);
                 }
                 skipLeadingAsciiWhitespace = delimiterOffset;
             } else {
@@ -1015,7 +1015,7 @@ public final class HttpUrl {
                         buffer2.writeUtf8CodePoint(codePointAt);
                     }
                     while (!buffer2.exhausted()) {
-                        int readByte = buffer2.readByte() & f1.f16099c;
+                        int readByte = buffer2.readByte() & C5230f1.f20085c;
                         buffer.writeByte(37);
                         buffer.writeByte((int) HEX_DIGITS[(readByte >> 4) & 15]);
                         buffer.writeByte((int) HEX_DIGITS[readByte & 15]);

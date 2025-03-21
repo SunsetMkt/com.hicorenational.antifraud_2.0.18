@@ -15,13 +15,13 @@ public class TemplatedActivity extends BaseActivity {
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             int id = view.getId();
-            if (id == R.id.actionbar_left_btn) {
+            if (id == C1241R.id.actionbar_left_btn) {
                 TemplatedActivity.this.onLeftClick(view);
                 return;
             }
-            if (id == R.id.actionbar_title) {
+            if (id == C1241R.id.actionbar_title) {
                 TemplatedActivity.this.onClickTitle(view);
-            } else if (id == R.id.actionbar_right_btn || id == R.id.actionbar_right_text) {
+            } else if (id == C1241R.id.actionbar_right_btn || id == C1241R.id.actionbar_right_text) {
                 TemplatedActivity.this.onRightClick(view);
             }
         }
@@ -47,11 +47,11 @@ public class TemplatedActivity extends BaseActivity {
             this.mContainer = new LinearLayout(this);
             this.mContainer.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
             this.mContainer.setOrientation(1);
-            this.mActionLayout = getLayoutInflater().inflate(R.layout.cloudwalk_actionbar_layout, (ViewGroup) null);
-            this.mTitle = (TextView) this.mActionLayout.findViewById(R.id.actionbar_title);
-            this.mLeftBtn = (ImageView) this.mActionLayout.findViewById(R.id.actionbar_left_btn);
-            this.mRightBtn = (ImageView) this.mActionLayout.findViewById(R.id.actionbar_right_btn);
-            this.mRightText = (TextView) this.mActionLayout.findViewById(R.id.actionbar_right_text);
+            this.mActionLayout = getLayoutInflater().inflate(C1241R.layout.cloudwalk_actionbar_layout, (ViewGroup) null);
+            this.mTitle = (TextView) this.mActionLayout.findViewById(C1241R.id.actionbar_title);
+            this.mLeftBtn = (ImageView) this.mActionLayout.findViewById(C1241R.id.actionbar_left_btn);
+            this.mRightBtn = (ImageView) this.mActionLayout.findViewById(C1241R.id.actionbar_right_btn);
+            this.mRightText = (TextView) this.mActionLayout.findViewById(C1241R.id.actionbar_right_text);
             this.mTitle.setOnClickListener(this.listener);
             this.mLeftBtn.setOnClickListener(this.listener);
             this.mRightBtn.setOnClickListener(this.listener);

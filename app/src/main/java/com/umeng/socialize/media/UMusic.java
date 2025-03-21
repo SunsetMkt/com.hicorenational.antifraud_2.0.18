@@ -9,46 +9,46 @@ import java.util.Map;
 /* loaded from: classes2.dex */
 public class UMusic extends BaseMediaObject {
 
-    /* renamed from: f, reason: collision with root package name */
-    private String f11735f;
+    /* renamed from: f */
+    private String f13681f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String f11736g;
+    /* renamed from: g */
+    private String f13682g;
 
-    /* renamed from: h, reason: collision with root package name */
-    private String f11737h;
+    /* renamed from: h */
+    private String f13683h;
 
-    /* renamed from: i, reason: collision with root package name */
-    private String f11738i;
+    /* renamed from: i */
+    private String f13684i;
 
-    /* renamed from: j, reason: collision with root package name */
-    private int f11739j;
+    /* renamed from: j */
+    private int f13685j;
 
-    /* renamed from: k, reason: collision with root package name */
-    private String f11740k;
+    /* renamed from: k */
+    private String f13686k;
 
     public UMusic(String str) {
         super(str);
     }
 
     public int getDuration() {
-        return this.f11739j;
+        return this.f13685j;
     }
 
     public String getH5Url() {
-        return this.f11737h;
+        return this.f13683h;
     }
 
     public String getHighBandDataUrl() {
-        return this.f11736g;
+        return this.f13682g;
     }
 
     public String getLowBandDataUrl() {
-        return this.f11735f;
+        return this.f13681f;
     }
 
     public String getLowBandUrl() {
-        return this.f11738i;
+        return this.f13684i;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
@@ -58,40 +58,40 @@ public class UMusic extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public UMImage getThumbImage() {
-        return this.f11693e;
+        return this.f13636e;
     }
 
     public String getmTargetUrl() {
-        return this.f11740k;
+        return this.f13686k;
     }
 
     public void setDuration(int i2) {
-        this.f11739j = i2;
+        this.f13685j = i2;
     }
 
     public void setH5Url(String str) {
-        this.f11737h = str;
+        this.f13683h = str;
     }
 
     public void setHighBandDataUrl(String str) {
-        this.f11736g = str;
+        this.f13682g = str;
     }
 
     public void setLowBandDataUrl(String str) {
-        this.f11735f = str;
+        this.f13681f = str;
     }
 
     public void setLowBandUrl(String str) {
-        this.f11738i = str;
+        this.f13684i = str;
     }
 
     public void setmTargetUrl(String str) {
-        this.f11740k = str;
+        this.f13686k = str;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f11693e;
+        UMImage uMImage = this.f13636e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -100,16 +100,16 @@ public class UMusic extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public String toString() {
-        return "UMusic [title=" + this.f11690b + "media_url=" + this.f11689a + ", qzone_title=" + this.f11690b + ", qzone_thumb=]";
+        return "UMusic [title=" + this.f13633b + "media_url=" + this.f13632a + ", qzone_title=" + this.f13633b + ", qzone_thumb=]";
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public final Map<String, Object> toUrlExtraParams() {
         HashMap hashMap = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f11689a);
+            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
             hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f11690b);
+            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f13633b);
         }
         return hashMap;
     }

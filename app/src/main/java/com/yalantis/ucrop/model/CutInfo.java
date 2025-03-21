@@ -23,7 +23,9 @@ public class CutInfo implements Parcelable {
     private String cutPath;
     private long duration;
     private Uri httpOutUri;
-    private long id;
+
+    /* renamed from: id */
+    private long f16840id;
     private int imageHeight;
     private int imageWidth;
     private boolean isCut;
@@ -59,7 +61,7 @@ public class CutInfo implements Parcelable {
     }
 
     public long getId() {
-        return this.id;
+        return this.f16840id;
     }
 
     public int getImageHeight() {
@@ -119,7 +121,7 @@ public class CutInfo implements Parcelable {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f16840id = j2;
     }
 
     public void setImageHeight(int i2) {
@@ -156,7 +158,7 @@ public class CutInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeLong(this.id);
+        parcel.writeLong(this.f16840id);
         parcel.writeString(this.path);
         parcel.writeString(this.cutPath);
         parcel.writeString(this.androidQToPath);
@@ -178,7 +180,7 @@ public class CutInfo implements Parcelable {
     }
 
     protected CutInfo(Parcel parcel) {
-        this.id = parcel.readLong();
+        this.f16840id = parcel.readLong();
         this.path = parcel.readString();
         this.cutPath = parcel.readString();
         this.androidQToPath = parcel.readString();

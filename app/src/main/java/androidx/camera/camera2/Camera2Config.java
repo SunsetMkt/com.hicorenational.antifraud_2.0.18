@@ -34,7 +34,8 @@ public final class Camera2Config {
     private Camera2Config() {
     }
 
-    static /* synthetic */ UseCaseConfigFactory a(Context context) {
+    /* renamed from: a */
+    static /* synthetic */ UseCaseConfigFactory m295a(Context context) {
         ExtendableUseCaseConfigFactory extendableUseCaseConfigFactory = new ExtendableUseCaseConfigFactory();
         extendableUseCaseConfigFactory.installDefaultProvider(ImageAnalysisConfig.class, new ImageAnalysisConfigProvider(context));
         extendableUseCaseConfigFactory.installDefaultProvider(ImageCaptureConfig.class, new ImageCaptureConfigProvider(context));
@@ -45,22 +46,22 @@ public final class Camera2Config {
 
     @NonNull
     public static CameraXConfig defaultConfig() {
-        c cVar = new CameraFactory.Provider() { // from class: androidx.camera.camera2.c
+        C0215c c0215c = new CameraFactory.Provider() { // from class: androidx.camera.camera2.c
             @Override // androidx.camera.core.impl.CameraFactory.Provider
             public final CameraFactory newInstance(Context context) {
                 return new Camera2CameraFactory(context);
             }
         };
-        b bVar = new CameraDeviceSurfaceManager.Provider() { // from class: androidx.camera.camera2.b
+        C0214b c0214b = new CameraDeviceSurfaceManager.Provider() { // from class: androidx.camera.camera2.b
             @Override // androidx.camera.core.impl.CameraDeviceSurfaceManager.Provider
             public final CameraDeviceSurfaceManager newInstance(Context context) {
                 return new Camera2DeviceSurfaceManager(context);
             }
         };
-        return new CameraXConfig.Builder().setCameraFactoryProvider(cVar).setDeviceSurfaceManagerProvider(bVar).setUseCaseConfigFactoryProvider(new UseCaseConfigFactory.Provider() { // from class: androidx.camera.camera2.a
+        return new CameraXConfig.Builder().setCameraFactoryProvider(c0215c).setDeviceSurfaceManagerProvider(c0214b).setUseCaseConfigFactoryProvider(new UseCaseConfigFactory.Provider() { // from class: androidx.camera.camera2.a
             @Override // androidx.camera.core.impl.UseCaseConfigFactory.Provider
             public final UseCaseConfigFactory newInstance(Context context) {
-                return Camera2Config.a(context);
+                return Camera2Config.m295a(context);
             }
         }).build();
     }

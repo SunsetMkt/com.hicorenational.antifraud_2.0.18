@@ -1,7 +1,7 @@
 package com.umeng.socialize.utils;
 
 import android.content.Context;
-import com.umeng.socialize.net.dplus.db.DBConfig;
+import com.umeng.socialize.net.dplus.p220db.DBConfig;
 import com.umeng.socialize.utils.UmengText;
 import java.io.File;
 
@@ -11,7 +11,7 @@ public class ContextUtil {
 
     public static Context getContext() {
         if (context == null) {
-            SLog.E(UmengText.INTER.CONTEXT_ERROR);
+            SLog.m12716E(UmengText.INTER.CONTEXT_ERROR);
         }
         return context;
     }

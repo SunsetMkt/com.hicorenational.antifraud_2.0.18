@@ -7,43 +7,69 @@ import androidx.annotation.NonNull;
 import androidx.core.view.MotionEventCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import com.chad.library.R;
+import com.chad.library.C1883R;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.listener.InterfaceC1919a;
+import com.chad.library.adapter.base.listener.InterfaceC1920b;
 import java.util.Collections;
 import java.util.List;
 
 /* loaded from: classes.dex */
 public abstract class BaseItemDraggableAdapter<T, K extends BaseViewHolder> extends BaseQuickAdapter<T, K> {
-    private static final int e0 = 0;
-    private static final String f0 = "Item drag and item swipe should pass the same ItemTouchHelper";
-    protected int V;
-    protected ItemTouchHelper W;
-    protected boolean X;
-    protected boolean Y;
-    protected com.chad.library.adapter.base.listener.a Z;
-    protected com.chad.library.adapter.base.listener.b a0;
-    protected boolean b0;
-    protected View.OnTouchListener c0;
-    protected View.OnLongClickListener d0;
 
-    class a implements View.OnLongClickListener {
-        a() {
+    /* renamed from: e0 */
+    private static final int f5520e0 = 0;
+
+    /* renamed from: f0 */
+    private static final String f5521f0 = "Item drag and item swipe should pass the same ItemTouchHelper";
+
+    /* renamed from: V */
+    protected int f5522V;
+
+    /* renamed from: W */
+    protected ItemTouchHelper f5523W;
+
+    /* renamed from: X */
+    protected boolean f5524X;
+
+    /* renamed from: Y */
+    protected boolean f5525Y;
+
+    /* renamed from: Z */
+    protected InterfaceC1919a f5526Z;
+
+    /* renamed from: a0 */
+    protected InterfaceC1920b f5527a0;
+
+    /* renamed from: b0 */
+    protected boolean f5528b0;
+
+    /* renamed from: c0 */
+    protected View.OnTouchListener f5529c0;
+
+    /* renamed from: d0 */
+    protected View.OnLongClickListener f5530d0;
+
+    /* renamed from: com.chad.library.adapter.base.BaseItemDraggableAdapter$a */
+    class ViewOnLongClickListenerC1885a implements View.OnLongClickListener {
+        ViewOnLongClickListenerC1885a() {
         }
 
         @Override // android.view.View.OnLongClickListener
         public boolean onLongClick(View view) {
             BaseItemDraggableAdapter baseItemDraggableAdapter = BaseItemDraggableAdapter.this;
-            ItemTouchHelper itemTouchHelper = baseItemDraggableAdapter.W;
-            if (itemTouchHelper == null || !baseItemDraggableAdapter.X) {
+            ItemTouchHelper itemTouchHelper = baseItemDraggableAdapter.f5523W;
+            if (itemTouchHelper == null || !baseItemDraggableAdapter.f5524X) {
                 return true;
             }
-            itemTouchHelper.startDrag((RecyclerView.ViewHolder) view.getTag(R.id.BaseQuickAdapter_viewholder_support));
+            itemTouchHelper.startDrag((RecyclerView.ViewHolder) view.getTag(C1883R.id.BaseQuickAdapter_viewholder_support));
             return true;
         }
     }
 
-    class b implements View.OnTouchListener {
-        b() {
+    /* renamed from: com.chad.library.adapter.base.BaseItemDraggableAdapter$b */
+    class ViewOnTouchListenerC1886b implements View.OnTouchListener {
+        ViewOnTouchListenerC1886b() {
         }
 
         @Override // android.view.View.OnTouchListener
@@ -52,49 +78,55 @@ public abstract class BaseItemDraggableAdapter<T, K extends BaseViewHolder> exte
                 return false;
             }
             BaseItemDraggableAdapter baseItemDraggableAdapter = BaseItemDraggableAdapter.this;
-            if (baseItemDraggableAdapter.b0) {
+            if (baseItemDraggableAdapter.f5528b0) {
                 return false;
             }
-            ItemTouchHelper itemTouchHelper = baseItemDraggableAdapter.W;
-            if (itemTouchHelper == null || !baseItemDraggableAdapter.X) {
+            ItemTouchHelper itemTouchHelper = baseItemDraggableAdapter.f5523W;
+            if (itemTouchHelper == null || !baseItemDraggableAdapter.f5524X) {
                 return true;
             }
-            itemTouchHelper.startDrag((RecyclerView.ViewHolder) view.getTag(R.id.BaseQuickAdapter_viewholder_support));
+            itemTouchHelper.startDrag((RecyclerView.ViewHolder) view.getTag(C1883R.id.BaseQuickAdapter_viewholder_support));
             return true;
         }
     }
 
     public BaseItemDraggableAdapter(List<T> list) {
         super(list);
-        this.V = 0;
-        this.X = false;
-        this.Y = false;
-        this.b0 = true;
+        this.f5522V = 0;
+        this.f5524X = false;
+        this.f5525Y = false;
+        this.f5528b0 = true;
     }
 
-    private boolean n(int i2) {
-        return i2 >= 0 && i2 < this.A.size();
+    /* renamed from: n */
+    private boolean m5032n(int i2) {
+        return i2 >= 0 && i2 < this.f5546A.size();
     }
 
-    public void G() {
-        this.X = false;
-        this.W = null;
+    /* renamed from: G */
+    public void m5033G() {
+        this.f5524X = false;
+        this.f5523W = null;
     }
 
-    public void H() {
-        this.Y = false;
+    /* renamed from: H */
+    public void m5034H() {
+        this.f5525Y = false;
     }
 
-    public void I() {
-        this.Y = true;
+    /* renamed from: I */
+    public void m5035I() {
+        this.f5525Y = true;
     }
 
-    public boolean J() {
-        return this.X;
+    /* renamed from: J */
+    public boolean m5036J() {
+        return this.f5524X;
     }
 
-    public boolean K() {
-        return this.Y;
+    /* renamed from: K */
+    public boolean m5037K() {
+        return this.f5525Y;
     }
 
     @Override // com.chad.library.adapter.base.BaseQuickAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
@@ -102,146 +134,158 @@ public abstract class BaseItemDraggableAdapter<T, K extends BaseViewHolder> exte
     public void onBindViewHolder(K k2, int i2) {
         super.onBindViewHolder((BaseItemDraggableAdapter<T, K>) k2, i2);
         int itemViewType = k2.getItemViewType();
-        if (this.W == null || !this.X || itemViewType == 546 || itemViewType == 273 || itemViewType == 1365 || itemViewType == 819) {
+        if (this.f5523W == null || !this.f5524X || itemViewType == 546 || itemViewType == 273 || itemViewType == 1365 || itemViewType == 819) {
             return;
         }
-        int i3 = this.V;
+        int i3 = this.f5522V;
         if (i3 == 0) {
-            k2.itemView.setTag(R.id.BaseQuickAdapter_viewholder_support, k2);
-            k2.itemView.setOnLongClickListener(this.d0);
+            k2.itemView.setTag(C1883R.id.BaseQuickAdapter_viewholder_support, k2);
+            k2.itemView.setOnLongClickListener(this.f5530d0);
             return;
         }
-        View c2 = k2.c(i3);
-        if (c2 != null) {
-            c2.setTag(R.id.BaseQuickAdapter_viewholder_support, k2);
-            if (this.b0) {
-                c2.setOnLongClickListener(this.d0);
+        View m5224c = k2.m5224c(i3);
+        if (m5224c != null) {
+            m5224c.setTag(C1883R.id.BaseQuickAdapter_viewholder_support, k2);
+            if (this.f5528b0) {
+                m5224c.setOnLongClickListener(this.f5530d0);
             } else {
-                c2.setOnTouchListener(this.c0);
+                m5224c.setOnTouchListener(this.f5529c0);
             }
         }
     }
 
-    public int b(RecyclerView.ViewHolder viewHolder) {
-        return viewHolder.getAdapterPosition() - j();
+    /* renamed from: b */
+    public int m5042b(RecyclerView.ViewHolder viewHolder) {
+        return viewHolder.getAdapterPosition() - m5164j();
     }
 
-    public void c(RecyclerView.ViewHolder viewHolder) {
-        com.chad.library.adapter.base.listener.a aVar = this.Z;
-        if (aVar == null || !this.X) {
+    /* renamed from: c */
+    public void m5043c(RecyclerView.ViewHolder viewHolder) {
+        InterfaceC1919a interfaceC1919a = this.f5526Z;
+        if (interfaceC1919a == null || !this.f5524X) {
             return;
         }
-        aVar.a(viewHolder, b(viewHolder));
+        interfaceC1919a.m5294a(viewHolder, m5042b(viewHolder));
     }
 
-    public void d(RecyclerView.ViewHolder viewHolder) {
-        com.chad.library.adapter.base.listener.a aVar = this.Z;
-        if (aVar == null || !this.X) {
+    /* renamed from: d */
+    public void m5044d(RecyclerView.ViewHolder viewHolder) {
+        InterfaceC1919a interfaceC1919a = this.f5526Z;
+        if (interfaceC1919a == null || !this.f5524X) {
             return;
         }
-        aVar.b(viewHolder, b(viewHolder));
+        interfaceC1919a.m5296b(viewHolder, m5042b(viewHolder));
     }
 
-    public void e(RecyclerView.ViewHolder viewHolder) {
-        com.chad.library.adapter.base.listener.b bVar = this.a0;
-        if (bVar == null || !this.Y) {
+    /* renamed from: e */
+    public void m5045e(RecyclerView.ViewHolder viewHolder) {
+        InterfaceC1920b interfaceC1920b = this.f5527a0;
+        if (interfaceC1920b == null || !this.f5525Y) {
             return;
         }
-        bVar.c(viewHolder, b(viewHolder));
+        interfaceC1920b.m5300c(viewHolder, m5042b(viewHolder));
     }
 
-    public void f(RecyclerView.ViewHolder viewHolder) {
-        com.chad.library.adapter.base.listener.b bVar = this.a0;
-        if (bVar == null || !this.Y) {
+    /* renamed from: f */
+    public void m5046f(RecyclerView.ViewHolder viewHolder) {
+        InterfaceC1920b interfaceC1920b = this.f5527a0;
+        if (interfaceC1920b == null || !this.f5525Y) {
             return;
         }
-        bVar.a(viewHolder, b(viewHolder));
+        interfaceC1920b.m5298a(viewHolder, m5042b(viewHolder));
     }
 
-    public void g(RecyclerView.ViewHolder viewHolder) {
-        com.chad.library.adapter.base.listener.b bVar = this.a0;
-        if (bVar != null && this.Y) {
-            bVar.b(viewHolder, b(viewHolder));
+    /* renamed from: g */
+    public void m5047g(RecyclerView.ViewHolder viewHolder) {
+        InterfaceC1920b interfaceC1920b = this.f5527a0;
+        if (interfaceC1920b != null && this.f5525Y) {
+            interfaceC1920b.m5299b(viewHolder, m5042b(viewHolder));
         }
-        int b2 = b(viewHolder);
-        if (n(b2)) {
-            this.A.remove(b2);
+        int m5042b = m5042b(viewHolder);
+        if (m5032n(m5042b)) {
+            this.f5546A.remove(m5042b);
             notifyItemRemoved(viewHolder.getAdapterPosition());
         }
     }
 
-    public void k(boolean z) {
-        this.b0 = z;
-        if (this.b0) {
-            this.c0 = null;
-            this.d0 = new a();
+    /* renamed from: k */
+    public void m5048k(boolean z) {
+        this.f5528b0 = z;
+        if (this.f5528b0) {
+            this.f5529c0 = null;
+            this.f5530d0 = new ViewOnLongClickListenerC1885a();
         } else {
-            this.c0 = new b();
-            this.d0 = null;
+            this.f5529c0 = new ViewOnTouchListenerC1886b();
+            this.f5530d0 = null;
         }
     }
 
-    public void m(int i2) {
-        this.V = i2;
+    /* renamed from: m */
+    public void m5049m(int i2) {
+        this.f5522V = i2;
     }
 
-    public void setOnItemDragListener(com.chad.library.adapter.base.listener.a aVar) {
-        this.Z = aVar;
+    public void setOnItemDragListener(InterfaceC1919a interfaceC1919a) {
+        this.f5526Z = interfaceC1919a;
     }
 
-    public void setOnItemSwipeListener(com.chad.library.adapter.base.listener.b bVar) {
-        this.a0 = bVar;
+    public void setOnItemSwipeListener(InterfaceC1920b interfaceC1920b) {
+        this.f5527a0 = interfaceC1920b;
     }
 
     public BaseItemDraggableAdapter(int i2, List<T> list) {
         super(i2, list);
-        this.V = 0;
-        this.X = false;
-        this.Y = false;
-        this.b0 = true;
+        this.f5522V = 0;
+        this.f5524X = false;
+        this.f5525Y = false;
+        this.f5528b0 = true;
     }
 
-    public void a(@NonNull ItemTouchHelper itemTouchHelper) {
-        a(itemTouchHelper, 0, true);
+    /* renamed from: a */
+    public void m5039a(@NonNull ItemTouchHelper itemTouchHelper) {
+        m5040a(itemTouchHelper, 0, true);
     }
 
-    public void a(@NonNull ItemTouchHelper itemTouchHelper, int i2, boolean z) {
-        this.X = true;
-        this.W = itemTouchHelper;
-        m(i2);
-        k(z);
+    /* renamed from: a */
+    public void m5040a(@NonNull ItemTouchHelper itemTouchHelper, int i2, boolean z) {
+        this.f5524X = true;
+        this.f5523W = itemTouchHelper;
+        m5049m(i2);
+        m5048k(z);
     }
 
-    public void a(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-        int b2 = b(viewHolder);
-        int b3 = b(viewHolder2);
-        if (n(b2) && n(b3)) {
-            if (b2 < b3) {
-                int i2 = b2;
-                while (i2 < b3) {
+    /* renamed from: a */
+    public void m5041a(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
+        int m5042b = m5042b(viewHolder);
+        int m5042b2 = m5042b(viewHolder2);
+        if (m5032n(m5042b) && m5032n(m5042b2)) {
+            if (m5042b < m5042b2) {
+                int i2 = m5042b;
+                while (i2 < m5042b2) {
                     int i3 = i2 + 1;
-                    Collections.swap(this.A, i2, i3);
+                    Collections.swap(this.f5546A, i2, i3);
                     i2 = i3;
                 }
             } else {
-                for (int i4 = b2; i4 > b3; i4--) {
-                    Collections.swap(this.A, i4, i4 - 1);
+                for (int i4 = m5042b; i4 > m5042b2; i4--) {
+                    Collections.swap(this.f5546A, i4, i4 - 1);
                 }
             }
             notifyItemMoved(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
         }
-        com.chad.library.adapter.base.listener.a aVar = this.Z;
-        if (aVar == null || !this.X) {
+        InterfaceC1919a interfaceC1919a = this.f5526Z;
+        if (interfaceC1919a == null || !this.f5524X) {
             return;
         }
-        aVar.a(viewHolder, b2, viewHolder2, b3);
+        interfaceC1919a.m5295a(viewHolder, m5042b, viewHolder2, m5042b2);
     }
 
-    public void a(Canvas canvas, RecyclerView.ViewHolder viewHolder, float f2, float f3, boolean z) {
-        com.chad.library.adapter.base.listener.b bVar = this.a0;
-        if (bVar == null || !this.Y) {
+    /* renamed from: a */
+    public void m5038a(Canvas canvas, RecyclerView.ViewHolder viewHolder, float f2, float f3, boolean z) {
+        InterfaceC1920b interfaceC1920b = this.f5527a0;
+        if (interfaceC1920b == null || !this.f5525Y) {
             return;
         }
-        bVar.a(canvas, viewHolder, f2, f3, z);
+        interfaceC1920b.m5297a(canvas, viewHolder, f2, f3, z);
     }
 }

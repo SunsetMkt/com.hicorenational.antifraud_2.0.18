@@ -33,14 +33,14 @@ public class UrlUtil {
     public static final String ALL_AUTHFAIL = makeUrl("66876");
 
     public static void getInfoPrint(SHARE_MEDIA share_media) {
-        SLog.AQ(UmengText.AUTH.ALL_AUTH_EVERY, ALL_AUTH_EVERY);
+        SLog.m12715AQ(UmengText.AUTH.ALL_AUTH_EVERY, ALL_AUTH_EVERY);
         if (share_media == SHARE_MEDIA.QQ) {
-            SLog.AQ(UmengText.QQ.QQ100044, QQ_10044);
+            SLog.m12715AQ(UmengText.C3778QQ.QQ100044, QQ_10044);
         }
         if (share_media == SHARE_MEDIA.WEIXIN) {
-            SLog.AQ(UmengText.WX.WX_NO_LINK, WX_NO_LINK);
-            SLog.AQ(UmengText.WX.WX_ERROR_SIGN, WX_ERROR_SIGN);
-            SLog.AQ(UmengText.WX.WX_40125, WX_40125);
+            SLog.m12715AQ(UmengText.C3779WX.WX_NO_LINK, WX_NO_LINK);
+            SLog.m12715AQ(UmengText.C3779WX.WX_ERROR_SIGN, WX_ERROR_SIGN);
+            SLog.m12715AQ(UmengText.C3779WX.WX_40125, WX_40125);
         }
     }
 
@@ -50,26 +50,26 @@ public class UrlUtil {
 
     public static void sharePrint(SHARE_MEDIA share_media) {
         if (share_media == SHARE_MEDIA.QQ) {
-            SLog.AQ(UmengText.QQ.NOCALLBACK, QQ_NO_CALLBACK);
-            SLog.AQ(UmengText.QQ.ERRORCALLBACK, QQ_SHARESUCCESS_CANCEL);
-            SLog.AQ(UmengText.QQ.NOREPLY, QQ_SHARESUCCESS_NOFOUND);
-            SLog.AQ(UmengText.QQ.NOPERMISSION, QQ_SHARE_FAIL);
-            SLog.AQ(UmengText.QQ.TENCENTFAIL, QQ_TENCENT_INITFAIL);
-            SLog.AQ(UmengText.QQ.QQ100044, QQ_10044);
+            SLog.m12715AQ(UmengText.C3778QQ.NOCALLBACK, QQ_NO_CALLBACK);
+            SLog.m12715AQ(UmengText.C3778QQ.ERRORCALLBACK, QQ_SHARESUCCESS_CANCEL);
+            SLog.m12715AQ(UmengText.C3778QQ.NOREPLY, QQ_SHARESUCCESS_NOFOUND);
+            SLog.m12715AQ(UmengText.C3778QQ.NOPERMISSION, QQ_SHARE_FAIL);
+            SLog.m12715AQ(UmengText.C3778QQ.TENCENTFAIL, QQ_TENCENT_INITFAIL);
+            SLog.m12715AQ(UmengText.C3778QQ.QQ100044, QQ_10044);
         }
         if (share_media == SHARE_MEDIA.FACEBOOK || share_media == SHARE_MEDIA.FACEBOOK_MESSAGER) {
-            SLog.AQ(UmengText.FACEBOOK.FACEBOOK_GRAY, FACEBOOK_GRAY);
-            SLog.AQ(UmengText.FACEBOOK.FACEBOOK_CANCEL_SUCCESS, FACEBOOK_CANCEL_SUCCESS);
-            SLog.AQ(UmengText.FACEBOOK.FACEBOOK_AUTH_FAIL, FACEBOOK_AUTH_FAIL);
+            SLog.m12715AQ(UmengText.FACEBOOK.FACEBOOK_GRAY, FACEBOOK_GRAY);
+            SLog.m12715AQ(UmengText.FACEBOOK.FACEBOOK_CANCEL_SUCCESS, FACEBOOK_CANCEL_SUCCESS);
+            SLog.m12715AQ(UmengText.FACEBOOK.FACEBOOK_AUTH_FAIL, FACEBOOK_AUTH_FAIL);
         }
         if (share_media == SHARE_MEDIA.TWITTER) {
-            SLog.AQ(UmengText.TWITTER.TWITTER_AUTH_FAIL, TWITTER_AUTH_FAIL);
+            SLog.m12715AQ(UmengText.TWITTER.TWITTER_AUTH_FAIL, TWITTER_AUTH_FAIL);
         }
         if (share_media == SHARE_MEDIA.WEIXIN || share_media == SHARE_MEDIA.WEIXIN_CIRCLE) {
-            SLog.AQ(UmengText.WX.WX_NO_CALLBACK, WX_NO_CALLBACK);
-            SLog.AQ(UmengText.WX.WX_CIRCLE_NOCONTENT, WX_CIRCLE_NOCONTENT);
-            SLog.AQ(UmengText.WX.WX_40125, WX_40125);
-            SLog.AQ(UmengText.WX.WX_HIT_PUSH, WX_HIT_PUSH);
+            SLog.m12715AQ(UmengText.C3779WX.WX_NO_CALLBACK, WX_NO_CALLBACK);
+            SLog.m12715AQ(UmengText.C3779WX.WX_CIRCLE_NOCONTENT, WX_CIRCLE_NOCONTENT);
+            SLog.m12715AQ(UmengText.C3779WX.WX_40125, WX_40125);
+            SLog.m12715AQ(UmengText.C3779WX.WX_HIT_PUSH, WX_HIT_PUSH);
         }
     }
 }

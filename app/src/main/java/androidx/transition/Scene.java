@@ -24,15 +24,15 @@ public class Scene {
     }
 
     static Scene getCurrentScene(View view) {
-        return (Scene) view.getTag(R.id.transition_current_scene);
+        return (Scene) view.getTag(C0703R.id.transition_current_scene);
     }
 
     @NonNull
     public static Scene getSceneForLayout(@NonNull ViewGroup viewGroup, @LayoutRes int i2, @NonNull Context context) {
-        SparseArray sparseArray = (SparseArray) viewGroup.getTag(R.id.transition_scene_layoutid_cache);
+        SparseArray sparseArray = (SparseArray) viewGroup.getTag(C0703R.id.transition_scene_layoutid_cache);
         if (sparseArray == null) {
             sparseArray = new SparseArray();
-            viewGroup.setTag(R.id.transition_scene_layoutid_cache, sparseArray);
+            viewGroup.setTag(C0703R.id.transition_scene_layoutid_cache, sparseArray);
         }
         Scene scene = (Scene) sparseArray.get(i2);
         if (scene != null) {
@@ -44,7 +44,7 @@ public class Scene {
     }
 
     static void setCurrentScene(View view, Scene scene) {
-        view.setTag(R.id.transition_current_scene, scene);
+        view.setTag(C0703R.id.transition_current_scene, scene);
     }
 
     public void enter() {

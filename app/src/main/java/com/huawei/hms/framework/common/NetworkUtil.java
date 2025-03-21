@@ -23,10 +23,9 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import anet.channel.strategy.dispatch.DispatchConstants;
-import c.c.a.b.a.a;
 import com.huawei.secure.android.common.webview.UriUtil;
 import com.taobao.accs.utl.UtilityImpl;
-import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.C3336at;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
@@ -39,6 +38,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class NetworkUtil {
@@ -107,9 +107,9 @@ public class NetworkUtil {
                     }
                 }
             } catch (SecurityException e2) {
-                Logger.i(TAG, "getActiveNetworkInfo failed, exception:" + e2.getClass().getSimpleName());
+                Logger.m6799i(TAG, "getActiveNetworkInfo failed, exception:" + e2.getClass().getSimpleName());
             } catch (RuntimeException e3) {
-                Logger.i(TAG, "getActiveNetworkInfo failed, exception:" + e3.getClass().getSimpleName());
+                Logger.m6799i(TAG, "getActiveNetworkInfo failed, exception:" + e3.getClass().getSimpleName());
             }
         }
         return linkedList.isEmpty() ? new String[0] : (String[]) linkedList.toArray(new String[linkedList.size()]);
@@ -134,16 +134,16 @@ public class NetworkUtil {
             });
             return ((Integer) declaredMethod.invoke(signalStrength, new Object[0])).intValue();
         } catch (IllegalAccessException unused) {
-            Logger.i(TAG, str + " : cannot access");
+            Logger.m6799i(TAG, str + " : cannot access");
             return Integer.MAX_VALUE;
         } catch (NoSuchMethodException unused2) {
-            Logger.i(TAG, str + " : function not found");
+            Logger.m6799i(TAG, str + " : function not found");
             return Integer.MAX_VALUE;
         } catch (InvocationTargetException unused3) {
-            Logger.i(TAG, str + " : InvocationTargetException");
+            Logger.m6799i(TAG, str + " : InvocationTargetException");
             return Integer.MAX_VALUE;
         } catch (Throwable th) {
-            Logger.i(TAG, str + " : throwable:" + th.getClass());
+            Logger.m6799i(TAG, str + " : throwable:" + th.getClass());
             return Integer.MAX_VALUE;
         }
     }
@@ -155,7 +155,7 @@ public class NetworkUtil {
         }
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteCqi: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteCqi: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28) {
             return getInfoWithReflect(signalStrength, "getLteCqi");
@@ -174,7 +174,7 @@ public class NetworkUtil {
         }
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteRsrp: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteRsrp: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28) {
             return getInfoWithReflect(signalStrength, "getLteRsrp");
@@ -193,7 +193,7 @@ public class NetworkUtil {
         }
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteRsrq: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteRsrq: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28) {
             return getInfoWithReflect(signalStrength, "getLteRsrq");
@@ -218,7 +218,7 @@ public class NetworkUtil {
                 }
             }
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteRssi: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteRssi: throwable:" + th.getClass());
         }
         return Integer.MAX_VALUE;
     }
@@ -230,7 +230,7 @@ public class NetworkUtil {
         }
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteRssnr: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteRssnr: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28) {
             return getInfoWithReflect(signalStrength, "getLteRssnr");
@@ -267,7 +267,7 @@ public class NetworkUtil {
                 hashMap.put(SignalType.LTE_CQI, Integer.valueOf(getInfoWithReflect(signalStrength, "getLteCqi")));
             }
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteRssi: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteRssi: throwable:" + th.getClass());
         }
         return hashMap;
     }
@@ -279,7 +279,7 @@ public class NetworkUtil {
         Object systemService = ContextCompat.getSystemService(context, "phone");
         TelephonyManager telephonyManager = systemService instanceof TelephonyManager ? (TelephonyManager) systemService : null;
         if (telephonyManager == null) {
-            Logger.e(TAG, "getSubscriptionOperatorType: other error!");
+            Logger.m6796e(TAG, "getSubscriptionOperatorType: other error!");
             return "unknown";
         }
         String networkOperator = telephonyManager.getNetworkOperator();
@@ -294,7 +294,7 @@ public class NetworkUtil {
         try {
             return Build.VERSION.SDK_INT > 28 ? getMobileSingalStrengthUpPPlatfrom(context) : getInfoWithReflect(signalStrength, "getDbm");
         } catch (Throwable th) {
-            Logger.i(TAG, "getDbm: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getDbm: throwable:" + th.getClass());
             return Integer.MAX_VALUE;
         }
     }
@@ -343,7 +343,7 @@ public class NetworkUtil {
             i2 = dbm;
             return i2;
         } catch (Throwable th) {
-            Logger.i(TAG, "getMobileSingalStrength: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getMobileSingalStrength: throwable:" + th.getClass());
             return i2;
         }
     }
@@ -352,12 +352,12 @@ public class NetworkUtil {
         try {
             HwTelephonyManager hwTelephonyManager = HwTelephonyManager.getDefault();
             int default4GSlotId = hwTelephonyManager.getDefault4GSlotId();
-            Logger.v(TAG, "phoneId " + default4GSlotId);
+            Logger.m6801v(TAG, "phoneId " + default4GSlotId);
             boolean isNsaState = hwTelephonyManager.isNsaState(default4GSlotId);
-            Logger.v(TAG, "isNsa " + isNsaState);
+            Logger.m6801v(TAG, "isNsa " + isNsaState);
             return isNsaState ? STR_NSA : STR_SA;
         } catch (Throwable unused) {
-            Logger.v(TAG, "isNsaState error");
+            Logger.m6801v(TAG, "isNsaState error");
             return null;
         }
     }
@@ -371,7 +371,7 @@ public class NetworkUtil {
         try {
             return connectivityManager.getActiveNetworkInfo();
         } catch (RuntimeException e2) {
-            Logger.i(TAG, "getActiveNetworkInfo failed, exception:" + e2.getClass().getSimpleName() + e2.getMessage());
+            Logger.m6799i(TAG, "getActiveNetworkInfo failed, exception:" + e2.getClass().getSimpleName() + e2.getMessage());
             return null;
         }
     }
@@ -390,13 +390,13 @@ public class NetworkUtil {
                     if (activeNetworkInfo != null) {
                         detailedState = activeNetworkInfo.getDetailedState();
                     } else {
-                        Logger.i(TAG, "getNetworkStatus networkIsConnected netInfo is null!");
+                        Logger.m6799i(TAG, "getNetworkStatus networkIsConnected netInfo is null!");
                     }
                 } catch (RuntimeException e2) {
-                    Logger.i(TAG, "getNetworkStatus exception" + e2.getClass().getSimpleName() + e2.getMessage());
+                    Logger.m6799i(TAG, "getNetworkStatus exception" + e2.getClass().getSimpleName() + e2.getMessage());
                 }
             } else {
-                Logger.i(TAG, "getNetworkStatus ConnectivityManager is null!");
+                Logger.m6799i(TAG, "getNetworkStatus ConnectivityManager is null!");
             }
         }
         return detailedState;
@@ -413,7 +413,7 @@ public class NetworkUtil {
         SignalStrength signalStrength;
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getNrCsiRsrp: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getNrCsiRsrp: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28 || (signalStrength = getSignalStrength(context)) == null) {
             return Integer.MAX_VALUE;
@@ -429,7 +429,7 @@ public class NetworkUtil {
         SignalStrength signalStrength;
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getNrCsiRsrq: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getNrCsiRsrq: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28 || (signalStrength = getSignalStrength(context)) == null) {
             return Integer.MAX_VALUE;
@@ -445,7 +445,7 @@ public class NetworkUtil {
         SignalStrength signalStrength;
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getNrCsiSinr: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getNrCsiSinr: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28 || (signalStrength = getSignalStrength(context)) == null) {
             return Integer.MAX_VALUE;
@@ -477,7 +477,7 @@ public class NetworkUtil {
                 }
             }
         } catch (Throwable th) {
-            Logger.i(TAG, "getLteRssi: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getLteRssi: throwable:" + th.getClass());
         }
         return hashMap;
     }
@@ -486,7 +486,7 @@ public class NetworkUtil {
         SignalStrength signalStrength;
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getNrSsRsrp: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getNrSsRsrp: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28 || (signalStrength = getSignalStrength(context)) == null) {
             return Integer.MAX_VALUE;
@@ -502,7 +502,7 @@ public class NetworkUtil {
         SignalStrength signalStrength;
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getNrSsRsrq: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getNrSsRsrq: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28 || (signalStrength = getSignalStrength(context)) == null) {
             return Integer.MAX_VALUE;
@@ -518,7 +518,7 @@ public class NetworkUtil {
         SignalStrength signalStrength;
         try {
         } catch (Throwable th) {
-            Logger.i(TAG, "getNrSsSinr: throwable:" + th.getClass());
+            Logger.m6799i(TAG, "getNrSsSinr: throwable:" + th.getClass());
         }
         if (Build.VERSION.SDK_INT <= 28 || (signalStrength = getSignalStrength(context)) == null) {
             return Integer.MAX_VALUE;
@@ -555,18 +555,18 @@ public class NetworkUtil {
 
     public static String getWifiGatewayIp(Context context) {
         if (context == null) {
-            return a.f3100g;
+            return AbstractC1191a.f2568g;
         }
         Object systemService = ContextCompat.getSystemService(context.getApplicationContext(), UtilityImpl.NET_TYPE_WIFI);
         if (!(systemService instanceof WifiManager)) {
-            return a.f3100g;
+            return AbstractC1191a.f2568g;
         }
         try {
             int i2 = ((WifiManager) systemService).getDhcpInfo().gateway;
             return InetAddress.getByAddress(new byte[]{(byte) (i2 & 255), (byte) ((i2 >> 8) & 255), (byte) ((i2 >> 16) & 255), (byte) ((i2 >> 24) & 255)}).getHostAddress();
         } catch (RuntimeException | UnknownHostException e2) {
-            Logger.i(TAG, "getWifiGatewayIp error!" + e2.getClass().getSimpleName() + e2.getMessage());
-            return a.f3100g;
+            Logger.m6799i(TAG, "getWifiGatewayIp error!" + e2.getClass().getSimpleName() + e2.getMessage());
+            return AbstractC1191a.f2568g;
         }
     }
 
@@ -585,7 +585,7 @@ public class NetworkUtil {
                 WifiInfo connectionInfo = ((WifiManager) systemService).getConnectionInfo();
                 return connectionInfo != null ? connectionInfo.getRssi() : INVALID_RSSI;
             } catch (RuntimeException e2) {
-                Logger.i(TAG, "getWifiRssiLevel did not has permission!" + e2.getClass().getSimpleName() + e2.getMessage());
+                Logger.m6799i(TAG, "getWifiRssiLevel did not has permission!" + e2.getClass().getSimpleName() + e2.getMessage());
                 return INVALID_RSSI;
             }
         }
@@ -599,7 +599,7 @@ public class NetworkUtil {
             }
             return i2;
         } catch (RuntimeException e3) {
-            Logger.i(TAG, "getWifiRssiLevel did not has permission!" + e3.getClass().getSimpleName() + e3.getMessage());
+            Logger.m6799i(TAG, "getWifiRssiLevel did not has permission!" + e3.getClass().getSimpleName() + e3.getMessage());
             return i2;
         }
     }
@@ -622,7 +622,7 @@ public class NetworkUtil {
         if ((networkInfo != null && networkInfo.isConnected()) || !networkInfo2.isConnected()) {
             return false;
         }
-        Logger.v(TAG, "Find network state changed to connected");
+        Logger.m6801v(TAG, "Find network state changed to connected");
         return true;
     }
 
@@ -630,7 +630,7 @@ public class NetworkUtil {
         if (networkInfo == null || !networkInfo.isConnected() || !networkInfo2.isConnected() || getPrimaryNetworkType(networkInfo) == getPrimaryNetworkType(networkInfo2)) {
             return false;
         }
-        Logger.v(TAG, "Find activity network changed");
+        Logger.m6801v(TAG, "Find activity network changed");
         return true;
     }
 
@@ -655,20 +655,20 @@ public class NetworkUtil {
 
     public static boolean isUserUnlocked(Context context) {
         UserManager userManager;
-        if (Build.VERSION.SDK_INT < 24 || (userManager = (UserManager) ContextCompat.getSystemService(context, at.f10079m)) == null) {
+        if (Build.VERSION.SDK_INT < 24 || (userManager = (UserManager) ContextCompat.getSystemService(context, C3336at.f11499m)) == null) {
             return true;
         }
         try {
             return userManager.isUserUnlocked();
         } catch (RuntimeException e2) {
-            Logger.e(TAG, "dealType rethrowFromSystemServer:", e2);
+            Logger.m6797e(TAG, "dealType rethrowFromSystemServer:", e2);
             return true;
         }
     }
 
     public static int netWork(Context context) {
         int networkType = getNetworkType(context);
-        Logger.v(TAG, "networkType " + networkType);
+        Logger.m6801v(TAG, "networkType " + networkType);
         if (networkType == 4) {
             if (TextUtils.equals(STR_NSA, getNetWorkNSAorSA())) {
                 return 7;
@@ -697,10 +697,10 @@ public class NetworkUtil {
                     if (connectivityManager.isActiveNetworkMetered()) {
                         i2 = connectivityManager.getRestrictBackgroundStatus();
                     } else {
-                        Logger.v(TAG, "ConnectType is not Mobile Network!");
+                        Logger.m6801v(TAG, "ConnectType is not Mobile Network!");
                     }
                 } catch (RuntimeException e2) {
-                    Logger.e(TAG, "SystemServer error:", e2);
+                    Logger.m6797e(TAG, "SystemServer error:", e2);
                 }
             }
         }
@@ -726,7 +726,7 @@ public class NetworkUtil {
         }
         if (type == 0) {
             int subtype = networkInfo.getSubtype();
-            Logger.v(TAG, "getHwNetworkType return is: " + subtype);
+            Logger.m6801v(TAG, "getHwNetworkType return is: " + subtype);
             if (subtype == 0) {
                 subtype = networkInfo.getSubtype();
             }

@@ -36,6 +36,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes.dex */
 final class CameraXModule {
@@ -115,7 +116,7 @@ final class CameraXModule {
         this.mVideoCaptureConfigBuilder = new VideoCaptureConfig.Builder().setTargetName("VideoCapture");
     }
 
-    @RequiresPermission(util.permissionutil.a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     private Set<Integer> getAvailableCameraLensFacing() {
         LinkedHashSet linkedHashSet = new LinkedHashSet(Arrays.asList(LensFacingConverter.values()));
         if (this.mCurrentLifecycle != null) {
@@ -161,7 +162,7 @@ final class CameraXModule {
         }
     }
 
-    @RequiresPermission(util.permissionutil.a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     void bindToLifecycle(LifecycleOwner lifecycleOwner) {
         this.mNewLifecycle = lifecycleOwner;
         if (getMeasuredWidth() <= 0 || getMeasuredHeight() <= 0) {
@@ -170,7 +171,7 @@ final class CameraXModule {
         bindToLifecycleAfterViewMeasured();
     }
 
-    @RequiresPermission(util.permissionutil.a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     void bindToLifecycleAfterViewMeasured() {
         Rational rational;
         if (this.mNewLifecycle == null) {
@@ -351,7 +352,7 @@ final class CameraXModule {
         return 1.0f;
     }
 
-    @RequiresPermission(util.permissionutil.a.f20909c)
+    @RequiresPermission(C7308a.f25524c)
     public boolean hasCameraWithLensFacing(int i2) {
         try {
             return CameraX.getCameraWithLensFacing(i2) != null;
@@ -479,7 +480,7 @@ final class CameraXModule {
         if (onImageCapturedCallback == null) {
             throw new IllegalArgumentException("OnImageCapturedCallback should not be empty");
         }
-        this.mImageCapture.a(executor, onImageCapturedCallback);
+        this.mImageCapture.m344a(executor, onImageCapturedCallback);
     }
 
     public void toggleCamera() {
@@ -510,7 +511,7 @@ final class CameraXModule {
             ImageCapture.Metadata metadata = new ImageCapture.Metadata();
             Integer num = this.mCameraLensFacing;
             metadata.setReversedHorizontal(num != null && num.intValue() == 0);
-            this.mImageCapture.a(new ImageCapture.OutputFileOptions.Builder(file).setMetadata(metadata).build(), executor, onImageSavedCallback);
+            this.mImageCapture.m341a(new ImageCapture.OutputFileOptions.Builder(file).setMetadata(metadata).build(), executor, onImageSavedCallback);
             return;
         }
         throw new IllegalArgumentException("OnImageSavedCallback should not be empty");

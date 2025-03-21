@@ -4,12 +4,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
 import android.view.WindowManager;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 
 /* loaded from: classes.dex */
 public class PictureCustomDialog extends Dialog {
     public PictureCustomDialog(Context context, int i2) {
-        super(context, R.style.Picture_Theme_Dialog);
+        super(context, C2639R.style.Picture_Theme_Dialog);
         setContentView(i2);
         Window window = getWindow();
         WindowManager.LayoutParams attributes = window.getAttributes();

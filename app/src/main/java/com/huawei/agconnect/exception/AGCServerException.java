@@ -9,7 +9,9 @@ public class AGCServerException extends AGCException {
     public static final int CONTEXT_ERROR = 4;
     public static final int FETCH_THROTTLED = 1;
     public static final int NO_USER_LOGIN = 3;
-    public static final int OK = 200;
+
+    /* renamed from: OK */
+    public static final int f6941OK = 200;
     public static final int SERVER_NOT_AVAILABLE = 503;
     public static final int SERVER_RSP_INVALID = 2;
     public static final int TOKEN_INVALID = 401;

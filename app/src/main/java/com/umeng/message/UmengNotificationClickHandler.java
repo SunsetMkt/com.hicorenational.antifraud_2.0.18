@@ -4,17 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import c.c.a.b.a.a;
 import com.umeng.message.api.UPushMessageHandler;
 import com.umeng.message.common.UPLog;
 import com.umeng.message.entity.UMessage;
-import com.umeng.message.proguard.aw;
+import com.umeng.message.proguard.C3574aw;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes2.dex */
 public class UmengNotificationClickHandler implements UPushMessageHandler {
-    private static void a(Intent intent, UMessage uMessage) {
+    /* renamed from: a */
+    private static void m12137a(Intent intent, UMessage uMessage) {
         if (intent == null || uMessage == null || uMessage.getExtra() == null) {
             return;
         }
@@ -29,11 +30,11 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
 
     public void changeBadgeNum(Context context, UMessage uMessage) {
         MessageSharedPrefs messageSharedPrefs = MessageSharedPrefs.getInstance(context);
-        if (TextUtils.equals(uMessage.getMsgId(), messageSharedPrefs.f())) {
+        if (TextUtils.equals(uMessage.getMsgId(), messageSharedPrefs.m12126f())) {
             return;
         }
-        messageSharedPrefs.c(uMessage.getMsgId());
-        aw.b(context, -1);
+        messageSharedPrefs.m12123c(uMessage.getMsgId());
+        C3574aw.m12314b(context, -1);
     }
 
     public void dealWithCustomAction(Context context, UMessage uMessage) {
@@ -47,7 +48,7 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
         if (launchIntentForPackage == null) {
             return null;
         }
-        launchIntentForPackage.setFlags(a.B1);
+        launchIntentForPackage.setFlags(AbstractC1191a.f2487B1);
         return launchIntentForPackage;
     }
 
@@ -78,7 +79,7 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
             launchApp(context, uMessage);
             changeBadgeNum(context, uMessage);
         } catch (Throwable th) {
-            UPLog.e("UmengNotificationClickHandler", th);
+            UPLog.m12143e("UmengNotificationClickHandler", th);
         }
     }
 
@@ -86,15 +87,15 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
         try {
             Intent mainIntent = getMainIntent(context);
             if (mainIntent == null) {
-                UPLog.e("UmengNotificationClickHandler", "can't find launchIntent:", context.getPackageName());
+                UPLog.m12144e("UmengNotificationClickHandler", "can't find launchIntent:", context.getPackageName());
                 return;
             }
             mainIntent.addFlags(CommonNetImpl.FLAG_AUTH);
-            a(mainIntent, uMessage);
-            UPLog.d("UmengNotificationClickHandler", "open app:", context.getPackageName());
+            m12137a(mainIntent, uMessage);
+            UPLog.m12142d("UmengNotificationClickHandler", "open app:", context.getPackageName());
             context.startActivity(mainIntent);
         } catch (Throwable th) {
-            UPLog.e("UmengNotificationClickHandler", th);
+            UPLog.m12143e("UmengNotificationClickHandler", th);
         }
     }
 
@@ -108,14 +109,14 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
             if (TextUtils.isEmpty(trim)) {
                 return;
             }
-            UPLog.d("UmengNotificationClickHandler", "open activity:", trim);
+            UPLog.m12142d("UmengNotificationClickHandler", "open activity:", trim);
             Intent intent = new Intent();
-            a(intent, uMessage);
+            m12137a(intent, uMessage);
             intent.setClassName(context, trim);
             intent.addFlags(CommonNetImpl.FLAG_AUTH);
             context.startActivity(intent);
         } catch (Throwable th) {
-            UPLog.e("UmengNotificationClickHandler", th);
+            UPLog.m12143e("UmengNotificationClickHandler", th);
         }
     }
 
@@ -129,13 +130,13 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
             if (TextUtils.isEmpty(trim)) {
                 return;
             }
-            UPLog.d("UmengNotificationClickHandler", "open deeplink:".concat(String.valueOf(trim)));
+            UPLog.m12142d("UmengNotificationClickHandler", "open deeplink:".concat(String.valueOf(trim)));
             Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trim));
-            a(intent, uMessage);
+            m12137a(intent, uMessage);
             intent.addFlags(CommonNetImpl.FLAG_AUTH);
             context.startActivity(intent);
         } catch (Throwable th) {
-            UPLog.e("UmengNotificationClickHandler", th);
+            UPLog.m12143e("UmengNotificationClickHandler", th);
         }
     }
 }

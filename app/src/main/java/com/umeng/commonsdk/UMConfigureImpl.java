@@ -2,7 +2,7 @@ package com.umeng.commonsdk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.C3336at;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.utils.onMessageSendListener;
 import java.util.Iterator;
@@ -14,54 +14,55 @@ import java.util.concurrent.TimeUnit;
 /* loaded from: classes2.dex */
 public class UMConfigureImpl {
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final int f10660e = 1000;
+    /* renamed from: e */
+    private static final int f12411e = 1000;
 
-    /* renamed from: f, reason: collision with root package name */
-    private static ScheduledExecutorService f10661f;
+    /* renamed from: f */
+    private static ScheduledExecutorService f12412f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private static Context f10662g;
+    /* renamed from: g */
+    private static Context f12413g;
 
-    /* renamed from: a, reason: collision with root package name */
-    private static String f10656a = at.b().b(at.o);
+    /* renamed from: a */
+    private static String f12407a = C3336at.m10865b().m10868b(C3336at.f11501o);
 
-    /* renamed from: b, reason: collision with root package name */
-    private static CopyOnWriteArrayList<onMessageSendListener> f10657b = new CopyOnWriteArrayList<>();
+    /* renamed from: b */
+    private static CopyOnWriteArrayList<onMessageSendListener> f12408b = new CopyOnWriteArrayList<>();
 
-    /* renamed from: c, reason: collision with root package name */
-    private static int f10658c = 0;
+    /* renamed from: c */
+    private static int f12409c = 0;
 
-    /* renamed from: d, reason: collision with root package name */
-    private static boolean f10659d = false;
+    /* renamed from: d */
+    private static boolean f12410d = false;
 
-    /* renamed from: h, reason: collision with root package name */
-    private static int f10663h = 0;
+    /* renamed from: h */
+    private static int f12414h = 0;
 
-    /* renamed from: i, reason: collision with root package name */
-    private static Runnable f10664i = new Runnable() { // from class: com.umeng.commonsdk.UMConfigureImpl.1
+    /* renamed from: i */
+    private static Runnable f12415i = new Runnable() { // from class: com.umeng.commonsdk.UMConfigureImpl.1
         @Override // java.lang.Runnable
         public void run() {
             try {
-                if (UMConfigureImpl.f10658c == 0 || UMConfigureImpl.f10663h >= 10) {
-                    if (!UMConfigureImpl.f10659d) {
-                        boolean unused = UMConfigureImpl.f10659d = true;
-                        UMConfigureImpl.b(UMConfigureImpl.f10662g);
+                if (UMConfigureImpl.f12409c == 0 || UMConfigureImpl.f12414h >= 10) {
+                    if (!UMConfigureImpl.f12410d) {
+                        boolean unused = UMConfigureImpl.f12410d = true;
+                        UMConfigureImpl.m11521b(UMConfigureImpl.f12413g);
                     }
-                    if (UMConfigureImpl.f10661f != null) {
-                        UMConfigureImpl.f10661f.shutdown();
-                        ScheduledExecutorService unused2 = UMConfigureImpl.f10661f = null;
+                    if (UMConfigureImpl.f12412f != null) {
+                        UMConfigureImpl.f12412f.shutdown();
+                        ScheduledExecutorService unused2 = UMConfigureImpl.f12412f = null;
                     }
                 }
-                UMConfigureImpl.f();
+                UMConfigureImpl.m11527f();
             } catch (Exception unused3) {
             }
         }
     };
 
-    static /* synthetic */ int f() {
-        int i2 = f10663h;
-        f10663h = i2 + 1;
+    /* renamed from: f */
+    static /* synthetic */ int m11527f() {
+        int i2 = f12414h;
+        f12414h = i2 + 1;
         return i2;
     }
 
@@ -69,18 +70,18 @@ public class UMConfigureImpl {
         if (context == null) {
             return;
         }
-        f10662g = context;
+        f12413g = context;
         try {
-            if (f10658c < 1) {
+            if (f12409c < 1) {
                 UMEnvelopeBuild.setTransmissionSendFlag(true);
-            } else if (d(context)) {
+            } else if (m11525d(context)) {
                 UMEnvelopeBuild.setTransmissionSendFlag(true);
             } else {
                 UMEnvelopeBuild.setTransmissionSendFlag(false);
-                c(context);
-                if (f10661f == null) {
-                    f10661f = Executors.newScheduledThreadPool(1);
-                    f10661f.scheduleAtFixedRate(f10664i, 0L, 100L, TimeUnit.MILLISECONDS);
+                m11522c(context);
+                if (f12412f == null) {
+                    f12412f = Executors.newScheduledThreadPool(1);
+                    f12412f.scheduleAtFixedRate(f12415i, 0L, 100L, TimeUnit.MILLISECONDS);
                 }
             }
         } catch (Exception unused) {
@@ -90,7 +91,7 @@ public class UMConfigureImpl {
     public static synchronized void registerInterruptFlag() {
         synchronized (UMConfigureImpl.class) {
             try {
-                f10658c++;
+                f12409c++;
             } catch (Exception unused) {
             }
         }
@@ -99,11 +100,11 @@ public class UMConfigureImpl {
     public static synchronized void registerMessageSendListener(onMessageSendListener onmessagesendlistener) {
         synchronized (UMConfigureImpl.class) {
             try {
-                if (f10657b != null) {
-                    f10657b.add(onmessagesendlistener);
+                if (f12408b != null) {
+                    f12408b.add(onmessagesendlistener);
                 }
-                if (UMEnvelopeBuild.getTransmissionSendFlag() && f10657b != null && f10657b.size() > 0) {
-                    Iterator<onMessageSendListener> it = f10657b.iterator();
+                if (UMEnvelopeBuild.getTransmissionSendFlag() && f12408b != null && f12408b.size() > 0) {
+                    Iterator<onMessageSendListener> it = f12408b.iterator();
                     while (it.hasNext()) {
                         it.next().onMessageSend();
                     }
@@ -116,7 +117,7 @@ public class UMConfigureImpl {
     public static synchronized void removeInterruptFlag() {
         synchronized (UMConfigureImpl.class) {
             try {
-                f10658c--;
+                f12409c--;
             } catch (Exception unused) {
             }
         }
@@ -125,8 +126,8 @@ public class UMConfigureImpl {
     public static synchronized void removeMessageSendListener(onMessageSendListener onmessagesendlistener) {
         synchronized (UMConfigureImpl.class) {
             try {
-                if (f10657b != null) {
-                    f10657b.remove(onmessagesendlistener);
+                if (f12408b != null) {
+                    f12408b.remove(onmessagesendlistener);
                 }
             } catch (Exception unused) {
             }
@@ -134,12 +135,13 @@ public class UMConfigureImpl {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public static synchronized void b(Context context) {
+    /* renamed from: b */
+    public static synchronized void m11521b(Context context) {
         synchronized (UMConfigureImpl.class) {
             try {
                 UMEnvelopeBuild.setTransmissionSendFlag(true);
-                if (f10657b != null && f10657b.size() > 0) {
-                    Iterator<onMessageSendListener> it = f10657b.iterator();
+                if (f12408b != null && f12408b.size() > 0) {
+                    Iterator<onMessageSendListener> it = f12408b.iterator();
                     while (it.hasNext()) {
                         it.next().onMessageSend();
                     }
@@ -149,26 +151,28 @@ public class UMConfigureImpl {
         }
     }
 
-    private static void c(Context context) {
+    /* renamed from: c */
+    private static void m11522c(Context context) {
         try {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(f10656a, 0);
+            SharedPreferences sharedPreferences = context.getSharedPreferences(f12407a, 0);
             if (sharedPreferences == null || sharedPreferences == null) {
                 return;
             }
             SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean(f10656a, true);
+            edit.putBoolean(f12407a, true);
             edit.commit();
         } catch (Throwable unused) {
         }
     }
 
-    private static boolean d(Context context) {
+    /* renamed from: d */
+    private static boolean m11525d(Context context) {
         try {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(f10656a, 0);
+            SharedPreferences sharedPreferences = context.getSharedPreferences(f12407a, 0);
             if (sharedPreferences == null || sharedPreferences == null) {
                 return false;
             }
-            return sharedPreferences.getBoolean(f10656a, false);
+            return sharedPreferences.getBoolean(f12407a, false);
         } catch (Throwable unused) {
             return false;
         }

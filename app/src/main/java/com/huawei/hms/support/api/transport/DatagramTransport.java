@@ -6,11 +6,13 @@ import com.huawei.hms.support.api.client.ApiClient;
 /* loaded from: classes.dex */
 public interface DatagramTransport {
 
-    public interface a {
-        void a(int i2, IMessageEntity iMessageEntity);
+    /* renamed from: com.huawei.hms.support.api.transport.DatagramTransport$a */
+    public interface InterfaceC2523a {
+        /* renamed from: a */
+        void mo7669a(int i2, IMessageEntity iMessageEntity);
     }
 
-    void post(ApiClient apiClient, a aVar);
+    void post(ApiClient apiClient, InterfaceC2523a interfaceC2523a);
 
-    void send(ApiClient apiClient, a aVar);
+    void send(ApiClient apiClient, InterfaceC2523a interfaceC2523a);
 }

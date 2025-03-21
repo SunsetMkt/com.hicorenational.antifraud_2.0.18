@@ -1,15 +1,15 @@
 package com.huawei.hmf.tasks;
 
-import com.huawei.hmf.tasks.a.a;
+import com.huawei.hmf.tasks.p170a.C2271a;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 
 /* loaded from: classes.dex */
 public final class TaskExecutors {
     private static final TaskExecutors INSTANCE = new TaskExecutors();
-    private final ExecutorService mBackground = a.a();
+    private final ExecutorService mBackground = C2271a.m6471a();
     private final Executor mImmediate = new ImmediateExecutor();
-    private final Executor mUiThread = a.b();
+    private final Executor mUiThread = C2271a.m6472b();
 
     static final class ImmediateExecutor implements Executor {
         ImmediateExecutor() {

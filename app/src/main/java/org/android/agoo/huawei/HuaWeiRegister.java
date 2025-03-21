@@ -20,54 +20,56 @@ public class HuaWeiRegister {
     public static final String TAG = "HuaWeiRegister";
     public static final String VERSION = "2.1.0";
 
-    public class a implements Runnable {
+    /* renamed from: org.android.agoo.huawei.HuaWeiRegister$a */
+    public class RunnableC6028a implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Context f17351a;
+        /* renamed from: a */
+        public final /* synthetic */ Context f21507a;
 
-        public a(Context context) {
-            this.f17351a = context;
+        public RunnableC6028a(Context context) {
+            this.f21507a = context;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            ALog.i(HuaWeiRegister.TAG, "register begin", new Object[0]);
+            ALog.m9183i(HuaWeiRegister.TAG, "register begin", new Object[0]);
             try {
-                String token = HuaWeiRegister.getToken(this.f17351a);
+                String token = HuaWeiRegister.getToken(this.f21507a);
                 if (TextUtils.isEmpty(token)) {
                     return;
                 }
-                ALog.i(HuaWeiRegister.TAG, "onToken", "token", token);
+                ALog.m9183i(HuaWeiRegister.TAG, "onToken", "token", token);
                 NotifManager notifManager = new NotifManager();
-                notifManager.init(this.f17351a);
+                notifManager.init(this.f21507a);
                 notifManager.reportThirdPushToken(token, HuaweiRcvService.HUAWEI_TOKEN);
             } catch (Throwable th) {
-                ALog.e(HuaWeiRegister.TAG, "getToken failed.", th, new Object[0]);
+                ALog.m9181e(HuaWeiRegister.TAG, "getToken failed.", th, new Object[0]);
             }
         }
     }
 
-    public class b implements Runnable {
+    /* renamed from: org.android.agoo.huawei.HuaWeiRegister$b */
+    public class RunnableC6029b implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        public final /* synthetic */ Context f17352a;
+        /* renamed from: a */
+        public final /* synthetic */ Context f21508a;
 
-        public b(Context context) {
-            this.f17352a = context;
+        public RunnableC6029b(Context context) {
+            this.f21508a = context;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             try {
-                String string = this.f17352a.getPackageManager().getApplicationInfo(this.f17352a.getPackageName(), 128).metaData.getString(Constants.HUAWEI_HMS_CLIENT_APPID);
+                String string = this.f21508a.getPackageManager().getApplicationInfo(this.f21508a.getPackageName(), 128).metaData.getString(Constants.HUAWEI_HMS_CLIENT_APPID);
                 String str = "";
                 if (string != null && string.length() > 0) {
                     str = string.replace("appid=", "");
                 }
-                ALog.i(HuaWeiRegister.TAG, MiPushClient.COMMAND_UNREGISTER, "appId", str);
-                HmsInstanceId.getInstance(this.f17352a).deleteToken(str, HmsMessaging.DEFAULT_TOKEN_SCOPE);
+                ALog.m9183i(HuaWeiRegister.TAG, MiPushClient.COMMAND_UNREGISTER, "appId", str);
+                HmsInstanceId.getInstance(this.f21508a).deleteToken(str, HmsMessaging.DEFAULT_TOKEN_SCOPE);
             } catch (Throwable th) {
-                ALog.e(HuaWeiRegister.TAG, MiPushClient.COMMAND_UNREGISTER, th, new Object[0]);
+                ALog.m9181e(HuaWeiRegister.TAG, MiPushClient.COMMAND_UNREGISTER, th, new Object[0]);
             }
         }
     }
@@ -110,10 +112,10 @@ public class HuaWeiRegister {
             if (string != null && string.length() > 0) {
                 str = string.replace("appid=", "");
             }
-            ALog.i(TAG, "getToken", "appId", str);
+            ALog.m9183i(TAG, "getToken", "appId", str);
             return TextUtils.isEmpty(str) ? HmsInstanceId.getInstance(context).getToken() : HmsInstanceId.getInstance(context).getToken(str, HmsMessaging.DEFAULT_TOKEN_SCOPE);
         } catch (Throwable th) {
-            ALog.e(TAG, "getToken failed.", th, new Object[0]);
+            ALog.m9181e(TAG, "getToken failed.", th, new Object[0]);
             return null;
         }
     }
@@ -126,27 +128,27 @@ public class HuaWeiRegister {
         try {
             Context applicationContext = context.getApplicationContext();
             if (!UtilityImpl.isMainProcess(applicationContext)) {
-                ALog.i(TAG, "not in main process, skipped.", new Object[0]);
+                ALog.m9183i(TAG, "not in main process, skipped.", new Object[0]);
                 return;
             }
             if (Build.VERSION.SDK_INT < 17 || !checkDevice(applicationContext)) {
-                ALog.i(TAG, "device check, skipped.", new Object[0]);
+                ALog.m9183i(TAG, "device check, skipped.", new Object[0]);
                 return;
             }
-            ALog.i(TAG, "ver:", "2.1.0");
+            ALog.m9183i(TAG, "ver:", "2.1.0");
             BaseNotifyClickActivity.addNotifyListener(new HuaweiMsgParseImpl());
-            ThreadPoolExecutorFactory.schedule(new a(applicationContext), 5L, TimeUnit.SECONDS);
+            ThreadPoolExecutorFactory.schedule(new RunnableC6028a(applicationContext), 5L, TimeUnit.SECONDS);
         } catch (Throwable th) {
-            ALog.e(TAG, "register", th, new Object[0]);
+            ALog.m9181e(TAG, "register", th, new Object[0]);
         }
     }
 
     public static void unregister(Context context) {
         try {
-            ALog.i(TAG, MiPushClient.COMMAND_UNREGISTER, new Object[0]);
-            ThreadPoolExecutorFactory.execute(new b(context.getApplicationContext()));
+            ALog.m9183i(TAG, MiPushClient.COMMAND_UNREGISTER, new Object[0]);
+            ThreadPoolExecutorFactory.execute(new RunnableC6029b(context.getApplicationContext()));
         } catch (Throwable th) {
-            ALog.e(TAG, "unregister failed:", th, new Object[0]);
+            ALog.m9181e(TAG, "unregister failed:", th, new Object[0]);
         }
     }
 }

@@ -21,7 +21,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.legacy.widget.Space;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.animation.AnimatorSetCompat;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ final class IndicatorViewController {
     public IndicatorViewController(TextInputLayout textInputLayout) {
         this.context = textInputLayout.getContext();
         this.textInputView = textInputLayout;
-        this.captionTranslationYPx = this.context.getResources().getDimensionPixelSize(R.dimen.design_textinput_caption_translate_y);
+        this.captionTranslationYPx = this.context.getResources().getDimensionPixelSize(C1921R.dimen.design_textinput_caption_translate_y);
     }
 
     private boolean canAdjustIndicatorPadding() {
@@ -343,7 +343,7 @@ final class IndicatorViewController {
         cancelCaptionAnimator();
         if (z) {
             this.errorView = new AppCompatTextView(this.context);
-            this.errorView.setId(R.id.textinput_error);
+            this.errorView.setId(C1921R.id.textinput_error);
             Typeface typeface = this.typeface;
             if (typeface != null) {
                 this.errorView.setTypeface(typeface);
@@ -392,7 +392,7 @@ final class IndicatorViewController {
         cancelCaptionAnimator();
         if (z) {
             this.helperTextView = new AppCompatTextView(this.context);
-            this.helperTextView.setId(R.id.textinput_helper_text);
+            this.helperTextView.setId(C1921R.id.textinput_helper_text);
             Typeface typeface = this.typeface;
             if (typeface != null) {
                 this.helperTextView.setTypeface(typeface);

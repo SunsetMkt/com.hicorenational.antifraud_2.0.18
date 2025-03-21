@@ -15,7 +15,7 @@ import android.view.WindowManager;
 import androidx.core.content.FileProvider;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.tencent.bugly.beta.tinker.TinkerReport;
-import com.umeng.analytics.pro.cw;
+import com.umeng.analytics.pro.C3393cw;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.common.SocializeConstants;
@@ -254,7 +254,7 @@ public class SocializeUtils {
                 int i4 = i2 + 1;
                 cArr[i2] = hexDigits[(b2 >>> 4) & 15];
                 i2 = i4 + 1;
-                cArr[i4] = hexDigits[b2 & cw.f10303m];
+                cArr[i4] = hexDigits[b2 & C3393cw.f11873m];
             }
             return new String(cArr);
         } catch (Exception e2) {

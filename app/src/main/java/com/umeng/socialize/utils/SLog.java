@@ -10,14 +10,19 @@ import org.json.JSONObject;
 /* loaded from: classes2.dex */
 public class SLog {
     private static boolean DEBUG = true;
-    private static final int E = 0;
-    private static final int I = 2;
+
+    /* renamed from: E */
+    private static final int f13815E = 0;
+
+    /* renamed from: I */
+    private static final int f13816I = 2;
     private static final String PRIVATE = "priviteSocial";
     private static final String TAG = "Social";
 
-    public static void AQ(String str, String str2) {
+    /* renamed from: AQ */
+    public static void m12715AQ(String str, String str2) {
         UMLog uMLog = UMConfigure.umDebugLog;
-        UMLog.aq(TAG, 0, str, str2);
+        UMLog.m11550aq(TAG, 0, str, str2);
     }
 
     public static void BUNDLE(Bundle bundle) {
@@ -26,7 +31,8 @@ public class SLog {
         }
     }
 
-    public static void E(String str) {
+    /* renamed from: E */
+    public static void m12716E(String str) {
         if (UMConfigure.umDebugLog != null) {
             String[] split = str.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
@@ -34,7 +40,8 @@ public class SLog {
         }
     }
 
-    public static void I(String str) {
+    /* renamed from: I */
+    public static void m12717I(String str) {
         if (UMConfigure.umDebugLog != null) {
             String[] split = str.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
@@ -54,7 +61,8 @@ public class SLog {
         }
     }
 
-    public static void TE(String str, String str2) {
+    /* renamed from: TE */
+    public static void m12718TE(String str, String str2) {
         if (UMConfigure.umDebugLog != null) {
             String[] split = str2.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
@@ -62,7 +70,8 @@ public class SLog {
         }
     }
 
-    public static void TI(String str, String str2) {
+    /* renamed from: TI */
+    public static void m12719TI(String str, String str2) {
         if (UMConfigure.umDebugLog != null) {
             String[] split = str2.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
@@ -112,7 +121,7 @@ public class SLog {
     }
 
     public static void runtimePrint(String str) {
-        UMRTLog.e(PRIVATE, str);
+        UMRTLog.m11555e(PRIVATE, str);
     }
 
     public static void selfLog(String str) {

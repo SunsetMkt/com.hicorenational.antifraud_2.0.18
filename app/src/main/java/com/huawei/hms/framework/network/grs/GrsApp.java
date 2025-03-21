@@ -18,7 +18,7 @@ public class GrsApp {
             str = "";
         } else {
             String[] split = name.split("\\.");
-            Logger.v(TAG, "current brand is: " + split[1]);
+            Logger.m6801v(TAG, "current brand is: " + split[1]);
             str = split[1];
         }
         BRAND = str;
@@ -43,7 +43,7 @@ public class GrsApp {
     }
 
     public String getIssueCountryCode(Context context) {
-        return a.a(context, false).getCountryCode();
+        return C2357a.m6806a(context, false).getCountryCode();
     }
 
     public void setAppConfigName(String str) {

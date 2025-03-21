@@ -51,7 +51,7 @@ public class DefaultWebCreator implements WebCreator {
         BaseIndicatorView baseIndicatorView;
         Activity activity = this.mActivity;
         WebParentLayout webParentLayout = new WebParentLayout(activity);
-        webParentLayout.setId(R.id.web_parent_layout_id);
+        webParentLayout.setId(C2605R.id.web_parent_layout_id);
         webParentLayout.setBackgroundColor(-1);
         if (this.mIWebLayout == null) {
             WebView createWebView = createWebView();
@@ -62,12 +62,12 @@ public class DefaultWebCreator implements WebCreator {
         }
         webParentLayout.addView(view, new FrameLayout.LayoutParams(-1, -1));
         webParentLayout.bindWebView(this.mWebView);
-        LogUtils.i(TAG, "  instanceof  AgentWebView:" + (this.mWebView instanceof AgentWebView));
+        LogUtils.m8083i(TAG, "  instanceof  AgentWebView:" + (this.mWebView instanceof AgentWebView));
         if (this.mWebView instanceof AgentWebView) {
             this.mWebViewType = 2;
         }
         ViewStub viewStub = new ViewStub(activity);
-        viewStub.setId(R.id.mainframe_error_viewsub_id);
+        viewStub.setId(C2605R.id.mainframe_error_viewsub_id);
         webParentLayout.addView(viewStub, new FrameLayout.LayoutParams(-1, -1));
         boolean z = this.mIsNeedDefaultProgress;
         if (z) {
@@ -111,7 +111,7 @@ public class DefaultWebCreator implements WebCreator {
         if (webView == null) {
             webView = createWebView();
             this.mIWebLayout.getLayout().addView(webView, -1, -1);
-            LogUtils.i(TAG, "add webview");
+            LogUtils.m8083i(TAG, "add webview");
         } else {
             this.mWebViewType = 3;
         }

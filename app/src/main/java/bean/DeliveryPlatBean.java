@@ -4,13 +4,15 @@ import network.BaseBean;
 
 /* loaded from: classes.dex */
 public class DeliveryPlatBean extends BaseBean {
-    private int ex;
+
+    /* renamed from: ex */
+    private int f1595ex;
     private String oddNumRegex;
     private String platform;
     private String platformText;
 
     public int getEx() {
-        return this.ex;
+        return this.f1595ex;
     }
 
     public String getOddNumRegex() {
@@ -26,7 +28,7 @@ public class DeliveryPlatBean extends BaseBean {
     }
 
     public void setEx(int i2) {
-        this.ex = i2;
+        this.f1595ex = i2;
     }
 
     public void setOddNumRegex(String str) {

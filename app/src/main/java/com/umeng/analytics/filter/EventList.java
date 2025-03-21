@@ -2,6 +2,7 @@ package com.umeng.analytics.filter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.umeng.analytics.pro.C3397d;
 import com.umeng.commonsdk.debug.UMRTLog;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
@@ -18,7 +19,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /* loaded from: classes2.dex */
-public class EventList extends c implements FileLockCallback {
+public class EventList extends C3314c implements FileLockCallback {
     private static final int DELETE_LIST_DATA = 2;
     private static final int LOAD_LIST_DATA = 1;
     private static final int SAVE_LIST_DATA = 0;
@@ -91,7 +92,7 @@ public class EventList extends c implements FileLockCallback {
                     String imprintProperty = UMEnvelopeBuild.imprintProperty(context, this.mEventListVersionKey, "");
                     this.mEventList = sb;
                     eventListChange();
-                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> loadEventListFromFile: mEventList = " + this.mEventList);
+                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> loadEventListFromFile: mEventList = " + this.mEventList);
                     if (!UMUtils.isMainProgress(context)) {
                         if (!md5.equalsIgnoreCase(imprintProperty)) {
                             try {
@@ -168,9 +169,9 @@ public class EventList extends c implements FileLockCallback {
         } else if (i2 == 1) {
             synchronized (this) {
                 if (loadEventListFromFile(this.mAppContext, file)) {
-                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> find event list data file, load it.");
+                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> find event list data file, load it.");
                 } else {
-                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> can't find event list file.");
+                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> can't find event list file.");
                 }
             }
         } else if (i2 == 2) {
@@ -192,28 +193,28 @@ public class EventList extends c implements FileLockCallback {
         return false;
     }
 
-    @Override // com.umeng.analytics.filter.c, com.umeng.commonsdk.statistics.internal.UMImprintChangeCallback
+    @Override // com.umeng.analytics.filter.C3314c, com.umeng.commonsdk.statistics.internal.UMImprintChangeCallback
     public void onImprintValueChanged(String str, String str2) {
-        if (com.umeng.analytics.pro.d.an.equals(str) && str2 == null) {
-            UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> disable black list for ekv.");
+        if (C3397d.f11923an.equals(str) && str2 == null) {
+            UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> disable black list for ekv.");
             this.mFileLock.doFileOperateion(new File(this.mAppContext.getFilesDir(), this.mEventListName), this, 2);
         }
-        if (com.umeng.analytics.pro.d.ao.equals(str) && str2 == null) {
-            UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> disable white list for ekv.");
+        if (C3397d.f11924ao.equals(str) && str2 == null) {
+            UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> disable white list for ekv.");
             this.mFileLock.doFileOperateion(new File(this.mAppContext.getFilesDir(), this.mEventListName), this, 2);
         }
     }
 
-    @Override // com.umeng.analytics.filter.c, com.umeng.commonsdk.statistics.internal.UMImprintPreProcessCallback
+    @Override // com.umeng.analytics.filter.C3314c, com.umeng.commonsdk.statistics.internal.UMImprintPreProcessCallback
     public boolean onPreProcessImprintKey(String str, String str2) {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             return true;
         }
-        UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> onPreProcessImprintKey: key = " + str + "; len of value=" + str2.length());
+        UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> onPreProcessImprintKey: key = " + str + "; len of value=" + str2.length());
         StringBuilder sb = new StringBuilder();
         sb.append("--->>> onPreProcessImprintKey: value = ");
         sb.append(str2);
-        UMRTLog.i(UMRTLog.RTLOG_TAG, sb.toString());
+        UMRTLog.m11556i(UMRTLog.RTLOG_TAG, sb.toString());
         this.mEventList = str2;
         eventListChange();
         File file = new File(this.mAppContext.getFilesDir(), this.mEventListName);

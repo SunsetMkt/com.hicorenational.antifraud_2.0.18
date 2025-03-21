@@ -4,22 +4,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import com.huawei.hms.android.HwBuildEx;
-import com.huawei.hms.push.i;
-import com.huawei.hms.push.t;
+import com.huawei.hms.push.C2489i;
+import com.huawei.hms.push.C2500t;
 import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.ResourceLoaderUtil;
 
 /* loaded from: classes.dex */
 public class PushMsgReceiver extends BroadcastReceiver {
-    private static void a(Context context, Intent intent) {
+    /* renamed from: a */
+    private static void m7681a(Context context, Intent intent) {
         if (intent.hasExtra("selfshow_info")) {
-            if (!i.a(context)) {
-                HMSLog.i("PushMsgReceiver", context.getPackageName() + " disable display notification.");
+            if (!C2489i.m7565a(context)) {
+                HMSLog.m7717i("PushMsgReceiver", context.getPackageName() + " disable display notification.");
                 if (!intent.hasExtra("selfshow_event_id")) {
                     return;
                 }
             }
-            t.a(context, intent);
+            C2500t.m7636a(context, intent);
         }
     }
 
@@ -28,7 +29,7 @@ public class PushMsgReceiver extends BroadcastReceiver {
         if (intent == null || context == null) {
             return;
         }
-        HMSLog.i("PushMsgReceiver", "push receive broadcast message, Intent:" + intent.getAction() + " pkgName:" + context.getPackageName());
+        HMSLog.m7717i("PushMsgReceiver", "push receive broadcast message, Intent:" + intent.getAction() + " pkgName:" + context.getPackageName());
         try {
             intent.getStringExtra("TestIntent");
             String action = intent.getAction();
@@ -36,12 +37,12 @@ public class PushMsgReceiver extends BroadcastReceiver {
                 ResourceLoaderUtil.setmContext(context.getApplicationContext());
             }
             if ("com.huawei.intent.action.PUSH_DELAY_NOTIFY".equals(action) || ("com.huawei.intent.action.PUSH".equals(action) && HwBuildEx.VERSION.EMUI_SDK_INT < 10)) {
-                a(context, intent);
+                m7681a(context, intent);
             } else {
-                HMSLog.i("PushMsgReceiver", "message can't be recognised.");
+                HMSLog.m7717i("PushMsgReceiver", "message can't be recognised.");
             }
         } catch (Exception unused) {
-            HMSLog.e("PushMsgReceiver", "intent has some error");
+            HMSLog.m7715e("PushMsgReceiver", "intent has some error");
         }
     }
 }

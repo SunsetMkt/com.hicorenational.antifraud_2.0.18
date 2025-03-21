@@ -11,5 +11,6 @@ import java.lang.annotation.Target;
 public @interface IntRange {
     long from() default Long.MIN_VALUE;
 
-    long to() default Long.MAX_VALUE;
+    /* renamed from: to */
+    long m294to() default Long.MAX_VALUE;
 }

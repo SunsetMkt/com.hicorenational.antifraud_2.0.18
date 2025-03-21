@@ -8,7 +8,7 @@ import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.motion.utils.Easing;
-import androidx.constraintlayout.widget.R;
+import androidx.constraintlayout.widget.C0471R;
 import java.util.HashMap;
 
 /* loaded from: classes.dex */
@@ -50,18 +50,18 @@ public class KeyPosition extends KeyPositionBase {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(R.styleable.KeyPosition_motionTarget, 1);
-            mAttrMap.append(R.styleable.KeyPosition_framePosition, 2);
-            mAttrMap.append(R.styleable.KeyPosition_transitionEasing, 3);
-            mAttrMap.append(R.styleable.KeyPosition_curveFit, 4);
-            mAttrMap.append(R.styleable.KeyPosition_drawPath, 5);
-            mAttrMap.append(R.styleable.KeyPosition_percentX, 6);
-            mAttrMap.append(R.styleable.KeyPosition_percentY, 7);
-            mAttrMap.append(R.styleable.KeyPosition_keyPositionType, 9);
-            mAttrMap.append(R.styleable.KeyPosition_sizePercent, 8);
-            mAttrMap.append(R.styleable.KeyPosition_percentWidth, 11);
-            mAttrMap.append(R.styleable.KeyPosition_percentHeight, 12);
-            mAttrMap.append(R.styleable.KeyPosition_pathMotionArc, 10);
+            mAttrMap.append(C0471R.styleable.KeyPosition_motionTarget, 1);
+            mAttrMap.append(C0471R.styleable.KeyPosition_framePosition, 2);
+            mAttrMap.append(C0471R.styleable.KeyPosition_transitionEasing, 3);
+            mAttrMap.append(C0471R.styleable.KeyPosition_curveFit, 4);
+            mAttrMap.append(C0471R.styleable.KeyPosition_drawPath, 5);
+            mAttrMap.append(C0471R.styleable.KeyPosition_percentX, 6);
+            mAttrMap.append(C0471R.styleable.KeyPosition_percentY, 7);
+            mAttrMap.append(C0471R.styleable.KeyPosition_keyPositionType, 9);
+            mAttrMap.append(C0471R.styleable.KeyPosition_sizePercent, 8);
+            mAttrMap.append(C0471R.styleable.KeyPosition_percentWidth, 11);
+            mAttrMap.append(C0471R.styleable.KeyPosition_percentHeight, 12);
+            mAttrMap.append(C0471R.styleable.KeyPosition_pathMotionArc, 10);
         }
 
         private Loader() {
@@ -202,7 +202,7 @@ public class KeyPosition extends KeyPositionBase {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyPosition));
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyPosition));
     }
 
     @Override // androidx.constraintlayout.motion.widget.KeyPositionBase

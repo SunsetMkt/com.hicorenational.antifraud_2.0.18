@@ -29,7 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.core.R;
+import androidx.core.C0475R;
 import androidx.core.app.Person;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.text.BidiFormatter;
@@ -386,7 +386,7 @@ public class NotificationCompat {
             }
 
             /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-            public WearableExtender m4clone() {
+            public WearableExtender m26845clone() {
                 WearableExtender wearableExtender = new WearableExtender();
                 wearableExtender.mFlags = this.mFlags;
                 wearableExtender.mInProgressLabel = this.mInProgressLabel;
@@ -835,8 +835,8 @@ public class NotificationCompat {
                 return bitmap;
             }
             Resources resources = this.mContext.getResources();
-            int dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.compat_notification_large_icon_max_width);
-            int dimensionPixelSize2 = resources.getDimensionPixelSize(R.dimen.compat_notification_large_icon_max_height);
+            int dimensionPixelSize = resources.getDimensionPixelSize(C0475R.dimen.compat_notification_large_icon_max_width);
+            int dimensionPixelSize2 = resources.getDimensionPixelSize(C0475R.dimen.compat_notification_large_icon_max_height);
             if (bitmap.getWidth() <= dimensionPixelSize && bitmap.getHeight() <= dimensionPixelSize2) {
                 return bitmap;
             }
@@ -1258,33 +1258,33 @@ public class NotificationCompat {
         private RemoteViews createRemoteViews(RemoteViews remoteViews, boolean z) {
             int min;
             boolean z2 = true;
-            RemoteViews applyStandardTemplate = applyStandardTemplate(true, R.layout.notification_template_custom_big, false);
-            applyStandardTemplate.removeAllViews(R.id.actions);
+            RemoteViews applyStandardTemplate = applyStandardTemplate(true, C0475R.layout.notification_template_custom_big, false);
+            applyStandardTemplate.removeAllViews(C0475R.id.actions);
             List<Action> nonContextualActions = getNonContextualActions(this.mBuilder.mActions);
             if (!z || nonContextualActions == null || (min = Math.min(nonContextualActions.size(), 3)) <= 0) {
                 z2 = false;
             } else {
                 for (int i2 = 0; i2 < min; i2++) {
-                    applyStandardTemplate.addView(R.id.actions, generateActionButton(nonContextualActions.get(i2)));
+                    applyStandardTemplate.addView(C0475R.id.actions, generateActionButton(nonContextualActions.get(i2)));
                 }
             }
             int i3 = z2 ? 0 : 8;
-            applyStandardTemplate.setViewVisibility(R.id.actions, i3);
-            applyStandardTemplate.setViewVisibility(R.id.action_divider, i3);
+            applyStandardTemplate.setViewVisibility(C0475R.id.actions, i3);
+            applyStandardTemplate.setViewVisibility(C0475R.id.action_divider, i3);
             buildIntoRemoteViews(applyStandardTemplate, remoteViews);
             return applyStandardTemplate;
         }
 
         private RemoteViews generateActionButton(Action action) {
             boolean z = action.actionIntent == null;
-            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), z ? R.layout.notification_action_tombstone : R.layout.notification_action);
-            remoteViews.setImageViewBitmap(R.id.action_image, createColoredBitmap(action.getIconCompat(), this.mBuilder.mContext.getResources().getColor(R.color.notification_action_color_filter)));
-            remoteViews.setTextViewText(R.id.action_text, action.title);
+            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), z ? C0475R.layout.notification_action_tombstone : C0475R.layout.notification_action);
+            remoteViews.setImageViewBitmap(C0475R.id.action_image, createColoredBitmap(action.getIconCompat(), this.mBuilder.mContext.getResources().getColor(C0475R.color.notification_action_color_filter)));
+            remoteViews.setTextViewText(C0475R.id.action_text, action.title);
             if (!z) {
-                remoteViews.setOnClickPendingIntent(R.id.action_container, action.actionIntent);
+                remoteViews.setOnClickPendingIntent(C0475R.id.action_container, action.actionIntent);
             }
             if (Build.VERSION.SDK_INT >= 15) {
-                remoteViews.setContentDescription(R.id.action_container, action.title);
+                remoteViews.setContentDescription(C0475R.id.action_container, action.title);
             }
             return remoteViews;
         }
@@ -1379,8 +1379,8 @@ public class NotificationCompat {
 
         private int calculateTopPadding() {
             Resources resources = this.mBuilder.mContext.getResources();
-            int dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.notification_top_pad);
-            int dimensionPixelSize2 = resources.getDimensionPixelSize(R.dimen.notification_top_pad_large_text);
+            int dimensionPixelSize = resources.getDimensionPixelSize(C0475R.dimen.notification_top_pad);
+            int dimensionPixelSize2 = resources.getDimensionPixelSize(C0475R.dimen.notification_top_pad_large_text);
             float constrain = (constrain(resources.getConfiguration().fontScale, 1.0f, 1.3f) - 1.0f) / 0.29999995f;
             return Math.round(((1.0f - constrain) * dimensionPixelSize) + (constrain * dimensionPixelSize2));
         }
@@ -1390,7 +1390,7 @@ public class NotificationCompat {
         }
 
         private Bitmap createIconWithBackground(int i2, int i3, int i4, int i5) {
-            int i6 = R.drawable.notification_icon_background;
+            int i6 = C0475R.drawable.notification_icon_background;
             if (i5 == 0) {
                 i5 = 0;
             }
@@ -1407,9 +1407,9 @@ public class NotificationCompat {
         }
 
         private void hideNormalContent(RemoteViews remoteViews) {
-            remoteViews.setViewVisibility(R.id.title, 8);
-            remoteViews.setViewVisibility(R.id.text2, 8);
-            remoteViews.setViewVisibility(R.id.text, 8);
+            remoteViews.setViewVisibility(C0475R.id.title, 8);
+            remoteViews.setViewVisibility(C0475R.id.text2, 8);
+            remoteViews.setViewVisibility(C0475R.id.text, 8);
         }
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -1452,11 +1452,11 @@ public class NotificationCompat {
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
         public void buildIntoRemoteViews(RemoteViews remoteViews, RemoteViews remoteViews2) {
             hideNormalContent(remoteViews);
-            remoteViews.removeAllViews(R.id.notification_main_column);
-            remoteViews.addView(R.id.notification_main_column, remoteViews2.clone());
-            remoteViews.setViewVisibility(R.id.notification_main_column, 0);
+            remoteViews.removeAllViews(C0475R.id.notification_main_column);
+            remoteViews.addView(C0475R.id.notification_main_column, remoteViews2.clone());
+            remoteViews.setViewVisibility(C0475R.id.notification_main_column, 0);
             if (Build.VERSION.SDK_INT >= 21) {
-                remoteViews.setViewPadding(R.id.notification_main_column_container, 0, calculateTopPadding(), 0, 0);
+                remoteViews.setViewPadding(C0475R.id.notification_main_column_container, 0, calculateTopPadding(), 0, 0);
             }
         }
 
@@ -1933,7 +1933,7 @@ public class NotificationCompat {
         }
 
         /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-        public WearableExtender m5clone() {
+        public WearableExtender m26846clone() {
             WearableExtender wearableExtender = new WearableExtender();
             wearableExtender.mActions = new ArrayList<>(this.mActions);
             wearableExtender.mFlags = this.mFlags;

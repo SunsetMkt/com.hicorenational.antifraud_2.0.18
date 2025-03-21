@@ -14,9 +14,9 @@ import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
 import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.constraintlayout.solver.widgets.HelperWidget;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.R;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -126,7 +126,7 @@ public abstract class ConstraintHelper extends View {
         }
         if (i2 == 0) {
             try {
-                i2 = R.id.class.getField(str).getInt(null);
+                i2 = C0471R.id.class.getField(str).getInt(null);
             } catch (Exception unused) {
             }
         }
@@ -173,14 +173,14 @@ public abstract class ConstraintHelper extends View {
 
     protected void init(AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_Layout);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.ConstraintLayout_Layout_constraint_referenced_ids) {
+                if (index == C0471R.styleable.ConstraintLayout_Layout_constraint_referenced_ids) {
                     this.mReferenceIds = obtainStyledAttributes.getString(index);
                     setIds(this.mReferenceIds);
-                } else if (index == R.styleable.ConstraintLayout_Layout_constraint_referenced_tags) {
+                } else if (index == C0471R.styleable.ConstraintLayout_Layout_constraint_referenced_tags) {
                     this.mReferenceTags = obtainStyledAttributes.getString(index);
                     setReferenceTags(this.mReferenceTags);
                 }

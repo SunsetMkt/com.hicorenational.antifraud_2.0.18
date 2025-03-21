@@ -12,8 +12,8 @@ import java.security.cert.X509Certificate;
 /* loaded from: classes.dex */
 public final class CertificateUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7654a = "CertificateUtil";
+    /* renamed from: a */
+    private static final String f8236a = "CertificateUtil";
 
     private CertificateUtil() {
     }
@@ -33,90 +33,90 @@ public final class CertificateUtil {
         X509Certificate x509Certificate = null;
         try {
             try {
-                keyStore = KeyStore.getInstance(h.f7671e);
+                keyStore = KeyStore.getInstance(C2566h.f8253e);
                 inputStream = context.getAssets().open("hmsrootcas.bks");
             } catch (IOException e2) {
                 e = e2;
                 inputStream = null;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (RuntimeException e3) {
                 e = e3;
                 inputStream = null;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (KeyStoreException e4) {
                 e = e4;
                 inputStream = null;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (NoSuchAlgorithmException e5) {
                 e = e5;
                 inputStream = null;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (CertificateException e6) {
                 e = e6;
                 inputStream = null;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (Throwable th2) {
                 th = th2;
                 context = 0;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 throw th;
             }
             try {
                 inputStream.reset();
                 keyStore.load(inputStream, "".toCharArray());
-                x509Certificate = (X509Certificate) keyStore.getCertificate(h.f7672f);
+                x509Certificate = (X509Certificate) keyStore.getCertificate(C2566h.f8254f);
                 context = inputStream;
             } catch (IOException e7) {
                 e = e7;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (RuntimeException e8) {
                 e = e8;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (KeyStoreException e9) {
                 e = e9;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (NoSuchAlgorithmException e10) {
                 e = e10;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             } catch (CertificateException e11) {
                 e = e11;
-                e.b(f7654a, "loadBksCA: exception : " + e.getMessage());
+                C2563e.m7986b(f8236a, "loadBksCA: exception : " + e.getMessage());
                 context = inputStream;
-                d.a((InputStream) context);
+                AbstractC2562d.m7977a((InputStream) context);
                 return x509Certificate;
             }
-            d.a((InputStream) context);
+            AbstractC2562d.m7977a((InputStream) context);
             return x509Certificate;
         } catch (Throwable th3) {
             th = th3;
-            d.a((InputStream) context);
+            AbstractC2562d.m7977a((InputStream) context);
             throw th;
         }
     }

@@ -35,13 +35,13 @@ import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.graphics.PathParser;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
-import c.c.a.b.a.a;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class VectorDrawableCompat extends VectorDrawableCommon {
@@ -877,7 +877,7 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
         }
 
         public String nodesToString(PathParser.PathDataNode[] pathDataNodeArr) {
-            String str = a.f3100g;
+            String str = AbstractC1191a.f2568g;
             int i2 = 0;
             while (i2 < pathDataNodeArr.length) {
                 String str2 = str + pathDataNodeArr[i2].mType + Constants.COLON_SEPARATOR;

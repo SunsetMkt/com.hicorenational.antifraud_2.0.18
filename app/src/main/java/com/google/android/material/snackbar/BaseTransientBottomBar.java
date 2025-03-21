@@ -30,7 +30,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.accessibility.AccessibilityManagerCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.behavior.SwipeDismissBehavior;
 import com.google.android.material.internal.ThemeEnforcement;
@@ -222,9 +222,9 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
 
         protected SnackbarBaseLayout(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.SnackbarLayout);
-            if (obtainStyledAttributes.hasValue(R.styleable.SnackbarLayout_elevation)) {
-                ViewCompat.setElevation(this, obtainStyledAttributes.getDimensionPixelSize(R.styleable.SnackbarLayout_elevation, 0));
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.SnackbarLayout);
+            if (obtainStyledAttributes.hasValue(C1921R.styleable.SnackbarLayout_elevation)) {
+                ViewCompat.setElevation(this, obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.SnackbarLayout_elevation, 0));
             }
             obtainStyledAttributes.recycle();
             this.accessibilityManager = (AccessibilityManager) context.getSystemService("accessibility");
@@ -242,7 +242,7 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
     static {
         int i2 = Build.VERSION.SDK_INT;
         USE_OFFSET_API = i2 >= 16 && i2 <= 19;
-        SNACKBAR_STYLE_ATTR = new int[]{R.attr.snackbarStyle};
+        SNACKBAR_STYLE_ATTR = new int[]{C1921R.attr.snackbarStyle};
         handler = new Handler(Looper.getMainLooper(), new Handler.Callback() { // from class: com.google.android.material.snackbar.BaseTransientBottomBar.1
             @Override // android.os.Handler.Callback
             public boolean handleMessage(Message message) {
@@ -427,7 +427,7 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
 
     @LayoutRes
     protected int getSnackbarBaseLayoutResId() {
-        return hasSnackbarStyleAttr() ? R.layout.mtrl_layout_snackbar : R.layout.design_layout_snackbar;
+        return hasSnackbarStyleAttr() ? C1921R.layout.mtrl_layout_snackbar : C1921R.layout.design_layout_snackbar;
     }
 
     @NonNull

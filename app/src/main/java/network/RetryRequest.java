@@ -1,12 +1,12 @@
 package network;
 
-import g.a.b0;
-import g.a.g0;
-import g.a.x0.o;
-import util.n1;
+import p251g.p252a.AbstractC4469b0;
+import p251g.p252a.InterfaceC4504g0;
+import p251g.p252a.p267x0.InterfaceC4584o;
+import util.C7301n1;
 
 /* loaded from: classes2.dex */
-public class RetryRequest implements o<b0<? extends Throwable>, b0<?>> {
+public class RetryRequest implements InterfaceC4584o<AbstractC4469b0<? extends Throwable>, AbstractC4469b0<?>> {
     private final int maxRetries;
     private int retryCount;
 
@@ -14,22 +14,23 @@ public class RetryRequest implements o<b0<? extends Throwable>, b0<?>> {
         this.maxRetries = i2;
     }
 
-    public /* synthetic */ g0 a(Throwable th) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ InterfaceC4504g0 m24920a(Throwable th) throws Exception {
         int i2 = this.retryCount + 1;
         this.retryCount = i2;
         if (i2 > this.maxRetries) {
-            return b0.a(th);
+            return AbstractC4469b0.m16561a(th);
         }
-        n1.a("hsc", "retryCount==" + this.retryCount);
-        return b0.l("" + this.retryCount);
+        C7301n1.m26454a("hsc", "retryCount==" + this.retryCount);
+        return AbstractC4469b0.m16633l("" + this.retryCount);
     }
 
-    @Override // g.a.x0.o
-    public b0<?> apply(b0<? extends Throwable> b0Var) throws Exception {
-        return b0Var.j(new o() { // from class: network.b
-            @Override // g.a.x0.o
+    @Override // p251g.p252a.p267x0.InterfaceC4584o
+    public AbstractC4469b0<?> apply(AbstractC4469b0<? extends Throwable> abstractC4469b0) throws Exception {
+        return abstractC4469b0.m16915j(new InterfaceC4584o() { // from class: network.b
+            @Override // p251g.p252a.p267x0.InterfaceC4584o
             public final Object apply(Object obj) {
-                return RetryRequest.this.a((Throwable) obj);
+                return RetryRequest.this.m24920a((Throwable) obj);
             }
         });
     }

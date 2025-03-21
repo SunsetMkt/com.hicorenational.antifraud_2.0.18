@@ -11,7 +11,9 @@ public final class OSSConstants {
     public static final int DEFAULT_RETRY_COUNT = 2;
     public static final int DEFAULT_STREAM_BUFFER_SIZE = 131072;
     public static final String DEFAULT_XML_ENCODING = "utf-8";
-    public static final int KB = 1024;
+
+    /* renamed from: KB */
+    public static final int f4017KB = 1024;
     public static final long MIN_PART_SIZE_LIMIT = 102400;
     public static final int OBJECT_NAME_MAX_LENGTH = 1024;
     public static final String RESOURCE_NAME_COMMON = "common";

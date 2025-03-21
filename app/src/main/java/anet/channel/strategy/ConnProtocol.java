@@ -1,11 +1,12 @@
 package anet.channel.strategy;
 
 import android.text.TextUtils;
-import anet.channel.strategy.l;
+import anet.channel.strategy.C0842l;
 import anet.channel.util.HttpConstant;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
@@ -37,19 +38,19 @@ public class ConnProtocol implements Serializable {
         if (TextUtils.isEmpty(str2)) {
             sb.append("_0rtt");
         } else {
-            sb.append(c.c.a.b.a.a.s1);
+            sb.append(AbstractC1191a.f2606s1);
             sb.append(str2);
         }
-        sb.append(c.c.a.b.a.a.s1);
+        sb.append(AbstractC1191a.f2606s1);
         sb.append(str3);
         return sb.toString();
     }
 
-    public static ConnProtocol valueOf(l.a aVar) {
+    public static ConnProtocol valueOf(C0842l.a aVar) {
         if (aVar == null) {
             return null;
         }
-        return valueOf(aVar.f1990b, aVar.f1995g, aVar.f1996h);
+        return valueOf(aVar.f1110b, aVar.f1115g, aVar.f1116h);
     }
 
     public boolean equals(Object obj) {

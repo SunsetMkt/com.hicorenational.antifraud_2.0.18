@@ -45,7 +45,7 @@ public class DefaultDownloadImpl implements DownloadListener {
             DownloadImpl.getInstance().with(this.mContext);
             this.isInstallDownloader = true;
         } catch (Throwable th) {
-            LogUtils.e(TAG, "implementation 'com.download.library:Downloader:x.x.x'");
+            LogUtils.m8081e(TAG, "implementation 'com.download.library:Downloader:x.x.x'");
             if (LogUtils.isDebug()) {
                 th.printStackTrace();
             }
@@ -95,7 +95,7 @@ public class DefaultDownloadImpl implements DownloadListener {
                 if (DefaultDownloadImpl.this.mAgentWebUIController.get() != null) {
                     DefaultDownloadImpl.this.mAgentWebUIController.get().onPermissionsDeny((String[]) DefaultDownloadImpl.this.checkNeedPermission().toArray(new String[0]), AgentWebPermissions.ACTION_STORAGE, "Download");
                 }
-                LogUtils.e(DefaultDownloadImpl.TAG, "储存权限获取失败~");
+                LogUtils.m8081e(DefaultDownloadImpl.TAG, "储存权限获取失败~");
             }
         };
     }
@@ -119,7 +119,7 @@ public class DefaultDownloadImpl implements DownloadListener {
             });
             return;
         }
-        LogUtils.e(TAG, "unable start download " + str + "; implementation 'com.download.library:Downloader:x.x.x'");
+        LogUtils.m8081e(TAG, "unable start download " + str + "; implementation 'com.download.library:Downloader:x.x.x'");
     }
 
     protected void onDownloadStartInternal(String str, String str2, String str3, String str4, long j2) {
@@ -146,10 +146,10 @@ public class DefaultDownloadImpl implements DownloadListener {
 
     protected void performDownload(String str) {
         try {
-            LogUtils.e(TAG, "performDownload:" + str + " exist:" + DownloadImpl.getInstance().exist(str));
+            LogUtils.m8081e(TAG, "performDownload:" + str + " exist:" + DownloadImpl.getInstance().exist(str));
             if (DownloadImpl.getInstance().exist(str)) {
                 if (this.mAgentWebUIController.get() != null) {
-                    this.mAgentWebUIController.get().onShowMessage(this.mActivityWeakReference.get().getString(R.string.agentweb_download_task_has_been_exist), "preDownload");
+                    this.mAgentWebUIController.get().onShowMessage(this.mActivityWeakReference.get().getString(C2605R.string.agentweb_download_task_has_been_exist), "preDownload");
                 }
             } else {
                 ResourceRequest resourceRequest = this.mDownloadTasks.get(str);

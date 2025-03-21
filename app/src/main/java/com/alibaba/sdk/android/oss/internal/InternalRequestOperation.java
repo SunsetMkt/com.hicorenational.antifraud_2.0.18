@@ -92,7 +92,7 @@ import com.alibaba.sdk.android.oss.model.UploadPartRequest;
 import com.alibaba.sdk.android.oss.model.UploadPartResult;
 import com.alibaba.sdk.android.oss.network.ExecutionContext;
 import com.alibaba.sdk.android.oss.network.OSSRequestTask;
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -129,7 +129,7 @@ public class InternalRequestOperation {
     private int maxRetryCount;
 
     /* renamed from: service, reason: collision with root package name */
-    private URI f4121service;
+    private URI f25890service;
 
     public InternalRequestOperation(Context context, final URI uri, OSSCredentialProvider oSSCredentialProvider, ClientConfiguration clientConfiguration) {
         this.maxRetryCount = 2;
@@ -666,7 +666,7 @@ public class InternalRequestOperation {
         RequestMessage requestMessage = new RequestMessage();
         requestMessage.setIsAuthorizationRequired(listBucketsRequest.isAuthorizationRequired());
         requestMessage.setMethod(HttpMethod.GET);
-        requestMessage.setService(this.f4121service);
+        requestMessage.setService(this.f25890service);
         requestMessage.setEndpoint(this.endpoint);
         canonicalizeRequestMessage(requestMessage, listBucketsRequest);
         OSSUtils.populateListBucketRequestParameters(listBucketsRequest, requestMessage.getParameters());
@@ -725,7 +725,7 @@ public class InternalRequestOperation {
         }
         Integer partNumberMarker = listPartsRequest.getPartNumberMarker();
         if (partNumberMarker != null) {
-            if (!OSSUtils.checkParamRange(partNumberMarker.intValue(), 0L, false, a.q, true)) {
+            if (!OSSUtils.checkParamRange(partNumberMarker.intValue(), 0L, false, C2084a.f6135q, true)) {
                 throw new IllegalArgumentException("PartNumberMarkerOutOfRange: 10000");
             }
             requestMessage.getParameters().put(RequestParameters.PART_NUMBER_MARKER, partNumberMarker.toString());
@@ -1012,7 +1012,7 @@ public class InternalRequestOperation {
     public InternalRequestOperation(Context context, OSSCredentialProvider oSSCredentialProvider, ClientConfiguration clientConfiguration) {
         this.maxRetryCount = 2;
         try {
-            this.f4121service = new URI("http://oss.aliyuncs.com");
+            this.f25890service = new URI("http://oss.aliyuncs.com");
             this.endpoint = new URI("http://127.0.0.1");
             this.applicationContext = context;
             this.credentialProvider = oSSCredentialProvider;
@@ -1020,7 +1020,7 @@ public class InternalRequestOperation {
             OkHttpClient.Builder hostnameVerifier = new OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).cache(null).hostnameVerifier(new HostnameVerifier() { // from class: com.alibaba.sdk.android.oss.internal.InternalRequestOperation.3
                 @Override // javax.net.ssl.HostnameVerifier
                 public boolean verify(String str, SSLSession sSLSession) {
-                    return HttpsURLConnection.getDefaultHostnameVerifier().verify(InternalRequestOperation.this.f4121service.getHost(), sSLSession);
+                    return HttpsURLConnection.getDefaultHostnameVerifier().verify(InternalRequestOperation.this.f25890service.getHost(), sSLSession);
                 }
             });
             if (clientConfiguration != null) {

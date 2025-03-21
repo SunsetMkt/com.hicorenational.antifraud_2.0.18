@@ -44,11 +44,11 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
     private final String UNIONID_PARAM = "&unionid=1";
     private IUiListener holder = null;
 
-    /* renamed from: com.umeng.socialize.handler.UMQQSsoHandler$5, reason: invalid class name */
-    class AnonymousClass5 implements IUiListener {
+    /* renamed from: com.umeng.socialize.handler.UMQQSsoHandler$5 */
+    class C36925 implements IUiListener {
         final /* synthetic */ UMAuthListener val$listener;
 
-        AnonymousClass5(UMAuthListener uMAuthListener) {
+        C36925(UMAuthListener uMAuthListener) {
             this.val$listener = uMAuthListener;
         }
 
@@ -88,7 +88,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
                             }
                             String optString2 = jSONObject.optString("error_description");
                             if (!TextUtils.isEmpty(optString2)) {
-                                SLog.E(UmengText.QQ.ERRORINFO + optString2);
+                                SLog.m12716E(UmengText.C3778QQ.ERRORINFO + optString2);
                             }
                         } catch (JSONException e2) {
                             SLog.error(e2);
@@ -101,14 +101,14 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
                     QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMQQSsoHandler.5.1.1
                         @Override // java.lang.Runnable
                         public void run() {
-                            AnonymousClass5 anonymousClass5 = AnonymousClass5.this;
-                            UMQQSsoHandler.this.getAuthListener(anonymousClass5.val$listener).onComplete(SHARE_MEDIA.QQ, 0, bundleTomap);
+                            C36925 c36925 = C36925.this;
+                            UMQQSsoHandler.this.getAuthListener(c36925.val$listener).onComplete(SHARE_MEDIA.QQ, 0, bundleTomap);
                         }
                     });
                     PlatformConfig.APPIDPlatform aPPIDPlatform = UMQQSsoHandler.this.config;
                     if (aPPIDPlatform != null) {
                         bundleTomap.put(CommonNetImpl.AID, aPPIDPlatform.appId);
-                        bundleTomap.put(CommonNetImpl.AS, UMQQSsoHandler.this.config.appkey);
+                        bundleTomap.put(CommonNetImpl.f13712AS, UMQQSsoHandler.this.config.appkey);
                     }
                 }
             }, true);
@@ -358,7 +358,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
             this.mTencent.setAccessToken(string, string2);
             this.mTencent.setOpenId(string3);
         } catch (Exception e2) {
-            SLog.error(UmengText.QQ.OPENIDANDTOKEN, e2);
+            SLog.error(UmengText.C3778QQ.OPENIDANDTOKEN, e2);
         }
     }
 
@@ -474,7 +474,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
             return;
         }
         IUiListener iUiListener = this.mShareListener;
-        String str = UmengText.QQ.QQ_ERROR;
+        String str = UmengText.C3778QQ.QQ_ERROR;
         iUiListener.onError(new UiError(-1, str, str));
     }
 
@@ -512,7 +512,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
     }
 
     protected IUiListener getQQAuthlistener(UMAuthListener uMAuthListener) {
-        return new AnonymousClass5(uMAuthListener);
+        return new C36925(uMAuthListener);
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler

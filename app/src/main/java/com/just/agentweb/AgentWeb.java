@@ -209,11 +209,12 @@ public final class AgentWeb {
             return this.mAgentWeb;
         }
 
-        public AgentWeb go(@Nullable String str) {
+        /* renamed from: go */
+        public AgentWeb m8080go(@Nullable String str) {
             if (!this.isReady) {
                 ready();
             }
-            return this.mAgentWeb.go(str);
+            return this.mAgentWeb.m8079go(str);
         }
 
         public PreAgentWeb ready() {
@@ -261,7 +262,7 @@ public final class AgentWeb {
         IVideo iVideo = getIVideo();
         this.mIVideo = iVideo;
         DefaultChromeClient defaultChromeClient = new DefaultChromeClient(activity, indicatorController2, null, iVideo, this.mPermissionInterceptor, this.mWebCreator.getWebView());
-        LogUtils.i(TAG, "WebChromeClient:" + this.mWebChromeClient);
+        LogUtils.m8083i(TAG, "WebChromeClient:" + this.mWebChromeClient);
         MiddlewareWebChromeBase middlewareWebChromeBase = this.mMiddlewareWebChromeBaseHeader;
         WebChromeClient webChromeClient = this.mWebChromeClient;
         if (webChromeClient != null) {
@@ -278,7 +279,7 @@ public final class AgentWeb {
             middlewareWebChromeBase2 = middlewareWebChromeBase2.next();
             i2++;
         }
-        LogUtils.i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
+        LogUtils.m8083i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
         middlewareWebChromeBase2.setDelegate(defaultChromeClient);
         this.mTargetChromeClient = middlewareWebChromeBase;
         return middlewareWebChromeBase;
@@ -304,7 +305,7 @@ public final class AgentWeb {
     }
 
     private android.webkit.WebViewClient getWebViewClient() {
-        LogUtils.i(TAG, "getDelegate:" + this.mMiddleWrareWebClientBaseHeader);
+        LogUtils.m8083i(TAG, "getDelegate:" + this.mMiddleWrareWebClientBaseHeader);
         DefaultWebClient build = DefaultWebClient.createBuilder().setActivity(this.mActivity).setWebClientHelper(this.mWebClientHelper).setPermissionInterceptor(this.mPermissionInterceptor).setWebView(this.mWebCreator.getWebView()).setInterceptUnkownUrl(this.mIsInterceptUnkownUrl).setUrlHandleWays(this.mUrlHandleWays).build();
         MiddlewareWebClientBase middlewareWebClientBase = this.mMiddleWrareWebClientBaseHeader;
         WebViewClient webViewClient = this.mWebViewClient;
@@ -321,13 +322,14 @@ public final class AgentWeb {
             middlewareWebClientBase2 = middlewareWebClientBase2.next();
             i2++;
         }
-        LogUtils.i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
+        LogUtils.m8083i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
         middlewareWebClientBase2.setDelegate(build);
         return middlewareWebClientBase;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public AgentWeb go(String str) {
+    /* renamed from: go */
+    public AgentWeb m8079go(String str) {
         IndicatorController indicatorController;
         getUrlLoader().loadUrl(str);
         if (!TextUtils.isEmpty(str) && (indicatorController = getIndicatorController()) != null && indicatorController.offerIndicator() != null) {
@@ -360,7 +362,7 @@ public final class AgentWeb {
         if (this.mJsInterfaceHolder == null) {
             this.mJsInterfaceHolder = JsInterfaceHolderImpl.getJsInterfaceHolder(this.mWebCreator, this.mSecurityType);
         }
-        LogUtils.i(TAG, "mJavaObjects:" + this.mJavaObjects.size());
+        LogUtils.m8083i(TAG, "mJavaObjects:" + this.mJavaObjects.size());
         ArrayMap<String, Object> arrayMap = this.mJavaObjects;
         if (arrayMap != null && !arrayMap.isEmpty()) {
             this.mJsInterfaceHolder.addJavaObjects(this.mJavaObjects);
@@ -489,7 +491,7 @@ public final class AgentWeb {
         this.mAgentWebSettings = agentBuilder.mAgentWebSettings;
         if (agentBuilder.mJavaObject != null && !agentBuilder.mJavaObject.isEmpty()) {
             this.mJavaObjects.putAll((Map<? extends String, ? extends Object>) agentBuilder.mJavaObject);
-            LogUtils.i(TAG, "mJavaObject size:" + this.mJavaObjects.size());
+            LogUtils.m8083i(TAG, "mJavaObject size:" + this.mJavaObjects.size());
         }
         this.mPermissionInterceptor = agentBuilder.mPermissionInterceptor != null ? new PermissionInterceptorWrapper(agentBuilder.mPermissionInterceptor) : null;
         this.mSecurityType = agentBuilder.mSecurityType;

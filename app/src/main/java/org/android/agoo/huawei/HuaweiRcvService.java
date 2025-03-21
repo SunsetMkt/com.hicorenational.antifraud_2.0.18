@@ -17,7 +17,7 @@ public class HuaweiRcvService extends HmsMessageService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         try {
             String data = remoteMessage.getData();
-            ALog.i(TAG, "onPushMsg", "content", data);
+            ALog.m9183i(TAG, "onPushMsg", "content", data);
             if (this.agooFactory == null) {
                 AgooFactory agooFactory = new AgooFactory();
                 this.agooFactory = agooFactory;
@@ -25,7 +25,7 @@ public class HuaweiRcvService extends HmsMessageService {
             }
             this.agooFactory.msgRecevie(data.getBytes(), "huawei");
         } catch (Throwable th) {
-            ALog.e(TAG, "onPushMsg", th, new Object[0]);
+            ALog.m9181e(TAG, "onPushMsg", th, new Object[0]);
         }
     }
 
@@ -35,12 +35,12 @@ public class HuaweiRcvService extends HmsMessageService {
             if (TextUtils.isEmpty(str)) {
                 return;
             }
-            ALog.i(HuaWeiRegister.TAG, "onToken", "token", str);
+            ALog.m9183i(HuaWeiRegister.TAG, "onToken", "token", str);
             NotifManager notifManager = new NotifManager();
             notifManager.init(getApplicationContext());
             notifManager.reportThirdPushToken(str, HUAWEI_TOKEN);
         } catch (Throwable th) {
-            ALog.e(HuaWeiRegister.TAG, "onToken", th, new Object[0]);
+            ALog.m9181e(HuaWeiRegister.TAG, "onToken", th, new Object[0]);
         }
     }
 }

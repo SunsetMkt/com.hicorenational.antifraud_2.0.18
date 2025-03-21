@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/rl_title_with_back"/>
-    <ui.view.MyScrollView
+    <p388ui.view.MyScrollView
         android:id="@+id/myScrollView"
         android:visibility="gone"
         android:scrollbars="none"
@@ -17,6 +17,6 @@
             android:paddingBottom="60dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </ui.view.MyScrollView>
+    </p388ui.view.MyScrollView>
     <include layout="@layout/layout_network_no"/>
 </LinearLayout>

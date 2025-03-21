@@ -6,42 +6,42 @@ import com.huawei.hms.support.log.HMSLog;
 /* loaded from: classes.dex */
 public class AgHmsUpdateState {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final Object f7347c = new Object();
+    /* renamed from: c */
+    private static final Object f7918c = new Object();
 
-    /* renamed from: d, reason: collision with root package name */
-    private static volatile AgHmsUpdateState f7348d;
+    /* renamed from: d */
+    private static volatile AgHmsUpdateState f7919d;
 
-    /* renamed from: a, reason: collision with root package name */
-    private HmsCheckedState f7349a = HmsCheckedState.UNCHECKED;
+    /* renamed from: a */
+    private HmsCheckedState f7920a = HmsCheckedState.UNCHECKED;
 
-    /* renamed from: b, reason: collision with root package name */
-    private int f7350b = 0;
+    /* renamed from: b */
+    private int f7921b = 0;
 
     private AgHmsUpdateState() {
     }
 
     public static AgHmsUpdateState getInstance() {
-        if (f7348d == null) {
-            synchronized (f7347c) {
-                if (f7348d == null) {
-                    f7348d = new AgHmsUpdateState();
+        if (f7919d == null) {
+            synchronized (f7918c) {
+                if (f7919d == null) {
+                    f7919d = new AgHmsUpdateState();
                 }
             }
         }
-        return f7348d;
+        return f7919d;
     }
 
     public HmsCheckedState getCheckedState() {
-        return this.f7349a;
+        return this.f7920a;
     }
 
     public int getTargetVersionCode() {
-        return this.f7350b;
+        return this.f7921b;
     }
 
     public boolean isUpdateHms() {
-        return getCheckedState() == HmsCheckedState.NEED_UPDATE && this.f7350b != 0;
+        return getCheckedState() == HmsCheckedState.NEED_UPDATE && this.f7921b != 0;
     }
 
     public void resetUpdateState() {
@@ -54,13 +54,13 @@ public class AgHmsUpdateState {
 
     public void setCheckedState(HmsCheckedState hmsCheckedState) {
         if (hmsCheckedState == null) {
-            HMSLog.e("AgHmsUpdateState", "para invalid: checkedState is null");
+            HMSLog.m7715e("AgHmsUpdateState", "para invalid: checkedState is null");
         } else {
-            this.f7349a = hmsCheckedState;
+            this.f7920a = hmsCheckedState;
         }
     }
 
     public void setTargetVersionCode(int i2) {
-        this.f7350b = i2;
+        this.f7921b = i2;
     }
 }

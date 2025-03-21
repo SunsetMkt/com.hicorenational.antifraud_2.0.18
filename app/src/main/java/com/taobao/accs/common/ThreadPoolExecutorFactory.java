@@ -17,18 +17,19 @@ public class ThreadPoolExecutorFactory {
     private static volatile ScheduledThreadPoolExecutor sendThreadPoolExecutor;
 
     /* compiled from: Taobao */
-    static class a implements ThreadFactory {
+    /* renamed from: com.taobao.accs.common.ThreadPoolExecutorFactory$a */
+    static class ThreadFactoryC2981a implements ThreadFactory {
 
-        /* renamed from: a, reason: collision with root package name */
-        private String f8421a;
+        /* renamed from: a */
+        private String f9416a;
 
-        public a(String str) {
-            this.f8421a = str;
+        public ThreadFactoryC2981a(String str) {
+            this.f9416a = str;
         }
 
         @Override // java.util.concurrent.ThreadFactory
         public Thread newThread(Runnable runnable) {
-            Thread thread = new Thread(runnable, this.f8421a + ThreadPoolExecutorFactory.integer.getAndIncrement());
+            Thread thread = new Thread(runnable, this.f9416a + ThreadPoolExecutorFactory.integer.getAndIncrement());
             thread.setPriority(5);
             return thread;
         }
@@ -38,7 +39,7 @@ public class ThreadPoolExecutorFactory {
         try {
             getScheduledExecutor().execute(runnable);
         } catch (Throwable th) {
-            ALog.e(TAG, "ThreadPoolExecutorFactory execute", th, new Object[0]);
+            ALog.m9181e(TAG, "ThreadPoolExecutorFactory execute", th, new Object[0]);
         }
     }
 
@@ -46,7 +47,7 @@ public class ThreadPoolExecutorFactory {
         try {
             getCallbackScheduledExecutor().execute(runnable);
         } catch (Throwable th) {
-            ALog.e(TAG, "ThreadPoolExecutorFactory execute", th, new Object[0]);
+            ALog.m9181e(TAG, "ThreadPoolExecutorFactory execute", th, new Object[0]);
         }
     }
 
@@ -54,7 +55,7 @@ public class ThreadPoolExecutorFactory {
         if (callbackThreadPoolExecutor == null) {
             synchronized (ThreadPoolExecutorFactory.class) {
                 if (callbackThreadPoolExecutor == null) {
-                    callbackThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new a("ACCS-CB"));
+                    callbackThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactoryC2981a("ACCS-CB"));
                 }
             }
         }
@@ -65,7 +66,7 @@ public class ThreadPoolExecutorFactory {
         if (scheduleThreadPoolExecutor == null) {
             synchronized (ThreadPoolExecutorFactory.class) {
                 if (scheduleThreadPoolExecutor == null) {
-                    scheduleThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new a("ACCS"));
+                    scheduleThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactoryC2981a("ACCS"));
                     scheduleThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
                     scheduleThreadPoolExecutor.allowCoreThreadTimeOut(true);
                 }
@@ -78,7 +79,7 @@ public class ThreadPoolExecutorFactory {
         if (sendThreadPoolExecutor == null) {
             synchronized (ThreadPoolExecutorFactory.class) {
                 if (sendThreadPoolExecutor == null) {
-                    sendThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new a("ACCS-SEND"));
+                    sendThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactoryC2981a("ACCS-SEND"));
                     sendThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
                     sendThreadPoolExecutor.allowCoreThreadTimeOut(true);
                 }
@@ -91,7 +92,7 @@ public class ThreadPoolExecutorFactory {
         try {
             return getScheduledExecutor().schedule(runnable, j2, timeUnit);
         } catch (Throwable th) {
-            ALog.e(TAG, "ThreadPoolExecutorFactory schedule", th, new Object[0]);
+            ALog.m9181e(TAG, "ThreadPoolExecutorFactory schedule", th, new Object[0]);
             return null;
         }
     }

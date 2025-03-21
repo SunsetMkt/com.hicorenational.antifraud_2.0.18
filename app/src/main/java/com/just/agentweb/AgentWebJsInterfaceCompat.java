@@ -26,7 +26,7 @@ public class AgentWebJsInterfaceCompat {
 
     @JavascriptInterface
     public void uploadFile(String str) {
-        LogUtils.i(this.TAG, str + "  " + this.mActivityWeakReference.get() + "  " + this.mReference.get());
+        LogUtils.m8083i(this.TAG, str + "  " + this.mActivityWeakReference.get() + "  " + this.mReference.get());
         if (this.mActivityWeakReference.get() == null || this.mReference.get() == null) {
             return;
         }

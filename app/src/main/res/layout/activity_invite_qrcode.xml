@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/rl_title_with_back"/>
-    <ui.view.ShadowLinearLayout
+    <p388ui.view.ShadowLinearLayout
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:text="扫一扫下载"/>
-    </ui.view.ShadowLinearLayout>
+    </p388ui.view.ShadowLinearLayout>
     <include
         android:background="@color/page_gray"
         android:layout_width="match_parent"

@@ -3,8 +3,8 @@ package com.huawei.secure.android.common.ssl;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import com.huawei.secure.android.common.ssl.util.BksUtil;
+import com.huawei.secure.android.common.ssl.util.C2563e;
 import com.huawei.secure.android.common.ssl.util.ContextUtil;
-import com.huawei.secure.android.common.ssl.util.e;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStoreException;
@@ -15,11 +15,11 @@ import java.security.cert.CertificateException;
 /* loaded from: classes.dex */
 public class SecureX509SingleInstance {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7597a = "SecureX509SingleInstance";
+    /* renamed from: a */
+    private static final String f8174a = "SecureX509SingleInstance";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static volatile SecureX509TrustManager f7598b;
+    /* renamed from: b */
+    private static volatile SecureX509TrustManager f8175b;
 
     private SecureX509SingleInstance() {
     }
@@ -31,49 +31,49 @@ public class SecureX509SingleInstance {
             throw new NullPointerException("context is null");
         }
         ContextUtil.setContext(context);
-        if (f7598b == null) {
+        if (f8175b == null) {
             synchronized (SecureX509SingleInstance.class) {
-                if (f7598b == null) {
+                if (f8175b == null) {
                     InputStream inputStream = null;
                     try {
                         inputStream = BksUtil.getFilesBksIS(context);
                     } catch (RuntimeException unused) {
-                        e.b(f7597a, "get files bks error");
+                        C2563e.m7986b(f8174a, "get files bks error");
                     }
                     if (inputStream == null) {
-                        e.c(f7597a, "get assets bks");
+                        C2563e.m7987c(f8174a, "get assets bks");
                         inputStream = context.getAssets().open("hmsrootcas.bks");
                     } else {
-                        e.c(f7597a, "get files bks");
+                        C2563e.m7987c(f8174a, "get files bks");
                     }
-                    f7598b = new SecureX509TrustManager(inputStream, "");
+                    f8175b = new SecureX509TrustManager(inputStream, "");
                 }
             }
         }
-        e.a(f7597a, "SecureX509TrustManager getInstance: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
-        return f7598b;
+        C2563e.m7984a(f8174a, "SecureX509TrustManager getInstance: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        return f8175b;
     }
 
     @Deprecated
     public static void updateBks(InputStream inputStream) {
-        e.c(f7597a, "update bks");
+        C2563e.m7987c(f8174a, "update bks");
         long currentTimeMillis = System.currentTimeMillis();
-        if (inputStream != null && f7598b != null) {
-            f7598b = new SecureX509TrustManager(inputStream, "");
-            SecureSSLSocketFactory.a(f7598b);
-            SecureApacheSSLSocketFactory.a(f7598b);
+        if (inputStream != null && f8175b != null) {
+            f8175b = new SecureX509TrustManager(inputStream, "");
+            SecureSSLSocketFactory.m7916a(f8175b);
+            SecureApacheSSLSocketFactory.m7913a(f8175b);
         }
-        e.c(f7597a, "SecureX509TrustManager update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7987c(f8174a, "SecureX509TrustManager update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 
     public static void updateBks(InputStream inputStream, SecureRandom secureRandom) {
-        e.c(f7597a, "update bks");
+        C2563e.m7987c(f8174a, "update bks");
         long currentTimeMillis = System.currentTimeMillis();
-        if (inputStream != null && f7598b != null) {
-            f7598b = new SecureX509TrustManager(inputStream, "");
-            SecureSSLSocketFactory.a(f7598b, secureRandom);
-            SecureApacheSSLSocketFactory.a(f7598b, secureRandom);
+        if (inputStream != null && f8175b != null) {
+            f8175b = new SecureX509TrustManager(inputStream, "");
+            SecureSSLSocketFactory.m7917a(f8175b, secureRandom);
+            SecureApacheSSLSocketFactory.m7914a(f8175b, secureRandom);
         }
-        e.c(f7597a, "SecureX509TrustManager update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        C2563e.m7987c(f8174a, "SecureX509TrustManager update bks cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
     }
 }

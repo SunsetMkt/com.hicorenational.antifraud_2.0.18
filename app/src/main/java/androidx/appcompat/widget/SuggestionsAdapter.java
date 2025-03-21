@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.C0120R;
 import androidx.core.content.ContextCompat;
 import androidx.cursoradapter.widget.ResourceCursorAdapter;
 import java.io.FileNotFoundException;
@@ -66,7 +67,7 @@ class SuggestionsAdapter extends ResourceCursorAdapter implements View.OnClickLi
             this.mText2 = (TextView) view.findViewById(R.id.text2);
             this.mIcon1 = (ImageView) view.findViewById(R.id.icon1);
             this.mIcon2 = (ImageView) view.findViewById(R.id.icon2);
-            this.mIconRefine = (ImageView) view.findViewById(androidx.appcompat.R.id.edit_query);
+            this.mIconRefine = (ImageView) view.findViewById(C0120R.id.edit_query);
         }
     }
 
@@ -98,7 +99,7 @@ class SuggestionsAdapter extends ResourceCursorAdapter implements View.OnClickLi
     private CharSequence formatUrl(CharSequence charSequence) {
         if (this.mUrlColor == null) {
             TypedValue typedValue = new TypedValue();
-            this.mContext.getTheme().resolveAttribute(androidx.appcompat.R.attr.textColorSearchUrl, typedValue, true);
+            this.mContext.getTheme().resolveAttribute(C0120R.attr.textColorSearchUrl, typedValue, true);
             this.mUrlColor = this.mContext.getResources().getColorStateList(typedValue.resourceId);
         }
         SpannableString spannableString = new SpannableString(charSequence);
@@ -457,7 +458,7 @@ class SuggestionsAdapter extends ResourceCursorAdapter implements View.OnClickLi
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         View newView = super.newView(context, cursor, viewGroup);
         newView.setTag(new ChildViewCache(newView));
-        ((ImageView) newView.findViewById(androidx.appcompat.R.id.edit_query)).setImageResource(this.mCommitIconResId);
+        ((ImageView) newView.findViewById(C0120R.id.edit_query)).setImageResource(this.mCommitIconResId);
         return newView;
     }
 

@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.util;
 
-import c.c.a.b.a.a;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class StringUtil {
@@ -38,7 +38,7 @@ public class StringUtil {
             return null;
         }
         if (isEmpty(str2)) {
-            str2 = a.f3100g;
+            str2 = AbstractC1191a.f2568g;
         }
         int length = str2.length();
         int length2 = i2 - str.length();

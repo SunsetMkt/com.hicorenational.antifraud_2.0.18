@@ -5,7 +5,9 @@ import java.io.Serializable;
 /* loaded from: classes.dex */
 public class SmsBean implements Serializable {
     private String fileUri;
-    private String id;
+
+    /* renamed from: id */
+    private String f1622id;
     private int index = -1;
     private boolean isSelect;
     private int report_type;
@@ -24,7 +26,7 @@ public class SmsBean implements Serializable {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1622id;
     }
 
     public int getIndex() {
@@ -68,7 +70,7 @@ public class SmsBean implements Serializable {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1622id = str;
     }
 
     public void setIndex(int i2) {

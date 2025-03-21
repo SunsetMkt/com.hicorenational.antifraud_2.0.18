@@ -1,11 +1,11 @@
 package okio;
 
-import h.q2.t.i0;
-import h.y;
-import i.c.a.d;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.p311t.C5544i0;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: PeekSource.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000>\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\b\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\b\u0010\u000f\u001a\u00020\u0010H\u0016J\u0018\u0010\u0011\u001a\u00020\u000e2\u0006\u0010\u0012\u001a\u00020\u00062\u0006\u0010\u0013\u001a\u00020\u000eH\u0016J\b\u0010\u0014\u001a\u00020\u0015H\u0016R\u000e\u0010\u0005\u001a\u00020\u0006X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0007\u001a\u00020\bX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\t\u001a\u00020\nX\u0082\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\u000b\u001a\u0004\u0018\u00010\fX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\r\u001a\u00020\u000eX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000¨\u0006\u0016"}, d2 = {"Lokio/PeekSource;", "Lokio/Source;", "upstream", "Lokio/BufferedSource;", "(Lokio/BufferedSource;)V", "buffer", "Lokio/Buffer;", "closed", "", "expectedPos", "", "expectedSegment", "Lokio/Segment;", "pos", "", "close", "", "read", "sink", "byteCount", "timeout", "Lokio/Timeout;", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000>\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\b\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\b\u0010\u000f\u001a\u00020\u0010H\u0016J\u0018\u0010\u0011\u001a\u00020\u000e2\u0006\u0010\u0012\u001a\u00020\u00062\u0006\u0010\u0013\u001a\u00020\u000eH\u0016J\b\u0010\u0014\u001a\u00020\u0015H\u0016R\u000e\u0010\u0005\u001a\u00020\u0006X\u0082\u0004¢\u0006\u0002\n\u0000R\u000e\u0010\u0007\u001a\u00020\bX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\t\u001a\u00020\nX\u0082\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\u000b\u001a\u0004\u0018\u00010\fX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\r\u001a\u00020\u000eX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000¨\u0006\u0016"}, m23546d2 = {"Lokio/PeekSource;", "Lokio/Source;", "upstream", "Lokio/BufferedSource;", "(Lokio/BufferedSource;)V", "buffer", "Lokio/Buffer;", "closed", "", "expectedPos", "", "expectedSegment", "Lokio/Segment;", "pos", "", "close", "", "read", "sink", "byteCount", "timeout", "Lokio/Timeout;", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class PeekSource implements Source {
     private final Buffer buffer;
@@ -15,8 +15,8 @@ public final class PeekSource implements Source {
     private long pos;
     private final BufferedSource upstream;
 
-    public PeekSource(@d BufferedSource bufferedSource) {
-        i0.f(bufferedSource, "upstream");
+    public PeekSource(@InterfaceC5816d BufferedSource bufferedSource) {
+        C5544i0.m22546f(bufferedSource, "upstream");
         this.upstream = bufferedSource;
         this.buffer = this.upstream.getBuffer();
         Segment segment = this.buffer.head;
@@ -40,11 +40,11 @@ public final class PeekSource implements Source {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public long read(@i.c.a.d okio.Buffer r9, long r10) {
+    public long read(@p324i.p336c.p337a.InterfaceC5816d okio.Buffer r9, long r10) {
         /*
             r8 = this;
             java.lang.String r0 = "sink"
-            h.q2.t.i0.f(r9, r0)
+            p286h.p309q2.p311t.C5544i0.m22546f(r9, r0)
             r0 = 0
             r1 = 0
             r3 = 1
@@ -66,7 +66,7 @@ public final class PeekSource implements Source {
             if (r5 != r6) goto L2d
             int r5 = r8.expectedPos
             if (r6 != 0) goto L28
-            h.q2.t.i0.f()
+            p286h.p309q2.p311t.C5544i0.m22545f()
         L28:
             int r6 = r6.pos
             if (r5 != r6) goto L2d
@@ -93,7 +93,7 @@ public final class PeekSource implements Source {
             if (r0 == 0) goto L57
             r8.expectedSegment = r0
             if (r0 != 0) goto L53
-            h.q2.t.i0.f()
+            p286h.p309q2.p311t.C5544i0.m22545f()
         L53:
             int r0 = r0.pos
             r8.expectedPos = r0
@@ -140,7 +140,7 @@ public final class PeekSource implements Source {
     }
 
     @Override // okio.Source
-    @d
+    @InterfaceC5816d
     public Timeout timeout() {
         return this.upstream.timeout();
     }

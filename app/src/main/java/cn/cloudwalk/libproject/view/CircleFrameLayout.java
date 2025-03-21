@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import cn.cloudwalk.libproject.R;
+import cn.cloudwalk.libproject.C1241R;
 
 /* loaded from: classes.dex */
 public class CircleFrameLayout extends FrameLayout {
@@ -23,7 +23,7 @@ public class CircleFrameLayout extends FrameLayout {
         super(context, attributeSet);
         if (Build.VERSION.SDK_INT <= 21) {
             this.mPaint = new Paint();
-            this.srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cloudwalk_perview_circle);
+            this.srcBitmap = BitmapFactory.decodeResource(getResources(), C1241R.drawable.cloudwalk_perview_circle);
         }
     }
 

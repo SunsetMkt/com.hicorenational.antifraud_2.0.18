@@ -68,10 +68,10 @@ public class IoUtils {
                 closeable.close();
                 return;
             } catch (IOException e2) {
-                Logger.w("IOUtil", "closeSecure IOException", e2);
+                Logger.m6804w("IOUtil", "closeSecure IOException", e2);
                 return;
             }
         }
-        Logger.w("IOUtil", "closeable is null");
+        Logger.m6803w("IOUtil", "closeable is null");
     }
 }

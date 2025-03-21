@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.huawei.hianalytics.process.HiAnalyticsManager;
 import com.huawei.hianalytics.util.HiAnalyticTools;
 import com.huawei.hms.hatool.HmsHiAnalyticsUtils;
+import com.huawei.hms.stats.C2507a;
 import com.huawei.hms.stats.HiAnalyticsOfCpUtils;
 import com.huawei.hms.stats.HianalyticsExist;
 import com.huawei.hms.support.log.HMSLog;
@@ -20,171 +21,178 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class HiAnalyticsUtils {
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final Object f7291c = new Object();
+    /* renamed from: c */
+    private static final Object f7862c = new Object();
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final Object f7292d = new Object();
+    /* renamed from: d */
+    private static final Object f7863d = new Object();
 
-    /* renamed from: e, reason: collision with root package name */
-    private static HiAnalyticsUtils f7293e;
+    /* renamed from: e */
+    private static HiAnalyticsUtils f7864e;
 
-    /* renamed from: a, reason: collision with root package name */
-    private int f7294a = 0;
+    /* renamed from: a */
+    private int f7865a = 0;
 
-    /* renamed from: b, reason: collision with root package name */
-    private final boolean f7295b = HianalyticsExist.isHianalyticsExist();
+    /* renamed from: b */
+    private final boolean f7866b = HianalyticsExist.isHianalyticsExist();
 
-    class a implements Runnable {
+    /* renamed from: com.huawei.hms.support.hianalytics.HiAnalyticsUtils$a */
+    class RunnableC2524a implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ Context f7296a;
+        /* renamed from: a */
+        final /* synthetic */ Context f7867a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ String f7297b;
+        /* renamed from: b */
+        final /* synthetic */ String f7868b;
 
-        /* renamed from: c, reason: collision with root package name */
-        final /* synthetic */ Map f7298c;
+        /* renamed from: c */
+        final /* synthetic */ Map f7869c;
 
-        a(Context context, String str, Map map) {
-            this.f7296a = context;
-            this.f7297b = str;
-            this.f7298c = map;
+        RunnableC2524a(Context context, String str, Map map) {
+            this.f7867a = context;
+            this.f7868b = str;
+            this.f7869c = map;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HiAnalyticsUtils.getInstance().onEvent(this.f7296a, this.f7297b, this.f7298c);
+            HiAnalyticsUtils.getInstance().onEvent(this.f7867a, this.f7868b, this.f7869c);
         }
     }
 
-    class b implements Runnable {
+    /* renamed from: com.huawei.hms.support.hianalytics.HiAnalyticsUtils$b */
+    class RunnableC2525b implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ Context f7300a;
+        /* renamed from: a */
+        final /* synthetic */ Context f7871a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ String f7301b;
+        /* renamed from: b */
+        final /* synthetic */ String f7872b;
 
-        /* renamed from: c, reason: collision with root package name */
-        final /* synthetic */ String f7302c;
+        /* renamed from: c */
+        final /* synthetic */ String f7873c;
 
-        b(Context context, String str, String str2) {
-            this.f7300a = context;
-            this.f7301b = str;
-            this.f7302c = str2;
+        RunnableC2525b(Context context, String str, String str2) {
+            this.f7871a = context;
+            this.f7872b = str;
+            this.f7873c = str2;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HiAnalyticsUtils.getInstance().onEvent2(this.f7300a, this.f7301b, this.f7302c);
+            HiAnalyticsUtils.getInstance().onEvent2(this.f7871a, this.f7872b, this.f7873c);
         }
     }
 
-    class c implements Runnable {
+    /* renamed from: com.huawei.hms.support.hianalytics.HiAnalyticsUtils$c */
+    class RunnableC2526c implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ Context f7304a;
+        /* renamed from: a */
+        final /* synthetic */ Context f7875a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ String f7305b;
+        /* renamed from: b */
+        final /* synthetic */ String f7876b;
 
-        /* renamed from: c, reason: collision with root package name */
-        final /* synthetic */ Map f7306c;
+        /* renamed from: c */
+        final /* synthetic */ Map f7877c;
 
-        c(Context context, String str, Map map) {
-            this.f7304a = context;
-            this.f7305b = str;
-            this.f7306c = map;
+        RunnableC2526c(Context context, String str, Map map) {
+            this.f7875a = context;
+            this.f7876b = str;
+            this.f7877c = map;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HiAnalyticsUtils.getInstance().onNewEvent(this.f7304a, this.f7305b, this.f7306c);
+            HiAnalyticsUtils.getInstance().onNewEvent(this.f7875a, this.f7876b, this.f7877c);
         }
     }
 
-    class d implements Runnable {
+    /* renamed from: com.huawei.hms.support.hianalytics.HiAnalyticsUtils$d */
+    class RunnableC2527d implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ Context f7308a;
+        /* renamed from: a */
+        final /* synthetic */ Context f7879a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ String f7309b;
+        /* renamed from: b */
+        final /* synthetic */ String f7880b;
 
-        /* renamed from: c, reason: collision with root package name */
-        final /* synthetic */ Map f7310c;
+        /* renamed from: c */
+        final /* synthetic */ Map f7881c;
 
-        /* renamed from: d, reason: collision with root package name */
-        final /* synthetic */ int f7311d;
+        /* renamed from: d */
+        final /* synthetic */ int f7882d;
 
-        d(Context context, String str, Map map, int i2) {
-            this.f7308a = context;
-            this.f7309b = str;
-            this.f7310c = map;
-            this.f7311d = i2;
+        RunnableC2527d(Context context, String str, Map map, int i2) {
+            this.f7879a = context;
+            this.f7880b = str;
+            this.f7881c = map;
+            this.f7882d = i2;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HiAnalyticsUtils.getInstance().onNewEvent(this.f7308a, this.f7309b, this.f7310c, this.f7311d);
+            HiAnalyticsUtils.getInstance().onNewEvent(this.f7879a, this.f7880b, this.f7881c, this.f7882d);
         }
     }
 
-    class e implements Runnable {
+    /* renamed from: com.huawei.hms.support.hianalytics.HiAnalyticsUtils$e */
+    class RunnableC2528e implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ Context f7313a;
+        /* renamed from: a */
+        final /* synthetic */ Context f7884a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ String f7314b;
+        /* renamed from: b */
+        final /* synthetic */ String f7885b;
 
-        /* renamed from: c, reason: collision with root package name */
-        final /* synthetic */ Map f7315c;
+        /* renamed from: c */
+        final /* synthetic */ Map f7886c;
 
-        e(Context context, String str, Map map) {
-            this.f7313a = context;
-            this.f7314b = str;
-            this.f7315c = map;
+        RunnableC2528e(Context context, String str, Map map) {
+            this.f7884a = context;
+            this.f7885b = str;
+            this.f7886c = map;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HiAnalyticsUtils.getInstance().onReport(this.f7313a, this.f7314b, this.f7315c);
+            HiAnalyticsUtils.getInstance().onReport(this.f7884a, this.f7885b, this.f7886c);
         }
     }
 
-    class f implements Runnable {
+    /* renamed from: com.huawei.hms.support.hianalytics.HiAnalyticsUtils$f */
+    class RunnableC2529f implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ Context f7317a;
+        /* renamed from: a */
+        final /* synthetic */ Context f7888a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ String f7318b;
+        /* renamed from: b */
+        final /* synthetic */ String f7889b;
 
-        /* renamed from: c, reason: collision with root package name */
-        final /* synthetic */ Map f7319c;
+        /* renamed from: c */
+        final /* synthetic */ Map f7890c;
 
-        /* renamed from: d, reason: collision with root package name */
-        final /* synthetic */ int f7320d;
+        /* renamed from: d */
+        final /* synthetic */ int f7891d;
 
-        f(Context context, String str, Map map, int i2) {
-            this.f7317a = context;
-            this.f7318b = str;
-            this.f7319c = map;
-            this.f7320d = i2;
+        RunnableC2529f(Context context, String str, Map map, int i2) {
+            this.f7888a = context;
+            this.f7889b = str;
+            this.f7890c = map;
+            this.f7891d = i2;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HiAnalyticsUtils.getInstance().onReport(this.f7317a, this.f7318b, this.f7319c, this.f7320d);
+            HiAnalyticsUtils.getInstance().onReport(this.f7888a, this.f7889b, this.f7890c, this.f7891d);
         }
     }
 
     private HiAnalyticsUtils() {
     }
 
-    private static LinkedHashMap<String, String> a(Map<String, String> map) {
+    /* renamed from: a */
+    private static LinkedHashMap<String, String> m7696a(Map<String, String> map) {
         LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
         if (map != null && map.size() > 0) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -194,14 +202,15 @@ public class HiAnalyticsUtils {
         return linkedHashMap;
     }
 
-    private void b(Context context) {
-        synchronized (f7292d) {
-            int i2 = this.f7294a;
+    /* renamed from: b */
+    private void m7702b(Context context) {
+        synchronized (f7863d) {
+            int i2 = this.f7865a;
             if (i2 < 60) {
-                this.f7294a = i2 + 1;
+                this.f7865a = i2 + 1;
             } else {
-                this.f7294a = 0;
-                if (this.f7295b) {
+                this.f7865a = 0;
+                if (this.f7866b) {
                     HiAnalyticsOfCpUtils.onReport(context, 0);
                     HiAnalyticsOfCpUtils.onReport(context, 1);
                 } else {
@@ -211,21 +220,22 @@ public class HiAnalyticsUtils {
         }
     }
 
-    private void c(Context context, String str, Map map) {
+    /* renamed from: c */
+    private void m7706c(Context context, String str, Map map) {
         try {
-            com.huawei.hms.stats.a.c().a(new e(context.getApplicationContext(), str, map));
+            C2507a.m7656c().m7658a(new RunnableC2528e(context.getApplicationContext(), str, map));
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<addOnReportToCache> failed. " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<addOnReportToCache> failed. " + th.getMessage());
         }
     }
 
     public static HiAnalyticsUtils getInstance() {
         HiAnalyticsUtils hiAnalyticsUtils;
-        synchronized (f7291c) {
-            if (f7293e == null) {
-                f7293e = new HiAnalyticsUtils();
+        synchronized (f7862c) {
+            if (f7864e == null) {
+                f7864e = new HiAnalyticsUtils();
             }
-            hiAnalyticsUtils = f7293e;
+            hiAnalyticsUtils = f7864e;
         }
         return hiAnalyticsUtils;
     }
@@ -242,8 +252,8 @@ public class HiAnalyticsUtils {
     }
 
     public void enableLog(Context context) {
-        HMSLog.i("HiAnalyticsUtils", "Enable Log");
-        if (this.f7295b) {
+        HMSLog.m7717i("HiAnalyticsUtils", "Enable Log");
+        if (this.f7866b) {
             HiAnalyticTools.enableLog(context);
         } else {
             HmsHiAnalyticsUtils.enableLog();
@@ -251,36 +261,36 @@ public class HiAnalyticsUtils {
     }
 
     public boolean getInitFlag() {
-        return !this.f7295b ? HmsHiAnalyticsUtils.getInitFlag() : HiAnalyticsManager.getInitFlag(HiAnalyticsConstant.HA_SERVICE_TAG);
+        return !this.f7866b ? HmsHiAnalyticsUtils.getInitFlag() : HiAnalyticsManager.getInitFlag(HiAnalyticsConstant.HA_SERVICE_TAG);
     }
 
     public int getOobeAnalyticsState(Context context) {
         if (context == null) {
             return 0;
         }
-        int a2 = a(context);
-        if (a2 == 1) {
-            return a2;
+        int m7695a = m7695a(context);
+        if (m7695a == 1) {
+            return m7695a;
         }
         Bundle bundle = new Bundle();
         bundle.putString("hms_cp_bundle_key", "content://com.huawei.hms.contentprovider/com.huawei.hms.privacy.HmsAnalyticsStateProvider");
         try {
             Bundle call = context.getApplicationContext().getContentResolver().call(Uri.parse("content://com.huawei.hms.contentprovider"), "getAnalyticsState", (String) null, bundle);
             if (call == null) {
-                return a2;
+                return m7695a;
             }
-            a2 = call.getInt("SWITCH_IS_CHECKED");
-            HMSLog.i("HiAnalyticsUtils", "get hms analyticsOobe state " + a2);
-            return a2;
+            m7695a = call.getInt("SWITCH_IS_CHECKED");
+            HMSLog.m7717i("HiAnalyticsUtils", "get hms analyticsOobe state " + m7695a);
+            return m7695a;
         } catch (IllegalArgumentException unused) {
-            HMSLog.i("HiAnalyticsUtils", "getOobeAnalyticsState IllegalArgumentException ");
-            return a2;
+            HMSLog.m7717i("HiAnalyticsUtils", "getOobeAnalyticsState IllegalArgumentException ");
+            return m7695a;
         } catch (SecurityException unused2) {
-            HMSLog.i("HiAnalyticsUtils", "getOobeAnalyticsState SecurityException ");
-            return a2;
+            HMSLog.m7717i("HiAnalyticsUtils", "getOobeAnalyticsState SecurityException ");
+            return m7695a;
         } catch (Exception unused3) {
-            HMSLog.i("HiAnalyticsUtils", "getOobeAnalyticsState Exception ");
-            return a2;
+            HMSLog.m7717i("HiAnalyticsUtils", "getOobeAnalyticsState Exception ");
+            return m7695a;
         }
     }
 
@@ -295,37 +305,37 @@ public class HiAnalyticsUtils {
     public void onEvent(Context context, String str, Map<String, String> map) {
         int andRefreshAnalyticsState = AnalyticsSwitchHolder.getAndRefreshAnalyticsState(context);
         if (map == null || map.isEmpty() || context == null) {
-            HMSLog.e("HiAnalyticsUtils", "<onEvent> map or context is null, state: " + andRefreshAnalyticsState);
+            HMSLog.m7715e("HiAnalyticsUtils", "<onEvent> map or context is null, state: " + andRefreshAnalyticsState);
             return;
         }
         boolean initFlag = getInitFlag();
-        if (a(initFlag, andRefreshAnalyticsState != 2, map)) {
-            a(context, str, map);
+        if (m7701a(initFlag, andRefreshAnalyticsState != 2, map)) {
+            m7698a(context, str, map);
         }
         if (andRefreshAnalyticsState == 1 && initFlag) {
-            if (this.f7295b) {
-                HiAnalyticsOfCpUtils.onEvent(context, 0, str, a(map));
-                HiAnalyticsOfCpUtils.onEvent(context, 1, str, a(map));
+            if (this.f7866b) {
+                HiAnalyticsOfCpUtils.onEvent(context, 0, str, m7696a(map));
+                HiAnalyticsOfCpUtils.onEvent(context, 1, str, m7696a(map));
             } else {
-                HmsHiAnalyticsUtils.onEvent(0, str, a(map));
-                HmsHiAnalyticsUtils.onEvent(1, str, a(map));
+                HmsHiAnalyticsUtils.onEvent(0, str, m7696a(map));
+                HmsHiAnalyticsUtils.onEvent(1, str, m7696a(map));
             }
-            b(context);
+            m7702b(context);
         }
     }
 
     public void onEvent2(Context context, String str, String str2) {
         int andRefreshAnalyticsState = AnalyticsSwitchHolder.getAndRefreshAnalyticsState(context);
         if (context == null) {
-            HMSLog.e("HiAnalyticsUtils", "<onEvent2> context is null, state: " + andRefreshAnalyticsState);
+            HMSLog.m7715e("HiAnalyticsUtils", "<onEvent2> context is null, state: " + andRefreshAnalyticsState);
             return;
         }
         boolean initFlag = getInitFlag();
-        if (!initFlag && andRefreshAnalyticsState != 2 && a(str2)) {
-            a(context, str, str2);
+        if (!initFlag && andRefreshAnalyticsState != 2 && m7700a(str2)) {
+            m7697a(context, str, str2);
         }
         if (andRefreshAnalyticsState == 1 && initFlag) {
-            if (this.f7295b) {
+            if (this.f7866b) {
                 HiAnalyticsOfCpUtils.onEvent(context, str, str2);
             } else {
                 HmsHiAnalyticsUtils.onEvent(context, str, str2);
@@ -336,72 +346,75 @@ public class HiAnalyticsUtils {
     public void onNewEvent(Context context, String str, Map map) {
         int andRefreshAnalyticsState = AnalyticsSwitchHolder.getAndRefreshAnalyticsState(context);
         if (map == null || map.isEmpty() || context == null) {
-            HMSLog.e("HiAnalyticsUtils", "<onNewEvent> map or context is null, state: " + andRefreshAnalyticsState);
+            HMSLog.m7715e("HiAnalyticsUtils", "<onNewEvent> map or context is null, state: " + andRefreshAnalyticsState);
             return;
         }
         boolean initFlag = getInitFlag();
-        if (a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
-            b(context, str, map);
+        if (m7701a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
+            m7703b(context, str, map);
         }
         if (andRefreshAnalyticsState == 1 && initFlag) {
-            if (this.f7295b) {
-                HiAnalyticsOfCpUtils.onEvent(context, 0, str, a((Map<String, String>) map));
-                HiAnalyticsOfCpUtils.onEvent(context, 1, str, a((Map<String, String>) map));
+            if (this.f7866b) {
+                HiAnalyticsOfCpUtils.onEvent(context, 0, str, m7696a((Map<String, String>) map));
+                HiAnalyticsOfCpUtils.onEvent(context, 1, str, m7696a((Map<String, String>) map));
             } else {
-                HmsHiAnalyticsUtils.onEvent(0, str, a((Map<String, String>) map));
-                HmsHiAnalyticsUtils.onEvent(1, str, a((Map<String, String>) map));
+                HmsHiAnalyticsUtils.onEvent(0, str, m7696a((Map<String, String>) map));
+                HmsHiAnalyticsUtils.onEvent(1, str, m7696a((Map<String, String>) map));
             }
-            b(context);
+            m7702b(context);
         }
     }
 
     public void onReport(Context context, String str, Map map) {
         int andRefreshAnalyticsState = AnalyticsSwitchHolder.getAndRefreshAnalyticsState(context);
         if (map == null || map.isEmpty() || context == null) {
-            HMSLog.e("HiAnalyticsUtils", "<onReport> map or context is null, state: " + andRefreshAnalyticsState);
+            HMSLog.m7715e("HiAnalyticsUtils", "<onReport> map or context is null, state: " + andRefreshAnalyticsState);
             return;
         }
         boolean initFlag = getInitFlag();
-        if (a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
-            c(context, str, map);
+        if (m7701a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
+            m7706c(context, str, map);
         }
         if (andRefreshAnalyticsState == 1 && initFlag) {
-            if (this.f7295b) {
-                HiAnalyticsOfCpUtils.onStreamEvent(context, 0, str, a((Map<String, String>) map));
-                HiAnalyticsOfCpUtils.onStreamEvent(context, 1, str, a((Map<String, String>) map));
+            if (this.f7866b) {
+                HiAnalyticsOfCpUtils.onStreamEvent(context, 0, str, m7696a((Map<String, String>) map));
+                HiAnalyticsOfCpUtils.onStreamEvent(context, 1, str, m7696a((Map<String, String>) map));
             } else {
-                HmsHiAnalyticsUtils.onStreamEvent(0, str, a((Map<String, String>) map));
-                HmsHiAnalyticsUtils.onStreamEvent(1, str, a((Map<String, String>) map));
+                HmsHiAnalyticsUtils.onStreamEvent(0, str, m7696a((Map<String, String>) map));
+                HmsHiAnalyticsUtils.onStreamEvent(1, str, m7696a((Map<String, String>) map));
             }
         }
     }
 
     public void enableLog() {
-        HMSLog.i("HiAnalyticsUtils", "Enable Log");
-        if (!this.f7295b) {
+        HMSLog.m7717i("HiAnalyticsUtils", "Enable Log");
+        if (!this.f7866b) {
             HmsHiAnalyticsUtils.enableLog();
         } else {
-            HMSLog.i("HiAnalyticsUtils", "cp needs to pass in the context, this method is not supported");
+            HMSLog.m7717i("HiAnalyticsUtils", "cp needs to pass in the context, this method is not supported");
         }
     }
 
-    private int a(Context context) {
+    /* renamed from: a */
+    private int m7695a(Context context) {
         int i2 = 0;
         try {
             i2 = Settings.Secure.getInt(context.getContentResolver(), "hw_app_analytics_state");
-            HMSLog.i("HiAnalyticsUtils", "getOobeStateForSettings value is " + i2);
+            HMSLog.m7717i("HiAnalyticsUtils", "getOobeStateForSettings value is " + i2);
             return i2;
         } catch (Settings.SettingNotFoundException e2) {
-            HMSLog.i("HiAnalyticsUtils", "Settings.SettingNotFoundException " + e2.getMessage());
+            HMSLog.m7717i("HiAnalyticsUtils", "Settings.SettingNotFoundException " + e2.getMessage());
             return i2;
         }
     }
 
-    private boolean a(boolean z, boolean z2, Map<?, ?> map) {
-        return !z && z2 && b(map);
+    /* renamed from: a */
+    private boolean m7701a(boolean z, boolean z2, Map<?, ?> map) {
+        return !z && z2 && m7705b(map);
     }
 
-    private boolean b(Map<?, ?> map) {
+    /* renamed from: b */
+    private boolean m7705b(Map<?, ?> map) {
         try {
             Iterator<?> it = map.values().iterator();
             long j2 = 0;
@@ -412,110 +425,116 @@ public class HiAnalyticsUtils {
             }
             return j2 <= 512;
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<isValidSize map> Exception: " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<isValidSize map> Exception: " + th.getMessage());
             return false;
         }
     }
 
-    private boolean a(String str) {
+    /* renamed from: a */
+    private boolean m7700a(String str) {
         if (str == null) {
             return false;
         }
         try {
             return str.getBytes(Charset.forName("UTF-8")).length <= 512;
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<isValidSize String> Exception: " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<isValidSize String> Exception: " + th.getMessage());
             return false;
         }
     }
 
     public void onReport(Context context, String str, Map map, int i2) {
         if (i2 != 0 && i2 != 1) {
-            HMSLog.e("HiAnalyticsUtils", "<onReport with type> Data reporting type is not supported");
+            HMSLog.m7715e("HiAnalyticsUtils", "<onReport with type> Data reporting type is not supported");
             return;
         }
         int andRefreshAnalyticsState = AnalyticsSwitchHolder.getAndRefreshAnalyticsState(context);
         if (map != null && !map.isEmpty() && context != null) {
             boolean initFlag = getInitFlag();
-            if (a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
-                b(context, str, map, i2);
+            if (m7701a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
+                m7704b(context, str, map, i2);
             }
             if (andRefreshAnalyticsState == 1 && initFlag) {
-                if (!this.f7295b) {
-                    HmsHiAnalyticsUtils.onStreamEvent(i2, str, a((Map<String, String>) map));
+                if (!this.f7866b) {
+                    HmsHiAnalyticsUtils.onStreamEvent(i2, str, m7696a((Map<String, String>) map));
                     return;
                 } else {
-                    HiAnalyticsOfCpUtils.onStreamEvent(context, i2, str, a((Map<String, String>) map));
+                    HiAnalyticsOfCpUtils.onStreamEvent(context, i2, str, m7696a((Map<String, String>) map));
                     return;
                 }
             }
             return;
         }
-        HMSLog.e("HiAnalyticsUtils", "<onReport with type> map or context is null, state: " + andRefreshAnalyticsState);
+        HMSLog.m7715e("HiAnalyticsUtils", "<onReport with type> map or context is null, state: " + andRefreshAnalyticsState);
     }
 
-    private void a(Context context, String str, Map<String, String> map) {
+    /* renamed from: a */
+    private void m7698a(Context context, String str, Map<String, String> map) {
         try {
-            com.huawei.hms.stats.a.c().a(new a(context.getApplicationContext(), str, map));
+            C2507a.m7656c().m7658a(new RunnableC2524a(context.getApplicationContext(), str, map));
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<addOnEventToCache> failed. " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<addOnEventToCache> failed. " + th.getMessage());
         }
     }
 
     public void onNewEvent(Context context, String str, Map map, int i2) {
         if (i2 != 0 && i2 != 1) {
-            HMSLog.e("HiAnalyticsUtils", "<onNewEvent with type> Data reporting type is not supported");
+            HMSLog.m7715e("HiAnalyticsUtils", "<onNewEvent with type> Data reporting type is not supported");
             return;
         }
         int andRefreshAnalyticsState = AnalyticsSwitchHolder.getAndRefreshAnalyticsState(context);
         if (map != null && !map.isEmpty() && context != null) {
             boolean initFlag = getInitFlag();
-            if (a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
-                a(context, str, map, i2);
+            if (m7701a(initFlag, andRefreshAnalyticsState != 2, (Map<?, ?>) map)) {
+                m7699a(context, str, map, i2);
             }
             if (andRefreshAnalyticsState == 1 && initFlag) {
-                if (!this.f7295b) {
-                    HmsHiAnalyticsUtils.onEvent(i2, str, a((Map<String, String>) map));
+                if (!this.f7866b) {
+                    HmsHiAnalyticsUtils.onEvent(i2, str, m7696a((Map<String, String>) map));
                 } else {
-                    HiAnalyticsOfCpUtils.onEvent(context, i2, str, a((Map<String, String>) map));
+                    HiAnalyticsOfCpUtils.onEvent(context, i2, str, m7696a((Map<String, String>) map));
                 }
-                b(context);
+                m7702b(context);
                 return;
             }
             return;
         }
-        HMSLog.e("HiAnalyticsUtils", "<onNewEvent with type> map or context is null, state: " + andRefreshAnalyticsState);
+        HMSLog.m7715e("HiAnalyticsUtils", "<onNewEvent with type> map or context is null, state: " + andRefreshAnalyticsState);
     }
 
-    private void b(Context context, String str, Map map) {
+    /* renamed from: b */
+    private void m7703b(Context context, String str, Map map) {
         try {
-            com.huawei.hms.stats.a.c().a(new c(context.getApplicationContext(), str, map));
+            C2507a.m7656c().m7658a(new RunnableC2526c(context.getApplicationContext(), str, map));
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<addOnNewEventToCache> failed. " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<addOnNewEventToCache> failed. " + th.getMessage());
         }
     }
 
-    private void a(Context context, String str, String str2) {
+    /* renamed from: a */
+    private void m7697a(Context context, String str, String str2) {
         try {
-            com.huawei.hms.stats.a.c().a(new b(context.getApplicationContext(), str, str2));
+            C2507a.m7656c().m7658a(new RunnableC2525b(context.getApplicationContext(), str, str2));
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<addOnEvent2ToCache> Failed. " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<addOnEvent2ToCache> Failed. " + th.getMessage());
         }
     }
 
-    private void b(Context context, String str, Map map, int i2) {
+    /* renamed from: b */
+    private void m7704b(Context context, String str, Map map, int i2) {
         try {
-            com.huawei.hms.stats.a.c().a(new f(context.getApplicationContext(), str, map, i2));
+            C2507a.m7656c().m7658a(new RunnableC2529f(context.getApplicationContext(), str, map, i2));
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<addOnReportToCache with type> failed. " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<addOnReportToCache with type> failed. " + th.getMessage());
         }
     }
 
-    private void a(Context context, String str, Map map, int i2) {
+    /* renamed from: a */
+    private void m7699a(Context context, String str, Map map, int i2) {
         try {
-            com.huawei.hms.stats.a.c().a(new d(context.getApplicationContext(), str, map, i2));
+            C2507a.m7656c().m7658a(new RunnableC2527d(context.getApplicationContext(), str, map, i2));
         } catch (Throwable th) {
-            HMSLog.e("HiAnalyticsUtils", "<addOnNewEventToCache with type> failed. " + th.getMessage());
+            HMSLog.m7715e("HiAnalyticsUtils", "<addOnNewEventToCache with type> failed. " + th.getMessage());
         }
     }
 }

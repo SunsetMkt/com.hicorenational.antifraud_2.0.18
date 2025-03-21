@@ -103,7 +103,7 @@
             android:text="准确识别并预警诈骗来电"
             app:layout_constraintLeft_toLeftOf="@+id/tv_call"
             app:layout_constraintTop_toBottomOf="@+id/tv_call"/>
-        <ui.view.SwitchButton
+        <p388ui.view.SwitchButton
             android:layout_gravity="center"
             android:id="@+id/switch_call"
             android:layout_width="wrap_content"
@@ -168,7 +168,7 @@
             android:text="准确识别并预警诈骗短信"
             app:layout_constraintLeft_toLeftOf="@+id/tv_sms"
             app:layout_constraintTop_toBottomOf="@+id/tv_sms"/>
-        <ui.view.SwitchButton
+        <p388ui.view.SwitchButton
             android:layout_gravity="center"
             android:id="@+id/switch_sms"
             android:layout_width="wrap_content"
@@ -223,7 +223,7 @@
             android:text="准确识别并预警诈骗APP"
             app:layout_constraintLeft_toLeftOf="@+id/tv_app"
             app:layout_constraintTop_toBottomOf="@+id/tv_app"/>
-        <ui.view.SwitchButton
+        <p388ui.view.SwitchButton
             android:layout_gravity="center"
             android:id="@+id/switch_app"
             android:visibility="gone"

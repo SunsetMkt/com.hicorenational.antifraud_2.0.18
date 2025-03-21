@@ -24,8 +24,8 @@ public class State {
     public final ConstraintReference mParent = new ConstraintReference(this);
     private int numHelpers = 0;
 
-    /* renamed from: androidx.constraintlayout.solver.state.State$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: androidx.constraintlayout.solver.state.State$1 */
+    static /* synthetic */ class C04551 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Helper = new int[Helper.values().length];
 
         static {
@@ -229,7 +229,7 @@ public class State {
         }
         HelperReference helperReference = this.mHelperReferences.get(obj);
         if (helperReference == null) {
-            int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Helper[helper.ordinal()];
+            int i2 = C04551.$SwitchMap$androidx$constraintlayout$solver$state$State$Helper[helper.ordinal()];
             if (i2 == 1) {
                 horizontalChainReference = new HorizontalChainReference(this);
             } else if (i2 == 2) {

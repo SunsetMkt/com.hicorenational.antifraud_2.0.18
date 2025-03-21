@@ -1,7 +1,7 @@
 package com.huawei.hms.common.data;
 
 import android.os.Bundle;
-import com.xiaomi.push.service.f;
+import com.xiaomi.push.service.C4383f;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,7 +18,8 @@ public final class DataBufferUtils {
     private DataBufferUtils() {
     }
 
-    private static boolean a(Bundle bundle, String str) {
+    /* renamed from: a */
+    private static boolean m6714a(Bundle bundle, String str) {
         return (bundle == null || bundle.getString(str) == null) ? false : true;
     }
 
@@ -26,7 +27,7 @@ public final class DataBufferUtils {
         if (dataBuffer == null) {
             return new ArrayList<>();
         }
-        f.AnonymousClass3 anonymousClass3 = (ArrayList<T>) new ArrayList(dataBuffer.getCount());
+        C4383f.AnonymousClass3 anonymousClass3 = (ArrayList<T>) new ArrayList(dataBuffer.getCount());
         Iterator<E> it = dataBuffer.iterator();
         while (it.hasNext()) {
             anonymousClass3.add(it.next().freeze());
@@ -43,13 +44,13 @@ public final class DataBufferUtils {
         if (dataBuffer == null) {
             return false;
         }
-        return a(dataBuffer.getMetadata(), NEXT_PAGE);
+        return m6714a(dataBuffer.getMetadata(), NEXT_PAGE);
     }
 
     public static boolean hasPrevPage(DataBuffer<?> dataBuffer) {
         if (dataBuffer == null) {
             return false;
         }
-        return a(dataBuffer.getMetadata(), PREV_PAGE);
+        return m6714a(dataBuffer.getMetadata(), PREV_PAGE);
     }
 }

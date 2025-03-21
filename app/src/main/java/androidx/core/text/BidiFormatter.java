@@ -1,9 +1,9 @@
 package androidx.core.text;
 
 import android.text.SpannableStringBuilder;
-import com.umeng.analytics.pro.cw;
-import h.z2.h0;
+import com.umeng.analytics.pro.C3393cw;
 import java.util.Locale;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes.dex */
 public final class BidiFormatter {
@@ -71,7 +71,7 @@ public final class BidiFormatter {
             } while (c2 != ';');
             this.charIndex = i2;
             this.lastChar = ';';
-            return cw.f10301k;
+            return C3393cw.f11871k;
         }
 
         private byte skipEntityForward() {
@@ -123,8 +123,8 @@ public final class BidiFormatter {
                 }
             }
             this.charIndex = i2;
-            this.lastChar = h0.f16708e;
-            return cw.f10301k;
+            this.lastChar = C5736h0.f20716e;
+            return C3393cw.f11871k;
         }
 
         private byte skipTagForward() {
@@ -134,8 +134,8 @@ public final class BidiFormatter {
                 int i3 = this.charIndex;
                 if (i3 >= this.length) {
                     this.charIndex = i2;
-                    this.lastChar = h0.f16707d;
-                    return cw.f10301k;
+                    this.lastChar = C5736h0.f20715d;
+                    return C3393cw.f11871k;
                 }
                 CharSequence charSequence = this.text;
                 this.charIndex = i3 + 1;

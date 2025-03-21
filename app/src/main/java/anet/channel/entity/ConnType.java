@@ -138,7 +138,7 @@ public class ConnType {
     }
 
     public int getType() {
-        return (equals(HTTP) || equals(HTTPS)) ? c.f1770b : c.f1769a;
+        return (equals(HTTP) || equals(HTTPS)) ? C0783c.f844b : C0783c.f843a;
     }
 
     @Deprecated

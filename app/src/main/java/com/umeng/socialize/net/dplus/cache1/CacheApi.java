@@ -6,27 +6,28 @@ import android.os.Handler;
 /* loaded from: classes2.dex */
 public class CacheApi {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static String f11767a = "CacheApi";
+    /* renamed from: a */
+    private static String f13722a = "CacheApi";
 
-    /* renamed from: e, reason: collision with root package name */
-    private static CacheApi f11768e;
+    /* renamed from: e */
+    private static CacheApi f13723e;
 
-    /* renamed from: b, reason: collision with root package name */
-    private Handler f11769b;
+    /* renamed from: b */
+    private Handler f13724b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private CacheExector f11770c = new CacheExector(a());
+    /* renamed from: c */
+    private CacheExector f13725c = new CacheExector(m12672a());
 
-    /* renamed from: d, reason: collision with root package name */
-    private Context f11771d;
+    /* renamed from: d */
+    private Context f13726d;
 
     private CacheApi(Context context) {
-        this.f11771d = context;
+        this.f13726d = context;
     }
 
-    private String a() {
-        Context context = this.f11771d;
+    /* renamed from: a */
+    private String m12672a() {
+        Context context = this.f13726d;
         if (context == null) {
             return null;
         }
@@ -34,14 +35,14 @@ public class CacheApi {
     }
 
     public static CacheApi get(Context context) {
-        if (f11768e == null) {
-            f11768e = new CacheApi(context);
+        if (f13723e == null) {
+            f13723e = new CacheApi(context);
         }
-        return f11768e;
+        return f13723e;
     }
 
     public double checkSize(String str) {
-        CacheExector cacheExector = this.f11770c;
+        CacheExector cacheExector = this.f13725c;
         if (cacheExector == null) {
             return 0.0d;
         }
@@ -49,7 +50,7 @@ public class CacheApi {
     }
 
     public boolean delete(String str) {
-        CacheExector cacheExector = this.f11770c;
+        CacheExector cacheExector = this.f13725c;
         if (cacheExector == null) {
             return false;
         }
@@ -57,7 +58,7 @@ public class CacheApi {
     }
 
     public IReader read(String str, Class cls) {
-        CacheExector cacheExector = this.f11770c;
+        CacheExector cacheExector = this.f13725c;
         if (cacheExector == null) {
             return null;
         }
@@ -65,7 +66,7 @@ public class CacheApi {
     }
 
     public boolean save(String str, String str2) {
-        CacheExector cacheExector = this.f11770c;
+        CacheExector cacheExector = this.f13725c;
         if (cacheExector == null) {
             return false;
         }

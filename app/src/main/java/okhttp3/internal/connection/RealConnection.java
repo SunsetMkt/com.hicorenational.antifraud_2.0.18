@@ -1,7 +1,6 @@
 package okhttp3.internal.connection;
 
 import com.xiaomi.mipush.sdk.Constants;
-import h.q2.t.m0;
 import java.io.IOException;
 import java.lang.ref.Reference;
 import java.net.ConnectException;
@@ -42,13 +41,14 @@ import okhttp3.internal.http2.ErrorCode;
 import okhttp3.internal.http2.Http2Codec;
 import okhttp3.internal.http2.Http2Connection;
 import okhttp3.internal.http2.Http2Stream;
+import okhttp3.internal.p386ws.RealWebSocket;
 import okhttp3.internal.platform.Platform;
 import okhttp3.internal.tls.OkHostnameVerifier;
-import okhttp3.internal.ws.RealWebSocket;
 import okio.BufferedSink;
 import okio.BufferedSource;
 import okio.Okio;
 import okio.Source;
+import p286h.p309q2.p311t.C5556m0;
 
 /* loaded from: classes2.dex */
 public final class RealConnection extends Http2Connection.Listener implements Connection {
@@ -67,7 +67,7 @@ public final class RealConnection extends Http2Connection.Listener implements Co
     public int successCount;
     public int allocationLimit = 1;
     public final List<Reference<StreamAllocation>> allocations = new ArrayList();
-    public long idleAtNanos = m0.f16408b;
+    public long idleAtNanos = C5556m0.f20396b;
 
     public RealConnection(ConnectionPool connectionPool, Route route) {
         this.connectionPool = connectionPool;

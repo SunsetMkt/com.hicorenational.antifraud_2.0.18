@@ -6,7 +6,7 @@ import java.security.KeyStore;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
-import util.n1;
+import util.C7301n1;
 
 /* loaded from: classes2.dex */
 public class SslContextFactory {
@@ -32,7 +32,7 @@ public class SslContextFactory {
                 throw th;
             }
         } catch (Exception e2) {
-            n1.b("SslContextFactory", e2.getMessage());
+            C7301n1.m26457b("SslContextFactory", e2.getMessage());
             return (SSLSocketFactory) SSLSocketFactory.getDefault();
         }
     }

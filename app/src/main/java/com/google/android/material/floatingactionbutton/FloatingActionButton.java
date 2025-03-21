@@ -32,7 +32,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TintableImageSourceView;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.MotionSpec;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -216,8 +216,8 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
 
         public BaseBehavior(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.FloatingActionButton_Behavior_Layout);
-            this.autoHideEnabled = obtainStyledAttributes.getBoolean(R.styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide, true);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.FloatingActionButton_Behavior_Layout);
+            this.autoHideEnabled = obtainStyledAttributes.getBoolean(C1921R.styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide, true);
             obtainStyledAttributes.recycle();
         }
     }
@@ -738,7 +738,7 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
     }
 
     public FloatingActionButton(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.floatingActionButtonStyle);
+        this(context, attributeSet, C1921R.attr.floatingActionButtonStyle);
     }
 
     private int getSizeDimension(int i2) {
@@ -747,7 +747,7 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
             return i3;
         }
         Resources resources = getResources();
-        return i2 != -1 ? i2 != 1 ? resources.getDimensionPixelSize(R.dimen.design_fab_size_normal) : resources.getDimensionPixelSize(R.dimen.design_fab_size_mini) : Math.max(resources.getConfiguration().screenWidthDp, resources.getConfiguration().screenHeightDp) < 470 ? getSizeDimension(1) : getSizeDimension(0);
+        return i2 != -1 ? i2 != 1 ? resources.getDimensionPixelSize(C1921R.dimen.design_fab_size_normal) : resources.getDimensionPixelSize(C1921R.dimen.design_fab_size_mini) : Math.max(resources.getConfiguration().screenWidthDp, resources.getConfiguration().screenHeightDp) < 470 ? getSizeDimension(1) : getSizeDimension(0);
     }
 
     public void hide(@Nullable OnVisibilityChangedListener onVisibilityChangedListener) {
@@ -769,20 +769,20 @@ public class FloatingActionButton extends VisibilityAwareImageButton implements 
         super(context, attributeSet, i2);
         this.shadowPadding = new Rect();
         this.touchArea = new Rect();
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.FloatingActionButton, i2, R.style.Widget_Design_FloatingActionButton, new int[0]);
-        this.backgroundTint = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.FloatingActionButton_backgroundTint);
-        this.backgroundTintMode = ViewUtils.parseTintMode(obtainStyledAttributes.getInt(R.styleable.FloatingActionButton_backgroundTintMode, -1), null);
-        this.rippleColor = MaterialResources.getColorStateList(context, obtainStyledAttributes, R.styleable.FloatingActionButton_rippleColor);
-        this.size = obtainStyledAttributes.getInt(R.styleable.FloatingActionButton_fabSize, -1);
-        this.customSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.FloatingActionButton_fabCustomSize, 0);
-        this.borderWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.FloatingActionButton_borderWidth, 0);
-        float dimension = obtainStyledAttributes.getDimension(R.styleable.FloatingActionButton_elevation, 0.0f);
-        float dimension2 = obtainStyledAttributes.getDimension(R.styleable.FloatingActionButton_hoveredFocusedTranslationZ, 0.0f);
-        float dimension3 = obtainStyledAttributes.getDimension(R.styleable.FloatingActionButton_pressedTranslationZ, 0.0f);
-        this.compatPadding = obtainStyledAttributes.getBoolean(R.styleable.FloatingActionButton_useCompatPadding, false);
-        this.maxImageSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.FloatingActionButton_maxImageSize, 0);
-        MotionSpec createFromAttribute = MotionSpec.createFromAttribute(context, obtainStyledAttributes, R.styleable.FloatingActionButton_showMotionSpec);
-        MotionSpec createFromAttribute2 = MotionSpec.createFromAttribute(context, obtainStyledAttributes, R.styleable.FloatingActionButton_hideMotionSpec);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.FloatingActionButton, i2, C1921R.style.Widget_Design_FloatingActionButton, new int[0]);
+        this.backgroundTint = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.FloatingActionButton_backgroundTint);
+        this.backgroundTintMode = ViewUtils.parseTintMode(obtainStyledAttributes.getInt(C1921R.styleable.FloatingActionButton_backgroundTintMode, -1), null);
+        this.rippleColor = MaterialResources.getColorStateList(context, obtainStyledAttributes, C1921R.styleable.FloatingActionButton_rippleColor);
+        this.size = obtainStyledAttributes.getInt(C1921R.styleable.FloatingActionButton_fabSize, -1);
+        this.customSize = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.FloatingActionButton_fabCustomSize, 0);
+        this.borderWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.FloatingActionButton_borderWidth, 0);
+        float dimension = obtainStyledAttributes.getDimension(C1921R.styleable.FloatingActionButton_elevation, 0.0f);
+        float dimension2 = obtainStyledAttributes.getDimension(C1921R.styleable.FloatingActionButton_hoveredFocusedTranslationZ, 0.0f);
+        float dimension3 = obtainStyledAttributes.getDimension(C1921R.styleable.FloatingActionButton_pressedTranslationZ, 0.0f);
+        this.compatPadding = obtainStyledAttributes.getBoolean(C1921R.styleable.FloatingActionButton_useCompatPadding, false);
+        this.maxImageSize = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.FloatingActionButton_maxImageSize, 0);
+        MotionSpec createFromAttribute = MotionSpec.createFromAttribute(context, obtainStyledAttributes, C1921R.styleable.FloatingActionButton_showMotionSpec);
+        MotionSpec createFromAttribute2 = MotionSpec.createFromAttribute(context, obtainStyledAttributes, C1921R.styleable.FloatingActionButton_hideMotionSpec);
         obtainStyledAttributes.recycle();
         this.imageHelper = new AppCompatImageHelper(this);
         this.imageHelper.loadFromAttributes(attributeSet, i2);

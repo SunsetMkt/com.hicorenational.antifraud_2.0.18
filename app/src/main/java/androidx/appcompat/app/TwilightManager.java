@@ -8,8 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.PermissionChecker;
+import com.heytap.mcssdk.constant.C2084a;
 import java.util.Calendar;
-import util.permissionutil.a;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes.dex */
 class TwilightManager {
@@ -49,12 +50,12 @@ class TwilightManager {
 
     @SuppressLint({"MissingPermission"})
     private Location getLastKnownLocation() {
-        Location lastKnownLocationForProvider = PermissionChecker.checkSelfPermission(this.mContext, a.f20914h) == 0 ? getLastKnownLocationForProvider("network") : null;
-        Location lastKnownLocationForProvider2 = PermissionChecker.checkSelfPermission(this.mContext, a.f20913g) == 0 ? getLastKnownLocationForProvider("gps") : null;
+        Location lastKnownLocationForProvider = PermissionChecker.checkSelfPermission(this.mContext, C7308a.f25529h) == 0 ? getLastKnownLocationForProvider("network") : null;
+        Location lastKnownLocationForProvider2 = PermissionChecker.checkSelfPermission(this.mContext, C7308a.f25528g) == 0 ? getLastKnownLocationForProvider("gps") : null;
         return (lastKnownLocationForProvider2 == null || lastKnownLocationForProvider == null) ? lastKnownLocationForProvider2 != null ? lastKnownLocationForProvider2 : lastKnownLocationForProvider : lastKnownLocationForProvider2.getTime() > lastKnownLocationForProvider.getTime() ? lastKnownLocationForProvider2 : lastKnownLocationForProvider;
     }
 
-    @RequiresPermission(anyOf = {a.f20914h, a.f20913g})
+    @RequiresPermission(anyOf = {C7308a.f25529h, C7308a.f25528g})
     private Location getLastKnownLocationForProvider(String str) {
         try {
             if (this.mLocationManager.isProviderEnabled(str)) {
@@ -90,9 +91,9 @@ class TwilightManager {
         twilightCalculator.calculateTwilight(86400000 + currentTimeMillis, location.getLatitude(), location.getLongitude());
         long j6 = twilightCalculator.sunrise;
         if (j4 == -1 || j5 == -1) {
-            j2 = com.heytap.mcssdk.constant.a.f5803g + currentTimeMillis;
+            j2 = C2084a.f6125g + currentTimeMillis;
         } else {
-            j2 = (currentTimeMillis > j5 ? 0 + j6 : currentTimeMillis > j4 ? 0 + j5 : 0 + j4) + com.heytap.mcssdk.constant.a.f5800d;
+            j2 = (currentTimeMillis > j5 ? 0 + j6 : currentTimeMillis > j4 ? 0 + j5 : 0 + j4) + C2084a.f6122d;
         }
         twilightState.isNight = z2;
         twilightState.yesterdaySunset = j3;

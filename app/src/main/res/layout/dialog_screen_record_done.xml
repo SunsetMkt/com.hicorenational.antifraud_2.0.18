@@ -130,7 +130,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="@dimen/dp_13"
                     android:layout_marginRight="20dp">
-                    <ui.view.RecordItemJzvd
+                    <p388ui.view.RecordItemJzvd
                         android:id="@+id/imageview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

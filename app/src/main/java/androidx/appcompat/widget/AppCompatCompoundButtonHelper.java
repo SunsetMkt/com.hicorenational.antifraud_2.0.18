@@ -68,21 +68,21 @@ class AppCompatCompoundButtonHelper {
             r10 = this;
             android.widget.CompoundButton r0 = r10.mView
             android.content.Context r0 = r0.getContext()
-            int[] r1 = androidx.appcompat.R.styleable.CompoundButton
+            int[] r1 = androidx.appcompat.C0120R.styleable.CompoundButton
             r2 = 0
             androidx.appcompat.widget.TintTypedArray r0 = androidx.appcompat.widget.TintTypedArray.obtainStyledAttributes(r0, r11, r1, r12, r2)
             android.widget.CompoundButton r3 = r10.mView
             android.content.Context r4 = r3.getContext()
-            int[] r5 = androidx.appcompat.R.styleable.CompoundButton
+            int[] r5 = androidx.appcompat.C0120R.styleable.CompoundButton
             android.content.res.TypedArray r7 = r0.getWrappedTypeArray()
             r9 = 0
             r6 = r11
             r8 = r12
             androidx.core.view.ViewCompat.saveAttributeDataForStyleable(r3, r4, r5, r6, r7, r8, r9)
-            int r11 = androidx.appcompat.R.styleable.CompoundButton_buttonCompat     // Catch: java.lang.Throwable -> L92
+            int r11 = androidx.appcompat.C0120R.styleable.CompoundButton_buttonCompat     // Catch: java.lang.Throwable -> L92
             boolean r11 = r0.hasValue(r11)     // Catch: java.lang.Throwable -> L92
             if (r11 == 0) goto L40
-            int r11 = androidx.appcompat.R.styleable.CompoundButton_buttonCompat     // Catch: java.lang.Throwable -> L92
+            int r11 = androidx.appcompat.C0120R.styleable.CompoundButton_buttonCompat     // Catch: java.lang.Throwable -> L92
             int r11 = r0.getResourceId(r11, r2)     // Catch: java.lang.Throwable -> L92
             if (r11 == 0) goto L40
             android.widget.CompoundButton r12 = r10.mView     // Catch: android.content.res.Resources.NotFoundException -> L40 java.lang.Throwable -> L92
@@ -96,10 +96,10 @@ class AppCompatCompoundButtonHelper {
             r11 = 0
         L41:
             if (r11 != 0) goto L62
-            int r11 = androidx.appcompat.R.styleable.CompoundButton_android_button     // Catch: java.lang.Throwable -> L92
+            int r11 = androidx.appcompat.C0120R.styleable.CompoundButton_android_button     // Catch: java.lang.Throwable -> L92
             boolean r11 = r0.hasValue(r11)     // Catch: java.lang.Throwable -> L92
             if (r11 == 0) goto L62
-            int r11 = androidx.appcompat.R.styleable.CompoundButton_android_button     // Catch: java.lang.Throwable -> L92
+            int r11 = androidx.appcompat.C0120R.styleable.CompoundButton_android_button     // Catch: java.lang.Throwable -> L92
             int r11 = r0.getResourceId(r11, r2)     // Catch: java.lang.Throwable -> L92
             if (r11 == 0) goto L62
             android.widget.CompoundButton r12 = r10.mView     // Catch: java.lang.Throwable -> L92
@@ -108,19 +108,19 @@ class AppCompatCompoundButtonHelper {
             android.graphics.drawable.Drawable r11 = androidx.appcompat.content.res.AppCompatResources.getDrawable(r1, r11)     // Catch: java.lang.Throwable -> L92
             r12.setButtonDrawable(r11)     // Catch: java.lang.Throwable -> L92
         L62:
-            int r11 = androidx.appcompat.R.styleable.CompoundButton_buttonTint     // Catch: java.lang.Throwable -> L92
+            int r11 = androidx.appcompat.C0120R.styleable.CompoundButton_buttonTint     // Catch: java.lang.Throwable -> L92
             boolean r11 = r0.hasValue(r11)     // Catch: java.lang.Throwable -> L92
             if (r11 == 0) goto L75
             android.widget.CompoundButton r11 = r10.mView     // Catch: java.lang.Throwable -> L92
-            int r12 = androidx.appcompat.R.styleable.CompoundButton_buttonTint     // Catch: java.lang.Throwable -> L92
+            int r12 = androidx.appcompat.C0120R.styleable.CompoundButton_buttonTint     // Catch: java.lang.Throwable -> L92
             android.content.res.ColorStateList r12 = r0.getColorStateList(r12)     // Catch: java.lang.Throwable -> L92
             androidx.core.widget.CompoundButtonCompat.setButtonTintList(r11, r12)     // Catch: java.lang.Throwable -> L92
         L75:
-            int r11 = androidx.appcompat.R.styleable.CompoundButton_buttonTintMode     // Catch: java.lang.Throwable -> L92
+            int r11 = androidx.appcompat.C0120R.styleable.CompoundButton_buttonTintMode     // Catch: java.lang.Throwable -> L92
             boolean r11 = r0.hasValue(r11)     // Catch: java.lang.Throwable -> L92
             if (r11 == 0) goto L8e
             android.widget.CompoundButton r11 = r10.mView     // Catch: java.lang.Throwable -> L92
-            int r12 = androidx.appcompat.R.styleable.CompoundButton_buttonTintMode     // Catch: java.lang.Throwable -> L92
+            int r12 = androidx.appcompat.C0120R.styleable.CompoundButton_buttonTintMode     // Catch: java.lang.Throwable -> L92
             r1 = -1
             int r12 = r0.getInt(r12, r1)     // Catch: java.lang.Throwable -> L92
             r1 = 0

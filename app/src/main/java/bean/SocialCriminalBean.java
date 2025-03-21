@@ -6,7 +6,9 @@ import network.BaseBean;
 public class SocialCriminalBean extends BaseBean {
     private String account;
     private String accountTypeName;
-    private String id;
+
+    /* renamed from: id */
+    private String f1624id;
     private long suspectInfoID;
 
     public String getAccount() {
@@ -18,7 +20,7 @@ public class SocialCriminalBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1624id;
     }
 
     public long getSuspectInfoID() {
@@ -34,7 +36,7 @@ public class SocialCriminalBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1624id = str;
     }
 
     public void setSuspectInfoID(long j2) {

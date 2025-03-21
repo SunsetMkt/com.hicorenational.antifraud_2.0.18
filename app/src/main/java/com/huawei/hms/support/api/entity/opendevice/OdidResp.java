@@ -6,14 +6,15 @@ import com.huawei.hms.core.aidl.annotation.Packed;
 /* loaded from: classes.dex */
 public class OdidResp extends AbstractMessageEntity {
 
+    /* renamed from: id */
     @Packed
-    private String id;
+    private String f7850id;
 
     public String getId() {
-        return this.id;
+        return this.f7850id;
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f7850id = str;
     }
 }

@@ -60,12 +60,13 @@ import java.util.List;
 import java.util.Objects;
 import okio.BufferedSource;
 import okio.Okio;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes.dex */
 public class PictureExternalPreviewActivity extends PictureBaseActivity implements View.OnClickListener {
 
     /* renamed from: adapter, reason: collision with root package name */
-    private SimpleFragmentAdapter f7744adapter;
+    private SimpleFragmentAdapter f25895adapter;
     private String downloadPath;
     private ImageButton ibDelete;
     private ImageButton ibLeftBack;
@@ -77,7 +78,8 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     private List<LocalMedia> images = new ArrayList();
     private int position = 0;
 
-    static /* synthetic */ void a() {
+    /* renamed from: a */
+    static /* synthetic */ void m8096a() {
     }
 
     private Uri createOutImageUri() {
@@ -103,18 +105,18 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     /* JADX INFO: Access modifiers changed from: private */
     public void exitAnimation() {
         int i2;
-        int i3 = R.anim.picture_anim_fade_in;
+        int i3 = C2639R.anim.picture_anim_fade_in;
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.config.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i2 = pictureWindowAnimationStyle.activityPreviewExitAnimation) == 0) {
-            i2 = R.anim.picture_anim_exit;
+            i2 = C2639R.anim.picture_anim_exit;
         }
         overridePendingTransition(i3, i2);
     }
 
     private void initViewPageAdapterData() {
-        this.tvTitle.setText(getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
-        this.f7744adapter = new SimpleFragmentAdapter();
-        this.viewPager.setAdapter(this.f7744adapter);
+        this.tvTitle.setText(getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
+        this.f25895adapter = new SimpleFragmentAdapter();
+        this.viewPager.setAdapter(this.f25895adapter);
         this.viewPager.setCurrentItem(this.position);
         this.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.1
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -127,7 +129,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
 
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
             public void onPageSelected(int i2) {
-                PictureExternalPreviewActivity.this.tvTitle.setText(PictureExternalPreviewActivity.this.getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(i2 + 1), Integer.valueOf(PictureExternalPreviewActivity.this.images.size())}));
+                PictureExternalPreviewActivity.this.tvTitle.setText(PictureExternalPreviewActivity.this.getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(i2 + 1), Integer.valueOf(PictureExternalPreviewActivity.this.images.size())}));
                 PictureExternalPreviewActivity.this.position = i2;
             }
         });
@@ -137,7 +139,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     public void onSuccessful(String str) {
         dismissDialog();
         if (TextUtils.isEmpty(str)) {
-            ToastUtils.s(getContext(), getString(R.string.picture_save_error));
+            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_error));
             return;
         }
         try {
@@ -147,11 +149,11 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                 new PictureMediaScannerConnection(getContext(), file.getAbsolutePath(), new PictureMediaScannerConnection.ScanListener() { // from class: com.luck.picture.lib.j
                     @Override // com.luck.picture.lib.PictureMediaScannerConnection.ScanListener
                     public final void onScanFinish() {
-                        PictureExternalPreviewActivity.a();
+                        PictureExternalPreviewActivity.m8096a();
                     }
                 });
             }
-            ToastUtils.s(getContext(), getString(R.string.picture_save_success) + "\n" + str);
+            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_success) + "\n" + str);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -187,7 +189,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         contentValues.put("relative_path", PictureMimeType.DCIM);
         final Uri insert = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
         if (insert == null) {
-            ToastUtils.s(getContext(), getString(R.string.picture_save_error));
+            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_error));
         } else {
             PictureThreadUtils.executeByCached(new PictureThreadUtils.SimpleTask<String>() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.3
                 @Override // com.luck.picture.lib.thread.PictureThreadUtils.Task
@@ -236,36 +238,38 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         if (isFinishing() || TextUtils.isEmpty(this.downloadPath)) {
             return;
         }
-        final PictureCustomDialog pictureCustomDialog = new PictureCustomDialog(getContext(), R.layout.picture_wind_base_dialog);
-        Button button = (Button) pictureCustomDialog.findViewById(R.id.btn_cancel);
-        Button button2 = (Button) pictureCustomDialog.findViewById(R.id.btn_commit);
-        TextView textView = (TextView) pictureCustomDialog.findViewById(R.id.tv_title);
-        TextView textView2 = (TextView) pictureCustomDialog.findViewById(R.id.tv_content);
-        textView.setText(getString(R.string.picture_prompt));
-        textView2.setText(getString(R.string.picture_prompt_content));
+        final PictureCustomDialog pictureCustomDialog = new PictureCustomDialog(getContext(), C2639R.layout.picture_wind_base_dialog);
+        Button button = (Button) pictureCustomDialog.findViewById(C2639R.id.btn_cancel);
+        Button button2 = (Button) pictureCustomDialog.findViewById(C2639R.id.btn_commit);
+        TextView textView = (TextView) pictureCustomDialog.findViewById(C2639R.id.tv_title);
+        TextView textView2 = (TextView) pictureCustomDialog.findViewById(C2639R.id.tv_content);
+        textView.setText(getString(C2639R.string.picture_prompt));
+        textView2.setText(getString(C2639R.string.picture_prompt_content));
         button.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.k
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PictureExternalPreviewActivity.this.a(pictureCustomDialog, view);
+                PictureExternalPreviewActivity.this.m8097a(pictureCustomDialog, view);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.l
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PictureExternalPreviewActivity.this.b(pictureCustomDialog, view);
+                PictureExternalPreviewActivity.this.m8098b(pictureCustomDialog, view);
             }
         });
         pictureCustomDialog.show();
     }
 
-    public /* synthetic */ void a(PictureCustomDialog pictureCustomDialog, View view) {
+    /* renamed from: a */
+    public /* synthetic */ void m8097a(PictureCustomDialog pictureCustomDialog, View view) {
         if (isFinishing()) {
             return;
         }
         pictureCustomDialog.dismiss();
     }
 
-    public /* synthetic */ void b(PictureCustomDialog pictureCustomDialog, View view) {
+    /* renamed from: b */
+    public /* synthetic */ void m8098b(PictureCustomDialog pictureCustomDialog, View view) {
         boolean isHttp = PictureMimeType.isHttp(this.downloadPath);
         showPleaseDialog();
         if (isHttp) {
@@ -290,7 +294,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     savePictureAlbum();
                 }
             } catch (Exception e2) {
-                ToastUtils.s(getContext(), getString(R.string.picture_save_error) + "\n" + e2.getMessage());
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_error) + "\n" + e2.getMessage());
                 dismissDialog();
                 e2.printStackTrace();
             }
@@ -303,14 +307,14 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return R.layout.picture_activity_external_preview;
+        return C2639R.layout.picture_activity_external_preview;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public void initPictureSelectorStyle() {
         PictureParameterStyle pictureParameterStyle = this.config.style;
         if (pictureParameterStyle == null) {
-            int typeValueColor = AttrsUtils.getTypeValueColor(getContext(), R.attr.picture_ac_preview_title_bg);
+            int typeValueColor = AttrsUtils.getTypeValueColor(getContext(), C2639R.attr.picture_ac_preview_title_bg);
             if (typeValueColor != 0) {
                 this.titleViewBg.setBackgroundColor(typeValueColor);
                 return;
@@ -344,11 +348,11 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     protected void initWidgets() {
         super.initWidgets();
         this.isAndroidQ = SdkVersionUtils.checkedAndroid_Q();
-        this.titleViewBg = findViewById(R.id.titleViewBg);
-        this.tvTitle = (TextView) findViewById(R.id.picture_title);
-        this.ibLeftBack = (ImageButton) findViewById(R.id.left_back);
-        this.ibDelete = (ImageButton) findViewById(R.id.ib_delete);
-        this.viewPager = (PreviewViewPager) findViewById(R.id.preview_pager);
+        this.titleViewBg = findViewById(C2639R.id.titleViewBg);
+        this.tvTitle = (TextView) findViewById(C2639R.id.picture_title);
+        this.ibLeftBack = (ImageButton) findViewById(C2639R.id.left_back);
+        this.ibDelete = (ImageButton) findViewById(C2639R.id.ib_delete);
+        this.viewPager = (PreviewViewPager) findViewById(C2639R.id.preview_pager);
         this.position = getIntent().getIntExtra("position", 0);
         this.images = (List) getIntent().getSerializableExtra(PictureConfig.EXTRA_PREVIEW_SELECT_LIST);
         this.ibLeftBack.setOnClickListener(this);
@@ -365,8 +369,8 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
     /* renamed from: onBackPressed */
-    public void a() {
-        super.a();
+    public void m8092a() {
+        super.m8092a();
         finish();
         exitAnimation();
     }
@@ -375,33 +379,33 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     public void onClick(View view) {
         List<LocalMedia> list;
         int id = view.getId();
-        if (id == R.id.left_back) {
+        if (id == C2639R.id.left_back) {
             finish();
             exitAnimation();
             return;
         }
-        if (id != R.id.ib_delete || (list = this.images) == null || list.size() <= 0) {
+        if (id != C2639R.id.ib_delete || (list = this.images) == null || list.size() <= 0) {
             return;
         }
         int currentItem = this.viewPager.getCurrentItem();
         this.images.remove(currentItem);
-        this.f7744adapter.removeCacheView(currentItem);
+        this.f25895adapter.removeCacheView(currentItem);
         Bundle bundle = new Bundle();
         bundle.putInt("position", currentItem);
         BroadcastManager.getInstance(getContext()).action(BroadcastAction.ACTION_DELETE_PREVIEW_POSITION).extras(bundle).broadcast();
         if (this.images.size() == 0) {
-            a();
+            m8092a();
             return;
         }
-        this.tvTitle.setText(getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
+        this.tvTitle.setText(getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
         this.position = currentItem;
-        this.f7744adapter.notifyDataSetChanged();
+        this.f25895adapter.notifyDataSetChanged();
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity, androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, android.app.Activity
     protected void onDestroy() {
         super.onDestroy();
-        SimpleFragmentAdapter simpleFragmentAdapter = this.f7744adapter;
+        SimpleFragmentAdapter simpleFragmentAdapter = this.f25895adapter;
         if (simpleFragmentAdapter != null) {
             simpleFragmentAdapter.clear();
         }
@@ -423,7 +427,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             if (i3 == 0) {
                 showDownLoadDialog();
             } else {
-                ToastUtils.s(getContext(), getString(R.string.picture_jurisdiction));
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_jurisdiction));
             }
         }
     }
@@ -585,15 +589,17 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             }
         }
 
-        public /* synthetic */ void a(View view, float f2, float f3) {
+        /* renamed from: a */
+        public /* synthetic */ void m8101a(View view, float f2, float f3) {
             PictureExternalPreviewActivity.this.finish();
             PictureExternalPreviewActivity.this.exitAnimation();
         }
 
-        public /* synthetic */ boolean b(String str, LocalMedia localMedia, View view) {
+        /* renamed from: b */
+        public /* synthetic */ boolean m8103b(String str, LocalMedia localMedia, View view) {
             PictureExternalPreviewActivity pictureExternalPreviewActivity = PictureExternalPreviewActivity.this;
             if (pictureExternalPreviewActivity.config.isNotPreviewDownload) {
-                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), util.permissionutil.a.A)) {
+                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), C7308a.f25521A)) {
                     PictureExternalPreviewActivity.this.downloadPath = str;
                     String imageMimeType = PictureMimeType.isHttp(str) ? PictureMimeType.getImageMimeType(localMedia.getPath()) : localMedia.getMimeType();
                     PictureExternalPreviewActivity pictureExternalPreviewActivity2 = PictureExternalPreviewActivity.this;
@@ -603,7 +609,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     pictureExternalPreviewActivity2.mMimeType = imageMimeType;
                     PictureExternalPreviewActivity.this.showDownLoadDialog();
                 } else {
-                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{util.permissionutil.a.A}, 1);
+                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{C7308a.f25521A}, 1);
                 }
             }
             return true;
@@ -636,12 +642,12 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             ImageEngine imageEngine2;
             View view = this.mCacheView.get(i2);
             if (view == null) {
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.picture_image_preview, viewGroup, false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(C2639R.layout.picture_image_preview, viewGroup, false);
                 this.mCacheView.put(i2, view);
             }
-            PhotoView photoView = (PhotoView) view.findViewById(R.id.preview_image);
-            SubsamplingScaleImageView subsamplingScaleImageView = (SubsamplingScaleImageView) view.findViewById(R.id.longImg);
-            ImageView imageView = (ImageView) view.findViewById(R.id.iv_play);
+            PhotoView photoView = (PhotoView) view.findViewById(C2639R.id.preview_image);
+            SubsamplingScaleImageView subsamplingScaleImageView = (SubsamplingScaleImageView) view.findViewById(C2639R.id.longImg);
+            ImageView imageView = (ImageView) view.findViewById(C2639R.id.iv_play);
             final LocalMedia localMedia = (LocalMedia) PictureExternalPreviewActivity.this.images.get(i2);
             if (localMedia != null) {
                 final String compressPath = (!localMedia.isCut() || localMedia.isCompressed()) ? (localMedia.isCompressed() || (localMedia.isCut() && localMedia.isCompressed())) ? localMedia.getCompressPath() : !TextUtils.isEmpty(localMedia.getAndroidQToPath()) ? localMedia.getAndroidQToPath() : localMedia.getPath() : localMedia.getCutPath();
@@ -687,20 +693,20 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                 photoView.setOnViewTapListener(new OnViewTapListener() { // from class: com.luck.picture.lib.e
                     @Override // com.luck.picture.lib.photoview.OnViewTapListener
                     public final void onViewTap(View view2, float f2, float f3) {
-                        PictureExternalPreviewActivity.SimpleFragmentAdapter.this.a(view2, f2, f3);
+                        PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8101a(view2, f2, f3);
                     }
                 });
                 subsamplingScaleImageView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.h
                     @Override // android.view.View.OnClickListener
                     public final void onClick(View view2) {
-                        PictureExternalPreviewActivity.SimpleFragmentAdapter.this.a(view2);
+                        PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8100a(view2);
                     }
                 });
                 if (!eqVideo) {
                     subsamplingScaleImageView.setOnLongClickListener(new View.OnLongClickListener() { // from class: com.luck.picture.lib.f
                         @Override // android.view.View.OnLongClickListener
                         public final boolean onLongClick(View view2) {
-                            return PictureExternalPreviewActivity.SimpleFragmentAdapter.this.a(compressPath, localMedia, view2);
+                            return PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8102a(compressPath, localMedia, view2);
                         }
                     });
                 }
@@ -708,14 +714,14 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     photoView.setOnLongClickListener(new View.OnLongClickListener() { // from class: com.luck.picture.lib.g
                         @Override // android.view.View.OnLongClickListener
                         public final boolean onLongClick(View view2) {
-                            return PictureExternalPreviewActivity.SimpleFragmentAdapter.this.b(compressPath, localMedia, view2);
+                            return PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8103b(compressPath, localMedia, view2);
                         }
                     });
                 }
                 imageView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.i
                     @Override // android.view.View.OnClickListener
                     public final void onClick(View view2) {
-                        PictureExternalPreviewActivity.SimpleFragmentAdapter.a(LocalMedia.this, compressPath, viewGroup, view2);
+                        PictureExternalPreviewActivity.SimpleFragmentAdapter.m8099a(LocalMedia.this, compressPath, viewGroup, view2);
                     }
                 });
             }
@@ -736,15 +742,17 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             this.mCacheView.removeAt(i2);
         }
 
-        public /* synthetic */ void a(View view) {
+        /* renamed from: a */
+        public /* synthetic */ void m8100a(View view) {
             PictureExternalPreviewActivity.this.finish();
             PictureExternalPreviewActivity.this.exitAnimation();
         }
 
-        public /* synthetic */ boolean a(String str, LocalMedia localMedia, View view) {
+        /* renamed from: a */
+        public /* synthetic */ boolean m8102a(String str, LocalMedia localMedia, View view) {
             PictureExternalPreviewActivity pictureExternalPreviewActivity = PictureExternalPreviewActivity.this;
             if (pictureExternalPreviewActivity.config.isNotPreviewDownload) {
-                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), util.permissionutil.a.A)) {
+                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), C7308a.f25521A)) {
                     PictureExternalPreviewActivity.this.downloadPath = str;
                     String imageMimeType = PictureMimeType.isHttp(str) ? PictureMimeType.getImageMimeType(localMedia.getPath()) : localMedia.getMimeType();
                     PictureExternalPreviewActivity pictureExternalPreviewActivity2 = PictureExternalPreviewActivity.this;
@@ -754,13 +762,14 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     pictureExternalPreviewActivity2.mMimeType = imageMimeType;
                     PictureExternalPreviewActivity.this.showDownLoadDialog();
                 } else {
-                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{util.permissionutil.a.A}, 1);
+                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{C7308a.f25521A}, 1);
                 }
             }
             return true;
         }
 
-        static /* synthetic */ void a(LocalMedia localMedia, String str, ViewGroup viewGroup, View view) {
+        /* renamed from: a */
+        static /* synthetic */ void m8099a(LocalMedia localMedia, String str, ViewGroup viewGroup, View view) {
             OnVideoSelectedPlayCallback onVideoSelectedPlayCallback = PictureSelectionConfig.customVideoPlayCallback;
             if (onVideoSelectedPlayCallback != null) {
                 onVideoSelectedPlayCallback.startPlayVideo(localMedia);

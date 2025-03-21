@@ -19,7 +19,7 @@ public class AssetsUtil {
 
     public static String[] list(final Context context, final String str) {
         if (context == null) {
-            Logger.w(TAG, "context is null");
+            Logger.m6803w(TAG, "context is null");
             return new String[0];
         }
         FutureTask futureTask = new FutureTask(new Callable<String[]>() { // from class: com.huawei.hms.framework.common.AssetsUtil.1
@@ -32,16 +32,16 @@ public class AssetsUtil {
         try {
             return (String[]) futureTask.get(5L, TimeUnit.SECONDS);
         } catch (TimeoutException unused) {
-            Logger.w(TAG, "get local config files from sp task timed out");
+            Logger.m6803w(TAG, "get local config files from sp task timed out");
             return new String[0];
         } catch (Exception unused2) {
-            Logger.w(TAG, "get local config files from sp task occur unknown Exception");
+            Logger.m6803w(TAG, "get local config files from sp task occur unknown Exception");
             return new String[0];
         } catch (InterruptedException e2) {
-            Logger.w(TAG, "get local config files from sp task interrupted", e2);
+            Logger.m6804w(TAG, "get local config files from sp task interrupted", e2);
             return new String[0];
         } catch (ExecutionException e3) {
-            Logger.w(TAG, "get local config files from sp task failed", e3);
+            Logger.m6804w(TAG, "get local config files from sp task failed", e3);
             return new String[0];
         } finally {
             futureTask.cancel(true);
@@ -50,13 +50,13 @@ public class AssetsUtil {
 
     public static InputStream open(Context context, String str) throws IOException {
         if (context == null) {
-            Logger.w(TAG, "context is null");
+            Logger.m6803w(TAG, "context is null");
             return null;
         }
         try {
             return context.getAssets().open(str);
         } catch (RuntimeException e2) {
-            Logger.e(TAG, "AssetManager has been destroyed", e2);
+            Logger.m6797e(TAG, "AssetManager has been destroyed", e2);
             return null;
         }
     }

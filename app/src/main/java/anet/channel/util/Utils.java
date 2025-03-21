@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
 import anet.channel.appmonitor.AppMonitor;
+import anet.channel.monitor.C0796b;
 import anet.channel.monitor.NetworkSpeed;
 import anet.channel.statist.ExceptionStatistic;
 import anet.channel.status.NetworkStatusHelper;
@@ -33,7 +34,7 @@ public class Utils {
                 Object invoke = cls.getMethod("currentActivityThread", new Class[0]).invoke(cls, new Object[0]);
                 context = (Context) invoke.getClass().getMethod("getApplication", new Class[0]).invoke(invoke, new Object[0]);
             } catch (Exception e2) {
-                ALog.w(TAG, "getAppContext", null, e2, new Object[0]);
+                ALog.m717w(TAG, "getAppContext", null, e2, new Object[0]);
             }
             return context;
         }
@@ -57,7 +58,7 @@ public class Utils {
     public static float getNetworkTimeFactor() {
         NetworkStatusHelper.NetworkStatus status = NetworkStatusHelper.getStatus();
         float f2 = (status == NetworkStatusHelper.NetworkStatus.G4 || status == NetworkStatusHelper.NetworkStatus.WIFI) ? 0.8f : 1.0f;
-        return anet.channel.monitor.b.a().b() == NetworkSpeed.Fast.getCode() ? f2 * 0.75f : f2;
+        return C0796b.m526a().m532b() == NetworkSpeed.Fast.getCode() ? f2 * 0.75f : f2;
     }
 
     public static String getProcessName(Context context2, int i2) {
@@ -95,7 +96,7 @@ public class Utils {
      */
     /* JADX WARN: Code restructure failed: missing block: B:26:0x0093, code lost:
     
-        anet.channel.util.ALog.e(anet.channel.util.Utils.TAG, "getProcessNameNew ", null, r0, new java.lang.Object[0]);
+        anet.channel.util.ALog.m714e(anet.channel.util.Utils.TAG, "getProcessNameNew ", null, r0, new java.lang.Object[0]);
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
@@ -119,7 +120,7 @@ public class Utils {
                 }
             }
         } catch (Exception e2) {
-            ALog.e(TAG, "getStackMsg", null, e2, new Object[0]);
+            ALog.m714e(TAG, "getStackMsg", null, e2, new Object[0]);
         }
         return stringBuffer.toString();
     }

@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.LruCache;
 import com.taobao.accs.utl.ALog;
+import com.taobao.accs.utl.C3042j;
 import com.taobao.accs.utl.UTMini;
-import com.taobao.accs.utl.j;
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3351bh;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.xiaomi.mipush.sdk.Constants;
 import org.android.agoo.common.AgooConstants;
@@ -30,22 +30,24 @@ public class MessageService {
     public static final String MSG_DB_NOTIFY_REACHED = "1";
     public static final String MSG_DB_READY_REPORT = "0";
 
-    /* renamed from: a, reason: collision with root package name */
-    private static Context f17354a;
+    /* renamed from: a */
+    private static Context f21510a;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static LruCache<String, Integer> f17355c;
+    /* renamed from: c */
+    private static LruCache<String, Integer> f21511c;
 
-    /* renamed from: b, reason: collision with root package name */
-    private volatile SQLiteOpenHelper f17356b = null;
+    /* renamed from: b */
+    private volatile SQLiteOpenHelper f21512b = null;
 
     /* compiled from: Taobao */
-    private static class a extends SQLiteOpenHelper {
-        public a(Context context) {
+    /* renamed from: org.android.agoo.message.MessageService$a */
+    private static class C6032a extends SQLiteOpenHelper {
+        public C6032a(Context context) {
             super(context, "message_accs_db", (SQLiteDatabase.CursorFactory) null, 3);
         }
 
-        private String a() {
+        /* renamed from: a */
+        private String m24970a() {
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append("create table accs_message");
             stringBuffer.append("(");
@@ -57,7 +59,8 @@ public class MessageService {
             return stringBuffer.toString();
         }
 
-        private String b() {
+        /* renamed from: b */
+        private String m24971b() {
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append("create table message");
             stringBuffer.append("(");
@@ -77,7 +80,7 @@ public class MessageService {
 
         @Override // android.database.sqlite.SQLiteOpenHelper
         public SQLiteDatabase getWritableDatabase() {
-            if (j.a(super.getWritableDatabase().getPath(), 102400)) {
+            if (C3042j.m9246a(super.getWritableDatabase().getPath(), 102400)) {
                 return super.getWritableDatabase();
             }
             return null;
@@ -87,12 +90,12 @@ public class MessageService {
         public void onCreate(SQLiteDatabase sQLiteDatabase) {
             if (sQLiteDatabase != null) {
                 try {
-                    sQLiteDatabase.execSQL(b());
+                    sQLiteDatabase.execSQL(m24971b());
                     sQLiteDatabase.execSQL("CREATE INDEX id_index ON message(id)");
                     sQLiteDatabase.execSQL("CREATE INDEX body_code_index ON message(body_code)");
-                    sQLiteDatabase.execSQL(a());
+                    sQLiteDatabase.execSQL(m24970a());
                 } catch (Throwable th) {
-                    ALog.e("MessageService", "messagedbhelper create", th, new Object[0]);
+                    ALog.m9181e("MessageService", "messagedbhelper create", th, new Object[0]);
                 }
             }
         }
@@ -104,21 +107,21 @@ public class MessageService {
                     sQLiteDatabase.execSQL("delete from message where create_time< date('now','-7 day') and state=1");
                 } catch (Throwable th) {
                     try {
-                        ALog.e("MessageService", "messagedbhelper create", th, new Object[0]);
+                        ALog.m9181e("MessageService", "messagedbhelper create", th, new Object[0]);
                         try {
                             sQLiteDatabase.execSQL("DROP TABLE IF EXISTS accs_message");
-                            sQLiteDatabase.execSQL(a());
+                            sQLiteDatabase.execSQL(m24970a());
                             return;
                         } catch (Throwable th2) {
-                            ALog.e("MessageService", "MessageService onUpgrade is error", th2, new Object[0]);
+                            ALog.m9181e("MessageService", "MessageService onUpgrade is error", th2, new Object[0]);
                             return;
                         }
                     } catch (Throwable th3) {
                         try {
                             sQLiteDatabase.execSQL("DROP TABLE IF EXISTS accs_message");
-                            sQLiteDatabase.execSQL(a());
+                            sQLiteDatabase.execSQL(m24970a());
                         } catch (Throwable th4) {
-                            ALog.e("MessageService", "MessageService onUpgrade is error", th4, new Object[0]);
+                            ALog.m9181e("MessageService", "MessageService onUpgrade is error", th4, new Object[0]);
                         }
                         throw th3;
                     }
@@ -126,46 +129,49 @@ public class MessageService {
             }
             try {
                 sQLiteDatabase.execSQL("DROP TABLE IF EXISTS accs_message");
-                sQLiteDatabase.execSQL(a());
+                sQLiteDatabase.execSQL(m24970a());
             } catch (Throwable th5) {
-                ALog.e("MessageService", "MessageService onUpgrade is error", th5, new Object[0]);
+                ALog.m9181e("MessageService", "MessageService onUpgrade is error", th5, new Object[0]);
             }
         }
     }
 
-    public void a(Context context) {
-        f17355c = new LruCache<>(100);
-        f17354a = context;
-        this.f17356b = new a(context);
+    /* renamed from: a */
+    public void m24963a(Context context) {
+        f21511c = new LruCache<>(100);
+        f21510a = context;
+        this.f21512b = new C6032a(context);
     }
 
     /* JADX WARN: Removed duplicated region for block: B:68:0x0143 A[Catch: all -> 0x0186, TRY_LEAVE, TryCatch #4 {all -> 0x0186, blocks: (B:66:0x013b, B:68:0x0143), top: B:65:0x013b }] */
     /* JADX WARN: Removed duplicated region for block: B:72:0x0164 A[Catch: all -> 0x0160, TRY_LEAVE, TryCatch #0 {all -> 0x0160, blocks: (B:80:0x015c, B:72:0x0164), top: B:79:0x015c }] */
     /* JADX WARN: Removed duplicated region for block: B:79:0x015c A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public java.util.ArrayList<org.android.agoo.common.MsgDO> b() {
+    public java.util.ArrayList<org.android.agoo.common.MsgDO> m24969b() {
         /*
             Method dump skipped, instructions count: 436
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.b():java.util.ArrayList");
+        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.m24969b():java.util.ArrayList");
     }
 
-    public void a(String str, String str2) {
+    /* renamed from: a */
+    public void m24964a(String str, String str2) {
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.i("MessageService", "updateAccsMessage sqlite3--->[" + str + ",state=" + str2 + "]", new Object[0]);
+            ALog.m9183i("MessageService", "updateAccsMessage sqlite3--->[" + str + ",state=" + str2 + "]", new Object[0]);
         }
         SQLiteDatabase sQLiteDatabase = null;
         try {
         } catch (Throwable th) {
             try {
                 if (ALog.isPrintLog(ALog.Level.E)) {
-                    ALog.e("MessageService", "updateAccsMessage error,e--->[" + th + "],ex=" + th.getStackTrace().toString(), new Object[0]);
+                    ALog.m9182e("MessageService", "updateAccsMessage error,e--->[" + th + "],ex=" + th.getStackTrace().toString(), new Object[0]);
                 }
-                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(f17354a), "updateAccsMessageFailed", th.toString());
+                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "updateAccsMessageFailed", th.toString());
                 if (0 == 0) {
                     return;
                 }
@@ -176,7 +182,7 @@ public class MessageService {
             }
         }
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
-            sQLiteDatabase = this.f17356b.getWritableDatabase();
+            sQLiteDatabase = this.f21512b.getWritableDatabase();
             if (sQLiteDatabase == null) {
                 if (sQLiteDatabase != null) {
                     return;
@@ -196,11 +202,12 @@ public class MessageService {
         }
     }
 
-    public void a(String str, String str2, String str3) {
+    /* renamed from: a */
+    public void m24965a(String str, String str2, String str3) {
         SQLiteDatabase sQLiteDatabase;
         Cursor rawQuery;
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.i("MessageService", "addAccsMessage sqlite3--->[" + str + ",message=" + str2 + ",state=" + str3 + "]", new Object[0]);
+            ALog.m9183i("MessageService", "addAccsMessage sqlite3--->[" + str + ",message=" + str2 + ",state=" + str3 + "]", new Object[0]);
         }
         Cursor cursor = null;
         try {
@@ -209,7 +216,7 @@ public class MessageService {
             sQLiteDatabase = null;
         }
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
-            sQLiteDatabase = this.f17356b.getWritableDatabase();
+            sQLiteDatabase = this.f21512b.getWritableDatabase();
             if (sQLiteDatabase == null) {
                 if (sQLiteDatabase != null) {
                     sQLiteDatabase.close();
@@ -223,9 +230,9 @@ public class MessageService {
                 th = th2;
                 try {
                     if (ALog.isPrintLog(ALog.Level.E)) {
-                        ALog.e("MessageService", "addAccsMessage error,e--->[" + th + "],ex=" + a(th), new Object[0]);
+                        ALog.m9182e("MessageService", "addAccsMessage error,e--->[" + th + "],ex=" + m24958a(th), new Object[0]);
                     }
-                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(f17354a), "addAccsMessageFailed", th.toString());
+                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addAccsMessageFailed", th.toString());
                     if (sQLiteDatabase == null) {
                         return;
                     }
@@ -258,7 +265,8 @@ public class MessageService {
         }
     }
 
-    private String a(Throwable th) {
+    /* renamed from: a */
+    private String m24958a(Throwable th) {
         StringBuffer stringBuffer = new StringBuffer();
         StackTraceElement[] stackTrace = th.getStackTrace();
         if (stackTrace != null && stackTrace.length > 0) {
@@ -270,19 +278,20 @@ public class MessageService {
         return stringBuffer.toString();
     }
 
-    private MsgDO b(String str, String str2) {
+    /* renamed from: b */
+    private MsgDO m24961b(String str, String str2) {
         int i2;
         int i3;
         String str3;
         boolean z;
         String str4 = SocializeProtocolConstants.PROTOCOL_KEY_EXTEND;
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.i("MessageService", "msgRecevie,message--->[" + str + "],utdid=" + j.b(f17354a), new Object[0]);
+            ALog.m9183i("MessageService", "msgRecevie,message--->[" + str + "],utdid=" + C3042j.m9247b(f21510a), new Object[0]);
         }
         if (TextUtils.isEmpty(str)) {
-            UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", j.b(f17354a), "message==null");
+            UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", C3042j.m9247b(f21510a), "message==null");
             if (ALog.isPrintLog(ALog.Level.I)) {
-                ALog.i("MessageService", "handleMessage message==null,utdid=" + j.b(f17354a), new Object[0]);
+                ALog.m9183i("MessageService", "handleMessage message==null,utdid=" + C3042j.m9247b(f21510a), new Object[0]);
             }
             return null;
         }
@@ -303,8 +312,8 @@ public class MessageService {
                     str3 = str4;
                     i3 = i4;
                 } else {
-                    String string = jSONObject.getString(bh.aA);
-                    String string2 = jSONObject.getString(bh.aF);
+                    String string = jSONObject.getString(C3351bh.f11576aA);
+                    String string2 = jSONObject.getString(C3351bh.f11581aF);
                     String string3 = jSONObject.getString("b");
                     int i5 = i4;
                     long j2 = jSONObject.getLong("f");
@@ -329,9 +338,9 @@ public class MessageService {
                         msgDO.errorCode = "12";
                     } else if (j2 == -1) {
                         msgDO.errorCode = "13";
-                    } else if (!a(f17354a, string)) {
-                        ALog.d("MessageService", "ondata checkpackage is del,pack=" + string, new Object[0]);
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", j.b(f17354a), "deletePack", string);
+                    } else if (!m24960a(f21510a, string)) {
+                        ALog.m9180d("MessageService", "ondata checkpackage is del,pack=" + string, new Object[0]);
+                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", C3042j.m9247b(f21510a), "deletePack", string);
                         sb3.append(string);
                         sb2.append(string2);
                         msgDO.removePacks = string;
@@ -340,14 +349,14 @@ public class MessageService {
                             sb2.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
                         }
                     } else {
-                        String string4 = a(j2, msgDO).getString(AgooConstants.MESSAGE_ENCRYPTED);
-                        if (!f17354a.getPackageName().equals(string)) {
+                        String string4 = m24957a(j2, msgDO).getString(AgooConstants.MESSAGE_ENCRYPTED);
+                        if (!f21510a.getPackageName().equals(string)) {
                             z = true;
                         } else if (TextUtils.equals(Integer.toString(0), string4) || TextUtils.equals(Integer.toString(4), string4)) {
                             z = false;
                         } else {
                             msgDO.errorCode = "15";
-                            ALog.e("MessageService", "error encrypted: " + string4, new Object[0]);
+                            ALog.m9182e("MessageService", "error encrypted: " + string4, new Object[0]);
                         }
                         msgDO.agooFlag = z;
                         if (!TextUtils.isEmpty(str2)) {
@@ -364,17 +373,19 @@ public class MessageService {
             }
         } catch (Throwable th) {
             if (ALog.isPrintLog(ALog.Level.E)) {
-                ALog.e("MessageService", "createMsg is error,e: " + th, new Object[0]);
+                ALog.m9182e("MessageService", "createMsg is error,e: " + th, new Object[0]);
             }
         }
         return msgDO;
     }
 
-    public void a(String str, String str2, String str3, int i2) {
-        a(str, str2, str3, 1, -1L, -1, i2);
+    /* renamed from: a */
+    public void m24966a(String str, String str2, String str3, int i2) {
+        m24959a(str, str2, str3, 1, -1L, -1, i2);
     }
 
-    private void a(String str, String str2, String str3, int i2, long j2, int i3, int i4) {
+    /* renamed from: a */
+    private void m24959a(String str, String str2, String str3, int i2, long j2, int i3, int i4) {
         Throwable th;
         String str4;
         int hashCode;
@@ -383,7 +394,7 @@ public class MessageService {
         sb.append("add sqlite3--->[");
         sb.append(str);
         sb.append("]");
-        ALog.d("MessageService", sb.toString(), new Object[0]);
+        ALog.m9180d("MessageService", sb.toString(), new Object[0]);
         SQLiteDatabase sQLiteDatabase = null;
         try {
             str4 = "";
@@ -397,17 +408,17 @@ public class MessageService {
             if (!TextUtils.isEmpty(str3)) {
                 str4 = str3;
             }
-            if (f17355c.get(str) == null) {
-                f17355c.put(str, Integer.valueOf(hashCode));
+            if (f21511c.get(str) == null) {
+                f21511c.put(str, Integer.valueOf(hashCode));
                 if (ALog.isPrintLog(ALog.Level.I)) {
-                    ALog.i("MessageService", "addMessage,messageId=" + str + ", mCache size:" + f17355c.size(), new Object[0]);
+                    ALog.m9183i("MessageService", "addMessage,messageId=" + str + ", mCache size:" + f21511c.size(), new Object[0]);
                 }
             }
         } catch (Throwable th2) {
             th = th2;
         }
         try {
-            SQLiteDatabase writableDatabase = this.f17356b.getWritableDatabase();
+            SQLiteDatabase writableDatabase = this.f21512b.getWritableDatabase();
             if (writableDatabase == null) {
                 if (writableDatabase != null) {
                     try {
@@ -415,9 +426,9 @@ public class MessageService {
                         return;
                     } catch (Throwable th3) {
                         if (ALog.isPrintLog(ALog.Level.E)) {
-                            ALog.e("MessageService", "addMessage,db.close(),error,e--->[" + th3 + "]", new Object[0]);
+                            ALog.m9182e("MessageService", "addMessage,db.close(),error,e--->[" + th3 + "]", new Object[0]);
                         }
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(f17354a), "addMessageDBcloseFailed", th3.toString());
+                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageDBcloseFailed", th3.toString());
                         return;
                     }
                 }
@@ -430,27 +441,27 @@ public class MessageService {
                 } catch (Throwable th4) {
                     th = th4;
                     if (ALog.isPrintLog(ALog.Level.E)) {
-                        ALog.e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
+                        ALog.m9182e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
                     }
-                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(f17354a), "addMessageDBcloseFailed", th.toString());
+                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageDBcloseFailed", th.toString());
                 }
             }
         } catch (Throwable th5) {
             th = th5;
             try {
                 if (ALog.isPrintLog(ALog.Level.E)) {
-                    ALog.e("MessageService", "addMessage error,e--->[" + th + "]", new Object[0]);
+                    ALog.m9182e("MessageService", "addMessage error,e--->[" + th + "]", new Object[0]);
                 }
-                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(f17354a), "addMessageFailed", th.toString());
+                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageFailed", th.toString());
                 if (0 != 0) {
                     try {
                         sQLiteDatabase.close();
                     } catch (Throwable th6) {
                         th = th6;
                         if (ALog.isPrintLog(ALog.Level.E)) {
-                            ALog.e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
+                            ALog.m9182e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
                         }
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(f17354a), "addMessageDBcloseFailed", th.toString());
+                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageDBcloseFailed", th.toString());
                     }
                 }
             } finally {
@@ -458,13 +469,14 @@ public class MessageService {
         }
     }
 
-    public void a() {
+    /* renamed from: a */
+    public void m24962a() {
         SQLiteDatabase sQLiteDatabase = null;
         try {
-            sQLiteDatabase = this.f17356b.getWritableDatabase();
+            sQLiteDatabase = this.f21512b.getWritableDatabase();
         } catch (Throwable th) {
             try {
-                ALog.e("MessageService", "deleteCacheMessage sql Throwable", th, new Object[0]);
+                ALog.m9181e("MessageService", "deleteCacheMessage sql Throwable", th, new Object[0]);
                 if (0 == 0) {
                     return;
                 }
@@ -512,16 +524,17 @@ public class MessageService {
     
         if (r4 != null) goto L25;
      */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean a(java.lang.String r8) {
+    public boolean m24967a(java.lang.String r8) {
         /*
             r7 = this;
             r0 = 0
             r1 = 0
-            android.util.LruCache<java.lang.String, java.lang.Integer> r2 = org.android.agoo.message.MessageService.f17355c     // Catch: java.lang.Throwable -> L64
+            android.util.LruCache<java.lang.String, java.lang.Integer> r2 = org.android.agoo.message.MessageService.f21511c     // Catch: java.lang.Throwable -> L64
             java.lang.Object r2 = r2.get(r8)     // Catch: java.lang.Throwable -> L64
             java.lang.Integer r2 = (java.lang.Integer) r2     // Catch: java.lang.Throwable -> L64
             r3 = 1
@@ -537,14 +550,14 @@ public class MessageService {
             r4.append(r8)     // Catch: java.lang.Throwable -> L64
             java.lang.String r4 = r4.toString()     // Catch: java.lang.Throwable -> L64
             java.lang.Object[] r5 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> L64
-            com.taobao.accs.utl.ALog.e(r2, r4, r5)     // Catch: java.lang.Throwable -> L64
+            com.taobao.accs.utl.ALog.m9182e(r2, r4, r5)     // Catch: java.lang.Throwable -> L64
         L2d:
             r2 = 1
             goto L30
         L2f:
             r2 = 0
         L30:
-            android.database.sqlite.SQLiteOpenHelper r4 = r7.f17356b     // Catch: java.lang.Throwable -> L62
+            android.database.sqlite.SQLiteOpenHelper r4 = r7.f21512b     // Catch: java.lang.Throwable -> L62
             android.database.sqlite.SQLiteDatabase r4 = r4.getReadableDatabase()     // Catch: java.lang.Throwable -> L62
             if (r4 != 0) goto L3e
             if (r4 == 0) goto L3d
@@ -585,7 +598,7 @@ public class MessageService {
         L6e:
             return r2
         */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.a(java.lang.String):boolean");
+        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.m24967a(java.lang.String):boolean");
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:33:0x0076, code lost:
@@ -600,16 +613,17 @@ public class MessageService {
     
         if (r4 != null) goto L27;
      */
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean a(java.lang.String r9, int r10) {
+    public boolean m24968a(java.lang.String r9, int r10) {
         /*
             r8 = this;
             r0 = 0
             r1 = 0
-            android.util.LruCache<java.lang.String, java.lang.Integer> r2 = org.android.agoo.message.MessageService.f17355c     // Catch: java.lang.Throwable -> L7e
+            android.util.LruCache<java.lang.String, java.lang.Integer> r2 = org.android.agoo.message.MessageService.f21511c     // Catch: java.lang.Throwable -> L7e
             java.lang.Object r2 = r2.get(r9)     // Catch: java.lang.Throwable -> L7e
             java.lang.Integer r2 = (java.lang.Integer) r2     // Catch: java.lang.Throwable -> L7e
             r3 = 1
@@ -627,14 +641,14 @@ public class MessageService {
             r4.append(r9)     // Catch: java.lang.Throwable -> L7e
             java.lang.String r4 = r4.toString()     // Catch: java.lang.Throwable -> L7e
             java.lang.Object[] r5 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> L7e
-            com.taobao.accs.utl.ALog.e(r2, r4, r5)     // Catch: java.lang.Throwable -> L7e
+            com.taobao.accs.utl.ALog.m9182e(r2, r4, r5)     // Catch: java.lang.Throwable -> L7e
         L33:
             r2 = 1
             goto L36
         L35:
             r2 = 0
         L36:
-            android.database.sqlite.SQLiteOpenHelper r4 = r8.f17356b     // Catch: java.lang.Throwable -> L7c
+            android.database.sqlite.SQLiteOpenHelper r4 = r8.f21512b     // Catch: java.lang.Throwable -> L7c
             android.database.sqlite.SQLiteDatabase r4 = r4.getReadableDatabase()     // Catch: java.lang.Throwable -> L7c
             if (r4 != 0) goto L44
             if (r4 == 0) goto L43
@@ -683,14 +697,16 @@ public class MessageService {
         L88:
             return r2
         */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.a(java.lang.String, int):boolean");
+        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.m24968a(java.lang.String, int):boolean");
     }
 
-    public static final boolean a(Context context, String str) {
+    /* renamed from: a */
+    public static final boolean m24960a(Context context, String str) {
         return context.getPackageManager().getApplicationInfo(str, 0) != null;
     }
 
-    private static Bundle a(long j2, MsgDO msgDO) {
+    /* renamed from: a */
+    private static Bundle m24957a(long j2, MsgDO msgDO) {
         Bundle bundle = new Bundle();
         try {
             char[] charArray = Long.toBinaryString(j2).toCharArray();

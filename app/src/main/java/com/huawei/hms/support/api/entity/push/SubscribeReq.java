@@ -3,7 +3,7 @@ package com.huawei.hms.support.api.entity.push;
 import android.content.Context;
 import com.huawei.hms.core.aidl.IMessageEntity;
 import com.huawei.hms.core.aidl.annotation.Packed;
-import com.huawei.hms.push.d;
+import com.huawei.hms.push.AbstractC2484d;
 import com.huawei.hms.utils.Util;
 
 /* loaded from: classes.dex */
@@ -109,6 +109,6 @@ public class SubscribeReq implements IMessageEntity {
         this.operation = str;
         this.topic = str2;
         this.appId = Util.getAppId(context);
-        this.projectId = d.c(context);
+        this.projectId = AbstractC2484d.m7548c(context);
     }
 }

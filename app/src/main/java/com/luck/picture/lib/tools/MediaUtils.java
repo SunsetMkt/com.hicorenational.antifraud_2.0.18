@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import com.huawei.hms.android.SystemUtils;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 import com.umeng.commonsdk.framework.UMModuleRegister;
 import java.io.File;
 import java.io.InputStream;
@@ -326,7 +326,7 @@ public class MediaUtils {
                     }
                     return -1;
                 }
-                int i2 = cursor.getInt(cursor.getColumnIndex(bl.f10170d));
+                int i2 = cursor.getInt(cursor.getColumnIndex(C3355bl.f11732d));
                 if (DateUtils.dateDiffer(cursor.getLong(cursor.getColumnIndex("date_added"))) > 1) {
                     i2 = -1;
                 }

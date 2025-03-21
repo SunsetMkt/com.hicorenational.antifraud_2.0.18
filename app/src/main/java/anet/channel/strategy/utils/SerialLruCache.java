@@ -7,12 +7,12 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class SerialLruCache<K, V> extends LinkedHashMap<K, V> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private int f2025a;
+    /* renamed from: a */
+    private int f1145a;
 
     public SerialLruCache(LinkedHashMap<K, V> linkedHashMap, int i2) {
         super(linkedHashMap);
-        this.f2025a = i2;
+        this.f1145a = i2;
     }
 
     public boolean entryRemoved(Map.Entry<K, V> entry) {
@@ -21,7 +21,7 @@ public class SerialLruCache<K, V> extends LinkedHashMap<K, V> {
 
     @Override // java.util.LinkedHashMap
     protected boolean removeEldestEntry(Map.Entry<K, V> entry) {
-        if (size() > this.f2025a) {
+        if (size() > this.f1145a) {
             return entryRemoved(entry);
         }
         return false;
@@ -34,6 +34,6 @@ public class SerialLruCache<K, V> extends LinkedHashMap<K, V> {
 
     public SerialLruCache(int i2) {
         super(i2 + 1, 1.0f, true);
-        this.f2025a = i2;
+        this.f1145a = i2;
     }
 }

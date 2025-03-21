@@ -4,7 +4,9 @@ import network.BaseBean;
 
 /* loaded from: classes.dex */
 public class AccountBean extends BaseBean {
-    private String id;
+
+    /* renamed from: id */
+    private String f1578id;
     private String paymentInfoID;
     private String paymentTime;
     private String paymentType;
@@ -21,7 +23,7 @@ public class AccountBean extends BaseBean {
     private String victimAccountTypeText1;
 
     public String getId() {
-        return this.id;
+        return this.f1578id;
     }
 
     public String getPaymentInfoID() {
@@ -81,7 +83,7 @@ public class AccountBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1578id = str;
     }
 
     public void setPaymentInfoID(String str) {

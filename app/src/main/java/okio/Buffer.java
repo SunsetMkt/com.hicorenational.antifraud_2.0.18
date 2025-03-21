@@ -1,24 +1,10 @@
 package okio;
 
 import anet.channel.strategy.dispatch.DispatchConstants;
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import com.tencent.open.SocialConstants;
-import com.umeng.analytics.pro.bh;
-import com.umeng.analytics.pro.cw;
-import h.d;
-import h.e1;
-import h.f1;
-import h.g2.q;
-import h.o0;
-import h.q2.c;
-import h.q2.f;
-import h.q2.t.i0;
-import h.q2.t.m0;
-import h.q2.t.m1;
-import h.q2.t.n;
-import h.y;
-import h.z2.h0;
-import i.c.a.e;
+import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.C3393cw;
 import java.io.Closeable;
 import java.io.EOFException;
 import java.io.IOException;
@@ -33,40 +19,58 @@ import java.util.Arrays;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import okio.internal.BufferKt;
+import p286h.C5226e1;
+import p286h.C5230f1;
+import p286h.EnumC5220d;
+import p286h.InterfaceC5216c;
+import p286h.InterfaceC5467o0;
+import p286h.InterfaceC5713y;
+import p286h.p289g2.C5291q;
+import p286h.p309q2.InterfaceC5479c;
+import p286h.p309q2.InterfaceC5481e;
+import p286h.p309q2.InterfaceC5482f;
+import p286h.p309q2.p311t.C5544i0;
+import p286h.p309q2.p311t.C5556m0;
+import p286h.p309q2.p311t.C5557m1;
+import p286h.p309q2.p311t.C5558n;
+import p286h.p323z2.C5731f;
+import p286h.p323z2.C5736h0;
+import p324i.p336c.p337a.InterfaceC5816d;
+import p324i.p336c.p337a.InterfaceC5817e;
 
 /* compiled from: Buffer.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000ª\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u001a\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0002\b\u0003\n\u0002\u0010\u0005\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\r\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\u0010\u0012\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u000f\n\u0002\u0010\n\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\n\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0017\u0018\u00002\u00020\u00012\u00020\u00022\u00020\u00032\u00020\u0004:\u0002\u0090\u0001B\u0005¢\u0006\u0002\u0010\u0005J\b\u0010\u0006\u001a\u00020\u0000H\u0016J\u0006\u0010\u0011\u001a\u00020\u0012J\b\u0010\u0013\u001a\u00020\u0000H\u0016J\b\u0010\u0014\u001a\u00020\u0012H\u0016J\u0006\u0010\u0015\u001a\u00020\fJ\u0006\u0010\u0016\u001a\u00020\u0000J$\u0010\u0017\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00192\b\b\u0002\u0010\u001a\u001a\u00020\f2\b\b\u0002\u0010\u001b\u001a\u00020\fH\u0007J\u0018\u0010\u0017\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00002\b\b\u0002\u0010\u001a\u001a\u00020\fJ \u0010\u0017\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00002\b\b\u0002\u0010\u001a\u001a\u00020\f2\u0006\u0010\u001b\u001a\u00020\fJ\u0010\u0010\u001c\u001a\u00020\u001d2\u0006\u0010\u001e\u001a\u00020\u001fH\u0002J\b\u0010 \u001a\u00020\u0000H\u0016J\b\u0010!\u001a\u00020\u0000H\u0016J\u0013\u0010\"\u001a\u00020#2\b\u0010$\u001a\u0004\u0018\u00010%H\u0096\u0002J\b\u0010&\u001a\u00020#H\u0016J\b\u0010'\u001a\u00020\u0012H\u0016J\u0016\u0010(\u001a\u00020)2\u0006\u0010*\u001a\u00020\fH\u0087\u0002¢\u0006\u0002\b+J\u0015\u0010+\u001a\u00020)2\u0006\u0010,\u001a\u00020\fH\u0007¢\u0006\u0002\b-J\b\u0010.\u001a\u00020/H\u0016J\u0018\u00100\u001a\u00020\u001d2\u0006\u0010\u001e\u001a\u00020\u001f2\u0006\u00101\u001a\u00020\u001dH\u0002J\u000e\u00102\u001a\u00020\u001d2\u0006\u00101\u001a\u00020\u001dJ\u000e\u00103\u001a\u00020\u001d2\u0006\u00101\u001a\u00020\u001dJ\u000e\u00104\u001a\u00020\u001d2\u0006\u00101\u001a\u00020\u001dJ\u0010\u00105\u001a\u00020\f2\u0006\u00106\u001a\u00020)H\u0016J\u0018\u00105\u001a\u00020\f2\u0006\u00106\u001a\u00020)2\u0006\u00107\u001a\u00020\fH\u0016J \u00105\u001a\u00020\f2\u0006\u00106\u001a\u00020)2\u0006\u00107\u001a\u00020\f2\u0006\u00108\u001a\u00020\fH\u0016J\u0010\u00105\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001dH\u0016J\u0018\u00105\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001d2\u0006\u00107\u001a\u00020\fH\u0016J\u0010\u0010:\u001a\u00020\f2\u0006\u0010;\u001a\u00020\u001dH\u0016J\u0018\u0010:\u001a\u00020\f2\u0006\u0010;\u001a\u00020\u001d2\u0006\u00107\u001a\u00020\fH\u0016J\b\u0010<\u001a\u00020=H\u0016J\b\u0010>\u001a\u00020#H\u0016J\u0006\u0010?\u001a\u00020\u001dJ\b\u0010@\u001a\u00020\u0019H\u0016J\b\u0010A\u001a\u00020\u0001H\u0016J\u0018\u0010B\u001a\u00020#2\u0006\u0010\u001a\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001dH\u0016J(\u0010B\u001a\u00020#2\u0006\u0010\u001a\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001d2\u0006\u0010C\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0010\u0010D\u001a\u00020/2\u0006\u0010E\u001a\u00020FH\u0016J\u0010\u0010D\u001a\u00020/2\u0006\u0010E\u001a\u00020GH\u0016J \u0010D\u001a\u00020/2\u0006\u0010E\u001a\u00020G2\u0006\u0010\u001a\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0018\u0010D\u001a\u00020\f2\u0006\u0010E\u001a\u00020\u00002\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010H\u001a\u00020\f2\u0006\u0010E\u001a\u00020IH\u0016J\u0012\u0010J\u001a\u00020K2\b\b\u0002\u0010L\u001a\u00020KH\u0007J\b\u0010M\u001a\u00020)H\u0016J\b\u0010N\u001a\u00020GH\u0016J\u0010\u0010N\u001a\u00020G2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010O\u001a\u00020\u001dH\u0016J\u0010\u0010O\u001a\u00020\u001d2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010P\u001a\u00020\fH\u0016J\u000e\u0010Q\u001a\u00020\u00002\u0006\u0010R\u001a\u00020=J\u0016\u0010Q\u001a\u00020\u00002\u0006\u0010R\u001a\u00020=2\u0006\u0010\u001b\u001a\u00020\fJ \u0010Q\u001a\u00020\u00122\u0006\u0010R\u001a\u00020=2\u0006\u0010\u001b\u001a\u00020\f2\u0006\u0010S\u001a\u00020#H\u0002J\u0010\u0010T\u001a\u00020\u00122\u0006\u0010E\u001a\u00020GH\u0016J\u0018\u0010T\u001a\u00020\u00122\u0006\u0010E\u001a\u00020\u00002\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010U\u001a\u00020\fH\u0016J\b\u0010V\u001a\u00020/H\u0016J\b\u0010W\u001a\u00020/H\u0016J\b\u0010X\u001a\u00020\fH\u0016J\b\u0010Y\u001a\u00020\fH\u0016J\b\u0010Z\u001a\u00020[H\u0016J\b\u0010\\\u001a\u00020[H\u0016J\u0010\u0010]\u001a\u00020\u001f2\u0006\u0010^\u001a\u00020_H\u0016J\u0018\u0010]\u001a\u00020\u001f2\u0006\u0010\u001b\u001a\u00020\f2\u0006\u0010^\u001a\u00020_H\u0016J\u0012\u0010`\u001a\u00020K2\b\b\u0002\u0010L\u001a\u00020KH\u0007J\b\u0010a\u001a\u00020\u001fH\u0016J\u0010\u0010a\u001a\u00020\u001f2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010b\u001a\u00020/H\u0016J\n\u0010c\u001a\u0004\u0018\u00010\u001fH\u0016J\b\u0010d\u001a\u00020\u001fH\u0016J\u0010\u0010d\u001a\u00020\u001f2\u0006\u0010e\u001a\u00020\fH\u0016J\u0010\u0010f\u001a\u00020#2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010g\u001a\u00020\u00122\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010h\u001a\u00020/2\u0006\u0010i\u001a\u00020jH\u0016J\u0006\u0010k\u001a\u00020\u001dJ\u0006\u0010l\u001a\u00020\u001dJ\u0006\u0010m\u001a\u00020\u001dJ\r\u0010\r\u001a\u00020\fH\u0007¢\u0006\u0002\bnJ\u0010\u0010o\u001a\u00020\u00122\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0006\u0010p\u001a\u00020\u001dJ\u000e\u0010p\u001a\u00020\u001d2\u0006\u0010\u001b\u001a\u00020/J\b\u0010q\u001a\u00020rH\u0016J\b\u0010s\u001a\u00020\u001fH\u0016J\u0015\u0010t\u001a\u00020\n2\u0006\u0010u\u001a\u00020/H\u0000¢\u0006\u0002\bvJ\u0010\u0010w\u001a\u00020/2\u0006\u0010x\u001a\u00020FH\u0016J\u0010\u0010w\u001a\u00020\u00002\u0006\u0010x\u001a\u00020GH\u0016J \u0010w\u001a\u00020\u00002\u0006\u0010x\u001a\u00020G2\u0006\u0010\u001a\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0018\u0010w\u001a\u00020\u00122\u0006\u0010x\u001a\u00020\u00002\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010w\u001a\u00020\u00002\u0006\u0010y\u001a\u00020\u001dH\u0016J \u0010w\u001a\u00020\u00002\u0006\u0010y\u001a\u00020\u001d2\u0006\u0010\u001a\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0018\u0010w\u001a\u00020\u00002\u0006\u0010x\u001a\u00020z2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010{\u001a\u00020\f2\u0006\u0010x\u001a\u00020zH\u0016J\u0010\u0010|\u001a\u00020\u00002\u0006\u00106\u001a\u00020/H\u0016J\u0010\u0010}\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0010\u0010\u007f\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0012\u0010\u0080\u0001\u001a\u00020\u00002\u0007\u0010\u0081\u0001\u001a\u00020/H\u0016J\u0012\u0010\u0082\u0001\u001a\u00020\u00002\u0007\u0010\u0081\u0001\u001a\u00020/H\u0016J\u0011\u0010\u0083\u0001\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0011\u0010\u0084\u0001\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0012\u0010\u0085\u0001\u001a\u00020\u00002\u0007\u0010\u0086\u0001\u001a\u00020/H\u0016J\u0012\u0010\u0087\u0001\u001a\u00020\u00002\u0007\u0010\u0086\u0001\u001a\u00020/H\u0016J\u001a\u0010\u0088\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001f2\u0006\u0010^\u001a\u00020_H\u0016J,\u0010\u0088\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001f2\u0007\u0010\u008a\u0001\u001a\u00020/2\u0007\u0010\u008b\u0001\u001a\u00020/2\u0006\u0010^\u001a\u00020_H\u0016J\u001b\u0010\u008c\u0001\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00192\b\b\u0002\u0010\u001b\u001a\u00020\fH\u0007J\u0012\u0010\u008d\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001fH\u0016J$\u0010\u008d\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001f2\u0007\u0010\u008a\u0001\u001a\u00020/2\u0007\u0010\u008b\u0001\u001a\u00020/H\u0016J\u0012\u0010\u008e\u0001\u001a\u00020\u00002\u0007\u0010\u008f\u0001\u001a\u00020/H\u0016R\u0014\u0010\u0006\u001a\u00020\u00008VX\u0096\u0004¢\u0006\u0006\u001a\u0004\b\u0007\u0010\bR\u0014\u0010\t\u001a\u0004\u0018\u00010\n8\u0000@\u0000X\u0081\u000e¢\u0006\u0002\n\u0000R&\u0010\r\u001a\u00020\f2\u0006\u0010\u000b\u001a\u00020\f8G@@X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\r\u0010\u000e\"\u0004\b\u000f\u0010\u0010¨\u0006\u0091\u0001"}, d2 = {"Lokio/Buffer;", "Lokio/BufferedSource;", "Lokio/BufferedSink;", "", "Ljava/nio/channels/ByteChannel;", "()V", "buffer", "getBuffer", "()Lokio/Buffer;", "head", "Lokio/Segment;", "<set-?>", "", "size", "()J", "setSize$okio", "(J)V", "clear", "", "clone", "close", "completeSegmentByteCount", "copy", "copyTo", "out", "Ljava/io/OutputStream;", "offset", "byteCount", "digest", "Lokio/ByteString;", "algorithm", "", "emit", "emitCompleteSegments", "equals", "", DispatchConstants.OTHER, "", "exhausted", "flush", "get", "", "pos", "getByte", "index", "-deprecated_getByte", "hashCode", "", "hmac", "key", "hmacSha1", "hmacSha256", "hmacSha512", "indexOf", "b", "fromIndex", "toIndex", "bytes", "indexOfElement", "targetBytes", "inputStream", "Ljava/io/InputStream;", "isOpen", "md5", "outputStream", "peek", "rangeEquals", "bytesOffset", "read", "sink", "Ljava/nio/ByteBuffer;", "", "readAll", "Lokio/Sink;", "readAndWriteUnsafe", "Lokio/Buffer$UnsafeCursor;", "unsafeCursor", "readByte", "readByteArray", "readByteString", "readDecimalLong", "readFrom", "input", "forever", "readFully", "readHexadecimalUnsignedLong", "readInt", "readIntLe", "readLong", "readLongLe", "readShort", "", "readShortLe", "readString", "charset", "Ljava/nio/charset/Charset;", "readUnsafe", "readUtf8", "readUtf8CodePoint", "readUtf8Line", "readUtf8LineStrict", "limit", SocialConstants.TYPE_REQUEST, "require", "select", "options", "Lokio/Options;", "sha1", "sha256", "sha512", "-deprecated_size", "skip", "snapshot", "timeout", "Lokio/Timeout;", "toString", "writableSegment", "minimumCapacity", "writableSegment$okio", "write", "source", "byteString", "Lokio/Source;", "writeAll", "writeByte", "writeDecimalLong", "v", "writeHexadecimalUnsignedLong", "writeInt", bh.aF, "writeIntLe", "writeLong", "writeLongLe", "writeShort", bh.aE, "writeShortLe", "writeString", "string", "beginIndex", "endIndex", "writeTo", "writeUtf8", "writeUtf8CodePoint", "codePoint", "UnsafeCursor", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000ª\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u001a\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0002\b\u0003\n\u0002\u0010\u0005\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\r\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\u0010\u0012\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u000f\n\u0002\u0010\n\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\n\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0017\u0018\u00002\u00020\u00012\u00020\u00022\u00020\u00032\u00020\u0004:\u0002\u0090\u0001B\u0005¢\u0006\u0002\u0010\u0005J\b\u0010\u0006\u001a\u00020\u0000H\u0016J\u0006\u0010\u0011\u001a\u00020\u0012J\b\u0010\u0013\u001a\u00020\u0000H\u0016J\b\u0010\u0014\u001a\u00020\u0012H\u0016J\u0006\u0010\u0015\u001a\u00020\fJ\u0006\u0010\u0016\u001a\u00020\u0000J$\u0010\u0017\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00192\b\b\u0002\u0010\u001a\u001a\u00020\f2\b\b\u0002\u0010\u001b\u001a\u00020\fH\u0007J\u0018\u0010\u0017\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00002\b\b\u0002\u0010\u001a\u001a\u00020\fJ \u0010\u0017\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00002\b\b\u0002\u0010\u001a\u001a\u00020\f2\u0006\u0010\u001b\u001a\u00020\fJ\u0010\u0010\u001c\u001a\u00020\u001d2\u0006\u0010\u001e\u001a\u00020\u001fH\u0002J\b\u0010 \u001a\u00020\u0000H\u0016J\b\u0010!\u001a\u00020\u0000H\u0016J\u0013\u0010\"\u001a\u00020#2\b\u0010$\u001a\u0004\u0018\u00010%H\u0096\u0002J\b\u0010&\u001a\u00020#H\u0016J\b\u0010'\u001a\u00020\u0012H\u0016J\u0016\u0010(\u001a\u00020)2\u0006\u0010*\u001a\u00020\fH\u0087\u0002¢\u0006\u0002\b+J\u0015\u0010+\u001a\u00020)2\u0006\u0010,\u001a\u00020\fH\u0007¢\u0006\u0002\b-J\b\u0010.\u001a\u00020/H\u0016J\u0018\u00100\u001a\u00020\u001d2\u0006\u0010\u001e\u001a\u00020\u001f2\u0006\u00101\u001a\u00020\u001dH\u0002J\u000e\u00102\u001a\u00020\u001d2\u0006\u00101\u001a\u00020\u001dJ\u000e\u00103\u001a\u00020\u001d2\u0006\u00101\u001a\u00020\u001dJ\u000e\u00104\u001a\u00020\u001d2\u0006\u00101\u001a\u00020\u001dJ\u0010\u00105\u001a\u00020\f2\u0006\u00106\u001a\u00020)H\u0016J\u0018\u00105\u001a\u00020\f2\u0006\u00106\u001a\u00020)2\u0006\u00107\u001a\u00020\fH\u0016J \u00105\u001a\u00020\f2\u0006\u00106\u001a\u00020)2\u0006\u00107\u001a\u00020\f2\u0006\u00108\u001a\u00020\fH\u0016J\u0010\u00105\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001dH\u0016J\u0018\u00105\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001d2\u0006\u00107\u001a\u00020\fH\u0016J\u0010\u0010:\u001a\u00020\f2\u0006\u0010;\u001a\u00020\u001dH\u0016J\u0018\u0010:\u001a\u00020\f2\u0006\u0010;\u001a\u00020\u001d2\u0006\u00107\u001a\u00020\fH\u0016J\b\u0010<\u001a\u00020=H\u0016J\b\u0010>\u001a\u00020#H\u0016J\u0006\u0010?\u001a\u00020\u001dJ\b\u0010@\u001a\u00020\u0019H\u0016J\b\u0010A\u001a\u00020\u0001H\u0016J\u0018\u0010B\u001a\u00020#2\u0006\u0010\u001a\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001dH\u0016J(\u0010B\u001a\u00020#2\u0006\u0010\u001a\u001a\u00020\f2\u0006\u00109\u001a\u00020\u001d2\u0006\u0010C\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0010\u0010D\u001a\u00020/2\u0006\u0010E\u001a\u00020FH\u0016J\u0010\u0010D\u001a\u00020/2\u0006\u0010E\u001a\u00020GH\u0016J \u0010D\u001a\u00020/2\u0006\u0010E\u001a\u00020G2\u0006\u0010\u001a\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0018\u0010D\u001a\u00020\f2\u0006\u0010E\u001a\u00020\u00002\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010H\u001a\u00020\f2\u0006\u0010E\u001a\u00020IH\u0016J\u0012\u0010J\u001a\u00020K2\b\b\u0002\u0010L\u001a\u00020KH\u0007J\b\u0010M\u001a\u00020)H\u0016J\b\u0010N\u001a\u00020GH\u0016J\u0010\u0010N\u001a\u00020G2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010O\u001a\u00020\u001dH\u0016J\u0010\u0010O\u001a\u00020\u001d2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010P\u001a\u00020\fH\u0016J\u000e\u0010Q\u001a\u00020\u00002\u0006\u0010R\u001a\u00020=J\u0016\u0010Q\u001a\u00020\u00002\u0006\u0010R\u001a\u00020=2\u0006\u0010\u001b\u001a\u00020\fJ \u0010Q\u001a\u00020\u00122\u0006\u0010R\u001a\u00020=2\u0006\u0010\u001b\u001a\u00020\f2\u0006\u0010S\u001a\u00020#H\u0002J\u0010\u0010T\u001a\u00020\u00122\u0006\u0010E\u001a\u00020GH\u0016J\u0018\u0010T\u001a\u00020\u00122\u0006\u0010E\u001a\u00020\u00002\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010U\u001a\u00020\fH\u0016J\b\u0010V\u001a\u00020/H\u0016J\b\u0010W\u001a\u00020/H\u0016J\b\u0010X\u001a\u00020\fH\u0016J\b\u0010Y\u001a\u00020\fH\u0016J\b\u0010Z\u001a\u00020[H\u0016J\b\u0010\\\u001a\u00020[H\u0016J\u0010\u0010]\u001a\u00020\u001f2\u0006\u0010^\u001a\u00020_H\u0016J\u0018\u0010]\u001a\u00020\u001f2\u0006\u0010\u001b\u001a\u00020\f2\u0006\u0010^\u001a\u00020_H\u0016J\u0012\u0010`\u001a\u00020K2\b\b\u0002\u0010L\u001a\u00020KH\u0007J\b\u0010a\u001a\u00020\u001fH\u0016J\u0010\u0010a\u001a\u00020\u001f2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\b\u0010b\u001a\u00020/H\u0016J\n\u0010c\u001a\u0004\u0018\u00010\u001fH\u0016J\b\u0010d\u001a\u00020\u001fH\u0016J\u0010\u0010d\u001a\u00020\u001f2\u0006\u0010e\u001a\u00020\fH\u0016J\u0010\u0010f\u001a\u00020#2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010g\u001a\u00020\u00122\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010h\u001a\u00020/2\u0006\u0010i\u001a\u00020jH\u0016J\u0006\u0010k\u001a\u00020\u001dJ\u0006\u0010l\u001a\u00020\u001dJ\u0006\u0010m\u001a\u00020\u001dJ\r\u0010\r\u001a\u00020\fH\u0007¢\u0006\u0002\bnJ\u0010\u0010o\u001a\u00020\u00122\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0006\u0010p\u001a\u00020\u001dJ\u000e\u0010p\u001a\u00020\u001d2\u0006\u0010\u001b\u001a\u00020/J\b\u0010q\u001a\u00020rH\u0016J\b\u0010s\u001a\u00020\u001fH\u0016J\u0015\u0010t\u001a\u00020\n2\u0006\u0010u\u001a\u00020/H\u0000¢\u0006\u0002\bvJ\u0010\u0010w\u001a\u00020/2\u0006\u0010x\u001a\u00020FH\u0016J\u0010\u0010w\u001a\u00020\u00002\u0006\u0010x\u001a\u00020GH\u0016J \u0010w\u001a\u00020\u00002\u0006\u0010x\u001a\u00020G2\u0006\u0010\u001a\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0018\u0010w\u001a\u00020\u00122\u0006\u0010x\u001a\u00020\u00002\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010w\u001a\u00020\u00002\u0006\u0010y\u001a\u00020\u001dH\u0016J \u0010w\u001a\u00020\u00002\u0006\u0010y\u001a\u00020\u001d2\u0006\u0010\u001a\u001a\u00020/2\u0006\u0010\u001b\u001a\u00020/H\u0016J\u0018\u0010w\u001a\u00020\u00002\u0006\u0010x\u001a\u00020z2\u0006\u0010\u001b\u001a\u00020\fH\u0016J\u0010\u0010{\u001a\u00020\f2\u0006\u0010x\u001a\u00020zH\u0016J\u0010\u0010|\u001a\u00020\u00002\u0006\u00106\u001a\u00020/H\u0016J\u0010\u0010}\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0010\u0010\u007f\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0012\u0010\u0080\u0001\u001a\u00020\u00002\u0007\u0010\u0081\u0001\u001a\u00020/H\u0016J\u0012\u0010\u0082\u0001\u001a\u00020\u00002\u0007\u0010\u0081\u0001\u001a\u00020/H\u0016J\u0011\u0010\u0083\u0001\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0011\u0010\u0084\u0001\u001a\u00020\u00002\u0006\u0010~\u001a\u00020\fH\u0016J\u0012\u0010\u0085\u0001\u001a\u00020\u00002\u0007\u0010\u0086\u0001\u001a\u00020/H\u0016J\u0012\u0010\u0087\u0001\u001a\u00020\u00002\u0007\u0010\u0086\u0001\u001a\u00020/H\u0016J\u001a\u0010\u0088\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001f2\u0006\u0010^\u001a\u00020_H\u0016J,\u0010\u0088\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001f2\u0007\u0010\u008a\u0001\u001a\u00020/2\u0007\u0010\u008b\u0001\u001a\u00020/2\u0006\u0010^\u001a\u00020_H\u0016J\u001b\u0010\u008c\u0001\u001a\u00020\u00002\u0006\u0010\u0018\u001a\u00020\u00192\b\b\u0002\u0010\u001b\u001a\u00020\fH\u0007J\u0012\u0010\u008d\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001fH\u0016J$\u0010\u008d\u0001\u001a\u00020\u00002\u0007\u0010\u0089\u0001\u001a\u00020\u001f2\u0007\u0010\u008a\u0001\u001a\u00020/2\u0007\u0010\u008b\u0001\u001a\u00020/H\u0016J\u0012\u0010\u008e\u0001\u001a\u00020\u00002\u0007\u0010\u008f\u0001\u001a\u00020/H\u0016R\u0014\u0010\u0006\u001a\u00020\u00008VX\u0096\u0004¢\u0006\u0006\u001a\u0004\b\u0007\u0010\bR\u0014\u0010\t\u001a\u0004\u0018\u00010\n8\u0000@\u0000X\u0081\u000e¢\u0006\u0002\n\u0000R&\u0010\r\u001a\u00020\f2\u0006\u0010\u000b\u001a\u00020\f8G@@X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\r\u0010\u000e\"\u0004\b\u000f\u0010\u0010¨\u0006\u0091\u0001"}, m23546d2 = {"Lokio/Buffer;", "Lokio/BufferedSource;", "Lokio/BufferedSink;", "", "Ljava/nio/channels/ByteChannel;", "()V", "buffer", "getBuffer", "()Lokio/Buffer;", "head", "Lokio/Segment;", "<set-?>", "", "size", "()J", "setSize$okio", "(J)V", "clear", "", "clone", "close", "completeSegmentByteCount", "copy", "copyTo", "out", "Ljava/io/OutputStream;", "offset", "byteCount", "digest", "Lokio/ByteString;", "algorithm", "", "emit", "emitCompleteSegments", "equals", "", DispatchConstants.OTHER, "", "exhausted", "flush", "get", "", "pos", "getByte", "index", "-deprecated_getByte", "hashCode", "", "hmac", "key", "hmacSha1", "hmacSha256", "hmacSha512", "indexOf", "b", "fromIndex", "toIndex", "bytes", "indexOfElement", "targetBytes", "inputStream", "Ljava/io/InputStream;", "isOpen", "md5", "outputStream", "peek", "rangeEquals", "bytesOffset", "read", "sink", "Ljava/nio/ByteBuffer;", "", "readAll", "Lokio/Sink;", "readAndWriteUnsafe", "Lokio/Buffer$UnsafeCursor;", "unsafeCursor", "readByte", "readByteArray", "readByteString", "readDecimalLong", "readFrom", "input", "forever", "readFully", "readHexadecimalUnsignedLong", "readInt", "readIntLe", "readLong", "readLongLe", "readShort", "", "readShortLe", "readString", "charset", "Ljava/nio/charset/Charset;", "readUnsafe", "readUtf8", "readUtf8CodePoint", "readUtf8Line", "readUtf8LineStrict", "limit", SocialConstants.TYPE_REQUEST, "require", "select", "options", "Lokio/Options;", "sha1", "sha256", "sha512", "-deprecated_size", "skip", "snapshot", "timeout", "Lokio/Timeout;", "toString", "writableSegment", "minimumCapacity", "writableSegment$okio", "write", "source", "byteString", "Lokio/Source;", "writeAll", "writeByte", "writeDecimalLong", "v", "writeHexadecimalUnsignedLong", "writeInt", C3351bh.f11581aF, "writeIntLe", "writeLong", "writeLongLe", "writeShort", C3351bh.f11580aE, "writeShortLe", "writeString", "string", "beginIndex", "endIndex", "writeTo", "writeUtf8", "writeUtf8CodePoint", "codePoint", "UnsafeCursor", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class Buffer implements BufferedSource, BufferedSink, Cloneable, ByteChannel {
 
-    @c
-    @e
+    @InterfaceC5479c
+    @InterfaceC5817e
     public Segment head;
     private long size;
 
     /* compiled from: Buffer.kt */
-    @y(bv = {1, 0, 3}, d1 = {"\u0000:\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0012\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0007\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\b\u0010\u0010\u001a\u00020\u0011H\u0016J\u000e\u0010\u0012\u001a\u00020\n2\u0006\u0010\u0013\u001a\u00020\bJ\u0006\u0010\u0014\u001a\u00020\bJ\u000e\u0010\u0015\u001a\u00020\n2\u0006\u0010\u0016\u001a\u00020\nJ\u000e\u0010\u0017\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\nR\u0014\u0010\u0003\u001a\u0004\u0018\u00010\u00048\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0014\u0010\u0005\u001a\u0004\u0018\u00010\u00068\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\u0007\u001a\u00020\b8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\t\u001a\u00020\n8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\u000b\u001a\u00020\f8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\r\u001a\u0004\u0018\u00010\u000eX\u0082\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\u000f\u001a\u00020\b8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000¨\u0006\u0018"}, d2 = {"Lokio/Buffer$UnsafeCursor;", "Ljava/io/Closeable;", "()V", "buffer", "Lokio/Buffer;", "data", "", "end", "", "offset", "", "readWrite", "", "segment", "Lokio/Segment;", "start", "close", "", "expandBuffer", "minByteCount", "next", "resizeBuffer", "newSize", "seek", "okio"}, k = 1, mv = {1, 1, 16})
+    @InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000:\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0012\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0007\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\b\u0010\u0010\u001a\u00020\u0011H\u0016J\u000e\u0010\u0012\u001a\u00020\n2\u0006\u0010\u0013\u001a\u00020\bJ\u0006\u0010\u0014\u001a\u00020\bJ\u000e\u0010\u0015\u001a\u00020\n2\u0006\u0010\u0016\u001a\u00020\nJ\u000e\u0010\u0017\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\nR\u0014\u0010\u0003\u001a\u0004\u0018\u00010\u00048\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0014\u0010\u0005\u001a\u0004\u0018\u00010\u00068\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\u0007\u001a\u00020\b8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\t\u001a\u00020\n8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\u000b\u001a\u00020\f8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000R\u0010\u0010\r\u001a\u0004\u0018\u00010\u000eX\u0082\u000e¢\u0006\u0002\n\u0000R\u0012\u0010\u000f\u001a\u00020\b8\u0006@\u0006X\u0087\u000e¢\u0006\u0002\n\u0000¨\u0006\u0018"}, m23546d2 = {"Lokio/Buffer$UnsafeCursor;", "Ljava/io/Closeable;", "()V", "buffer", "Lokio/Buffer;", "data", "", "end", "", "offset", "", "readWrite", "", "segment", "Lokio/Segment;", "start", "close", "", "expandBuffer", "minByteCount", "next", "resizeBuffer", "newSize", "seek", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
     public static final class UnsafeCursor implements Closeable {
 
-        @c
-        @e
+        @InterfaceC5479c
+        @InterfaceC5817e
         public Buffer buffer;
 
-        @c
-        @e
+        @InterfaceC5479c
+        @InterfaceC5817e
         public byte[] data;
 
-        @c
+        @InterfaceC5479c
         public boolean readWrite;
         private Segment segment;
 
-        @c
+        @InterfaceC5479c
         public long offset = -1;
 
-        @c
+        @InterfaceC5479c
         public int start = -1;
 
-        @c
+        @InterfaceC5479c
         public int end = -1;
 
         @Override // java.io.Closeable, java.lang.AutoCloseable
@@ -114,7 +118,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             long j2 = this.offset;
             Buffer buffer = this.buffer;
             if (buffer == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             if (!(j2 != buffer.size())) {
                 throw new IllegalStateException("no more bytes".toString());
@@ -142,11 +146,11 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     if (j3 > 0) {
                         Segment segment = buffer.head;
                         if (segment == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         Segment segment2 = segment.prev;
                         if (segment2 == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         int i3 = segment2.limit;
                         long j4 = i3 - segment2.pos;
@@ -197,10 +201,10 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 throw new IllegalStateException("not attached to a buffer".toString());
             }
             if (j2 < -1 || j2 > buffer.size()) {
-                m1 m1Var = m1.f16412a;
+                C5557m1 c5557m1 = C5557m1.f20400a;
                 Object[] objArr = {Long.valueOf(j2), Long.valueOf(buffer.size())};
                 String format = String.format("offset=%s > size=%s", Arrays.copyOf(objArr, objArr.length));
-                i0.a((Object) format, "java.lang.String.format(format, *args)");
+                C5544i0.m22521a((Object) format, "java.lang.String.format(format, *args)");
                 throw new ArrayIndexOutOfBoundsException(format);
             }
             if (j2 == -1 || j2 == buffer.size()) {
@@ -219,7 +223,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 long j4 = this.offset;
                 int i2 = this.start;
                 if (segment3 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 long j5 = j4 - (i2 - segment3.pos);
                 if (j5 > j2) {
@@ -236,7 +240,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             if (size - j2 > j2 - j3) {
                 while (true) {
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     int i3 = segment.limit;
                     int i4 = segment.pos;
@@ -251,18 +255,18 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 segment = segment2;
                 while (j3 > j2) {
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     segment = segment.prev;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     j3 -= segment.limit - segment.pos;
                 }
             }
             if (this.readWrite) {
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 if (segment.shared) {
                     Segment unsharedCopy = segment.unsharedCopy();
@@ -272,7 +276,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     segment = segment.push(unsharedCopy);
                     Segment segment4 = segment.prev;
                     if (segment4 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     segment4.pop();
                 }
@@ -280,7 +284,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             this.segment = segment;
             this.offset = j2;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             this.data = segment.data;
             this.start = segment.pos + ((int) (j2 - j3));
@@ -323,7 +327,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             messageDigest.update(bArr, i2, segment.limit - i2);
             Segment segment2 = segment.next;
             if (segment2 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             while (segment2 != segment) {
                 byte[] bArr2 = segment2.data;
@@ -331,12 +335,12 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 messageDigest.update(bArr2, i3, segment2.limit - i3);
                 segment2 = segment2.next;
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
             }
         }
         byte[] digest = messageDigest.digest();
-        i0.a((Object) digest, "messageDigest.digest()");
+        C5544i0.m22521a((Object) digest, "messageDigest.digest()");
         return new ByteString(digest);
     }
 
@@ -349,18 +353,18 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 mac.update(segment.data, segment.pos, segment.limit - segment.pos);
                 Segment segment2 = segment.next;
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 while (segment2 != segment) {
                     mac.update(segment2.data, segment2.pos, segment2.limit - segment2.pos);
                     segment2 = segment2.next;
                     if (segment2 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                 }
             }
             byte[] doFinal = mac.doFinal();
-            i0.a((Object) doFinal, "mac.doFinal()");
+            C5544i0.m22521a((Object) doFinal, "mac.doFinal()");
             return new ByteString(doFinal);
         } catch (InvalidKeyException e2) {
             throw new IllegalArgumentException(e2);
@@ -388,22 +392,22 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return buffer.writeTo(outputStream, j2);
     }
 
-    @h.q2.e(name = "-deprecated_getByte")
-    @h.c(level = d.ERROR, message = "moved to operator function", replaceWith = @o0(expression = "this[index]", imports = {}))
-    /* renamed from: -deprecated_getByte, reason: not valid java name */
-    public final byte m787deprecated_getByte(long j2) {
+    @InterfaceC5481e(name = "-deprecated_getByte")
+    @InterfaceC5216c(level = EnumC5220d.ERROR, message = "moved to operator function", replaceWith = @InterfaceC5467o0(expression = "this[index]", imports = {}))
+    /* renamed from: -deprecated_getByte */
+    public final byte m26866deprecated_getByte(long j2) {
         return getByte(j2);
     }
 
-    @h.q2.e(name = "-deprecated_size")
-    @h.c(level = d.ERROR, message = "moved to val", replaceWith = @o0(expression = "size", imports = {}))
-    /* renamed from: -deprecated_size, reason: not valid java name */
-    public final long m788deprecated_size() {
+    @InterfaceC5481e(name = "-deprecated_size")
+    @InterfaceC5216c(level = EnumC5220d.ERROR, message = "moved to val", replaceWith = @InterfaceC5467o0(expression = "size", imports = {}))
+    /* renamed from: -deprecated_size */
+    public final long m26867deprecated_size() {
         return this.size;
     }
 
     @Override // okio.BufferedSource, okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer buffer() {
         return this;
     }
@@ -423,11 +427,11 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Segment segment = this.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         Segment segment2 = segment.prev;
         if (segment2 == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         if (segment2.limit < 8192 && segment2.owner) {
             size -= r3 - segment2.pos;
@@ -435,13 +439,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return size;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final Buffer copy() {
         Buffer buffer = new Buffer();
         if (size() != 0) {
             Segment segment = this.head;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             Segment sharedCopy = segment.sharedCopy();
             buffer.head = sharedCopy;
@@ -450,10 +454,10 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             for (Segment segment2 = segment.next; segment2 != segment; segment2 = segment2.next) {
                 Segment segment3 = sharedCopy.prev;
                 if (segment3 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 segment3.push(segment2.sharedCopy());
             }
@@ -462,22 +466,22 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return buffer;
     }
 
-    @f
-    @i.c.a.d
-    public final Buffer copyTo(@i.c.a.d OutputStream outputStream) throws IOException {
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final Buffer copyTo(@InterfaceC5816d OutputStream outputStream) throws IOException {
         return copyTo$default(this, outputStream, 0L, 0L, 6, (Object) null);
     }
 
-    @f
-    @i.c.a.d
-    public final Buffer copyTo(@i.c.a.d OutputStream outputStream, long j2) throws IOException {
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final Buffer copyTo(@InterfaceC5816d OutputStream outputStream, long j2) throws IOException {
         return copyTo$default(this, outputStream, j2, 0L, 4, (Object) null);
     }
 
-    @f
-    @i.c.a.d
-    public final Buffer copyTo(@i.c.a.d OutputStream outputStream, long j2, long j3) throws IOException {
-        i0.f(outputStream, "out");
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final Buffer copyTo(@InterfaceC5816d OutputStream outputStream, long j2, long j3) throws IOException {
+        C5544i0.m22546f(outputStream, "out");
         Util.checkOffsetAndCount(this.size, j2, j3);
         if (j3 == 0) {
             return this;
@@ -485,7 +489,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         Segment segment = this.head;
         while (true) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             int i2 = segment.limit;
             int i3 = segment.pos;
@@ -497,7 +501,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         while (j3 > 0) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             int min = (int) Math.min(segment.limit - r10, j3);
             outputStream.write(segment.data, (int) (segment.pos + j2), min);
@@ -509,18 +513,18 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer emit() {
         return this;
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer emitCompleteSegments() {
         return this;
     }
 
-    public boolean equals(@e Object obj) {
+    public boolean equals(@InterfaceC5817e Object obj) {
         if (this != obj) {
             if (!(obj instanceof Buffer)) {
                 return false;
@@ -532,11 +536,11 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             if (size() != 0) {
                 Segment segment = this.head;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 Segment segment2 = buffer.head;
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 int i2 = segment.pos;
                 int i3 = segment2.pos;
@@ -561,14 +565,14 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     if (i5 == segment4.limit) {
                         segment4 = segment4.next;
                         if (segment4 == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         i5 = segment4.pos;
                     }
                     if (i4 == segment3.limit) {
                         segment3 = segment3.next;
                         if (segment3 == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         i4 = segment3.pos;
                     }
@@ -589,18 +593,18 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource, okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer getBuffer() {
         return this;
     }
 
-    @h.q2.e(name = "getByte")
+    @InterfaceC5481e(name = "getByte")
     public final byte getByte(long j2) {
         Util.checkOffsetAndCount(size(), j2, 1L);
         Segment segment = this.head;
         if (segment == null) {
             Segment segment2 = null;
-            i0.f();
+            C5544i0.m22545f();
             return segment2.data[(int) ((segment2.pos + j2) - (-1))];
         }
         if (size() - j2 < j2) {
@@ -608,12 +612,12 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             while (size > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 size -= segment.limit - segment.pos;
             }
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             return segment.data[(int) ((segment.pos + j2) - size)];
         }
@@ -625,12 +629,12 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j3 = j4;
         }
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         return segment.data[(int) ((segment.pos + j2) - j3)];
     }
@@ -648,43 +652,43 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
         } while (segment != this.head);
         return i2;
     }
 
-    @i.c.a.d
-    public final ByteString hmacSha1(@i.c.a.d ByteString byteString) {
-        i0.f(byteString, "key");
+    @InterfaceC5816d
+    public final ByteString hmacSha1(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "key");
         return hmac("HmacSHA1", byteString);
     }
 
-    @i.c.a.d
-    public final ByteString hmacSha256(@i.c.a.d ByteString byteString) {
-        i0.f(byteString, "key");
+    @InterfaceC5816d
+    public final ByteString hmacSha256(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "key");
         return hmac("HmacSHA256", byteString);
     }
 
-    @i.c.a.d
-    public final ByteString hmacSha512(@i.c.a.d ByteString byteString) {
-        i0.f(byteString, "key");
+    @InterfaceC5816d
+    public final ByteString hmacSha512(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "key");
         return hmac("HmacSHA512", byteString);
     }
 
     @Override // okio.BufferedSource
     public long indexOf(byte b2) {
-        return indexOf(b2, 0L, m0.f16408b);
+        return indexOf(b2, 0L, C5556m0.f20396b);
     }
 
     @Override // okio.BufferedSource
-    public long indexOfElement(@i.c.a.d ByteString byteString) {
-        i0.f(byteString, "targetBytes");
+    public long indexOfElement(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "targetBytes");
         return indexOfElement(byteString, 0L);
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public InputStream inputStream() {
         return new InputStream() { // from class: okio.Buffer$inputStream$1
             @Override // java.io.InputStream
@@ -699,19 +703,19 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             @Override // java.io.InputStream
             public int read() {
                 if (Buffer.this.size() > 0) {
-                    return Buffer.this.readByte() & f1.f16099c;
+                    return Buffer.this.readByte() & C5230f1.f20085c;
                 }
                 return -1;
             }
 
-            @i.c.a.d
+            @InterfaceC5816d
             public String toString() {
                 return Buffer.this + ".inputStream()";
             }
 
             @Override // java.io.InputStream
-            public int read(@i.c.a.d byte[] bArr, int i2, int i3) {
-                i0.f(bArr, "sink");
+            public int read(@InterfaceC5816d byte[] bArr, int i2, int i3) {
+                C5544i0.m22546f(bArr, "sink");
                 return Buffer.this.read(bArr, i2, i3);
             }
         };
@@ -722,13 +726,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return true;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString md5() {
         return digest("MD5");
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public OutputStream outputStream() {
         return new OutputStream() { // from class: okio.Buffer$outputStream$1
             @Override // java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
@@ -739,7 +743,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             public void flush() {
             }
 
-            @i.c.a.d
+            @InterfaceC5816d
             public String toString() {
                 return Buffer.this + ".outputStream()";
             }
@@ -750,28 +754,28 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             }
 
             @Override // java.io.OutputStream
-            public void write(@i.c.a.d byte[] bArr, int i2, int i3) {
-                i0.f(bArr, "data");
+            public void write(@InterfaceC5816d byte[] bArr, int i2, int i3) {
+                C5544i0.m22546f(bArr, "data");
                 Buffer.this.write(bArr, i2, i3);
             }
         };
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public BufferedSource peek() {
         return Okio.buffer(new PeekSource(this));
     }
 
     @Override // okio.BufferedSource
-    public boolean rangeEquals(long j2, @i.c.a.d ByteString byteString) {
-        i0.f(byteString, "bytes");
+    public boolean rangeEquals(long j2, @InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "bytes");
         return rangeEquals(j2, byteString, 0, byteString.size());
     }
 
     @Override // java.nio.channels.ReadableByteChannel
-    public int read(@i.c.a.d ByteBuffer byteBuffer) throws IOException {
-        i0.f(byteBuffer, "sink");
+    public int read(@InterfaceC5816d ByteBuffer byteBuffer) throws IOException {
+        C5544i0.m22546f(byteBuffer, "sink");
         Segment segment = this.head;
         if (segment == null) {
             return -1;
@@ -788,8 +792,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public long readAll(@i.c.a.d Sink sink) throws IOException {
-        i0.f(sink, "sink");
+    public long readAll(@InterfaceC5816d Sink sink) throws IOException {
+        C5544i0.m22546f(sink, "sink");
         long size = size();
         if (size > 0) {
             sink.write(this, size);
@@ -797,16 +801,16 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return size;
     }
 
-    @f
-    @i.c.a.d
+    @InterfaceC5482f
+    @InterfaceC5816d
     public final UnsafeCursor readAndWriteUnsafe() {
         return readAndWriteUnsafe$default(this, null, 1, null);
     }
 
-    @f
-    @i.c.a.d
-    public final UnsafeCursor readAndWriteUnsafe(@i.c.a.d UnsafeCursor unsafeCursor) {
-        i0.f(unsafeCursor, "unsafeCursor");
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final UnsafeCursor readAndWriteUnsafe(@InterfaceC5816d UnsafeCursor unsafeCursor) {
+        C5544i0.m22546f(unsafeCursor, "unsafeCursor");
         if (!(unsafeCursor.buffer == null)) {
             throw new IllegalStateException("already attached to a buffer".toString());
         }
@@ -822,7 +826,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Segment segment = this.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
@@ -839,13 +843,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public byte[] readByteArray() {
         return readByteArray(size());
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public ByteString readByteString() {
         return readByteString(size());
     }
@@ -867,16 +871,16 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         throw new UnsupportedOperationException("Method not decompiled: okio.Buffer.readDecimalLong():long");
     }
 
-    @i.c.a.d
-    public final Buffer readFrom(@i.c.a.d InputStream inputStream) throws IOException {
-        i0.f(inputStream, "input");
-        readFrom(inputStream, m0.f16408b, true);
+    @InterfaceC5816d
+    public final Buffer readFrom(@InterfaceC5816d InputStream inputStream) throws IOException {
+        C5544i0.m22546f(inputStream, "input");
+        readFrom(inputStream, C5556m0.f20396b, true);
         return this;
     }
 
     @Override // okio.BufferedSource
-    public void readFully(@i.c.a.d Buffer buffer, long j2) throws EOFException {
-        i0.f(buffer, "sink");
+    public void readFully(@InterfaceC5816d Buffer buffer, long j2) throws EOFException {
+        C5544i0.m22546f(buffer, "sink");
         if (size() >= j2) {
             buffer.write(this, j2);
         } else {
@@ -907,7 +911,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         Ld:
             okio.Segment r6 = r15.head
             if (r6 != 0) goto L14
-            h.q2.t.i0.f()
+            p286h.p309q2.p311t.C5544i0.m22545f()
         L14:
             byte[] r7 = r6.data
             int r8 = r6.pos
@@ -1018,21 +1022,21 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Segment segment = this.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
         if (i3 - i2 < 4) {
-            return ((readByte() & f1.f16099c) << 24) | ((readByte() & f1.f16099c) << 16) | ((readByte() & f1.f16099c) << 8) | (readByte() & f1.f16099c);
+            return ((readByte() & C5230f1.f20085c) << 24) | ((readByte() & C5230f1.f20085c) << 16) | ((readByte() & C5230f1.f20085c) << 8) | (readByte() & C5230f1.f20085c);
         }
         byte[] bArr = segment.data;
         int i4 = i2 + 1;
         int i5 = i4 + 1;
-        int i6 = ((bArr[i2] & f1.f16099c) << 24) | ((bArr[i4] & f1.f16099c) << 16);
+        int i6 = ((bArr[i2] & C5230f1.f20085c) << 24) | ((bArr[i4] & C5230f1.f20085c) << 16);
         int i7 = i5 + 1;
-        int i8 = i6 | ((bArr[i5] & f1.f16099c) << 8);
+        int i8 = i6 | ((bArr[i5] & C5230f1.f20085c) << 8);
         int i9 = i7 + 1;
-        int i10 = i8 | (bArr[i7] & f1.f16099c);
+        int i10 = i8 | (bArr[i7] & C5230f1.f20085c);
         setSize$okio(size() - 4);
         if (i9 == i3) {
             this.head = segment.pop();
@@ -1055,7 +1059,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Segment segment = this.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
@@ -1095,17 +1099,17 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Segment segment = this.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
         if (i3 - i2 < 2) {
-            return (short) (((readByte() & f1.f16099c) << 8) | (readByte() & f1.f16099c));
+            return (short) (((readByte() & C5230f1.f20085c) << 8) | (readByte() & C5230f1.f20085c));
         }
         byte[] bArr = segment.data;
         int i4 = i2 + 1;
         int i5 = i4 + 1;
-        int i6 = ((bArr[i2] & f1.f16099c) << 8) | (bArr[i4] & f1.f16099c);
+        int i6 = ((bArr[i2] & C5230f1.f20085c) << 8) | (bArr[i4] & C5230f1.f20085c);
         setSize$okio(size() - 2);
         if (i5 == i3) {
             this.head = segment.pop();
@@ -1122,22 +1126,22 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
-    public String readString(@i.c.a.d Charset charset) {
-        i0.f(charset, "charset");
+    @InterfaceC5816d
+    public String readString(@InterfaceC5816d Charset charset) {
+        C5544i0.m22546f(charset, "charset");
         return readString(this.size, charset);
     }
 
-    @f
-    @i.c.a.d
+    @InterfaceC5482f
+    @InterfaceC5816d
     public final UnsafeCursor readUnsafe() {
         return readUnsafe$default(this, null, 1, null);
     }
 
-    @f
-    @i.c.a.d
-    public final UnsafeCursor readUnsafe(@i.c.a.d UnsafeCursor unsafeCursor) {
-        i0.f(unsafeCursor, "unsafeCursor");
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final UnsafeCursor readUnsafe(@InterfaceC5816d UnsafeCursor unsafeCursor) {
+        C5544i0.m22546f(unsafeCursor, "unsafeCursor");
         if (!(unsafeCursor.buffer == null)) {
             throw new IllegalStateException("already attached to a buffer".toString());
         }
@@ -1147,9 +1151,9 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public String readUtf8() {
-        return readString(this.size, h.z2.f.f16682a);
+        return readString(this.size, C5731f.f20676a);
     }
 
     @Override // okio.BufferedSource
@@ -1161,8 +1165,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             throw new EOFException();
         }
         byte b2 = getByte(0L);
-        if ((b2 & n.f16413a) == 0) {
-            i2 = b2 & n.f16414b;
+        if ((b2 & C5558n.f20401a) == 0) {
+            i2 = b2 & C5558n.f20402b;
             i3 = 1;
             i4 = 0;
         } else if ((b2 & 224) == 192) {
@@ -1170,7 +1174,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             i3 = 2;
             i4 = 128;
         } else if ((b2 & 240) == 224) {
-            i2 = b2 & cw.f10303m;
+            i2 = b2 & C3393cw.f11873m;
             i3 = 3;
             i4 = 2048;
         } else {
@@ -1200,7 +1204,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @e
+    @InterfaceC5817e
     public String readUtf8Line() throws EOFException {
         long indexOf = indexOf((byte) 10);
         if (indexOf != -1) {
@@ -1213,9 +1217,9 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public String readUtf8LineStrict() throws EOFException {
-        return readUtf8LineStrict(m0.f16408b);
+        return readUtf8LineStrict(C5556m0.f20396b);
     }
 
     @Override // okio.BufferedSource
@@ -1231,8 +1235,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public int select(@i.c.a.d Options options) {
-        i0.f(options, "options");
+    public int select(@InterfaceC5816d Options options) {
+        C5544i0.m22546f(options, "options");
         int selectPrefix$default = BufferKt.selectPrefix$default(this, options, false, 2, null);
         if (selectPrefix$default == -1) {
             return -1;
@@ -1245,22 +1249,22 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         this.size = j2;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString sha1() {
         return digest("SHA-1");
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString sha256() {
         return digest("SHA-256");
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString sha512() {
         return digest("SHA-512");
     }
 
-    @h.q2.e(name = "size")
+    @InterfaceC5481e(name = "size")
     public final long size() {
         return this.size;
     }
@@ -1284,7 +1288,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString snapshot() {
         if (size() <= ((long) Integer.MAX_VALUE)) {
             return snapshot((int) size());
@@ -1293,17 +1297,17 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.Source
-    @i.c.a.d
+    @InterfaceC5816d
     public Timeout timeout() {
         return Timeout.NONE;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public String toString() {
         return snapshot().toString();
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final Segment writableSegment$okio(int i2) {
         if (!(i2 >= 1 && i2 <= 8192)) {
             throw new IllegalArgumentException("unexpected capacity".toString());
@@ -1317,18 +1321,18 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             return take;
         }
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         Segment segment2 = segment.prev;
         if (segment2 == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         return (segment2.limit + i2 > 8192 || !segment2.owner) ? segment2.push(SegmentPool.INSTANCE.take()) : segment2;
     }
 
     @Override // okio.BufferedSink
-    public long writeAll(@i.c.a.d Source source) throws IOException {
-        i0.f(source, "source");
+    public long writeAll(@InterfaceC5816d Source source) throws IOException {
+        C5544i0.m22546f(source, "source");
         long j2 = 0;
         while (true) {
             long read = source.read(this, 8192);
@@ -1339,21 +1343,21 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
     }
 
-    @f
-    @i.c.a.d
-    public final Buffer writeTo(@i.c.a.d OutputStream outputStream) throws IOException {
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final Buffer writeTo(@InterfaceC5816d OutputStream outputStream) throws IOException {
         return writeTo$default(this, outputStream, 0L, 2, null);
     }
 
-    @f
-    @i.c.a.d
-    public final Buffer writeTo(@i.c.a.d OutputStream outputStream, long j2) throws IOException {
-        i0.f(outputStream, "out");
+    @InterfaceC5482f
+    @InterfaceC5816d
+    public final Buffer writeTo(@InterfaceC5816d OutputStream outputStream, long j2) throws IOException {
+        C5544i0.m22546f(outputStream, "out");
         Util.checkOffsetAndCount(this.size, 0L, j2);
         Segment segment = this.head;
         while (j2 > 0) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             int min = (int) Math.min(j2, segment.limit - segment.pos);
             outputStream.write(segment.data, segment.pos, min);
@@ -1371,21 +1375,21 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return this;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer clone() {
         return copy();
     }
 
     @Override // okio.BufferedSource
     public long indexOf(byte b2, long j2) {
-        return indexOf(b2, j2, m0.f16408b);
+        return indexOf(b2, j2, C5556m0.f20396b);
     }
 
     @Override // okio.BufferedSource
-    public long indexOfElement(@i.c.a.d ByteString byteString, long j2) {
+    public long indexOfElement(@InterfaceC5816d ByteString byteString, long j2) {
         int i2;
         int i3;
-        i0.f(byteString, "targetBytes");
+        C5544i0.m22546f(byteString, "targetBytes");
         long j3 = 0;
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("fromIndex < 0: " + j2).toString());
@@ -1399,7 +1403,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             while (j3 > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j3 -= segment.limit - segment.pos;
             }
@@ -1423,7 +1427,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     j2 = (segment.limit - segment.pos) + j3;
                     segment = segment.next;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     j3 = j2;
                 }
@@ -1446,7 +1450,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 j2 = (segment.limit - segment.pos) + j3;
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j3 = j2;
             }
@@ -1459,7 +1463,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j3 = j4;
         }
@@ -1483,7 +1487,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 j2 = (segment.limit - segment.pos) + j3;
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j3 = j2;
             }
@@ -1506,7 +1510,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             j2 = (segment.limit - segment.pos) + j3;
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j3 = j2;
         }
@@ -1515,8 +1519,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public boolean rangeEquals(long j2, @i.c.a.d ByteString byteString, int i2, int i3) {
-        i0.f(byteString, "bytes");
+    public boolean rangeEquals(long j2, @InterfaceC5816d ByteString byteString, int i2, int i3) {
+        C5544i0.m22546f(byteString, "bytes");
         if (j2 < 0 || i2 < 0 || i3 < 0 || size() - j2 < i3 || byteString.size() - i2 < i3) {
             return false;
         }
@@ -1529,7 +1533,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public byte[] readByteArray(long j2) throws EOFException {
         if (!(j2 >= 0 && j2 <= ((long) Integer.MAX_VALUE))) {
             throw new IllegalArgumentException(("byteCount: " + j2).toString());
@@ -1543,7 +1547,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public ByteString readByteString(long j2) throws EOFException {
         if (!(j2 >= 0 && j2 <= ((long) Integer.MAX_VALUE))) {
             throw new IllegalArgumentException(("byteCount: " + j2).toString());
@@ -1559,9 +1563,9 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return snapshot;
     }
 
-    @i.c.a.d
-    public final Buffer readFrom(@i.c.a.d InputStream inputStream, long j2) throws IOException {
-        i0.f(inputStream, "input");
+    @InterfaceC5816d
+    public final Buffer readFrom(@InterfaceC5816d InputStream inputStream, long j2) throws IOException {
+        C5544i0.m22546f(inputStream, "input");
         if (j2 >= 0) {
             readFrom(inputStream, j2, false);
             return this;
@@ -1570,9 +1574,9 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
-    public String readString(long j2, @i.c.a.d Charset charset) throws EOFException {
-        i0.f(charset, "charset");
+    @InterfaceC5816d
+    public String readString(long j2, @InterfaceC5816d Charset charset) throws EOFException {
+        C5544i0.m22546f(charset, "charset");
         if (!(j2 >= 0 && j2 <= ((long) Integer.MAX_VALUE))) {
             throw new IllegalArgumentException(("byteCount: " + j2).toString());
         }
@@ -1584,7 +1588,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Segment segment = this.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         if (i2 + j2 > segment.limit) {
@@ -1602,19 +1606,19 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public String readUtf8(long j2) throws EOFException {
-        return readString(j2, h.z2.f.f16682a);
+        return readString(j2, C5731f.f20676a);
     }
 
     @Override // okio.BufferedSource
-    @i.c.a.d
+    @InterfaceC5816d
     public String readUtf8LineStrict(long j2) throws EOFException {
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("limit < 0: " + j2).toString());
         }
-        long j3 = m0.f16408b;
-        if (j2 != m0.f16408b) {
+        long j3 = C5556m0.f20396b;
+        if (j2 != C5556m0.f20396b) {
             j3 = j2 + 1;
         }
         byte b2 = (byte) 10;
@@ -1627,11 +1631,11 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         Buffer buffer = new Buffer();
         copyTo(buffer, 0L, Math.min(32, size()));
-        throw new EOFException("\\n not found: limit=" + Math.min(size(), j2) + " content=" + buffer.readByteString().hex() + h0.E);
+        throw new EOFException("\\n not found: limit=" + Math.min(size(), j2) + " content=" + buffer.readByteString().hex() + C5736h0.f20702E);
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeByte(int i2) {
         Segment writableSegment$okio = writableSegment$okio(1);
         byte[] bArr = writableSegment$okio.data;
@@ -1643,7 +1647,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeDecimalLong(long j2) {
         if (j2 == 0) {
             return writeByte(48);
@@ -1659,7 +1663,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         }
         if (j2 >= 100000000) {
             i2 = j2 < 1000000000000L ? j2 < 10000000000L ? j2 < 1000000000 ? 9 : 10 : j2 < 100000000000L ? 11 : 12 : j2 < 1000000000000000L ? j2 < 10000000000000L ? 13 : j2 < 100000000000000L ? 14 : 15 : j2 < 100000000000000000L ? j2 < 10000000000000000L ? 16 : 17 : j2 < 1000000000000000000L ? 18 : 19;
-        } else if (j2 >= a.q) {
+        } else if (j2 >= C2084a.f6135q) {
             i2 = j2 < 1000000 ? j2 < 100000 ? 5 : 6 : j2 < 10000000 ? 7 : 8;
         } else if (j2 >= 100) {
             i2 = j2 < 1000 ? 3 : 4;
@@ -1687,7 +1691,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeHexadecimalUnsignedLong(long j2) {
         if (j2 == 0) {
             return writeByte(48);
@@ -1717,7 +1721,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeInt(int i2) {
         Segment writableSegment$okio = writableSegment$okio(4);
         byte[] bArr = writableSegment$okio.data;
@@ -1735,13 +1739,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeIntLe(int i2) {
         return writeInt(Util.reverseBytes(i2));
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeLong(long j2) {
         Segment writableSegment$okio = writableSegment$okio(8);
         byte[] bArr = writableSegment$okio.data;
@@ -1767,13 +1771,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeLongLe(long j2) {
         return writeLong(Util.reverseBytes(j2));
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeShort(int i2) {
         Segment writableSegment$okio = writableSegment$okio(2);
         byte[] bArr = writableSegment$okio.data;
@@ -1787,13 +1791,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeShortLe(int i2) {
         return writeShort((int) Util.reverseBytes((short) i2));
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
+    @InterfaceC5816d
     public Buffer writeUtf8CodePoint(int i2) {
         if (i2 < 128) {
             writeByte(i2);
@@ -1834,23 +1838,23 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public long indexOf(@i.c.a.d ByteString byteString) throws IOException {
-        i0.f(byteString, "bytes");
+    public long indexOf(@InterfaceC5816d ByteString byteString) throws IOException {
+        C5544i0.m22546f(byteString, "bytes");
         return indexOf(byteString, 0L);
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer writeString(@i.c.a.d String str, @i.c.a.d Charset charset) {
-        i0.f(str, "string");
-        i0.f(charset, "charset");
+    @InterfaceC5816d
+    public Buffer writeString(@InterfaceC5816d String str, @InterfaceC5816d Charset charset) {
+        C5544i0.m22546f(str, "string");
+        C5544i0.m22546f(charset, "charset");
         return writeString(str, 0, str.length(), charset);
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer writeUtf8(@i.c.a.d String str) {
-        i0.f(str, "string");
+    @InterfaceC5816d
+    public Buffer writeUtf8(@InterfaceC5816d String str) {
+        C5544i0.m22546f(str, "string");
         return writeUtf8(str, 0, str.length());
     }
 
@@ -1897,7 +1901,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             while (j4 > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j4 -= segment.limit - segment.pos;
             }
@@ -1916,7 +1920,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                 j2 = (segment.limit - segment.pos) + j4;
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j4 = j2;
             }
@@ -1929,7 +1933,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j4 = j5;
         }
@@ -1948,7 +1952,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             j2 = (segment.limit - segment.pos) + j4;
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j4 = j2;
         }
@@ -1956,7 +1960,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return (i2 - segment.pos) + j4;
     }
 
-    @i.c.a.d
+    @InterfaceC5816d
     public final ByteString snapshot(int i2) {
         if (i2 == 0) {
             return ByteString.EMPTY;
@@ -1968,7 +1972,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         int i5 = 0;
         while (i4 < i2) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             int i6 = segment.limit;
             int i7 = segment.pos;
@@ -1986,7 +1990,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         int i8 = 0;
         while (i3 < i2) {
             if (segment2 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             bArr[i8] = segment2.data;
             i3 += segment2.limit - segment2.pos;
@@ -2000,26 +2004,26 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer writeString(@i.c.a.d String str, int i2, int i3, @i.c.a.d Charset charset) {
-        i0.f(str, "string");
-        i0.f(charset, "charset");
+    @InterfaceC5816d
+    public Buffer writeString(@InterfaceC5816d String str, int i2, int i3, @InterfaceC5816d Charset charset) {
+        C5544i0.m22546f(str, "string");
+        C5544i0.m22546f(charset, "charset");
         if (!(i2 >= 0)) {
             throw new IllegalArgumentException(("beginIndex < 0: " + i2).toString());
         }
         if (i3 >= i2) {
             if (i3 <= str.length()) {
-                if (i0.a(charset, h.z2.f.f16682a)) {
+                if (C5544i0.m22531a(charset, C5731f.f20676a)) {
                     return writeUtf8(str, i2, i3);
                 }
                 String substring = str.substring(i2, i3);
-                i0.a((Object) substring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+                C5544i0.m22521a((Object) substring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
                 if (substring != null) {
                     byte[] bytes = substring.getBytes(charset);
-                    i0.a((Object) bytes, "(this as java.lang.String).getBytes(charset)");
+                    C5544i0.m22521a((Object) bytes, "(this as java.lang.String).getBytes(charset)");
                     return write(bytes, 0, bytes.length);
                 }
-                throw new e1("null cannot be cast to non-null type java.lang.String");
+                throw new C5226e1("null cannot be cast to non-null type java.lang.String");
             }
             throw new IllegalArgumentException(("endIndex > string.length: " + i3 + " > " + str.length()).toString());
         }
@@ -2027,9 +2031,9 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer writeUtf8(@i.c.a.d String str, int i2, int i3) {
-        i0.f(str, "string");
+    @InterfaceC5816d
+    public Buffer writeUtf8(@InterfaceC5816d String str, int i2, int i3) {
+        C5544i0.m22546f(str, "string");
         if (!(i2 >= 0)) {
             throw new IllegalArgumentException(("beginIndex < 0: " + i2).toString());
         }
@@ -2106,8 +2110,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public void readFully(@i.c.a.d byte[] bArr) throws EOFException {
-        i0.f(bArr, "sink");
+    public void readFully(@InterfaceC5816d byte[] bArr) throws EOFException {
+        C5544i0.m22546f(bArr, "sink");
         int i2 = 0;
         while (i2 < bArr.length) {
             int read = read(bArr, i2, bArr.length - i2);
@@ -2119,8 +2123,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // java.nio.channels.WritableByteChannel
-    public int write(@i.c.a.d ByteBuffer byteBuffer) throws IOException {
-        i0.f(byteBuffer, "source");
+    public int write(@InterfaceC5816d ByteBuffer byteBuffer) throws IOException {
+        C5544i0.m22546f(byteBuffer, "source");
         int remaining = byteBuffer.remaining();
         int i2 = remaining;
         while (i2 > 0) {
@@ -2135,20 +2139,20 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public int read(@i.c.a.d byte[] bArr) {
-        i0.f(bArr, "sink");
+    public int read(@InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(bArr, "sink");
         return read(bArr, 0, bArr.length);
     }
 
-    @i.c.a.d
-    public final Buffer copyTo(@i.c.a.d Buffer buffer, long j2) {
-        i0.f(buffer, "out");
+    @InterfaceC5816d
+    public final Buffer copyTo(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "out");
         return copyTo(buffer, j2, this.size - j2);
     }
 
     @Override // okio.BufferedSource
-    public int read(@i.c.a.d byte[] bArr, int i2, int i3) {
-        i0.f(bArr, "sink");
+    public int read(@InterfaceC5816d byte[] bArr, int i2, int i3) {
+        C5544i0.m22546f(bArr, "sink");
         Util.checkOffsetAndCount(bArr.length, i2, i3);
         Segment segment = this.head;
         if (segment == null) {
@@ -2157,7 +2161,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         int min = Math.min(i3, segment.limit - segment.pos);
         byte[] bArr2 = segment.data;
         int i4 = segment.pos;
-        q.a(bArr2, bArr, i2, i4, i4 + min);
+        C5291q.m20196a(bArr2, bArr, i2, i4, i4 + min);
         segment.pos += min;
         setSize$okio(size() - min);
         if (segment.pos != segment.limit) {
@@ -2168,16 +2172,16 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         return min;
     }
 
-    @i.c.a.d
-    public final Buffer copyTo(@i.c.a.d Buffer buffer, long j2, long j3) {
-        i0.f(buffer, "out");
+    @InterfaceC5816d
+    public final Buffer copyTo(@InterfaceC5816d Buffer buffer, long j2, long j3) {
+        C5544i0.m22546f(buffer, "out");
         Util.checkOffsetAndCount(size(), j2, j3);
         if (j3 != 0) {
             buffer.setSize$okio(buffer.size() + j3);
             Segment segment = this.head;
             while (true) {
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 int i2 = segment.limit;
                 int i3 = segment.pos;
@@ -2189,7 +2193,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             }
             while (j3 > 0) {
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 Segment sharedCopy = segment.sharedCopy();
                 sharedCopy.pos += (int) j2;
@@ -2201,11 +2205,11 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     buffer.head = sharedCopy.next;
                 } else {
                     if (segment2 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     Segment segment3 = segment2.prev;
                     if (segment3 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     segment3.push(sharedCopy);
                 }
@@ -2218,32 +2222,32 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer write(@i.c.a.d ByteString byteString) {
-        i0.f(byteString, "byteString");
+    @InterfaceC5816d
+    public Buffer write(@InterfaceC5816d ByteString byteString) {
+        C5544i0.m22546f(byteString, "byteString");
         byteString.write$okio(this, 0, byteString.size());
         return this;
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer write(@i.c.a.d ByteString byteString, int i2, int i3) {
-        i0.f(byteString, "byteString");
+    @InterfaceC5816d
+    public Buffer write(@InterfaceC5816d ByteString byteString, int i2, int i3) {
+        C5544i0.m22546f(byteString, "byteString");
         byteString.write$okio(this, i2, i3);
         return this;
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer write(@i.c.a.d byte[] bArr) {
-        i0.f(bArr, "source");
+    @InterfaceC5816d
+    public Buffer write(@InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(bArr, "source");
         return write(bArr, 0, bArr.length);
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer write(@i.c.a.d byte[] bArr, int i2, int i3) {
-        i0.f(bArr, "source");
+    @InterfaceC5816d
+    public Buffer write(@InterfaceC5816d byte[] bArr, int i2, int i3) {
+        C5544i0.m22546f(bArr, "source");
         long j2 = i3;
         Util.checkOffsetAndCount(bArr.length, i2, j2);
         int i4 = i3 + i2;
@@ -2251,7 +2255,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
             Segment writableSegment$okio = writableSegment$okio(1);
             int min = Math.min(i4 - i2, 8192 - writableSegment$okio.limit);
             int i5 = i2 + min;
-            q.a(bArr, writableSegment$okio.data, writableSegment$okio.limit, i2, i5);
+            C5291q.m20196a(bArr, writableSegment$okio.data, writableSegment$okio.limit, i2, i5);
             writableSegment$okio.limit += min;
             i2 = i5;
         }
@@ -2260,8 +2264,8 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.Source
-    public long read(@i.c.a.d Buffer buffer, long j2) {
-        i0.f(buffer, "sink");
+    public long read(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "sink");
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("byteCount < 0: " + j2).toString());
         }
@@ -2276,9 +2280,9 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSink
-    @i.c.a.d
-    public Buffer write(@i.c.a.d Source source, long j2) throws IOException {
-        i0.f(source, "source");
+    @InterfaceC5816d
+    public Buffer write(@InterfaceC5816d Source source, long j2) throws IOException {
+        C5544i0.m22546f(source, "source");
         while (j2 > 0) {
             long read = source.read(this, j2);
             if (read == -1) {
@@ -2290,10 +2294,10 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.BufferedSource
-    public long indexOf(@i.c.a.d ByteString byteString, long j2) throws IOException {
+    public long indexOf(@InterfaceC5816d ByteString byteString, long j2) throws IOException {
         long j3;
         long j4 = j2;
-        i0.f(byteString, "bytes");
+        C5544i0.m22546f(byteString, "bytes");
         if (!(byteString.size() > 0)) {
             throw new IllegalArgumentException("bytes is empty".toString());
         }
@@ -2306,7 +2310,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     while (size > j4) {
                         segment = segment.prev;
                         if (segment == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         size -= segment.limit - segment.pos;
                     }
@@ -2328,7 +2332,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                             j4 = j6 + (segment.limit - segment.pos);
                             segment = segment.next;
                             if (segment == null) {
-                                i0.f();
+                                C5544i0.m22545f();
                             }
                             size = j4;
                         }
@@ -2341,7 +2345,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                         }
                         segment = segment.next;
                         if (segment == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         j5 = j7;
                     }
@@ -2363,7 +2367,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                             j4 = (segment.limit - segment.pos) + j5;
                             segment = segment.next;
                             if (segment == null) {
-                                i0.f();
+                                C5544i0.m22545f();
                             }
                             j5 = j4;
                             size5 = j8;
@@ -2377,25 +2381,25 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     @Override // okio.Sink
-    public void write(@i.c.a.d Buffer buffer, long j2) {
+    public void write(@InterfaceC5816d Buffer buffer, long j2) {
         Segment segment;
-        i0.f(buffer, "source");
+        C5544i0.m22546f(buffer, "source");
         if (buffer != this) {
             Util.checkOffsetAndCount(buffer.size(), 0L, j2);
             while (j2 > 0) {
                 Segment segment2 = buffer.head;
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 int i2 = segment2.limit;
                 if (buffer.head == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 if (j2 < i2 - r2.pos) {
                     Segment segment3 = this.head;
                     if (segment3 != null) {
                         if (segment3 == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         segment = segment3.prev;
                     } else {
@@ -2405,7 +2409,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                         if ((segment.limit + j2) - (segment.shared ? 0 : segment.pos) <= 8192) {
                             Segment segment4 = buffer.head;
                             if (segment4 == null) {
-                                i0.f();
+                                C5544i0.m22545f();
                             }
                             segment4.writeTo(segment, (int) j2);
                             buffer.setSize$okio(buffer.size() - j2);
@@ -2415,13 +2419,13 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     }
                     Segment segment5 = buffer.head;
                     if (segment5 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     buffer.head = segment5.split((int) j2);
                 }
                 Segment segment6 = buffer.head;
                 if (segment6 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 long j3 = segment6.limit - segment6.pos;
                 buffer.head = segment6.pop();
@@ -2432,11 +2436,11 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
                     segment6.next = segment6.prev;
                 } else {
                     if (segment7 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     Segment segment8 = segment7.prev;
                     if (segment8 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     segment8.push(segment6).compact();
                 }

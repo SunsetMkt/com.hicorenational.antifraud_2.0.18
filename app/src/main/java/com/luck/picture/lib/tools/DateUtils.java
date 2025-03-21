@@ -6,7 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 /* loaded from: classes.dex */
 public class DateUtils {
-    private static SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd_HHmmssSS");
+
+    /* renamed from: sf */
+    private static SimpleDateFormat f8403sf = new SimpleDateFormat("yyyyMMdd_HHmmssSS");
 
     public static String cdTime(long j2, long j3) {
         long j4 = j3 - j2;
@@ -30,10 +32,10 @@ public class DateUtils {
     }
 
     public static String getCreateFileName(String str) {
-        return str + sf.format(Long.valueOf(System.currentTimeMillis()));
+        return str + f8403sf.format(Long.valueOf(System.currentTimeMillis()));
     }
 
     public static String getCreateFileName() {
-        return sf.format(Long.valueOf(System.currentTimeMillis()));
+        return f8403sf.format(Long.valueOf(System.currentTimeMillis()));
     }
 }

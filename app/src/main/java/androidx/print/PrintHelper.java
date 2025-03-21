@@ -183,7 +183,7 @@ public final class PrintHelper {
                     @Override // android.os.AsyncTask
                     public void onPostExecute(Bitmap bitmap) {
                         PrintAttributes.MediaSize mediaSize;
-                        super.onPostExecute((AnonymousClass1) bitmap);
+                        super.onPostExecute((AsyncTaskC06171) bitmap);
                         if (bitmap != null && (!PrintHelper.PRINT_ACTIVITY_RESPECTS_ORIENTATION || PrintHelper.this.mOrientation == 0)) {
                             synchronized (this) {
                                 mediaSize = PrintUriAdapter.this.mAttributes.getMediaSize();

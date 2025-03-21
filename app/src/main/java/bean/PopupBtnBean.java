@@ -6,14 +6,18 @@ import network.BaseBean;
 public class PopupBtnBean extends BaseBean {
     private String color;
     private String createTime;
-    private long id;
+
+    /* renamed from: id */
+    private long f1608id;
     private int isClosePopup;
     private int openType;
     private long popupID;
     private int sort;
     private String text;
     private String title;
-    private String to;
+
+    /* renamed from: to */
+    private String f1609to;
     private String updateTime;
 
     public String getColor() {
@@ -25,7 +29,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1608id;
     }
 
     public int getIsClosePopup() {
@@ -53,7 +57,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public String getTo() {
-        return this.to;
+        return this.f1609to;
     }
 
     public String getUpdateTime() {
@@ -69,7 +73,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1608id = j2;
     }
 
     public void setIsClosePopup(int i2) {
@@ -97,7 +101,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public void setTo(String str) {
-        this.to = str;
+        this.f1609to = str;
     }
 
     public void setUpdateTime(String str) {

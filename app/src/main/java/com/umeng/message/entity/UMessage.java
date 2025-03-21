@@ -4,8 +4,8 @@ import android.text.TextUtils;
 import com.huawei.hms.push.constant.RemoteMessageConst;
 import com.just.agentweb.DefaultWebClient;
 import com.tencent.open.SocialConstants;
-import com.umeng.analytics.pro.bh;
-import com.umeng.ccg.a;
+import com.umeng.analytics.pro.C3351bh;
+import com.umeng.ccg.C3438a;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -77,7 +77,7 @@ public class UMessage {
             this.play_vibrate = optJSONObject.optBoolean("play_vibrate", true);
             this.play_lights = optJSONObject.optBoolean("play_lights", true);
             this.play_sound = optJSONObject.optBoolean("play_sound", true);
-            this.screen_on = optJSONObject.optBoolean(a.f10596f, false);
+            this.screen_on = optJSONObject.optBoolean(C3438a.f12333f, false);
             this.url = optJSONObject.optString("url");
             this.img = optJSONObject.optString(SocialConstants.PARAM_IMG_URL);
             this.sound = optJSONObject.optString(RemoteMessageConst.Notification.SOUND);
@@ -123,7 +123,7 @@ public class UMessage {
                 }
             }
         }
-        if (this.msg_id.length() == 22 && this.msg_id.startsWith(bh.aK)) {
+        if (this.msg_id.length() == 22 && this.msg_id.startsWith(C3351bh.f11586aK)) {
             try {
                 this.timestamp = Long.parseLong(this.msg_id.substring(7, 20));
             } catch (Throwable unused) {

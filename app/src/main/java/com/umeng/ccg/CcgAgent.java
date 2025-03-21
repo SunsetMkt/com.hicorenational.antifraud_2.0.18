@@ -17,10 +17,10 @@ public class CcgAgent {
     private static Map<String, ArrayList<String>> forbidSdkTable = new HashMap();
 
     static {
-        forbidSdkTable.put(a.f10595e, new ArrayList<>());
-        forbidSdkTable.put(a.f10594d, new ArrayList<>());
-        forbidSdkTable.put(a.f10592b, new ArrayList<>());
-        forbidSdkTable.put(a.f10593c, new ArrayList<>());
+        forbidSdkTable.put(C3438a.f12332e, new ArrayList<>());
+        forbidSdkTable.put(C3438a.f12331d, new ArrayList<>());
+        forbidSdkTable.put(C3438a.f12329b, new ArrayList<>());
+        forbidSdkTable.put(C3438a.f12330c, new ArrayList<>());
     }
 
     public static ActionInfo getActionInfo(String str) {
@@ -33,7 +33,7 @@ public class CcgAgent {
     }
 
     public static String[] getCollectItemList() {
-        return new String[]{a.f10595e, a.f10594d, a.f10592b, a.f10593c};
+        return new String[]{C3438a.f12332e, C3438a.f12331d, C3438a.f12329b, C3438a.f12330c};
     }
 
     public static ArrayList<String> getForbidSdkArray(String str) {
@@ -60,7 +60,7 @@ public class CcgAgent {
     }
 
     public static void init(Context context) {
-        d.a().a(context);
+        C3441d.m11471a().m11492a(context);
     }
 
     public static void notifyConfigReady(JSONObject jSONObject) {

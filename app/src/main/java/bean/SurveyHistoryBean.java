@@ -8,7 +8,9 @@ public class SurveyHistoryBean extends BaseBean {
     private int appCount;
     private int bankCardCount;
     private String createTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1628id;
     private int mobileCount;
     private int otherConversationCount;
     private int otherPaymentCount;
@@ -39,7 +41,7 @@ public class SurveyHistoryBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1628id;
     }
 
     public int getMobileCount() {
@@ -107,7 +109,7 @@ public class SurveyHistoryBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1628id = str;
     }
 
     public void setMobileCount(int i2) {

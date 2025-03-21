@@ -14,6 +14,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
+import com.yalantis.ucrop.C4415R;
 import com.yalantis.ucrop.model.AspectRatio;
 import java.util.Locale;
 
@@ -37,33 +38,33 @@ public class AspectRatioTextView extends AppCompatTextView {
         if (paint != null) {
             paint.setColor(i2);
         }
-        setTextColor(new ColorStateList(new int[][]{new int[]{R.attr.state_selected}, new int[]{0}}, new int[]{i2, ContextCompat.getColor(getContext(), com.yalantis.ucrop.R.color.ucrop_color_widget)}));
+        setTextColor(new ColorStateList(new int[][]{new int[]{R.attr.state_selected}, new int[]{0}}, new int[]{i2, ContextCompat.getColor(getContext(), C4415R.color.ucrop_color_widget)}));
     }
 
     private void init(@NonNull TypedArray typedArray) {
         setGravity(1);
-        this.mAspectRatioTitle = typedArray.getString(com.yalantis.ucrop.R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_title);
-        this.mAspectRatioX = typedArray.getFloat(com.yalantis.ucrop.R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_x, 0.0f);
-        this.mAspectRatioY = typedArray.getFloat(com.yalantis.ucrop.R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_y, 0.0f);
+        this.mAspectRatioTitle = typedArray.getString(C4415R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_title);
+        this.mAspectRatioX = typedArray.getFloat(C4415R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_x, 0.0f);
+        this.mAspectRatioY = typedArray.getFloat(C4415R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_y, 0.0f);
         float f2 = this.mAspectRatioX;
         if (f2 != 0.0f) {
             float f3 = this.mAspectRatioY;
             if (f3 != 0.0f) {
                 this.mAspectRatio = f2 / f3;
-                this.mDotSize = getContext().getResources().getDimensionPixelSize(com.yalantis.ucrop.R.dimen.ucrop_size_dot_scale_text_view);
+                this.mDotSize = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_size_dot_scale_text_view);
                 this.mDotPaint = new Paint(1);
                 this.mDotPaint.setStyle(Paint.Style.FILL);
                 setTitle();
-                applyActiveColor(getResources().getColor(com.yalantis.ucrop.R.color.ucrop_color_widget_active));
+                applyActiveColor(getResources().getColor(C4415R.color.ucrop_color_widget_active));
                 typedArray.recycle();
             }
         }
         this.mAspectRatio = 0.0f;
-        this.mDotSize = getContext().getResources().getDimensionPixelSize(com.yalantis.ucrop.R.dimen.ucrop_size_dot_scale_text_view);
+        this.mDotSize = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_size_dot_scale_text_view);
         this.mDotPaint = new Paint(1);
         this.mDotPaint.setStyle(Paint.Style.FILL);
         setTitle();
-        applyActiveColor(getResources().getColor(com.yalantis.ucrop.R.color.ucrop_color_widget_active));
+        applyActiveColor(getResources().getColor(C4415R.color.ucrop_color_widget_active));
         typedArray.recycle();
     }
 
@@ -134,7 +135,7 @@ public class AspectRatioTextView extends AppCompatTextView {
         super(context, attributeSet, i2);
         this.MARGIN_MULTIPLIER = 1.5f;
         this.mCanvasClipBounds = new Rect();
-        init(context.obtainStyledAttributes(attributeSet, com.yalantis.ucrop.R.styleable.ucrop_AspectRatioTextView));
+        init(context.obtainStyledAttributes(attributeSet, C4415R.styleable.ucrop_AspectRatioTextView));
     }
 
     @TargetApi(21)
@@ -142,6 +143,6 @@ public class AspectRatioTextView extends AppCompatTextView {
         super(context, attributeSet, i2);
         this.MARGIN_MULTIPLIER = 1.5f;
         this.mCanvasClipBounds = new Rect();
-        init(context.obtainStyledAttributes(attributeSet, com.yalantis.ucrop.R.styleable.ucrop_AspectRatioTextView));
+        init(context.obtainStyledAttributes(attributeSet, C4415R.styleable.ucrop_AspectRatioTextView));
     }
 }

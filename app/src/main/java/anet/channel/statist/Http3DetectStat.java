@@ -11,8 +11,9 @@ public class Http3DetectStat extends StatObject {
     @Dimension
     public String host;
 
+    /* renamed from: ip */
     @Dimension
-    public String ip;
+    public String f1000ip;
 
     @Dimension
     public volatile String netType;
@@ -26,7 +27,7 @@ public class Http3DetectStat extends StatObject {
     public Http3DetectStat(String str, IConnStrategy iConnStrategy) {
         this.host = str;
         if (iConnStrategy != null) {
-            this.ip = iConnStrategy.getIp();
+            this.f1000ip = iConnStrategy.getIp();
             this.protocol = iConnStrategy.getProtocol().protocol;
         }
         this.netType = NetworkStatusHelper.getNetworkSubType();

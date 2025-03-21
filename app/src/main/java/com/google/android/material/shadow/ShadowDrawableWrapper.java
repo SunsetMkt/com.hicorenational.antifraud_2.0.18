@@ -12,7 +12,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.core.content.ContextCompat;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 /* loaded from: classes.dex */
 public class ShadowDrawableWrapper extends DrawableWrapper {
@@ -43,9 +43,9 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         this.dirty = true;
         this.addPaddingForCorners = true;
         this.printedShadowClipWarning = false;
-        this.shadowStartColor = ContextCompat.getColor(context, R.color.design_fab_shadow_start_color);
-        this.shadowMiddleColor = ContextCompat.getColor(context, R.color.design_fab_shadow_mid_color);
-        this.shadowEndColor = ContextCompat.getColor(context, R.color.design_fab_shadow_end_color);
+        this.shadowStartColor = ContextCompat.getColor(context, C1921R.color.design_fab_shadow_start_color);
+        this.shadowMiddleColor = ContextCompat.getColor(context, C1921R.color.design_fab_shadow_mid_color);
+        this.shadowEndColor = ContextCompat.getColor(context, C1921R.color.design_fab_shadow_end_color);
         this.cornerShadowPaint = new Paint(5);
         this.cornerShadowPaint.setStyle(Paint.Style.FILL);
         this.cornerRadius = Math.round(f2);

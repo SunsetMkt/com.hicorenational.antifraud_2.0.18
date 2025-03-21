@@ -26,8 +26,12 @@ class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint> {
     private float position;
     int visibility;
     private float width;
-    private float x;
-    private float y;
+
+    /* renamed from: x */
+    private float f588x;
+
+    /* renamed from: y */
+    private float f589y;
     private float alpha = 1.0f;
     int mVisibilityMode = 0;
     private boolean applyElevation = false;
@@ -284,7 +288,7 @@ class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint> {
     }
 
     void fillStandard(double[] dArr, int[] iArr) {
-        float[] fArr = {this.position, this.x, this.y, this.width, this.height, this.alpha, this.elevation, this.rotation, this.rotationX, this.rotationY, this.scaleX, this.scaleY, this.mPivotX, this.mPivotY, this.translationX, this.translationY, this.translationZ, this.mPathRotate};
+        float[] fArr = {this.position, this.f588x, this.f589y, this.width, this.height, this.alpha, this.elevation, this.rotation, this.rotationX, this.rotationY, this.scaleX, this.scaleY, this.mPivotX, this.mPivotY, this.translationX, this.translationY, this.translationZ, this.mPathRotate};
         int i2 = 0;
         for (int i3 = 0; i3 < iArr.length; i3++) {
             if (iArr[i3] < fArr.length) {
@@ -320,8 +324,8 @@ class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint> {
     }
 
     void setBounds(float f2, float f3, float f4, float f5) {
-        this.x = f2;
-        this.y = f3;
+        this.f588x = f2;
+        this.f589y = f3;
         this.width = f4;
         this.height = f5;
     }
@@ -375,8 +379,8 @@ class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint> {
 
     void different(MotionConstrainedPoint motionConstrainedPoint, boolean[] zArr, String[] strArr) {
         zArr[0] = zArr[0] | diff(this.position, motionConstrainedPoint.position);
-        zArr[1] = zArr[1] | diff(this.x, motionConstrainedPoint.x);
-        zArr[2] = zArr[2] | diff(this.y, motionConstrainedPoint.y);
+        zArr[1] = zArr[1] | diff(this.f588x, motionConstrainedPoint.f588x);
+        zArr[2] = zArr[2] | diff(this.f589y, motionConstrainedPoint.f589y);
         zArr[3] = zArr[3] | diff(this.width, motionConstrainedPoint.width);
         zArr[4] = diff(this.height, motionConstrainedPoint.height) | zArr[4];
     }

@@ -1,6 +1,5 @@
 package com.umeng.socialize.net.dplus;
 
-import a.a.u.a;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -26,6 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.json.JSONException;
 import org.json.JSONObject;
+import p000a.p001a.p014u.C0052a;
 
 /* loaded from: classes2.dex */
 public class DplusApi {
@@ -37,7 +37,7 @@ public class DplusApi {
     public static JSONObject constructAuthContent(Map<String, String> map, boolean z, SHARE_MEDIA share_media, String str) throws JSONException {
         JSONObject constructBaseContent = constructBaseContent(share_media, str);
         if (map != null) {
-            constructBaseContent.put(CommonNetImpl.AM, share_media.getsharestyle(z));
+            constructBaseContent.put(CommonNetImpl.f13711AM, share_media.getsharestyle(z));
             if (share_media.toString().equals("WEIXIN")) {
                 constructBaseContent.put("uid", map.get("openid"));
             } else {
@@ -45,7 +45,7 @@ public class DplusApi {
             }
             constructBaseContent.put("unionid", map.get("unionid"));
             constructBaseContent.put(CommonNetImpl.AID, map.get(CommonNetImpl.AID));
-            constructBaseContent.put(CommonNetImpl.AS, map.get(CommonNetImpl.AS));
+            constructBaseContent.put(CommonNetImpl.f13712AS, map.get(CommonNetImpl.f13712AS));
             if (TextUtils.isEmpty(map.get("access_token"))) {
                 constructBaseContent.put("at", map.get("accessToken"));
             } else {
@@ -84,7 +84,7 @@ public class DplusApi {
         JSONObject constructBaseContent = constructBaseContent(share_media, str);
         String str2 = shareContent.mText;
         constructBaseContent.put(CommonNetImpl.STYPE, shareContent.getShareType());
-        constructBaseContent.put(CommonNetImpl.SM, share_media.getsharestyle(z));
+        constructBaseContent.put(CommonNetImpl.f13716SM, share_media.getsharestyle(z));
         if (!TextUtils.isEmpty(str2) && str2.length() > 10240) {
             str2 = str2.substring(0, 10240);
         }
@@ -208,7 +208,7 @@ public class DplusApi {
     public static JSONObject constructStatsAuthStartContent(boolean z, SHARE_MEDIA share_media, String str) throws JSONException {
         JSONObject constructBaseContent = constructBaseContent(share_media, str);
         constructBaseContent.put(CommonNetImpl.NAME, CommonNetImpl.S_A_S);
-        constructBaseContent.put(CommonNetImpl.AM, share_media.getsharestyle(z));
+        constructBaseContent.put(CommonNetImpl.f13711AM, share_media.getsharestyle(z));
         return constructBaseContent;
     }
 
@@ -250,7 +250,7 @@ public class DplusApi {
         JSONObject constructBaseContent = constructBaseContent(share_media, str);
         constructBaseContent.put(CommonNetImpl.NAME, CommonNetImpl.S_S_S);
         constructBaseContent.put(CommonNetImpl.U_C, z2 + "");
-        constructBaseContent.put(CommonNetImpl.SM, share_media.getsharestyle(z));
+        constructBaseContent.put(CommonNetImpl.f13716SM, share_media.getsharestyle(z));
         constructBaseContent.put(CommonNetImpl.STYPE, shareContent.getShareType());
         return constructBaseContent;
     }
@@ -270,8 +270,8 @@ public class DplusApi {
     public static JSONObject constructUserInfoContent(Map<String, String> map, SHARE_MEDIA share_media, String str) throws JSONException {
         JSONObject constructBaseContent = constructBaseContent(share_media, str);
         if (map != null) {
-            constructBaseContent.put(CommonNetImpl.UN, map.get(CommonNetImpl.NAME));
-            constructBaseContent.put(CommonNetImpl.UP, map.get("iconurl"));
+            constructBaseContent.put(CommonNetImpl.f13718UN, map.get(CommonNetImpl.NAME));
+            constructBaseContent.put(CommonNetImpl.f13719UP, map.get("iconurl"));
             constructBaseContent.put(CommonNetImpl.SEX, map.get(UserInfo.GENDER));
             if (TextUtils.isEmpty(map.get("location"))) {
                 constructBaseContent.put(CommonNetImpl.REGION, map.get(UserInfo.CITY));
@@ -309,10 +309,10 @@ public class DplusApi {
     }
 
     public static JSONObject getFakeData() throws JSONException {
-        JSONObject constructBaseContent = constructBaseContent(SHARE_MEDIA.SINA, a.n);
+        JSONObject constructBaseContent = constructBaseContent(SHARE_MEDIA.SINA, C0052a.f162n);
         constructBaseContent.put(CommonNetImpl.NAME, "testetstttttttttttttttttttttttttttttttt");
         constructBaseContent.put(CommonNetImpl.U_C, true);
-        constructBaseContent.put(CommonNetImpl.SM, "sso");
+        constructBaseContent.put(CommonNetImpl.f13716SM, "sso");
         constructBaseContent.put(CommonNetImpl.STYPE, 0);
         return constructBaseContent;
     }

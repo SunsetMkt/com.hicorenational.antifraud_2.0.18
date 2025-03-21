@@ -24,7 +24,9 @@ public class DetailBean extends BaseBean {
     private String fileName;
     private String number;
     private String occurTime;
-    public int os;
+
+    /* renamed from: os */
+    public int f1596os;
     private int type;
     private String version;
 
@@ -69,7 +71,7 @@ public class DetailBean extends BaseBean {
     }
 
     public int getOs() {
-        return this.os;
+        return this.f1596os;
     }
 
     public int getType() {
@@ -121,7 +123,7 @@ public class DetailBean extends BaseBean {
     }
 
     public void setOs(int i2) {
-        this.os = i2;
+        this.f1596os = i2;
     }
 
     public void setType(int i2) {

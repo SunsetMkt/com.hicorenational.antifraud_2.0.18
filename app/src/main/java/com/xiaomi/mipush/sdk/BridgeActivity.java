@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
 
 /* loaded from: classes2.dex */
 public class BridgeActivity extends Activity {
@@ -27,10 +28,10 @@ public class BridgeActivity extends Activity {
             try {
                 Intent intent2 = getIntent();
                 if (intent2 != null && (intent = (Intent) intent2.getParcelableExtra("mipush_serviceIntent")) != null) {
-                    PushMessageHandler.a(getApplicationContext(), intent);
+                    PushMessageHandler.m13457a(getApplicationContext(), intent);
                 }
             } catch (Exception e2) {
-                com.xiaomi.channel.commonutils.logger.b.a(e2);
+                AbstractC4022b.m13351a(e2);
             }
         } finally {
             finish();

@@ -5,7 +5,9 @@ import network.BaseBean;
 /* loaded from: classes.dex */
 public class ReportResultBean extends BaseBean {
     private String appReportDetailId;
-    private String id;
+
+    /* renamed from: id */
+    private String f1617id;
     private String reportDetailId;
 
     public String getAppReportDetailId() {
@@ -13,7 +15,7 @@ public class ReportResultBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1617id;
     }
 
     public String getReportDetailId() {
@@ -25,7 +27,7 @@ public class ReportResultBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1617id = str;
     }
 
     public void setReportDetailId(String str) {

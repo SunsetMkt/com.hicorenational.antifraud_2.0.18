@@ -1,76 +1,83 @@
 package com.tencent.bugly.crashreport;
 
 import androidx.exifinterface.media.ExifInterface;
-import com.tencent.bugly.b;
-import com.tencent.bugly.proguard.ap;
+import com.tencent.bugly.C3072b;
+import com.tencent.bugly.proguard.C3153ap;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* compiled from: BUGLY */
 /* loaded from: classes2.dex */
 public class BuglyLog {
-    public static void d(String str, String str2) {
+    /* renamed from: d */
+    public static void m9465d(String str, String str2) {
         if (str == null) {
             str = "";
         }
         if (str2 == null) {
-            str2 = c.c.a.b.a.a.f3101h;
+            str2 = AbstractC1191a.f2571h;
         }
-        boolean z = b.f8759c;
-        ap.a("D", str, str2);
+        boolean z = C3072b.f9834c;
+        C3153ap.m9931a("D", str, str2);
     }
 
-    public static void e(String str, String str2) {
+    /* renamed from: e */
+    public static void m9466e(String str, String str2) {
         if (str == null) {
             str = "";
         }
         if (str2 == null) {
-            str2 = c.c.a.b.a.a.f3101h;
+            str2 = AbstractC1191a.f2571h;
         }
-        boolean z = b.f8759c;
-        ap.a(ExifInterface.LONGITUDE_EAST, str, str2);
+        boolean z = C3072b.f9834c;
+        C3153ap.m9931a(ExifInterface.LONGITUDE_EAST, str, str2);
     }
 
-    public static void i(String str, String str2) {
+    /* renamed from: i */
+    public static void m9468i(String str, String str2) {
         if (str == null) {
             str = "";
         }
         if (str2 == null) {
-            str2 = c.c.a.b.a.a.f3101h;
+            str2 = AbstractC1191a.f2571h;
         }
-        boolean z = b.f8759c;
-        ap.a("I", str, str2);
+        boolean z = C3072b.f9834c;
+        C3153ap.m9931a("I", str, str2);
     }
 
     public static void setCache(int i2) {
-        ap.a(i2);
+        C3153ap.m9929a(i2);
     }
 
-    public static void v(String str, String str2) {
+    /* renamed from: v */
+    public static void m9469v(String str, String str2) {
         if (str == null) {
             str = "";
         }
         if (str2 == null) {
-            str2 = c.c.a.b.a.a.f3101h;
+            str2 = AbstractC1191a.f2571h;
         }
-        boolean z = b.f8759c;
-        ap.a(ExifInterface.GPS_MEASUREMENT_INTERRUPTED, str, str2);
+        boolean z = C3072b.f9834c;
+        C3153ap.m9931a(ExifInterface.GPS_MEASUREMENT_INTERRUPTED, str, str2);
     }
 
-    public static void w(String str, String str2) {
+    /* renamed from: w */
+    public static void m9470w(String str, String str2) {
         if (str == null) {
             str = "";
         }
         if (str2 == null) {
-            str2 = c.c.a.b.a.a.f3101h;
+            str2 = AbstractC1191a.f2571h;
         }
-        boolean z = b.f8759c;
-        ap.a(ExifInterface.LONGITUDE_WEST, str, str2);
+        boolean z = C3072b.f9834c;
+        C3153ap.m9931a(ExifInterface.LONGITUDE_WEST, str, str2);
     }
 
-    public static void e(String str, String str2, Throwable th) {
+    /* renamed from: e */
+    public static void m9467e(String str, String str2, Throwable th) {
         if (str == null) {
             str = "";
         }
-        boolean z = b.f8759c;
-        ap.a(ExifInterface.LONGITUDE_EAST, str, th);
+        boolean z = C3072b.f9834c;
+        C3153ap.m9932a(ExifInterface.LONGITUDE_EAST, str, th);
     }
 }

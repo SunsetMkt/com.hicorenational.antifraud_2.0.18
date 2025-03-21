@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.URL;
-import util.permissionutil.a;
+import util.permissionutil.C7308a;
 
 /* loaded from: classes2.dex */
 public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
@@ -187,7 +187,7 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
     }
 
     private String getFilePath() {
-        if (ContextCompat.checkSelfPermission(getContext(), a.z) == 0) {
+        if (ContextCompat.checkSelfPermission(getContext(), C7308a.f25547z) == 0) {
             return FileUtils.getPath(getContext(), this.mInputUri);
         }
         return null;

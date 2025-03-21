@@ -26,7 +26,7 @@ import android.view.ViewParent;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.core.internal.view.SupportMenu;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import com.xiaomi.mipush.sdk.Constants;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -504,24 +504,24 @@ public class SubsamplingScaleImageView extends View {
             }
         });
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.SubsamplingScaleImageView);
-            if (obtainStyledAttributes.hasValue(R.styleable.SubsamplingScaleImageView_assetName) && (string = obtainStyledAttributes.getString(R.styleable.SubsamplingScaleImageView_assetName)) != null && string.length() > 0) {
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C2639R.styleable.SubsamplingScaleImageView);
+            if (obtainStyledAttributes.hasValue(C2639R.styleable.SubsamplingScaleImageView_assetName) && (string = obtainStyledAttributes.getString(C2639R.styleable.SubsamplingScaleImageView_assetName)) != null && string.length() > 0) {
                 setImage(ImageSource.asset(string).tilingEnabled());
             }
-            if (obtainStyledAttributes.hasValue(R.styleable.SubsamplingScaleImageView_src) && (resourceId = obtainStyledAttributes.getResourceId(R.styleable.SubsamplingScaleImageView_src, 0)) > 0) {
+            if (obtainStyledAttributes.hasValue(C2639R.styleable.SubsamplingScaleImageView_src) && (resourceId = obtainStyledAttributes.getResourceId(C2639R.styleable.SubsamplingScaleImageView_src, 0)) > 0) {
                 setImage(ImageSource.resource(resourceId).tilingEnabled());
             }
-            if (obtainStyledAttributes.hasValue(R.styleable.SubsamplingScaleImageView_panEnabled)) {
-                setPanEnabled(obtainStyledAttributes.getBoolean(R.styleable.SubsamplingScaleImageView_panEnabled, true));
+            if (obtainStyledAttributes.hasValue(C2639R.styleable.SubsamplingScaleImageView_panEnabled)) {
+                setPanEnabled(obtainStyledAttributes.getBoolean(C2639R.styleable.SubsamplingScaleImageView_panEnabled, true));
             }
-            if (obtainStyledAttributes.hasValue(R.styleable.SubsamplingScaleImageView_zoomEnabled)) {
-                setZoomEnabled(obtainStyledAttributes.getBoolean(R.styleable.SubsamplingScaleImageView_zoomEnabled, true));
+            if (obtainStyledAttributes.hasValue(C2639R.styleable.SubsamplingScaleImageView_zoomEnabled)) {
+                setZoomEnabled(obtainStyledAttributes.getBoolean(C2639R.styleable.SubsamplingScaleImageView_zoomEnabled, true));
             }
-            if (obtainStyledAttributes.hasValue(R.styleable.SubsamplingScaleImageView_quickScaleEnabled)) {
-                setQuickScaleEnabled(obtainStyledAttributes.getBoolean(R.styleable.SubsamplingScaleImageView_quickScaleEnabled, true));
+            if (obtainStyledAttributes.hasValue(C2639R.styleable.SubsamplingScaleImageView_quickScaleEnabled)) {
+                setQuickScaleEnabled(obtainStyledAttributes.getBoolean(C2639R.styleable.SubsamplingScaleImageView_quickScaleEnabled, true));
             }
-            if (obtainStyledAttributes.hasValue(R.styleable.SubsamplingScaleImageView_tileBackgroundColor)) {
-                setTileBackgroundColor(obtainStyledAttributes.getColor(R.styleable.SubsamplingScaleImageView_tileBackgroundColor, Color.argb(0, 0, 0, 0)));
+            if (obtainStyledAttributes.hasValue(C2639R.styleable.SubsamplingScaleImageView_tileBackgroundColor)) {
+                setTileBackgroundColor(obtainStyledAttributes.getColor(C2639R.styleable.SubsamplingScaleImageView_tileBackgroundColor, Color.argb(0, 0, 0, 0)));
             }
             obtainStyledAttributes.recycle();
         }

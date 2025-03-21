@@ -14,9 +14,10 @@ public class JsonUtil {
     private JsonUtil() {
     }
 
-    private static void a(JSONObject jSONObject, String str, Object obj, Bundle bundle) {
+    /* renamed from: a */
+    private static void m7647a(JSONObject jSONObject, String str, Object obj, Bundle bundle) {
         if (obj == null) {
-            HMSLog.w("JsonUtil", "transfer jsonObject to bundle failed, defaultValue is null.");
+            HMSLog.m7718w("JsonUtil", "transfer jsonObject to bundle failed, defaultValue is null.");
             return;
         }
         if (obj instanceof String) {
@@ -48,7 +49,7 @@ public class JsonUtil {
             return;
         }
         if (!(obj instanceof String[])) {
-            HMSLog.w("JsonUtil", "transfer jsonObject to bundle failed, invalid data type.");
+            HMSLog.m7718w("JsonUtil", "transfer jsonObject to bundle failed, invalid data type.");
             return;
         }
         String[] strArr = (String[]) obj;
@@ -65,7 +66,7 @@ public class JsonUtil {
         try {
             return jSONObject.has(str) ? jSONObject.getInt(str) : i2;
         } catch (JSONException unused) {
-            HMSLog.w("JsonUtil", "JSONException: get " + str + " error.");
+            HMSLog.m7718w("JsonUtil", "JSONException: get " + str + " error.");
             return i2;
         }
     }
@@ -82,7 +83,7 @@ public class JsonUtil {
                     }
                 }
             } catch (JSONException unused) {
-                HMSLog.w("JsonUtil", "JSONException: get " + str + " error.");
+                HMSLog.m7718w("JsonUtil", "JSONException: get " + str + " error.");
             }
         }
         return iArr2 == null ? iArr : iArr2;
@@ -110,7 +111,7 @@ public class JsonUtil {
                     }
                 }
             } catch (JSONException unused) {
-                HMSLog.w("JsonUtil", "JSONException: get " + str + " error.");
+                HMSLog.m7718w("JsonUtil", "JSONException: get " + str + " error.");
             }
         }
         return jArr2 == null ? jArr : jArr2;
@@ -133,7 +134,7 @@ public class JsonUtil {
         try {
             return (!jSONObject.has(str) || jSONObject.get(str) == null) ? str2 : String.valueOf(jSONObject.get(str));
         } catch (JSONException unused) {
-            HMSLog.w("JsonUtil", "JSONException: get " + str + " error.");
+            HMSLog.m7718w("JsonUtil", "JSONException: get " + str + " error.");
             return str2;
         }
     }
@@ -150,7 +151,7 @@ public class JsonUtil {
                     }
                 }
             } catch (JSONException unused) {
-                HMSLog.w("JsonUtil", "JSONException: get " + str + " error.");
+                HMSLog.m7718w("JsonUtil", "JSONException: get " + str + " error.");
             }
         }
         return strArr2;
@@ -168,7 +169,7 @@ public class JsonUtil {
 
     public static void transferJsonObjectToBundle(JSONObject jSONObject, Bundle bundle, HashMap<String, Object> hashMap) {
         for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
-            a(jSONObject, entry.getKey(), entry.getValue(), bundle);
+            m7647a(jSONObject, entry.getKey(), entry.getValue(), bundle);
         }
     }
 }

@@ -5,7 +5,8 @@ import android.widget.ImageView;
 import bean.AppInfoBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
+import p357j.C5845d;
 
 /* loaded from: classes.dex */
 public class ScanAppAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
@@ -15,10 +16,11 @@ public class ScanAppAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHolder
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.chad.library.adapter.base.BaseQuickAdapter
-    public void a(BaseViewHolder baseViewHolder, AppInfoBean appInfoBean) {
+    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
+    public void mo204a(BaseViewHolder baseViewHolder, AppInfoBean appInfoBean) {
         try {
-            baseViewHolder.a(R.id.tv_app_name, (CharSequence) appInfoBean.getName());
-            ImageView imageView = (ImageView) baseViewHolder.c(R.id.app_icon);
+            baseViewHolder.m5211a(C2113R.id.tv_app_name, (CharSequence) appInfoBean.getName());
+            ImageView imageView = (ImageView) baseViewHolder.m5224c(C2113R.id.app_icon);
             Drawable appIcon = appInfoBean.getAppIcon();
             if (appIcon != null) {
                 imageView.setBackground(appIcon);
@@ -26,17 +28,17 @@ public class ScanAppAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHolder
             } else {
                 imageView.setVisibility(8);
             }
-            ImageView imageView2 = (ImageView) baseViewHolder.c(R.id.scan_state);
+            ImageView imageView2 = (ImageView) baseViewHolder.m5224c(C2113R.id.scan_state);
             int virusLevel = appInfoBean.getVirusLevel();
             if (virusLevel == 0) {
-                j.d.b(imageView2, Integer.valueOf(R.mipmap.ic_scan_ok));
+                C5845d.m24612b(imageView2, Integer.valueOf(C2113R.mipmap.ic_scan_ok));
                 return;
             }
             if (virusLevel != 2 && virusLevel != 1) {
-                j.d.a(imageView2, Integer.valueOf(R.mipmap.ic_scan_loading));
+                C5845d.m24605a(imageView2, Integer.valueOf(C2113R.mipmap.ic_scan_loading));
                 return;
             }
-            j.d.b(imageView2, Integer.valueOf(R.mipmap.ic_scan_risk));
+            C5845d.m24612b(imageView2, Integer.valueOf(C2113R.mipmap.ic_scan_risk));
         } catch (Exception unused) {
         }
     }

@@ -23,36 +23,36 @@ public class HonorRegister {
             HonorPushClient.getInstance().init(context, false);
             HonorPushClient.getInstance().getPushToken(honorPushCallback);
         } catch (Throwable th) {
-            ALog.e(TAG, "getToken failed.", th, new Object[0]);
+            ALog.m9181e(TAG, "getToken failed.", th, new Object[0]);
         }
     }
 
     public static void register(Context context) {
         try {
             if (!UtilityImpl.isMainProcess(context)) {
-                ALog.i(TAG, "not in main process, skipped.", new Object[0]);
+                ALog.m9183i(TAG, "not in main process, skipped.", new Object[0]);
                 return;
             }
             final Context applicationContext = context.getApplicationContext();
             if (Build.VERSION.SDK_INT < 19 || !HonorPushClient.getInstance().checkSupportHonorPush(applicationContext)) {
-                ALog.i(TAG, "device check, skipped.", new Object[0]);
+                ALog.m9183i(TAG, "device check, skipped.", new Object[0]);
                 return;
             }
-            ALog.i(TAG, "ver:", "2.1.0");
+            ALog.m9183i(TAG, "ver:", "2.1.0");
             BaseNotifyClickActivity.addNotifyListener(new HonorMsgParseImpl());
             ThreadPoolExecutorFactory.schedule(new Runnable() { // from class: org.android.agoo.honor.HonorRegister.1
                 @Override // java.lang.Runnable
                 public void run() {
-                    ALog.i(HonorRegister.TAG, "register begin", new Object[0]);
+                    ALog.m9183i(HonorRegister.TAG, "register begin", new Object[0]);
                     HonorRegister.getToken(applicationContext, new HonorPushCallback<String>() { // from class: org.android.agoo.honor.HonorRegister.1.1
                         @Override // com.hihonor.push.sdk.HonorPushCallback
                         public void onFailure(int i2, String str) {
-                            ALog.e(HonorRegister.TAG, "onToken failed!", "code", Integer.valueOf(i2), "msg", str);
+                            ALog.m9182e(HonorRegister.TAG, "onToken failed!", "code", Integer.valueOf(i2), "msg", str);
                         }
 
                         @Override // com.hihonor.push.sdk.HonorPushCallback
                         public void onSuccess(String str) {
-                            ALog.i(HonorRegister.TAG, "onToken", "token", str);
+                            ALog.m9183i(HonorRegister.TAG, "onToken", "token", str);
                             try {
                                 if (TextUtils.isEmpty(str)) {
                                     return;
@@ -61,23 +61,23 @@ public class HonorRegister {
                                 notifManager.init(applicationContext);
                                 notifManager.reportThirdPushToken(str, HonorMsgService.HONOR_TOKEN);
                             } catch (Throwable th) {
-                                ALog.e(HonorRegister.TAG, "token report failed!", th, new Object[0]);
+                                ALog.m9181e(HonorRegister.TAG, "token report failed!", th, new Object[0]);
                             }
                         }
                     });
                 }
             }, 5L, TimeUnit.SECONDS);
         } catch (Throwable th) {
-            ALog.e(TAG, "register failed:", th, new Object[0]);
+            ALog.m9181e(TAG, "register failed:", th, new Object[0]);
         }
     }
 
     public static void unregister(HonorPushCallback<Void> honorPushCallback) {
         try {
-            ALog.i(TAG, MiPushClient.COMMAND_UNREGISTER, new Object[0]);
+            ALog.m9183i(TAG, MiPushClient.COMMAND_UNREGISTER, new Object[0]);
             HonorPushClient.getInstance().deletePushToken(honorPushCallback);
         } catch (Throwable th) {
-            ALog.e(TAG, MiPushClient.COMMAND_UNREGISTER, th, new Object[0]);
+            ALog.m9181e(TAG, MiPushClient.COMMAND_UNREGISTER, th, new Object[0]);
         }
     }
 }

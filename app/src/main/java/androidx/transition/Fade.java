@@ -15,7 +15,9 @@ import androidx.core.view.ViewCompat;
 
 /* loaded from: classes.dex */
 public class Fade extends Visibility {
-    public static final int IN = 1;
+
+    /* renamed from: IN */
+    public static final int f629IN = 1;
     private static final String LOG_TAG = "Fade";
     public static final int OUT = 2;
     private static final String PROPNAME_TRANSITION_ALPHA = "android:fade:transitionAlpha";

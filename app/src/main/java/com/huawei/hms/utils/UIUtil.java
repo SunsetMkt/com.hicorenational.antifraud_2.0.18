@@ -14,7 +14,8 @@ import java.util.List;
 
 /* loaded from: classes.dex */
 public class UIUtil {
-    private static int a(Context context) {
+    /* renamed from: a */
+    private static int m7811a(Context context) {
         if (context == null) {
             return 0;
         }
@@ -23,22 +24,22 @@ public class UIUtil {
 
     public static Activity getActiveActivity(Activity activity, Context context) {
         if (isBackground(context)) {
-            HMSLog.i("UIUtil", "isBackground" + isBackground(context));
+            HMSLog.m7717i("UIUtil", "isBackground" + isBackground(context));
             return null;
         }
         if (activity == null) {
-            HMSLog.i("UIUtil", "activity is null");
+            HMSLog.m7717i("UIUtil", "activity is null");
             return ActivityMgr.INST.getCurrentActivity();
         }
         if (!activity.isFinishing()) {
             return activity;
         }
-        HMSLog.i("UIUtil", "activity isFinishing is " + activity.isFinishing());
+        HMSLog.m7717i("UIUtil", "activity isFinishing is " + activity.isFinishing());
         return ActivityMgr.INST.getCurrentActivity();
     }
 
     public static int getDialogThemeId(Activity activity) {
-        if (a(activity) == 0 || Build.VERSION.SDK_INT < 16) {
+        if (m7811a(activity) == 0 || Build.VERSION.SDK_INT < 16) {
             return (activity != null && (activity.getResources().getConfiguration().uiMode & 48) == 32) ? 2 : 3;
         }
         return 0;
@@ -61,7 +62,7 @@ public class UIUtil {
         if (activity != null) {
             return (activity.getWindow().getAttributes().flags & 1024) == 1024;
         }
-        HMSLog.w("UIUtil", "activity is null");
+        HMSLog.m7718w("UIUtil", "activity is null");
         return false;
     }
 
@@ -78,10 +79,10 @@ public class UIUtil {
         String processName = getProcessName(context, Process.myPid());
         for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
             if (TextUtils.equals(runningAppProcessInfo.processName, processName)) {
-                HMSLog.i("UIUtil", "appProcess.importance is " + runningAppProcessInfo.importance);
+                HMSLog.m7717i("UIUtil", "appProcess.importance is " + runningAppProcessInfo.importance);
                 boolean z = runningAppProcessInfo.importance == 100;
                 boolean isKeyguardLocked = keyguardManager.isKeyguardLocked();
-                HMSLog.i("UIUtil", "isForground is " + z + "***  isLockedState is " + isKeyguardLocked);
+                HMSLog.m7717i("UIUtil", "isForground is " + z + "***  isLockedState is " + isKeyguardLocked);
                 return !z || isKeyguardLocked;
             }
         }

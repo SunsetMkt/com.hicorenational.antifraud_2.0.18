@@ -34,86 +34,95 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /* loaded from: classes.dex */
 public abstract class PendingResultImpl<R extends Result, T extends IMessageEntity> extends InnerPendingResult<R> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private CountDownLatch f7264a;
+    /* renamed from: a */
+    private CountDownLatch f7829a;
 
-    /* renamed from: c, reason: collision with root package name */
-    private WeakReference<ApiClient> f7266c;
+    /* renamed from: c */
+    private WeakReference<ApiClient> f7831c;
     protected DatagramTransport transport = null;
 
-    /* renamed from: b, reason: collision with root package name */
-    private R f7265b = null;
+    /* renamed from: b */
+    private R f7830b = null;
 
-    /* renamed from: d, reason: collision with root package name */
-    private String f7267d = null;
+    /* renamed from: d */
+    private String f7832d = null;
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f7268e = null;
+    /* renamed from: e */
+    private String f7833e = null;
 
-    /* renamed from: f, reason: collision with root package name */
-    private boolean f7269f = true;
+    /* renamed from: f */
+    private boolean f7834f = true;
 
-    class a implements DatagramTransport.a {
-        a() {
+    /* renamed from: com.huawei.hms.support.api.PendingResultImpl$a */
+    class C2509a implements DatagramTransport.InterfaceC2523a {
+        C2509a() {
         }
 
-        @Override // com.huawei.hms.support.api.transport.DatagramTransport.a
-        public void a(int i2, IMessageEntity iMessageEntity) {
-            PendingResultImpl.this.a(i2, iMessageEntity);
-            PendingResultImpl.this.f7264a.countDown();
+        @Override // com.huawei.hms.support.api.transport.DatagramTransport.InterfaceC2523a
+        /* renamed from: a */
+        public void mo7669a(int i2, IMessageEntity iMessageEntity) {
+            PendingResultImpl.this.m7665a(i2, iMessageEntity);
+            PendingResultImpl.this.f7829a.countDown();
         }
     }
 
-    class b implements DatagramTransport.a {
+    /* renamed from: com.huawei.hms.support.api.PendingResultImpl$b */
+    class C2510b implements DatagramTransport.InterfaceC2523a {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ AtomicBoolean f7271a;
+        /* renamed from: a */
+        final /* synthetic */ AtomicBoolean f7836a;
 
-        b(AtomicBoolean atomicBoolean) {
-            this.f7271a = atomicBoolean;
+        C2510b(AtomicBoolean atomicBoolean) {
+            this.f7836a = atomicBoolean;
         }
 
-        @Override // com.huawei.hms.support.api.transport.DatagramTransport.a
-        public void a(int i2, IMessageEntity iMessageEntity) {
-            if (!this.f7271a.get()) {
-                PendingResultImpl.this.a(i2, iMessageEntity);
+        @Override // com.huawei.hms.support.api.transport.DatagramTransport.InterfaceC2523a
+        /* renamed from: a */
+        public void mo7669a(int i2, IMessageEntity iMessageEntity) {
+            if (!this.f7836a.get()) {
+                PendingResultImpl.this.m7665a(i2, iMessageEntity);
             }
-            PendingResultImpl.this.f7264a.countDown();
+            PendingResultImpl.this.f7829a.countDown();
         }
     }
 
-    class c implements DatagramTransport.a {
+    /* renamed from: com.huawei.hms.support.api.PendingResultImpl$c */
+    class C2511c implements DatagramTransport.InterfaceC2523a {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ d f7273a;
+        /* renamed from: a */
+        final /* synthetic */ HandlerC2512d f7838a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ ResultCallback f7274b;
+        /* renamed from: b */
+        final /* synthetic */ ResultCallback f7839b;
 
-        c(d dVar, ResultCallback resultCallback) {
-            this.f7273a = dVar;
-            this.f7274b = resultCallback;
+        C2511c(HandlerC2512d handlerC2512d, ResultCallback resultCallback) {
+            this.f7838a = handlerC2512d;
+            this.f7839b = resultCallback;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.huawei.hms.support.api.transport.DatagramTransport.a
-        public void a(int i2, IMessageEntity iMessageEntity) {
-            PendingResultImpl.this.a(i2, iMessageEntity);
-            this.f7273a.a(this.f7274b, PendingResultImpl.this.f7265b);
+        @Override // com.huawei.hms.support.api.transport.DatagramTransport.InterfaceC2523a
+        /* renamed from: a */
+        public void mo7669a(int i2, IMessageEntity iMessageEntity) {
+            PendingResultImpl.this.m7665a(i2, iMessageEntity);
+            this.f7838a.m7670a(this.f7839b, PendingResultImpl.this.f7830b);
         }
     }
 
-    protected static class d<R extends Result> extends Handler {
-        public d(Looper looper) {
+    /* renamed from: com.huawei.hms.support.api.PendingResultImpl$d */
+    protected static class HandlerC2512d<R extends Result> extends Handler {
+        public HandlerC2512d(Looper looper) {
             super(looper);
         }
 
-        public void a(ResultCallback<? super R> resultCallback, R r) {
+        /* renamed from: a */
+        public void m7670a(ResultCallback<? super R> resultCallback, R r) {
             sendMessage(obtainMessage(1, new Pair(resultCallback, r)));
         }
 
         /* JADX WARN: Multi-variable type inference failed */
-        protected void b(ResultCallback<? super R> resultCallback, R r) {
+        /* renamed from: b */
+        protected void m7671b(ResultCallback<? super R> resultCallback, R r) {
             resultCallback.onResult(r);
         }
 
@@ -124,50 +133,50 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
                 return;
             }
             Pair pair = (Pair) message.obj;
-            b((ResultCallback) pair.first, (Result) pair.second);
+            m7671b((ResultCallback) pair.first, (Result) pair.second);
         }
     }
 
     public PendingResultImpl(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
-        a(apiClient, str, iMessageEntity, getResponseType(), 0);
+        m7667a(apiClient, str, iMessageEntity, getResponseType(), 0);
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public final R await() {
-        HMSLog.i("PendingResultImpl", "await");
+        HMSLog.m7717i("PendingResultImpl", "await");
         if (Looper.myLooper() != Looper.getMainLooper()) {
             return awaitOnAnyThread();
         }
-        HMSLog.e("PendingResultImpl", "await in main thread");
+        HMSLog.m7715e("PendingResultImpl", "await in main thread");
         throw new IllegalStateException("await must not be called on the UI thread");
     }
 
     @Override // com.huawei.hms.support.api.client.InnerPendingResult
     public final R awaitOnAnyThread() {
-        HMSLog.i("PendingResultImpl", "awaitOnAnyThread");
-        WeakReference<ApiClient> weakReference = this.f7266c;
+        HMSLog.m7717i("PendingResultImpl", "awaitOnAnyThread");
+        WeakReference<ApiClient> weakReference = this.f7831c;
         if (weakReference == null) {
-            HMSLog.e("PendingResultImpl", "api is null");
-            a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
-            return this.f7265b;
+            HMSLog.m7715e("PendingResultImpl", "api is null");
+            m7665a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
+            return this.f7830b;
         }
         ApiClient apiClient = weakReference.get();
         if (!checkApiClient(apiClient)) {
-            HMSLog.e("PendingResultImpl", "client invalid");
-            a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
-            return this.f7265b;
+            HMSLog.m7715e("PendingResultImpl", "client invalid");
+            m7665a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
+            return this.f7830b;
         }
-        if (this.f7269f) {
-            a(0, 1);
+        if (this.f7834f) {
+            m7664a(0, 1);
         }
-        this.transport.send(apiClient, new a());
+        this.transport.send(apiClient, new C2509a());
         try {
-            this.f7264a.await();
+            this.f7829a.await();
         } catch (InterruptedException unused) {
-            HMSLog.e("PendingResultImpl", "await in anythread InterruptedException");
-            a(CommonCode.ErrorCode.INTERNAL_ERROR, (IMessageEntity) null);
+            HMSLog.m7715e("PendingResultImpl", "await in anythread InterruptedException");
+            m7665a(CommonCode.ErrorCode.INTERNAL_ERROR, (IMessageEntity) null);
         }
-        return this.f7265b;
+        return this.f7830b;
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -203,94 +212,96 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
         if (type2 != null) {
             try {
                 R r = (R) type2.newInstance();
-                this.f7265b = r;
+                this.f7830b = r;
                 r.setStatus(new Status(i2));
             } catch (Exception e2) {
-                HMSLog.e("PendingResultImpl", "on Error:" + e2.getMessage());
+                HMSLog.m7715e("PendingResultImpl", "on Error:" + e2.getMessage());
                 return null;
             }
         }
-        return this.f7265b;
+        return this.f7830b;
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public void setResultCallback(ResultCallback<R> resultCallback) {
-        this.f7269f = !(resultCallback instanceof BaseAdapter.BaseRequestResultCallback);
+        this.f7834f = !(resultCallback instanceof BaseAdapter.BaseRequestResultCallback);
         setResultCallback(Looper.getMainLooper(), resultCallback);
     }
 
-    private void a(ApiClient apiClient, String str, IMessageEntity iMessageEntity, Class<T> cls, int i2) {
-        HMSLog.i("PendingResultImpl", "init uri:" + str);
-        this.f7267d = str;
+    /* renamed from: a */
+    private void m7667a(ApiClient apiClient, String str, IMessageEntity iMessageEntity, Class<T> cls, int i2) {
+        HMSLog.m7717i("PendingResultImpl", "init uri:" + str);
+        this.f7832d = str;
         if (apiClient == null) {
-            HMSLog.e("PendingResultImpl", "client is null");
+            HMSLog.m7715e("PendingResultImpl", "client is null");
             return;
         }
-        this.f7266c = new WeakReference<>(apiClient);
-        this.f7264a = new CountDownLatch(1);
+        this.f7831c = new WeakReference<>(apiClient);
+        this.f7829a = new CountDownLatch(1);
         try {
             this.transport = (DatagramTransport) Class.forName(apiClient.getTransportName()).getConstructor(String.class, IMessageEntity.class, Class.class, Integer.TYPE).newInstance(str, iMessageEntity, cls, Integer.valueOf(i2));
         } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | InvocationTargetException e2) {
-            HMSLog.e("PendingResultImpl", "gen transport error:" + e2.getMessage());
+            HMSLog.m7715e("PendingResultImpl", "gen transport error:" + e2.getMessage());
             throw new IllegalStateException("Instancing transport exception, " + e2.getMessage(), e2);
         }
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public final void setResultCallback(Looper looper, ResultCallback<R> resultCallback) {
-        HMSLog.i("PendingResultImpl", "setResultCallback");
+        HMSLog.m7717i("PendingResultImpl", "setResultCallback");
         if (looper == null) {
             looper = Looper.myLooper();
         }
-        d dVar = new d(looper);
-        WeakReference<ApiClient> weakReference = this.f7266c;
+        HandlerC2512d handlerC2512d = new HandlerC2512d(looper);
+        WeakReference<ApiClient> weakReference = this.f7831c;
         if (weakReference == null) {
-            HMSLog.e("PendingResultImpl", "api is null");
-            a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
+            HMSLog.m7715e("PendingResultImpl", "api is null");
+            m7665a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
             return;
         }
         ApiClient apiClient = weakReference.get();
         if (!checkApiClient(apiClient)) {
-            HMSLog.e("PendingResultImpl", "client is invalid");
-            a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
-            dVar.a(resultCallback, this.f7265b);
+            HMSLog.m7715e("PendingResultImpl", "client is invalid");
+            m7665a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
+            handlerC2512d.m7670a(resultCallback, this.f7830b);
         } else {
-            if (this.f7269f) {
-                a(0, 1);
+            if (this.f7834f) {
+                m7664a(0, 1);
             }
-            this.transport.post(apiClient, new c(dVar, resultCallback));
+            this.transport.post(apiClient, new C2511c(handlerC2512d, resultCallback));
         }
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public R await(long j2, TimeUnit timeUnit) {
-        HMSLog.i("PendingResultImpl", "await timeout:" + j2 + " unit:" + timeUnit.toString());
+        HMSLog.m7717i("PendingResultImpl", "await timeout:" + j2 + " unit:" + timeUnit.toString());
         if (Looper.myLooper() != Looper.getMainLooper()) {
             return awaitOnAnyThread(j2, timeUnit);
         }
-        HMSLog.i("PendingResultImpl", "await in main thread");
+        HMSLog.m7717i("PendingResultImpl", "await in main thread");
         throw new IllegalStateException("await must not be called on the UI thread");
     }
 
     public PendingResultImpl(ApiClient apiClient, String str, IMessageEntity iMessageEntity, Class<T> cls) {
-        a(apiClient, str, iMessageEntity, cls, 0);
+        m7667a(apiClient, str, iMessageEntity, cls, 0);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* JADX WARN: Multi-variable type inference failed */
-    public void a(int i2, IMessageEntity iMessageEntity) {
+    /* renamed from: a */
+    public void m7665a(int i2, IMessageEntity iMessageEntity) {
         Status status;
-        HMSLog.i("PendingResultImpl", "setResult:" + i2);
+        HMSLog.m7717i("PendingResultImpl", "setResult:" + i2);
         Status commonStatus = iMessageEntity instanceof AbstractMessageEntity ? ((AbstractMessageEntity) iMessageEntity).getCommonStatus() : null;
         if (i2 == 0) {
-            this.f7265b = onComplete(iMessageEntity);
+            this.f7830b = onComplete(iMessageEntity);
         } else {
-            this.f7265b = onError(i2);
+            this.f7830b = onError(i2);
         }
-        if (this.f7269f) {
-            a(i2, 2);
+        if (this.f7834f) {
+            m7664a(i2, 2);
         }
-        R r = this.f7265b;
+        R r = this.f7830b;
         if (r == null || (status = r.getStatus()) == null || commonStatus == null) {
             return;
         }
@@ -299,19 +310,19 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
         int statusCode2 = commonStatus.getStatusCode();
         String statusMessage2 = commonStatus.getStatusMessage();
         if (statusCode != statusCode2) {
-            HMSLog.e("PendingResultImpl", "rstStatus code (" + statusCode + ") is not equal commonStatus code (" + statusCode2 + ")");
-            HMSLog.e("PendingResultImpl", "rstStatus msg (" + statusMessage + ") is not equal commonStatus msg (" + statusMessage2 + ")");
+            HMSLog.m7715e("PendingResultImpl", "rstStatus code (" + statusCode + ") is not equal commonStatus code (" + statusCode2 + ")");
+            HMSLog.m7715e("PendingResultImpl", "rstStatus msg (" + statusMessage + ") is not equal commonStatus msg (" + statusMessage2 + ")");
             return;
         }
         if (!TextUtils.isEmpty(statusMessage) || TextUtils.isEmpty(statusMessage2)) {
             return;
         }
-        HMSLog.i("PendingResultImpl", "rstStatus msg (" + statusMessage + ") is not equal commonStatus msg (" + statusMessage2 + ")");
-        this.f7265b.setStatus(new Status(statusCode, statusMessage2, status.getResolution()));
+        HMSLog.m7717i("PendingResultImpl", "rstStatus msg (" + statusMessage + ") is not equal commonStatus msg (" + statusMessage2 + ")");
+        this.f7830b.setStatus(new Status(statusCode, statusMessage2, status.getResolution()));
     }
 
     public PendingResultImpl(ApiClient apiClient, String str, IMessageEntity iMessageEntity, int i2) {
-        a(apiClient, str, iMessageEntity, getResponseType(), i2);
+        m7667a(apiClient, str, iMessageEntity, getResponseType(), i2);
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -322,41 +333,42 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
 
     @Override // com.huawei.hms.support.api.client.InnerPendingResult
     public final R awaitOnAnyThread(long j2, TimeUnit timeUnit) {
-        HMSLog.i("PendingResultImpl", "awaitOnAnyThread timeout:" + j2 + " unit:" + timeUnit.toString());
-        WeakReference<ApiClient> weakReference = this.f7266c;
+        HMSLog.m7717i("PendingResultImpl", "awaitOnAnyThread timeout:" + j2 + " unit:" + timeUnit.toString());
+        WeakReference<ApiClient> weakReference = this.f7831c;
         if (weakReference == null) {
-            HMSLog.e("PendingResultImpl", "api is null");
-            a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
-            return this.f7265b;
+            HMSLog.m7715e("PendingResultImpl", "api is null");
+            m7665a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
+            return this.f7830b;
         }
         ApiClient apiClient = weakReference.get();
         if (!checkApiClient(apiClient)) {
-            HMSLog.e("PendingResultImpl", "client invalid");
-            a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
-            return this.f7265b;
+            HMSLog.m7715e("PendingResultImpl", "client invalid");
+            m7665a(CommonCode.ErrorCode.CLIENT_API_INVALID, (IMessageEntity) null);
+            return this.f7830b;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean();
-        if (this.f7269f) {
-            a(0, 1);
+        if (this.f7834f) {
+            m7664a(0, 1);
         }
-        this.transport.post(apiClient, new b(atomicBoolean));
+        this.transport.post(apiClient, new C2510b(atomicBoolean));
         try {
-            if (!this.f7264a.await(j2, timeUnit)) {
+            if (!this.f7829a.await(j2, timeUnit)) {
                 atomicBoolean.set(true);
-                a(CommonCode.ErrorCode.EXECUTE_TIMEOUT, (IMessageEntity) null);
+                m7665a(CommonCode.ErrorCode.EXECUTE_TIMEOUT, (IMessageEntity) null);
             }
         } catch (InterruptedException unused) {
-            HMSLog.e("PendingResultImpl", "awaitOnAnyThread InterruptedException");
-            a(CommonCode.ErrorCode.INTERNAL_ERROR, (IMessageEntity) null);
+            HMSLog.m7715e("PendingResultImpl", "awaitOnAnyThread InterruptedException");
+            m7665a(CommonCode.ErrorCode.INTERNAL_ERROR, (IMessageEntity) null);
         }
-        return this.f7265b;
+        return this.f7830b;
     }
 
-    private void a(int i2, int i3) {
+    /* renamed from: a */
+    private void m7664a(int i2, int i3) {
         SubAppInfo subAppInfo;
-        HMSLog.i("PendingResultImpl", "biReportEvent ====== ");
-        ApiClient apiClient = this.f7266c.get();
-        if (apiClient != null && this.f7267d != null && !HiAnalyticsUtil.getInstance().hasError(apiClient.getContext())) {
+        HMSLog.m7717i("PendingResultImpl", "biReportEvent ====== ");
+        ApiClient apiClient = this.f7831c.get();
+        if (apiClient != null && this.f7832d != null && !HiAnalyticsUtil.getInstance().hasError(apiClient.getContext())) {
             HashMap hashMap = new HashMap();
             hashMap.put("package", apiClient.getPackageName());
             hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
@@ -365,9 +377,9 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
             } else {
                 hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_DIRECTION, HiAnalyticsConstant.Direction.RESPONSE);
                 hashMap.put("result", String.valueOf(i2));
-                R r = this.f7265b;
+                R r = this.f7830b;
                 if (r != null && r.getStatus() != null) {
-                    hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(this.f7265b.getStatus().getStatusCode()));
+                    hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(this.f7830b.getStatus().getStatusCode()));
                 }
             }
             hashMap.put("version", "0");
@@ -376,15 +388,15 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
                 appId = subAppInfo.getSubAppID();
             }
             hashMap.put("appid", appId);
-            if (TextUtils.isEmpty(this.f7268e)) {
-                String id = TransactionIdCreater.getId(appId, this.f7267d);
-                this.f7268e = id;
+            if (TextUtils.isEmpty(this.f7833e)) {
+                String id = TransactionIdCreater.getId(appId, this.f7832d);
+                this.f7833e = id;
                 hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, id);
             } else {
-                hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, this.f7268e);
-                this.f7268e = null;
+                hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, this.f7833e);
+                this.f7833e = null;
             }
-            String[] split = this.f7267d.split("\\.");
+            String[] split = this.f7832d.split("\\.");
             if (split.length >= 2) {
                 hashMap.put("service", split[0]);
                 hashMap.put("apiName", split[1]);
@@ -394,6 +406,6 @@ public abstract class PendingResultImpl<R extends Result, T extends IMessageEnti
             HiAnalyticsUtil.getInstance().onEvent(apiClient.getContext(), HiAnalyticsConstant.HMS_SDK_BASE_CALL_AIDL, hashMap);
             return;
         }
-        HMSLog.e("PendingResultImpl", "<biReportEvent> has some error.");
+        HMSLog.m7715e("PendingResultImpl", "<biReportEvent> has some error.");
     }
 }

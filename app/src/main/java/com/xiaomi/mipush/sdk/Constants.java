@@ -1,6 +1,6 @@
 package com.xiaomi.mipush.sdk;
 
-import com.xiaomi.push.x;
+import com.xiaomi.push.C4409x;
 
 /* loaded from: classes2.dex */
 public class Constants {
@@ -47,7 +47,8 @@ public class Constants {
     public static final String VERSION = "version";
     public static final String WAVE_SEPARATOR = "~";
 
-    protected static int a() {
-        return x.a();
+    /* renamed from: a */
+    protected static int m13421a() {
+        return C4409x.m16364a();
     }
 }

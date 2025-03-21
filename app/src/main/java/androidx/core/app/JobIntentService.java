@@ -16,7 +16,7 @@ import android.os.PowerManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import com.heytap.mcssdk.constant.a;
+import com.heytap.mcssdk.constant.C2084a;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -96,7 +96,7 @@ public abstract class JobIntentService extends Service {
                     if (!this.mLaunchingService) {
                         this.mLaunchingService = true;
                         if (!this.mServiceProcessing) {
-                            this.mLaunchWakeLock.acquire(a.f5800d);
+                            this.mLaunchWakeLock.acquire(C2084a.f6122d);
                         }
                     }
                 }
@@ -108,7 +108,7 @@ public abstract class JobIntentService extends Service {
             synchronized (this) {
                 if (this.mServiceProcessing) {
                     if (this.mLaunchingService) {
-                        this.mLaunchWakeLock.acquire(a.f5800d);
+                        this.mLaunchWakeLock.acquire(C2084a.f6122d);
                     }
                     this.mServiceProcessing = false;
                     this.mRunWakeLock.release();

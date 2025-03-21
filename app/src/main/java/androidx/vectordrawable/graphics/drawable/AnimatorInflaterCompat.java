@@ -23,11 +23,11 @@ import androidx.annotation.RestrictTo;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.graphics.PathParser;
 import bean.SurveyH5Bean;
-import c.c.a.b.a.a;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 /* loaded from: classes.dex */
@@ -98,8 +98,8 @@ public class AnimatorInflaterCompat {
             sb.append(i2);
             sb.append(": fraction ");
             float fraction = keyframe.getFraction();
-            Object obj = a.f3101h;
-            sb.append(fraction < 0.0f ? a.f3101h : Float.valueOf(keyframe.getFraction()));
+            Object obj = AbstractC1191a.f2571h;
+            sb.append(fraction < 0.0f ? AbstractC1191a.f2571h : Float.valueOf(keyframe.getFraction()));
             sb.append(", , value : ");
             if (keyframe.hasValue()) {
                 obj = keyframe.getValue();

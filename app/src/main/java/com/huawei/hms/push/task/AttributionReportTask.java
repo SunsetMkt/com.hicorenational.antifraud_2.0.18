@@ -31,10 +31,10 @@ public class AttributionReportTask extends BaseVoidTask {
     @Override // com.huawei.hms.push.task.BaseVoidTask, com.huawei.hms.common.internal.TaskApiCall
     public void doExecute(PushClient pushClient, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<Void> taskCompletionSource) {
         if (responseErrorCode.getErrorCode() == 0) {
-            HMSLog.i("AnalysisReportTask", "analysis report task,Operate succeed");
+            HMSLog.m7717i("AnalysisReportTask", "analysis report task,Operate succeed");
             taskCompletionSource.setResult(null);
         } else {
-            HMSLog.e("AnalysisReportTask", "analysis report task,Operate failed with ret=" + responseErrorCode.getErrorCode());
+            HMSLog.m7715e("AnalysisReportTask", "analysis report task,Operate failed with ret=" + responseErrorCode.getErrorCode());
             ErrorEnum fromCode = ErrorEnum.fromCode(responseErrorCode.getErrorCode());
             if (fromCode == ErrorEnum.ERROR_UNKNOWN) {
                 taskCompletionSource.setException(new ApiException(new Status(responseErrorCode.getErrorCode(), responseErrorCode.getErrorReason())));

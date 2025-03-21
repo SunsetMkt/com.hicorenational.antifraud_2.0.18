@@ -10,9 +10,9 @@ import android.text.TextUtils;
 import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.utl.ALog;
+import com.taobao.accs.utl.C3052t;
+import com.taobao.accs.utl.C3054v;
 import com.taobao.accs.utl.UtilityImpl;
-import com.taobao.accs.utl.t;
-import com.taobao.accs.utl.v;
 import org.android.agoo.common.AgooConstants;
 import org.android.agoo.common.Config;
 import org.android.agoo.huawei.HuaweiRcvService;
@@ -30,7 +30,7 @@ public abstract class BaseIntentService extends Service {
     private MessageService messageService;
     private NotifManager notifyManager;
     private Context mContext = null;
-    private Messenger messenger = new Messenger(new g(this));
+    private Messenger messenger = new Messenger(new HandlerC6020g(this));
 
     private final String getTrace(Context context, long j2) {
         String str = TextUtils.isEmpty(null) ? "unknow" : null;
@@ -79,7 +79,7 @@ public abstract class BaseIntentService extends Service {
         }
         boolean booleanExtra = intent.getBooleanExtra("android.intent.extra.REPLACING", false);
         if (ALog.isPrintLog(ALog.Level.D)) {
-            ALog.d(TAG, "handleRemovePackage---->[replacing:" + booleanExtra + "],uninstallPack=" + schemeSpecificPart, new Object[0]);
+            ALog.m9180d(TAG, "handleRemovePackage---->[replacing:" + booleanExtra + "],uninstallPack=" + schemeSpecificPart, new Object[0]);
         }
         if (booleanExtra) {
             return;
@@ -92,16 +92,16 @@ public abstract class BaseIntentService extends Service {
             intent.setClassName(context, str);
             context.startService(intent);
         } catch (Throwable th) {
-            ALog.w(TAG, "runIntentInService", th, new Object[0]);
+            ALog.m9185w(TAG, "runIntentInService", th, new Object[0]);
         }
     }
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
         getApplication();
-        if (t.b() && v.a(this) && !isBinded) {
+        if (C3052t.m9277b() && C3054v.m9284a(this) && !isBinded) {
             isBinded = true;
-            getApplicationContext().bindService(new Intent(getApplication(), getClass()), new i(this), 1);
+            getApplicationContext().bindService(new Intent(getApplication(), getClass()), new ServiceConnectionC6022i(this), 1);
         }
         return this.messenger.getBinder();
     }
@@ -109,7 +109,7 @@ public abstract class BaseIntentService extends Service {
     @Override // android.app.Service
     public void onCreate() {
         super.onCreate();
-        ThreadPoolExecutorFactory.execute(new j(this));
+        ThreadPoolExecutorFactory.execute(new RunnableC6023j(this));
     }
 
     protected abstract void onError(Context context, String str);
@@ -125,11 +125,11 @@ public abstract class BaseIntentService extends Service {
         }
         String agooCommand = IntentUtil.getAgooCommand(this.mContext);
         String thirdPushCommand = IntentUtil.getThirdPushCommand(this.mContext);
-        ALog.i(TAG, "onHandleIntent,action=" + action + ",agooCommand=" + agooCommand + ",mipushCommand=" + thirdPushCommand, new Object[0]);
+        ALog.m9183i(TAG, "onHandleIntent,action=" + action + ",agooCommand=" + agooCommand + ",mipushCommand=" + thirdPushCommand, new Object[0]);
         try {
             if (TextUtils.equals(action, agooCommand)) {
                 String stringExtra = intent.getStringExtra("command");
-                ALog.d(TAG, "actionCommand --->[" + stringExtra + "]", new Object[0]);
+                ALog.m9180d(TAG, "actionCommand --->[" + stringExtra + "]", new Object[0]);
                 if (TextUtils.equals(stringExtra, AgooConstants.AGOO_COMMAND_MESSAGE_READED) || TextUtils.equals(stringExtra, AgooConstants.AGOO_COMMAND_MESSAGE_DELETED)) {
                     onUserCommand(this.mContext, intent);
                 }
@@ -139,10 +139,10 @@ public abstract class BaseIntentService extends Service {
                 if (TextUtils.equals(stringExtra2, AgooConstants.AGOO_COMMAND_MIPUSHID_REPORT)) {
                     this.notifyManager.reportThirdPushToken(stringExtra3, MiPushBroadcastReceiver.MI_TOKEN, false);
                 } else if (TextUtils.equals(stringExtra2, AgooConstants.AGOO_COMMAND_HUAWEIPUSHID_REPORT)) {
-                    ALog.d(TAG, "HW_TOKEN report begin..regid=" + stringExtra3, new Object[0]);
+                    ALog.m9180d(TAG, "HW_TOKEN report begin..regid=" + stringExtra3, new Object[0]);
                     this.notifyManager.reportThirdPushToken(stringExtra3, HuaweiRcvService.HUAWEI_TOKEN, false);
                 } else if (TextUtils.equals(stringExtra2, AgooConstants.AGOO_COMMAND_GCMIPUSHID_REPORT)) {
-                    ALog.i(TAG, "GCM_TOKEN report begin..regid=" + stringExtra3, new Object[0]);
+                    ALog.m9183i(TAG, "GCM_TOKEN report begin..regid=" + stringExtra3, new Object[0]);
                     this.notifyManager.reportThirdPushToken(stringExtra3, AgooConstants.MESSAGE_SYSTEM_SOURCE_GCM, false);
                 }
             } else if (action.equals(AgooConstants.INTENT_FROM_AGOO_MESSAGE)) {
@@ -151,22 +151,22 @@ public abstract class BaseIntentService extends Service {
                 handleRemovePackage(this.mContext, intent);
             } else if (TextUtils.equals(action, AgooConstants.INTENT_FROM_AGOO_REPORT) || TextUtils.equals(action, "android.net.conn.CONNECTIVITY_CHANGE") || TextUtils.equals(action, "android.intent.action.BOOT_COMPLETED") || TextUtils.equals(action, "android.intent.action.PACKAGE_ADDED") || TextUtils.equals(action, "android.intent.action.PACKAGE_REPLACED") || TextUtils.equals(action, "android.intent.action.USER_PRESENT") || TextUtils.equals(action, "android.intent.action.ACTION_POWER_CONNECTED") || TextUtils.equals(action, "android.intent.action.ACTION_POWER_DISCONNECTED")) {
                 try {
-                    ALog.i(TAG, "is report cache msg,Config.isReportCacheMsg(mContext)=" + Config.d(this.mContext), new Object[0]);
-                    if (Config.d(this.mContext) && UtilityImpl.i(this.mContext)) {
-                        Config.e(this.mContext);
+                    ALog.m9183i(TAG, "is report cache msg,Config.isReportCacheMsg(mContext)=" + Config.m24943d(this.mContext), new Object[0]);
+                    if (Config.m24943d(this.mContext) && UtilityImpl.m9227i(this.mContext)) {
+                        Config.m24944e(this.mContext);
                         this.agooFactory.reportCacheMsg();
-                        this.messageService.a();
+                        this.messageService.m24962a();
                     }
                     long currentTimeMillis = System.currentTimeMillis();
                     if (ALog.isPrintLog(ALog.Level.I)) {
-                        ALog.i(TAG, "is clear all msg=" + Config.b(this.mContext, currentTimeMillis), new Object[0]);
+                        ALog.m9183i(TAG, "is clear all msg=" + Config.m24940b(this.mContext, currentTimeMillis), new Object[0]);
                     }
-                    if (Config.b(this.mContext, currentTimeMillis)) {
-                        Config.a(this.mContext, currentTimeMillis);
-                        this.messageService.a();
+                    if (Config.m24940b(this.mContext, currentTimeMillis)) {
+                        Config.m24936a(this.mContext, currentTimeMillis);
+                        this.messageService.m24962a();
                     }
                 } catch (Throwable th) {
-                    ALog.e(TAG, "reportCacheMsg", th, new Object[0]);
+                    ALog.m9181e(TAG, "reportCacheMsg", th, new Object[0]);
                 }
             }
         } finally {
@@ -182,7 +182,7 @@ public abstract class BaseIntentService extends Service {
 
     @Override // android.app.Service
     public int onStartCommand(Intent intent, int i2, int i3) {
-        ThreadPoolExecutorFactory.execute(new k(this, intent));
+        ThreadPoolExecutorFactory.execute(new RunnableC6024k(this, intent));
         return 2;
     }
 

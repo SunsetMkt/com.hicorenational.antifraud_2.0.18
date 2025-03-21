@@ -23,14 +23,15 @@ public final class Insets {
     }
 
     @NonNull
-    public static Insets of(int i2, int i3, int i4, int i5) {
+    /* renamed from: of */
+    public static Insets m385of(int i2, int i3, int i4, int i5) {
         return (i2 == 0 && i3 == 0 && i4 == 0 && i5 == 0) ? NONE : new Insets(i2, i3, i4, i5);
     }
 
     @NonNull
     @RequiresApi(api = 29)
     public static Insets toCompatInsets(@NonNull android.graphics.Insets insets) {
-        return of(insets.left, insets.top, insets.right, insets.bottom);
+        return m385of(insets.left, insets.top, insets.right, insets.bottom);
     }
 
     @NonNull
@@ -67,7 +68,8 @@ public final class Insets {
     }
 
     @NonNull
-    public static Insets of(@NonNull Rect rect) {
-        return of(rect.left, rect.top, rect.right, rect.bottom);
+    /* renamed from: of */
+    public static Insets m386of(@NonNull Rect rect) {
+        return m385of(rect.left, rect.top, rect.right, rect.bottom);
     }
 }

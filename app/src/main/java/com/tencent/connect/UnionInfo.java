@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.BaseApi;
+import com.tencent.open.utils.C3289g;
 import com.tencent.open.utils.HttpUtils;
-import com.tencent.open.utils.g;
 import com.tencent.tauth.IUiListener;
 
 /* compiled from: ProGuard */
@@ -18,8 +18,8 @@ public class UnionInfo extends BaseApi {
     }
 
     public void getUnionId(IUiListener iUiListener) {
-        Bundle a2 = a();
-        a2.putString("unionid", "1");
-        HttpUtils.requestAsync(this.f9634c, g.a(), URL_GET_UNION_ID, a2, "GET", new BaseApi.TempRequestListener(iUiListener));
+        Bundle m10308a = m10308a();
+        m10308a.putString("unionid", "1");
+        HttpUtils.requestAsync(this.f11013c, C3289g.m10603a(), URL_GET_UNION_ID, m10308a, "GET", new BaseApi.TempRequestListener(iUiListener));
     }
 }

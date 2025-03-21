@@ -11,8 +11,8 @@ public class HorizontalChainReference extends ChainReference {
     private Object mStartToEnd;
     private Object mStartToStart;
 
-    /* renamed from: androidx.constraintlayout.solver.state.helpers.HorizontalChainReference$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: androidx.constraintlayout.solver.state.helpers.HorizontalChainReference$1 */
+    static /* synthetic */ class C04571 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Chain = new int[State.Chain.values().length];
 
         static {
@@ -85,7 +85,7 @@ public class HorizontalChainReference extends ChainReference {
                 constraintReference2.horizontalBias(f2);
             }
         }
-        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
+        int i2 = C04571.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
         if (i2 == 1) {
             constraintReference2.setHorizontalChainStyle(0);
         } else if (i2 == 2) {

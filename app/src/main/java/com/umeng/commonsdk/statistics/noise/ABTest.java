@@ -6,11 +6,11 @@ import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.statistics.common.MLog;
 import com.umeng.commonsdk.statistics.idtracking.Envelope;
 import com.umeng.commonsdk.statistics.idtracking.ImprintHandler;
-import com.umeng.commonsdk.statistics.internal.d;
+import com.umeng.commonsdk.statistics.internal.InterfaceC3516d;
 import com.xiaomi.mipush.sdk.Constants;
 
 /* loaded from: classes2.dex */
-public class ABTest implements d {
+public class ABTest implements InterfaceC3516d {
     private static ABTest instance;
     private Context context;
     private boolean isInTest = false;
@@ -213,13 +213,13 @@ public class ABTest implements d {
             }
         } catch (Exception e2) {
             this.isInTest = false;
-            MLog.e("v:" + str, e2);
+            MLog.m11746e("v:" + str, e2);
         }
     }
 
-    @Override // com.umeng.commonsdk.statistics.internal.d
-    public void onImprintChanged(ImprintHandler.a aVar) {
-        onExperimentChanged(aVar.a("client_test", null), Integer.valueOf(aVar.a("test_report_interval", "0")).intValue());
+    @Override // com.umeng.commonsdk.statistics.internal.InterfaceC3516d
+    public void onImprintChanged(ImprintHandler.C3500a c3500a) {
+        onExperimentChanged(c3500a.m11842a("client_test", null), Integer.valueOf(c3500a.m11842a("test_report_interval", "0")).intValue());
     }
 
     public String toString() {

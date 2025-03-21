@@ -32,95 +32,102 @@ public class ForegroundBusDelegate implements IBridgeActivityDelegate {
     public static final String HMS_FOREGROUND_RESP_HEADER = "HMS_FOREGROUND_RESP_HEADER";
     public static final String INNER_PKG_NAME = "INNER_PACKAGE_NAME";
 
-    /* renamed from: a, reason: collision with root package name */
-    private RequestHeader f6519a;
+    /* renamed from: a */
+    private RequestHeader f7019a;
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f6520b;
+    /* renamed from: b */
+    private String f7020b;
 
-    /* renamed from: c, reason: collision with root package name */
-    private ForegroundInnerHeader f6521c = new ForegroundInnerHeader();
+    /* renamed from: c */
+    private ForegroundInnerHeader f7021c = new ForegroundInnerHeader();
 
-    /* renamed from: d, reason: collision with root package name */
-    private ResponseHeader f6522d;
+    /* renamed from: d */
+    private ResponseHeader f7022d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private WeakReference<Activity> f6523e;
+    /* renamed from: e */
+    private WeakReference<Activity> f7023e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private boolean f6524f;
+    /* renamed from: f */
+    private boolean f7024f;
 
-    private class b implements AvailableAdapter.AvailableCallBack {
-        private b() {
+    /* renamed from: com.huawei.hms.activity.ForegroundBusDelegate$b */
+    private class C2285b implements AvailableAdapter.AvailableCallBack {
+        private C2285b() {
         }
 
         @Override // com.huawei.hms.adapter.AvailableAdapter.AvailableCallBack
         public void onComplete(int i2) {
             if (i2 == 0) {
-                ForegroundBusDelegate.this.h();
+                ForegroundBusDelegate.this.m6526h();
             } else {
-                HMSLog.i("ForegroundBusDelegate", "version check failed");
-                ForegroundBusDelegate.this.a(0, "apk version is invalid");
+                HMSLog.m7717i("ForegroundBusDelegate", "version check failed");
+                ForegroundBusDelegate.this.m6514a(0, "apk version is invalid");
             }
         }
     }
 
-    private BusResponseCallback b(String str) {
+    /* renamed from: b */
+    private BusResponseCallback m6519b(String str) {
         return ForegroundBusResponseMgr.getInstance().get(str);
     }
 
-    private void c() {
-        if (this.f6519a != null) {
-            a(HiAnalyticsConstant.HMS_SDK_BASE_ACTIVITY_STARTED);
+    /* renamed from: c */
+    private void m6521c() {
+        if (this.f7019a != null) {
+            m6518a(HiAnalyticsConstant.HMS_SDK_BASE_ACTIVITY_STARTED);
         }
     }
 
-    private void d() {
-        a(HiAnalyticsConstant.HMS_SDK_BASE_START_CORE_ACTIVITY);
+    /* renamed from: d */
+    private void m6522d() {
+        m6518a(HiAnalyticsConstant.HMS_SDK_BASE_START_CORE_ACTIVITY);
     }
 
-    private void e() {
-        if (g() == null) {
-            HMSLog.e("ForegroundBusDelegate", "checkMinVersion failed, activity must not be null.");
-            a(0, "checkMinVersion failed, activity must not be null.");
+    /* renamed from: e */
+    private void m6523e() {
+        if (m6525g() == null) {
+            HMSLog.m7715e("ForegroundBusDelegate", "checkMinVersion failed, activity must not be null.");
+            m6514a(0, "checkMinVersion failed, activity must not be null.");
             return;
         }
-        if (this.f6524f) {
-            h();
+        if (this.f7024f) {
+            m6526h();
             return;
         }
-        if (!Util.isAvailableLibExist(g().getApplicationContext())) {
-            if (HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(g().getApplicationContext(), this.f6521c.getApkVersion()) == 0) {
-                h();
+        if (!Util.isAvailableLibExist(m6525g().getApplicationContext())) {
+            if (HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(m6525g().getApplicationContext(), this.f7021c.getApkVersion()) == 0) {
+                m6526h();
                 return;
             } else {
-                HMSLog.e("ForegroundBusDelegate", "checkMinVersion failed, and no available lib exists.");
-                a(0, "apk version is invalid");
+                HMSLog.m7715e("ForegroundBusDelegate", "checkMinVersion failed, and no available lib exists.");
+                m6514a(0, "apk version is invalid");
                 return;
             }
         }
-        b bVar = new b();
-        AvailableAdapter availableAdapter = new AvailableAdapter(this.f6521c.getApkVersion());
-        int isHuaweiMobileServicesAvailable = availableAdapter.isHuaweiMobileServicesAvailable(g());
+        C2285b c2285b = new C2285b();
+        AvailableAdapter availableAdapter = new AvailableAdapter(this.f7021c.getApkVersion());
+        int isHuaweiMobileServicesAvailable = availableAdapter.isHuaweiMobileServicesAvailable(m6525g());
         if (isHuaweiMobileServicesAvailable == 0) {
-            bVar.onComplete(isHuaweiMobileServicesAvailable);
+            c2285b.onComplete(isHuaweiMobileServicesAvailable);
         } else if (availableAdapter.isUserResolvableError(isHuaweiMobileServicesAvailable)) {
-            a(g(), availableAdapter, bVar);
+            m6515a(m6525g(), availableAdapter, c2285b);
         } else {
-            bVar.onComplete(isHuaweiMobileServicesAvailable);
+            c2285b.onComplete(isHuaweiMobileServicesAvailable);
         }
     }
 
-    private void f() {
-        Activity g2 = g();
-        if (g2 == null || g2.isFinishing()) {
+    /* renamed from: f */
+    private void m6524f() {
+        Activity m6525g = m6525g();
+        if (m6525g == null || m6525g.isFinishing()) {
             return;
         }
-        g2.finish();
+        m6525g.finish();
     }
 
-    private Activity g() {
-        WeakReference<Activity> weakReference = this.f6523e;
+    /* renamed from: g */
+    private Activity m6525g() {
+        WeakReference<Activity> weakReference = this.f7023e;
         if (weakReference == null) {
             return null;
         }
@@ -128,36 +135,37 @@ public class ForegroundBusDelegate implements IBridgeActivityDelegate {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void h() {
-        HMSLog.i("ForegroundBusDelegate", "startApkHubActivity");
-        Activity g2 = g();
-        if (g2 == null) {
-            HMSLog.e("ForegroundBusDelegate", "startApkHubActivity but activity is null");
+    /* renamed from: h */
+    public void m6526h() {
+        HMSLog.m7717i("ForegroundBusDelegate", "startApkHubActivity");
+        Activity m6525g = m6525g();
+        if (m6525g == null) {
+            HMSLog.m7715e("ForegroundBusDelegate", "startApkHubActivity but activity is null");
             return;
         }
-        String packageName = this.f6524f ? g2.getPackageName() : HMSPackageManager.getInstance(g2.getApplicationContext()).getHMSPackageNameForMultiService();
+        String packageName = this.f7024f ? m6525g.getPackageName() : HMSPackageManager.getInstance(m6525g.getApplicationContext()).getHMSPackageNameForMultiService();
         if (TextUtils.isEmpty(packageName)) {
-            HMSLog.e("ForegroundBusDelegate", "hmsPackageName is null, Service is invalid.");
-            a(0, "hmsPackageName is null, Service is invalid.");
+            HMSLog.m7715e("ForegroundBusDelegate", "hmsPackageName is null, Service is invalid.");
+            m6514a(0, "hmsPackageName is null, Service is invalid.");
             return;
         }
-        Intent intent = new Intent(this.f6521c.getAction());
-        intent.putExtra(HMS_FOREGROUND_REQ_BODY, this.f6520b);
+        Intent intent = new Intent(this.f7021c.getAction());
+        intent.putExtra(HMS_FOREGROUND_REQ_BODY, this.f7020b);
         try {
             intent.setPackage(packageName);
         } catch (IllegalArgumentException unused) {
-            HMSLog.e("ForegroundBusDelegate", "IllegalArgumentException when startApkHubActivity intent.setPackage");
+            HMSLog.m7715e("ForegroundBusDelegate", "IllegalArgumentException when startApkHubActivity intent.setPackage");
         }
-        intent.putExtra(BridgeActivity.EXTRA_IS_FULLSCREEN, UIUtil.isActivityFullscreen(g2));
+        intent.putExtra(BridgeActivity.EXTRA_IS_FULLSCREEN, UIUtil.isActivityFullscreen(m6525g));
         intent.setClassName(packageName, "com.huawei.hms.core.activity.UiJumpActivity");
-        intent.putExtra(HMS_FOREGROUND_REQ_HEADER, this.f6519a.toJson());
+        intent.putExtra(HMS_FOREGROUND_REQ_HEADER, this.f7019a.toJson());
         intent.putExtra("intent.extra.hms.core.DELEGATE_NAME", "com.huawei.hms.core.activity.ForegroundBus");
         try {
-            b();
-            g2.startActivityForResult(intent, 431057);
+            m6520b();
+            m6525g.startActivityForResult(intent, 431057);
         } catch (ActivityNotFoundException e2) {
-            HMSLog.e("ForegroundBusDelegate", "Launch sign in Intent failed. hms is probably being updated：", e2);
-            a(0, "launch bus intent failed");
+            HMSLog.m7716e("ForegroundBusDelegate", "Launch sign in Intent failed. hms is probably being updated：", e2);
+            m6514a(0, "launch bus intent failed");
         }
     }
 
@@ -169,56 +177,56 @@ public class ForegroundBusDelegate implements IBridgeActivityDelegate {
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
         if (activity == null) {
-            HMSLog.e("ForegroundBusDelegate", "activity is null");
-            a(0, "activity is null");
+            HMSLog.m7715e("ForegroundBusDelegate", "activity is null");
+            m6514a(0, "activity is null");
             return;
         }
         if (activity.isFinishing()) {
-            HMSLog.e("ForegroundBusDelegate", "activity is finishing");
-            a(0, "activity is finishing");
+            HMSLog.m7715e("ForegroundBusDelegate", "activity is finishing");
+            m6514a(0, "activity is finishing");
             return;
         }
-        this.f6523e = new WeakReference<>(activity);
+        this.f7023e = new WeakReference<>(activity);
         try {
             Intent intent = activity.getIntent();
             if (intent == null) {
-                a(0, "intent is invalid");
+                m6514a(0, "intent is invalid");
                 return;
             }
             String stringExtra = intent.getStringExtra(HMS_FOREGROUND_REQ_HEADER);
             RequestHeader requestHeader = new RequestHeader();
-            this.f6519a = requestHeader;
+            this.f7019a = requestHeader;
             if (!requestHeader.fromJson(stringExtra)) {
-                a(0, "header is invalid");
+                m6514a(0, "header is invalid");
                 return;
             }
-            this.f6520b = intent.getStringExtra(HMS_FOREGROUND_REQ_BODY);
-            ForegroundInnerHeader foregroundInnerHeader = this.f6521c;
+            this.f7020b = intent.getStringExtra(HMS_FOREGROUND_REQ_BODY);
+            ForegroundInnerHeader foregroundInnerHeader = this.f7021c;
             if (foregroundInnerHeader == null) {
-                a(0, "inner header is invalid");
+                m6514a(0, "inner header is invalid");
                 return;
             }
             foregroundInnerHeader.fromJson(intent.getStringExtra(HMS_FOREGROUND_REQ_INNER));
-            if (TextUtils.isEmpty(this.f6519a.getApiName())) {
-                a(0, "action is invalid");
+            if (TextUtils.isEmpty(this.f7019a.getApiName())) {
+                m6514a(0, "action is invalid");
                 return;
             }
-            a();
+            m6512a();
             if (!TextUtils.isEmpty(intent.getStringExtra(INNER_PKG_NAME))) {
-                HMSLog.i("ForegroundBusDelegate", "isUseInnerHms: true");
-                this.f6524f = true;
+                HMSLog.m7717i("ForegroundBusDelegate", "isUseInnerHms: true");
+                this.f7024f = true;
             }
-            e();
+            m6523e();
         } catch (Throwable th) {
-            HMSLog.e("ForegroundBusDelegate", "ForegroundBusDelegate getStringExtra error:" + th.getMessage());
-            a(0, "ForegroundBusDelegate getStringExtra error:" + th.getMessage());
+            HMSLog.m7715e("ForegroundBusDelegate", "ForegroundBusDelegate getStringExtra error:" + th.getMessage());
+            m6514a(0, "ForegroundBusDelegate getStringExtra error:" + th.getMessage());
         }
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityDestroy() {
-        c();
-        this.f6523e = null;
+        m6521c();
+        this.f7023e = null;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
@@ -231,25 +239,25 @@ public class ForegroundBusDelegate implements IBridgeActivityDelegate {
             try {
                 str = intent.getStringExtra(HMS_FOREGROUND_RESP_HEADER);
             } catch (Throwable unused) {
-                HMSLog.w("ForegroundBusDelegate", "exception occur, HMS_FOREGROUND_RESP_HEADER get failed.");
+                HMSLog.m7718w("ForegroundBusDelegate", "exception occur, HMS_FOREGROUND_RESP_HEADER get failed.");
                 str = "";
             }
             ResponseHeader responseHeader = new ResponseHeader();
-            this.f6522d = responseHeader;
+            this.f7022d = responseHeader;
             JsonUtil.jsonToEntity(str, responseHeader);
         }
-        d();
-        BusResponseCallback b2 = b(this.f6521c.getResponseCallbackKey());
-        if (b2 == null) {
-            a(i3, intent);
+        m6522d();
+        BusResponseCallback m6519b = m6519b(this.f7021c.getResponseCallbackKey());
+        if (m6519b == null) {
+            m6513a(i3, intent);
             return true;
         }
-        BusResponseResult succeedReturn = b2.succeedReturn(this.f6523e.get(), i3, intent);
+        BusResponseResult succeedReturn = m6519b.succeedReturn(this.f7023e.get(), i3, intent);
         if (succeedReturn == null) {
-            a(i3, intent);
+            m6513a(i3, intent);
             return true;
         }
-        a(succeedReturn.getCode(), succeedReturn.getIntent());
+        m6513a(succeedReturn.getCode(), succeedReturn.getIntent());
         return true;
     }
 
@@ -261,73 +269,79 @@ public class ForegroundBusDelegate implements IBridgeActivityDelegate {
     public void onKeyUp(int i2, KeyEvent keyEvent) {
     }
 
-    private void b() {
-        Map<String, String> mapFromForegroundRequestHeader = HiAnalyticsUtil.getInstance().getMapFromForegroundRequestHeader(this.f6519a);
+    /* renamed from: b */
+    private void m6520b() {
+        Map<String, String> mapFromForegroundRequestHeader = HiAnalyticsUtil.getInstance().getMapFromForegroundRequestHeader(this.f7019a);
         mapFromForegroundRequestHeader.put(HiAnalyticsConstant.HaKey.BI_KEY_DIRECTION, HiAnalyticsConstant.Direction.REQUEST);
-        mapFromForegroundRequestHeader.put("version", HiAnalyticsUtil.versionCodeToName(String.valueOf(this.f6519a.getKitSdkVersion())));
-        if (g() != null) {
-            HiAnalyticsUtil.getInstance().onNewEvent(g().getApplicationContext(), HiAnalyticsConstant.HMS_SDK_BASE_START_CORE_ACTIVITY, mapFromForegroundRequestHeader);
+        mapFromForegroundRequestHeader.put("version", HiAnalyticsUtil.versionCodeToName(String.valueOf(this.f7019a.getKitSdkVersion())));
+        if (m6525g() != null) {
+            HiAnalyticsUtil.getInstance().onNewEvent(m6525g().getApplicationContext(), HiAnalyticsConstant.HMS_SDK_BASE_START_CORE_ACTIVITY, mapFromForegroundRequestHeader);
         }
     }
 
-    private void a(int i2, Intent intent) {
-        HMSLog.i("ForegroundBusDelegate", "succeedReturn");
-        Activity g2 = g();
-        if (g2 == null) {
+    /* renamed from: a */
+    private void m6513a(int i2, Intent intent) {
+        HMSLog.m7717i("ForegroundBusDelegate", "succeedReturn");
+        Activity m6525g = m6525g();
+        if (m6525g == null) {
             return;
         }
-        g2.setResult(i2, IntentUtil.modifyIntentBehaviorsSafe(intent));
-        f();
+        m6525g.setResult(i2, IntentUtil.modifyIntentBehaviorsSafe(intent));
+        m6524f();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void a(int i2, String str) {
-        HMSLog.e("ForegroundBusDelegate", str);
-        Activity g2 = g();
-        if (g2 == null) {
+    /* renamed from: a */
+    public void m6514a(int i2, String str) {
+        HMSLog.m7715e("ForegroundBusDelegate", str);
+        Activity m6525g = m6525g();
+        if (m6525g == null) {
             return;
         }
-        BusResponseCallback b2 = b(this.f6521c.getResponseCallbackKey());
-        if (b2 != null) {
-            BusResponseResult innerError = b2.innerError(this.f6523e.get(), i2, str);
+        BusResponseCallback m6519b = m6519b(this.f7021c.getResponseCallbackKey());
+        if (m6519b != null) {
+            BusResponseResult innerError = m6519b.innerError(this.f7023e.get(), i2, str);
             if (innerError == null) {
-                g2.setResult(0);
+                m6525g.setResult(0);
             } else {
-                g2.setResult(innerError.getCode(), IntentUtil.modifyIntentBehaviorsSafe(innerError.getIntent()));
+                m6525g.setResult(innerError.getCode(), IntentUtil.modifyIntentBehaviorsSafe(innerError.getIntent()));
             }
         } else {
-            g2.setResult(0);
+            m6525g.setResult(0);
         }
-        f();
+        m6524f();
     }
 
-    private static void a(Activity activity, AvailableAdapter availableAdapter, AvailableAdapter.AvailableCallBack availableCallBack) {
+    /* renamed from: a */
+    private static void m6515a(Activity activity, AvailableAdapter availableAdapter, AvailableAdapter.AvailableCallBack availableCallBack) {
         if (activity == null) {
-            HMSLog.i("ForegroundBusDelegate", "null activity, could not start resolution intent");
+            HMSLog.m7717i("ForegroundBusDelegate", "null activity, could not start resolution intent");
         }
         availableAdapter.startResolution(activity, availableCallBack);
     }
 
-    private void a() {
-        Map<String, String> mapFromForegroundRequestHeader = HiAnalyticsUtil.getInstance().getMapFromForegroundRequestHeader(this.f6519a);
+    /* renamed from: a */
+    private void m6512a() {
+        Map<String, String> mapFromForegroundRequestHeader = HiAnalyticsUtil.getInstance().getMapFromForegroundRequestHeader(this.f7019a);
         mapFromForegroundRequestHeader.put(HiAnalyticsConstant.HaKey.BI_KEY_DIRECTION, HiAnalyticsConstant.Direction.REQUEST);
-        mapFromForegroundRequestHeader.put("version", HiAnalyticsUtil.versionCodeToName(String.valueOf(this.f6519a.getKitSdkVersion())));
-        if (g() != null) {
-            HiAnalyticsUtil.getInstance().onNewEvent(g().getApplicationContext(), HiAnalyticsConstant.HMS_SDK_BASE_ACTIVITY_STARTED, mapFromForegroundRequestHeader);
+        mapFromForegroundRequestHeader.put("version", HiAnalyticsUtil.versionCodeToName(String.valueOf(this.f7019a.getKitSdkVersion())));
+        if (m6525g() != null) {
+            HiAnalyticsUtil.getInstance().onNewEvent(m6525g().getApplicationContext(), HiAnalyticsConstant.HMS_SDK_BASE_ACTIVITY_STARTED, mapFromForegroundRequestHeader);
         }
     }
 
-    private void a(String str) {
-        Map<String, String> mapFromForegroundRequestHeader = HiAnalyticsUtil.getInstance().getMapFromForegroundRequestHeader(this.f6519a);
+    /* renamed from: a */
+    private void m6518a(String str) {
+        Map<String, String> mapFromForegroundRequestHeader = HiAnalyticsUtil.getInstance().getMapFromForegroundRequestHeader(this.f7019a);
         mapFromForegroundRequestHeader.put(HiAnalyticsConstant.HaKey.BI_KEY_DIRECTION, HiAnalyticsConstant.Direction.RESPONSE);
-        mapFromForegroundRequestHeader.put("version", HiAnalyticsUtil.versionCodeToName(String.valueOf(this.f6519a.getKitSdkVersion())));
-        ResponseHeader responseHeader = this.f6522d;
+        mapFromForegroundRequestHeader.put("version", HiAnalyticsUtil.versionCodeToName(String.valueOf(this.f7019a.getKitSdkVersion())));
+        ResponseHeader responseHeader = this.f7022d;
         if (responseHeader != null) {
             mapFromForegroundRequestHeader.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(responseHeader.getStatusCode()));
-            mapFromForegroundRequestHeader.put("result", String.valueOf(this.f6522d.getErrorCode()));
+            mapFromForegroundRequestHeader.put("result", String.valueOf(this.f7022d.getErrorCode()));
         }
-        if (g() != null) {
-            HiAnalyticsUtil.getInstance().onNewEvent(g().getApplicationContext(), str, mapFromForegroundRequestHeader);
+        if (m6525g() != null) {
+            HiAnalyticsUtil.getInstance().onNewEvent(m6525g().getApplicationContext(), str, mapFromForegroundRequestHeader);
         }
     }
 }

@@ -36,10 +36,10 @@ public class LivenessSucessActivity extends BaseActivity {
     }
 
     private void initView() {
-        this.img_success = (ImageView) findViewById(R.id.img_success);
-        this.img_circle = (CircleImageView) findViewById(R.id.img_circle);
-        this.circle_mark = (CircleMarkView) findViewById(R.id.circle_mark);
-        this.tv_ok = (TextView) findViewById(R.id.tv_ok);
+        this.img_success = (ImageView) findViewById(C1241R.id.img_success);
+        this.img_circle = (CircleImageView) findViewById(C1241R.id.img_circle);
+        this.circle_mark = (CircleMarkView) findViewById(C1241R.id.circle_mark);
+        this.tv_ok = (TextView) findViewById(C1241R.id.tv_ok);
         this.tv_ok.setOnClickListener(new View.OnClickListener() { // from class: cn.cloudwalk.libproject.LivenessSucessActivity.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
@@ -59,7 +59,7 @@ public class LivenessSucessActivity extends BaseActivity {
             }
         });
         this.circle_mark.setRadius(0);
-        this.circle_mark.setLineColor(getResources().getColor(R.color.color_44d7b6), true);
+        this.circle_mark.setLineColor(getResources().getColor(C1241R.color.color_44d7b6), true);
         byte[] bArr = Builder.bestFaceData;
         if (bArr == null) {
             bArr = Builder.clipedBestFaceData;
@@ -70,10 +70,10 @@ public class LivenessSucessActivity extends BaseActivity {
             if (bitmap != null) {
                 this.img_circle.setImageBitmap(bitmap);
             } else {
-                this.img_circle.setImageDrawable(getResources().getDrawable(R.color.color_ffffff));
+                this.img_circle.setImageDrawable(getResources().getDrawable(C1241R.color.color_ffffff));
             }
         } else {
-            this.img_circle.setImageDrawable(getResources().getDrawable(R.color.color_ffffff));
+            this.img_circle.setImageDrawable(getResources().getDrawable(C1241R.color.color_ffffff));
         }
         scaleAnim();
     }
@@ -90,7 +90,7 @@ public class LivenessSucessActivity extends BaseActivity {
     @Override // cn.cloudwalk.libproject.BaseActivity, android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_liveness_success);
+        setContentView(C1241R.layout.activity_liveness_success);
         getWindow().addFlags(128);
         setRequestedOrientation(14);
         initView();

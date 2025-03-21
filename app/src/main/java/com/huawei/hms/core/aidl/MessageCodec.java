@@ -17,17 +17,19 @@ public class MessageCodec {
     protected static final int VAL_NULL = -1;
     protected static final String VAL_TYPE = "_val_type_";
 
-    private void a(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
-        Object a2 = a(field, bundle);
-        if (a2 != null) {
+    /* renamed from: a */
+    private void m6768a(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
+        Object m6767a = m6767a(field, bundle);
+        if (m6767a != null) {
             boolean isAccessible = field.isAccessible();
             field.setAccessible(true);
-            field.set(iMessageEntity, a2);
+            field.set(iMessageEntity, m6767a);
             field.setAccessible(isAccessible);
         }
     }
 
-    private void b(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
+    /* renamed from: b */
+    private void m6770b(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
         boolean isAccessible = field.isAccessible();
         field.setAccessible(true);
         writeValue(field.getName(), field.get(iMessageEntity), bundle);
@@ -43,7 +45,7 @@ public class MessageCodec {
             for (Field field : cls.getDeclaredFields()) {
                 if (field.isAnnotationPresent(Packed.class)) {
                     try {
-                        a(iMessageEntity, field, bundle);
+                        m6768a(iMessageEntity, field, bundle);
                     } catch (IllegalAccessException | IllegalArgumentException unused) {
                         String str = "decode, set value of the field exception, field name:" + field.getName();
                     }
@@ -61,7 +63,7 @@ public class MessageCodec {
             for (Field field : cls.getDeclaredFields()) {
                 if (field.isAnnotationPresent(Packed.class)) {
                     try {
-                        b(iMessageEntity, field, bundle);
+                        m6770b(iMessageEntity, field, bundle);
                     } catch (IllegalAccessException | IllegalArgumentException unused) {
                         String str = "encode, get value of the field exception, field name: " + field.getName();
                     }
@@ -102,12 +104,12 @@ public class MessageCodec {
                 bundle.putBundle(str, bundle2);
                 bundle2.putInt(VAL_TYPE, 1);
             }
-            bundle2 = a("_value_", bundle2, obj);
+            bundle2 = m6766a("_value_", bundle2, obj);
         }
     }
 
     protected void writeValue(String str, Object obj, Bundle bundle) {
-        if (obj == null || a(str, obj, bundle)) {
+        if (obj == null || m6769a(str, obj, bundle)) {
             return;
         }
         if (obj instanceof CharSequence) {
@@ -139,7 +141,8 @@ public class MessageCodec {
         }
     }
 
-    private Object a(Field field, Bundle bundle) {
+    /* renamed from: a */
+    private Object m6767a(Field field, Bundle bundle) {
         String name = field.getName();
         Object obj = bundle.get(name);
         if (obj instanceof Bundle) {
@@ -160,14 +163,16 @@ public class MessageCodec {
         return obj;
     }
 
-    private Bundle a(String str, Bundle bundle, Object obj) {
+    /* renamed from: a */
+    private Bundle m6766a(String str, Bundle bundle, Object obj) {
         Bundle bundle2 = new Bundle();
         writeValue(str, obj, bundle2);
         bundle.putBundle("_next_item_", bundle2);
         return bundle2;
     }
 
-    private boolean a(String str, Object obj, Bundle bundle) {
+    /* renamed from: a */
+    private boolean m6769a(String str, Object obj, Bundle bundle) {
         if (obj instanceof String) {
             bundle.putString(str, (String) obj);
             return true;

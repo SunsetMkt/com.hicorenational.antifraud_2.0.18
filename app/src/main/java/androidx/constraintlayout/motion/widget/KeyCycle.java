@@ -5,8 +5,8 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
+import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.constraintlayout.widget.R;
 import androidx.core.app.NotificationCompat;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -60,26 +60,26 @@ public class KeyCycle extends Key {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(R.styleable.KeyCycle_motionTarget, 1);
-            mAttrMap.append(R.styleable.KeyCycle_framePosition, 2);
-            mAttrMap.append(R.styleable.KeyCycle_transitionEasing, 3);
-            mAttrMap.append(R.styleable.KeyCycle_curveFit, 4);
-            mAttrMap.append(R.styleable.KeyCycle_waveShape, 5);
-            mAttrMap.append(R.styleable.KeyCycle_wavePeriod, 6);
-            mAttrMap.append(R.styleable.KeyCycle_waveOffset, 7);
-            mAttrMap.append(R.styleable.KeyCycle_waveVariesBy, 8);
-            mAttrMap.append(R.styleable.KeyCycle_android_alpha, 9);
-            mAttrMap.append(R.styleable.KeyCycle_android_elevation, 10);
-            mAttrMap.append(R.styleable.KeyCycle_android_rotation, 11);
-            mAttrMap.append(R.styleable.KeyCycle_android_rotationX, 12);
-            mAttrMap.append(R.styleable.KeyCycle_android_rotationY, 13);
-            mAttrMap.append(R.styleable.KeyCycle_transitionPathRotate, 14);
-            mAttrMap.append(R.styleable.KeyCycle_android_scaleX, 15);
-            mAttrMap.append(R.styleable.KeyCycle_android_scaleY, 16);
-            mAttrMap.append(R.styleable.KeyCycle_android_translationX, 17);
-            mAttrMap.append(R.styleable.KeyCycle_android_translationY, 18);
-            mAttrMap.append(R.styleable.KeyCycle_android_translationZ, 19);
-            mAttrMap.append(R.styleable.KeyCycle_motionProgress, 20);
+            mAttrMap.append(C0471R.styleable.KeyCycle_motionTarget, 1);
+            mAttrMap.append(C0471R.styleable.KeyCycle_framePosition, 2);
+            mAttrMap.append(C0471R.styleable.KeyCycle_transitionEasing, 3);
+            mAttrMap.append(C0471R.styleable.KeyCycle_curveFit, 4);
+            mAttrMap.append(C0471R.styleable.KeyCycle_waveShape, 5);
+            mAttrMap.append(C0471R.styleable.KeyCycle_wavePeriod, 6);
+            mAttrMap.append(C0471R.styleable.KeyCycle_waveOffset, 7);
+            mAttrMap.append(C0471R.styleable.KeyCycle_waveVariesBy, 8);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_alpha, 9);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_elevation, 10);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_rotation, 11);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_rotationX, 12);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_rotationY, 13);
+            mAttrMap.append(C0471R.styleable.KeyCycle_transitionPathRotate, 14);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_scaleX, 15);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_scaleY, 16);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_translationX, 17);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_translationY, 18);
+            mAttrMap.append(C0471R.styleable.KeyCycle_android_translationZ, 19);
+            mAttrMap.append(C0471R.styleable.KeyCycle_motionProgress, 20);
         }
 
         private Loader() {
@@ -432,7 +432,7 @@ public class KeyCycle extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyCycle));
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyCycle));
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */

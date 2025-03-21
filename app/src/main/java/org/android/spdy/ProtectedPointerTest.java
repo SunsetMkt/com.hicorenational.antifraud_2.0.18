@@ -7,20 +7,20 @@ public class ProtectedPointerTest {
 
     static class Data {
 
-        /* renamed from: i, reason: collision with root package name */
-        private int f17362i = 0;
+        /* renamed from: i */
+        private int f21518i = 0;
 
         Data() {
         }
 
         public void destroy() {
             System.out.println("destroy");
-            this.f17362i = 1;
+            this.f21518i = 1;
         }
 
         public void work() {
             System.out.println("work");
-            if (this.f17362i == 1) {
+            if (this.f21518i == 1) {
                 System.exit(-1);
             }
         }

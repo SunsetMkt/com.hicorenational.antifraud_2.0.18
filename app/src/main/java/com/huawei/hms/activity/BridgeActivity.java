@@ -15,12 +15,13 @@ import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import com.huawei.hms.adapter.internal.CommonCode;
+import com.huawei.hms.p182ui.SafeIntent;
 import com.huawei.hms.support.log.HMSLog;
-import com.huawei.hms.ui.SafeIntent;
 import com.huawei.hms.utils.ResolutionFlagUtil;
 import com.huawei.hms.utils.ResourceLoaderUtil;
 import com.huawei.hms.utils.UIUtil;
 import java.lang.reflect.InvocationTargetException;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class BridgeActivity extends Activity {
@@ -30,19 +31,20 @@ public class BridgeActivity extends Activity {
     public static final String EXTRA_IS_FULLSCREEN = "intent.extra.isfullscreen";
     public static final String EXTRA_RESULT = "intent.extra.RESULT";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final int f6515b = a("ro.build.hw_emui_api_level", 0);
+    /* renamed from: b */
+    private static final int f7015b = m6507a("ro.build.hw_emui_api_level", 0);
 
-    /* renamed from: a, reason: collision with root package name */
-    private IBridgeActivityDelegate f6516a;
+    /* renamed from: a */
+    private IBridgeActivityDelegate f7016a;
 
-    class a implements View.OnApplyWindowInsetsListener {
+    /* renamed from: com.huawei.hms.activity.BridgeActivity$a */
+    class ViewOnApplyWindowInsetsListenerC2283a implements View.OnApplyWindowInsetsListener {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ ViewGroup f6517a;
+        /* renamed from: a */
+        final /* synthetic */ ViewGroup f7017a;
 
-        a(ViewGroup viewGroup) {
-            this.f6517a = viewGroup;
+        ViewOnApplyWindowInsetsListenerC2283a(ViewGroup viewGroup) {
+            this.f7017a = viewGroup;
         }
 
         @Override // android.view.View.OnApplyWindowInsetsListener
@@ -50,33 +52,35 @@ public class BridgeActivity extends Activity {
             try {
                 Object invoke = Class.forName("com.huawei.android.view.WindowManagerEx$LayoutParamsEx").getMethod("getDisplaySideRegion", WindowInsets.class).invoke(null, windowInsets);
                 if (invoke == null) {
-                    HMSLog.i("BridgeActivity", "sideRegion is null");
+                    HMSLog.m7717i("BridgeActivity", "sideRegion is null");
                 } else {
                     Rect rect = (Rect) Class.forName("com.huawei.android.view.DisplaySideRegionEx").getMethod("getSafeInsets", new Class[0]).invoke(invoke, new Object[0]);
-                    ViewGroup viewGroup = this.f6517a;
+                    ViewGroup viewGroup = this.f7017a;
                     if (viewGroup != null) {
                         viewGroup.setPadding(rect.left, 0, rect.right, 0);
                     }
                 }
             } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e2) {
-                HMSLog.e("BridgeActivity", "An exception occurred while reading: onApplyWindowInsets" + e2.getMessage());
+                HMSLog.m7715e("BridgeActivity", "An exception occurred while reading: onApplyWindowInsets" + e2.getMessage());
             }
             return view.onApplyWindowInsets(windowInsets);
         }
     }
 
-    private static void a(Window window, boolean z) {
+    /* renamed from: a */
+    private static void m6509a(Window window, boolean z) {
         try {
             window.getClass().getMethod("setHwFloating", Boolean.TYPE).invoke(window, Boolean.valueOf(z));
         } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException e2) {
-            HMSLog.e("BridgeActivity", "In setHwFloating, Failed to call Window.setHwFloating()." + e2.getMessage());
+            HMSLog.m7715e("BridgeActivity", "In setHwFloating, Failed to call Window.setHwFloating()." + e2.getMessage());
         }
     }
 
-    private boolean b() {
+    /* renamed from: b */
+    private boolean m6510b() {
         Intent intent = getIntent();
         if (intent == null) {
-            HMSLog.e("BridgeActivity", "In initialize, Must not pass in a null intent.");
+            HMSLog.m7715e("BridgeActivity", "In initialize, Must not pass in a null intent.");
             return false;
         }
         if (intent.getBooleanExtra(EXTRA_IS_FULLSCREEN, false)) {
@@ -85,54 +89,55 @@ public class BridgeActivity extends Activity {
         try {
             String stringExtra = intent.getStringExtra(EXTRA_DELEGATE_CLASS_NAME);
             if (stringExtra == null) {
-                HMSLog.e("BridgeActivity", "In initialize, Must not pass in a null or non class object.");
+                HMSLog.m7715e("BridgeActivity", "In initialize, Must not pass in a null or non class object.");
                 return false;
             }
             IBridgeActivityDelegate iBridgeActivityDelegate = (IBridgeActivityDelegate) Class.forName(stringExtra).asSubclass(IBridgeActivityDelegate.class).newInstance();
-            this.f6516a = iBridgeActivityDelegate;
+            this.f7016a = iBridgeActivityDelegate;
             try {
                 iBridgeActivityDelegate.onBridgeActivityCreate(this);
                 return true;
             } catch (Throwable th) {
-                HMSLog.e("BridgeActivity", "onBridgeActivityCreate Exception." + th.getMessage());
+                HMSLog.m7715e("BridgeActivity", "onBridgeActivityCreate Exception." + th.getMessage());
                 return false;
             }
         } catch (ClassCastException e2) {
             e = e2;
-            HMSLog.e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
+            HMSLog.m7715e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
             return false;
         } catch (ClassNotFoundException e3) {
             e = e3;
-            HMSLog.e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
+            HMSLog.m7715e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
             return false;
         } catch (IllegalAccessException e4) {
             e = e4;
-            HMSLog.e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
+            HMSLog.m7715e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
             return false;
         } catch (IllegalStateException e5) {
             e = e5;
-            HMSLog.e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
+            HMSLog.m7715e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
             return false;
         } catch (InstantiationException e6) {
             e = e6;
-            HMSLog.e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
+            HMSLog.m7715e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance." + e.getMessage());
             return false;
         } catch (Throwable unused) {
-            HMSLog.e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance, throwable occur.");
+            HMSLog.m7715e("BridgeActivity", "In initialize, Failed to create 'IUpdateWizard' instance, throwable occur.");
             return false;
         }
     }
 
-    private void c() {
+    /* renamed from: c */
+    private void m6511c() {
         try {
             requestWindowFeature(1);
         } catch (Exception e2) {
-            HMSLog.w("BridgeActivity", "requestWindowFeature " + e2.getMessage());
+            HMSLog.m7718w("BridgeActivity", "requestWindowFeature " + e2.getMessage());
         }
         Window window = getWindow();
-        if (f6515b >= 9) {
-            window.addFlags(c.c.a.b.a.a.B1);
-            a(window, true);
+        if (f7015b >= 9) {
+            window.addFlags(AbstractC1191a.f2487B1);
+            m6509a(window, true);
         }
         window.getDecorView().setSystemUiVisibility(0);
     }
@@ -160,13 +165,13 @@ public class BridgeActivity extends Activity {
             Class<?> cls = Class.forName("com.huawei.android.view.LayoutParamsEx");
             cls.getMethod("addHwFlags", Integer.TYPE).invoke(cls.getConstructor(WindowManager.LayoutParams.class).newInstance(attributes2), 65536);
         } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | InvocationTargetException unused) {
-            HMSLog.e("BridgeActivity", "com.huawei.android.view.LayoutParamsEx fail");
+            HMSLog.m7715e("BridgeActivity", "com.huawei.android.view.LayoutParamsEx fail");
         }
     }
 
     @Override // android.app.Activity
     public void finish() {
-        HMSLog.i("BridgeActivity", "Enter finish.");
+        HMSLog.m7717i("BridgeActivity", "Enter finish.");
         super.finish();
     }
 
@@ -183,13 +188,13 @@ public class BridgeActivity extends Activity {
     protected void onActivityResult(int i2, int i3, Intent intent) {
         SafeIntent safeIntent = new SafeIntent(intent);
         super.onActivityResult(i2, i3, safeIntent);
-        IBridgeActivityDelegate iBridgeActivityDelegate = this.f6516a;
+        IBridgeActivityDelegate iBridgeActivityDelegate = this.f7016a;
         if (iBridgeActivityDelegate != null) {
             boolean z = false;
             try {
                 z = iBridgeActivityDelegate.onBridgeActivityResult(i2, i3, safeIntent);
             } catch (Throwable unused) {
-                HMSLog.w("BridgeActivity", "onBridgeActivityResult failed, throwable occur.");
+                HMSLog.m7718w("BridgeActivity", "onBridgeActivityResult failed, throwable occur.");
             }
             if (z || isFinishing()) {
                 return;
@@ -202,7 +207,7 @@ public class BridgeActivity extends Activity {
     @Override // android.app.Activity, android.content.ComponentCallbacks
     public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        IBridgeActivityDelegate iBridgeActivityDelegate = this.f6516a;
+        IBridgeActivityDelegate iBridgeActivityDelegate = this.f7016a;
         if (iBridgeActivityDelegate != null) {
             iBridgeActivityDelegate.onBridgeConfigurationChanged();
         }
@@ -211,7 +216,7 @@ public class BridgeActivity extends Activity {
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        HMSLog.i("BridgeActivity", "BridgeActivity onCreate");
+        HMSLog.m7717i("BridgeActivity", "BridgeActivity onCreate");
         if (getIntent() == null) {
             setResult(1, null);
             finish();
@@ -221,13 +226,13 @@ public class BridgeActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(0);
         }
-        c();
-        a();
+        m6511c();
+        m6508a();
         if (ResourceLoaderUtil.getmContext() == null) {
             ResourceLoaderUtil.setmContext(getApplicationContext());
         }
         setFullScreenWindowLayoutInDisplayCutout(getWindow());
-        if (b()) {
+        if (m6510b()) {
             return;
         }
         setResult(1, null);
@@ -240,25 +245,26 @@ public class BridgeActivity extends Activity {
         try {
             ResolutionFlagUtil.getInstance().removeResolutionFlag(new SafeIntent(getIntent()).getStringExtra(CommonCode.MapKey.TRANSACTION_ID));
         } catch (Throwable th) {
-            HMSLog.w("BridgeActivity", "get transaction_id from intent fail: " + th.getClass().getSimpleName());
+            HMSLog.m7718w("BridgeActivity", "get transaction_id from intent fail: " + th.getClass().getSimpleName());
         }
-        IBridgeActivityDelegate iBridgeActivityDelegate = this.f6516a;
+        IBridgeActivityDelegate iBridgeActivityDelegate = this.f7016a;
         if (iBridgeActivityDelegate != null) {
             iBridgeActivityDelegate.onBridgeActivityDestroy();
         }
-        HMSLog.i("BridgeActivity", "BridgeActivity onDestroy");
+        HMSLog.m7717i("BridgeActivity", "BridgeActivity onDestroy");
     }
 
     @Override // android.app.Activity, android.view.KeyEvent.Callback
     public boolean onKeyUp(int i2, KeyEvent keyEvent) {
-        IBridgeActivityDelegate iBridgeActivityDelegate = this.f6516a;
+        IBridgeActivityDelegate iBridgeActivityDelegate = this.f7016a;
         if (iBridgeActivityDelegate != null) {
             iBridgeActivityDelegate.onKeyUp(i2, keyEvent);
         }
         return super.onKeyUp(i2, keyEvent);
     }
 
-    private void a() {
+    /* renamed from: a */
+    private void m6508a() {
         View findViewById = getWindow().findViewById(R.id.content);
         if (findViewById != null && (findViewById instanceof ViewGroup)) {
             ViewGroup viewGroup = (ViewGroup) findViewById;
@@ -267,15 +273,15 @@ public class BridgeActivity extends Activity {
                 Class<?> cls = Class.forName("com.huawei.android.view.WindowManagerEx$LayoutParamsEx");
                 cls.getMethod("setDisplaySideMode", Integer.TYPE).invoke(cls.getDeclaredConstructor(WindowManager.LayoutParams.class).newInstance(attributes), 1);
             } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e2) {
-                HMSLog.e("BridgeActivity", "An exception occurred while reading: setDisplaySideMode" + e2.getMessage());
+                HMSLog.m7715e("BridgeActivity", "An exception occurred while reading: setDisplaySideMode" + e2.getMessage());
             }
             if (Build.VERSION.SDK_INT >= 20) {
-                getWindow().getDecorView().setOnApplyWindowInsetsListener(new a(viewGroup));
+                getWindow().getDecorView().setOnApplyWindowInsetsListener(new ViewOnApplyWindowInsetsListenerC2283a(viewGroup));
                 return;
             }
             return;
         }
-        HMSLog.e("BridgeActivity", "rootView is null or not ViewGroup");
+        HMSLog.m7715e("BridgeActivity", "rootView is null or not ViewGroup");
     }
 
     public static Intent getIntentStartBridgeActivity(Context context, String str) {
@@ -285,12 +291,13 @@ public class BridgeActivity extends Activity {
         return intent;
     }
 
-    private static int a(String str, int i2) {
+    /* renamed from: a */
+    private static int m6507a(String str, int i2) {
         try {
             Class<?> cls = Class.forName("android.os.SystemProperties");
             return ((Integer) cls.getDeclaredMethod("getInt", String.class, Integer.TYPE).invoke(cls, str, Integer.valueOf(i2))).intValue();
         } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException unused) {
-            HMSLog.e("BridgeActivity", "An exception occurred while reading: EMUI_SDK_INT");
+            HMSLog.m7715e("BridgeActivity", "An exception occurred while reading: EMUI_SDK_INT");
             return i2;
         }
     }

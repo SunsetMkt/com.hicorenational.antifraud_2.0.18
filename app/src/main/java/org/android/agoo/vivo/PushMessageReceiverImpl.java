@@ -17,12 +17,12 @@ public class PushMessageReceiverImpl extends OpenClientPushMessageReceiver {
             return;
         }
         try {
-            ALog.d(BasePushMessageReceiver.TAG, "onReceiveRegId", "token", str);
+            ALog.m9180d(BasePushMessageReceiver.TAG, "onReceiveRegId", "token", str);
             NotifManager notifManager = new NotifManager();
             notifManager.init(context.getApplicationContext());
             notifManager.reportThirdPushToken(str, VIVO_TOKEN, "2.0.0", true);
         } catch (Throwable th) {
-            ALog.e(BasePushMessageReceiver.TAG, "report token failed:", th, new Object[0]);
+            ALog.m9181e(BasePushMessageReceiver.TAG, "report token failed:", th, new Object[0]);
         }
     }
 }

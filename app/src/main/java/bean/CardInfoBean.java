@@ -8,7 +8,9 @@ public class CardInfoBean extends BaseBean {
     private String caseInfoID;
     private List<CardChildsBean> childList;
     private String createTime;
-    private String id;
+
+    /* renamed from: id */
+    private String f1582id;
     private String suspectAccount;
     private String suspectAccountBank;
     private String type;
@@ -30,7 +32,7 @@ public class CardInfoBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1582id;
     }
 
     public String getSuspectAccount() {
@@ -74,7 +76,7 @@ public class CardInfoBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1582id = str;
     }
 
     public void setSuspectAccount(String str) {

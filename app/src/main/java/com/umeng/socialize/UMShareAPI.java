@@ -19,14 +19,15 @@ import org.json.JSONObject;
 /* loaded from: classes2.dex */
 public class UMShareAPI {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static UMShareAPI f11515a = null;
+    /* renamed from: a */
+    private static UMShareAPI f13448a = null;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static boolean f11516b = true;
+    /* renamed from: b */
+    private static boolean f13449b = true;
     public boolean isZyb = true;
 
-    private static Class<?> a(String str) {
+    /* renamed from: a */
+    private static Class<?> m12485a(String str) {
         try {
             return Class.forName(str);
         } catch (Exception unused) {
@@ -35,15 +36,15 @@ public class UMShareAPI {
     }
 
     public static UMShareAPI get(Context context) {
-        if (!a(context) || CommonUtil.isSilentMode(context)) {
-            f11515a = new b(context);
-            return f11515a;
+        if (!m12487a(context) || CommonUtil.isSilentMode(context)) {
+            f13448a = new C3628b(context);
+            return f13448a;
         }
-        if (f11515a == null) {
-            f11515a = new a(context);
+        if (f13448a == null) {
+            f13448a = new C3614a(context);
             SLog.welcome();
         }
-        return f11515a;
+        return f13448a;
     }
 
     public static String getSdkVersion() {
@@ -51,11 +52,11 @@ public class UMShareAPI {
     }
 
     public static boolean getSmartEnableFlag() {
-        return f11516b;
+        return f13449b;
     }
 
     public static void init(Context context, String str) {
-        if (a(context)) {
+        if (m12487a(context)) {
             SocializeConstants.APPKEY = str;
             get(context);
             UMWorkDispatch.sendEvent(context, SocializeConstants.REGIST_TO_WORK_QUEUE, CommonNetImpl.get(context), null);
@@ -63,71 +64,72 @@ public class UMShareAPI {
     }
 
     public static void setSmartEnable(boolean z) {
-        f11516b = z;
+        f13449b = z;
     }
 
     public void deleteOauth(Activity activity, SHARE_MEDIA share_media, UMAuthListener uMAuthListener) {
-        f11515a.deleteOauth(activity, share_media, uMAuthListener);
+        f13448a.deleteOauth(activity, share_media, uMAuthListener);
     }
 
     @Deprecated
     public void doOauthVerify(Activity activity, SHARE_MEDIA share_media, UMAuthListener uMAuthListener) {
-        f11515a.doOauthVerify(activity, share_media, uMAuthListener);
+        f13448a.doOauthVerify(activity, share_media, uMAuthListener);
     }
 
     public void doShare(Activity activity, ShareAction shareAction, UMShareListener uMShareListener) {
-        f11515a.doShare(activity, shareAction, uMShareListener);
+        f13448a.doShare(activity, shareAction, uMShareListener);
     }
 
     public void fetchAuthResultWithBundle(Activity activity, Bundle bundle, UMAuthListener uMAuthListener) {
-        f11515a.fetchAuthResultWithBundle(activity, bundle, uMAuthListener);
+        f13448a.fetchAuthResultWithBundle(activity, bundle, uMAuthListener);
     }
 
     public UMSSOHandler getHandler(SHARE_MEDIA share_media) {
-        return f11515a.getHandler(share_media);
+        return f13448a.getHandler(share_media);
     }
 
     public void getPlatformInfo(Activity activity, SHARE_MEDIA share_media, UMAuthListener uMAuthListener) {
-        f11515a.getPlatformInfo(activity, share_media, uMAuthListener);
+        f13448a.getPlatformInfo(activity, share_media, uMAuthListener);
     }
 
     public String getversion(Activity activity, SHARE_MEDIA share_media) {
-        return f11515a.getversion(activity, share_media);
+        return f13448a.getversion(activity, share_media);
     }
 
     public boolean isAuthorize(Activity activity, SHARE_MEDIA share_media) {
-        return f11515a.isAuthorize(activity, share_media);
+        return f13448a.isAuthorize(activity, share_media);
     }
 
     public boolean isInstall(Activity activity, SHARE_MEDIA share_media) {
-        return f11515a.isInstall(activity, share_media);
+        return f13448a.isInstall(activity, share_media);
     }
 
     public boolean isSupport(Activity activity, SHARE_MEDIA share_media) {
-        return f11515a.isSupport(activity, share_media);
+        return f13448a.isSupport(activity, share_media);
     }
 
     public void onActivityResult(int i2, int i3, Intent intent) {
-        f11515a.onActivityResult(i2, i3, intent);
+        f13448a.onActivityResult(i2, i3, intent);
     }
 
     public void onSaveInstanceState(Bundle bundle) {
-        f11515a.onSaveInstanceState(bundle);
+        f13448a.onSaveInstanceState(bundle);
     }
 
     public void release() {
-        f11515a.release();
+        f13448a.release();
     }
 
     public void setShareConfig(UMShareConfig uMShareConfig) {
-        f11515a.setShareConfig(uMShareConfig);
+        f13448a.setShareConfig(uMShareConfig);
     }
 
-    private static boolean a() {
+    /* renamed from: a */
+    private static boolean m12486a() {
         try {
-            Class<?> a2 = a("com.umeng.commonsdk.framework.UMEnvelopeBuild");
-            if (a2 != null) {
-                return a2.getDeclaredMethod("buildEnvelopeWithExtHeader", Context.class, JSONObject.class, JSONObject.class, String.class, String.class, String.class) != null;
+            Class<?> m12485a = m12485a("com.umeng.commonsdk.framework.UMEnvelopeBuild");
+            if (m12485a != null) {
+                return m12485a.getDeclaredMethod("buildEnvelopeWithExtHeader", Context.class, JSONObject.class, JSONObject.class, String.class, String.class, String.class) != null;
             }
             return false;
         } catch (Throwable unused) {
@@ -135,8 +137,9 @@ public class UMShareAPI {
         }
     }
 
-    private static boolean a(final Context context) {
-        if (a()) {
+    /* renamed from: a */
+    private static boolean m12487a(final Context context) {
+        if (m12486a()) {
             return true;
         }
         new Thread() { // from class: com.umeng.socialize.UMShareAPI.1
@@ -150,7 +153,7 @@ public class UMShareAPI {
                 }
             }
         }.start();
-        SLog.E(UmengText.CHECK.DEPENDENT_COMMON_NOT_MATCH);
+        SLog.m12716E(UmengText.CHECK.DEPENDENT_COMMON_NOT_MATCH);
         return false;
     }
 }

@@ -44,6 +44,7 @@ import androidx.core.text.BidiFormatter;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.MotionSpec;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.internal.ViewUtils;
@@ -133,7 +134,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate {
             } else {
                 CharSequence text = Chip.this.getText();
                 Context context = Chip.this.getContext();
-                int i3 = com.google.android.material.R.string.mtrl_chip_close_icon_content_description;
+                int i3 = C1921R.string.mtrl_chip_close_icon_content_description;
                 Object[] objArr = new Object[1];
                 if (TextUtils.isEmpty(text)) {
                     text = "";
@@ -1486,7 +1487,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate {
     }
 
     public Chip(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, com.google.android.material.R.attr.chipStyle);
+        this(context, attributeSet, C1921R.attr.chipStyle);
     }
 
     public Chip(Context context, AttributeSet attributeSet, int i2) {
@@ -1508,7 +1509,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate {
             }
         };
         validateAttributes(attributeSet);
-        ChipDrawable createFromAttributes = ChipDrawable.createFromAttributes(context, attributeSet, i2, com.google.android.material.R.style.Widget_MaterialComponents_Chip_Action);
+        ChipDrawable createFromAttributes = ChipDrawable.createFromAttributes(context, attributeSet, i2, C1921R.style.Widget_MaterialComponents_Chip_Action);
         setChipDrawable(createFromAttributes);
         this.touchHelper = new ChipTouchHelper(this);
         ViewCompat.setAccessibilityDelegate(this, this.touchHelper);

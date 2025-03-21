@@ -11,7 +11,9 @@ public class ReportResultInfo extends BaseBean {
 
     public static class DataBean {
         private String create_time;
-        private int id;
+
+        /* renamed from: id */
+        private int f21459id;
         private String imei;
         private String phone;
         private Object report_content;
@@ -29,7 +31,7 @@ public class ReportResultInfo extends BaseBean {
         }
 
         public int getId() {
-            return this.id;
+            return this.f21459id;
         }
 
         public String getImei() {
@@ -81,7 +83,7 @@ public class ReportResultInfo extends BaseBean {
         }
 
         public void setId(int i2) {
-            this.id = i2;
+            this.f21459id = i2;
         }
 
         public void setImei(String str) {

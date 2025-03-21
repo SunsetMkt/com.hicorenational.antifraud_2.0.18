@@ -33,15 +33,15 @@ public abstract class BaseMonitor extends StatObject {
     public static final String COUNT_SESSION_ERROR = "session_error";
     public static final String MODULE = "accs";
 
-    /* renamed from: a, reason: collision with root package name */
-    private boolean f8633a = false;
+    /* renamed from: a */
+    private boolean f9700a = false;
 
     @Override // anet.channel.statist.StatObject
     public boolean beforeCommit() {
-        if (this.f8633a) {
+        if (this.f9700a) {
             return false;
         }
-        this.f8633a = true;
+        this.f9700a = true;
         return true;
     }
 

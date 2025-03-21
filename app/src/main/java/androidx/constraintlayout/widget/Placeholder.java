@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import util.c2.a;
+import util.p395c2.C7265a;
 
 /* loaded from: classes.dex */
 public class Placeholder extends View {
@@ -30,13 +30,13 @@ public class Placeholder extends View {
         super.setVisibility(this.mEmptyVisibility);
         this.mContentId = -1;
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_placeholder);
+            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_placeholder);
             int indexCount = obtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
                 int index = obtainStyledAttributes.getIndex(i2);
-                if (index == R.styleable.ConstraintLayout_placeholder_content) {
+                if (index == C0471R.styleable.ConstraintLayout_placeholder_content) {
                     this.mContentId = obtainStyledAttributes.getResourceId(index, this.mContentId);
-                } else if (index == R.styleable.ConstraintLayout_placeholder_placeholder_emptyVisibility) {
+                } else if (index == C0471R.styleable.ConstraintLayout_placeholder_placeholder_emptyVisibility) {
                     this.mEmptyVisibility = obtainStyledAttributes.getInt(index, this.mEmptyVisibility);
                 }
             }
@@ -55,9 +55,9 @@ public class Placeholder extends View {
     @Override // android.view.View
     public void onDraw(Canvas canvas) {
         if (isInEditMode()) {
-            canvas.drawRGB(a.z0, a.z0, a.z0);
+            canvas.drawRGB(C7265a.f25275z0, C7265a.f25275z0, C7265a.f25275z0);
             Paint paint = new Paint();
-            paint.setARGB(255, a.u0, a.u0, a.u0);
+            paint.setARGB(255, C7265a.f25265u0, C7265a.f25265u0, C7265a.f25265u0);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setTypeface(Typeface.create(Typeface.DEFAULT, 0));
             Rect rect = new Rect();

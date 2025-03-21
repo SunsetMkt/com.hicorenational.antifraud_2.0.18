@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.text.TextUtils;
 import bean.module.ModuelConfig;
 import bean.module.RegionMudelBean;
-import d.a;
-import e.b;
 import java.util.HashMap;
 import network.APIException;
 import network.MiddleSubscriber;
 import network.account.APIresult;
-import ui.basemvp.BaseView;
-import ui.model.ModelPresent;
+import p245d.C4440a;
+import p247e.C4445b;
+import p388ui.basemvp.BaseView;
+import p388ui.model.ModelPresent;
 
 /* loaded from: classes2.dex */
 public class StatisticsHttp extends ModelPresent {
@@ -37,15 +37,15 @@ public class StatisticsHttp extends ModelPresent {
     }
 
     private void trackWarn(String str, String str2, final CallbackComplete callbackComplete) {
-        RegionMudelBean j2 = a.j();
-        if (j2 == null || TextUtils.isEmpty(j2.getLocalApi())) {
+        RegionMudelBean m16408j = C4440a.m16408j();
+        if (m16408j == null || TextUtils.isEmpty(m16408j.getLocalApi())) {
             if (callbackComplete != null) {
                 callbackComplete.onComplete();
             }
         } else {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("operation", str);
-            trackData(a.a("", 8, str2), hashMap, new MiddleSubscriber<APIresult>() { // from class: network.http.StatisticsHttp.2
+            trackData(C4440a.m16395a("", 8, str2), hashMap, new MiddleSubscriber<APIresult>() { // from class: network.http.StatisticsHttp.2
                 @Override // network.MiddleSubscriber
                 protected void onCompleteMiddle() {
                     CallbackComplete callbackComplete2 = callbackComplete;
@@ -71,7 +71,7 @@ public class StatisticsHttp extends ModelPresent {
     public void trackPageClick(String str) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("type", str);
-        trackData(a.a(ModuelConfig.MODEL_WARN, 8, b.l0), hashMap, new MiddleSubscriber<APIresult>() { // from class: network.http.StatisticsHttp.1
+        trackData(C4440a.m16395a(ModuelConfig.MODEL_WARN, 8, C4445b.f17103l0), hashMap, new MiddleSubscriber<APIresult>() { // from class: network.http.StatisticsHttp.1
             @Override // network.MiddleSubscriber
             protected void onErrorMiddle(APIException aPIException) {
             }
@@ -83,14 +83,14 @@ public class StatisticsHttp extends ModelPresent {
     }
 
     public void trackWarnApp(String str, CallbackComplete callbackComplete) {
-        trackWarn(str, b.o0, callbackComplete);
+        trackWarn(str, C4445b.f17112o0, callbackComplete);
     }
 
     public void trackWarnCall(String str, CallbackComplete callbackComplete) {
-        trackWarn(str, b.m0, callbackComplete);
+        trackWarn(str, C4445b.f17106m0, callbackComplete);
     }
 
     public void trackWarnSms(String str, CallbackComplete callbackComplete) {
-        trackWarn(str, b.n0, callbackComplete);
+        trackWarn(str, C4445b.f17109n0, callbackComplete);
     }
 }

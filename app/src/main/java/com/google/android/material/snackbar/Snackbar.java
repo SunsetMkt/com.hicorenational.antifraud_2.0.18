@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -28,7 +28,7 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
     public static final int LENGTH_INDEFINITE = -2;
     public static final int LENGTH_LONG = 0;
     public static final int LENGTH_SHORT = -1;
-    private static final int[] SNACKBAR_BUTTON_STYLE_ATTR = {R.attr.snackbarButtonStyle};
+    private static final int[] SNACKBAR_BUTTON_STYLE_ATTR = {C1921R.attr.snackbarButtonStyle};
     private final AccessibilityManager accessibilityManager;
 
     @Nullable
@@ -119,7 +119,7 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
         if (findSuitableParent == null) {
             throw new IllegalArgumentException("No suitable parent found from the given view. Please provide a valid view.");
         }
-        SnackbarContentLayout snackbarContentLayout = (SnackbarContentLayout) LayoutInflater.from(findSuitableParent.getContext()).inflate(hasSnackbarButtonStyleAttr(findSuitableParent.getContext()) ? R.layout.mtrl_layout_snackbar_include : R.layout.design_layout_snackbar_include, findSuitableParent, false);
+        SnackbarContentLayout snackbarContentLayout = (SnackbarContentLayout) LayoutInflater.from(findSuitableParent.getContext()).inflate(hasSnackbarButtonStyleAttr(findSuitableParent.getContext()) ? C1921R.layout.mtrl_layout_snackbar_include : C1921R.layout.design_layout_snackbar_include, findSuitableParent, false);
         Snackbar snackbar = new Snackbar(findSuitableParent, snackbarContentLayout, snackbarContentLayout);
         snackbar.setText(charSequence);
         snackbar.setDuration(i2);

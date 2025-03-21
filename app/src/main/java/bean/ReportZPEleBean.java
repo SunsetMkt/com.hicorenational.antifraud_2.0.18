@@ -6,7 +6,9 @@ import network.BaseBean;
 public class ReportZPEleBean extends BaseBean {
     private String clusterID;
     private int code = -1;
-    private long id = -1;
+
+    /* renamed from: id */
+    private long f1620id = -1;
     private String isShow;
     private String name;
     private String parentClusterID;
@@ -22,7 +24,7 @@ public class ReportZPEleBean extends BaseBean {
     }
 
     public long getId() {
-        return this.id;
+        return this.f1620id;
     }
 
     public String getIsShow() {
@@ -54,7 +56,7 @@ public class ReportZPEleBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.id = j2;
+        this.f1620id = j2;
     }
 
     public void setIsShow(String str) {

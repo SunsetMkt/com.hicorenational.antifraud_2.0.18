@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.SupportMenuInflater;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -32,6 +33,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.customview.view.AbsSavedState;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.NavigationMenu;
 import com.google.android.material.internal.NavigationMenuPresenter;
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
@@ -62,7 +64,7 @@ public class NavigationView extends ScrimInsetsFrameLayout {
             return null;
         }
         ColorStateList colorStateList = AppCompatResources.getColorStateList(getContext(), typedValue.resourceId);
-        if (!getContext().getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)) {
+        if (!getContext().getTheme().resolveAttribute(C0120R.attr.colorPrimary, typedValue, true)) {
             return null;
         }
         int i3 = typedValue.data;
@@ -258,7 +260,7 @@ public class NavigationView extends ScrimInsetsFrameLayout {
     }
 
     public NavigationView(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, com.google.android.material.R.attr.navigationViewStyle);
+        this(context, attributeSet, C1921R.attr.navigationViewStyle);
     }
 
     public NavigationView(Context context, AttributeSet attributeSet, int i2) {
@@ -268,34 +270,34 @@ public class NavigationView extends ScrimInsetsFrameLayout {
         int i3;
         this.presenter = new NavigationMenuPresenter();
         this.menu = new NavigationMenu(context);
-        TintTypedArray obtainTintedStyledAttributes = ThemeEnforcement.obtainTintedStyledAttributes(context, attributeSet, com.google.android.material.R.styleable.NavigationView, i2, com.google.android.material.R.style.Widget_Design_NavigationView, new int[0]);
-        ViewCompat.setBackground(this, obtainTintedStyledAttributes.getDrawable(com.google.android.material.R.styleable.NavigationView_android_background));
-        if (obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_elevation)) {
-            ViewCompat.setElevation(this, obtainTintedStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.NavigationView_elevation, 0));
+        TintTypedArray obtainTintedStyledAttributes = ThemeEnforcement.obtainTintedStyledAttributes(context, attributeSet, C1921R.styleable.NavigationView, i2, C1921R.style.Widget_Design_NavigationView, new int[0]);
+        ViewCompat.setBackground(this, obtainTintedStyledAttributes.getDrawable(C1921R.styleable.NavigationView_android_background));
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_elevation)) {
+            ViewCompat.setElevation(this, obtainTintedStyledAttributes.getDimensionPixelSize(C1921R.styleable.NavigationView_elevation, 0));
         }
-        ViewCompat.setFitsSystemWindows(this, obtainTintedStyledAttributes.getBoolean(com.google.android.material.R.styleable.NavigationView_android_fitsSystemWindows, false));
-        this.maxWidth = obtainTintedStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.NavigationView_android_maxWidth, 0);
-        if (obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_itemIconTint)) {
-            createDefaultColorStateList = obtainTintedStyledAttributes.getColorStateList(com.google.android.material.R.styleable.NavigationView_itemIconTint);
+        ViewCompat.setFitsSystemWindows(this, obtainTintedStyledAttributes.getBoolean(C1921R.styleable.NavigationView_android_fitsSystemWindows, false));
+        this.maxWidth = obtainTintedStyledAttributes.getDimensionPixelSize(C1921R.styleable.NavigationView_android_maxWidth, 0);
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_itemIconTint)) {
+            createDefaultColorStateList = obtainTintedStyledAttributes.getColorStateList(C1921R.styleable.NavigationView_itemIconTint);
         } else {
             createDefaultColorStateList = createDefaultColorStateList(R.attr.textColorSecondary);
         }
-        if (obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_itemTextAppearance)) {
-            i3 = obtainTintedStyledAttributes.getResourceId(com.google.android.material.R.styleable.NavigationView_itemTextAppearance, 0);
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_itemTextAppearance)) {
+            i3 = obtainTintedStyledAttributes.getResourceId(C1921R.styleable.NavigationView_itemTextAppearance, 0);
             z = true;
         } else {
             z = false;
             i3 = 0;
         }
-        ColorStateList colorStateList = obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_itemTextColor) ? obtainTintedStyledAttributes.getColorStateList(com.google.android.material.R.styleable.NavigationView_itemTextColor) : null;
+        ColorStateList colorStateList = obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_itemTextColor) ? obtainTintedStyledAttributes.getColorStateList(C1921R.styleable.NavigationView_itemTextColor) : null;
         if (!z && colorStateList == null) {
             colorStateList = createDefaultColorStateList(R.attr.textColorPrimary);
         }
-        Drawable drawable = obtainTintedStyledAttributes.getDrawable(com.google.android.material.R.styleable.NavigationView_itemBackground);
-        if (obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_itemHorizontalPadding)) {
-            this.presenter.setItemHorizontalPadding(obtainTintedStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.NavigationView_itemHorizontalPadding, 0));
+        Drawable drawable = obtainTintedStyledAttributes.getDrawable(C1921R.styleable.NavigationView_itemBackground);
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_itemHorizontalPadding)) {
+            this.presenter.setItemHorizontalPadding(obtainTintedStyledAttributes.getDimensionPixelSize(C1921R.styleable.NavigationView_itemHorizontalPadding, 0));
         }
-        int dimensionPixelSize = obtainTintedStyledAttributes.getDimensionPixelSize(com.google.android.material.R.styleable.NavigationView_itemIconPadding, 0);
+        int dimensionPixelSize = obtainTintedStyledAttributes.getDimensionPixelSize(C1921R.styleable.NavigationView_itemIconPadding, 0);
         this.menu.setCallback(new MenuBuilder.Callback() { // from class: com.google.android.material.navigation.NavigationView.1
             @Override // androidx.appcompat.view.menu.MenuBuilder.Callback
             public boolean onMenuItemSelected(MenuBuilder menuBuilder, MenuItem menuItem) {
@@ -318,11 +320,11 @@ public class NavigationView extends ScrimInsetsFrameLayout {
         this.presenter.setItemIconPadding(dimensionPixelSize);
         this.menu.addMenuPresenter(this.presenter);
         addView((View) this.presenter.getMenuView(this));
-        if (obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_menu)) {
-            inflateMenu(obtainTintedStyledAttributes.getResourceId(com.google.android.material.R.styleable.NavigationView_menu, 0));
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_menu)) {
+            inflateMenu(obtainTintedStyledAttributes.getResourceId(C1921R.styleable.NavigationView_menu, 0));
         }
-        if (obtainTintedStyledAttributes.hasValue(com.google.android.material.R.styleable.NavigationView_headerLayout)) {
-            inflateHeaderView(obtainTintedStyledAttributes.getResourceId(com.google.android.material.R.styleable.NavigationView_headerLayout, 0));
+        if (obtainTintedStyledAttributes.hasValue(C1921R.styleable.NavigationView_headerLayout)) {
+            inflateHeaderView(obtainTintedStyledAttributes.getResourceId(C1921R.styleable.NavigationView_headerLayout, 0));
         }
         obtainTintedStyledAttributes.recycle();
     }

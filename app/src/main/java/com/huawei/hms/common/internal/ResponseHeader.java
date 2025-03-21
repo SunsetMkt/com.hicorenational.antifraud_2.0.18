@@ -64,7 +64,7 @@ public class ResponseHeader implements IMessageEntity, ResponseErrorCode {
             this.resolution = JsonUtil.getStringValue(jSONObject, "resolution");
             return true;
         } catch (JSONException e2) {
-            HMSLog.e(TAG, "fromJson failed: " + e2.getMessage());
+            HMSLog.m7715e(TAG, "fromJson failed: " + e2.getMessage());
             return false;
         }
     }
@@ -196,7 +196,7 @@ public class ResponseHeader implements IMessageEntity, ResponseErrorCode {
             jSONObject.put(CommonCode.MapKey.TRANSACTION_ID, this.transaction_id);
             jSONObject.put("resolution", this.resolution);
         } catch (JSONException e2) {
-            HMSLog.e(TAG, "toJson failed: " + e2.getMessage());
+            HMSLog.m7715e(TAG, "toJson failed: " + e2.getMessage());
         }
         return jSONObject.toString();
     }

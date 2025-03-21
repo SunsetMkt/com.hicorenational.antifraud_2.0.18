@@ -39,7 +39,6 @@ import androidx.core.view.ViewCompat;
 import androidx.versionedparcelable.CustomVersionedParcelable;
 import anet.channel.strategy.dispatch.DispatchConstants;
 import com.xiaomi.mipush.sdk.Constants;
-import i.a.a.a.c;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,6 +48,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
+import p324i.p325a.p326a.p327a.C5758c;
 
 /* loaded from: classes.dex */
 public class IconCompat extends CustomVersionedParcelable {
@@ -525,7 +525,7 @@ public class IconCompat extends CustomVersionedParcelable {
             case 2:
             case 4:
             case 6:
-                this.mObj1 = new String(this.mData, Charset.forName(c.f16731c));
+                this.mObj1 = new String(this.mData, Charset.forName(C5758c.f20752c));
                 return;
             case 3:
                 this.mObj1 = this.mData;
@@ -558,14 +558,14 @@ public class IconCompat extends CustomVersionedParcelable {
                 this.mData = byteArrayOutputStream.toByteArray();
                 return;
             case 2:
-                this.mData = ((String) this.mObj1).getBytes(Charset.forName(c.f16731c));
+                this.mData = ((String) this.mObj1).getBytes(Charset.forName(C5758c.f20752c));
                 return;
             case 3:
                 this.mData = (byte[]) this.mObj1;
                 return;
             case 4:
             case 6:
-                this.mData = this.mObj1.toString().getBytes(Charset.forName(c.f16731c));
+                this.mData = this.mObj1.toString().getBytes(Charset.forName(C5758c.f20752c));
                 return;
         }
     }

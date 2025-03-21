@@ -1,7 +1,7 @@
 package com.heytap.msp.push.statis;
 
 import android.content.Context;
-import com.heytap.mcssdk.k.b;
+import com.heytap.mcssdk.p160k.C2102b;
 import com.heytap.msp.push.mode.DataMessage;
 import com.heytap.msp.push.mode.MessageStat;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ public class StatisticUtils {
     public static boolean statisticEvent(Context context, String str) {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new MessageStat(context.getPackageName(), str));
-        return b.a(context, arrayList);
+        return C2102b.m5857a(context, arrayList);
     }
 
     public static boolean statisticEvent(Context context, String str, DataMessage dataMessage) {
         ArrayList arrayList = new ArrayList();
         String packageName = context.getPackageName();
         arrayList.add(dataMessage == null ? new MessageStat(packageName, str) : new MessageStat(dataMessage.getMessageType(), packageName, dataMessage.getGlobalId(), dataMessage.getTaskID(), str, null, dataMessage.getStatisticsExtra(), dataMessage.getDataExtra()));
-        return b.a(context, arrayList);
+        return C2102b.m5857a(context, arrayList);
     }
 
     public static boolean statisticEvent(Context context, List<String> list) {
@@ -33,7 +33,7 @@ public class StatisticUtils {
                 arrayList.add(new MessageStat(packageName, it.next()));
             }
         }
-        return b.a(context, arrayList);
+        return C2102b.m5857a(context, arrayList);
     }
 
     public static boolean statisticEvent(Context context, Map<String, List<DataMessage>> map) {
@@ -52,6 +52,6 @@ public class StatisticUtils {
                 arrayList.add(new MessageStat(packageName, str));
             }
         }
-        return b.a(context, arrayList);
+        return C2102b.m5857a(context, arrayList);
     }
 }

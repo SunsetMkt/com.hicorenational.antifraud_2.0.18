@@ -9,7 +9,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.core.widget.PopupWindowCompat;
 
 /* loaded from: classes.dex */
@@ -27,11 +27,11 @@ class AppCompatPopupWindow extends PopupWindow {
     }
 
     private void init(Context context, AttributeSet attributeSet, int i2, int i3) {
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.PopupWindow, i2, i3);
-        if (obtainStyledAttributes.hasValue(R.styleable.PopupWindow_overlapAnchor)) {
-            setSupportOverlapAnchor(obtainStyledAttributes.getBoolean(R.styleable.PopupWindow_overlapAnchor, false));
+        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0120R.styleable.PopupWindow, i2, i3);
+        if (obtainStyledAttributes.hasValue(C0120R.styleable.PopupWindow_overlapAnchor)) {
+            setSupportOverlapAnchor(obtainStyledAttributes.getBoolean(C0120R.styleable.PopupWindow_overlapAnchor, false));
         }
-        setBackgroundDrawable(obtainStyledAttributes.getDrawable(R.styleable.PopupWindow_android_popupBackground));
+        setBackgroundDrawable(obtainStyledAttributes.getDrawable(C0120R.styleable.PopupWindow_android_popupBackground));
         obtainStyledAttributes.recycle();
     }
 

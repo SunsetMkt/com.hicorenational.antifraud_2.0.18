@@ -19,17 +19,17 @@ import com.xiaomi.mipush.sdk.Constants;
 /* loaded from: classes.dex */
 public class Util {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static boolean f7411a = false;
+    /* renamed from: a */
+    private static boolean f7988a = false;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static boolean f7412b = false;
+    /* renamed from: b */
+    private static boolean f7989b = false;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final Object f7413c = new Object();
+    /* renamed from: c */
+    private static final Object f7990c = new Object();
 
-    /* renamed from: d, reason: collision with root package name */
-    private static String f7414d;
+    /* renamed from: d */
+    private static String f7991d;
 
     public static int compareHmsVersion(String str, String str2) {
         if (TextUtils.isEmpty(str)) {
@@ -75,12 +75,12 @@ public class Util {
 
     public static String getAppName(Context context, String str) {
         if (context == null) {
-            HMSLog.e("Util", "In getAppName, context is null.");
+            HMSLog.m7715e("Util", "In getAppName, context is null.");
             return "";
         }
         PackageManager packageManager = context.getPackageManager();
         if (packageManager == null) {
-            HMSLog.e("Util", "In getAppName, Failed to get 'PackageManager' instance.");
+            HMSLog.m7715e("Util", "In getAppName, Failed to get 'PackageManager' instance.");
             return "";
         }
         try {
@@ -90,7 +90,7 @@ public class Util {
             CharSequence applicationLabel = packageManager.getApplicationLabel(packageManager.getApplicationInfo(str, 128));
             return applicationLabel == null ? "" : applicationLabel.toString();
         } catch (AndroidException | RuntimeException unused) {
-            HMSLog.e("Util", "In getAppName, Failed to get app name.");
+            HMSLog.m7715e("Util", "In getAppName, Failed to get app name.");
             return "";
         }
     }
@@ -107,7 +107,7 @@ public class Util {
         }
         PackageManager packageManager = context.getPackageManager();
         if (packageManager == null) {
-            HMSLog.e("Util", "In getHmsVersion, Failed to get 'PackageManager' instance.");
+            HMSLog.m7715e("Util", "In getHmsVersion, Failed to get 'PackageManager' instance.");
             return 0;
         }
         try {
@@ -118,13 +118,13 @@ public class Util {
                     return StringUtil.convertVersion2Integer(valueOf);
                 }
             }
-            HMSLog.i("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
+            HMSLog.m7717i("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
             return 0;
         } catch (AndroidException unused) {
-            HMSLog.e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
+            HMSLog.m7715e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
             return 0;
         } catch (RuntimeException e2) {
-            HMSLog.e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.", e2);
+            HMSLog.m7716e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.", e2);
             return 0;
         }
     }
@@ -153,7 +153,7 @@ public class Util {
     }
 
     public static String getServiceActionMetadata(Context context) {
-        String str = f7414d;
+        String str = f7991d;
         if (str != null) {
             return str;
         }
@@ -163,13 +163,13 @@ public class Util {
             intent.setPackage(context.getPackageName());
             resolveInfo = context.getPackageManager().resolveService(intent, 128);
         } catch (Exception e2) {
-            HMSLog.e("Util", "Exception when getServiceActionMetadata. " + e2.getMessage());
+            HMSLog.m7715e("Util", "Exception when getServiceActionMetadata. " + e2.getMessage());
         }
         if (resolveInfo != null) {
-            f7414d = PackageConstants.INTERNAL_SERVICES_ACTION;
+            f7991d = PackageConstants.INTERNAL_SERVICES_ACTION;
             return PackageConstants.INTERNAL_SERVICES_ACTION;
         }
-        f7414d = "";
+        f7991d = "";
         return "";
     }
 
@@ -191,41 +191,41 @@ public class Util {
         Bundle bundle;
         Object obj;
         if (context == null) {
-            return f7412b;
+            return f7989b;
         }
-        synchronized (f7413c) {
-            if (!f7411a) {
+        synchronized (f7990c) {
+            if (!f7988a) {
                 boolean z = false;
                 PackageManager packageManager = context.getPackageManager();
                 if (packageManager == null) {
-                    HMSLog.e("Util", "In isAvailableLibExist, Failed to get 'PackageManager' instance.");
+                    HMSLog.m7715e("Util", "In isAvailableLibExist, Failed to get 'PackageManager' instance.");
                     try {
                         Class.forName("com.huawei.hms.adapter.AvailableAdapter");
                         z = true;
                     } catch (ClassNotFoundException unused) {
-                        HMSLog.e("Util", "In isAvailableLibExist, Failed to find class AvailableAdapter.");
+                        HMSLog.m7715e("Util", "In isAvailableLibExist, Failed to find class AvailableAdapter.");
                     }
-                    f7412b = z;
-                    f7411a = true;
+                    f7989b = z;
+                    f7988a = true;
                 } else {
                     try {
                         ApplicationInfo applicationInfo = packageManager.getPackageInfo(context.getPackageName(), 128).applicationInfo;
                         if (applicationInfo != null && (bundle = applicationInfo.metaData) != null && (obj = bundle.get("availableLoaded")) != null && String.valueOf(obj).equalsIgnoreCase("yes")) {
-                            HMSLog.i("Util", "available exist: true");
+                            HMSLog.m7717i("Util", "available exist: true");
                             z = true;
                         }
                     } catch (AndroidException unused2) {
-                        HMSLog.e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.");
+                        HMSLog.m7715e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.");
                     } catch (RuntimeException e2) {
-                        HMSLog.e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.", e2);
+                        HMSLog.m7716e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.", e2);
                     }
-                    f7412b = z;
-                    f7411a = true;
+                    f7989b = z;
+                    f7988a = true;
                 }
             }
         }
-        HMSLog.i("Util", "available exist: " + f7412b);
-        return f7412b;
+        HMSLog.m7717i("Util", "available exist: " + f7989b);
+        return f7989b;
     }
 
     @Deprecated
@@ -239,10 +239,10 @@ public class Util {
 
     public static void unBindServiceCatchException(Context context, ServiceConnection serviceConnection) {
         try {
-            HMSLog.i("Util", "Trying to unbind service from " + serviceConnection);
+            HMSLog.m7717i("Util", "Trying to unbind service from " + serviceConnection);
             context.unbindService(serviceConnection);
         } catch (Exception e2) {
-            HMSLog.e("Util", "On unBindServiceException:" + e2.getMessage());
+            HMSLog.m7715e("Util", "On unBindServiceException:" + e2.getMessage());
         }
     }
 }

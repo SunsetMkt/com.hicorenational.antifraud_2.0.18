@@ -2,8 +2,9 @@ package androidx.camera.core.impl;
 
 import android.os.Build;
 import androidx.annotation.NonNull;
+import p031c.p035b.p036a.p037a.InterfaceC0950c;
 
-@c.b.a.a.c
+@InterfaceC0950c
 /* loaded from: classes.dex */
 public abstract class DeviceProperties {
     @NonNull

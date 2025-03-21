@@ -15,35 +15,36 @@ import java.util.concurrent.TimeUnit;
 /* loaded from: classes.dex */
 public abstract class ErrorResultImpl<R extends Result> extends PendingResult<R> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private R f7259a = null;
+    /* renamed from: a */
+    private R f7824a = null;
 
-    /* renamed from: b, reason: collision with root package name */
-    private int f7260b;
+    /* renamed from: b */
+    private int f7825b;
 
-    class a implements Runnable {
+    /* renamed from: com.huawei.hms.support.api.ErrorResultImpl$a */
+    class RunnableC2508a implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ ResultCallback f7261a;
+        /* renamed from: a */
+        final /* synthetic */ ResultCallback f7826a;
 
-        /* renamed from: b, reason: collision with root package name */
-        final /* synthetic */ ErrorResultImpl f7262b;
+        /* renamed from: b */
+        final /* synthetic */ ErrorResultImpl f7827b;
 
-        a(ResultCallback resultCallback, ErrorResultImpl errorResultImpl) {
-            this.f7261a = resultCallback;
-            this.f7262b = errorResultImpl;
+        RunnableC2508a(ResultCallback resultCallback, ErrorResultImpl errorResultImpl) {
+            this.f7826a = resultCallback;
+            this.f7827b = errorResultImpl;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            ResultCallback resultCallback = this.f7261a;
+            ResultCallback resultCallback = this.f7826a;
             ErrorResultImpl errorResultImpl = ErrorResultImpl.this;
-            resultCallback.onResult(errorResultImpl.a(errorResultImpl.f7260b, this.f7262b));
+            resultCallback.onResult(errorResultImpl.m7661a(errorResultImpl.f7825b, this.f7827b));
         }
     }
 
     public ErrorResultImpl(int i2) {
-        this.f7260b = i2;
+        this.f7825b = i2;
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -66,7 +67,7 @@ public abstract class ErrorResultImpl<R extends Result> extends PendingResult<R>
         if (looper == null) {
             looper = Looper.myLooper();
         }
-        new Handler(looper).post(new a(resultCallback, errorResultImpl));
+        new Handler(looper).post(new RunnableC2508a(resultCallback, errorResultImpl));
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -77,27 +78,28 @@ public abstract class ErrorResultImpl<R extends Result> extends PendingResult<R>
     @Override // com.huawei.hms.support.api.client.PendingResult
     public R await(long j2, TimeUnit timeUnit) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            return a(this.f7260b, this);
+            return m7661a(this.f7825b, this);
         }
         throw new IllegalStateException("await must not be called on the UI thread");
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public R a(int i2, ErrorResultImpl errorResultImpl) {
+    /* renamed from: a */
+    public R m7661a(int i2, ErrorResultImpl errorResultImpl) {
         Type genericSuperclass = errorResultImpl.getClass().getGenericSuperclass();
         if (genericSuperclass == null) {
             return null;
         }
         try {
             R r = (R) GenericTypeReflector.getType(((ParameterizedType) genericSuperclass).getActualTypeArguments()[0]).newInstance();
-            this.f7259a = r;
+            this.f7824a = r;
             r.setStatus(new Status(i2));
         } catch (IllegalAccessException unused) {
-            HMSLog.e("ErrorResultImpl", "IllegalAccessException");
+            HMSLog.m7715e("ErrorResultImpl", "IllegalAccessException");
         } catch (InstantiationException unused2) {
-            HMSLog.e("ErrorResultImpl", "InstantiationException");
+            HMSLog.m7715e("ErrorResultImpl", "InstantiationException");
         }
-        return this.f7259a;
+        return this.f7824a;
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult

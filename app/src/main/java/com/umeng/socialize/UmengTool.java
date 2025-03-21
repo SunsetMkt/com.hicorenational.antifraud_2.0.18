@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import com.tencent.mm.opensdk.channel.MMessageActV2;
+import com.tencent.p208mm.opensdk.channel.MMessageActV2;
 import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -19,9 +19,9 @@ import com.xiaomi.mipush.sdk.Constants;
 public class UmengTool {
     public static void checkAlipay(Context context) {
         if (UMUtils.checkPath(context.getPackageName() + ".apshare.ShareEntryActivity")) {
-            SLog.E(UmengText.CHECK.ALIPAYSUCCESS);
+            SLog.m12716E(UmengText.CHECK.ALIPAYSUCCESS);
         } else {
-            SLog.E(UmengText.CHECK.ALIPAYERROR);
+            SLog.m12716E(UmengText.CHECK.ALIPAYERROR);
         }
     }
 
@@ -63,7 +63,7 @@ public class UmengTool {
     }
 
     public static String checkQQByself(Context context) {
-        return !UMUtils.checkAndroidManifest(context, "com.tencent.tauth.AuthActivity") ? UmengText.QQ.getError("com.tencent.tauth.AuthActivity") : !UMUtils.checkAndroidManifest(context, "com.tencent.connect.common.AssistActivity") ? UmengText.QQ.getError("com.tencent.connect.common.AssistActivity") : !UMUtils.checkIntentFilterData(context, ((PlatformConfig.APPIDPlatform) PlatformConfig.getPlatform(SHARE_MEDIA.QQ)).appId) ? UmengText.QQ.ERRORDATA : "qq配置正确";
+        return !UMUtils.checkAndroidManifest(context, "com.tencent.tauth.AuthActivity") ? UmengText.C3778QQ.getError("com.tencent.tauth.AuthActivity") : !UMUtils.checkAndroidManifest(context, "com.tencent.connect.common.AssistActivity") ? UmengText.C3778QQ.getError("com.tencent.connect.common.AssistActivity") : !UMUtils.checkIntentFilterData(context, ((PlatformConfig.APPIDPlatform) PlatformConfig.getPlatform(SHARE_MEDIA.QQ)).appId) ? UmengText.C3778QQ.ERRORDATA : "qq配置正确";
     }
 
     public static void checkSina(Context context) {
@@ -90,9 +90,9 @@ public class UmengTool {
         String packageName = context.getPackageName();
         String str = packageName + MMessageActV2.DEFAULT_ENTRY_CLASS_NAME;
         if (UMUtils.checkPath(str)) {
-            return UMUtils.checkAndroidManifest(context, str) ? UmengText.CHECK.checkSuccess(UMUtils.getAppMD5Signature(context).toLowerCase(), packageName) : UmengText.WX.WX_ERRORMANIFEST;
+            return UMUtils.checkAndroidManifest(context, str) ? UmengText.CHECK.checkSuccess(UMUtils.getAppMD5Signature(context).toLowerCase(), packageName) : UmengText.C3779WX.WX_ERRORMANIFEST;
         }
-        return UmengText.WX.WX_ERRORACTIVITY;
+        return UmengText.C3779WX.WX_ERRORACTIVITY;
     }
 
     public static void getSignature(Context context) {

@@ -1,6 +1,5 @@
 package com.huawei.hms.framework.common;
 
-import c.c.a.b.a.a;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
@@ -8,6 +7,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class ExecutorsUtils {
@@ -22,7 +22,7 @@ public class ExecutorsUtils {
 
             @Override // java.util.concurrent.ThreadFactory
             public Thread newThread(Runnable runnable) {
-                return ExecutorsUtils.newThread(runnable, str + a.s1 + this.threadNumbers.getAndIncrement());
+                return ExecutorsUtils.newThread(runnable, str + AbstractC1191a.f2606s1 + this.threadNumbers.getAndIncrement());
             }
         };
     }

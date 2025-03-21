@@ -4,9 +4,9 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import com.heytap.mcssdk.a;
-import com.heytap.mcssdk.f;
-import com.heytap.mcssdk.k.g;
+import com.heytap.mcssdk.C2080a;
+import com.heytap.mcssdk.C2090f;
+import com.heytap.mcssdk.p160k.C2107g;
 import com.heytap.msp.push.callback.IDataMessageCallBackService;
 import com.heytap.msp.push.mode.DataMessage;
 
@@ -19,13 +19,13 @@ public class DataMessageCallbackService extends Service implements IDataMessageC
 
     @Override // android.app.Service
     public final int onStartCommand(Intent intent, int i2, int i3) {
-        a.w().c(getApplicationContext());
-        f.a(getApplicationContext(), intent, this);
+        C2080a.m5698w().m5723c(getApplicationContext());
+        C2090f.m5791a(getApplicationContext(), intent, this);
         return 2;
     }
 
     @Override // com.heytap.msp.push.callback.IDataMessageCallBackService
     public void processMessage(Context context, DataMessage dataMessage) {
-        g.b("Receive DataMessageCallbackService:messageTitle: " + dataMessage.getTitle() + " ------content:" + dataMessage.getContent() + "------describe:" + dataMessage.getDescription());
+        C2107g.m5884b("Receive DataMessageCallbackService:messageTitle: " + dataMessage.getTitle() + " ------content:" + dataMessage.getContent() + "------describe:" + dataMessage.getDescription());
     }
 }

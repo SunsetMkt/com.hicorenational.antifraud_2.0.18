@@ -9,7 +9,9 @@ public class TransferBean extends BaseBean {
     private Long conversationID;
     private Integer conversationType;
     private String conversationTypeText;
-    private Long id;
+
+    /* renamed from: id */
+    private Long f1633id;
     private boolean isSave;
 
     public String getAmount() {
@@ -33,7 +35,7 @@ public class TransferBean extends BaseBean {
     }
 
     public Long getId() {
-        return this.id;
+        return this.f1633id;
     }
 
     public boolean isSave() {
@@ -61,7 +63,7 @@ public class TransferBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.id = l2;
+        this.f1633id = l2;
     }
 
     public void setSave(boolean z) {

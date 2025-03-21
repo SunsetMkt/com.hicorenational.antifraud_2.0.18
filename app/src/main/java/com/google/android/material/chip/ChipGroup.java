@@ -13,7 +13,7 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.Dimension;
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 import com.google.android.material.internal.FlowLayout;
 import com.google.android.material.internal.ThemeEnforcement;
 
@@ -305,7 +305,7 @@ public class ChipGroup extends FlowLayout {
     }
 
     public ChipGroup(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.chipGroupStyle);
+        this(context, attributeSet, C1921R.attr.chipGroupStyle);
     }
 
     @Override // android.view.ViewGroup
@@ -319,13 +319,13 @@ public class ChipGroup extends FlowLayout {
         this.passThroughListener = new PassThroughHierarchyChangeListener();
         this.checkedId = -1;
         this.protectFromCheckedChange = false;
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.ChipGroup, i2, R.style.Widget_MaterialComponents_ChipGroup, new int[0]);
-        int dimensionPixelOffset = obtainStyledAttributes.getDimensionPixelOffset(R.styleable.ChipGroup_chipSpacing, 0);
-        setChipSpacingHorizontal(obtainStyledAttributes.getDimensionPixelOffset(R.styleable.ChipGroup_chipSpacingHorizontal, dimensionPixelOffset));
-        setChipSpacingVertical(obtainStyledAttributes.getDimensionPixelOffset(R.styleable.ChipGroup_chipSpacingVertical, dimensionPixelOffset));
-        setSingleLine(obtainStyledAttributes.getBoolean(R.styleable.ChipGroup_singleLine, false));
-        setSingleSelection(obtainStyledAttributes.getBoolean(R.styleable.ChipGroup_singleSelection, false));
-        int resourceId = obtainStyledAttributes.getResourceId(R.styleable.ChipGroup_checkedChip, -1);
+        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.ChipGroup, i2, C1921R.style.Widget_MaterialComponents_ChipGroup, new int[0]);
+        int dimensionPixelOffset = obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.ChipGroup_chipSpacing, 0);
+        setChipSpacingHorizontal(obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.ChipGroup_chipSpacingHorizontal, dimensionPixelOffset));
+        setChipSpacingVertical(obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.ChipGroup_chipSpacingVertical, dimensionPixelOffset));
+        setSingleLine(obtainStyledAttributes.getBoolean(C1921R.styleable.ChipGroup_singleLine, false));
+        setSingleSelection(obtainStyledAttributes.getBoolean(C1921R.styleable.ChipGroup_singleSelection, false));
+        int resourceId = obtainStyledAttributes.getResourceId(C1921R.styleable.ChipGroup_checkedChip, -1);
         if (resourceId != -1) {
             this.checkedId = resourceId;
         }

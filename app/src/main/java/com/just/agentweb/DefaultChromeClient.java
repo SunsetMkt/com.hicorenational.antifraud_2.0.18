@@ -102,7 +102,7 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
         }
         List<String> deniedPermissions = AgentWebUtils.getDeniedPermissions(activity, AgentWebPermissions.LOCATION);
         if (deniedPermissions.isEmpty()) {
-            LogUtils.i(this.TAG, "onGeolocationPermissionsShowPromptInternal:true");
+            LogUtils.m8083i(this.TAG, "onGeolocationPermissionsShowPromptInternal:true");
             callback.invoke(str, true, false);
             return;
         }
@@ -116,7 +116,7 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
 
     @RequiresApi(api = 21)
     private boolean openFileChooserAboveL(WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        LogUtils.i(this.TAG, "fileChooserParams:" + fileChooserParams.getAcceptTypes() + "  getTitle:" + ((Object) fileChooserParams.getTitle()) + " accept:" + Arrays.toString(fileChooserParams.getAcceptTypes()) + " length:" + fileChooserParams.getAcceptTypes().length + "  :" + fileChooserParams.isCaptureEnabled() + "  " + fileChooserParams.getFilenameHint() + "  intent:" + fileChooserParams.createIntent().toString() + "   mode:" + fileChooserParams.getMode());
+        LogUtils.m8083i(this.TAG, "fileChooserParams:" + fileChooserParams.getAcceptTypes() + "  getTitle:" + ((Object) fileChooserParams.getTitle()) + " accept:" + Arrays.toString(fileChooserParams.getAcceptTypes()) + " length:" + fileChooserParams.getAcceptTypes().length + "  :" + fileChooserParams.isCaptureEnabled() + "  " + fileChooserParams.getFilenameHint() + "  intent:" + fileChooserParams.createIntent().toString() + "   mode:" + fileChooserParams.getMode());
         Activity activity = this.mActivityWeakReference.get();
         if (activity == null || activity.isFinishing()) {
             return false;
@@ -225,13 +225,13 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
     @Override // com.just.agentweb.WebChromeClientDelegate, android.webkit.WebChromeClient
     @RequiresApi(api = 21)
     public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        LogUtils.i(this.TAG, "openFileChooser>=5.0");
+        LogUtils.m8083i(this.TAG, "openFileChooser>=5.0");
         return openFileChooserAboveL(webView, valueCallback, fileChooserParams);
     }
 
     @Override // com.just.agentweb.WebChromeClientDelegate
     public void openFileChooser(ValueCallback<Uri> valueCallback, String str, String str2) {
-        LogUtils.i(this.TAG, "openFileChooser>=4.1");
+        LogUtils.m8083i(this.TAG, "openFileChooser>=4.1");
         createAndOpenCommonFileChooser(valueCallback, str);
     }
 

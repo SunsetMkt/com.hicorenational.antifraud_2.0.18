@@ -7,7 +7,6 @@ import com.umeng.socialize.Config;
 import com.umeng.socialize.net.utils.URequest;
 import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
-import d.d;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.DataOutputStream;
@@ -24,6 +23,7 @@ import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONObject;
+import p245d.C4443d;
 
 /* loaded from: classes2.dex */
 public class UClient {
@@ -73,13 +73,13 @@ public class UClient {
     }
 
     private void addFilePart(String str, byte[] bArr, String str2, OutputStream outputStream) throws IOException {
-        outputStream.write((d.D + str2 + END + "Content-Disposition: form-data; name=\"pic\"; filename=\"" + str + "\"" + END + "Content-Type: " + OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE + END + "Content-Transfer-Encoding: binary" + END + END).getBytes());
+        outputStream.write((C4443d.f16920D + str2 + END + "Content-Disposition: form-data; name=\"pic\"; filename=\"" + str + "\"" + END + "Content-Type: " + OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE + END + "Content-Transfer-Encoding: binary" + END + END).getBytes());
         outputStream.write(bArr);
         outputStream.write(END.getBytes());
     }
 
     private void addFormField(StringBuilder sb, String str, String str2, String str3) {
-        sb.append(d.D);
+        sb.append(C4443d.f16920D);
         sb.append(str3);
         sb.append(END);
         sb.append("Content-Disposition: form-data; name=\"");
@@ -105,7 +105,7 @@ public class UClient {
 
     private void finishWrite(OutputStream outputStream, String str) throws IOException {
         outputStream.write(END.getBytes());
-        outputStream.write((d.D + str + d.D).getBytes());
+        outputStream.write((C4443d.f16920D + str + C4443d.f16920D).getBytes());
         outputStream.write(END.getBytes());
         outputStream.flush();
         outputStream.close();

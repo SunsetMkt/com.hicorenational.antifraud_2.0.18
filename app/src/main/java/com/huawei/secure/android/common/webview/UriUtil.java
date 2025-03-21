@@ -11,38 +11,39 @@ import java.net.URL;
 /* loaded from: classes.dex */
 public class UriUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7735a = "UriUtil";
+    /* renamed from: a */
+    private static final String f8317a = "UriUtil";
 
-    private static String a(String str) {
+    /* renamed from: a */
+    private static String m8078a(String str) {
         if (!TextUtils.isEmpty(str)) {
             return !URLUtil.isNetworkUrl(str) ? str : getHostByURI(str);
         }
-        LogsUtil.i(f7735a, "whiteListUrl is null");
+        LogsUtil.m8027i(f8317a, "whiteListUrl is null");
         return null;
     }
 
     @TargetApi(9)
     public static String getHostByURI(String str) {
         if (TextUtils.isEmpty(str)) {
-            LogsUtil.i(f7735a, "url is null");
+            LogsUtil.m8027i(f8317a, "url is null");
             return str;
         }
         try {
             if (URLUtil.isNetworkUrl(str)) {
                 return new URL(str.replaceAll("[\\\\#]", "/")).getHost();
             }
-            LogsUtil.e(f7735a, "url don't starts with http or https");
+            LogsUtil.m8021e(f8317a, "url don't starts with http or https");
             return "";
         } catch (MalformedURLException e2) {
-            LogsUtil.e(f7735a, "getHostByURI error  MalformedURLException : " + e2.getMessage());
+            LogsUtil.m8021e(f8317a, "getHostByURI error  MalformedURLException : " + e2.getMessage());
             return "";
         }
     }
 
     public static boolean isUrlHostAndPathInWhitelist(String str, String[] strArr) {
         if (strArr == null || strArr.length == 0) {
-            LogsUtil.e(f7735a, "whitelist is null");
+            LogsUtil.m8021e(f8317a, "whitelist is null");
             return false;
         }
         for (String str2 : strArr) {
@@ -75,7 +76,7 @@ public class UriUtil {
 
     public static boolean isUrlHostInWhitelist(String str, String[] strArr) {
         if (strArr == null || strArr.length == 0) {
-            LogsUtil.e(f7735a, "whitelist is null");
+            LogsUtil.m8021e(f8317a, "whitelist is null");
             return false;
         }
         for (String str2 : strArr) {
@@ -89,27 +90,27 @@ public class UriUtil {
     public static boolean isUrlHostMatchWhitelist(String str, String str2) {
         String hostByURI = getHostByURI(str);
         if (TextUtils.isEmpty(hostByURI) || TextUtils.isEmpty(str2)) {
-            LogsUtil.e(f7735a, "url or whitelist is null");
+            LogsUtil.m8021e(f8317a, "url or whitelist is null");
             return false;
         }
-        String a2 = a(str2);
-        if (TextUtils.isEmpty(a2)) {
+        String m8078a = m8078a(str2);
+        if (TextUtils.isEmpty(m8078a)) {
             return false;
         }
-        if (a2.equals(hostByURI)) {
+        if (m8078a.equals(hostByURI)) {
             return true;
         }
-        if (hostByURI.endsWith(a2)) {
+        if (hostByURI.endsWith(m8078a)) {
             try {
-                String substring = hostByURI.substring(0, hostByURI.length() - a2.length());
+                String substring = hostByURI.substring(0, hostByURI.length() - m8078a.length());
                 if (substring.endsWith(".")) {
                     return substring.matches("^[A-Za-z0-9.-]+$");
                 }
                 return false;
             } catch (IndexOutOfBoundsException e2) {
-                LogsUtil.e(f7735a, "IndexOutOfBoundsException" + e2.getMessage());
+                LogsUtil.m8021e(f8317a, "IndexOutOfBoundsException" + e2.getMessage());
             } catch (Exception e3) {
-                LogsUtil.e(f7735a, "Exception : " + e3.getMessage());
+                LogsUtil.m8021e(f8317a, "Exception : " + e3.getMessage());
                 return false;
             }
         }
@@ -120,7 +121,7 @@ public class UriUtil {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             return false;
         }
-        return TextUtils.equals(getHostByURI(str), a(str2));
+        return TextUtils.equals(getHostByURI(str), m8078a(str2));
     }
 
     public static boolean isUrlHostSameWhitelist(String str, String[] strArr) {
@@ -132,7 +133,7 @@ public class UriUtil {
             }
             return false;
         }
-        LogsUtil.e(f7735a, "whitelist is null");
+        LogsUtil.m8021e(f8317a, "whitelist is null");
         return false;
     }
 }

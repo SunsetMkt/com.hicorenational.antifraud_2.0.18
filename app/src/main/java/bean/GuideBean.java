@@ -14,7 +14,9 @@ public class GuideBean extends BaseBean {
     private int code;
     private String content;
     private String createTime;
-    private int id;
+
+    /* renamed from: id */
+    private int f1598id;
     private String imgUrl;
     private String updateTime;
 
@@ -31,7 +33,7 @@ public class GuideBean extends BaseBean {
     }
 
     public int getId() {
-        return this.id;
+        return this.f1598id;
     }
 
     public String getImgUrl() {
@@ -55,7 +57,7 @@ public class GuideBean extends BaseBean {
     }
 
     public void setId(int i2) {
-        this.id = i2;
+        this.f1598id = i2;
     }
 
     public void setImgUrl(String str) {

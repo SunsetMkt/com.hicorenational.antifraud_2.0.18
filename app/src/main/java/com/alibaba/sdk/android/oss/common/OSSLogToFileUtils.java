@@ -11,7 +11,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
 import com.alibaba.sdk.android.oss.ClientConfiguration;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -185,7 +185,7 @@ public class OSSLogToFileUtils {
     private Uri queryLogUri() {
         ContentResolver contentResolver = sContext.getContentResolver();
         Uri contentUri = MediaStore.Files.getContentUri("external");
-        Cursor query = contentResolver.query(contentUri, new String[]{bl.f10170d}, "relative_path like ? AND _display_name=?", new String[]{"Documents/OSSLog%", "logs.csv"}, null);
+        Cursor query = contentResolver.query(contentUri, new String[]{C3355bl.f11732d}, "relative_path like ? AND _display_name=?", new String[]{"Documents/OSSLog%", "logs.csv"}, null);
         if (query == null || !query.moveToFirst()) {
             return null;
         }

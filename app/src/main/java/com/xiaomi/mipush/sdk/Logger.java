@@ -1,9 +1,10 @@
 package com.xiaomi.mipush.sdk;
 
 import android.content.Context;
+import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
 import com.xiaomi.channel.commonutils.logger.LoggerInterface;
-import com.xiaomi.push.dc;
-import com.xiaomi.push.dd;
+import com.xiaomi.push.C4155dc;
+import com.xiaomi.push.C4156dd;
 import java.io.File;
 
 /* loaded from: classes2.dex */
@@ -41,7 +42,7 @@ public class Logger {
         if (z2) {
             z = false;
         }
-        com.xiaomi.channel.commonutils.logger.b.a(new dc(z ? sUserLogger : null, true ^ z2 ? dd.a(context) : null));
+        AbstractC4022b.m13345a(new C4155dc(z ? sUserLogger : null, true ^ z2 ? C4156dd.m14274a(context) : null));
     }
 
     @Deprecated

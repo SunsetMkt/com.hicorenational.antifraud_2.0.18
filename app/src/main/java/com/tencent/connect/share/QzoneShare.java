@@ -24,26 +24,26 @@ public class QzoneShare extends BaseApi {
     public static final int SHARE_TO_QZONE_TYPE_MINI_PROGRAM = 7;
     public static final int SHARE_TO_QZONE_TYPE_NO_TYPE = 0;
 
-    /* renamed from: a, reason: collision with root package name */
-    private boolean f9663a;
+    /* renamed from: a */
+    private boolean f11043a;
 
-    /* renamed from: d, reason: collision with root package name */
-    private boolean f9664d;
+    /* renamed from: d */
+    private boolean f11044d;
 
-    /* renamed from: e, reason: collision with root package name */
-    private boolean f9665e;
+    /* renamed from: e */
+    private boolean f11045e;
 
-    /* renamed from: f, reason: collision with root package name */
-    private boolean f9666f;
+    /* renamed from: f */
+    private boolean f11046f;
     public String mViaShareQzoneType;
 
     public QzoneShare(Context context, QQToken qQToken) {
         super(qQToken);
         this.mViaShareQzoneType = "";
-        this.f9663a = true;
-        this.f9664d = false;
-        this.f9665e = false;
-        this.f9666f = false;
+        this.f11043a = true;
+        this.f11044d = false;
+        this.f11045e = false;
+        this.f11046f = false;
     }
 
     /* JADX WARN: Removed duplicated region for block: B:22:0x00ee  */
@@ -62,16 +62,17 @@ public class QzoneShare extends BaseApi {
     /* JADX WARN: Removed duplicated region for block: B:64:0x02eb  */
     /* JADX WARN: Removed duplicated region for block: B:67:0x039a  */
     /* JADX WARN: Removed duplicated region for block: B:71:0x03ac  */
+    /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private void b(android.app.Activity r25, android.os.Bundle r26, com.tencent.tauth.IUiListener r27) {
+    private void m10337b(android.app.Activity r25, android.os.Bundle r26, com.tencent.tauth.IUiListener r27) {
         /*
             Method dump skipped, instructions count: 976
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.tencent.connect.share.QzoneShare.b(android.app.Activity, android.os.Bundle, com.tencent.tauth.IUiListener):void");
+        throw new UnsupportedOperationException("Method not decompiled: com.tencent.connect.share.QzoneShare.m10337b(android.app.Activity, android.os.Bundle, com.tencent.tauth.IUiListener):void");
     }
 
     @Override // com.tencent.connect.common.BaseApi

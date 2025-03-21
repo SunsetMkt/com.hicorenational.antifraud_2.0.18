@@ -31,18 +31,20 @@ final class CameraConfigurationManager {
 
     class PreviewComparator implements Comparator<Camera.Size> {
 
-        /* renamed from: h, reason: collision with root package name */
-        int f3184h;
-        int w;
+        /* renamed from: h */
+        int f2712h;
+
+        /* renamed from: w */
+        int f2713w;
 
         public PreviewComparator(int i2, int i3) {
-            this.w = i2;
-            this.f3184h = i3;
+            this.f2713w = i2;
+            this.f2712h = i3;
         }
 
         @Override // java.util.Comparator
         public int compare(Camera.Size size, Camera.Size size2) {
-            return Math.abs((size.width * size.height) - (this.w * this.f3184h)) - Math.abs((size2.width * size2.height) - (this.w * this.f3184h));
+            return Math.abs((size.width * size.height) - (this.f2713w * this.f2712h)) - Math.abs((size2.width * size2.height) - (this.f2713w * this.f2712h));
         }
     }
 

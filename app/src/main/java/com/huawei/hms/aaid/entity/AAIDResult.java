@@ -4,13 +4,15 @@ import com.huawei.hms.core.aidl.IMessageEntity;
 
 /* loaded from: classes.dex */
 public class AAIDResult implements IMessageEntity {
-    private String id;
+
+    /* renamed from: id */
+    private String f7010id;
 
     public String getId() {
-        return this.id;
+        return this.f7010id;
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f7010id = str;
     }
 }

@@ -8,7 +8,9 @@ public class DeliveryBean extends BaseBean {
     private String caseInfoID;
     private String deliveryGoods;
     private String deliveryTime;
-    private int ex;
+
+    /* renamed from: ex */
+    private int f1594ex;
     private ArrayList<UploadFileBean> mailingTelDetails;
     private String mailingTelInfoID;
     private String oddNumber;
@@ -51,7 +53,7 @@ public class DeliveryBean extends BaseBean {
     }
 
     public int getEx() {
-        return this.ex;
+        return this.f1594ex;
     }
 
     public ArrayList<UploadFileBean> getMailingTelDetails() {
@@ -99,7 +101,7 @@ public class DeliveryBean extends BaseBean {
     }
 
     public void setEx(int i2) {
-        this.ex = i2;
+        this.f1594ex = i2;
     }
 
     public void setMailingTelDetails(ArrayList<UploadFileBean> arrayList) {

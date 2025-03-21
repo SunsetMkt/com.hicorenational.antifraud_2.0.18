@@ -9,7 +9,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 import java.io.IOException;
 
 /* loaded from: classes.dex */
@@ -27,7 +27,7 @@ public class ThumbnailUtil {
     public static String[] getRealPathFromURI(Uri uri, Context context) {
         Cursor cursor;
         String[] strArr;
-        String[] strArr2 = {"_data", bl.f10170d};
+        String[] strArr2 = {"_data", C3355bl.f11732d};
         try {
             cursor = context.getContentResolver().query(uri, strArr2, null, null, null);
             try {

@@ -28,7 +28,7 @@ public class ActionBarResponse extends SocializeReseponse {
     public void parseJsonObject() {
         JSONObject jSONObject = this.mJsonData;
         if (jSONObject == null) {
-            SLog.I(UmengText.NET.JSONNULL);
+            SLog.m12717I(UmengText.NET.JSONNULL);
             return;
         }
         try {

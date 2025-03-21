@@ -7,32 +7,34 @@ import java.util.List;
 /* loaded from: classes.dex */
 class BindingFailedResolveMgr {
 
-    /* renamed from: b, reason: collision with root package name */
-    static final BindingFailedResolveMgr f6608b = new BindingFailedResolveMgr();
+    /* renamed from: b */
+    static final BindingFailedResolveMgr f7112b = new BindingFailedResolveMgr();
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final Object f6609c = new Object();
+    /* renamed from: c */
+    private static final Object f7113c = new Object();
 
-    /* renamed from: a, reason: collision with root package name */
-    List<Activity> f6610a = new ArrayList(1);
+    /* renamed from: a */
+    List<Activity> f7114a = new ArrayList(1);
 
     BindingFailedResolveMgr() {
     }
 
-    void a(Activity activity) {
-        synchronized (f6609c) {
-            for (Activity activity2 : this.f6610a) {
+    /* renamed from: a */
+    void m6608a(Activity activity) {
+        synchronized (f7113c) {
+            for (Activity activity2 : this.f7114a) {
                 if (activity2 != null && activity2 != activity && !activity2.isFinishing()) {
                     activity2.finish();
                 }
             }
-            this.f6610a.add(activity);
+            this.f7114a.add(activity);
         }
     }
 
-    void b(Activity activity) {
-        synchronized (f6609c) {
-            this.f6610a.remove(activity);
+    /* renamed from: b */
+    void m6609b(Activity activity) {
+        synchronized (f7113c) {
+            this.f7114a.remove(activity);
         }
     }
 }

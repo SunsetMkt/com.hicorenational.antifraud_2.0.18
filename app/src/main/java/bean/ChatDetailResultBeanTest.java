@@ -5,14 +5,16 @@ import network.BaseBean;
 /* loaded from: classes.dex */
 public class ChatDetailResultBeanTest extends BaseBean {
     private String conversationID;
-    private String id;
+
+    /* renamed from: id */
+    private String f1589id;
 
     public String getConversationID() {
         return this.conversationID;
     }
 
     public String getId() {
-        return this.id;
+        return this.f1589id;
     }
 
     public void setConversationID(String str) {
@@ -20,6 +22,6 @@ public class ChatDetailResultBeanTest extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1589id = str;
     }
 }

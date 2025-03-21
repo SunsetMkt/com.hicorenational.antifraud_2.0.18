@@ -1,5 +1,6 @@
 package androidx.appcompat.widget;
 
+import android.R;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -24,7 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.view.menu.MenuPresenter;
 import androidx.core.graphics.Insets;
 import androidx.core.view.NestedScrollingParent;
@@ -39,7 +40,7 @@ import androidx.core.view.WindowInsetsCompat;
 /* loaded from: classes.dex */
 public class ActionBarOverlayLayout extends ViewGroup implements DecorContentParent, NestedScrollingParent, NestedScrollingParent2, NestedScrollingParent3 {
     private static final int ACTION_BAR_ANIMATE_DELAY = 600;
-    static final int[] ATTRS = {R.attr.actionBarSize, android.R.attr.windowContentOverlay};
+    static final int[] ATTRS = {C0120R.attr.actionBarSize, R.attr.windowContentOverlay};
     private static final String TAG = "ActionBarOverlayLayout";
     private int mActionBarHeight;
     ActionBarContainer mActionBarTop;
@@ -431,7 +432,7 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
                 this.mInnerInsets = this.mInnerInsets.inset(0, measuredHeight, 0, 0);
             }
         } else if (Build.VERSION.SDK_INT >= 21) {
-            this.mInnerInsets = new WindowInsetsCompat.Builder(this.mInnerInsets).setSystemWindowInsets(Insets.of(this.mInnerInsets.getSystemWindowInsetLeft(), this.mInnerInsets.getSystemWindowInsetTop() + measuredHeight, this.mInnerInsets.getSystemWindowInsetRight(), this.mInnerInsets.getSystemWindowInsetBottom() + 0)).build();
+            this.mInnerInsets = new WindowInsetsCompat.Builder(this.mInnerInsets).setSystemWindowInsets(Insets.m385of(this.mInnerInsets.getSystemWindowInsetLeft(), this.mInnerInsets.getSystemWindowInsetTop() + measuredHeight, this.mInnerInsets.getSystemWindowInsetRight(), this.mInnerInsets.getSystemWindowInsetBottom() + 0)).build();
         } else {
             Rect rect2 = this.mInnerInsetsRect;
             rect2.top += measuredHeight;
@@ -545,9 +546,9 @@ public class ActionBarOverlayLayout extends ViewGroup implements DecorContentPar
 
     void pullChildren() {
         if (this.mContent == null) {
-            this.mContent = (ContentFrameLayout) findViewById(R.id.action_bar_activity_content);
-            this.mActionBarTop = (ActionBarContainer) findViewById(R.id.action_bar_container);
-            this.mDecorToolbar = getDecorToolbar(findViewById(R.id.action_bar));
+            this.mContent = (ContentFrameLayout) findViewById(C0120R.id.action_bar_activity_content);
+            this.mActionBarTop = (ActionBarContainer) findViewById(C0120R.id.action_bar_container);
+            this.mDecorToolbar = getDecorToolbar(findViewById(C0120R.id.action_bar));
         }
     }
 

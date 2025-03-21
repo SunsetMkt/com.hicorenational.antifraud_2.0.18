@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.appcompat.graphics.drawable.DrawableContainer;
-import androidx.appcompat.resources.R;
+import androidx.appcompat.resources.C0149R;
 import androidx.appcompat.widget.ResourceManagerInternal;
 import androidx.core.content.res.TypedArrayUtils;
 import java.io.IOException;
@@ -108,8 +108,8 @@ class StateListDrawable extends DrawableContainer {
                 return;
             }
             if (next2 == 2 && depth2 <= depth && xmlPullParser.getName().equals("item")) {
-                TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, R.styleable.StateListDrawableItem);
-                int resourceId = obtainAttributes.getResourceId(R.styleable.StateListDrawableItem_android_drawable, -1);
+                TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, C0149R.styleable.StateListDrawableItem);
+                int resourceId = obtainAttributes.getResourceId(C0149R.styleable.StateListDrawableItem_android_drawable, -1);
                 Drawable drawable = resourceId > 0 ? ResourceManagerInternal.get().getDrawable(context, resourceId) : null;
                 obtainAttributes.recycle();
                 int[] extractStateSet = extractStateSet(attributeSet);
@@ -132,11 +132,11 @@ class StateListDrawable extends DrawableContainer {
         if (Build.VERSION.SDK_INT >= 21) {
             stateListState.mChangingConfigurations |= typedArray.getChangingConfigurations();
         }
-        stateListState.mVariablePadding = typedArray.getBoolean(R.styleable.StateListDrawable_android_variablePadding, stateListState.mVariablePadding);
-        stateListState.mConstantSize = typedArray.getBoolean(R.styleable.StateListDrawable_android_constantSize, stateListState.mConstantSize);
-        stateListState.mEnterFadeDuration = typedArray.getInt(R.styleable.StateListDrawable_android_enterFadeDuration, stateListState.mEnterFadeDuration);
-        stateListState.mExitFadeDuration = typedArray.getInt(R.styleable.StateListDrawable_android_exitFadeDuration, stateListState.mExitFadeDuration);
-        stateListState.mDither = typedArray.getBoolean(R.styleable.StateListDrawable_android_dither, stateListState.mDither);
+        stateListState.mVariablePadding = typedArray.getBoolean(C0149R.styleable.StateListDrawable_android_variablePadding, stateListState.mVariablePadding);
+        stateListState.mConstantSize = typedArray.getBoolean(C0149R.styleable.StateListDrawable_android_constantSize, stateListState.mConstantSize);
+        stateListState.mEnterFadeDuration = typedArray.getInt(C0149R.styleable.StateListDrawable_android_enterFadeDuration, stateListState.mEnterFadeDuration);
+        stateListState.mExitFadeDuration = typedArray.getInt(C0149R.styleable.StateListDrawable_android_exitFadeDuration, stateListState.mExitFadeDuration);
+        stateListState.mDither = typedArray.getBoolean(C0149R.styleable.StateListDrawable_android_dither, stateListState.mDither);
     }
 
     public void addState(int[] iArr, Drawable drawable) {
@@ -198,8 +198,8 @@ class StateListDrawable extends DrawableContainer {
     }
 
     public void inflate(@NonNull Context context, @NonNull Resources resources, @NonNull XmlPullParser xmlPullParser, @NonNull AttributeSet attributeSet, @Nullable Resources.Theme theme) throws XmlPullParserException, IOException {
-        TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, R.styleable.StateListDrawable);
-        setVisible(obtainAttributes.getBoolean(R.styleable.StateListDrawable_android_visible, true), true);
+        TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, C0149R.styleable.StateListDrawable);
+        setVisible(obtainAttributes.getBoolean(C0149R.styleable.StateListDrawable_android_visible, true), true);
         updateStateFromTypedArray(obtainAttributes);
         updateDensity(resources);
         obtainAttributes.recycle();

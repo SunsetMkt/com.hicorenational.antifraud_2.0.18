@@ -8,11 +8,11 @@ import android.widget.FrameLayout;
 /* loaded from: classes2.dex */
 public class TagView extends FrameLayout implements Checkable {
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final int[] f13504b = {android.R.attr.state_checked};
+    /* renamed from: b */
+    private static final int[] f16868b = {android.R.attr.state_checked};
 
-    /* renamed from: a, reason: collision with root package name */
-    private boolean f13505a;
+    /* renamed from: a */
+    private boolean f16869a;
 
     public TagView(Context context) {
         super(context);
@@ -24,28 +24,28 @@ public class TagView extends FrameLayout implements Checkable {
 
     @Override // android.widget.Checkable
     public boolean isChecked() {
-        return this.f13505a;
+        return this.f16869a;
     }
 
     @Override // android.view.ViewGroup, android.view.View
     public int[] onCreateDrawableState(int i2) {
         int[] onCreateDrawableState = super.onCreateDrawableState(i2 + 1);
         if (isChecked()) {
-            FrameLayout.mergeDrawableStates(onCreateDrawableState, f13504b);
+            FrameLayout.mergeDrawableStates(onCreateDrawableState, f16868b);
         }
         return onCreateDrawableState;
     }
 
     @Override // android.widget.Checkable
     public void setChecked(boolean z) {
-        if (this.f13505a != z) {
-            this.f13505a = z;
+        if (this.f16869a != z) {
+            this.f16869a = z;
             refreshDrawableState();
         }
     }
 
     @Override // android.widget.Checkable
     public void toggle() {
-        setChecked(!this.f13505a);
+        setChecked(!this.f16869a);
     }
 }

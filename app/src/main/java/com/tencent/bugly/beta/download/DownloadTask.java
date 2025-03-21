@@ -16,49 +16,49 @@ public abstract class DownloadTask {
     public static final int TYPE_HOTFIX = 2;
     public static final int TYPE_UPGRADE = 1;
 
-    /* renamed from: a, reason: collision with root package name */
-    protected String f8766a;
+    /* renamed from: a */
+    protected String f9842a;
 
-    /* renamed from: b, reason: collision with root package name */
-    protected String f8767b;
+    /* renamed from: b */
+    protected String f9843b;
 
-    /* renamed from: c, reason: collision with root package name */
-    protected String f8768c;
+    /* renamed from: c */
+    protected String f9844c;
 
-    /* renamed from: e, reason: collision with root package name */
-    protected long f8770e;
+    /* renamed from: e */
+    protected long f9846e;
 
-    /* renamed from: f, reason: collision with root package name */
-    protected long f8771f;
+    /* renamed from: f */
+    protected long f9847f;
 
-    /* renamed from: h, reason: collision with root package name */
-    protected String f8773h;
+    /* renamed from: h */
+    protected String f9849h;
 
-    /* renamed from: d, reason: collision with root package name */
-    protected List<DownloadListener> f8769d = new CopyOnWriteArrayList();
+    /* renamed from: d */
+    protected List<DownloadListener> f9845d = new CopyOnWriteArrayList();
 
-    /* renamed from: g, reason: collision with root package name */
-    protected boolean f8772g = true;
+    /* renamed from: g */
+    protected boolean f9848g = true;
 
-    /* renamed from: i, reason: collision with root package name */
-    protected int f8774i = 0;
+    /* renamed from: i */
+    protected int f9850i = 0;
 
-    /* renamed from: j, reason: collision with root package name */
-    protected int f8775j = 1;
+    /* renamed from: j */
+    protected int f9851j = 1;
 
     protected DownloadTask(String str, String str2, String str3, String str4) {
-        this.f8773h = "";
-        this.f8766a = str;
-        this.f8767b = str2;
-        this.f8768c = str3;
-        this.f8773h = str4;
+        this.f9849h = "";
+        this.f9842a = str;
+        this.f9843b = str2;
+        this.f9844c = str3;
+        this.f9849h = str4;
     }
 
     public void addListener(DownloadListener downloadListener) {
-        if (downloadListener == null || this.f8769d.contains(downloadListener)) {
+        if (downloadListener == null || this.f9845d.contains(downloadListener)) {
             return;
         }
-        this.f8769d.add(downloadListener);
+        this.f9845d.add(downloadListener);
     }
 
     public abstract void delete(boolean z);
@@ -68,51 +68,51 @@ public abstract class DownloadTask {
     public abstract long getCostTime();
 
     public int getDownloadType() {
-        return this.f8775j;
+        return this.f9851j;
     }
 
     public String getDownloadUrl() {
-        return this.f8766a;
+        return this.f9842a;
     }
 
     public String getMD5() {
-        return this.f8773h;
+        return this.f9849h;
     }
 
     public abstract File getSaveFile();
 
     public long getSavedLength() {
-        return this.f8770e;
+        return this.f9846e;
     }
 
     public abstract int getStatus();
 
     public long getTotalLength() {
-        return this.f8771f;
+        return this.f9847f;
     }
 
     public boolean isNeededNotify() {
-        return this.f8772g;
+        return this.f9848g;
     }
 
     public boolean removeListener(DownloadListener downloadListener) {
-        return downloadListener != null && this.f8769d.remove(downloadListener);
+        return downloadListener != null && this.f9845d.remove(downloadListener);
     }
 
     public void setDownloadType(int i2) {
-        this.f8775j = i2;
+        this.f9851j = i2;
     }
 
     public void setNeededNotify(boolean z) {
-        this.f8772g = z;
+        this.f9848g = z;
     }
 
     public void setSavedLength(long j2) {
-        this.f8770e = j2;
+        this.f9846e = j2;
     }
 
     public void setTotalLength(long j2) {
-        this.f8771f = j2;
+        this.f9847f = j2;
     }
 
     public abstract void stop();

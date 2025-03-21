@@ -1,16 +1,16 @@
 package okio;
 
 import android.support.v4.media.session.PlaybackStateCompat;
-import h.q2.f;
-import h.q2.t.i0;
-import h.y;
-import h.y1;
-import i.c.a.d;
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import p286h.C5715y1;
+import p286h.InterfaceC5713y;
+import p286h.p309q2.InterfaceC5482f;
+import p286h.p309q2.p311t.C5544i0;
+import p324i.p336c.p337a.InterfaceC5816d;
 
 /* compiled from: Throttler.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\b\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0007\u0018\u00002\u00020\u0001B\u0007\b\u0016¢\u0006\u0002\u0010\u0002B\u000f\b\u0000\u0012\u0006\u0010\u0003\u001a\u00020\u0004¢\u0006\u0002\u0010\u0005J\u001d\u0010\t\u001a\u00020\u00042\u0006\u0010\n\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\u0004H\u0000¢\u0006\u0002\b\fJ$\u0010\u0006\u001a\u00020\r2\u0006\u0010\u0006\u001a\u00020\u00042\b\b\u0002\u0010\b\u001a\u00020\u00042\b\b\u0002\u0010\u0007\u001a\u00020\u0004H\u0007J\u000e\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u000e\u001a\u00020\u000fJ\u000e\u0010\u0010\u001a\u00020\u00112\u0006\u0010\u0010\u001a\u00020\u0011J\u0015\u0010\u0012\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\u0004H\u0000¢\u0006\u0002\b\u0013J\u0010\u0010\u0014\u001a\u00020\r2\u0006\u0010\u0015\u001a\u00020\u0004H\u0002J\f\u0010\u0016\u001a\u00020\u0004*\u00020\u0004H\u0002J\f\u0010\u0017\u001a\u00020\u0004*\u00020\u0004H\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0007\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\b\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000¨\u0006\u0018"}, d2 = {"Lokio/Throttler;", "", "()V", "allocatedUntil", "", "(J)V", "bytesPerSecond", "maxByteCount", "waitByteCount", "byteCountOrWaitNanos", "now", "byteCount", "byteCountOrWaitNanos$okio", "", "sink", "Lokio/Sink;", "source", "Lokio/Source;", "take", "take$okio", "waitNanos", "nanosToWait", "bytesToNanos", "nanosToBytes", "okio"}, k = 1, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\b\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0007\u0018\u00002\u00020\u0001B\u0007\b\u0016¢\u0006\u0002\u0010\u0002B\u000f\b\u0000\u0012\u0006\u0010\u0003\u001a\u00020\u0004¢\u0006\u0002\u0010\u0005J\u001d\u0010\t\u001a\u00020\u00042\u0006\u0010\n\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\u0004H\u0000¢\u0006\u0002\b\fJ$\u0010\u0006\u001a\u00020\r2\u0006\u0010\u0006\u001a\u00020\u00042\b\b\u0002\u0010\b\u001a\u00020\u00042\b\b\u0002\u0010\u0007\u001a\u00020\u0004H\u0007J\u000e\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u000e\u001a\u00020\u000fJ\u000e\u0010\u0010\u001a\u00020\u00112\u0006\u0010\u0010\u001a\u00020\u0011J\u0015\u0010\u0012\u001a\u00020\u00042\u0006\u0010\u000b\u001a\u00020\u0004H\u0000¢\u0006\u0002\b\u0013J\u0010\u0010\u0014\u001a\u00020\r2\u0006\u0010\u0015\u001a\u00020\u0004H\u0002J\f\u0010\u0016\u001a\u00020\u0004*\u00020\u0004H\u0002J\f\u0010\u0017\u001a\u00020\u0004*\u00020\u0004H\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0007\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\b\u001a\u00020\u0004X\u0082\u000e¢\u0006\u0002\n\u0000¨\u0006\u0018"}, m23546d2 = {"Lokio/Throttler;", "", "()V", "allocatedUntil", "", "(J)V", "bytesPerSecond", "maxByteCount", "waitByteCount", "byteCountOrWaitNanos", "now", "byteCount", "byteCountOrWaitNanos$okio", "", "sink", "Lokio/Sink;", "source", "Lokio/Source;", "take", "take$okio", "waitNanos", "nanosToWait", "bytesToNanos", "nanosToBytes", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class Throttler {
     private long allocatedUntil;
@@ -72,17 +72,17 @@ public final class Throttler {
         return min;
     }
 
-    @f
+    @InterfaceC5482f
     public final void bytesPerSecond(long j2) {
         bytesPerSecond$default(this, j2, 0L, 0L, 6, null);
     }
 
-    @f
+    @InterfaceC5482f
     public final void bytesPerSecond(long j2, long j3) {
         bytesPerSecond$default(this, j2, j3, 0L, 4, null);
     }
 
-    @f
+    @InterfaceC5482f
     public final void bytesPerSecond(long j2, long j3, long j4) {
         synchronized (this) {
             if (!(j2 >= 0)) {
@@ -98,17 +98,17 @@ public final class Throttler {
             this.waitByteCount = j3;
             this.maxByteCount = j4;
             notifyAll();
-            y1 y1Var = y1.f16671a;
+            C5715y1 c5715y1 = C5715y1.f20665a;
         }
     }
 
-    @d
-    public final Sink sink(@d final Sink sink) {
-        i0.f(sink, "sink");
+    @InterfaceC5816d
+    public final Sink sink(@InterfaceC5816d final Sink sink) {
+        C5544i0.m22546f(sink, "sink");
         return new ForwardingSink(sink) { // from class: okio.Throttler$sink$1
             @Override // okio.ForwardingSink, okio.Sink
-            public void write(@d Buffer buffer, long j2) throws IOException {
-                i0.f(buffer, "source");
+            public void write(@InterfaceC5816d Buffer buffer, long j2) throws IOException {
+                C5544i0.m22546f(buffer, "source");
                 while (j2 > 0) {
                     try {
                         long take$okio = Throttler.this.take$okio(j2);
@@ -123,13 +123,13 @@ public final class Throttler {
         };
     }
 
-    @d
-    public final Source source(@d final Source source) {
-        i0.f(source, "source");
+    @InterfaceC5816d
+    public final Source source(@InterfaceC5816d final Source source) {
+        C5544i0.m22546f(source, "source");
         return new ForwardingSource(source) { // from class: okio.Throttler$source$1
             @Override // okio.ForwardingSource, okio.Source
-            public long read(@d Buffer buffer, long j2) {
-                i0.f(buffer, "sink");
+            public long read(@InterfaceC5816d Buffer buffer, long j2) {
+                C5544i0.m22546f(buffer, "sink");
                 try {
                     return super.read(buffer, Throttler.this.take$okio(j2));
                 } catch (InterruptedException unused) {

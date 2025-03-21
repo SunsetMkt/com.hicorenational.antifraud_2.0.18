@@ -3,11 +3,12 @@ package com.umeng.commonsdk.statistics.idtracking;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.tencent.open.SocialOperation;
-import com.umeng.analytics.pro.at;
-import com.umeng.analytics.pro.bi;
-import com.umeng.analytics.pro.bz;
+import com.umeng.analytics.pro.C3336at;
+import com.umeng.analytics.pro.C3352bi;
+import com.umeng.analytics.pro.C3369bz;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
+import com.umeng.commonsdk.statistics.common.C3497b;
 import com.umeng.commonsdk.statistics.common.DataHelper;
 import com.umeng.commonsdk.statistics.common.HelperUtils;
 import com.umeng.commonsdk.statistics.internal.PreferenceWrapper;
@@ -45,7 +46,7 @@ public class Envelope {
         }
         this.mAddress = str;
         this.mLength = bArr.length;
-        this.mEntity = com.umeng.commonsdk.statistics.common.b.a(bArr);
+        this.mEntity = C3497b.m11809a(bArr);
         this.mTimestamp = (int) (System.currentTimeMillis() / 1000);
         this.identity = bArr2;
     }
@@ -139,7 +140,7 @@ public class Envelope {
             }
             jSONObject.put(SocialOperation.GAME_SIGNATURE, hexString);
             jSONObject.put("checksum", hexString2);
-            File file = new File(context.getFilesDir(), at.b().b(at.f10068b));
+            File file = new File(context.getFilesDir(), C3336at.m10865b().m10868b(C3336at.f11488b));
             if (!file.exists()) {
                 file.mkdir();
             }
@@ -154,7 +155,7 @@ public class Envelope {
             if (imprintProperty != null) {
                 jSONObject2.put("umid", HelperUtils.getUmengMD5(imprintProperty));
             }
-            HelperUtils.writeFile(new File(context.getFilesDir(), at.b().b(at.f10074h)), jSONObject2.toString());
+            HelperUtils.writeFile(new File(context.getFilesDir(), C3336at.m10865b().m10868b(C3336at.f11494h)), jSONObject2.toString());
         } catch (Throwable th2) {
             th2.printStackTrace();
         }
@@ -189,19 +190,19 @@ public class Envelope {
     }
 
     public byte[] toBinary() {
-        bi biVar = new bi();
-        biVar.a(this.mVersion);
-        biVar.b(this.mAddress);
-        biVar.c(DataHelper.toHexString(this.mSignature));
-        biVar.a(this.mSerialNo);
-        biVar.b(this.mTimestamp);
-        biVar.c(this.mLength);
-        biVar.a(this.mEntity);
-        biVar.d(this.encrypt ? 1 : 0);
-        biVar.d(DataHelper.toHexString(this.mGuid));
-        biVar.e(DataHelper.toHexString(this.mChecksum));
+        C3352bi c3352bi = new C3352bi();
+        c3352bi.m10926a(this.mVersion);
+        c3352bi.m10931b(this.mAddress);
+        c3352bi.m10935c(DataHelper.toHexString(this.mSignature));
+        c3352bi.m10925a(this.mSerialNo);
+        c3352bi.m10930b(this.mTimestamp);
+        c3352bi.m10934c(this.mLength);
+        c3352bi.m10928a(this.mEntity);
+        c3352bi.m10938d(this.encrypt ? 1 : 0);
+        c3352bi.m10939d(DataHelper.toHexString(this.mGuid));
+        c3352bi.m10943e(DataHelper.toHexString(this.mChecksum));
         try {
-            return new bz().a(biVar);
+            return new C3369bz().m11073a(c3352bi);
         } catch (Exception e2) {
             e2.printStackTrace();
             return null;

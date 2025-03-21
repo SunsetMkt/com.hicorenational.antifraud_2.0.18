@@ -3,23 +3,25 @@ package androidx.camera.core;
 import android.util.Size;
 import androidx.annotation.NonNull;
 import androidx.camera.core.ImageProxy;
-import h.f1;
 import java.nio.ByteBuffer;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 final class ImageProxyDownsampler {
 
-    /* renamed from: androidx.camera.core.ImageProxyDownsampler$2, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass2 {
-        static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$ImageProxyDownsampler$DownsamplingMethod = new int[DownsamplingMethod.values().length];
+    /* renamed from: androidx.camera.core.ImageProxyDownsampler$2 */
+    static /* synthetic */ class C03072 {
+
+        /* renamed from: $SwitchMap$androidx$camera$core$ImageProxyDownsampler$DownsamplingMethod */
+        static final /* synthetic */ int[] f436x2bb1831c = new int[DownsamplingMethod.values().length];
 
         static {
             try {
-                $SwitchMap$androidx$camera$core$ImageProxyDownsampler$DownsamplingMethod[DownsamplingMethod.NEAREST_NEIGHBOR.ordinal()] = 1;
+                f436x2bb1831c[DownsamplingMethod.NEAREST_NEIGHBOR.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$androidx$camera$core$ImageProxyDownsampler$DownsamplingMethod[DownsamplingMethod.AVERAGING.ordinal()] = 2;
+                f436x2bb1831c[DownsamplingMethod.AVERAGING.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
         }
@@ -110,7 +112,7 @@ final class ImageProxyDownsampler {
             ImageProxy.PlaneProxy planeProxy = imageProxy.getPlanes()[i6];
             ByteBuffer buffer = planeProxy.getBuffer();
             byte[] bArr2 = new byte[iArr3[i6] * iArr4[i6]];
-            int i7 = AnonymousClass2.$SwitchMap$androidx$camera$core$ImageProxyDownsampler$DownsamplingMethod[downsamplingMethod.ordinal()];
+            int i7 = C03072.f436x2bb1831c[downsamplingMethod.ordinal()];
             if (i7 == 1) {
                 bArr = bArr2;
                 resizeNearestNeighbor(buffer, iArr[i6], planeProxy.getPixelStride(), planeProxy.getRowStride(), iArr2[i6], bArr, iArr3[i6], iArr4[i6]);
@@ -149,7 +151,7 @@ final class ImageProxyDownsampler {
                 byteBuffer.position(min2);
                 byteBuffer.get(bArr3, i8, Math.min(i4, byteBuffer.remaining()));
                 for (int i14 = 0; i14 < i6; i14++) {
-                    bArr[i13 + i14] = (byte) ((((((bArr2[iArr[i14]] & f1.f16099c) + (bArr2[iArr[i14] + i3] & f1.f16099c)) + (bArr3[iArr[i14]] & f1.f16099c)) + (bArr3[iArr[i14] + i3] & f1.f16099c)) / 4) & 255);
+                    bArr[i13 + i14] = (byte) ((((((bArr2[iArr[i14]] & C5230f1.f20085c) + (bArr2[iArr[i14] + i3] & C5230f1.f20085c)) + (bArr3[iArr[i14]] & C5230f1.f20085c)) + (bArr3[iArr[i14] + i3] & C5230f1.f20085c)) / 4) & 255);
                 }
                 i10++;
                 i8 = 0;

@@ -20,7 +20,8 @@ public abstract class Optional<T> implements Serializable {
         return t == null ? absent() : new Present(t);
     }
 
-    public static <T> Optional<T> of(T t) {
+    /* renamed from: of */
+    public static <T> Optional<T> m374of(T t) {
         return new Present(Preconditions.checkNotNull(t));
     }
 
@@ -32,11 +33,14 @@ public abstract class Optional<T> implements Serializable {
 
     public abstract boolean isPresent();
 
-    public abstract Optional<T> or(Optional<? extends T> optional);
+    /* renamed from: or */
+    public abstract Optional<T> mo371or(Optional<? extends T> optional);
 
-    public abstract T or(Supplier<? extends T> supplier);
+    /* renamed from: or */
+    public abstract T mo372or(Supplier<? extends T> supplier);
 
-    public abstract T or(T t);
+    /* renamed from: or */
+    public abstract T mo373or(T t);
 
     @Nullable
     public abstract T orNull();

@@ -1,14 +1,17 @@
 package anet.channel.statist;
 
 import anet.channel.AwcnConfig;
-import anet.channel.entity.a;
-import anet.channel.fulltrace.b;
+import anet.channel.entity.C0781a;
+import anet.channel.fulltrace.C0785a;
+import anet.channel.fulltrace.C0786b;
+import anet.channel.p021e.C0774a;
 import anet.channel.strategy.IConnStrategy;
-import com.umeng.analytics.pro.d;
+import com.umeng.analytics.pro.C3397d;
 import org.json.JSONObject;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* compiled from: Taobao */
-@Monitor(module = "networkPrefer", monitorPoint = d.aw)
+@Monitor(module = "networkPrefer", monitorPoint = C3397d.f11932aw)
 /* loaded from: classes.dex */
 public class SessionStatistic extends StatObject {
     public static int maxRetryTime;
@@ -46,8 +49,9 @@ public class SessionStatistic extends StatObject {
     @Measure
     public long inceptCount;
 
+    /* renamed from: ip */
     @Dimension
-    public String ip;
+    public String f1004ip;
 
     @Dimension
     public int ipRefer;
@@ -140,27 +144,27 @@ public class SessionStatistic extends StatObject {
     public long stdRCount = 1;
     public boolean isCommitted = false;
 
-    public SessionStatistic(a aVar) {
+    public SessionStatistic(C0781a c0781a) {
         this.ipRefer = 0;
         this.ipType = 1;
-        if (aVar == null) {
+        if (c0781a == null) {
             return;
         }
-        this.ip = aVar.a();
-        this.port = aVar.b();
-        IConnStrategy iConnStrategy = aVar.f1761a;
+        this.f1004ip = c0781a.m508a();
+        this.port = c0781a.m509b();
+        IConnStrategy iConnStrategy = c0781a.f835a;
         if (iConnStrategy != null) {
             this.ipRefer = iConnStrategy.getIpSource();
-            this.ipType = aVar.f1761a.getIpType();
+            this.ipType = c0781a.f835a.getIpType();
         }
-        this.pRate = aVar.g();
-        this.conntype = aVar.c().toString();
-        this.retryTimes = aVar.f1762b;
-        maxRetryTime = aVar.f1763c;
-        b sceneInfo = anet.channel.fulltrace.a.a().getSceneInfo();
-        String str = sceneInfo != null ? sceneInfo.f1783f : null;
-        boolean b2 = anet.channel.e.a.b();
-        this.xqcConnEnv = AwcnConfig.isHttp3OrangeEnable() + c.c.a.b.a.a.s1 + b2 + c.c.a.b.a.a.s1 + str;
+        this.pRate = c0781a.m514g();
+        this.conntype = c0781a.m510c().toString();
+        this.retryTimes = c0781a.f836b;
+        maxRetryTime = c0781a.f837c;
+        C0786b sceneInfo = C0785a.m516a().getSceneInfo();
+        String str = sceneInfo != null ? sceneInfo.f857f : null;
+        boolean m497b = C0774a.m497b();
+        this.xqcConnEnv = AwcnConfig.isHttp3OrangeEnable() + AbstractC1191a.f2606s1 + m497b + AbstractC1191a.f2606s1 + str;
     }
 
     /* JADX WARN: Code restructure failed: missing block: B:8:0x001b, code lost:
@@ -215,7 +219,7 @@ public class SessionStatistic extends StatObject {
             r3[r2] = r4
             java.lang.String r2 = "SessionStat no need commit"
             java.lang.String r4 = "retry:"
-            anet.channel.util.ALog.d(r2, r0, r4, r3)
+            anet.channel.util.ALog.m713d(r2, r0, r4, r3)
         L51:
             return r1
         L52:

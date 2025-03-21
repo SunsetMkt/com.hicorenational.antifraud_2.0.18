@@ -61,7 +61,7 @@ class ViewGroupUtilsApi14 {
                     cancelLayoutTransition(layoutTransition);
                 }
                 if (layoutTransition != sEmptyLayoutTransition) {
-                    viewGroup.setTag(R.id.transition_layout_save, layoutTransition);
+                    viewGroup.setTag(C0703R.id.transition_layout_save, layoutTransition);
                 }
             }
             viewGroup.setLayoutTransition(sEmptyLayoutTransition);
@@ -93,9 +93,9 @@ class ViewGroupUtilsApi14 {
         if (z2) {
             viewGroup.requestLayout();
         }
-        LayoutTransition layoutTransition2 = (LayoutTransition) viewGroup.getTag(R.id.transition_layout_save);
+        LayoutTransition layoutTransition2 = (LayoutTransition) viewGroup.getTag(C0703R.id.transition_layout_save);
         if (layoutTransition2 != null) {
-            viewGroup.setTag(R.id.transition_layout_save, null);
+            viewGroup.setTag(C0703R.id.transition_layout_save, null);
             viewGroup.setLayoutTransition(layoutTransition2);
         }
     }

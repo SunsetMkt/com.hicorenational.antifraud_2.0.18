@@ -5,7 +5,7 @@ import android.os.Looper;
 import androidx.annotation.CallSuper;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
-import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.C3351bh;
 import java.lang.Thread;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-import ui.activity.SmsRecordSelectActivity;
+import p388ui.activity.SmsRecordSelectActivity;
 
 /* loaded from: classes.dex */
 public final class PictureThreadUtils {
@@ -265,7 +265,7 @@ public final class PictureThreadUtils {
         /* JADX INFO: Access modifiers changed from: private */
         public static ExecutorService createPool(int i2, int i3) {
             if (i2 == -8) {
-                return new ThreadPoolExecutor4Util(PictureThreadUtils.CPU_COUNT + 1, (PictureThreadUtils.CPU_COUNT * 2) + 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue4Util(true), new UtilsThreadFactory(bh.w, i3));
+                return new ThreadPoolExecutor4Util(PictureThreadUtils.CPU_COUNT + 1, (PictureThreadUtils.CPU_COUNT * 2) + 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue4Util(true), new UtilsThreadFactory(C3351bh.f11669w, i3));
             }
             if (i2 == -4) {
                 return new ThreadPoolExecutor4Util((PictureThreadUtils.CPU_COUNT * 2) + 1, (PictureThreadUtils.CPU_COUNT * 2) + 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue4Util(), new UtilsThreadFactory("io", i3));
@@ -274,7 +274,7 @@ public final class PictureThreadUtils {
                 return new ThreadPoolExecutor4Util(0, 128, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue4Util(true), new UtilsThreadFactory("cached", i3));
             }
             if (i2 == -1) {
-                return new ThreadPoolExecutor4Util(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue4Util(), new UtilsThreadFactory(SmsRecordSelectActivity.f19032l, i3));
+                return new ThreadPoolExecutor4Util(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue4Util(), new UtilsThreadFactory(SmsRecordSelectActivity.f23205l, i3));
             }
             return new ThreadPoolExecutor4Util(i2, i2, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue4Util(), new UtilsThreadFactory("fixed(" + i2 + ")", i3));
         }
@@ -528,27 +528,27 @@ public final class PictureThreadUtils {
         }
     }
 
-    public static <T> void executeByCached(Task<T> task, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCached(Task<T> task, @IntRange(from = 1, m294to = 10) int i2) {
         execute(getPoolByTypeAndPriority(-2, i2), task);
     }
 
-    public static <T> void executeByCachedAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCachedAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-2, i2), task, 0L, j2, timeUnit);
     }
 
-    public static <T> void executeByCachedWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCachedWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeWithDelay(getPoolByTypeAndPriority(-2, i2), task, j2, timeUnit);
     }
 
-    public static <T> void executeByCpu(Task<T> task, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCpu(Task<T> task, @IntRange(from = 1, m294to = 10) int i2) {
         execute(getPoolByTypeAndPriority(-8, i2), task);
     }
 
-    public static <T> void executeByCpuAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCpuAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-8, i2), task, 0L, j2, timeUnit);
     }
 
-    public static <T> void executeByCpuWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCpuWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeWithDelay(getPoolByTypeAndPriority(-8, i2), task, j2, timeUnit);
     }
 
@@ -556,55 +556,55 @@ public final class PictureThreadUtils {
         executeAtFixedRate(executorService, task, j2, j3, timeUnit);
     }
 
-    public static <T> void executeByFixed(@IntRange(from = 1) int i2, Task<T> task, @IntRange(from = 1, to = 10) int i3) {
+    public static <T> void executeByFixed(@IntRange(from = 1) int i2, Task<T> task, @IntRange(from = 1, m294to = 10) int i3) {
         execute(getPoolByTypeAndPriority(i2, i3), task);
     }
 
-    public static <T> void executeByFixedAtFixRate(@IntRange(from = 1) int i2, Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i3) {
+    public static <T> void executeByFixedAtFixRate(@IntRange(from = 1) int i2, Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i3) {
         executeAtFixedRate(getPoolByTypeAndPriority(i2, i3), task, 0L, j2, timeUnit);
     }
 
-    public static <T> void executeByFixedWithDelay(@IntRange(from = 1) int i2, Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i3) {
+    public static <T> void executeByFixedWithDelay(@IntRange(from = 1) int i2, Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i3) {
         executeWithDelay(getPoolByTypeAndPriority(i2, i3), task, j2, timeUnit);
     }
 
-    public static <T> void executeByIo(Task<T> task, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByIo(Task<T> task, @IntRange(from = 1, m294to = 10) int i2) {
         execute(getPoolByTypeAndPriority(-4, i2), task);
     }
 
-    public static <T> void executeByIoAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByIoAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-4, i2), task, 0L, j2, timeUnit);
     }
 
-    public static <T> void executeByIoWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByIoWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeWithDelay(getPoolByTypeAndPriority(-4, i2), task, j2, timeUnit);
     }
 
-    public static <T> void executeBySingle(Task<T> task, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeBySingle(Task<T> task, @IntRange(from = 1, m294to = 10) int i2) {
         execute(getPoolByTypeAndPriority(-1, i2), task);
     }
 
-    public static <T> void executeBySingleAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeBySingleAtFixRate(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-1, i2), task, 0L, j2, timeUnit);
     }
 
-    public static <T> void executeBySingleWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeBySingleWithDelay(Task<T> task, long j2, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeWithDelay(getPoolByTypeAndPriority(-1, i2), task, j2, timeUnit);
     }
 
-    public static ExecutorService getCachedPool(@IntRange(from = 1, to = 10) int i2) {
+    public static ExecutorService getCachedPool(@IntRange(from = 1, m294to = 10) int i2) {
         return getPoolByTypeAndPriority(-2, i2);
     }
 
-    public static ExecutorService getCpuPool(@IntRange(from = 1, to = 10) int i2) {
+    public static ExecutorService getCpuPool(@IntRange(from = 1, m294to = 10) int i2) {
         return getPoolByTypeAndPriority(-8, i2);
     }
 
-    public static ExecutorService getFixedPool(@IntRange(from = 1) int i2, @IntRange(from = 1, to = 10) int i3) {
+    public static ExecutorService getFixedPool(@IntRange(from = 1) int i2, @IntRange(from = 1, m294to = 10) int i3) {
         return getPoolByTypeAndPriority(i2, i3);
     }
 
-    public static ExecutorService getIoPool(@IntRange(from = 1, to = 10) int i2) {
+    public static ExecutorService getIoPool(@IntRange(from = 1, m294to = 10) int i2) {
         return getPoolByTypeAndPriority(-4, i2);
     }
 
@@ -628,7 +628,7 @@ public final class PictureThreadUtils {
         return executorService;
     }
 
-    public static ExecutorService getSinglePool(@IntRange(from = 1, to = 10) int i2) {
+    public static ExecutorService getSinglePool(@IntRange(from = 1, m294to = 10) int i2) {
         return getPoolByTypeAndPriority(-1, i2);
     }
 
@@ -652,23 +652,23 @@ public final class PictureThreadUtils {
         executeAtFixedRate(getPoolByTypeAndPriority(-1), task, j2, j3, timeUnit);
     }
 
-    public static <T> void executeByCachedAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCachedAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-2, i2), task, j2, j3, timeUnit);
     }
 
-    public static <T> void executeByCpuAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByCpuAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-8, i2), task, j2, j3, timeUnit);
     }
 
-    public static <T> void executeByFixedAtFixRate(@IntRange(from = 1) int i2, Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i3) {
+    public static <T> void executeByFixedAtFixRate(@IntRange(from = 1) int i2, Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i3) {
         executeAtFixedRate(getPoolByTypeAndPriority(i2, i3), task, j2, j3, timeUnit);
     }
 
-    public static <T> void executeByIoAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeByIoAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-4, i2), task, j2, j3, timeUnit);
     }
 
-    public static <T> void executeBySingleAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, to = 10) int i2) {
+    public static <T> void executeBySingleAtFixRate(Task<T> task, long j2, long j3, TimeUnit timeUnit, @IntRange(from = 1, m294to = 10) int i2) {
         executeAtFixedRate(getPoolByTypeAndPriority(-1, i2), task, j2, j3, timeUnit);
     }
 

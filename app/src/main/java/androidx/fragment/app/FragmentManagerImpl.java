@@ -97,6 +97,10 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
     final ArrayList<Fragment> mAdded = new ArrayList<>();
     final HashMap<String, Fragment> mActive = new HashMap<>();
     private final OnBackPressedCallback mOnBackPressedCallback = new OnBackPressedCallback(false) { // from class: androidx.fragment.app.FragmentManagerImpl.1
+        C05371(boolean z) {
+            super(z);
+        }
+
         @Override // androidx.activity.OnBackPressedCallback
         public void handleOnBackPressed() {
             FragmentManagerImpl.this.handleOnBackPressed();
@@ -107,11 +111,156 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
     Bundle mStateBundle = null;
     SparseArray<Parcelable> mStateArray = null;
     Runnable mExecCommit = new Runnable() { // from class: androidx.fragment.app.FragmentManagerImpl.2
+        RunnableC05382() {
+        }
+
         @Override // java.lang.Runnable
         public void run() {
             FragmentManagerImpl.this.execPendingActions();
         }
     };
+
+    /* renamed from: androidx.fragment.app.FragmentManagerImpl$1 */
+    class C05371 extends OnBackPressedCallback {
+        C05371(boolean z) {
+            super(z);
+        }
+
+        @Override // androidx.activity.OnBackPressedCallback
+        public void handleOnBackPressed() {
+            FragmentManagerImpl.this.handleOnBackPressed();
+        }
+    }
+
+    /* renamed from: androidx.fragment.app.FragmentManagerImpl$2 */
+    class RunnableC05382 implements Runnable {
+        RunnableC05382() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            FragmentManagerImpl.this.execPendingActions();
+        }
+    }
+
+    /* renamed from: androidx.fragment.app.FragmentManagerImpl$3 */
+    class AnimationAnimationListenerC05393 implements Animation.AnimationListener {
+        final /* synthetic */ ViewGroup val$container;
+        final /* synthetic */ Fragment val$fragment;
+
+        /* renamed from: androidx.fragment.app.FragmentManagerImpl$3$1 */
+        class AnonymousClass1 implements Runnable {
+            AnonymousClass1() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                if (r3.getAnimatingAway() != null) {
+                    r3.setAnimatingAway(null);
+                    AnimationAnimationListenerC05393 animationAnimationListenerC05393 = AnimationAnimationListenerC05393.this;
+                    FragmentManagerImpl fragmentManagerImpl = FragmentManagerImpl.this;
+                    Fragment fragment = r3;
+                    fragmentManagerImpl.moveToState(fragment, fragment.getStateAfterAnimating(), 0, 0, false);
+                }
+            }
+        }
+
+        AnimationAnimationListenerC05393(ViewGroup viewGroup, Fragment fragment) {
+            r2 = viewGroup;
+            r3 = fragment;
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationEnd(Animation animation) {
+            r2.post(new Runnable() { // from class: androidx.fragment.app.FragmentManagerImpl.3.1
+                AnonymousClass1() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    if (r3.getAnimatingAway() != null) {
+                        r3.setAnimatingAway(null);
+                        AnimationAnimationListenerC05393 animationAnimationListenerC05393 = AnimationAnimationListenerC05393.this;
+                        FragmentManagerImpl fragmentManagerImpl = FragmentManagerImpl.this;
+                        Fragment fragment = r3;
+                        fragmentManagerImpl.moveToState(fragment, fragment.getStateAfterAnimating(), 0, 0, false);
+                    }
+                }
+            });
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationStart(Animation animation) {
+        }
+    }
+
+    /* renamed from: androidx.fragment.app.FragmentManagerImpl$4 */
+    class C05404 extends AnimatorListenerAdapter {
+        final /* synthetic */ ViewGroup val$container;
+        final /* synthetic */ Fragment val$fragment;
+        final /* synthetic */ View val$viewToAnimate;
+
+        C05404(ViewGroup viewGroup, View view, Fragment fragment) {
+            r2 = viewGroup;
+            r3 = view;
+            r4 = fragment;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            r2.endViewTransition(r3);
+            Animator animator2 = r4.getAnimator();
+            r4.setAnimator(null);
+            if (animator2 == null || r2.indexOfChild(r3) >= 0) {
+                return;
+            }
+            FragmentManagerImpl fragmentManagerImpl = FragmentManagerImpl.this;
+            Fragment fragment = r4;
+            fragmentManagerImpl.moveToState(fragment, fragment.getStateAfterAnimating(), 0, 0, false);
+        }
+    }
+
+    /* renamed from: androidx.fragment.app.FragmentManagerImpl$5 */
+    class C05415 extends AnimatorListenerAdapter {
+        final /* synthetic */ View val$animatingView;
+        final /* synthetic */ ViewGroup val$container;
+        final /* synthetic */ Fragment val$fragment;
+
+        C05415(ViewGroup viewGroup, View view, Fragment fragment) {
+            r2 = viewGroup;
+            r3 = view;
+            r4 = fragment;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            r2.endViewTransition(r3);
+            animator.removeListener(this);
+            Fragment fragment = r4;
+            View view = fragment.mView;
+            if (view == null || !fragment.mHidden) {
+                return;
+            }
+            view.setVisibility(8);
+        }
+    }
+
+    /* renamed from: androidx.fragment.app.FragmentManagerImpl$6 */
+    class C05426 extends FragmentFactory {
+        C05426() {
+        }
+
+        @Override // androidx.fragment.app.FragmentFactory
+        @NonNull
+        public Fragment instantiate(@NonNull ClassLoader classLoader, @NonNull String str) {
+            FragmentHostCallback fragmentHostCallback = FragmentManagerImpl.this.mHost;
+            return fragmentHostCallback.instantiate(fragmentHostCallback.getContext(), str, null);
+        }
+    }
 
     private static final class FragmentLifecycleCallbacksHolder {
         final FragmentManager.FragmentLifecycleCallbacks mCallback;
@@ -228,9 +377,9 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
         }
     }
 
-    private void animateRemoveFragment(@NonNull final Fragment fragment, @NonNull AnimationOrAnimator animationOrAnimator, int i2) {
-        final View view = fragment.mView;
-        final ViewGroup viewGroup = fragment.mContainer;
+    private void animateRemoveFragment(@NonNull Fragment fragment, @NonNull AnimationOrAnimator animationOrAnimator, int i2) {
+        View view = fragment.mView;
+        ViewGroup viewGroup = fragment.mContainer;
         viewGroup.startViewTransition(view);
         fragment.setStateAfterAnimating(i2);
         Animation animation = animationOrAnimator.animation;
@@ -238,16 +387,44 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
             EndViewTransitionAnimation endViewTransitionAnimation = new EndViewTransitionAnimation(animation, viewGroup, view);
             fragment.setAnimatingAway(fragment.mView);
             endViewTransitionAnimation.setAnimationListener(new Animation.AnimationListener() { // from class: androidx.fragment.app.FragmentManagerImpl.3
+                final /* synthetic */ ViewGroup val$container;
+                final /* synthetic */ Fragment val$fragment;
+
+                /* renamed from: androidx.fragment.app.FragmentManagerImpl$3$1 */
+                class AnonymousClass1 implements Runnable {
+                    AnonymousClass1() {
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        if (r3.getAnimatingAway() != null) {
+                            r3.setAnimatingAway(null);
+                            AnimationAnimationListenerC05393 animationAnimationListenerC05393 = AnimationAnimationListenerC05393.this;
+                            FragmentManagerImpl fragmentManagerImpl = FragmentManagerImpl.this;
+                            Fragment fragment = r3;
+                            fragmentManagerImpl.moveToState(fragment, fragment.getStateAfterAnimating(), 0, 0, false);
+                        }
+                    }
+                }
+
+                AnimationAnimationListenerC05393(ViewGroup viewGroup2, Fragment fragment2) {
+                    r2 = viewGroup2;
+                    r3 = fragment2;
+                }
+
                 @Override // android.view.animation.Animation.AnimationListener
                 public void onAnimationEnd(Animation animation2) {
-                    viewGroup.post(new Runnable() { // from class: androidx.fragment.app.FragmentManagerImpl.3.1
+                    r2.post(new Runnable() { // from class: androidx.fragment.app.FragmentManagerImpl.3.1
+                        AnonymousClass1() {
+                        }
+
                         @Override // java.lang.Runnable
                         public void run() {
-                            if (fragment.getAnimatingAway() != null) {
-                                fragment.setAnimatingAway(null);
-                                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                            if (r3.getAnimatingAway() != null) {
+                                r3.setAnimatingAway(null);
+                                AnimationAnimationListenerC05393 animationAnimationListenerC05393 = AnimationAnimationListenerC05393.this;
                                 FragmentManagerImpl fragmentManagerImpl = FragmentManagerImpl.this;
-                                Fragment fragment2 = fragment;
+                                Fragment fragment2 = r3;
                                 fragmentManagerImpl.moveToState(fragment2, fragment2.getStateAfterAnimating(), 0, 0, false);
                             }
                         }
@@ -262,26 +439,36 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
                 public void onAnimationStart(Animation animation2) {
                 }
             });
-            fragment.mView.startAnimation(endViewTransitionAnimation);
+            fragment2.mView.startAnimation(endViewTransitionAnimation);
             return;
         }
         Animator animator = animationOrAnimator.animator;
-        fragment.setAnimator(animator);
+        fragment2.setAnimator(animator);
         animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.fragment.app.FragmentManagerImpl.4
+            final /* synthetic */ ViewGroup val$container;
+            final /* synthetic */ Fragment val$fragment;
+            final /* synthetic */ View val$viewToAnimate;
+
+            C05404(ViewGroup viewGroup2, View view2, Fragment fragment2) {
+                r2 = viewGroup2;
+                r3 = view2;
+                r4 = fragment2;
+            }
+
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator2) {
-                viewGroup.endViewTransition(view);
-                Animator animator3 = fragment.getAnimator();
-                fragment.setAnimator(null);
-                if (animator3 == null || viewGroup.indexOfChild(view) >= 0) {
+                r2.endViewTransition(r3);
+                Animator animator22 = r4.getAnimator();
+                r4.setAnimator(null);
+                if (animator22 == null || r2.indexOfChild(r3) >= 0) {
                     return;
                 }
                 FragmentManagerImpl fragmentManagerImpl = FragmentManagerImpl.this;
-                Fragment fragment2 = fragment;
+                Fragment fragment2 = r4;
                 fragmentManagerImpl.moveToState(fragment2, fragment2.getStateAfterAnimating(), 0, 0, false);
             }
         });
-        animator.setTarget(fragment.mView);
+        animator.setTarget(fragment2.mView);
         animator.start();
     }
 
@@ -818,7 +1005,7 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
         }
     }
 
-    void completeShowHideFragment(final Fragment fragment) {
+    void completeShowHideFragment(Fragment fragment) {
         Animator animator;
         if (fragment.mView != null) {
             AnimationOrAnimator loadAnimation = loadAnimation(fragment, fragment.getNextTransition(), !fragment.mHidden, fragment.getNextTransitionStyle());
@@ -838,15 +1025,25 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
                 } else if (fragment.isHideReplaced()) {
                     fragment.setHideReplaced(false);
                 } else {
-                    final ViewGroup viewGroup = fragment.mContainer;
-                    final View view = fragment.mView;
+                    ViewGroup viewGroup = fragment.mContainer;
+                    View view = fragment.mView;
                     viewGroup.startViewTransition(view);
                     loadAnimation.animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.fragment.app.FragmentManagerImpl.5
+                        final /* synthetic */ View val$animatingView;
+                        final /* synthetic */ ViewGroup val$container;
+                        final /* synthetic */ Fragment val$fragment;
+
+                        C05415(ViewGroup viewGroup2, View view2, Fragment fragment2) {
+                            r2 = viewGroup2;
+                            r3 = view2;
+                            r4 = fragment2;
+                        }
+
                         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                         public void onAnimationEnd(Animator animator2) {
-                            viewGroup.endViewTransition(view);
+                            r2.endViewTransition(r3);
                             animator2.removeListener(this);
-                            Fragment fragment2 = fragment;
+                            Fragment fragment2 = r4;
                             View view2 = fragment2.mView;
                             if (view2 == null || !fragment2.mHidden) {
                                 return;
@@ -858,11 +1055,11 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
                 loadAnimation.animator.start();
             }
         }
-        if (fragment.mAdded && isMenuAvailable(fragment)) {
+        if (fragment2.mAdded && isMenuAvailable(fragment2)) {
             this.mNeedMenuInvalidate = true;
         }
-        fragment.mHiddenChanged = false;
-        fragment.onHiddenChanged(fragment.mHidden);
+        fragment2.mHiddenChanged = false;
+        fragment2.onHiddenChanged(fragment2.mHidden);
     }
 
     public void detachFragment(Fragment fragment) {
@@ -1650,6 +1847,9 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
                 return fragment.mFragmentManager.getFragmentFactory();
             }
             setFragmentFactory(new FragmentFactory() { // from class: androidx.fragment.app.FragmentManagerImpl.6
+                C05426() {
+                }
+
                 @Override // androidx.fragment.app.FragmentFactory
                 @NonNull
                 public Fragment instantiate(@NonNull ClassLoader classLoader, @NonNull String str) {
@@ -1898,7 +2098,7 @@ final class FragmentManagerImpl extends FragmentManager implements LayoutInflate
 
     /* JADX WARN: Code restructure failed: missing block: B:40:0x0082, code lost:
     
-        if (r0 != 3) goto L262;
+        if (r0 != 3) goto L532;
      */
     /* JADX WARN: Removed duplicated region for block: B:43:0x02e8  */
     /* JADX WARN: Removed duplicated region for block: B:50:0x04ac  */

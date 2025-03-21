@@ -1,11 +1,11 @@
 package com.android.dingtalk.share.ddsharemodule.algorithm;
 
-import com.umeng.analytics.pro.cw;
-import h.f1;
+import com.umeng.analytics.pro.C3393cw;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
+import p286h.C5230f1;
 
 /* loaded from: classes.dex */
 public class MD5 {
@@ -35,7 +35,7 @@ public class MD5 {
                     }
                 }
                 for (byte b2 : messageDigest.digest()) {
-                    sb.append(Integer.toString((b2 & f1.f16099c) + 256, 16).substring(1));
+                    sb.append(Integer.toString((b2 & C5230f1.f20085c) + 256, 16).substring(1));
                 }
                 return sb.toString();
             } catch (Exception unused) {
@@ -56,7 +56,7 @@ public class MD5 {
                 int i3 = i2 + 1;
                 cArr2[i2] = cArr[(b2 >>> 4) & 15];
                 i2 = i3 + 1;
-                cArr2[i3] = cArr[b2 & cw.f10303m];
+                cArr2[i3] = cArr[b2 & C3393cw.f11873m];
             }
             return new String(cArr2);
         } catch (Exception unused) {
@@ -89,7 +89,7 @@ public class MD5 {
                     messageDigest.update(bArr, 0, read);
                 }
                 for (byte b2 : messageDigest.digest()) {
-                    sb.append(Integer.toString((b2 & f1.f16099c) + 256, 16).substring(1));
+                    sb.append(Integer.toString((b2 & C5230f1.f20085c) + 256, 16).substring(1));
                 }
                 return sb.toString();
             } catch (Exception unused) {

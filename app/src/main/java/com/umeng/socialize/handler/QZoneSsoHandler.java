@@ -138,7 +138,7 @@ public class QZoneSsoHandler extends UMTencentSSOHandler {
             this.mTencent.setAccessToken(string, string2);
             this.mTencent.setOpenId(string3);
         } catch (Exception e2) {
-            SLog.error(UmengText.QQ.OPENIDANDTOKEN, e2);
+            SLog.error(UmengText.C3778QQ.OPENIDANDTOKEN, e2);
         }
     }
 

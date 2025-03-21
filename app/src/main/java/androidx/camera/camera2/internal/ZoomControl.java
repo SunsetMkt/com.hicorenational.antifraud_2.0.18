@@ -18,6 +18,7 @@ import androidx.camera.core.internal.ImmutableZoomState;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
 final class ZoomControl {
@@ -93,13 +94,13 @@ final class ZoomControl {
 
     @NonNull
     @GuardedBy("mActiveLock")
-    private c.b.b.a.a.a<Void> submitCameraZoomRatio(float f2) {
+    private InterfaceFutureC0952a<Void> submitCameraZoomRatio(float f2) {
         final Rect cropRectByRatio = getCropRectByRatio(this.mCamera2CameraControl.getSensorRect(), f2);
         this.mCamera2CameraControl.setCropRegion(cropRectByRatio);
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.a0
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return ZoomControl.this.a(cropRectByRatio, completer);
+                return ZoomControl.this.m320a(cropRectByRatio, completer);
             }
         });
     }
@@ -112,7 +113,8 @@ final class ZoomControl {
         }
     }
 
-    public /* synthetic */ Object a(Rect rect, CallbackToFutureAdapter.Completer completer) throws Exception {
+    /* renamed from: a */
+    public /* synthetic */ Object m320a(Rect rect, CallbackToFutureAdapter.Completer completer) throws Exception {
         CallbackToFutureAdapter.Completer<Void> completer2;
         synchronized (this.mCompleterLock) {
             if (this.mPendingZoomRatioCompleter != null) {
@@ -171,7 +173,7 @@ final class ZoomControl {
     }
 
     @NonNull
-    c.b.b.a.a.a<Void> setLinearZoom(@FloatRange(from = 0.0d, to = 1.0d) float f2) {
+    InterfaceFutureC0952a<Void> setLinearZoom(@FloatRange(from = 0.0d, m293to = 1.0d) float f2) {
         synchronized (this.mActiveLock) {
             if (!this.mIsActive) {
                 return Futures.immediateFailedFuture(new CameraControl.OperationCanceledException("Camera is not active."));
@@ -187,7 +189,7 @@ final class ZoomControl {
     }
 
     @NonNull
-    c.b.b.a.a.a<Void> setZoomRatio(float f2) {
+    InterfaceFutureC0952a<Void> setZoomRatio(float f2) {
         synchronized (this.mActiveLock) {
             if (!this.mIsActive) {
                 return Futures.immediateFailedFuture(new CameraControl.OperationCanceledException("Camera is not active."));

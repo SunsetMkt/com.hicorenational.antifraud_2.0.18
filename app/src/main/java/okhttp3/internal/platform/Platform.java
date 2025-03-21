@@ -1,6 +1,6 @@
 package okhttp3.internal.platform;
 
-import com.umeng.analytics.pro.d;
+import com.umeng.analytics.pro.C3397d;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
@@ -174,7 +174,7 @@ public class Platform {
 
     protected X509TrustManager trustManager(SSLSocketFactory sSLSocketFactory) {
         try {
-            Object readFieldOrNull = readFieldOrNull(sSLSocketFactory, Class.forName("sun.security.ssl.SSLContextImpl"), d.R);
+            Object readFieldOrNull = readFieldOrNull(sSLSocketFactory, Class.forName("sun.security.ssl.SSLContextImpl"), C3397d.f11892R);
             if (readFieldOrNull == null) {
                 return null;
             }

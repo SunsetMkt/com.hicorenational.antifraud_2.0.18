@@ -25,7 +25,7 @@ public class HMacUtil {
         try {
             return StringUtils.bytesToHexString(hmacSha1(bArr, bArr2));
         } catch (Throwable th) {
-            ALog.e(TAG, "hmacSha1Hex", null, "result", "", th);
+            ALog.m715e(TAG, "hmacSha1Hex", null, "result", "", th);
             return "";
         }
     }

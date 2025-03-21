@@ -39,8 +39,8 @@ public class ChangeImageTransform extends Transition {
         }
     };
 
-    /* renamed from: androidx.transition.ChangeImageTransform$3, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass3 {
+    /* renamed from: androidx.transition.ChangeImageTransform$3 */
+    static /* synthetic */ class C06913 {
         static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType = new int[ImageView.ScaleType.values().length];
 
         static {
@@ -89,7 +89,7 @@ public class ChangeImageTransform extends Transition {
     }
 
     private static Matrix copyImageMatrix(ImageView imageView) {
-        int i2 = AnonymousClass3.$SwitchMap$android$widget$ImageView$ScaleType[imageView.getScaleType().ordinal()];
+        int i2 = C06913.$SwitchMap$android$widget$ImageView$ScaleType[imageView.getScaleType().ordinal()];
         return i2 != 1 ? i2 != 2 ? new Matrix(imageView.getImageMatrix()) : centerCropMatrix(imageView) : fitXYMatrix(imageView);
     }
 

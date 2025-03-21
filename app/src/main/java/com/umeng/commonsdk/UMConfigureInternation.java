@@ -2,12 +2,13 @@ package com.umeng.commonsdk;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.heytap.mcssdk.constant.C2084a;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.framework.UMFrUtils;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import com.umeng.commonsdk.framework.UMWorkDispatch;
-import com.umeng.commonsdk.internal.a;
-import com.umeng.commonsdk.internal.b;
+import com.umeng.commonsdk.internal.C3470a;
+import com.umeng.commonsdk.internal.C3471b;
 
 /* loaded from: classes2.dex */
 public class UMConfigureInternation {
@@ -20,7 +21,7 @@ public class UMConfigureInternation {
             if (TextUtils.isEmpty(currentProcessName) || TextUtils.isEmpty(packageName) || !currentProcessName.equals(packageName)) {
                 return;
             }
-            UMWorkDispatch.sendEvent(context, a.C, b.a(context).a(), null);
+            UMWorkDispatch.sendEvent(context, C3470a.f12577C, C3471b.m11589a(context).m11590a(), null);
         } catch (Throwable unused) {
         }
     }
@@ -39,7 +40,7 @@ public class UMConfigureInternation {
                                     if (TextUtils.isEmpty(currentProcessName) || TextUtils.isEmpty(packageName) || !currentProcessName.equals(packageName) || !UMEnvelopeBuild.isReadyBuild(context, UMLogDataProtocol.UMBusinessType.U_INTERNAL)) {
                                         return;
                                     }
-                                    UMWorkDispatch.sendEvent(context, a.n, b.a(context).a(), null, com.heytap.mcssdk.constant.a.r);
+                                    UMWorkDispatch.sendEvent(context, C3470a.f12600n, C3471b.m11589a(context).m11590a(), null, C2084a.f6136r);
                                 } catch (Throwable unused) {
                                 }
                             }

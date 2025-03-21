@@ -44,7 +44,7 @@ public class ActivityUtil {
             this.activityStartCount++;
             if (this.activityStartCount == 1) {
                 ActivityUtil.this.isForeground = true;
-                Logger.d(ActivityUtil.TAG, "onActivityStarted");
+                Logger.m6794d(ActivityUtil.TAG, "onActivityStarted");
                 for (int i2 = 0; i2 < ActivityUtil.this.onAppStatusListeners.size(); i2++) {
                     ((OnAppStatusListener) ActivityUtil.this.onAppStatusListeners.get(i2)).onFront();
                 }
@@ -55,7 +55,7 @@ public class ActivityUtil {
         public void onActivityStopped(Activity activity) {
             this.activityStartCount--;
             if (this.activityStartCount == 0) {
-                Logger.d(ActivityUtil.TAG, "onActivityStopped");
+                Logger.m6794d(ActivityUtil.TAG, "onActivityStopped");
                 ActivityUtil.this.isForeground = false;
                 for (int i2 = 0; i2 < ActivityUtil.this.onAppStatusListeners.size(); i2++) {
                     ((OnAppStatusListener) ActivityUtil.this.onAppStatusListeners.get(i2)).onBack();
@@ -75,13 +75,13 @@ public class ActivityUtil {
 
     public static PendingIntent getActivities(Context context, int i2, Intent[] intentArr, int i3) {
         if (context == null) {
-            Logger.w(TAG, "context is null");
+            Logger.m6803w(TAG, "context is null");
             return null;
         }
         try {
             return PendingIntent.getActivities(context, i2, intentArr, i3);
         } catch (RuntimeException e2) {
-            Logger.e(TAG, "dealType rethrowFromSystemServer:", e2);
+            Logger.m6797e(TAG, "dealType rethrowFromSystemServer:", e2);
             return null;
         }
     }
@@ -107,15 +107,15 @@ public class ActivityUtil {
         if (appContext instanceof Application) {
             ((Application) appContext).registerActivityLifecycleCallbacks(this.activityLifecycleCallbacks);
         } else {
-            Logger.w(TAG, "context is not application, register background fail");
+            Logger.m6803w(TAG, "context is not application, register background fail");
         }
     }
 
     public void setOnAppStatusListener(OnAppStatusListener onAppStatusListener) {
         if (onAppStatusListener == null) {
-            Logger.w(TAG, "onAppStatusListener is null");
+            Logger.m6803w(TAG, "onAppStatusListener is null");
         } else if (this.onAppStatusListeners.size() >= 20) {
-            Logger.w(TAG, "onAppStatusListener of count is max");
+            Logger.m6803w(TAG, "onAppStatusListener of count is max");
         } else {
             this.onAppStatusListeners.add(onAppStatusListener);
         }
@@ -126,7 +126,7 @@ public class ActivityUtil {
         if (appContext instanceof Application) {
             ((Application) appContext).unregisterActivityLifecycleCallbacks(this.activityLifecycleCallbacks);
         } else {
-            Logger.w(TAG, "context is not application, unRegister background fail");
+            Logger.m6803w(TAG, "context is not application, unRegister background fail");
         }
     }
 

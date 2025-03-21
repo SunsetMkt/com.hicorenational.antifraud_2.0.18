@@ -10,6 +10,7 @@ import android.view.InflateException;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatButton;
@@ -151,10 +152,10 @@ public class AppCompatViewInflater {
     }
 
     private static Context themifyContext(Context context, AttributeSet attributeSet, boolean z, boolean z2) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, androidx.appcompat.R.styleable.View, 0, 0);
-        int resourceId = z ? obtainStyledAttributes.getResourceId(androidx.appcompat.R.styleable.View_android_theme, 0) : 0;
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0120R.styleable.View, 0, 0);
+        int resourceId = z ? obtainStyledAttributes.getResourceId(C0120R.styleable.View_android_theme, 0) : 0;
         if (z2 && resourceId == 0) {
-            resourceId = obtainStyledAttributes.getResourceId(androidx.appcompat.R.styleable.View_theme, 0);
+            resourceId = obtainStyledAttributes.getResourceId(C0120R.styleable.View_theme, 0);
         }
         obtainStyledAttributes.recycle();
         return resourceId != 0 ? ((context instanceof ContextThemeWrapper) && ((ContextThemeWrapper) context).getThemeResId() == resourceId) ? context : new ContextThemeWrapper(context, resourceId) : context;

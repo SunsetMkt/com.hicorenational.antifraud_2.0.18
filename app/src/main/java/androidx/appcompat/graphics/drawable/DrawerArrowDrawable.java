@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.core.graphics.drawable.DrawableCompat;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -46,15 +46,15 @@ public class DrawerArrowDrawable extends Drawable {
         this.mPaint.setStrokeJoin(Paint.Join.MITER);
         this.mPaint.setStrokeCap(Paint.Cap.BUTT);
         this.mPaint.setAntiAlias(true);
-        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(null, R.styleable.DrawerArrowToggle, R.attr.drawerArrowStyle, R.style.Base_Widget_AppCompat_DrawerArrowToggle);
-        setColor(obtainStyledAttributes.getColor(R.styleable.DrawerArrowToggle_color, 0));
-        setBarThickness(obtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_thickness, 0.0f));
-        setSpinEnabled(obtainStyledAttributes.getBoolean(R.styleable.DrawerArrowToggle_spinBars, true));
-        setGapSize(Math.round(obtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_gapBetweenBars, 0.0f)));
-        this.mSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.DrawerArrowToggle_drawableSize, 0);
-        this.mBarLength = Math.round(obtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_barLength, 0.0f));
-        this.mArrowHeadLength = Math.round(obtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
-        this.mArrowShaftLength = obtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
+        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(null, C0120R.styleable.DrawerArrowToggle, C0120R.attr.drawerArrowStyle, C0120R.style.Base_Widget_AppCompat_DrawerArrowToggle);
+        setColor(obtainStyledAttributes.getColor(C0120R.styleable.DrawerArrowToggle_color, 0));
+        setBarThickness(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_thickness, 0.0f));
+        setSpinEnabled(obtainStyledAttributes.getBoolean(C0120R.styleable.DrawerArrowToggle_spinBars, true));
+        setGapSize(Math.round(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_gapBetweenBars, 0.0f)));
+        this.mSize = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.DrawerArrowToggle_drawableSize, 0);
+        this.mBarLength = Math.round(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_barLength, 0.0f));
+        this.mArrowHeadLength = Math.round(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
+        this.mArrowShaftLength = obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
         obtainStyledAttributes.recycle();
     }
 
@@ -152,7 +152,7 @@ public class DrawerArrowDrawable extends Drawable {
         return this.mPaint;
     }
 
-    @FloatRange(from = 0.0d, to = 1.0d)
+    @FloatRange(from = 0.0d, m293to = 1.0d)
     public float getProgress() {
         return this.mProgress;
     }
@@ -225,7 +225,7 @@ public class DrawerArrowDrawable extends Drawable {
         }
     }
 
-    public void setProgress(@FloatRange(from = 0.0d, to = 1.0d) float f2) {
+    public void setProgress(@FloatRange(from = 0.0d, m293to = 1.0d) float f2) {
         if (this.mProgress != f2) {
             this.mProgress = f2;
             invalidateSelf();

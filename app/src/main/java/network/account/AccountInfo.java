@@ -6,7 +6,9 @@ import network.BaseBean;
 /* loaded from: classes2.dex */
 public class AccountInfo extends BaseBean {
     private int auditstatus;
-    private String id;
+
+    /* renamed from: id */
+    private String f21452id;
     private String idNumber;
     private boolean isPolice;
     private boolean isVerified;
@@ -28,7 +30,7 @@ public class AccountInfo extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f21452id;
     }
 
     public String getIdNumber() {
@@ -100,7 +102,7 @@ public class AccountInfo extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f21452id = str;
     }
 
     public void setIdNumber(String str) {

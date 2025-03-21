@@ -62,7 +62,7 @@ public final class PictureSelector {
         Intent intent = new Intent(getActivity(), (Class<?>) PicturePlayAudioActivity.class);
         intent.putExtra(PictureConfig.EXTRA_AUDIO_PATH, str);
         getActivity().startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.picture_anim_enter, 0);
+        getActivity().overridePendingTransition(C2639R.anim.picture_anim_enter, 0);
     }
 
     public void externalPicturePreview(int i2, List<LocalMedia> list, int i3) {
@@ -78,9 +78,9 @@ public final class PictureSelector {
         getActivity().startActivity(intent);
         Activity activity = getActivity();
         if (i3 == 0) {
-            i3 = R.anim.picture_anim_enter;
+            i3 = C2639R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i3, R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i3, C2639R.anim.picture_anim_fade_in);
     }
 
     public void externalPictureVideo(String str) {
@@ -151,9 +151,9 @@ public final class PictureSelector {
             getActivity().startActivity(intent);
             Activity activity = getActivity();
             if (i3 == 0) {
-                i3 = R.anim.picture_anim_enter;
+                i3 = C2639R.anim.picture_anim_enter;
             }
-            activity.overridePendingTransition(i3, R.anim.picture_anim_fade_in);
+            activity.overridePendingTransition(i3, C2639R.anim.picture_anim_fade_in);
             return;
         }
         throw new NullPointerException("Starting the PictureSelector Activity cannot be empty ");

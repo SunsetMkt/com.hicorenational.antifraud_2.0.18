@@ -69,7 +69,7 @@ public class SerializeHelper {
             r5[r1] = r8     // Catch: java.lang.Throwable -> L95
             java.lang.String r14 = r14.getName()     // Catch: java.lang.Throwable -> L95
             r5[r6] = r14     // Catch: java.lang.Throwable -> L95
-            anet.channel.util.ALog.w(r4, r7, r3, r5)     // Catch: java.lang.Throwable -> L95
+            anet.channel.util.ALog.m718w(r4, r7, r3, r5)     // Catch: java.lang.Throwable -> L95
         L33:
             monitor-exit(r0)
             return r3
@@ -111,7 +111,7 @@ public class SerializeHelper {
             r14 = 5
             java.lang.Long r5 = java.lang.Long.valueOf(r11)     // Catch: java.lang.Throwable -> L90
             r9[r14] = r5     // Catch: java.lang.Throwable -> L90
-            anet.channel.util.ALog.i(r7, r8, r3, r9)     // Catch: java.lang.Throwable -> L90
+            anet.channel.util.ALog.m716i(r7, r8, r3, r9)     // Catch: java.lang.Throwable -> L90
         L8c:
             r4.close()     // Catch: java.lang.Throwable -> Lc java.io.IOException -> Lb1
             goto Lb1
@@ -132,7 +132,7 @@ public class SerializeHelper {
             java.lang.String r2 = "awcn.SerializeHelper"
             java.lang.String r5 = "restore file fail."
             java.lang.Object[] r1 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> Lb3
-            anet.channel.util.ALog.w(r2, r5, r3, r14, r1)     // Catch: java.lang.Throwable -> Lb3
+            anet.channel.util.ALog.m717w(r2, r5, r3, r14, r1)     // Catch: java.lang.Throwable -> Lb3
         La7:
             if (r15 == 0) goto Lae
             java.lang.String r1 = "SerializeHelper.restore()"

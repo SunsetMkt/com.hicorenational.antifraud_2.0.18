@@ -14,14 +14,19 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.text.TextUtils;
+import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
 import com.xiaomi.mipush.sdk.Constants;
-import com.xiaomi.push.C0334r;
-import com.xiaomi.push.dy;
-import com.xiaomi.push.fl;
-import com.xiaomi.push.fm;
-import com.xiaomi.push.fn;
-import com.xiaomi.push.fq;
-import com.xiaomi.push.fx;
+import com.xiaomi.push.C4092au;
+import com.xiaomi.push.C4177dy;
+import com.xiaomi.push.C4218fl;
+import com.xiaomi.push.C4219fm;
+import com.xiaomi.push.C4220fn;
+import com.xiaomi.push.C4223fq;
+import com.xiaomi.push.C4230fx;
+import com.xiaomi.push.C4300j;
+import com.xiaomi.push.C4303m;
+import com.xiaomi.push.C4309r;
+import com.xiaomi.push.C4409x;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,300 +37,303 @@ import org.apache.http.NameValuePair;
 /* loaded from: classes2.dex */
 public class ServiceClient {
 
-    /* renamed from: a, reason: collision with other field name */
-    private static ServiceClient f922a;
+    /* renamed from: a */
+    private static ServiceClient f16401a;
 
-    /* renamed from: a, reason: collision with other field name */
-    private static String f923a;
+    /* renamed from: a */
+    private static String f16402a;
 
-    /* renamed from: a, reason: collision with other field name */
-    private Context f925a;
+    /* renamed from: a */
+    private Context f16405a;
 
-    /* renamed from: a, reason: collision with other field name */
-    private boolean f928a;
+    /* renamed from: a */
+    private boolean f16408a;
 
-    /* renamed from: b, reason: collision with other field name */
-    private Messenger f929b;
+    /* renamed from: b */
+    private Messenger f16409b;
 
-    /* renamed from: b, reason: collision with root package name */
-    private static String f13269b = fx.a(5) + Constants.ACCEPT_TIME_SEPARATOR_SERVER;
+    /* renamed from: b */
+    private static String f16403b = C4230fx.m14900a(5) + Constants.ACCEPT_TIME_SEPARATOR_SERVER;
 
-    /* renamed from: a, reason: collision with root package name */
-    private static long f13268a = 0;
+    /* renamed from: a */
+    private static long f16400a = 0;
 
-    /* renamed from: a, reason: collision with other field name */
-    private Messenger f926a = null;
+    /* renamed from: a */
+    private Messenger f16406a = null;
 
-    /* renamed from: a, reason: collision with other field name */
-    private final BroadcastReceiver f924a = new BroadcastReceiver() { // from class: com.xiaomi.push.service.ServiceClient.1
+    /* renamed from: a */
+    private final BroadcastReceiver f16404a = new BroadcastReceiver() { // from class: com.xiaomi.push.service.ServiceClient.1
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
-            com.xiaomi.push.au.m150a();
+            C4092au.m13797a();
         }
     };
 
-    /* renamed from: a, reason: collision with other field name */
-    private List<Message> f927a = new ArrayList();
+    /* renamed from: a */
+    private List<Message> f16407a = new ArrayList();
 
-    /* renamed from: b, reason: collision with other field name */
-    private boolean f930b = false;
+    /* renamed from: b */
+    private boolean f16410b = false;
 
     private ServiceClient(Context context) {
-        this.f928a = false;
-        this.f925a = context.getApplicationContext();
-        C0334r.a(this.f925a);
-        a(this.f925a);
-        if (m645a()) {
-            com.xiaomi.channel.commonutils.logger.b.c("use miui push service");
-            this.f928a = true;
+        this.f16408a = false;
+        this.f16405a = context.getApplicationContext();
+        C4309r.m15718a(this.f16405a);
+        m15740a(this.f16405a);
+        if (m15743a()) {
+            AbstractC4022b.m13359c("use miui push service");
+            this.f16408a = true;
         }
     }
 
-    private void b() {
-        this.f925a.getPackageManager().setComponentEnabledSetting(new ComponentName(this.f925a, (Class<?>) XMPushService.class), 1, 1);
+    /* renamed from: b */
+    private void m15745b() {
+        this.f16405a.getPackageManager().setComponentEnabledSetting(new ComponentName(this.f16405a, (Class<?>) XMPushService.class), 1, 1);
     }
 
     public static ServiceClient getInstance(Context context) {
-        if (f922a == null) {
-            f922a = new ServiceClient(context);
+        if (f16401a == null) {
+            f16401a = new ServiceClient(context);
         }
-        return f922a;
+        return f16401a;
     }
 
     public static String getSession() {
-        return f923a;
+        return f16402a;
     }
 
     public static void setSession(String str) {
-        f923a = str;
+        f16402a = str;
     }
 
-    public boolean batchSendMessage(fn[] fnVarArr, boolean z) {
-        if (!com.xiaomi.push.au.m151a(this.f925a)) {
+    public boolean batchSendMessage(C4220fn[] c4220fnArr, boolean z) {
+        if (!C4092au.m13799a(this.f16405a)) {
             return false;
         }
-        Intent a2 = a();
-        Bundle[] bundleArr = new Bundle[fnVarArr.length];
-        for (int i2 = 0; i2 < fnVarArr.length; i2++) {
-            String a3 = dy.a();
-            if (!TextUtils.isEmpty(a3)) {
-                fl flVar = new fl("pf", null, null, null);
-                fl flVar2 = new fl("sent", null, null, null);
-                flVar2.m429a(a3);
-                flVar.a(flVar2);
-                fnVarArr[i2].a(flVar);
+        Intent m15731a = m15731a();
+        Bundle[] bundleArr = new Bundle[c4220fnArr.length];
+        for (int i2 = 0; i2 < c4220fnArr.length; i2++) {
+            String m14577a = C4177dy.m14577a();
+            if (!TextUtils.isEmpty(m14577a)) {
+                C4218fl c4218fl = new C4218fl("pf", null, null, null);
+                C4218fl c4218fl2 = new C4218fl("sent", null, null, null);
+                c4218fl2.m14823a(m14577a);
+                c4218fl.m14822a(c4218fl2);
+                c4220fnArr[i2].m14861a(c4218fl);
             }
-            com.xiaomi.channel.commonutils.logger.b.c("SEND:" + fnVarArr[i2].mo431a());
-            bundleArr[i2] = fnVarArr[i2].a();
+            AbstractC4022b.m13359c("SEND:" + c4220fnArr[i2].mo14829a());
+            bundleArr[i2] = c4220fnArr[i2].mo14827a();
         }
         if (bundleArr.length <= 0) {
             return false;
         }
-        a2.setAction(an.f13370g);
-        a2.putExtra(an.J, f923a);
-        a2.putExtra("ext_packets", bundleArr);
-        a2.putExtra("ext_encrypt", z);
-        return startServiceSafely(a2);
+        m15731a.setAction(AbstractC4362an.f16605g);
+        m15731a.putExtra(AbstractC4362an.f16590J, f16402a);
+        m15731a.putExtra("ext_packets", bundleArr);
+        m15731a.putExtra("ext_encrypt", z);
+        return startServiceSafely(m15731a);
     }
 
     public void checkAlive() {
-        Intent a2 = a();
-        a2.setAction("com.xiaomi.push.check_alive");
-        startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction("com.xiaomi.push.check_alive");
+        startServiceSafely(m15731a);
     }
 
     public boolean closeChannel() {
-        Intent a2 = a();
-        a2.setAction(an.f13372i);
-        return startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16607i);
+        return startServiceSafely(m15731a);
     }
 
     @Deprecated
     public boolean forceReconnection(String str, String str2, String str3, String str4, String str5, boolean z, List<NameValuePair> list, List<NameValuePair> list2) {
-        return forceReconnection(str, str2, str3, str4, str5, z, a(list), a(list2));
+        return forceReconnection(str, str2, str3, str4, str5, z, m15738a(list), m15738a(list2));
     }
 
     public boolean isMiuiPushServiceEnabled() {
-        return this.f928a;
+        return this.f16408a;
     }
 
     public boolean notifyMessage(Bundle bundle, String str, String str2) {
         if (bundle == null || TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
-            com.xiaomi.channel.commonutils.logger.b.m50a("Failed to notify message: bundle|userId|chid may be empty");
+            AbstractC4022b.m13347a("Failed to notify message: bundle|userId|chid may be empty");
             return false;
         }
-        Intent a2 = a();
+        Intent m15731a = m15731a();
         if (bundle == null) {
             return false;
         }
-        a2.setAction(an.o);
-        a2.putExtras(bundle);
-        com.xiaomi.channel.commonutils.logger.b.e("notify: chid=" + str2 + " bundle:" + bundle);
-        return startServiceSafely(a2);
+        m15731a.setAction(AbstractC4362an.f16613o);
+        m15731a.putExtras(bundle);
+        AbstractC4022b.m13363e("notify: chid=" + str2 + " bundle:" + bundle);
+        return startServiceSafely(m15731a);
     }
 
     @Deprecated
     public int openChannel(String str, String str2, String str3, String str4, String str5, boolean z, List<NameValuePair> list, List<NameValuePair> list2) {
-        return openChannel(str, str2, str3, str4, str5, a(list), a(list2), z);
+        return openChannel(str, str2, str3, str4, str5, m15738a(list), m15738a(list2), z);
     }
 
     @Deprecated
     public void resetConnection(String str, String str2, String str3, String str4, String str5, boolean z, List<NameValuePair> list, List<NameValuePair> list2) {
-        resetConnection(str, str2, str3, str4, str5, z, a(list), a(list2));
+        resetConnection(str, str2, str3, str4, str5, z, m15738a(list), m15738a(list2));
     }
 
-    public boolean sendIQ(fm fmVar) {
-        if (!com.xiaomi.push.au.m151a(this.f925a)) {
+    public boolean sendIQ(C4219fm c4219fm) {
+        if (!C4092au.m13799a(this.f16405a)) {
             return false;
         }
-        Intent a2 = a();
-        Bundle a3 = fmVar.a();
-        if (a3 == null) {
+        Intent m15731a = m15731a();
+        Bundle mo14827a = c4219fm.mo14827a();
+        if (mo14827a == null) {
             return false;
         }
-        com.xiaomi.channel.commonutils.logger.b.c("SEND:" + fmVar.mo431a());
-        a2.setAction(an.f13369f);
-        a2.putExtra(an.J, f923a);
-        a2.putExtra("ext_packet", a3);
-        return startServiceSafely(a2);
+        AbstractC4022b.m13359c("SEND:" + c4219fm.mo14829a());
+        m15731a.setAction(AbstractC4362an.f16604f);
+        m15731a.putExtra(AbstractC4362an.f16590J, f16402a);
+        m15731a.putExtra("ext_packet", mo14827a);
+        return startServiceSafely(m15731a);
     }
 
-    public boolean sendMessage(fn fnVar, boolean z) {
-        if (!com.xiaomi.push.au.m151a(this.f925a)) {
+    public boolean sendMessage(C4220fn c4220fn, boolean z) {
+        if (!C4092au.m13799a(this.f16405a)) {
             return false;
         }
-        Intent a2 = a();
-        String a3 = dy.a();
-        if (!TextUtils.isEmpty(a3)) {
-            fl flVar = new fl("pf", null, null, null);
-            fl flVar2 = new fl("sent", null, null, null);
-            flVar2.m429a(a3);
-            flVar.a(flVar2);
-            fnVar.a(flVar);
+        Intent m15731a = m15731a();
+        String m14577a = C4177dy.m14577a();
+        if (!TextUtils.isEmpty(m14577a)) {
+            C4218fl c4218fl = new C4218fl("pf", null, null, null);
+            C4218fl c4218fl2 = new C4218fl("sent", null, null, null);
+            c4218fl2.m14823a(m14577a);
+            c4218fl.m14822a(c4218fl2);
+            c4220fn.m14861a(c4218fl);
         }
-        Bundle a4 = fnVar.a();
-        if (a4 == null) {
+        Bundle mo14827a = c4220fn.mo14827a();
+        if (mo14827a == null) {
             return false;
         }
-        com.xiaomi.channel.commonutils.logger.b.c("SEND:" + fnVar.mo431a());
-        a2.setAction(an.f13368e);
-        a2.putExtra(an.J, f923a);
-        a2.putExtra("ext_packet", a4);
-        a2.putExtra("ext_encrypt", z);
-        return startServiceSafely(a2);
+        AbstractC4022b.m13359c("SEND:" + c4220fn.mo14829a());
+        m15731a.setAction(AbstractC4362an.f16603e);
+        m15731a.putExtra(AbstractC4362an.f16590J, f16402a);
+        m15731a.putExtra("ext_packet", mo14827a);
+        m15731a.putExtra("ext_encrypt", z);
+        return startServiceSafely(m15731a);
     }
 
-    public boolean sendPresence(fq fqVar) {
-        if (!com.xiaomi.push.au.m151a(this.f925a)) {
+    public boolean sendPresence(C4223fq c4223fq) {
+        if (!C4092au.m13799a(this.f16405a)) {
             return false;
         }
-        Intent a2 = a();
-        Bundle a3 = fqVar.a();
-        if (a3 == null) {
+        Intent m15731a = m15731a();
+        Bundle mo14827a = c4223fq.mo14827a();
+        if (mo14827a == null) {
             return false;
         }
-        com.xiaomi.channel.commonutils.logger.b.c("SEND:" + fqVar.mo431a());
-        a2.setAction(an.f13371h);
-        a2.putExtra(an.J, f923a);
-        a2.putExtra("ext_packet", a3);
-        return startServiceSafely(a2);
+        AbstractC4022b.m13359c("SEND:" + c4223fq.mo14829a());
+        m15731a.setAction(AbstractC4362an.f16606h);
+        m15731a.putExtra(AbstractC4362an.f16590J, f16402a);
+        m15731a.putExtra("ext_packet", mo14827a);
+        return startServiceSafely(m15731a);
     }
 
     public void setMessenger(Messenger messenger) {
-        this.f926a = messenger;
+        this.f16406a = messenger;
     }
 
     public boolean startServiceSafely(Intent intent) {
         try {
-            if (com.xiaomi.push.j.m626a() || Build.VERSION.SDK_INT < 26) {
-                this.f925a.startService(intent);
+            if (C4300j.m15680a() || Build.VERSION.SDK_INT < 26) {
+                this.f16405a.startService(intent);
                 return true;
             }
-            m644a(intent);
+            m15741a(intent);
             return true;
         } catch (Exception e2) {
-            com.xiaomi.channel.commonutils.logger.b.a(e2);
+            AbstractC4022b.m13351a(e2);
             return false;
         }
     }
 
     @Deprecated
     public void updateChannelInfo(String str, List<NameValuePair> list, List<NameValuePair> list2) {
-        updateChannelInfo(str, a(list), a(list2));
+        updateChannelInfo(str, m15738a(list), m15738a(list2));
     }
 
     public boolean forceReconnection(String str, String str2, String str3, String str4, String str5, boolean z, Map<String, String> map, Map<String, String> map2) {
-        Intent a2 = a();
-        a2.setAction(an.f13373j);
-        a(a2, str, str2, str3, str4, str5, z, map, map2);
-        return startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16608j);
+        m15742a(m15731a, str, str2, str3, str4, str5, z, map, map2);
+        return startServiceSafely(m15731a);
     }
 
     public int openChannel(String str, String str2, String str3, String str4, String str5, Map<String, String> map, Map<String, String> map2, boolean z) {
-        Intent a2 = a();
-        a2.setAction(an.f13367d);
-        a(a2, str, str2, str3, str4, str5, z, map, map2);
-        startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16602d);
+        m15742a(m15731a, str, str2, str3, str4, str5, z, map, map2);
+        startServiceSafely(m15731a);
         return 0;
     }
 
     public void resetConnection(String str, String str2, String str3, String str4, String str5, boolean z, Map<String, String> map, Map<String, String> map2) {
-        Intent a2 = a();
-        a2.setAction(an.f13374k);
-        a(a2, str, str2, str3, str4, str5, z, map, map2);
-        startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16609k);
+        m15742a(m15731a, str, str2, str3, str4, str5, z, map, map2);
+        startServiceSafely(m15731a);
     }
 
     public void updateChannelInfo(String str, Map<String, String> map, Map<String, String> map2) {
-        Intent a2 = a();
-        a2.setAction(an.f13375l);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16610l);
         if (map != null) {
-            String a3 = a(map);
-            if (!TextUtils.isEmpty(a3)) {
-                a2.putExtra(an.D, a3);
+            String m15736a = m15736a(map);
+            if (!TextUtils.isEmpty(m15736a)) {
+                m15731a.putExtra(AbstractC4362an.f16584D, m15736a);
             }
         }
         if (map2 != null) {
-            String a4 = a(map2);
-            if (!TextUtils.isEmpty(a4)) {
-                a2.putExtra(an.E, a4);
+            String m15736a2 = m15736a(map2);
+            if (!TextUtils.isEmpty(m15736a2)) {
+                m15731a.putExtra(AbstractC4362an.f16585E, m15736a2);
             }
         }
-        a2.putExtra(an.v, str);
-        startServiceSafely(a2);
+        m15731a.putExtra(AbstractC4362an.f16620v, str);
+        startServiceSafely(m15731a);
     }
 
     public boolean closeChannel(String str) {
-        Intent a2 = a();
-        a2.setAction(an.f13372i);
-        a2.putExtra(an.v, str);
-        return startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16607i);
+        m15731a.putExtra(AbstractC4362an.f16620v, str);
+        return startServiceSafely(m15731a);
     }
 
-    private void a(Context context) {
+    /* renamed from: a */
+    private void m15740a(Context context) {
         try {
             if (Build.VERSION.SDK_INT >= 21) {
-                com.xiaomi.push.au.m146a(context);
+                C4092au.m13788a(context);
             } else {
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
                 intentFilter.addCategory("android.intent.category.DEFAULT");
-                com.xiaomi.push.m.a(context.getApplicationContext(), this.f924a, intentFilter, 2);
+                C4303m.m15699a(context.getApplicationContext(), this.f16404a, intentFilter, 2);
             }
         } catch (Throwable th) {
-            com.xiaomi.channel.commonutils.logger.b.m50a("add network status listener failed:" + th);
+            AbstractC4022b.m13347a("add network status listener failed:" + th);
         }
     }
 
     public boolean closeChannel(String str, String str2) {
-        Intent a2 = a();
-        a2.setAction(an.f13372i);
-        a2.putExtra(an.v, str);
-        a2.putExtra(an.s, str2);
-        return startServiceSafely(a2);
+        Intent m15731a = m15731a();
+        m15731a.setAction(AbstractC4362an.f16607i);
+        m15731a.putExtra(AbstractC4362an.f16620v, str);
+        m15731a.putExtra(AbstractC4362an.f16617s, str2);
+        return startServiceSafely(m15731a);
     }
 
-    private Map<String, String> a(List<NameValuePair> list) {
+    /* renamed from: a */
+    private Map<String, String> m15738a(List<NameValuePair> list) {
         HashMap hashMap = new HashMap();
         if (list != null && list.size() > 0) {
             for (NameValuePair nameValuePair : list) {
@@ -337,41 +345,42 @@ public class ServiceClient {
         return hashMap;
     }
 
-    private void a(Intent intent, String str, String str2, String str3, String str4, String str5, boolean z, Map<String, String> map, Map<String, String> map2) {
-        intent.putExtra(an.s, str);
-        intent.putExtra(an.v, str2);
-        intent.putExtra(an.z, str3);
-        intent.putExtra(an.B, str5);
-        intent.putExtra(an.A, str4);
-        intent.putExtra(an.C, z);
-        intent.putExtra(an.J, f923a);
-        intent.putExtra(an.N, this.f926a);
+    /* renamed from: a */
+    private void m15742a(Intent intent, String str, String str2, String str3, String str4, String str5, boolean z, Map<String, String> map, Map<String, String> map2) {
+        intent.putExtra(AbstractC4362an.f16617s, str);
+        intent.putExtra(AbstractC4362an.f16620v, str2);
+        intent.putExtra(AbstractC4362an.f16624z, str3);
+        intent.putExtra(AbstractC4362an.f16582B, str5);
+        intent.putExtra(AbstractC4362an.f16581A, str4);
+        intent.putExtra(AbstractC4362an.f16583C, z);
+        intent.putExtra(AbstractC4362an.f16590J, f16402a);
+        intent.putExtra(AbstractC4362an.f16594N, this.f16406a);
         if (map != null && map.size() > 0) {
-            String a2 = a(map);
-            if (!TextUtils.isEmpty(a2)) {
-                intent.putExtra(an.D, a2);
+            String m15736a = m15736a(map);
+            if (!TextUtils.isEmpty(m15736a)) {
+                intent.putExtra(AbstractC4362an.f16584D, m15736a);
             }
         }
         if (map2 == null || map2.size() <= 0) {
             return;
         }
-        String a3 = a(map2);
-        if (TextUtils.isEmpty(a3)) {
+        String m15736a2 = m15736a(map2);
+        if (TextUtils.isEmpty(m15736a2)) {
             return;
         }
-        intent.putExtra(an.E, a3);
+        intent.putExtra(AbstractC4362an.f16585E, m15736a2);
     }
 
     public boolean sendMessage(byte[] bArr, String str, String str2) {
         String str3;
-        if (com.xiaomi.push.au.m151a(this.f925a) && bArr != null && !TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
-            Intent a2 = a();
+        if (C4092au.m13799a(this.f16405a) && bArr != null && !TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
+            Intent m15731a = m15731a();
             if (bArr == null) {
                 return false;
             }
-            a2.setAction(an.f13368e);
-            a2.putExtra(an.J, f923a);
-            a2.putExtra("ext_raw_packet", bArr);
+            m15731a.setAction(AbstractC4362an.f16603e);
+            m15731a.putExtra(AbstractC4362an.f16590J, f16402a);
+            m15731a.putExtra("ext_raw_packet", bArr);
             int indexOf = str.indexOf("@");
             String str4 = null;
             String substring = indexOf != -1 ? str.substring(0, indexOf) : null;
@@ -382,25 +391,26 @@ public class ServiceClient {
             } else {
                 str3 = null;
             }
-            a2.putExtra(an.s, substring);
-            a2.putExtra(an.t, str4);
-            a2.putExtra(an.u, str3);
+            m15731a.putExtra(AbstractC4362an.f16617s, substring);
+            m15731a.putExtra(AbstractC4362an.f16618t, str4);
+            m15731a.putExtra(AbstractC4362an.f16619u, str3);
             StringBuilder sb = new StringBuilder();
-            sb.append(f13269b);
-            long j2 = f13268a;
-            f13268a = 1 + j2;
+            sb.append(f16403b);
+            long j2 = f16400a;
+            f16400a = 1 + j2;
             sb.append(j2);
             String sb2 = sb.toString();
-            a2.putExtra("ext_pkt_id", sb2);
-            a2.putExtra("ext_chid", str2);
-            com.xiaomi.channel.commonutils.logger.b.e("SEND: chid=" + str2 + ", packetId=" + sb2);
-            return startServiceSafely(a2);
+            m15731a.putExtra("ext_pkt_id", sb2);
+            m15731a.putExtra("ext_chid", str2);
+            AbstractC4022b.m13363e("SEND: chid=" + str2 + ", packetId=" + sb2);
+            return startServiceSafely(m15731a);
         }
-        com.xiaomi.channel.commonutils.logger.b.m50a("Failed to send message: message|userId|chid may be empty, or the network is unavailable.");
+        AbstractC4022b.m13347a("Failed to send message: message|userId|chid may be empty, or the network is unavailable.");
         return false;
     }
 
-    private String a(Map<String, String> map) {
+    /* renamed from: a */
+    private String m15736a(Map<String, String> map) {
         StringBuilder sb = new StringBuilder();
         int i2 = 1;
         for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -415,13 +425,13 @@ public class ServiceClient {
         return sb.toString();
     }
 
-    /* renamed from: a, reason: collision with other method in class */
-    private boolean m645a() {
-        if (com.xiaomi.push.x.f1108a) {
+    /* renamed from: a */
+    private boolean m15743a() {
+        if (C4409x.f16836a) {
             return false;
         }
         try {
-            PackageInfo packageInfo = this.f925a.getPackageManager().getPackageInfo("com.xiaomi.xmsf", 4);
+            PackageInfo packageInfo = this.f16405a.getPackageManager().getPackageInfo("com.xiaomi.xmsf", 4);
             if (packageInfo == null) {
                 return false;
             }
@@ -431,84 +441,86 @@ public class ServiceClient {
         }
     }
 
-    /* renamed from: a, reason: collision with other method in class */
-    private String m641a() {
+    /* renamed from: a */
+    private String m15735a() {
         try {
-            return this.f925a.getPackageManager().getPackageInfo("com.xiaomi.xmsf", 4).versionCode >= 106 ? "com.xiaomi.push.service.XMPushService" : "com.xiaomi.xmsf.push.service.XMPushService";
+            return this.f16405a.getPackageManager().getPackageInfo("com.xiaomi.xmsf", 4).versionCode >= 106 ? "com.xiaomi.push.service.XMPushService" : "com.xiaomi.xmsf.push.service.XMPushService";
         } catch (Exception unused) {
             return "com.xiaomi.xmsf.push.service.XMPushService";
         }
     }
 
-    private Intent a() {
+    /* renamed from: a */
+    private Intent m15731a() {
         if (isMiuiPushServiceEnabled()) {
             Intent intent = new Intent();
             intent.setPackage("com.xiaomi.xmsf");
-            intent.setClassName("com.xiaomi.xmsf", m641a());
-            intent.putExtra(an.F, this.f925a.getPackageName());
-            m643a();
+            intent.setClassName("com.xiaomi.xmsf", m15735a());
+            intent.putExtra(AbstractC4362an.f16586F, this.f16405a.getPackageName());
+            m15739a();
             return intent;
         }
-        Intent intent2 = new Intent(this.f925a, (Class<?>) XMPushService.class);
-        intent2.putExtra(an.F, this.f925a.getPackageName());
-        b();
+        Intent intent2 = new Intent(this.f16405a, (Class<?>) XMPushService.class);
+        intent2.putExtra(AbstractC4362an.f16586F, this.f16405a.getPackageName());
+        m15745b();
         return intent2;
     }
 
-    /* renamed from: a, reason: collision with other method in class */
-    private void m643a() {
-        this.f925a.getPackageManager().setComponentEnabledSetting(new ComponentName(this.f925a, (Class<?>) XMPushService.class), 2, 1);
+    /* renamed from: a */
+    private void m15739a() {
+        this.f16405a.getPackageManager().setComponentEnabledSetting(new ComponentName(this.f16405a, (Class<?>) XMPushService.class), 2, 1);
     }
 
-    /* renamed from: a, reason: collision with other method in class */
-    private synchronized void m644a(Intent intent) {
-        if (this.f930b) {
-            Message a2 = a(intent);
-            if (this.f927a.size() >= 50) {
-                this.f927a.remove(0);
+    /* renamed from: a */
+    private synchronized void m15741a(Intent intent) {
+        if (this.f16410b) {
+            Message m15732a = m15732a(intent);
+            if (this.f16407a.size() >= 50) {
+                this.f16407a.remove(0);
             }
-            this.f927a.add(a2);
+            this.f16407a.add(m15732a);
             return;
         }
-        if (this.f929b == null) {
-            this.f925a.bindService(intent, new ServiceConnection() { // from class: com.xiaomi.push.service.ServiceClient.2
+        if (this.f16409b == null) {
+            this.f16405a.bindService(intent, new ServiceConnection() { // from class: com.xiaomi.push.service.ServiceClient.2
                 @Override // android.content.ServiceConnection
                 public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                     synchronized (ServiceClient.this) {
-                        ServiceClient.this.f929b = new Messenger(iBinder);
-                        ServiceClient.this.f930b = false;
-                        Iterator it = ServiceClient.this.f927a.iterator();
+                        ServiceClient.this.f16409b = new Messenger(iBinder);
+                        ServiceClient.this.f16410b = false;
+                        Iterator it = ServiceClient.this.f16407a.iterator();
                         while (it.hasNext()) {
                             try {
-                                ServiceClient.this.f929b.send((Message) it.next());
+                                ServiceClient.this.f16409b.send((Message) it.next());
                             } catch (RemoteException e2) {
-                                com.xiaomi.channel.commonutils.logger.b.a(e2);
+                                AbstractC4022b.m13351a(e2);
                             }
                         }
-                        ServiceClient.this.f927a.clear();
+                        ServiceClient.this.f16407a.clear();
                     }
                 }
 
                 @Override // android.content.ServiceConnection
                 public void onServiceDisconnected(ComponentName componentName) {
-                    ServiceClient.this.f929b = null;
-                    ServiceClient.this.f930b = false;
+                    ServiceClient.this.f16409b = null;
+                    ServiceClient.this.f16410b = false;
                 }
             }, 1);
-            this.f930b = true;
-            this.f927a.clear();
-            this.f927a.add(a(intent));
+            this.f16410b = true;
+            this.f16407a.clear();
+            this.f16407a.add(m15732a(intent));
         } else {
             try {
-                this.f929b.send(a(intent));
+                this.f16409b.send(m15732a(intent));
             } catch (RemoteException unused) {
-                this.f929b = null;
-                this.f930b = false;
+                this.f16409b = null;
+                this.f16410b = false;
             }
         }
     }
 
-    private Message a(Intent intent) {
+    /* renamed from: a */
+    private Message m15732a(Intent intent) {
         Message obtain = Message.obtain();
         obtain.what = 17;
         obtain.obj = intent;

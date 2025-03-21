@@ -5,35 +5,35 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class SdkInfo {
 
-    /* renamed from: a, reason: collision with root package name */
-    String f4128a;
+    /* renamed from: a */
+    String f4031a;
 
-    /* renamed from: b, reason: collision with root package name */
-    String f4129b;
+    /* renamed from: b */
+    String f4032b;
 
-    /* renamed from: c, reason: collision with root package name */
-    String f4130c;
+    /* renamed from: c */
+    String f4033c;
 
-    /* renamed from: c, reason: collision with other field name */
-    Map<String, String> f44c;
+    /* renamed from: c */
+    Map<String, String> f4034c;
 
     public SdkInfo setAppKey(String str) {
-        this.f4130c = str;
+        this.f4033c = str;
         return this;
     }
 
     public SdkInfo setExt(Map<String, String> map) {
-        this.f44c = map;
+        this.f4034c = map;
         return this;
     }
 
     public SdkInfo setSdkId(String str) {
-        this.f4128a = str;
+        this.f4031a = str;
         return this;
     }
 
     public SdkInfo setSdkVersion(String str) {
-        this.f4129b = str;
+        this.f4032b = str;
         return this;
     }
 }

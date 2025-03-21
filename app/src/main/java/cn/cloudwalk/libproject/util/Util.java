@@ -3,7 +3,7 @@ package cn.cloudwalk.libproject.util;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import com.umeng.analytics.pro.cw;
+import com.umeng.analytics.pro.C3393cw;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class Util {
                 int i3 = i2 + 1;
                 cArr2[i2] = cArr[(b2 >>> 4) & 15];
                 i2 = i3 + 1;
-                cArr2[i3] = cArr[b2 & cw.f10303m];
+                cArr2[i3] = cArr[b2 & C3393cw.f11873m];
             }
             return new String(cArr2);
         } catch (Exception e2) {

@@ -40,7 +40,7 @@ import java.util.List;
 public class PicturePreviewActivity extends PictureBaseActivity implements View.OnClickListener, PictureSimpleFragmentAdapter.OnCallBackActivity {
 
     /* renamed from: adapter, reason: collision with root package name */
-    protected PictureSimpleFragmentAdapter f7745adapter;
+    protected PictureSimpleFragmentAdapter f25896adapter;
     protected Animation animation;
     protected View btnCheck;
     protected TextView check;
@@ -67,7 +67,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
 
     private void bothMimeTypeWith(String str, LocalMedia localMedia) {
         if (!this.config.enableCrop) {
-            a();
+            m8092a();
             return;
         }
         this.isCompleteOrSelected = false;
@@ -104,14 +104,14 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             startCrop(arrayList);
         } else {
             this.isCompleteOrSelected = true;
-            a();
+            m8092a();
         }
     }
 
     private void initViewPageAdapterData() {
-        this.tv_title.setText(getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
-        this.f7745adapter = new PictureSimpleFragmentAdapter(this.config, this.images, this);
-        this.viewPager.setAdapter(this.f7745adapter);
+        this.tv_title.setText(getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
+        this.f25896adapter = new PictureSimpleFragmentAdapter(this.config, this.images, this);
+        this.viewPager.setAdapter(this.f25896adapter);
         this.viewPager.setCurrentItem(this.position);
         onImageChecked(this.position);
         if (this.images.size() > 0) {
@@ -168,7 +168,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
 
     private void separateMimeTypeWith(String str, LocalMedia localMedia) {
         if (!this.config.enableCrop || !PictureMimeType.eqImage(str)) {
-            a();
+            m8092a();
             return;
         }
         this.isCompleteOrSelected = false;
@@ -222,13 +222,14 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         setResult(0, intent);
     }
 
-    public /* synthetic */ void a(CompoundButton compoundButton, boolean z) {
+    /* renamed from: a */
+    public /* synthetic */ void m8106a(CompoundButton compoundButton, boolean z) {
         this.config.isCheckOriginalImage = z;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return R.layout.picture_preview;
+        return C2639R.layout.picture_preview;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
@@ -238,11 +239,11 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         PictureSelectionConfig pictureSelectionConfig = this.config;
         if (pictureSelectionConfig.selectionMode == 1) {
             if (i2 <= 0) {
-                this.mTvPictureOk.setText((!z || TextUtils.isEmpty(pictureSelectionConfig.style.pictureUnCompleteText)) ? getString(R.string.picture_please_select) : this.config.style.pictureUnCompleteText);
+                this.mTvPictureOk.setText((!z || TextUtils.isEmpty(pictureSelectionConfig.style.pictureUnCompleteText)) ? getString(C2639R.string.picture_please_select) : this.config.style.pictureUnCompleteText);
                 return;
             }
             if (!(z && pictureSelectionConfig.style.isCompleteReplaceNum) || TextUtils.isEmpty(this.config.style.pictureCompleteText)) {
-                this.mTvPictureOk.setText((!z || TextUtils.isEmpty(this.config.style.pictureCompleteText)) ? getString(R.string.picture_done) : this.config.style.pictureCompleteText);
+                this.mTvPictureOk.setText((!z || TextUtils.isEmpty(this.config.style.pictureCompleteText)) ? getString(C2639R.string.picture_done) : this.config.style.pictureCompleteText);
                 return;
             } else {
                 this.mTvPictureOk.setText(String.format(this.config.style.pictureCompleteText, Integer.valueOf(i2), 1));
@@ -253,7 +254,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         if (i2 <= 0) {
             TextView textView = this.mTvPictureOk;
             if (!z || TextUtils.isEmpty(this.config.style.pictureUnCompleteText)) {
-                int i3 = R.string.picture_done_front_num;
+                int i3 = C2639R.string.picture_done_front_num;
                 PictureSelectionConfig pictureSelectionConfig2 = this.config;
                 string = getString(i3, new Object[]{Integer.valueOf(i2), Integer.valueOf(pictureSelectionConfig2.maxVideoSelectNum + pictureSelectionConfig2.maxSelectNum)});
             } else {
@@ -264,7 +265,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         }
         if (!z2 || TextUtils.isEmpty(this.config.style.pictureCompleteText)) {
             TextView textView2 = this.mTvPictureOk;
-            int i4 = R.string.picture_done_front_num;
+            int i4 = C2639R.string.picture_done_front_num;
             PictureSelectionConfig pictureSelectionConfig3 = this.config;
             textView2.setText(getString(i4, new Object[]{Integer.valueOf(i2), Integer.valueOf(pictureSelectionConfig3.maxVideoSelectNum + pictureSelectionConfig3.maxSelectNum)}));
             return;
@@ -320,21 +321,21 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
                 if (i9 != 0) {
                     this.mCbOriginal.setButtonDrawable(i9);
                 } else {
-                    this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, R.drawable.picture_original_checkbox));
+                    this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, C2639R.drawable.picture_original_checkbox));
                 }
                 int i10 = this.config.style.pictureOriginalFontColor;
                 if (i10 != 0) {
                     this.mCbOriginal.setTextColor(i10);
                 } else {
-                    this.mCbOriginal.setTextColor(ContextCompat.getColor(this, R.color.picture_color_53575e));
+                    this.mCbOriginal.setTextColor(ContextCompat.getColor(this, C2639R.color.picture_color_53575e));
                 }
                 int i11 = this.config.style.pictureOriginalTextSize;
                 if (i11 != 0) {
                     this.mCbOriginal.setTextSize(i11);
                 }
             } else {
-                this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, R.drawable.picture_original_checkbox));
-                this.mCbOriginal.setTextColor(ContextCompat.getColor(this, R.color.picture_color_53575e));
+                this.mCbOriginal.setButtonDrawable(ContextCompat.getDrawable(this, C2639R.drawable.picture_original_checkbox));
+                this.mCbOriginal.setTextColor(ContextCompat.getColor(this, C2639R.color.picture_color_53575e));
             }
         }
         onSelectNumChange(false);
@@ -344,21 +345,21 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
     protected void initWidgets() {
         super.initWidgets();
         this.mHandler = new Handler();
-        this.titleViewBg = findViewById(R.id.titleViewBg);
+        this.titleViewBg = findViewById(C2639R.id.titleViewBg);
         this.screenWidth = ScreenUtils.getScreenWidth(this);
-        this.animation = AnimationUtils.loadAnimation(this, R.anim.picture_anim_modal_in);
-        this.picture_left_back = (ImageView) findViewById(R.id.picture_left_back);
-        this.viewPager = (PreviewViewPager) findViewById(R.id.preview_pager);
-        this.btnCheck = findViewById(R.id.btnCheck);
-        this.check = (TextView) findViewById(R.id.check);
+        this.animation = AnimationUtils.loadAnimation(this, C2639R.anim.picture_anim_modal_in);
+        this.picture_left_back = (ImageView) findViewById(C2639R.id.picture_left_back);
+        this.viewPager = (PreviewViewPager) findViewById(C2639R.id.preview_pager);
+        this.btnCheck = findViewById(C2639R.id.btnCheck);
+        this.check = (TextView) findViewById(C2639R.id.check);
         this.picture_left_back.setOnClickListener(this);
-        this.mTvPictureOk = (TextView) findViewById(R.id.tv_ok);
-        this.mCbOriginal = (CheckBox) findViewById(R.id.cb_original);
-        this.tv_img_num = (TextView) findViewById(R.id.tv_img_num);
-        this.selectBarLayout = (RelativeLayout) findViewById(R.id.select_bar_layout);
+        this.mTvPictureOk = (TextView) findViewById(C2639R.id.tv_ok);
+        this.mCbOriginal = (CheckBox) findViewById(C2639R.id.cb_original);
+        this.tv_img_num = (TextView) findViewById(C2639R.id.tv_img_num);
+        this.selectBarLayout = (RelativeLayout) findViewById(C2639R.id.select_bar_layout);
         this.mTvPictureOk.setOnClickListener(this);
         this.tv_img_num.setOnClickListener(this);
-        this.tv_title = (TextView) findViewById(R.id.picture_title);
+        this.tv_title = (TextView) findViewById(C2639R.id.picture_title);
         this.position = getIntent().getIntExtra("position", 0);
         if (this.numComplete) {
             initCompleteText(0);
@@ -389,7 +390,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             public void onPageSelected(int i2) {
                 PicturePreviewActivity picturePreviewActivity = PicturePreviewActivity.this;
                 picturePreviewActivity.position = i2;
-                picturePreviewActivity.tv_title.setText(picturePreviewActivity.getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(picturePreviewActivity.position + 1), Integer.valueOf(PicturePreviewActivity.this.images.size())}));
+                picturePreviewActivity.tv_title.setText(picturePreviewActivity.getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(picturePreviewActivity.position + 1), Integer.valueOf(PicturePreviewActivity.this.images.size())}));
                 PicturePreviewActivity picturePreviewActivity2 = PicturePreviewActivity.this;
                 LocalMedia localMedia = picturePreviewActivity2.images.get(picturePreviewActivity2.position);
                 PicturePreviewActivity.this.index = localMedia.getPosition();
@@ -420,7 +421,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             this.mCbOriginal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // from class: com.luck.picture.lib.o
                 @Override // android.widget.CompoundButton.OnCheckedChangeListener
                 public final void onCheckedChanged(CompoundButton compoundButton, boolean z) {
-                    PicturePreviewActivity.this.a(compoundButton, z);
+                    PicturePreviewActivity.this.m8106a(compoundButton, z);
                 }
             });
         }
@@ -439,7 +440,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
 
     @Override // com.luck.picture.lib.adapter.PictureSimpleFragmentAdapter.OnCallBackActivity
     public void onActivityBackPressed() {
-        a();
+        m8092a();
     }
 
     @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
@@ -447,7 +448,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         super.onActivityResult(i2, i3, intent);
         if (i3 != -1) {
             if (i3 == 96) {
-                ToastUtils.s(getContext(), ((Throwable) intent.getSerializableExtra(UCrop.EXTRA_ERROR)).getMessage());
+                ToastUtils.m8140s(getContext(), ((Throwable) intent.getSerializableExtra(UCrop.EXTRA_ERROR)).getMessage());
                 return;
             }
             return;
@@ -471,7 +472,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
     /* renamed from: onBackPressed */
-    public void a() {
+    public void m8092a() {
         int i2;
         updateResult();
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.config.windowAnimationStyle;
@@ -482,7 +483,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         finish();
         PictureWindowAnimationStyle pictureWindowAnimationStyle2 = this.config.windowAnimationStyle;
         if (pictureWindowAnimationStyle2 == null || (i2 = pictureWindowAnimationStyle2.activityPreviewExitAnimation) == 0) {
-            i2 = R.anim.picture_anim_exit;
+            i2 = C2639R.anim.picture_anim_exit;
         }
         overridePendingTransition(0, i2);
     }
@@ -512,54 +513,54 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             if (PictureMimeType.eqVideo(localMedia.getMimeType())) {
                 int i8 = this.config.maxVideoSelectNum;
                 if (i8 <= 0) {
-                    ToastUtils.s(getContext(), getString(R.string.picture_rule));
+                    ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_rule));
                     return;
                 }
                 if (i6 >= i8 && !this.check.isSelected()) {
-                    ToastUtils.s(getContext(), StringUtils.getMsg(getContext(), localMedia.getMimeType(), this.config.maxVideoSelectNum));
+                    ToastUtils.m8140s(getContext(), StringUtils.getMsg(getContext(), localMedia.getMimeType(), this.config.maxVideoSelectNum));
                     return;
                 }
                 if (!this.check.isSelected() && this.config.videoMinSecond > 0 && localMedia.getDuration() < this.config.videoMinSecond) {
-                    ToastUtils.s(getContext(), getContext().getString(R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
+                    ToastUtils.m8140s(getContext(), getContext().getString(C2639R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
                     return;
                 } else if (!this.check.isSelected() && this.config.videoMaxSecond > 0 && localMedia.getDuration() > this.config.videoMaxSecond) {
-                    ToastUtils.s(getContext(), getContext().getString(R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
+                    ToastUtils.m8140s(getContext(), getContext().getString(C2639R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
                     return;
                 }
             }
             if (PictureMimeType.eqImage(localMedia.getMimeType()) && i5 >= this.config.maxSelectNum && !this.check.isSelected()) {
-                ToastUtils.s(getContext(), StringUtils.getMsg(getContext(), localMedia.getMimeType(), this.config.maxSelectNum));
+                ToastUtils.m8140s(getContext(), StringUtils.getMsg(getContext(), localMedia.getMimeType(), this.config.maxSelectNum));
                 return;
             }
         } else {
             if (!TextUtils.isEmpty(mimeType) && !PictureMimeType.isMimeTypeSame(mimeType, localMedia.getMimeType())) {
-                ToastUtils.s(getContext(), getString(R.string.picture_rule));
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_rule));
                 return;
             }
             if (!PictureMimeType.eqVideo(mimeType) || (i2 = this.config.maxVideoSelectNum) <= 0) {
                 if (size >= this.config.maxSelectNum && !this.check.isSelected()) {
-                    ToastUtils.s(getContext(), StringUtils.getMsg(getContext(), mimeType, this.config.maxSelectNum));
+                    ToastUtils.m8140s(getContext(), StringUtils.getMsg(getContext(), mimeType, this.config.maxSelectNum));
                     return;
                 }
                 if (PictureMimeType.eqVideo(localMedia.getMimeType())) {
                     if (!this.check.isSelected() && this.config.videoMinSecond > 0 && localMedia.getDuration() < this.config.videoMinSecond) {
-                        ToastUtils.s(getContext(), getContext().getString(R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
+                        ToastUtils.m8140s(getContext(), getContext().getString(C2639R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
                         return;
                     } else if (!this.check.isSelected() && this.config.videoMaxSecond > 0 && localMedia.getDuration() > this.config.videoMaxSecond) {
-                        ToastUtils.s(getContext(), getContext().getString(R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
+                        ToastUtils.m8140s(getContext(), getContext().getString(C2639R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
                         return;
                     }
                 }
             } else {
                 if (size >= i2 && !this.check.isSelected()) {
-                    ToastUtils.s(getContext(), StringUtils.getMsg(getContext(), mimeType, this.config.maxVideoSelectNum));
+                    ToastUtils.m8140s(getContext(), StringUtils.getMsg(getContext(), mimeType, this.config.maxVideoSelectNum));
                     return;
                 }
                 if (!this.check.isSelected() && this.config.videoMinSecond > 0 && localMedia.getDuration() < this.config.videoMinSecond) {
-                    ToastUtils.s(getContext(), getContext().getString(R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
+                    ToastUtils.m8140s(getContext(), getContext().getString(C2639R.string.picture_choose_min_seconds, Integer.valueOf(this.config.videoMinSecond / 1000)));
                     return;
                 } else if (!this.check.isSelected() && this.config.videoMaxSecond > 0 && localMedia.getDuration() > this.config.videoMaxSecond) {
-                    ToastUtils.s(getContext(), getContext().getString(R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
+                    ToastUtils.m8140s(getContext(), getContext().getString(C2639R.string.picture_choose_max_seconds, Integer.valueOf(this.config.videoMaxSecond / 1000)));
                     return;
                 }
             }
@@ -641,13 +642,13 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.picture_left_back) {
-            a();
+        if (id == C2639R.id.picture_left_back) {
+            m8092a();
             return;
         }
-        if (id == R.id.tv_ok || id == R.id.tv_img_num) {
+        if (id == C2639R.id.tv_ok || id == C2639R.id.tv_img_num) {
             onComplete();
-        } else if (id == R.id.btnCheck) {
+        } else if (id == C2639R.id.btnCheck) {
             onCheckedComplete();
         }
     }
@@ -674,21 +675,21 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             if (pictureSelectionConfig2.selectionMode == 2) {
                 int i7 = pictureSelectionConfig2.minSelectNum;
                 if (i7 > 0 && i4 < i7) {
-                    ToastUtils.s(getContext(), getString(R.string.picture_min_img_num, new Object[]{Integer.valueOf(this.config.minSelectNum)}));
+                    ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_min_img_num, new Object[]{Integer.valueOf(this.config.minSelectNum)}));
                     return;
                 }
                 int i8 = this.config.minVideoSelectNum;
                 if (i8 > 0 && i5 < i8) {
-                    ToastUtils.s(getContext(), getString(R.string.picture_min_video_num, new Object[]{Integer.valueOf(this.config.minVideoSelectNum)}));
+                    ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_min_video_num, new Object[]{Integer.valueOf(this.config.minVideoSelectNum)}));
                     return;
                 }
             }
         } else if (pictureSelectionConfig.selectionMode == 2) {
             if (PictureMimeType.eqImage(mimeType) && (i3 = this.config.minSelectNum) > 0 && size < i3) {
-                ToastUtils.s(getContext(), getString(R.string.picture_min_img_num, new Object[]{Integer.valueOf(i3)}));
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_min_img_num, new Object[]{Integer.valueOf(i3)}));
                 return;
             } else if (PictureMimeType.eqVideo(mimeType) && (i2 = this.config.minVideoSelectNum) > 0 && size < i2) {
-                ToastUtils.s(getContext(), getString(R.string.picture_min_video_num, new Object[]{Integer.valueOf(i2)}));
+                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_min_video_num, new Object[]{Integer.valueOf(i2)}));
                 return;
             }
         }
@@ -696,7 +697,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         this.isChangeSelectedData = true;
         PictureSelectionConfig pictureSelectionConfig3 = this.config;
         if (pictureSelectionConfig3.isCheckOriginalImage) {
-            a();
+            m8092a();
         } else if (pictureSelectionConfig3.chooseMode == PictureMimeType.ofAll() && this.config.isWithVideoImage) {
             bothMimeTypeWith(mimeType, localMedia);
         } else {
@@ -732,7 +733,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             animation.cancel();
             this.animation = null;
         }
-        PictureSimpleFragmentAdapter pictureSimpleFragmentAdapter = this.f7745adapter;
+        PictureSimpleFragmentAdapter pictureSimpleFragmentAdapter = this.f25896adapter;
         if (pictureSimpleFragmentAdapter != null) {
             pictureSimpleFragmentAdapter.clear();
         }
@@ -769,7 +770,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
                 if (i2 != 0) {
                     this.mTvPictureOk.setTextColor(i2);
                 } else {
-                    this.mTvPictureOk.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_9b));
+                    this.mTvPictureOk.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_9b));
                 }
             }
             if (this.numComplete) {
@@ -779,7 +780,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             this.tv_img_num.setVisibility(4);
             PictureParameterStyle pictureParameterStyle2 = this.config.style;
             if (pictureParameterStyle2 == null || TextUtils.isEmpty(pictureParameterStyle2.pictureUnCompleteText)) {
-                this.mTvPictureOk.setText(getString(R.string.picture_please_select));
+                this.mTvPictureOk.setText(getString(C2639R.string.picture_please_select));
                 return;
             } else {
                 this.mTvPictureOk.setText(this.config.style.pictureUnCompleteText);
@@ -794,7 +795,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
             if (i3 != 0) {
                 this.mTvPictureOk.setTextColor(i3);
             } else {
-                this.mTvPictureOk.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_fa632d));
+                this.mTvPictureOk.setTextColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_fa632d));
             }
         }
         if (this.numComplete) {
@@ -808,7 +809,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements View.
         this.tv_img_num.setText(String.valueOf(this.selectImages.size()));
         PictureParameterStyle pictureParameterStyle4 = this.config.style;
         if (pictureParameterStyle4 == null || TextUtils.isEmpty(pictureParameterStyle4.pictureCompleteText)) {
-            this.mTvPictureOk.setText(getString(R.string.picture_completed));
+            this.mTvPictureOk.setText(getString(C2639R.string.picture_completed));
         } else {
             this.mTvPictureOk.setText(this.config.style.pictureCompleteText);
         }

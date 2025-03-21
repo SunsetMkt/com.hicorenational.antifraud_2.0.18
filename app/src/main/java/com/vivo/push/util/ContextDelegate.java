@@ -12,10 +12,11 @@ public class ContextDelegate {
     private static boolean mDelegateEnable = false;
     private static Boolean mIsFbeProject;
 
-    private static class a {
+    /* renamed from: com.vivo.push.util.ContextDelegate$a */
+    private static class C3982a {
 
-        /* renamed from: a, reason: collision with root package name */
-        private static ContextDelegate f12231a = new ContextDelegate();
+        /* renamed from: a */
+        private static ContextDelegate f14210a = new ContextDelegate();
     }
 
     private static Context createCredentialProtectedStorageContext(Context context) {
@@ -55,16 +56,16 @@ public class ContextDelegate {
     }
 
     public static ContextDelegate getInstance() {
-        return a.f12231a;
+        return C3982a.f14210a;
     }
 
     public static boolean isFBEProject() {
         if (mIsFbeProject == null) {
             try {
-                mIsFbeProject = Boolean.valueOf("file".equals(n.a("ro.crypto.type", "unknow")));
-                u.b(TAG, "mIsFbeProject = " + mIsFbeProject.toString());
+                mIsFbeProject = Boolean.valueOf("file".equals(C4003n.m13267a("ro.crypto.type", "unknow")));
+                C4010u.m13301b(TAG, "mIsFbeProject = " + mIsFbeProject.toString());
             } catch (Exception e2) {
-                u.a(TAG, "mIsFbeProject = " + e2.getMessage());
+                C4010u.m13292a(TAG, "mIsFbeProject = " + e2.getMessage());
             }
         }
         Boolean bool = mIsFbeProject;

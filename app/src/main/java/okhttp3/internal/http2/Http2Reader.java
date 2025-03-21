@@ -1,7 +1,5 @@
 package okhttp3.internal.http2;
 
-import h.f1;
-import h.t1;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +12,8 @@ import okio.BufferedSource;
 import okio.ByteString;
 import okio.Source;
 import okio.Timeout;
+import p286h.C5230f1;
+import p286h.C5611t1;
 
 /* loaded from: classes2.dex */
 final class Http2Reader implements Closeable {
@@ -40,8 +40,8 @@ final class Http2Reader implements Closeable {
             int readMedium = Http2Reader.readMedium(this.source);
             this.left = readMedium;
             this.length = readMedium;
-            byte readByte = (byte) (this.source.readByte() & f1.f16099c);
-            this.flags = (byte) (this.source.readByte() & f1.f16099c);
+            byte readByte = (byte) (this.source.readByte() & C5230f1.f20085c);
+            this.flags = (byte) (this.source.readByte() & C5230f1.f20085c);
             if (Http2Reader.logger.isLoggable(Level.FINE)) {
                 Http2Reader.logger.fine(Http2.frameLog(true, this.streamId, this.length, readByte, this.flags));
             }
@@ -134,7 +134,7 @@ final class Http2Reader implements Closeable {
         if ((b2 & 32) != 0) {
             throw Http2.ioException("PROTOCOL_ERROR: FLAG_COMPRESSED without SETTINGS_COMPRESS_DATA", new Object[0]);
         }
-        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & f1.f16099c) : (short) 0;
+        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & C5230f1.f20085c) : (short) 0;
         handler.data(z, i3, this.source, lengthWithoutPadding(i2, b2, readByte));
         this.source.skip(readByte);
     }
@@ -176,7 +176,7 @@ final class Http2Reader implements Closeable {
             throw Http2.ioException("PROTOCOL_ERROR: TYPE_HEADERS streamId == 0", new Object[0]);
         }
         boolean z = (b2 & 1) != 0;
-        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & f1.f16099c) : (short) 0;
+        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & C5230f1.f20085c) : (short) 0;
         if ((b2 & 32) != 0) {
             readPriority(handler, i3);
             i2 -= 5;
@@ -185,7 +185,7 @@ final class Http2Reader implements Closeable {
     }
 
     static int readMedium(BufferedSource bufferedSource) throws IOException {
-        return (bufferedSource.readByte() & f1.f16099c) | ((bufferedSource.readByte() & f1.f16099c) << 16) | ((bufferedSource.readByte() & f1.f16099c) << 8);
+        return (bufferedSource.readByte() & C5230f1.f20085c) | ((bufferedSource.readByte() & C5230f1.f20085c) << 16) | ((bufferedSource.readByte() & C5230f1.f20085c) << 8);
     }
 
     private void readPing(Handler handler, int i2, byte b2, int i3) throws IOException {
@@ -212,7 +212,7 @@ final class Http2Reader implements Closeable {
         if (i3 == 0) {
             throw Http2.ioException("PROTOCOL_ERROR: TYPE_PUSH_PROMISE streamId == 0", new Object[0]);
         }
-        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & f1.f16099c) : (short) 0;
+        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & C5230f1.f20085c) : (short) 0;
         handler.pushPromise(i3, this.source.readInt() & Integer.MAX_VALUE, readHeaderBlock(lengthWithoutPadding(i2 - 4, b2, readByte), readByte, b2, i3));
     }
 
@@ -247,7 +247,7 @@ final class Http2Reader implements Closeable {
         }
         Settings settings = new Settings();
         for (int i4 = 0; i4 < i2; i4 += 6) {
-            int readShort = this.source.readShort() & t1.f16480c;
+            int readShort = this.source.readShort() & C5611t1.f20467c;
             int readInt = this.source.readInt();
             switch (readShort) {
                 case 2:
@@ -299,11 +299,11 @@ final class Http2Reader implements Closeable {
             if (readMedium < 0 || readMedium > 16384) {
                 throw Http2.ioException("FRAME_SIZE_ERROR: %s", Integer.valueOf(readMedium));
             }
-            byte readByte = (byte) (this.source.readByte() & f1.f16099c);
+            byte readByte = (byte) (this.source.readByte() & C5230f1.f20085c);
             if (z && readByte != 4) {
                 throw Http2.ioException("Expected a SETTINGS frame but was %s", Byte.valueOf(readByte));
             }
-            byte readByte2 = (byte) (this.source.readByte() & f1.f16099c);
+            byte readByte2 = (byte) (this.source.readByte() & C5230f1.f20085c);
             int readInt = this.source.readInt() & Integer.MAX_VALUE;
             if (logger.isLoggable(Level.FINE)) {
                 logger.fine(Http2.frameLog(true, readInt, readMedium, readByte, readByte2));
@@ -363,6 +363,6 @@ final class Http2Reader implements Closeable {
 
     private void readPriority(Handler handler, int i2) throws IOException {
         int readInt = this.source.readInt();
-        handler.priority(i2, readInt & Integer.MAX_VALUE, (this.source.readByte() & f1.f16099c) + 1, (Integer.MIN_VALUE & readInt) != 0);
+        handler.priority(i2, readInt & Integer.MAX_VALUE, (this.source.readByte() & C5230f1.f20085c) + 1, (Integer.MIN_VALUE & readInt) != 0);
     }
 }

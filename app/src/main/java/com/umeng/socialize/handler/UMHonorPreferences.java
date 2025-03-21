@@ -6,21 +6,23 @@ import android.content.SharedPreferences;
 /* loaded from: classes2.dex */
 public class UMHonorPreferences {
     private static final String KEY_AUTH = "auth";
-    private final SharedPreferences sp;
+
+    /* renamed from: sp */
+    private final SharedPreferences f13630sp;
 
     public UMHonorPreferences(Context context) {
-        this.sp = context.getSharedPreferences("um_honor", 0);
+        this.f13630sp = context.getSharedPreferences("um_honor", 0);
     }
 
     public void delete() {
-        this.sp.edit().clear().apply();
+        this.f13630sp.edit().clear().apply();
     }
 
     public boolean isAuthed() {
-        return this.sp.getBoolean("auth", false);
+        return this.f13630sp.getBoolean("auth", false);
     }
 
     public void setAuthed() {
-        this.sp.edit().putBoolean("auth", true).apply();
+        this.f13630sp.edit().putBoolean("auth", true).apply();
     }
 }

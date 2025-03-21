@@ -8,7 +8,9 @@ public class RechargeBean extends BaseBean {
     private String caseInfoID;
     private String chargeTelInfoID;
     private String chargeTime;
-    private int ex;
+
+    /* renamed from: ex */
+    private int f1613ex;
     private String platform;
     private String platformText;
     private String suspectMobile;
@@ -30,7 +32,7 @@ public class RechargeBean extends BaseBean {
     }
 
     public int getEx() {
-        return this.ex;
+        return this.f1613ex;
     }
 
     public String getPlatform() {
@@ -62,7 +64,7 @@ public class RechargeBean extends BaseBean {
     }
 
     public void setEx(int i2) {
-        this.ex = i2;
+        this.f1613ex = i2;
     }
 
     public void setPlatform(String str) {

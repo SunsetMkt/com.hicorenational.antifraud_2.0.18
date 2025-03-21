@@ -11,7 +11,9 @@ public class ChatDetailBean extends BaseBean {
     private long duration;
     private String fileName;
     private long fileSize;
-    private Long id;
+
+    /* renamed from: id */
+    private Long f1587id;
     private String localPath;
     private long progress;
     private long total;
@@ -46,7 +48,7 @@ public class ChatDetailBean extends BaseBean {
     }
 
     public Long getId() {
-        return this.id;
+        return this.f1587id;
     }
 
     public String getLocalPath() {
@@ -94,7 +96,7 @@ public class ChatDetailBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.id = l2;
+        this.f1587id = l2;
     }
 
     public void setLocalPath(String str) {

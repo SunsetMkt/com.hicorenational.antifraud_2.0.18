@@ -4,7 +4,6 @@ import anet.channel.util.HttpConstant;
 import com.alibaba.sdk.android.oss.common.RequestParameters;
 import com.taobao.accs.common.Constants;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
-import h.f1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +17,7 @@ import okio.BufferedSource;
 import okio.ByteString;
 import okio.Okio;
 import okio.Source;
+import p286h.C5230f1;
 
 /* loaded from: classes2.dex */
 final class Hpack {
@@ -138,7 +138,7 @@ final class Hpack {
         }
 
         private int readByte() throws IOException {
-            return this.source.readByte() & f1.f16099c;
+            return this.source.readByte() & C5230f1.f20085c;
         }
 
         private void readIndexedHeader(int i2) throws IOException {
@@ -187,12 +187,12 @@ final class Hpack {
             int readByte = readByte();
             boolean z = (readByte & 128) == 128;
             int readInt = readInt(readByte, 127);
-            return z ? ByteString.of(Huffman.get().decode(this.source.readByteArray(readInt))) : this.source.readByteString(readInt);
+            return z ? ByteString.m24926of(Huffman.get().decode(this.source.readByteArray(readInt))) : this.source.readByteString(readInt);
         }
 
         void readHeaders() throws IOException {
             while (!this.source.exhausted()) {
-                int readByte = this.source.readByte() & f1.f16099c;
+                int readByte = this.source.readByte() & C5230f1.f20085c;
                 if (readByte == 128) {
                     throw new IOException("index == 0");
                 }

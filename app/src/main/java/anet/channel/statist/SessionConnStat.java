@@ -27,8 +27,9 @@ public class SessionConnStat extends StatObject {
     @Dimension
     public String host;
 
+    /* renamed from: ip */
     @Dimension
-    public String ip;
+    public String f1003ip;
 
     @Dimension
     public int port;
@@ -117,8 +118,8 @@ public class SessionConnStat extends StatObject {
     }
 
     public void syncValueFromSession(Session session) {
-        SessionStatistic sessionStatistic = session.q;
-        this.ip = sessionStatistic.ip;
+        SessionStatistic sessionStatistic = session.f699q;
+        this.f1003ip = sessionStatistic.f1004ip;
         this.port = sessionStatistic.port;
         this.ipRefer = sessionStatistic.ipRefer;
         this.ipType = sessionStatistic.ipType;

@@ -41,19 +41,19 @@ public class EmuiUtil {
             try {
                 intValue = ((Integer) staticFieldObj).intValue();
             } catch (ClassCastException e2) {
-                Logger.e(TAG, "getEMUIVersionCode ClassCastException:", e2);
+                Logger.m6797e(TAG, "getEMUIVersionCode ClassCastException:", e2);
             }
-            Logger.d(TAG, "the emui version code is::" + intValue);
+            Logger.m6794d(TAG, "the emui version code is::" + intValue);
             return intValue;
         }
         intValue = 0;
-        Logger.d(TAG, "the emui version code is::" + intValue);
+        Logger.m6794d(TAG, "the emui version code is::" + intValue);
         return intValue;
     }
 
     private static void initEmuiType() {
         int eMUIVersionCode = getEMUIVersionCode();
-        Logger.d(TAG, "getEmuiType emuiVersionCode=" + eMUIVersionCode);
+        Logger.m6794d(TAG, "getEmuiType emuiVersionCode=" + eMUIVersionCode);
         if (eMUIVersionCode >= 17) {
             emuiType = 90;
         } else if (eMUIVersionCode >= 15) {
@@ -72,7 +72,7 @@ public class EmuiUtil {
             emuiType = 30;
         }
         if (emuiType == -1) {
-            Logger.i(TAG, "emuiType is unkown");
+            Logger.m6799i(TAG, "emuiType is unkown");
         }
     }
 
@@ -86,11 +86,11 @@ public class EmuiUtil {
                 return BuildEx.VERSION.EMUI_SDK_INT >= 17;
             }
         } catch (NoSuchMethodError unused) {
-            Logger.d(TAG, "no such method for com.huawei.android.os.BuildEx.VERSION");
+            Logger.m6794d(TAG, "no such method for com.huawei.android.os.BuildEx.VERSION");
         } catch (Throwable unused2) {
-            Logger.d(TAG, "com.huawei.android.os.BuildEx.VERSION has other exception");
+            Logger.m6794d(TAG, "com.huawei.android.os.BuildEx.VERSION has other exception");
         }
-        Logger.d(TAG, "com.huawei.android.os.BuildEx : false");
+        Logger.m6794d(TAG, "com.huawei.android.os.BuildEx : false");
         return false;
     }
 }

@@ -8,7 +8,9 @@ public class SocialAccBean extends BaseBean {
     private String accountNum;
     private String accountOtherName;
     private String accountOtherTips;
-    private String id;
+
+    /* renamed from: id */
+    private String f1623id;
     private String suspectInfoID;
 
     public String getAccountName() {
@@ -28,7 +30,7 @@ public class SocialAccBean extends BaseBean {
     }
 
     public String getId() {
-        return this.id;
+        return this.f1623id;
     }
 
     public String getSuspectInfoID() {
@@ -52,7 +54,7 @@ public class SocialAccBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.id = str;
+        this.f1623id = str;
     }
 
     public void setSuspectInfoID(String str) {

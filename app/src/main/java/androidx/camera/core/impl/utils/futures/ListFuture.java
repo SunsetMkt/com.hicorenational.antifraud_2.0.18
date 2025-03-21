@@ -15,19 +15,20 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
+import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
 /* loaded from: classes.dex */
-class ListFuture<V> implements c.b.b.a.a.a<List<V>> {
+class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
     private final boolean mAllMustSucceed;
 
     @Nullable
-    List<? extends c.b.b.a.a.a<? extends V>> mFutures;
+    List<? extends InterfaceFutureC0952a<? extends V>> mFutures;
 
     @NonNull
     private final AtomicInteger mRemaining;
 
     @NonNull
-    private final c.b.b.a.a.a<List<V>> mResult = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<List<V>>() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.1
+    private final InterfaceFutureC0952a<List<V>> mResult = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<List<V>>() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.1
         @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
         public Object attachCompleter(@NonNull CallbackToFutureAdapter.Completer<List<V>> completer) {
             Preconditions.checkState(ListFuture.this.mResultNotifier == null, "The result can only set once!");
@@ -40,7 +41,7 @@ class ListFuture<V> implements c.b.b.a.a.a<List<V>> {
     @Nullable
     List<V> mValues;
 
-    ListFuture(@NonNull List<? extends c.b.b.a.a.a<? extends V>> list, boolean z, @NonNull Executor executor) {
+    ListFuture(@NonNull List<? extends InterfaceFutureC0952a<? extends V>> list, boolean z, @NonNull Executor executor) {
         this.mFutures = (List) Preconditions.checkNotNull(list);
         this.mValues = new ArrayList(list.size());
         this.mAllMustSucceed = z;
@@ -49,14 +50,14 @@ class ListFuture<V> implements c.b.b.a.a.a<List<V>> {
     }
 
     private void callAllGets() throws InterruptedException {
-        List<? extends c.b.b.a.a.a<? extends V>> list = this.mFutures;
+        List<? extends InterfaceFutureC0952a<? extends V>> list = this.mFutures;
         if (list == null || isDone()) {
             return;
         }
-        for (c.b.b.a.a.a<? extends V> aVar : list) {
-            while (!aVar.isDone()) {
+        for (InterfaceFutureC0952a<? extends V> interfaceFutureC0952a : list) {
+            while (!interfaceFutureC0952a.isDone()) {
                 try {
-                    aVar.get();
+                    interfaceFutureC0952a.get();
                 } catch (Error e2) {
                     throw e2;
                 } catch (InterruptedException e3) {
@@ -86,28 +87,28 @@ class ListFuture<V> implements c.b.b.a.a.a<List<V>> {
         for (int i2 = 0; i2 < this.mFutures.size(); i2++) {
             this.mValues.add(null);
         }
-        List<? extends c.b.b.a.a.a<? extends V>> list = this.mFutures;
+        List<? extends InterfaceFutureC0952a<? extends V>> list = this.mFutures;
         for (final int i3 = 0; i3 < list.size(); i3++) {
-            final c.b.b.a.a.a<? extends V> aVar = list.get(i3);
-            aVar.addListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.3
+            final InterfaceFutureC0952a<? extends V> interfaceFutureC0952a = list.get(i3);
+            interfaceFutureC0952a.addListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.3
                 @Override // java.lang.Runnable
                 public void run() {
-                    ListFuture.this.setOneValue(i3, aVar);
+                    ListFuture.this.setOneValue(i3, interfaceFutureC0952a);
                 }
             }, executor);
         }
     }
 
-    @Override // c.b.b.a.a.a
+    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
     public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
         this.mResult.addListener(runnable, executor);
     }
 
     @Override // java.util.concurrent.Future
     public boolean cancel(boolean z) {
-        List<? extends c.b.b.a.a.a<? extends V>> list = this.mFutures;
+        List<? extends InterfaceFutureC0952a<? extends V>> list = this.mFutures;
         if (list != null) {
-            Iterator<? extends c.b.b.a.a.a<? extends V>> it = list.iterator();
+            Iterator<? extends InterfaceFutureC0952a<? extends V>> it = list.iterator();
             while (it.hasNext()) {
                 it.next().cancel(z);
             }

@@ -3,10 +3,10 @@ package com.umeng.commonsdk.statistics.noise;
 import android.content.Context;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.statistics.idtracking.ImprintHandler;
-import com.umeng.commonsdk.statistics.internal.d;
+import com.umeng.commonsdk.statistics.internal.InterfaceC3516d;
 
 /* loaded from: classes2.dex */
-public class Defcon implements d {
+public class Defcon implements InterfaceC3516d {
     private static final int LEVEL_0 = 0;
     private static final int LEVEL_1 = 1;
     private static final int LEVEL_2 = 2;
@@ -49,9 +49,9 @@ public class Defcon implements d {
         return this.mLevel != 0;
     }
 
-    @Override // com.umeng.commonsdk.statistics.internal.d
-    public void onImprintChanged(ImprintHandler.a aVar) {
-        setLevel(Integer.valueOf(aVar.a("defcon", String.valueOf(0))).intValue());
+    @Override // com.umeng.commonsdk.statistics.internal.InterfaceC3516d
+    public void onImprintChanged(ImprintHandler.C3500a c3500a) {
+        setLevel(Integer.valueOf(c3500a.m11842a("defcon", String.valueOf(0))).intValue());
     }
 
     public void setLevel(int i2) {

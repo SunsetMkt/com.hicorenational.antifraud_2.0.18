@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
+import com.google.android.material.C1921R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.animation.AnimatorSetCompat;
 import com.google.android.material.animation.ImageMatrixProperty;
@@ -250,14 +251,14 @@ class FloatingActionButtonImpl {
 
     private MotionSpec getDefaultHideMotionSpec() {
         if (this.defaultHideMotionSpec == null) {
-            this.defaultHideMotionSpec = MotionSpec.createFromResource(this.view.getContext(), com.google.android.material.R.animator.design_fab_hide_motion_spec);
+            this.defaultHideMotionSpec = MotionSpec.createFromResource(this.view.getContext(), C1921R.animator.design_fab_hide_motion_spec);
         }
         return this.defaultHideMotionSpec;
     }
 
     private MotionSpec getDefaultShowMotionSpec() {
         if (this.defaultShowMotionSpec == null) {
-            this.defaultShowMotionSpec = MotionSpec.createFromResource(this.view.getContext(), com.google.android.material.R.animator.design_fab_show_motion_spec);
+            this.defaultShowMotionSpec = MotionSpec.createFromResource(this.view.getContext(), C1921R.animator.design_fab_show_motion_spec);
         }
         return this.defaultShowMotionSpec;
     }
@@ -303,7 +304,7 @@ class FloatingActionButtonImpl {
     CircularBorderDrawable createBorderDrawable(int i2, ColorStateList colorStateList) {
         Context context = this.view.getContext();
         CircularBorderDrawable newCircularDrawable = newCircularDrawable();
-        newCircularDrawable.setGradientColors(ContextCompat.getColor(context, com.google.android.material.R.color.design_fab_stroke_top_outer_color), ContextCompat.getColor(context, com.google.android.material.R.color.design_fab_stroke_top_inner_color), ContextCompat.getColor(context, com.google.android.material.R.color.design_fab_stroke_end_inner_color), ContextCompat.getColor(context, com.google.android.material.R.color.design_fab_stroke_end_outer_color));
+        newCircularDrawable.setGradientColors(ContextCompat.getColor(context, C1921R.color.design_fab_stroke_top_outer_color), ContextCompat.getColor(context, C1921R.color.design_fab_stroke_top_inner_color), ContextCompat.getColor(context, C1921R.color.design_fab_stroke_end_inner_color), ContextCompat.getColor(context, C1921R.color.design_fab_stroke_end_outer_color));
         newCircularDrawable.setBorderWidth(i2);
         newCircularDrawable.setBorderTint(colorStateList);
         return newCircularDrawable;

@@ -15,7 +15,9 @@ import androidx.appcompat.view.menu.SubMenuBuilder;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 /* loaded from: classes.dex */
 public class BottomNavigationPresenter implements MenuPresenter {
-    private int id;
+
+    /* renamed from: id */
+    private int f5642id;
     private MenuBuilder menu;
     private BottomNavigationMenuView menuView;
     private boolean updateSuspended = false;
@@ -71,7 +73,7 @@ public class BottomNavigationPresenter implements MenuPresenter {
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public int getId() {
-        return this.id;
+        return this.f5642id;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
@@ -117,7 +119,7 @@ public class BottomNavigationPresenter implements MenuPresenter {
     }
 
     public void setId(int i2) {
-        this.id = i2;
+        this.f5642id = i2;
     }
 
     public void setUpdateSuspended(boolean z) {

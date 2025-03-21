@@ -4,16 +4,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import bean.CheckTimeBean;
-import util.n1;
-import util.u1;
-import util.v0;
+import util.C7301n1;
+import util.C7325u1;
+import util.C7327v0;
 
 /* loaded from: classes2.dex */
 public class TimeChangeReceiver extends BroadcastReceiver {
-    private void a(Context context) {
-        CheckTimeBean checkTimeBean = (CheckTimeBean) u1.a(u1.I0, CheckTimeBean.class);
+    /* renamed from: a */
+    private void m25175a(Context context) {
+        CheckTimeBean checkTimeBean = (CheckTimeBean) C7325u1.m26615a(C7325u1.f25640I0, CheckTimeBean.class);
         if (checkTimeBean != null) {
-            new v0().a(context, checkTimeBean.getCode());
+            new C7327v0().m26640a(context, checkTimeBean.getCode());
         }
     }
 
@@ -34,11 +35,11 @@ public class TimeChangeReceiver extends BroadcastReceiver {
             c2 = 65535;
         }
         if (c2 == 0) {
-            n1.a("system time changed");
+            C7301n1.m26453a("system time changed");
         } else if (c2 != 1) {
             return;
         }
-        n1.a("system time zone changed");
-        a(context);
+        C7301n1.m26453a("system time zone changed");
+        m25175a(context);
     }
 }

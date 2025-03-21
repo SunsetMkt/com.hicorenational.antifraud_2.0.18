@@ -1,9 +1,9 @@
 package com.huawei.secure.android.common.encrypt.hash;
 
 import android.text.TextUtils;
+import com.huawei.secure.android.common.encrypt.utils.C2550a;
+import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.HexUtil;
-import com.huawei.secure.android.common.encrypt.utils.a;
-import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,27 +14,28 @@ import java.security.NoSuchAlgorithmException;
 /* loaded from: classes.dex */
 public abstract class FileSHA256 {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final int f7459a = 8192;
+    /* renamed from: a */
+    private static final int f8036a = 8192;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7461c = "FileSHA256";
+    /* renamed from: c */
+    private static final String f8038c = "FileSHA256";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final String f7462d = "";
+    /* renamed from: d */
+    private static final String f8039d = "";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7460b = "SHA-256";
+    /* renamed from: b */
+    private static final String f8037b = "SHA-256";
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final String[] f7463e = {f7460b, "SHA-384", "SHA-512"};
+    /* renamed from: e */
+    private static final String[] f8040e = {f8037b, "SHA-384", "SHA-512"};
 
-    private static boolean a(File file) {
+    /* renamed from: a */
+    private static boolean m7848a(File file) {
         return file != null && file.exists() && file.length() > 0;
     }
 
     public static String fileSHA256Encrypt(File file) {
-        return fileSHAEncrypt(file, f7460b);
+        return fileSHAEncrypt(file, f8037b);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -45,12 +46,12 @@ public abstract class FileSHA256 {
         FileInputStream fileInputStream;
         MessageDigest messageDigest;
         ?? r1 = "";
-        if (TextUtils.isEmpty(str) || !a(str)) {
-            b.b(f7461c, "algorithm is empty or not safe");
+        if (TextUtils.isEmpty(str) || !m7849a(str)) {
+            C2551b.m7898b(f8038c, "algorithm is empty or not safe");
             return "";
         }
-        if (!a(file)) {
-            b.b(f7461c, "file is not valid");
+        if (!m7848a(file)) {
+            C2551b.m7898b(f8038c, "file is not valid");
             return "";
         }
         try {
@@ -66,7 +67,7 @@ public abstract class FileSHA256 {
             } catch (Throwable th) {
                 th = th;
                 r1 = 0;
-                a.a((InputStream) r1);
+                C2550a.m7889a((InputStream) r1);
                 throw th;
             }
             try {
@@ -81,28 +82,28 @@ public abstract class FileSHA256 {
                     z = true;
                 }
                 r0 = z ? HexUtil.byteArray2HexStr(messageDigest.digest()) : null;
-                a.a((InputStream) fileInputStream);
+                C2550a.m7889a((InputStream) fileInputStream);
             } catch (IOException e4) {
                 e = e4;
-                b.b(f7461c, "IOException" + e.getMessage());
-                a.a((InputStream) fileInputStream);
+                C2551b.m7898b(f8038c, "IOException" + e.getMessage());
+                C2550a.m7889a((InputStream) fileInputStream);
                 return r0;
             } catch (NoSuchAlgorithmException e5) {
                 e = e5;
-                b.b(f7461c, "NoSuchAlgorithmException" + e.getMessage());
-                a.a((InputStream) fileInputStream);
+                C2551b.m7898b(f8038c, "NoSuchAlgorithmException" + e.getMessage());
+                C2550a.m7889a((InputStream) fileInputStream);
                 return r0;
             }
             return r0;
         } catch (Throwable th2) {
             th = th2;
-            a.a((InputStream) r1);
+            C2550a.m7889a((InputStream) r1);
             throw th;
         }
     }
 
     public static String inputStreamSHA256Encrypt(InputStream inputStream) {
-        return inputStream == null ? "" : inputStreamSHAEncrypt(inputStream, f7460b);
+        return inputStream == null ? "" : inputStreamSHAEncrypt(inputStream, f8037b);
     }
 
     public static String inputStreamSHAEncrypt(InputStream inputStream, String str) {
@@ -122,18 +123,18 @@ public abstract class FileSHA256 {
                 }
             }
         } catch (IOException | NoSuchAlgorithmException unused) {
-            b.b(f7461c, "inputstraem exception");
+            C2551b.m7898b(f8038c, "inputstraem exception");
             return "";
         } finally {
-            a.a(inputStream);
+            C2550a.m7889a(inputStream);
         }
     }
 
     public static boolean validateFileSHA(File file, String str, String str2) {
-        if (!TextUtils.isEmpty(str) && a(str2)) {
+        if (!TextUtils.isEmpty(str) && m7849a(str2)) {
             return str.equals(fileSHAEncrypt(file, str2));
         }
-        b.b(f7461c, "hash value is null || algorithm is illegal");
+        C2551b.m7898b(f8038c, "hash value is null || algorithm is illegal");
         return false;
     }
 
@@ -145,10 +146,10 @@ public abstract class FileSHA256 {
     }
 
     public static boolean validateInputStreamSHA(InputStream inputStream, String str, String str2) {
-        if (!TextUtils.isEmpty(str) && a(str2)) {
+        if (!TextUtils.isEmpty(str) && m7849a(str2)) {
             return str.equals(inputStreamSHAEncrypt(inputStream, str2));
         }
-        b.b(f7461c, "hash value is null || algorithm is illegal");
+        C2551b.m7898b(f8038c, "hash value is null || algorithm is illegal");
         return false;
     }
 
@@ -159,8 +160,9 @@ public abstract class FileSHA256 {
         return str.equals(inputStreamSHA256Encrypt(inputStream));
     }
 
-    private static boolean a(String str) {
-        for (String str2 : f7463e) {
+    /* renamed from: a */
+    private static boolean m7849a(String str) {
+        for (String str2 : f8040e) {
             if (str2.equals(str)) {
                 return true;
             }

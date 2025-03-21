@@ -1,6 +1,5 @@
 package okhttp3.internal.cache;
 
-import c.c.a.b.a.a;
 import java.io.Closeable;
 import java.io.EOFException;
 import java.io.File;
@@ -19,13 +18,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import okhttp3.internal.Util;
-import okhttp3.internal.io.FileSystem;
+import okhttp3.internal.p385io.FileSystem;
 import okhttp3.internal.platform.Platform;
 import okio.BufferedSink;
 import okio.BufferedSource;
 import okio.Okio;
 import okio.Sink;
 import okio.Source;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes2.dex */
 public final class DiskLruCache implements Closeable, Flushable {
@@ -424,7 +424,7 @@ public final class DiskLruCache implements Closeable, Flushable {
             this.lruEntries.put(substring, entry);
         }
         if (indexOf2 != -1 && indexOf == 5 && str.startsWith(CLEAN)) {
-            String[] split = str.substring(indexOf2 + 1).split(a.f3100g);
+            String[] split = str.substring(indexOf2 + 1).split(AbstractC1191a.f2568g);
             entry.readable = true;
             entry.currentEditor = null;
             entry.setLengths(split);

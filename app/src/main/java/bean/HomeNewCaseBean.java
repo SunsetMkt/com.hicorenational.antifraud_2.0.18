@@ -22,7 +22,9 @@ public class HomeNewCaseBean extends BaseBean {
         private String createTime;
         private String description;
         private String icon;
-        private String id;
+
+        /* renamed from: id */
+        private String f1599id;
         private int isTop;
         private List<String> keyWord;
         private String localFilePath;
@@ -86,7 +88,7 @@ public class HomeNewCaseBean extends BaseBean {
         }
 
         public String getId() {
-            return this.id;
+            return this.f1599id;
         }
 
         public int getIsTop() {
@@ -190,7 +192,7 @@ public class HomeNewCaseBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f1599id = str;
         }
 
         public void setIsTop(int i2) {

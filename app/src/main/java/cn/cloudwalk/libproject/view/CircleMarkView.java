@@ -1,5 +1,6 @@
 package cn.cloudwalk.libproject.view;
 
+import android.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -9,7 +10,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import cn.cloudwalk.libproject.R;
+import cn.cloudwalk.libproject.C1241R;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -180,16 +181,16 @@ public class CircleMarkView extends View {
     }
 
     private void initAttrs(AttributeSet attributeSet, int i2, int i3) {
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.CircleMarkView, i2, i3);
-        this.lineHeight = obtainStyledAttributes.getDimensionPixelSize(R.styleable.CircleMarkView_line_height, 14);
-        this.arcColor = obtainStyledAttributes.getColor(R.styleable.CircleMarkView_arc_color, getResources().getColor(R.color.color_f44e58));
+        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C1241R.styleable.CircleMarkView, i2, i3);
+        this.lineHeight = obtainStyledAttributes.getDimensionPixelSize(C1241R.styleable.CircleMarkView_line_height, 14);
+        this.arcColor = obtainStyledAttributes.getColor(C1241R.styleable.CircleMarkView_arc_color, getResources().getColor(C1241R.color.color_f44e58));
         obtainStyledAttributes.recycle();
     }
 
     private void initView() {
-        this.color_gray = getResources().getColor(R.color.color_a0a0a0);
-        this.color_blue = getResources().getColor(R.color.color_44d7b6);
-        this.color_white = getResources().getColor(android.R.color.white);
+        this.color_gray = getResources().getColor(C1241R.color.color_a0a0a0);
+        this.color_blue = getResources().getColor(C1241R.color.color_44d7b6);
+        this.color_white = getResources().getColor(R.color.white);
         this.linePaint = new Paint();
         this.linePaint.setStrokeWidth(6.0f);
         this.linePaint.setAntiAlias(true);

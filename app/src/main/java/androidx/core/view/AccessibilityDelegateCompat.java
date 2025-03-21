@@ -11,7 +11,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.core.R;
+import androidx.core.C0475R;
 import androidx.core.view.accessibility.AccessibilityClickableSpanCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityNodeProviderCompat;
@@ -97,7 +97,7 @@ public class AccessibilityDelegateCompat {
     }
 
     static List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> getActionList(View view) {
-        List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> list = (List) view.getTag(R.id.tag_accessibility_actions);
+        List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> list = (List) view.getTag(C0475R.id.tag_accessibility_actions);
         return list == null ? Collections.emptyList() : list;
     }
 
@@ -115,7 +115,7 @@ public class AccessibilityDelegateCompat {
 
     private boolean performClickableSpanAction(int i2, View view) {
         WeakReference weakReference;
-        SparseArray sparseArray = (SparseArray) view.getTag(R.id.tag_accessibility_clickable_spans);
+        SparseArray sparseArray = (SparseArray) view.getTag(C0475R.id.tag_accessibility_clickable_spans);
         if (sparseArray == null || (weakReference = (WeakReference) sparseArray.get(i2)) == null) {
             return false;
         }
@@ -177,7 +177,7 @@ public class AccessibilityDelegateCompat {
         if (!z && Build.VERSION.SDK_INT >= 16) {
             z = this.mOriginalDelegate.performAccessibilityAction(view, i2, bundle);
         }
-        return (z || i2 != R.id.accessibility_action_clickable_span) ? z : performClickableSpanAction(bundle.getInt(AccessibilityClickableSpanCompat.SPAN_ID, -1), view);
+        return (z || i2 != C0475R.id.accessibility_action_clickable_span) ? z : performClickableSpanAction(bundle.getInt(AccessibilityClickableSpanCompat.SPAN_ID, -1), view);
     }
 
     public void sendAccessibilityEvent(View view, int i2) {

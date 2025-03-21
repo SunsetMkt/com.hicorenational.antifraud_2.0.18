@@ -37,7 +37,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.UiThread;
 import androidx.collection.SimpleArrayMap;
-import androidx.core.R;
+import androidx.core.C0475R;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityNodeProviderCompat;
@@ -126,7 +126,7 @@ public class ViewCompat {
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
     private static WeakHashMap<View, ViewPropertyAnimatorCompat> sViewPropertyAnimatorMap = null;
     private static boolean sAccessibilityDelegateCheckFailed = false;
-    private static final int[] ACCESSIBILITY_ACTIONS_RESOURCE_IDS = {R.id.accessibility_custom_action_0, R.id.accessibility_custom_action_1, R.id.accessibility_custom_action_2, R.id.accessibility_custom_action_3, R.id.accessibility_custom_action_4, R.id.accessibility_custom_action_5, R.id.accessibility_custom_action_6, R.id.accessibility_custom_action_7, R.id.accessibility_custom_action_8, R.id.accessibility_custom_action_9, R.id.accessibility_custom_action_10, R.id.accessibility_custom_action_11, R.id.accessibility_custom_action_12, R.id.accessibility_custom_action_13, R.id.accessibility_custom_action_14, R.id.accessibility_custom_action_15, R.id.accessibility_custom_action_16, R.id.accessibility_custom_action_17, R.id.accessibility_custom_action_18, R.id.accessibility_custom_action_19, R.id.accessibility_custom_action_20, R.id.accessibility_custom_action_21, R.id.accessibility_custom_action_22, R.id.accessibility_custom_action_23, R.id.accessibility_custom_action_24, R.id.accessibility_custom_action_25, R.id.accessibility_custom_action_26, R.id.accessibility_custom_action_27, R.id.accessibility_custom_action_28, R.id.accessibility_custom_action_29, R.id.accessibility_custom_action_30, R.id.accessibility_custom_action_31};
+    private static final int[] ACCESSIBILITY_ACTIONS_RESOURCE_IDS = {C0475R.id.accessibility_custom_action_0, C0475R.id.accessibility_custom_action_1, C0475R.id.accessibility_custom_action_2, C0475R.id.accessibility_custom_action_3, C0475R.id.accessibility_custom_action_4, C0475R.id.accessibility_custom_action_5, C0475R.id.accessibility_custom_action_6, C0475R.id.accessibility_custom_action_7, C0475R.id.accessibility_custom_action_8, C0475R.id.accessibility_custom_action_9, C0475R.id.accessibility_custom_action_10, C0475R.id.accessibility_custom_action_11, C0475R.id.accessibility_custom_action_12, C0475R.id.accessibility_custom_action_13, C0475R.id.accessibility_custom_action_14, C0475R.id.accessibility_custom_action_15, C0475R.id.accessibility_custom_action_16, C0475R.id.accessibility_custom_action_17, C0475R.id.accessibility_custom_action_18, C0475R.id.accessibility_custom_action_19, C0475R.id.accessibility_custom_action_20, C0475R.id.accessibility_custom_action_21, C0475R.id.accessibility_custom_action_22, C0475R.id.accessibility_custom_action_23, C0475R.id.accessibility_custom_action_24, C0475R.id.accessibility_custom_action_25, C0475R.id.accessibility_custom_action_26, C0475R.id.accessibility_custom_action_27, C0475R.id.accessibility_custom_action_28, C0475R.id.accessibility_custom_action_29, C0475R.id.accessibility_custom_action_30, C0475R.id.accessibility_custom_action_31};
     private static AccessibilityPaneVisibilityManager sAccessibilityPaneVisibilityManager = new AccessibilityPaneVisibilityManager();
 
     static class AccessibilityPaneVisibilityManager implements ViewTreeObserver.OnGlobalLayoutListener, View.OnAttachStateChangeListener {
@@ -331,13 +331,14 @@ public class ViewCompat {
         UnhandledKeyEventManager() {
         }
 
-        static UnhandledKeyEventManager at(View view) {
-            UnhandledKeyEventManager unhandledKeyEventManager = (UnhandledKeyEventManager) view.getTag(R.id.tag_unhandled_key_event_manager);
+        /* renamed from: at */
+        static UnhandledKeyEventManager m392at(View view) {
+            UnhandledKeyEventManager unhandledKeyEventManager = (UnhandledKeyEventManager) view.getTag(C0475R.id.tag_unhandled_key_event_manager);
             if (unhandledKeyEventManager != null) {
                 return unhandledKeyEventManager;
             }
             UnhandledKeyEventManager unhandledKeyEventManager2 = new UnhandledKeyEventManager();
-            view.setTag(R.id.tag_unhandled_key_event_manager, unhandledKeyEventManager2);
+            view.setTag(C0475R.id.tag_unhandled_key_event_manager, unhandledKeyEventManager2);
             return unhandledKeyEventManager2;
         }
 
@@ -369,7 +370,7 @@ public class ViewCompat {
         }
 
         private boolean onUnhandledKeyEvent(@NonNull View view, @NonNull KeyEvent keyEvent) {
-            ArrayList arrayList = (ArrayList) view.getTag(R.id.tag_unhandled_key_listeners);
+            ArrayList arrayList = (ArrayList) view.getTag(C0475R.id.tag_unhandled_key_listeners);
             if (arrayList == null) {
                 return false;
             }
@@ -475,7 +476,7 @@ public class ViewCompat {
     }
 
     private static AccessibilityViewProperty<Boolean> accessibilityHeadingProperty() {
-        return new AccessibilityViewProperty<Boolean>(R.id.tag_accessibility_heading, Boolean.class, 28) { // from class: androidx.core.view.ViewCompat.5
+        return new AccessibilityViewProperty<Boolean>(C0475R.id.tag_accessibility_heading, Boolean.class, 28) { // from class: androidx.core.view.ViewCompat.5
             /* JADX INFO: Access modifiers changed from: package-private */
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
@@ -515,10 +516,10 @@ public class ViewCompat {
 
     public static void addOnUnhandledKeyEventListener(@NonNull View view, @NonNull final OnUnhandledKeyEventListenerCompat onUnhandledKeyEventListenerCompat) {
         if (Build.VERSION.SDK_INT >= 28) {
-            SimpleArrayMap simpleArrayMap = (SimpleArrayMap) view.getTag(R.id.tag_unhandled_key_listeners);
+            SimpleArrayMap simpleArrayMap = (SimpleArrayMap) view.getTag(C0475R.id.tag_unhandled_key_listeners);
             if (simpleArrayMap == null) {
                 simpleArrayMap = new SimpleArrayMap();
-                view.setTag(R.id.tag_unhandled_key_listeners, simpleArrayMap);
+                view.setTag(C0475R.id.tag_unhandled_key_listeners, simpleArrayMap);
             }
             View.OnUnhandledKeyEventListener onUnhandledKeyEventListener = new View.OnUnhandledKeyEventListener() { // from class: androidx.core.view.ViewCompat.2
                 @Override // android.view.View.OnUnhandledKeyEventListener
@@ -530,10 +531,10 @@ public class ViewCompat {
             view.addOnUnhandledKeyEventListener(onUnhandledKeyEventListener);
             return;
         }
-        ArrayList arrayList = (ArrayList) view.getTag(R.id.tag_unhandled_key_listeners);
+        ArrayList arrayList = (ArrayList) view.getTag(C0475R.id.tag_unhandled_key_listeners);
         if (arrayList == null) {
             arrayList = new ArrayList();
-            view.setTag(R.id.tag_unhandled_key_listeners, arrayList);
+            view.setTag(C0475R.id.tag_unhandled_key_listeners, arrayList);
         }
         arrayList.add(onUnhandledKeyEventListenerCompat);
         if (arrayList.size() == 1) {
@@ -705,7 +706,7 @@ public class ViewCompat {
         if (Build.VERSION.SDK_INT >= 28) {
             return false;
         }
-        return UnhandledKeyEventManager.at(view).dispatch(view, keyEvent);
+        return UnhandledKeyEventManager.m392at(view).dispatch(view, keyEvent);
     }
 
     @UiThread
@@ -713,7 +714,7 @@ public class ViewCompat {
         if (Build.VERSION.SDK_INT >= 28) {
             return false;
         }
-        return UnhandledKeyEventManager.at(view).preDispatch(keyEvent);
+        return UnhandledKeyEventManager.m392at(view).preDispatch(keyEvent);
     }
 
     public static void enableAccessibleClickableSpanSupport(View view) {
@@ -799,12 +800,12 @@ public class ViewCompat {
     }
 
     private static List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> getActionList(View view) {
-        ArrayList arrayList = (ArrayList) view.getTag(R.id.tag_accessibility_actions);
+        ArrayList arrayList = (ArrayList) view.getTag(C0475R.id.tag_accessibility_actions);
         if (arrayList != null) {
             return arrayList;
         }
         ArrayList arrayList2 = new ArrayList();
-        view.setTag(R.id.tag_accessibility_actions, arrayList2);
+        view.setTag(C0475R.id.tag_accessibility_actions, arrayList2);
         return arrayList2;
     }
 
@@ -1386,7 +1387,7 @@ public class ViewCompat {
     }
 
     private static AccessibilityViewProperty<CharSequence> paneTitleProperty() {
-        return new AccessibilityViewProperty<CharSequence>(R.id.tag_accessibility_pane_title, CharSequence.class, 8, 28) { // from class: androidx.core.view.ViewCompat.4
+        return new AccessibilityViewProperty<CharSequence>(C0475R.id.tag_accessibility_pane_title, CharSequence.class, 8, 28) { // from class: androidx.core.view.ViewCompat.4
             /* JADX INFO: Access modifiers changed from: package-private */
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
@@ -1461,14 +1462,14 @@ public class ViewCompat {
     public static void removeOnUnhandledKeyEventListener(@NonNull View view, @NonNull OnUnhandledKeyEventListenerCompat onUnhandledKeyEventListenerCompat) {
         View.OnUnhandledKeyEventListener onUnhandledKeyEventListener;
         if (Build.VERSION.SDK_INT >= 28) {
-            SimpleArrayMap simpleArrayMap = (SimpleArrayMap) view.getTag(R.id.tag_unhandled_key_listeners);
+            SimpleArrayMap simpleArrayMap = (SimpleArrayMap) view.getTag(C0475R.id.tag_unhandled_key_listeners);
             if (simpleArrayMap == null || (onUnhandledKeyEventListener = (View.OnUnhandledKeyEventListener) simpleArrayMap.get(onUnhandledKeyEventListenerCompat)) == null) {
                 return;
             }
             view.removeOnUnhandledKeyEventListener(onUnhandledKeyEventListener);
             return;
         }
-        ArrayList arrayList = (ArrayList) view.getTag(R.id.tag_unhandled_key_listeners);
+        ArrayList arrayList = (ArrayList) view.getTag(C0475R.id.tag_unhandled_key_listeners);
         if (arrayList != null) {
             arrayList.remove(onUnhandledKeyEventListenerCompat);
             if (arrayList.size() == 0) {
@@ -1522,7 +1523,7 @@ public class ViewCompat {
     }
 
     private static AccessibilityViewProperty<Boolean> screenReaderFocusableProperty() {
-        return new AccessibilityViewProperty<Boolean>(R.id.tag_screen_reader_focusable, Boolean.class, 28) { // from class: androidx.core.view.ViewCompat.3
+        return new AccessibilityViewProperty<Boolean>(C0475R.id.tag_screen_reader_focusable, Boolean.class, 28) { // from class: androidx.core.view.ViewCompat.3
             /* JADX INFO: Access modifiers changed from: package-private */
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
@@ -1582,7 +1583,7 @@ public class ViewCompat {
     }
 
     @Deprecated
-    public static void setAlpha(View view, @FloatRange(from = 0.0d, to = 1.0d) float f2) {
+    public static void setAlpha(View view, @FloatRange(from = 0.0d, m293to = 1.0d) float f2) {
         view.setAlpha(f2);
     }
 

@@ -126,7 +126,7 @@ public final class CaptureConfig {
                     ((MultiValueSet) retrieveOption).addAll(((MultiValueSet) retrieveOption2).getAllItems());
                 } else {
                     if (retrieveOption2 instanceof MultiValueSet) {
-                        retrieveOption2 = ((MultiValueSet) retrieveOption2).mo0clone();
+                        retrieveOption2 = ((MultiValueSet) retrieveOption2).mo26841clone();
                     }
                     this.mImplementationOptions.insertOption(option, retrieveOption2);
                 }

@@ -2,9 +2,6 @@ package okhttp3.internal;
 
 import android.support.v4.media.session.PlaybackStateCompat;
 import com.xiaomi.mipush.sdk.Constants;
-import h.f1;
-import h.q2.t.m0;
-import i.a.a.a.c;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -40,6 +37,9 @@ import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
 import okio.Source;
+import p286h.C5230f1;
+import p286h.p309q2.p311t.C5556m0;
+import p324i.p325a.p326a.p327a.C5758c;
 
 /* loaded from: classes2.dex */
 public final class Util {
@@ -55,9 +55,9 @@ public final class Util {
     private static final ByteString UTF_32_BE_BOM = ByteString.decodeHex("0000ffff");
     private static final ByteString UTF_32_LE_BOM = ByteString.decodeHex("ffff0000");
     public static final Charset UTF_8 = Charset.forName("UTF-8");
-    public static final Charset ISO_8859_1 = Charset.forName(c.f16729a);
-    private static final Charset UTF_16_BE = Charset.forName(c.f16732d);
-    private static final Charset UTF_16_LE = Charset.forName(c.f16733e);
+    public static final Charset ISO_8859_1 = Charset.forName(C5758c.f20750a);
+    private static final Charset UTF_16_BE = Charset.forName(C5758c.f20753d);
+    private static final Charset UTF_16_LE = Charset.forName(C5758c.f20754e);
     private static final Charset UTF_32_BE = Charset.forName("UTF-32BE");
     private static final Charset UTF_32_LE = Charset.forName("UTF-32LE");
     public static final TimeZone UTC = TimeZone.getTimeZone("GMT");
@@ -469,7 +469,7 @@ public final class Util {
                 if (i2 > 0) {
                     buffer.writeByte(58);
                 }
-                buffer.writeHexadecimalUnsignedLong(((bArr[i2] & f1.f16099c) << 8) | (bArr[i2 + 1] & f1.f16099c));
+                buffer.writeHexadecimalUnsignedLong(((bArr[i2] & C5230f1.f20085c) << 8) | (bArr[i2 + 1] & C5230f1.f20085c));
                 i2 += 2;
             }
         }
@@ -535,21 +535,21 @@ public final class Util {
             while (source.read(buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) != -1) {
                 buffer.clear();
             }
-            if (deadlineNanoTime == m0.f16408b) {
+            if (deadlineNanoTime == C5556m0.f20396b) {
                 source.timeout().clearDeadline();
             } else {
                 source.timeout().deadlineNanoTime(nanoTime + deadlineNanoTime);
             }
             return true;
         } catch (InterruptedIOException unused) {
-            if (deadlineNanoTime == m0.f16408b) {
+            if (deadlineNanoTime == C5556m0.f20396b) {
                 source.timeout().clearDeadline();
             } else {
                 source.timeout().deadlineNanoTime(nanoTime + deadlineNanoTime);
             }
             return false;
         } catch (Throwable th) {
-            if (deadlineNanoTime == m0.f16408b) {
+            if (deadlineNanoTime == C5556m0.f20396b) {
                 source.timeout().clearDeadline();
             } else {
                 source.timeout().deadlineNanoTime(nanoTime + deadlineNanoTime);

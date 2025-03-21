@@ -2,19 +2,9 @@ package okio.internal;
 
 import androidx.exifinterface.media.ExifInterface;
 import anet.channel.strategy.dispatch.DispatchConstants;
-import com.heytap.mcssdk.constant.a;
-import com.umeng.analytics.pro.bh;
-import com.umeng.analytics.pro.cw;
-import h.f1;
-import h.g2.q;
-import h.q2.s.p;
-import h.q2.t.i0;
-import h.q2.t.m0;
-import h.q2.t.n;
-import h.y;
-import h.z2.h0;
-import i.c.a.d;
-import i.c.a.e;
+import com.heytap.mcssdk.constant.C2084a;
+import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.C3393cw;
 import java.io.EOFException;
 import okio.Buffer;
 import okio.ByteString;
@@ -27,50 +17,60 @@ import okio.Sink;
 import okio.Source;
 import okio.Utf8;
 import okio.Util;
+import p286h.C5230f1;
+import p286h.InterfaceC5713y;
+import p286h.p289g2.C5291q;
+import p286h.p309q2.p310s.InterfaceC5510p;
+import p286h.p309q2.p311t.C5544i0;
+import p286h.p309q2.p311t.C5556m0;
+import p286h.p309q2.p311t.C5558n;
+import p286h.p323z2.C5736h0;
+import p324i.p336c.p337a.InterfaceC5816d;
+import p324i.p336c.p337a.InterfaceC5817e;
 
 /* compiled from: Buffer.kt */
-@y(bv = {1, 0, 3}, d1 = {"\u0000v\n\u0000\n\u0002\u0010\u0012\n\u0002\b\u0003\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u0005\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0010\n\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0015\n\u0002\u0018\u0002\n\u0002\b\u0004\u001a0\u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\f2\u0006\u0010\r\u001a\u00020\b2\u0006\u0010\u000e\u001a\u00020\u00012\u0006\u0010\u000f\u001a\u00020\b2\u0006\u0010\u0010\u001a\u00020\bH\u0000\u001a\r\u0010\u0011\u001a\u00020\u0012*\u00020\u0013H\u0080\b\u001a\r\u0010\u0014\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\r\u0010\u0015\u001a\u00020\u0013*\u00020\u0013H\u0080\b\u001a%\u0010\u0016\u001a\u00020\u0013*\u00020\u00132\u0006\u0010\u0017\u001a\u00020\u00132\u0006\u0010\u0018\u001a\u00020\u00052\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\u0017\u0010\u001a\u001a\u00020\n*\u00020\u00132\b\u0010\u001b\u001a\u0004\u0018\u00010\u001cH\u0080\b\u001a\u0015\u0010\u001d\u001a\u00020\u001e*\u00020\u00132\u0006\u0010\u001f\u001a\u00020\u0005H\u0080\b\u001a\r\u0010 \u001a\u00020\b*\u00020\u0013H\u0080\b\u001a%\u0010!\u001a\u00020\u0005*\u00020\u00132\u0006\u0010\"\u001a\u00020\u001e2\u0006\u0010#\u001a\u00020\u00052\u0006\u0010$\u001a\u00020\u0005H\u0080\b\u001a\u001d\u0010!\u001a\u00020\u0005*\u00020\u00132\u0006\u0010\u000e\u001a\u00020%2\u0006\u0010#\u001a\u00020\u0005H\u0080\b\u001a\u001d\u0010&\u001a\u00020\u0005*\u00020\u00132\u0006\u0010'\u001a\u00020%2\u0006\u0010#\u001a\u00020\u0005H\u0080\b\u001a-\u0010(\u001a\u00020\n*\u00020\u00132\u0006\u0010\u0018\u001a\u00020\u00052\u0006\u0010\u000e\u001a\u00020%2\u0006\u0010\u000f\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u0015\u0010)\u001a\u00020\b*\u00020\u00132\u0006\u0010*\u001a\u00020\u0001H\u0080\b\u001a%\u0010)\u001a\u00020\b*\u00020\u00132\u0006\u0010*\u001a\u00020\u00012\u0006\u0010\u0018\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u001d\u0010)\u001a\u00020\u0005*\u00020\u00132\u0006\u0010*\u001a\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010+\u001a\u00020\u0005*\u00020\u00132\u0006\u0010*\u001a\u00020,H\u0080\b\u001a\r\u0010-\u001a\u00020\u001e*\u00020\u0013H\u0080\b\u001a\r\u0010.\u001a\u00020\u0001*\u00020\u0013H\u0080\b\u001a\u0015\u0010.\u001a\u00020\u0001*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u0010/\u001a\u00020%*\u00020\u0013H\u0080\b\u001a\u0015\u0010/\u001a\u00020%*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u00100\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\u0015\u00101\u001a\u00020\u0012*\u00020\u00132\u0006\u0010*\u001a\u00020\u0001H\u0080\b\u001a\u001d\u00101\u001a\u00020\u0012*\u00020\u00132\u0006\u0010*\u001a\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u00102\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\r\u00103\u001a\u00020\b*\u00020\u0013H\u0080\b\u001a\r\u00104\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\r\u00105\u001a\u000206*\u00020\u0013H\u0080\b\u001a\u0015\u00107\u001a\u000208*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u00109\u001a\u00020\b*\u00020\u0013H\u0080\b\u001a\u000f\u0010:\u001a\u0004\u0018\u000108*\u00020\u0013H\u0080\b\u001a\u0015\u0010;\u001a\u000208*\u00020\u00132\u0006\u0010<\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010=\u001a\u00020\b*\u00020\u00132\u0006\u0010>\u001a\u00020?H\u0080\b\u001a\u0015\u0010@\u001a\u00020\u0012*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u0010A\u001a\u00020%*\u00020\u0013H\u0080\b\u001a\u0015\u0010A\u001a\u00020%*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u0015\u0010B\u001a\u00020\f*\u00020\u00132\u0006\u0010C\u001a\u00020\bH\u0080\b\u001a\u0015\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010E\u001a\u00020\u0001H\u0080\b\u001a%\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010E\u001a\u00020\u00012\u0006\u0010\u0018\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u001d\u0010D\u001a\u00020\u0012*\u00020\u00132\u0006\u0010E\u001a\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a)\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010F\u001a\u00020%2\b\b\u0002\u0010\u0018\u001a\u00020\b2\b\b\u0002\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u001d\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010E\u001a\u00020G2\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010H\u001a\u00020\u0005*\u00020\u00132\u0006\u0010E\u001a\u00020GH\u0080\b\u001a\u0015\u0010I\u001a\u00020\u0013*\u00020\u00132\u0006\u0010\"\u001a\u00020\bH\u0080\b\u001a\u0015\u0010J\u001a\u00020\u0013*\u00020\u00132\u0006\u0010K\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010L\u001a\u00020\u0013*\u00020\u00132\u0006\u0010K\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010M\u001a\u00020\u0013*\u00020\u00132\u0006\u0010N\u001a\u00020\bH\u0080\b\u001a\u0015\u0010O\u001a\u00020\u0013*\u00020\u00132\u0006\u0010K\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010P\u001a\u00020\u0013*\u00020\u00132\u0006\u0010Q\u001a\u00020\bH\u0080\b\u001a%\u0010R\u001a\u00020\u0013*\u00020\u00132\u0006\u0010S\u001a\u0002082\u0006\u0010T\u001a\u00020\b2\u0006\u0010U\u001a\u00020\bH\u0080\b\u001a\u0015\u0010V\u001a\u00020\u0013*\u00020\u00132\u0006\u0010W\u001a\u00020\bH\u0080\b\u001a\u0014\u0010X\u001a\u000208*\u00020\u00132\u0006\u0010Y\u001a\u00020\u0005H\u0000\u001a<\u0010Z\u001a\u0002H[\"\u0004\b\u0000\u0010[*\u00020\u00132\u0006\u0010#\u001a\u00020\u00052\u001a\u0010\\\u001a\u0016\u0012\u0006\u0012\u0004\u0018\u00010\f\u0012\u0004\u0012\u00020\u0005\u0012\u0004\u0012\u0002H[0]H\u0080\b¢\u0006\u0002\u0010^\u001a\u001e\u0010_\u001a\u00020\b*\u00020\u00132\u0006\u0010>\u001a\u00020?2\b\b\u0002\u0010`\u001a\u00020\nH\u0000\"\u0014\u0010\u0000\u001a\u00020\u0001X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0002\u0010\u0003\"\u000e\u0010\u0004\u001a\u00020\u0005X\u0080T¢\u0006\u0002\n\u0000\"\u000e\u0010\u0006\u001a\u00020\u0005X\u0080T¢\u0006\u0002\n\u0000\"\u000e\u0010\u0007\u001a\u00020\bX\u0080T¢\u0006\u0002\n\u0000¨\u0006a"}, d2 = {"HEX_DIGIT_BYTES", "", "getHEX_DIGIT_BYTES", "()[B", "OVERFLOW_DIGIT_START", "", "OVERFLOW_ZONE", "SEGMENTING_THRESHOLD", "", "rangeEquals", "", "segment", "Lokio/Segment;", "segmentPos", "bytes", "bytesOffset", "bytesLimit", "commonClear", "", "Lokio/Buffer;", "commonCompleteSegmentByteCount", "commonCopy", "commonCopyTo", "out", "offset", "byteCount", "commonEquals", DispatchConstants.OTHER, "", "commonGet", "", "pos", "commonHashCode", "commonIndexOf", "b", "fromIndex", "toIndex", "Lokio/ByteString;", "commonIndexOfElement", "targetBytes", "commonRangeEquals", "commonRead", "sink", "commonReadAll", "Lokio/Sink;", "commonReadByte", "commonReadByteArray", "commonReadByteString", "commonReadDecimalLong", "commonReadFully", "commonReadHexadecimalUnsignedLong", "commonReadInt", "commonReadLong", "commonReadShort", "", "commonReadUtf8", "", "commonReadUtf8CodePoint", "commonReadUtf8Line", "commonReadUtf8LineStrict", "limit", "commonSelect", "options", "Lokio/Options;", "commonSkip", "commonSnapshot", "commonWritableSegment", "minimumCapacity", "commonWrite", "source", "byteString", "Lokio/Source;", "commonWriteAll", "commonWriteByte", "commonWriteDecimalLong", "v", "commonWriteHexadecimalUnsignedLong", "commonWriteInt", bh.aF, "commonWriteLong", "commonWriteShort", bh.aE, "commonWriteUtf8", "string", "beginIndex", "endIndex", "commonWriteUtf8CodePoint", "codePoint", "readUtf8Line", "newline", "seek", ExifInterface.GPS_DIRECTION_TRUE, "lambda", "Lkotlin/Function2;", "(Lokio/Buffer;JLkotlin/jvm/functions/Function2;)Ljava/lang/Object;", "selectPrefix", "selectTruncated", "okio"}, k = 2, mv = {1, 1, 16})
+@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000v\n\u0000\n\u0002\u0010\u0012\n\u0002\b\u0003\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u0005\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0010\n\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0015\n\u0002\u0018\u0002\n\u0002\b\u0004\u001a0\u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\f2\u0006\u0010\r\u001a\u00020\b2\u0006\u0010\u000e\u001a\u00020\u00012\u0006\u0010\u000f\u001a\u00020\b2\u0006\u0010\u0010\u001a\u00020\bH\u0000\u001a\r\u0010\u0011\u001a\u00020\u0012*\u00020\u0013H\u0080\b\u001a\r\u0010\u0014\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\r\u0010\u0015\u001a\u00020\u0013*\u00020\u0013H\u0080\b\u001a%\u0010\u0016\u001a\u00020\u0013*\u00020\u00132\u0006\u0010\u0017\u001a\u00020\u00132\u0006\u0010\u0018\u001a\u00020\u00052\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\u0017\u0010\u001a\u001a\u00020\n*\u00020\u00132\b\u0010\u001b\u001a\u0004\u0018\u00010\u001cH\u0080\b\u001a\u0015\u0010\u001d\u001a\u00020\u001e*\u00020\u00132\u0006\u0010\u001f\u001a\u00020\u0005H\u0080\b\u001a\r\u0010 \u001a\u00020\b*\u00020\u0013H\u0080\b\u001a%\u0010!\u001a\u00020\u0005*\u00020\u00132\u0006\u0010\"\u001a\u00020\u001e2\u0006\u0010#\u001a\u00020\u00052\u0006\u0010$\u001a\u00020\u0005H\u0080\b\u001a\u001d\u0010!\u001a\u00020\u0005*\u00020\u00132\u0006\u0010\u000e\u001a\u00020%2\u0006\u0010#\u001a\u00020\u0005H\u0080\b\u001a\u001d\u0010&\u001a\u00020\u0005*\u00020\u00132\u0006\u0010'\u001a\u00020%2\u0006\u0010#\u001a\u00020\u0005H\u0080\b\u001a-\u0010(\u001a\u00020\n*\u00020\u00132\u0006\u0010\u0018\u001a\u00020\u00052\u0006\u0010\u000e\u001a\u00020%2\u0006\u0010\u000f\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u0015\u0010)\u001a\u00020\b*\u00020\u00132\u0006\u0010*\u001a\u00020\u0001H\u0080\b\u001a%\u0010)\u001a\u00020\b*\u00020\u00132\u0006\u0010*\u001a\u00020\u00012\u0006\u0010\u0018\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u001d\u0010)\u001a\u00020\u0005*\u00020\u00132\u0006\u0010*\u001a\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010+\u001a\u00020\u0005*\u00020\u00132\u0006\u0010*\u001a\u00020,H\u0080\b\u001a\r\u0010-\u001a\u00020\u001e*\u00020\u0013H\u0080\b\u001a\r\u0010.\u001a\u00020\u0001*\u00020\u0013H\u0080\b\u001a\u0015\u0010.\u001a\u00020\u0001*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u0010/\u001a\u00020%*\u00020\u0013H\u0080\b\u001a\u0015\u0010/\u001a\u00020%*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u00100\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\u0015\u00101\u001a\u00020\u0012*\u00020\u00132\u0006\u0010*\u001a\u00020\u0001H\u0080\b\u001a\u001d\u00101\u001a\u00020\u0012*\u00020\u00132\u0006\u0010*\u001a\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u00102\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\r\u00103\u001a\u00020\b*\u00020\u0013H\u0080\b\u001a\r\u00104\u001a\u00020\u0005*\u00020\u0013H\u0080\b\u001a\r\u00105\u001a\u000206*\u00020\u0013H\u0080\b\u001a\u0015\u00107\u001a\u000208*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u00109\u001a\u00020\b*\u00020\u0013H\u0080\b\u001a\u000f\u0010:\u001a\u0004\u0018\u000108*\u00020\u0013H\u0080\b\u001a\u0015\u0010;\u001a\u000208*\u00020\u00132\u0006\u0010<\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010=\u001a\u00020\b*\u00020\u00132\u0006\u0010>\u001a\u00020?H\u0080\b\u001a\u0015\u0010@\u001a\u00020\u0012*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\r\u0010A\u001a\u00020%*\u00020\u0013H\u0080\b\u001a\u0015\u0010A\u001a\u00020%*\u00020\u00132\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u0015\u0010B\u001a\u00020\f*\u00020\u00132\u0006\u0010C\u001a\u00020\bH\u0080\b\u001a\u0015\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010E\u001a\u00020\u0001H\u0080\b\u001a%\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010E\u001a\u00020\u00012\u0006\u0010\u0018\u001a\u00020\b2\u0006\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u001d\u0010D\u001a\u00020\u0012*\u00020\u00132\u0006\u0010E\u001a\u00020\u00132\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a)\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010F\u001a\u00020%2\b\b\u0002\u0010\u0018\u001a\u00020\b2\b\b\u0002\u0010\u0019\u001a\u00020\bH\u0080\b\u001a\u001d\u0010D\u001a\u00020\u0013*\u00020\u00132\u0006\u0010E\u001a\u00020G2\u0006\u0010\u0019\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010H\u001a\u00020\u0005*\u00020\u00132\u0006\u0010E\u001a\u00020GH\u0080\b\u001a\u0015\u0010I\u001a\u00020\u0013*\u00020\u00132\u0006\u0010\"\u001a\u00020\bH\u0080\b\u001a\u0015\u0010J\u001a\u00020\u0013*\u00020\u00132\u0006\u0010K\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010L\u001a\u00020\u0013*\u00020\u00132\u0006\u0010K\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010M\u001a\u00020\u0013*\u00020\u00132\u0006\u0010N\u001a\u00020\bH\u0080\b\u001a\u0015\u0010O\u001a\u00020\u0013*\u00020\u00132\u0006\u0010K\u001a\u00020\u0005H\u0080\b\u001a\u0015\u0010P\u001a\u00020\u0013*\u00020\u00132\u0006\u0010Q\u001a\u00020\bH\u0080\b\u001a%\u0010R\u001a\u00020\u0013*\u00020\u00132\u0006\u0010S\u001a\u0002082\u0006\u0010T\u001a\u00020\b2\u0006\u0010U\u001a\u00020\bH\u0080\b\u001a\u0015\u0010V\u001a\u00020\u0013*\u00020\u00132\u0006\u0010W\u001a\u00020\bH\u0080\b\u001a\u0014\u0010X\u001a\u000208*\u00020\u00132\u0006\u0010Y\u001a\u00020\u0005H\u0000\u001a<\u0010Z\u001a\u0002H[\"\u0004\b\u0000\u0010[*\u00020\u00132\u0006\u0010#\u001a\u00020\u00052\u001a\u0010\\\u001a\u0016\u0012\u0006\u0012\u0004\u0018\u00010\f\u0012\u0004\u0012\u00020\u0005\u0012\u0004\u0012\u0002H[0]H\u0080\b¢\u0006\u0002\u0010^\u001a\u001e\u0010_\u001a\u00020\b*\u00020\u00132\u0006\u0010>\u001a\u00020?2\b\b\u0002\u0010`\u001a\u00020\nH\u0000\"\u0014\u0010\u0000\u001a\u00020\u0001X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0002\u0010\u0003\"\u000e\u0010\u0004\u001a\u00020\u0005X\u0080T¢\u0006\u0002\n\u0000\"\u000e\u0010\u0006\u001a\u00020\u0005X\u0080T¢\u0006\u0002\n\u0000\"\u000e\u0010\u0007\u001a\u00020\bX\u0080T¢\u0006\u0002\n\u0000¨\u0006a"}, m23546d2 = {"HEX_DIGIT_BYTES", "", "getHEX_DIGIT_BYTES", "()[B", "OVERFLOW_DIGIT_START", "", "OVERFLOW_ZONE", "SEGMENTING_THRESHOLD", "", "rangeEquals", "", "segment", "Lokio/Segment;", "segmentPos", "bytes", "bytesOffset", "bytesLimit", "commonClear", "", "Lokio/Buffer;", "commonCompleteSegmentByteCount", "commonCopy", "commonCopyTo", "out", "offset", "byteCount", "commonEquals", DispatchConstants.OTHER, "", "commonGet", "", "pos", "commonHashCode", "commonIndexOf", "b", "fromIndex", "toIndex", "Lokio/ByteString;", "commonIndexOfElement", "targetBytes", "commonRangeEquals", "commonRead", "sink", "commonReadAll", "Lokio/Sink;", "commonReadByte", "commonReadByteArray", "commonReadByteString", "commonReadDecimalLong", "commonReadFully", "commonReadHexadecimalUnsignedLong", "commonReadInt", "commonReadLong", "commonReadShort", "", "commonReadUtf8", "", "commonReadUtf8CodePoint", "commonReadUtf8Line", "commonReadUtf8LineStrict", "limit", "commonSelect", "options", "Lokio/Options;", "commonSkip", "commonSnapshot", "commonWritableSegment", "minimumCapacity", "commonWrite", "source", "byteString", "Lokio/Source;", "commonWriteAll", "commonWriteByte", "commonWriteDecimalLong", "v", "commonWriteHexadecimalUnsignedLong", "commonWriteInt", C3351bh.f11581aF, "commonWriteLong", "commonWriteShort", C3351bh.f11580aE, "commonWriteUtf8", "string", "beginIndex", "endIndex", "commonWriteUtf8CodePoint", "codePoint", "readUtf8Line", "newline", "seek", ExifInterface.GPS_DIRECTION_TRUE, "lambda", "Lkotlin/Function2;", "(Lokio/Buffer;JLkotlin/jvm/functions/Function2;)Ljava/lang/Object;", "selectPrefix", "selectTruncated", "okio"}, m23547k = 2, m23548mv = {1, 1, 16})
 /* loaded from: classes2.dex */
 public final class BufferKt {
 
-    @d
+    @InterfaceC5816d
     private static final byte[] HEX_DIGIT_BYTES = Platform.asUtf8ToByteArray("0123456789abcdef");
     public static final long OVERFLOW_DIGIT_START = -7;
     public static final long OVERFLOW_ZONE = -922337203685477580L;
     public static final int SEGMENTING_THRESHOLD = 4096;
 
-    public static final void commonClear(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonClear");
+    public static final void commonClear(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonClear");
         buffer.skip(buffer.size());
     }
 
-    public static final long commonCompleteSegmentByteCount(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonCompleteSegmentByteCount");
+    public static final long commonCompleteSegmentByteCount(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonCompleteSegmentByteCount");
         long size = buffer.size();
         if (size == 0) {
             return 0L;
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         Segment segment2 = segment.prev;
         if (segment2 == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         return (segment2.limit >= 8192 || !segment2.owner) ? size : size - (r2 - segment2.pos);
     }
 
-    @d
-    public static final Buffer commonCopy(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonCopy");
+    @InterfaceC5816d
+    public static final Buffer commonCopy(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonCopy");
         Buffer buffer2 = new Buffer();
         if (buffer.size() == 0) {
             return buffer2;
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         Segment sharedCopy = segment.sharedCopy();
         buffer2.head = sharedCopy;
@@ -79,10 +79,10 @@ public final class BufferKt {
         for (Segment segment2 = segment.next; segment2 != segment; segment2 = segment2.next) {
             Segment segment3 = sharedCopy.prev;
             if (segment3 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             if (segment2 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             segment3.push(segment2.sharedCopy());
         }
@@ -90,10 +90,10 @@ public final class BufferKt {
         return buffer2;
     }
 
-    @d
-    public static final Buffer commonCopyTo(@d Buffer buffer, @d Buffer buffer2, long j2, long j3) {
-        i0.f(buffer, "$this$commonCopyTo");
-        i0.f(buffer2, "out");
+    @InterfaceC5816d
+    public static final Buffer commonCopyTo(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Buffer buffer2, long j2, long j3) {
+        C5544i0.m22546f(buffer, "$this$commonCopyTo");
+        C5544i0.m22546f(buffer2, "out");
         Util.checkOffsetAndCount(buffer.size(), j2, j3);
         if (j3 == 0) {
             return buffer;
@@ -102,7 +102,7 @@ public final class BufferKt {
         Segment segment = buffer.head;
         while (true) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             int i2 = segment.limit;
             int i3 = segment.pos;
@@ -114,7 +114,7 @@ public final class BufferKt {
         }
         while (j3 > 0) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             Segment sharedCopy = segment.sharedCopy();
             sharedCopy.pos += (int) j2;
@@ -126,11 +126,11 @@ public final class BufferKt {
                 buffer2.head = sharedCopy.next;
             } else {
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 Segment segment3 = segment2.prev;
                 if (segment3 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 segment3.push(sharedCopy);
             }
@@ -141,8 +141,8 @@ public final class BufferKt {
         return buffer;
     }
 
-    public static final boolean commonEquals(@d Buffer buffer, @e Object obj) {
-        i0.f(buffer, "$this$commonEquals");
+    public static final boolean commonEquals(@InterfaceC5816d Buffer buffer, @InterfaceC5817e Object obj) {
+        C5544i0.m22546f(buffer, "$this$commonEquals");
         if (buffer == obj) {
             return true;
         }
@@ -158,11 +158,11 @@ public final class BufferKt {
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         Segment segment2 = buffer2.head;
         if (segment2 == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment2.pos;
@@ -186,7 +186,7 @@ public final class BufferKt {
             if (i4 == segment.limit) {
                 Segment segment4 = segment.next;
                 if (segment4 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 segment = segment4;
                 i4 = segment4.pos;
@@ -194,7 +194,7 @@ public final class BufferKt {
             if (i5 == segment3.limit) {
                 segment3 = segment3.next;
                 if (segment3 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 i5 = segment3.pos;
             }
@@ -203,13 +203,13 @@ public final class BufferKt {
         return true;
     }
 
-    public static final byte commonGet(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonGet");
+    public static final byte commonGet(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonGet");
         Util.checkOffsetAndCount(buffer.size(), j2, 1L);
         Segment segment = buffer.head;
         if (segment == null) {
             Segment segment2 = null;
-            i0.f();
+            C5544i0.m22545f();
             return segment2.data[(int) ((segment2.pos + j2) - (-1))];
         }
         if (buffer.size() - j2 < j2) {
@@ -217,12 +217,12 @@ public final class BufferKt {
             while (size > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 size -= segment.limit - segment.pos;
             }
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             return segment.data[(int) ((segment.pos + j2) - size)];
         }
@@ -234,18 +234,18 @@ public final class BufferKt {
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j3 = j4;
         }
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         return segment.data[(int) ((segment.pos + j2) - j3)];
     }
 
-    public static final int commonHashCode(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonHashCode");
+    public static final int commonHashCode(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonHashCode");
         Segment segment = buffer.head;
         if (segment == null) {
             return 0;
@@ -258,16 +258,16 @@ public final class BufferKt {
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
         } while (segment != buffer.head);
         return i2;
     }
 
-    public static final long commonIndexOf(@d Buffer buffer, byte b2, long j2, long j3) {
+    public static final long commonIndexOf(@InterfaceC5816d Buffer buffer, byte b2, long j2, long j3) {
         Segment segment;
         int i2;
-        i0.f(buffer, "$this$commonIndexOf");
+        C5544i0.m22546f(buffer, "$this$commonIndexOf");
         long j4 = 0;
         if (!(0 <= j2 && j3 >= j2)) {
             throw new IllegalArgumentException(("size=" + buffer.size() + " fromIndex=" + j2 + " toIndex=" + j3).toString());
@@ -283,7 +283,7 @@ public final class BufferKt {
             while (j4 > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j4 -= segment.limit - segment.pos;
             }
@@ -300,7 +300,7 @@ public final class BufferKt {
                     j2 = (segment.limit - segment.pos) + j4;
                     segment = segment.next;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     j4 = j2;
                 }
@@ -314,7 +314,7 @@ public final class BufferKt {
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j4 = j5;
         }
@@ -331,7 +331,7 @@ public final class BufferKt {
                 j2 = (segment.limit - segment.pos) + j4;
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j4 = j2;
             }
@@ -340,11 +340,11 @@ public final class BufferKt {
         return (i2 - segment.pos) + j4;
     }
 
-    public static final long commonIndexOfElement(@d Buffer buffer, @d ByteString byteString, long j2) {
+    public static final long commonIndexOfElement(@InterfaceC5816d Buffer buffer, @InterfaceC5816d ByteString byteString, long j2) {
         int i2;
         int i3;
-        i0.f(buffer, "$this$commonIndexOfElement");
-        i0.f(byteString, "targetBytes");
+        C5544i0.m22546f(buffer, "$this$commonIndexOfElement");
+        C5544i0.m22546f(byteString, "targetBytes");
         long j3 = 0;
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("fromIndex < 0: " + j2).toString());
@@ -358,7 +358,7 @@ public final class BufferKt {
             while (j3 > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j3 -= segment.limit - segment.pos;
             }
@@ -380,7 +380,7 @@ public final class BufferKt {
                         j2 = (segment.limit - segment.pos) + j3;
                         segment = segment.next;
                         if (segment == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         j3 = j2;
                     }
@@ -402,7 +402,7 @@ public final class BufferKt {
                         j2 = (segment.limit - segment.pos) + j3;
                         segment = segment.next;
                         if (segment == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         j3 = j2;
                     }
@@ -417,7 +417,7 @@ public final class BufferKt {
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j3 = j4;
         }
@@ -439,7 +439,7 @@ public final class BufferKt {
                     j2 = (segment.limit - segment.pos) + j3;
                     segment = segment.next;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     j3 = j2;
                 }
@@ -461,7 +461,7 @@ public final class BufferKt {
                     j2 = (segment.limit - segment.pos) + j3;
                     segment = segment.next;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     j3 = j2;
                 }
@@ -471,9 +471,9 @@ public final class BufferKt {
         return (i2 - i3) + j3;
     }
 
-    public static final boolean commonRangeEquals(@d Buffer buffer, long j2, @d ByteString byteString, int i2, int i3) {
-        i0.f(buffer, "$this$commonRangeEquals");
-        i0.f(byteString, "bytes");
+    public static final boolean commonRangeEquals(@InterfaceC5816d Buffer buffer, long j2, @InterfaceC5816d ByteString byteString, int i2, int i3) {
+        C5544i0.m22546f(buffer, "$this$commonRangeEquals");
+        C5544i0.m22546f(byteString, "bytes");
         if (j2 < 0 || i2 < 0 || i3 < 0 || buffer.size() - j2 < i3 || byteString.size() - i2 < i3) {
             return false;
         }
@@ -485,15 +485,15 @@ public final class BufferKt {
         return true;
     }
 
-    public static final int commonRead(@d Buffer buffer, @d byte[] bArr) {
-        i0.f(buffer, "$this$commonRead");
-        i0.f(bArr, "sink");
+    public static final int commonRead(@InterfaceC5816d Buffer buffer, @InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(buffer, "$this$commonRead");
+        C5544i0.m22546f(bArr, "sink");
         return buffer.read(bArr, 0, bArr.length);
     }
 
-    public static final long commonReadAll(@d Buffer buffer, @d Sink sink) {
-        i0.f(buffer, "$this$commonReadAll");
-        i0.f(sink, "sink");
+    public static final long commonReadAll(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Sink sink) {
+        C5544i0.m22546f(buffer, "$this$commonReadAll");
+        C5544i0.m22546f(sink, "sink");
         long size = buffer.size();
         if (size > 0) {
             sink.write(buffer, size);
@@ -501,14 +501,14 @@ public final class BufferKt {
         return size;
     }
 
-    public static final byte commonReadByte(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadByte");
+    public static final byte commonReadByte(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadByte");
         if (buffer.size() == 0) {
             throw new EOFException();
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
@@ -524,15 +524,15 @@ public final class BufferKt {
         return b2;
     }
 
-    @d
-    public static final byte[] commonReadByteArray(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadByteArray");
+    @InterfaceC5816d
+    public static final byte[] commonReadByteArray(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadByteArray");
         return buffer.readByteArray(buffer.size());
     }
 
-    @d
-    public static final ByteString commonReadByteString(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadByteString");
+    @InterfaceC5816d
+    public static final ByteString commonReadByteString(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadByteString");
         return buffer.readByteString(buffer.size());
     }
 
@@ -544,7 +544,7 @@ public final class BufferKt {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static final long commonReadDecimalLong(@i.c.a.d okio.Buffer r17) {
+    public static final long commonReadDecimalLong(@p324i.p336c.p337a.InterfaceC5816d okio.Buffer r17) {
         /*
             Method dump skipped, instructions count: 222
             To view this dump change 'Code comments level' option to 'DEBUG'
@@ -552,9 +552,9 @@ public final class BufferKt {
         throw new UnsupportedOperationException("Method not decompiled: okio.internal.BufferKt.commonReadDecimalLong(okio.Buffer):long");
     }
 
-    public static final void commonReadFully(@d Buffer buffer, @d byte[] bArr) {
-        i0.f(buffer, "$this$commonReadFully");
-        i0.f(bArr, "sink");
+    public static final void commonReadFully(@InterfaceC5816d Buffer buffer, @InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(buffer, "$this$commonReadFully");
+        C5544i0.m22546f(bArr, "sink");
         int i2 = 0;
         while (i2 < bArr.length) {
             int read = buffer.read(bArr, i2, bArr.length - i2);
@@ -573,10 +573,10 @@ public final class BufferKt {
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static final long commonReadHexadecimalUnsignedLong(@i.c.a.d okio.Buffer r15) {
+    public static final long commonReadHexadecimalUnsignedLong(@p324i.p336c.p337a.InterfaceC5816d okio.Buffer r15) {
         /*
             java.lang.String r0 = "$this$commonReadHexadecimalUnsignedLong"
-            h.q2.t.i0.f(r15, r0)
+            p286h.p309q2.p311t.C5544i0.m22546f(r15, r0)
             long r0 = r15.size()
             r2 = 0
             int r4 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1))
@@ -587,7 +587,7 @@ public final class BufferKt {
         L12:
             okio.Segment r6 = r15.head
             if (r6 != 0) goto L19
-            h.q2.t.i0.f()
+            p286h.p309q2.p311t.C5544i0.m22545f()
         L19:
             byte[] r7 = r6.data
             int r8 = r6.pos
@@ -691,28 +691,28 @@ public final class BufferKt {
         throw new UnsupportedOperationException("Method not decompiled: okio.internal.BufferKt.commonReadHexadecimalUnsignedLong(okio.Buffer):long");
     }
 
-    public static final int commonReadInt(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadInt");
+    public static final int commonReadInt(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadInt");
         if (buffer.size() < 4) {
             throw new EOFException();
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
         if (i3 - i2 < 4) {
-            return (buffer.readByte() & f1.f16099c) | ((buffer.readByte() & f1.f16099c) << 24) | ((buffer.readByte() & f1.f16099c) << 16) | ((buffer.readByte() & f1.f16099c) << 8);
+            return (buffer.readByte() & C5230f1.f20085c) | ((buffer.readByte() & C5230f1.f20085c) << 24) | ((buffer.readByte() & C5230f1.f20085c) << 16) | ((buffer.readByte() & C5230f1.f20085c) << 8);
         }
         byte[] bArr = segment.data;
         int i4 = i2 + 1;
         int i5 = i4 + 1;
-        int i6 = ((bArr[i2] & f1.f16099c) << 24) | ((bArr[i4] & f1.f16099c) << 16);
+        int i6 = ((bArr[i2] & C5230f1.f20085c) << 24) | ((bArr[i4] & C5230f1.f20085c) << 16);
         int i7 = i5 + 1;
-        int i8 = i6 | ((bArr[i5] & f1.f16099c) << 8);
+        int i8 = i6 | ((bArr[i5] & C5230f1.f20085c) << 8);
         int i9 = i7 + 1;
-        int i10 = i8 | (bArr[i7] & f1.f16099c);
+        int i10 = i8 | (bArr[i7] & C5230f1.f20085c);
         buffer.setSize$okio(buffer.size() - 4);
         if (i9 == i3) {
             buffer.head = segment.pop();
@@ -723,14 +723,14 @@ public final class BufferKt {
         return i10;
     }
 
-    public static final long commonReadLong(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadLong");
+    public static final long commonReadLong(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadLong");
         if (buffer.size() < 8) {
             throw new EOFException();
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
@@ -758,24 +758,24 @@ public final class BufferKt {
         return j9;
     }
 
-    public static final short commonReadShort(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadShort");
+    public static final short commonReadShort(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadShort");
         if (buffer.size() < 2) {
             throw new EOFException();
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         int i3 = segment.limit;
         if (i3 - i2 < 2) {
-            return (short) ((buffer.readByte() & f1.f16099c) | ((buffer.readByte() & f1.f16099c) << 8));
+            return (short) ((buffer.readByte() & C5230f1.f20085c) | ((buffer.readByte() & C5230f1.f20085c) << 8));
         }
         byte[] bArr = segment.data;
         int i4 = i2 + 1;
         int i5 = i4 + 1;
-        int i6 = ((bArr[i2] & f1.f16099c) << 8) | (bArr[i4] & f1.f16099c);
+        int i6 = ((bArr[i2] & C5230f1.f20085c) << 8) | (bArr[i4] & C5230f1.f20085c);
         buffer.setSize$okio(buffer.size() - 2);
         if (i5 == i3) {
             buffer.head = segment.pop();
@@ -786,9 +786,9 @@ public final class BufferKt {
         return (short) i6;
     }
 
-    @d
-    public static final String commonReadUtf8(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonReadUtf8");
+    @InterfaceC5816d
+    public static final String commonReadUtf8(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonReadUtf8");
         if (!(j2 >= 0 && j2 <= ((long) Integer.MAX_VALUE))) {
             throw new IllegalArgumentException(("byteCount: " + j2).toString());
         }
@@ -800,7 +800,7 @@ public final class BufferKt {
         }
         Segment segment = buffer.head;
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         int i2 = segment.pos;
         if (i2 + j2 > segment.limit) {
@@ -817,17 +817,17 @@ public final class BufferKt {
         return commonToUtf8String;
     }
 
-    public static final int commonReadUtf8CodePoint(@d Buffer buffer) {
+    public static final int commonReadUtf8CodePoint(@InterfaceC5816d Buffer buffer) {
         int i2;
         int i3;
         int i4;
-        i0.f(buffer, "$this$commonReadUtf8CodePoint");
+        C5544i0.m22546f(buffer, "$this$commonReadUtf8CodePoint");
         if (buffer.size() == 0) {
             throw new EOFException();
         }
         byte b2 = buffer.getByte(0L);
-        if ((b2 & n.f16413a) == 0) {
-            i2 = b2 & n.f16414b;
+        if ((b2 & C5558n.f20401a) == 0) {
+            i2 = b2 & C5558n.f20402b;
             i3 = 1;
             i4 = 0;
         } else if ((b2 & 224) == 192) {
@@ -835,7 +835,7 @@ public final class BufferKt {
             i3 = 2;
             i4 = 128;
         } else if ((b2 & 240) == 224) {
-            i2 = b2 & cw.f10303m;
+            i2 = b2 & C3393cw.f11873m;
             i3 = 3;
             i4 = 2048;
         } else {
@@ -864,9 +864,9 @@ public final class BufferKt {
         return i2 > 1114111 ? Utf8.REPLACEMENT_CODE_POINT : ((55296 <= i2 && 57343 >= i2) || i2 < i4) ? Utf8.REPLACEMENT_CODE_POINT : i2;
     }
 
-    @e
-    public static final String commonReadUtf8Line(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonReadUtf8Line");
+    @InterfaceC5817e
+    public static final String commonReadUtf8Line(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonReadUtf8Line");
         long indexOf = buffer.indexOf((byte) 10);
         if (indexOf != -1) {
             return readUtf8Line(buffer, indexOf);
@@ -877,14 +877,14 @@ public final class BufferKt {
         return null;
     }
 
-    @d
-    public static final String commonReadUtf8LineStrict(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonReadUtf8LineStrict");
+    @InterfaceC5816d
+    public static final String commonReadUtf8LineStrict(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonReadUtf8LineStrict");
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("limit < 0: " + j2).toString());
         }
-        long j3 = m0.f16408b;
-        if (j2 != m0.f16408b) {
+        long j3 = C5556m0.f20396b;
+        if (j2 != C5556m0.f20396b) {
             j3 = j2 + 1;
         }
         byte b2 = (byte) 10;
@@ -897,12 +897,12 @@ public final class BufferKt {
         }
         Buffer buffer2 = new Buffer();
         buffer.copyTo(buffer2, 0L, Math.min(32, buffer.size()));
-        throw new EOFException("\\n not found: limit=" + Math.min(buffer.size(), j2) + " content=" + buffer2.readByteString().hex() + h0.E);
+        throw new EOFException("\\n not found: limit=" + Math.min(buffer.size(), j2) + " content=" + buffer2.readByteString().hex() + C5736h0.f20702E);
     }
 
-    public static final int commonSelect(@d Buffer buffer, @d Options options) {
-        i0.f(buffer, "$this$commonSelect");
-        i0.f(options, "options");
+    public static final int commonSelect(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Options options) {
+        C5544i0.m22546f(buffer, "$this$commonSelect");
+        C5544i0.m22546f(options, "options");
         int selectPrefix$default = selectPrefix$default(buffer, options, false, 2, null);
         if (selectPrefix$default == -1) {
             return -1;
@@ -911,8 +911,8 @@ public final class BufferKt {
         return selectPrefix$default;
     }
 
-    public static final void commonSkip(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonSkip");
+    public static final void commonSkip(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonSkip");
         while (j2 > 0) {
             Segment segment = buffer.head;
             if (segment == null) {
@@ -930,18 +930,18 @@ public final class BufferKt {
         }
     }
 
-    @d
-    public static final ByteString commonSnapshot(@d Buffer buffer) {
-        i0.f(buffer, "$this$commonSnapshot");
+    @InterfaceC5816d
+    public static final ByteString commonSnapshot(@InterfaceC5816d Buffer buffer) {
+        C5544i0.m22546f(buffer, "$this$commonSnapshot");
         if (buffer.size() <= ((long) Integer.MAX_VALUE)) {
             return buffer.snapshot((int) buffer.size());
         }
         throw new IllegalStateException(("size > Int.MAX_VALUE: " + buffer.size()).toString());
     }
 
-    @d
-    public static final Segment commonWritableSegment(@d Buffer buffer, int i2) {
-        i0.f(buffer, "$this$commonWritableSegment");
+    @InterfaceC5816d
+    public static final Segment commonWritableSegment(@InterfaceC5816d Buffer buffer, int i2) {
+        C5544i0.m22546f(buffer, "$this$commonWritableSegment");
         if (!(i2 >= 1 && i2 <= 8192)) {
             throw new IllegalArgumentException("unexpected capacity".toString());
         }
@@ -954,19 +954,19 @@ public final class BufferKt {
             return take;
         }
         if (segment == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         Segment segment2 = segment.prev;
         if (segment2 == null) {
-            i0.f();
+            C5544i0.m22545f();
         }
         return (segment2.limit + i2 > 8192 || !segment2.owner) ? segment2.push(SegmentPool.INSTANCE.take()) : segment2;
     }
 
-    @d
-    public static final Buffer commonWrite(@d Buffer buffer, @d ByteString byteString, int i2, int i3) {
-        i0.f(buffer, "$this$commonWrite");
-        i0.f(byteString, "byteString");
+    @InterfaceC5816d
+    public static final Buffer commonWrite(@InterfaceC5816d Buffer buffer, @InterfaceC5816d ByteString byteString, int i2, int i3) {
+        C5544i0.m22546f(buffer, "$this$commonWrite");
+        C5544i0.m22546f(byteString, "byteString");
         byteString.write$okio(buffer, i2, i3);
         return buffer;
     }
@@ -978,15 +978,15 @@ public final class BufferKt {
         if ((i4 & 4) != 0) {
             i3 = byteString.size();
         }
-        i0.f(buffer, "$this$commonWrite");
-        i0.f(byteString, "byteString");
+        C5544i0.m22546f(buffer, "$this$commonWrite");
+        C5544i0.m22546f(byteString, "byteString");
         byteString.write$okio(buffer, i2, i3);
         return buffer;
     }
 
-    public static final long commonWriteAll(@d Buffer buffer, @d Source source) {
-        i0.f(buffer, "$this$commonWriteAll");
-        i0.f(source, "source");
+    public static final long commonWriteAll(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Source source) {
+        C5544i0.m22546f(buffer, "$this$commonWriteAll");
+        C5544i0.m22546f(source, "source");
         long j2 = 0;
         while (true) {
             long read = source.read(buffer, 8192);
@@ -997,9 +997,9 @@ public final class BufferKt {
         }
     }
 
-    @d
-    public static final Buffer commonWriteByte(@d Buffer buffer, int i2) {
-        i0.f(buffer, "$this$commonWriteByte");
+    @InterfaceC5816d
+    public static final Buffer commonWriteByte(@InterfaceC5816d Buffer buffer, int i2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteByte");
         Segment writableSegment$okio = buffer.writableSegment$okio(1);
         byte[] bArr = writableSegment$okio.data;
         int i3 = writableSegment$okio.limit;
@@ -1009,9 +1009,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteDecimalLong(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonWriteDecimalLong");
+    @InterfaceC5816d
+    public static final Buffer commonWriteDecimalLong(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteDecimalLong");
         if (j2 == 0) {
             return buffer.writeByte(48);
         }
@@ -1026,7 +1026,7 @@ public final class BufferKt {
         }
         if (j2 >= 100000000) {
             i2 = j2 < 1000000000000L ? j2 < 10000000000L ? j2 < 1000000000 ? 9 : 10 : j2 < 100000000000L ? 11 : 12 : j2 < 1000000000000000L ? j2 < 10000000000000L ? 13 : j2 < 100000000000000L ? 14 : 15 : j2 < 100000000000000000L ? j2 < 10000000000000000L ? 16 : 17 : j2 < 1000000000000000000L ? 18 : 19;
-        } else if (j2 >= a.q) {
+        } else if (j2 >= C2084a.f6135q) {
             i2 = j2 < 1000000 ? j2 < 100000 ? 5 : 6 : j2 < 10000000 ? 7 : 8;
         } else if (j2 >= 100) {
             i2 = j2 < 1000 ? 3 : 4;
@@ -1053,9 +1053,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteHexadecimalUnsignedLong(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonWriteHexadecimalUnsignedLong");
+    @InterfaceC5816d
+    public static final Buffer commonWriteHexadecimalUnsignedLong(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteHexadecimalUnsignedLong");
         if (j2 == 0) {
             return buffer.writeByte(48);
         }
@@ -1083,9 +1083,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteInt(@d Buffer buffer, int i2) {
-        i0.f(buffer, "$this$commonWriteInt");
+    @InterfaceC5816d
+    public static final Buffer commonWriteInt(@InterfaceC5816d Buffer buffer, int i2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteInt");
         Segment writableSegment$okio = buffer.writableSegment$okio(4);
         byte[] bArr = writableSegment$okio.data;
         int i3 = writableSegment$okio.limit;
@@ -1101,9 +1101,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteLong(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonWriteLong");
+    @InterfaceC5816d
+    public static final Buffer commonWriteLong(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteLong");
         Segment writableSegment$okio = buffer.writableSegment$okio(8);
         byte[] bArr = writableSegment$okio.data;
         int i2 = writableSegment$okio.limit;
@@ -1127,9 +1127,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteShort(@d Buffer buffer, int i2) {
-        i0.f(buffer, "$this$commonWriteShort");
+    @InterfaceC5816d
+    public static final Buffer commonWriteShort(@InterfaceC5816d Buffer buffer, int i2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteShort");
         Segment writableSegment$okio = buffer.writableSegment$okio(2);
         byte[] bArr = writableSegment$okio.data;
         int i3 = writableSegment$okio.limit;
@@ -1141,10 +1141,10 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteUtf8(@d Buffer buffer, @d String str, int i2, int i3) {
-        i0.f(buffer, "$this$commonWriteUtf8");
-        i0.f(str, "string");
+    @InterfaceC5816d
+    public static final Buffer commonWriteUtf8(@InterfaceC5816d Buffer buffer, @InterfaceC5816d String str, int i2, int i3) {
+        C5544i0.m22546f(buffer, "$this$commonWriteUtf8");
+        C5544i0.m22546f(str, "string");
         if (!(i2 >= 0)) {
             throw new IllegalArgumentException(("beginIndex < 0: " + i2).toString());
         }
@@ -1220,9 +1220,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
-    public static final Buffer commonWriteUtf8CodePoint(@d Buffer buffer, int i2) {
-        i0.f(buffer, "$this$commonWriteUtf8CodePoint");
+    @InterfaceC5816d
+    public static final Buffer commonWriteUtf8CodePoint(@InterfaceC5816d Buffer buffer, int i2) {
+        C5544i0.m22546f(buffer, "$this$commonWriteUtf8CodePoint");
         if (i2 < 128) {
             buffer.writeByte(i2);
         } else if (i2 < 2048) {
@@ -1261,21 +1261,21 @@ public final class BufferKt {
         return buffer;
     }
 
-    @d
+    @InterfaceC5816d
     public static final byte[] getHEX_DIGIT_BYTES() {
         return HEX_DIGIT_BYTES;
     }
 
-    public static final boolean rangeEquals(@d Segment segment, int i2, @d byte[] bArr, int i3, int i4) {
-        i0.f(segment, "segment");
-        i0.f(bArr, "bytes");
+    public static final boolean rangeEquals(@InterfaceC5816d Segment segment, int i2, @InterfaceC5816d byte[] bArr, int i3, int i4) {
+        C5544i0.m22546f(segment, "segment");
+        C5544i0.m22546f(bArr, "bytes");
         int i5 = segment.limit;
         byte[] bArr2 = segment.data;
         while (i3 < i4) {
             if (i2 == i5) {
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 byte[] bArr3 = segment.data;
                 bArr2 = bArr3;
@@ -1291,9 +1291,9 @@ public final class BufferKt {
         return true;
     }
 
-    @d
-    public static final String readUtf8Line(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$readUtf8Line");
+    @InterfaceC5816d
+    public static final String readUtf8Line(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$readUtf8Line");
         if (j2 > 0) {
             long j3 = j2 - 1;
             if (buffer.getByte(j3) == ((byte) 13)) {
@@ -1307,43 +1307,43 @@ public final class BufferKt {
         return readUtf82;
     }
 
-    public static final <T> T seek(@d Buffer buffer, long j2, @d p<? super Segment, ? super Long, ? extends T> pVar) {
-        i0.f(buffer, "$this$seek");
-        i0.f(pVar, "lambda");
+    public static final <T> T seek(@InterfaceC5816d Buffer buffer, long j2, @InterfaceC5816d InterfaceC5510p<? super Segment, ? super Long, ? extends T> interfaceC5510p) {
+        C5544i0.m22546f(buffer, "$this$seek");
+        C5544i0.m22546f(interfaceC5510p, "lambda");
         Segment segment = buffer.head;
         if (segment == null) {
-            return pVar.invoke(null, -1L);
+            return interfaceC5510p.invoke(null, -1L);
         }
         if (buffer.size() - j2 < j2) {
             long size = buffer.size();
             while (size > j2) {
                 segment = segment.prev;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 size -= segment.limit - segment.pos;
             }
-            return pVar.invoke(segment, Long.valueOf(size));
+            return interfaceC5510p.invoke(segment, Long.valueOf(size));
         }
         long j3 = 0;
         while (true) {
             long j4 = (segment.limit - segment.pos) + j3;
             if (j4 > j2) {
-                return pVar.invoke(segment, Long.valueOf(j3));
+                return interfaceC5510p.invoke(segment, Long.valueOf(j3));
             }
             segment = segment.next;
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             j3 = j4;
         }
     }
 
-    public static final int selectPrefix(@d Buffer buffer, @d Options options, boolean z) {
+    public static final int selectPrefix(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Options options, boolean z) {
         int i2;
         int i3;
-        i0.f(buffer, "$this$selectPrefix");
-        i0.f(options, "options");
+        C5544i0.m22546f(buffer, "$this$selectPrefix");
+        C5544i0.m22546f(options, "options");
         Segment segment = buffer.head;
         if (segment == null) {
             return z ? -2 : -1;
@@ -1371,7 +1371,7 @@ public final class BufferKt {
             }
             if (i11 >= 0) {
                 i2 = i6 + 1;
-                int i14 = bArr2[i6] & f1.f16099c;
+                int i14 = bArr2[i6] & C5230f1.f20085c;
                 int i15 = i12 + i11;
                 while (i12 != i15) {
                     if (i14 == trie$okio[i12]) {
@@ -1379,7 +1379,7 @@ public final class BufferKt {
                         if (i2 == i7) {
                             Segment segment3 = segment2.next;
                             if (segment3 == null) {
-                                i0.f();
+                                C5544i0.m22545f();
                             }
                             int i16 = segment3.pos;
                             bArr2 = segment3.data;
@@ -1397,17 +1397,17 @@ public final class BufferKt {
             while (true) {
                 int i18 = i6 + 1;
                 int i19 = i12 + 1;
-                if ((bArr2[i6] & f1.f16099c) != trie$okio[i12]) {
+                if ((bArr2[i6] & C5230f1.f20085c) != trie$okio[i12]) {
                     return i8;
                 }
                 boolean z2 = i19 == i17;
                 if (i18 == i7) {
                     if (segment2 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     Segment segment4 = segment2.next;
                     if (segment4 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     int i20 = segment4.pos;
                     bArr2 = segment4.data;
@@ -1450,9 +1450,9 @@ public final class BufferKt {
         return selectPrefix(buffer, options, z);
     }
 
-    public static final int commonRead(@d Buffer buffer, @d byte[] bArr, int i2, int i3) {
-        i0.f(buffer, "$this$commonRead");
-        i0.f(bArr, "sink");
+    public static final int commonRead(@InterfaceC5816d Buffer buffer, @InterfaceC5816d byte[] bArr, int i2, int i3) {
+        C5544i0.m22546f(buffer, "$this$commonRead");
+        C5544i0.m22546f(bArr, "sink");
         Util.checkOffsetAndCount(bArr.length, i2, i3);
         Segment segment = buffer.head;
         if (segment == null) {
@@ -1461,7 +1461,7 @@ public final class BufferKt {
         int min = Math.min(i3, segment.limit - segment.pos);
         byte[] bArr2 = segment.data;
         int i4 = segment.pos;
-        q.a(bArr2, bArr, i2, i4, i4 + min);
+        C5291q.m20196a(bArr2, bArr, i2, i4, i4 + min);
         segment.pos += min;
         buffer.setSize$okio(buffer.size() - min);
         if (segment.pos == segment.limit) {
@@ -1471,9 +1471,9 @@ public final class BufferKt {
         return min;
     }
 
-    @d
-    public static final byte[] commonReadByteArray(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonReadByteArray");
+    @InterfaceC5816d
+    public static final byte[] commonReadByteArray(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonReadByteArray");
         if (!(j2 >= 0 && j2 <= ((long) Integer.MAX_VALUE))) {
             throw new IllegalArgumentException(("byteCount: " + j2).toString());
         }
@@ -1485,9 +1485,9 @@ public final class BufferKt {
         return bArr;
     }
 
-    @d
-    public static final ByteString commonReadByteString(@d Buffer buffer, long j2) {
-        i0.f(buffer, "$this$commonReadByteString");
+    @InterfaceC5816d
+    public static final ByteString commonReadByteString(@InterfaceC5816d Buffer buffer, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonReadByteString");
         if (!(j2 >= 0 && j2 <= ((long) Integer.MAX_VALUE))) {
             throw new IllegalArgumentException(("byteCount: " + j2).toString());
         }
@@ -1502,17 +1502,17 @@ public final class BufferKt {
         return snapshot;
     }
 
-    @d
-    public static final Buffer commonWrite(@d Buffer buffer, @d byte[] bArr) {
-        i0.f(buffer, "$this$commonWrite");
-        i0.f(bArr, "source");
+    @InterfaceC5816d
+    public static final Buffer commonWrite(@InterfaceC5816d Buffer buffer, @InterfaceC5816d byte[] bArr) {
+        C5544i0.m22546f(buffer, "$this$commonWrite");
+        C5544i0.m22546f(bArr, "source");
         return buffer.write(bArr, 0, bArr.length);
     }
 
-    @d
-    public static final Buffer commonWrite(@d Buffer buffer, @d byte[] bArr, int i2, int i3) {
-        i0.f(buffer, "$this$commonWrite");
-        i0.f(bArr, "source");
+    @InterfaceC5816d
+    public static final Buffer commonWrite(@InterfaceC5816d Buffer buffer, @InterfaceC5816d byte[] bArr, int i2, int i3) {
+        C5544i0.m22546f(buffer, "$this$commonWrite");
+        C5544i0.m22546f(bArr, "source");
         long j2 = i3;
         Util.checkOffsetAndCount(bArr.length, i2, j2);
         int i4 = i3 + i2;
@@ -1520,7 +1520,7 @@ public final class BufferKt {
             Segment writableSegment$okio = buffer.writableSegment$okio(1);
             int min = Math.min(i4 - i2, 8192 - writableSegment$okio.limit);
             int i5 = i2 + min;
-            q.a(bArr, writableSegment$okio.data, writableSegment$okio.limit, i2, i5);
+            C5291q.m20196a(bArr, writableSegment$okio.data, writableSegment$okio.limit, i2, i5);
             writableSegment$okio.limit += min;
             i2 = i5;
         }
@@ -1528,9 +1528,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    public static final void commonReadFully(@d Buffer buffer, @d Buffer buffer2, long j2) {
-        i0.f(buffer, "$this$commonReadFully");
-        i0.f(buffer2, "sink");
+    public static final void commonReadFully(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Buffer buffer2, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonReadFully");
+        C5544i0.m22546f(buffer2, "sink");
         if (buffer.size() >= j2) {
             buffer2.write(buffer, j2);
         } else {
@@ -1539,9 +1539,9 @@ public final class BufferKt {
         }
     }
 
-    @d
-    public static final ByteString commonSnapshot(@d Buffer buffer, int i2) {
-        i0.f(buffer, "$this$commonSnapshot");
+    @InterfaceC5816d
+    public static final ByteString commonSnapshot(@InterfaceC5816d Buffer buffer, int i2) {
+        C5544i0.m22546f(buffer, "$this$commonSnapshot");
         if (i2 == 0) {
             return ByteString.EMPTY;
         }
@@ -1552,7 +1552,7 @@ public final class BufferKt {
         int i5 = 0;
         while (i4 < i2) {
             if (segment == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             int i6 = segment.limit;
             int i7 = segment.pos;
@@ -1570,7 +1570,7 @@ public final class BufferKt {
         int i8 = 0;
         while (i3 < i2) {
             if (segment2 == null) {
-                i0.f();
+                C5544i0.m22545f();
             }
             bArr[i8] = segment2.data;
             i3 += segment2.limit - segment2.pos;
@@ -1583,10 +1583,10 @@ public final class BufferKt {
         return new SegmentedByteString(bArr, iArr);
     }
 
-    @d
-    public static final Buffer commonWrite(@d Buffer buffer, @d Source source, long j2) {
-        i0.f(buffer, "$this$commonWrite");
-        i0.f(source, "source");
+    @InterfaceC5816d
+    public static final Buffer commonWrite(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Source source, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonWrite");
+        C5544i0.m22546f(source, "source");
         while (j2 > 0) {
             long read = source.read(buffer, j2);
             if (read == -1) {
@@ -1597,9 +1597,9 @@ public final class BufferKt {
         return buffer;
     }
 
-    public static final long commonRead(@d Buffer buffer, @d Buffer buffer2, long j2) {
-        i0.f(buffer, "$this$commonRead");
-        i0.f(buffer2, "sink");
+    public static final long commonRead(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Buffer buffer2, long j2) {
+        C5544i0.m22546f(buffer, "$this$commonRead");
+        C5544i0.m22546f(buffer2, "sink");
         if (!(j2 >= 0)) {
             throw new IllegalArgumentException(("byteCount < 0: " + j2).toString());
         }
@@ -1613,26 +1613,26 @@ public final class BufferKt {
         return j2;
     }
 
-    public static final void commonWrite(@d Buffer buffer, @d Buffer buffer2, long j2) {
+    public static final void commonWrite(@InterfaceC5816d Buffer buffer, @InterfaceC5816d Buffer buffer2, long j2) {
         Segment segment;
-        i0.f(buffer, "$this$commonWrite");
-        i0.f(buffer2, "source");
+        C5544i0.m22546f(buffer, "$this$commonWrite");
+        C5544i0.m22546f(buffer2, "source");
         if (buffer2 != buffer) {
             Util.checkOffsetAndCount(buffer2.size(), 0L, j2);
             while (j2 > 0) {
                 Segment segment2 = buffer2.head;
                 if (segment2 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 int i2 = segment2.limit;
                 if (buffer2.head == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 if (j2 < i2 - r2.pos) {
                     Segment segment3 = buffer.head;
                     if (segment3 != null) {
                         if (segment3 == null) {
-                            i0.f();
+                            C5544i0.m22545f();
                         }
                         segment = segment3.prev;
                     } else {
@@ -1642,7 +1642,7 @@ public final class BufferKt {
                         if ((segment.limit + j2) - (segment.shared ? 0 : segment.pos) <= 8192) {
                             Segment segment4 = buffer2.head;
                             if (segment4 == null) {
-                                i0.f();
+                                C5544i0.m22545f();
                             }
                             segment4.writeTo(segment, (int) j2);
                             buffer2.setSize$okio(buffer2.size() - j2);
@@ -1652,13 +1652,13 @@ public final class BufferKt {
                     }
                     Segment segment5 = buffer2.head;
                     if (segment5 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     buffer2.head = segment5.split((int) j2);
                 }
                 Segment segment6 = buffer2.head;
                 if (segment6 == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 long j3 = segment6.limit - segment6.pos;
                 buffer2.head = segment6.pop();
@@ -1669,11 +1669,11 @@ public final class BufferKt {
                     segment6.next = segment6.prev;
                 } else {
                     if (segment7 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     Segment segment8 = segment7.prev;
                     if (segment8 == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     segment8.push(segment6).compact();
                 }
@@ -1686,10 +1686,10 @@ public final class BufferKt {
         throw new IllegalArgumentException("source == this".toString());
     }
 
-    public static final long commonIndexOf(@d Buffer buffer, @d ByteString byteString, long j2) {
+    public static final long commonIndexOf(@InterfaceC5816d Buffer buffer, @InterfaceC5816d ByteString byteString, long j2) {
         long j3 = j2;
-        i0.f(buffer, "$this$commonIndexOf");
-        i0.f(byteString, "bytes");
+        C5544i0.m22546f(buffer, "$this$commonIndexOf");
+        C5544i0.m22546f(byteString, "bytes");
         if (!(byteString.size() > 0)) {
             throw new IllegalArgumentException("bytes is empty".toString());
         }
@@ -1704,7 +1704,7 @@ public final class BufferKt {
                 while (size > j3) {
                     segment = segment.prev;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     size -= segment.limit - segment.pos;
                 }
@@ -1726,7 +1726,7 @@ public final class BufferKt {
                     j3 = size + (segment.limit - segment.pos);
                     segment = segment.next;
                     if (segment == null) {
-                        i0.f();
+                        C5544i0.m22545f();
                     }
                     size = j3;
                 }
@@ -1739,7 +1739,7 @@ public final class BufferKt {
                 }
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j4 = j5;
             }
@@ -1762,7 +1762,7 @@ public final class BufferKt {
                 j3 = j6 + (segment.limit - segment.pos);
                 segment = segment.next;
                 if (segment == null) {
-                    i0.f();
+                    C5544i0.m22545f();
                 }
                 j6 = j3;
             }

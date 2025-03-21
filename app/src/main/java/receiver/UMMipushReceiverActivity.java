@@ -2,41 +2,42 @@ package receiver;
 
 import android.os.Bundle;
 import android.widget.TextView;
-import com.hicorenational.antifraud.R;
+import com.hicorenational.antifraud.C2113R;
 import com.umeng.message.UmengNotifyClickActivity;
 import com.umeng.message.entity.UMessage;
 
 /* loaded from: classes2.dex */
 public class UMMipushReceiverActivity extends UmengNotifyClickActivity {
 
-    /* renamed from: b, reason: collision with root package name */
-    private TextView f17538b;
+    /* renamed from: b */
+    private TextView f21706b;
 
-    class a implements Runnable {
+    /* renamed from: receiver.UMMipushReceiverActivity$a */
+    class RunnableC6083a implements Runnable {
 
-        /* renamed from: a, reason: collision with root package name */
-        final /* synthetic */ UMessage f17539a;
+        /* renamed from: a */
+        final /* synthetic */ UMessage f21707a;
 
-        a(UMessage uMessage) {
-            this.f17539a = uMessage;
+        RunnableC6083a(UMessage uMessage) {
+            this.f21707a = uMessage;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            UMMipushReceiverActivity.this.f17538b.setText(this.f17539a.getRaw().toString());
+            UMMipushReceiverActivity.this.f21706b.setText(this.f21707a.getRaw().toString());
         }
     }
 
     @Override // com.umeng.message.UmengNotifyClickActivity, android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.umeng_mipush);
-        this.f17538b = (TextView) findViewById(R.id.mipushTextView);
+        setContentView(C2113R.layout.umeng_mipush);
+        this.f21706b = (TextView) findViewById(C2113R.id.mipushTextView);
     }
 
     @Override // com.umeng.message.UmengNotifyClickActivity
     protected void onMessage(UMessage uMessage) {
         super.onMessage(uMessage);
-        runOnUiThread(new a(uMessage));
+        runOnUiThread(new RunnableC6083a(uMessage));
     }
 }

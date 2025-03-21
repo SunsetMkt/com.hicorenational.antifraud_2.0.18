@@ -6,25 +6,30 @@ import com.hihonor.honorid.UseCase.RequestValues;
 /* loaded from: classes.dex */
 public abstract class UseCase<Q extends RequestValues> {
 
-    /* renamed from: a, reason: collision with root package name */
-    private Q f6097a;
+    /* renamed from: a */
+    private Q f6487a;
 
     public static abstract class RequestValues implements Parcelable {
     }
 
-    public interface a {
+    /* renamed from: com.hihonor.honorid.UseCase$a */
+    public interface InterfaceC2150a {
     }
 
-    void a() {
-        a((UseCase<Q>) this.f6097a);
+    /* renamed from: a */
+    void m6089a() {
+        mo6090a((UseCase<Q>) this.f6487a);
     }
 
-    protected abstract void a(Q q);
+    /* renamed from: a */
+    protected abstract void mo6090a(Q q);
 
-    public void a(a aVar) {
+    /* renamed from: a */
+    public void m6091a(InterfaceC2150a interfaceC2150a) {
     }
 
-    public void b(Q q) {
-        this.f6097a = q;
+    /* renamed from: b */
+    public void m6092b(Q q) {
+        this.f6487a = q;
     }
 }

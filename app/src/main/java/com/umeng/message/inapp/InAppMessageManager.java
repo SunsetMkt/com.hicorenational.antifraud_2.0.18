@@ -7,13 +7,13 @@ import android.text.TextUtils;
 import com.umeng.commonsdk.debug.UMLog;
 import com.umeng.message.common.UPLog;
 import com.umeng.message.entity.UInAppMessage;
-import com.umeng.message.proguard.ae;
-import com.umeng.message.proguard.ag;
-import com.umeng.message.proguard.ai;
-import com.umeng.message.proguard.aq;
-import com.umeng.message.proguard.b;
-import com.umeng.message.proguard.f;
-import com.umeng.message.proguard.h;
+import com.umeng.message.proguard.C3556ae;
+import com.umeng.message.proguard.C3558ag;
+import com.umeng.message.proguard.C3560ai;
+import com.umeng.message.proguard.C3568aq;
+import com.umeng.message.proguard.C3578b;
+import com.umeng.message.proguard.C3586f;
+import com.umeng.message.proguard.C3588h;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -22,67 +22,69 @@ import java.util.Locale;
 /* loaded from: classes2.dex */
 public class InAppMessageManager {
 
-    /* renamed from: a, reason: collision with root package name */
-    public static boolean f11149a = false;
+    /* renamed from: a */
+    public static boolean f13064a = false;
 
-    /* renamed from: d, reason: collision with root package name */
-    public static int f11150d = 1800000;
+    /* renamed from: d */
+    public static int f13065d = 1800000;
 
-    /* renamed from: e, reason: collision with root package name */
-    public static int f11151e = 1000;
+    /* renamed from: e */
+    public static int f13066e = 1000;
 
-    /* renamed from: f, reason: collision with root package name */
-    private static InAppMessageManager f11152f;
+    /* renamed from: f */
+    private static InAppMessageManager f13067f;
 
-    /* renamed from: b, reason: collision with root package name */
-    public final Context f11153b;
+    /* renamed from: b */
+    public final Context f13068b;
 
-    /* renamed from: c, reason: collision with root package name */
-    String f11154c;
+    /* renamed from: c */
+    String f13069c;
 
-    /* renamed from: h, reason: collision with root package name */
-    private final aq f11156h = new aq("in_app");
+    /* renamed from: h */
+    private final C3568aq f13071h = new C3568aq("in_app");
 
-    /* renamed from: g, reason: collision with root package name */
-    private UInAppHandler f11155g = new UmengInAppClickHandler();
+    /* renamed from: g */
+    private UInAppHandler f13070g = new UmengInAppClickHandler();
 
     private InAppMessageManager(Context context) {
-        this.f11153b = context.getApplicationContext();
+        this.f13068b = context.getApplicationContext();
     }
 
-    private int d(String str) {
-        return Integer.parseInt(a(str, "0"));
+    /* renamed from: d */
+    private int m12157d(String str) {
+        return Integer.parseInt(m12160a(str, "0"));
     }
 
     public static InAppMessageManager getInstance(Context context) {
-        if (f11152f == null) {
+        if (f13067f == null) {
             synchronized (InAppMessageManager.class) {
-                if (f11152f == null) {
-                    f11152f = new InAppMessageManager(context);
+                if (f13067f == null) {
+                    f13067f = new InAppMessageManager(context);
                 }
             }
         }
-        return f11152f;
+        return f13067f;
     }
 
-    public final long c(String str) {
-        return Long.parseLong(a("KEY_LAST_SHOW_CARD_TS_".concat(String.valueOf(str)), "0"));
+    /* renamed from: c */
+    public final long m12168c(String str) {
+        return Long.parseLong(m12160a("KEY_LAST_SHOW_CARD_TS_".concat(String.valueOf(str)), "0"));
     }
 
     public UInAppHandler getInAppHandler() {
-        return this.f11155g;
+        return this.f13070g;
     }
 
     public void setInAppHandler(UInAppHandler uInAppHandler) {
-        this.f11155g = uInAppHandler;
+        this.f13070g = uInAppHandler;
     }
 
     public void setInAppMsgDebugMode(boolean z) {
-        f11149a = z;
+        f13064a = z;
     }
 
     public void setMainActivityPath(String str) {
-        this.f11154c = str;
+        this.f13069c = str;
     }
 
     public void setPlainTextSize(int i2, int i3, int i4) {
@@ -90,52 +92,56 @@ public class InAppMessageManager {
             UMLog.mutlInfo("InAppMessageManager", 0, "纯文本字体大小不能小于0");
             return;
         }
-        b("KEY_PLAIN_TEXT_SIZE", i2 + Constants.ACCEPT_TIME_SEPARATOR_SP + i3 + Constants.ACCEPT_TIME_SEPARATOR_SP + i4);
+        m12167b("KEY_PLAIN_TEXT_SIZE", i2 + Constants.ACCEPT_TIME_SEPARATOR_SP + i3 + Constants.ACCEPT_TIME_SEPARATOR_SP + i4);
     }
 
     public void showCardMessage(Activity activity, String str, IUmengInAppMsgCloseCallback iUmengInAppMsgCloseCallback) {
-        if (f.b()) {
-            UPLog.d("InAppMessageManager", "showCardMessage failed, silent mode!");
+        if (C3586f.m12389b()) {
+            UPLog.m12142d("InAppMessageManager", "showCardMessage failed, silent mode!");
             return;
         }
-        ag agVar = new ag(activity, str, iUmengInAppMsgCloseCallback);
-        if (TextUtils.isEmpty(agVar.f11242c.trim())) {
-            UMLog.mutlInfo(ag.f11240a, 0, "插屏消息的标签不能为空");
+        C3558ag c3558ag = new C3558ag(activity, str, iUmengInAppMsgCloseCallback);
+        if (TextUtils.isEmpty(c3558ag.f13170c.trim())) {
+            UMLog.mutlInfo(C3558ag.f13168a, 0, "插屏消息的标签不能为空");
             return;
         }
-        if (!agVar.a(agVar.f11242c)) {
-            UMLog.mutlInfo(ag.f11240a, 0, "插屏消息的最大标签数为 10");
+        if (!c3558ag.m12237a(c3558ag.f13170c)) {
+            UMLog.mutlInfo(C3558ag.f13168a, 0, "插屏消息的最大标签数为 10");
             return;
         }
-        if (f11149a) {
-            ai.a(agVar.f11241b).a(agVar.f11242c, agVar);
-        } else if (System.currentTimeMillis() - Long.parseLong(getInstance(agVar.f11241b).a("KEY_CARD_TS_".concat(String.valueOf(agVar.f11242c)), "0")) > f11150d) {
-            ai.a(agVar.f11241b).a(agVar.f11242c, agVar);
+        if (f13064a) {
+            C3560ai.m12243a(c3558ag.f13169b).m12250a(c3558ag.f13170c, c3558ag);
+        } else if (System.currentTimeMillis() - Long.parseLong(getInstance(c3558ag.f13169b).m12160a("KEY_CARD_TS_".concat(String.valueOf(c3558ag.f13170c)), "0")) > f13065d) {
+            C3560ai.m12243a(c3558ag.f13169b).m12250a(c3558ag.f13170c, c3558ag);
         } else {
-            agVar.b((UInAppMessage) null);
+            c3558ag.mo12213b((UInAppMessage) null);
         }
     }
 
-    public final void a(UInAppMessage uInAppMessage) {
+    /* renamed from: a */
+    public final void m12161a(UInAppMessage uInAppMessage) {
         if (uInAppMessage == null) {
-            b("KEY_LAST_SPLASH_ID", "");
+            m12167b("KEY_LAST_SPLASH_ID", "");
         } else if (uInAppMessage.getRaw() != null) {
-            b("KEY_LAST_SPLASH_ID", uInAppMessage.getRaw().toString());
+            m12167b("KEY_LAST_SPLASH_ID", uInAppMessage.getRaw().toString());
         }
     }
 
-    public final void b(String str) {
+    /* renamed from: b */
+    public final void m12166b(String str) {
         String concat = "KEY_LAST_SHOW_CARD_TS_".concat(String.valueOf(str));
         StringBuilder sb = new StringBuilder();
         sb.append(System.currentTimeMillis());
-        b(concat, sb.toString());
+        m12167b(concat, sb.toString());
     }
 
-    public final boolean c(UInAppMessage uInAppMessage) {
-        return uInAppMessage.show_times == 0 || d(uInAppMessage.msg_id) < uInAppMessage.show_times;
+    /* renamed from: c */
+    public final boolean m12169c(UInAppMessage uInAppMessage) {
+        return uInAppMessage.show_times == 0 || m12157d(uInAppMessage.msg_id) < uInAppMessage.show_times;
     }
 
-    public static boolean b(UInAppMessage uInAppMessage) {
+    /* renamed from: b */
+    public static boolean m12156b(UInAppMessage uInAppMessage) {
         try {
             return System.currentTimeMillis() < new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).parse(uInAppMessage.expire_time).getTime();
         } catch (Exception e2) {
@@ -144,15 +150,17 @@ public class InAppMessageManager {
         }
     }
 
-    public final String a() {
-        return a("KEY_LAST_SPLASH_ID", "");
+    /* renamed from: a */
+    public final String m12158a() {
+        return m12160a("KEY_LAST_SPLASH_ID", "");
     }
 
-    public final void a(UInAppMessage uInAppMessage, String str) {
+    /* renamed from: a */
+    public final void m12162a(UInAppMessage uInAppMessage, String str) {
         if (uInAppMessage == null) {
-            b("KEY_LAST_CARD_ID_".concat(String.valueOf(str)), "");
+            m12167b("KEY_LAST_CARD_ID_".concat(String.valueOf(str)), "");
         } else if (uInAppMessage.getRaw() != null) {
-            b("KEY_LAST_CARD_ID_".concat(String.valueOf(str)), uInAppMessage.getRaw().toString());
+            m12167b("KEY_LAST_CARD_ID_".concat(String.valueOf(str)), uInAppMessage.getRaw().toString());
         }
     }
 
@@ -172,20 +180,21 @@ public class InAppMessageManager {
     
         if (r1 == null) goto L17;
      */
+    /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final java.util.ArrayList<com.umeng.message.proguard.ae> b() {
+    public final java.util.ArrayList<com.umeng.message.proguard.C3556ae> m12165b() {
         /*
             r9 = this;
             java.util.ArrayList r0 = new java.util.ArrayList
             r0.<init>()
             r1 = 0
-            android.content.Context r2 = r9.f11153b     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
+            android.content.Context r2 = r9.f13068b     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
             android.content.ContentResolver r3 = r2.getContentResolver()     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
-            android.content.Context r2 = r9.f11153b     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
-            android.net.Uri r4 = com.umeng.message.proguard.h.e(r2)     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
+            android.content.Context r2 = r9.f13068b     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
+            android.net.Uri r4 = com.umeng.message.proguard.C3588h.m12406e(r2)     // Catch: java.lang.Throwable -> L33 java.lang.Exception -> L35
             r5 = 0
             r6 = 0
             r7 = 0
@@ -221,28 +230,32 @@ public class InAppMessageManager {
         L44:
             throw r0
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.umeng.message.inapp.InAppMessageManager.b():java.util.ArrayList");
+        throw new UnsupportedOperationException("Method not decompiled: com.umeng.message.inapp.InAppMessageManager.m12165b():java.util.ArrayList");
     }
 
-    public final String a(String str) {
-        return a("KEY_LAST_CARD_ID_".concat(String.valueOf(str)), "");
+    /* renamed from: a */
+    public final String m12159a(String str) {
+        return m12160a("KEY_LAST_CARD_ID_".concat(String.valueOf(str)), "");
     }
 
-    public final void a(String str, int i2) {
+    /* renamed from: a */
+    public final void m12164a(String str, int i2) {
         if (i2 == 0) {
-            b(str, "0");
+            m12167b(str, "0");
         }
         if (i2 == 1) {
-            b(str, String.valueOf(d(str) + 1));
+            m12167b(str, String.valueOf(m12157d(str) + 1));
         }
     }
 
-    public final String a(String str, String str2) {
-        return this.f11156h.b(str, str2);
+    /* renamed from: a */
+    public final String m12160a(String str, String str2) {
+        return this.f13071h.m12290b(str, str2);
     }
 
-    public final void a(final File file) {
-        b.c(new Runnable() { // from class: com.umeng.message.inapp.InAppMessageManager.3
+    /* renamed from: a */
+    public final void m12163a(final File file) {
+        C3578b.m12327c(new Runnable() { // from class: com.umeng.message.inapp.InAppMessageManager.3
             @Override // java.lang.Runnable
             public final void run() {
                 File file2 = file;
@@ -258,21 +271,23 @@ public class InAppMessageManager {
         });
     }
 
-    static /* synthetic */ ae a(InAppMessageManager inAppMessageManager, String str) {
-        Cursor query = inAppMessageManager.f11153b.getContentResolver().query(h.e(inAppMessageManager.f11153b), null, "MsgId=?", new String[]{str}, null);
-        ae aeVar = query != null ? query.moveToFirst() : false ? new ae(query) : null;
+    /* renamed from: a */
+    static /* synthetic */ C3556ae m12154a(InAppMessageManager inAppMessageManager, String str) {
+        Cursor query = inAppMessageManager.f13068b.getContentResolver().query(C3588h.m12406e(inAppMessageManager.f13068b), null, "MsgId=?", new String[]{str}, null);
+        C3556ae c3556ae = query != null ? query.moveToFirst() : false ? new C3556ae(query) : null;
         if (query != null) {
             query.close();
         }
-        return aeVar;
+        return c3556ae;
     }
 
-    public final void b(final String str, final String str2) {
-        b.c(new Runnable() { // from class: com.umeng.message.inapp.InAppMessageManager.2
+    /* renamed from: b */
+    public final void m12167b(final String str, final String str2) {
+        C3578b.m12327c(new Runnable() { // from class: com.umeng.message.inapp.InAppMessageManager.2
             @Override // java.lang.Runnable
             public final void run() {
                 try {
-                    InAppMessageManager.this.f11156h.a(str, str2);
+                    InAppMessageManager.this.f13071h.m12285a(str, str2);
                 } catch (Throwable th) {
                     th.printStackTrace();
                 }

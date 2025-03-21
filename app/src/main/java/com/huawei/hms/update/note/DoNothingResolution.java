@@ -10,15 +10,15 @@ import com.huawei.hms.support.log.HMSLog;
 public class DoNothingResolution implements IBridgeActivityDelegate {
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public int getRequestCode() {
-        HMSLog.i("DoNothingResolution", "<DoNothingResolution getRequestCode>");
+        HMSLog.m7717i("DoNothingResolution", "<DoNothingResolution getRequestCode>");
         return 0;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
-        HMSLog.i("DoNothingResolution", "<DoNothingResolution onBridgeActivityCreate>");
+        HMSLog.m7717i("DoNothingResolution", "<DoNothingResolution onBridgeActivityCreate>");
         if (activity == null || activity.isFinishing()) {
-            HMSLog.e("DoNothingResolution", "<Resolution onBridgeActivityCreate> activity is null or finishing");
+            HMSLog.m7715e("DoNothingResolution", "<Resolution onBridgeActivityCreate> activity is null or finishing");
         } else {
             activity.setResult(30);
             activity.finish();
@@ -27,22 +27,22 @@ public class DoNothingResolution implements IBridgeActivityDelegate {
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityDestroy() {
-        HMSLog.i("DoNothingResolution", "<DoNothingResolution onBridgeActivityDestroy>");
+        HMSLog.m7717i("DoNothingResolution", "<DoNothingResolution onBridgeActivityDestroy>");
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public boolean onBridgeActivityResult(int i2, int i3, Intent intent) {
-        HMSLog.i("DoNothingResolution", "<DoNothingResolution onBridgeActivityResult>");
+        HMSLog.m7717i("DoNothingResolution", "<DoNothingResolution onBridgeActivityResult>");
         return false;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeConfigurationChanged() {
-        HMSLog.i("DoNothingResolution", "<DoNothingResolution onBridgeConfigurationChanged>");
+        HMSLog.m7717i("DoNothingResolution", "<DoNothingResolution onBridgeConfigurationChanged>");
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onKeyUp(int i2, KeyEvent keyEvent) {
-        HMSLog.i("DoNothingResolution", "<DoNothingResolution onKeyUp>");
+        HMSLog.m7717i("DoNothingResolution", "<DoNothingResolution onKeyUp>");
     }
 }

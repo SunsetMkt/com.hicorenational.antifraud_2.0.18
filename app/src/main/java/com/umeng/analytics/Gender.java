@@ -19,27 +19,27 @@ public class Gender {
     public static final Gender Male;
     public static final Gender Unknown;
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final /* synthetic */ Gender[] f9972a;
+    /* renamed from: a */
+    private static final /* synthetic */ Gender[] f11357a;
     public int value;
 
-    /* renamed from: com.umeng.analytics.Gender$4, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass4 {
+    /* renamed from: com.umeng.analytics.Gender$4 */
+    static /* synthetic */ class C33084 {
 
-        /* renamed from: a, reason: collision with root package name */
-        static final /* synthetic */ int[] f9973a = new int[Gender.values().length];
+        /* renamed from: a */
+        static final /* synthetic */ int[] f11358a = new int[Gender.values().length];
 
         static {
             try {
-                f9973a[Gender.Male.ordinal()] = 1;
+                f11358a[Gender.Male.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f9973a[Gender.Female.ordinal()] = 2;
+                f11358a[Gender.Female.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f9973a[Gender.Unknown.ordinal()] = 3;
+                f11358a[Gender.Unknown.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }
@@ -67,7 +67,7 @@ public class Gender {
                 return String.format(Locale.US, "Unknown:%d", Integer.valueOf(this.value));
             }
         };
-        f9972a = new Gender[]{Male, Female, Unknown};
+        f11357a = new Gender[]{Male, Female, Unknown};
     }
 
     public static Gender getGender(int i2) {
@@ -75,7 +75,7 @@ public class Gender {
     }
 
     public static com.umeng.commonsdk.statistics.proto.Gender transGender(Gender gender) {
-        int i2 = AnonymousClass4.f9973a[gender.ordinal()];
+        int i2 = C33084.f11358a[gender.ordinal()];
         return i2 != 1 ? i2 != 2 ? com.umeng.commonsdk.statistics.proto.Gender.UNKNOWN : com.umeng.commonsdk.statistics.proto.Gender.FEMALE : com.umeng.commonsdk.statistics.proto.Gender.MALE;
     }
 
@@ -84,7 +84,7 @@ public class Gender {
     }
 
     public static Gender[] values() {
-        return (Gender[]) f9972a.clone();
+        return (Gender[]) f11357a.clone();
     }
 
     public int value() {

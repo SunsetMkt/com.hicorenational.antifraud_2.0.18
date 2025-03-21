@@ -12,7 +12,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.R;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.view.ActionMode;
 import androidx.core.view.KeyEventDispatcher;
 
@@ -30,7 +30,7 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
             return i2;
         }
         TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.dialogTheme, typedValue, true);
+        context.getTheme().resolveAttribute(C0120R.attr.dialogTheme, typedValue, true);
         return typedValue.resourceId;
     }
 

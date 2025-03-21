@@ -8,7 +8,8 @@ import java.util.Locale;
 
 /* loaded from: classes.dex */
 public class FileUtil {
-    private static String a(String str) {
+    /* renamed from: a */
+    private static String m8010a(String str) {
         int lastIndexOf;
         int i2;
         return (str.isEmpty() || (lastIndexOf = str.lastIndexOf(".")) == -1 || (i2 = lastIndexOf + 1) == str.length()) ? "" : str.substring(i2).toLowerCase(Locale.ENGLISH);
@@ -16,9 +17,9 @@ public class FileUtil {
 
     public static boolean checkFileExtValid(String str, String[] strArr) {
         if (str != null && !str.isEmpty() && strArr != null) {
-            String a2 = a(str);
+            String m8010a = m8010a(str);
             for (String str2 : strArr) {
-                if (a2.equalsIgnoreCase(str2)) {
+                if (m8010a.equalsIgnoreCase(str2)) {
                     return true;
                 }
             }

@@ -32,8 +32,8 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     private static String rootDir;
     private long nativeHandle;
 
-    /* renamed from: com.tencent.mmkv.MMKV$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: com.tencent.mmkv.MMKV$1 */
+    static /* synthetic */ class C32411 {
         static final /* synthetic */ int[] $SwitchMap$com$tencent$mmkv$MMKVLogLevel = new int[MMKVLogLevel.values().length];
 
         static {
@@ -163,7 +163,7 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     private static native void jniInitialize(String str, int i2);
 
     private static int logLevel2Int(MMKVLogLevel mMKVLogLevel) {
-        int i2 = AnonymousClass1.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[mMKVLogLevel.ordinal()];
+        int i2 = C32411.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[mMKVLogLevel.ordinal()];
         if (i2 == 1) {
             return 0;
         }
@@ -187,7 +187,7 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
             mMKVHandler.mmkvLog(index2LogLevel[i2], str, i3, str2, str3);
             return;
         }
-        int i4 = AnonymousClass1.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[index2LogLevel[i2].ordinal()];
+        int i4 = C32411.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[index2LogLevel[i2].ordinal()];
         if (i4 == 1 || i4 == 2 || i4 != 3) {
         }
     }

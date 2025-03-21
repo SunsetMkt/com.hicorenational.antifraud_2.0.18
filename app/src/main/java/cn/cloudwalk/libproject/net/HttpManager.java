@@ -6,13 +6,13 @@ import cn.cloudwalk.libproject.util.Base64Util;
 import cn.cloudwalk.libproject.util.LogUtils;
 import com.huawei.hms.push.constant.RemoteMessageConst;
 import com.tencent.open.SocialConstants;
-import h.z2.h0;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import org.json.JSONObject;
+import p286h.p323z2.C5736h0;
 
 /* loaded from: classes.dex */
 public class HttpManager {
@@ -231,7 +231,7 @@ public class HttpManager {
                     e2.printStackTrace();
                 }
                 if (it.hasNext()) {
-                    sb.append(h0.f16706c);
+                    sb.append(C5736h0.f20714c);
                 }
             }
         }

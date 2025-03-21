@@ -7,7 +7,7 @@ import com.taobao.accs.AccsClientConfig;
 import com.taobao.accs.AccsException;
 import com.taobao.accs.IProcessName;
 import com.taobao.accs.utl.ALog;
-import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.C3336at;
 
 /* compiled from: Taobao */
 @Deprecated
@@ -35,11 +35,11 @@ public class AccsConfig {
         try {
             AccsClientConfig configByTag = AccsClientConfig.getConfigByTag(ACCSManager.getDefaultConfig(null));
             if (AccsClientConfig.loadedStaticConfig && configByTag != null) {
-                ALog.w(TAG, "default config already exists", new Object[0]);
+                ALog.m9186w(TAG, "default config already exists", new Object[0]);
             }
             getBuilder().build();
         } catch (AccsException e2) {
-            ALog.e(TAG, "build config error", e2, new Object[0]);
+            ALog.m9181e(TAG, "build config error", e2, new Object[0]);
         }
     }
 
@@ -59,10 +59,10 @@ public class AccsConfig {
 
     public static void setAccsCenterHosts(String str, String str2, String str3) {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2) || TextUtils.isEmpty(str3)) {
-            ALog.e(TAG, "setAccsCenterHost null", new Object[0]);
+            ALog.m9182e(TAG, "setAccsCenterHost null", new Object[0]);
             return;
         }
-        ALog.i(TAG, "setAccsCenterHost", at.f10067a, Integer.valueOf(ACCSManager.mEnv), "releaseHost", str, "prepareHost", str2, "dailyHost", str3);
+        ALog.m9183i(TAG, "setAccsCenterHost", C3336at.f11487a, Integer.valueOf(ACCSManager.mEnv), "releaseHost", str, "prepareHost", str2, "dailyHost", str3);
         int i2 = ACCSManager.mEnv;
         if (i2 == 1) {
             getBuilder().setInappHost(str2);
@@ -78,11 +78,11 @@ public class AccsConfig {
 
     public static void setAuthCode(String str) {
         getBuilder().setAutoCode(str);
-        a.f8406b = str;
+        C2978a.f9401b = str;
     }
 
     public static void setChannelHosts(String str, String str2, String str3) {
-        ALog.i(TAG, at.f10067a, Integer.valueOf(ACCSManager.mEnv), "setChannelHosts", "releaseHost", str, "prepareHost", str2, "dailyHost", str3);
+        ALog.m9183i(TAG, C3336at.f11487a, Integer.valueOf(ACCSManager.mEnv), "setChannelHosts", "releaseHost", str, "prepareHost", str2, "dailyHost", str3);
         int i2 = ACCSManager.mEnv;
         if (i2 == 1) {
             getBuilder().setChannelHost(str2);
@@ -121,7 +121,7 @@ public class AccsConfig {
     }
 
     public static void setTnetPubkey(int i2, int i3) {
-        ALog.i(TAG, "setTnetPubkey", "pubKey", Integer.valueOf(i2), "channelPubKey", Integer.valueOf(i3));
+        ALog.m9183i(TAG, "setTnetPubkey", "pubKey", Integer.valueOf(i2), "channelPubKey", Integer.valueOf(i3));
         getBuilder().setInappPubKey(i2).setChannelPubKey(i3);
     }
 }

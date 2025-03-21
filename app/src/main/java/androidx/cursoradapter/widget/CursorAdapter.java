@@ -13,7 +13,7 @@ import android.widget.FilterQueryProvider;
 import android.widget.Filterable;
 import androidx.annotation.RestrictTo;
 import androidx.cursoradapter.widget.CursorFilter;
-import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.C3355bl;
 
 /* loaded from: classes.dex */
 public abstract class CursorAdapter extends BaseAdapter implements Filterable, CursorFilter.CursorFilterClient {
@@ -233,7 +233,7 @@ public abstract class CursorAdapter extends BaseAdapter implements Filterable, C
             if (dataSetObserver2 != null) {
                 cursor.registerDataSetObserver(dataSetObserver2);
             }
-            this.mRowIDColumn = cursor.getColumnIndexOrThrow(bl.f10170d);
+            this.mRowIDColumn = cursor.getColumnIndexOrThrow(C3355bl.f11732d);
             this.mDataValid = true;
             notifyDataSetChanged();
         } else {
@@ -255,7 +255,7 @@ public abstract class CursorAdapter extends BaseAdapter implements Filterable, C
         this.mCursor = cursor;
         this.mDataValid = z;
         this.mContext = context;
-        this.mRowIDColumn = z ? cursor.getColumnIndexOrThrow(bl.f10170d) : -1;
+        this.mRowIDColumn = z ? cursor.getColumnIndexOrThrow(C3355bl.f11732d) : -1;
         if ((i2 & 2) == 2) {
             this.mChangeObserver = new ChangeObserver();
             this.mDataSetObserver = new MyDataSetObserver();

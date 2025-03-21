@@ -8,7 +8,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
-import com.google.android.material.R;
+import com.google.android.material.C1921R;
 
 /* loaded from: classes.dex */
 public class TextInputEditText extends AppCompatEditText {
@@ -51,7 +51,7 @@ public class TextInputEditText extends AppCompatEditText {
     }
 
     public TextInputEditText(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.editTextStyle);
+        this(context, attributeSet, C1921R.attr.editTextStyle);
     }
 
     public TextInputEditText(Context context, AttributeSet attributeSet, int i2) {

@@ -6,66 +6,77 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
-import com.lxj.xpopup.R;
-import com.lxj.xpopup.d.d;
+import com.lxj.xpopup.C2766R;
+import com.lxj.xpopup.p185d.EnumC2804d;
 import com.lxj.xpopup.widget.PopupDrawerLayout;
 
 /* loaded from: classes.dex */
 public abstract class DrawerPopupView extends BasePopupView {
-    PopupDrawerLayout p;
-    protected FrameLayout q;
 
-    class a implements PopupDrawerLayout.d {
-        a() {
+    /* renamed from: p */
+    PopupDrawerLayout f8648p;
+
+    /* renamed from: q */
+    protected FrameLayout f8649q;
+
+    /* renamed from: com.lxj.xpopup.core.DrawerPopupView$a */
+    class C2790a implements PopupDrawerLayout.InterfaceC2846d {
+        C2790a() {
         }
 
-        @Override // com.lxj.xpopup.widget.PopupDrawerLayout.d
-        public void a() {
-            DrawerPopupView.super.e();
+        @Override // com.lxj.xpopup.widget.PopupDrawerLayout.InterfaceC2846d
+        /* renamed from: a */
+        public void mo8400a() {
+            DrawerPopupView.super.mo8381e();
         }
 
-        @Override // com.lxj.xpopup.widget.PopupDrawerLayout.d
+        @Override // com.lxj.xpopup.widget.PopupDrawerLayout.InterfaceC2846d
         public void onClose() {
-            DrawerPopupView.super.b();
+            DrawerPopupView.super.mo8378b();
         }
 
-        @Override // com.lxj.xpopup.widget.PopupDrawerLayout.d
-        public void a(float f2) {
+        @Override // com.lxj.xpopup.widget.PopupDrawerLayout.InterfaceC2846d
+        /* renamed from: a */
+        public void mo8401a(float f2) {
             DrawerPopupView drawerPopupView = DrawerPopupView.this;
-            drawerPopupView.p.f8180i = drawerPopupView.f7987a.r.booleanValue();
+            drawerPopupView.f8648p.f8934i = drawerPopupView.f8617a.f8705r.booleanValue();
         }
     }
 
-    class b implements View.OnClickListener {
-        b() {
+    /* renamed from: com.lxj.xpopup.core.DrawerPopupView$b */
+    class ViewOnClickListenerC2791b implements View.OnClickListener {
+        ViewOnClickListenerC2791b() {
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            DrawerPopupView.this.p.a();
+            DrawerPopupView.this.f8648p.m8599a();
         }
     }
 
     public DrawerPopupView(@NonNull Context context) {
         super(context);
-        this.p = (PopupDrawerLayout) findViewById(R.id.drawerLayout);
-        this.q = (FrameLayout) findViewById(R.id.drawerContentContainer);
-        this.q.addView(LayoutInflater.from(getContext()).inflate(getImplLayoutId(), (ViewGroup) this.q, false));
+        this.f8648p = (PopupDrawerLayout) findViewById(C2766R.id.drawerLayout);
+        this.f8649q = (FrameLayout) findViewById(C2766R.id.drawerContentContainer);
+        this.f8649q.addView(LayoutInflater.from(getContext()).inflate(getImplLayoutId(), (ViewGroup) this.f8649q, false));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void e() {
+    /* renamed from: e */
+    public void mo8381e() {
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void f() {
-        this.p.a();
+    /* renamed from: f */
+    public void mo8382f() {
+        this.f8648p.m8599a();
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void g() {
-        this.p.b();
+    /* renamed from: g */
+    public void mo8383g() {
+        this.f8648p.m8600b();
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
@@ -75,7 +86,7 @@ public abstract class DrawerPopupView extends BasePopupView {
 
     @Override // com.lxj.xpopup.core.BasePopupView
     protected int getPopupLayoutId() {
-        return R.layout._xpopup_drawer_popup_view;
+        return C2766R.layout._xpopup_drawer_popup_view;
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
@@ -84,23 +95,25 @@ public abstract class DrawerPopupView extends BasePopupView {
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    protected void k() {
-        super.k();
-        this.p.f8182k = this.f7987a.f8031e.booleanValue();
-        this.p.setOnCloseListener(new a());
-        getPopupImplView().setTranslationX(this.f7987a.s);
-        getPopupImplView().setTranslationY(this.f7987a.t);
-        PopupDrawerLayout popupDrawerLayout = this.p;
-        d dVar = this.f7987a.q;
-        if (dVar == null) {
-            dVar = d.Left;
+    /* renamed from: k */
+    protected void mo8364k() {
+        super.mo8364k();
+        this.f8648p.f8936k = this.f8617a.f8692e.booleanValue();
+        this.f8648p.setOnCloseListener(new C2790a());
+        getPopupImplView().setTranslationX(this.f8617a.f8706s);
+        getPopupImplView().setTranslationY(this.f8617a.f8707t);
+        PopupDrawerLayout popupDrawerLayout = this.f8648p;
+        EnumC2804d enumC2804d = this.f8617a.f8704q;
+        if (enumC2804d == null) {
+            enumC2804d = EnumC2804d.Left;
         }
-        popupDrawerLayout.setDrawerPosition(dVar);
-        this.p.setOnClickListener(new b());
+        popupDrawerLayout.setDrawerPosition(enumC2804d);
+        this.f8648p.setOnClickListener(new ViewOnClickListenerC2791b());
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    public void b() {
-        this.p.a();
+    /* renamed from: b */
+    public void mo8378b() {
+        this.f8648p.m8599a();
     }
 }

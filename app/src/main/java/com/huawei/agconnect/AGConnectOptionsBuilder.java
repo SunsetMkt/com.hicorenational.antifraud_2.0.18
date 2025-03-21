@@ -1,7 +1,7 @@
 package com.huawei.agconnect;
 
 import android.content.Context;
-import com.huawei.agconnect.config.impl.b;
+import com.huawei.agconnect.config.impl.C2249b;
 import com.huawei.agconnect.core.Service;
 import com.huawei.agconnect.core.service.auth.AuthProvider;
 import com.huawei.agconnect.core.service.auth.CredentialsProvider;
@@ -29,11 +29,11 @@ public final class AGConnectOptionsBuilder {
     private final List<Service> customServices = new ArrayList();
 
     public AGConnectOptions build(Context context) {
-        return new b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, null);
+        return new C2249b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, null);
     }
 
     public AGConnectOptions build(Context context, String str) {
-        return new b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, str);
+        return new C2249b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, str);
     }
 
     public Map<String, String> getCustomConfigMap() {

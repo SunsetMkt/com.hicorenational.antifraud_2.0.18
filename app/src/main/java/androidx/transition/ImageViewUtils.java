@@ -51,13 +51,13 @@ class ImageViewUtils {
             animator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ImageViewUtils.1
                 @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                 public void onAnimationEnd(Animator animator2) {
-                    ImageView.ScaleType scaleType = (ImageView.ScaleType) imageView.getTag(R.id.save_scale_type);
+                    ImageView.ScaleType scaleType = (ImageView.ScaleType) imageView.getTag(C0703R.id.save_scale_type);
                     imageView.setScaleType(scaleType);
-                    imageView.setTag(R.id.save_scale_type, null);
+                    imageView.setTag(C0703R.id.save_scale_type, null);
                     if (scaleType == ImageView.ScaleType.MATRIX) {
                         ImageView imageView2 = imageView;
-                        imageView2.setImageMatrix((Matrix) imageView2.getTag(R.id.save_image_matrix));
-                        imageView.setTag(R.id.save_image_matrix, null);
+                        imageView2.setImageMatrix((Matrix) imageView2.getTag(C0703R.id.save_image_matrix));
+                        imageView.setTag(C0703R.id.save_image_matrix, null);
                     }
                     animator2.removeListener(this);
                 }
@@ -68,10 +68,10 @@ class ImageViewUtils {
     static void startAnimateTransform(ImageView imageView) {
         if (Build.VERSION.SDK_INT < 21) {
             ImageView.ScaleType scaleType = imageView.getScaleType();
-            imageView.setTag(R.id.save_scale_type, scaleType);
+            imageView.setTag(C0703R.id.save_scale_type, scaleType);
             ImageView.ScaleType scaleType2 = ImageView.ScaleType.MATRIX;
             if (scaleType == scaleType2) {
-                imageView.setTag(R.id.save_image_matrix, imageView.getImageMatrix());
+                imageView.setTag(C0703R.id.save_image_matrix, imageView.getImageMatrix());
             } else {
                 imageView.setScaleType(scaleType2);
             }

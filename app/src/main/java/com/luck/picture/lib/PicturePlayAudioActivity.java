@@ -58,13 +58,13 @@ public class PicturePlayAudioActivity extends PictureBaseActivity implements Vie
             this.musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
             this.musicSeekBar.setMax(this.mediaPlayer.getDuration());
         }
-        if (this.tv_PlayPause.getText().toString().equals(getString(R.string.picture_play_audio))) {
-            this.tv_PlayPause.setText(getString(R.string.picture_pause_audio));
-            this.tv_musicStatus.setText(getString(R.string.picture_play_audio));
+        if (this.tv_PlayPause.getText().toString().equals(getString(C2639R.string.picture_play_audio))) {
+            this.tv_PlayPause.setText(getString(C2639R.string.picture_pause_audio));
+            this.tv_musicStatus.setText(getString(C2639R.string.picture_play_audio));
             playOrPause();
         } else {
-            this.tv_PlayPause.setText(getString(R.string.picture_play_audio));
-            this.tv_musicStatus.setText(getString(R.string.picture_pause_audio));
+            this.tv_PlayPause.setText(getString(C2639R.string.picture_play_audio));
+            this.tv_musicStatus.setText(getString(C2639R.string.picture_pause_audio));
             playOrPause();
         }
         if (this.isPlayAudio) {
@@ -74,34 +74,36 @@ public class PicturePlayAudioActivity extends PictureBaseActivity implements Vie
         this.isPlayAudio = true;
     }
 
-    public /* synthetic */ void a() {
+    /* renamed from: a */
+    public /* synthetic */ void m8104a() {
         initPlayer(this.audio_path);
     }
 
-    public /* synthetic */ void b() {
+    /* renamed from: b */
+    public /* synthetic */ void m8105b() {
         stop(this.audio_path);
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return R.layout.picture_play_audio;
+        return C2639R.layout.picture_play_audio;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     protected void initWidgets() {
         super.initWidgets();
         this.audio_path = getIntent().getStringExtra(PictureConfig.EXTRA_AUDIO_PATH);
-        this.tv_musicStatus = (TextView) findViewById(R.id.tv_musicStatus);
-        this.tv_musicTime = (TextView) findViewById(R.id.tv_musicTime);
-        this.musicSeekBar = (SeekBar) findViewById(R.id.musicSeekBar);
-        this.tv_musicTotal = (TextView) findViewById(R.id.tv_musicTotal);
-        this.tv_PlayPause = (TextView) findViewById(R.id.tv_PlayPause);
-        this.tv_Stop = (TextView) findViewById(R.id.tv_Stop);
-        this.tv_Quit = (TextView) findViewById(R.id.tv_Quit);
+        this.tv_musicStatus = (TextView) findViewById(C2639R.id.tv_musicStatus);
+        this.tv_musicTime = (TextView) findViewById(C2639R.id.tv_musicTime);
+        this.musicSeekBar = (SeekBar) findViewById(C2639R.id.musicSeekBar);
+        this.tv_musicTotal = (TextView) findViewById(C2639R.id.tv_musicTotal);
+        this.tv_PlayPause = (TextView) findViewById(C2639R.id.tv_PlayPause);
+        this.tv_Stop = (TextView) findViewById(C2639R.id.tv_Stop);
+        this.tv_Quit = (TextView) findViewById(C2639R.id.tv_Quit);
         this.handler.postDelayed(new Runnable() { // from class: com.luck.picture.lib.m
             @Override // java.lang.Runnable
             public final void run() {
-                PicturePlayAudioActivity.this.a();
+                PicturePlayAudioActivity.this.m8104a();
             }
         }, 30L);
         this.tv_PlayPause.setOnClickListener(this);
@@ -127,28 +129,28 @@ public class PicturePlayAudioActivity extends PictureBaseActivity implements Vie
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
     /* renamed from: onBackPressed */
-    public void a() {
-        super.a();
+    public void m8092a() {
+        super.m8092a();
         closeActivity();
     }
 
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.tv_PlayPause) {
+        if (id == C2639R.id.tv_PlayPause) {
             playAudio();
         }
-        if (id == R.id.tv_Stop) {
-            this.tv_musicStatus.setText(getString(R.string.picture_stop_audio));
-            this.tv_PlayPause.setText(getString(R.string.picture_play_audio));
+        if (id == C2639R.id.tv_Stop) {
+            this.tv_musicStatus.setText(getString(C2639R.string.picture_stop_audio));
+            this.tv_PlayPause.setText(getString(C2639R.string.picture_play_audio));
             stop(this.audio_path);
         }
-        if (id == R.id.tv_Quit) {
+        if (id == C2639R.id.tv_Quit) {
             this.handler.removeCallbacks(this.runnable);
             new Handler().postDelayed(new Runnable() { // from class: com.luck.picture.lib.n
                 @Override // java.lang.Runnable
                 public final void run() {
-                    PicturePlayAudioActivity.this.b();
+                    PicturePlayAudioActivity.this.m8105b();
                 }
             }, 30L);
             try {

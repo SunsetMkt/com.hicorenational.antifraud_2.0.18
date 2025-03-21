@@ -1,46 +1,47 @@
 package com.umeng.analytics.vshelper;
 
 /* loaded from: classes2.dex */
-public class PageNameMonitor implements com.umeng.analytics.vshelper.a {
+public class PageNameMonitor implements InterfaceC3436a {
     private static String currentActivity;
     private static String currentCustomPage;
     private static Object lock = new Object();
 
-    private static class a {
+    /* renamed from: com.umeng.analytics.vshelper.PageNameMonitor$a */
+    private static class C3435a {
 
-        /* renamed from: a, reason: collision with root package name */
-        private static final PageNameMonitor f10588a = new PageNameMonitor();
+        /* renamed from: a */
+        private static final PageNameMonitor f12325a = new PageNameMonitor();
 
-        private a() {
+        private C3435a() {
         }
     }
 
     public static PageNameMonitor getInstance() {
-        return a.f10588a;
+        return C3435a.f12325a;
     }
 
-    @Override // com.umeng.analytics.vshelper.a
+    @Override // com.umeng.analytics.vshelper.InterfaceC3436a
     public void activityPause(String str) {
         synchronized (lock) {
             currentActivity = null;
         }
     }
 
-    @Override // com.umeng.analytics.vshelper.a
+    @Override // com.umeng.analytics.vshelper.InterfaceC3436a
     public void activityResume(String str) {
         synchronized (lock) {
             currentActivity = str;
         }
     }
 
-    @Override // com.umeng.analytics.vshelper.a
+    @Override // com.umeng.analytics.vshelper.InterfaceC3436a
     public void customPageBegin(String str) {
         synchronized (lock) {
             currentCustomPage = str;
         }
     }
 
-    @Override // com.umeng.analytics.vshelper.a
+    @Override // com.umeng.analytics.vshelper.InterfaceC3436a
     public void customPageEnd(String str) {
         synchronized (lock) {
             currentCustomPage = null;

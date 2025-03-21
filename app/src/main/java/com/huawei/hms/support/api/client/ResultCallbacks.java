@@ -26,7 +26,7 @@ public abstract class ResultCallbacks<R extends Result> implements ResultCallbac
                 }
             }
         } catch (Exception e2) {
-            HMSLog.w(TAG, "Failed to release " + r + ", reason: " + e2);
+            HMSLog.m7718w(TAG, "Failed to release " + r + ", reason: " + e2);
         }
     }
 }

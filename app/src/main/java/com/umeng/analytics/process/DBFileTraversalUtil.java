@@ -10,35 +10,37 @@ import java.util.concurrent.Executors;
 /* loaded from: classes2.dex */
 public class DBFileTraversalUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static ExecutorService f10546a = Executors.newSingleThreadExecutor();
+    /* renamed from: a */
+    private static ExecutorService f12283a = Executors.newSingleThreadExecutor();
 
-    /* renamed from: b, reason: collision with root package name */
-    private static FileLockUtil f10547b = new FileLockUtil();
+    /* renamed from: b */
+    private static FileLockUtil f12284b = new FileLockUtil();
 
-    public interface a {
-        void a();
+    /* renamed from: com.umeng.analytics.process.DBFileTraversalUtil$a */
+    public interface InterfaceC3427a {
+        /* renamed from: a */
+        void mo11443a();
     }
 
-    public static void traverseDBFiles(String str, final FileLockCallback fileLockCallback, final a aVar) {
+    public static void traverseDBFiles(String str, final FileLockCallback fileLockCallback, final InterfaceC3427a interfaceC3427a) {
         final File file = new File(str);
         if (file.exists() && file.isDirectory()) {
-            f10546a.execute(new Runnable() { // from class: com.umeng.analytics.process.DBFileTraversalUtil.1
+            f12283a.execute(new Runnable() { // from class: com.umeng.analytics.process.DBFileTraversalUtil.1
                 @Override // java.lang.Runnable
                 public void run() {
                     try {
                         for (File file2 : file.listFiles()) {
-                            if (file2.getName().endsWith(com.umeng.analytics.process.a.f10569d)) {
-                                DBFileTraversalUtil.f10547b.doFileOperateion(file2, fileLockCallback);
-                                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> file: " + file2.getName());
+                            if (file2.getName().endsWith(InterfaceC3431a.f12306d)) {
+                                DBFileTraversalUtil.f12284b.doFileOperateion(file2, fileLockCallback);
+                                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> file: " + file2.getName());
                             }
                         }
-                        if (aVar != null) {
-                            aVar.a();
+                        if (interfaceC3427a != null) {
+                            interfaceC3427a.mo11443a();
                         }
                     } catch (Throwable unused) {
                     }
-                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> end *** ");
+                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> end *** ");
                 }
             });
         }

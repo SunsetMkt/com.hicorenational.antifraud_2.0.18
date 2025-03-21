@@ -1,8 +1,8 @@
 package com.huawei.secure.android.common.encrypt.hash;
 
 import android.text.TextUtils;
+import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.HexUtil;
-import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,23 +10,24 @@ import java.security.NoSuchAlgorithmException;
 /* loaded from: classes.dex */
 public final class SHA {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7477a = "SHA";
+    /* renamed from: a */
+    private static final String f8054a = "SHA";
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final String f7479c = "";
+    /* renamed from: c */
+    private static final String f8056c = "";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final String f7478b = "SHA-256";
+    /* renamed from: b */
+    private static final String f8055b = "SHA-256";
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final String[] f7480d = {f7478b, "SHA-384", "SHA-512"};
+    /* renamed from: d */
+    private static final String[] f8057d = {f8055b, "SHA-384", "SHA-512"};
 
     private SHA() {
     }
 
-    private static boolean a(String str) {
-        for (String str2 : f7480d) {
+    /* renamed from: a */
+    private static boolean m7852a(String str) {
+        for (String str2 : f8057d) {
             if (str2.equals(str)) {
                 return true;
             }
@@ -35,35 +36,35 @@ public final class SHA {
     }
 
     public static String sha256Encrypt(String str) {
-        return shaEncrypt(str, f7478b);
+        return shaEncrypt(str, f8055b);
     }
 
     public static String shaEncrypt(String str, String str2) {
         byte[] bArr;
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
-            b.b(f7477a, "content or algorithm is null.");
+            C2551b.m7898b(f8054a, "content or algorithm is null.");
             return "";
         }
-        if (!a(str2)) {
-            b.b(f7477a, "algorithm is not safe or legal");
+        if (!m7852a(str2)) {
+            C2551b.m7898b(f8054a, "algorithm is not safe or legal");
             return "";
         }
         try {
             bArr = str.getBytes("UTF-8");
         } catch (UnsupportedEncodingException unused) {
             bArr = new byte[0];
-            b.b(f7477a, "Error in generate SHA UnsupportedEncodingException");
+            C2551b.m7898b(f8054a, "Error in generate SHA UnsupportedEncodingException");
         }
         return HexUtil.byteArray2HexStr(shaEncryptByte(bArr, str2));
     }
 
     public static byte[] shaEncryptByte(byte[] bArr, String str) {
         if (bArr == null || TextUtils.isEmpty(str)) {
-            b.b(f7477a, "content or algorithm is null.");
+            C2551b.m7898b(f8054a, "content or algorithm is null.");
             return new byte[0];
         }
-        if (!a(str)) {
-            b.b(f7477a, "algorithm is not safe or legal");
+        if (!m7852a(str)) {
+            C2551b.m7898b(f8054a, "algorithm is not safe or legal");
             return new byte[0];
         }
         try {
@@ -71,7 +72,7 @@ public final class SHA {
             messageDigest.update(bArr);
             return messageDigest.digest();
         } catch (NoSuchAlgorithmException unused) {
-            b.b(f7477a, "Error in generate SHA NoSuchAlgorithmException");
+            C2551b.m7898b(f8054a, "Error in generate SHA NoSuchAlgorithmException");
             return new byte[0];
         }
     }

@@ -103,8 +103,8 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         }
     };
 
-    /* renamed from: com.luck.picture.lib.photoview.PhotoViewAttacher$4, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass4 {
+    /* renamed from: com.luck.picture.lib.photoview.PhotoViewAttacher$4 */
+    static /* synthetic */ class C27024 {
         static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType = new int[ImageView.ScaleType.values().length];
 
         static {
@@ -330,7 +330,7 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         float imageViewHeight = getImageViewHeight(this.mImageView);
         float f8 = 0.0f;
         if (height <= imageViewHeight) {
-            int i2 = AnonymousClass4.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
+            int i2 = C27024.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
             if (i2 != 2) {
                 if (i2 != 3) {
                     f6 = (imageViewHeight - height) / 2.0f;
@@ -363,7 +363,7 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         }
         float imageViewWidth = getImageViewWidth(this.mImageView);
         if (width <= imageViewWidth) {
-            int i3 = AnonymousClass4.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
+            int i3 = C27024.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
             if (i3 != 2) {
                 if (i3 != 3) {
                     f3 = (imageViewWidth - width) / 2.0f;
@@ -463,7 +463,7 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
             if (((int) this.mBaseRotation) % 180 != 0) {
                 rectF = new RectF(0.0f, 0.0f, f4, f2);
             }
-            int i2 = AnonymousClass4.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
+            int i2 = C27024.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
             if (i2 == 1) {
                 this.mBaseMatrix.setRectToRect(rectF, rectF2, Matrix.ScaleToFit.CENTER);
             } else if (i2 == 2) {

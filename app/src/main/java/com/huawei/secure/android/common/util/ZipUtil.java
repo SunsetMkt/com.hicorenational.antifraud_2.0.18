@@ -15,27 +15,27 @@ import java.util.zip.ZipInputStream;
 /* loaded from: classes.dex */
 public class ZipUtil {
 
-    /* renamed from: a, reason: collision with root package name */
-    private static final String f7707a = "ZipUtil";
+    /* renamed from: a */
+    private static final String f8289a = "ZipUtil";
 
-    /* renamed from: b, reason: collision with root package name */
-    private static final int f7708b = 104857600;
+    /* renamed from: b */
+    private static final int f8290b = 104857600;
 
-    /* renamed from: c, reason: collision with root package name */
-    private static final int f7709c = 100;
+    /* renamed from: c */
+    private static final int f8291c = 100;
 
-    /* renamed from: d, reason: collision with root package name */
-    private static final int f7710d = 4096;
+    /* renamed from: d */
+    private static final int f8292d = 4096;
 
-    /* renamed from: e, reason: collision with root package name */
-    private static final String f7711e = "..";
+    /* renamed from: e */
+    private static final String f8293e = "..";
 
-    /* renamed from: f, reason: collision with root package name */
-    private static final String[] f7712f = {"..\\", "../", "./", ".\\.\\", "%00", "..%2F", "..%5C", ".%2F"};
+    /* renamed from: f */
+    private static final String[] f8294f = {"..\\", "../", "./", ".\\.\\", "%00", "..%2F", "..%5C", ".%2F"};
 
     /* JADX WARN: Code restructure failed: missing block: B:106:0x0070, code lost:
     
-        r0 = "zipPath is a invalid path: " + d(r11);
+        r0 = "zipPath is a invalid path: " + m8055d(r11);
      */
     /* JADX WARN: Code restructure failed: missing block: B:107:0x0085, code lost:
     
@@ -54,26 +54,28 @@ public class ZipUtil {
     /* JADX WARN: Type inference failed for: r9v8 */
     /* JADX WARN: Type inference failed for: r9v9 */
     @android.annotation.SuppressLint({"NewApi"})
+    /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static java.util.List<java.io.File> a(java.io.File r17, java.io.File r18, long r19, boolean r21, boolean r22) {
+    private static java.util.List<java.io.File> m8044a(java.io.File r17, java.io.File r18, long r19, boolean r21, boolean r22) {
         /*
             Method dump skipped, instructions count: 442
             To view this dump change 'Code comments level' option to 'DEBUG'
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.huawei.secure.android.common.util.ZipUtil.a(java.io.File, java.io.File, long, boolean, boolean):java.util.List");
+        throw new UnsupportedOperationException("Method not decompiled: com.huawei.secure.android.common.util.ZipUtil.m8044a(java.io.File, java.io.File, long, boolean, boolean):java.util.List");
     }
 
-    private static boolean b(File file) {
+    /* renamed from: b */
+    private static boolean m8052b(File file) {
         if (file == null) {
             return false;
         }
         if (file.exists()) {
             return file.isFile();
         }
-        if (!a(file.getParentFile())) {
+        if (!m8047a(file.getParentFile())) {
             return false;
         }
         try {
@@ -83,36 +85,39 @@ public class ZipUtil {
         }
     }
 
-    private static File c(String str) {
+    /* renamed from: c */
+    private static File m8053c(String str) {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        return b(str);
+        return m8051b(str);
     }
 
-    private static String d(String str) {
+    /* renamed from: d */
+    private static String m8055d(String str) {
         int lastIndexOf;
         return (TextUtils.isEmpty(str) || (lastIndexOf = str.lastIndexOf(File.separator)) == -1) ? str : str.substring(lastIndexOf + 1);
     }
 
-    private static void e(File file) {
+    /* renamed from: e */
+    private static void m8057e(File file) {
         if (file == null) {
             return;
         }
         if (file.isFile()) {
-            c(file);
+            m8054c(file);
             return;
         }
         if (file.isDirectory()) {
             File[] listFiles = file.listFiles();
             if (listFiles == null || listFiles.length == 0) {
-                c(file);
+                m8054c(file);
                 return;
             }
             for (File file2 : listFiles) {
-                e(file2);
+                m8057e(file2);
             }
-            c(file);
+            m8054c(file);
         }
     }
 
@@ -125,11 +130,12 @@ public class ZipUtil {
         return unZipNew(str, str2, 104857600L, 100, z);
     }
 
-    private static void c(File file) {
+    /* renamed from: c */
+    private static void m8054c(File file) {
         if (file == null || file.delete()) {
             return;
         }
-        LogsUtil.e(f7707a, "delete file error");
+        LogsUtil.m8021e(f8289a, "delete file error");
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -170,35 +176,38 @@ public class ZipUtil {
     }
 
     public static List<File> unZipNew(String str, String str2, long j2, int i2, boolean z) throws SecurityCommonException {
-        if (!a(str, str2, j2, i2)) {
+        if (!m8049a(str, str2, j2, i2)) {
             return null;
         }
         if (str2.endsWith(File.separator) && str2.length() > File.separator.length()) {
             str2 = str2.substring(0, str2.length() - File.separator.length());
         }
-        return a(c(str), c(str2), j2, z, false);
+        return m8044a(m8053c(str), m8053c(str2), j2, z, false);
     }
 
-    private static void d(File file) {
+    /* renamed from: d */
+    private static void m8056d(File file) {
         if (file == null || file.exists() || file.mkdirs()) {
             return;
         }
-        LogsUtil.e(f7707a, "mkdirs error , files exists or IOException.");
+        LogsUtil.m8021e(f8289a, "mkdirs error , files exists or IOException.");
     }
 
-    private static File b(String str) {
-        a(str);
+    /* renamed from: b */
+    private static File m8051b(String str) {
+        m8046a(str);
         return new File(str);
     }
 
-    private static boolean e(String str) {
+    /* renamed from: e */
+    private static boolean m8058e(String str) {
         if (TextUtils.isEmpty(str)) {
             return false;
         }
-        if (str.equals(f7711e)) {
+        if (str.equals(f8293e)) {
             return true;
         }
-        for (String str2 : f7712f) {
+        for (String str2 : f8294f) {
             if (str.contains(str2)) {
                 return true;
             }
@@ -206,13 +215,15 @@ public class ZipUtil {
         return false;
     }
 
-    private static void a(String str) {
-        if (!TextUtils.isEmpty(str) && e(str)) {
+    /* renamed from: a */
+    private static void m8046a(String str) {
+        if (!TextUtils.isEmpty(str) && m8058e(str)) {
             throw new IllegalArgumentException("path is not a standard path");
         }
     }
 
-    private static boolean a(File file) {
+    /* renamed from: a */
+    private static boolean m8047a(File file) {
         return file != null && (!file.exists() ? !file.mkdirs() : !file.isDirectory());
     }
 
@@ -224,7 +235,8 @@ public class ZipUtil {
         	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:27)
         */
     @androidx.annotation.RequiresApi(api = 24)
-    private static boolean a(java.lang.String r19, long r20, int r22, boolean r23) {
+    /* renamed from: a */
+    private static boolean m8048a(java.lang.String r19, long r20, int r22, boolean r23) {
         /*
             r1 = r19
             r2 = r20
@@ -249,7 +261,7 @@ public class ZipUtil {
             r0.append(r9)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             r0.append(r1)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             java.lang.String r0 = r0.toString()     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
-            com.huawei.secure.android.common.util.LogsUtil.i(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
+            com.huawei.secure.android.common.util.LogsUtil.m8027i(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             java.util.zip.ZipFile r0 = new java.util.zip.ZipFile     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             java.lang.String r9 = "GBK"
             java.nio.charset.Charset r9 = java.nio.charset.Charset.forName(r9)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
@@ -270,7 +282,7 @@ public class ZipUtil {
             long r11 = r11 + r15
             int r13 = r13 + 1
             java.lang.String r15 = r14.getName()     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
-            boolean r15 = e(r15)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
+            boolean r15 = m8058e(r15)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             if (r15 != 0) goto L6e
             if (r13 >= r4) goto L6e
             int r15 = (r11 > r2 ? 1 : (r11 == r2 ? 0 : -1))
@@ -281,7 +293,7 @@ public class ZipUtil {
             if (r18 != 0) goto L41
         L6e:
             java.lang.String r0 = "File name is invalid or too many files or too big"
-            com.huawei.secure.android.common.util.LogsUtil.e(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
+            com.huawei.secure.android.common.util.LogsUtil.m8021e(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             goto La0
         L74:
             r0 = move-exception
@@ -292,15 +304,15 @@ public class ZipUtil {
             java.lang.String r0 = r0.getMessage()     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             r14.append(r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             java.lang.String r0 = r14.toString()     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
-            com.huawei.secure.android.common.util.LogsUtil.i(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
+            com.huawei.secure.android.common.util.LogsUtil.m8027i(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             int r0 = android.os.Build.VERSION.SDK_INT     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             r14 = 24
             if (r0 < r14) goto L98
-            boolean r0 = a(r1, r2, r4, r10)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
+            boolean r0 = m8048a(r1, r2, r4, r10)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             goto L9f
         L98:
             java.lang.String r0 = "File is not a utf8 zip file and Build.VERSION_CODES < 24"
-            com.huawei.secure.android.common.util.LogsUtil.e(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
+            com.huawei.secure.android.common.util.LogsUtil.m8021e(r7, r0)     // Catch: java.lang.Throwable -> L15 java.io.IOException -> La4
             r0 = 0
             goto L41
         L9f:
@@ -317,12 +329,12 @@ public class ZipUtil {
             java.lang.String r0 = r0.getMessage()     // Catch: java.lang.Throwable -> L15
             r1.append(r0)     // Catch: java.lang.Throwable -> L15
             java.lang.String r0 = r1.toString()     // Catch: java.lang.Throwable -> L15
-            com.huawei.secure.android.common.util.LogsUtil.e(r7, r0)     // Catch: java.lang.Throwable -> L15
+            com.huawei.secure.android.common.util.LogsUtil.m8021e(r7, r0)     // Catch: java.lang.Throwable -> L15
             if (r8 == 0) goto Lc6
             r8.close()     // Catch: java.io.IOException -> Lc3
             goto Lc6
         Lc3:
-            com.huawei.secure.android.common.util.LogsUtil.e(r7, r5)
+            com.huawei.secure.android.common.util.LogsUtil.m8021e(r7, r5)
         Lc6:
             return r6
         Lc7:
@@ -330,43 +342,46 @@ public class ZipUtil {
             r8.close()     // Catch: java.io.IOException -> Lcd
             goto Ld0
         Lcd:
-            com.huawei.secure.android.common.util.LogsUtil.e(r7, r5)
+            com.huawei.secure.android.common.util.LogsUtil.m8021e(r7, r5)
         Ld0:
             throw r0
         */
-        throw new UnsupportedOperationException("Method not decompiled: com.huawei.secure.android.common.util.ZipUtil.a(java.lang.String, long, int, boolean):boolean");
+        throw new UnsupportedOperationException("Method not decompiled: com.huawei.secure.android.common.util.ZipUtil.m8048a(java.lang.String, long, int, boolean):boolean");
     }
 
-    private static boolean a(String str, String str2, long j2, int i2) throws SecurityCommonException {
-        if (!TextUtils.isEmpty(str) && !e(str)) {
-            if (!TextUtils.isEmpty(str2) && !e(str2)) {
-                if (a(str, j2, i2, false)) {
+    /* renamed from: a */
+    private static boolean m8049a(String str, String str2, long j2, int i2) throws SecurityCommonException {
+        if (!TextUtils.isEmpty(str) && !m8058e(str)) {
+            if (!TextUtils.isEmpty(str2) && !m8058e(str2)) {
+                if (m8048a(str, j2, i2, false)) {
                     return true;
                 }
-                LogsUtil.e(f7707a, "zip file contains valid chars or too many files");
+                LogsUtil.m8021e(f8289a, "zip file contains valid chars or too many files");
                 throw new SecurityCommonException("unsecure zipfile!");
             }
-            LogsUtil.e(f7707a, "target directory is not valid");
+            LogsUtil.m8021e(f8289a, "target directory is not valid");
             return false;
         }
-        LogsUtil.e(f7707a, "zip file is not valid");
+        LogsUtil.m8021e(f8289a, "zip file is not valid");
         return false;
     }
 
-    private static boolean a(List<File> list) {
+    /* renamed from: a */
+    private static boolean m8050a(List<File> list) {
         try {
             Iterator<File> it = list.iterator();
             while (it.hasNext()) {
-                e(it.next());
+                m8057e(it.next());
             }
             return true;
         } catch (Exception e2) {
-            LogsUtil.e(f7707a, "unzip fail delete file failed" + e2.getMessage());
+            LogsUtil.m8021e(f8289a, "unzip fail delete file failed" + e2.getMessage());
             return false;
         }
     }
 
-    private static void a(FileInputStream fileInputStream, BufferedOutputStream bufferedOutputStream, ZipInputStream zipInputStream, FileOutputStream fileOutputStream) {
+    /* renamed from: a */
+    private static void m8045a(FileInputStream fileInputStream, BufferedOutputStream bufferedOutputStream, ZipInputStream zipInputStream, FileOutputStream fileOutputStream) {
         IOUtil.closeSecure((InputStream) fileInputStream);
         IOUtil.closeSecure((OutputStream) bufferedOutputStream);
         IOUtil.closeSecure((InputStream) zipInputStream);

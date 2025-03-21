@@ -12,11 +12,15 @@ public class URLBuilder {
     private String model;
 
     /* renamed from: network, reason: collision with root package name */
-    private String f11859network;
-    private String os;
+    private String f25898network;
+
+    /* renamed from: os */
+    private String f13817os;
     private String protoversion;
     private String sdkversion;
-    private String ts;
+
+    /* renamed from: ts */
+    private String f13818ts;
     private String mReqType = "0";
     private String mHost = null;
     private String mPath = null;
@@ -30,19 +34,19 @@ public class URLBuilder {
     public URLBuilder(Context context) {
         this.imei = null;
         this.mac = null;
-        this.f11859network = null;
+        this.f25898network = null;
         this.model = null;
         this.sdkversion = null;
-        this.os = null;
-        this.ts = null;
+        this.f13817os = null;
+        this.f13818ts = null;
         this.protoversion = null;
         this.imei = DeviceConfig.getDeviceId(context);
         this.mac = DeviceConfig.getMac(context);
-        this.f11859network = DeviceConfig.getNetworkAccessMode(context)[0];
+        this.f25898network = DeviceConfig.getNetworkAccessMode(context)[0];
         this.model = Build.MODEL;
         this.sdkversion = "7.3.2";
-        this.os = "Android";
-        this.ts = String.valueOf(System.currentTimeMillis());
+        this.f13817os = "Android";
+        this.f13818ts = String.valueOf(System.currentTimeMillis());
         this.protoversion = SocializeConstants.PROTOCOL_VERSON;
     }
 
@@ -66,9 +70,9 @@ public class URLBuilder {
             sb.append("&mac=");
             sb.append(this.mac);
         }
-        if (this.f11859network != null) {
+        if (this.f25898network != null) {
             sb.append("&en=");
-            sb.append(this.f11859network);
+            sb.append(this.f25898network);
         }
         if (this.model != null) {
             sb.append("&de=");
@@ -78,13 +82,13 @@ public class URLBuilder {
             sb.append("&sdkv=");
             sb.append(this.sdkversion);
         }
-        if (this.os != null) {
+        if (this.f13817os != null) {
             sb.append("&os=");
-            sb.append(this.os);
+            sb.append(this.f13817os);
         }
-        if (this.ts != null) {
+        if (this.f13818ts != null) {
             sb.append("&dt=");
-            sb.append(this.ts);
+            sb.append(this.f13818ts);
         }
         if (this.mUID != null) {
             sb.append("&uid=");
@@ -121,7 +125,8 @@ public class URLBuilder {
         return this;
     }
 
-    public String to() {
+    /* renamed from: to */
+    public String m12720to() {
         return this.mHost + this.mPath + this.mAppkey + "/" + this.mEntityKey + "/?" + buildParams();
     }
 

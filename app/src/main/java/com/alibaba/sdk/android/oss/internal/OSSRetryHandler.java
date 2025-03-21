@@ -10,8 +10,8 @@ import java.net.SocketTimeoutException;
 public class OSSRetryHandler {
     private int maxRetryCount = 2;
 
-    /* renamed from: com.alibaba.sdk.android.oss.internal.OSSRetryHandler$1, reason: invalid class name */
-    static /* synthetic */ class AnonymousClass1 {
+    /* renamed from: com.alibaba.sdk.android.oss.internal.OSSRetryHandler$1 */
+    static /* synthetic */ class C15591 {
         static final /* synthetic */ int[] $SwitchMap$com$alibaba$sdk$android$oss$internal$OSSRetryType = new int[OSSRetryType.values().length];
 
         static {
@@ -58,7 +58,7 @@ public class OSSRetryHandler {
     }
 
     public long timeInterval(int i2, OSSRetryType oSSRetryType) {
-        if (AnonymousClass1.$SwitchMap$com$alibaba$sdk$android$oss$internal$OSSRetryType[oSSRetryType.ordinal()] != 1) {
+        if (C15591.$SwitchMap$com$alibaba$sdk$android$oss$internal$OSSRetryType[oSSRetryType.ordinal()] != 1) {
             return 0L;
         }
         return ((long) Math.pow(2.0d, i2)) * 200;

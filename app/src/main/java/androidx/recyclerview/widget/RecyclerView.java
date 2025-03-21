@@ -49,12 +49,12 @@ import androidx.core.view.ViewConfigurationCompat;
 import androidx.core.view.accessibility.AccessibilityEventCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.customview.view.AbsSavedState;
+import androidx.recyclerview.C0619R;
 import androidx.recyclerview.widget.AdapterHelper;
 import androidx.recyclerview.widget.ChildHelper;
 import androidx.recyclerview.widget.GapWorker;
 import androidx.recyclerview.widget.ViewBoundsCheck;
 import androidx.recyclerview.widget.ViewInfoStore;
-import c.c.a.b.a.a;
 import com.umeng.socialize.common.SocializeConstants;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -64,6 +64,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
 /* loaded from: classes.dex */
 public class RecyclerView extends ViewGroup implements ScrollingView, NestedScrollingChild2 {
@@ -858,11 +859,11 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
 
         public static Properties getProperties(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2, int i3) {
             Properties properties = new Properties();
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, androidx.recyclerview.R.styleable.RecyclerView, i2, i3);
-            properties.orientation = obtainStyledAttributes.getInt(androidx.recyclerview.R.styleable.RecyclerView_android_orientation, 1);
-            properties.spanCount = obtainStyledAttributes.getInt(androidx.recyclerview.R.styleable.RecyclerView_spanCount, 1);
-            properties.reverseLayout = obtainStyledAttributes.getBoolean(androidx.recyclerview.R.styleable.RecyclerView_reverseLayout, false);
-            properties.stackFromEnd = obtainStyledAttributes.getBoolean(androidx.recyclerview.R.styleable.RecyclerView_stackFromEnd, false);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0619R.styleable.RecyclerView, i2, i3);
+            properties.orientation = obtainStyledAttributes.getInt(C0619R.styleable.RecyclerView_android_orientation, 1);
+            properties.spanCount = obtainStyledAttributes.getInt(C0619R.styleable.RecyclerView_spanCount, 1);
+            properties.reverseLayout = obtainStyledAttributes.getBoolean(C0619R.styleable.RecyclerView_reverseLayout, false);
+            properties.stackFromEnd = obtainStyledAttributes.getBoolean(C0619R.styleable.RecyclerView_stackFromEnd, false);
             obtainStyledAttributes.recycle();
             return properties;
         }
@@ -3010,7 +3011,7 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
 
         void start(RecyclerView recyclerView, LayoutManager layoutManager) {
             if (this.mStarted) {
-                String str = "An instance of " + getClass().getSimpleName() + " was started more than once. Each instance of" + getClass().getSimpleName() + a.f3100g + "is intended to only be used once. You should create a new instance for each use.";
+                String str = "An instance of " + getClass().getSimpleName() + " was started more than once. Each instance of" + getClass().getSimpleName() + AbstractC1191a.f2568g + "is intended to only be used once. You should create a new instance for each use.";
             }
             this.mRecyclerView = recyclerView;
             this.mLayoutManager = layoutManager;
@@ -5002,7 +5003,7 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
     }
 
     String exceptionLabel() {
-        return a.f3100g + super.toString() + ", adapter:" + this.mAdapter + ", layout:" + this.mLayout + ", context:" + getContext();
+        return AbstractC1191a.f2568g + super.toString() + ", adapter:" + this.mAdapter + ", layout:" + this.mLayout + ", context:" + getContext();
     }
 
     final void fillRemainingScrollValues(State state) {
@@ -5499,7 +5500,7 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
     void initFastScroller(StateListDrawable stateListDrawable, Drawable drawable, StateListDrawable stateListDrawable2, Drawable drawable2) {
         if (stateListDrawable != null && drawable != null && stateListDrawable2 != null && drawable2 != null) {
             Resources resources = getContext().getResources();
-            new FastScroller(this, stateListDrawable, drawable, stateListDrawable2, drawable2, resources.getDimensionPixelSize(androidx.recyclerview.R.dimen.fastscroll_default_thickness), resources.getDimensionPixelSize(androidx.recyclerview.R.dimen.fastscroll_minimum_range), resources.getDimensionPixelOffset(androidx.recyclerview.R.dimen.fastscroll_margin));
+            new FastScroller(this, stateListDrawable, drawable, stateListDrawable2, drawable2, resources.getDimensionPixelSize(C0619R.dimen.fastscroll_default_thickness), resources.getDimensionPixelSize(C0619R.dimen.fastscroll_minimum_range), resources.getDimensionPixelOffset(C0619R.dimen.fastscroll_margin));
         } else {
             throw new IllegalArgumentException("Trying to set fast scroller without both required drawables." + exceptionLabel());
         }
@@ -6864,14 +6865,14 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
         this.mAccessibilityManager = (AccessibilityManager) getContext().getSystemService("accessibility");
         setAccessibilityDelegateCompat(new RecyclerViewAccessibilityDelegate(this));
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, androidx.recyclerview.R.styleable.RecyclerView, i2, 0);
-            String string = obtainStyledAttributes2.getString(androidx.recyclerview.R.styleable.RecyclerView_layoutManager);
-            if (obtainStyledAttributes2.getInt(androidx.recyclerview.R.styleable.RecyclerView_android_descendantFocusability, -1) == -1) {
+            TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, C0619R.styleable.RecyclerView, i2, 0);
+            String string = obtainStyledAttributes2.getString(C0619R.styleable.RecyclerView_layoutManager);
+            if (obtainStyledAttributes2.getInt(C0619R.styleable.RecyclerView_android_descendantFocusability, -1) == -1) {
                 setDescendantFocusability(262144);
             }
-            this.mEnableFastScroller = obtainStyledAttributes2.getBoolean(androidx.recyclerview.R.styleable.RecyclerView_fastScrollEnabled, false);
+            this.mEnableFastScroller = obtainStyledAttributes2.getBoolean(C0619R.styleable.RecyclerView_fastScrollEnabled, false);
             if (this.mEnableFastScroller) {
-                initFastScroller((StateListDrawable) obtainStyledAttributes2.getDrawable(androidx.recyclerview.R.styleable.RecyclerView_fastScrollVerticalThumbDrawable), obtainStyledAttributes2.getDrawable(androidx.recyclerview.R.styleable.RecyclerView_fastScrollVerticalTrackDrawable), (StateListDrawable) obtainStyledAttributes2.getDrawable(androidx.recyclerview.R.styleable.RecyclerView_fastScrollHorizontalThumbDrawable), obtainStyledAttributes2.getDrawable(androidx.recyclerview.R.styleable.RecyclerView_fastScrollHorizontalTrackDrawable));
+                initFastScroller((StateListDrawable) obtainStyledAttributes2.getDrawable(C0619R.styleable.RecyclerView_fastScrollVerticalThumbDrawable), obtainStyledAttributes2.getDrawable(C0619R.styleable.RecyclerView_fastScrollVerticalTrackDrawable), (StateListDrawable) obtainStyledAttributes2.getDrawable(C0619R.styleable.RecyclerView_fastScrollHorizontalThumbDrawable), obtainStyledAttributes2.getDrawable(C0619R.styleable.RecyclerView_fastScrollHorizontalTrackDrawable));
             }
             obtainStyledAttributes2.recycle();
             createLayoutManager(context, string, attributeSet, i2, 0);

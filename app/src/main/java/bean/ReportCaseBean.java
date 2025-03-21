@@ -19,7 +19,9 @@ public class ReportCaseBean extends BaseBean {
         private String createTime;
         private String documentNumber;
         private String documentTypeText;
-        private String id;
+
+        /* renamed from: id */
+        private String f1616id;
         private int isExpired;
         private String name;
         private String policeMobile;
@@ -68,7 +70,7 @@ public class ReportCaseBean extends BaseBean {
         }
 
         public String getId() {
-            return this.id;
+            return this.f1616id;
         }
 
         public int getIsExpired() {
@@ -148,7 +150,7 @@ public class ReportCaseBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f1616id = str;
         }
 
         public void setIsExpired(int i2) {

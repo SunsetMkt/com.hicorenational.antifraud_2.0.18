@@ -12,7 +12,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.core.R;
+import androidx.core.C0475R;
 import java.io.IOException;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
@@ -52,20 +52,20 @@ final class GradientColorInflaterCompat {
         if (!name.equals("gradient")) {
             throw new XmlPullParserException(xmlPullParser.getPositionDescription() + ": invalid gradient color tag " + name);
         }
-        TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, R.styleable.GradientColor);
-        float namedFloat = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "startX", R.styleable.GradientColor_android_startX, 0.0f);
-        float namedFloat2 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "startY", R.styleable.GradientColor_android_startY, 0.0f);
-        float namedFloat3 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "endX", R.styleable.GradientColor_android_endX, 0.0f);
-        float namedFloat4 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "endY", R.styleable.GradientColor_android_endY, 0.0f);
-        float namedFloat5 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "centerX", R.styleable.GradientColor_android_centerX, 0.0f);
-        float namedFloat6 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "centerY", R.styleable.GradientColor_android_centerY, 0.0f);
-        int namedInt = TypedArrayUtils.getNamedInt(obtainAttributes, xmlPullParser, "type", R.styleable.GradientColor_android_type, 0);
-        int namedColor = TypedArrayUtils.getNamedColor(obtainAttributes, xmlPullParser, "startColor", R.styleable.GradientColor_android_startColor, 0);
+        TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, C0475R.styleable.GradientColor);
+        float namedFloat = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "startX", C0475R.styleable.GradientColor_android_startX, 0.0f);
+        float namedFloat2 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "startY", C0475R.styleable.GradientColor_android_startY, 0.0f);
+        float namedFloat3 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "endX", C0475R.styleable.GradientColor_android_endX, 0.0f);
+        float namedFloat4 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "endY", C0475R.styleable.GradientColor_android_endY, 0.0f);
+        float namedFloat5 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "centerX", C0475R.styleable.GradientColor_android_centerX, 0.0f);
+        float namedFloat6 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "centerY", C0475R.styleable.GradientColor_android_centerY, 0.0f);
+        int namedInt = TypedArrayUtils.getNamedInt(obtainAttributes, xmlPullParser, "type", C0475R.styleable.GradientColor_android_type, 0);
+        int namedColor = TypedArrayUtils.getNamedColor(obtainAttributes, xmlPullParser, "startColor", C0475R.styleable.GradientColor_android_startColor, 0);
         boolean hasAttribute = TypedArrayUtils.hasAttribute(xmlPullParser, "centerColor");
-        int namedColor2 = TypedArrayUtils.getNamedColor(obtainAttributes, xmlPullParser, "centerColor", R.styleable.GradientColor_android_centerColor, 0);
-        int namedColor3 = TypedArrayUtils.getNamedColor(obtainAttributes, xmlPullParser, "endColor", R.styleable.GradientColor_android_endColor, 0);
-        int namedInt2 = TypedArrayUtils.getNamedInt(obtainAttributes, xmlPullParser, "tileMode", R.styleable.GradientColor_android_tileMode, 0);
-        float namedFloat7 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "gradientRadius", R.styleable.GradientColor_android_gradientRadius, 0.0f);
+        int namedColor2 = TypedArrayUtils.getNamedColor(obtainAttributes, xmlPullParser, "centerColor", C0475R.styleable.GradientColor_android_centerColor, 0);
+        int namedColor3 = TypedArrayUtils.getNamedColor(obtainAttributes, xmlPullParser, "endColor", C0475R.styleable.GradientColor_android_endColor, 0);
+        int namedInt2 = TypedArrayUtils.getNamedInt(obtainAttributes, xmlPullParser, "tileMode", C0475R.styleable.GradientColor_android_tileMode, 0);
+        float namedFloat7 = TypedArrayUtils.getNamedFloat(obtainAttributes, xmlPullParser, "gradientRadius", C0475R.styleable.GradientColor_android_gradientRadius, 0.0f);
         obtainAttributes.recycle();
         ColorStops checkColors = checkColors(inflateChildElements(resources, xmlPullParser, attributeSet, theme), namedColor, namedColor3, hasAttribute, namedColor2);
         if (namedInt != 1) {
@@ -114,18 +114,18 @@ final class GradientColorInflaterCompat {
             if (r3 != 0) goto L34
             goto L12
         L34:
-            int[] r3 = androidx.core.R.styleable.GradientColorItem
+            int[] r3 = androidx.core.C0475R.styleable.GradientColorItem
             android.content.res.TypedArray r3 = androidx.core.content.res.TypedArrayUtils.obtainAttributes(r8, r11, r10, r3)
-            int r5 = androidx.core.R.styleable.GradientColorItem_android_color
+            int r5 = androidx.core.C0475R.styleable.GradientColorItem_android_color
             boolean r5 = r3.hasValue(r5)
-            int r6 = androidx.core.R.styleable.GradientColorItem_android_offset
+            int r6 = androidx.core.C0475R.styleable.GradientColorItem_android_offset
             boolean r6 = r3.hasValue(r6)
             if (r5 == 0) goto L6a
             if (r6 == 0) goto L6a
-            int r5 = androidx.core.R.styleable.GradientColorItem_android_color
+            int r5 = androidx.core.C0475R.styleable.GradientColorItem_android_color
             r6 = 0
             int r5 = r3.getColor(r5, r6)
-            int r6 = androidx.core.R.styleable.GradientColorItem_android_offset
+            int r6 = androidx.core.C0475R.styleable.GradientColorItem_android_offset
             r7 = 0
             float r6 = r3.getFloat(r6, r7)
             r3.recycle()

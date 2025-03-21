@@ -9,7 +9,8 @@ public final class Preconditions {
         throw new AssertionError("Cannot use constructor to make a new instance");
     }
 
-    private static boolean a() {
+    /* renamed from: a */
+    private static boolean m6742a() {
         return Looper.getMainLooper() == Looper.myLooper();
     }
 
@@ -24,13 +25,13 @@ public final class Preconditions {
     }
 
     public static void checkMainThread(String str) {
-        if (!a()) {
+        if (!m6742a()) {
             throw new IllegalStateException(str);
         }
     }
 
     public static void checkNotMainThread() {
-        if (a()) {
+        if (m6742a()) {
             throw new IllegalStateException("Must not be called on the main application thread");
         }
     }

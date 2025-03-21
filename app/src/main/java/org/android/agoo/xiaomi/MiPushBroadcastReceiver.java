@@ -16,7 +16,7 @@ public class MiPushBroadcastReceiver extends PushMessageReceiver {
     public void onReceivePassThroughMessage(Context context, MiPushMessage miPushMessage) {
         try {
             String content = miPushMessage.getContent();
-            ALog.i(TAG, "onReceivePassThroughMessage", "msg", content);
+            ALog.m9183i(TAG, "onReceivePassThroughMessage", "msg", content);
             if (this.agooFactory == null) {
                 AgooFactory agooFactory = new AgooFactory();
                 this.agooFactory = agooFactory;
@@ -24,7 +24,7 @@ public class MiPushBroadcastReceiver extends PushMessageReceiver {
             }
             this.agooFactory.msgRecevie(content.getBytes("UTF-8"), "xiaomi");
         } catch (Throwable th) {
-            ALog.e(TAG, "onReceivePassThroughMessage", th, new Object[0]);
+            ALog.m9181e(TAG, "onReceivePassThroughMessage", th, new Object[0]);
         }
     }
 
@@ -69,7 +69,7 @@ public class MiPushBroadcastReceiver extends PushMessageReceiver {
             r14[r2] = r3     // Catch: java.lang.Exception -> L66
             java.lang.Long r3 = java.lang.Long.valueOf(r8)     // Catch: java.lang.Exception -> L66
             r14[r6] = r3     // Catch: java.lang.Exception -> L66
-            com.taobao.accs.utl.ALog.i(r1, r0, r14)     // Catch: java.lang.Exception -> L66
+            com.taobao.accs.utl.ALog.m9183i(r1, r0, r14)     // Catch: java.lang.Exception -> L66
         L42:
             r4 = r5
         L43:
@@ -77,7 +77,7 @@ public class MiPushBroadcastReceiver extends PushMessageReceiver {
             java.lang.String r3 = "regId"
             r14[r2] = r3     // Catch: java.lang.Exception -> L66
             r14[r6] = r4     // Catch: java.lang.Exception -> L66
-            com.taobao.accs.utl.ALog.i(r1, r0, r14)     // Catch: java.lang.Exception -> L66
+            com.taobao.accs.utl.ALog.m9183i(r1, r0, r14)     // Catch: java.lang.Exception -> L66
             boolean r14 = android.text.TextUtils.isEmpty(r4)     // Catch: java.lang.Exception -> L66
             if (r14 != 0) goto L6c
             org.android.agoo.control.NotifManager r14 = new org.android.agoo.control.NotifManager     // Catch: java.lang.Exception -> L66
@@ -90,7 +90,7 @@ public class MiPushBroadcastReceiver extends PushMessageReceiver {
         L66:
             r13 = move-exception
             java.lang.Object[] r14 = new java.lang.Object[r2]
-            com.taobao.accs.utl.ALog.e(r1, r0, r13, r14)
+            com.taobao.accs.utl.ALog.m9181e(r1, r0, r13, r14)
         L6c:
             return
         */

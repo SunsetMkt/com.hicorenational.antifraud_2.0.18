@@ -96,7 +96,7 @@ public final class ActionActivity extends Activity {
             this.mUri = (Uri) intentCaptureCompat.getParcelableExtra("output");
             startActivityForResult(intentCaptureCompat, REQUEST_CODE);
         } catch (Throwable th) {
-            LogUtils.e(TAG, "找不到系统相机");
+            LogUtils.m8081e(TAG, "找不到系统相机");
             ChooserListener chooserListener = mChooserListener;
             if (chooserListener != null) {
                 chooserListener.onChoiceResult(REQUEST_CODE, 0, null);
@@ -121,7 +121,7 @@ public final class ActionActivity extends Activity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         } catch (Throwable th) {
-            LogUtils.i(TAG, "找不到文件选择器");
+            LogUtils.m8083i(TAG, "找不到文件选择器");
             chooserActionCallback(-1, null);
             if (LogUtils.isDebug()) {
                 th.printStackTrace();
@@ -144,7 +144,7 @@ public final class ActionActivity extends Activity {
             this.mUri = (Uri) intentVideoCompat.getParcelableExtra("output");
             startActivityForResult(intentVideoCompat, REQUEST_CODE);
         } catch (Throwable th) {
-            LogUtils.e(TAG, "找不到系统相机");
+            LogUtils.m8081e(TAG, "找不到系统相机");
             ChooserListener chooserListener = mChooserListener;
             if (chooserListener != null) {
                 chooserListener.onChoiceResult(REQUEST_CODE, 0, null);
@@ -184,7 +184,7 @@ public final class ActionActivity extends Activity {
     protected void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
         if (bundle != null) {
-            LogUtils.i(TAG, "savedInstanceState:" + bundle);
+            LogUtils.m8083i(TAG, "savedInstanceState:" + bundle);
             return;
         }
         this.mAction = (Action) getIntent().getParcelableExtra(KEY_ACTION);

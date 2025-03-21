@@ -73,7 +73,7 @@
             android:maxLength="6"
             android:inputType="number"
             android:paddingStart="@dimen/dp_5"/>
-        <ui.view.CodeCutTimeTextView
+        <p388ui.view.CodeCutTimeTextView
             android:textColor="#2b4cff"
             android:layout_gravity="center"
             android:id="@+id/tv_resend"

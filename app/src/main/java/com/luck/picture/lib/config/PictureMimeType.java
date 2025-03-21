@@ -3,7 +3,7 @@ package com.luck.picture.lib.config;
 import android.content.Context;
 import android.text.TextUtils;
 import anet.channel.util.HttpConstant;
-import com.luck.picture.lib.R;
+import com.luck.picture.lib.C2639R;
 import java.io.File;
 
 /* loaded from: classes.dex */
@@ -174,8 +174,9 @@ public final class PictureMimeType {
         return MIME_TYPE_WEBP;
     }
 
-    public static String s(Context context, String str) {
+    /* renamed from: s */
+    public static String m8138s(Context context, String str) {
         Context applicationContext = context.getApplicationContext();
-        return eqVideo(str) ? applicationContext.getString(R.string.picture_video_error) : eqAudio(str) ? applicationContext.getString(R.string.picture_audio_error) : applicationContext.getString(R.string.picture_error);
+        return eqVideo(str) ? applicationContext.getString(C2639R.string.picture_video_error) : eqAudio(str) ? applicationContext.getString(C2639R.string.picture_audio_error) : applicationContext.getString(C2639R.string.picture_error);
     }
 }

@@ -8,11 +8,11 @@ import java.util.Map;
 /* loaded from: classes2.dex */
 public class UMMin extends BaseMediaObject {
 
-    /* renamed from: f, reason: collision with root package name */
-    private String f11724f;
+    /* renamed from: f */
+    private String f13670f;
 
-    /* renamed from: g, reason: collision with root package name */
-    private String f11725g;
+    /* renamed from: g */
+    private String f13671g;
 
     public UMMin(String str) {
         super(str);
@@ -24,24 +24,24 @@ public class UMMin extends BaseMediaObject {
     }
 
     public String getPath() {
-        return this.f11725g;
+        return this.f13671g;
     }
 
     public String getUserName() {
-        return this.f11724f;
+        return this.f13670f;
     }
 
     public void setPath(String str) {
-        this.f11725g = str;
+        this.f13671g = str;
     }
 
     public void setUserName(String str) {
-        this.f11724f = str;
+        this.f13670f = str;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f11693e;
+        UMImage uMImage = this.f13636e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -52,9 +52,9 @@ public class UMMin extends BaseMediaObject {
     public Map<String, Object> toUrlExtraParams() {
         HashMap hashMap = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f11689a);
+            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
             hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f11690b);
+            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f13633b);
         }
         return hashMap;
     }

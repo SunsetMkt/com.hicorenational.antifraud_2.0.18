@@ -2,81 +2,102 @@ package com.hihonor.honorid.core.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.hihonor.honorid.f.b;
-import com.hihonor.honorid.f.c;
+import com.hihonor.honorid.p165f.C2172b;
+import com.hihonor.honorid.p165f.C2173c;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
 /* loaded from: classes.dex */
 public class UserAccountInfo implements Parcelable {
-    public static final Parcelable.Creator<UserAccountInfo> CREATOR = new a();
+    public static final Parcelable.Creator<UserAccountInfo> CREATOR = new C2160a();
 
-    /* renamed from: j, reason: collision with root package name */
-    public static final String f6164j = "userAccount";
+    /* renamed from: j */
+    public static final String f6578j = "userAccount";
 
-    /* renamed from: k, reason: collision with root package name */
-    public static final String f6165k = "accountType";
+    /* renamed from: k */
+    public static final String f6579k = "accountType";
 
-    /* renamed from: l, reason: collision with root package name */
-    public static final String f6166l = "accountState";
+    /* renamed from: l */
+    public static final String f6580l = "accountState";
 
-    /* renamed from: m, reason: collision with root package name */
-    public static final String f6167m = "accountValidStatus";
-    public static final String n = "updateTime";
-    public static final String o = "userAcctInfo";
-    public static final String p = "userAcctInfoList";
-    public static final String q = "memberRight";
-    public static final String r = "memberRightList";
-    public static final String s = "userEMail";
-    public static final String t = "mobilePhone";
-    public static final String u = "emailState";
-    public static final String v = "mobilePhoneState";
-    public static final String w = "age";
+    /* renamed from: m */
+    public static final String f6581m = "accountValidStatus";
 
-    /* renamed from: a, reason: collision with root package name */
-    private String f6168a;
+    /* renamed from: n */
+    public static final String f6582n = "updateTime";
 
-    /* renamed from: b, reason: collision with root package name */
-    private String f6169b;
+    /* renamed from: o */
+    public static final String f6583o = "userAcctInfo";
 
-    /* renamed from: c, reason: collision with root package name */
-    private String f6170c;
+    /* renamed from: p */
+    public static final String f6584p = "userAcctInfoList";
 
-    /* renamed from: d, reason: collision with root package name */
-    private String f6171d;
+    /* renamed from: q */
+    public static final String f6585q = "memberRight";
 
-    /* renamed from: e, reason: collision with root package name */
-    private String f6172e;
+    /* renamed from: r */
+    public static final String f6586r = "memberRightList";
 
-    /* renamed from: f, reason: collision with root package name */
-    private String f6173f;
+    /* renamed from: s */
+    public static final String f6587s = "userEMail";
 
-    /* renamed from: g, reason: collision with root package name */
-    private String f6174g;
+    /* renamed from: t */
+    public static final String f6588t = "mobilePhone";
 
-    /* renamed from: h, reason: collision with root package name */
-    private String f6175h;
+    /* renamed from: u */
+    public static final String f6589u = "emailState";
 
-    /* renamed from: i, reason: collision with root package name */
-    private String f6176i;
+    /* renamed from: v */
+    public static final String f6590v = "mobilePhoneState";
 
-    class a implements Parcelable.Creator<UserAccountInfo> {
-        a() {
+    /* renamed from: w */
+    public static final String f6591w = "age";
+
+    /* renamed from: a */
+    private String f6592a;
+
+    /* renamed from: b */
+    private String f6593b;
+
+    /* renamed from: c */
+    private String f6594c;
+
+    /* renamed from: d */
+    private String f6595d;
+
+    /* renamed from: e */
+    private String f6596e;
+
+    /* renamed from: f */
+    private String f6597f;
+
+    /* renamed from: g */
+    private String f6598g;
+
+    /* renamed from: h */
+    private String f6599h;
+
+    /* renamed from: i */
+    private String f6600i;
+
+    /* renamed from: com.hihonor.honorid.core.data.UserAccountInfo$a */
+    class C2160a implements Parcelable.Creator<UserAccountInfo> {
+        C2160a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public UserAccountInfo createFromParcel(Parcel parcel) {
             UserAccountInfo userAccountInfo = new UserAccountInfo();
-            userAccountInfo.f6168a = parcel.readString();
-            userAccountInfo.f6169b = parcel.readString();
-            userAccountInfo.f6170c = parcel.readString();
-            userAccountInfo.f6171d = parcel.readString();
-            userAccountInfo.f6172e = parcel.readString();
-            userAccountInfo.f6173f = parcel.readString();
-            userAccountInfo.f6174g = parcel.readString();
-            userAccountInfo.f6175h = parcel.readString();
-            userAccountInfo.f6176i = parcel.readString();
+            userAccountInfo.f6592a = parcel.readString();
+            userAccountInfo.f6593b = parcel.readString();
+            userAccountInfo.f6594c = parcel.readString();
+            userAccountInfo.f6595d = parcel.readString();
+            userAccountInfo.f6596e = parcel.readString();
+            userAccountInfo.f6597f = parcel.readString();
+            userAccountInfo.f6598g = parcel.readString();
+            userAccountInfo.f6599h = parcel.readString();
+            userAccountInfo.f6600i = parcel.readString();
             return userAccountInfo;
         }
 
@@ -94,114 +115,129 @@ public class UserAccountInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6168a);
-        parcel.writeString(this.f6169b);
-        parcel.writeString(this.f6170c);
-        parcel.writeString(this.f6171d);
-        parcel.writeString(this.f6172e);
-        parcel.writeString(this.f6173f);
-        parcel.writeString(this.f6174g);
-        parcel.writeString(this.f6175h);
-        parcel.writeString(this.f6176i);
+        parcel.writeString(this.f6592a);
+        parcel.writeString(this.f6593b);
+        parcel.writeString(this.f6594c);
+        parcel.writeString(this.f6595d);
+        parcel.writeString(this.f6596e);
+        parcel.writeString(this.f6597f);
+        parcel.writeString(this.f6598g);
+        parcel.writeString(this.f6599h);
+        parcel.writeString(this.f6600i);
     }
 
-    private void d(String str) {
-        this.f6171d = str;
+    /* renamed from: d */
+    private void m6220d(String str) {
+        this.f6595d = str;
     }
 
-    private void e(String str) {
-        this.f6174g = str;
+    /* renamed from: e */
+    private void m6222e(String str) {
+        this.f6598g = str;
     }
 
-    private void f(String str) {
-        this.f6176i = str;
+    /* renamed from: f */
+    private void m6224f(String str) {
+        this.f6600i = str;
     }
 
-    private void g(String str) {
-        this.f6172e = str;
+    /* renamed from: g */
+    private void m6226g(String str) {
+        this.f6596e = str;
     }
 
-    private void h(String str) {
-        this.f6173f = str;
+    /* renamed from: h */
+    private void m6228h(String str) {
+        this.f6597f = str;
     }
 
-    private void i(String str) {
-        this.f6175h = str;
+    /* renamed from: i */
+    private void m6230i(String str) {
+        this.f6599h = str;
     }
 
-    public String a() {
-        return this.f6170c;
+    /* renamed from: a */
+    public String m6231a() {
+        return this.f6594c;
     }
 
-    public String b() {
-        return this.f6168a;
+    /* renamed from: b */
+    public String m6234b() {
+        return this.f6592a;
     }
 
-    public String c() {
-        return this.f6169b;
+    /* renamed from: c */
+    public String m6236c() {
+        return this.f6593b;
     }
 
-    public static void a(XmlPullParser xmlPullParser, UserAccountInfo userAccountInfo, String str) {
+    /* renamed from: a */
+    public static void m6215a(XmlPullParser xmlPullParser, UserAccountInfo userAccountInfo, String str) {
         if (xmlPullParser == null || userAccountInfo == null || str == null) {
             return;
         }
-        if (f6166l.equals(str)) {
-            userAccountInfo.a(xmlPullParser.nextText());
+        if (f6580l.equals(str)) {
+            userAccountInfo.m6232a(xmlPullParser.nextText());
             return;
         }
         if ("accountType".equals(str)) {
-            userAccountInfo.b(xmlPullParser.nextText());
+            userAccountInfo.m6235b(xmlPullParser.nextText());
             return;
         }
-        if (f6167m.equals(str)) {
-            userAccountInfo.d(xmlPullParser.nextText());
+        if (f6581m.equals(str)) {
+            userAccountInfo.m6220d(xmlPullParser.nextText());
             return;
         }
         if ("updateTime".equals(str)) {
-            userAccountInfo.g(xmlPullParser.nextText());
+            userAccountInfo.m6226g(xmlPullParser.nextText());
             return;
         }
         if ("userAccount".equals(str)) {
-            userAccountInfo.c(xmlPullParser.nextText());
+            userAccountInfo.m6237c(xmlPullParser.nextText());
             return;
         }
-        if (s.equals(str)) {
-            userAccountInfo.h(xmlPullParser.nextText());
+        if (f6587s.equals(str)) {
+            userAccountInfo.m6228h(xmlPullParser.nextText());
             return;
         }
-        if (t.equals(str)) {
-            userAccountInfo.e(xmlPullParser.nextText());
-        } else if (u.equals(str)) {
-            userAccountInfo.i(xmlPullParser.nextText());
-        } else if (v.equals(str)) {
-            userAccountInfo.f(xmlPullParser.nextText());
+        if (f6588t.equals(str)) {
+            userAccountInfo.m6222e(xmlPullParser.nextText());
+        } else if (f6589u.equals(str)) {
+            userAccountInfo.m6230i(xmlPullParser.nextText());
+        } else if (f6590v.equals(str)) {
+            userAccountInfo.m6224f(xmlPullParser.nextText());
         }
     }
 
-    public void b(String str) {
-        this.f6168a = str;
+    /* renamed from: b */
+    public void m6235b(String str) {
+        this.f6592a = str;
     }
 
-    public void c(String str) {
-        this.f6169b = str;
+    /* renamed from: c */
+    public void m6237c(String str) {
+        this.f6593b = str;
     }
 
-    public boolean a(Object obj) {
+    /* renamed from: a */
+    public boolean m6233a(Object obj) {
         if (obj != null && (obj instanceof UserAccountInfo)) {
-            return this == obj || b.a(this.f6174g, ((UserAccountInfo) obj).f6174g);
+            return this == obj || C2172b.m6329a(this.f6598g, ((UserAccountInfo) obj).f6598g);
         }
         return false;
     }
 
-    public void a(String str) {
-        this.f6170c = str;
+    /* renamed from: a */
+    public void m6232a(String str) {
+        this.f6594c = str;
     }
 
-    public static void a(XmlSerializer xmlSerializer, UserAccountInfo userAccountInfo) {
+    /* renamed from: a */
+    public static void m6216a(XmlSerializer xmlSerializer, UserAccountInfo userAccountInfo) {
         if (xmlSerializer == null || userAccountInfo == null) {
             return;
         }
-        c.a(xmlSerializer, "accountType", userAccountInfo.b());
-        c.a(xmlSerializer, "userAccount", userAccountInfo.c());
+        C2173c.m6330a(xmlSerializer, "accountType", userAccountInfo.m6234b());
+        C2173c.m6330a(xmlSerializer, "userAccount", userAccountInfo.m6236c());
     }
 }

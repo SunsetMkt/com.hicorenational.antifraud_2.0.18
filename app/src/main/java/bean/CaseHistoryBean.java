@@ -20,7 +20,9 @@ public class CaseHistoryBean extends BaseBean {
         private String createTime;
         private String documentNumber;
         private String documentTypeText;
-        private String id;
+
+        /* renamed from: id */
+        private String f1585id;
         private int isExpired;
         private String name;
         private String payments;
@@ -80,7 +82,7 @@ public class CaseHistoryBean extends BaseBean {
         }
 
         public String getId() {
-            return this.id;
+            return this.f1585id;
         }
 
         public int getIsExpired() {
@@ -180,7 +182,7 @@ public class CaseHistoryBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.id = str;
+            this.f1585id = str;
         }
 
         public void setIsExpired(int i2) {

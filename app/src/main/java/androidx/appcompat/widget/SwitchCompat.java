@@ -28,6 +28,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.C0120R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.text.AllCapsTransformationMethod;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -776,14 +777,14 @@ public class SwitchCompat extends CompoundButton {
     }
 
     public void setSwitchTextAppearance(Context context, int i2) {
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i2, androidx.appcompat.R.styleable.TextAppearance);
-        ColorStateList colorStateList = obtainStyledAttributes.getColorStateList(androidx.appcompat.R.styleable.TextAppearance_android_textColor);
+        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i2, C0120R.styleable.TextAppearance);
+        ColorStateList colorStateList = obtainStyledAttributes.getColorStateList(C0120R.styleable.TextAppearance_android_textColor);
         if (colorStateList != null) {
             this.mTextColors = colorStateList;
         } else {
             this.mTextColors = getTextColors();
         }
-        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.TextAppearance_android_textSize, 0);
+        int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.TextAppearance_android_textSize, 0);
         if (dimensionPixelSize != 0) {
             float f2 = dimensionPixelSize;
             if (f2 != this.mTextPaint.getTextSize()) {
@@ -791,8 +792,8 @@ public class SwitchCompat extends CompoundButton {
                 requestLayout();
             }
         }
-        setSwitchTypefaceByIndex(obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.TextAppearance_android_typeface, -1), obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.TextAppearance_android_textStyle, -1));
-        if (obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.TextAppearance_textAllCaps, false)) {
+        setSwitchTypefaceByIndex(obtainStyledAttributes.getInt(C0120R.styleable.TextAppearance_android_typeface, -1), obtainStyledAttributes.getInt(C0120R.styleable.TextAppearance_android_textStyle, -1));
+        if (obtainStyledAttributes.getBoolean(C0120R.styleable.TextAppearance_textAllCaps, false)) {
             this.mSwitchTransformationMethod = new AllCapsTransformationMethod(getContext());
         } else {
             this.mSwitchTransformationMethod = null;
@@ -901,7 +902,7 @@ public class SwitchCompat extends CompoundButton {
     }
 
     public SwitchCompat(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, androidx.appcompat.R.attr.switchStyle);
+        this(context, attributeSet, C0120R.attr.switchStyle);
     }
 
     public SwitchCompat(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
@@ -920,31 +921,31 @@ public class SwitchCompat extends CompoundButton {
         this.mTextPaint = new TextPaint(1);
         Resources resources = getResources();
         this.mTextPaint.density = resources.getDisplayMetrics().density;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, androidx.appcompat.R.styleable.SwitchCompat, i2, 0);
-        ViewCompat.saveAttributeDataForStyleable(this, context, androidx.appcompat.R.styleable.SwitchCompat, attributeSet, obtainStyledAttributes.getWrappedTypeArray(), i2, 0);
-        this.mThumbDrawable = obtainStyledAttributes.getDrawable(androidx.appcompat.R.styleable.SwitchCompat_android_thumb);
+        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0120R.styleable.SwitchCompat, i2, 0);
+        ViewCompat.saveAttributeDataForStyleable(this, context, C0120R.styleable.SwitchCompat, attributeSet, obtainStyledAttributes.getWrappedTypeArray(), i2, 0);
+        this.mThumbDrawable = obtainStyledAttributes.getDrawable(C0120R.styleable.SwitchCompat_android_thumb);
         Drawable drawable = this.mThumbDrawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
-        this.mTrackDrawable = obtainStyledAttributes.getDrawable(androidx.appcompat.R.styleable.SwitchCompat_track);
+        this.mTrackDrawable = obtainStyledAttributes.getDrawable(C0120R.styleable.SwitchCompat_track);
         Drawable drawable2 = this.mTrackDrawable;
         if (drawable2 != null) {
             drawable2.setCallback(this);
         }
-        this.mTextOn = obtainStyledAttributes.getText(androidx.appcompat.R.styleable.SwitchCompat_android_textOn);
-        this.mTextOff = obtainStyledAttributes.getText(androidx.appcompat.R.styleable.SwitchCompat_android_textOff);
-        this.mShowText = obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.SwitchCompat_showText, true);
-        this.mThumbTextPadding = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.SwitchCompat_thumbTextPadding, 0);
-        this.mSwitchMinWidth = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.SwitchCompat_switchMinWidth, 0);
-        this.mSwitchPadding = obtainStyledAttributes.getDimensionPixelSize(androidx.appcompat.R.styleable.SwitchCompat_switchPadding, 0);
-        this.mSplitTrack = obtainStyledAttributes.getBoolean(androidx.appcompat.R.styleable.SwitchCompat_splitTrack, false);
-        ColorStateList colorStateList = obtainStyledAttributes.getColorStateList(androidx.appcompat.R.styleable.SwitchCompat_thumbTint);
+        this.mTextOn = obtainStyledAttributes.getText(C0120R.styleable.SwitchCompat_android_textOn);
+        this.mTextOff = obtainStyledAttributes.getText(C0120R.styleable.SwitchCompat_android_textOff);
+        this.mShowText = obtainStyledAttributes.getBoolean(C0120R.styleable.SwitchCompat_showText, true);
+        this.mThumbTextPadding = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.SwitchCompat_thumbTextPadding, 0);
+        this.mSwitchMinWidth = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.SwitchCompat_switchMinWidth, 0);
+        this.mSwitchPadding = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.SwitchCompat_switchPadding, 0);
+        this.mSplitTrack = obtainStyledAttributes.getBoolean(C0120R.styleable.SwitchCompat_splitTrack, false);
+        ColorStateList colorStateList = obtainStyledAttributes.getColorStateList(C0120R.styleable.SwitchCompat_thumbTint);
         if (colorStateList != null) {
             this.mThumbTintList = colorStateList;
             this.mHasThumbTint = true;
         }
-        PorterDuff.Mode parseTintMode = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.SwitchCompat_thumbTintMode, -1), null);
+        PorterDuff.Mode parseTintMode = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(C0120R.styleable.SwitchCompat_thumbTintMode, -1), null);
         if (this.mThumbTintMode != parseTintMode) {
             this.mThumbTintMode = parseTintMode;
             this.mHasThumbTintMode = true;
@@ -952,12 +953,12 @@ public class SwitchCompat extends CompoundButton {
         if (this.mHasThumbTint || this.mHasThumbTintMode) {
             applyThumbTint();
         }
-        ColorStateList colorStateList2 = obtainStyledAttributes.getColorStateList(androidx.appcompat.R.styleable.SwitchCompat_trackTint);
+        ColorStateList colorStateList2 = obtainStyledAttributes.getColorStateList(C0120R.styleable.SwitchCompat_trackTint);
         if (colorStateList2 != null) {
             this.mTrackTintList = colorStateList2;
             this.mHasTrackTint = true;
         }
-        PorterDuff.Mode parseTintMode2 = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(androidx.appcompat.R.styleable.SwitchCompat_trackTintMode, -1), null);
+        PorterDuff.Mode parseTintMode2 = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(C0120R.styleable.SwitchCompat_trackTintMode, -1), null);
         if (this.mTrackTintMode != parseTintMode2) {
             this.mTrackTintMode = parseTintMode2;
             this.mHasTrackTintMode = true;
@@ -965,7 +966,7 @@ public class SwitchCompat extends CompoundButton {
         if (this.mHasTrackTint || this.mHasTrackTintMode) {
             applyTrackTint();
         }
-        int resourceId = obtainStyledAttributes.getResourceId(androidx.appcompat.R.styleable.SwitchCompat_switchTextAppearance, 0);
+        int resourceId = obtainStyledAttributes.getResourceId(C0120R.styleable.SwitchCompat_switchTextAppearance, 0);
         if (resourceId != 0) {
             setSwitchTextAppearance(context, resourceId);
         }

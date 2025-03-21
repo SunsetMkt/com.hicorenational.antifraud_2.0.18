@@ -29,19 +29,19 @@ public class Spy {
     public static native String getNativeTag(boolean z, boolean z2);
 
     public static synchronized String getTag(Context context) {
-        boolean j2;
+        boolean m12754j;
         String nativeTag;
         synchronized (Spy.class) {
             if (context != null) {
                 try {
-                    j2 = d.j(context);
+                    m12754j = C3795d.m12754j(context);
                 } catch (Throwable th) {
                     throw th;
                 }
             } else {
-                j2 = false;
+                m12754j = false;
             }
-            nativeTag = getNativeTag(j2, context != null ? d.i(context) : false);
+            nativeTag = getNativeTag(m12754j, context != null ? C3795d.m12753i(context) : false);
         }
         return nativeTag;
     }

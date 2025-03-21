@@ -7,113 +7,119 @@ import anet.channel.util.ALog;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import p000a.p001a.InterfaceC0000a;
+import p000a.p001a.InterfaceC0006g;
+import p000a.p001a.InterfaceC0007h;
 
 /* compiled from: Taobao */
 /* loaded from: classes.dex */
 public class ParcelableRequest implements Parcelable {
-    public static final Parcelable.Creator<ParcelableRequest> CREATOR = new n();
+    public static final Parcelable.Creator<ParcelableRequest> CREATOR = new C0888n();
 
-    /* renamed from: a, reason: collision with root package name */
-    public a.a.h f2090a;
+    /* renamed from: a */
+    public InterfaceC0007h f1216a;
 
-    /* renamed from: b, reason: collision with root package name */
-    public BodyEntry f2091b;
+    /* renamed from: b */
+    public BodyEntry f1217b;
 
-    /* renamed from: c, reason: collision with root package name */
-    public int f2092c;
+    /* renamed from: c */
+    public int f1218c;
 
-    /* renamed from: d, reason: collision with root package name */
-    public String f2093d;
+    /* renamed from: d */
+    public String f1219d;
 
-    /* renamed from: e, reason: collision with root package name */
-    public String f2094e;
+    /* renamed from: e */
+    public String f1220e;
 
-    /* renamed from: f, reason: collision with root package name */
-    public boolean f2095f;
+    /* renamed from: f */
+    public boolean f1221f;
 
-    /* renamed from: g, reason: collision with root package name */
-    public String f2096g;
+    /* renamed from: g */
+    public String f1222g;
 
-    /* renamed from: h, reason: collision with root package name */
-    public Map<String, String> f2097h;
+    /* renamed from: h */
+    public Map<String, String> f1223h;
 
-    /* renamed from: i, reason: collision with root package name */
-    public Map<String, String> f2098i;
+    /* renamed from: i */
+    public Map<String, String> f1224i;
 
-    /* renamed from: j, reason: collision with root package name */
-    public int f2099j;
+    /* renamed from: j */
+    public int f1225j;
 
-    /* renamed from: k, reason: collision with root package name */
-    public int f2100k;
+    /* renamed from: k */
+    public int f1226k;
 
-    /* renamed from: l, reason: collision with root package name */
-    public String f2101l;
+    /* renamed from: l */
+    public String f1227l;
 
-    /* renamed from: m, reason: collision with root package name */
-    public String f2102m;
-    public Map<String, String> n;
+    /* renamed from: m */
+    public String f1228m;
 
-    public ParcelableRequest(a.a.h hVar) {
-        this.f2097h = null;
-        this.f2098i = null;
-        this.f2090a = hVar;
-        if (hVar != null) {
-            this.f2093d = hVar.b();
-            this.f2092c = hVar.k();
-            this.f2094e = hVar.g();
-            this.f2095f = hVar.h();
-            this.f2096g = hVar.f();
-            List<a.a.a> a2 = hVar.a();
-            if (a2 != null) {
-                this.f2097h = new HashMap();
-                for (a.a.a aVar : a2) {
-                    this.f2097h.put(aVar.getName(), aVar.getValue());
+    /* renamed from: n */
+    public Map<String, String> f1229n;
+
+    public ParcelableRequest(InterfaceC0007h interfaceC0007h) {
+        this.f1223h = null;
+        this.f1224i = null;
+        this.f1216a = interfaceC0007h;
+        if (interfaceC0007h != null) {
+            this.f1219d = interfaceC0007h.mo26b();
+            this.f1218c = interfaceC0007h.mo47k();
+            this.f1220e = interfaceC0007h.mo43g();
+            this.f1221f = interfaceC0007h.mo44h();
+            this.f1222g = interfaceC0007h.mo41f();
+            List<InterfaceC0000a> mo16a = interfaceC0007h.mo16a();
+            if (mo16a != null) {
+                this.f1223h = new HashMap();
+                for (InterfaceC0000a interfaceC0000a : mo16a) {
+                    this.f1223h.put(interfaceC0000a.getName(), interfaceC0000a.getValue());
                 }
             }
-            List<a.a.g> params = hVar.getParams();
+            List<InterfaceC0006g> params = interfaceC0007h.getParams();
             if (params != null) {
-                this.f2098i = new HashMap();
-                for (a.a.g gVar : params) {
-                    this.f2098i.put(gVar.getKey(), gVar.getValue());
+                this.f1224i = new HashMap();
+                for (InterfaceC0006g interfaceC0006g : params) {
+                    this.f1224i.put(interfaceC0006g.getKey(), interfaceC0006g.getValue());
                 }
             }
-            this.f2091b = hVar.i();
-            this.f2099j = hVar.getConnectTimeout();
-            this.f2100k = hVar.getReadTimeout();
-            this.f2101l = hVar.n();
-            this.f2102m = hVar.l();
-            this.n = hVar.d();
+            this.f1217b = interfaceC0007h.mo45i();
+            this.f1225j = interfaceC0007h.getConnectTimeout();
+            this.f1226k = interfaceC0007h.getReadTimeout();
+            this.f1227l = interfaceC0007h.mo50n();
+            this.f1228m = interfaceC0007h.mo48l();
+            this.f1229n = interfaceC0007h.mo36d();
         }
     }
 
-    public static ParcelableRequest a(Parcel parcel) {
+    /* renamed from: a */
+    public static ParcelableRequest m759a(Parcel parcel) {
         ParcelableRequest parcelableRequest = new ParcelableRequest();
         try {
-            parcelableRequest.f2092c = parcel.readInt();
-            parcelableRequest.f2093d = parcel.readString();
-            parcelableRequest.f2094e = parcel.readString();
+            parcelableRequest.f1218c = parcel.readInt();
+            parcelableRequest.f1219d = parcel.readString();
+            parcelableRequest.f1220e = parcel.readString();
             boolean z = true;
             if (parcel.readInt() != 1) {
                 z = false;
             }
-            parcelableRequest.f2095f = z;
-            parcelableRequest.f2096g = parcel.readString();
+            parcelableRequest.f1221f = z;
+            parcelableRequest.f1222g = parcel.readString();
             if (parcel.readInt() != 0) {
-                parcelableRequest.f2097h = parcel.readHashMap(ParcelableRequest.class.getClassLoader());
+                parcelableRequest.f1223h = parcel.readHashMap(ParcelableRequest.class.getClassLoader());
             }
             if (parcel.readInt() != 0) {
-                parcelableRequest.f2098i = parcel.readHashMap(ParcelableRequest.class.getClassLoader());
+                parcelableRequest.f1224i = parcel.readHashMap(ParcelableRequest.class.getClassLoader());
             }
-            parcelableRequest.f2091b = (BodyEntry) parcel.readParcelable(ParcelableRequest.class.getClassLoader());
-            parcelableRequest.f2099j = parcel.readInt();
-            parcelableRequest.f2100k = parcel.readInt();
-            parcelableRequest.f2101l = parcel.readString();
-            parcelableRequest.f2102m = parcel.readString();
+            parcelableRequest.f1217b = (BodyEntry) parcel.readParcelable(ParcelableRequest.class.getClassLoader());
+            parcelableRequest.f1225j = parcel.readInt();
+            parcelableRequest.f1226k = parcel.readInt();
+            parcelableRequest.f1227l = parcel.readString();
+            parcelableRequest.f1228m = parcel.readString();
             if (parcel.readInt() != 0) {
-                parcelableRequest.n = parcel.readHashMap(ParcelableRequest.class.getClassLoader());
+                parcelableRequest.f1229n = parcel.readHashMap(ParcelableRequest.class.getClassLoader());
             }
         } catch (Throwable th) {
-            ALog.w("anet.ParcelableRequest", "[readFromParcel]", null, th, new Object[0]);
+            ALog.m717w("anet.ParcelableRequest", "[readFromParcel]", null, th, new Object[0]);
         }
         return parcelableRequest;
     }
@@ -125,41 +131,42 @@ public class ParcelableRequest implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        a.a.h hVar = this.f2090a;
-        if (hVar == null) {
+        InterfaceC0007h interfaceC0007h = this.f1216a;
+        if (interfaceC0007h == null) {
             return;
         }
         try {
-            parcel.writeInt(hVar.k());
-            parcel.writeString(this.f2093d);
-            parcel.writeString(this.f2090a.g());
-            parcel.writeInt(this.f2090a.h() ? 1 : 0);
-            parcel.writeString(this.f2090a.f());
-            parcel.writeInt(this.f2097h == null ? 0 : 1);
-            if (this.f2097h != null) {
-                parcel.writeMap(this.f2097h);
+            parcel.writeInt(interfaceC0007h.mo47k());
+            parcel.writeString(this.f1219d);
+            parcel.writeString(this.f1216a.mo43g());
+            parcel.writeInt(this.f1216a.mo44h() ? 1 : 0);
+            parcel.writeString(this.f1216a.mo41f());
+            parcel.writeInt(this.f1223h == null ? 0 : 1);
+            if (this.f1223h != null) {
+                parcel.writeMap(this.f1223h);
             }
-            parcel.writeInt(this.f2098i == null ? 0 : 1);
-            if (this.f2098i != null) {
-                parcel.writeMap(this.f2098i);
+            parcel.writeInt(this.f1224i == null ? 0 : 1);
+            if (this.f1224i != null) {
+                parcel.writeMap(this.f1224i);
             }
-            parcel.writeParcelable(this.f2091b, 0);
-            parcel.writeInt(this.f2090a.getConnectTimeout());
-            parcel.writeInt(this.f2090a.getReadTimeout());
-            parcel.writeString(this.f2090a.n());
-            parcel.writeString(this.f2090a.l());
-            Map<String, String> d2 = this.f2090a.d();
-            parcel.writeInt(d2 == null ? 0 : 1);
-            if (d2 != null) {
-                parcel.writeMap(d2);
+            parcel.writeParcelable(this.f1217b, 0);
+            parcel.writeInt(this.f1216a.getConnectTimeout());
+            parcel.writeInt(this.f1216a.getReadTimeout());
+            parcel.writeString(this.f1216a.mo50n());
+            parcel.writeString(this.f1216a.mo48l());
+            Map<String, String> mo36d = this.f1216a.mo36d();
+            parcel.writeInt(mo36d == null ? 0 : 1);
+            if (mo36d != null) {
+                parcel.writeMap(mo36d);
             }
         } catch (Throwable th) {
-            ALog.w("anet.ParcelableRequest", "[writeToParcel]", null, th, new Object[0]);
+            ALog.m717w("anet.ParcelableRequest", "[writeToParcel]", null, th, new Object[0]);
         }
     }
 
-    public String a(String str) {
-        Map<String, String> map = this.n;
+    /* renamed from: a */
+    public String m760a(String str) {
+        Map<String, String> map = this.f1229n;
         if (map == null) {
             return null;
         }
@@ -167,7 +174,7 @@ public class ParcelableRequest implements Parcelable {
     }
 
     public ParcelableRequest() {
-        this.f2097h = null;
-        this.f2098i = null;
+        this.f1223h = null;
+        this.f1224i = null;
     }
 }

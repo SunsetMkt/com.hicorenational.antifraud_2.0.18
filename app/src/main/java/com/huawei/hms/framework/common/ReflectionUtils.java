@@ -15,7 +15,7 @@ public class ReflectionUtils {
             tryLoadClass(str);
             return true;
         } catch (Exception unused) {
-            Logger.w(TAG, str + "ClassNotFoundException");
+            Logger.m6803w(TAG, str + "ClassNotFoundException");
             return false;
         }
     }
@@ -44,11 +44,11 @@ public class ReflectionUtils {
                 });
                 return declaredField;
             } catch (IllegalArgumentException e2) {
-                Logger.e(TAG, "Exception in getField :: IllegalArgumentException:", e2);
+                Logger.m6797e(TAG, "Exception in getField :: IllegalArgumentException:", e2);
             } catch (NoSuchFieldException e3) {
-                Logger.e(TAG, "Exception in getField :: NoSuchFieldException:", e3);
+                Logger.m6797e(TAG, "Exception in getField :: NoSuchFieldException:", e3);
             } catch (SecurityException e4) {
-                Logger.e(TAG, "not security int method getField,SecurityException:", e4);
+                Logger.m6797e(TAG, "not security int method getField,SecurityException:", e4);
             }
         }
         return null;
@@ -69,32 +69,32 @@ public class ReflectionUtils {
             });
             return declaredField.get(obj);
         } catch (IllegalAccessException e2) {
-            Logger.e(TAG, "Exception in getFieldObj :: IllegalAccessException:", e2);
+            Logger.m6797e(TAG, "Exception in getFieldObj :: IllegalAccessException:", e2);
             return null;
         } catch (IllegalArgumentException e3) {
-            Logger.e(TAG, "Exception in getFieldObj :: IllegalArgumentException:", e3);
+            Logger.m6797e(TAG, "Exception in getFieldObj :: IllegalArgumentException:", e3);
             return null;
         } catch (NoSuchFieldException e4) {
-            Logger.e(TAG, "Exception in getFieldObj :: NoSuchFieldException:", e4);
+            Logger.m6797e(TAG, "Exception in getFieldObj :: NoSuchFieldException:", e4);
             return null;
         } catch (SecurityException e5) {
-            Logger.e(TAG, "not security int method getFieldObj,SecurityException:", e5);
+            Logger.m6797e(TAG, "not security int method getFieldObj,SecurityException:", e5);
             return null;
         }
     }
 
     public static Method getMethod(Class<?> cls, String str, Class<?>... clsArr) {
         if (cls == null || str == null) {
-            Logger.w(TAG, "targetClass is  null pr name is null:");
+            Logger.m6803w(TAG, "targetClass is  null pr name is null:");
             return null;
         }
         try {
             return cls.getDeclaredMethod(str, clsArr);
         } catch (NoSuchMethodException e2) {
-            Logger.e(TAG, "NoSuchMethodException:", e2);
+            Logger.m6797e(TAG, "NoSuchMethodException:", e2);
             return null;
         } catch (SecurityException e3) {
-            Logger.e(TAG, "SecurityException:", e3);
+            Logger.m6797e(TAG, "SecurityException:", e3);
             return null;
         }
     }
@@ -115,16 +115,16 @@ public class ReflectionUtils {
             });
             return declaredField.get(cls);
         } catch (IllegalAccessException e2) {
-            Logger.e(TAG, "Exception in getFieldObj :: IllegalAccessException:", e2);
+            Logger.m6797e(TAG, "Exception in getFieldObj :: IllegalAccessException:", e2);
             return null;
         } catch (IllegalArgumentException e3) {
-            Logger.e(TAG, "Exception in getFieldObj :: IllegalArgumentException:", e3);
+            Logger.m6797e(TAG, "Exception in getFieldObj :: IllegalArgumentException:", e3);
             return null;
         } catch (NoSuchFieldException e4) {
-            Logger.e(TAG, "Exception in getFieldObj :: NoSuchFieldException:", e4);
+            Logger.m6797e(TAG, "Exception in getFieldObj :: NoSuchFieldException:", e4);
             return null;
         } catch (SecurityException e5) {
-            Logger.e(TAG, "not security int method getStaticFieldObj,SecurityException:", e5);
+            Logger.m6797e(TAG, "not security int method getStaticFieldObj,SecurityException:", e5);
             return null;
         }
     }
@@ -136,10 +136,10 @@ public class ReflectionUtils {
         try {
             return method.invoke(obj, objArr);
         } catch (RuntimeException e2) {
-            Logger.e(TAG, "RuntimeException in invoke:", e2);
+            Logger.m6797e(TAG, "RuntimeException in invoke:", e2);
             return null;
         } catch (Exception e3) {
-            Logger.e(TAG, "Exception in invoke:", e3);
+            Logger.m6797e(TAG, "Exception in invoke:", e3);
             return null;
         }
     }
@@ -215,16 +215,16 @@ public class ReflectionUtils {
         try {
             if (str != null && str2 != null) {
                 Class.forName(str).getDeclaredMethod(str2, clsArr);
-                Logger.v(TAG, "has method : " + str2);
+                Logger.m6801v(TAG, "has method : " + str2);
                 return true;
             }
-            Logger.w(TAG, "targetClass is  null or name is null:");
+            Logger.m6803w(TAG, "targetClass is  null or name is null:");
             return false;
         } catch (RuntimeException unused) {
-            Logger.w(TAG, str + " RuntimeException");
+            Logger.m6803w(TAG, str + " RuntimeException");
             return false;
         } catch (Exception unused2) {
-            Logger.w(TAG, str2 + " NoSuchMethodException");
+            Logger.m6803w(TAG, str2 + " NoSuchMethodException");
             return false;
         }
     }

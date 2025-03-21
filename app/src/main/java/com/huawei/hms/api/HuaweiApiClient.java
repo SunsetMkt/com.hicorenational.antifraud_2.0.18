@@ -106,47 +106,48 @@ public abstract class HuaweiApiClient implements AidlApiClient {
 
     public static final class Builder {
 
-        /* renamed from: a, reason: collision with root package name */
-        private final Context f6614a;
+        /* renamed from: a */
+        private final Context f7118a;
 
-        /* renamed from: b, reason: collision with root package name */
-        private final List<Scope> f6615b = new ArrayList();
+        /* renamed from: b */
+        private final List<Scope> f7119b = new ArrayList();
 
-        /* renamed from: c, reason: collision with root package name */
-        private final List<PermissionInfo> f6616c = new ArrayList();
+        /* renamed from: c */
+        private final List<PermissionInfo> f7120c = new ArrayList();
 
-        /* renamed from: d, reason: collision with root package name */
-        private final Map<Api<?>, Api.ApiOptions> f6617d = new HashMap();
+        /* renamed from: d */
+        private final Map<Api<?>, Api.ApiOptions> f7121d = new HashMap();
 
-        /* renamed from: e, reason: collision with root package name */
-        private OnConnectionFailedListener f6618e;
+        /* renamed from: e */
+        private OnConnectionFailedListener f7122e;
 
-        /* renamed from: f, reason: collision with root package name */
-        private ConnectionCallbacks f6619f;
+        /* renamed from: f */
+        private ConnectionCallbacks f7123f;
 
-        /* renamed from: g, reason: collision with root package name */
-        private int f6620g;
+        /* renamed from: g */
+        private int f7124g;
 
-        /* renamed from: h, reason: collision with root package name */
-        private Activity f6621h;
+        /* renamed from: h */
+        private Activity f7125h;
 
         public Builder(Context context) throws NullPointerException {
             Checker.checkNonNull(context, "context must not be null.");
             Context applicationContext = context.getApplicationContext();
-            this.f6614a = applicationContext;
-            this.f6620g = -1;
+            this.f7118a = applicationContext;
+            this.f7124g = -1;
             ResourceLoaderUtil.setmContext(applicationContext);
-            a(context);
+            m6619a(context);
         }
 
-        private void a(Context context) {
+        /* renamed from: a */
+        private void m6619a(Context context) {
             HMSBIInitializer.getInstance(context).initBI();
         }
 
         public Builder addApi(Api<? extends Api.ApiOptions.NotRequiredOptions> api) {
-            this.f6617d.put(api, null);
+            this.f7121d.put(api, null);
             if (HuaweiApiAvailability.HMS_API_NAME_GAME.equals(api.getApiName())) {
-                HiAnalyticsUtil.getInstance().onEvent(this.f6614a.getApplicationContext(), HiAnalyticsConstant.KeyAndValue.GAME_INIT_KEY, HiAnalyticsConstant.REPORT_VAL_SEPARATOR + System.currentTimeMillis());
+                HiAnalyticsUtil.getInstance().onEvent(this.f7118a.getApplicationContext(), HiAnalyticsConstant.KeyAndValue.GAME_INIT_KEY, HiAnalyticsConstant.REPORT_VAL_SEPARATOR + System.currentTimeMillis());
             }
             return this;
         }
@@ -154,26 +155,26 @@ public abstract class HuaweiApiClient implements AidlApiClient {
         public Builder addApiWithScope(Api<? extends Api.ApiOptions.NotRequiredOptions> api, Scope... scopeArr) {
             Checker.checkNonNull(api, "Api must not be null");
             Checker.checkNonNull(scopeArr, "Scopes must not be null");
-            this.f6617d.put(api, null);
-            this.f6615b.addAll(new ArrayList(Arrays.asList(scopeArr)));
+            this.f7121d.put(api, null);
+            this.f7119b.addAll(new ArrayList(Arrays.asList(scopeArr)));
             return this;
         }
 
         public Builder addConnectionCallbacks(ConnectionCallbacks connectionCallbacks) {
             Checker.checkNonNull(connectionCallbacks, "listener must not be null.");
-            this.f6619f = connectionCallbacks;
+            this.f7123f = connectionCallbacks;
             return this;
         }
 
         public Builder addOnConnectionFailedListener(OnConnectionFailedListener onConnectionFailedListener) {
             Checker.checkNonNull(onConnectionFailedListener, "listener must not be null.");
-            this.f6618e = onConnectionFailedListener;
+            this.f7122e = onConnectionFailedListener;
             return this;
         }
 
         public Builder addScope(Scope scope) {
             Checker.checkNonNull(scope, "scope must not be null.");
-            this.f6615b.add(scope);
+            this.f7119b.add(scope);
             return this;
         }
 
@@ -181,8 +182,8 @@ public abstract class HuaweiApiClient implements AidlApiClient {
             if (i2 < 0) {
                 throw new IllegalArgumentException("allowLifeCycleManagement id should be positive");
             }
-            this.f6620g = i2;
-            this.f6621h = (Activity) Preconditions.checkNotNull(activity, "activity must not be Null.");
+            this.f7124g = i2;
+            this.f7125h = (Activity) Preconditions.checkNotNull(activity, "activity must not be Null.");
             return this;
         }
 
@@ -192,15 +193,15 @@ public abstract class HuaweiApiClient implements AidlApiClient {
 
         public HuaweiApiClient build() {
             addApi(new Api<>("Core.API"));
-            HuaweiApiClientImpl huaweiApiClientImpl = new HuaweiApiClientImpl(this.f6614a);
-            huaweiApiClientImpl.setScopes(this.f6615b);
-            huaweiApiClientImpl.setPermissionInfos(this.f6616c);
-            huaweiApiClientImpl.setApiMap(this.f6617d);
-            huaweiApiClientImpl.setConnectionCallbacks(this.f6619f);
-            huaweiApiClientImpl.setConnectionFailedListener(this.f6618e);
-            huaweiApiClientImpl.setAutoLifecycleClientId(this.f6620g);
-            if (this.f6620g >= 0) {
-                a(huaweiApiClientImpl);
+            HuaweiApiClientImpl huaweiApiClientImpl = new HuaweiApiClientImpl(this.f7118a);
+            huaweiApiClientImpl.setScopes(this.f7119b);
+            huaweiApiClientImpl.setPermissionInfos(this.f7120c);
+            huaweiApiClientImpl.setApiMap(this.f7121d);
+            huaweiApiClientImpl.setConnectionCallbacks(this.f7123f);
+            huaweiApiClientImpl.setConnectionFailedListener(this.f7122e);
+            huaweiApiClientImpl.setAutoLifecycleClientId(this.f7124g);
+            if (this.f7124g >= 0) {
+                m6620a(huaweiApiClientImpl);
             }
             return huaweiApiClientImpl;
         }
@@ -221,8 +222,9 @@ public abstract class HuaweiApiClient implements AidlApiClient {
             return this;
         }
 
-        private void a(HuaweiApiClient huaweiApiClient) {
-            AutoLifecycleFragment.getInstance(this.f6621h).startAutoMange(this.f6620g, huaweiApiClient);
+        /* renamed from: a */
+        private void m6620a(HuaweiApiClient huaweiApiClient) {
+            AutoLifecycleFragment.getInstance(this.f7125h).startAutoMange(this.f7124g, huaweiApiClient);
         }
 
         public Builder allowLifeCycleManagement(Activity activity, OnConnectionFailedListener onConnectionFailedListener) {
@@ -233,22 +235,22 @@ public abstract class HuaweiApiClient implements AidlApiClient {
             Checker.checkNonNull(api, "Api must not be null");
             Checker.checkNonNull(o, "Null options are not permitted for this Api");
             Checker.checkNonNull(scopeArr, "Scopes must not be null");
-            this.f6617d.put(api, o);
+            this.f7121d.put(api, o);
             if (api.getOptions() != null) {
-                this.f6615b.addAll(api.getOptions().getScopeList(o));
-                this.f6616c.addAll(api.getOptions().getPermissionInfoList(o));
+                this.f7119b.addAll(api.getOptions().getScopeList(o));
+                this.f7120c.addAll(api.getOptions().getPermissionInfoList(o));
             }
-            this.f6615b.addAll(new ArrayList(Arrays.asList(scopeArr)));
+            this.f7119b.addAll(new ArrayList(Arrays.asList(scopeArr)));
             return this;
         }
 
         public <O extends Api.ApiOptions.HasOptions> Builder addApi(Api<O> api, O o) {
             Checker.checkNonNull(api, "Api must not be null");
             Checker.checkNonNull(o, "Null options are not permitted for this Api");
-            this.f6617d.put(api, o);
+            this.f7121d.put(api, o);
             if (api.getOptions() != null) {
-                this.f6615b.addAll(api.getOptions().getScopeList(o));
-                this.f6616c.addAll(api.getOptions().getPermissionInfoList(o));
+                this.f7119b.addAll(api.getOptions().getScopeList(o));
+                this.f7120c.addAll(api.getOptions().getPermissionInfoList(o));
             }
             return this;
         }
