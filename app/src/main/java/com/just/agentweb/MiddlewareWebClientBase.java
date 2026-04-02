@@ -1,6 +1,6 @@
 package com.just.agentweb;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MiddlewareWebClientBase extends WebViewClientDelegate {
     private static String TAG = MiddlewareWebClientBase.class.getSimpleName();
     private MiddlewareWebClientBase mMiddleWrareWebClientBase;

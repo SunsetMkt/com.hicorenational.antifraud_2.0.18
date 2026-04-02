@@ -9,124 +9,117 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.b.f;
+import com.scwang.smartrefresh.layout.b.g;
+import com.scwang.smartrefresh.layout.b.h;
+import com.scwang.smartrefresh.layout.b.i;
+import com.scwang.smartrefresh.layout.b.j;
 import com.scwang.smartrefresh.layout.impl.RefreshFooterWrapper;
 import com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2872f;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2873g;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2874h;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2875i;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2876j;
-import com.scwang.smartrefresh.layout.p190c.EnumC2879b;
-import com.scwang.smartrefresh.layout.p190c.EnumC2880c;
 
-/* loaded from: classes.dex */
-public abstract class InternalAbstract extends RelativeLayout implements InterfaceC2874h {
+/* JADX INFO: loaded from: classes2.dex */
+public abstract class InternalAbstract extends RelativeLayout implements h {
+    protected View a;
 
-    /* renamed from: a */
-    protected View f9232a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    protected com.scwang.smartrefresh.layout.c.c f5664b;
 
-    /* renamed from: b */
-    protected EnumC2880c f9233b;
-
-    /* renamed from: c */
-    protected InterfaceC2874h f9234c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    protected h f5665c;
 
     /* JADX WARN: Multi-variable type inference failed */
     protected InternalAbstract(@NonNull View view) {
-        this(view, view instanceof InterfaceC2874h ? (InterfaceC2874h) view : null);
+        this(view, view instanceof h ? (h) view : null);
     }
 
-    /* renamed from: a */
-    public int mo8713a(@NonNull InterfaceC2876j interfaceC2876j, boolean z) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+    public int a(@NonNull j jVar, boolean z) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return 0;
         }
-        return interfaceC2874h.mo8713a(interfaceC2876j, z);
+        return hVar.a(jVar, z);
     }
 
-    /* renamed from: b */
-    public void mo8719b(@NonNull InterfaceC2876j interfaceC2876j, int i2, int i3) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+    public void b(@NonNull j jVar, int i2, int i3) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return;
         }
-        interfaceC2874h.mo8719b(interfaceC2876j, i2, i3);
+        hVar.b(jVar, i2, i3);
     }
 
     public boolean equals(Object obj) {
         if (super.equals(obj)) {
             return true;
         }
-        return (obj instanceof InterfaceC2874h) && getView() == ((InterfaceC2874h) obj).getView();
+        return (obj instanceof h) && getView() == ((h) obj).getView();
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
+    @Override // com.scwang.smartrefresh.layout.b.h
     @NonNull
-    public EnumC2880c getSpinnerStyle() {
+    public com.scwang.smartrefresh.layout.c.c getSpinnerStyle() {
         int i2;
-        EnumC2880c enumC2880c = this.f9233b;
-        if (enumC2880c != null) {
-            return enumC2880c;
+        com.scwang.smartrefresh.layout.c.c cVar = this.f5664b;
+        if (cVar != null) {
+            return cVar;
         }
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h != null && interfaceC2874h != this) {
-            return interfaceC2874h.getSpinnerStyle();
+        h hVar = this.f5665c;
+        if (hVar != null && hVar != this) {
+            return hVar.getSpinnerStyle();
         }
-        View view = this.f9232a;
+        View view = this.a;
         if (view != null) {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams instanceof SmartRefreshLayout.C2864m) {
-                this.f9233b = ((SmartRefreshLayout.C2864m) layoutParams).f9102b;
-                EnumC2880c enumC2880c2 = this.f9233b;
-                if (enumC2880c2 != null) {
-                    return enumC2880c2;
+            if (layoutParams instanceof SmartRefreshLayout.m) {
+                this.f5664b = ((SmartRefreshLayout.m) layoutParams).f5606b;
+                com.scwang.smartrefresh.layout.c.c cVar2 = this.f5664b;
+                if (cVar2 != null) {
+                    return cVar2;
                 }
             }
             if (layoutParams != null && ((i2 = layoutParams.height) == 0 || i2 == -1)) {
-                EnumC2880c enumC2880c3 = EnumC2880c.Scale;
-                this.f9233b = enumC2880c3;
-                return enumC2880c3;
+                com.scwang.smartrefresh.layout.c.c cVar3 = com.scwang.smartrefresh.layout.c.c.Scale;
+                this.f5664b = cVar3;
+                return cVar3;
             }
         }
-        EnumC2880c enumC2880c4 = EnumC2880c.Translate;
-        this.f9233b = enumC2880c4;
-        return enumC2880c4;
+        com.scwang.smartrefresh.layout.c.c cVar4 = com.scwang.smartrefresh.layout.c.c.Translate;
+        this.f5664b = cVar4;
+        return cVar4;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
+    @Override // com.scwang.smartrefresh.layout.b.h
     @NonNull
     public View getView() {
-        View view = this.f9232a;
+        View view = this.a;
         return view == null ? this : view;
     }
 
     public void setPrimaryColors(@ColorInt int... iArr) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return;
         }
-        interfaceC2874h.setPrimaryColors(iArr);
+        hVar.setPrimaryColors(iArr);
     }
 
-    protected InternalAbstract(@NonNull View view, @Nullable InterfaceC2874h interfaceC2874h) {
+    protected InternalAbstract(@NonNull View view, @Nullable h hVar) {
         super(view.getContext(), null, 0);
-        this.f9232a = view;
-        this.f9234c = interfaceC2874h;
+        this.a = view;
+        this.f5665c = hVar;
     }
 
-    /* renamed from: a */
-    public void mo8715a(@NonNull InterfaceC2875i interfaceC2875i, int i2, int i3) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h != null && interfaceC2874h != this) {
-            interfaceC2874h.mo8715a(interfaceC2875i, i2, i3);
+    public void a(@NonNull i iVar, int i2, int i3) {
+        h hVar = this.f5665c;
+        if (hVar != null && hVar != this) {
+            hVar.a(iVar, i2, i3);
             return;
         }
-        View view = this.f9232a;
+        View view = this.a;
         if (view != null) {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams instanceof SmartRefreshLayout.C2864m) {
-                interfaceC2875i.mo8691a(this, ((SmartRefreshLayout.C2864m) layoutParams).f9101a);
+            if (layoutParams instanceof SmartRefreshLayout.m) {
+                iVar.a(this, ((SmartRefreshLayout.m) layoutParams).a);
             }
         }
     }
@@ -135,63 +128,58 @@ public abstract class InternalAbstract extends RelativeLayout implements Interfa
         super(context, attributeSet, i2);
     }
 
-    /* renamed from: a */
-    public boolean mo8718a() {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        return (interfaceC2874h == null || interfaceC2874h == this || !interfaceC2874h.mo8718a()) ? false : true;
+    public boolean a() {
+        h hVar = this.f5665c;
+        return (hVar == null || hVar == this || !hVar.a()) ? false : true;
     }
 
-    /* renamed from: a */
-    public void mo8714a(float f2, int i2, int i3) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+    public void a(float f2, int i2, int i3) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return;
         }
-        interfaceC2874h.mo8714a(f2, i2, i3);
+        hVar.a(f2, i2, i3);
     }
 
-    /* renamed from: a */
-    public void mo8717a(boolean z, float f2, int i2, int i3, int i4) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+    public void a(boolean z, float f2, int i2, int i3, int i4) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return;
         }
-        interfaceC2874h.mo8717a(z, f2, i2, i3, i4);
+        hVar.a(z, f2, i2, i3, i4);
     }
 
-    /* renamed from: a */
-    public void mo8716a(@NonNull InterfaceC2876j interfaceC2876j, int i2, int i3) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+    public void a(@NonNull j jVar, int i2, int i3) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return;
         }
-        interfaceC2874h.mo8716a(interfaceC2876j, i2, i3);
+        hVar.a(jVar, i2, i3);
     }
 
-    /* renamed from: a */
-    public void mo8733a(@NonNull InterfaceC2876j interfaceC2876j, @NonNull EnumC2879b enumC2879b, @NonNull EnumC2879b enumC2879b2) {
-        InterfaceC2874h interfaceC2874h = this.f9234c;
-        if (interfaceC2874h == null || interfaceC2874h == this) {
+    public void a(@NonNull j jVar, @NonNull com.scwang.smartrefresh.layout.c.b bVar, @NonNull com.scwang.smartrefresh.layout.c.b bVar2) {
+        h hVar = this.f5665c;
+        if (hVar == null || hVar == this) {
             return;
         }
-        if ((this instanceof RefreshFooterWrapper) && (interfaceC2874h instanceof InterfaceC2873g)) {
-            if (enumC2879b.isFooter) {
-                enumC2879b = enumC2879b.toHeader();
+        if ((this instanceof RefreshFooterWrapper) && (hVar instanceof g)) {
+            if (bVar.isFooter) {
+                bVar = bVar.toHeader();
             }
-            if (enumC2879b2.isFooter) {
-                enumC2879b2 = enumC2879b2.toHeader();
+            if (bVar2.isFooter) {
+                bVar2 = bVar2.toHeader();
             }
-        } else if ((this instanceof RefreshHeaderWrapper) && (this.f9234c instanceof InterfaceC2872f)) {
-            if (enumC2879b.isHeader) {
-                enumC2879b = enumC2879b.toFooter();
+        } else if ((this instanceof RefreshHeaderWrapper) && (this.f5665c instanceof f)) {
+            if (bVar.isHeader) {
+                bVar = bVar.toFooter();
             }
-            if (enumC2879b2.isHeader) {
-                enumC2879b2 = enumC2879b2.toFooter();
+            if (bVar2.isHeader) {
+                bVar2 = bVar2.toFooter();
             }
         }
-        InterfaceC2874h interfaceC2874h2 = this.f9234c;
-        if (interfaceC2874h2 != null) {
-            interfaceC2874h2.mo8733a(interfaceC2876j, enumC2879b, enumC2879b2);
+        h hVar2 = this.f5665c;
+        if (hVar2 != null) {
+            hVar2.a(jVar, bVar, bVar2);
         }
     }
 }

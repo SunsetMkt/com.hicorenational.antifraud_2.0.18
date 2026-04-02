@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -20,54 +19,51 @@ import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class SecureSSLSocketFactory extends SSLSocketFactory {
     public static final X509HostnameVerifier BROWSER_COMPATIBLE_HOSTNAME_VERIFIER = new BrowserCompatHostnameVerifier();
     public static final X509HostnameVerifier STRICT_HOSTNAME_VERIFIER = new StrictHostnameVerifier();
 
-    /* renamed from: c */
-    private static volatile SecureSSLSocketFactory f7995c = null;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static volatile SecureSSLSocketFactory f5022c = null;
+    private SSLContext a;
 
-    /* renamed from: a */
-    private SSLContext f7996a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Context f5023b;
 
-    /* renamed from: b */
-    private Context f7997b;
-
-    private SecureSSLSocketFactory(Context context, SecureRandom secureRandom) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException, IllegalAccessException {
-        this.f7996a = null;
-        this.f7997b = context;
-        this.f7996a = SSLUtil.setSSLContext();
-        this.f7996a.init(null, new X509TrustManager[]{new SecureX509TrustManager(this.f7997b)}, secureRandom);
+    private SecureSSLSocketFactory(Context context, SecureRandom secureRandom) throws IllegalAccessException, NoSuchAlgorithmException, IOException, KeyManagementException, CertificateException, KeyStoreException {
+        this.a = null;
+        this.f5023b = context;
+        this.a = SSLUtil.setSSLContext();
+        this.a.init(null, new X509TrustManager[]{new SecureX509TrustManager(this.f5023b)}, secureRandom);
     }
 
-    /* renamed from: a */
-    private void m7813a(Socket socket) {
+    private void a(Socket socket) {
         SSLSocket sSLSocket = (SSLSocket) socket;
         SSLUtil.setEnabledProtocols(sSLSocket);
         SSLUtil.setEnableSafeCipherSuites(sSLSocket);
     }
 
     @Deprecated
-    public static SecureSSLSocketFactory getInstance(Context context) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, IllegalAccessException, KeyManagementException {
-        if (f7995c == null) {
+    public static SecureSSLSocketFactory getInstance(Context context) throws IllegalAccessException, NoSuchAlgorithmException, IOException, CertificateException, KeyStoreException, KeyManagementException {
+        if (f5022c == null) {
             synchronized (SecureSSLSocketFactory.class) {
-                if (f7995c == null) {
-                    f7995c = new SecureSSLSocketFactory(context, (SecureRandom) null);
+                if (f5022c == null) {
+                    f5022c = new SecureSSLSocketFactory(context, (SecureRandom) null);
                 }
             }
         }
-        return f7995c;
+        return f5022c;
     }
 
     @Override // javax.net.SocketFactory
-    public Socket createSocket(String str, int i2) throws IOException, UnknownHostException {
-        Socket createSocket = this.f7996a.getSocketFactory().createSocket(str, i2);
-        if (createSocket instanceof SSLSocket) {
-            m7813a(createSocket);
+    public Socket createSocket(String str, int i2) throws IOException {
+        Socket socketCreateSocket = this.a.getSocketFactory().createSocket(str, i2);
+        if (socketCreateSocket instanceof SSLSocket) {
+            a(socketCreateSocket);
         }
-        return createSocket;
+        return socketCreateSocket;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
@@ -86,7 +82,7 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
     }
 
     @Override // javax.net.SocketFactory
-    public Socket createSocket(String str, int i2, InetAddress inetAddress, int i3) throws IOException, UnknownHostException {
+    public Socket createSocket(String str, int i2, InetAddress inetAddress, int i3) throws IOException {
         return createSocket(str, i2);
     }
 
@@ -96,37 +92,37 @@ public class SecureSSLSocketFactory extends SSLSocketFactory {
     }
 
     @Deprecated
-    public SecureSSLSocketFactory(InputStream inputStream, String str) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException {
-        this.f7996a = null;
-        this.f7996a = SSLUtil.setSSLContext();
-        this.f7996a.init(null, new X509TrustManager[]{new HiCloudX509TrustManager(inputStream, str)}, null);
+    public SecureSSLSocketFactory(InputStream inputStream, String str) throws NoSuchAlgorithmException, IOException, KeyManagementException, CertificateException, KeyStoreException {
+        this.a = null;
+        this.a = SSLUtil.setSSLContext();
+        this.a.init(null, new X509TrustManager[]{new HiCloudX509TrustManager(inputStream, str)}, null);
     }
 
     @Deprecated
-    public static SecureSSLSocketFactory getInstance(Context context, SecureRandom secureRandom) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, IllegalAccessException, KeyManagementException {
-        if (f7995c == null) {
+    public static SecureSSLSocketFactory getInstance(Context context, SecureRandom secureRandom) throws IllegalAccessException, NoSuchAlgorithmException, IOException, CertificateException, KeyStoreException, KeyManagementException {
+        if (f5022c == null) {
             synchronized (SecureSSLSocketFactory.class) {
-                if (f7995c == null) {
-                    f7995c = new SecureSSLSocketFactory(context, secureRandom);
+                if (f5022c == null) {
+                    f5022c = new SecureSSLSocketFactory(context, secureRandom);
                 }
             }
         }
-        return f7995c;
+        return f5022c;
     }
 
     @Override // javax.net.ssl.SSLSocketFactory
     public Socket createSocket(Socket socket, String str, int i2, boolean z) throws IOException {
-        Socket createSocket = this.f7996a.getSocketFactory().createSocket(socket, str, i2, z);
-        if (createSocket instanceof SSLSocket) {
-            m7813a(createSocket);
+        Socket socketCreateSocket = this.a.getSocketFactory().createSocket(socket, str, i2, z);
+        if (socketCreateSocket instanceof SSLSocket) {
+            a(socketCreateSocket);
         }
-        return createSocket;
+        return socketCreateSocket;
     }
 
     @Deprecated
-    public SecureSSLSocketFactory(InputStream inputStream, String str, SecureRandom secureRandom) throws IOException, NoSuchAlgorithmException, CertificateException, KeyStoreException, KeyManagementException {
-        this.f7996a = null;
-        this.f7996a = SSLUtil.setSSLContext();
-        this.f7996a.init(null, new X509TrustManager[]{new HiCloudX509TrustManager(inputStream, str)}, secureRandom);
+    public SecureSSLSocketFactory(InputStream inputStream, String str, SecureRandom secureRandom) throws NoSuchAlgorithmException, IOException, KeyManagementException, CertificateException, KeyStoreException {
+        this.a = null;
+        this.a = SSLUtil.setSSLContext();
+        this.a.init(null, new X509TrustManager[]{new HiCloudX509TrustManager(inputStream, str)}, secureRandom);
     }
 }

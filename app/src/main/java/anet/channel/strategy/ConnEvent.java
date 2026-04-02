@@ -1,12 +1,12 @@
 package anet.channel.strategy;
 
-import p286h.p309q2.p311t.C5556m0;
+import i.q2.t.m0;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ConnEvent {
     public boolean isSuccess = false;
-    public long connTime = C5556m0.f20396b;
+    public long connTime = m0.f12222b;
     public boolean isAccs = false;
 
     public String toString() {

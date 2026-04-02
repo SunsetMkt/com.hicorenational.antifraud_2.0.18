@@ -13,7 +13,7 @@ import com.huawei.hms.common.api.HuaweiApiCallable;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class HuaweiApiAvailability {
     public static final String ACTIVITY_NAME = "com.huawei.hms.core.activity.JumpActivity";
     private static final Map<String, Integer> API_MAP;
@@ -62,16 +62,16 @@ public abstract class HuaweiApiAvailability {
     public static int servicesVersionCode = 30000100;
 
     static {
-        HashMap hashMap = new HashMap();
-        API_MAP = hashMap;
-        hashMap.put(HMS_API_NAME_ID, 30000000);
-        hashMap.put(HMS_API_NAME_SNS, 20503000);
-        hashMap.put(HMS_API_NAME_PAY, 20503000);
-        hashMap.put(HMS_API_NAME_PUSH, 20503000);
-        hashMap.put(HMS_API_NAME_GAME, 20503000);
-        hashMap.put(HMS_API_NAME_OD, Integer.valueOf(HMS_VERSION_CODE_OD));
-        hashMap.put(HMS_API_NAME_IAP, 20700300);
-        hashMap.put(HMS_API_NAME_PPS, 20700300);
+        HashMap map = new HashMap();
+        API_MAP = map;
+        map.put(HMS_API_NAME_ID, 30000000);
+        map.put(HMS_API_NAME_SNS, 20503000);
+        map.put(HMS_API_NAME_PAY, 20503000);
+        map.put(HMS_API_NAME_PUSH, 20503000);
+        map.put(HMS_API_NAME_GAME, 20503000);
+        map.put(HMS_API_NAME_OD, Integer.valueOf(HMS_VERSION_CODE_OD));
+        map.put(HMS_API_NAME_IAP, 20700300);
+        map.put(HMS_API_NAME_PPS, 20700300);
     }
 
     public static Map<String, Integer> getApiMap() {

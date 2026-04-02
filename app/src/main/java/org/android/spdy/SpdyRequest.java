@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class SpdyRequest {
     public static final String GET_METHOD = "GET";
     public static final String POST_METHOD = "POST";
@@ -88,17 +88,17 @@ public final class SpdyRequest {
     }
 
     Map<String, String> getHeaders() {
-        HashMap hashMap = new HashMap(5);
-        hashMap.put(":path", getPath());
-        hashMap.put(":method", this.method);
-        hashMap.put(":version", "HTTP/1.1");
-        hashMap.put(":host", this.url.getAuthority());
-        hashMap.put(":scheme", this.url.getProtocol());
-        Map<String, String> map = this.extHead;
-        if (map != null && map.size() > 0) {
-            hashMap.putAll(this.extHead);
+        HashMap map = new HashMap(5);
+        map.put(":path", getPath());
+        map.put(":method", this.method);
+        map.put(":version", "HTTP/1.1");
+        map.put(":host", this.url.getAuthority());
+        map.put(":scheme", this.url.getProtocol());
+        Map<String, String> map2 = this.extHead;
+        if (map2 != null && map2.size() > 0) {
+            map.putAll(this.extHead);
         }
-        return hashMap;
+        return map;
     }
 
     String getHost() {

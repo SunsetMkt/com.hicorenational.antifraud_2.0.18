@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedApi"})
-/* loaded from: classes.dex */
 final class Recreator implements GenericLifecycleObserver {
     static final String CLASSES_KEY = "classes_to_restore";
     static final String COMPONENT_KEY = "androidx.savedstate.Restarter";
@@ -46,9 +46,9 @@ final class Recreator implements GenericLifecycleObserver {
 
     private void reflectiveNew(String str) {
         try {
-            Class<? extends U> asSubclass = Class.forName(str, false, Recreator.class.getClassLoader()).asSubclass(SavedStateRegistry.AutoRecreated.class);
+            Class<? extends U> clsAsSubclass = Class.forName(str, false, Recreator.class.getClassLoader()).asSubclass(SavedStateRegistry.AutoRecreated.class);
             try {
-                Constructor declaredConstructor = asSubclass.getDeclaredConstructor(new Class[0]);
+                Constructor declaredConstructor = clsAsSubclass.getDeclaredConstructor(new Class[0]);
                 declaredConstructor.setAccessible(true);
                 try {
                     ((SavedStateRegistry.AutoRecreated) declaredConstructor.newInstance(new Object[0])).onRecreated(this.mOwner);
@@ -56,7 +56,7 @@ final class Recreator implements GenericLifecycleObserver {
                     throw new RuntimeException("Failed to instantiate " + str, e2);
                 }
             } catch (NoSuchMethodException e3) {
-                throw new IllegalStateException("Class" + asSubclass.getSimpleName() + " must have default constructor in order to be automatically recreated", e3);
+                throw new IllegalStateException("Class" + clsAsSubclass.getSimpleName() + " must have default constructor in order to be automatically recreated", e3);
             }
         } catch (ClassNotFoundException e4) {
             throw new RuntimeException("Class " + str + " wasn't found", e4);
@@ -69,11 +69,11 @@ final class Recreator implements GenericLifecycleObserver {
             throw new AssertionError("Next event must be ON_CREATE");
         }
         lifecycleOwner.getLifecycle().removeObserver(this);
-        Bundle consumeRestoredStateForKey = this.mOwner.getSavedStateRegistry().consumeRestoredStateForKey(COMPONENT_KEY);
-        if (consumeRestoredStateForKey == null) {
+        Bundle bundleConsumeRestoredStateForKey = this.mOwner.getSavedStateRegistry().consumeRestoredStateForKey(COMPONENT_KEY);
+        if (bundleConsumeRestoredStateForKey == null) {
             return;
         }
-        ArrayList<String> stringArrayList = consumeRestoredStateForKey.getStringArrayList(CLASSES_KEY);
+        ArrayList<String> stringArrayList = bundleConsumeRestoredStateForKey.getStringArrayList(CLASSES_KEY);
         if (stringArrayList == null) {
             throw new IllegalStateException("Bundle with restored state for the component \"androidx.savedstate.Restarter\" must contain list of strings by the key \"classes_to_restore\"");
         }

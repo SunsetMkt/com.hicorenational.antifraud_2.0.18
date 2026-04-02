@@ -18,13 +18,95 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultDesignUIController extends DefaultUIController {
     private static final int RECYCLERVIEW_ID = 4097;
     private Activity mActivity = null;
     private BottomSheetDialog mBottomSheetDialog;
     private LayoutInflater mLayoutInflater;
     private WebParentLayout mWebParentLayout;
+
+    /* JADX INFO: renamed from: com.just.agentweb.DefaultDesignUIController$1 */
+    class AnonymousClass1 implements DialogInterface.OnCancelListener {
+        final /* synthetic */ Handler.Callback val$callback;
+
+        AnonymousClass1(Handler.Callback callback) {
+            callback = callback;
+        }
+
+        @Override // android.content.DialogInterface.OnCancelListener
+        public void onCancel(DialogInterface dialogInterface) {
+            Handler.Callback callback = callback;
+            if (callback != null) {
+                callback.handleMessage(Message.obtain((Handler) null, -1));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.just.agentweb.DefaultDesignUIController$2 */
+    class AnonymousClass2 extends RecyclerView.Adapter<BottomSheetHolder> {
+        final /* synthetic */ Handler.Callback val$callback;
+        final /* synthetic */ String[] val$ways;
+
+        /* JADX INFO: renamed from: com.just.agentweb.DefaultDesignUIController$2$1 */
+        class AnonymousClass1 implements View.OnClickListener {
+            final /* synthetic */ int val$i;
+
+            AnonymousClass1(int i2) {
+                i = i2;
+            }
+
+            @Override // android.view.View.OnClickListener
+            public void onClick(View view) {
+                if (DefaultDesignUIController.this.mBottomSheetDialog != null && DefaultDesignUIController.this.mBottomSheetDialog.isShowing()) {
+                    DefaultDesignUIController.this.mBottomSheetDialog.dismiss();
+                }
+                Message messageObtain = Message.obtain();
+                messageObtain.what = i;
+                callback.handleMessage(messageObtain);
+            }
+        }
+
+        AnonymousClass2(String[] strArr, Handler.Callback callback) {
+            strArr = strArr;
+            callback = callback;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public int getItemCount() {
+            return strArr.length;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public void onBindViewHolder(BottomSheetHolder bottomSheetHolder, int i2) {
+            TypedValue typedValue = new TypedValue();
+            DefaultDesignUIController.this.mActivity.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, typedValue, true);
+            bottomSheetHolder.mTextView.setBackgroundResource(typedValue.resourceId);
+            bottomSheetHolder.mTextView.setText(strArr[i2]);
+            bottomSheetHolder.mTextView.setOnClickListener(new View.OnClickListener() { // from class: com.just.agentweb.DefaultDesignUIController.2.1
+                final /* synthetic */ int val$i;
+
+                AnonymousClass1(int i22) {
+                    i = i22;
+                }
+
+                @Override // android.view.View.OnClickListener
+                public void onClick(View view) {
+                    if (DefaultDesignUIController.this.mBottomSheetDialog != null && DefaultDesignUIController.this.mBottomSheetDialog.isShowing()) {
+                        DefaultDesignUIController.this.mBottomSheetDialog.dismiss();
+                    }
+                    Message messageObtain = Message.obtain();
+                    messageObtain.what = i;
+                    callback.handleMessage(messageObtain);
+                }
+            });
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public BottomSheetHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
+            return new BottomSheetHolder(DefaultDesignUIController.this.mLayoutInflater.inflate(android.R.layout.simple_list_item_1, viewGroup, false));
+        }
+    }
 
     private static class BottomSheetHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
@@ -35,28 +117,61 @@ public class DefaultDesignUIController extends DefaultUIController {
         }
     }
 
-    private RecyclerView.Adapter getAdapter(final String[] strArr, final Handler.Callback callback) {
+    private RecyclerView.Adapter getAdapter(String[] strArr, Handler.Callback callback) {
         return new RecyclerView.Adapter<BottomSheetHolder>() { // from class: com.just.agentweb.DefaultDesignUIController.2
+            final /* synthetic */ Handler.Callback val$callback;
+            final /* synthetic */ String[] val$ways;
+
+            /* JADX INFO: renamed from: com.just.agentweb.DefaultDesignUIController$2$1 */
+            class AnonymousClass1 implements View.OnClickListener {
+                final /* synthetic */ int val$i;
+
+                AnonymousClass1(int i22) {
+                    i = i22;
+                }
+
+                @Override // android.view.View.OnClickListener
+                public void onClick(View view) {
+                    if (DefaultDesignUIController.this.mBottomSheetDialog != null && DefaultDesignUIController.this.mBottomSheetDialog.isShowing()) {
+                        DefaultDesignUIController.this.mBottomSheetDialog.dismiss();
+                    }
+                    Message messageObtain = Message.obtain();
+                    messageObtain.what = i;
+                    callback.handleMessage(messageObtain);
+                }
+            }
+
+            AnonymousClass2(String[] strArr2, Handler.Callback callback2) {
+                strArr = strArr2;
+                callback = callback2;
+            }
+
             @Override // androidx.recyclerview.widget.RecyclerView.Adapter
             public int getItemCount() {
                 return strArr.length;
             }
 
             @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-            public void onBindViewHolder(BottomSheetHolder bottomSheetHolder, final int i2) {
+            public void onBindViewHolder(BottomSheetHolder bottomSheetHolder, int i22) {
                 TypedValue typedValue = new TypedValue();
                 DefaultDesignUIController.this.mActivity.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, typedValue, true);
                 bottomSheetHolder.mTextView.setBackgroundResource(typedValue.resourceId);
-                bottomSheetHolder.mTextView.setText(strArr[i2]);
+                bottomSheetHolder.mTextView.setText(strArr[i22]);
                 bottomSheetHolder.mTextView.setOnClickListener(new View.OnClickListener() { // from class: com.just.agentweb.DefaultDesignUIController.2.1
+                    final /* synthetic */ int val$i;
+
+                    AnonymousClass1(int i222) {
+                        i = i222;
+                    }
+
                     @Override // android.view.View.OnClickListener
                     public void onClick(View view) {
                         if (DefaultDesignUIController.this.mBottomSheetDialog != null && DefaultDesignUIController.this.mBottomSheetDialog.isShowing()) {
                             DefaultDesignUIController.this.mBottomSheetDialog.dismiss();
                         }
-                        Message obtain = Message.obtain();
-                        obtain.what = i2;
-                        callback.handleMessage(obtain);
+                        Message messageObtain = Message.obtain();
+                        messageObtain.what = i;
+                        callback.handleMessage(messageObtain);
                     }
                 });
             }
@@ -75,7 +190,7 @@ public class DefaultDesignUIController extends DefaultUIController {
         }
         if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
             try {
-                AgentWebUtils.show(webView, str, -1, -1, activity.getResources().getColor(C2605R.color.black), null, -1, null);
+                AgentWebUtils.show(webView, str, -1, -1, activity.getResources().getColor(R.color.black), null, -1, null);
             } catch (Throwable th) {
                 if (LogUtils.isDebug()) {
                     th.printStackTrace();
@@ -84,13 +199,13 @@ public class DefaultDesignUIController extends DefaultUIController {
         }
     }
 
-    private void showChooserInternal(WebView webView, String str, String[] strArr, final Handler.Callback callback) {
+    private void showChooserInternal(WebView webView, String str, String[] strArr, Handler.Callback callback) {
         Activity activity = this.mActivity;
         if (activity == null || activity.isFinishing()) {
             return;
         }
         if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
-            LogUtils.m8083i(this.TAG, "url:" + str + "  ways:" + strArr[0]);
+            LogUtils.i(this.TAG, "url:" + str + "  ways:" + strArr[0]);
             if (this.mBottomSheetDialog == null) {
                 this.mBottomSheetDialog = new BottomSheetDialog(activity);
                 RecyclerView recyclerView = new RecyclerView(activity);
@@ -100,6 +215,12 @@ public class DefaultDesignUIController extends DefaultUIController {
             }
             ((RecyclerView) this.mBottomSheetDialog.getDelegate().findViewById(4097)).setAdapter(getAdapter(strArr, callback));
             this.mBottomSheetDialog.setOnCancelListener(new DialogInterface.OnCancelListener() { // from class: com.just.agentweb.DefaultDesignUIController.1
+                final /* synthetic */ Handler.Callback val$callback;
+
+                AnonymousClass1(Handler.Callback callback2) {
+                    callback = callback2;
+                }
+
                 @Override // android.content.DialogInterface.OnCancelListener
                 public void onCancel(DialogInterface dialogInterface) {
                     Handler.Callback callback2 = callback;

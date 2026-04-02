@@ -6,7 +6,7 @@ import com.huawei.hms.common.internal.ResponseErrorCode;
 import com.huawei.hms.support.api.client.Status;
 import com.huawei.hms.support.hianalytics.HiAnalyticsClient;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PushBiUtil {
     private PushBiUtil() {
     }

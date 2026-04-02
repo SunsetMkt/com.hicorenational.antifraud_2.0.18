@@ -11,185 +11,151 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import com.luozm.captcha.Captcha;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class PictureVertifyView extends AppCompatImageView {
+    private static final int s = 1;
+    private static final int t = 2;
+    private static final int u = 3;
+    private static final int v = 4;
+    private static final int w = 5;
+    private static final int x = 6;
+    private static final int y = 20;
+    private int a;
 
-    /* renamed from: s */
-    private static final int f8440s = 1;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private f f5319b;
 
-    /* renamed from: t */
-    private static final int f8441t = 2;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private f f5320c;
 
-    /* renamed from: u */
-    private static final int f8442u = 3;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private Bitmap f5321d;
 
-    /* renamed from: v */
-    private static final int f8443v = 4;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private Path f5322e;
 
-    /* renamed from: w */
-    private static final int f8444w = 5;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private Paint f5323f;
 
-    /* renamed from: x */
-    private static final int f8445x = 6;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private Paint f5324g;
 
-    /* renamed from: y */
-    private static final int f8446y = 20;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private long f5325h;
 
-    /* renamed from: a */
-    private int f8447a;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private long f5326i;
 
-    /* renamed from: b */
-    private C2745f f8448b;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private int f5327j;
 
-    /* renamed from: c */
-    private C2745f f8449c;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private boolean f5328k;
 
-    /* renamed from: d */
-    private Bitmap f8450d;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private a f5329l;
 
-    /* renamed from: e */
-    private Path f8451e;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private d f5330m;
 
-    /* renamed from: f */
-    private Paint f8452f;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private int f5331n;
+    private float o;
+    private float p;
+    private float q;
+    private float r;
 
-    /* renamed from: g */
-    private Paint f8453g;
+    interface a {
+        void a();
 
-    /* renamed from: h */
-    private long f8454h;
-
-    /* renamed from: i */
-    private long f8455i;
-
-    /* renamed from: j */
-    private int f8456j;
-
-    /* renamed from: k */
-    private boolean f8457k;
-
-    /* renamed from: l */
-    private InterfaceC2738a f8458l;
-
-    /* renamed from: m */
-    private AbstractC2743d f8459m;
-
-    /* renamed from: n */
-    private int f8460n;
-
-    /* renamed from: o */
-    private float f8461o;
-
-    /* renamed from: p */
-    private float f8462p;
-
-    /* renamed from: q */
-    private float f8463q;
-
-    /* renamed from: r */
-    private float f8464r;
-
-    /* renamed from: com.luozm.captcha.PictureVertifyView$a */
-    interface InterfaceC2738a {
-        /* renamed from: a */
-        void mo8166a();
-
-        /* renamed from: a */
-        void mo8167a(long j2);
+        void a(long j2);
     }
 
     public PictureVertifyView(Context context) {
         this(context, null);
     }
 
-    /* renamed from: e */
-    private void m8173e() {
+    private void e() {
         try {
-            if (Math.abs(this.f8449c.f8476a - this.f8448b.f8476a) >= 20 || Math.abs(this.f8449c.f8477b - this.f8448b.f8477b) >= 20) {
-                m8188d();
-                if (this.f8458l != null) {
-                    this.f8458l.mo8166a();
+            if (Math.abs(this.f5320c.a - this.f5319b.a) >= 20 || Math.abs(this.f5320c.f5338b - this.f5319b.f5338b) >= 20) {
+                d();
+                if (this.f5329l != null) {
+                    this.f5329l.a();
                 }
             } else {
-                m8176a();
-                if (this.f8458l != null) {
-                    this.f8458l.mo8167a(this.f8455i - this.f8454h);
+                a();
+                if (this.f5329l != null) {
+                    this.f5329l.a(this.f5326i - this.f5325h);
                 }
             }
         } catch (Exception unused) {
-            m8188d();
-            InterfaceC2738a interfaceC2738a = this.f8458l;
-            if (interfaceC2738a != null) {
-                interfaceC2738a.mo8166a();
+            d();
+            a aVar = this.f5329l;
+            if (aVar != null) {
+                aVar.a();
             }
         }
     }
 
-    /* renamed from: f */
-    private Bitmap m8174f() {
-        Bitmap createBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+    private Bitmap f() {
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         getDrawable().setBounds(0, 0, getWidth(), getHeight());
-        canvas.clipPath(this.f8451e);
+        canvas.clipPath(this.f5322e);
         getDrawable().draw(canvas);
-        this.f8459m.mo8196a(canvas, this.f8451e);
-        return m8172b(createBitmap);
+        this.f5330m.a(canvas, this.f5322e);
+        return b(bitmapCreateBitmap);
     }
 
-    /* renamed from: g */
-    private void m8175g() {
-        if (this.f8448b == null) {
-            this.f8448b = this.f8459m.mo8195a(getWidth(), getHeight(), this.f8456j);
-            if (this.f8460n == 1) {
-                this.f8449c = new C2745f(0, this.f8448b.f8477b);
+    private void g() {
+        if (this.f5319b == null) {
+            this.f5319b = this.f5330m.a(getWidth(), getHeight(), this.f5327j);
+            if (this.f5331n == 1) {
+                this.f5320c = new f(0, this.f5319b.f5338b);
             } else {
-                this.f8449c = this.f8459m.mo8198b(getWidth(), getHeight(), this.f8456j);
+                this.f5320c = this.f5330m.b(getWidth(), getHeight(), this.f5327j);
             }
         }
-        if (this.f8451e == null) {
-            this.f8451e = this.f8459m.mo8194a(this.f8456j);
-            Path path = this.f8451e;
-            C2745f c2745f = this.f8448b;
-            path.offset(c2745f.f8476a, c2745f.f8477b);
+        if (this.f5322e == null) {
+            this.f5322e = this.f5330m.a(this.f5327j);
+            Path path = this.f5322e;
+            f fVar = this.f5319b;
+            path.offset(fVar.a, fVar.f5338b);
         }
-        if (this.f8450d == null) {
-            this.f8450d = m8174f();
+        if (this.f5321d == null) {
+            this.f5321d = f();
         }
     }
 
-    /* renamed from: a */
-    void m8178a(int i2) {
-        this.f8454h = System.currentTimeMillis();
-        this.f8447a = 1;
-        this.f8449c.f8476a = (int) ((i2 / 100.0f) * (getWidth() - this.f8456j));
+    void a(int i2) {
+        this.f5325h = System.currentTimeMillis();
+        this.a = 1;
+        this.f5320c.a = (int) ((i2 / 100.0f) * (getWidth() - this.f5327j));
         invalidate();
     }
 
-    /* renamed from: b */
-    void m8185b(int i2) {
-        this.f8447a = 2;
-        this.f8449c.f8476a = (int) ((i2 / 100.0f) * (getWidth() - this.f8456j));
+    void b(int i2) {
+        this.a = 2;
+        this.f5320c.a = (int) ((i2 / 100.0f) * (getWidth() - this.f5327j));
         invalidate();
     }
 
-    /* renamed from: c */
-    void m8186c() {
-        this.f8447a = 4;
-        this.f8450d = null;
-        this.f8448b = null;
-        this.f8451e = null;
+    void c() {
+        this.a = 4;
+        this.f5321d = null;
+        this.f5319b = null;
+        this.f5322e = null;
         invalidate();
     }
 
-    /* renamed from: d */
-    void m8188d() {
-        this.f8447a = 6;
+    void d() {
+        this.a = 6;
         invalidate();
     }
 
     @Override // android.view.View
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && this.f8460n == 2 && (motionEvent.getX() < this.f8449c.f8476a || motionEvent.getX() > this.f8449c.f8476a + this.f8456j || motionEvent.getY() < this.f8449c.f8477b || motionEvent.getY() > this.f8449c.f8477b + this.f8456j)) {
+        if (motionEvent.getAction() == 0 && this.f5331n == 2 && (motionEvent.getX() < this.f5320c.a || motionEvent.getX() > this.f5320c.a + this.f5327j || motionEvent.getY() < this.f5320c.f5338b || motionEvent.getY() > this.f5320c.f5338b + this.f5327j)) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -198,35 +164,35 @@ class PictureVertifyView extends AppCompatImageView {
     @Override // android.widget.ImageView, android.view.View
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        m8175g();
-        if (this.f8447a != 5) {
-            canvas.drawPath(this.f8451e, this.f8453g);
+        g();
+        if (this.a != 5) {
+            canvas.drawPath(this.f5322e, this.f5324g);
         }
-        int i2 = this.f8447a;
+        int i2 = this.a;
         if (i2 == 2 || i2 == 4 || i2 == 1 || i2 == 6) {
-            Bitmap bitmap = this.f8450d;
-            C2745f c2745f = this.f8449c;
-            canvas.drawBitmap(bitmap, c2745f.f8476a, c2745f.f8477b, this.f8452f);
+            Bitmap bitmap = this.f5321d;
+            f fVar = this.f5320c;
+            canvas.drawBitmap(bitmap, fVar.a, fVar.f5338b, this.f5323f);
         }
     }
 
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f8460n == 2 && this.f8450d != null && this.f8457k) {
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
+        if (this.f5331n == 2 && this.f5321d != null && this.f5328k) {
+            float x2 = motionEvent.getX();
+            float y2 = motionEvent.getY();
             int action = motionEvent.getAction();
             if (action == 0) {
-                this.f8463q = x;
-                this.f8464r = y;
-                m8177a(x, y);
+                this.q = x2;
+                this.r = y2;
+                a(x2, y2);
             } else if (action == 1) {
-                m8183b();
+                b();
             } else if (action == 2) {
-                m8184b(x - this.f8461o, y - this.f8462p);
+                b(x2 - this.o, y2 - this.p);
             }
-            this.f8461o = x;
-            this.f8462p = y;
+            this.o = x2;
+            this.p = y2;
         }
         return true;
     }
@@ -237,102 +203,91 @@ class PictureVertifyView extends AppCompatImageView {
 
     public PictureVertifyView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f8447a = 4;
-        this.f8456j = 50;
-        this.f8457k = true;
-        this.f8459m = new C2744e(context);
-        this.f8453g = this.f8459m.mo8197b();
-        this.f8452f = this.f8459m.mo8193a();
-        setLayerType(1, this.f8452f);
+        this.a = 4;
+        this.f5327j = 50;
+        this.f5328k = true;
+        this.f5330m = new e(context);
+        this.f5324g = this.f5330m.b();
+        this.f5323f = this.f5330m.a();
+        setLayerType(1, this.f5323f);
     }
 
-    /* renamed from: d */
-    void m8189d(@Captcha.InterfaceC2737g int i2) {
-        this.f8460n = i2;
-        this.f8451e = null;
-        this.f8449c = null;
-        this.f8448b = null;
-        this.f8450d = null;
+    void d(@Captcha.g int i2) {
+        this.f5331n = i2;
+        this.f5322e = null;
+        this.f5320c = null;
+        this.f5319b = null;
+        this.f5321d = null;
         invalidate();
     }
 
-    /* renamed from: b */
-    void m8184b(float f2, float f3) {
-        this.f8447a = 2;
-        C2745f c2745f = this.f8449c;
-        c2745f.f8476a = (int) (c2745f.f8476a + f2);
-        c2745f.f8477b = (int) (c2745f.f8477b + f3);
+    void b(float f2, float f3) {
+        this.a = 2;
+        f fVar = this.f5320c;
+        fVar.a = (int) (fVar.a + f2);
+        fVar.f5338b = (int) (fVar.f5338b + f3);
         invalidate();
     }
 
-    /* renamed from: a */
-    void m8177a(float f2, float f3) {
-        this.f8447a = 1;
-        C2745f c2745f = this.f8449c;
-        int i2 = this.f8456j;
-        c2745f.f8476a = (int) (f2 - (i2 / 2.0f));
-        c2745f.f8477b = (int) (f3 - (i2 / 2.0f));
-        this.f8454h = System.currentTimeMillis();
+    void a(float f2, float f3) {
+        this.a = 1;
+        f fVar = this.f5320c;
+        int i2 = this.f5327j;
+        fVar.a = (int) (f2 - (i2 / 2.0f));
+        fVar.f5338b = (int) (f3 - (i2 / 2.0f));
+        this.f5325h = System.currentTimeMillis();
         invalidate();
     }
 
-    /* renamed from: c */
-    void m8187c(int i2) {
-        this.f8456j = i2;
-        this.f8451e = null;
-        this.f8449c = null;
-        this.f8448b = null;
-        this.f8450d = null;
+    void c(int i2) {
+        this.f5327j = i2;
+        this.f5322e = null;
+        this.f5320c = null;
+        this.f5319b = null;
+        this.f5321d = null;
         invalidate();
     }
 
-    /* renamed from: b */
-    void m8183b() {
-        this.f8447a = 3;
-        this.f8455i = System.currentTimeMillis();
-        m8173e();
+    void b() {
+        this.a = 3;
+        this.f5326i = System.currentTimeMillis();
+        e();
         invalidate();
     }
 
-    /* renamed from: a */
-    void m8176a() {
-        this.f8447a = 5;
+    void a() {
+        this.a = 5;
         invalidate();
     }
 
-    /* renamed from: b */
-    private Bitmap m8172b(Bitmap bitmap) {
-        C2745f c2745f = this.f8448b;
-        int i2 = c2745f.f8476a;
-        int i3 = c2745f.f8477b;
-        int i4 = this.f8456j;
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap, i2, i3, i4, i4);
+    private Bitmap b(Bitmap bitmap) {
+        f fVar = this.f5319b;
+        int i2 = fVar.a;
+        int i3 = fVar.f5338b;
+        int i4 = this.f5327j;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, i2, i3, i4, i4);
         bitmap.recycle();
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
-    /* renamed from: a */
-    void m8180a(InterfaceC2738a interfaceC2738a) {
-        this.f8458l = interfaceC2738a;
+    void a(a aVar) {
+        this.f5329l = aVar;
     }
 
-    /* renamed from: a */
-    void m8181a(AbstractC2743d abstractC2743d) {
-        this.f8459m = abstractC2743d;
+    void a(d dVar) {
+        this.f5330m = dVar;
     }
 
-    /* renamed from: a */
-    public void m8179a(Bitmap bitmap) {
-        this.f8451e = null;
-        this.f8449c = null;
-        this.f8448b = null;
-        this.f8450d.recycle();
-        this.f8450d = null;
+    public void a(Bitmap bitmap) {
+        this.f5322e = null;
+        this.f5320c = null;
+        this.f5319b = null;
+        this.f5321d.recycle();
+        this.f5321d = null;
         setImageBitmap(bitmap);
     }
 
-    /* renamed from: a */
-    void m8182a(boolean z) {
-        this.f8457k = z;
+    void a(boolean z) {
+        this.f5328k = z;
     }
 }

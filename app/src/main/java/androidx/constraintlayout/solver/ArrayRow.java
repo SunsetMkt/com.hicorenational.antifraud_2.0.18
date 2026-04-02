@@ -2,9 +2,10 @@ package androidx.constraintlayout.solver;
 
 import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.SolverVariable;
+import d.c.a.b.a.a;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ArrayRow implements LinearSystem.Row {
     private static final boolean DEBUG = false;
     private static final boolean FULL_NEW_CHECK = false;
@@ -63,7 +64,7 @@ public class ArrayRow implements LinearSystem.Row {
             float variableValue = this.variables.getVariableValue(i2);
             if (variableValue < 0.0f) {
                 SolverVariable variable = this.variables.getVariable(i2);
-                if ((zArr == null || !zArr[variable.f594id]) && variable != solverVariable && (((type = variable.mType) == SolverVariable.Type.SLACK || type == SolverVariable.Type.ERROR) && variableValue < f2)) {
+                if ((zArr == null || !zArr[variable.id]) && variable != solverVariable && (((type = variable.mType) == SolverVariable.Type.SLACK || type == SolverVariable.Type.ERROR) && variableValue < f2)) {
                     f2 = variableValue;
                     solverVariable2 = variable;
                 }
@@ -85,11 +86,11 @@ public class ArrayRow implements LinearSystem.Row {
 
     boolean chooseSubject(LinearSystem linearSystem) {
         boolean z;
-        SolverVariable chooseSubjectInVariables = chooseSubjectInVariables(linearSystem);
-        if (chooseSubjectInVariables == null) {
+        SolverVariable solverVariableChooseSubjectInVariables = chooseSubjectInVariables(linearSystem);
+        if (solverVariableChooseSubjectInVariables == null) {
             z = true;
         } else {
-            pivot(chooseSubjectInVariables);
+            pivot(solverVariableChooseSubjectInVariables);
             z = false;
         }
         if (this.variables.getCurrentSize() == 0) {
@@ -99,8 +100,6 @@ public class ArrayRow implements LinearSystem.Row {
     }
 
     SolverVariable chooseSubjectInVariables(LinearSystem linearSystem) {
-        boolean isNew;
-        boolean isNew2;
         int currentSize = this.variables.getCurrentSize();
         SolverVariable solverVariable = null;
         SolverVariable solverVariable2 = null;
@@ -112,31 +111,27 @@ public class ArrayRow implements LinearSystem.Row {
             float variableValue = this.variables.getVariableValue(i2);
             SolverVariable variable = this.variables.getVariable(i2);
             if (variable.mType == SolverVariable.Type.UNRESTRICTED) {
-                if (solverVariable == null) {
-                    isNew2 = isNew(variable, linearSystem);
-                } else if (f2 > variableValue) {
-                    isNew2 = isNew(variable, linearSystem);
+                if (solverVariable == null || f2 > variableValue) {
+                    boolean zIsNew = isNew(variable, linearSystem);
+                    z = zIsNew;
+                    f2 = variableValue;
+                    solverVariable = variable;
                 } else if (!z && isNew(variable, linearSystem)) {
                     f2 = variableValue;
                     solverVariable = variable;
                     z = true;
                 }
-                z = isNew2;
-                f2 = variableValue;
-                solverVariable = variable;
             } else if (solverVariable == null && variableValue < 0.0f) {
-                if (solverVariable2 == null) {
-                    isNew = isNew(variable, linearSystem);
-                } else if (f3 > variableValue) {
-                    isNew = isNew(variable, linearSystem);
+                if (solverVariable2 == null || f3 > variableValue) {
+                    boolean zIsNew2 = isNew(variable, linearSystem);
+                    z2 = zIsNew2;
+                    f3 = variableValue;
+                    solverVariable2 = variable;
                 } else if (!z2 && isNew(variable, linearSystem)) {
                     f3 = variableValue;
                     solverVariable2 = variable;
                     z2 = true;
                 }
-                z2 = isNew;
-                f3 = variableValue;
-                solverVariable2 = variable;
             }
         }
         return solverVariable != null ? solverVariable : solverVariable2;
@@ -366,13 +361,13 @@ public class ArrayRow implements LinearSystem.Row {
             this.variable.definitionId = -1;
             this.variable = null;
         }
-        float remove = this.variables.remove(solverVariable, true) * (-1.0f);
+        float fRemove = this.variables.remove(solverVariable, true) * (-1.0f);
         this.variable = solverVariable;
-        if (remove == 1.0f) {
+        if (fRemove == 1.0f) {
             return;
         }
-        this.constantValue /= remove;
-        this.variables.divideByAmount(remove);
+        this.constantValue /= fRemove;
+        this.variables.divideByAmount(fRemove);
     }
 
     public void reset() {
@@ -386,18 +381,53 @@ public class ArrayRow implements LinearSystem.Row {
         return (this.variable != null ? 4 : 0) + 4 + 4 + this.variables.sizeInBytes();
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:21:0x00c0  */
-    /* JADX WARN: Removed duplicated region for block: B:25:0x00d0  */
+    /* JADX WARN: Removed duplicated region for block: B:70:0x00c0  */
+    /* JADX WARN: Removed duplicated region for block: B:71:0x00d0  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    java.lang.String toReadableString() {
-        /*
-            Method dump skipped, instructions count: 256
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.solver.ArrayRow.toReadableString():java.lang.String");
+    String toReadableString() {
+        boolean z;
+        String str = (this.variable == null ? "0" : "" + this.variable) + " = ";
+        if (this.constantValue != 0.0f) {
+            str = str + this.constantValue;
+            z = true;
+        } else {
+            z = false;
+        }
+        int currentSize = this.variables.getCurrentSize();
+        for (int i2 = 0; i2 < currentSize; i2++) {
+            SolverVariable variable = this.variables.getVariable(i2);
+            if (variable != null) {
+                float variableValue = this.variables.getVariableValue(i2);
+                if (variableValue != 0.0f) {
+                    String string = variable.toString();
+                    if (!z) {
+                        if (variableValue < 0.0f) {
+                            str = str + "- ";
+                            variableValue *= -1.0f;
+                        }
+                        str = variableValue == 1.0f ? str + string : str + variableValue + a.f10074g + string;
+                        z = true;
+                    } else if (variableValue > 0.0f) {
+                        str = str + " + ";
+                        if (variableValue == 1.0f) {
+                        }
+                        z = true;
+                    } else {
+                        str = str + " - ";
+                        variableValue *= -1.0f;
+                        if (variableValue == 1.0f) {
+                        }
+                        z = true;
+                    }
+                }
+            }
+        }
+        if (z) {
+            return str;
+        }
+        return str + "0.0";
     }
 
     public String toString() {

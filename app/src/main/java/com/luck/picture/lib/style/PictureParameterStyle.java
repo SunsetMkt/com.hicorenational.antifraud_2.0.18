@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureParameterStyle implements Parcelable {
     public static final Parcelable.Creator<PictureParameterStyle> CREATOR = new Parcelable.Creator<PictureParameterStyle>() { // from class: com.luck.picture.lib.style.PictureParameterStyle.1
         /* JADX WARN: Can't rename method to resolve collision */

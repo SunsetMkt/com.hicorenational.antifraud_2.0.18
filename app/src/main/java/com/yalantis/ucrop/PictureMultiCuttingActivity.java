@@ -22,7 +22,7 @@ import com.yalantis.ucrop.util.ScreenUtils;
 import java.io.File;
 import java.util.ArrayList;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureMultiCuttingActivity extends UCropActivity {
     private static final int MIN_NUM = 1;
     private int cutIndex;
@@ -35,16 +35,34 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     private int oldCutIndex;
     private String renameCropFilename;
 
+    /* JADX INFO: renamed from: com.yalantis.ucrop.PictureMultiCuttingActivity$1 */
+    class AnonymousClass1 implements PicturePhotoGalleryAdapter.OnItemClickListener {
+        AnonymousClass1() {
+        }
+
+        @Override // com.yalantis.ucrop.PicturePhotoGalleryAdapter.OnItemClickListener
+        public void onItemClick(int i2, View view) {
+            if (MimeType.eqVideo(((CutInfo) PictureMultiCuttingActivity.this.list.get(i2)).getMimeType()) || PictureMultiCuttingActivity.this.cutIndex == i2) {
+                return;
+            }
+            PictureMultiCuttingActivity.this.resetLastCropStatus();
+            PictureMultiCuttingActivity.this.cutIndex = i2;
+            PictureMultiCuttingActivity pictureMultiCuttingActivity = PictureMultiCuttingActivity.this;
+            pictureMultiCuttingActivity.oldCutIndex = pictureMultiCuttingActivity.cutIndex;
+            PictureMultiCuttingActivity.this.resetCutData();
+        }
+    }
+
     private void addPhotoRecyclerView() {
         boolean booleanExtra = getIntent().getBooleanExtra(UCrop.Options.EXTRA_SKIP_MULTIPLE_CROP, true);
         this.mRecyclerView = new RecyclerView(this);
-        this.mRecyclerView.setId(C4415R.id.id_recycler);
-        this.mRecyclerView.setBackgroundColor(ContextCompat.getColor(this, C4415R.color.ucrop_color_widget_background));
+        this.mRecyclerView.setId(R.id.id_recycler);
+        this.mRecyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.ucrop_color_widget_background));
         this.mRecyclerView.setLayoutParams(new RelativeLayout.LayoutParams(-1, ScreenUtils.dip2px(this, 80.0f)));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(0);
         if (this.isAnimation) {
-            this.mRecyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getApplicationContext(), C4415R.anim.ucrop_layout_animation_fall_down));
+            this.mRecyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getApplicationContext(), R.anim.ucrop_layout_animation_fall_down));
         }
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         ((SimpleItemAnimator) this.mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -54,6 +72,9 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         this.mRecyclerView.setAdapter(this.mAdapter);
         if (booleanExtra) {
             this.mAdapter.setOnItemClickListener(new PicturePhotoGalleryAdapter.OnItemClickListener() { // from class: com.yalantis.ucrop.PictureMultiCuttingActivity.1
+                AnonymousClass1() {
+                }
+
                 @Override // com.yalantis.ucrop.PicturePhotoGalleryAdapter.OnItemClickListener
                 public void onItemClick(int i2, View view) {
                     if (MimeType.eqVideo(((CutInfo) PictureMultiCuttingActivity.this.list.get(i2)).getMimeType()) || PictureMultiCuttingActivity.this.cutIndex == i2) {
@@ -69,8 +90,8 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         }
         this.uCropPhotoBox.addView(this.mRecyclerView);
         changeLayoutParams(this.mShowBottomControls);
-        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(C4415R.id.ucrop_frame)).getLayoutParams()).addRule(2, C4415R.id.id_recycler);
-        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, C4415R.id.controls_wrapper);
+        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(R.id.ucrop_frame)).getLayoutParams()).addRule(2, R.id.id_recycler);
+        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, R.id.controls_wrapper);
     }
 
     private void changeLayoutParams(boolean z) {
@@ -79,7 +100,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         }
         if (z) {
             ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(12, 0);
-            ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, C4415R.id.wrapper_controls);
+            ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, R.id.wrapper_controls);
         } else {
             ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(12);
             ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, 0);
@@ -99,7 +120,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     private void initLoadCutData() {
         ArrayList<CutInfo> arrayList = this.list;
         if (arrayList == null || arrayList.size() == 0) {
-            onBackPressed();
+            a();
             return;
         }
         int size = this.list.size();
@@ -126,8 +147,8 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         this.mAdapter.notifyItemChanged(this.cutIndex);
         this.uCropPhotoBox.addView(this.mRecyclerView);
         changeLayoutParams(this.mShowBottomControls);
-        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(C4415R.id.ucrop_frame)).getLayoutParams()).addRule(2, C4415R.id.id_recycler);
-        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, C4415R.id.controls_wrapper);
+        ((RelativeLayout.LayoutParams) ((FrameLayout) findViewById(R.id.ucrop_frame)).getLayoutParams()).addRule(2, R.id.id_recycler);
+        ((RelativeLayout.LayoutParams) this.mRecyclerView.getLayoutParams()).addRule(2, R.id.controls_wrapper);
     }
 
     private void resetCutDataStatus() {
@@ -137,7 +158,6 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public void resetLastCropStatus() {
         int i2;
         int size = this.list.size();
@@ -159,7 +179,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         this.isAnimation = getIntent().getBooleanExtra(UCrop.Options.EXTRA_MULTIPLE_RECYCLERANIMATION, true);
         ArrayList<CutInfo> arrayList = this.list;
         if (arrayList == null || arrayList.size() == 0) {
-            onBackPressed();
+            a();
         } else if (this.list.size() > 1) {
             initLoadCutData();
             addPhotoRecyclerView();
@@ -176,14 +196,14 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     }
 
     protected void resetCutData() {
-        String rename;
+        String strRename;
         this.uCropPhotoBox.removeView(this.mRecyclerView);
         View view = this.mBlockingView;
         if (view != null) {
             this.uCropPhotoBox.removeView(view);
         }
-        setContentView(C4415R.layout.ucrop_activity_photobox);
-        this.uCropPhotoBox = (RelativeLayout) findViewById(C4415R.id.ucrop_photobox);
+        setContentView(R.layout.ucrop_activity_photobox);
+        this.uCropPhotoBox = (RelativeLayout) findViewById(R.id.ucrop_photobox);
         addBlockingView();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -192,26 +212,26 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         }
         CutInfo cutInfo = this.list.get(this.cutIndex);
         String path = cutInfo.getPath();
-        boolean isHttp = MimeType.isHttp(path);
+        boolean zIsHttp = MimeType.isHttp(path);
         String lastImgType = MimeType.getLastImgType(MimeType.isContent(path) ? FileUtils.getPath(this, Uri.parse(path)) : path);
-        extras.putParcelable(UCrop.EXTRA_INPUT_URI, !TextUtils.isEmpty(cutInfo.getAndroidQToPath()) ? Uri.fromFile(new File(cutInfo.getAndroidQToPath())) : (isHttp || MimeType.isContent(path)) ? Uri.parse(path) : Uri.fromFile(new File(path)));
+        extras.putParcelable(UCrop.EXTRA_INPUT_URI, !TextUtils.isEmpty(cutInfo.getAndroidQToPath()) ? Uri.fromFile(new File(cutInfo.getAndroidQToPath())) : (zIsHttp || MimeType.isContent(path)) ? Uri.parse(path) : Uri.fromFile(new File(path)));
         File externalFilesDir = Environment.getExternalStorageState().equals("mounted") ? getExternalFilesDir(Environment.DIRECTORY_PICTURES) : getCacheDir();
         if (TextUtils.isEmpty(this.renameCropFilename)) {
-            rename = FileUtils.getCreateFileName("IMG_") + lastImgType;
+            strRename = FileUtils.getCreateFileName("IMG_") + lastImgType;
         } else {
-            rename = this.isCamera ? this.renameCropFilename : FileUtils.rename(this.renameCropFilename);
+            strRename = this.isCamera ? this.renameCropFilename : FileUtils.rename(this.renameCropFilename);
         }
-        extras.putParcelable(UCrop.EXTRA_OUTPUT_URI, Uri.fromFile(new File(externalFilesDir, rename)));
+        extras.putParcelable(UCrop.EXTRA_OUTPUT_URI, Uri.fromFile(new File(externalFilesDir, strRename)));
         intent.putExtras(extras);
         setupViews(intent);
         refreshPhotoRecyclerData();
         setImageData(intent);
         setInitialState();
-        double dip2px = this.cutIndex * ScreenUtils.dip2px(this, 60.0f);
+        double dDip2px = this.cutIndex * ScreenUtils.dip2px(this, 60.0f);
         int i2 = this.mScreenWidth;
-        if (dip2px > i2 * 0.8d) {
+        if (dDip2px > ((double) i2) * 0.8d) {
             this.mRecyclerView.scrollBy(ScreenUtils.dip2px(this, 60.0f), 0);
-        } else if (dip2px < i2 * 0.4d) {
+        } else if (dDip2px < ((double) i2) * 0.4d) {
             this.mRecyclerView.scrollBy(ScreenUtils.dip2px(this, -60.0f), 0);
         }
     }
@@ -220,7 +240,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
     protected void setResultUri(Uri uri, float f2, int i2, int i3, int i4, int i5) {
         try {
             if (this.list.size() < this.cutIndex) {
-                onBackPressed();
+                a();
                 return;
             }
             CutInfo cutInfo = this.list.get(this.cutIndex);
@@ -243,7 +263,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
                 resetCutData();
             } else {
                 setResult(-1, new Intent().putExtra(UCrop.Options.EXTRA_OUTPUT_URI_LIST, this.list));
-                onBackPressed();
+                a();
             }
         } catch (Exception e2) {
             e2.printStackTrace();

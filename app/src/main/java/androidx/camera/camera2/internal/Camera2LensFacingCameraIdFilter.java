@@ -8,7 +8,7 @@ import androidx.camera.core.impl.LensFacingCameraIdFilter;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class Camera2LensFacingCameraIdFilter extends LensFacingCameraIdFilter {
     private static final String TAG = "Camera2LensFacingCIF";
     private CameraManager mCameraManager;

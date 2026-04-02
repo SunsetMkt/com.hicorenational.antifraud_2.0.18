@@ -5,7 +5,7 @@ import androidx.constraintlayout.solver.state.State;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.Guideline;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GuidelineReference implements Reference {
     private Object key;
     private Guideline mGuidelineWidget;

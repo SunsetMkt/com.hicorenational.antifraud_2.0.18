@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/ai_verify_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/rl_title_with_back"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black_light"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ai_verify_title_tip"/>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mTabLayout"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_30"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/shape_ai_verify_indicator"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="@dimen/dp_2"
+        app:tabMode="fixed"
+        app:tabPaddingBottom="@dimen/dp_8"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/black_dark"
+        app:tabTextColor="@color/black_light"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:orientation="horizontal"
+        android:id="@+id/mViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black_dark"
+        android:id="@+id/checkNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="今日剩余检测次数:10"
+        android:textAlignment="center"/>
+    <TextView
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/ai_verify_tip_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_62"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:text="中科睿鉴提供技术支持"
+        android:textAlignment="center"/>
+</LinearLayout>

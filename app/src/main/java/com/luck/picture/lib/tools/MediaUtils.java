@@ -16,12 +16,13 @@ import androidx.annotation.Nullable;
 import com.huawei.hms.android.SystemUtils;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.umeng.analytics.pro.C3355bl;
+import com.umeng.analytics.pro.bl;
 import com.umeng.commonsdk.framework.UMModuleRegister;
+import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.io.File;
 import java.io.InputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MediaUtils {
     public static final String HUAWEI_RECORD_PATH = "Sounds/CallRecord";
     public static final String HUAWEI_RECORD_PATH_pt = "Sounds";
@@ -30,10 +31,10 @@ public class MediaUtils {
     public static final String OPPO_RECORD_PATH = "Recordings/Call Recordings";
     public static final String OPPO_RECORD_PATH_6 = "Recordings";
     public static final String SANUNG_RECORD_PATH = "Sounds";
-    public static final String VIVO_RECORD_PATH = "录音/通话录音";
+    public static final String VIVO_RECORD_PATH = "\u5f55\u97f3/\u901a\u8bdd\u5f55\u97f3";
     public static final String VIVO_RECORD_PATH_OT = "Record";
     public static final String VIVO_RECORD_PATH_OT_pt = "Record/Call";
-    public static final String VIVO_RECORD_PATH_pt = "录音";
+    public static final String VIVO_RECORD_PATH_pt = "\u5f55\u97f3";
     public static final String XIAOMI_RECORD_PATH = "MIUI/sound_recorder/call_rec";
     public static final String XIAOMI_RECORD_PATH_pt = "MIUI/sound_recorder";
 
@@ -41,10 +42,10 @@ public class MediaUtils {
     public static Uri createImageUri(Context context) {
         Uri[] uriArr = {null};
         String externalStorageState = Environment.getExternalStorageState();
-        String valueOf = ValueOf.toString(Long.valueOf(System.currentTimeMillis()));
+        String string = ValueOf.toString(Long.valueOf(System.currentTimeMillis()));
         ContentValues contentValues = new ContentValues(3);
         contentValues.put("_display_name", DateUtils.getCreateFileName("IMG_"));
-        contentValues.put("datetaken", valueOf);
+        contentValues.put("datetaken", string);
         contentValues.put("mime_type", "image/jpeg");
         if (externalStorageState.equals("mounted")) {
             contentValues.put("relative_path", PictureMimeType.DCIM);
@@ -59,10 +60,10 @@ public class MediaUtils {
     public static Uri createVideoUri(Context context) {
         Uri[] uriArr = {null};
         String externalStorageState = Environment.getExternalStorageState();
-        String valueOf = ValueOf.toString(Long.valueOf(System.currentTimeMillis()));
+        String string = ValueOf.toString(Long.valueOf(System.currentTimeMillis()));
         ContentValues contentValues = new ContentValues(3);
         contentValues.put("_display_name", DateUtils.getCreateFileName("VID_"));
-        contentValues.put("datetaken", valueOf);
+        contentValues.put("datetaken", string);
         contentValues.put("mime_type", "video/mp4");
         if (externalStorageState.equals("mounted")) {
             contentValues.put("relative_path", PictureMimeType.DCIM);
@@ -77,59 +78,28 @@ public class MediaUtils {
         return z ? getLocalDuration(context, Uri.parse(str)) : getLocalDuration(str);
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:10:0x0033, code lost:
-    
-        return r0;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:14:0x0030, code lost:
-    
-        if (r1 == null) goto L15;
-     */
-    @androidx.annotation.Nullable
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public static java.lang.String getAudioFilePathFromUri(android.content.Context r8, android.net.Uri r9) {
-        /*
-            java.lang.String r0 = ""
-            r1 = 0
-            android.content.Context r8 = r8.getApplicationContext()     // Catch: java.lang.Throwable -> L2a java.lang.Exception -> L2c
-            android.content.ContentResolver r2 = r8.getContentResolver()     // Catch: java.lang.Throwable -> L2a java.lang.Exception -> L2c
-            r4 = 0
-            r5 = 0
-            r6 = 0
-            r7 = 0
-            r3 = r9
-            android.database.Cursor r1 = r2.query(r3, r4, r5, r6, r7)     // Catch: java.lang.Throwable -> L2a java.lang.Exception -> L2c
-            if (r1 == 0) goto L24
-            r1.moveToFirst()     // Catch: java.lang.Throwable -> L2a java.lang.Exception -> L2c
-            java.lang.String r8 = "_data"
-            int r8 = r1.getColumnIndex(r8)     // Catch: java.lang.Throwable -> L2a java.lang.Exception -> L2c
-            java.lang.String r8 = r1.getString(r8)     // Catch: java.lang.Throwable -> L2a java.lang.Exception -> L2c
-            r0 = r8
-        L24:
-            if (r1 == 0) goto L33
-        L26:
-            r1.close()
-            goto L33
-        L2a:
-            r8 = move-exception
-            goto L34
-        L2c:
-            r8 = move-exception
-            r8.printStackTrace()     // Catch: java.lang.Throwable -> L2a
-            if (r1 == 0) goto L33
-            goto L26
-        L33:
-            return r0
-        L34:
-            if (r1 == 0) goto L39
-            r1.close()
-        L39:
-            throw r8
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.tools.MediaUtils.getAudioFilePathFromUri(android.content.Context, android.net.Uri):java.lang.String");
+    @Nullable
+    public static String getAudioFilePathFromUri(Context context, Uri uri) {
+        String string = "";
+        Cursor cursorQuery = null;
+        try {
+            try {
+                cursorQuery = context.getApplicationContext().getContentResolver().query(uri, null, null, null, null);
+                if (cursorQuery != null) {
+                    cursorQuery.moveToFirst();
+                    string = cursorQuery.getString(cursorQuery.getColumnIndex("_data"));
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+                if (cursorQuery != null) {
+                }
+            }
+            return string;
+        } finally {
+            if (cursorQuery != null) {
+                cursorQuery.close();
+            }
+        }
     }
 
     public static boolean getFolder(String str) {
@@ -150,7 +120,7 @@ public class MediaUtils {
                 return true;
             }
         } else if (str2.equalsIgnoreCase("vivo")) {
-            if (str.contains("录音/通话录音") || str.contains(VIVO_RECORD_PATH_pt) || str.contains(VIVO_RECORD_PATH_OT) || str.contains(VIVO_RECORD_PATH_OT_pt)) {
+            if (str.contains("\u5f55\u97f3/\u901a\u8bdd\u5f55\u97f3") || str.contains(VIVO_RECORD_PATH_pt) || str.contains(VIVO_RECORD_PATH_OT) || str.contains(VIVO_RECORD_PATH_OT_pt)) {
                 return true;
             }
         } else if (str2.equalsIgnoreCase("sansung")) {
@@ -163,37 +133,37 @@ public class MediaUtils {
         return false;
     }
 
-    public static int getImageOrientationForUrl(Context context, String str) {
-        InputStream inputStream;
-        InputStream inputStream2 = null;
+    public static int getImageOrientationForUrl(Context context, String str) throws Throwable {
+        InputStream inputStreamOpenInputStream;
+        InputStream inputStream = null;
         ExifInterface exifInterface = null;
-        InputStream inputStream3 = null;
+        InputStream inputStream2 = null;
         try {
             try {
                 if (SdkVersionUtils.checkedAndroid_Q() && PictureMimeType.isContent(str)) {
-                    inputStream = context.getContentResolver().openInputStream(Uri.parse(str));
-                    if (inputStream != null) {
+                    inputStreamOpenInputStream = context.getContentResolver().openInputStream(Uri.parse(str));
+                    if (inputStreamOpenInputStream != null) {
                         try {
-                            exifInterface = new ExifInterface(inputStream);
+                            exifInterface = new ExifInterface(inputStreamOpenInputStream);
                         } catch (Exception e2) {
                             e = e2;
-                            inputStream3 = inputStream;
+                            inputStream2 = inputStreamOpenInputStream;
                             e.printStackTrace();
-                            PictureFileUtils.close(inputStream3);
+                            PictureFileUtils.close(inputStream2);
                             return 0;
                         } catch (Throwable th) {
                             th = th;
-                            inputStream2 = inputStream;
-                            PictureFileUtils.close(inputStream2);
+                            inputStream = inputStreamOpenInputStream;
+                            PictureFileUtils.close(inputStream);
                             throw th;
                         }
                     }
                 } else {
                     exifInterface = new ExifInterface(str);
-                    inputStream = null;
+                    inputStreamOpenInputStream = null;
                 }
                 int attributeInt = exifInterface != null ? exifInterface.getAttributeInt(androidx.exifinterface.media.ExifInterface.TAG_ORIENTATION, 1) : 0;
-                PictureFileUtils.close(inputStream);
+                PictureFileUtils.close(inputStreamOpenInputStream);
                 return attributeInt;
             } catch (Exception e3) {
                 e = e3;
@@ -203,41 +173,40 @@ public class MediaUtils {
         }
     }
 
-    public static int[] getImageSizeForUri(Context context, Uri uri) {
-        ParcelFileDescriptor parcelFileDescriptor;
+    public static int[] getImageSizeForUri(Context context, Uri uri) throws Throwable {
+        ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor;
         int[] iArr = new int[2];
-        ParcelFileDescriptor parcelFileDescriptor2 = null;
+        ParcelFileDescriptor parcelFileDescriptor = null;
         try {
             try {
-                parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r");
-                if (parcelFileDescriptor != null) {
+                parcelFileDescriptorOpenFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r");
+                if (parcelFileDescriptorOpenFileDescriptor != null) {
                     try {
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeFileDescriptor(parcelFileDescriptor.getFileDescriptor(), null, options);
-                        parcelFileDescriptor2 = null;
+                        BitmapFactory.decodeFileDescriptor(parcelFileDescriptorOpenFileDescriptor.getFileDescriptor(), null, options);
+                        parcelFileDescriptor = null;
                         iArr[0] = options.outWidth;
                         iArr[1] = options.outHeight;
                     } catch (Exception e2) {
                         e = e2;
-                        parcelFileDescriptor2 = parcelFileDescriptor;
+                        parcelFileDescriptor = parcelFileDescriptorOpenFileDescriptor;
                         e.printStackTrace();
-                        PictureFileUtils.close(parcelFileDescriptor2);
-                        return iArr;
+                        PictureFileUtils.close(parcelFileDescriptor);
                     } catch (Throwable th) {
                         th = th;
-                        PictureFileUtils.close(parcelFileDescriptor);
+                        PictureFileUtils.close(parcelFileDescriptorOpenFileDescriptor);
                         throw th;
                     }
                 }
-                PictureFileUtils.close(parcelFileDescriptor);
+                PictureFileUtils.close(parcelFileDescriptorOpenFileDescriptor);
             } catch (Exception e3) {
                 e = e3;
             }
             return iArr;
         } catch (Throwable th2) {
             th = th2;
-            parcelFileDescriptor = parcelFileDescriptor2;
+            parcelFileDescriptorOpenFileDescriptor = parcelFileDescriptor;
         }
     }
 
@@ -255,95 +224,58 @@ public class MediaUtils {
         return iArr;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:11:0x0049, code lost:
-    
-        return r0;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:19:0x0046, code lost:
-    
-        if (r1 == null) goto L16;
-     */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public static int[] getImageSizeForUrlToAndroidQ(android.content.Context r4, java.lang.String r5) {
-        /*
-            r0 = 2
-            int[] r0 = new int[r0]
-            r1 = 0
-            int r2 = android.os.Build.VERSION.SDK_INT     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            r3 = 26
-            if (r2 < r3) goto L3a
-            android.content.Context r4 = r4.getApplicationContext()     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            android.content.ContentResolver r4 = r4.getContentResolver()     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            android.net.Uri r5 = android.net.Uri.parse(r5)     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            android.database.Cursor r1 = r4.query(r5, r1, r1, r1)     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            if (r1 == 0) goto L3a
-            r1.moveToFirst()     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            r4 = 0
-            java.lang.String r5 = "width"
-            int r5 = r1.getColumnIndexOrThrow(r5)     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            int r5 = r1.getInt(r5)     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            r0[r4] = r5     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            r4 = 1
-            java.lang.String r5 = "height"
-            int r5 = r1.getColumnIndexOrThrow(r5)     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            int r5 = r1.getInt(r5)     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-            r0[r4] = r5     // Catch: java.lang.Throwable -> L40 java.lang.Exception -> L42
-        L3a:
-            if (r1 == 0) goto L49
-        L3c:
-            r1.close()
-            goto L49
-        L40:
-            r4 = move-exception
-            goto L4a
-        L42:
-            r4 = move-exception
-            r4.printStackTrace()     // Catch: java.lang.Throwable -> L40
-            if (r1 == 0) goto L49
-            goto L3c
-        L49:
-            return r0
-        L4a:
-            if (r1 == 0) goto L4f
-            r1.close()
-        L4f:
-            throw r4
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.tools.MediaUtils.getImageSizeForUrlToAndroidQ(android.content.Context, java.lang.String):int[]");
+    public static int[] getImageSizeForUrlToAndroidQ(Context context, String str) {
+        int[] iArr = new int[2];
+        Cursor cursorQuery = null;
+        try {
+            try {
+                if (Build.VERSION.SDK_INT >= 26 && (cursorQuery = context.getApplicationContext().getContentResolver().query(Uri.parse(str), null, null, null)) != null) {
+                    cursorQuery.moveToFirst();
+                    iArr[0] = cursorQuery.getInt(cursorQuery.getColumnIndexOrThrow(SocializeProtocolConstants.WIDTH));
+                    iArr[1] = cursorQuery.getInt(cursorQuery.getColumnIndexOrThrow(SocializeProtocolConstants.HEIGHT));
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+                if (cursorQuery != null) {
+                }
+            }
+            return iArr;
+        } finally {
+            if (cursorQuery != null) {
+                cursorQuery.close();
+            }
+        }
     }
 
     public static int getLastImageId(Context context, String str) {
-        Cursor cursor = null;
+        Cursor cursorQuery = null;
         try {
             try {
-                cursor = context.getApplicationContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, "_data like ?", new String[]{PictureFileUtils.getDCIMCameraPath(context, str) + "%"}, "_id DESC");
-                if (cursor == null || cursor.getCount() <= 0 || !cursor.moveToFirst()) {
-                    if (cursor != null) {
-                        cursor.close();
+                cursorQuery = context.getApplicationContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, "_data like ?", new String[]{PictureFileUtils.getDCIMCameraPath(context, str) + "%"}, "_id DESC");
+                if (cursorQuery == null || cursorQuery.getCount() <= 0 || !cursorQuery.moveToFirst()) {
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
                     }
                     return -1;
                 }
-                int i2 = cursor.getInt(cursor.getColumnIndex(C3355bl.f11732d));
-                if (DateUtils.dateDiffer(cursor.getLong(cursor.getColumnIndex("date_added"))) > 1) {
+                int i2 = cursorQuery.getInt(cursorQuery.getColumnIndex(bl.f7101d));
+                if (DateUtils.dateDiffer(cursorQuery.getLong(cursorQuery.getColumnIndex("date_added"))) > 1) {
                     i2 = -1;
                 }
-                if (cursor != null) {
-                    cursor.close();
+                if (cursorQuery != null) {
+                    cursorQuery.close();
                 }
                 return i2;
             } catch (Exception e2) {
                 e2.printStackTrace();
-                if (cursor != null) {
-                    cursor.close();
+                if (cursorQuery != null) {
+                    cursorQuery.close();
                 }
                 return -1;
             }
         } catch (Throwable th) {
-            if (cursor != null) {
-                cursor.close();
+            if (cursorQuery != null) {
+                cursorQuery.close();
             }
             throw th;
         }
@@ -458,23 +390,23 @@ public class MediaUtils {
         }
     }
 
-    public static int setOrientation(Context context, LocalMedia localMedia) {
+    public static int setOrientation(Context context, LocalMedia localMedia) throws Throwable {
         if (localMedia.getOrientation() != -1) {
             return localMedia.getOrientation();
         }
-        int i2 = 0;
+        int videoOrientationForUri = 0;
         if (PictureMimeType.eqImage(localMedia.getMimeType())) {
-            i2 = getImageOrientationForUrl(context, localMedia.getPath());
+            videoOrientationForUri = getImageOrientationForUrl(context, localMedia.getPath());
         } else if (PictureMimeType.eqVideo(localMedia.getMimeType())) {
-            i2 = PictureMimeType.isContent(localMedia.getPath()) ? getVideoOrientationForUri(context, Uri.parse(localMedia.getPath())) : getVideoOrientationForUrl(localMedia.getPath());
+            videoOrientationForUri = PictureMimeType.isContent(localMedia.getPath()) ? getVideoOrientationForUri(context, Uri.parse(localMedia.getPath())) : getVideoOrientationForUrl(localMedia.getPath());
         }
-        if (i2 == 6 || i2 == 8) {
+        if (videoOrientationForUri == 6 || videoOrientationForUri == 8) {
             int width = localMedia.getWidth();
             localMedia.setWidth(localMedia.getHeight());
             localMedia.setHeight(width);
         }
-        localMedia.setOrientation(i2);
-        return i2;
+        localMedia.setOrientation(videoOrientationForUri);
+        return videoOrientationForUri;
     }
 
     private static long getLocalDuration(String str) {

@@ -2,7 +2,7 @@ package com.luck.picture.lib.app;
 
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureAppMaster implements IApp {
     private static PictureAppMaster mInstance;
     private IApp app;

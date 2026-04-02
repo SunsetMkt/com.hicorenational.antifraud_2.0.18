@@ -2,56 +2,53 @@ package com.huawei.secure.android.common.encrypt.hash;
 
 import android.os.Build;
 import android.text.TextUtils;
-import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.EncryptUtil;
 import com.huawei.secure.android.common.encrypt.utils.HexUtil;
+import com.huawei.secure.android.common.encrypt.utils.b;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class PBKDF2 {
+    private static final String a = "PBKDF2";
 
-    /* renamed from: a */
-    private static final String f8045a = "PBKDF2";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5063b = "PBKDF2WithHmacSHA1";
 
-    /* renamed from: b */
-    private static final String f8046b = "PBKDF2WithHmacSHA1";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f5064c = "PBKDF2WithHmacSHA256";
 
-    /* renamed from: c */
-    private static final String f8047c = "PBKDF2WithHmacSHA256";
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final String f5065d = "";
 
-    /* renamed from: d */
-    private static final String f8048d = "";
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static final int f5066e = 8;
 
-    /* renamed from: e */
-    private static final int f8049e = 8;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static final int f5067f = 16;
 
-    /* renamed from: f */
-    private static final int f8050f = 16;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private static final int f5068g = 32;
 
-    /* renamed from: g */
-    private static final int f8051g = 32;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private static final int f5069h = 10000;
 
-    /* renamed from: h */
-    private static final int f8052h = 10000;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private static final int f5070i = 1000;
 
-    /* renamed from: i */
-    private static final int f8053i = 1000;
-
-    /* renamed from: a */
-    private static byte[] m7851a(char[] cArr, byte[] bArr, int i2, int i3, boolean z) {
+    private static byte[] a(char[] cArr, byte[] bArr, int i2, int i3, boolean z) {
         try {
-            return (z ? SecretKeyFactory.getInstance(f8047c) : SecretKeyFactory.getInstance(f8046b)).generateSecret(new PBEKeySpec(cArr, bArr, i2, i3)).getEncoded();
+            return (z ? SecretKeyFactory.getInstance(f5064c) : SecretKeyFactory.getInstance(f5063b)).generateSecret(new PBEKeySpec(cArr, bArr, i2, i3)).getEncoded();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e2) {
-            C2551b.m7898b(f8045a, "pbkdf exception : " + e2.getMessage());
+            b.b(a, "pbkdf exception : " + e2.getMessage());
             return new byte[0];
         }
     }
 
     public static byte[] pbkdf2(char[] cArr, byte[] bArr, int i2, int i3) {
-        return m7851a(cArr, bArr, i2, i3, false);
+        return a(cArr, bArr, i2, i3, false);
     }
 
     @Deprecated
@@ -66,9 +63,9 @@ public abstract class PBKDF2 {
     public static byte[] pbkdf2SHA256(char[] cArr, byte[] bArr, int i2, int i3) {
         byte[] bArr2 = new byte[0];
         if (Build.VERSION.SDK_INT >= 26) {
-            return m7851a(cArr, bArr, i2, i3, true);
+            return a(cArr, bArr, i2, i3, true);
         }
-        C2551b.m7898b(f8045a, "system version not high than 26");
+        b.b(a, "system version not high than 26");
         return bArr2;
     }
 
@@ -95,68 +92,67 @@ public abstract class PBKDF2 {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2) || str2.length() < 16) {
             return false;
         }
-        return m7850a(pbkdf2(str.toCharArray(), HexUtil.hexStr2ByteArray(str2.substring(0, 16)), i2, 256), HexUtil.hexStr2ByteArray(str2.substring(16)));
+        return a(pbkdf2(str.toCharArray(), HexUtil.hexStr2ByteArray(str2.substring(0, 16)), i2, 256), HexUtil.hexStr2ByteArray(str2.substring(16)));
     }
 
     public static boolean validatePasswordNew(String str, String str2, int i2) {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2) || str2.length() < 32) {
             return false;
         }
-        String substring = str2.substring(0, 32);
-        return m7850a(Build.VERSION.SDK_INT < 26 ? pbkdf2(str.toCharArray(), HexUtil.hexStr2ByteArray(substring), i2, 256) : pbkdf2SHA256(str.toCharArray(), HexUtil.hexStr2ByteArray(substring), i2, 256), HexUtil.hexStr2ByteArray(str2.substring(32)));
+        String strSubstring = str2.substring(0, 32);
+        return a(Build.VERSION.SDK_INT < 26 ? pbkdf2(str.toCharArray(), HexUtil.hexStr2ByteArray(strSubstring), i2, 256) : pbkdf2SHA256(str.toCharArray(), HexUtil.hexStr2ByteArray(strSubstring), i2, 256), HexUtil.hexStr2ByteArray(str2.substring(32)));
     }
 
     @Deprecated
     public static String pbkdf2Encrypt(String str, byte[] bArr, int i2, int i3) {
         if (TextUtils.isEmpty(str)) {
-            C2551b.m7898b(f8045a, "pwd is null.");
+            b.b(a, "pwd is null.");
             return "";
         }
         if (i2 < 1000) {
-            C2551b.m7898b(f8045a, "iterations times is not enough.");
+            b.b(a, "iterations times is not enough.");
             return "";
         }
         if (bArr == null || bArr.length < 8) {
-            C2551b.m7898b(f8045a, "salt parameter is null or length is not enough");
+            b.b(a, "salt parameter is null or length is not enough");
             return "";
         }
         if (i3 < 32) {
-            C2551b.m7898b(f8045a, "cipherLen length is not enough");
+            b.b(a, "cipherLen length is not enough");
             return "";
         }
         return HexUtil.byteArray2HexStr(bArr) + HexUtil.byteArray2HexStr(pbkdf2(str.toCharArray(), bArr, i2, i3 * 8));
     }
 
     public static String pbkdf2EncryptNew(String str, byte[] bArr, int i2, int i3) {
-        byte[] pbkdf2SHA256;
+        byte[] bArrPbkdf2SHA256;
         if (TextUtils.isEmpty(str)) {
-            C2551b.m7898b(f8045a, "pwd is null.");
+            b.b(a, "pwd is null.");
             return "";
         }
         if (i2 < 1000) {
-            C2551b.m7898b(f8045a, "iterations times is not enough.");
+            b.b(a, "iterations times is not enough.");
             return "";
         }
         if (bArr == null || bArr.length < 16) {
-            C2551b.m7898b(f8045a, "salt parameter is null or length is not enough");
+            b.b(a, "salt parameter is null or length is not enough");
             return "";
         }
         if (i3 < 32) {
-            C2551b.m7898b(f8045a, "cipherLen length is not enough");
+            b.b(a, "cipherLen length is not enough");
             return "";
         }
         if (Build.VERSION.SDK_INT < 26) {
-            C2551b.m7899c(f8045a, "sha 1");
-            pbkdf2SHA256 = pbkdf2(str.toCharArray(), bArr, i2, i3 * 8);
+            b.c(a, "sha 1");
+            bArrPbkdf2SHA256 = pbkdf2(str.toCharArray(), bArr, i2, i3 * 8);
         } else {
-            C2551b.m7899c(f8045a, "sha 256");
-            pbkdf2SHA256 = pbkdf2SHA256(str.toCharArray(), bArr, i2, i3 * 8);
+            b.c(a, "sha 256");
+            bArrPbkdf2SHA256 = pbkdf2SHA256(str.toCharArray(), bArr, i2, i3 * 8);
         }
-        return HexUtil.byteArray2HexStr(bArr) + HexUtil.byteArray2HexStr(pbkdf2SHA256);
+        return HexUtil.byteArray2HexStr(bArr) + HexUtil.byteArray2HexStr(bArrPbkdf2SHA256);
     }
 
-    /* renamed from: a */
-    private static boolean m7850a(byte[] bArr, byte[] bArr2) {
+    private static boolean a(byte[] bArr, byte[] bArr2) {
         if (bArr == null || bArr2 == null) {
             return false;
         }

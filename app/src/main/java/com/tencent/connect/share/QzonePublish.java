@@ -2,25 +2,32 @@ package com.tencent.connect.share;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
-import com.tencent.connect.C3202a;
+import android.util.Base64;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.BaseApi;
 import com.tencent.connect.common.Constants;
 import com.tencent.open.TDialog;
+import com.tencent.open.b.e;
 import com.tencent.open.log.SLog;
-import com.tencent.open.p212b.C3263e;
-import com.tencent.open.utils.C3295m;
+import com.tencent.open.utils.g;
+import com.tencent.open.utils.m;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.UiError;
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
+import org.json.JSONObject;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public class QzonePublish extends BaseApi {
     public static final String HULIAN_CALL_BACK = "hulian_call_back";
     public static final String HULIAN_EXTRA_SCENE = "hulian_extra_scene";
@@ -40,60 +47,274 @@ public class QzonePublish extends BaseApi {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* JADX WARN: Removed duplicated region for block: B:23:0x00ca A[ADDED_TO_REGION] */
-    /* JADX WARN: Removed duplicated region for block: B:42:0x0174  */
-    /* JADX WARN: Removed duplicated region for block: B:48:0x0203  */
-    /* JADX WARN: Removed duplicated region for block: B:51:0x0226  */
-    /* JADX WARN: Removed duplicated region for block: B:54:0x0240  */
-    /* JADX WARN: Removed duplicated region for block: B:57:0x0263  */
-    /* JADX WARN: Removed duplicated region for block: B:60:0x0286  */
-    /* renamed from: b */
+    /* JADX WARN: Removed duplicated region for block: B:32:0x00ca A[ADDED_TO_REGION] */
+    /* JADX WARN: Removed duplicated region for block: B:46:0x016b  */
+    /* JADX WARN: Removed duplicated region for block: B:49:0x0174  */
+    /* JADX WARN: Removed duplicated region for block: B:55:0x0203  */
+    /* JADX WARN: Removed duplicated region for block: B:58:0x0226  */
+    /* JADX WARN: Removed duplicated region for block: B:61:0x0240  */
+    /* JADX WARN: Removed duplicated region for block: B:64:0x0263  */
+    /* JADX WARN: Removed duplicated region for block: B:67:0x0286  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public void m10336b(android.app.Activity r33, android.os.Bundle r34, com.tencent.tauth.IUiListener r35) {
-        /*
-            Method dump skipped, instructions count: 836
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.tencent.connect.share.QzonePublish.m10336b(android.app.Activity, android.os.Bundle, com.tencent.tauth.IUiListener):void");
+    public void b(Activity activity, Bundle bundle, IUiListener iUiListener) {
+        String str;
+        String str2;
+        String string;
+        String appId;
+        String openId;
+        String str3;
+        String str4;
+        String str5;
+        Bundle bundle2;
+        SLog.i("openSDK_LOG.QzonePublish", "doPublishToQzone() --start");
+        StringBuffer stringBuffer = new StringBuffer("mqqapi://qzone/publish?src_type=app&version=1&file_type=news");
+        ArrayList<String> stringArrayList = bundle.getStringArrayList("imageUrl");
+        String string2 = bundle.getString("summary");
+        int i2 = bundle.getInt("req_type", 3);
+        String string3 = bundle.getString("appName");
+        String string4 = bundle.getString("videoPath");
+        int i3 = bundle.getInt(PUBLISH_TO_QZONE_VIDEO_DURATION);
+        long j2 = bundle.getLong(PUBLISH_TO_QZONE_VIDEO_SIZE);
+        try {
+            bundle2 = bundle.getBundle("extMap");
+        } catch (Exception e2) {
+            e = e2;
+            str = "";
+        }
+        if (bundle2 != null) {
+            Set<String> setKeySet = bundle2.keySet();
+            str = "";
+            try {
+                JSONObject jSONObject = new JSONObject();
+                Iterator<String> it = setKeySet.iterator();
+                while (it.hasNext()) {
+                    Iterator<String> it2 = it;
+                    String next = it.next();
+                    if (TextUtils.isEmpty(bundle2.getString(next))) {
+                        str2 = string3;
+                    } else {
+                        str2 = string3;
+                        try {
+                            jSONObject.put(next, bundle2.getString(next));
+                        } catch (Exception e3) {
+                            e = e3;
+                            SLog.e("openSDK_LOG.QzonePublish", "publishToQzone()  --error parse extmap", e);
+                            string = str;
+                            appId = this.f6711c.getAppId();
+                            openId = this.f6711c.getOpenId();
+                            SLog.v("openSDK_LOG.QzonePublish", "openId:" + openId);
+                            if (3 == i2) {
+                            }
+                            if (4 == i2) {
+                            }
+                            String str6 = str;
+                            if (!TextUtils.isEmpty(string2)) {
+                            }
+                            if (!TextUtils.isEmpty(appId)) {
+                            }
+                            if (!TextUtils.isEmpty(str2)) {
+                            }
+                            if (!m.e(str5)) {
+                            }
+                            if (!TextUtils.isEmpty(str3)) {
+                            }
+                            stringBuffer.append("&req_type=" + Base64.encodeToString(m.j(String.valueOf(i2)), 2));
+                            SLog.v(str4, "doPublishToQzone, url: " + stringBuffer.toString());
+                            com.tencent.connect.a.a.a(g.a(), this.f6711c, "requireApi", "shareToNativeQQ");
+                            Intent intent = new Intent("android.intent.action.VIEW");
+                            intent.setPackage("com.tencent.mobileqq");
+                            intent.setData(Uri.parse(stringBuffer.toString()));
+                            intent.putExtra(Constants.PARAM_PKG_NAME, activity.getPackageName());
+                            intent.putExtra(Constants.KEY_PASS_REPORT_VIA_PARAM, m.a(this.f6711c.getOpenId(), "11", "3", Constants.VIA_SHARE_TO_QZONE, this.f6711c.getAppId(), str6, "", "", "0", "1", "0"));
+                            a(activity, 10104, intent, false);
+                            SLog.i(SLog.TAG, "doPublishToQzone() --end");
+                        }
+                    }
+                    it = it2;
+                    string3 = str2;
+                }
+                str2 = string3;
+                if (jSONObject.length() > 0) {
+                    string = jSONObject.toString();
+                }
+            } catch (Exception e4) {
+                e = e4;
+                str2 = string3;
+                SLog.e("openSDK_LOG.QzonePublish", "publishToQzone()  --error parse extmap", e);
+                string = str;
+                appId = this.f6711c.getAppId();
+                openId = this.f6711c.getOpenId();
+                SLog.v("openSDK_LOG.QzonePublish", "openId:" + openId);
+                if (3 == i2) {
+                }
+                if (4 == i2) {
+                }
+                String str62 = str;
+                if (!TextUtils.isEmpty(string2)) {
+                }
+                if (!TextUtils.isEmpty(appId)) {
+                }
+                if (!TextUtils.isEmpty(str2)) {
+                }
+                if (!m.e(str5)) {
+                }
+                if (!TextUtils.isEmpty(str3)) {
+                }
+                stringBuffer.append("&req_type=" + Base64.encodeToString(m.j(String.valueOf(i2)), 2));
+                SLog.v(str4, "doPublishToQzone, url: " + stringBuffer.toString());
+                com.tencent.connect.a.a.a(g.a(), this.f6711c, "requireApi", "shareToNativeQQ");
+                Intent intent2 = new Intent("android.intent.action.VIEW");
+                intent2.setPackage("com.tencent.mobileqq");
+                intent2.setData(Uri.parse(stringBuffer.toString()));
+                intent2.putExtra(Constants.PARAM_PKG_NAME, activity.getPackageName());
+                intent2.putExtra(Constants.KEY_PASS_REPORT_VIA_PARAM, m.a(this.f6711c.getOpenId(), "11", "3", Constants.VIA_SHARE_TO_QZONE, this.f6711c.getAppId(), str62, "", "", "0", "1", "0"));
+                a(activity, 10104, intent2, false);
+                SLog.i(SLog.TAG, "doPublishToQzone() --end");
+            }
+            appId = this.f6711c.getAppId();
+            openId = this.f6711c.getOpenId();
+            SLog.v("openSDK_LOG.QzonePublish", "openId:" + openId);
+            if (3 == i2 || stringArrayList == null) {
+                str3 = string;
+                str4 = "openSDK_LOG.QzonePublish";
+                str5 = openId;
+            } else {
+                StringBuffer stringBuffer2 = new StringBuffer();
+                StringBuffer stringBuffer3 = new StringBuffer();
+                str4 = "openSDK_LOG.QzonePublish";
+                int size = stringArrayList.size();
+                str3 = string;
+                int i4 = 0;
+                while (i4 < size) {
+                    String str7 = openId;
+                    stringBuffer2.append(URLEncoder.encode(stringArrayList.get(i4)));
+                    String strA = m.a(appId, activity, stringArrayList.get(i4), iUiListener);
+                    if (!TextUtils.isEmpty(strA)) {
+                        stringBuffer3.append(URLEncoder.encode(strA));
+                    }
+                    if (i4 != size - 1) {
+                        stringBuffer2.append(";");
+                        stringBuffer3.append(";");
+                    }
+                    i4++;
+                    openId = str7;
+                }
+                str5 = openId;
+                stringBuffer.append("&image_url=" + Base64.encodeToString(m.j(stringBuffer2.toString()), 2));
+                if (!TextUtils.isEmpty(stringBuffer3.toString())) {
+                    stringBuffer.append("&image_uri=" + Base64.encodeToString(m.j(stringBuffer3.toString()), 2));
+                }
+                str = "7";
+            }
+            if (4 == i2) {
+                stringBuffer.append("&videoPath=" + Base64.encodeToString(m.j(string4), 2));
+                String strA2 = m.a(appId, activity, string4, iUiListener);
+                if (!TextUtils.isEmpty(strA2)) {
+                    stringBuffer.append("&videoUri=" + Base64.encodeToString(m.j(strA2), 2));
+                }
+                stringBuffer.append("&videoDuration=" + Base64.encodeToString(m.j(String.valueOf(i3)), 2));
+                stringBuffer.append("&videoSize=" + Base64.encodeToString(m.j(String.valueOf(j2)), 2));
+                str = "8";
+            }
+            String str622 = str;
+            if (!TextUtils.isEmpty(string2)) {
+                stringBuffer.append("&description=" + Base64.encodeToString(m.j(string2), 2));
+            }
+            if (!TextUtils.isEmpty(appId)) {
+                stringBuffer.append("&share_id=" + appId);
+            }
+            if (!TextUtils.isEmpty(str2)) {
+                stringBuffer.append("&app_name=" + Base64.encodeToString(m.j(str2), 2));
+            }
+            if (!m.e(str5)) {
+                stringBuffer.append("&open_id=" + Base64.encodeToString(m.j(str5), 2));
+            }
+            if (!TextUtils.isEmpty(str3)) {
+                stringBuffer.append("&share_qzone_ext_str=" + Base64.encodeToString(m.j(str3), 2));
+            }
+            stringBuffer.append("&req_type=" + Base64.encodeToString(m.j(String.valueOf(i2)), 2));
+            SLog.v(str4, "doPublishToQzone, url: " + stringBuffer.toString());
+            com.tencent.connect.a.a.a(g.a(), this.f6711c, "requireApi", "shareToNativeQQ");
+            Intent intent22 = new Intent("android.intent.action.VIEW");
+            intent22.setPackage("com.tencent.mobileqq");
+            intent22.setData(Uri.parse(stringBuffer.toString()));
+            intent22.putExtra(Constants.PARAM_PKG_NAME, activity.getPackageName());
+            intent22.putExtra(Constants.KEY_PASS_REPORT_VIA_PARAM, m.a(this.f6711c.getOpenId(), "11", "3", Constants.VIA_SHARE_TO_QZONE, this.f6711c.getAppId(), str622, "", "", "0", "1", "0"));
+            a(activity, 10104, intent22, false);
+            SLog.i(SLog.TAG, "doPublishToQzone() --end");
+        }
+        str = "";
+        str2 = string3;
+        string = str;
+        appId = this.f6711c.getAppId();
+        openId = this.f6711c.getOpenId();
+        SLog.v("openSDK_LOG.QzonePublish", "openId:" + openId);
+        if (3 == i2) {
+            str3 = string;
+            str4 = "openSDK_LOG.QzonePublish";
+            str5 = openId;
+        }
+        if (4 == i2) {
+        }
+        String str6222 = str;
+        if (!TextUtils.isEmpty(string2)) {
+        }
+        if (!TextUtils.isEmpty(appId)) {
+        }
+        if (!TextUtils.isEmpty(str2)) {
+        }
+        if (!m.e(str5)) {
+        }
+        if (!TextUtils.isEmpty(str3)) {
+        }
+        stringBuffer.append("&req_type=" + Base64.encodeToString(m.j(String.valueOf(i2)), 2));
+        SLog.v(str4, "doPublishToQzone, url: " + stringBuffer.toString());
+        com.tencent.connect.a.a.a(g.a(), this.f6711c, "requireApi", "shareToNativeQQ");
+        Intent intent222 = new Intent("android.intent.action.VIEW");
+        intent222.setPackage("com.tencent.mobileqq");
+        intent222.setData(Uri.parse(stringBuffer.toString()));
+        intent222.putExtra(Constants.PARAM_PKG_NAME, activity.getPackageName());
+        intent222.putExtra(Constants.KEY_PASS_REPORT_VIA_PARAM, m.a(this.f6711c.getOpenId(), "11", "3", Constants.VIA_SHARE_TO_QZONE, this.f6711c.getAppId(), str6222, "", "", "0", "1", "0"));
+        a(activity, 10104, intent222, false);
+        SLog.i(SLog.TAG, "doPublishToQzone() --end");
     }
 
     public void publishToQzone(final Activity activity, final Bundle bundle, final IUiListener iUiListener) {
-        SLog.m10502i("openSDK_LOG.QzonePublish", "publishToQzone() -- start");
-        if (C3202a.m10152a("openSDK_LOG.QzonePublish", iUiListener)) {
+        SLog.i("openSDK_LOG.QzonePublish", "publishToQzone() -- start");
+        if (com.tencent.connect.a.a("openSDK_LOG.QzonePublish", iUiListener)) {
             return;
         }
         if (bundle == null) {
             iUiListener.onError(new UiError(-6, Constants.MSG_PARAM_NULL_ERROR, null));
-            SLog.m10500e("openSDK_LOG.QzonePublish", "-->publishToQzone, params is null");
-            C3263e.m10457a().m10458a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f11013c.getAppId(), String.valueOf(4), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_PARAM_NULL_ERROR);
+            SLog.e("openSDK_LOG.QzonePublish", "-->publishToQzone, params is null");
+            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(4), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_PARAM_NULL_ERROR);
             return;
         }
-        if (!C3295m.m10702f(activity)) {
+        if (!m.f(activity)) {
             iUiListener.onError(new UiError(-15, Constants.MSG_PARAM_VERSION_TOO_LOW, null));
-            SLog.m10500e("openSDK_LOG.QzonePublish", "-->publishToQzone, this is not support below qq 5.9.5");
-            C3263e.m10457a().m10458a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f11013c.getAppId(), String.valueOf(4), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "publicToQzone, this is not support below qq 5.9.5");
-            new TDialog(activity, "", m10309a(""), null, this.f11013c).show();
+            SLog.e("openSDK_LOG.QzonePublish", "-->publishToQzone, this is not support below qq 5.9.5");
+            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(4), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "publicToQzone, this is not support below qq 5.9.5");
+            new TDialog(activity, "", a(""), null, this.f6711c).show();
             return;
         }
-        String m10669a = C3295m.m10669a(activity);
+        String strA = m.a(activity);
         int i2 = 0;
-        if (m10669a == null) {
-            m10669a = bundle.getString("appName");
-        } else if (m10669a.length() > 20) {
-            m10669a = m10669a.substring(0, 20) + "...";
+        if (strA == null) {
+            strA = bundle.getString("appName");
+        } else if (strA.length() > 20) {
+            strA = strA.substring(0, 20) + "...";
         }
-        if (!TextUtils.isEmpty(m10669a)) {
-            bundle.putString("appName", m10669a);
+        if (!TextUtils.isEmpty(strA)) {
+            bundle.putString("appName", strA);
         }
         int i3 = bundle.getInt("req_type");
         if (i3 == 3) {
             ArrayList<String> stringArrayList = bundle.getStringArrayList("imageUrl");
             if (stringArrayList != null && stringArrayList.size() > 0) {
                 while (i2 < stringArrayList.size()) {
-                    if (!C3295m.m10710i(stringArrayList.get(i2))) {
+                    if (!m.i(stringArrayList.get(i2))) {
                         stringArrayList.remove(i2);
                         i2--;
                     }
@@ -101,19 +322,19 @@ public class QzonePublish extends BaseApi {
                 }
                 bundle.putStringArrayList("imageUrl", stringArrayList);
             }
-            m10336b(activity, bundle, iUiListener);
-            SLog.m10502i("openSDK_LOG.QzonePublish", "publishToQzone() --end");
+            b(activity, bundle, iUiListener);
+            SLog.i("openSDK_LOG.QzonePublish", "publishToQzone() --end");
             return;
         }
         if (i3 != 4) {
             iUiListener.onError(new UiError(-5, Constants.MSG_SHARE_TYPE_ERROR, null));
-            SLog.m10500e("openSDK_LOG.QzonePublish", "publishToQzone() error--end请选择支持的分享类型");
-            C3263e.m10457a().m10458a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f11013c.getAppId(), String.valueOf(4), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "publishToQzone() 请选择支持的分享类型");
+            SLog.e("openSDK_LOG.QzonePublish", "publishToQzone() error--end\u8bf7\u9009\u62e9\u652f\u6301\u7684\u5206\u4eab\u7c7b\u578b");
+            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(4), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "publishToQzone() \u8bf7\u9009\u62e9\u652f\u6301\u7684\u5206\u4eab\u7c7b\u578b");
             return;
         }
         final String string = bundle.getString("videoPath");
-        if (!C3295m.m10710i(string)) {
-            SLog.m10500e("openSDK_LOG.QzonePublish", "publishToQzone() video url invalid");
+        if (!m.i(string)) {
+            SLog.e("openSDK_LOG.QzonePublish", "publishToQzone() video url invalid");
             iUiListener.onError(new UiError(-5, Constants.MSG_PUBLISH_VIDEO_ERROR, null));
             return;
         }
@@ -126,14 +347,14 @@ public class QzonePublish extends BaseApi {
                 bundle.putString("videoPath", string);
                 bundle.putInt(QzonePublish.PUBLISH_TO_QZONE_VIDEO_DURATION, duration);
                 bundle.putLong(QzonePublish.PUBLISH_TO_QZONE_VIDEO_SIZE, length);
-                QzonePublish.this.m10336b(activity, bundle, iUiListener);
-                SLog.m10502i("openSDK_LOG.QzonePublish", "publishToQzone() --end");
+                QzonePublish.this.b(activity, bundle, iUiListener);
+                SLog.i("openSDK_LOG.QzonePublish", "publishToQzone() --end");
             }
         });
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() { // from class: com.tencent.connect.share.QzonePublish.2
             @Override // android.media.MediaPlayer.OnErrorListener
             public boolean onError(MediaPlayer mediaPlayer2, int i4, int i5) {
-                SLog.m10500e("openSDK_LOG.QzonePublish", "publishToQzone() mediaplayer onError()");
+                SLog.e("openSDK_LOG.QzonePublish", "publishToQzone() mediaplayer onError()");
                 iUiListener.onError(new UiError(-5, Constants.MSG_PUBLISH_VIDEO_ERROR, null));
                 return false;
             }
@@ -142,7 +363,7 @@ public class QzonePublish extends BaseApi {
             mediaPlayer.setDataSource(string);
             mediaPlayer.prepareAsync();
         } catch (Exception unused) {
-            SLog.m10500e("openSDK_LOG.QzonePublish", "publishToQzone() exception(s) occurred when preparing mediaplayer");
+            SLog.e("openSDK_LOG.QzonePublish", "publishToQzone() exception(s) occurred when preparing mediaplayer");
             iUiListener.onError(new UiError(-5, Constants.MSG_PUBLISH_VIDEO_ERROR, null));
         }
     }

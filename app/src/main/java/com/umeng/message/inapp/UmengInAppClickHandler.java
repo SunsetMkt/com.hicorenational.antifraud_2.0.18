@@ -8,54 +8,52 @@ import com.umeng.commonsdk.debug.UMLog;
 import com.umeng.message.entity.UInAppMessage;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UmengInAppClickHandler implements UInAppHandler {
+    private static final String a = "com.umeng.message.inapp.UmengInAppClickHandler";
 
-    /* renamed from: a */
-    private static final String f13110a = "com.umeng.message.inapp.UmengInAppClickHandler";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f7922b = null;
 
-    /* renamed from: b */
-    private String f13111b = null;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f7923c = null;
 
-    /* renamed from: c */
-    private String f13112c = null;
-
-    /* renamed from: d */
-    private String f13113d = null;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String f7924d = null;
 
     @Override // com.umeng.message.inapp.UInAppHandler
     public final void handleInAppMessage(Activity activity, UInAppMessage uInAppMessage, int i2) {
         switch (i2) {
             case 16:
-                this.f13111b = uInAppMessage.action_type;
-                this.f13112c = uInAppMessage.action_activity;
-                this.f13113d = uInAppMessage.action_url;
+                this.f7922b = uInAppMessage.action_type;
+                this.f7923c = uInAppMessage.action_activity;
+                this.f7924d = uInAppMessage.action_url;
                 break;
             case 17:
-                this.f13111b = uInAppMessage.bottom_action_type;
-                this.f13112c = uInAppMessage.bottom_action_activity;
-                this.f13113d = uInAppMessage.bottom_action_url;
+                this.f7922b = uInAppMessage.bottom_action_type;
+                this.f7923c = uInAppMessage.bottom_action_activity;
+                this.f7924d = uInAppMessage.bottom_action_url;
                 break;
             case 18:
-                this.f13111b = uInAppMessage.plainTextActionType;
-                this.f13112c = uInAppMessage.plainTextActivity;
-                this.f13113d = uInAppMessage.plainTextUrl;
+                this.f7922b = uInAppMessage.plainTextActionType;
+                this.f7923c = uInAppMessage.plainTextActivity;
+                this.f7924d = uInAppMessage.plainTextUrl;
                 break;
             case 19:
-                this.f13111b = uInAppMessage.customButtonActionType;
-                this.f13112c = uInAppMessage.customButtonActivity;
-                this.f13113d = uInAppMessage.customButtonUrl;
+                this.f7922b = uInAppMessage.customButtonActionType;
+                this.f7923c = uInAppMessage.customButtonActivity;
+                this.f7924d = uInAppMessage.customButtonUrl;
                 break;
         }
-        if (TextUtils.isEmpty(this.f13111b)) {
+        if (TextUtils.isEmpty(this.f7922b)) {
             return;
         }
-        if (TextUtils.equals("go_activity", this.f13111b)) {
-            openActivity(activity, this.f13112c);
-        } else if (TextUtils.equals("go_url", this.f13111b)) {
-            openUrl(activity, this.f13113d);
+        if (TextUtils.equals("go_activity", this.f7922b)) {
+            openActivity(activity, this.f7923c);
+        } else if (TextUtils.equals("go_url", this.f7922b)) {
+            openUrl(activity, this.f7924d);
         } else {
-            TextUtils.equals("go_app", this.f13111b);
+            TextUtils.equals("go_app", this.f7922b);
         }
     }
 
@@ -65,7 +63,7 @@ public class UmengInAppClickHandler implements UInAppHandler {
                 if (TextUtils.isEmpty(str.trim())) {
                     return;
                 }
-                UMLog.mutlInfo(f13110a, 2, "打开Activity: ".concat(String.valueOf(str)));
+                UMLog.mutlInfo(a, 2, "\u6253\u5f00Activity: ".concat(String.valueOf(str)));
                 Intent intent = new Intent();
                 intent.setClassName(activity, str);
                 intent.setFlags(CommonNetImpl.FLAG_SHARE);
@@ -82,7 +80,7 @@ public class UmengInAppClickHandler implements UInAppHandler {
                 if (TextUtils.isEmpty(str.trim())) {
                     return;
                 }
-                UMLog.mutlInfo(f13110a, 2, "打开链接: ".concat(String.valueOf(str)));
+                UMLog.mutlInfo(a, 2, "\u6253\u5f00\u94fe\u63a5: ".concat(String.valueOf(str)));
                 activity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(str)));
             } catch (Exception e2) {
                 e2.printStackTrace();

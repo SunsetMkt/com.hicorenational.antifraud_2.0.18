@@ -4,23 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import anet.channel.bytes.ByteArray;
-import anet.channel.bytes.C0752a;
+import anet.channel.bytes.a;
 import anet.channel.request.BodyEntry;
-import anetwork.channel.aidl.InterfaceC0868d;
-import anetwork.channel.aidl.p022j.BinderC0875b;
 import java.io.IOException;
 import java.io.OutputStream;
-import p000a.p001a.InterfaceC0001b;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class BodyHandlerEntry implements BodyEntry {
-    public static final Parcelable.Creator<BodyHandlerEntry> CREATOR = new C0890b();
+    public static final Parcelable.Creator<BodyHandlerEntry> CREATOR = new b();
+    anetwork.channel.aidl.d a;
 
-    /* renamed from: a */
-    InterfaceC0868d f1320a;
-
-    /* synthetic */ BodyHandlerEntry(C0890b c0890b) {
+    /* synthetic */ BodyHandlerEntry(b bVar) {
         this();
     }
 
@@ -37,14 +32,14 @@ public class BodyHandlerEntry implements BodyEntry {
     @Override // anet.channel.request.BodyEntry
     public int writeTo(OutputStream outputStream) throws IOException {
         try {
-            ByteArray m446a = C0752a.a.f765a.m446a(2048);
+            ByteArray byteArrayA = a.C0008a.a.a(2048);
             int i2 = 0;
-            while (!this.f1320a.mo767g()) {
-                int read = this.f1320a.read(m446a.getBuffer());
-                outputStream.write(m446a.getBuffer(), 0, read);
-                i2 += read;
+            while (!this.a.g()) {
+                int i3 = this.a.read(byteArrayA.getBuffer());
+                outputStream.write(byteArrayA.getBuffer(), 0, i3);
+                i2 += i3;
             }
-            m446a.recycle();
+            byteArrayA.recycle();
             return i2;
         } catch (RemoteException e2) {
             throw new IOException("RemoteException", e2);
@@ -53,15 +48,15 @@ public class BodyHandlerEntry implements BodyEntry {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeStrongInterface(this.f1320a);
+        parcel.writeStrongInterface(this.a);
     }
 
-    public BodyHandlerEntry(InterfaceC0001b interfaceC0001b) {
-        this.f1320a = null;
-        this.f1320a = new BinderC0875b(interfaceC0001b);
+    public BodyHandlerEntry(b.a.b bVar) {
+        this.a = null;
+        this.a = new anetwork.channel.aidl.j.b(bVar);
     }
 
     private BodyHandlerEntry() {
-        this.f1320a = null;
+        this.a = null;
     }
 }

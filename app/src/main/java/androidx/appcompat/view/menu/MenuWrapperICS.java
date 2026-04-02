@@ -10,8 +10,8 @@ import android.view.SubMenu;
 import androidx.annotation.RestrictTo;
 import androidx.core.internal.view.SupportMenu;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class MenuWrapperICS extends BaseMenuWrapper implements Menu {
     private final SupportMenu mWrappedObject;
 
@@ -31,14 +31,14 @@ public class MenuWrapperICS extends BaseMenuWrapper implements Menu {
     @Override // android.view.Menu
     public int addIntentOptions(int i2, int i3, int i4, ComponentName componentName, Intent[] intentArr, Intent intent, int i5, MenuItem[] menuItemArr) {
         MenuItem[] menuItemArr2 = menuItemArr != null ? new MenuItem[menuItemArr.length] : null;
-        int addIntentOptions = this.mWrappedObject.addIntentOptions(i2, i3, i4, componentName, intentArr, intent, i5, menuItemArr2);
+        int iAddIntentOptions = this.mWrappedObject.addIntentOptions(i2, i3, i4, componentName, intentArr, intent, i5, menuItemArr2);
         if (menuItemArr2 != null) {
             int length = menuItemArr2.length;
             for (int i6 = 0; i6 < length; i6++) {
                 menuItemArr[i6] = getMenuItemWrapper(menuItemArr2[i6]);
             }
         }
-        return addIntentOptions;
+        return iAddIntentOptions;
     }
 
     @Override // android.view.Menu

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.lifecycle.Lifecycle;
+import d.c.a.b.a.a;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -11,15 +12,25 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class Lifecycling {
     private static final int GENERATED_CALLBACK = 2;
     private static final int REFLECTIVE_CALLBACK = 1;
     private static Map<Class, Integer> sCallbackCache = new HashMap();
     private static Map<Class, List<Constructor<? extends GeneratedAdapter>>> sClassToAdapters = new HashMap();
+
+    /* JADX INFO: renamed from: androidx.lifecycle.Lifecycling$1 */
+    static class AnonymousClass1 implements GenericLifecycleObserver {
+        AnonymousClass1() {
+        }
+
+        @Override // androidx.lifecycle.LifecycleEventObserver
+        public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event2) {
+            lifecycleEventObserver.onStateChanged(lifecycleOwner, event2);
+        }
+    }
 
     private Lifecycling() {
     }
@@ -62,17 +73,19 @@ public class Lifecycling {
     }
 
     public static String getAdapterName(String str) {
-        return str.replace(".", AbstractC1191a.f2606s1) + "_LifecycleAdapter";
+        return str.replace(".", a.s1) + "_LifecycleAdapter";
     }
 
     @NonNull
     @Deprecated
     static GenericLifecycleObserver getCallback(Object obj) {
-        final LifecycleEventObserver lifecycleEventObserver = lifecycleEventObserver(obj);
         return new GenericLifecycleObserver() { // from class: androidx.lifecycle.Lifecycling.1
+            AnonymousClass1() {
+            }
+
             @Override // androidx.lifecycle.LifecycleEventObserver
             public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event2) {
-                LifecycleEventObserver.this.onStateChanged(lifecycleOwner, event2);
+                lifecycleEventObserver.onStateChanged(lifecycleOwner, event2);
             }
         };
     }
@@ -82,9 +95,9 @@ public class Lifecycling {
         if (num != null) {
             return num.intValue();
         }
-        int resolveObserverCallbackType = resolveObserverCallbackType(cls);
-        sCallbackCache.put(cls, Integer.valueOf(resolveObserverCallbackType));
-        return resolveObserverCallbackType;
+        int iResolveObserverCallbackType = resolveObserverCallbackType(cls);
+        sCallbackCache.put(cls, Integer.valueOf(iResolveObserverCallbackType));
+        return iResolveObserverCallbackType;
     }
 
     private static boolean isLifecycleParent(Class<?> cls) {
@@ -123,9 +136,9 @@ public class Lifecycling {
         if (cls.getCanonicalName() == null) {
             return 1;
         }
-        Constructor<? extends GeneratedAdapter> generatedConstructor = generatedConstructor(cls);
-        if (generatedConstructor != null) {
-            sClassToAdapters.put(cls, Collections.singletonList(generatedConstructor));
+        Constructor<? extends GeneratedAdapter> constructorGeneratedConstructor = generatedConstructor(cls);
+        if (constructorGeneratedConstructor != null) {
+            sClassToAdapters.put(cls, Collections.singletonList(constructorGeneratedConstructor));
             return 2;
         }
         if (ClassesInfoCache.sInstance.hasLifecycleMethods(cls)) {

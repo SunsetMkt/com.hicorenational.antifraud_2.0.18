@@ -14,110 +14,105 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RequestManager implements Handler.Callback {
     public static final int NOTIFY_CONNECT_FAILED = 10012;
     public static final int NOTIFY_CONNECT_SUCCESS = 10011;
     public static final int NOTIFY_CONNECT_SUSPENDED = 10013;
 
-    /* renamed from: b */
-    private static volatile RequestManager f7285b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static volatile RequestManager f4565b;
 
-    /* renamed from: c */
-    private static Handler f7286c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static Handler f4566c;
+    private static final Object a = new Object();
 
-    /* renamed from: a */
-    private static final Object f7284a = new Object();
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static Queue<HuaweiApi.RequestHandler> f4567d = new ConcurrentLinkedQueue();
 
-    /* renamed from: d */
-    private static Queue<HuaweiApi.RequestHandler> f7287d = new ConcurrentLinkedQueue();
-
-    /* renamed from: e */
-    private static Map<String, HuaweiApi.RequestHandler> f7288e = new LinkedHashMap();
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static Map<String, HuaweiApi.RequestHandler> f4568e = new LinkedHashMap();
 
     private RequestManager(Looper looper) {
-        f7286c = new Handler(looper, this);
+        f4566c = new Handler(looper, this);
     }
 
     public static void addRequestToQueue(HuaweiApi.RequestHandler requestHandler) {
-        f7287d.add(requestHandler);
+        f4567d.add(requestHandler);
     }
 
     public static void addToConnectedReqMap(final String str, final HuaweiApi.RequestHandler requestHandler) {
-        if (f7286c == null) {
+        if (f4566c == null) {
             return;
         }
-        HMSLog.m7717i("RequestManager", "addToConnectedReqMap");
-        f7286c.post(new Runnable() { // from class: com.huawei.hms.common.internal.RequestManager.1
+        HMSLog.i("RequestManager", "addToConnectedReqMap");
+        f4566c.post(new Runnable() { // from class: com.huawei.hms.common.internal.RequestManager.1
             @Override // java.lang.Runnable
             public void run() {
-                RequestManager.f7288e.put(str, requestHandler);
+                RequestManager.f4568e.put(str, requestHandler);
             }
         });
     }
 
-    /* renamed from: b */
-    private void m6745b() {
-        while (!f7287d.isEmpty()) {
-            HuaweiApi.RequestHandler poll = f7287d.poll();
-            if (poll != null) {
-                Object client = poll.getClient();
+    private void b() {
+        while (!f4567d.isEmpty()) {
+            HuaweiApi.RequestHandler requestHandlerPoll = f4567d.poll();
+            if (requestHandlerPoll != null) {
+                Object client = requestHandlerPoll.getClient();
                 if (client instanceof BaseHmsClient) {
                     BaseHmsClient baseHmsClient = (BaseHmsClient) client;
                     baseHmsClient.setService(IAIDLInvoke.Stub.asInterface(baseHmsClient.getAdapter().getServiceBinder()));
-                    poll.onConnected();
+                    requestHandlerPoll.onConnected();
                 }
             }
         }
     }
 
-    /* renamed from: c */
-    private void m6746c() {
-        HMSLog.m7717i("RequestManager", "NOTIFY_CONNECT_SUSPENDED.");
-        while (!f7287d.isEmpty()) {
-            f7287d.poll().onConnectionSuspended(1);
+    private void c() {
+        HMSLog.i("RequestManager", "NOTIFY_CONNECT_SUSPENDED.");
+        while (!f4567d.isEmpty()) {
+            f4567d.poll().onConnectionSuspended(1);
         }
-        m6747d();
+        d();
     }
 
-    /* renamed from: d */
-    private void m6747d() {
-        HMSLog.m7717i("RequestManager", "notifyRunningRequestConnectSuspend, connectedReqMap.size(): " + f7288e.size());
-        Iterator<Map.Entry<String, HuaweiApi.RequestHandler>> it = f7288e.entrySet().iterator();
+    private void d() {
+        HMSLog.i("RequestManager", "notifyRunningRequestConnectSuspend, connectedReqMap.size(): " + f4568e.size());
+        Iterator<Map.Entry<String, HuaweiApi.RequestHandler>> it = f4568e.entrySet().iterator();
         while (it.hasNext()) {
             try {
                 it.next().getValue().onConnectionSuspended(1);
             } catch (RuntimeException e2) {
-                HMSLog.m7715e("RequestManager", "NOTIFY_CONNECT_SUSPENDED Exception: " + e2.getMessage());
+                HMSLog.e("RequestManager", "NOTIFY_CONNECT_SUSPENDED Exception: " + e2.getMessage());
             }
             it.remove();
         }
     }
 
     public static Handler getHandler() {
-        return f7286c;
+        return f4566c;
     }
 
     public static RequestManager getInstance() {
-        synchronized (f7284a) {
-            if (f7285b == null) {
+        synchronized (a) {
+            if (f4565b == null) {
                 HandlerThread handlerThread = new HandlerThread("RequestManager");
                 handlerThread.start();
-                f7285b = new RequestManager(handlerThread.getLooper());
+                f4565b = new RequestManager(handlerThread.getLooper());
             }
         }
-        return f7285b;
+        return f4565b;
     }
 
     public static void removeReqByTransId(final String str) {
-        if (f7286c == null) {
+        if (f4566c == null) {
             return;
         }
-        HMSLog.m7717i("RequestManager", "removeReqByTransId");
-        f7286c.post(new Runnable() { // from class: com.huawei.hms.common.internal.RequestManager.2
+        HMSLog.i("RequestManager", "removeReqByTransId");
+        f4566c.post(new Runnable() { // from class: com.huawei.hms.common.internal.RequestManager.2
             @Override // java.lang.Runnable
             public void run() {
-                RequestManager.f7288e.remove(str);
+                RequestManager.f4568e.remove(str);
             }
         });
     }
@@ -127,34 +122,33 @@ public class RequestManager implements Handler.Callback {
         if (message == null) {
             return false;
         }
-        HMSLog.m7717i("RequestManager", "RequestManager handleMessage.");
+        HMSLog.i("RequestManager", "RequestManager handleMessage.");
         switch (message.what) {
             case NOTIFY_CONNECT_SUCCESS /* 10011 */:
-                m6745b();
+                b();
                 break;
             case NOTIFY_CONNECT_FAILED /* 10012 */:
-                m6744a(message);
+                a(message);
                 break;
             case NOTIFY_CONNECT_SUSPENDED /* 10013 */:
-                m6746c();
+                c();
                 break;
             default:
-                HMSLog.m7717i("RequestManager", "handleMessage unknown msg:" + message.what);
+                HMSLog.i("RequestManager", "handleMessage unknown msg:" + message.what);
                 break;
         }
         return false;
     }
 
-    /* renamed from: a */
-    private void m6744a(Message message) {
-        HMSLog.m7717i("RequestManager", "NOTIFY_CONNECT_FAILED.");
+    private void a(Message message) {
+        HMSLog.i("RequestManager", "NOTIFY_CONNECT_FAILED.");
         try {
             BaseHmsClient.ConnectionResultWrapper connectionResultWrapper = (BaseHmsClient.ConnectionResultWrapper) message.obj;
             HuaweiApi.RequestHandler request = connectionResultWrapper.getRequest();
-            f7287d.remove(request);
+            f4567d.remove(request);
             request.onConnectionFailed(connectionResultWrapper.getConnectionResult());
         } catch (RuntimeException e2) {
-            HMSLog.m7715e("RequestManager", "<handleConnectFailed> handle Failed" + e2.getMessage());
+            HMSLog.e("RequestManager", "<handleConnectFailed> handle Failed" + e2.getMessage());
         }
     }
 }

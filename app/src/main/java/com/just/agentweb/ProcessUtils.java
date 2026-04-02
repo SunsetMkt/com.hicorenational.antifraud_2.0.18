@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ProcessUtils {
     ProcessUtils() {
     }
@@ -30,9 +30,9 @@ class ProcessUtils {
         String str;
         ActivityManager activityManager = (ActivityManager) context.getSystemService("activity");
         if (activityManager != null && (runningAppProcesses = activityManager.getRunningAppProcesses()) != null && runningAppProcesses.size() != 0) {
-            int myPid = Process.myPid();
+            int iMyPid = Process.myPid();
             for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
-                if (runningAppProcessInfo.pid == myPid && (str = runningAppProcessInfo.processName) != null) {
+                if (runningAppProcessInfo.pid == iMyPid && (str = runningAppProcessInfo.processName) != null) {
                     return str;
                 }
             }
@@ -43,9 +43,9 @@ class ProcessUtils {
     private static String getCurrentProcessNameByFile() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("/proc/" + Process.myPid() + "/cmdline")));
-            String trim = bufferedReader.readLine().trim();
+            String strTrim = bufferedReader.readLine().trim();
             bufferedReader.close();
-            return trim;
+            return strTrim;
         } catch (Exception e2) {
             e2.printStackTrace();
             return "";

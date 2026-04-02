@@ -20,7 +20,7 @@ import com.yalantis.ucrop.util.SdkUtils;
 import java.io.File;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder> {
     private Context context;
     private List<CutInfo> list;
@@ -41,10 +41,10 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
 
         public ViewHolder(View view) {
             super(view);
-            this.mIvPhoto = (ImageView) view.findViewById(C4415R.id.iv_photo);
-            this.mIvVideo = (ImageView) view.findViewById(C4415R.id.iv_video);
-            this.iv_dot = (ImageView) view.findViewById(C4415R.id.iv_dot);
-            this.tvGif = (TextView) view.findViewById(C4415R.id.tv_gif);
+            this.mIvPhoto = (ImageView) view.findViewById(R.id.iv_photo);
+            this.mIvVideo = (ImageView) view.findViewById(R.id.iv_video);
+            this.iv_dot = (ImageView) view.findViewById(R.id.iv_dot);
+            this.tvGif = (TextView) view.findViewById(R.id.tv_gif);
         }
     }
 
@@ -78,20 +78,20 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
         String path = cutInfo != null ? cutInfo.getPath() : "";
         if (cutInfo.isCut()) {
             viewHolder.iv_dot.setVisibility(0);
-            viewHolder.iv_dot.setImageResource(C4415R.drawable.ucrop_oval_true);
+            viewHolder.iv_dot.setImageResource(R.drawable.ucrop_oval_true);
         } else {
             viewHolder.iv_dot.setVisibility(4);
         }
         if (MimeType.eqVideo(cutInfo.getMimeType())) {
             viewHolder.mIvPhoto.setVisibility(8);
             viewHolder.mIvVideo.setVisibility(0);
-            viewHolder.mIvVideo.setImageResource(C4415R.drawable.ucrop_ic_default_video);
+            viewHolder.mIvVideo.setImageResource(R.drawable.ucrop_ic_default_video);
         } else {
             viewHolder.mIvPhoto.setVisibility(0);
             viewHolder.mIvVideo.setVisibility(8);
-            Uri parse = (SdkUtils.isQ() || MimeType.isHttp(path)) ? Uri.parse(path) : Uri.fromFile(new File(path));
+            Uri uriFromFile = (SdkUtils.isQ() || MimeType.isHttp(path)) ? Uri.parse(path) : Uri.fromFile(new File(path));
             viewHolder.tvGif.setVisibility(MimeType.isGif(cutInfo.getMimeType()) ? 0 : 8);
-            BitmapLoadUtils.decodeBitmapInBackground(this.context, parse, cutInfo.getHttpOutUri(), 200, 220, new BitmapLoadCallback() { // from class: com.yalantis.ucrop.PicturePhotoGalleryAdapter.1
+            BitmapLoadUtils.decodeBitmapInBackground(this.context, uriFromFile, cutInfo.getHttpOutUri(), 200, 220, new BitmapLoadCallback() { // from class: com.yalantis.ucrop.PicturePhotoGalleryAdapter.1
                 @Override // com.yalantis.ucrop.callback.BitmapLoadCallback
                 public void onBitmapLoaded(@NonNull Bitmap bitmap, @NonNull ExifInfo exifInfo, @NonNull String str, @Nullable String str2) {
                     ImageView imageView = viewHolder.mIvPhoto;
@@ -105,7 +105,7 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
                 public void onFailure(@NonNull Exception exc) {
                     ImageView imageView = viewHolder.mIvPhoto;
                     if (imageView != null) {
-                        imageView.setImageResource(C4415R.color.ucrop_color_ba3);
+                        imageView.setImageResource(R.color.ucrop_color_ba3);
                     }
                 }
             });
@@ -122,6 +122,6 @@ public class PicturePhotoGalleryAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return new ViewHolder(this.mInflater.inflate(C4415R.layout.ucrop_picture_gf_adapter_edit_list, viewGroup, false));
+        return new ViewHolder(this.mInflater.inflate(R.layout.ucrop_picture_gf_adapter_edit_list, viewGroup, false));
     }
 }

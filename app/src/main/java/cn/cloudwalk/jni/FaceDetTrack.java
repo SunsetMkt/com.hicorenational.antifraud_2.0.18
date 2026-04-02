@@ -1,6 +1,6 @@
 package cn.cloudwalk.jni;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FaceDetTrack {
     public FaceInfo[] faceInfos;
     public int mFaceNum;

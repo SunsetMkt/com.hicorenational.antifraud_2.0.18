@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringWriter;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IOUtils {
     private static final int BUFFER_SIZE = 4096;
 
@@ -19,17 +19,17 @@ public class IOUtils {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] bArr = new byte[4096];
         while (true) {
-            int read = inputStream.read(bArr);
-            if (read <= -1) {
+            int i2 = inputStream.read(bArr);
+            if (i2 <= -1) {
                 byteArrayOutputStream.flush();
                 safeClose(byteArrayOutputStream);
                 return byteArrayOutputStream.toByteArray();
             }
-            byteArrayOutputStream.write(bArr, 0, read);
+            byteArrayOutputStream.write(bArr, 0, i2);
         }
     }
 
-    public static String readStreamAsString(InputStream inputStream, String str) throws IOException {
+    public static String readStreamAsString(InputStream inputStream, String str) throws Throwable {
         if (inputStream == null) {
             return "";
         }
@@ -40,15 +40,15 @@ public class IOUtils {
             BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(inputStream, str));
             while (true) {
                 try {
-                    int read = bufferedReader2.read(cArr);
-                    if (read <= 0) {
-                        String obj = stringWriter.toString();
+                    int i2 = bufferedReader2.read(cArr);
+                    if (i2 <= 0) {
+                        String string = stringWriter.toString();
                         safeClose(inputStream);
                         bufferedReader2.close();
                         stringWriter.close();
-                        return obj;
+                        return string;
                     }
-                    stringWriter.write(cArr, 0, read);
+                    stringWriter.write(cArr, 0, i2);
                 } catch (Throwable th) {
                     th = th;
                     bufferedReader = bufferedReader2;
@@ -84,7 +84,7 @@ public class IOUtils {
     }
 
     public static byte[] readStreamAsBytesArray(InputStream inputStream, int i2) throws IOException {
-        int read;
+        int i3;
         if (inputStream == null) {
             return new byte[0];
         }
@@ -93,11 +93,11 @@ public class IOUtils {
         long j2 = 0;
         while (true) {
             long j3 = i2;
-            if (j2 >= j3 || (read = inputStream.read(bArr, 0, Math.min(2048, (int) (j3 - j2)))) <= -1) {
+            if (j2 >= j3 || (i3 = inputStream.read(bArr, 0, Math.min(2048, (int) (j3 - j2)))) <= -1) {
                 break;
             }
-            byteArrayOutputStream.write(bArr, 0, read);
-            j2 += read;
+            byteArrayOutputStream.write(bArr, 0, i3);
+            j2 += (long) i3;
         }
         byteArrayOutputStream.flush();
         safeClose(byteArrayOutputStream);

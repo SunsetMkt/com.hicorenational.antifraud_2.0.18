@@ -1,12 +1,14 @@
 package com.google.android.material.internal;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
+@SuppressLint({"AppCompatCustomView"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class VisibilityAwareImageButton extends ImageButton {
     private int userSetVisibility;
 

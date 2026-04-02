@@ -6,20 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import com.google.android.material.badge.BadgeDrawable;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UTrack;
 import com.umeng.message.api.UPushMessageHandler;
 import com.umeng.message.common.UPLog;
 import com.umeng.message.entity.UMessage;
-import com.umeng.message.proguard.C3554ac;
-import com.umeng.message.proguard.C3564am;
-import com.umeng.message.proguard.C3603w;
+import com.umeng.message.proguard.ac;
+import com.umeng.message.proguard.am;
+import com.umeng.message.proguard.w;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class UmengNotificationClickActivity extends Activity {
-    /* renamed from: a */
-    private void m12152a(Intent intent) {
+    private void a(Intent intent) {
         if (intent == null) {
             return;
         }
@@ -29,23 +29,23 @@ public final class UmengNotificationClickActivity extends Activity {
                 UMessage uMessage = new UMessage(new JSONObject(stringExtra));
                 UTrack.getInstance().trackMsgClick(uMessage);
                 Context applicationContext = getApplicationContext();
-                UPLog.m12145i("NotificationClick", uMessage.getRaw());
+                UPLog.i("NotificationClick", uMessage.getRaw());
                 UPushMessageHandler notificationClickHandler = PushAgent.getInstance(applicationContext).getNotificationClickHandler();
                 if (notificationClickHandler != null) {
                     notificationClickHandler.handleMessage(applicationContext, uMessage);
                 } else {
-                    UPLog.m12145i("NotificationClick", "handle == null skipped!");
+                    UPLog.i("NotificationClick", "handle == null skipped!");
                 }
-                C3603w m12454a = C3603w.m12454a();
-                C3554ac m12455a = m12454a.m12455a(uMessage.getMsgId());
-                if (m12455a != null) {
-                    m12454a.m12458b(m12455a);
-                    C3564am.m12269a(m12455a);
+                w wVarA = w.a();
+                ac acVarA = wVarA.a(uMessage.getMsgId());
+                if (acVarA != null) {
+                    wVarA.b(acVarA);
+                    am.a(acVarA);
                 }
             }
         } catch (Throwable th) {
             try {
-                UPLog.m12143e("NotificationClick", th);
+                UPLog.e("NotificationClick", th);
             } finally {
                 finish();
             }
@@ -60,9 +60,9 @@ public final class UmengNotificationClickActivity extends Activity {
             WindowManager.LayoutParams attributes = window.getAttributes();
             attributes.width = 1;
             attributes.height = 1;
-            attributes.gravity = 8388659;
+            attributes.gravity = BadgeDrawable.TOP_START;
             window.setAttributes(attributes);
-            m12152a(getIntent());
+            a(getIntent());
         } catch (Throwable th) {
             th.printStackTrace();
         }
@@ -72,7 +72,7 @@ public final class UmengNotificationClickActivity extends Activity {
     protected final void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         try {
-            m12152a(intent);
+            a(intent);
         } catch (Throwable th) {
             th.printStackTrace();
         }

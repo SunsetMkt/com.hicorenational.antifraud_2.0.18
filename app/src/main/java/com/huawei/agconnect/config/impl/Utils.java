@@ -7,12 +7,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Utils {
     private static final int BUFF_SIZE = 4096;
     public static final String DEFAULT_NAME = "DEFAULT_INSTANCE";
@@ -33,21 +32,21 @@ public final class Utils {
 
     public static void copy(Reader reader, Writer writer, char[] cArr) throws IOException {
         while (true) {
-            int read = reader.read(cArr);
-            if (-1 == read) {
+            int i2 = reader.read(cArr);
+            if (-1 == i2) {
                 return;
             } else {
-                writer.write(cArr, 0, read);
+                writer.write(cArr, 0, i2);
             }
         }
     }
 
     public static Map<String, String> fixKeyPathMap(Map<String, String> map) {
-        HashMap hashMap = new HashMap();
+        HashMap map2 = new HashMap();
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            hashMap.put(fixPath(entry.getKey()), entry.getValue());
+            map2.put(fixPath(entry.getKey()), entry.getValue());
         }
-        return hashMap;
+        return map2;
     }
 
     public static String fixPath(String str) {
@@ -78,27 +77,27 @@ public final class Utils {
             }
             return AGCRoutePolicy.UNKNOWN;
         }
-        char c2 = 65535;
-        int hashCode = str.hashCode();
-        if (hashCode != 2155) {
-            if (hashCode != 2177) {
-                if (hashCode != 2627) {
-                    if (hashCode == 2644 && str.equals("SG")) {
-                        c2 = 3;
+        byte b2 = -1;
+        int iHashCode = str.hashCode();
+        if (iHashCode != 2155) {
+            if (iHashCode != 2177) {
+                if (iHashCode != 2627) {
+                    if (iHashCode == 2644 && str.equals("SG")) {
+                        b2 = 3;
                     }
                 } else if (str.equals("RU")) {
-                    c2 = 2;
+                    b2 = 2;
                 }
             } else if (str.equals("DE")) {
-                c2 = 1;
+                b2 = 1;
             }
         } else if (str.equals("CN")) {
-            c2 = 0;
+            b2 = 0;
         }
-        return c2 != 0 ? c2 != 1 ? c2 != 2 ? c2 != 3 ? AGCRoutePolicy.UNKNOWN : AGCRoutePolicy.SINGAPORE : AGCRoutePolicy.RUSSIA : AGCRoutePolicy.GERMANY : AGCRoutePolicy.CHINA;
+        return b2 != 0 ? b2 != 1 ? b2 != 2 ? b2 != 3 ? AGCRoutePolicy.UNKNOWN : AGCRoutePolicy.SINGAPORE : AGCRoutePolicy.RUSSIA : AGCRoutePolicy.GERMANY : AGCRoutePolicy.CHINA;
     }
 
-    public static String toString(InputStream inputStream, String str) throws UnsupportedEncodingException, IOException {
+    public static String toString(InputStream inputStream, String str) throws IOException {
         StringWriter stringWriter = new StringWriter();
         copy(new InputStreamReader(inputStream, str), stringWriter);
         return stringWriter.toString();

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ClassesInfoCache {
     private static final int CALL_TYPE_NO_ARG = 0;
     private static final int CALL_TYPE_PROVIDER = 1;
@@ -26,12 +26,12 @@ class ClassesInfoCache {
             this.mHandlerToEvent = map;
             for (Map.Entry<MethodReference, Lifecycle.Event> entry : map.entrySet()) {
                 Lifecycle.Event value = entry.getValue();
-                List<MethodReference> list = this.mEventToHandlers.get(value);
-                if (list == null) {
-                    list = new ArrayList<>();
-                    this.mEventToHandlers.put(value, list);
+                List<MethodReference> arrayList = this.mEventToHandlers.get(value);
+                if (arrayList == null) {
+                    arrayList = new ArrayList<>();
+                    this.mEventToHandlers.put(value, arrayList);
                 }
-                list.add(entry.getKey());
+                arrayList.add(entry.getKey());
             }
         }
 
@@ -102,13 +102,13 @@ class ClassesInfoCache {
         int i2;
         CallbackInfo info;
         Class superclass = cls.getSuperclass();
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (superclass != null && (info = getInfo(superclass)) != null) {
-            hashMap.putAll(info.mHandlerToEvent);
+            map.putAll(info.mHandlerToEvent);
         }
         for (Class<?> cls2 : cls.getInterfaces()) {
             for (Map.Entry<MethodReference, Lifecycle.Event> entry : getInfo(cls2).mHandlerToEvent.entrySet()) {
-                verifyAndPutHandler(hashMap, entry.getKey(), entry.getValue(), cls);
+                verifyAndPutHandler(map, entry.getKey(), entry.getValue(), cls);
             }
         }
         if (methodArr == null) {
@@ -127,12 +127,12 @@ class ClassesInfoCache {
                     }
                     i2 = 1;
                 }
-                Lifecycle.Event value = onLifecycleEvent.value();
+                Lifecycle.Event eventValue = onLifecycleEvent.value();
                 if (parameterTypes.length > 1) {
                     if (!parameterTypes[1].isAssignableFrom(Lifecycle.Event.class)) {
                         throw new IllegalArgumentException("invalid parameter type. second arg must be an event");
                     }
-                    if (value != Lifecycle.Event.ON_ANY) {
+                    if (eventValue != Lifecycle.Event.ON_ANY) {
                         throw new IllegalArgumentException("Second arg is supported only for ON_ANY value");
                     }
                     i2 = 2;
@@ -140,11 +140,11 @@ class ClassesInfoCache {
                 if (parameterTypes.length > 2) {
                     throw new IllegalArgumentException("cannot have more than 2 params");
                 }
-                verifyAndPutHandler(hashMap, new MethodReference(i2, method), value, cls);
+                verifyAndPutHandler(map, new MethodReference(i2, method), eventValue, cls);
                 z = true;
             }
         }
-        CallbackInfo callbackInfo = new CallbackInfo(hashMap);
+        CallbackInfo callbackInfo = new CallbackInfo(map);
         this.mCallbackMap.put(cls, callbackInfo);
         this.mHasLifecycleMethods.put(cls, Boolean.valueOf(z));
         return callbackInfo;

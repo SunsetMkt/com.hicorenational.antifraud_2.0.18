@@ -14,8 +14,8 @@ import androidx.camera.core.impl.utils.MainThreadAsyncHandler;
 import androidx.core.util.Preconditions;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(24)
-/* loaded from: classes.dex */
 class CameraDeviceCompatApi24Impl extends CameraDeviceCompatApi23Impl {
     CameraDeviceCompatApi24Impl() {
     }

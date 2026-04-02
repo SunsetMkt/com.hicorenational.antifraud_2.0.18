@@ -1,11 +1,11 @@
 package androidx.constraintlayout.solver;
 
 import androidx.constraintlayout.solver.ArrayRow;
+import d.c.a.b.a.a;
 import java.util.Arrays;
 import java.util.Comparator;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PriorityGoalRow extends ArrayRow {
     private static final boolean DEBUG = false;
     static final int NOT_FOUND = -1;
@@ -69,7 +69,7 @@ public class PriorityGoalRow extends ArrayRow {
 
         @Override // java.lang.Comparable
         public int compareTo(Object obj) {
-            return this.variable.f594id - ((SolverVariable) obj).f594id;
+            return this.variable.id - ((SolverVariable) obj).id;
         }
 
         public void init(SolverVariable solverVariable) {
@@ -123,7 +123,7 @@ public class PriorityGoalRow extends ArrayRow {
             String str = "[ ";
             if (this.variable != null) {
                 for (int i2 = 0; i2 < 9; i2++) {
-                    str = str + this.variable.goalStrengthVector[i2] + AbstractC1191a.f2568g;
+                    str = str + this.variable.goalStrengthVector[i2] + a.f10074g;
                 }
             }
             return str + "] " + this.variable;
@@ -155,7 +155,7 @@ public class PriorityGoalRow extends ArrayRow {
         solverVariableArr3[i4] = solverVariable;
         this.numGoals = i4 + 1;
         int i5 = this.numGoals;
-        if (i5 > 1 && solverVariableArr3[i5 - 1].f594id > solverVariable.f594id) {
+        if (i5 > 1 && solverVariableArr3[i5 - 1].id > solverVariable.id) {
             int i6 = 0;
             while (true) {
                 i2 = this.numGoals;
@@ -168,7 +168,7 @@ public class PriorityGoalRow extends ArrayRow {
             Arrays.sort(this.sortArray, 0, i2, new Comparator<SolverVariable>() { // from class: androidx.constraintlayout.solver.PriorityGoalRow.1
                 @Override // java.util.Comparator
                 public int compare(SolverVariable solverVariable2, SolverVariable solverVariable3) {
-                    return solverVariable2.f594id - solverVariable3.f594id;
+                    return solverVariable2.id - solverVariable3.id;
                 }
             });
             for (int i7 = 0; i7 < this.numGoals; i7++) {
@@ -217,21 +217,22 @@ public class PriorityGoalRow extends ArrayRow {
         this.constantValue = 0.0f;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:15:0x002e  */
     @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public SolverVariable getPivotCandidate(LinearSystem linearSystem, boolean[] zArr) {
         int i2 = -1;
         for (int i3 = 0; i3 < this.numGoals; i3++) {
             SolverVariable solverVariable = this.arrayGoals[i3];
-            if (!zArr[solverVariable.f594id]) {
+            if (!zArr[solverVariable.id]) {
                 this.accessor.init(solverVariable);
                 if (i2 == -1) {
-                    if (!this.accessor.isNegative()) {
+                    if (this.accessor.isNegative()) {
+                        i2 = i3;
                     }
-                    i2 = i3;
-                } else {
-                    if (!this.accessor.isSmallerThan(this.arrayGoals[i2])) {
-                    }
-                    i2 = i3;
+                } else if (this.accessor.isSmallerThan(this.arrayGoals[i2])) {
                 }
             }
         }
@@ -251,7 +252,7 @@ public class PriorityGoalRow extends ArrayRow {
         String str = " goal -> (" + this.constantValue + ") : ";
         for (int i2 = 0; i2 < this.numGoals; i2++) {
             this.accessor.init(this.arrayGoals[i2]);
-            str = str + this.accessor + AbstractC1191a.f2568g;
+            str = str + this.accessor + a.f10074g;
         }
         return str;
     }

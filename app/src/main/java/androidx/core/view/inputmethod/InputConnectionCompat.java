@@ -13,7 +13,7 @@ import android.view.inputmethod.InputContentInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class InputConnectionCompat {
     private static final String COMMIT_CONTENT_ACTION = "androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT";
     private static final String COMMIT_CONTENT_CONTENT_URI_INTEROP_KEY = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_URI";
@@ -114,11 +114,11 @@ public final class InputConnectionCompat {
     /* JADX WARN: Type inference failed for: r0v3, types: [boolean, int] */
     /* JADX WARN: Type inference failed for: r0v5 */
     /* JADX WARN: Type inference failed for: r0v6 */
-    static boolean handlePerformPrivateCommand(@Nullable String str, @NonNull Bundle bundle, @NonNull OnCommitContentListener onCommitContentListener) {
+    static boolean handlePerformPrivateCommand(@Nullable String str, @NonNull Bundle bundle, @NonNull OnCommitContentListener onCommitContentListener) throws Throwable {
         boolean z;
         ResultReceiver resultReceiver;
-        ?? r0 = 0;
-        r0 = 0;
+        ?? OnCommitContent = 0;
+        OnCommitContent = 0;
         if (bundle == null) {
             return false;
         }
@@ -143,12 +143,12 @@ public final class InputConnectionCompat {
             int i2 = bundle.getInt(z ? COMMIT_CONTENT_FLAGS_INTEROP_KEY : COMMIT_CONTENT_FLAGS_KEY);
             Bundle bundle2 = (Bundle) bundle.getParcelable(z ? COMMIT_CONTENT_OPTS_INTEROP_KEY : COMMIT_CONTENT_OPTS_KEY);
             if (uri != null && clipDescription != null) {
-                r0 = onCommitContentListener.onCommitContent(new InputContentInfoCompat(uri, clipDescription, uri2), i2, bundle2);
+                OnCommitContent = onCommitContentListener.onCommitContent(new InputContentInfoCompat(uri, clipDescription, uri2), i2, bundle2);
             }
             if (resultReceiver != 0) {
-                resultReceiver.send(r0, null);
+                resultReceiver.send(OnCommitContent, null);
             }
-            return r0;
+            return OnCommitContent;
         } catch (Throwable th2) {
             th = th2;
             if (resultReceiver != 0) {

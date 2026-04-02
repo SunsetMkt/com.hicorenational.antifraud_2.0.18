@@ -5,7 +5,7 @@ import android.os.Looper;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JsAccessEntraceImpl extends BaseJsAccessEntrace {
     private Handler mHandler;
     private WebView mWebView;

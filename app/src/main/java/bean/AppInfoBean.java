@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppInfoBean implements Parcelable {
     public static final String API_TAG_VIRUS_DISCRIPTION = "(API-dscrp)";
     public static final String API_TAG_VIRUS_NAME = ";(API-name)";
@@ -89,8 +89,8 @@ public class AppInfoBean implements Parcelable {
         if (!this.virusDescription.contains(TENCENT_TAG_VIRUS_DISCRIPTION)) {
             return this.virusDescription;
         }
-        int indexOf = this.virusDescription.indexOf(TENCENT_TAG_VIRUS_DISCRIPTION);
-        return indexOf > 0 ? this.virusDescription.substring(0, indexOf) : this.virusDescription.substring(9).replace(TENCENT_TAG_VIRUS_DISCRIPTION, "");
+        int iIndexOf = this.virusDescription.indexOf(TENCENT_TAG_VIRUS_DISCRIPTION);
+        return iIndexOf > 0 ? this.virusDescription.substring(0, iIndexOf) : this.virusDescription.substring(9).replace(TENCENT_TAG_VIRUS_DISCRIPTION, "");
     }
 
     public String getDealVirusName() {
@@ -100,8 +100,8 @@ public class AppInfoBean implements Parcelable {
         if (!this.virusName.contains(TENCENT_TAG_VIRUS_NAME)) {
             return this.virusName;
         }
-        int indexOf = this.virusName.indexOf(TENCENT_TAG_VIRUS_NAME);
-        return indexOf > 0 ? this.virusName.substring(0, indexOf) : this.virusName.substring(9).replace(TENCENT_TAG_VIRUS_NAME, "");
+        int iIndexOf = this.virusName.indexOf(TENCENT_TAG_VIRUS_NAME);
+        return iIndexOf > 0 ? this.virusName.substring(0, iIndexOf) : this.virusName.substring(9).replace(TENCENT_TAG_VIRUS_NAME, "");
     }
 
     public long getFileSize() {

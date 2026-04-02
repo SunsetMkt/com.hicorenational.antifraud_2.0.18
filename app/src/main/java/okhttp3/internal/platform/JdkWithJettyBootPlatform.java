@@ -10,7 +10,7 @@ import javax.net.ssl.SSLSocket;
 import okhttp3.Protocol;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class JdkWithJettyBootPlatform extends Platform {
     private final Class<?> clientProviderClass;
     private final Method getMethod;

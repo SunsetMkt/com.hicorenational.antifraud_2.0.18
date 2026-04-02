@@ -3,7 +3,7 @@ package com.luck.picture.lib.tools;
 import android.content.Context;
 import android.media.SoundPool;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class VoiceUtils {
     private static VoiceUtils instance;
     private SoundPool soundPool;

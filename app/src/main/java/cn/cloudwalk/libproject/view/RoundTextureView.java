@@ -9,7 +9,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RoundTextureView extends TextureView {
     private static final String TAG = "CustomTextureView";
     private int radius;

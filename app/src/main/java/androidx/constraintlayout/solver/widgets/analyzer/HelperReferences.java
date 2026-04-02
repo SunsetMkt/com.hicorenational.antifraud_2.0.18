@@ -5,7 +5,7 @@ import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.analyzer.DependencyNode;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class HelperReferences extends WidgetRun {
     public HelperReferences(ConstraintWidget constraintWidget) {
         super(constraintWidget);
@@ -23,13 +23,13 @@ class HelperReferences extends WidgetRun {
             this.start.delegateToWidgetRun = true;
             Barrier barrier = (Barrier) constraintWidget;
             int barrierType = barrier.getBarrierType();
-            boolean allowsGoneWidget = barrier.allowsGoneWidget();
+            boolean zAllowsGoneWidget = barrier.allowsGoneWidget();
             int i2 = 0;
             if (barrierType == 0) {
                 this.start.type = DependencyNode.Type.LEFT;
                 while (i2 < barrier.mWidgetsCount) {
                     ConstraintWidget constraintWidget2 = barrier.mWidgets[i2];
-                    if (allowsGoneWidget || constraintWidget2.getVisibility() != 8) {
+                    if (zAllowsGoneWidget || constraintWidget2.getVisibility() != 8) {
                         DependencyNode dependencyNode = constraintWidget2.horizontalRun.start;
                         dependencyNode.dependencies.add(this.start);
                         this.start.targets.add(dependencyNode);
@@ -44,7 +44,7 @@ class HelperReferences extends WidgetRun {
                 this.start.type = DependencyNode.Type.RIGHT;
                 while (i2 < barrier.mWidgetsCount) {
                     ConstraintWidget constraintWidget3 = barrier.mWidgets[i2];
-                    if (allowsGoneWidget || constraintWidget3.getVisibility() != 8) {
+                    if (zAllowsGoneWidget || constraintWidget3.getVisibility() != 8) {
                         DependencyNode dependencyNode2 = constraintWidget3.horizontalRun.end;
                         dependencyNode2.dependencies.add(this.start);
                         this.start.targets.add(dependencyNode2);
@@ -59,7 +59,7 @@ class HelperReferences extends WidgetRun {
                 this.start.type = DependencyNode.Type.TOP;
                 while (i2 < barrier.mWidgetsCount) {
                     ConstraintWidget constraintWidget4 = barrier.mWidgets[i2];
-                    if (allowsGoneWidget || constraintWidget4.getVisibility() != 8) {
+                    if (zAllowsGoneWidget || constraintWidget4.getVisibility() != 8) {
                         DependencyNode dependencyNode3 = constraintWidget4.verticalRun.start;
                         dependencyNode3.dependencies.add(this.start);
                         this.start.targets.add(dependencyNode3);
@@ -76,7 +76,7 @@ class HelperReferences extends WidgetRun {
             this.start.type = DependencyNode.Type.BOTTOM;
             while (i2 < barrier.mWidgetsCount) {
                 ConstraintWidget constraintWidget5 = barrier.mWidgets[i2];
-                if (allowsGoneWidget || constraintWidget5.getVisibility() != 8) {
+                if (zAllowsGoneWidget || constraintWidget5.getVisibility() != 8) {
                     DependencyNode dependencyNode4 = constraintWidget5.verticalRun.end;
                     dependencyNode4.dependencies.add(this.start);
                     this.start.targets.add(dependencyNode4);

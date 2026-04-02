@@ -1,7 +1,7 @@
 package anet.channel.strategy.dispatch;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class DispatchEvent {
     public static final int DNSFAIL = 0;
     public static final int DNSSUCCESS = 1;

@@ -1,6 +1,8 @@
 package com.luck.picture.lib.tools;
 
 import android.text.TextUtils;
+import d.c.a.b.a.a;
+import i.f1;
 import java.net.URLEncoder;
 import java.util.Locale;
 import javax.crypto.Cipher;
@@ -8,10 +10,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DESUtils {
     private static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
     public static final String DES_KEY_STRING = "lmw#2020";
@@ -19,7 +19,7 @@ public class DESUtils {
     private static String byte2String(byte[] bArr) {
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; bArr != null && i2 < bArr.length; i2++) {
-            String hexString = Integer.toHexString(bArr[i2] & C5230f1.f20085c);
+            String hexString = Integer.toHexString(bArr[i2] & f1.f12066c);
             if (hexString.length() == 1) {
                 sb.append('0');
             }
@@ -32,16 +32,16 @@ public class DESUtils {
         if (str2 == null) {
             return null;
         }
-        String str3 = str2 + AbstractC1191a.f2606s1 + i2 + "x" + i3;
+        String str3 = str2 + a.s1 + i2 + "x" + i3;
         try {
-            SecretKey generateSecret = SecretKeyFactory.getInstance("DES").generateSecret(new DESKeySpec(str.getBytes()));
+            SecretKey secretKeyGenerateSecret = SecretKeyFactory.getInstance("DES").generateSecret(new DESKeySpec(str.getBytes()));
             Cipher cipher = Cipher.getInstance(ALGORITHM_DES);
-            cipher.init(1, generateSecret, new IvParameterSpec(DES_KEY_STRING.getBytes()));
-            String encode = URLEncoder.encode(byte2String(cipher.doFinal(str3.getBytes())), "UTF-8");
-            if (TextUtils.isEmpty(encode)) {
+            cipher.init(1, secretKeyGenerateSecret, new IvParameterSpec(DES_KEY_STRING.getBytes()));
+            String strEncode = URLEncoder.encode(byte2String(cipher.doFinal(str3.getBytes())), "UTF-8");
+            if (TextUtils.isEmpty(strEncode)) {
                 return null;
             }
-            return encode.length() > 30 ? encode.substring(encode.length() - 30) : encode;
+            return strEncode.length() > 30 ? strEncode.substring(strEncode.length() - 30) : strEncode;
         } catch (Exception e2) {
             e2.printStackTrace();
             return null;

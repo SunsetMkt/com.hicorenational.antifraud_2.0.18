@@ -3,7 +3,7 @@ package com.huawei.hms.common.util;
 import android.util.Base64;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Base64Utils {
     public static byte[] decode(String str) {
         byte[] bArr = new byte[0];
@@ -11,7 +11,7 @@ public final class Base64Utils {
             try {
                 return Base64.decode(str, 0);
             } catch (IllegalArgumentException e2) {
-                HMSLog.m7715e("Base64Utils", "decode failed : " + e2.getMessage());
+                HMSLog.e("Base64Utils", "decode failed : " + e2.getMessage());
             }
         }
         return bArr;
@@ -23,7 +23,7 @@ public final class Base64Utils {
             try {
                 return Base64.decode(str, 10);
             } catch (IllegalArgumentException e2) {
-                HMSLog.m7715e("Base64Utils", "decodeUrlSafe failed : " + e2.getMessage());
+                HMSLog.e("Base64Utils", "decodeUrlSafe failed : " + e2.getMessage());
             }
         }
         return bArr;
@@ -35,7 +35,7 @@ public final class Base64Utils {
             try {
                 return Base64.decode(str, 11);
             } catch (IllegalArgumentException e2) {
-                HMSLog.m7715e("Base64Utils", "decodeUrlSafeNoPadding failed : " + e2.getMessage());
+                HMSLog.e("Base64Utils", "decodeUrlSafeNoPadding failed : " + e2.getMessage());
             }
         }
         return bArr;

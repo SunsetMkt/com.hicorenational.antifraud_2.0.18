@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.SimpleTimeZone;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DateUtil {
     private static final String ALTERNATIVE_ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
@@ -15,11 +15,7 @@ public class DateUtil {
     private static volatile long amendTimeSkewed;
 
     public static synchronized String currentFixedSkewedTimeInRFC822Format() {
-        String formatRfc822Date;
-        synchronized (DateUtil.class) {
-            formatRfc822Date = formatRfc822Date(new Date(getFixedSkewedTimeMillis()));
-        }
-        return formatRfc822Date;
+        return formatRfc822Date(new Date(getFixedSkewedTimeMillis()));
     }
 
     public static String formatAlternativeIso8601Date(Date date) {
@@ -69,8 +65,6 @@ public class DateUtil {
     }
 
     public static synchronized void setCurrentServerTime(long j2) {
-        synchronized (DateUtil.class) {
-            amendTimeSkewed = j2 - System.currentTimeMillis();
-        }
+        amendTimeSkewed = j2 - System.currentTimeMillis();
     }
 }

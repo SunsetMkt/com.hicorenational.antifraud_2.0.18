@@ -1,12 +1,10 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BannerInfo extends BaseBean {
     private String createTime;
     private long extraID;
-
-    /* renamed from: id */
-    private long f21431id;
+    private long id;
     private String imgPath;
     private int isNeedVerified;
     private int isShow;
@@ -25,7 +23,7 @@ public class BannerInfo extends BaseBean {
     }
 
     public long getId() {
-        return this.f21431id;
+        return this.id;
     }
 
     public String getImgPath() {
@@ -69,7 +67,7 @@ public class BannerInfo extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.f21431id = j2;
+        this.id = j2;
     }
 
     public void setImgPath(String str) {

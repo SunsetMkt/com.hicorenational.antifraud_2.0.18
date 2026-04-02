@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ShareResultActivity extends Activity {
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {

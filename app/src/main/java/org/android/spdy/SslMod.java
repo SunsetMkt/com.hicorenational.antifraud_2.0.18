@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 enum SslMod {
     SLIGHT_SLL_NOT_ENCRYT(0),
     SLIGHT_SSL_0_RTT(1);

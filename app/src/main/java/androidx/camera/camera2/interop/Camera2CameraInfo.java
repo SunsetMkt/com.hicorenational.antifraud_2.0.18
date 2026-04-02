@@ -5,8 +5,8 @@ import androidx.camera.camera2.internal.Camera2CameraInfoImpl;
 import androidx.camera.core.CameraInfo;
 import androidx.core.util.Preconditions;
 
+/* JADX INFO: loaded from: classes.dex */
 @ExperimentalCamera2Interop
-/* loaded from: classes.dex */
 public final class Camera2CameraInfo {
     private Camera2CameraInfo() {
     }

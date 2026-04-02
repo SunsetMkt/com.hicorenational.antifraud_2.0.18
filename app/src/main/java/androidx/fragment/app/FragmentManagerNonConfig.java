@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelStore;
 import java.util.Collection;
 import java.util.Map;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class FragmentManagerNonConfig {
 
     @Nullable

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CopyObjectRequest extends OSSRequest {
     private String destinationBucketName;
     private String destinationKey;

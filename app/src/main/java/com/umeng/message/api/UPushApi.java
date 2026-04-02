@@ -3,7 +3,7 @@ package com.umeng.message.api;
 import com.umeng.message.UmengMessageService;
 import com.umeng.message.tag.TagManager;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface UPushApi {
     void addAlias(String str, String str2, UPushAliasCallback uPushAliasCallback);
 

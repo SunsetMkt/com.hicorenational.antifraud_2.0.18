@@ -7,22 +7,17 @@ import com.umeng.commonsdk.debug.UMRTLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SLog {
     private static boolean DEBUG = true;
-
-    /* renamed from: E */
-    private static final int f13815E = 0;
-
-    /* renamed from: I */
-    private static final int f13816I = 2;
+    private static final int E = 0;
+    private static final int I = 2;
     private static final String PRIVATE = "priviteSocial";
     private static final String TAG = "Social";
 
-    /* renamed from: AQ */
-    public static void m12715AQ(String str, String str2) {
+    public static void AQ(String str, String str2) {
         UMLog uMLog = UMConfigure.umDebugLog;
-        UMLog.m11550aq(TAG, 0, str, str2);
+        UMLog.aq(TAG, 0, str, str2);
     }
 
     public static void BUNDLE(Bundle bundle) {
@@ -31,21 +26,19 @@ public class SLog {
         }
     }
 
-    /* renamed from: E */
-    public static void m12716E(String str) {
+    public static void E(String str) {
         if (UMConfigure.umDebugLog != null) {
-            String[] split = str.split("\n");
+            String[] strArrSplit = str.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
-            UMLog.mutlInfo(TAG, 0, split);
+            UMLog.mutlInfo(TAG, 0, strArrSplit);
         }
     }
 
-    /* renamed from: I */
-    public static void m12717I(String str) {
+    public static void I(String str) {
         if (UMConfigure.umDebugLog != null) {
-            String[] split = str.split("\n");
+            String[] strArrSplit = str.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
-            UMLog.mutlInfo(TAG, 2, split);
+            UMLog.mutlInfo(TAG, 2, strArrSplit);
         }
     }
 
@@ -61,21 +54,19 @@ public class SLog {
         }
     }
 
-    /* renamed from: TE */
-    public static void m12718TE(String str, String str2) {
+    public static void TE(String str, String str2) {
         if (UMConfigure.umDebugLog != null) {
-            String[] split = str2.split("\n");
+            String[] strArrSplit = str2.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
-            UMLog.mutlInfo("Social_" + str, 0, split);
+            UMLog.mutlInfo("Social_" + str, 0, strArrSplit);
         }
     }
 
-    /* renamed from: TI */
-    public static void m12719TI(String str, String str2) {
+    public static void TI(String str, String str2) {
         if (UMConfigure.umDebugLog != null) {
-            String[] split = str2.split("\n");
+            String[] strArrSplit = str2.split("\n");
             UMLog uMLog = UMConfigure.umDebugLog;
-            UMLog.mutlInfo("Social_" + str, 2, split);
+            UMLog.mutlInfo("Social_" + str, 2, strArrSplit);
         }
     }
 
@@ -90,8 +81,8 @@ public class SLog {
         if (UMConfigure.umDebugLog != null) {
             StackTraceElement[] stackTrace = th.getStackTrace();
             String[] strArr = new String[stackTrace.length + 2];
-            strArr[0] = "错误信息如下:";
-            strArr[1] = "错误类型:" + th.getMessage();
+            strArr[0] = "\u9519\u8bef\u4fe1\u606f\u5982\u4e0b:";
+            strArr[1] = "\u9519\u8bef\u7c7b\u578b:" + th.getMessage();
             int i2 = 2;
             for (StackTraceElement stackTraceElement : stackTrace) {
                 strArr[i2] = "        at\t " + stackTraceElement.toString();
@@ -121,7 +112,7 @@ public class SLog {
     }
 
     public static void runtimePrint(String str) {
-        UMRTLog.m11555e(PRIVATE, str);
+        UMRTLog.e(PRIVATE, str);
     }
 
     public static void selfLog(String str) {
@@ -138,7 +129,7 @@ public class SLog {
         StackTraceElement[] stackTrace = th.getStackTrace();
         String[] strArr = new String[stackTrace.length + 2];
         strArr[0] = str;
-        strArr[1] = "错误类型:" + th.getMessage();
+        strArr[1] = "\u9519\u8bef\u7c7b\u578b:" + th.getMessage();
         int i2 = 2;
         for (StackTraceElement stackTraceElement : stackTrace) {
             strArr[i2] = "        at\t " + stackTraceElement.toString();

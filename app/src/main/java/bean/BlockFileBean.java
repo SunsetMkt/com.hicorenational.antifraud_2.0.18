@@ -1,6 +1,6 @@
 package bean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BlockFileBean extends OssFileInfo {
     private String fileID;
     private String fileMD5;

@@ -2,9 +2,9 @@ package anet.channel.statist;
 
 import anet.channel.GlobalAppRuntimeInfo;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "strategy_stat")
-/* loaded from: classes.dex */
 public class StrategyStatObject extends StatObject {
 
     @Dimension

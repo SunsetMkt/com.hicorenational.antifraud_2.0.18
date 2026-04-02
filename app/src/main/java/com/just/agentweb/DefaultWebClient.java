@@ -29,7 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultWebClient extends MiddlewareWebClientBase {
     public static final String ALIPAYS_SCHEME = "alipays://";
     public static final int ASK_USER_OPEN_OTHER_PAGE = 250;
@@ -126,7 +126,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             z = false;
         }
         HAS_ALIPAY_LIB = z;
-        LogUtils.m8083i(TAG, "HAS_ALIPAY_LIB:" + HAS_ALIPAY_LIB);
+        LogUtils.i(TAG, "HAS_ALIPAY_LIB:" + HAS_ALIPAY_LIB);
     }
 
     DefaultWebClient(Builder builder) {
@@ -158,7 +158,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
     }
 
     private boolean deepLink(String str) {
-        ResolveInfo lookupResolveInfo;
+        ResolveInfo resolveInfoLookupResolveInfo;
         int i2 = this.mUrlHandleWays;
         if (i2 != 250) {
             if (i2 != 1001) {
@@ -168,11 +168,11 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             return true;
         }
         Activity activity = this.mWeakReference.get();
-        if (activity == null || (lookupResolveInfo = lookupResolveInfo(str)) == null) {
+        if (activity == null || (resolveInfoLookupResolveInfo = lookupResolveInfo(str)) == null) {
             return false;
         }
-        ActivityInfo activityInfo = lookupResolveInfo.activityInfo;
-        LogUtils.m8081e(TAG, "resolve package:" + lookupResolveInfo.activityInfo.packageName + " app package:" + activity.getPackageName());
+        ActivityInfo activityInfo = resolveInfoLookupResolveInfo.activityInfo;
+        LogUtils.e(TAG, "resolve package:" + resolveInfoLookupResolveInfo.activityInfo.packageName + " app package:" + activity.getPackageName());
         if (activityInfo != null && !TextUtils.isEmpty(activityInfo.packageName) && activityInfo.packageName.equals(activity.getPackageName())) {
             return lookup(str);
         }
@@ -247,7 +247,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             if (this.mPayTask == null) {
                 this.mPayTask = Class.forName("com.alipay.sdk.app.PayTask").getConstructor(Activity.class).newInstance(activity);
             }
-            boolean payInterceptorWithUrl = ((PayTask) this.mPayTask).payInterceptorWithUrl(str, true, new H5PayCallback() { // from class: com.just.agentweb.DefaultWebClient.1
+            boolean zPayInterceptorWithUrl = ((PayTask) this.mPayTask).payInterceptorWithUrl(str, true, new H5PayCallback() { // from class: com.just.agentweb.DefaultWebClient.1
                 public void onPayResult(H5PayResultModel h5PayResultModel) {
                     final String returnUrl = h5PayResultModel.getReturnUrl();
                     if (TextUtils.isEmpty(returnUrl)) {
@@ -261,10 +261,10 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
                     });
                 }
             });
-            if (payInterceptorWithUrl) {
-                LogUtils.m8083i(TAG, "alipay-isIntercepted:" + payInterceptorWithUrl + "  url:" + str);
+            if (zPayInterceptorWithUrl) {
+                LogUtils.i(TAG, "alipay-isIntercepted:" + zPayInterceptorWithUrl + "  url:" + str);
             }
-            return payInterceptorWithUrl;
+            return zPayInterceptorWithUrl;
         } catch (Throwable th) {
             if (AgentWebConfig.DEBUG) {
                 th.printStackTrace();
@@ -281,11 +281,11 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
                 return true;
             }
             PackageManager packageManager = activity.getPackageManager();
-            Intent parseUri = Intent.parseUri(str, 1);
-            if (packageManager.resolveActivity(parseUri, 65536) == null) {
+            Intent uri = Intent.parseUri(str, 1);
+            if (packageManager.resolveActivity(uri, 65536) == null) {
                 return false;
             }
-            activity.startActivity(parseUri);
+            activity.startActivity(uri);
             return true;
         } catch (Throwable th) {
             if (!LogUtils.isDebug()) {
@@ -311,78 +311,36 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:8:0x0035, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:9:0x0035, code lost:
     
         if (r1 != null) goto L21;
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private void onMainFrameError(android.webkit.WebView r10, int r11, java.lang.String r12, java.lang.String r13) {
-        /*
-            r9 = this;
-            java.util.Set<java.lang.String> r0 = r9.mErrorUrlsSet
-            r0.add(r13)
-            android.webkit.WebViewClient r0 = r9.mWebViewClient
-            if (r0 == 0) goto L5e
-            boolean r1 = r9.webClientHelper
-            if (r1 == 0) goto L5e
-            java.lang.reflect.Method r1 = r9.onMainFrameErrorMethod
-            r2 = 4
-            r3 = 3
-            r4 = 2
-            r5 = 1
-            r6 = 0
-            r7 = 5
-            if (r1 != 0) goto L37
-            java.lang.Class[] r1 = new java.lang.Class[r7]
-            java.lang.Class<com.just.agentweb.AbsAgentWebUIController> r8 = com.just.agentweb.AbsAgentWebUIController.class
-            r1[r6] = r8
-            java.lang.Class<android.webkit.WebView> r8 = android.webkit.WebView.class
-            r1[r5] = r8
-            java.lang.Class r8 = java.lang.Integer.TYPE
-            r1[r4] = r8
-            java.lang.Class<java.lang.String> r8 = java.lang.String.class
-            r1[r3] = r8
-            java.lang.Class<java.lang.String> r8 = java.lang.String.class
-            r1[r2] = r8
-            java.lang.String r8 = "onMainFrameError"
-            java.lang.reflect.Method r1 = com.just.agentweb.AgentWebUtils.isExistMethod(r0, r8, r1)
-            r9.onMainFrameErrorMethod = r1
-            if (r1 == 0) goto L5e
-        L37:
-            android.webkit.WebViewClient r0 = r9.mWebViewClient     // Catch: java.lang.Throwable -> L53
-            java.lang.Object[] r7 = new java.lang.Object[r7]     // Catch: java.lang.Throwable -> L53
-            java.lang.ref.WeakReference<com.just.agentweb.AbsAgentWebUIController> r8 = r9.mAgentWebUIController     // Catch: java.lang.Throwable -> L53
-            java.lang.Object r8 = r8.get()     // Catch: java.lang.Throwable -> L53
-            r7[r6] = r8     // Catch: java.lang.Throwable -> L53
-            r7[r5] = r10     // Catch: java.lang.Throwable -> L53
-            java.lang.Integer r10 = java.lang.Integer.valueOf(r11)     // Catch: java.lang.Throwable -> L53
-            r7[r4] = r10     // Catch: java.lang.Throwable -> L53
-            r7[r3] = r12     // Catch: java.lang.Throwable -> L53
-            r7[r2] = r13     // Catch: java.lang.Throwable -> L53
-            r1.invoke(r0, r7)     // Catch: java.lang.Throwable -> L53
-            goto L5d
-        L53:
-            r10 = move-exception
-            boolean r11 = com.just.agentweb.LogUtils.isDebug()
-            if (r11 == 0) goto L5d
-            r10.printStackTrace()
-        L5d:
-            return
-        L5e:
-            java.lang.ref.WeakReference<com.just.agentweb.AbsAgentWebUIController> r0 = r9.mAgentWebUIController
-            java.lang.Object r0 = r0.get()
-            if (r0 == 0) goto L71
-            java.lang.ref.WeakReference<com.just.agentweb.AbsAgentWebUIController> r0 = r9.mAgentWebUIController
-            java.lang.Object r0 = r0.get()
-            com.just.agentweb.AbsAgentWebUIController r0 = (com.just.agentweb.AbsAgentWebUIController) r0
-            r0.onMainFrameError(r10, r11, r12, r13)
-        L71:
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.just.agentweb.DefaultWebClient.onMainFrameError(android.webkit.WebView, int, java.lang.String, java.lang.String):void");
+    private void onMainFrameError(WebView webView, int i2, String str, String str2) {
+        this.mErrorUrlsSet.add(str2);
+        android.webkit.WebViewClient webViewClient = this.mWebViewClient;
+        if (webViewClient != null && this.webClientHelper) {
+            Method methodIsExistMethod = this.onMainFrameErrorMethod;
+            if (methodIsExistMethod == null) {
+                methodIsExistMethod = AgentWebUtils.isExistMethod(webViewClient, "onMainFrameError", AbsAgentWebUIController.class, WebView.class, Integer.TYPE, String.class, String.class);
+                this.onMainFrameErrorMethod = methodIsExistMethod;
+            }
+            try {
+                methodIsExistMethod.invoke(this.mWebViewClient, this.mAgentWebUIController.get(), webView, Integer.valueOf(i2), str, str2);
+                return;
+            } catch (Throwable th) {
+                if (LogUtils.isDebug()) {
+                    th.printStackTrace();
+                    return;
+                }
+                return;
+            }
+        }
+        if (this.mAgentWebUIController.get() != null) {
+            this.mAgentWebUIController.get().onMainFrameError(webView, i2, str, str2);
+        }
     }
 
     private int queryActiviesNumber(String str) {
@@ -390,11 +348,11 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             if (this.mWeakReference.get() == null) {
                 return 0;
             }
-            List<ResolveInfo> queryIntentActivities = this.mWeakReference.get().getPackageManager().queryIntentActivities(Intent.parseUri(str, 1), 65536);
-            if (queryIntentActivities == null) {
+            List<ResolveInfo> listQueryIntentActivities = this.mWeakReference.get().getPackageManager().queryIntentActivities(Intent.parseUri(str, 1), 65536);
+            if (listQueryIntentActivities == null) {
                 return 0;
             }
-            return queryIntentActivities.size();
+            return listQueryIntentActivities.size();
         } catch (URISyntaxException e2) {
             if (LogUtils.isDebug()) {
                 e2.printStackTrace();
@@ -445,7 +403,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
 
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
     public void onReceivedError(WebView webView, int i2, String str, String str2) {
-        LogUtils.m8083i(TAG, "onReceivedError：" + str + "  CODE:" + i2);
+        LogUtils.i(TAG, "onReceivedError\uff1a" + str + "  CODE:" + i2);
         onMainFrameError(webView, i2, str, str2);
     }
 
@@ -461,7 +419,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
 
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
     public void onScaleChanged(WebView webView, float f2, float f3) {
-        LogUtils.m8083i(TAG, "onScaleChanged:" + f2 + "   n:" + f3);
+        LogUtils.i(TAG, "onScaleChanged:" + f2 + "   n:" + f3);
         if (f3 - f2 > 7.0f) {
             webView.setInitialScale((int) ((f2 / f3) * 100.0f));
         }
@@ -480,38 +438,38 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
     @RequiresApi(api = 21)
     public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-        String uri = webResourceRequest.getUrl().toString();
-        if (uri.startsWith(HTTP_SCHEME) || uri.startsWith(HTTPS_SCHEME)) {
-            return this.webClientHelper && HAS_ALIPAY_LIB && isAlipay(webView, uri);
+        String string = webResourceRequest.getUrl().toString();
+        if (string.startsWith(HTTP_SCHEME) || string.startsWith(HTTPS_SCHEME)) {
+            return this.webClientHelper && HAS_ALIPAY_LIB && isAlipay(webView, string);
         }
         if (!this.webClientHelper) {
             return super.shouldOverrideUrlLoading(webView, webResourceRequest);
         }
-        if (handleCommonLink(uri)) {
+        if (handleCommonLink(string)) {
             return true;
         }
-        if (uri.startsWith(INTENT_SCHEME)) {
-            handleIntentUrl(uri);
-            LogUtils.m8083i(TAG, "intent url ");
+        if (string.startsWith(INTENT_SCHEME)) {
+            handleIntentUrl(string);
+            LogUtils.i(TAG, "intent url ");
             return true;
         }
-        if (uri.startsWith(WEBCHAT_PAY_SCHEME)) {
-            LogUtils.m8083i(TAG, "lookup wechat to pay ~~");
-            startActivity(uri);
+        if (string.startsWith(WEBCHAT_PAY_SCHEME)) {
+            LogUtils.i(TAG, "lookup wechat to pay ~~");
+            startActivity(string);
             return true;
         }
-        if (uri.startsWith(ALIPAYS_SCHEME) && lookup(uri)) {
-            LogUtils.m8083i(TAG, "alipays url lookup alipay ~~ ");
+        if (string.startsWith(ALIPAYS_SCHEME) && lookup(string)) {
+            LogUtils.i(TAG, "alipays url lookup alipay ~~ ");
             return true;
         }
-        if (queryActiviesNumber(uri) > 0 && deepLink(uri)) {
-            LogUtils.m8083i(TAG, "intercept url:" + uri);
+        if (queryActiviesNumber(string) > 0 && deepLink(string)) {
+            LogUtils.i(TAG, "intercept url:" + string);
             return true;
         }
         if (!this.mIsInterceptUnkownUrl) {
             return super.shouldOverrideUrlLoading(webView, webResourceRequest);
         }
-        LogUtils.m8083i(TAG, "intercept UnkownUrl :" + webResourceRequest.getUrl());
+        LogUtils.i(TAG, "intercept UnkownUrl :" + webResourceRequest.getUrl());
         return true;
     }
 
@@ -527,7 +485,7 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
         if (webResourceRequest.isForMainFrame()) {
             onMainFrameError(webView, webResourceError.getErrorCode(), webResourceError.getDescription().toString(), webResourceRequest.getUrl().toString());
         }
-        LogUtils.m8083i(TAG, "onReceivedError:" + ((Object) webResourceError.getDescription()) + " code:" + webResourceError.getErrorCode());
+        LogUtils.i(TAG, "onReceivedError:" + ((Object) webResourceError.getDescription()) + " code:" + webResourceError.getErrorCode());
     }
 
     @Override // com.just.agentweb.WebViewClientDelegate, android.webkit.WebViewClient
@@ -553,11 +511,11 @@ public class DefaultWebClient extends MiddlewareWebClientBase {
             return true;
         }
         if (queryActiviesNumber(str) > 0 && deepLink(str)) {
-            LogUtils.m8083i(TAG, "intercept OtherAppScheme");
+            LogUtils.i(TAG, "intercept OtherAppScheme");
             return true;
         }
         if (this.mIsInterceptUnkownUrl) {
-            LogUtils.m8083i(TAG, "intercept InterceptUnkownScheme : " + str);
+            LogUtils.i(TAG, "intercept InterceptUnkownScheme : " + str);
             return true;
         }
         return super.shouldOverrideUrlLoading(webView, str);

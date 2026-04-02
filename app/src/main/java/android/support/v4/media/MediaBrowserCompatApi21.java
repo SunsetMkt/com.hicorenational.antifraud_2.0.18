@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class MediaBrowserCompatApi21 {
     static final String NULL_MEDIA_ITEM_ID = "android.support.v4.media.MediaBrowserCompat.NULL_MEDIA_ITEM";
 

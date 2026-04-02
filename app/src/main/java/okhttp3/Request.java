@@ -11,7 +11,7 @@ import okhttp3.Headers;
 import okhttp3.internal.Util;
 import okhttp3.internal.http.HttpMethod;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Request {
 
     @Nullable
@@ -48,8 +48,8 @@ public final class Request {
         }
 
         public Builder cacheControl(CacheControl cacheControl) {
-            String cacheControl2 = cacheControl.toString();
-            return cacheControl2.isEmpty() ? removeHeader("Cache-Control") : header("Cache-Control", cacheControl2);
+            String string = cacheControl.toString();
+            return string.isEmpty() ? removeHeader("Cache-Control") : header("Cache-Control", string);
         }
 
         public Builder delete(@Nullable RequestBody requestBody) {
@@ -193,9 +193,9 @@ public final class Request {
         if (cacheControl != null) {
             return cacheControl;
         }
-        CacheControl parse = CacheControl.parse(this.headers);
-        this.cacheControl = parse;
-        return parse;
+        CacheControl cacheControl2 = CacheControl.parse(this.headers);
+        this.cacheControl = cacheControl2;
+        return cacheControl2;
     }
 
     @Nullable

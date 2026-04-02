@@ -23,7 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SinaShareContent extends SimpleShareContent {
     private boolean isSupport;
 
@@ -58,10 +58,10 @@ public class SinaShareContent extends SimpleShareContent {
     }
 
     private ImageObject getImageObjWithBitmap() {
-        Bitmap asBitmap;
+        Bitmap bitmapAsBitmap;
         ImageObject imageObject = new ImageObject();
-        if (canFileValid(getImage()) && (asBitmap = getImage().asBitmap()) != null) {
-            imageObject.setImageData(asBitmap);
+        if (canFileValid(getImage()) && (bitmapAsBitmap = getImage().asBitmap()) != null) {
+            imageObject.setImageData(bitmapAsBitmap);
         }
         return imageObject;
     }
@@ -74,7 +74,7 @@ public class SinaShareContent extends SimpleShareContent {
         if (getMusic().getThumbImage() != null) {
             webpageObject.thumbData = objectSetThumb(getMusic());
         } else {
-            SLog.m12716E(UmengText.SINA.SINA_THUMB_ERROR);
+            SLog.E(UmengText.SINA.SINA_THUMB_ERROR);
         }
         webpageObject.actionUrl = getMusic().getmTargetUrl();
         if (!TextUtils.isEmpty(getText())) {
@@ -84,14 +84,14 @@ public class SinaShareContent extends SimpleShareContent {
     }
 
     private MultiImageObject getMutiImageObject() {
-        File asFileImage;
+        File fileAsFileImage;
         MultiImageObject multiImageObject = new MultiImageObject();
         UMImage[] uMImageArr = getmImages();
         ArrayList<Uri> arrayList = new ArrayList<>();
         for (int i2 = 0; i2 < uMImageArr.length; i2++) {
-            if (uMImageArr[i2] != null && (asFileImage = uMImageArr[i2].asFileImage()) != null) {
-                SLog.m12716E(i2 + Constants.COLON_SEPARATOR + Uri.fromFile(asFileImage));
-                arrayList.add(Uri.fromFile(asFileImage));
+            if (uMImageArr[i2] != null && (fileAsFileImage = uMImageArr[i2].asFileImage()) != null) {
+                SLog.E(i2 + Constants.COLON_SEPARATOR + Uri.fromFile(fileAsFileImage));
+                arrayList.add(Uri.fromFile(fileAsFileImage));
             }
         }
         multiImageObject.imageList = arrayList;
@@ -99,14 +99,14 @@ public class SinaShareContent extends SimpleShareContent {
     }
 
     private MultiImageObject getMutiImageObjectWithFileProvider(Context context, String str) {
-        File asFileImage;
+        File fileAsFileImage;
         MultiImageObject multiImageObject = new MultiImageObject();
         UMImage[] uMImageArr = getmImages();
         ArrayList<Uri> arrayList = new ArrayList<>();
         for (int i2 = 0; i2 < uMImageArr.length; i2++) {
-            if (uMImageArr[i2] != null && (asFileImage = uMImageArr[i2].asFileImage()) != null) {
-                SLog.m12716E(i2 + Constants.COLON_SEPARATOR + Uri.fromFile(asFileImage));
-                Uri fileUri = getFileUri(context, asFileImage, str);
+            if (uMImageArr[i2] != null && (fileAsFileImage = uMImageArr[i2].asFileImage()) != null) {
+                SLog.E(i2 + Constants.COLON_SEPARATOR + Uri.fromFile(fileAsFileImage));
+                Uri fileUri = getFileUri(context, fileAsFileImage, str);
                 if (fileUri != null) {
                     arrayList.add(fileUri);
                 }
@@ -125,7 +125,7 @@ public class SinaShareContent extends SimpleShareContent {
     private TextObject getTextObjMul() {
         TextObject textObject = new TextObject();
         textObject.text = "default text";
-        SLog.m12716E(UmengText.SINA.SINA_MUL_IMAGE);
+        SLog.E(UmengText.SINA.SINA_MUL_IMAGE);
         return textObject;
     }
 
@@ -137,7 +137,7 @@ public class SinaShareContent extends SimpleShareContent {
         if (getVideo().getThumbImage() != null) {
             webpageObject.thumbData = objectSetThumb(getVideo());
         } else {
-            SLog.m12716E(UmengText.SINA.SINA_THUMB_ERROR);
+            SLog.E(UmengText.SINA.SINA_THUMB_ERROR);
         }
         webpageObject.actionUrl = getVideo().toUrl();
         if (!TextUtils.isEmpty(getVideo().getDescription())) {
@@ -150,7 +150,7 @@ public class SinaShareContent extends SimpleShareContent {
     private WebpageObject getWebpageObj() {
         LinkcardRequest linkcardRequest = new LinkcardRequest(ContextUtil.getContext());
         linkcardRequest.setMedia(getUmWeb());
-        LinkCardResponse convertLinkCard = RestAPI.convertLinkCard(linkcardRequest);
+        LinkCardResponse linkCardResponseConvertLinkCard = RestAPI.convertLinkCard(linkcardRequest);
         WebpageObject webpageObject = new WebpageObject();
         webpageObject.identify = UUID.randomUUID().toString();
         webpageObject.title = objectSetTitle(getUmWeb());
@@ -158,12 +158,12 @@ public class SinaShareContent extends SimpleShareContent {
         if (getUmWeb().getThumbImage() != null) {
             webpageObject.thumbData = objectSetThumb(getUmWeb());
         } else {
-            SLog.m12716E(UmengText.SINA.SINA_THUMB_ERROR);
+            SLog.E(UmengText.SINA.SINA_THUMB_ERROR);
         }
-        if (convertLinkCard == null || TextUtils.isEmpty(convertLinkCard.url)) {
+        if (linkCardResponseConvertLinkCard == null || TextUtils.isEmpty(linkCardResponseConvertLinkCard.url)) {
             webpageObject.actionUrl = getUmWeb().toUrl();
         } else {
-            webpageObject.actionUrl = convertLinkCard.url;
+            webpageObject.actionUrl = linkCardResponseConvertLinkCard.url;
         }
         webpageObject.defaultText = getText();
         return webpageObject;

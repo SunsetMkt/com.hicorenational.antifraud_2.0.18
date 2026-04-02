@@ -6,15 +6,17 @@ import com.huawei.libcore.io.ExternalStorageFile;
 import com.huawei.libcore.io.ExternalStorageFileInputStream;
 import com.huawei.libcore.io.ExternalStorageFileOutputStream;
 import com.huawei.libcore.io.ExternalStorageRandomAccessFile;
-import com.umeng.analytics.pro.C3393cw;
+import com.umeng.analytics.pro.cw;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CreateFileUtil {
     private static final String EXTERNAL_FILE_NAME = "com.huawei.libcore.io.ExternalStorageFile";
     private static final String EXTERNAL_INPUTSTREAM_NAME = "com.huawei.libcore.io.ExternalStorageFileInputStream";
@@ -31,7 +33,7 @@ public class CreateFileUtil {
             char[] cArr2 = HEX_DIGITS;
             cArr[i2] = cArr2[(b2 >>> 4) & 15];
             i2 = i3 + 1;
-            cArr[i3] = cArr2[b2 & C3393cw.f11873m];
+            cArr[i3] = cArr2[b2 & cw.f7205m];
         }
         return new String(cArr);
     }
@@ -40,7 +42,7 @@ public class CreateFileUtil {
         if (file == null || !file.exists() || file.delete()) {
             return;
         }
-        Logger.m6803w(TAG, "deleteSecure exception");
+        Logger.w(TAG, "deleteSecure exception");
     }
 
     public static String getCacheDirPath(Context context) {
@@ -51,141 +53,135 @@ public class CreateFileUtil {
         try {
             return newFile(str).getCanonicalPath();
         } catch (IOException e2) {
-            Logger.m6804w(TAG, "the canonicalPath has IOException", e2);
+            Logger.w(TAG, "the canonicalPath has IOException", e2);
             return str;
         } catch (SecurityException e3) {
-            Logger.m6804w(TAG, "the canonicalPath has securityException", e3);
+            Logger.w(TAG, "the canonicalPath has securityException", e3);
             return str;
         } catch (Exception e4) {
-            Logger.m6804w(TAG, "the canonicalPath has other Exception", e4);
+            Logger.w(TAG, "the canonicalPath has other Exception", e4);
             return str;
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:15:0x002e, code lost:
-    
-        if (r10 != null) goto L61;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:40:0x0076, code lost:
-    
-        if (r10 == null) goto L55;
-     */
     /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Removed duplicated region for block: B:45:0x007c A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:61:0x0030 A[EXC_TOP_SPLITTER, PHI: r2 r10
+  0x0030: PHI (r2v6 java.lang.String) = 
+  (r2v0 java.lang.String)
+  (r2v0 java.lang.String)
+  (r2v0 java.lang.String)
+  (r2v0 java.lang.String)
+  (r2v0 java.lang.String)
+  (r2v13 java.lang.String)
+ binds: [B:53:0x0076, B:34:0x0050, B:39:0x005a, B:44:0x0064, B:49:0x006e, B:12:0x002e] A[DONT_GENERATE, DONT_INLINE]
+  0x0030: PHI (r10v13 java.io.FileInputStream) = 
+  (r10v8 java.io.FileInputStream)
+  (r10v9 java.io.FileInputStream)
+  (r10v10 java.io.FileInputStream)
+  (r10v11 java.io.FileInputStream)
+  (r10v12 java.io.FileInputStream)
+  (r10v14 java.io.FileInputStream)
+ binds: [B:53:0x0076, B:34:0x0050, B:39:0x005a, B:44:0x0064, B:49:0x006e, B:12:0x002e] A[DONT_GENERATE, DONT_INLINE], SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:64:0x007c A[EXC_TOP_SPLITTER, SYNTHETIC] */
     /* JADX WARN: Type inference failed for: r10v0, types: [java.lang.String] */
     /* JADX WARN: Type inference failed for: r10v1 */
     /* JADX WARN: Type inference failed for: r10v7, types: [java.io.FileInputStream] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static java.lang.String getFileHashData(java.lang.String r10, java.lang.String r11) {
-        /*
-            java.lang.String r0 = "Close FileInputStream failed!"
-            java.lang.String r1 = "CreateFileUtil"
-            r2 = 0
-            java.security.MessageDigest r11 = java.security.MessageDigest.getInstance(r11)     // Catch: java.lang.Throwable -> L44 java.lang.IndexOutOfBoundsException -> L47 java.lang.IllegalArgumentException -> L51 java.io.IOException -> L5b java.io.FileNotFoundException -> L65 java.security.NoSuchAlgorithmException -> L6f
-            java.io.FileInputStream r10 = newSafeFileInputStream(r10)     // Catch: java.lang.Throwable -> L44 java.lang.IndexOutOfBoundsException -> L47 java.lang.IllegalArgumentException -> L51 java.io.IOException -> L5b java.io.FileNotFoundException -> L65 java.security.NoSuchAlgorithmException -> L6f
-            r3 = 1024(0x400, float:1.435E-42)
-            byte[] r3 = new byte[r3]     // Catch: java.lang.Throwable -> L38 java.lang.IndexOutOfBoundsException -> L3a java.lang.IllegalArgumentException -> L3c java.io.IOException -> L3e java.io.FileNotFoundException -> L40 java.security.NoSuchAlgorithmException -> L42
-            r4 = 0
-            r6 = r4
-        L14:
-            int r8 = r10.read(r3)     // Catch: java.lang.Throwable -> L38 java.lang.IndexOutOfBoundsException -> L3a java.lang.IllegalArgumentException -> L3c java.io.IOException -> L3e java.io.FileNotFoundException -> L40 java.security.NoSuchAlgorithmException -> L42
-            r9 = -1
-            if (r8 == r9) goto L22
-            r9 = 0
-            r11.update(r3, r9, r8)     // Catch: java.lang.Throwable -> L38 java.lang.IndexOutOfBoundsException -> L3a java.lang.IllegalArgumentException -> L3c java.io.IOException -> L3e java.io.FileNotFoundException -> L40 java.security.NoSuchAlgorithmException -> L42
-            long r8 = (long) r8     // Catch: java.lang.Throwable -> L38 java.lang.IndexOutOfBoundsException -> L3a java.lang.IllegalArgumentException -> L3c java.io.IOException -> L3e java.io.FileNotFoundException -> L40 java.security.NoSuchAlgorithmException -> L42
-            long r6 = r6 + r8
-            goto L14
-        L22:
-            int r3 = (r6 > r4 ? 1 : (r6 == r4 ? 0 : -1))
-            if (r3 <= 0) goto L2e
-            byte[] r11 = r11.digest()     // Catch: java.lang.Throwable -> L38 java.lang.IndexOutOfBoundsException -> L3a java.lang.IllegalArgumentException -> L3c java.io.IOException -> L3e java.io.FileNotFoundException -> L40 java.security.NoSuchAlgorithmException -> L42
-            java.lang.String r2 = byteArrayToHex(r11)     // Catch: java.lang.Throwable -> L38 java.lang.IndexOutOfBoundsException -> L3a java.lang.IllegalArgumentException -> L3c java.io.IOException -> L3e java.io.FileNotFoundException -> L40 java.security.NoSuchAlgorithmException -> L42
-        L2e:
-            if (r10 == 0) goto L79
-        L30:
-            r10.close()     // Catch: java.io.IOException -> L34
-            goto L79
-        L34:
-            com.huawei.hms.framework.common.Logger.m6796e(r1, r0)
-            goto L79
-        L38:
-            r11 = move-exception
-            goto L7a
-        L3a:
-            r11 = move-exception
-            goto L49
-        L3c:
-            r11 = move-exception
-            goto L53
-        L3e:
-            r11 = move-exception
-            goto L5d
-        L40:
-            r11 = move-exception
-            goto L67
-        L42:
-            r11 = move-exception
-            goto L71
-        L44:
-            r11 = move-exception
-            r10 = r2
-            goto L7a
-        L47:
-            r11 = move-exception
-            r10 = r2
-        L49:
-            java.lang.String r3 = "getFileHashData IndexOutOfBoundsException"
-            com.huawei.hms.framework.common.Logger.m6797e(r1, r3, r11)     // Catch: java.lang.Throwable -> L38
-            if (r10 == 0) goto L79
-            goto L30
-        L51:
-            r11 = move-exception
-            r10 = r2
-        L53:
-            java.lang.String r3 = "getFileHashData IllegalArgumentException"
-            com.huawei.hms.framework.common.Logger.m6797e(r1, r3, r11)     // Catch: java.lang.Throwable -> L38
-            if (r10 == 0) goto L79
-            goto L30
-        L5b:
-            r11 = move-exception
-            r10 = r2
-        L5d:
-            java.lang.String r3 = "getFileHashData IOException"
-            com.huawei.hms.framework.common.Logger.m6797e(r1, r3, r11)     // Catch: java.lang.Throwable -> L38
-            if (r10 == 0) goto L79
-            goto L30
-        L65:
-            r11 = move-exception
-            r10 = r2
-        L67:
-            java.lang.String r3 = "getFileHashData FileNotFoundException"
-            com.huawei.hms.framework.common.Logger.m6797e(r1, r3, r11)     // Catch: java.lang.Throwable -> L38
-            if (r10 == 0) goto L79
-            goto L30
-        L6f:
-            r11 = move-exception
-            r10 = r2
-        L71:
-            java.lang.String r3 = "getFileHashData NoSuchAlgorithmException"
-            com.huawei.hms.framework.common.Logger.m6797e(r1, r3, r11)     // Catch: java.lang.Throwable -> L38
-            if (r10 == 0) goto L79
-            goto L30
-        L79:
-            return r2
-        L7a:
-            if (r10 == 0) goto L83
-            r10.close()     // Catch: java.io.IOException -> L80
-            goto L83
-        L80:
-            com.huawei.hms.framework.common.Logger.m6796e(r1, r0)
-        L83:
-            throw r11
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.huawei.hms.framework.common.CreateFileUtil.getFileHashData(java.lang.String, java.lang.String):java.lang.String");
+    public static String getFileHashData(String str, String str2) throws Throwable {
+        FileInputStream fileInputStreamNewSafeFileInputStream;
+        MessageDigest messageDigest;
+        byte[] bArr;
+        long j2;
+        try {
+            try {
+                messageDigest = MessageDigest.getInstance(str2);
+                fileInputStreamNewSafeFileInputStream = newSafeFileInputStream(str);
+            } catch (FileNotFoundException e2) {
+                e = e2;
+                fileInputStreamNewSafeFileInputStream = null;
+            } catch (IOException e3) {
+                e = e3;
+                fileInputStreamNewSafeFileInputStream = null;
+            } catch (IllegalArgumentException e4) {
+                e = e4;
+                fileInputStreamNewSafeFileInputStream = null;
+            } catch (IndexOutOfBoundsException e5) {
+                e = e5;
+                fileInputStreamNewSafeFileInputStream = null;
+            } catch (NoSuchAlgorithmException e6) {
+                e = e6;
+                fileInputStreamNewSafeFileInputStream = null;
+            } catch (Throwable th) {
+                th = th;
+                str = 0;
+                if (str != 0) {
+                }
+                throw th;
+            }
+            try {
+                bArr = new byte[1024];
+                j2 = 0;
+            } catch (FileNotFoundException e7) {
+                e = e7;
+                Logger.e(TAG, "getFileHashData FileNotFoundException", e);
+                if (fileInputStreamNewSafeFileInputStream != null) {
+                    try {
+                        fileInputStreamNewSafeFileInputStream.close();
+                    } catch (IOException unused) {
+                        Logger.e(TAG, "Close FileInputStream failed!");
+                    }
+                }
+            } catch (IOException e8) {
+                e = e8;
+                Logger.e(TAG, "getFileHashData IOException", e);
+                if (fileInputStreamNewSafeFileInputStream != null) {
+                    fileInputStreamNewSafeFileInputStream.close();
+                }
+            } catch (IllegalArgumentException e9) {
+                e = e9;
+                Logger.e(TAG, "getFileHashData IllegalArgumentException", e);
+                if (fileInputStreamNewSafeFileInputStream != null) {
+                    fileInputStreamNewSafeFileInputStream.close();
+                }
+            } catch (IndexOutOfBoundsException e10) {
+                e = e10;
+                Logger.e(TAG, "getFileHashData IndexOutOfBoundsException", e);
+                if (fileInputStreamNewSafeFileInputStream != null) {
+                    fileInputStreamNewSafeFileInputStream.close();
+                }
+            } catch (NoSuchAlgorithmException e11) {
+                e = e11;
+                Logger.e(TAG, "getFileHashData NoSuchAlgorithmException", e);
+                if (fileInputStreamNewSafeFileInputStream != null) {
+                }
+            }
+            while (true) {
+                int i2 = fileInputStreamNewSafeFileInputStream.read(bArr);
+                if (i2 == -1) {
+                    break;
+                }
+                messageDigest.update(bArr, 0, i2);
+                j2 += (long) i2;
+                return strByteArrayToHex;
+            }
+            strByteArrayToHex = j2 > 0 ? byteArrayToHex(messageDigest.digest()) : null;
+            if (fileInputStreamNewSafeFileInputStream != null) {
+                fileInputStreamNewSafeFileInputStream.close();
+            }
+            return strByteArrayToHex;
+        } catch (Throwable th2) {
+            th = th2;
+            if (str != 0) {
+                try {
+                    str.close();
+                } catch (IOException unused2) {
+                    Logger.e(TAG, "Close FileInputStream failed!");
+                }
+            }
+            throw th;
+        }
     }
 
     @Deprecated
@@ -204,7 +200,7 @@ public class CreateFileUtil {
         if (str != null) {
             return (EmuiUtil.isUpPVersion() && ReflectionUtils.checkCompatible(EXTERNAL_INPUTSTREAM_NAME)) ? new ExternalStorageFileInputStream(str) : new FileInputStream(str);
         }
-        Logger.m6803w(TAG, "newFileInputStream  file is null");
+        Logger.w(TAG, "newFileInputStream  file is null");
         throw new FileNotFoundException("file is null");
     }
 
@@ -212,7 +208,7 @@ public class CreateFileUtil {
         if (file != null) {
             return (EmuiUtil.isUpPVersion() && ReflectionUtils.checkCompatible(EXTERNAL_OUTPUTSTREAM_NAME)) ? new ExternalStorageFileOutputStream(file) : new FileOutputStream(file);
         }
-        Logger.m6796e(TAG, "newFileOutputStream  file is null");
+        Logger.e(TAG, "newFileOutputStream  file is null");
         throw new FileNotFoundException("file is null");
     }
 
@@ -220,7 +216,7 @@ public class CreateFileUtil {
         if (str != null) {
             return (EmuiUtil.isUpPVersion() && ReflectionUtils.checkCompatible(RANDOM_ACCESS_FILE_NAME)) ? new ExternalStorageRandomAccessFile(str, str2) : new RandomAccessFile(str, str2);
         }
-        Logger.m6803w(TAG, "newFileOutputStream  file is null");
+        Logger.w(TAG, "newFileOutputStream  file is null");
         throw new FileNotFoundException("file is null");
     }
 
@@ -229,13 +225,13 @@ public class CreateFileUtil {
             return null;
         }
         try {
-            File newFile = newFile(str);
-            return !newFile.exists() ? new File(str) : newFile;
+            File fileNewFile = newFile(str);
+            return !fileNewFile.exists() ? new File(str) : fileNewFile;
         } catch (RuntimeException unused) {
-            Logger.m6803w(TAG, "newFile is runtimeException");
+            Logger.w(TAG, "newFile is runtimeException");
             return new File(str);
         } catch (Throwable unused2) {
-            Logger.m6803w(TAG, "newFile is Throwable");
+            Logger.w(TAG, "newFile is Throwable");
             return new File(str);
         }
     }
@@ -244,13 +240,13 @@ public class CreateFileUtil {
         try {
             return newFileInputStream(str);
         } catch (FileNotFoundException unused) {
-            Logger.m6803w(TAG, "newFileInputStream is fileNotFoundException");
+            Logger.w(TAG, "newFileInputStream is fileNotFoundException");
             return new FileInputStream(str);
         } catch (RuntimeException unused2) {
-            Logger.m6803w(TAG, "newFileInputStream is runtimeException");
+            Logger.w(TAG, "newFileInputStream is runtimeException");
             return new FileInputStream(str);
         } catch (Throwable unused3) {
-            Logger.m6803w(TAG, "newFileInputStream is Throwable");
+            Logger.w(TAG, "newFileInputStream is Throwable");
             return new FileInputStream(str);
         }
     }
@@ -259,32 +255,32 @@ public class CreateFileUtil {
         try {
             return newFileOutputStream(file);
         } catch (FileNotFoundException unused) {
-            Logger.m6803w(TAG, "newFileOutputStream is fileNotFoundException");
+            Logger.w(TAG, "newFileOutputStream is fileNotFoundException");
             return new FileOutputStream(file);
         } catch (RuntimeException unused2) {
-            Logger.m6803w(TAG, "newFileOutputStream is runtimeException");
+            Logger.w(TAG, "newFileOutputStream is runtimeException");
             return new FileOutputStream(file);
         } catch (Throwable unused3) {
-            Logger.m6803w(TAG, "newFileOutputStream is Throwable");
+            Logger.w(TAG, "newFileOutputStream is Throwable");
             return new FileOutputStream(file);
         }
     }
 
     public static RandomAccessFile newSafeRandomAccessFile(String str, String str2) throws FileNotFoundException {
         if (str == null) {
-            Logger.m6803w(TAG, "newRandomAccessFile  file is null");
+            Logger.w(TAG, "newRandomAccessFile  file is null");
             throw new FileNotFoundException("file is null");
         }
         try {
             return newRandomAccessFile(str, str2);
         } catch (FileNotFoundException unused) {
-            Logger.m6803w(TAG, "newRandomAccessFile is fileNotFoundException");
+            Logger.w(TAG, "newRandomAccessFile is fileNotFoundException");
             return new RandomAccessFile(str, str2);
         } catch (RuntimeException unused2) {
-            Logger.m6803w(TAG, "newRandomAccessFile is runtimeException");
+            Logger.w(TAG, "newRandomAccessFile is runtimeException");
             return new RandomAccessFile(str, str2);
         } catch (Throwable unused3) {
-            Logger.m6803w(TAG, "newRandomAccessFile is Throwable");
+            Logger.w(TAG, "newRandomAccessFile is Throwable");
             return new RandomAccessFile(str, str2);
         }
     }

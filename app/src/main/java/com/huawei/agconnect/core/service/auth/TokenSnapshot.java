@@ -1,6 +1,6 @@
 package com.huawei.agconnect.core.service.auth;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface TokenSnapshot {
 
     public enum State {

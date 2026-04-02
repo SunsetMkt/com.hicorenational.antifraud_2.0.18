@@ -7,7 +7,7 @@ import android.content.IntentSender;
 import com.huawei.hms.common.internal.ResponseErrorCode;
 import com.huawei.hms.support.api.client.Status;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ResolvableApiException extends ApiException {
     public ResolvableApiException(Status status) {
         super(status);

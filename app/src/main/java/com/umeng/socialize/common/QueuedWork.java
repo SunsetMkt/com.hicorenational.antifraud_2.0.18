@@ -8,7 +8,7 @@ import com.umeng.socialize.utils.SocializeUtils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class QueuedWork {
     public static boolean isUseThreadPool = false;
     private static ExecutorService mLogicExecutor = Executors.newFixedThreadPool(5);
@@ -43,12 +43,12 @@ public class QueuedWork {
             this.thread = new Runnable() { // from class: com.umeng.socialize.common.QueuedWork.UMAsyncTask.1
                 @Override // java.lang.Runnable
                 public void run() {
-                    final Object doInBackground = UMAsyncTask.this.doInBackground();
+                    final Object objDoInBackground = UMAsyncTask.this.doInBackground();
                     QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.common.QueuedWork.UMAsyncTask.1.1
                         /* JADX WARN: Multi-variable type inference failed */
                         @Override // java.lang.Runnable
                         public void run() {
-                            UMAsyncTask.this.onPostExecute(doInBackground);
+                            UMAsyncTask.this.onPostExecute(objDoInBackground);
                         }
                     });
                 }

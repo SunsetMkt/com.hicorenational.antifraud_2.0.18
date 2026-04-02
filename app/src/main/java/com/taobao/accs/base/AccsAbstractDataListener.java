@@ -2,8 +2,8 @@ package com.taobao.accs.base;
 
 import com.taobao.accs.base.TaoBaseService;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class AccsAbstractDataListener implements AccsDataListener {
     @Override // com.taobao.accs.base.AccsDataListener
     public void onAntiBrush(boolean z, TaoBaseService.ExtraInfo extraInfo) {

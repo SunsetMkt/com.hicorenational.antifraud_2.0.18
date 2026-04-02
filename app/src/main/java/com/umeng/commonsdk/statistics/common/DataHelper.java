@@ -3,6 +3,7 @@ package com.umeng.commonsdk.statistics.common;
 import android.annotation.SuppressLint;
 import com.just.agentweb.DefaultWebClient;
 import com.umeng.commonsdk.utils.UMUtils;
+import i.f1;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.security.MessageDigest;
@@ -11,9 +12,8 @@ import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import p286h.C5230f1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DataHelper {
     public static long ENVELOPE_ENTITY_RAW_LENGTH_MAX = 2097152;
     public static long ENVELOPE_EXTRA_LENGTH = 614400;
@@ -31,7 +31,7 @@ public class DataHelper {
     static String bytes2Hex(byte[] bArr) {
         String str = "";
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
+            String hexString = Integer.toHexString(b2 & f1.f12066c);
             if (hexString.length() == 1) {
                 str = str + "0";
             }
@@ -41,7 +41,7 @@ public class DataHelper {
     }
 
     public static String convertExceptionToString(Throwable th) {
-        String str = null;
+        String string = null;
         if (th == null) {
             return null;
         }
@@ -52,12 +52,12 @@ public class DataHelper {
             for (Throwable cause = th.getCause(); cause != null; cause = cause.getCause()) {
                 cause.printStackTrace(printWriter);
             }
-            str = stringWriter.toString();
+            string = stringWriter.toString();
             printWriter.close();
             stringWriter.close();
-            return str;
+            return string;
         } catch (Exception unused) {
-            return str;
+            return string;
         }
     }
 
@@ -104,7 +104,7 @@ public class DataHelper {
         if (new Random().nextFloat() < 0.001d) {
             int i3 = 0;
             if (str == null) {
-                MLog.m11747e("--->", "null signature..");
+                MLog.e("--->", "null signature..");
             }
             try {
                 i3 = Integer.parseInt(str.substring(9, 11), 16);
@@ -112,9 +112,9 @@ public class DataHelper {
             }
             return (i3 | 128) * 1000;
         }
-        int nextInt = new Random().nextInt(i2);
-        if (nextInt > 255000 || nextInt < 128000) {
-            return nextInt;
+        int iNextInt = new Random().nextInt(i2);
+        if (iNextInt > 255000 || iNextInt < 128000) {
+            return iNextInt;
         }
         return 127000;
     }

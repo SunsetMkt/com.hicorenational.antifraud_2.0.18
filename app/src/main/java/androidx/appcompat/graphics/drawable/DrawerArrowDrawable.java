@@ -11,12 +11,12 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.graphics.drawable.DrawableCompat;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DrawerArrowDrawable extends Drawable {
     public static final int ARROW_DIRECTION_END = 3;
     public static final int ARROW_DIRECTION_LEFT = 0;
@@ -46,16 +46,16 @@ public class DrawerArrowDrawable extends Drawable {
         this.mPaint.setStrokeJoin(Paint.Join.MITER);
         this.mPaint.setStrokeCap(Paint.Cap.BUTT);
         this.mPaint.setAntiAlias(true);
-        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(null, C0120R.styleable.DrawerArrowToggle, C0120R.attr.drawerArrowStyle, C0120R.style.Base_Widget_AppCompat_DrawerArrowToggle);
-        setColor(obtainStyledAttributes.getColor(C0120R.styleable.DrawerArrowToggle_color, 0));
-        setBarThickness(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_thickness, 0.0f));
-        setSpinEnabled(obtainStyledAttributes.getBoolean(C0120R.styleable.DrawerArrowToggle_spinBars, true));
-        setGapSize(Math.round(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_gapBetweenBars, 0.0f)));
-        this.mSize = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.DrawerArrowToggle_drawableSize, 0);
-        this.mBarLength = Math.round(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_barLength, 0.0f));
-        this.mArrowHeadLength = Math.round(obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
-        this.mArrowShaftLength = obtainStyledAttributes.getDimension(C0120R.styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(null, R.styleable.DrawerArrowToggle, R.attr.drawerArrowStyle, R.style.Base_Widget_AppCompat_DrawerArrowToggle);
+        setColor(typedArrayObtainStyledAttributes.getColor(R.styleable.DrawerArrowToggle_color, 0));
+        setBarThickness(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_thickness, 0.0f));
+        setSpinEnabled(typedArrayObtainStyledAttributes.getBoolean(R.styleable.DrawerArrowToggle_spinBars, true));
+        setGapSize(Math.round(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_gapBetweenBars, 0.0f)));
+        this.mSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.DrawerArrowToggle_drawableSize, 0);
+        this.mBarLength = Math.round(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_barLength, 0.0f));
+        this.mArrowHeadLength = Math.round(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
+        this.mArrowShaftLength = typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     private static float lerp(float f2, float f3, float f4) {
@@ -71,32 +71,32 @@ public class DrawerArrowDrawable extends Drawable {
             z = true;
         }
         float f2 = this.mArrowHeadLength;
-        float lerp = lerp(this.mBarLength, (float) Math.sqrt(f2 * f2 * 2.0f), this.mProgress);
-        float lerp2 = lerp(this.mBarLength, this.mArrowShaftLength, this.mProgress);
-        float round = Math.round(lerp(0.0f, this.mMaxCutForBarSize, this.mProgress));
-        float lerp3 = lerp(0.0f, ARROW_HEAD_ANGLE, this.mProgress);
-        float lerp4 = lerp(z ? 0.0f : -180.0f, z ? 180.0f : 0.0f, this.mProgress);
-        double d2 = lerp;
-        double d3 = lerp3;
+        float fLerp = lerp(this.mBarLength, (float) Math.sqrt(f2 * f2 * 2.0f), this.mProgress);
+        float fLerp2 = lerp(this.mBarLength, this.mArrowShaftLength, this.mProgress);
+        float fRound = Math.round(lerp(0.0f, this.mMaxCutForBarSize, this.mProgress));
+        float fLerp3 = lerp(0.0f, ARROW_HEAD_ANGLE, this.mProgress);
+        float fLerp4 = lerp(z ? 0.0f : -180.0f, z ? 180.0f : 0.0f, this.mProgress);
+        double d2 = fLerp;
+        double d3 = fLerp3;
         boolean z2 = z;
-        float round2 = Math.round(Math.cos(d3) * d2);
-        float round3 = Math.round(d2 * Math.sin(d3));
+        float fRound2 = Math.round(Math.cos(d3) * d2);
+        float fRound3 = Math.round(d2 * Math.sin(d3));
         this.mPath.rewind();
-        float lerp5 = lerp(this.mBarGap + this.mPaint.getStrokeWidth(), -this.mMaxCutForBarSize, this.mProgress);
-        float f3 = (-lerp2) / 2.0f;
-        this.mPath.moveTo(f3 + round, 0.0f);
-        this.mPath.rLineTo(lerp2 - (round * 2.0f), 0.0f);
-        this.mPath.moveTo(f3, lerp5);
-        this.mPath.rLineTo(round2, round3);
-        this.mPath.moveTo(f3, -lerp5);
-        this.mPath.rLineTo(round2, -round3);
+        float fLerp5 = lerp(this.mBarGap + this.mPaint.getStrokeWidth(), -this.mMaxCutForBarSize, this.mProgress);
+        float f3 = (-fLerp2) / 2.0f;
+        this.mPath.moveTo(f3 + fRound, 0.0f);
+        this.mPath.rLineTo(fLerp2 - (fRound * 2.0f), 0.0f);
+        this.mPath.moveTo(f3, fLerp5);
+        this.mPath.rLineTo(fRound2, fRound3);
+        this.mPath.moveTo(f3, -fLerp5);
+        this.mPath.rLineTo(fRound2, -fRound3);
         this.mPath.close();
         canvas.save();
         float strokeWidth = this.mPaint.getStrokeWidth();
-        float height = bounds.height() - (3.0f * strokeWidth);
-        canvas.translate(bounds.centerX(), ((((int) (height - (2.0f * r5))) / 4) * 2) + (strokeWidth * 1.5f) + this.mBarGap);
+        float fHeight = bounds.height() - (3.0f * strokeWidth);
+        canvas.translate(bounds.centerX(), ((((int) (fHeight - (2.0f * r5))) / 4) * 2) + (strokeWidth * 1.5f) + this.mBarGap);
         if (this.mSpin) {
-            canvas.rotate(lerp4 * (this.mVerticalMirror ^ z2 ? -1 : 1));
+            canvas.rotate(fLerp4 * (this.mVerticalMirror ^ z2 ? -1 : 1));
         } else if (z2) {
             canvas.rotate(180.0f);
         }
@@ -152,7 +152,7 @@ public class DrawerArrowDrawable extends Drawable {
         return this.mPaint;
     }
 
-    @FloatRange(from = 0.0d, m293to = 1.0d)
+    @FloatRange(from = 0.0d, to = 1.0d)
     public float getProgress() {
         return this.mProgress;
     }
@@ -193,7 +193,7 @@ public class DrawerArrowDrawable extends Drawable {
     public void setBarThickness(float f2) {
         if (this.mPaint.getStrokeWidth() != f2) {
             this.mPaint.setStrokeWidth(f2);
-            this.mMaxCutForBarSize = (float) ((f2 / 2.0f) * Math.cos(ARROW_HEAD_ANGLE));
+            this.mMaxCutForBarSize = (float) (((double) (f2 / 2.0f)) * Math.cos(ARROW_HEAD_ANGLE));
             invalidateSelf();
         }
     }
@@ -225,7 +225,7 @@ public class DrawerArrowDrawable extends Drawable {
         }
     }
 
-    public void setProgress(@FloatRange(from = 0.0d, m293to = 1.0d) float f2) {
+    public void setProgress(@FloatRange(from = 0.0d, to = 1.0d) float f2) {
         if (this.mProgress != f2) {
             this.mProgress = f2;
             invalidateSelf();

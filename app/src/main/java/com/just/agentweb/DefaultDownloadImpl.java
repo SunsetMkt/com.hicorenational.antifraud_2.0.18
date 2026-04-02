@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultDownloadImpl implements DownloadListener {
     private static final String TAG = DefaultDownloadImpl.class.getSimpleName();
     private static Handler mHandler = new Handler(Looper.getMainLooper());
@@ -45,7 +45,7 @@ public class DefaultDownloadImpl implements DownloadListener {
             DownloadImpl.getInstance().with(this.mContext);
             this.isInstallDownloader = true;
         } catch (Throwable th) {
-            LogUtils.m8081e(TAG, "implementation 'com.download.library:Downloader:x.x.x'");
+            LogUtils.e(TAG, "implementation 'com.download.library:Downloader:x.x.x'");
             if (LogUtils.isDebug()) {
                 th.printStackTrace();
             }
@@ -95,7 +95,7 @@ public class DefaultDownloadImpl implements DownloadListener {
                 if (DefaultDownloadImpl.this.mAgentWebUIController.get() != null) {
                     DefaultDownloadImpl.this.mAgentWebUIController.get().onPermissionsDeny((String[]) DefaultDownloadImpl.this.checkNeedPermission().toArray(new String[0]), AgentWebPermissions.ACTION_STORAGE, "Download");
                 }
-                LogUtils.m8081e(DefaultDownloadImpl.TAG, "储存权限获取失败~");
+                LogUtils.e(DefaultDownloadImpl.TAG, "\u50a8\u5b58\u6743\u9650\u83b7\u53d6\u5931\u8d25~");
             }
         };
     }
@@ -119,7 +119,7 @@ public class DefaultDownloadImpl implements DownloadListener {
             });
             return;
         }
-        LogUtils.m8081e(TAG, "unable start download " + str + "; implementation 'com.download.library:Downloader:x.x.x'");
+        LogUtils.e(TAG, "unable start download " + str + "; implementation 'com.download.library:Downloader:x.x.x'");
     }
 
     protected void onDownloadStartInternal(String str, String str2, String str3, String str4, long j2) {
@@ -133,23 +133,23 @@ public class DefaultDownloadImpl implements DownloadListener {
                 preDownload(str);
                 return;
             }
-            List<String> checkNeedPermission = checkNeedPermission();
-            if (checkNeedPermission.isEmpty()) {
+            List<String> listCheckNeedPermission = checkNeedPermission();
+            if (listCheckNeedPermission.isEmpty()) {
                 preDownload(str);
                 return;
             }
-            Action createPermissionsAction = Action.createPermissionsAction((String[]) checkNeedPermission.toArray(new String[0]));
+            Action actionCreatePermissionsAction = Action.createPermissionsAction((String[]) listCheckNeedPermission.toArray(new String[0]));
             ActionActivity.setPermissionListener(getPermissionListener(str));
-            ActionActivity.start(this.mActivityWeakReference.get(), createPermissionsAction);
+            ActionActivity.start(this.mActivityWeakReference.get(), actionCreatePermissionsAction);
         }
     }
 
     protected void performDownload(String str) {
         try {
-            LogUtils.m8081e(TAG, "performDownload:" + str + " exist:" + DownloadImpl.getInstance().exist(str));
+            LogUtils.e(TAG, "performDownload:" + str + " exist:" + DownloadImpl.getInstance().exist(str));
             if (DownloadImpl.getInstance().exist(str)) {
                 if (this.mAgentWebUIController.get() != null) {
-                    this.mAgentWebUIController.get().onShowMessage(this.mActivityWeakReference.get().getString(C2605R.string.agentweb_download_task_has_been_exist), "preDownload");
+                    this.mAgentWebUIController.get().onShowMessage(this.mActivityWeakReference.get().getString(R.string.agentweb_download_task_has_been_exist), "preDownload");
                 }
             } else {
                 ResourceRequest resourceRequest = this.mDownloadTasks.get(str);

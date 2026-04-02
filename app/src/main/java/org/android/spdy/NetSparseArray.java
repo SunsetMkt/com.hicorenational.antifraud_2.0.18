@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class NetSparseArray<E> implements Cloneable {
     private static final Object DELETED = new Object();
     private boolean mGarbage;
@@ -27,8 +27,7 @@ public class NetSparseArray<E> implements Cloneable {
         return i7 == i5 ? ~i5 : iArr[i7] == i4 ? i7 : ~i7;
     }
 
-    /* renamed from: gc */
-    private void m24974gc() {
+    private void gc() {
         int i2 = this.mSize;
         int[] iArr = this.mKeys;
         Object[] objArr = this.mValues;
@@ -55,7 +54,7 @@ public class NetSparseArray<E> implements Cloneable {
             return;
         }
         if (this.mGarbage && this.mSize >= this.mKeys.length) {
-            m24974gc();
+            gc();
         }
         int i4 = this.mSize;
         int[] iArr = this.mKeys;
@@ -85,13 +84,13 @@ public class NetSparseArray<E> implements Cloneable {
     }
 
     public void delete(int i2) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i2);
-        if (binarySearch >= 0) {
+        int iBinarySearch = binarySearch(this.mKeys, 0, this.mSize, i2);
+        if (iBinarySearch >= 0) {
             Object[] objArr = this.mValues;
-            Object obj = objArr[binarySearch];
+            Object obj = objArr[iBinarySearch];
             Object obj2 = DELETED;
             if (obj != obj2) {
-                objArr[binarySearch] = obj2;
+                objArr[iBinarySearch] = obj2;
                 this.mGarbage = true;
             }
         }
@@ -103,14 +102,14 @@ public class NetSparseArray<E> implements Cloneable {
 
     public int indexOfKey(int i2) {
         if (this.mGarbage) {
-            m24974gc();
+            gc();
         }
         return binarySearch(this.mKeys, 0, this.mSize, i2);
     }
 
     public int indexOfValue(E e2) {
         if (this.mGarbage) {
-            m24974gc();
+            gc();
         }
         for (int i2 = 0; i2 < this.mSize; i2++) {
             if (this.mValues[i2] == e2) {
@@ -122,18 +121,18 @@ public class NetSparseArray<E> implements Cloneable {
 
     public int keyAt(int i2) {
         if (this.mGarbage) {
-            m24974gc();
+            gc();
         }
         return this.mKeys[i2];
     }
 
     public void put(int i2, E e2) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i2);
-        if (binarySearch >= 0) {
-            this.mValues[binarySearch] = e2;
+        int iBinarySearch = binarySearch(this.mKeys, 0, this.mSize, i2);
+        if (iBinarySearch >= 0) {
+            this.mValues[iBinarySearch] = e2;
             return;
         }
-        int i3 = ~binarySearch;
+        int i3 = ~iBinarySearch;
         if (i3 < this.mSize) {
             Object[] objArr = this.mValues;
             if (objArr[i3] == DELETED) {
@@ -143,7 +142,7 @@ public class NetSparseArray<E> implements Cloneable {
             }
         }
         if (this.mGarbage && this.mSize >= this.mKeys.length) {
-            m24974gc();
+            gc();
             i3 = ~binarySearch(this.mKeys, 0, this.mSize, i2);
         }
         int i4 = this.mSize;
@@ -187,14 +186,14 @@ public class NetSparseArray<E> implements Cloneable {
 
     public void setValueAt(int i2, E e2) {
         if (this.mGarbage) {
-            m24974gc();
+            gc();
         }
         this.mValues[i2] = e2;
     }
 
     public int size() {
         if (this.mGarbage) {
-            m24974gc();
+            gc();
         }
         return this.mSize;
     }
@@ -207,7 +206,7 @@ public class NetSparseArray<E> implements Cloneable {
 
     public E valueAt(int i2) {
         if (this.mGarbage) {
-            m24974gc();
+            gc();
         }
         return (E) this.mValues[i2];
     }
@@ -220,11 +219,11 @@ public class NetSparseArray<E> implements Cloneable {
     }
 
     public E get(int i2, E e2) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i2);
-        if (binarySearch >= 0) {
+        int iBinarySearch = binarySearch(this.mKeys, 0, this.mSize, i2);
+        if (iBinarySearch >= 0) {
             Object[] objArr = this.mValues;
-            if (objArr[binarySearch] != DELETED) {
-                return (E) objArr[binarySearch];
+            if (objArr[iBinarySearch] != DELETED) {
+                return (E) objArr[iBinarySearch];
             }
         }
         return e2;

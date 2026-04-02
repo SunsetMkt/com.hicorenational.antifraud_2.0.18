@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.model;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GetBucketACLResult extends OSSResult {
     private CannedAccessControlList bucketACL;
     private Owner bucketOwner = new Owner();

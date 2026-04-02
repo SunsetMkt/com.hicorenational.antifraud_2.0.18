@@ -15,7 +15,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Objects;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WindowInsetsCompat {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -199,11 +199,11 @@ public class WindowInsetsCompat {
     }
 
     static Insets insetInsets(Insets insets, int i2, int i3, int i4, int i5) {
-        int max = Math.max(0, insets.left - i2);
-        int max2 = Math.max(0, insets.top - i3);
-        int max3 = Math.max(0, insets.right - i4);
-        int max4 = Math.max(0, insets.bottom - i5);
-        return (max == i2 && max2 == i3 && max3 == i4 && max4 == i5) ? insets : Insets.m385of(max, max2, max3, max4);
+        int iMax = Math.max(0, insets.left - i2);
+        int iMax2 = Math.max(0, insets.top - i3);
+        int iMax3 = Math.max(0, insets.right - i4);
+        int iMax4 = Math.max(0, insets.bottom - i5);
+        return (iMax == i2 && iMax2 == i3 && iMax3 == i4 && iMax4 == i5) ? insets : Insets.of(iMax, iMax2, iMax3, iMax4);
     }
 
     @NonNull
@@ -335,7 +335,7 @@ public class WindowInsetsCompat {
     @NonNull
     @Deprecated
     public WindowInsetsCompat replaceSystemWindowInsets(int i2, int i3, int i4, int i5) {
-        return new Builder(this).setSystemWindowInsets(Insets.m385of(i2, i3, i4, i5)).build();
+        return new Builder(this).setSystemWindowInsets(Insets.of(i2, i3, i4, i5)).build();
     }
 
     @Nullable
@@ -496,7 +496,7 @@ public class WindowInsetsCompat {
         @NonNull
         final Insets getStableInsets() {
             if (this.mStableInsets == null) {
-                this.mStableInsets = Insets.m385of(this.mPlatformInsets.getStableInsetLeft(), this.mPlatformInsets.getStableInsetTop(), this.mPlatformInsets.getStableInsetRight(), this.mPlatformInsets.getStableInsetBottom());
+                this.mStableInsets = Insets.of(this.mPlatformInsets.getStableInsetLeft(), this.mPlatformInsets.getStableInsetTop(), this.mPlatformInsets.getStableInsetRight(), this.mPlatformInsets.getStableInsetBottom());
             }
             return this.mStableInsets;
         }
@@ -534,7 +534,7 @@ public class WindowInsetsCompat {
         @NonNull
         final Insets getSystemWindowInsets() {
             if (this.mSystemWindowInsets == null) {
-                this.mSystemWindowInsets = Insets.m385of(this.mPlatformInsets.getSystemWindowInsetLeft(), this.mPlatformInsets.getSystemWindowInsetTop(), this.mPlatformInsets.getSystemWindowInsetRight(), this.mPlatformInsets.getSystemWindowInsetBottom());
+                this.mSystemWindowInsets = Insets.of(this.mPlatformInsets.getSystemWindowInsetLeft(), this.mPlatformInsets.getSystemWindowInsetTop(), this.mPlatformInsets.getSystemWindowInsetRight(), this.mPlatformInsets.getSystemWindowInsetBottom());
             }
             return this.mSystemWindowInsets;
         }
@@ -615,7 +615,7 @@ public class WindowInsetsCompat {
     @NonNull
     @Deprecated
     public WindowInsetsCompat replaceSystemWindowInsets(@NonNull Rect rect) {
-        return new Builder(this).setSystemWindowInsets(Insets.m386of(rect)).build();
+        return new Builder(this).setSystemWindowInsets(Insets.of(rect)).build();
     }
 
     public static final class Builder {

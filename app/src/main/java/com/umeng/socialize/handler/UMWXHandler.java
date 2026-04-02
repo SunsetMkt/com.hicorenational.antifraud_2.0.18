@@ -8,16 +8,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.hihonor.honorid.core.data.UserInfo;
-import com.tencent.p208mm.opensdk.constants.ConstantsAPI;
-import com.tencent.p208mm.opensdk.modelbase.BaseReq;
-import com.tencent.p208mm.opensdk.modelbase.BaseResp;
-import com.tencent.p208mm.opensdk.modelmsg.SendAuth;
-import com.tencent.p208mm.opensdk.modelmsg.SendMessageToWX;
-import com.tencent.p208mm.opensdk.modelmsg.WXMediaMessage;
-import com.tencent.p208mm.opensdk.openapi.IWXAPI;
-import com.tencent.p208mm.opensdk.openapi.IWXAPIEventHandler;
-import com.tencent.p208mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.analytics.pro.C3351bh;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.umeng.analytics.pro.bh;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.ShareContent;
@@ -46,7 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMWXHandler extends UMSSOHandler {
     private static final String ERRMSG = "errmsg";
     private static final String ERRORCODE = "errcode";
@@ -74,11 +74,14 @@ public class UMWXHandler extends UMSSOHandler {
     private String VERSION = "7.3.2";
     private SHARE_MEDIA mTarget = SHARE_MEDIA.WEIXIN;
     private IWXAPIEventHandler mEventHandler = new IWXAPIEventHandler() { // from class: com.umeng.socialize.handler.UMWXHandler.22
-        @Override // com.tencent.p208mm.opensdk.openapi.IWXAPIEventHandler
+        AnonymousClass22() {
+        }
+
+        @Override // com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
         public void onReq(BaseReq baseReq) {
         }
 
-        @Override // com.tencent.p208mm.opensdk.openapi.IWXAPIEventHandler
+        @Override // com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
         public void onResp(BaseResp baseResp) {
             int type = baseResp.getType();
             if (type == 1) {
@@ -92,8 +95,242 @@ public class UMWXHandler extends UMSSOHandler {
         }
     };
 
-    /* renamed from: com.umeng.socialize.handler.UMWXHandler$23 */
-    static /* synthetic */ class C371423 {
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$1 */
+    class AnonymousClass1 implements Runnable {
+        final /* synthetic */ UMAuthListener val$listener;
+
+        AnonymousClass1(UMAuthListener uMAuthListener) {
+            uMAuthListener = uMAuthListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onError(UMWXHandler.this.mTarget, 0, new Throwable(UmengErrorCode.NotInstall.getMessage()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$10 */
+    class AnonymousClass10 implements UMAuthListener {
+        final /* synthetic */ UMAuthListener val$listener;
+
+        /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$10$1 */
+        class AnonymousClass1 implements Runnable {
+            AnonymousClass1() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                AnonymousClass10 anonymousClass10 = AnonymousClass10.this;
+                UMWXHandler.this.fetchUserInfo(uMAuthListener);
+            }
+        }
+
+        AnonymousClass10(UMAuthListener uMAuthListener) {
+            uMAuthListener = uMAuthListener;
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onCancel(SHARE_MEDIA share_media, int i2) {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onCancel(share_media, i2);
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onComplete(SHARE_MEDIA share_media, int i2, Map<String, String> map) {
+            QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.10.1
+                AnonymousClass1() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    AnonymousClass10 anonymousClass10 = AnonymousClass10.this;
+                    UMWXHandler.this.fetchUserInfo(uMAuthListener);
+                }
+            }, true);
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onError(SHARE_MEDIA share_media, int i2, Throwable th) {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onError(share_media, i2, th);
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onStart(SHARE_MEDIA share_media) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$11 */
+    class AnonymousClass11 implements Runnable {
+        final /* synthetic */ UMShareListener val$listener;
+
+        AnonymousClass11(UMShareListener uMShareListener) {
+            uMShareListener = uMShareListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.NotInstall.getMessage()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$12 */
+    class AnonymousClass12 implements Runnable {
+        final /* synthetic */ UMShareListener val$listener;
+
+        AnonymousClass12(UMShareListener uMShareListener) {
+            uMShareListener = uMShareListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.ShareDataTypeIllegal.getMessage() + UmengText.WX.WX_CIRCLE_NOT_SUPPORT_EMOJ));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$13 */
+    class AnonymousClass13 implements Runnable {
+        final /* synthetic */ UMShareListener val$listener;
+
+        AnonymousClass13(UMShareListener uMShareListener) {
+            uMShareListener = uMShareListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.ShareDataTypeIllegal.getMessage() + UmengText.WX.WX_CIRCLE_NOT_SUPPORT_MIN));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$14 */
+    class AnonymousClass14 implements Runnable {
+        AnonymousClass14() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.umShareListener.onError(SHARE_MEDIA.WEIXIN, new Exception("content empty!"));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$15 */
+    class AnonymousClass15 implements Runnable {
+        AnonymousClass15() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.umShareListener.onResult(SHARE_MEDIA.WEIXIN);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$16 */
+    class AnonymousClass16 implements Runnable {
+        AnonymousClass16() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.umShareListener.onError(SHARE_MEDIA.WEIXIN, new Exception("image empty!"));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$17 */
+    class AnonymousClass17 implements Runnable {
+        AnonymousClass17() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.umShareListener.onResult(SHARE_MEDIA.WEIXIN_CIRCLE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$18 */
+    class AnonymousClass18 implements Runnable {
+        AnonymousClass18() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.umShareListener.onError(SHARE_MEDIA.WEIXIN, new Exception("Not Support!"));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$19 */
+    class AnonymousClass19 implements Runnable {
+        AnonymousClass19() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler uMWXHandler = UMWXHandler.this;
+            uMWXHandler.getShareListener(uMWXHandler.umShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.UnKnowCode.getMessage() + "message = null"));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$2 */
+    class AnonymousClass2 implements Runnable {
+        final /* synthetic */ Map val$map;
+
+        AnonymousClass2(Map map) {
+            map = map;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler uMWXHandler = UMWXHandler.this;
+            uMWXHandler.getAuthListener(uMWXHandler.mAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$20 */
+    class AnonymousClass20 implements Runnable {
+        AnonymousClass20() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler uMWXHandler = UMWXHandler.this;
+            uMWXHandler.getShareListener(uMWXHandler.umShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.UnKnowCode.getMessage() + "mediaobject = null"));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$21 */
+    class AnonymousClass21 implements Runnable {
+        AnonymousClass21() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler uMWXHandler = UMWXHandler.this;
+            uMWXHandler.getShareListener(uMWXHandler.umShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.UnKnowCode.getMessage() + UmengText.SHARE.SHARE_CONTENT_FAIL));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$22 */
+    class AnonymousClass22 implements IWXAPIEventHandler {
+        AnonymousClass22() {
+        }
+
+        @Override // com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
+        public void onReq(BaseReq baseReq) {
+        }
+
+        @Override // com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
+        public void onResp(BaseResp baseResp) {
+            int type = baseResp.getType();
+            if (type == 1) {
+                UMWXHandler.this.onAuthCallback((SendAuth.Resp) baseResp);
+            } else {
+                if (type != 2) {
+                    return;
+                }
+                UMWXHandler.this.onShareCallback((SendMessageToWX.Resp) baseResp);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$23 */
+    static /* synthetic */ class AnonymousClass23 {
         static final /* synthetic */ int[] $SwitchMap$com$umeng$socialize$bean$SHARE_MEDIA = new int[SHARE_MEDIA.values().length];
 
         static {
@@ -112,6 +349,249 @@ public class UMWXHandler extends UMSSOHandler {
         }
     }
 
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$3 */
+    class AnonymousClass3 implements Runnable {
+        final /* synthetic */ StringBuilder val$authURL;
+        final /* synthetic */ UMAuthListener val$listener;
+
+        /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$3$1 */
+        class AnonymousClass1 implements Runnable {
+            final /* synthetic */ Map val$finalMap;
+
+            AnonymousClass1(Map map) {
+                map = map;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                if (map.get(UMWXHandler.ERRORCODE) != null) {
+                    AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG))));
+                } else {
+                    AnonymousClass3 anonymousClass32 = AnonymousClass3.this;
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+                }
+                map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                Map map = map;
+                map.put("uid", map.get("openid"));
+                Map map2 = map;
+                map2.put("unionid", map2.get("unionid"));
+            }
+        }
+
+        AnonymousClass3(StringBuilder sb, UMAuthListener uMAuthListener) {
+            sb = sb;
+            uMAuthListener = uMAuthListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            String strRequest = WXAuthUtils.request(sb.toString());
+            try {
+                Map<String, String> mapJsonToMap = SocializeUtils.jsonToMap(strRequest);
+                if (mapJsonToMap == null || mapJsonToMap.size() == 0) {
+                    UMWXHandler.this.getMap();
+                }
+                UMWXHandler.this.setBundle(UMWXHandler.this.parseAuthData(strRequest));
+                QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.3.1
+                    final /* synthetic */ Map val$finalMap;
+
+                    AnonymousClass1(Map mapJsonToMap2) {
+                        map = mapJsonToMap2;
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        if (map.get(UMWXHandler.ERRORCODE) != null) {
+                            AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                            UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG))));
+                        } else {
+                            AnonymousClass3 anonymousClass32 = AnonymousClass3.this;
+                            UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+                        }
+                        map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                        map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                        Map map = map;
+                        map.put("uid", map.get("openid"));
+                        Map map2 = map;
+                        map2.put("unionid", map2.get("unionid"));
+                    }
+                });
+            } catch (Exception e2) {
+                SLog.error(e2);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$4 */
+    class AnonymousClass4 implements Runnable {
+        final /* synthetic */ StringBuilder val$authURL;
+        final /* synthetic */ UMAuthListener val$listener;
+
+        /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$4$1 */
+        class AnonymousClass1 implements Runnable {
+            final /* synthetic */ Map val$finalMap;
+
+            AnonymousClass1(Map map) {
+                map = map;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                if (map.get(UMWXHandler.ERRORCODE) == null && map.get("code") == null) {
+                    AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+                } else {
+                    Throwable th = new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG)));
+                    AnonymousClass4 anonymousClass42 = AnonymousClass4.this;
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, th);
+                }
+                map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                Map map = map;
+                map.put("uid", map.get("openid"));
+                Map map2 = map;
+                map2.put("unionid", map2.get("unionid"));
+            }
+        }
+
+        AnonymousClass4(StringBuilder sb, UMAuthListener uMAuthListener) {
+            sb = sb;
+            uMAuthListener = uMAuthListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            String strRequest = WXAuthUtils.request(sb.toString());
+            try {
+                HashMap map = new HashMap();
+                JSONObject jSONObjectJsonObjectExt = SocializeUtils.jsonObjectExt(strRequest);
+                if (jSONObjectJsonObjectExt != null) {
+                    if (jSONObjectJsonObjectExt.getInt("code") == 200) {
+                        jSONObjectJsonObjectExt = jSONObjectJsonObjectExt.getJSONObject("data");
+                    }
+                    Iterator<String> itKeys = jSONObjectJsonObjectExt.keys();
+                    while (itKeys.hasNext()) {
+                        String next = itKeys.next();
+                        map.put(next, jSONObjectJsonObjectExt.get(next) + "");
+                    }
+                }
+                if (map.size() == 0) {
+                    UMWXHandler.this.getMap();
+                }
+                if (jSONObjectJsonObjectExt != null) {
+                    UMWXHandler.this.setBundle(UMWXHandler.this.parseAuthData(jSONObjectJsonObjectExt.toString()));
+                }
+                QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.4.1
+                    final /* synthetic */ Map val$finalMap;
+
+                    AnonymousClass1(Map map2) {
+                        map = map2;
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        if (map.get(UMWXHandler.ERRORCODE) == null && map.get("code") == null) {
+                            AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                            UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+                        } else {
+                            Throwable th = new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG)));
+                            AnonymousClass4 anonymousClass42 = AnonymousClass4.this;
+                            UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, th);
+                        }
+                        map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                        map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                        Map map2 = map;
+                        map2.put("uid", map2.get("openid"));
+                        Map map22 = map;
+                        map22.put("unionid", map22.get("unionid"));
+                    }
+                });
+            } catch (Exception e2) {
+                SLog.error(e2);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$5 */
+    class AnonymousClass5 implements Runnable {
+        final /* synthetic */ UMAuthListener val$listener;
+
+        AnonymousClass5(UMAuthListener uMAuthListener) {
+            uMAuthListener = uMAuthListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$6 */
+    class AnonymousClass6 implements Runnable {
+        final /* synthetic */ String val$jsonStr;
+        final /* synthetic */ UMAuthListener val$listener;
+
+        AnonymousClass6(UMAuthListener uMAuthListener, String str) {
+            uMAuthListener = uMAuthListener;
+            str = str;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + str));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$7 */
+    class AnonymousClass7 implements Runnable {
+        final /* synthetic */ String val$jsonStr;
+        final /* synthetic */ UMAuthListener val$listener;
+
+        AnonymousClass7(UMAuthListener uMAuthListener, String str) {
+            uMAuthListener = uMAuthListener;
+            str = str;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + str));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$8 */
+    class AnonymousClass8 implements Runnable {
+        final /* synthetic */ UMAuthListener val$listener;
+        final /* synthetic */ Map val$map;
+
+        AnonymousClass8(UMAuthListener uMAuthListener, Map map) {
+            uMAuthListener = uMAuthListener;
+            map = map;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + ((String) map.get(UMWXHandler.ERRORCODE))));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$9 */
+    class AnonymousClass9 implements Runnable {
+        final /* synthetic */ UMAuthListener val$listener;
+        final /* synthetic */ Map val$map;
+
+        AnonymousClass9(UMAuthListener uMAuthListener, Map map) {
+            uMAuthListener = uMAuthListener;
+            map = map;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 2, map);
+        }
+    }
+
     private String buildTransaction(String str) {
         if (str == null) {
             return String.valueOf(System.currentTimeMillis());
@@ -119,46 +599,77 @@ public class UMWXHandler extends UMSSOHandler {
         return str + System.currentTimeMillis();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void fetchUserInfo(final UMAuthListener uMAuthListener) {
+    public void fetchUserInfo(UMAuthListener uMAuthListener) {
         String openid = getOpenid();
-        final String request = WXAuthUtils.request("https://api.weixin.qq.com/sns/userinfo?access_token=" + getAccessToken() + "&openid=" + openid + "&lang=zh_CN");
-        if (TextUtils.isEmpty(request) || request.startsWith("##")) {
+        String strRequest = WXAuthUtils.request("https://api.weixin.qq.com/sns/userinfo?access_token=" + getAccessToken() + "&openid=" + openid + "&lang=zh_CN");
+        if (TextUtils.isEmpty(strRequest) || strRequest.startsWith("##")) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.6
+                final /* synthetic */ String val$jsonStr;
+                final /* synthetic */ UMAuthListener val$listener;
+
+                AnonymousClass6(UMAuthListener uMAuthListener2, String strRequest2) {
+                    uMAuthListener = uMAuthListener2;
+                    str = strRequest2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + request));
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + str));
                 }
             });
             return;
         }
-        final Map<String, String> parseUserInfo = parseUserInfo(request);
-        if (parseUserInfo == null) {
+        Map<String, String> userInfo = parseUserInfo(strRequest2);
+        if (userInfo == null) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.7
+                final /* synthetic */ String val$jsonStr;
+                final /* synthetic */ UMAuthListener val$listener;
+
+                AnonymousClass7(UMAuthListener uMAuthListener2, String strRequest2) {
+                    uMAuthListener = uMAuthListener2;
+                    str = strRequest2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + request));
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + str));
                 }
             });
             return;
         }
-        if (!parseUserInfo.containsKey(ERRORCODE)) {
+        if (!userInfo.containsKey(ERRORCODE)) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.9
+                final /* synthetic */ UMAuthListener val$listener;
+                final /* synthetic */ Map val$map;
+
+                AnonymousClass9(UMAuthListener uMAuthListener2, Map userInfo2) {
+                    uMAuthListener = uMAuthListener2;
+                    map = userInfo2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 2, parseUserInfo);
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 2, map);
                 }
             });
-        } else if (!parseUserInfo.get(ERRORCODE).equals(ERROR_CODE_TOKEN_FAIL)) {
+        } else if (!userInfo2.get(ERRORCODE).equals(ERROR_CODE_TOKEN_FAIL)) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.8
+                final /* synthetic */ UMAuthListener val$listener;
+                final /* synthetic */ Map val$map;
+
+                AnonymousClass8(UMAuthListener uMAuthListener2, Map userInfo2) {
+                    uMAuthListener = uMAuthListener2;
+                    map = userInfo2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + ((String) parseUserInfo.get(UMWXHandler.ERRORCODE))));
+                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 2, new Throwable(UmengErrorCode.RequestForUserProfileFailed.getMessage() + ((String) map.get(UMWXHandler.ERRORCODE))));
                 }
             });
         } else {
             weixinPreferencesDelete();
-            authorize(uMAuthListener);
+            authorize(uMAuthListener2);
         }
     }
 
@@ -175,8 +686,8 @@ public class UMWXHandler extends UMSSOHandler {
         return 0L;
     }
 
-    private void getAuthWithCode(String str, final UMAuthListener uMAuthListener) {
-        final StringBuilder sb = new StringBuilder();
+    private void getAuthWithCode(String str, UMAuthListener uMAuthListener) {
+        StringBuilder sb = new StringBuilder();
         String str2 = this.config.appkey;
         if (str2 != null && !str2.isEmpty()) {
             sb.append("https://api.weixin.qq.com/sns/oauth2/access_token?");
@@ -188,30 +699,70 @@ public class UMWXHandler extends UMSSOHandler {
             sb.append(str);
             sb.append("&grant_type=authorization_code");
             QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.3
+                final /* synthetic */ StringBuilder val$authURL;
+                final /* synthetic */ UMAuthListener val$listener;
+
+                /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$3$1 */
+                class AnonymousClass1 implements Runnable {
+                    final /* synthetic */ Map val$finalMap;
+
+                    AnonymousClass1(Map mapJsonToMap2) {
+                        map = mapJsonToMap2;
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        if (map.get(UMWXHandler.ERRORCODE) != null) {
+                            AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                            UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG))));
+                        } else {
+                            AnonymousClass3 anonymousClass32 = AnonymousClass3.this;
+                            UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+                        }
+                        map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                        map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                        Map map = map;
+                        map.put("uid", map.get("openid"));
+                        Map map2 = map;
+                        map2.put("unionid", map2.get("unionid"));
+                    }
+                }
+
+                AnonymousClass3(StringBuilder sb2, UMAuthListener uMAuthListener2) {
+                    sb = sb2;
+                    uMAuthListener = uMAuthListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    String request = WXAuthUtils.request(sb.toString());
+                    String strRequest = WXAuthUtils.request(sb.toString());
                     try {
-                        final Map<String, String> jsonToMap = SocializeUtils.jsonToMap(request);
-                        if (jsonToMap == null || jsonToMap.size() == 0) {
+                        Map mapJsonToMap2 = SocializeUtils.jsonToMap(strRequest);
+                        if (mapJsonToMap2 == null || mapJsonToMap2.size() == 0) {
                             UMWXHandler.this.getMap();
                         }
-                        UMWXHandler.this.setBundle(UMWXHandler.this.parseAuthData(request));
+                        UMWXHandler.this.setBundle(UMWXHandler.this.parseAuthData(strRequest));
                         QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.3.1
+                            final /* synthetic */ Map val$finalMap;
+
+                            AnonymousClass1(Map mapJsonToMap22) {
+                                map = mapJsonToMap22;
+                            }
+
                             @Override // java.lang.Runnable
                             public void run() {
-                                if (jsonToMap.get(UMWXHandler.ERRORCODE) != null) {
-                                    RunnableC37153 runnableC37153 = RunnableC37153.this;
-                                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) jsonToMap.get(UMWXHandler.ERRMSG))));
+                                if (map.get(UMWXHandler.ERRORCODE) != null) {
+                                    AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                                    UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG))));
                                 } else {
-                                    RunnableC37153 runnableC371532 = RunnableC37153.this;
-                                    UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, jsonToMap);
+                                    AnonymousClass3 anonymousClass32 = AnonymousClass3.this;
+                                    UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
                                 }
-                                jsonToMap.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
-                                jsonToMap.put(CommonNetImpl.f13712AS, UMWXHandler.this.config.appkey);
-                                Map map = jsonToMap;
+                                map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                                map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                                Map map = map;
                                 map.put("uid", map.get("openid"));
-                                Map map2 = jsonToMap;
+                                Map map2 = map;
                                 map2.put("unionid", map2.get("unionid"));
                             }
                         });
@@ -222,56 +773,97 @@ public class UMWXHandler extends UMSSOHandler {
             }, true);
             return;
         }
-        sb.append("https://oauth2.umeng.com/oauth/token/acquire?");
+        sb2.append("https://oauth2.umeng.com/oauth/token/acquire?");
         String appkey = SocializeUtils.getAppkey(getContext());
-        sb.append("appkey=");
-        sb.append(appkey);
-        sb.append("&source=");
-        sb.append(ConstantsAPI.Token.WX_TOKEN_PLATFORMID_VALUE);
-        sb.append("&appId=");
-        sb.append(this.config.appId);
-        sb.append("&code=");
-        sb.append(str);
+        sb2.append("appkey=");
+        sb2.append(appkey);
+        sb2.append("&source=");
+        sb2.append(ConstantsAPI.Token.WX_TOKEN_PLATFORMID_VALUE);
+        sb2.append("&appId=");
+        sb2.append(this.config.appId);
+        sb2.append("&code=");
+        sb2.append(str);
         QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.4
+            final /* synthetic */ StringBuilder val$authURL;
+            final /* synthetic */ UMAuthListener val$listener;
+
+            /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$4$1 */
+            class AnonymousClass1 implements Runnable {
+                final /* synthetic */ Map val$finalMap;
+
+                AnonymousClass1(Map map2) {
+                    map = map2;
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    if (map.get(UMWXHandler.ERRORCODE) == null && map.get("code") == null) {
+                        AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                        UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
+                    } else {
+                        Throwable th = new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG)));
+                        AnonymousClass4 anonymousClass42 = AnonymousClass4.this;
+                        UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, th);
+                    }
+                    map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                    map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                    Map map2 = map;
+                    map2.put("uid", map2.get("openid"));
+                    Map map22 = map;
+                    map22.put("unionid", map22.get("unionid"));
+                }
+            }
+
+            AnonymousClass4(StringBuilder sb2, UMAuthListener uMAuthListener2) {
+                sb = sb2;
+                uMAuthListener = uMAuthListener2;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
-                String request = WXAuthUtils.request(sb.toString());
+                String strRequest = WXAuthUtils.request(sb.toString());
                 try {
-                    final HashMap hashMap = new HashMap();
-                    JSONObject jsonObjectExt = SocializeUtils.jsonObjectExt(request);
-                    if (jsonObjectExt != null) {
-                        if (jsonObjectExt.getInt("code") == 200) {
-                            jsonObjectExt = jsonObjectExt.getJSONObject("data");
+                    Map map2 = new HashMap();
+                    JSONObject jSONObjectJsonObjectExt = SocializeUtils.jsonObjectExt(strRequest);
+                    if (jSONObjectJsonObjectExt != null) {
+                        if (jSONObjectJsonObjectExt.getInt("code") == 200) {
+                            jSONObjectJsonObjectExt = jSONObjectJsonObjectExt.getJSONObject("data");
                         }
-                        Iterator<String> keys = jsonObjectExt.keys();
-                        while (keys.hasNext()) {
-                            String next = keys.next();
-                            hashMap.put(next, jsonObjectExt.get(next) + "");
+                        Iterator<String> itKeys = jSONObjectJsonObjectExt.keys();
+                        while (itKeys.hasNext()) {
+                            String next = itKeys.next();
+                            map2.put(next, jSONObjectJsonObjectExt.get(next) + "");
                         }
                     }
-                    if (hashMap.size() == 0) {
+                    if (map2.size() == 0) {
                         UMWXHandler.this.getMap();
                     }
-                    if (jsonObjectExt != null) {
-                        UMWXHandler.this.setBundle(UMWXHandler.this.parseAuthData(jsonObjectExt.toString()));
+                    if (jSONObjectJsonObjectExt != null) {
+                        UMWXHandler.this.setBundle(UMWXHandler.this.parseAuthData(jSONObjectJsonObjectExt.toString()));
                     }
                     QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.4.1
+                        final /* synthetic */ Map val$finalMap;
+
+                        AnonymousClass1(Map map22) {
+                            map = map22;
+                        }
+
                         @Override // java.lang.Runnable
                         public void run() {
-                            if (hashMap.get(UMWXHandler.ERRORCODE) == null && hashMap.get("code") == null) {
-                                RunnableC37164 runnableC37164 = RunnableC37164.this;
-                                UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, hashMap);
+                            if (map.get(UMWXHandler.ERRORCODE) == null && map.get("code") == null) {
+                                AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                                UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
                             } else {
-                                Throwable th = new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) hashMap.get(UMWXHandler.ERRMSG)));
-                                RunnableC37164 runnableC371642 = RunnableC37164.this;
+                                Throwable th = new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((String) map.get(UMWXHandler.ERRMSG)));
+                                AnonymousClass4 anonymousClass42 = AnonymousClass4.this;
                                 UMWXHandler.this.getAuthListener(uMAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, th);
                             }
-                            hashMap.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
-                            hashMap.put(CommonNetImpl.f13712AS, UMWXHandler.this.config.appkey);
-                            Map map = hashMap;
-                            map.put("uid", map.get("openid"));
-                            Map map2 = hashMap;
-                            map2.put("unionid", map2.get("unionid"));
+                            map.put(CommonNetImpl.AID, UMWXHandler.this.config.appId);
+                            map.put(CommonNetImpl.AS, UMWXHandler.this.config.appkey);
+                            Map map22 = map;
+                            map22.put("uid", map22.get("openid"));
+                            Map map222 = map;
+                            map222.put("unionid", map222.get("unionid"));
                         }
                     });
                 } catch (Exception e2) {
@@ -282,24 +874,22 @@ public class UMWXHandler extends UMSSOHandler {
     }
 
     private Map<String, String> getAuthWithRefreshToken(String str) {
-        Map<String, String> map;
+        Map<String, String> mapJsonToMap;
         try {
-            map = SocializeUtils.jsonToMap(WXAuthUtils.request("https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + this.config.appId + "&grant_type=refresh_token&refresh_token=" + str));
+            mapJsonToMap = SocializeUtils.jsonToMap(WXAuthUtils.request("https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + this.config.appId + "&grant_type=refresh_token&refresh_token=" + str));
             try {
-                map.put("unionid", getUid());
+                mapJsonToMap.put("unionid", getUid());
             } catch (Exception e2) {
                 e = e2;
                 SLog.error(e);
-                return map;
             }
         } catch (Exception e3) {
             e = e3;
-            map = null;
+            mapJsonToMap = null;
         }
-        return map;
+        return mapJsonToMap;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public Map<String, String> getMap() {
         WeixinPreferences weixinPreferences = this.weixinPreferences;
         if (weixinPreferences != null) {
@@ -350,7 +940,6 @@ public class UMWXHandler extends UMSSOHandler {
         setBundle(parseAuthData(WXAuthUtils.request(str)));
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public void onAuthCallback(SendAuth.Resp resp) {
         int i2 = resp.errCode;
         if (i2 == 0) {
@@ -369,11 +958,10 @@ public class UMWXHandler extends UMSSOHandler {
             getAuthListener(this.mAuthListener).onCancel(SHARE_MEDIA.WEIXIN, 0);
             return;
         }
-        CharSequence concat = TextUtils.concat("weixin auth error (", String.valueOf(i2), "):", resp.errStr);
-        getAuthListener(this.mAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((Object) concat)));
+        CharSequence charSequenceConcat = TextUtils.concat("weixin auth error (", String.valueOf(i2), "):", resp.errStr);
+        getAuthListener(this.mAuthListener).onError(SHARE_MEDIA.WEIXIN, 0, new Throwable(UmengErrorCode.AuthorizeFailed.getMessage() + ((Object) charSequenceConcat)));
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public Bundle parseAuthData(String str) {
         Bundle bundle = new Bundle();
         if (TextUtils.isEmpty(str)) {
@@ -381,9 +969,9 @@ public class UMWXHandler extends UMSSOHandler {
         }
         try {
             JSONObject jSONObject = new JSONObject(str);
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
+            Iterator<String> itKeys = jSONObject.keys();
+            while (itKeys.hasNext()) {
+                String next = itKeys.next();
                 bundle.putString(next, jSONObject.optString(next));
             }
             bundle.putLong(REFRESH_TOKEN_EXPIRES_KEY, 604800L);
@@ -401,42 +989,42 @@ public class UMWXHandler extends UMSSOHandler {
         if (TextUtils.isEmpty(str)) {
             return Collections.emptyMap();
         }
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         try {
             JSONObject jSONObject = new JSONObject(str);
             if (jSONObject.has(ERRORCODE)) {
-                hashMap.put(ERRORCODE, jSONObject.getString(ERRORCODE));
-                hashMap.put(ERRMSG, jSONObject.getString(ERRMSG));
-                return hashMap;
+                map.put(ERRORCODE, jSONObject.getString(ERRORCODE));
+                map.put(ERRMSG, jSONObject.getString(ERRMSG));
+                return map;
             }
-            hashMap.put("openid", jSONObject.optString("openid"));
-            hashMap.put("screen_name", jSONObject.optString(NICKNAME));
-            hashMap.put(CommonNetImpl.NAME, jSONObject.optString(NICKNAME));
-            hashMap.put("language", jSONObject.optString("language"));
-            hashMap.put(UserInfo.CITY, jSONObject.optString(UserInfo.CITY));
-            hashMap.put(UserInfo.PROVINCE, jSONObject.optString(UserInfo.PROVINCE));
-            hashMap.put(C3351bh.f11563O, jSONObject.optString(C3351bh.f11563O));
-            hashMap.put("profile_image_url", jSONObject.optString(HEADIMGURL));
-            hashMap.put("iconurl", jSONObject.optString(HEADIMGURL));
-            hashMap.put("unionid", jSONObject.optString("unionid"));
-            hashMap.put("uid", jSONObject.optString("unionid"));
-            hashMap.put(UserInfo.GENDER, getGender(jSONObject.optString("sex")));
-            JSONArray optJSONArray = jSONObject.optJSONArray(PRIVILEGE);
-            int length = optJSONArray == null ? 0 : optJSONArray.length();
+            map.put("openid", jSONObject.optString("openid"));
+            map.put("screen_name", jSONObject.optString(NICKNAME));
+            map.put(CommonNetImpl.NAME, jSONObject.optString(NICKNAME));
+            map.put("language", jSONObject.optString("language"));
+            map.put(UserInfo.CITY, jSONObject.optString(UserInfo.CITY));
+            map.put(UserInfo.PROVINCE, jSONObject.optString(UserInfo.PROVINCE));
+            map.put(bh.O, jSONObject.optString(bh.O));
+            map.put("profile_image_url", jSONObject.optString(HEADIMGURL));
+            map.put("iconurl", jSONObject.optString(HEADIMGURL));
+            map.put("unionid", jSONObject.optString("unionid"));
+            map.put("uid", jSONObject.optString("unionid"));
+            map.put(UserInfo.GENDER, getGender(jSONObject.optString("sex")));
+            JSONArray jSONArrayOptJSONArray = jSONObject.optJSONArray(PRIVILEGE);
+            int length = jSONArrayOptJSONArray == null ? 0 : jSONArrayOptJSONArray.length();
             if (length > 0) {
                 String[] strArr = new String[length];
                 for (int i2 = 0; i2 < length; i2++) {
-                    strArr[i2] = optJSONArray.get(i2).toString();
+                    strArr[i2] = jSONArrayOptJSONArray.get(i2).toString();
                 }
-                hashMap.put(PRIVILEGE, strArr.toString());
+                map.put(PRIVILEGE, strArr.toString());
             }
-            hashMap.put("access_token", getAccessToken());
-            hashMap.put("refreshToken", getRefreshToken());
-            hashMap.put("expires_in", String.valueOf(getAccessTokenTTL()));
-            hashMap.put("accessToken", getAccessToken());
-            hashMap.put("refreshToken", getRefreshToken());
-            hashMap.put("expiration", String.valueOf(getAccessTokenTTL()));
-            return hashMap;
+            map.put("access_token", getAccessToken());
+            map.put("refreshToken", getRefreshToken());
+            map.put("expires_in", String.valueOf(getAccessTokenTTL()));
+            map.put("accessToken", getAccessToken());
+            map.put("refreshToken", getRefreshToken());
+            map.put("expiration", String.valueOf(getAccessTokenTTL()));
+            return map;
         } catch (JSONException e2) {
             SLog.error(e2);
             return Collections.emptyMap();
@@ -447,7 +1035,6 @@ public class UMWXHandler extends UMSSOHandler {
         QueuedWork.runInMain(runnable);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public void setBundle(Bundle bundle) {
         WeixinPreferences weixinPreferences = this.weixinPreferences;
         if (weixinPreferences != null) {
@@ -456,13 +1043,13 @@ public class UMWXHandler extends UMSSOHandler {
     }
 
     private boolean shareTo(WeiXinShareContent weiXinShareContent) {
-        File asFileImage;
+        File fileAsFileImage;
         String fileUri;
         if (!weiXinShareContent.isBySystem()) {
             SendMessageToWX.Req req = new SendMessageToWX.Req();
             req.transaction = buildTransaction(weiXinShareContent.getStrStyle());
             req.message = weiXinShareContent.getWxMediaMessage(this.mAppContext, checkVersionValid() && checkAndroidNotBelowN(), this.mFileProvider);
-            int i2 = C371423.$SwitchMap$com$umeng$socialize$bean$SHARE_MEDIA[this.mTarget.ordinal()];
+            int i2 = AnonymousClass23.$SwitchMap$com$umeng$socialize$bean$SHARE_MEDIA[this.mTarget.ordinal()];
             if (i2 == 1) {
                 req.scene = 0;
             } else if (i2 == 2) {
@@ -475,6 +1062,9 @@ public class UMWXHandler extends UMSSOHandler {
             WXMediaMessage wXMediaMessage = req.message;
             if (wXMediaMessage == null) {
                 QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.19
+                    AnonymousClass19() {
+                    }
+
                     @Override // java.lang.Runnable
                     public void run() {
                         UMWXHandler uMWXHandler = UMWXHandler.this;
@@ -485,6 +1075,9 @@ public class UMWXHandler extends UMSSOHandler {
             }
             if (wXMediaMessage.mediaObject == null) {
                 QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.20
+                    AnonymousClass20() {
+                    }
+
                     @Override // java.lang.Runnable
                     public void run() {
                         UMWXHandler uMWXHandler = UMWXHandler.this;
@@ -493,9 +1086,12 @@ public class UMWXHandler extends UMSSOHandler {
                 });
                 return false;
             }
-            boolean sendReq = this.mWXApi.sendReq(req);
-            if (!sendReq) {
+            boolean zSendReq = this.mWXApi.sendReq(req);
+            if (!zSendReq) {
                 QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.21
+                    AnonymousClass21() {
+                    }
+
                     @Override // java.lang.Runnable
                     public void run() {
                         UMWXHandler uMWXHandler = UMWXHandler.this;
@@ -503,7 +1099,7 @@ public class UMWXHandler extends UMSSOHandler {
                     }
                 });
             }
-            return sendReq;
+            return zSendReq;
         }
         String text = weiXinShareContent.getText();
         UMImage image = weiXinShareContent.getImage();
@@ -515,7 +1111,7 @@ public class UMWXHandler extends UMSSOHandler {
             intent.putExtra("Kdescription", text);
         }
         Uri uri = null;
-        if (image != null && (asFileImage = image.asFileImage()) != null && (fileUri = weiXinShareContent.getFileUri(this.mAppContext, asFileImage, this.mFileProvider)) != null) {
+        if (image != null && (fileAsFileImage = image.asFileImage()) != null && (fileUri = weiXinShareContent.getFileUri(this.mAppContext, fileAsFileImage, this.mFileProvider)) != null) {
             uri = Uri.parse(fileUri);
         }
         intent.setPackage("com.tencent.mm");
@@ -526,6 +1122,9 @@ public class UMWXHandler extends UMSSOHandler {
             } else {
                 if (TextUtils.isEmpty(text)) {
                     runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.14
+                        AnonymousClass14() {
+                        }
+
                         @Override // java.lang.Runnable
                         public void run() {
                             UMWXHandler.this.umShareListener.onError(SHARE_MEDIA.WEIXIN, new Exception("content empty!"));
@@ -538,6 +1137,9 @@ public class UMWXHandler extends UMSSOHandler {
             intent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI"));
             this.mAppContext.startActivity(intent);
             runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.15
+                AnonymousClass15() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     UMWXHandler.this.umShareListener.onResult(SHARE_MEDIA.WEIXIN);
@@ -547,6 +1149,9 @@ public class UMWXHandler extends UMSSOHandler {
         }
         if (!SHARE_MEDIA.WEIXIN_CIRCLE.equals(this.mTarget)) {
             runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.18
+                AnonymousClass18() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     UMWXHandler.this.umShareListener.onError(SHARE_MEDIA.WEIXIN, new Exception("Not Support!"));
@@ -556,6 +1161,9 @@ public class UMWXHandler extends UMSSOHandler {
         }
         if (uri == null) {
             runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.16
+                AnonymousClass16() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     UMWXHandler.this.umShareListener.onError(SHARE_MEDIA.WEIXIN, new Exception("image empty!"));
@@ -568,6 +1176,9 @@ public class UMWXHandler extends UMSSOHandler {
         intent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI"));
         this.mAppContext.startActivity(intent);
         runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.17
+            AnonymousClass17() {
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 UMWXHandler.this.umShareListener.onResult(SHARE_MEDIA.WEIXIN_CIRCLE);
@@ -584,7 +1195,7 @@ public class UMWXHandler extends UMSSOHandler {
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
-    public void authorize(final UMAuthListener uMAuthListener) {
+    public void authorize(UMAuthListener uMAuthListener) {
         PlatformConfig.APPIDPlatform aPPIDPlatform = this.config;
         if (aPPIDPlatform != null) {
             this.mTarget = aPPIDPlatform.getName();
@@ -597,6 +1208,12 @@ public class UMWXHandler extends UMSSOHandler {
                 this.mWeakAct.get().startActivity(intent);
             }
             runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.1
+                final /* synthetic */ UMAuthListener val$listener;
+
+                AnonymousClass1(UMAuthListener uMAuthListener2) {
+                    uMAuthListener = uMAuthListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     UMWXHandler.this.getAuthListener(uMAuthListener).onError(UMWXHandler.this.mTarget, 0, new Throwable(UmengErrorCode.NotInstall.getMessage()));
@@ -614,18 +1231,24 @@ public class UMWXHandler extends UMSSOHandler {
         String refreshToken = getRefreshToken();
         loadOauthData("https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + this.config.appId + "&grant_type=refresh_token&refresh_token=" + refreshToken);
         getRefreshToken();
-        final Map<String, String> authWithRefreshToken = getAuthWithRefreshToken(refreshToken);
+        Map<String, String> authWithRefreshToken = getAuthWithRefreshToken(refreshToken);
         if (!authWithRefreshToken.containsKey(ERRORCODE) || (!authWithRefreshToken.get(ERRORCODE).equals(ERROR_CODE_TOKEN_ACCESS_FAIL) && !authWithRefreshToken.get(ERRORCODE).equals(ERROR_CODE_TOKEN_REFESH_FAIL))) {
             runInMainThread(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.2
+                final /* synthetic */ Map val$map;
+
+                AnonymousClass2(Map authWithRefreshToken2) {
+                    map = authWithRefreshToken2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     UMWXHandler uMWXHandler = UMWXHandler.this;
-                    uMWXHandler.getAuthListener(uMWXHandler.mAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, authWithRefreshToken);
+                    uMWXHandler.getAuthListener(uMWXHandler.mAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 0, map);
                 }
             });
         } else {
             weixinPreferencesDelete();
-            authorize(uMAuthListener);
+            authorize(uMAuthListener2);
         }
     }
 
@@ -638,9 +1261,15 @@ public class UMWXHandler extends UMSSOHandler {
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
-    public void deleteAuth(final UMAuthListener uMAuthListener) {
+    public void deleteAuth(UMAuthListener uMAuthListener) {
         weixinPreferencesDelete();
         QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.5
+            final /* synthetic */ UMAuthListener val$listener;
+
+            AnonymousClass5(UMAuthListener uMAuthListener2) {
+                uMAuthListener = uMAuthListener2;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 UMWXHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.WEIXIN, 1, null);
@@ -666,11 +1295,29 @@ public class UMWXHandler extends UMSSOHandler {
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
-    public void getPlatformInfo(final UMAuthListener uMAuthListener) {
+    public void getPlatformInfo(UMAuthListener uMAuthListener) {
         if (getShareConfig().isNeedAuthOnGetUserInfo()) {
             weixinPreferencesDelete();
         }
         authorize(new UMAuthListener() { // from class: com.umeng.socialize.handler.UMWXHandler.10
+            final /* synthetic */ UMAuthListener val$listener;
+
+            /* JADX INFO: renamed from: com.umeng.socialize.handler.UMWXHandler$10$1 */
+            class AnonymousClass1 implements Runnable {
+                AnonymousClass1() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    AnonymousClass10 anonymousClass10 = AnonymousClass10.this;
+                    UMWXHandler.this.fetchUserInfo(uMAuthListener);
+                }
+            }
+
+            AnonymousClass10(UMAuthListener uMAuthListener2) {
+                uMAuthListener = uMAuthListener2;
+            }
+
             @Override // com.umeng.socialize.UMAuthListener
             public void onCancel(SHARE_MEDIA share_media, int i2) {
                 UMWXHandler.this.getAuthListener(uMAuthListener).onCancel(share_media, i2);
@@ -679,9 +1326,12 @@ public class UMWXHandler extends UMSSOHandler {
             @Override // com.umeng.socialize.UMAuthListener
             public void onComplete(SHARE_MEDIA share_media, int i2, Map<String, String> map) {
                 QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.10.1
+                    AnonymousClass1() {
+                    }
+
                     @Override // java.lang.Runnable
                     public void run() {
-                        C370010 c370010 = C370010.this;
+                        AnonymousClass10 anonymousClass10 = AnonymousClass10.this;
                         UMWXHandler.this.fetchUserInfo(uMAuthListener);
                     }
                 }, true);
@@ -761,7 +1411,7 @@ public class UMWXHandler extends UMSSOHandler {
         this.weixinPreferences = new WeixinPreferences(this.mAppContext, "weixin");
         this.config = (PlatformConfig.APPIDPlatform) platform;
         if (TextUtils.isEmpty(this.config.getFileProvider())) {
-            SLog.m12716E(UmengText.C3779WX.WEIXIN_FILE_PROVIDER_ERROR);
+            SLog.E(UmengText.WX.WEIXIN_FILE_PROVIDER_ERROR);
         } else {
             this.mFileProvider = this.config.getFileProvider();
         }
@@ -810,7 +1460,7 @@ public class UMWXHandler extends UMSSOHandler {
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
-    public boolean share(ShareContent shareContent, final UMShareListener uMShareListener) {
+    public boolean share(ShareContent shareContent, UMShareListener uMShareListener) {
         PlatformConfig.APPIDPlatform aPPIDPlatform = this.config;
         if (aPPIDPlatform != null) {
             this.mTarget = aPPIDPlatform.getName();
@@ -822,6 +1472,12 @@ public class UMWXHandler extends UMSSOHandler {
                 this.mWeakAct.get().startActivity(intent);
             }
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.11
+                final /* synthetic */ UMShareListener val$listener;
+
+                AnonymousClass11(UMShareListener uMShareListener2) {
+                    uMShareListener = uMShareListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.NotInstall.getMessage()));
@@ -836,21 +1492,33 @@ public class UMWXHandler extends UMSSOHandler {
         }
         if (!isAbleShareEmoji(this.mTarget, weiXinShareContent)) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.12
+                final /* synthetic */ UMShareListener val$listener;
+
+                AnonymousClass12(UMShareListener uMShareListener2) {
+                    uMShareListener = uMShareListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.ShareDataTypeIllegal.getMessage() + UmengText.C3779WX.WX_CIRCLE_NOT_SUPPORT_EMOJ));
+                    UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.ShareDataTypeIllegal.getMessage() + UmengText.WX.WX_CIRCLE_NOT_SUPPORT_EMOJ));
                 }
             });
             return false;
         }
         if (isAbleShareMin(this.mTarget, weiXinShareContent)) {
-            this.umShareListener = uMShareListener;
+            this.umShareListener = uMShareListener2;
             return shareTo(weiXinShareContent);
         }
         QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMWXHandler.13
+            final /* synthetic */ UMShareListener val$listener;
+
+            AnonymousClass13(UMShareListener uMShareListener2) {
+                uMShareListener = uMShareListener2;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
-                UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.ShareDataTypeIllegal.getMessage() + UmengText.C3779WX.WX_CIRCLE_NOT_SUPPORT_MIN));
+                UMWXHandler.this.getShareListener(uMShareListener).onError(UMWXHandler.this.mTarget, new Throwable(UmengErrorCode.ShareDataTypeIllegal.getMessage() + UmengText.WX.WX_CIRCLE_NOT_SUPPORT_MIN));
             }
         });
         return false;

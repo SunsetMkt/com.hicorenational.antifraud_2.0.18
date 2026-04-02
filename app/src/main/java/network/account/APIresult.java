@@ -2,7 +2,7 @@ package network.account;
 
 import java.io.Serializable;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class APIresult<T> implements Serializable {
     private int code = -102;
     private T data;

@@ -6,14 +6,28 @@ import androidx.camera.core.impl.Config;
 import java.util.Comparator;
 import java.util.TreeMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MutableOptionsBundle extends OptionsBundle implements MutableConfig {
     private static final Comparator<Config.Option<?>> ID_COMPARE = new Comparator<Config.Option<?>>() { // from class: androidx.camera.core.impl.MutableOptionsBundle.1
+        AnonymousClass1() {
+        }
+
         @Override // java.util.Comparator
         public int compare(Config.Option<?> option, Config.Option<?> option2) {
             return option.getId().compareTo(option2.getId());
         }
     };
+
+    /* JADX INFO: renamed from: androidx.camera.core.impl.MutableOptionsBundle$1 */
+    static class AnonymousClass1 implements Comparator<Config.Option<?>> {
+        AnonymousClass1() {
+        }
+
+        @Override // java.util.Comparator
+        public int compare(Config.Option<?> option, Config.Option<?> option2) {
+            return option.getId().compareTo(option2.getId());
+        }
+    }
 
     private MutableOptionsBundle(TreeMap<Config.Option<?>, Object> treeMap) {
         super(treeMap);

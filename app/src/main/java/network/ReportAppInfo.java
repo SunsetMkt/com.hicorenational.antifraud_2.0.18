@@ -1,6 +1,6 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportAppInfo extends BaseBean {
     private String appName;
     private String appPackage;

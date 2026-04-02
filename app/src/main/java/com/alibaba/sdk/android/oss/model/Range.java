@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Range {
     public static final long INFINITE = -1;
     private long begin;

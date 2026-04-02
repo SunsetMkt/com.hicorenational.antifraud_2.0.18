@@ -3,7 +3,7 @@ package com.huawei.hms.framework.common.grs;
 import com.huawei.hms.framework.common.StringUtils;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GrsUtils {
     private static final int GRS_KEY_INDEX = 1;
     private static final int GRS_PATH_INDEX = 2;
@@ -27,8 +27,8 @@ public class GrsUtils {
     }
 
     public static String[] parseGRSSchema(String str) {
-        String[] split = StringUtils.substring(str, str.toLowerCase(Locale.ENGLISH).indexOf(GRS_SCHEMA) + 6).split(SEPARATOR, 3);
-        return split.length == 1 ? new String[]{split[0], "ROOT"} : split;
+        String[] strArrSplit = StringUtils.substring(str, str.toLowerCase(Locale.ENGLISH).indexOf(GRS_SCHEMA) + 6).split(SEPARATOR, 3);
+        return strArrSplit.length == 1 ? new String[]{strArrSplit[0], "ROOT"} : strArrSplit;
     }
 
     public static String[] parseParams(String str) {

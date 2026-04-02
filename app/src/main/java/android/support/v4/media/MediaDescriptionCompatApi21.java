@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.os.Parcel;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class MediaDescriptionCompatApi21 {
 
     static class Builder {

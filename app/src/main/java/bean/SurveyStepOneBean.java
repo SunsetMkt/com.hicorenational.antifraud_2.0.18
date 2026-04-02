@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveyStepOneBean extends BaseBean {
     private String amount;
     private long begTime;
@@ -16,9 +16,7 @@ public class SurveyStepOneBean extends BaseBean {
     private String description;
     private long enTime;
     private String endTime;
-
-    /* renamed from: id */
-    private String f1630id;
+    private String id;
     private String policeMobile;
     private String processTime;
     private String scene;
@@ -72,7 +70,7 @@ public class SurveyStepOneBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1630id;
+        return this.id;
     }
 
     public String getPoliceMobile() {
@@ -136,7 +134,7 @@ public class SurveyStepOneBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1630id = str;
+        this.id = str;
     }
 
     public void setPoliceMobile(String str) {

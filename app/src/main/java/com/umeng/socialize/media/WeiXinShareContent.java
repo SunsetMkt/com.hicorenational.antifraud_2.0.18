@@ -4,21 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
 import androidx.core.content.FileProvider;
-import com.tencent.p208mm.opensdk.modelmsg.WXEmojiObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXFileObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXImageObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXMediaMessage;
-import com.tencent.p208mm.opensdk.modelmsg.WXMiniProgramObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXMusicObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXTextObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXVideoObject;
-import com.tencent.p208mm.opensdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.opensdk.modelmsg.WXEmojiObject;
+import com.tencent.mm.opensdk.modelmsg.WXFileObject;
+import com.tencent.mm.opensdk.modelmsg.WXImageObject;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXMiniProgramObject;
+import com.tencent.mm.opensdk.modelmsg.WXMusicObject;
+import com.tencent.mm.opensdk.modelmsg.WXTextObject;
+import com.tencent.mm.opensdk.modelmsg.WXVideoObject;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareContent;
 import com.umeng.socialize.utils.SocializeUtils;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class WeiXinShareContent extends SimpleShareContent {
     private final boolean bySystem;
 
@@ -29,9 +29,9 @@ public class WeiXinShareContent extends SimpleShareContent {
 
     private WXMediaMessage buildEmojiParams() {
         UMEmoji umEmoji = getUmEmoji();
-        String file = (umEmoji == null || umEmoji.asFileImage() == null) ? "" : umEmoji.asFileImage().toString();
+        String string = (umEmoji == null || umEmoji.asFileImage() == null) ? "" : umEmoji.asFileImage().toString();
         WXEmojiObject wXEmojiObject = new WXEmojiObject();
-        wXEmojiObject.emojiPath = file;
+        wXEmojiObject.emojiPath = string;
         WXMediaMessage wXMediaMessage = new WXMediaMessage();
         wXMediaMessage.mediaObject = wXEmojiObject;
         wXMediaMessage.thumbData = objectSetThumb(umEmoji);

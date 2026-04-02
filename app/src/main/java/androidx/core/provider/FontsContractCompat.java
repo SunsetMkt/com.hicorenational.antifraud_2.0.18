@@ -28,7 +28,7 @@ import androidx.core.graphics.TypefaceCompat;
 import androidx.core.graphics.TypefaceCompatUtil;
 import androidx.core.provider.SelfDestructiveThread;
 import androidx.core.util.Preconditions;
-import com.umeng.analytics.pro.C3355bl;
+import com.umeng.analytics.pro.bl;
 import com.xiaomi.mipush.sdk.Constants;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FontsContractCompat {
     private static final int BACKGROUND_THREAD_KEEP_ALIVE_DURATION_MS = 10000;
 
@@ -61,24 +61,365 @@ public class FontsContractCompat {
     @GuardedBy("sLock")
     static final SimpleArrayMap<String, ArrayList<SelfDestructiveThread.ReplyCallback<TypefaceResult>>> sPendingReplies = new SimpleArrayMap<>();
     private static final Comparator<byte[]> sByteArrayComparator = new Comparator<byte[]>() { // from class: androidx.core.provider.FontsContractCompat.5
+        AnonymousClass5() {
+        }
+
         @Override // java.util.Comparator
         public int compare(byte[] bArr, byte[] bArr2) {
-            int i2;
-            int i3;
+            int length;
+            int length2;
             if (bArr.length == bArr2.length) {
-                for (int i4 = 0; i4 < bArr.length; i4++) {
-                    if (bArr[i4] != bArr2[i4]) {
-                        i2 = bArr[i4];
-                        i3 = bArr2[i4];
+                for (int i2 = 0; i2 < bArr.length; i2++) {
+                    if (bArr[i2] != bArr2[i2]) {
+                        length = bArr[i2];
+                        length2 = bArr2[i2];
                     }
                 }
                 return 0;
             }
-            i2 = bArr.length;
-            i3 = bArr2.length;
-            return i2 - i3;
+            length = bArr.length;
+            length2 = bArr2.length;
+            return length - length2;
         }
     };
+
+    /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$1 */
+    class AnonymousClass1 implements Callable<TypefaceResult> {
+        final /* synthetic */ Context val$context;
+        final /* synthetic */ String val$id;
+        final /* synthetic */ FontRequest val$request;
+        final /* synthetic */ int val$style;
+
+        AnonymousClass1(Context context, FontRequest fontRequest, int i2, String str) {
+            context = context;
+            fontRequest = fontRequest;
+            i = i2;
+            str = str;
+        }
+
+        @Override // java.util.concurrent.Callable
+        public TypefaceResult call() throws Exception {
+            TypefaceResult fontInternal = FontsContractCompat.getFontInternal(context, fontRequest, i);
+            Typeface typeface = fontInternal.mTypeface;
+            if (typeface != null) {
+                FontsContractCompat.sTypefaceCache.put(str, typeface);
+            }
+            return fontInternal;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$2 */
+    class AnonymousClass2 implements SelfDestructiveThread.ReplyCallback<TypefaceResult> {
+        final /* synthetic */ Handler val$handler;
+
+        AnonymousClass2(Handler handler) {
+            handler = handler;
+        }
+
+        @Override // androidx.core.provider.SelfDestructiveThread.ReplyCallback
+        public void onReply(TypefaceResult typefaceResult) {
+            if (typefaceResult == null) {
+                fontCallback.callbackFailAsync(1, handler);
+                return;
+            }
+            int i2 = typefaceResult.mResult;
+            if (i2 == 0) {
+                fontCallback.callbackSuccessAsync(typefaceResult.mTypeface, handler);
+            } else {
+                fontCallback.callbackFailAsync(i2, handler);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$3 */
+    class AnonymousClass3 implements SelfDestructiveThread.ReplyCallback<TypefaceResult> {
+        final /* synthetic */ String val$id;
+
+        AnonymousClass3(String str) {
+            str = str;
+        }
+
+        @Override // androidx.core.provider.SelfDestructiveThread.ReplyCallback
+        public void onReply(TypefaceResult typefaceResult) {
+            synchronized (FontsContractCompat.sLock) {
+                ArrayList<SelfDestructiveThread.ReplyCallback<TypefaceResult>> arrayList = FontsContractCompat.sPendingReplies.get(str);
+                if (arrayList == null) {
+                    return;
+                }
+                FontsContractCompat.sPendingReplies.remove(str);
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    arrayList.get(i2).onReply(typefaceResult);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4 */
+    class AnonymousClass4 implements Runnable {
+        final /* synthetic */ Context val$appContext;
+        final /* synthetic */ FontRequestCallback val$callback;
+        final /* synthetic */ Handler val$callerThreadHandler;
+        final /* synthetic */ FontRequest val$request;
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$1 */
+        class AnonymousClass1 implements Runnable {
+            AnonymousClass1() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(-1);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$2 */
+        class AnonymousClass2 implements Runnable {
+            AnonymousClass2() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(-2);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$3 */
+        class AnonymousClass3 implements Runnable {
+            AnonymousClass3() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(-3);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$4 */
+        class RunnableC00044 implements Runnable {
+            RunnableC00044() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(-3);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$5 */
+        class AnonymousClass5 implements Runnable {
+            AnonymousClass5() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(1);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$6 */
+        class AnonymousClass6 implements Runnable {
+            AnonymousClass6() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(-3);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$7 */
+        class AnonymousClass7 implements Runnable {
+            final /* synthetic */ int val$resultCode;
+
+            AnonymousClass7(int i2) {
+                i = i2;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(i);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$8 */
+        class AnonymousClass8 implements Runnable {
+            AnonymousClass8() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRequestFailed(-3);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$9 */
+        class AnonymousClass9 implements Runnable {
+            final /* synthetic */ Typeface val$typeface;
+
+            AnonymousClass9(Typeface typeface) {
+                typeface = typeface;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                fontRequestCallback.onTypefaceRetrieved(typeface);
+            }
+        }
+
+        AnonymousClass4(Context context, FontRequest fontRequest, Handler handler, FontRequestCallback fontRequestCallback) {
+            context = context;
+            fontRequest = fontRequest;
+            handler = handler;
+            fontRequestCallback = fontRequestCallback;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                FontFamilyResult fontFamilyResultFetchFonts = FontsContractCompat.fetchFonts(context, null, fontRequest);
+                if (fontFamilyResultFetchFonts.getStatusCode() != 0) {
+                    int statusCode = fontFamilyResultFetchFonts.getStatusCode();
+                    if (statusCode == 1) {
+                        handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.2
+                            AnonymousClass2() {
+                            }
+
+                            @Override // java.lang.Runnable
+                            public void run() {
+                                fontRequestCallback.onTypefaceRequestFailed(-2);
+                            }
+                        });
+                        return;
+                    } else if (statusCode != 2) {
+                        handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.4
+                            RunnableC00044() {
+                            }
+
+                            @Override // java.lang.Runnable
+                            public void run() {
+                                fontRequestCallback.onTypefaceRequestFailed(-3);
+                            }
+                        });
+                        return;
+                    } else {
+                        handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.3
+                            AnonymousClass3() {
+                            }
+
+                            @Override // java.lang.Runnable
+                            public void run() {
+                                fontRequestCallback.onTypefaceRequestFailed(-3);
+                            }
+                        });
+                        return;
+                    }
+                }
+                FontInfo[] fonts = fontFamilyResultFetchFonts.getFonts();
+                if (fonts == null || fonts.length == 0) {
+                    handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.5
+                        AnonymousClass5() {
+                        }
+
+                        @Override // java.lang.Runnable
+                        public void run() {
+                            fontRequestCallback.onTypefaceRequestFailed(1);
+                        }
+                    });
+                    return;
+                }
+                for (FontInfo fontInfo : fonts) {
+                    if (fontInfo.getResultCode() != 0) {
+                        int resultCode = fontInfo.getResultCode();
+                        if (resultCode < 0) {
+                            handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.6
+                                AnonymousClass6() {
+                                }
+
+                                @Override // java.lang.Runnable
+                                public void run() {
+                                    fontRequestCallback.onTypefaceRequestFailed(-3);
+                                }
+                            });
+                            return;
+                        } else {
+                            handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.7
+                                final /* synthetic */ int val$resultCode;
+
+                                AnonymousClass7(int resultCode2) {
+                                    i = resultCode2;
+                                }
+
+                                @Override // java.lang.Runnable
+                                public void run() {
+                                    fontRequestCallback.onTypefaceRequestFailed(i);
+                                }
+                            });
+                            return;
+                        }
+                    }
+                }
+                Typeface typefaceBuildTypeface = FontsContractCompat.buildTypeface(context, null, fonts);
+                if (typefaceBuildTypeface == null) {
+                    handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.8
+                        AnonymousClass8() {
+                        }
+
+                        @Override // java.lang.Runnable
+                        public void run() {
+                            fontRequestCallback.onTypefaceRequestFailed(-3);
+                        }
+                    });
+                } else {
+                    handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.9
+                        final /* synthetic */ Typeface val$typeface;
+
+                        AnonymousClass9(Typeface typefaceBuildTypeface2) {
+                            typeface = typefaceBuildTypeface2;
+                        }
+
+                        @Override // java.lang.Runnable
+                        public void run() {
+                            fontRequestCallback.onTypefaceRetrieved(typeface);
+                        }
+                    });
+                }
+            } catch (PackageManager.NameNotFoundException unused) {
+                handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.1
+                    AnonymousClass1() {
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        fontRequestCallback.onTypefaceRequestFailed(-1);
+                    }
+                });
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$5 */
+    class AnonymousClass5 implements Comparator<byte[]> {
+        AnonymousClass5() {
+        }
+
+        @Override // java.util.Comparator
+        public int compare(byte[] bArr, byte[] bArr2) {
+            int length;
+            int length2;
+            if (bArr.length == bArr2.length) {
+                for (int i2 = 0; i2 < bArr.length; i2++) {
+                    if (bArr[i2] != bArr2[i2]) {
+                        length = bArr[i2];
+                        length2 = bArr2[i2];
+                    }
+                }
+                return 0;
+            }
+            length = bArr.length;
+            length2 = bArr2.length;
+            return length - length2;
+        }
+    }
 
     public static final class Columns implements BaseColumns {
         public static final String FILE_ID = "file_id";
@@ -123,7 +464,7 @@ public class FontsContractCompat {
         private final int mWeight;
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-        public FontInfo(@NonNull Uri uri, @IntRange(from = 0) int i2, @IntRange(from = 1, m294to = 1000) int i3, boolean z, int i4) {
+        public FontInfo(@NonNull Uri uri, @IntRange(from = 0) int i2, @IntRange(from = 1, to = 1000) int i3, boolean z, int i4) {
             this.mUri = (Uri) Preconditions.checkNotNull(uri);
             this.mTtcIndex = i2;
             this.mWeight = i3;
@@ -145,7 +486,7 @@ public class FontsContractCompat {
             return this.mUri;
         }
 
-        @IntRange(from = 1, m294to = 1000)
+        @IntRange(from = 1, to = 1000)
         public int getWeight() {
             return this.mWeight;
         }
@@ -231,29 +572,29 @@ public class FontsContractCompat {
     @VisibleForTesting
     static FontInfo[] getFontFromProvider(Context context, FontRequest fontRequest, String str, CancellationSignal cancellationSignal) {
         ArrayList arrayList = new ArrayList();
-        Uri build = new Uri.Builder().scheme("content").authority(str).build();
-        Uri build2 = new Uri.Builder().scheme("content").authority(str).appendPath("file").build();
-        Cursor cursor = null;
+        Uri uriBuild = new Uri.Builder().scheme("content").authority(str).build();
+        Uri uriBuild2 = new Uri.Builder().scheme("content").authority(str).appendPath("file").build();
+        Cursor cursorQuery = null;
         try {
-            cursor = Build.VERSION.SDK_INT > 16 ? context.getContentResolver().query(build, new String[]{C3355bl.f11732d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null, cancellationSignal) : context.getContentResolver().query(build, new String[]{C3355bl.f11732d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null);
-            if (cursor != null && cursor.getCount() > 0) {
-                int columnIndex = cursor.getColumnIndex(Columns.RESULT_CODE);
+            cursorQuery = Build.VERSION.SDK_INT > 16 ? context.getContentResolver().query(uriBuild, new String[]{bl.f7101d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null, cancellationSignal) : context.getContentResolver().query(uriBuild, new String[]{bl.f7101d, "file_id", Columns.TTC_INDEX, Columns.VARIATION_SETTINGS, Columns.WEIGHT, Columns.ITALIC, Columns.RESULT_CODE}, "query = ?", new String[]{fontRequest.getQuery()}, null);
+            if (cursorQuery != null && cursorQuery.getCount() > 0) {
+                int columnIndex = cursorQuery.getColumnIndex(Columns.RESULT_CODE);
                 ArrayList arrayList2 = new ArrayList();
-                int columnIndex2 = cursor.getColumnIndex(C3355bl.f11732d);
-                int columnIndex3 = cursor.getColumnIndex("file_id");
-                int columnIndex4 = cursor.getColumnIndex(Columns.TTC_INDEX);
-                int columnIndex5 = cursor.getColumnIndex(Columns.WEIGHT);
-                int columnIndex6 = cursor.getColumnIndex(Columns.ITALIC);
-                while (cursor.moveToNext()) {
-                    int i2 = columnIndex != -1 ? cursor.getInt(columnIndex) : 0;
-                    arrayList2.add(new FontInfo(columnIndex3 == -1 ? ContentUris.withAppendedId(build, cursor.getLong(columnIndex2)) : ContentUris.withAppendedId(build2, cursor.getLong(columnIndex3)), columnIndex4 != -1 ? cursor.getInt(columnIndex4) : 0, columnIndex5 != -1 ? cursor.getInt(columnIndex5) : 400, columnIndex6 != -1 && cursor.getInt(columnIndex6) == 1, i2));
+                int columnIndex2 = cursorQuery.getColumnIndex(bl.f7101d);
+                int columnIndex3 = cursorQuery.getColumnIndex("file_id");
+                int columnIndex4 = cursorQuery.getColumnIndex(Columns.TTC_INDEX);
+                int columnIndex5 = cursorQuery.getColumnIndex(Columns.WEIGHT);
+                int columnIndex6 = cursorQuery.getColumnIndex(Columns.ITALIC);
+                while (cursorQuery.moveToNext()) {
+                    int i2 = columnIndex != -1 ? cursorQuery.getInt(columnIndex) : 0;
+                    arrayList2.add(new FontInfo(columnIndex3 == -1 ? ContentUris.withAppendedId(uriBuild, cursorQuery.getLong(columnIndex2)) : ContentUris.withAppendedId(uriBuild2, cursorQuery.getLong(columnIndex3)), columnIndex4 != -1 ? cursorQuery.getInt(columnIndex4) : 0, columnIndex5 != -1 ? cursorQuery.getInt(columnIndex5) : 400, columnIndex6 != -1 && cursorQuery.getInt(columnIndex6) == 1, i2));
                 }
                 arrayList = arrayList2;
             }
             return (FontInfo[]) arrayList.toArray(new FontInfo[0]);
         } finally {
-            if (cursor != null) {
-                cursor.close();
+            if (cursorQuery != null) {
+                cursorQuery.close();
             }
         }
     }
@@ -261,20 +602,20 @@ public class FontsContractCompat {
     @NonNull
     static TypefaceResult getFontInternal(Context context, FontRequest fontRequest, int i2) {
         try {
-            FontFamilyResult fetchFonts = fetchFonts(context, null, fontRequest);
-            if (fetchFonts.getStatusCode() != 0) {
-                return new TypefaceResult(null, fetchFonts.getStatusCode() == 1 ? -2 : -3);
+            FontFamilyResult fontFamilyResultFetchFonts = fetchFonts(context, null, fontRequest);
+            if (fontFamilyResultFetchFonts.getStatusCode() != 0) {
+                return new TypefaceResult(null, fontFamilyResultFetchFonts.getStatusCode() == 1 ? -2 : -3);
             }
-            Typeface createFromFontInfo = TypefaceCompat.createFromFontInfo(context, null, fetchFonts.getFonts(), i2);
-            return new TypefaceResult(createFromFontInfo, createFromFontInfo != null ? 0 : -3);
+            Typeface typefaceCreateFromFontInfo = TypefaceCompat.createFromFontInfo(context, null, fontFamilyResultFetchFonts.getFonts(), i2);
+            return new TypefaceResult(typefaceCreateFromFontInfo, typefaceCreateFromFontInfo != null ? 0 : -3);
         } catch (PackageManager.NameNotFoundException unused) {
             return new TypefaceResult(null, -1);
         }
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static Typeface getFontSync(final Context context, final FontRequest fontRequest, @Nullable final ResourcesCompat.FontCallback fontCallback, @Nullable final Handler handler, boolean z, int i2, final int i3) {
-        final String str = fontRequest.getIdentifier() + Constants.ACCEPT_TIME_SEPARATOR_SERVER + i3;
+    public static Typeface getFontSync(Context context, FontRequest fontRequest, @Nullable ResourcesCompat.FontCallback fontCallback, @Nullable Handler handler, boolean z, int i2, int i3) {
+        String str = fontRequest.getIdentifier() + Constants.ACCEPT_TIME_SEPARATOR_SERVER + i3;
         Typeface typeface = sTypefaceCache.get(str);
         if (typeface != null) {
             if (fontCallback != null) {
@@ -294,11 +635,22 @@ public class FontsContractCompat {
             }
             return fontInternal.mTypeface;
         }
-        Callable<TypefaceResult> callable = new Callable<TypefaceResult>() { // from class: androidx.core.provider.FontsContractCompat.1
-            /* JADX WARN: Can't rename method to resolve collision */
+        AnonymousClass1 anonymousClass1 = new Callable<TypefaceResult>() { // from class: androidx.core.provider.FontsContractCompat.1
+            final /* synthetic */ Context val$context;
+            final /* synthetic */ String val$id;
+            final /* synthetic */ FontRequest val$request;
+            final /* synthetic */ int val$style;
+
+            AnonymousClass1(Context context2, FontRequest fontRequest2, int i32, String str2) {
+                context = context2;
+                fontRequest = fontRequest2;
+                i = i32;
+                str = str2;
+            }
+
             @Override // java.util.concurrent.Callable
             public TypefaceResult call() throws Exception {
-                TypefaceResult fontInternal2 = FontsContractCompat.getFontInternal(context, fontRequest, i3);
+                TypefaceResult fontInternal2 = FontsContractCompat.getFontInternal(context, fontRequest, i);
                 Typeface typeface2 = fontInternal2.mTypeface;
                 if (typeface2 != null) {
                     FontsContractCompat.sTypefaceCache.put(str, typeface2);
@@ -308,40 +660,52 @@ public class FontsContractCompat {
         };
         if (z) {
             try {
-                return ((TypefaceResult) sBackgroundThread.postAndWait(callable, i2)).mTypeface;
+                return ((TypefaceResult) sBackgroundThread.postAndWait(anonymousClass1, i2)).mTypeface;
             } catch (InterruptedException unused) {
                 return null;
             }
         }
-        SelfDestructiveThread.ReplyCallback<TypefaceResult> replyCallback = fontCallback == null ? null : new SelfDestructiveThread.ReplyCallback<TypefaceResult>() { // from class: androidx.core.provider.FontsContractCompat.2
+        AnonymousClass2 anonymousClass2 = fontCallback == null ? null : new SelfDestructiveThread.ReplyCallback<TypefaceResult>() { // from class: androidx.core.provider.FontsContractCompat.2
+            final /* synthetic */ Handler val$handler;
+
+            AnonymousClass2(Handler handler2) {
+                handler = handler2;
+            }
+
             @Override // androidx.core.provider.SelfDestructiveThread.ReplyCallback
             public void onReply(TypefaceResult typefaceResult) {
                 if (typefaceResult == null) {
-                    ResourcesCompat.FontCallback.this.callbackFailAsync(1, handler);
+                    fontCallback.callbackFailAsync(1, handler);
                     return;
                 }
-                int i5 = typefaceResult.mResult;
-                if (i5 == 0) {
-                    ResourcesCompat.FontCallback.this.callbackSuccessAsync(typefaceResult.mTypeface, handler);
+                int i22 = typefaceResult.mResult;
+                if (i22 == 0) {
+                    fontCallback.callbackSuccessAsync(typefaceResult.mTypeface, handler);
                 } else {
-                    ResourcesCompat.FontCallback.this.callbackFailAsync(i5, handler);
+                    fontCallback.callbackFailAsync(i22, handler);
                 }
             }
         };
         synchronized (sLock) {
-            ArrayList<SelfDestructiveThread.ReplyCallback<TypefaceResult>> arrayList = sPendingReplies.get(str);
+            ArrayList<SelfDestructiveThread.ReplyCallback<TypefaceResult>> arrayList = sPendingReplies.get(str2);
             if (arrayList != null) {
-                if (replyCallback != null) {
-                    arrayList.add(replyCallback);
+                if (anonymousClass2 != null) {
+                    arrayList.add(anonymousClass2);
                 }
                 return null;
             }
-            if (replyCallback != null) {
+            if (anonymousClass2 != null) {
                 ArrayList<SelfDestructiveThread.ReplyCallback<TypefaceResult>> arrayList2 = new ArrayList<>();
-                arrayList2.add(replyCallback);
-                sPendingReplies.put(str, arrayList2);
+                arrayList2.add(anonymousClass2);
+                sPendingReplies.put(str2, arrayList2);
             }
-            sBackgroundThread.postAndReply(callable, new SelfDestructiveThread.ReplyCallback<TypefaceResult>() { // from class: androidx.core.provider.FontsContractCompat.3
+            sBackgroundThread.postAndReply(anonymousClass1, new SelfDestructiveThread.ReplyCallback<TypefaceResult>() { // from class: androidx.core.provider.FontsContractCompat.3
+                final /* synthetic */ String val$id;
+
+                AnonymousClass3(String str2) {
+                    str = str2;
+                }
+
                 @Override // androidx.core.provider.SelfDestructiveThread.ReplyCallback
                 public void onReply(TypefaceResult typefaceResult) {
                     synchronized (FontsContractCompat.sLock) {
@@ -350,8 +714,8 @@ public class FontsContractCompat {
                             return;
                         }
                         FontsContractCompat.sPendingReplies.remove(str);
-                        for (int i5 = 0; i5 < arrayList3.size(); i5++) {
-                            arrayList3.get(i5).onReply(typefaceResult);
+                        for (int i22 = 0; i22 < arrayList3.size(); i22++) {
+                            arrayList3.get(i22).onReply(typefaceResult);
                         }
                     }
                 }
@@ -365,21 +729,21 @@ public class FontsContractCompat {
     @VisibleForTesting
     public static ProviderInfo getProvider(@NonNull PackageManager packageManager, @NonNull FontRequest fontRequest, @Nullable Resources resources) throws PackageManager.NameNotFoundException {
         String providerAuthority = fontRequest.getProviderAuthority();
-        ProviderInfo resolveContentProvider = packageManager.resolveContentProvider(providerAuthority, 0);
-        if (resolveContentProvider == null) {
+        ProviderInfo providerInfoResolveContentProvider = packageManager.resolveContentProvider(providerAuthority, 0);
+        if (providerInfoResolveContentProvider == null) {
             throw new PackageManager.NameNotFoundException("No package found for authority: " + providerAuthority);
         }
-        if (!resolveContentProvider.packageName.equals(fontRequest.getProviderPackage())) {
+        if (!providerInfoResolveContentProvider.packageName.equals(fontRequest.getProviderPackage())) {
             throw new PackageManager.NameNotFoundException("Found content provider " + providerAuthority + ", but package was not " + fontRequest.getProviderPackage());
         }
-        List<byte[]> convertToByteArrayList = convertToByteArrayList(packageManager.getPackageInfo(resolveContentProvider.packageName, 64).signatures);
-        Collections.sort(convertToByteArrayList, sByteArrayComparator);
+        List<byte[]> listConvertToByteArrayList = convertToByteArrayList(packageManager.getPackageInfo(providerInfoResolveContentProvider.packageName, 64).signatures);
+        Collections.sort(listConvertToByteArrayList, sByteArrayComparator);
         List<List<byte[]>> certificates = getCertificates(fontRequest, resources);
         for (int i2 = 0; i2 < certificates.size(); i2++) {
             ArrayList arrayList = new ArrayList(certificates.get(i2));
             Collections.sort(arrayList, sByteArrayComparator);
-            if (equalsByteArrayList(convertToByteArrayList, arrayList)) {
-                return resolveContentProvider;
+            if (equalsByteArrayList(listConvertToByteArrayList, arrayList)) {
+                return providerInfoResolveContentProvider;
             }
         }
         return null;
@@ -388,33 +752,152 @@ public class FontsContractCompat {
     @RequiresApi(19)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static Map<Uri, ByteBuffer> prepareFontData(Context context, FontInfo[] fontInfoArr, CancellationSignal cancellationSignal) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (FontInfo fontInfo : fontInfoArr) {
             if (fontInfo.getResultCode() == 0) {
                 Uri uri = fontInfo.getUri();
-                if (!hashMap.containsKey(uri)) {
-                    hashMap.put(uri, TypefaceCompatUtil.mmap(context, cancellationSignal, uri));
+                if (!map.containsKey(uri)) {
+                    map.put(uri, TypefaceCompatUtil.mmap(context, cancellationSignal, uri));
                 }
             }
         }
-        return Collections.unmodifiableMap(hashMap);
+        return Collections.unmodifiableMap(map);
     }
 
     public static void requestFont(@NonNull Context context, @NonNull FontRequest fontRequest, @NonNull FontRequestCallback fontRequestCallback, @NonNull Handler handler) {
         requestFontInternal(context.getApplicationContext(), fontRequest, fontRequestCallback, handler);
     }
 
-    private static void requestFontInternal(@NonNull final Context context, @NonNull final FontRequest fontRequest, @NonNull final FontRequestCallback fontRequestCallback, @NonNull Handler handler) {
-        final Handler handler2 = new Handler();
+    private static void requestFontInternal(@NonNull Context context, @NonNull FontRequest fontRequest, @NonNull FontRequestCallback fontRequestCallback, @NonNull Handler handler) {
         handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4
+            final /* synthetic */ Context val$appContext;
+            final /* synthetic */ FontRequestCallback val$callback;
+            final /* synthetic */ Handler val$callerThreadHandler;
+            final /* synthetic */ FontRequest val$request;
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$1 */
+            class AnonymousClass1 implements Runnable {
+                AnonymousClass1() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(-1);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$2 */
+            class AnonymousClass2 implements Runnable {
+                AnonymousClass2() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(-2);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$3 */
+            class AnonymousClass3 implements Runnable {
+                AnonymousClass3() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(-3);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$4 */
+            class RunnableC00044 implements Runnable {
+                RunnableC00044() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(-3);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$5 */
+            class AnonymousClass5 implements Runnable {
+                AnonymousClass5() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(1);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$6 */
+            class AnonymousClass6 implements Runnable {
+                AnonymousClass6() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(-3);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$7 */
+            class AnonymousClass7 implements Runnable {
+                final /* synthetic */ int val$resultCode;
+
+                AnonymousClass7(int resultCode2) {
+                    i = resultCode2;
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(i);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$8 */
+            class AnonymousClass8 implements Runnable {
+                AnonymousClass8() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRequestFailed(-3);
+                }
+            }
+
+            /* JADX INFO: renamed from: androidx.core.provider.FontsContractCompat$4$9 */
+            class AnonymousClass9 implements Runnable {
+                final /* synthetic */ Typeface val$typeface;
+
+                AnonymousClass9(Typeface typefaceBuildTypeface2) {
+                    typeface = typefaceBuildTypeface2;
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    fontRequestCallback.onTypefaceRetrieved(typeface);
+                }
+            }
+
+            AnonymousClass4(Context context2, FontRequest fontRequest2, Handler handler2, FontRequestCallback fontRequestCallback2) {
+                context = context2;
+                fontRequest = fontRequest2;
+                handler = handler2;
+                fontRequestCallback = fontRequestCallback2;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 try {
-                    FontFamilyResult fetchFonts = FontsContractCompat.fetchFonts(context, null, fontRequest);
-                    if (fetchFonts.getStatusCode() != 0) {
-                        int statusCode = fetchFonts.getStatusCode();
+                    FontFamilyResult fontFamilyResultFetchFonts = FontsContractCompat.fetchFonts(context, null, fontRequest);
+                    if (fontFamilyResultFetchFonts.getStatusCode() != 0) {
+                        int statusCode = fontFamilyResultFetchFonts.getStatusCode();
                         if (statusCode == 1) {
-                            handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.2
+                            handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.2
+                                AnonymousClass2() {
+                                }
+
                                 @Override // java.lang.Runnable
                                 public void run() {
                                     fontRequestCallback.onTypefaceRequestFailed(-2);
@@ -422,7 +905,10 @@ public class FontsContractCompat {
                             });
                             return;
                         } else if (statusCode != 2) {
-                            handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.4
+                            handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.4
+                                RunnableC00044() {
+                                }
+
                                 @Override // java.lang.Runnable
                                 public void run() {
                                     fontRequestCallback.onTypefaceRequestFailed(-3);
@@ -430,7 +916,10 @@ public class FontsContractCompat {
                             });
                             return;
                         } else {
-                            handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.3
+                            handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.3
+                                AnonymousClass3() {
+                                }
+
                                 @Override // java.lang.Runnable
                                 public void run() {
                                     fontRequestCallback.onTypefaceRequestFailed(-3);
@@ -439,9 +928,12 @@ public class FontsContractCompat {
                             return;
                         }
                     }
-                    FontInfo[] fonts = fetchFonts.getFonts();
+                    FontInfo[] fonts = fontFamilyResultFetchFonts.getFonts();
                     if (fonts == null || fonts.length == 0) {
-                        handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.5
+                        handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.5
+                            AnonymousClass5() {
+                            }
+
                             @Override // java.lang.Runnable
                             public void run() {
                                 fontRequestCallback.onTypefaceRequestFailed(1);
@@ -451,9 +943,12 @@ public class FontsContractCompat {
                     }
                     for (FontInfo fontInfo : fonts) {
                         if (fontInfo.getResultCode() != 0) {
-                            final int resultCode = fontInfo.getResultCode();
-                            if (resultCode < 0) {
-                                handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.6
+                            int resultCode2 = fontInfo.getResultCode();
+                            if (resultCode2 < 0) {
+                                handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.6
+                                    AnonymousClass6() {
+                                    }
+
                                     @Override // java.lang.Runnable
                                     public void run() {
                                         fontRequestCallback.onTypefaceRequestFailed(-3);
@@ -461,34 +956,52 @@ public class FontsContractCompat {
                                 });
                                 return;
                             } else {
-                                handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.7
+                                handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.7
+                                    final /* synthetic */ int val$resultCode;
+
+                                    AnonymousClass7(int resultCode22) {
+                                        i = resultCode22;
+                                    }
+
                                     @Override // java.lang.Runnable
                                     public void run() {
-                                        fontRequestCallback.onTypefaceRequestFailed(resultCode);
+                                        fontRequestCallback.onTypefaceRequestFailed(i);
                                     }
                                 });
                                 return;
                             }
                         }
                     }
-                    final Typeface buildTypeface = FontsContractCompat.buildTypeface(context, null, fonts);
-                    if (buildTypeface == null) {
-                        handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.8
+                    Typeface typefaceBuildTypeface2 = FontsContractCompat.buildTypeface(context, null, fonts);
+                    if (typefaceBuildTypeface2 == null) {
+                        handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.8
+                            AnonymousClass8() {
+                            }
+
                             @Override // java.lang.Runnable
                             public void run() {
                                 fontRequestCallback.onTypefaceRequestFailed(-3);
                             }
                         });
                     } else {
-                        handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.9
+                        handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.9
+                            final /* synthetic */ Typeface val$typeface;
+
+                            AnonymousClass9(Typeface typefaceBuildTypeface22) {
+                                typeface = typefaceBuildTypeface22;
+                            }
+
                             @Override // java.lang.Runnable
                             public void run() {
-                                fontRequestCallback.onTypefaceRetrieved(buildTypeface);
+                                fontRequestCallback.onTypefaceRetrieved(typeface);
                             }
                         });
                     }
                 } catch (PackageManager.NameNotFoundException unused) {
-                    handler2.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.1
+                    handler.post(new Runnable() { // from class: androidx.core.provider.FontsContractCompat.4.1
+                        AnonymousClass1() {
+                        }
+
                         @Override // java.lang.Runnable
                         public void run() {
                             fontRequestCallback.onTypefaceRequestFailed(-1);

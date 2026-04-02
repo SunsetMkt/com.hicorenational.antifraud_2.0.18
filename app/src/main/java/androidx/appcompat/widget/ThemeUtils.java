@@ -11,11 +11,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
 import androidx.core.graphics.ColorUtils;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY})
-/* loaded from: classes.dex */
 public class ThemeUtils {
     private static final String TAG = "ThemeUtils";
     private static final ThreadLocal<TypedValue> TL_TYPED_VALUE = new ThreadLocal<>();
@@ -33,13 +32,13 @@ public class ThemeUtils {
     }
 
     public static void checkAppCompatTheme(@NonNull View view, @NonNull Context context) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(C0120R.styleable.AppCompatTheme);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(androidx.appcompat.R.styleable.AppCompatTheme);
         try {
-            if (!obtainStyledAttributes.hasValue(C0120R.styleable.AppCompatTheme_windowActionBar)) {
+            if (!typedArrayObtainStyledAttributes.hasValue(androidx.appcompat.R.styleable.AppCompatTheme_windowActionBar)) {
                 String str = "View " + view.getClass() + " is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).";
             }
         } finally {
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -61,11 +60,11 @@ public class ThemeUtils {
     public static int getThemeAttrColor(@NonNull Context context, int i2) {
         int[] iArr = TEMP_ARRAY;
         iArr[0] = i2;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, (AttributeSet) null, iArr);
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, (AttributeSet) null, iArr);
         try {
-            return obtainStyledAttributes.getColor(0, 0);
+            return tintTypedArrayObtainStyledAttributes.getColor(0, 0);
         } finally {
-            obtainStyledAttributes.recycle();
+            tintTypedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -73,11 +72,11 @@ public class ThemeUtils {
     public static ColorStateList getThemeAttrColorStateList(@NonNull Context context, int i2) {
         int[] iArr = TEMP_ARRAY;
         iArr[0] = i2;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, (AttributeSet) null, iArr);
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, (AttributeSet) null, iArr);
         try {
-            return obtainStyledAttributes.getColorStateList(0);
+            return tintTypedArrayObtainStyledAttributes.getColorStateList(0);
         } finally {
-            obtainStyledAttributes.recycle();
+            tintTypedArrayObtainStyledAttributes.recycle();
         }
     }
 

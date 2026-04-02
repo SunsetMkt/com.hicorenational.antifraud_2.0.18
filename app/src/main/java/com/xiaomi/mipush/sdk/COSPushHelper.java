@@ -3,38 +3,35 @@ package com.xiaomi.mipush.sdk;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
-import com.xiaomi.channel.commonutils.logger.AbstractC4022b;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class COSPushHelper {
+    private static long a = 0;
 
-    /* renamed from: a */
-    private static long f14339a = 0;
-
-    /* renamed from: a */
-    private static volatile boolean f14340a = false;
+    /* JADX INFO: renamed from: a, reason: collision with other field name */
+    private static volatile boolean f88a = false;
 
     public static void convertMessage(Intent intent) {
-        C4052f.m13540a(intent);
+        f.a(intent);
     }
 
     public static void doInNetworkChange(Context context) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
         if (getNeedRegister()) {
-            long j2 = f14339a;
-            if (j2 <= 0 || j2 + 300000 <= elapsedRealtime) {
-                f14339a = elapsedRealtime;
+            long j2 = a;
+            if (j2 <= 0 || j2 + 300000 <= jElapsedRealtime) {
+                a = jElapsedRealtime;
                 registerCOSAssemblePush(context);
             }
         }
     }
 
     public static boolean getNeedRegister() {
-        return f14340a;
+        return f88a;
     }
 
     public static boolean hasNetwork(Context context) {
-        return C4052f.m13542a(context);
+        return f.m96a(context);
     }
 
     public static void onNotificationMessageCome(Context context, String str) {
@@ -44,20 +41,18 @@ public class COSPushHelper {
     }
 
     public static void registerCOSAssemblePush(Context context) {
-        AbstractPushManager m13522a = C4051e.m13518a(context).m13522a(EnumC4050d.ASSEMBLE_PUSH_COS);
-        if (m13522a != null) {
-            AbstractC4022b.m13347a("ASSEMBLE_PUSH :  register cos when network change!");
-            m13522a.register();
+        AbstractPushManager abstractPushManagerA = e.a(context).a(d.ASSEMBLE_PUSH_COS);
+        if (abstractPushManagerA != null) {
+            com.xiaomi.channel.commonutils.logger.b.m48a("ASSEMBLE_PUSH :  register cos when network change!");
+            abstractPushManagerA.register();
         }
     }
 
     public static synchronized void setNeedRegister(boolean z) {
-        synchronized (COSPushHelper.class) {
-            f14340a = z;
-        }
+        f88a = z;
     }
 
     public static void uploadToken(Context context, String str) {
-        C4052f.m13538a(context, EnumC4050d.ASSEMBLE_PUSH_COS, str);
+        f.m95a(context, d.ASSEMBLE_PUSH_COS, str);
     }
 }

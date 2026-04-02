@@ -1,7 +1,7 @@
 package com.tencent.tauth;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public class DefaultUiListener implements IUiListener {
     @Override // com.tencent.tauth.IUiListener
     public void onCancel() {

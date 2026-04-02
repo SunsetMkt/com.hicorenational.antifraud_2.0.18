@@ -17,10 +17,10 @@ import androidx.constraintlayout.motion.widget.Debug;
 import androidx.constraintlayout.motion.widget.MotionScene;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.HelperWidget;
-import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintAttribute;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
+import androidx.constraintlayout.widget.R;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.IOException;
@@ -30,11 +30,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
+import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ConstraintSet {
     private static final int ALPHA = 43;
     private static final int ANIMATE_RELATIVE_TO = 64;
@@ -333,8 +333,8 @@ public class ConstraintSet {
             layoutParams.validate();
         }
 
-        /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-        public Constraint m26844clone() {
+        /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
+        public Constraint m3clone() {
             Constraint constraint = new Constraint();
             constraint.layout.copyFrom(this.layout);
             constraint.motion.copyFrom(this.motion);
@@ -482,61 +482,61 @@ public class ConstraintSet {
         public boolean mBarrierAllowsGoneWidgets = true;
 
         static {
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintLeft_toLeftOf, 24);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintLeft_toRightOf, 25);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintRight_toLeftOf, 28);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintRight_toRightOf, 29);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintTop_toTopOf, 35);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintTop_toBottomOf, 34);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintBottom_toTopOf, 4);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintBottom_toBottomOf, 3);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintBaseline_toBaselineOf, 1);
-            mapToConstant.append(C0471R.styleable.Layout_layout_editor_absoluteX, 6);
-            mapToConstant.append(C0471R.styleable.Layout_layout_editor_absoluteY, 7);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintGuide_begin, 17);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintGuide_end, 18);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintGuide_percent, 19);
-            mapToConstant.append(C0471R.styleable.Layout_android_orientation, 26);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintStart_toEndOf, 31);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintStart_toStartOf, 32);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintEnd_toStartOf, 10);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintEnd_toEndOf, 9);
-            mapToConstant.append(C0471R.styleable.Layout_layout_goneMarginLeft, 13);
-            mapToConstant.append(C0471R.styleable.Layout_layout_goneMarginTop, 16);
-            mapToConstant.append(C0471R.styleable.Layout_layout_goneMarginRight, 14);
-            mapToConstant.append(C0471R.styleable.Layout_layout_goneMarginBottom, 11);
-            mapToConstant.append(C0471R.styleable.Layout_layout_goneMarginStart, 15);
-            mapToConstant.append(C0471R.styleable.Layout_layout_goneMarginEnd, 12);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintVertical_weight, 38);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintHorizontal_weight, 37);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintHorizontal_chainStyle, 39);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintVertical_chainStyle, 40);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintHorizontal_bias, 20);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintVertical_bias, 36);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintDimensionRatio, 5);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintLeft_creator, 76);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintTop_creator, 76);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintRight_creator, 76);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintBottom_creator, 76);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintBaseline_creator, 76);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_marginLeft, 23);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_marginRight, 27);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_marginStart, 30);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_marginEnd, 8);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_marginTop, 33);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_marginBottom, 2);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_width, 22);
-            mapToConstant.append(C0471R.styleable.Layout_android_layout_height, 21);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintCircle, 61);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintCircleRadius, 62);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintCircleAngle, 63);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintWidth_percent, 69);
-            mapToConstant.append(C0471R.styleable.Layout_layout_constraintHeight_percent, 70);
-            mapToConstant.append(C0471R.styleable.Layout_chainUseRtl, 71);
-            mapToConstant.append(C0471R.styleable.Layout_barrierDirection, 72);
-            mapToConstant.append(C0471R.styleable.Layout_barrierMargin, 73);
-            mapToConstant.append(C0471R.styleable.Layout_constraint_referenced_ids, 74);
-            mapToConstant.append(C0471R.styleable.Layout_barrierAllowsGoneWidgets, 75);
+            mapToConstant.append(R.styleable.Layout_layout_constraintLeft_toLeftOf, 24);
+            mapToConstant.append(R.styleable.Layout_layout_constraintLeft_toRightOf, 25);
+            mapToConstant.append(R.styleable.Layout_layout_constraintRight_toLeftOf, 28);
+            mapToConstant.append(R.styleable.Layout_layout_constraintRight_toRightOf, 29);
+            mapToConstant.append(R.styleable.Layout_layout_constraintTop_toTopOf, 35);
+            mapToConstant.append(R.styleable.Layout_layout_constraintTop_toBottomOf, 34);
+            mapToConstant.append(R.styleable.Layout_layout_constraintBottom_toTopOf, 4);
+            mapToConstant.append(R.styleable.Layout_layout_constraintBottom_toBottomOf, 3);
+            mapToConstant.append(R.styleable.Layout_layout_constraintBaseline_toBaselineOf, 1);
+            mapToConstant.append(R.styleable.Layout_layout_editor_absoluteX, 6);
+            mapToConstant.append(R.styleable.Layout_layout_editor_absoluteY, 7);
+            mapToConstant.append(R.styleable.Layout_layout_constraintGuide_begin, 17);
+            mapToConstant.append(R.styleable.Layout_layout_constraintGuide_end, 18);
+            mapToConstant.append(R.styleable.Layout_layout_constraintGuide_percent, 19);
+            mapToConstant.append(R.styleable.Layout_android_orientation, 26);
+            mapToConstant.append(R.styleable.Layout_layout_constraintStart_toEndOf, 31);
+            mapToConstant.append(R.styleable.Layout_layout_constraintStart_toStartOf, 32);
+            mapToConstant.append(R.styleable.Layout_layout_constraintEnd_toStartOf, 10);
+            mapToConstant.append(R.styleable.Layout_layout_constraintEnd_toEndOf, 9);
+            mapToConstant.append(R.styleable.Layout_layout_goneMarginLeft, 13);
+            mapToConstant.append(R.styleable.Layout_layout_goneMarginTop, 16);
+            mapToConstant.append(R.styleable.Layout_layout_goneMarginRight, 14);
+            mapToConstant.append(R.styleable.Layout_layout_goneMarginBottom, 11);
+            mapToConstant.append(R.styleable.Layout_layout_goneMarginStart, 15);
+            mapToConstant.append(R.styleable.Layout_layout_goneMarginEnd, 12);
+            mapToConstant.append(R.styleable.Layout_layout_constraintVertical_weight, 38);
+            mapToConstant.append(R.styleable.Layout_layout_constraintHorizontal_weight, 37);
+            mapToConstant.append(R.styleable.Layout_layout_constraintHorizontal_chainStyle, 39);
+            mapToConstant.append(R.styleable.Layout_layout_constraintVertical_chainStyle, 40);
+            mapToConstant.append(R.styleable.Layout_layout_constraintHorizontal_bias, 20);
+            mapToConstant.append(R.styleable.Layout_layout_constraintVertical_bias, 36);
+            mapToConstant.append(R.styleable.Layout_layout_constraintDimensionRatio, 5);
+            mapToConstant.append(R.styleable.Layout_layout_constraintLeft_creator, 76);
+            mapToConstant.append(R.styleable.Layout_layout_constraintTop_creator, 76);
+            mapToConstant.append(R.styleable.Layout_layout_constraintRight_creator, 76);
+            mapToConstant.append(R.styleable.Layout_layout_constraintBottom_creator, 76);
+            mapToConstant.append(R.styleable.Layout_layout_constraintBaseline_creator, 76);
+            mapToConstant.append(R.styleable.Layout_android_layout_marginLeft, 23);
+            mapToConstant.append(R.styleable.Layout_android_layout_marginRight, 27);
+            mapToConstant.append(R.styleable.Layout_android_layout_marginStart, 30);
+            mapToConstant.append(R.styleable.Layout_android_layout_marginEnd, 8);
+            mapToConstant.append(R.styleable.Layout_android_layout_marginTop, 33);
+            mapToConstant.append(R.styleable.Layout_android_layout_marginBottom, 2);
+            mapToConstant.append(R.styleable.Layout_android_layout_width, 22);
+            mapToConstant.append(R.styleable.Layout_android_layout_height, 21);
+            mapToConstant.append(R.styleable.Layout_layout_constraintCircle, 61);
+            mapToConstant.append(R.styleable.Layout_layout_constraintCircleRadius, 62);
+            mapToConstant.append(R.styleable.Layout_layout_constraintCircleAngle, 63);
+            mapToConstant.append(R.styleable.Layout_layout_constraintWidth_percent, 69);
+            mapToConstant.append(R.styleable.Layout_layout_constraintHeight_percent, 70);
+            mapToConstant.append(R.styleable.Layout_chainUseRtl, 71);
+            mapToConstant.append(R.styleable.Layout_barrierDirection, 72);
+            mapToConstant.append(R.styleable.Layout_barrierMargin, 73);
+            mapToConstant.append(R.styleable.Layout_constraint_referenced_ids, 74);
+            mapToConstant.append(R.styleable.Layout_barrierAllowsGoneWidgets, 75);
         }
 
         public void copyFrom(Layout layout) {
@@ -621,14 +621,14 @@ public class ConstraintSet {
                         if (type == Integer.TYPE) {
                             Integer num = (Integer) obj;
                             if (num.intValue() != -1) {
-                                Object lookUpConstraintName = motionScene.lookUpConstraintName(num.intValue());
+                                Object objLookUpConstraintName = motionScene.lookUpConstraintName(num.intValue());
                                 sb.append("    ");
                                 sb.append(name);
                                 sb.append(" = \"");
-                                if (lookUpConstraintName == null) {
-                                    lookUpConstraintName = num;
+                                if (objLookUpConstraintName == null) {
+                                    objLookUpConstraintName = num;
                                 }
-                                sb.append(lookUpConstraintName);
+                                sb.append(objLookUpConstraintName);
                                 sb.append("\"\n");
                             }
                         } else if (type == Float.TYPE) {
@@ -649,215 +649,214 @@ public class ConstraintSet {
         }
 
         void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.Layout);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Layout);
             this.mApply = true;
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
                 int i3 = mapToConstant.get(index);
                 if (i3 == 80) {
-                    this.constrainedWidth = obtainStyledAttributes.getBoolean(index, this.constrainedWidth);
+                    this.constrainedWidth = typedArrayObtainStyledAttributes.getBoolean(index, this.constrainedWidth);
                 } else if (i3 != 81) {
                     switch (i3) {
                         case 1:
-                            this.baselineToBaseline = ConstraintSet.lookupID(obtainStyledAttributes, index, this.baselineToBaseline);
+                            this.baselineToBaseline = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.baselineToBaseline);
                             break;
                         case 2:
-                            this.bottomMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.bottomMargin);
+                            this.bottomMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.bottomMargin);
                             break;
                         case 3:
-                            this.bottomToBottom = ConstraintSet.lookupID(obtainStyledAttributes, index, this.bottomToBottom);
+                            this.bottomToBottom = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.bottomToBottom);
                             break;
                         case 4:
-                            this.bottomToTop = ConstraintSet.lookupID(obtainStyledAttributes, index, this.bottomToTop);
+                            this.bottomToTop = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.bottomToTop);
                             break;
                         case 5:
-                            this.dimensionRatio = obtainStyledAttributes.getString(index);
+                            this.dimensionRatio = typedArrayObtainStyledAttributes.getString(index);
                             break;
                         case 6:
-                            this.editorAbsoluteX = obtainStyledAttributes.getDimensionPixelOffset(index, this.editorAbsoluteX);
+                            this.editorAbsoluteX = typedArrayObtainStyledAttributes.getDimensionPixelOffset(index, this.editorAbsoluteX);
                             break;
                         case 7:
-                            this.editorAbsoluteY = obtainStyledAttributes.getDimensionPixelOffset(index, this.editorAbsoluteY);
+                            this.editorAbsoluteY = typedArrayObtainStyledAttributes.getDimensionPixelOffset(index, this.editorAbsoluteY);
                             break;
                         case 8:
                             if (Build.VERSION.SDK_INT >= 17) {
-                                this.endMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.endMargin);
-                                break;
-                            } else {
-                                break;
+                                this.endMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.endMargin);
                             }
+                            break;
                         case 9:
-                            this.endToEnd = ConstraintSet.lookupID(obtainStyledAttributes, index, this.endToEnd);
+                            this.endToEnd = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.endToEnd);
                             break;
                         case 10:
-                            this.endToStart = ConstraintSet.lookupID(obtainStyledAttributes, index, this.endToStart);
+                            this.endToStart = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.endToStart);
                             break;
                         case 11:
-                            this.goneBottomMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.goneBottomMargin);
+                            this.goneBottomMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.goneBottomMargin);
                             break;
                         case 12:
-                            this.goneEndMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.goneEndMargin);
+                            this.goneEndMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.goneEndMargin);
                             break;
                         case 13:
-                            this.goneLeftMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.goneLeftMargin);
+                            this.goneLeftMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.goneLeftMargin);
                             break;
                         case 14:
-                            this.goneRightMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.goneRightMargin);
+                            this.goneRightMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.goneRightMargin);
                             break;
                         case 15:
-                            this.goneStartMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.goneStartMargin);
+                            this.goneStartMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.goneStartMargin);
                             break;
                         case 16:
-                            this.goneTopMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.goneTopMargin);
+                            this.goneTopMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.goneTopMargin);
                             break;
                         case 17:
-                            this.guideBegin = obtainStyledAttributes.getDimensionPixelOffset(index, this.guideBegin);
+                            this.guideBegin = typedArrayObtainStyledAttributes.getDimensionPixelOffset(index, this.guideBegin);
                             break;
                         case 18:
-                            this.guideEnd = obtainStyledAttributes.getDimensionPixelOffset(index, this.guideEnd);
+                            this.guideEnd = typedArrayObtainStyledAttributes.getDimensionPixelOffset(index, this.guideEnd);
                             break;
                         case 19:
-                            this.guidePercent = obtainStyledAttributes.getFloat(index, this.guidePercent);
+                            this.guidePercent = typedArrayObtainStyledAttributes.getFloat(index, this.guidePercent);
                             break;
                         case 20:
-                            this.horizontalBias = obtainStyledAttributes.getFloat(index, this.horizontalBias);
+                            this.horizontalBias = typedArrayObtainStyledAttributes.getFloat(index, this.horizontalBias);
                             break;
                         case 21:
-                            this.mHeight = obtainStyledAttributes.getLayoutDimension(index, this.mHeight);
+                            this.mHeight = typedArrayObtainStyledAttributes.getLayoutDimension(index, this.mHeight);
                             break;
                         case 22:
-                            this.mWidth = obtainStyledAttributes.getLayoutDimension(index, this.mWidth);
+                            this.mWidth = typedArrayObtainStyledAttributes.getLayoutDimension(index, this.mWidth);
                             break;
                         case 23:
-                            this.leftMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.leftMargin);
+                            this.leftMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.leftMargin);
                             break;
                         case 24:
-                            this.leftToLeft = ConstraintSet.lookupID(obtainStyledAttributes, index, this.leftToLeft);
+                            this.leftToLeft = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.leftToLeft);
                             break;
                         case 25:
-                            this.leftToRight = ConstraintSet.lookupID(obtainStyledAttributes, index, this.leftToRight);
+                            this.leftToRight = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.leftToRight);
                             break;
                         case 26:
-                            this.orientation = obtainStyledAttributes.getInt(index, this.orientation);
+                            this.orientation = typedArrayObtainStyledAttributes.getInt(index, this.orientation);
                             break;
                         case 27:
-                            this.rightMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.rightMargin);
+                            this.rightMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.rightMargin);
                             break;
                         case 28:
-                            this.rightToLeft = ConstraintSet.lookupID(obtainStyledAttributes, index, this.rightToLeft);
+                            this.rightToLeft = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.rightToLeft);
                             break;
                         case 29:
-                            this.rightToRight = ConstraintSet.lookupID(obtainStyledAttributes, index, this.rightToRight);
+                            this.rightToRight = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.rightToRight);
                             break;
                         case 30:
                             if (Build.VERSION.SDK_INT >= 17) {
-                                this.startMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.startMargin);
-                                break;
-                            } else {
-                                break;
+                                this.startMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.startMargin);
                             }
+                            break;
                         case 31:
-                            this.startToEnd = ConstraintSet.lookupID(obtainStyledAttributes, index, this.startToEnd);
+                            this.startToEnd = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.startToEnd);
                             break;
                         case 32:
-                            this.startToStart = ConstraintSet.lookupID(obtainStyledAttributes, index, this.startToStart);
+                            this.startToStart = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.startToStart);
                             break;
                         case 33:
-                            this.topMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.topMargin);
+                            this.topMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.topMargin);
                             break;
                         case 34:
-                            this.topToBottom = ConstraintSet.lookupID(obtainStyledAttributes, index, this.topToBottom);
+                            this.topToBottom = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.topToBottom);
                             break;
                         case 35:
-                            this.topToTop = ConstraintSet.lookupID(obtainStyledAttributes, index, this.topToTop);
+                            this.topToTop = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.topToTop);
                             break;
                         case 36:
-                            this.verticalBias = obtainStyledAttributes.getFloat(index, this.verticalBias);
+                            this.verticalBias = typedArrayObtainStyledAttributes.getFloat(index, this.verticalBias);
                             break;
                         case 37:
-                            this.horizontalWeight = obtainStyledAttributes.getFloat(index, this.horizontalWeight);
+                            this.horizontalWeight = typedArrayObtainStyledAttributes.getFloat(index, this.horizontalWeight);
                             break;
                         case 38:
-                            this.verticalWeight = obtainStyledAttributes.getFloat(index, this.verticalWeight);
+                            this.verticalWeight = typedArrayObtainStyledAttributes.getFloat(index, this.verticalWeight);
                             break;
                         case 39:
-                            this.horizontalChainStyle = obtainStyledAttributes.getInt(index, this.horizontalChainStyle);
+                            this.horizontalChainStyle = typedArrayObtainStyledAttributes.getInt(index, this.horizontalChainStyle);
                             break;
                         case 40:
-                            this.verticalChainStyle = obtainStyledAttributes.getInt(index, this.verticalChainStyle);
+                            this.verticalChainStyle = typedArrayObtainStyledAttributes.getInt(index, this.verticalChainStyle);
                             break;
                         default:
                             switch (i3) {
                                 case 54:
-                                    this.widthDefault = obtainStyledAttributes.getInt(index, this.widthDefault);
+                                    this.widthDefault = typedArrayObtainStyledAttributes.getInt(index, this.widthDefault);
                                     break;
                                 case 55:
-                                    this.heightDefault = obtainStyledAttributes.getInt(index, this.heightDefault);
+                                    this.heightDefault = typedArrayObtainStyledAttributes.getInt(index, this.heightDefault);
                                     break;
                                 case 56:
-                                    this.widthMax = obtainStyledAttributes.getDimensionPixelSize(index, this.widthMax);
+                                    this.widthMax = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.widthMax);
                                     break;
                                 case 57:
-                                    this.heightMax = obtainStyledAttributes.getDimensionPixelSize(index, this.heightMax);
+                                    this.heightMax = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.heightMax);
                                     break;
                                 case 58:
-                                    this.widthMin = obtainStyledAttributes.getDimensionPixelSize(index, this.widthMin);
+                                    this.widthMin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.widthMin);
                                     break;
                                 case 59:
-                                    this.heightMin = obtainStyledAttributes.getDimensionPixelSize(index, this.heightMin);
+                                    this.heightMin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.heightMin);
                                     break;
                                 default:
                                     switch (i3) {
                                         case 61:
-                                            this.circleConstraint = ConstraintSet.lookupID(obtainStyledAttributes, index, this.circleConstraint);
+                                            this.circleConstraint = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.circleConstraint);
                                             break;
                                         case 62:
-                                            this.circleRadius = obtainStyledAttributes.getDimensionPixelSize(index, this.circleRadius);
+                                            this.circleRadius = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.circleRadius);
                                             break;
                                         case 63:
-                                            this.circleAngle = obtainStyledAttributes.getFloat(index, this.circleAngle);
+                                            this.circleAngle = typedArrayObtainStyledAttributes.getFloat(index, this.circleAngle);
                                             break;
                                         default:
                                             switch (i3) {
                                                 case 69:
-                                                    this.widthPercent = obtainStyledAttributes.getFloat(index, 1.0f);
+                                                    this.widthPercent = typedArrayObtainStyledAttributes.getFloat(index, 1.0f);
                                                     break;
                                                 case 70:
-                                                    this.heightPercent = obtainStyledAttributes.getFloat(index, 1.0f);
+                                                    this.heightPercent = typedArrayObtainStyledAttributes.getFloat(index, 1.0f);
                                                     break;
                                                 case 71:
                                                     break;
                                                 case 72:
-                                                    this.mBarrierDirection = obtainStyledAttributes.getInt(index, this.mBarrierDirection);
+                                                    this.mBarrierDirection = typedArrayObtainStyledAttributes.getInt(index, this.mBarrierDirection);
                                                     break;
                                                 case 73:
-                                                    this.mBarrierMargin = obtainStyledAttributes.getDimensionPixelSize(index, this.mBarrierMargin);
+                                                    this.mBarrierMargin = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, this.mBarrierMargin);
                                                     break;
                                                 case 74:
-                                                    this.mReferenceIdString = obtainStyledAttributes.getString(index);
+                                                    this.mReferenceIdString = typedArrayObtainStyledAttributes.getString(index);
                                                     break;
                                                 case 75:
-                                                    this.mBarrierAllowsGoneWidgets = obtainStyledAttributes.getBoolean(index, this.mBarrierAllowsGoneWidgets);
+                                                    this.mBarrierAllowsGoneWidgets = typedArrayObtainStyledAttributes.getBoolean(index, this.mBarrierAllowsGoneWidgets);
                                                     break;
                                                 case 76:
                                                     String str = "unused attribute 0x" + Integer.toHexString(index) + "   " + mapToConstant.get(index);
                                                     break;
                                                 case 77:
-                                                    this.mConstraintTag = obtainStyledAttributes.getString(index);
+                                                    this.mConstraintTag = typedArrayObtainStyledAttributes.getString(index);
                                                     break;
                                                 default:
                                                     String str2 = "Unknown attribute 0x" + Integer.toHexString(index) + "   " + mapToConstant.get(index);
                                                     break;
                                             }
+                                            break;
                                     }
+                                    break;
                             }
+                            break;
                     }
                 } else {
-                    this.constrainedHeight = obtainStyledAttributes.getBoolean(index, this.constrainedHeight);
+                    this.constrainedHeight = typedArrayObtainStyledAttributes.getBoolean(index, this.constrainedHeight);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -878,12 +877,12 @@ public class ConstraintSet {
         public float mPathRotate = Float.NaN;
 
         static {
-            mapToConstant.append(C0471R.styleable.Motion_motionPathRotate, 1);
-            mapToConstant.append(C0471R.styleable.Motion_pathMotionArc, 2);
-            mapToConstant.append(C0471R.styleable.Motion_transitionEasing, 3);
-            mapToConstant.append(C0471R.styleable.Motion_drawPath, 4);
-            mapToConstant.append(C0471R.styleable.Motion_animate_relativeTo, 5);
-            mapToConstant.append(C0471R.styleable.Motion_motionStagger, 6);
+            mapToConstant.append(R.styleable.Motion_motionPathRotate, 1);
+            mapToConstant.append(R.styleable.Motion_pathMotionArc, 2);
+            mapToConstant.append(R.styleable.Motion_transitionEasing, 3);
+            mapToConstant.append(R.styleable.Motion_drawPath, 4);
+            mapToConstant.append(R.styleable.Motion_animate_relativeTo, 5);
+            mapToConstant.append(R.styleable.Motion_motionStagger, 6);
         }
 
         public void copyFrom(Motion motion) {
@@ -897,38 +896,37 @@ public class ConstraintSet {
         }
 
         void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.Motion);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Motion);
             this.mApply = true;
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
                 switch (mapToConstant.get(index)) {
                     case 1:
-                        this.mPathRotate = obtainStyledAttributes.getFloat(index, this.mPathRotate);
+                        this.mPathRotate = typedArrayObtainStyledAttributes.getFloat(index, this.mPathRotate);
                         break;
                     case 2:
-                        this.mPathMotionArc = obtainStyledAttributes.getInt(index, this.mPathMotionArc);
+                        this.mPathMotionArc = typedArrayObtainStyledAttributes.getInt(index, this.mPathMotionArc);
                         break;
                     case 3:
-                        if (obtainStyledAttributes.peekValue(index).type == 3) {
-                            this.mTransitionEasing = obtainStyledAttributes.getString(index);
-                            break;
+                        if (typedArrayObtainStyledAttributes.peekValue(index).type == 3) {
+                            this.mTransitionEasing = typedArrayObtainStyledAttributes.getString(index);
                         } else {
-                            this.mTransitionEasing = Easing.NAMED_EASING[obtainStyledAttributes.getInteger(index, 0)];
-                            break;
+                            this.mTransitionEasing = Easing.NAMED_EASING[typedArrayObtainStyledAttributes.getInteger(index, 0)];
                         }
+                        break;
                     case 4:
-                        this.mDrawPath = obtainStyledAttributes.getInt(index, 0);
+                        this.mDrawPath = typedArrayObtainStyledAttributes.getInt(index, 0);
                         break;
                     case 5:
-                        this.mAnimateRelativeTo = ConstraintSet.lookupID(obtainStyledAttributes, index, this.mAnimateRelativeTo);
+                        this.mAnimateRelativeTo = ConstraintSet.lookupID(typedArrayObtainStyledAttributes, index, this.mAnimateRelativeTo);
                         break;
                     case 6:
-                        this.mMotionStagger = obtainStyledAttributes.getFloat(index, this.mMotionStagger);
+                        this.mMotionStagger = typedArrayObtainStyledAttributes.getFloat(index, this.mMotionStagger);
                         break;
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -948,23 +946,23 @@ public class ConstraintSet {
         }
 
         void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.PropertySet);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.PropertySet);
             this.mApply = true;
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.PropertySet_android_alpha) {
-                    this.alpha = obtainStyledAttributes.getFloat(index, this.alpha);
-                } else if (index == C0471R.styleable.PropertySet_android_visibility) {
-                    this.visibility = obtainStyledAttributes.getInt(index, this.visibility);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.PropertySet_android_alpha) {
+                    this.alpha = typedArrayObtainStyledAttributes.getFloat(index, this.alpha);
+                } else if (index == R.styleable.PropertySet_android_visibility) {
+                    this.visibility = typedArrayObtainStyledAttributes.getInt(index, this.visibility);
                     this.visibility = ConstraintSet.VISIBILITY_FLAGS[this.visibility];
-                } else if (index == C0471R.styleable.PropertySet_visibilityMode) {
-                    this.mVisibilityMode = obtainStyledAttributes.getInt(index, this.mVisibilityMode);
-                } else if (index == C0471R.styleable.PropertySet_motionProgress) {
-                    this.mProgress = obtainStyledAttributes.getFloat(index, this.mProgress);
+                } else if (index == R.styleable.PropertySet_visibilityMode) {
+                    this.mVisibilityMode = typedArrayObtainStyledAttributes.getInt(index, this.mVisibilityMode);
+                } else if (index == R.styleable.PropertySet_motionProgress) {
+                    this.mProgress = typedArrayObtainStyledAttributes.getFloat(index, this.mProgress);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -996,17 +994,17 @@ public class ConstraintSet {
         public float elevation = 0.0f;
 
         static {
-            mapToConstant.append(C0471R.styleable.Transform_android_rotation, 1);
-            mapToConstant.append(C0471R.styleable.Transform_android_rotationX, 2);
-            mapToConstant.append(C0471R.styleable.Transform_android_rotationY, 3);
-            mapToConstant.append(C0471R.styleable.Transform_android_scaleX, 4);
-            mapToConstant.append(C0471R.styleable.Transform_android_scaleY, 5);
-            mapToConstant.append(C0471R.styleable.Transform_android_transformPivotX, 6);
-            mapToConstant.append(C0471R.styleable.Transform_android_transformPivotY, 7);
-            mapToConstant.append(C0471R.styleable.Transform_android_translationX, 8);
-            mapToConstant.append(C0471R.styleable.Transform_android_translationY, 9);
-            mapToConstant.append(C0471R.styleable.Transform_android_translationZ, 10);
-            mapToConstant.append(C0471R.styleable.Transform_android_elevation, 11);
+            mapToConstant.append(R.styleable.Transform_android_rotation, 1);
+            mapToConstant.append(R.styleable.Transform_android_rotationX, 2);
+            mapToConstant.append(R.styleable.Transform_android_rotationY, 3);
+            mapToConstant.append(R.styleable.Transform_android_scaleX, 4);
+            mapToConstant.append(R.styleable.Transform_android_scaleY, 5);
+            mapToConstant.append(R.styleable.Transform_android_transformPivotX, 6);
+            mapToConstant.append(R.styleable.Transform_android_transformPivotY, 7);
+            mapToConstant.append(R.styleable.Transform_android_translationX, 8);
+            mapToConstant.append(R.styleable.Transform_android_translationY, 9);
+            mapToConstant.append(R.styleable.Transform_android_translationZ, 10);
+            mapToConstant.append(R.styleable.Transform_android_elevation, 11);
         }
 
         public void copyFrom(Transform transform) {
@@ -1026,147 +1024,143 @@ public class ConstraintSet {
         }
 
         void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.Transform);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Transform);
             this.mApply = true;
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
                 switch (mapToConstant.get(index)) {
                     case 1:
-                        this.rotation = obtainStyledAttributes.getFloat(index, this.rotation);
+                        this.rotation = typedArrayObtainStyledAttributes.getFloat(index, this.rotation);
                         break;
                     case 2:
-                        this.rotationX = obtainStyledAttributes.getFloat(index, this.rotationX);
+                        this.rotationX = typedArrayObtainStyledAttributes.getFloat(index, this.rotationX);
                         break;
                     case 3:
-                        this.rotationY = obtainStyledAttributes.getFloat(index, this.rotationY);
+                        this.rotationY = typedArrayObtainStyledAttributes.getFloat(index, this.rotationY);
                         break;
                     case 4:
-                        this.scaleX = obtainStyledAttributes.getFloat(index, this.scaleX);
+                        this.scaleX = typedArrayObtainStyledAttributes.getFloat(index, this.scaleX);
                         break;
                     case 5:
-                        this.scaleY = obtainStyledAttributes.getFloat(index, this.scaleY);
+                        this.scaleY = typedArrayObtainStyledAttributes.getFloat(index, this.scaleY);
                         break;
                     case 6:
-                        this.transformPivotX = obtainStyledAttributes.getDimension(index, this.transformPivotX);
+                        this.transformPivotX = typedArrayObtainStyledAttributes.getDimension(index, this.transformPivotX);
                         break;
                     case 7:
-                        this.transformPivotY = obtainStyledAttributes.getDimension(index, this.transformPivotY);
+                        this.transformPivotY = typedArrayObtainStyledAttributes.getDimension(index, this.transformPivotY);
                         break;
                     case 8:
-                        this.translationX = obtainStyledAttributes.getDimension(index, this.translationX);
+                        this.translationX = typedArrayObtainStyledAttributes.getDimension(index, this.translationX);
                         break;
                     case 9:
-                        this.translationY = obtainStyledAttributes.getDimension(index, this.translationY);
+                        this.translationY = typedArrayObtainStyledAttributes.getDimension(index, this.translationY);
                         break;
                     case 10:
                         if (Build.VERSION.SDK_INT >= 21) {
-                            this.translationZ = obtainStyledAttributes.getDimension(index, this.translationZ);
-                            break;
-                        } else {
-                            break;
+                            this.translationZ = typedArrayObtainStyledAttributes.getDimension(index, this.translationZ);
                         }
+                        break;
                     case 11:
                         if (Build.VERSION.SDK_INT >= 21) {
                             this.applyElevation = true;
-                            this.elevation = obtainStyledAttributes.getDimension(index, this.elevation);
-                            break;
-                        } else {
-                            break;
+                            this.elevation = typedArrayObtainStyledAttributes.getDimension(index, this.elevation);
                         }
+                        break;
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
     static {
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintLeft_toLeftOf, 25);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintLeft_toRightOf, 26);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintRight_toLeftOf, 29);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintRight_toRightOf, 30);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintTop_toTopOf, 36);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintTop_toBottomOf, 35);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintBottom_toTopOf, 4);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintBottom_toBottomOf, 3);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintBaseline_toBaselineOf, 1);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_editor_absoluteX, 6);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_editor_absoluteY, 7);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintGuide_begin, 17);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintGuide_end, 18);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintGuide_percent, 19);
-        mapToConstant.append(C0471R.styleable.Constraint_android_orientation, 27);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintStart_toEndOf, 32);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintStart_toStartOf, 33);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintEnd_toStartOf, 10);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintEnd_toEndOf, 9);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_goneMarginLeft, 13);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_goneMarginTop, 16);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_goneMarginRight, 14);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_goneMarginBottom, 11);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_goneMarginStart, 15);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_goneMarginEnd, 12);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintVertical_weight, 40);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHorizontal_weight, 39);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHorizontal_chainStyle, 41);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintVertical_chainStyle, 42);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHorizontal_bias, 20);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintVertical_bias, 37);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintDimensionRatio, 5);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintLeft_creator, 82);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintTop_creator, 82);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintRight_creator, 82);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintBottom_creator, 82);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintBaseline_creator, 82);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_marginLeft, 24);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_marginRight, 28);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_marginStart, 31);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_marginEnd, 8);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_marginTop, 34);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_marginBottom, 2);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_width, 23);
-        mapToConstant.append(C0471R.styleable.Constraint_android_layout_height, 21);
-        mapToConstant.append(C0471R.styleable.Constraint_android_visibility, 22);
-        mapToConstant.append(C0471R.styleable.Constraint_android_alpha, 43);
-        mapToConstant.append(C0471R.styleable.Constraint_android_elevation, 44);
-        mapToConstant.append(C0471R.styleable.Constraint_android_rotationX, 45);
-        mapToConstant.append(C0471R.styleable.Constraint_android_rotationY, 46);
-        mapToConstant.append(C0471R.styleable.Constraint_android_rotation, 60);
-        mapToConstant.append(C0471R.styleable.Constraint_android_scaleX, 47);
-        mapToConstant.append(C0471R.styleable.Constraint_android_scaleY, 48);
-        mapToConstant.append(C0471R.styleable.Constraint_android_transformPivotX, 49);
-        mapToConstant.append(C0471R.styleable.Constraint_android_transformPivotY, 50);
-        mapToConstant.append(C0471R.styleable.Constraint_android_translationX, 51);
-        mapToConstant.append(C0471R.styleable.Constraint_android_translationY, 52);
-        mapToConstant.append(C0471R.styleable.Constraint_android_translationZ, 53);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintWidth_default, 54);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHeight_default, 55);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintWidth_max, 56);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHeight_max, 57);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintWidth_min, 58);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHeight_min, 59);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintCircle, 61);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintCircleRadius, 62);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintCircleAngle, 63);
-        mapToConstant.append(C0471R.styleable.Constraint_animate_relativeTo, 64);
-        mapToConstant.append(C0471R.styleable.Constraint_transitionEasing, 65);
-        mapToConstant.append(C0471R.styleable.Constraint_drawPath, 66);
-        mapToConstant.append(C0471R.styleable.Constraint_transitionPathRotate, 67);
-        mapToConstant.append(C0471R.styleable.Constraint_motionStagger, 79);
-        mapToConstant.append(C0471R.styleable.Constraint_android_id, 38);
-        mapToConstant.append(C0471R.styleable.Constraint_motionProgress, 68);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintWidth_percent, 69);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintHeight_percent, 70);
-        mapToConstant.append(C0471R.styleable.Constraint_chainUseRtl, 71);
-        mapToConstant.append(C0471R.styleable.Constraint_barrierDirection, 72);
-        mapToConstant.append(C0471R.styleable.Constraint_barrierMargin, 73);
-        mapToConstant.append(C0471R.styleable.Constraint_constraint_referenced_ids, 74);
-        mapToConstant.append(C0471R.styleable.Constraint_barrierAllowsGoneWidgets, 75);
-        mapToConstant.append(C0471R.styleable.Constraint_pathMotionArc, 76);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constraintTag, 77);
-        mapToConstant.append(C0471R.styleable.Constraint_visibilityMode, 78);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constrainedWidth, 80);
-        mapToConstant.append(C0471R.styleable.Constraint_layout_constrainedHeight, 81);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintLeft_toLeftOf, 25);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintLeft_toRightOf, 26);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintRight_toLeftOf, 29);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintRight_toRightOf, 30);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintTop_toTopOf, 36);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintTop_toBottomOf, 35);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintBottom_toTopOf, 4);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintBottom_toBottomOf, 3);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintBaseline_toBaselineOf, 1);
+        mapToConstant.append(R.styleable.Constraint_layout_editor_absoluteX, 6);
+        mapToConstant.append(R.styleable.Constraint_layout_editor_absoluteY, 7);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintGuide_begin, 17);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintGuide_end, 18);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintGuide_percent, 19);
+        mapToConstant.append(R.styleable.Constraint_android_orientation, 27);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintStart_toEndOf, 32);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintStart_toStartOf, 33);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintEnd_toStartOf, 10);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintEnd_toEndOf, 9);
+        mapToConstant.append(R.styleable.Constraint_layout_goneMarginLeft, 13);
+        mapToConstant.append(R.styleable.Constraint_layout_goneMarginTop, 16);
+        mapToConstant.append(R.styleable.Constraint_layout_goneMarginRight, 14);
+        mapToConstant.append(R.styleable.Constraint_layout_goneMarginBottom, 11);
+        mapToConstant.append(R.styleable.Constraint_layout_goneMarginStart, 15);
+        mapToConstant.append(R.styleable.Constraint_layout_goneMarginEnd, 12);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintVertical_weight, 40);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHorizontal_weight, 39);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHorizontal_chainStyle, 41);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintVertical_chainStyle, 42);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHorizontal_bias, 20);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintVertical_bias, 37);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintDimensionRatio, 5);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintLeft_creator, 82);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintTop_creator, 82);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintRight_creator, 82);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintBottom_creator, 82);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintBaseline_creator, 82);
+        mapToConstant.append(R.styleable.Constraint_android_layout_marginLeft, 24);
+        mapToConstant.append(R.styleable.Constraint_android_layout_marginRight, 28);
+        mapToConstant.append(R.styleable.Constraint_android_layout_marginStart, 31);
+        mapToConstant.append(R.styleable.Constraint_android_layout_marginEnd, 8);
+        mapToConstant.append(R.styleable.Constraint_android_layout_marginTop, 34);
+        mapToConstant.append(R.styleable.Constraint_android_layout_marginBottom, 2);
+        mapToConstant.append(R.styleable.Constraint_android_layout_width, 23);
+        mapToConstant.append(R.styleable.Constraint_android_layout_height, 21);
+        mapToConstant.append(R.styleable.Constraint_android_visibility, 22);
+        mapToConstant.append(R.styleable.Constraint_android_alpha, 43);
+        mapToConstant.append(R.styleable.Constraint_android_elevation, 44);
+        mapToConstant.append(R.styleable.Constraint_android_rotationX, 45);
+        mapToConstant.append(R.styleable.Constraint_android_rotationY, 46);
+        mapToConstant.append(R.styleable.Constraint_android_rotation, 60);
+        mapToConstant.append(R.styleable.Constraint_android_scaleX, 47);
+        mapToConstant.append(R.styleable.Constraint_android_scaleY, 48);
+        mapToConstant.append(R.styleable.Constraint_android_transformPivotX, 49);
+        mapToConstant.append(R.styleable.Constraint_android_transformPivotY, 50);
+        mapToConstant.append(R.styleable.Constraint_android_translationX, 51);
+        mapToConstant.append(R.styleable.Constraint_android_translationY, 52);
+        mapToConstant.append(R.styleable.Constraint_android_translationZ, 53);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintWidth_default, 54);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHeight_default, 55);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintWidth_max, 56);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHeight_max, 57);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintWidth_min, 58);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHeight_min, 59);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintCircle, 61);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintCircleRadius, 62);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintCircleAngle, 63);
+        mapToConstant.append(R.styleable.Constraint_animate_relativeTo, 64);
+        mapToConstant.append(R.styleable.Constraint_transitionEasing, 65);
+        mapToConstant.append(R.styleable.Constraint_drawPath, 66);
+        mapToConstant.append(R.styleable.Constraint_transitionPathRotate, 67);
+        mapToConstant.append(R.styleable.Constraint_motionStagger, 79);
+        mapToConstant.append(R.styleable.Constraint_android_id, 38);
+        mapToConstant.append(R.styleable.Constraint_motionProgress, 68);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintWidth_percent, 69);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintHeight_percent, 70);
+        mapToConstant.append(R.styleable.Constraint_chainUseRtl, 71);
+        mapToConstant.append(R.styleable.Constraint_barrierDirection, 72);
+        mapToConstant.append(R.styleable.Constraint_barrierMargin, 73);
+        mapToConstant.append(R.styleable.Constraint_constraint_referenced_ids, 74);
+        mapToConstant.append(R.styleable.Constraint_barrierAllowsGoneWidgets, 75);
+        mapToConstant.append(R.styleable.Constraint_pathMotionArc, 76);
+        mapToConstant.append(R.styleable.Constraint_layout_constraintTag, 77);
+        mapToConstant.append(R.styleable.Constraint_visibilityMode, 78);
+        mapToConstant.append(R.styleable.Constraint_layout_constrainedWidth, 80);
+        mapToConstant.append(R.styleable.Constraint_layout_constrainedHeight, 81);
     }
 
     private void addAttributes(ConstraintAttribute.AttributeType attributeType, String... strArr) {
@@ -1183,38 +1177,38 @@ public class ConstraintSet {
     }
 
     private int[] convertReferenceString(View view, String str) {
-        int i2;
+        int iIntValue;
         Object designInformation;
-        String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+        String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
         Context context = view.getContext();
-        int[] iArr = new int[split.length];
+        int[] iArr = new int[strArrSplit.length];
+        int i2 = 0;
         int i3 = 0;
-        int i4 = 0;
-        while (i3 < split.length) {
-            String trim = split[i3].trim();
+        while (i2 < strArrSplit.length) {
+            String strTrim = strArrSplit[i2].trim();
             try {
-                i2 = C0471R.id.class.getField(trim).getInt(null);
+                iIntValue = R.id.class.getField(strTrim).getInt(null);
             } catch (Exception unused) {
-                i2 = 0;
+                iIntValue = 0;
             }
-            if (i2 == 0) {
-                i2 = context.getResources().getIdentifier(trim, "id", context.getPackageName());
+            if (iIntValue == 0) {
+                iIntValue = context.getResources().getIdentifier(strTrim, "id", context.getPackageName());
             }
-            if (i2 == 0 && view.isInEditMode() && (view.getParent() instanceof ConstraintLayout) && (designInformation = ((ConstraintLayout) view.getParent()).getDesignInformation(0, trim)) != null && (designInformation instanceof Integer)) {
-                i2 = ((Integer) designInformation).intValue();
+            if (iIntValue == 0 && view.isInEditMode() && (view.getParent() instanceof ConstraintLayout) && (designInformation = ((ConstraintLayout) view.getParent()).getDesignInformation(0, strTrim)) != null && (designInformation instanceof Integer)) {
+                iIntValue = ((Integer) designInformation).intValue();
             }
-            iArr[i4] = i2;
+            iArr[i3] = iIntValue;
+            i2++;
             i3++;
-            i4++;
         }
-        return i4 != split.length ? Arrays.copyOf(iArr, i4) : iArr;
+        return i3 != strArrSplit.length ? Arrays.copyOf(iArr, i3) : iArr;
     }
 
     private Constraint fillFromAttributeList(Context context, AttributeSet attributeSet) {
         Constraint constraint = new Constraint();
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.Constraint);
-        populateConstraint(context, constraint, obtainStyledAttributes);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Constraint);
+        populateConstraint(context, constraint, typedArrayObtainStyledAttributes);
+        typedArrayObtainStyledAttributes.recycle();
         return constraint;
     }
 
@@ -1235,7 +1229,7 @@ public class ConstraintSet {
         int indexCount = typedArray.getIndexCount();
         for (int i2 = 0; i2 < indexCount; i2++) {
             int index = typedArray.getIndex(i2);
-            if (index != C0471R.styleable.Constraint_android_id && C0471R.styleable.Constraint_android_layout_marginStart != index && C0471R.styleable.Constraint_android_layout_marginEnd != index) {
+            if (index != R.styleable.Constraint_android_id && R.styleable.Constraint_android_layout_marginStart != index && R.styleable.Constraint_android_layout_marginEnd != index) {
                 constraint.motion.mApply = true;
                 constraint.layout.mApply = true;
                 constraint.propertySet.mApply = true;
@@ -1273,10 +1267,8 @@ public class ConstraintSet {
                     if (Build.VERSION.SDK_INT >= 17) {
                         Layout layout7 = constraint.layout;
                         layout7.endMargin = typedArray.getDimensionPixelSize(index, layout7.endMargin);
-                        break;
-                    } else {
-                        break;
                     }
+                    break;
                 case 9:
                     Layout layout8 = constraint.layout;
                     layout8.endToEnd = lookupID(typedArray, index, layout8.endToEnd);
@@ -1371,10 +1363,8 @@ public class ConstraintSet {
                     if (Build.VERSION.SDK_INT >= 17) {
                         Layout layout29 = constraint.layout;
                         layout29.startMargin = typedArray.getDimensionPixelSize(index, layout29.startMargin);
-                        break;
-                    } else {
-                        break;
                     }
+                    break;
                 case 32:
                     Layout layout30 = constraint.layout;
                     layout30.startToEnd = lookupID(typedArray, index, layout30.startToEnd);
@@ -1427,10 +1417,8 @@ public class ConstraintSet {
                         Transform transform = constraint.transform;
                         transform.applyElevation = true;
                         transform.elevation = typedArray.getDimension(index, transform.elevation);
-                        break;
-                    } else {
-                        break;
                     }
+                    break;
                 case 45:
                     Transform transform2 = constraint.transform;
                     transform2.rotationX = typedArray.getFloat(index, transform2.rotationX);
@@ -1467,10 +1455,8 @@ public class ConstraintSet {
                     if (Build.VERSION.SDK_INT >= 21) {
                         Transform transform10 = constraint.transform;
                         transform10.translationZ = typedArray.getDimension(index, transform10.translationZ);
-                        break;
-                    } else {
-                        break;
                     }
+                    break;
                 case 54:
                     Layout layout40 = constraint.layout;
                     layout40.widthDefault = typedArray.getInt(index, layout40.widthDefault);
@@ -1518,11 +1504,10 @@ public class ConstraintSet {
                 case 65:
                     if (typedArray.peekValue(index).type == 3) {
                         constraint.motion.mTransitionEasing = typedArray.getString(index);
-                        break;
                     } else {
                         constraint.motion.mTransitionEasing = Easing.NAMED_EASING[typedArray.getInteger(index, 0)];
-                        break;
                     }
+                    break;
                 case 66:
                     constraint.motion.mDrawPath = typedArray.getInt(index, 0);
                     break;
@@ -1713,7 +1698,7 @@ public class ConstraintSet {
 
     void applyToInternal(ConstraintLayout constraintLayout, boolean z) {
         int childCount = constraintLayout.getChildCount();
-        HashSet hashSet = new HashSet(this.mConstraints.keySet());
+        HashSet<Integer> hashSet = new HashSet(this.mConstraints.keySet());
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = constraintLayout.getChildAt(i2);
             int id = childAt.getId();
@@ -1789,9 +1774,7 @@ public class ConstraintSet {
                 }
             }
         }
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            Integer num = (Integer) it.next();
+        for (Integer num : hashSet) {
             Constraint constraint2 = this.mConstraints.get(num);
             int i4 = constraint2.layout.mHelperType;
             if (i4 != -1 && i4 == 1) {
@@ -1810,17 +1793,17 @@ public class ConstraintSet {
                 }
                 barrier2.setType(constraint2.layout.mBarrierDirection);
                 barrier2.setMargin(constraint2.layout.mBarrierMargin);
-                ConstraintLayout.LayoutParams generateDefaultLayoutParams = constraintLayout.generateDefaultLayoutParams();
+                ConstraintLayout.LayoutParams layoutParamsGenerateDefaultLayoutParams = constraintLayout.generateDefaultLayoutParams();
                 barrier2.validateParams();
-                constraint2.applyTo(generateDefaultLayoutParams);
-                constraintLayout.addView(barrier2, generateDefaultLayoutParams);
+                constraint2.applyTo(layoutParamsGenerateDefaultLayoutParams);
+                constraintLayout.addView(barrier2, layoutParamsGenerateDefaultLayoutParams);
             }
             if (constraint2.layout.mIsGuideline) {
                 View guideline = new Guideline(constraintLayout.getContext());
                 guideline.setId(num.intValue());
-                ConstraintLayout.LayoutParams generateDefaultLayoutParams2 = constraintLayout.generateDefaultLayoutParams();
-                constraint2.applyTo(generateDefaultLayoutParams2);
-                constraintLayout.addView(guideline, generateDefaultLayoutParams2);
+                ConstraintLayout.LayoutParams layoutParamsGenerateDefaultLayoutParams2 = constraintLayout.generateDefaultLayoutParams();
+                constraint2.applyTo(layoutParamsGenerateDefaultLayoutParams2);
+                constraintLayout.addView(guideline, layoutParamsGenerateDefaultLayoutParams2);
             }
         }
     }
@@ -2107,7 +2090,7 @@ public class ConstraintSet {
 
     public void dump(MotionScene motionScene, int... iArr) {
         HashSet hashSet;
-        Set<Integer> keySet = this.mConstraints.keySet();
+        Set<Integer> setKeySet = this.mConstraints.keySet();
         if (iArr.length != 0) {
             HashSet hashSet2 = new HashSet();
             for (int i2 : iArr) {
@@ -2115,7 +2098,7 @@ public class ConstraintSet {
             }
             hashSet = hashSet2;
         } else {
-            hashSet = new HashSet(keySet);
+            hashSet = new HashSet(setKeySet);
         }
         System.out.println(hashSet.size() + " constraints");
         StringBuilder sb = new StringBuilder();
@@ -2191,11 +2174,11 @@ public class ConstraintSet {
                     xml.getName();
                 } else if (eventType == 2) {
                     String name = xml.getName();
-                    Constraint fillFromAttributeList = fillFromAttributeList(context, Xml.asAttributeSet(xml));
+                    Constraint constraintFillFromAttributeList = fillFromAttributeList(context, Xml.asAttributeSet(xml));
                     if (name.equalsIgnoreCase("Guideline")) {
-                        fillFromAttributeList.layout.mIsGuideline = true;
+                        constraintFillFromAttributeList.layout.mIsGuideline = true;
                     }
-                    this.mConstraints.put(Integer.valueOf(fillFromAttributeList.mViewId), fillFromAttributeList);
+                    this.mConstraints.put(Integer.valueOf(constraintFillFromAttributeList.mViewId), constraintFillFromAttributeList);
                 }
             }
         } catch (IOException e2) {
@@ -2206,58 +2189,58 @@ public class ConstraintSet {
     }
 
     public void parseColorAttributes(Constraint constraint, String str) {
-        String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-        for (int i2 = 0; i2 < split.length; i2++) {
-            String[] split2 = split[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
-            if (split2.length != 2) {
-                String str2 = " Unable to parse " + split[i2];
+        String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+        for (int i2 = 0; i2 < strArrSplit.length; i2++) {
+            String[] strArrSplit2 = strArrSplit[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
+            if (strArrSplit2.length != 2) {
+                String str2 = " Unable to parse " + strArrSplit[i2];
             } else {
-                constraint.setColorValue(split2[0], Color.parseColor(split2[1]));
+                constraint.setColorValue(strArrSplit2[0], Color.parseColor(strArrSplit2[1]));
             }
         }
     }
 
     public void parseFloatAttributes(Constraint constraint, String str) {
-        String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-        for (int i2 = 0; i2 < split.length; i2++) {
-            String[] split2 = split[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
-            if (split2.length != 2) {
-                String str2 = " Unable to parse " + split[i2];
+        String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+        for (int i2 = 0; i2 < strArrSplit.length; i2++) {
+            String[] strArrSplit2 = strArrSplit[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
+            if (strArrSplit2.length != 2) {
+                String str2 = " Unable to parse " + strArrSplit[i2];
             } else {
-                constraint.setFloatValue(split2[0], Float.parseFloat(split2[1]));
+                constraint.setFloatValue(strArrSplit2[0], Float.parseFloat(strArrSplit2[1]));
             }
         }
     }
 
     public void parseIntAttributes(Constraint constraint, String str) {
-        String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-        for (int i2 = 0; i2 < split.length; i2++) {
-            String[] split2 = split[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
-            if (split2.length != 2) {
-                String str2 = " Unable to parse " + split[i2];
+        String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+        for (int i2 = 0; i2 < strArrSplit.length; i2++) {
+            String[] strArrSplit2 = strArrSplit[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
+            if (strArrSplit2.length != 2) {
+                String str2 = " Unable to parse " + strArrSplit[i2];
             } else {
-                constraint.setFloatValue(split2[0], Integer.decode(split2[1]).intValue());
+                constraint.setFloatValue(strArrSplit2[0], Integer.decode(strArrSplit2[1]).intValue());
             }
         }
     }
 
     public void parseStringAttributes(Constraint constraint, String str) {
-        String[] splitString = splitString(str);
-        for (int i2 = 0; i2 < splitString.length; i2++) {
-            String[] split = splitString[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
-            String str2 = " Unable to parse " + splitString[i2];
-            constraint.setStringValue(split[0], split[1]);
+        String[] strArrSplitString = splitString(str);
+        for (int i2 = 0; i2 < strArrSplitString.length; i2++) {
+            String[] strArrSplit = strArrSplitString[i2].split(ContainerUtils.KEY_VALUE_DELIMITER);
+            String str2 = " Unable to parse " + strArrSplitString[i2];
+            constraint.setStringValue(strArrSplit[0], strArrSplit[1]);
         }
     }
 
     public void readFallback(ConstraintSet constraintSet) {
         for (Integer num : constraintSet.mConstraints.keySet()) {
-            int intValue = num.intValue();
+            int iIntValue = num.intValue();
             Constraint constraint = constraintSet.mConstraints.get(num);
-            if (!this.mConstraints.containsKey(Integer.valueOf(intValue))) {
-                this.mConstraints.put(Integer.valueOf(intValue), new Constraint());
+            if (!this.mConstraints.containsKey(Integer.valueOf(iIntValue))) {
+                this.mConstraints.put(Integer.valueOf(iIntValue), new Constraint());
             }
-            Constraint constraint2 = this.mConstraints.get(Integer.valueOf(intValue));
+            Constraint constraint2 = this.mConstraints.get(Integer.valueOf(iIntValue));
             Layout layout = constraint2.layout;
             if (!layout.mApply) {
                 layout.copyFrom(constraint.layout);
@@ -2667,7 +2650,7 @@ public class ConstraintSet {
     public void clone(ConstraintSet constraintSet) {
         this.mConstraints.clear();
         for (Integer num : constraintSet.mConstraints.keySet()) {
-            this.mConstraints.put(num, constraintSet.mConstraints.get(num).m26844clone());
+            this.mConstraints.put(num, constraintSet.mConstraints.get(num).m3clone());
         }
     }
 
@@ -2746,20 +2729,95 @@ public class ConstraintSet {
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:64:0x017b, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:99:0x017b, code lost:
     
         continue;
      */
+    /* JADX WARN: Removed duplicated region for block: B:44:0x0091  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public void load(android.content.Context r10, org.xmlpull.v1.XmlPullParser r11) {
-        /*
-            Method dump skipped, instructions count: 450
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.widget.ConstraintSet.load(android.content.Context, org.xmlpull.v1.XmlPullParser):void");
+    public void load(Context context, XmlPullParser xmlPullParser) {
+        try {
+            int eventType = xmlPullParser.getEventType();
+            Constraint constraintFillFromAttributeList = null;
+            while (eventType != 1) {
+                if (eventType == 0) {
+                    xmlPullParser.getName();
+                } else if (eventType == 2) {
+                    switch (xmlPullParser.getName()) {
+                        case "Constraint":
+                            constraintFillFromAttributeList = fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                            break;
+                        case "Guideline":
+                            constraintFillFromAttributeList = fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                            constraintFillFromAttributeList.layout.mIsGuideline = true;
+                            constraintFillFromAttributeList.layout.mApply = true;
+                            break;
+                        case "Barrier":
+                            constraintFillFromAttributeList = fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                            constraintFillFromAttributeList.layout.mHelperType = 1;
+                            break;
+                        case "PropertySet":
+                            if (constraintFillFromAttributeList != null) {
+                                constraintFillFromAttributeList.propertySet.fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                                break;
+                            } else {
+                                throw new RuntimeException(ERROR_MESSAGE + xmlPullParser.getLineNumber());
+                            }
+                            break;
+                        case "Transform":
+                            if (constraintFillFromAttributeList != null) {
+                                constraintFillFromAttributeList.transform.fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                                break;
+                            } else {
+                                throw new RuntimeException(ERROR_MESSAGE + xmlPullParser.getLineNumber());
+                            }
+                            break;
+                        case "Layout":
+                            if (constraintFillFromAttributeList != null) {
+                                constraintFillFromAttributeList.layout.fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                                break;
+                            } else {
+                                throw new RuntimeException(ERROR_MESSAGE + xmlPullParser.getLineNumber());
+                            }
+                            break;
+                        case "Motion":
+                            if (constraintFillFromAttributeList != null) {
+                                constraintFillFromAttributeList.motion.fillFromAttributeList(context, Xml.asAttributeSet(xmlPullParser));
+                                break;
+                            } else {
+                                throw new RuntimeException(ERROR_MESSAGE + xmlPullParser.getLineNumber());
+                            }
+                            break;
+                        case "CustomAttribute":
+                            if (constraintFillFromAttributeList != null) {
+                                ConstraintAttribute.parse(context, xmlPullParser, constraintFillFromAttributeList.mCustomConstraints);
+                                break;
+                            } else {
+                                throw new RuntimeException(ERROR_MESSAGE + xmlPullParser.getLineNumber());
+                            }
+                            break;
+                    }
+                } else if (eventType != 3) {
+                    continue;
+                } else {
+                    String name = xmlPullParser.getName();
+                    if (TAG.equals(name)) {
+                        return;
+                    }
+                    if (name.equalsIgnoreCase("Constraint")) {
+                        this.mConstraints.put(Integer.valueOf(constraintFillFromAttributeList.mViewId), constraintFillFromAttributeList);
+                        constraintFillFromAttributeList = null;
+                    }
+                }
+                eventType = xmlPullParser.next();
+            }
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        } catch (XmlPullParserException e3) {
+            e3.printStackTrace();
+        }
     }
 
     public void readFallback(ConstraintLayout constraintLayout) {

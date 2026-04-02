@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class SelfDestructiveThread {
     private static final int MSG_DESTRUCTION = 0;
     private static final int MSG_INVOKE_RUNNABLE = 1;
@@ -112,16 +112,16 @@ public class SelfDestructiveThread {
         post(new Runnable() { // from class: androidx.core.provider.SelfDestructiveThread.2
             @Override // java.lang.Runnable
             public void run() {
-                final Object obj;
+                final Object objCall;
                 try {
-                    obj = callable.call();
+                    objCall = callable.call();
                 } catch (Exception unused) {
-                    obj = null;
+                    objCall = null;
                 }
                 handler.post(new Runnable() { // from class: androidx.core.provider.SelfDestructiveThread.2.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        replyCallback.onReply(obj);
+                        replyCallback.onReply(objCall);
                     }
                 });
             }
@@ -130,7 +130,7 @@ public class SelfDestructiveThread {
 
     public <T> T postAndWait(final Callable<T> callable, int i2) throws InterruptedException {
         final ReentrantLock reentrantLock = new ReentrantLock();
-        final Condition newCondition = reentrantLock.newCondition();
+        final Condition conditionNewCondition = reentrantLock.newCondition();
         final AtomicReference atomicReference = new AtomicReference();
         final AtomicBoolean atomicBoolean = new AtomicBoolean(true);
         post(new Runnable() { // from class: androidx.core.provider.SelfDestructiveThread.3
@@ -143,7 +143,7 @@ public class SelfDestructiveThread {
                 reentrantLock.lock();
                 try {
                     atomicBoolean.set(false);
-                    newCondition.signal();
+                    conditionNewCondition.signal();
                 } finally {
                     reentrantLock.unlock();
                 }
@@ -157,7 +157,7 @@ public class SelfDestructiveThread {
             long nanos = TimeUnit.MILLISECONDS.toNanos(i2);
             do {
                 try {
-                    nanos = newCondition.awaitNanos(nanos);
+                    nanos = conditionNewCondition.awaitNanos(nanos);
                 } catch (InterruptedException unused) {
                 }
                 if (!atomicBoolean.get()) {

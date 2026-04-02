@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class HttpDate {
     public static final long MAX_DATE = 253402300799999L;
     private static final ThreadLocal<DateFormat> STANDARD_DATE_FORMAT = new ThreadLocal<DateFormat>() { // from class: okhttp3.internal.http.HttpDate.1
@@ -35,23 +35,23 @@ public final class HttpDate {
             return null;
         }
         ParsePosition parsePosition = new ParsePosition(0);
-        Date parse = STANDARD_DATE_FORMAT.get().parse(str, parsePosition);
+        Date date = STANDARD_DATE_FORMAT.get().parse(str, parsePosition);
         if (parsePosition.getIndex() == str.length()) {
-            return parse;
+            return date;
         }
         synchronized (BROWSER_COMPATIBLE_DATE_FORMAT_STRINGS) {
             int length = BROWSER_COMPATIBLE_DATE_FORMAT_STRINGS.length;
             for (int i2 = 0; i2 < length; i2++) {
-                DateFormat dateFormat = BROWSER_COMPATIBLE_DATE_FORMATS[i2];
-                if (dateFormat == null) {
-                    dateFormat = new SimpleDateFormat(BROWSER_COMPATIBLE_DATE_FORMAT_STRINGS[i2], Locale.US);
-                    dateFormat.setTimeZone(Util.UTC);
-                    BROWSER_COMPATIBLE_DATE_FORMATS[i2] = dateFormat;
+                DateFormat simpleDateFormat = BROWSER_COMPATIBLE_DATE_FORMATS[i2];
+                if (simpleDateFormat == null) {
+                    simpleDateFormat = new SimpleDateFormat(BROWSER_COMPATIBLE_DATE_FORMAT_STRINGS[i2], Locale.US);
+                    simpleDateFormat.setTimeZone(Util.UTC);
+                    BROWSER_COMPATIBLE_DATE_FORMATS[i2] = simpleDateFormat;
                 }
                 parsePosition.setIndex(0);
-                Date parse2 = dateFormat.parse(str, parsePosition);
+                Date date2 = simpleDateFormat.parse(str, parsePosition);
                 if (parsePosition.getIndex() != 0) {
-                    return parse2;
+                    return date2;
                 }
             }
             return null;

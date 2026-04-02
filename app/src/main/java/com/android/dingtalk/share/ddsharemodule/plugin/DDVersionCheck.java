@@ -5,7 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import com.android.dingtalk.share.ddsharemodule.ShareConstant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DDVersionCheck {
     public static int getSdkVersionFromMetaData(Context context, int i2) {
         try {

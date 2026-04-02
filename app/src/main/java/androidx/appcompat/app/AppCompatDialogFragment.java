@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.fragment.app.DialogFragment;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatDialogFragment extends DialogFragment {
     @Override // androidx.fragment.app.DialogFragment
     @NonNull

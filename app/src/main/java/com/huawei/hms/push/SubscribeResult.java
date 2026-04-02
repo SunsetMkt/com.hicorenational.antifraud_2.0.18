@@ -4,28 +4,26 @@ import com.huawei.hms.push.notification.SubscribedItem;
 import com.huawei.hms.support.api.client.Result;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SubscribeResult extends Result {
+    private String a;
 
-    /* renamed from: a */
-    private String f7739a;
-
-    /* renamed from: b */
-    private List<SubscribedItem> f7740b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private List<SubscribedItem> f4879b;
 
     public String getErrorMsg() {
-        return this.f7739a;
+        return this.a;
     }
 
     public List<SubscribedItem> getSubscribedItems() {
-        return this.f7740b;
+        return this.f4879b;
     }
 
     public void setErrorMsg(String str) {
-        this.f7739a = str;
+        this.a = str;
     }
 
     public void setSubscribedItems(List<SubscribedItem> list) {
-        this.f7740b = list;
+        this.f4879b = list;
     }
 }

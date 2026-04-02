@@ -5,14 +5,17 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
-import androidx.constraintlayout.widget.C0471R;
+import androidx.constraintlayout.motion.widget.SplineSet;
+import androidx.constraintlayout.widget.ConstraintAttribute;
+import androidx.constraintlayout.widget.R;
 import androidx.core.app.NotificationCompat;
 import com.huawei.hms.push.constant.RemoteMessageConst;
+import com.umeng.analytics.pro.cw;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class KeyAttributes extends Key {
     public static final int KEY_TYPE = 1;
     static final String NAME = "KeyAttribute";
@@ -57,24 +60,24 @@ public class KeyAttributes extends Key {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_alpha, 1);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_elevation, 2);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_rotation, 4);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_rotationX, 5);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_rotationY, 6);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_transformPivotX, 19);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_transformPivotY, 20);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_scaleX, 7);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_transitionPathRotate, 8);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_transitionEasing, 9);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_motionTarget, 10);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_framePosition, 12);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_curveFit, 13);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_scaleY, 14);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_translationX, 15);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_translationY, 16);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_android_translationZ, 17);
-            mAttrMap.append(C0471R.styleable.KeyAttribute_motionProgress, 18);
+            mAttrMap.append(R.styleable.KeyAttribute_android_alpha, 1);
+            mAttrMap.append(R.styleable.KeyAttribute_android_elevation, 2);
+            mAttrMap.append(R.styleable.KeyAttribute_android_rotation, 4);
+            mAttrMap.append(R.styleable.KeyAttribute_android_rotationX, 5);
+            mAttrMap.append(R.styleable.KeyAttribute_android_rotationY, 6);
+            mAttrMap.append(R.styleable.KeyAttribute_android_transformPivotX, 19);
+            mAttrMap.append(R.styleable.KeyAttribute_android_transformPivotY, 20);
+            mAttrMap.append(R.styleable.KeyAttribute_android_scaleX, 7);
+            mAttrMap.append(R.styleable.KeyAttribute_transitionPathRotate, 8);
+            mAttrMap.append(R.styleable.KeyAttribute_transitionEasing, 9);
+            mAttrMap.append(R.styleable.KeyAttribute_motionTarget, 10);
+            mAttrMap.append(R.styleable.KeyAttribute_framePosition, 12);
+            mAttrMap.append(R.styleable.KeyAttribute_curveFit, 13);
+            mAttrMap.append(R.styleable.KeyAttribute_android_scaleY, 14);
+            mAttrMap.append(R.styleable.KeyAttribute_android_translationX, 15);
+            mAttrMap.append(R.styleable.KeyAttribute_android_translationY, 16);
+            mAttrMap.append(R.styleable.KeyAttribute_android_translationZ, 17);
+            mAttrMap.append(R.styleable.KeyAttribute_motionProgress, 18);
         }
 
         private Loader() {
@@ -119,17 +122,13 @@ public class KeyAttributes extends Key {
                             keyAttributes.mTargetId = typedArray.getResourceId(index, keyAttributes.mTargetId);
                             if (keyAttributes.mTargetId == -1) {
                                 keyAttributes.mTargetString = typedArray.getString(index);
-                                break;
-                            } else {
-                                break;
                             }
                         } else if (typedArray.peekValue(index).type == 3) {
                             keyAttributes.mTargetString = typedArray.getString(index);
-                            break;
                         } else {
                             keyAttributes.mTargetId = typedArray.getResourceId(index, keyAttributes.mTargetId);
-                            break;
                         }
+                        break;
                     case 12:
                         keyAttributes.mFramePosition = typedArray.getInt(index, keyAttributes.mFramePosition);
                         break;
@@ -148,10 +147,8 @@ public class KeyAttributes extends Key {
                     case 17:
                         if (Build.VERSION.SDK_INT >= 21) {
                             keyAttributes.mTranslationZ = typedArray.getDimension(index, keyAttributes.mTranslationZ);
-                            break;
-                        } else {
-                            break;
                         }
+                        break;
                     case 18:
                         keyAttributes.mProgress = typedArray.getFloat(index, keyAttributes.mProgress);
                         break;
@@ -172,21 +169,180 @@ public class KeyAttributes extends Key {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Code restructure failed: missing block: B:116:0x0054, code lost:
-    
-        if (r1.equals("transitionPathRotate") != false) goto L56;
-     */
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    /* JADX WARN: Removed duplicated region for block: B:55:0x00de  */
     @Override // androidx.constraintlayout.motion.widget.Key
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public void addValues(java.util.HashMap<java.lang.String, androidx.constraintlayout.motion.widget.SplineSet> r7) {
-        /*
-            Method dump skipped, instructions count: 572
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.motion.widget.KeyAttributes.addValues(java.util.HashMap):void");
+    public void addValues(HashMap<String, SplineSet> map) {
+        for (String str : map.keySet()) {
+            SplineSet splineSet = map.get(str);
+            byte b2 = 7;
+            if (!str.startsWith("CUSTOM")) {
+                switch (str.hashCode()) {
+                    case -1249320806:
+                        b2 = str.equals("rotationX") ? (byte) 3 : (byte) -1;
+                        break;
+                    case -1249320805:
+                        if (str.equals("rotationY")) {
+                            b2 = 4;
+                            break;
+                        }
+                        break;
+                    case -1225497657:
+                        if (str.equals("translationX")) {
+                            b2 = 10;
+                            break;
+                        }
+                        break;
+                    case -1225497656:
+                        if (str.equals("translationY")) {
+                            b2 = 11;
+                            break;
+                        }
+                        break;
+                    case -1225497655:
+                        if (str.equals("translationZ")) {
+                            b2 = 12;
+                            break;
+                        }
+                        break;
+                    case -1001078227:
+                        if (str.equals(NotificationCompat.CATEGORY_PROGRESS)) {
+                            b2 = cw.f7203k;
+                            break;
+                        }
+                        break;
+                    case -908189618:
+                        if (str.equals("scaleX")) {
+                            b2 = 8;
+                            break;
+                        }
+                        break;
+                    case -908189617:
+                        if (str.equals("scaleY")) {
+                            b2 = 9;
+                            break;
+                        }
+                        break;
+                    case -760884510:
+                        if (str.equals("transformPivotX")) {
+                            b2 = 5;
+                            break;
+                        }
+                        break;
+                    case -760884509:
+                        if (str.equals("transformPivotY")) {
+                            b2 = 6;
+                            break;
+                        }
+                        break;
+                    case -40300674:
+                        if (str.equals("rotation")) {
+                            b2 = 2;
+                            break;
+                        }
+                        break;
+                    case -4379043:
+                        if (str.equals("elevation")) {
+                            b2 = 1;
+                            break;
+                        }
+                        break;
+                    case 37232917:
+                        if (!str.equals("transitionPathRotate")) {
+                        }
+                        break;
+                    case 92909918:
+                        if (str.equals("alpha")) {
+                            b2 = 0;
+                            break;
+                        }
+                        break;
+                }
+                switch (b2) {
+                    case 0:
+                        if (!Float.isNaN(this.mAlpha)) {
+                            splineSet.setPoint(this.mFramePosition, this.mAlpha);
+                        }
+                        break;
+                    case 1:
+                        if (!Float.isNaN(this.mElevation)) {
+                            splineSet.setPoint(this.mFramePosition, this.mElevation);
+                        }
+                        break;
+                    case 2:
+                        if (!Float.isNaN(this.mRotation)) {
+                            splineSet.setPoint(this.mFramePosition, this.mRotation);
+                        }
+                        break;
+                    case 3:
+                        if (!Float.isNaN(this.mRotationX)) {
+                            splineSet.setPoint(this.mFramePosition, this.mRotationX);
+                        }
+                        break;
+                    case 4:
+                        if (!Float.isNaN(this.mRotationY)) {
+                            splineSet.setPoint(this.mFramePosition, this.mRotationY);
+                        }
+                        break;
+                    case 5:
+                        if (!Float.isNaN(this.mRotationX)) {
+                            splineSet.setPoint(this.mFramePosition, this.mPivotX);
+                        }
+                        break;
+                    case 6:
+                        if (!Float.isNaN(this.mRotationY)) {
+                            splineSet.setPoint(this.mFramePosition, this.mPivotY);
+                        }
+                        break;
+                    case 7:
+                        if (!Float.isNaN(this.mTransitionPathRotate)) {
+                            splineSet.setPoint(this.mFramePosition, this.mTransitionPathRotate);
+                        }
+                        break;
+                    case 8:
+                        if (!Float.isNaN(this.mScaleX)) {
+                            splineSet.setPoint(this.mFramePosition, this.mScaleX);
+                        }
+                        break;
+                    case 9:
+                        if (!Float.isNaN(this.mScaleY)) {
+                            splineSet.setPoint(this.mFramePosition, this.mScaleY);
+                        }
+                        break;
+                    case 10:
+                        if (!Float.isNaN(this.mTranslationX)) {
+                            splineSet.setPoint(this.mFramePosition, this.mTranslationX);
+                        }
+                        break;
+                    case 11:
+                        if (!Float.isNaN(this.mTranslationY)) {
+                            splineSet.setPoint(this.mFramePosition, this.mTranslationY);
+                        }
+                        break;
+                    case 12:
+                        if (!Float.isNaN(this.mTranslationZ)) {
+                            splineSet.setPoint(this.mFramePosition, this.mTranslationZ);
+                        }
+                        break;
+                    case 13:
+                        if (!Float.isNaN(this.mProgress)) {
+                            splineSet.setPoint(this.mFramePosition, this.mProgress);
+                        }
+                        break;
+                    default:
+                        String str2 = "UNKNOWN addValues \"" + str + "\"";
+                        break;
+                }
+            } else {
+                ConstraintAttribute constraintAttribute = this.mCustomConstraints.get(str.substring(7));
+                if (constraintAttribute != null) {
+                    ((SplineSet.CustomSet) splineSet).setPoint(this.mFramePosition, constraintAttribute);
+                }
+            }
+        }
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
@@ -247,193 +403,175 @@ public class KeyAttributes extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyAttribute));
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyAttribute));
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
-    public void setInterpolation(HashMap<String, Integer> hashMap) {
+    public void setInterpolation(HashMap<String, Integer> map) {
         if (this.mCurveFit == -1) {
             return;
         }
         if (!Float.isNaN(this.mAlpha)) {
-            hashMap.put("alpha", Integer.valueOf(this.mCurveFit));
+            map.put("alpha", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mElevation)) {
-            hashMap.put("elevation", Integer.valueOf(this.mCurveFit));
+            map.put("elevation", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mRotation)) {
-            hashMap.put("rotation", Integer.valueOf(this.mCurveFit));
+            map.put("rotation", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mRotationX)) {
-            hashMap.put("rotationX", Integer.valueOf(this.mCurveFit));
+            map.put("rotationX", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mRotationY)) {
-            hashMap.put("rotationY", Integer.valueOf(this.mCurveFit));
+            map.put("rotationY", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mPivotX)) {
-            hashMap.put("transformPivotX", Integer.valueOf(this.mCurveFit));
+            map.put("transformPivotX", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mPivotY)) {
-            hashMap.put("transformPivotY", Integer.valueOf(this.mCurveFit));
+            map.put("transformPivotY", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mTranslationX)) {
-            hashMap.put("translationX", Integer.valueOf(this.mCurveFit));
+            map.put("translationX", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mTranslationY)) {
-            hashMap.put("translationY", Integer.valueOf(this.mCurveFit));
+            map.put("translationY", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mTranslationZ)) {
-            hashMap.put("translationZ", Integer.valueOf(this.mCurveFit));
+            map.put("translationZ", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mTransitionPathRotate)) {
-            hashMap.put("transitionPathRotate", Integer.valueOf(this.mCurveFit));
+            map.put("transitionPathRotate", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mScaleX)) {
-            hashMap.put("scaleX", Integer.valueOf(this.mCurveFit));
+            map.put("scaleX", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mScaleY)) {
-            hashMap.put("scaleY", Integer.valueOf(this.mCurveFit));
+            map.put("scaleY", Integer.valueOf(this.mCurveFit));
         }
         if (!Float.isNaN(this.mProgress)) {
-            hashMap.put(NotificationCompat.CATEGORY_PROGRESS, Integer.valueOf(this.mCurveFit));
+            map.put(NotificationCompat.CATEGORY_PROGRESS, Integer.valueOf(this.mCurveFit));
         }
         if (this.mCustomConstraints.size() > 0) {
             Iterator<String> it = this.mCustomConstraints.keySet().iterator();
             while (it.hasNext()) {
-                hashMap.put("CUSTOM," + it.next(), Integer.valueOf(this.mCurveFit));
+                map.put("CUSTOM," + it.next(), Integer.valueOf(this.mCurveFit));
             }
         }
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    /* JADX WARN: Removed duplicated region for block: B:56:0x00c8  */
     @Override // androidx.constraintlayout.motion.widget.Key
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public void setValue(String str, Object obj) {
-        char c2;
+        byte b2;
         switch (str.hashCode()) {
             case -1913008125:
-                if (str.equals("motionProgress")) {
-                    c2 = 3;
-                    break;
-                }
-                c2 = 65535;
+                b2 = !str.equals("motionProgress") ? (byte) -1 : (byte) 3;
                 break;
             case -1812823328:
                 if (str.equals("transitionEasing")) {
-                    c2 = 11;
+                    b2 = 11;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1249320806:
                 if (str.equals("rotationX")) {
-                    c2 = 5;
+                    b2 = 5;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1249320805:
                 if (str.equals("rotationY")) {
-                    c2 = 6;
+                    b2 = 6;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497657:
                 if (str.equals("translationX")) {
-                    c2 = 14;
+                    b2 = cw.f7204l;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497656:
                 if (str.equals("translationY")) {
-                    c2 = 15;
+                    b2 = cw.f7205m;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -987906986:
                 if (str.equals("pivotX")) {
-                    c2 = 7;
+                    b2 = 7;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -987906985:
                 if (str.equals("pivotY")) {
-                    c2 = '\b';
+                    b2 = 8;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -908189618:
                 if (str.equals("scaleX")) {
-                    c2 = '\t';
+                    b2 = 9;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -908189617:
                 if (str.equals("scaleY")) {
-                    c2 = '\n';
+                    b2 = 10;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -40300674:
                 if (str.equals("rotation")) {
-                    c2 = 4;
+                    b2 = 4;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -4379043:
                 if (str.equals("elevation")) {
-                    c2 = 2;
+                    b2 = 2;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 37232917:
                 if (str.equals("transitionPathRotate")) {
-                    c2 = '\r';
+                    b2 = cw.f7203k;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 92909918:
                 if (str.equals("alpha")) {
-                    c2 = 0;
+                    b2 = 0;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 579057826:
                 if (str.equals("curveFit")) {
-                    c2 = 1;
+                    b2 = 1;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 1317633238:
                 if (str.equals("mTranslationZ")) {
-                    c2 = 16;
+                    b2 = cw.f7206n;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 1941332754:
                 if (str.equals(RemoteMessageConst.Notification.VISIBILITY)) {
-                    c2 = '\f';
+                    b2 = 12;
                     break;
                 }
-                c2 = 65535;
-                break;
-            default:
-                c2 = 65535;
                 break;
         }
-        switch (c2) {
+        switch (b2) {
             case 0:
                 this.mAlpha = toFloat(obj);
                 break;
@@ -458,22 +596,22 @@ public class KeyAttributes extends Key {
             case 7:
                 this.mPivotX = toFloat(obj);
                 break;
-            case '\b':
+            case 8:
                 this.mPivotY = toFloat(obj);
                 break;
-            case '\t':
+            case 9:
                 this.mScaleX = toFloat(obj);
                 break;
-            case '\n':
+            case 10:
                 this.mScaleY = toFloat(obj);
                 break;
             case 11:
                 this.mTransitionEasing = obj.toString();
                 break;
-            case '\f':
+            case 12:
                 this.mVisibility = toBoolean(obj);
                 break;
-            case '\r':
+            case 13:
                 this.mTransitionPathRotate = toFloat(obj);
                 break;
             case 14:

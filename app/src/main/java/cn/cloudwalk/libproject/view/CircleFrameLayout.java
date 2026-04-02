@@ -12,9 +12,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import cn.cloudwalk.libproject.C1241R;
+import cn.cloudwalk.libproject.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CircleFrameLayout extends FrameLayout {
     private Paint mPaint;
     private Bitmap srcBitmap;
@@ -23,7 +23,7 @@ public class CircleFrameLayout extends FrameLayout {
         super(context, attributeSet);
         if (Build.VERSION.SDK_INT <= 21) {
             this.mPaint = new Paint();
-            this.srcBitmap = BitmapFactory.decodeResource(getResources(), C1241R.drawable.cloudwalk_perview_circle);
+            this.srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cloudwalk_perview_circle);
         }
     }
 
@@ -32,18 +32,18 @@ public class CircleFrameLayout extends FrameLayout {
         Matrix matrix = new Matrix();
         matrix.postScale(measuredWidth, measuredWidth);
         Bitmap bitmap = this.srcBitmap;
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), this.srcBitmap.getHeight(), matrix, true);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), this.srcBitmap.getHeight(), matrix, true);
         this.srcBitmap.recycle();
-        this.srcBitmap = createBitmap;
+        this.srcBitmap = bitmapCreateBitmap;
         return this.srcBitmap;
     }
 
     @Override // android.view.ViewGroup
     protected boolean drawChild(Canvas canvas, View view, long j2) {
-        boolean drawChild = super.drawChild(canvas, view, j2);
+        boolean zDrawChild = super.drawChild(canvas, view, j2);
         if (Build.VERSION.SDK_INT <= 21) {
             canvas.drawBitmap(zoomBitmap(), 0.0f, 0.0f, this.mPaint);
         }
-        return drawChild;
+        return zDrawChild;
     }
 }

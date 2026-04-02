@@ -1,6 +1,6 @@
 package cn.cloudwalk.exception;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InitializeException extends Exception {
     public InitializeException() {
     }

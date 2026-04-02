@@ -4,14 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.TypeEvaluator;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Picture;
 import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class TransitionUtils {
     private static final boolean HAS_IS_ATTACHED_TO_WINDOW;
     private static final boolean HAS_OVERLAY;
@@ -57,115 +59,102 @@ class TransitionUtils {
         ViewUtils.transformMatrixToLocal(viewGroup, matrix);
         RectF rectF = new RectF(0.0f, 0.0f, view.getWidth(), view.getHeight());
         matrix.mapRect(rectF);
-        int round = Math.round(rectF.left);
-        int round2 = Math.round(rectF.top);
-        int round3 = Math.round(rectF.right);
-        int round4 = Math.round(rectF.bottom);
+        int iRound = Math.round(rectF.left);
+        int iRound2 = Math.round(rectF.top);
+        int iRound3 = Math.round(rectF.right);
+        int iRound4 = Math.round(rectF.bottom);
         ImageView imageView = new ImageView(view.getContext());
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        Bitmap createViewBitmap = createViewBitmap(view, matrix, rectF, viewGroup);
-        if (createViewBitmap != null) {
-            imageView.setImageBitmap(createViewBitmap);
+        Bitmap bitmapCreateViewBitmap = createViewBitmap(view, matrix, rectF, viewGroup);
+        if (bitmapCreateViewBitmap != null) {
+            imageView.setImageBitmap(bitmapCreateViewBitmap);
         }
-        imageView.measure(View.MeasureSpec.makeMeasureSpec(round3 - round, 1073741824), View.MeasureSpec.makeMeasureSpec(round4 - round2, 1073741824));
-        imageView.layout(round, round2, round3, round4);
+        imageView.measure(View.MeasureSpec.makeMeasureSpec(iRound3 - iRound, 1073741824), View.MeasureSpec.makeMeasureSpec(iRound4 - iRound2, 1073741824));
+        imageView.layout(iRound, iRound2, iRound3, iRound4);
         return imageView;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:18:0x0073  */
-    /* JADX WARN: Removed duplicated region for block: B:19:0x008a  */
+    /* JADX WARN: Removed duplicated region for block: B:16:0x0034  */
+    /* JADX WARN: Removed duplicated region for block: B:22:0x0073  */
+    /* JADX WARN: Removed duplicated region for block: B:23:0x008a  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static android.graphics.Bitmap createViewBitmap(android.view.View r9, android.graphics.Matrix r10, android.graphics.RectF r11, android.view.ViewGroup r12) {
-        /*
-            boolean r0 = androidx.transition.TransitionUtils.HAS_IS_ATTACHED_TO_WINDOW
-            r1 = 0
-            if (r0 == 0) goto L13
-            boolean r0 = r9.isAttachedToWindow()
-            r0 = r0 ^ 1
-            if (r12 != 0) goto Le
-            goto L14
-        Le:
-            boolean r2 = r12.isAttachedToWindow()
-            goto L15
-        L13:
-            r0 = 0
-        L14:
-            r2 = 0
-        L15:
-            boolean r3 = androidx.transition.TransitionUtils.HAS_OVERLAY
-            r4 = 0
-            if (r3 == 0) goto L34
-            if (r0 == 0) goto L34
-            if (r2 != 0) goto L1f
-            return r4
-        L1f:
-            android.view.ViewParent r1 = r9.getParent()
-            android.view.ViewGroup r1 = (android.view.ViewGroup) r1
-            int r2 = r1.indexOfChild(r9)
-            android.view.ViewGroupOverlay r3 = r12.getOverlay()
-            r3.add(r9)
-            r8 = r2
-            r2 = r1
-            r1 = r8
-            goto L35
-        L34:
-            r2 = r4
-        L35:
-            float r3 = r11.width()
-            int r3 = java.lang.Math.round(r3)
-            float r5 = r11.height()
-            int r5 = java.lang.Math.round(r5)
-            if (r3 <= 0) goto L9b
-            if (r5 <= 0) goto L9b
-            r4 = 1065353216(0x3f800000, float:1.0)
-            r6 = 1233125376(0x49800000, float:1048576.0)
-            int r7 = r3 * r5
-            float r7 = (float) r7
-            float r6 = r6 / r7
-            float r4 = java.lang.Math.min(r4, r6)
-            float r3 = (float) r3
-            float r3 = r3 * r4
-            int r3 = java.lang.Math.round(r3)
-            float r5 = (float) r5
-            float r5 = r5 * r4
-            int r5 = java.lang.Math.round(r5)
-            float r6 = r11.left
-            float r6 = -r6
-            float r11 = r11.top
-            float r11 = -r11
-            r10.postTranslate(r6, r11)
-            r10.postScale(r4, r4)
-            boolean r11 = androidx.transition.TransitionUtils.HAS_PICTURE_BITMAP
-            if (r11 == 0) goto L8a
-            android.graphics.Picture r11 = new android.graphics.Picture
-            r11.<init>()
-            android.graphics.Canvas r3 = r11.beginRecording(r3, r5)
-            r3.concat(r10)
-            r9.draw(r3)
-            r11.endRecording()
-            android.graphics.Bitmap r4 = android.graphics.Bitmap.createBitmap(r11)
-            goto L9b
-        L8a:
-            android.graphics.Bitmap$Config r11 = android.graphics.Bitmap.Config.ARGB_8888
-            android.graphics.Bitmap r4 = android.graphics.Bitmap.createBitmap(r3, r5, r11)
-            android.graphics.Canvas r11 = new android.graphics.Canvas
-            r11.<init>(r4)
-            r11.concat(r10)
-            r9.draw(r11)
-        L9b:
-            boolean r10 = androidx.transition.TransitionUtils.HAS_OVERLAY
-            if (r10 == 0) goto Lab
-            if (r0 == 0) goto Lab
-            android.view.ViewGroupOverlay r10 = r12.getOverlay()
-            r10.remove(r9)
-            r2.addView(r9, r1)
-        Lab:
-            return r4
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.transition.TransitionUtils.createViewBitmap(android.view.View, android.graphics.Matrix, android.graphics.RectF, android.view.ViewGroup):android.graphics.Bitmap");
+    private static Bitmap createViewBitmap(View view, Matrix matrix, RectF rectF, ViewGroup viewGroup) {
+        boolean z;
+        boolean zIsAttachedToWindow;
+        ViewGroup viewGroup2;
+        int iRound;
+        int iRound2;
+        int i2 = 0;
+        if (HAS_IS_ATTACHED_TO_WINDOW) {
+            z = !view.isAttachedToWindow();
+            if (viewGroup != null) {
+                zIsAttachedToWindow = viewGroup.isAttachedToWindow();
+            }
+            Bitmap bitmapCreateBitmap = null;
+            if (HAS_OVERLAY || !z) {
+                viewGroup2 = null;
+            } else {
+                if (!zIsAttachedToWindow) {
+                    return null;
+                }
+                ViewGroup viewGroup3 = (ViewGroup) view.getParent();
+                int iIndexOfChild = viewGroup3.indexOfChild(view);
+                viewGroup.getOverlay().add(view);
+                viewGroup2 = viewGroup3;
+                i2 = iIndexOfChild;
+            }
+            iRound = Math.round(rectF.width());
+            iRound2 = Math.round(rectF.height());
+            if (iRound > 0 && iRound2 > 0) {
+                float fMin = Math.min(1.0f, 1048576.0f / (iRound * iRound2));
+                int iRound3 = Math.round(iRound * fMin);
+                int iRound4 = Math.round(iRound2 * fMin);
+                matrix.postTranslate(-rectF.left, -rectF.top);
+                matrix.postScale(fMin, fMin);
+                if (HAS_PICTURE_BITMAP) {
+                    bitmapCreateBitmap = Bitmap.createBitmap(iRound3, iRound4, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmapCreateBitmap);
+                    canvas.concat(matrix);
+                    view.draw(canvas);
+                } else {
+                    Picture picture = new Picture();
+                    Canvas canvasBeginRecording = picture.beginRecording(iRound3, iRound4);
+                    canvasBeginRecording.concat(matrix);
+                    view.draw(canvasBeginRecording);
+                    picture.endRecording();
+                    bitmapCreateBitmap = Bitmap.createBitmap(picture);
+                }
+            }
+            if (HAS_OVERLAY && z) {
+                viewGroup.getOverlay().remove(view);
+                viewGroup2.addView(view, i2);
+            }
+            return bitmapCreateBitmap;
+        }
+        z = false;
+        zIsAttachedToWindow = false;
+        Bitmap bitmapCreateBitmap2 = null;
+        if (HAS_OVERLAY) {
+            viewGroup2 = null;
+        }
+        iRound = Math.round(rectF.width());
+        iRound2 = Math.round(rectF.height());
+        if (iRound > 0) {
+            float fMin2 = Math.min(1.0f, 1048576.0f / (iRound * iRound2));
+            int iRound32 = Math.round(iRound * fMin2);
+            int iRound42 = Math.round(iRound2 * fMin2);
+            matrix.postTranslate(-rectF.left, -rectF.top);
+            matrix.postScale(fMin2, fMin2);
+            if (HAS_PICTURE_BITMAP) {
+            }
+        }
+        if (HAS_OVERLAY) {
+            viewGroup.getOverlay().remove(view);
+            viewGroup2.addView(view, i2);
+        }
+        return bitmapCreateBitmap2;
     }
 
     static Animator mergeAnimators(Animator animator, Animator animator2) {

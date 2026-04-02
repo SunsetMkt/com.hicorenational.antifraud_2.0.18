@@ -14,8 +14,8 @@ import androidx.annotation.VisibleForTesting;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+/* JADX INFO: loaded from: classes.dex */
 @VisibleForTesting
-/* loaded from: classes.dex */
 class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.OnItemTouchListener {
     private static final int ANIMATION_STATE_FADING_IN = 1;
     private static final int ANIMATION_STATE_FADING_OUT = 3;
@@ -121,9 +121,9 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
 
         @Override // android.animation.ValueAnimator.AnimatorUpdateListener
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f);
-            FastScroller.this.mVerticalThumbDrawable.setAlpha(floatValue);
-            FastScroller.this.mVerticalTrackDrawable.setAlpha(floatValue);
+            int iFloatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f);
+            FastScroller.this.mVerticalThumbDrawable.setAlpha(iFloatValue);
+            FastScroller.this.mVerticalTrackDrawable.setAlpha(iFloatValue);
             FastScroller.this.requestRedraw();
         }
     }
@@ -214,15 +214,15 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
 
     private void horizontalScrollTo(float f2) {
         int[] horizontalRange = getHorizontalRange();
-        float max = Math.max(horizontalRange[0], Math.min(horizontalRange[1], f2));
-        if (Math.abs(this.mHorizontalThumbCenterX - max) < 2.0f) {
+        float fMax = Math.max(horizontalRange[0], Math.min(horizontalRange[1], f2));
+        if (Math.abs(this.mHorizontalThumbCenterX - fMax) < 2.0f) {
             return;
         }
-        int scrollTo = scrollTo(this.mHorizontalDragX, max, horizontalRange, this.mRecyclerView.computeHorizontalScrollRange(), this.mRecyclerView.computeHorizontalScrollOffset(), this.mRecyclerViewWidth);
-        if (scrollTo != 0) {
-            this.mRecyclerView.scrollBy(scrollTo, 0);
+        int iScrollTo = scrollTo(this.mHorizontalDragX, fMax, horizontalRange, this.mRecyclerView.computeHorizontalScrollRange(), this.mRecyclerView.computeHorizontalScrollOffset(), this.mRecyclerViewWidth);
+        if (iScrollTo != 0) {
+            this.mRecyclerView.scrollBy(iScrollTo, 0);
         }
-        this.mHorizontalDragX = max;
+        this.mHorizontalDragX = fMax;
     }
 
     private boolean isLayoutRTL() {
@@ -256,15 +256,15 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
 
     private void verticalScrollTo(float f2) {
         int[] verticalRange = getVerticalRange();
-        float max = Math.max(verticalRange[0], Math.min(verticalRange[1], f2));
-        if (Math.abs(this.mVerticalThumbCenterY - max) < 2.0f) {
+        float fMax = Math.max(verticalRange[0], Math.min(verticalRange[1], f2));
+        if (Math.abs(this.mVerticalThumbCenterY - fMax) < 2.0f) {
             return;
         }
-        int scrollTo = scrollTo(this.mVerticalDragY, max, verticalRange, this.mRecyclerView.computeVerticalScrollRange(), this.mRecyclerView.computeVerticalScrollOffset(), this.mRecyclerViewHeight);
-        if (scrollTo != 0) {
-            this.mRecyclerView.scrollBy(0, scrollTo);
+        int iScrollTo = scrollTo(this.mVerticalDragY, fMax, verticalRange, this.mRecyclerView.computeVerticalScrollRange(), this.mRecyclerView.computeVerticalScrollOffset(), this.mRecyclerViewHeight);
+        if (iScrollTo != 0) {
+            this.mRecyclerView.scrollBy(0, iScrollTo);
         }
-        this.mVerticalDragY = max;
+        this.mVerticalDragY = fMax;
     }
 
     public void attachToRecyclerView(@Nullable RecyclerView recyclerView) {
@@ -301,17 +301,23 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
         return this.mVerticalTrackDrawable;
     }
 
-    public void hide() {
-        hide(0);
+    @VisibleForTesting
+    void hide(int i2) {
+        int i3 = this.mAnimationState;
+        if (i3 == 1) {
+            this.mShowHideAnimator.cancel();
+        } else if (i3 != 2) {
+            return;
+        }
+        this.mAnimationState = 3;
+        ValueAnimator valueAnimator = this.mShowHideAnimator;
+        valueAnimator.setFloatValues(((Float) valueAnimator.getAnimatedValue()).floatValue(), 0.0f);
+        this.mShowHideAnimator.setDuration(i2);
+        this.mShowHideAnimator.start();
     }
 
     public boolean isDragging() {
         return this.mState == 2;
-    }
-
-    @VisibleForTesting
-    boolean isHidden() {
-        return this.mState == 0;
     }
 
     @VisibleForTesting
@@ -363,18 +369,18 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
         int i2 = this.mState;
         if (i2 == 1) {
-            boolean isPointInsideVerticalThumb = isPointInsideVerticalThumb(motionEvent.getX(), motionEvent.getY());
-            boolean isPointInsideHorizontalThumb = isPointInsideHorizontalThumb(motionEvent.getX(), motionEvent.getY());
+            boolean zIsPointInsideVerticalThumb = isPointInsideVerticalThumb(motionEvent.getX(), motionEvent.getY());
+            boolean zIsPointInsideHorizontalThumb = isPointInsideHorizontalThumb(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() != 0) {
                 return false;
             }
-            if (!isPointInsideVerticalThumb && !isPointInsideHorizontalThumb) {
+            if (!zIsPointInsideVerticalThumb && !zIsPointInsideHorizontalThumb) {
                 return false;
             }
-            if (isPointInsideHorizontalThumb) {
+            if (zIsPointInsideHorizontalThumb) {
                 this.mDragState = 1;
                 this.mHorizontalDragX = (int) motionEvent.getX();
-            } else if (isPointInsideVerticalThumb) {
+            } else if (zIsPointInsideVerticalThumb) {
                 this.mDragState = 2;
                 this.mVerticalDragY = (int) motionEvent.getY();
             }
@@ -395,13 +401,13 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
             return;
         }
         if (motionEvent.getAction() == 0) {
-            boolean isPointInsideVerticalThumb = isPointInsideVerticalThumb(motionEvent.getX(), motionEvent.getY());
-            boolean isPointInsideHorizontalThumb = isPointInsideHorizontalThumb(motionEvent.getX(), motionEvent.getY());
-            if (isPointInsideVerticalThumb || isPointInsideHorizontalThumb) {
-                if (isPointInsideHorizontalThumb) {
+            boolean zIsPointInsideVerticalThumb = isPointInsideVerticalThumb(motionEvent.getX(), motionEvent.getY());
+            boolean zIsPointInsideHorizontalThumb = isPointInsideHorizontalThumb(motionEvent.getX(), motionEvent.getY());
+            if (zIsPointInsideVerticalThumb || zIsPointInsideHorizontalThumb) {
+                if (zIsPointInsideHorizontalThumb) {
                     this.mDragState = 1;
                     this.mHorizontalDragX = (int) motionEvent.getX();
-                } else if (isPointInsideVerticalThumb) {
+                } else if (zIsPointInsideVerticalThumb) {
                     this.mDragState = 2;
                     this.mVerticalDragY = (int) motionEvent.getY();
                 }
@@ -469,12 +475,12 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
     }
 
     void updateScrollPosition(int i2, int i3) {
-        int computeVerticalScrollRange = this.mRecyclerView.computeVerticalScrollRange();
+        int iComputeVerticalScrollRange = this.mRecyclerView.computeVerticalScrollRange();
         int i4 = this.mRecyclerViewHeight;
-        this.mNeedVerticalScrollbar = computeVerticalScrollRange - i4 > 0 && i4 >= this.mScrollbarMinimumRange;
-        int computeHorizontalScrollRange = this.mRecyclerView.computeHorizontalScrollRange();
+        this.mNeedVerticalScrollbar = iComputeVerticalScrollRange - i4 > 0 && i4 >= this.mScrollbarMinimumRange;
+        int iComputeHorizontalScrollRange = this.mRecyclerView.computeHorizontalScrollRange();
         int i5 = this.mRecyclerViewWidth;
-        this.mNeedHorizontalScrollbar = computeHorizontalScrollRange - i5 > 0 && i5 >= this.mScrollbarMinimumRange;
+        this.mNeedHorizontalScrollbar = iComputeHorizontalScrollRange - i5 > 0 && i5 >= this.mScrollbarMinimumRange;
         if (!this.mNeedVerticalScrollbar && !this.mNeedHorizontalScrollbar) {
             if (this.mState != 0) {
                 setState(0);
@@ -484,32 +490,17 @@ class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.O
         }
         if (this.mNeedVerticalScrollbar) {
             float f2 = i4;
-            this.mVerticalThumbCenterY = (int) ((f2 * (i3 + (f2 / 2.0f))) / computeVerticalScrollRange);
-            this.mVerticalThumbHeight = Math.min(i4, (i4 * i4) / computeVerticalScrollRange);
+            this.mVerticalThumbCenterY = (int) ((f2 * (i3 + (f2 / 2.0f))) / iComputeVerticalScrollRange);
+            this.mVerticalThumbHeight = Math.min(i4, (i4 * i4) / iComputeVerticalScrollRange);
         }
         if (this.mNeedHorizontalScrollbar) {
             float f3 = i5;
-            this.mHorizontalThumbCenterX = (int) ((f3 * (i2 + (f3 / 2.0f))) / computeHorizontalScrollRange);
-            this.mHorizontalThumbWidth = Math.min(i5, (i5 * i5) / computeHorizontalScrollRange);
+            this.mHorizontalThumbCenterX = (int) ((f3 * (i2 + (f3 / 2.0f))) / iComputeHorizontalScrollRange);
+            this.mHorizontalThumbWidth = Math.min(i5, (i5 * i5) / iComputeHorizontalScrollRange);
         }
         int i6 = this.mState;
         if (i6 == 0 || i6 == 1) {
             setState(1);
         }
-    }
-
-    @VisibleForTesting
-    void hide(int i2) {
-        int i3 = this.mAnimationState;
-        if (i3 == 1) {
-            this.mShowHideAnimator.cancel();
-        } else if (i3 != 2) {
-            return;
-        }
-        this.mAnimationState = 3;
-        ValueAnimator valueAnimator = this.mShowHideAnimator;
-        valueAnimator.setFloatValues(((Float) valueAnimator.getAnimatedValue()).floatValue(), 0.0f);
-        this.mShowHideAnimator.setDuration(i2);
-        this.mShowHideAnimator.start();
     }
 }

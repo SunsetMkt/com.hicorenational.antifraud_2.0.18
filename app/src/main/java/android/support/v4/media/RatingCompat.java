@@ -8,7 +8,7 @@ import androidx.annotation.RestrictTo;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class RatingCompat implements Parcelable {
     public static final Parcelable.Creator<RatingCompat> CREATOR = new Parcelable.Creator<RatingCompat>() { // from class: android.support.v4.media.RatingCompat.1
         /* JADX WARN: Can't rename method to resolve collision */
@@ -52,35 +52,35 @@ public final class RatingCompat implements Parcelable {
     }
 
     public static RatingCompat fromRating(Object obj) {
-        RatingCompat ratingCompat = null;
+        RatingCompat ratingCompatNewUnratedRating = null;
         if (obj != null && Build.VERSION.SDK_INT >= 19) {
             Rating rating = (Rating) obj;
             int ratingStyle = rating.getRatingStyle();
             if (rating.isRated()) {
                 switch (ratingStyle) {
                     case 1:
-                        ratingCompat = newHeartRating(rating.hasHeart());
+                        ratingCompatNewUnratedRating = newHeartRating(rating.hasHeart());
                         break;
                     case 2:
-                        ratingCompat = newThumbRating(rating.isThumbUp());
+                        ratingCompatNewUnratedRating = newThumbRating(rating.isThumbUp());
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        ratingCompat = newStarRating(ratingStyle, rating.getStarRating());
+                        ratingCompatNewUnratedRating = newStarRating(ratingStyle, rating.getStarRating());
                         break;
                     case 6:
-                        ratingCompat = newPercentageRating(rating.getPercentRating());
+                        ratingCompatNewUnratedRating = newPercentageRating(rating.getPercentRating());
                         break;
                     default:
                         return null;
                 }
             } else {
-                ratingCompat = newUnratedRating(ratingStyle);
+                ratingCompatNewUnratedRating = newUnratedRating(ratingStyle);
             }
-            ratingCompat.mRatingObj = obj;
+            ratingCompatNewUnratedRating.mRatingObj = obj;
         }
-        return ratingCompat;
+        return ratingCompatNewUnratedRating;
     }
 
     public static RatingCompat newHeartRating(boolean z) {

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String DB_NAME_DYNAMIC = "networkkit_dynamic.db";
     private static final String DB_NAME_LOCAL = "networkkit.db";
@@ -46,7 +46,7 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
         if (file.exists()) {
             return file.delete();
         }
-        Logger.m6799i(TAG, "db is not exists");
+        Logger.i(TAG, "db is not exists");
         return false;
     }
 
@@ -64,11 +64,11 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
         if (networkKitReadableDatabase == null) {
             return networkKitReadableDatabase;
         }
-        String replace = networkKitReadableDatabase.getPath().replace(dbName, str);
-        if (new File(replace).exists()) {
-            return SQLiteDatabase.openDatabase(replace, null, 0);
+        String strReplace = networkKitReadableDatabase.getPath().replace(dbName, str);
+        if (new File(strReplace).exists()) {
+            return SQLiteDatabase.openDatabase(strReplace, null, 0);
         }
-        Logger.m6799i(TAG, "old db is not exists");
+        Logger.i(TAG, "old db is not exists");
         return networkKitReadableDatabase;
     }
 
@@ -81,31 +81,31 @@ public class NetworkKitSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     public SQLiteDatabase getNetworkKitReadableDatabase() {
-        SQLiteDatabase sQLiteDatabase;
+        SQLiteDatabase readableDatabase;
         try {
-            sQLiteDatabase = getReadableDatabase();
+            readableDatabase = getReadableDatabase();
         } catch (Throwable th) {
-            Logger.m6796e(TAG, "getReadableDatabase db error:" + th.getMessage());
-            sQLiteDatabase = null;
+            Logger.e(TAG, "getReadableDatabase db error:" + th.getMessage());
+            readableDatabase = null;
         }
-        if (sQLiteDatabase == null) {
-            Logger.m6796e(TAG, "getReadableDatabase db is null");
+        if (readableDatabase == null) {
+            Logger.e(TAG, "getReadableDatabase db is null");
         }
-        return sQLiteDatabase;
+        return readableDatabase;
     }
 
     public SQLiteDatabase getNetworkKitWritableDatabase() {
-        SQLiteDatabase sQLiteDatabase;
+        SQLiteDatabase writableDatabase;
         try {
-            sQLiteDatabase = getWritableDatabase();
+            writableDatabase = getWritableDatabase();
         } catch (Throwable th) {
-            Logger.m6796e(TAG, "getWritableDatabase db error:" + th.getMessage());
-            sQLiteDatabase = null;
+            Logger.e(TAG, "getWritableDatabase db error:" + th.getMessage());
+            writableDatabase = null;
         }
-        if (sQLiteDatabase == null) {
-            Logger.m6796e(TAG, "getWritableDatabase db is null");
+        if (writableDatabase == null) {
+            Logger.e(TAG, "getWritableDatabase db is null");
         }
-        return sQLiteDatabase;
+        return writableDatabase;
     }
 
     public SQLiteDatabase getNetworkkitUnusedDbDB() {

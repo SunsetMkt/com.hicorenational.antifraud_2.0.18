@@ -20,17 +20,15 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
-import p031c.p035b.p036a.p037a.InterfaceC0950c;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class SurfaceRequest {
     private DeferrableSurface mInternalDeferrableSurface;
     private final CallbackToFutureAdapter.Completer<Void> mRequestCancellationCompleter;
     private final Size mResolution;
-    private final InterfaceFutureC0952a<Void> mSessionStatusFuture;
+    private final d.b.b.a.a.a<Void> mSessionStatusFuture;
     private final CallbackToFutureAdapter.Completer<Surface> mSurfaceCompleter;
-    final InterfaceFutureC0952a<Surface> mSurfaceFuture;
+    final d.b.b.a.a.a<Surface> mSurfaceFuture;
 
     private static final class RequestCancelledException extends RuntimeException {
         RequestCancelledException(@NonNull String str, @NonNull Throwable th) {
@@ -38,7 +36,7 @@ public final class SurfaceRequest {
         }
     }
 
-    @InterfaceC0950c
+    @d.b.a.a.c
     public static abstract class Result {
         public static final int RESULT_INVALID_SURFACE = 2;
         public static final int RESULT_REQUEST_CANCELLED = 1;
@@ -55,8 +53,7 @@ public final class SurfaceRequest {
         }
 
         @NonNull
-        /* renamed from: of */
-        static Result m360of(int i2, @NonNull Surface surface) {
+        static Result of(int i2, @NonNull Surface surface) {
             return new AutoValue_SurfaceRequest_Result(i2, surface);
         }
 
@@ -71,10 +68,10 @@ public final class SurfaceRequest {
         this.mResolution = size;
         final String str = "SurfaceRequest[size: " + size + ", id: " + hashCode() + "]";
         final AtomicReference atomicReference = new AtomicReference(null);
-        final InterfaceFutureC0952a future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.m0
+        final d.b.b.a.a.a future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.m0
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return SurfaceRequest.m354a(atomicReference, str, completer);
+                return SurfaceRequest.a(atomicReference, str, completer);
             }
         });
         final CallbackToFutureAdapter.Completer<Void> completer = (CallbackToFutureAdapter.Completer) Preconditions.checkNotNull(atomicReference.get());
@@ -83,7 +80,7 @@ public final class SurfaceRequest {
         this.mSessionStatusFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.n0
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer2) {
-                return SurfaceRequest.m356b(atomicReference2, str, completer2);
+                return SurfaceRequest.b(atomicReference2, str, completer2);
             }
         });
         Futures.addCallback(this.mSessionStatusFuture, new FutureCallback<Void>() { // from class: androidx.camera.core.SurfaceRequest.1
@@ -106,18 +103,18 @@ public final class SurfaceRequest {
         this.mSurfaceFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.k0
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer3) {
-                return SurfaceRequest.m358c(atomicReference3, str, completer3);
+                return SurfaceRequest.c(atomicReference3, str, completer3);
             }
         });
         this.mSurfaceCompleter = (CallbackToFutureAdapter.Completer) Preconditions.checkNotNull(atomicReference3.get());
         this.mInternalDeferrableSurface = new DeferrableSurface() { // from class: androidx.camera.core.SurfaceRequest.2
             @Override // androidx.camera.core.impl.DeferrableSurface
             @NonNull
-            protected InterfaceFutureC0952a<Surface> provideSurface() {
+            protected d.b.b.a.a.a<Surface> provideSurface() {
                 return SurfaceRequest.this.mSurfaceFuture;
             }
         };
-        final InterfaceFutureC0952a<Void> terminationFuture = this.mInternalDeferrableSurface.getTerminationFuture();
+        final d.b.b.a.a.a<Void> terminationFuture = this.mInternalDeferrableSurface.getTerminationFuture();
         Futures.addCallback(this.mSurfaceFuture, new FutureCallback<Surface>() { // from class: androidx.camera.core.SurfaceRequest.3
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onFailure(Throwable th) {
@@ -136,25 +133,22 @@ public final class SurfaceRequest {
         terminationFuture.addListener(new Runnable() { // from class: androidx.camera.core.l0
             @Override // java.lang.Runnable
             public final void run() {
-                SurfaceRequest.this.m359a();
+                this.a.a();
             }
         }, CameraXExecutors.directExecutor());
     }
 
-    /* renamed from: a */
-    static /* synthetic */ Object m354a(AtomicReference atomicReference, String str, CallbackToFutureAdapter.Completer completer) throws Exception {
+    static /* synthetic */ Object a(AtomicReference atomicReference, String str, CallbackToFutureAdapter.Completer completer) throws Exception {
         atomicReference.set(completer);
         return str + "-cancellation";
     }
 
-    /* renamed from: b */
-    static /* synthetic */ Object m356b(AtomicReference atomicReference, String str, CallbackToFutureAdapter.Completer completer) throws Exception {
+    static /* synthetic */ Object b(AtomicReference atomicReference, String str, CallbackToFutureAdapter.Completer completer) throws Exception {
         atomicReference.set(completer);
         return str + "-status";
     }
 
-    /* renamed from: c */
-    static /* synthetic */ Object m358c(AtomicReference atomicReference, String str, CallbackToFutureAdapter.Completer completer) throws Exception {
+    static /* synthetic */ Object c(AtomicReference atomicReference, String str, CallbackToFutureAdapter.Completer completer) throws Exception {
         atomicReference.set(completer);
         return str + "-Surface";
     }
@@ -181,12 +175,12 @@ public final class SurfaceRequest {
                 @Override // androidx.camera.core.impl.utils.futures.FutureCallback
                 public void onFailure(Throwable th) {
                     Preconditions.checkState(th instanceof RequestCancelledException, "Camera surface session should only fail with request cancellation. Instead failed due to:\n" + th);
-                    consumer.accept(Result.m360of(1, surface));
+                    consumer.accept(Result.of(1, surface));
                 }
 
                 @Override // androidx.camera.core.impl.utils.futures.FutureCallback
                 public void onSuccess(@Nullable Void r3) {
-                    consumer.accept(Result.m360of(0, surface));
+                    consumer.accept(Result.of(0, surface));
                 }
             }, executor);
             return;
@@ -197,14 +191,14 @@ public final class SurfaceRequest {
             executor.execute(new Runnable() { // from class: androidx.camera.core.j0
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Consumer.this.accept(SurfaceRequest.Result.m360of(3, surface));
+                    consumer.accept(SurfaceRequest.Result.of(3, surface));
                 }
             });
         } catch (InterruptedException | ExecutionException unused) {
             executor.execute(new Runnable() { // from class: androidx.camera.core.i0
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Consumer.this.accept(SurfaceRequest.Result.m360of(4, surface));
+                    consumer.accept(SurfaceRequest.Result.of(4, surface));
                 }
             });
         }
@@ -214,8 +208,7 @@ public final class SurfaceRequest {
         return this.mSurfaceCompleter.setException(new DeferrableSurface.SurfaceUnavailableException("Surface request will not complete."));
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m359a() {
+    public /* synthetic */ void a() {
         this.mSurfaceFuture.cancel(true);
     }
 }

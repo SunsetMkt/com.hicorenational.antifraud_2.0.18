@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OptionsBundle implements Config {
     private static final OptionsBundle EMPTY_BUNDLE = new OptionsBundle(new TreeMap(new Comparator<Config.Option<?>>() { // from class: androidx.camera.core.impl.OptionsBundle.1
         @Override // java.util.Comparator

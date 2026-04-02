@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.AnimRes;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureWindowAnimationStyle implements Parcelable {
     public static final Parcelable.Creator<PictureWindowAnimationStyle> CREATOR = new Parcelable.Creator<PictureWindowAnimationStyle>() { // from class: com.luck.picture.lib.style.PictureWindowAnimationStyle.1
         /* JADX WARN: Can't rename method to resolve collision */

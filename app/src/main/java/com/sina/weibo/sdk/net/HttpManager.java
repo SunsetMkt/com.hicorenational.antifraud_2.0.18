@@ -3,14 +3,13 @@ package com.sina.weibo.sdk.net;
 import android.content.Context;
 import android.text.TextUtils;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HttpManager {
     static {
         System.loadLibrary("weibosdkcore");
     }
 
-    /* renamed from: a */
-    public static String m8850a(Context context, String str, String str2, String str3, String str4) {
+    public static String a(Context context, String str, String str2, String str3, String str4) {
         StringBuilder sb = new StringBuilder();
         if (!TextUtils.isEmpty(str)) {
             sb.append(str);

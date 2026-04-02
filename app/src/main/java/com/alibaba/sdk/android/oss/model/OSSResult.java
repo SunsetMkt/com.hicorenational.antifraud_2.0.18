@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSResult {
     private Long clientCRC;
     private String requestId;

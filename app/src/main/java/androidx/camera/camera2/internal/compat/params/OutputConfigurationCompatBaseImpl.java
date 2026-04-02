@@ -15,8 +15,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class OutputConfigurationCompatBaseImpl implements OutputConfigurationCompat.OutputConfigurationCompatImpl {
     static final String TAG = "OutputConfigCompat";
     final Object mObject;
@@ -85,8 +85,8 @@ class OutputConfigurationCompatBaseImpl implements OutputConfigurationCompat.Out
             if (!this.mConfiguredSize.equals(outputConfigurationParamsApi21.mConfiguredSize) || this.mConfiguredFormat != outputConfigurationParamsApi21.mConfiguredFormat || this.mConfiguredGenerationId != outputConfigurationParamsApi21.mConfiguredGenerationId || this.mIsShared != outputConfigurationParamsApi21.mIsShared || !Objects.equals(this.mPhysicalCameraId, outputConfigurationParamsApi21.mPhysicalCameraId)) {
                 return false;
             }
-            int min = Math.min(this.mSurfaces.size(), outputConfigurationParamsApi21.mSurfaces.size());
-            for (int i2 = 0; i2 < min; i2++) {
+            int iMin = Math.min(this.mSurfaces.size(), outputConfigurationParamsApi21.mSurfaces.size());
+            for (int i2 = 0; i2 < iMin; i2++) {
                 if (this.mSurfaces.get(i2) != outputConfigurationParamsApi21.mSurfaces.get(i2)) {
                     return false;
                 }
@@ -95,10 +95,10 @@ class OutputConfigurationCompatBaseImpl implements OutputConfigurationCompat.Out
         }
 
         public int hashCode() {
-            int hashCode = this.mSurfaces.hashCode() ^ 31;
-            int i2 = this.mConfiguredGenerationId ^ ((hashCode << 5) - hashCode);
-            int hashCode2 = this.mConfiguredSize.hashCode() ^ ((i2 << 5) - i2);
-            int i3 = this.mConfiguredFormat ^ ((hashCode2 << 5) - hashCode2);
+            int iHashCode = this.mSurfaces.hashCode() ^ 31;
+            int i2 = this.mConfiguredGenerationId ^ ((iHashCode << 5) - iHashCode);
+            int iHashCode2 = this.mConfiguredSize.hashCode() ^ ((i2 << 5) - i2);
+            int i3 = this.mConfiguredFormat ^ ((iHashCode2 << 5) - iHashCode2);
             int i4 = (this.mIsShared ? 1 : 0) ^ ((i3 << 5) - i3);
             int i5 = (i4 << 5) - i4;
             String str = this.mPhysicalCameraId;

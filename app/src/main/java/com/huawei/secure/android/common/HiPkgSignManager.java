@@ -2,8 +2,8 @@ package com.huawei.secure.android.common;
 
 import android.content.Context;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public abstract class HiPkgSignManager {
     @Deprecated
     public static boolean doCheckArchiveApk(Context context, String str, String str2, String str3) {

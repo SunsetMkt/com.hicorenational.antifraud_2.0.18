@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.collection.ArrayMap;
 import androidx.collection.LongSparseArray;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class TransitionValuesMaps {
     final ArrayMap<View, TransitionValues> mViewValues = new ArrayMap<>();
     final SparseArray<View> mIdValues = new SparseArray<>();

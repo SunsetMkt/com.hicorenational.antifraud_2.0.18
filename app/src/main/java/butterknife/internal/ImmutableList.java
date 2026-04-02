@@ -3,7 +3,7 @@ package butterknife.internal;
 import java.util.AbstractList;
 import java.util.RandomAccess;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImmutableList<T> extends AbstractList<T> implements RandomAccess {
     private final T[] views;
 

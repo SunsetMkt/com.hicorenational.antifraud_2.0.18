@@ -2,7 +2,7 @@ package interfaces;
 
 import bean.OssFileInfo;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IOssPicCallback {
     void onFail(String str);
 

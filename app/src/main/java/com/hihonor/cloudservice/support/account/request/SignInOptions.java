@@ -8,25 +8,20 @@ import com.hihonor.cloudservice.support.feature.request.AbstractSignInOptions;
 import java.util.ArrayList;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SignInOptions extends AbstractSignInOptions {
+    public static final SignInOptions q = new com.hihonor.cloudservice.support.account.request.a().c().d().a();
+    public static final Parcelable.Creator<SignInOptions> CREATOR = new a();
 
-    /* renamed from: q */
-    public static final SignInOptions f6374q = new C2131a().m5989c().m5992d().m5981a();
-    public static final Parcelable.Creator<SignInOptions> CREATOR = new C2130a();
-
-    /* renamed from: com.hihonor.cloudservice.support.account.request.SignInOptions$a */
-    class C2130a implements Parcelable.Creator<SignInOptions> {
-        C2130a() {
+    class a implements Parcelable.Creator<SignInOptions> {
+        a() {
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public SignInOptions createFromParcel(Parcel parcel) {
             return null;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public SignInOptions[] newArray(int i2) {
             return new SignInOptions[i2];
@@ -46,15 +41,15 @@ public class SignInOptions extends AbstractSignInOptions {
             return false;
         }
         SignInOptions signInOptions = (SignInOptions) obj;
-        return m6025a(this.f6399a, signInOptions.f6399a) && m6025a(this.f6400b, signInOptions.f6400b);
+        return a(this.a, signInOptions.a) && a(this.f4036b, signInOptions.f4036b);
     }
 
     @Override // com.hihonor.cloudservice.support.feature.request.AbstractSignInOptions
     public int hashCode() {
-        ArrayList<Scope> arrayList = this.f6399a;
-        int hashCode = ((arrayList == null ? 0 : arrayList.hashCode()) + 31) * 31;
-        ArrayList<PermissionInfo> arrayList2 = this.f6400b;
-        return hashCode + (arrayList2 != null ? arrayList2.hashCode() : 0);
+        ArrayList<Scope> arrayList = this.a;
+        int iHashCode = ((arrayList == null ? 0 : arrayList.hashCode()) + 31) * 31;
+        ArrayList<PermissionInfo> arrayList2 = this.f4036b;
+        return iHashCode + (arrayList2 != null ? arrayList2.hashCode() : 0);
     }
 
     public SignInOptions(ArrayList<Scope> arrayList, ArrayList<PermissionInfo> arrayList2, String str, String str2, String str3, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, String str4, String str5) {

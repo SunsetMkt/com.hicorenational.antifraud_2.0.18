@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class NotificationManagerCompat {
     public static final String ACTION_BIND_SIDE_CHANNEL = "android.support.BIND_NOTIFICATION_SIDE_CHANNEL";
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
@@ -69,28 +69,26 @@ public final class NotificationManagerCompat {
     private static final Object sLock = new Object();
 
     private static class NotifyTask implements Task {
-
-        /* renamed from: id */
-        final int f615id;
+        final int id;
         final Notification notif;
         final String packageName;
         final String tag;
 
         NotifyTask(String str, int i2, String str2, Notification notification) {
             this.packageName = str;
-            this.f615id = i2;
+            this.id = i2;
             this.tag = str2;
             this.notif = notification;
         }
 
         @Override // androidx.core.app.NotificationManagerCompat.Task
         public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
-            iNotificationSideChannel.notify(this.packageName, this.f615id, this.tag, this.notif);
+            iNotificationSideChannel.notify(this.packageName, this.id, this.tag, this.notif);
         }
 
         @NonNull
         public String toString() {
-            return "NotifyTask[packageName:" + this.packageName + ", id:" + this.f615id + ", tag:" + this.tag + "]";
+            return "NotifyTask[packageName:" + this.packageName + ", id:" + this.id + ", tag:" + this.tag + "]";
         }
     }
 
@@ -118,8 +116,8 @@ public final class NotificationManagerCompat {
         private static class ListenerRecord {
             final ComponentName componentName;
 
-            /* renamed from: service, reason: collision with root package name */
-            INotificationSideChannel f25888service;
+            /* JADX INFO: renamed from: service, reason: collision with root package name */
+            INotificationSideChannel f1308service;
             boolean bound = false;
             ArrayDeque<Task> taskQueue = new ArrayDeque<>();
             int retryCount = 0;
@@ -154,7 +152,7 @@ public final class NotificationManagerCompat {
                 this.mContext.unbindService(this);
                 listenerRecord.bound = false;
             }
-            listenerRecord.f25888service = null;
+            listenerRecord.f1308service = null;
         }
 
         private void handleQueueTask(Task task) {
@@ -175,7 +173,7 @@ public final class NotificationManagerCompat {
         private void handleServiceConnected(ComponentName componentName, IBinder iBinder) {
             ListenerRecord listenerRecord = this.mRecordMap.get(componentName);
             if (listenerRecord != null) {
-                listenerRecord.f25888service = INotificationSideChannel.Stub.asInterface(iBinder);
+                listenerRecord.f1308service = INotificationSideChannel.Stub.asInterface(iBinder);
                 listenerRecord.retryCount = 0;
                 processListenerQueue(listenerRecord);
             }
@@ -195,20 +193,20 @@ public final class NotificationManagerCompat {
             if (listenerRecord.taskQueue.isEmpty()) {
                 return;
             }
-            if (!ensureServiceBound(listenerRecord) || listenerRecord.f25888service == null) {
+            if (!ensureServiceBound(listenerRecord) || listenerRecord.f1308service == null) {
                 scheduleListenerRetry(listenerRecord);
                 return;
             }
             while (true) {
-                Task peek = listenerRecord.taskQueue.peek();
-                if (peek == null) {
+                Task taskPeek = listenerRecord.taskQueue.peek();
+                if (taskPeek == null) {
                     break;
                 }
                 try {
                     if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
-                        String str2 = "Sending task " + peek;
+                        String str2 = "Sending task " + taskPeek;
                     }
-                    peek.send(listenerRecord.f25888service);
+                    taskPeek.send(listenerRecord.f1308service);
                     listenerRecord.taskQueue.remove();
                 } catch (DeadObjectException unused) {
                     if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
@@ -248,9 +246,9 @@ public final class NotificationManagerCompat {
                 return;
             }
             this.mCachedEnabledPackages = enabledListenerPackages;
-            List<ResolveInfo> queryIntentServices = this.mContext.getPackageManager().queryIntentServices(new Intent().setAction(NotificationManagerCompat.ACTION_BIND_SIDE_CHANNEL), 0);
+            List<ResolveInfo> listQueryIntentServices = this.mContext.getPackageManager().queryIntentServices(new Intent().setAction(NotificationManagerCompat.ACTION_BIND_SIDE_CHANNEL), 0);
             HashSet<ComponentName> hashSet = new HashSet();
-            for (ResolveInfo resolveInfo : queryIntentServices) {
+            for (ResolveInfo resolveInfo : listQueryIntentServices) {
                 if (enabledListenerPackages.contains(resolveInfo.serviceInfo.packageName)) {
                     ComponentName componentName = new ComponentName(resolveInfo.serviceInfo.packageName, resolveInfo.serviceInfo.name);
                     if (resolveInfo.serviceInfo.permission != null) {
@@ -346,19 +344,21 @@ public final class NotificationManagerCompat {
         synchronized (sEnabledNotificationListenersLock) {
             if (string != null) {
                 if (!string.equals(sEnabledNotificationListeners)) {
-                    String[] split = string.split(Constants.COLON_SEPARATOR, -1);
-                    HashSet hashSet = new HashSet(split.length);
-                    for (String str : split) {
-                        ComponentName unflattenFromString = ComponentName.unflattenFromString(str);
-                        if (unflattenFromString != null) {
-                            hashSet.add(unflattenFromString.getPackageName());
+                    String[] strArrSplit = string.split(Constants.COLON_SEPARATOR, -1);
+                    HashSet hashSet = new HashSet(strArrSplit.length);
+                    for (String str : strArrSplit) {
+                        ComponentName componentNameUnflattenFromString = ComponentName.unflattenFromString(str);
+                        if (componentNameUnflattenFromString != null) {
+                            hashSet.add(componentNameUnflattenFromString.getPackageName());
                         }
                     }
                     sEnabledNotificationListenerPackages = hashSet;
                     sEnabledNotificationListeners = string;
                 }
+                set = sEnabledNotificationListenerPackages;
+            } else {
+                set = sEnabledNotificationListenerPackages;
             }
-            set = sEnabledNotificationListenerPackages;
         }
         return set;
     }
@@ -507,15 +507,13 @@ public final class NotificationManagerCompat {
 
     private static class CancelTask implements Task {
         final boolean all;
-
-        /* renamed from: id */
-        final int f614id;
+        final int id;
         final String packageName;
         final String tag;
 
         CancelTask(String str) {
             this.packageName = str;
-            this.f614id = 0;
+            this.id = 0;
             this.tag = null;
             this.all = true;
         }
@@ -525,18 +523,18 @@ public final class NotificationManagerCompat {
             if (this.all) {
                 iNotificationSideChannel.cancelAll(this.packageName);
             } else {
-                iNotificationSideChannel.cancel(this.packageName, this.f614id, this.tag);
+                iNotificationSideChannel.cancel(this.packageName, this.id, this.tag);
             }
         }
 
         @NonNull
         public String toString() {
-            return "CancelTask[packageName:" + this.packageName + ", id:" + this.f614id + ", tag:" + this.tag + ", all:" + this.all + "]";
+            return "CancelTask[packageName:" + this.packageName + ", id:" + this.id + ", tag:" + this.tag + ", all:" + this.all + "]";
         }
 
         CancelTask(String str, int i2, String str2) {
             this.packageName = str;
-            this.f614id = i2;
+            this.id = i2;
             this.tag = str2;
             this.all = false;
         }

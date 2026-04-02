@@ -6,19 +6,19 @@ import android.net.Uri;
 import com.huawei.hms.framework.common.ContextHolder;
 import com.huawei.hms.framework.common.Logger;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ProviderCheckUtil {
     private static final String TAG = "ProviderCheckUtil";
 
     private static boolean checkSignaturesMatch(PackageManager packageManager, String str) {
         if (packageManager.checkSignatures("com.huawei.hwid", str) == 0) {
-            Logger.m6801v(TAG, "Valid Provider");
+            Logger.v(TAG, "Valid Provider");
             return true;
         }
         if (packageManager.checkSignatures("com.huawei.hwid.tv", str) != 0) {
             return false;
         }
-        Logger.m6801v(TAG, "Valid Provider in tv");
+        Logger.v(TAG, "Valid Provider in tv");
         return true;
     }
 
@@ -27,17 +27,17 @@ public class ProviderCheckUtil {
             return false;
         }
         PackageManager packageManager = ContextHolder.getAppContext().getPackageManager();
-        ProviderInfo resolveContentProvider = packageManager.resolveContentProvider(uri.getAuthority(), 0);
-        if (resolveContentProvider == null || resolveContentProvider.applicationInfo == null) {
-            Logger.m6803w(TAG, "Invalid param");
+        ProviderInfo providerInfoResolveContentProvider = packageManager.resolveContentProvider(uri.getAuthority(), 0);
+        if (providerInfoResolveContentProvider == null || providerInfoResolveContentProvider.applicationInfo == null) {
+            Logger.w(TAG, "Invalid param");
             return false;
         }
-        String str = resolveContentProvider.applicationInfo.packageName;
-        Logger.m6801v(TAG, "Target provider service's package name is : " + str);
+        String str = providerInfoResolveContentProvider.applicationInfo.packageName;
+        Logger.v(TAG, "Target provider service's package name is : " + str);
         if (str != null) {
             return checkSignaturesMatch(packageManager, str);
         }
-        Logger.m6803w(TAG, "Invalid packageName");
+        Logger.w(TAG, "Invalid packageName");
         return false;
     }
 }

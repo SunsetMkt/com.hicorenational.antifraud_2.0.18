@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeImageView extends ImageButton {
     public static int BG_SHAPE_CIRCULAR = 1;
     public static int BG_SHAPE_NONE = 0;

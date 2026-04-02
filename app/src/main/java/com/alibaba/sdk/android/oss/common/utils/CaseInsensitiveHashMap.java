@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.common.utils;
 
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CaseInsensitiveHashMap<k, v> extends HashMap<k, v> {
     @Override // java.util.HashMap, java.util.AbstractMap, java.util.Map
     public v get(Object obj) {

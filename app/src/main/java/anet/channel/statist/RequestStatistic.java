@@ -11,9 +11,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "network")
-/* loaded from: classes.dex */
 public class RequestStatistic extends StatObject {
 
     @Dimension
@@ -40,9 +40,8 @@ public class RequestStatistic extends StatObject {
     @Dimension
     public volatile String host;
 
-    /* renamed from: ip */
     @Dimension
-    public volatile String f1002ip;
+    public volatile String ip;
 
     @Dimension
     public volatile String isBg;
@@ -293,9 +292,9 @@ public class RequestStatistic extends StatObject {
     public void recordRedirect(int i2, String str) {
         this.url = str;
         appendErrorTrace(String.valueOf(i2));
-        long currentTimeMillis = System.currentTimeMillis();
-        this.retryCostTime += currentTimeMillis - this.start;
-        this.start = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        this.retryCostTime += jCurrentTimeMillis - this.start;
+        this.start = jCurrentTimeMillis;
     }
 
     public void setConnType(ConnType connType) {
@@ -304,7 +303,7 @@ public class RequestStatistic extends StatObject {
     }
 
     public void setIPAndPort(String str, int i2) {
-        this.f1002ip = str;
+        this.ip = str;
         this.port = i2;
         if (str != null) {
             this.isDNS = true;
@@ -333,7 +332,7 @@ public class RequestStatistic extends StatObject {
         sb.append(",host=");
         sb.append(this.host);
         sb.append(",ip=");
-        sb.append(this.f1002ip);
+        sb.append(this.ip);
         sb.append(",port=");
         sb.append(this.port);
         sb.append(",protocolType=");

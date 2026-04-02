@@ -2,8 +2,8 @@ package com.huawei.hms.common.api;
 
 import com.huawei.hms.common.Feature;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public final class UnsupportedApiCallException extends UnsupportedOperationException {
     private final Feature feature;
 

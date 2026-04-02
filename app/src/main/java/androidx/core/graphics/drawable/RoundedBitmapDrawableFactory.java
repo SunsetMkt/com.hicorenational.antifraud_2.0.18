@@ -11,7 +11,7 @@ import androidx.core.graphics.BitmapCompat;
 import androidx.core.view.GravityCompat;
 import java.io.InputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class RoundedBitmapDrawableFactory {
     private static final String TAG = "RoundedBitmapDrawableFa";
 
@@ -51,19 +51,19 @@ public final class RoundedBitmapDrawableFactory {
 
     @NonNull
     public static RoundedBitmapDrawable create(@NonNull Resources resources, @NonNull String str) {
-        RoundedBitmapDrawable create = create(resources, BitmapFactory.decodeFile(str));
-        if (create.getBitmap() == null) {
+        RoundedBitmapDrawable roundedBitmapDrawableCreate = create(resources, BitmapFactory.decodeFile(str));
+        if (roundedBitmapDrawableCreate.getBitmap() == null) {
             String str2 = "RoundedBitmapDrawable cannot decode " + str;
         }
-        return create;
+        return roundedBitmapDrawableCreate;
     }
 
     @NonNull
     public static RoundedBitmapDrawable create(@NonNull Resources resources, @NonNull InputStream inputStream) {
-        RoundedBitmapDrawable create = create(resources, BitmapFactory.decodeStream(inputStream));
-        if (create.getBitmap() == null) {
+        RoundedBitmapDrawable roundedBitmapDrawableCreate = create(resources, BitmapFactory.decodeStream(inputStream));
+        if (roundedBitmapDrawableCreate.getBitmap() == null) {
             String str = "RoundedBitmapDrawable cannot decode " + inputStream;
         }
-        return create;
+        return roundedBitmapDrawableCreate;
     }
 }

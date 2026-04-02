@@ -11,7 +11,7 @@ import okhttp3.Response;
 import okhttp3.internal.Internal;
 import okhttp3.internal.http.HttpDate;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class CacheStrategy {
 
     @Nullable
@@ -45,20 +45,20 @@ public final class CacheStrategy {
                 Headers headers = response.headers();
                 int size = headers.size();
                 for (int i2 = 0; i2 < size; i2++) {
-                    String name = headers.name(i2);
-                    String value = headers.value(i2);
-                    if (HttpHeaders.DATE.equalsIgnoreCase(name)) {
-                        this.servedDate = HttpDate.parse(value);
-                        this.servedDateString = value;
-                    } else if (HttpHeaders.EXPIRES.equalsIgnoreCase(name)) {
-                        this.expires = HttpDate.parse(value);
-                    } else if (HttpHeaders.LAST_MODIFIED.equalsIgnoreCase(name)) {
-                        this.lastModified = HttpDate.parse(value);
-                        this.lastModifiedString = value;
-                    } else if (HttpHeaders.ETAG.equalsIgnoreCase(name)) {
-                        this.etag = value;
-                    } else if ("Age".equalsIgnoreCase(name)) {
-                        this.ageSeconds = okhttp3.internal.http.HttpHeaders.parseSeconds(value, -1);
+                    String strName = headers.name(i2);
+                    String strValue = headers.value(i2);
+                    if (HttpHeaders.DATE.equalsIgnoreCase(strName)) {
+                        this.servedDate = HttpDate.parse(strValue);
+                        this.servedDateString = strValue;
+                    } else if (HttpHeaders.EXPIRES.equalsIgnoreCase(strName)) {
+                        this.expires = HttpDate.parse(strValue);
+                    } else if (HttpHeaders.LAST_MODIFIED.equalsIgnoreCase(strName)) {
+                        this.lastModified = HttpDate.parse(strValue);
+                        this.lastModifiedString = strValue;
+                    } else if (HttpHeaders.ETAG.equalsIgnoreCase(strName)) {
+                        this.etag = strValue;
+                    } else if ("Age".equalsIgnoreCase(strName)) {
+                        this.ageSeconds = okhttp3.internal.http.HttpHeaders.parseSeconds(strValue, -1);
                     }
                 }
             }
@@ -66,13 +66,13 @@ public final class CacheStrategy {
 
         private long cacheResponseAge() {
             Date date = this.servedDate;
-            long max = date != null ? Math.max(0L, this.receivedResponseMillis - date.getTime()) : 0L;
+            long jMax = date != null ? Math.max(0L, this.receivedResponseMillis - date.getTime()) : 0L;
             int i2 = this.ageSeconds;
             if (i2 != -1) {
-                max = Math.max(max, TimeUnit.SECONDS.toMillis(i2));
+                jMax = Math.max(jMax, TimeUnit.SECONDS.toMillis(i2));
             }
             long j2 = this.receivedResponseMillis;
-            return max + (j2 - this.sentRequestMillis) + (this.nowMillis - j2);
+            return jMax + (j2 - this.sentRequestMillis) + (this.nowMillis - j2);
         }
 
         private long computeFreshnessLifetime() {
@@ -116,27 +116,27 @@ public final class CacheStrategy {
             if (cacheControl2.immutable()) {
                 return new CacheStrategy(null, this.cacheResponse);
             }
-            long cacheResponseAge = cacheResponseAge();
-            long computeFreshnessLifetime = computeFreshnessLifetime();
+            long jCacheResponseAge = cacheResponseAge();
+            long jComputeFreshnessLifetime = computeFreshnessLifetime();
             if (cacheControl.maxAgeSeconds() != -1) {
-                computeFreshnessLifetime = Math.min(computeFreshnessLifetime, TimeUnit.SECONDS.toMillis(cacheControl.maxAgeSeconds()));
+                jComputeFreshnessLifetime = Math.min(jComputeFreshnessLifetime, TimeUnit.SECONDS.toMillis(cacheControl.maxAgeSeconds()));
             }
-            long j2 = 0;
-            long millis = cacheControl.minFreshSeconds() != -1 ? TimeUnit.SECONDS.toMillis(cacheControl.minFreshSeconds()) : 0L;
+            long millis = 0;
+            long millis2 = cacheControl.minFreshSeconds() != -1 ? TimeUnit.SECONDS.toMillis(cacheControl.minFreshSeconds()) : 0L;
             if (!cacheControl2.mustRevalidate() && cacheControl.maxStaleSeconds() != -1) {
-                j2 = TimeUnit.SECONDS.toMillis(cacheControl.maxStaleSeconds());
+                millis = TimeUnit.SECONDS.toMillis(cacheControl.maxStaleSeconds());
             }
             if (!cacheControl2.noCache()) {
-                long j3 = millis + cacheResponseAge;
-                if (j3 < j2 + computeFreshnessLifetime) {
-                    Response.Builder newBuilder = this.cacheResponse.newBuilder();
-                    if (j3 >= computeFreshnessLifetime) {
-                        newBuilder.addHeader("Warning", "110 HttpURLConnection \"Response is stale\"");
+                long j2 = millis2 + jCacheResponseAge;
+                if (j2 < millis + jComputeFreshnessLifetime) {
+                    Response.Builder builderNewBuilder = this.cacheResponse.newBuilder();
+                    if (j2 >= jComputeFreshnessLifetime) {
+                        builderNewBuilder.addHeader("Warning", "110 HttpURLConnection \"Response is stale\"");
                     }
-                    if (cacheResponseAge > 86400000 && isFreshnessLifetimeHeuristic()) {
-                        newBuilder.addHeader("Warning", "113 HttpURLConnection \"Heuristic expiration\"");
+                    if (jCacheResponseAge > 86400000 && isFreshnessLifetimeHeuristic()) {
+                        builderNewBuilder.addHeader("Warning", "113 HttpURLConnection \"Heuristic expiration\"");
                     }
-                    return new CacheStrategy(null, newBuilder.build());
+                    return new CacheStrategy(null, builderNewBuilder.build());
                 }
             }
             String str = this.etag;
@@ -151,9 +151,9 @@ public final class CacheStrategy {
                 }
                 str = this.servedDateString;
             }
-            Headers.Builder newBuilder2 = this.request.headers().newBuilder();
-            Internal.instance.addLenient(newBuilder2, str2, str);
-            return new CacheStrategy(this.request.newBuilder().headers(newBuilder2.build()).build(), this.cacheResponse);
+            Headers.Builder builderNewBuilder2 = this.request.headers().newBuilder();
+            Internal.instance.addLenient(builderNewBuilder2, str2, str);
+            return new CacheStrategy(this.request.newBuilder().headers(builderNewBuilder2.build()).build(), this.cacheResponse);
         }
 
         private static boolean hasConditions(Request request) {
@@ -181,68 +181,30 @@ public final class CacheStrategy {
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static boolean isCacheable(okhttp3.Response r3, okhttp3.Request r4) {
-        /*
-            int r0 = r3.code()
-            r1 = 200(0xc8, float:2.8E-43)
-            r2 = 0
-            if (r0 == r1) goto L5a
-            r1 = 410(0x19a, float:5.75E-43)
-            if (r0 == r1) goto L5a
-            r1 = 414(0x19e, float:5.8E-43)
-            if (r0 == r1) goto L5a
-            r1 = 501(0x1f5, float:7.02E-43)
-            if (r0 == r1) goto L5a
-            r1 = 203(0xcb, float:2.84E-43)
-            if (r0 == r1) goto L5a
-            r1 = 204(0xcc, float:2.86E-43)
-            if (r0 == r1) goto L5a
-            r1 = 307(0x133, float:4.3E-43)
-            if (r0 == r1) goto L31
-            r1 = 308(0x134, float:4.32E-43)
-            if (r0 == r1) goto L5a
-            r1 = 404(0x194, float:5.66E-43)
-            if (r0 == r1) goto L5a
-            r1 = 405(0x195, float:5.68E-43)
-            if (r0 == r1) goto L5a
-            switch(r0) {
-                case 300: goto L5a;
-                case 301: goto L5a;
-                case 302: goto L31;
-                default: goto L30;
+    public static boolean isCacheable(Response response, Request request) {
+        int iCode = response.code();
+        if (iCode != 200 && iCode != 410 && iCode != 414 && iCode != 501 && iCode != 203 && iCode != 204) {
+            if (iCode != 307) {
+                if (iCode != 308 && iCode != 404 && iCode != 405) {
+                    switch (iCode) {
+                        case 300:
+                        case 301:
+                            break;
+                        case 302:
+                            break;
+                        default:
+                            return false;
+                    }
+                }
             }
-        L30:
-            goto L59
-        L31:
-            java.lang.String r0 = "Expires"
-            java.lang.String r0 = r3.header(r0)
-            if (r0 != 0) goto L5a
-            okhttp3.CacheControl r0 = r3.cacheControl()
-            int r0 = r0.maxAgeSeconds()
-            r1 = -1
-            if (r0 != r1) goto L5a
-            okhttp3.CacheControl r0 = r3.cacheControl()
-            boolean r0 = r0.isPublic()
-            if (r0 != 0) goto L5a
-            okhttp3.CacheControl r0 = r3.cacheControl()
-            boolean r0 = r0.isPrivate()
-            if (r0 == 0) goto L59
-            goto L5a
-        L59:
-            return r2
-        L5a:
-            okhttp3.CacheControl r3 = r3.cacheControl()
-            boolean r3 = r3.noStore()
-            if (r3 != 0) goto L6f
-            okhttp3.CacheControl r3 = r4.cacheControl()
-            boolean r3 = r3.noStore()
-            if (r3 != 0) goto L6f
-            r2 = 1
-        L6f:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.cache.CacheStrategy.isCacheable(okhttp3.Response, okhttp3.Request):boolean");
+            if (response.header(HttpHeaders.EXPIRES) == null) {
+                if (response.cacheControl().maxAgeSeconds() == -1) {
+                    if (!response.cacheControl().isPublic()) {
+                    }
+                }
+            }
+        }
+        return (response.cacheControl().noStore() || request.cacheControl().noStore()) ? false : true;
     }
 }

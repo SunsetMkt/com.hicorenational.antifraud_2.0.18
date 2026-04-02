@@ -36,9 +36,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executor;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ImageAnalysis extends UseCase {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -55,6 +54,28 @@ public final class ImageAnalysis extends UseCase {
 
     @GuardedBy("mAnalysisLock")
     private Analyzer mSubscribedAnalyzer;
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageAnalysis$1 */
+    class AnonymousClass1 implements SessionConfig.ErrorListener {
+        final /* synthetic */ String val$cameraId;
+        final /* synthetic */ ImageAnalysisConfig val$config;
+        final /* synthetic */ Size val$resolution;
+
+        AnonymousClass1(String str, ImageAnalysisConfig imageAnalysisConfig, Size size) {
+            str = str;
+            imageAnalysisConfig = imageAnalysisConfig;
+            size = size;
+        }
+
+        @Override // androidx.camera.core.impl.SessionConfig.ErrorListener
+        public void onError(@NonNull SessionConfig sessionConfig, @NonNull SessionConfig.SessionError sessionError) {
+            ImageAnalysis.this.clearPipeline();
+            if (ImageAnalysis.this.isCurrentlyBoundCamera(str)) {
+                ImageAnalysis.this.attachToCamera(str, ImageAnalysis.this.createPipeline(str, imageAnalysisConfig, size).build());
+                ImageAnalysis.this.notifyReset();
+            }
+        }
+    }
 
     public interface Analyzer {
         void analyze(@NonNull ImageProxy imageProxy);
@@ -130,7 +151,6 @@ public final class ImageAnalysis extends UseCase {
             throw new IllegalArgumentException("Cannot use both setTargetResolution and setTargetAspectRatio on the same config.");
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -138,7 +158,6 @@ public final class ImageAnalysis extends UseCase {
             return new ImageAnalysisConfig(OptionsBundle.from(this.mMutableConfig));
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.internal.ThreadConfig.Builder
         @NonNull
         public Builder setBackgroundExecutor(@NonNull Executor executor) {
@@ -146,7 +165,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY})
@@ -155,7 +173,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -164,7 +181,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -173,7 +189,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -182,7 +197,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -191,7 +205,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -200,7 +213,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -209,7 +221,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -218,7 +229,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -227,7 +237,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetAspectRatio(int i2) {
@@ -235,7 +244,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -263,7 +271,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetResolution(@NonNull Size size) {
@@ -272,7 +279,6 @@ public final class ImageAnalysis extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetRotation(int i2) {
@@ -349,29 +355,39 @@ public final class ImageAnalysis extends UseCase {
         }
     }
 
-    SessionConfig.Builder createPipeline(@NonNull final String str, @NonNull final ImageAnalysisConfig imageAnalysisConfig, @NonNull final Size size) {
+    SessionConfig.Builder createPipeline(@NonNull String str, @NonNull ImageAnalysisConfig imageAnalysisConfig, @NonNull Size size) {
         Threads.checkMainThread();
         Executor executor = (Executor) Preconditions.checkNotNull(imageAnalysisConfig.getBackgroundExecutor(CameraXExecutors.highPriorityExecutor()));
-        final ImageReaderProxy createIsolatedReader = ImageReaderProxys.createIsolatedReader(size.getWidth(), size.getHeight(), getImageFormat(), imageAnalysisConfig.getBackpressureStrategy() == 1 ? imageAnalysisConfig.getImageQueueDepth() : 4);
+        final ImageReaderProxy imageReaderProxyCreateIsolatedReader = ImageReaderProxys.createIsolatedReader(size.getWidth(), size.getHeight(), getImageFormat(), imageAnalysisConfig.getBackpressureStrategy() == 1 ? imageAnalysisConfig.getImageQueueDepth() : 4);
         tryUpdateRelativeRotation();
         this.mImageAnalysisAbstractAnalyzer.open();
-        createIsolatedReader.setOnImageAvailableListener(this.mImageAnalysisAbstractAnalyzer, executor);
-        SessionConfig.Builder createFrom = SessionConfig.Builder.createFrom(imageAnalysisConfig);
+        imageReaderProxyCreateIsolatedReader.setOnImageAvailableListener(this.mImageAnalysisAbstractAnalyzer, executor);
+        SessionConfig.Builder builderCreateFrom = SessionConfig.Builder.createFrom(imageAnalysisConfig);
         DeferrableSurface deferrableSurface = this.mDeferrableSurface;
         if (deferrableSurface != null) {
             deferrableSurface.close();
         }
-        this.mDeferrableSurface = new ImmediateSurface(createIsolatedReader.getSurface());
-        InterfaceFutureC0952a<Void> terminationFuture = this.mDeferrableSurface.getTerminationFuture();
-        createIsolatedReader.getClass();
+        this.mDeferrableSurface = new ImmediateSurface(imageReaderProxyCreateIsolatedReader.getSurface());
+        d.b.b.a.a.a<Void> terminationFuture = this.mDeferrableSurface.getTerminationFuture();
+        imageReaderProxyCreateIsolatedReader.getClass();
         terminationFuture.addListener(new Runnable() { // from class: androidx.camera.core.f0
             @Override // java.lang.Runnable
             public final void run() {
-                ImageReaderProxy.this.close();
+                imageReaderProxyCreateIsolatedReader.close();
             }
         }, CameraXExecutors.mainThreadExecutor());
-        createFrom.addSurface(this.mDeferrableSurface);
-        createFrom.addErrorListener(new SessionConfig.ErrorListener() { // from class: androidx.camera.core.ImageAnalysis.1
+        builderCreateFrom.addSurface(this.mDeferrableSurface);
+        builderCreateFrom.addErrorListener(new SessionConfig.ErrorListener() { // from class: androidx.camera.core.ImageAnalysis.1
+            final /* synthetic */ String val$cameraId;
+            final /* synthetic */ ImageAnalysisConfig val$config;
+            final /* synthetic */ Size val$resolution;
+
+            AnonymousClass1(String str2, ImageAnalysisConfig imageAnalysisConfig2, Size size2) {
+                str = str2;
+                imageAnalysisConfig = imageAnalysisConfig2;
+                size = size2;
+            }
+
             @Override // androidx.camera.core.impl.SessionConfig.ErrorListener
             public void onError(@NonNull SessionConfig sessionConfig, @NonNull SessionConfig.SessionError sessionError) {
                 ImageAnalysis.this.clearPipeline();
@@ -381,7 +397,7 @@ public final class ImageAnalysis extends UseCase {
                 }
             }
         });
-        return createFrom;
+        return builderCreateFrom;
     }
 
     public int getBackpressureStrategy() {
@@ -433,11 +449,11 @@ public final class ImageAnalysis extends UseCase {
 
     public void setTargetRotation(int i2) {
         ImageAnalysisConfig imageAnalysisConfig = (ImageAnalysisConfig) getUseCaseConfig();
-        Builder fromConfig = Builder.fromConfig(imageAnalysisConfig);
+        Builder builderFromConfig = Builder.fromConfig(imageAnalysisConfig);
         int targetRotation = imageAnalysisConfig.getTargetRotation(-1);
         if (targetRotation == -1 || targetRotation != i2) {
-            UseCaseConfigUtil.updateTargetRotationAndRelatedConfigs(fromConfig, i2);
-            updateUseCaseConfig(fromConfig.getUseCaseConfig());
+            UseCaseConfigUtil.updateTargetRotationAndRelatedConfigs(builderFromConfig, i2);
+            updateUseCaseConfig(builderFromConfig.getUseCaseConfig());
             try {
                 tryUpdateRelativeRotation();
             } catch (Exception unused) {

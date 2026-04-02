@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class WebServerPicCreator implements Parcelable.Creator<WebServerPic> {
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // android.os.Parcelable.Creator

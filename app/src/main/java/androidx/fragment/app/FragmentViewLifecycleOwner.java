@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class FragmentViewLifecycleOwner implements LifecycleOwner {
     private LifecycleRegistry mLifecycleRegistry = null;
 

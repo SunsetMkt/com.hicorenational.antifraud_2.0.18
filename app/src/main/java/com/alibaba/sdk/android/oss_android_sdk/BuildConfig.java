@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss_android_sdk;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class BuildConfig {
     public static final String APPLICATION_ID = "com.alibaba.sdk.android.oss_android_sdk";
     public static final String BUILD_TYPE = "release";

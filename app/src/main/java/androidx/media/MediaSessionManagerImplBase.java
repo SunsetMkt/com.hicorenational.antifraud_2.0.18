@@ -11,7 +11,7 @@ import androidx.core.util.ObjectsCompat;
 import androidx.media.MediaSessionManager;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class MediaSessionManagerImplBase implements MediaSessionManager.MediaSessionManagerImpl {
     private static final boolean DEBUG = MediaSessionManager.DEBUG;
     private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
@@ -81,8 +81,8 @@ class MediaSessionManagerImplBase implements MediaSessionManager.MediaSessionMan
         String string = Settings.Secure.getString(this.mContentResolver, ENABLED_NOTIFICATION_LISTENERS);
         if (string != null) {
             for (String str : string.split(Constants.COLON_SEPARATOR)) {
-                ComponentName unflattenFromString = ComponentName.unflattenFromString(str);
-                if (unflattenFromString != null && unflattenFromString.getPackageName().equals(remoteUserInfoImpl.getPackageName())) {
+                ComponentName componentNameUnflattenFromString = ComponentName.unflattenFromString(str);
+                if (componentNameUnflattenFromString != null && componentNameUnflattenFromString.getPackageName().equals(remoteUserInfoImpl.getPackageName())) {
                     return true;
                 }
             }

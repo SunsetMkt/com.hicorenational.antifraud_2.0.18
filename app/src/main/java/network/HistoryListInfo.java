@@ -3,7 +3,7 @@ package network;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HistoryListInfo extends BaseBean {
     private List<RowsBean> rows = new ArrayList();
     private String total;
@@ -17,9 +17,7 @@ public class HistoryListInfo extends BaseBean {
             private String caseDescription;
             private String caseNumber;
             private String createTime;
-
-            /* renamed from: id */
-            private String f21450id;
+            private String id;
             private boolean isSelf;
             private int redPoint;
             private String region;
@@ -51,7 +49,7 @@ public class HistoryListInfo extends BaseBean {
             }
 
             public String getId() {
-                return this.f21450id;
+                return this.id;
             }
 
             public int getRedPoint() {
@@ -123,7 +121,7 @@ public class HistoryListInfo extends BaseBean {
             }
 
             public void setId(String str) {
-                this.f21450id = str;
+                this.id = str;
             }
 
             public void setRedPoint(int i2) {

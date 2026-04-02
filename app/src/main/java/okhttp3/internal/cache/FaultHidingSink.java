@@ -5,7 +5,7 @@ import okio.Buffer;
 import okio.ForwardingSink;
 import okio.Sink;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class FaultHidingSink extends ForwardingSink {
     private boolean hasErrors;
 

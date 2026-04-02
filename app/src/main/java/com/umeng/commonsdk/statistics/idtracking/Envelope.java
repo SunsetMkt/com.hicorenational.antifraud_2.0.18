@@ -3,12 +3,11 @@ package com.umeng.commonsdk.statistics.idtracking;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.tencent.open.SocialOperation;
-import com.umeng.analytics.pro.C3336at;
-import com.umeng.analytics.pro.C3352bi;
-import com.umeng.analytics.pro.C3369bz;
+import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.bi;
+import com.umeng.analytics.pro.bz;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
-import com.umeng.commonsdk.statistics.common.C3497b;
 import com.umeng.commonsdk.statistics.common.DataHelper;
 import com.umeng.commonsdk.statistics.common.HelperUtils;
 import com.umeng.commonsdk.statistics.internal.PreferenceWrapper;
@@ -16,7 +15,7 @@ import com.umeng.commonsdk.utils.UMUtils;
 import java.io.File;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Envelope {
     private static final String dummyID1 = "1234567890987654321";
     private static final String dummyID2 = "02:00:00:00:00:00";
@@ -46,7 +45,7 @@ public class Envelope {
         }
         this.mAddress = str;
         this.mLength = bArr.length;
-        this.mEntity = C3497b.m11809a(bArr);
+        this.mEntity = com.umeng.commonsdk.statistics.common.b.a(bArr);
         this.mTimestamp = (int) (System.currentTimeMillis() / 1000);
         this.identity = bArr2;
     }
@@ -93,14 +92,14 @@ public class Envelope {
     }
 
     private byte[] genGuid(byte[] bArr, int i2) {
-        byte[] hash = DataHelper.hash(this.identity);
-        byte[] hash2 = DataHelper.hash(this.mEntity);
-        int length = hash.length;
+        byte[] bArrHash = DataHelper.hash(this.identity);
+        byte[] bArrHash2 = DataHelper.hash(this.mEntity);
+        int length = bArrHash.length;
         byte[] bArr2 = new byte[length * 2];
         for (int i3 = 0; i3 < length; i3++) {
             int i4 = i3 * 2;
-            bArr2[i4] = hash2[i3];
-            bArr2[i4 + 1] = hash[i3];
+            bArr2[i4] = bArrHash2[i3];
+            bArr2[i4 + 1] = bArrHash[i3];
         }
         for (int i5 = 0; i5 < 2; i5++) {
             bArr2[i5] = bArr[i5];
@@ -127,7 +126,7 @@ public class Envelope {
 
     public void export(Context context) {
         String str = this.mAddress;
-        String imprintProperty = UMEnvelopeBuild.imprintProperty(context, "umid", null);
+        String strImprintProperty = UMEnvelopeBuild.imprintProperty(context, "umid", null);
         String hexString = DataHelper.toHexString(this.mSignature);
         byte[] bArr = new byte[16];
         System.arraycopy(this.mSignature, 2, bArr, 0, 16);
@@ -135,12 +134,12 @@ public class Envelope {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("appkey", str);
-            if (imprintProperty != null) {
-                jSONObject.put("umid", imprintProperty);
+            if (strImprintProperty != null) {
+                jSONObject.put("umid", strImprintProperty);
             }
             jSONObject.put(SocialOperation.GAME_SIGNATURE, hexString);
             jSONObject.put("checksum", hexString2);
-            File file = new File(context.getFilesDir(), C3336at.m10865b().m10868b(C3336at.f11488b));
+            File file = new File(context.getFilesDir(), at.b().b(at.f7016b));
             if (!file.exists()) {
                 file.mkdir();
             }
@@ -152,10 +151,10 @@ public class Envelope {
             JSONObject jSONObject2 = new JSONObject();
             jSONObject2.put("appkey", str);
             jSONObject2.put("channel", UMUtils.getChannel(context));
-            if (imprintProperty != null) {
-                jSONObject2.put("umid", HelperUtils.getUmengMD5(imprintProperty));
+            if (strImprintProperty != null) {
+                jSONObject2.put("umid", HelperUtils.getUmengMD5(strImprintProperty));
             }
-            HelperUtils.writeFile(new File(context.getFilesDir(), C3336at.m10865b().m10868b(C3336at.f11494h)), jSONObject2.toString());
+            HelperUtils.writeFile(new File(context.getFilesDir(), at.b().b(at.f7022h)), jSONObject2.toString());
         } catch (Throwable th2) {
             th2.printStackTrace();
         }
@@ -190,19 +189,19 @@ public class Envelope {
     }
 
     public byte[] toBinary() {
-        C3352bi c3352bi = new C3352bi();
-        c3352bi.m10926a(this.mVersion);
-        c3352bi.m10931b(this.mAddress);
-        c3352bi.m10935c(DataHelper.toHexString(this.mSignature));
-        c3352bi.m10925a(this.mSerialNo);
-        c3352bi.m10930b(this.mTimestamp);
-        c3352bi.m10934c(this.mLength);
-        c3352bi.m10928a(this.mEntity);
-        c3352bi.m10938d(this.encrypt ? 1 : 0);
-        c3352bi.m10939d(DataHelper.toHexString(this.mGuid));
-        c3352bi.m10943e(DataHelper.toHexString(this.mChecksum));
+        bi biVar = new bi();
+        biVar.a(this.mVersion);
+        biVar.b(this.mAddress);
+        biVar.c(DataHelper.toHexString(this.mSignature));
+        biVar.a(this.mSerialNo);
+        biVar.b(this.mTimestamp);
+        biVar.c(this.mLength);
+        biVar.a(this.mEntity);
+        biVar.d(this.encrypt ? 1 : 0);
+        biVar.d(DataHelper.toHexString(this.mGuid));
+        biVar.e(DataHelper.toHexString(this.mChecksum));
         try {
-            return new C3369bz().m11073a(c3352bi);
+            return new bz().a(biVar);
         } catch (Exception e2) {
             e2.printStackTrace();
             return null;

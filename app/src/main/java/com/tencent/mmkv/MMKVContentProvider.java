@@ -13,7 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MMKVContentProvider extends ContentProvider {
     protected static final String FUNCTION_NAME = "mmkvFromAshmemID";
     protected static final String KEY = "KEY";
@@ -24,15 +24,15 @@ public class MMKVContentProvider extends ContentProvider {
 
     @Nullable
     protected static Uri contentUri(Context context) {
-        String queryAuthority;
+        String strQueryAuthority;
         Uri uri = gUri;
         if (uri != null) {
             return uri;
         }
-        if (context == null || (queryAuthority = queryAuthority(context)) == null) {
+        if (context == null || (strQueryAuthority = queryAuthority(context)) == null) {
             return null;
         }
-        gUri = Uri.parse("content://" + queryAuthority);
+        gUri = Uri.parse("content://" + strQueryAuthority);
         return gUri;
     }
 
@@ -50,12 +50,12 @@ public class MMKVContentProvider extends ContentProvider {
     }
 
     private Bundle mmkvFromAshmemID(String str, int i2, int i3, String str2) {
-        MMKV mmkvWithAshmemID = MMKV.mmkvWithAshmemID(getContext(), str, i2, i3, str2);
-        if (mmkvWithAshmemID == null) {
+        MMKV mmkvMmkvWithAshmemID = MMKV.mmkvWithAshmemID(getContext(), str, i2, i3, str2);
+        if (mmkvMmkvWithAshmemID == null) {
             return null;
         }
-        ParcelableMMKV parcelableMMKV = new ParcelableMMKV(mmkvWithAshmemID);
-        String str3 = str + " fd = " + mmkvWithAshmemID.ashmemFD() + ", meta fd = " + mmkvWithAshmemID.ashmemMetaFD();
+        ParcelableMMKV parcelableMMKV = new ParcelableMMKV(mmkvMmkvWithAshmemID);
+        String str3 = str + " fd = " + mmkvMmkvWithAshmemID.ashmemFD() + ", meta fd = " + mmkvMmkvWithAshmemID.ashmemMetaFD();
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY, parcelableMMKV);
         return bundle;
@@ -104,15 +104,15 @@ public class MMKVContentProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public boolean onCreate() {
-        String queryAuthority;
+        String strQueryAuthority;
         Context context = getContext();
-        if (context == null || (queryAuthority = queryAuthority(context)) == null) {
+        if (context == null || (strQueryAuthority = queryAuthority(context)) == null) {
             return false;
         }
         if (gUri != null) {
             return true;
         }
-        gUri = Uri.parse("content://" + queryAuthority);
+        gUri = Uri.parse("content://" + strQueryAuthority);
         return true;
     }
 

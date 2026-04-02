@@ -5,7 +5,7 @@ import androidx.camera.core.UseCase;
 import androidx.camera.core.VideoCapture;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class UseCaseSurfaceOccupancyManager {
     private UseCaseSurfaceOccupancyManager() {
     }

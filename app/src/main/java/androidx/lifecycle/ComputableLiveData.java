@@ -9,8 +9,8 @@ import androidx.arch.core.executor.ArchTaskExecutor;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public abstract class ComputableLiveData<T> {
     final AtomicBoolean mComputing;
     final Executor mExecutor;
@@ -43,25 +43,24 @@ public abstract class ComputableLiveData<T> {
         this.mInvalid = new AtomicBoolean(true);
         this.mComputing = new AtomicBoolean(false);
         this.mRefreshRunnable = new Runnable() { // from class: androidx.lifecycle.ComputableLiveData.2
-            /* JADX WARN: Multi-variable type inference failed */
             @Override // java.lang.Runnable
             @WorkerThread
             public void run() {
                 boolean z;
                 do {
                     if (ComputableLiveData.this.mComputing.compareAndSet(false, true)) {
-                        Object obj = null;
+                        Object objCompute = null;
                         z = false;
                         while (ComputableLiveData.this.mInvalid.compareAndSet(true, false)) {
                             try {
-                                obj = ComputableLiveData.this.compute();
+                                objCompute = ComputableLiveData.this.compute();
                                 z = true;
                             } finally {
                                 ComputableLiveData.this.mComputing.set(false);
                             }
                         }
                         if (z) {
-                            ComputableLiveData.this.mLiveData.postValue(obj);
+                            ComputableLiveData.this.mLiveData.postValue((T) objCompute);
                         }
                     } else {
                         z = false;
@@ -76,8 +75,8 @@ public abstract class ComputableLiveData<T> {
             @Override // java.lang.Runnable
             @MainThread
             public void run() {
-                boolean hasActiveObservers = ComputableLiveData.this.mLiveData.hasActiveObservers();
-                if (ComputableLiveData.this.mInvalid.compareAndSet(false, true) && hasActiveObservers) {
+                boolean zHasActiveObservers = ComputableLiveData.this.mLiveData.hasActiveObservers();
+                if (ComputableLiveData.this.mInvalid.compareAndSet(false, true) && zHasActiveObservers) {
                     ComputableLiveData computableLiveData = ComputableLiveData.this;
                     computableLiveData.mExecutor.execute(computableLiveData.mRefreshRunnable);
                 }

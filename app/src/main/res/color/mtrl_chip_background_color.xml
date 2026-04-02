@@ -3,9 +3,18 @@
     <item
         android:state_enabled="true"
         android:state_selected="true"
-        android:color="#cacaca"/>
+        android:color="?attr/colorOnSurface"
+        android:alpha="0.18"/>
     <item
         android:state_enabled="true"
-        android:color="#ebebeb"/>
-    <item android:color="#f7f7f7"/>
+        android:state_checked="true"
+        android:color="?attr/colorOnSurface"
+        android:alpha="0.18"/>
+    <item
+        android:state_enabled="true"
+        android:color="?attr/colorOnSurface"
+        android:alpha="0.1"/>
+    <item
+        android:color="?attr/colorOnSurface"
+        android:alpha="0.12"/>
 </selector>

@@ -3,7 +3,7 @@ package androidx.core.os;
 import android.os.Parcel;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ParcelCompat {
     private ParcelCompat() {
     }

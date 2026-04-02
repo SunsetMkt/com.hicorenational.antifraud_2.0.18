@@ -19,7 +19,7 @@ import com.youth.banner.transformer.ZoomInTransformer;
 import com.youth.banner.transformer.ZoomOutSlideTransformer;
 import com.youth.banner.transformer.ZoomOutTranformer;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Transformer {
     public static Class<? extends ViewPager.PageTransformer> Default = DefaultTransformer.class;
     public static Class<? extends ViewPager.PageTransformer> Accordion = AccordionTransformer.class;

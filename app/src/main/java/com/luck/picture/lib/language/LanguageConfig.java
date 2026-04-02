@@ -1,6 +1,6 @@
 package com.luck.picture.lib.language;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class LanguageConfig {
     public static final int CHINESE = 0;
     public static final int ENGLISH = 2;

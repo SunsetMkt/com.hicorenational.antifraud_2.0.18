@@ -12,14 +12,25 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.view.ActionMode;
 import androidx.core.view.KeyEventDispatcher;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatDialog extends Dialog implements AppCompatCallback {
     private AppCompatDelegate mDelegate;
     private final KeyEventDispatcher.Component mKeyDispatcher;
+
+    /* JADX INFO: renamed from: androidx.appcompat.app.AppCompatDialog$1 */
+    class AnonymousClass1 implements KeyEventDispatcher.Component {
+        AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.KeyEventDispatcher.Component
+        public boolean superDispatchKeyEvent(KeyEvent keyEvent) {
+            return AppCompatDialog.this.superDispatchKeyEvent(keyEvent);
+        }
+    }
 
     public AppCompatDialog(Context context) {
         this(context, 0);
@@ -30,7 +41,7 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
             return i2;
         }
         TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(C0120R.attr.dialogTheme, typedValue, true);
+        context.getTheme().resolveAttribute(R.attr.dialogTheme, typedValue, true);
         return typedValue.resourceId;
     }
 
@@ -122,6 +133,9 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
     public AppCompatDialog(Context context, int i2) {
         super(context, getThemeResId(context, i2));
         this.mKeyDispatcher = new KeyEventDispatcher.Component() { // from class: androidx.appcompat.app.AppCompatDialog.1
+            AnonymousClass1() {
+            }
+
             @Override // androidx.core.view.KeyEventDispatcher.Component
             public boolean superDispatchKeyEvent(KeyEvent keyEvent) {
                 return AppCompatDialog.this.superDispatchKeyEvent(keyEvent);
@@ -151,6 +165,9 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
     protected AppCompatDialog(Context context, boolean z, DialogInterface.OnCancelListener onCancelListener) {
         super(context, z, onCancelListener);
         this.mKeyDispatcher = new KeyEventDispatcher.Component() { // from class: androidx.appcompat.app.AppCompatDialog.1
+            AnonymousClass1() {
+            }
+
             @Override // androidx.core.view.KeyEventDispatcher.Component
             public boolean superDispatchKeyEvent(KeyEvent keyEvent) {
                 return AppCompatDialog.this.superDispatchKeyEvent(keyEvent);

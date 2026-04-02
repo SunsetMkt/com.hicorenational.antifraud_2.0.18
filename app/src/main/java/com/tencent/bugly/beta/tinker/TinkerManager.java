@@ -22,12 +22,14 @@ import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.lib.util.UpgradePatchRetry;
 import com.tencent.tinker.loader.shareutil.SharePatchFileUtil;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.lang.Thread;
 import java.util.HashMap;
+import java.util.Properties;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerManager {
     public static final String MF_FILE = "YAPATCH.MF";
     public static final String PATCH_DIR = "dex";
@@ -50,7 +52,7 @@ public class TinkerManager {
     public static String patchCurBuildNum = "";
     public static boolean patchRestartOnScreenOff = true;
 
-    /* compiled from: BUGLY */
+    /* JADX INFO: compiled from: BUGLY */
     public interface TinkerListener {
         void onApplyFailure(String str);
 
@@ -65,7 +67,7 @@ public class TinkerManager {
         void onPatchStart();
     }
 
-    /* compiled from: BUGLY */
+    /* JADX INFO: compiled from: BUGLY */
     public interface TinkerPatchResultListener {
         void onPatchResult(PatchResult patchResult);
     }
@@ -187,96 +189,56 @@ public class TinkerManager {
         TinkerInstaller.onReceiveUpgradePatch(context, str);
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:11:0x0034  */
     /* JADX WARN: Removed duplicated region for block: B:31:0x008f  */
-    /* JADX WARN: Removed duplicated region for block: B:6:0x0034  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean checkNewPatch(java.lang.String r7) {
-        /*
-            r6 = this;
-            java.lang.String r0 = "To"
-            java.lang.String r1 = "From"
-            r2 = 0
-            java.lang.Object[] r3 = new java.lang.Object[r2]
-            java.lang.String r4 = "Tinker.TinkerManager"
-            java.lang.String r5 = "check if has new patch."
-            com.tencent.tinker.lib.util.TinkerLog.d(r4, r5, r3)
-            java.lang.String r3 = getTinkerId()
-            com.tencent.bugly.beta.tinker.TinkerManager.apkOriginalBuildNum = r3
-            java.lang.String r3 = getNewTinkerId()
-            com.tencent.bugly.beta.tinker.TinkerManager.patchCurBuildNum = r3
-            boolean r3 = android.text.TextUtils.isEmpty(r7)
-            r5 = 1
-            if (r3 == 0) goto L25
-            r7 = 0
-            r3 = r7
-        L23:
-            r7 = 0
-            goto L32
-        L25:
-            java.io.File r3 = new java.io.File
-            r3.<init>(r7)
-            boolean r7 = r3.exists()
-            if (r7 != 0) goto L31
-            goto L23
-        L31:
-            r7 = 1
-        L32:
-            if (r7 == 0) goto L8f
-            java.lang.String r7 = "YAPATCH.MF"
-            byte[] r7 = com.tencent.bugly.beta.tinker.TinkerUtils.readJarEntry(r3, r7)
-            if (r7 != 0) goto L3d
-            return r2
-        L3d:
-            java.io.ByteArrayInputStream r3 = new java.io.ByteArrayInputStream
-            r3.<init>(r7)
-            java.util.Properties r7 = new java.util.Properties     // Catch: java.lang.Exception -> L87
-            r7.<init>()     // Catch: java.lang.Exception -> L87
-            r7.load(r3)     // Catch: java.lang.Exception -> L87
-            java.lang.String r3 = r7.getProperty(r1)     // Catch: java.lang.Exception -> L87
-            if (r3 == 0) goto L7f
-            java.lang.String r3 = r7.getProperty(r0)     // Catch: java.lang.Exception -> L87
-            if (r3 != 0) goto L57
-            goto L7f
-        L57:
-            java.lang.String r3 = com.tencent.bugly.beta.tinker.TinkerManager.apkOriginalBuildNum     // Catch: java.lang.Exception -> L87
-            if (r3 != 0) goto L63
-            java.lang.String r7 = "patchCurBuildNum is null"
-            java.lang.Object[] r0 = new java.lang.Object[r2]     // Catch: java.lang.Exception -> L87
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r7, r0)     // Catch: java.lang.Exception -> L87
-            return r2
-        L63:
-            java.lang.String r3 = com.tencent.bugly.beta.tinker.TinkerManager.apkOriginalBuildNum     // Catch: java.lang.Exception -> L87
-            java.lang.String r1 = r7.getProperty(r1)     // Catch: java.lang.Exception -> L87
-            boolean r1 = r3.equalsIgnoreCase(r1)     // Catch: java.lang.Exception -> L87
-            if (r1 == 0) goto L77
-            java.lang.String r7 = r7.getProperty(r0)     // Catch: java.lang.Exception -> L87
-            com.tencent.bugly.beta.tinker.TinkerManager.patchCurBuildNum = r7     // Catch: java.lang.Exception -> L87
-            r2 = 1
-            goto L90
-        L77:
-            java.lang.String r7 = "orign buildno invalid"
-            java.lang.Object[] r0 = new java.lang.Object[r2]     // Catch: java.lang.Exception -> L87
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r7, r0)     // Catch: java.lang.Exception -> L87
-            goto L90
-        L7f:
-            java.lang.String r7 = "From/To is null"
-            java.lang.Object[] r0 = new java.lang.Object[r2]     // Catch: java.lang.Exception -> L87
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r7, r0)     // Catch: java.lang.Exception -> L87
-            return r2
-        L87:
-            java.lang.Object[] r7 = new java.lang.Object[r2]
-            java.lang.String r0 = "get properties failed"
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r0, r7)
-            goto L90
-        L8f:
-            r2 = r7
-        L90:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.tencent.bugly.beta.tinker.TinkerManager.checkNewPatch(java.lang.String):boolean");
+    public boolean checkNewPatch(String str) {
+        File file;
+        boolean z;
+        TinkerLog.d(TAG, "check if has new patch.", new Object[0]);
+        apkOriginalBuildNum = getTinkerId();
+        patchCurBuildNum = getNewTinkerId();
+        if (!TextUtils.isEmpty(str)) {
+            file = new File(str);
+            if (file.exists()) {
+                z = true;
+            }
+            if (z) {
+                return z;
+            }
+            byte[] jarEntry = TinkerUtils.readJarEntry(file, MF_FILE);
+            if (jarEntry == null) {
+                return false;
+            }
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(jarEntry);
+            try {
+                Properties properties = new Properties();
+                properties.load(byteArrayInputStream);
+                if (properties.getProperty("From") != null && properties.getProperty("To") != null) {
+                    if (apkOriginalBuildNum == null) {
+                        TinkerLog.e(TAG, "patchCurBuildNum is null", new Object[0]);
+                        return false;
+                    }
+                    if (apkOriginalBuildNum.equalsIgnoreCase(properties.getProperty("From"))) {
+                        patchCurBuildNum = properties.getProperty("To");
+                        return true;
+                    }
+                    TinkerLog.e(TAG, "orign buildno invalid", new Object[0]);
+                    return false;
+                }
+                TinkerLog.e(TAG, "From/To is null", new Object[0]);
+                return false;
+            } catch (Exception unused) {
+                TinkerLog.e(TAG, "get properties failed", new Object[0]);
+                return false;
+            }
+        }
+        file = null;
+        z = false;
+        if (z) {
+        }
     }
 
     public void cleanPatch(boolean z) {
@@ -312,7 +274,7 @@ public class TinkerManager {
         }
     }
 
-    public void onDownloadSuccess(String str, boolean z) {
+    public void onDownloadSuccess(String str, boolean z) throws Throwable {
         try {
             TinkerLog.d(TAG, "onDownloadSuccess.", new Object[0]);
             if (this.tinkerListener != null) {
@@ -406,7 +368,7 @@ public class TinkerManager {
         installTinker(obj);
     }
 
-    public void applyPatch(String str, boolean z) {
+    public void applyPatch(String str, boolean z) throws Throwable {
         try {
             File file = new File(this.applicationLike.getApplication().getDir(PATCH_DIR, 0).getAbsolutePath(), PATCH_NAME);
             File file2 = null;

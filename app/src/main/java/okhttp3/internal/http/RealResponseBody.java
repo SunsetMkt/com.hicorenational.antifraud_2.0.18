@@ -5,7 +5,7 @@ import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class RealResponseBody extends ResponseBody {
     private final long contentLength;
 

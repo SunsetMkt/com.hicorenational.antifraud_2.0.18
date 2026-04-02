@@ -5,7 +5,7 @@ import android.os.Trace;
 import androidx.annotation.NonNull;
 import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class TraceCompat {
     private static final String TAG = "TraceCompat";
     private static Method sAsyncTraceBeginMethod;

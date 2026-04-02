@@ -7,11 +7,14 @@ import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
 import android.util.Property;
 import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.transition.Transition;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class TranslationAnimationCreator {
 
-    private static class TransitionPositionListener extends AnimatorListenerAdapter {
+    private static class TransitionPositionListener extends AnimatorListenerAdapter implements Transition.TransitionListener {
         private final View mMovingView;
         private float mPausedX;
         private float mPausedY;
@@ -29,9 +32,9 @@ class TranslationAnimationCreator {
             this.mStartY = i3 - Math.round(this.mMovingView.getTranslationY());
             this.mTerminalX = f2;
             this.mTerminalY = f3;
-            this.mTransitionPosition = (int[]) this.mViewInHierarchy.getTag(C0703R.id.transition_position);
+            this.mTransitionPosition = (int[]) this.mViewInHierarchy.getTag(R.id.transition_position);
             if (this.mTransitionPosition != null) {
-                this.mViewInHierarchy.setTag(C0703R.id.transition_position, null);
+                this.mViewInHierarchy.setTag(R.id.transition_position, null);
             }
         }
 
@@ -42,13 +45,7 @@ class TranslationAnimationCreator {
             }
             this.mTransitionPosition[0] = Math.round(this.mStartX + this.mMovingView.getTranslationX());
             this.mTransitionPosition[1] = Math.round(this.mStartY + this.mMovingView.getTranslationY());
-            this.mViewInHierarchy.setTag(C0703R.id.transition_position, this.mTransitionPosition);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            this.mMovingView.setTranslationX(this.mTerminalX);
-            this.mMovingView.setTranslationY(this.mTerminalY);
+            this.mViewInHierarchy.setTag(R.id.transition_position, this.mTransitionPosition);
         }
 
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener
@@ -64,35 +61,60 @@ class TranslationAnimationCreator {
             this.mMovingView.setTranslationX(this.mPausedX);
             this.mMovingView.setTranslationY(this.mPausedY);
         }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionCancel(@NonNull Transition transition) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            this.mMovingView.setTranslationX(this.mTerminalX);
+            this.mMovingView.setTranslationY(this.mTerminalY);
+            transition.removeListener(this);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionPause(@NonNull Transition transition) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionResume(@NonNull Transition transition) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionStart(@NonNull Transition transition) {
+        }
     }
 
     private TranslationAnimationCreator() {
     }
 
-    static Animator createAnimation(View view, TransitionValues transitionValues, int i2, int i3, float f2, float f3, float f4, float f5, TimeInterpolator timeInterpolator) {
+    @Nullable
+    static Animator createAnimation(@NonNull View view, @NonNull TransitionValues transitionValues, int i2, int i3, float f2, float f3, float f4, float f5, @Nullable TimeInterpolator timeInterpolator, @NonNull Transition transition) {
         float f6;
         float f7;
         float translationX = view.getTranslationX();
         float translationY = view.getTranslationY();
-        if (((int[]) transitionValues.view.getTag(C0703R.id.transition_position)) != null) {
+        if (((int[]) transitionValues.view.getTag(R.id.transition_position)) != null) {
             f6 = (r4[0] - i2) + translationX;
             f7 = (r4[1] - i3) + translationY;
         } else {
             f6 = f2;
             f7 = f3;
         }
-        int round = i2 + Math.round(f6 - translationX);
-        int round2 = i3 + Math.round(f7 - translationY);
+        int iRound = i2 + Math.round(f6 - translationX);
+        int iRound2 = i3 + Math.round(f7 - translationY);
         view.setTranslationX(f6);
         view.setTranslationY(f7);
         if (f6 == f4 && f7 == f5) {
             return null;
         }
-        ObjectAnimator ofPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.TRANSLATION_X, f6, f4), PropertyValuesHolder.ofFloat((Property<?, Float>) View.TRANSLATION_Y, f7, f5));
-        TransitionPositionListener transitionPositionListener = new TransitionPositionListener(view, transitionValues.view, round, round2, translationX, translationY);
-        ofPropertyValuesHolder.addListener(transitionPositionListener);
-        AnimatorUtils.addPauseListener(ofPropertyValuesHolder, transitionPositionListener);
-        ofPropertyValuesHolder.setInterpolator(timeInterpolator);
-        return ofPropertyValuesHolder;
+        ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.TRANSLATION_X, f6, f4), PropertyValuesHolder.ofFloat((Property<?, Float>) View.TRANSLATION_Y, f7, f5));
+        TransitionPositionListener transitionPositionListener = new TransitionPositionListener(view, transitionValues.view, iRound, iRound2, translationX, translationY);
+        transition.addListener(transitionPositionListener);
+        objectAnimatorOfPropertyValuesHolder.addListener(transitionPositionListener);
+        AnimatorUtils.addPauseListener(objectAnimatorOfPropertyValuesHolder, transitionPositionListener);
+        objectAnimatorOfPropertyValuesHolder.setInterpolator(timeInterpolator);
+        return objectAnimatorOfPropertyValuesHolder;
     }
 }

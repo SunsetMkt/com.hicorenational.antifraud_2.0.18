@@ -2,7 +2,7 @@ package androidx.camera.core;
 
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_ImmutableImageInfo extends ImmutableImageInfo {
     private final int rotationDegrees;
     private final Object tag;
@@ -49,9 +49,9 @@ final class AutoValue_ImmutableImageInfo extends ImmutableImageInfo {
 
     public int hashCode() {
         Object obj = this.tag;
-        int hashCode = obj == null ? 0 : obj.hashCode();
+        int iHashCode = obj == null ? 0 : obj.hashCode();
         long j2 = this.timestamp;
-        return ((((hashCode ^ 1000003) * 1000003) ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003) ^ this.rotationDegrees;
+        return ((((iHashCode ^ 1000003) * 1000003) ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003) ^ this.rotationDegrees;
     }
 
     public String toString() {

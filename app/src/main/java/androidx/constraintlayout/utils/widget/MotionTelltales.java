@@ -8,9 +8,9 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.ViewParent;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.C0471R;
+import androidx.constraintlayout.widget.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MotionTelltales extends MockView {
     private static final String TAG = "MotionTelltales";
     Matrix mInvertMatrix;
@@ -34,19 +34,19 @@ public class MotionTelltales extends MockView {
 
     private void init(Context context, AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.MotionTelltales);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.MotionTelltales);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.MotionTelltales_telltales_tailColor) {
-                    this.mTailColor = obtainStyledAttributes.getColor(index, this.mTailColor);
-                } else if (index == C0471R.styleable.MotionTelltales_telltales_velocityMode) {
-                    this.mVelocityMode = obtainStyledAttributes.getInt(index, this.mVelocityMode);
-                } else if (index == C0471R.styleable.MotionTelltales_telltales_tailScale) {
-                    this.mTailScale = obtainStyledAttributes.getFloat(index, this.mTailScale);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.MotionTelltales_telltales_tailColor) {
+                    this.mTailColor = typedArrayObtainStyledAttributes.getColor(index, this.mTailColor);
+                } else if (index == R.styleable.MotionTelltales_telltales_velocityMode) {
+                    this.mVelocityMode = typedArrayObtainStyledAttributes.getInt(index, this.mVelocityMode);
+                } else if (index == R.styleable.MotionTelltales_telltales_tailScale) {
+                    this.mTailScale = typedArrayObtainStyledAttributes.getFloat(index, this.mTailScale);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
         this.mPaintTelltales.setColor(this.mTailColor);
         this.mPaintTelltales.setStrokeWidth(5.0f);

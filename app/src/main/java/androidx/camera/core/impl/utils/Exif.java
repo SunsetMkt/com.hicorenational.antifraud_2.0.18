@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
+import d.c.a.b.a.a;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,9 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Exif {
     public static final long INVALID_TIMESTAMP = -1;
     private static final String KILOMETERS_PER_HOUR = "K";
@@ -93,11 +93,11 @@ public final class Exif {
     }
 
     private void attachLastModifiedTimestamp() {
-        long currentTimeMillis = System.currentTimeMillis();
-        String convertToExifDateTime = convertToExifDateTime(currentTimeMillis);
-        this.mExifInterface.setAttribute(ExifInterface.TAG_DATETIME, convertToExifDateTime);
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        String strConvertToExifDateTime = convertToExifDateTime(jCurrentTimeMillis);
+        this.mExifInterface.setAttribute(ExifInterface.TAG_DATETIME, strConvertToExifDateTime);
         try {
-            this.mExifInterface.setAttribute(ExifInterface.TAG_SUBSEC_TIME, Long.toString(currentTimeMillis - convertFromExifDateTime(convertToExifDateTime).getTime()));
+            this.mExifInterface.setAttribute(ExifInterface.TAG_SUBSEC_TIME, Long.toString(jCurrentTimeMillis - convertFromExifDateTime(strConvertToExifDateTime).getTime()));
         } catch (ParseException unused) {
         }
     }
@@ -151,7 +151,7 @@ public final class Exif {
                 return -1L;
             }
         }
-        return parseTimestamp(str + AbstractC1191a.f2568g + str2);
+        return parseTimestamp(str + a.f10074g + str2);
     }
 
     public void attachLocation(@NonNull Location location) {
@@ -159,14 +159,14 @@ public final class Exif {
     }
 
     public void attachTimestamp() {
-        long currentTimeMillis = System.currentTimeMillis();
-        String convertToExifDateTime = convertToExifDateTime(currentTimeMillis);
-        this.mExifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, convertToExifDateTime);
-        this.mExifInterface.setAttribute(ExifInterface.TAG_DATETIME_DIGITIZED, convertToExifDateTime);
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        String strConvertToExifDateTime = convertToExifDateTime(jCurrentTimeMillis);
+        this.mExifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, strConvertToExifDateTime);
+        this.mExifInterface.setAttribute(ExifInterface.TAG_DATETIME_DIGITIZED, strConvertToExifDateTime);
         try {
-            String l2 = Long.toString(currentTimeMillis - convertFromExifDateTime(convertToExifDateTime).getTime());
-            this.mExifInterface.setAttribute(ExifInterface.TAG_SUBSEC_TIME_ORIGINAL, l2);
-            this.mExifInterface.setAttribute(ExifInterface.TAG_SUBSEC_TIME_DIGITIZED, l2);
+            String string = Long.toString(jCurrentTimeMillis - convertFromExifDateTime(strConvertToExifDateTime).getTime());
+            this.mExifInterface.setAttribute(ExifInterface.TAG_SUBSEC_TIME_ORIGINAL, string);
+            this.mExifInterface.setAttribute(ExifInterface.TAG_SUBSEC_TIME_DIGITIZED, string);
         } catch (ParseException unused) {
         }
         this.mRemoveTimestamp = false;
@@ -244,22 +244,22 @@ public final class Exif {
     }
 
     public long getLastModifiedTimestamp() {
-        long parseTimestamp = parseTimestamp(this.mExifInterface.getAttribute(ExifInterface.TAG_DATETIME));
-        if (parseTimestamp == -1) {
+        long timestamp = parseTimestamp(this.mExifInterface.getAttribute(ExifInterface.TAG_DATETIME));
+        if (timestamp == -1) {
             return -1L;
         }
         String attribute = this.mExifInterface.getAttribute(ExifInterface.TAG_SUBSEC_TIME);
         if (attribute == null) {
-            return parseTimestamp;
+            return timestamp;
         }
         try {
-            long parseLong = Long.parseLong(attribute);
-            while (parseLong > 1000) {
-                parseLong /= 10;
+            long j2 = Long.parseLong(attribute);
+            while (j2 > 1000) {
+                j2 /= 10;
             }
-            return parseTimestamp + parseLong;
+            return timestamp + j2;
         } catch (NumberFormatException unused) {
-            return parseTimestamp;
+            return timestamp;
         }
     }
 
@@ -273,7 +273,7 @@ public final class Exif {
         if (attribute2 == null) {
             attribute2 = "K";
         }
-        long parseTimestamp = parseTimestamp(this.mExifInterface.getAttribute(ExifInterface.TAG_GPS_DATESTAMP), this.mExifInterface.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP));
+        long timestamp = parseTimestamp(this.mExifInterface.getAttribute(ExifInterface.TAG_GPS_DATESTAMP), this.mExifInterface.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP));
         if (latLong == null) {
             return null;
         }
@@ -287,23 +287,23 @@ public final class Exif {
             location.setAltitude(altitude);
         }
         if (attributeDouble != 0.0d) {
-            char c2 = 65535;
-            int hashCode = attribute2.hashCode();
-            if (hashCode != 75) {
-                if (hashCode != 77) {
-                    if (hashCode == 78 && attribute2.equals("N")) {
-                        c2 = 1;
+            byte b2 = -1;
+            int iHashCode = attribute2.hashCode();
+            if (iHashCode != 75) {
+                if (iHashCode != 77) {
+                    if (iHashCode == 78 && attribute2.equals("N")) {
+                        b2 = 1;
                     }
                 } else if (attribute2.equals("M")) {
-                    c2 = 0;
+                    b2 = 0;
                 }
             } else if (attribute2.equals("K")) {
-                c2 = 2;
+                b2 = 2;
             }
-            location.setSpeed((float) (c2 != 0 ? c2 != 1 ? Speed.fromKilometersPerHour(attributeDouble).toMetersPerSecond() : Speed.fromKnots(attributeDouble).toMetersPerSecond() : Speed.fromMilesPerHour(attributeDouble).toMetersPerSecond()));
+            location.setSpeed((float) (b2 != 0 ? b2 != 1 ? Speed.fromKilometersPerHour(attributeDouble).toMetersPerSecond() : Speed.fromKnots(attributeDouble).toMetersPerSecond() : Speed.fromMilesPerHour(attributeDouble).toMetersPerSecond()));
         }
-        if (parseTimestamp != -1) {
-            location.setTime(parseTimestamp);
+        if (timestamp != -1) {
+            location.setTime(timestamp);
         }
         return location;
     }
@@ -332,22 +332,22 @@ public final class Exif {
     }
 
     public long getTimestamp() {
-        long parseTimestamp = parseTimestamp(this.mExifInterface.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL));
-        if (parseTimestamp == -1) {
+        long timestamp = parseTimestamp(this.mExifInterface.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL));
+        if (timestamp == -1) {
             return -1L;
         }
         String attribute = this.mExifInterface.getAttribute(ExifInterface.TAG_SUBSEC_TIME_ORIGINAL);
         if (attribute == null) {
-            return parseTimestamp;
+            return timestamp;
         }
         try {
-            long parseLong = Long.parseLong(attribute);
-            while (parseLong > 1000) {
-                parseLong /= 10;
+            long j2 = Long.parseLong(attribute);
+            while (j2 > 1000) {
+                j2 /= 10;
             }
-            return parseTimestamp + parseLong;
+            return timestamp + j2;
         } catch (NumberFormatException unused) {
-            return parseTimestamp;
+            return timestamp;
         }
     }
 
@@ -479,7 +479,7 @@ public final class Exif {
         this.mExifInterface.setAttribute(ExifInterface.TAG_ORIENTATION, String.valueOf(orientation));
     }
 
-    public void save() throws IOException {
+    public void save() throws Throwable {
         if (!this.mRemoveTimestamp) {
             attachLastModifiedTimestamp();
         }

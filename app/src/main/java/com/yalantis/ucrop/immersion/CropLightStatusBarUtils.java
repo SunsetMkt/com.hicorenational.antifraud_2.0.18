@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CropLightStatusBarUtils {
     private static void initStatusBarStyle(Activity activity, boolean z, boolean z2) {
         if (Build.VERSION.SDK_INT >= 16) {

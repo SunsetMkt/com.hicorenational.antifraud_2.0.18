@@ -2,7 +2,7 @@ package androidx.camera.core.impl;
 
 import android.util.Size;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_SurfaceSizeDefinition extends SurfaceSizeDefinition {
     private final Size analysisSize;
     private final Size previewSize;

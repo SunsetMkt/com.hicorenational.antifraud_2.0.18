@@ -7,11 +7,11 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import c.a.a.g.d;
 import manager.NotificationHelper;
-import p023b.p024a.p025a.p029g.C0931d;
-import util.C7254a2;
+import util.k2;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AlarmService extends IntentService {
     public AlarmService() {
         super("UploadService");
@@ -30,8 +30,8 @@ public class AlarmService extends IntentService {
 
     @Override // android.app.IntentService
     protected void onHandleIntent(Intent intent) {
-        C0931d.m1154b("本服务执行的业务->APP自查");
-        new C7254a2(this, C7254a2.f25105f);
+        d.b("\u672c\u670d\u52a1\u6267\u884c\u7684\u4e1a\u52a1->APP\u81ea\u67e5");
+        new k2(this, k2.f14935f);
     }
 
     @Override // android.app.IntentService, android.app.Service

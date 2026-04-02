@@ -1,9 +1,8 @@
 package com.xiaomi.mipush.sdk;
 
 import com.xiaomi.push.service.module.PushChannelRegion;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PushConfiguration {
     private boolean mGeoEnable;
     private boolean mOpenCOSPush;
@@ -95,7 +94,7 @@ public class PushConfiguration {
         stringBuffer.append("Region:");
         PushChannelRegion pushChannelRegion = this.mRegion;
         if (pushChannelRegion == null) {
-            stringBuffer.append(AbstractC1191a.f2571h);
+            stringBuffer.append(d.c.a.b.a.a.f10075h);
         } else {
             stringBuffer.append(pushChannelRegion.name());
         }

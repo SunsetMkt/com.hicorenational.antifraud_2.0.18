@@ -1,6 +1,6 @@
 package androidx.core.math;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MathUtils {
     private MathUtils() {
     }

@@ -10,7 +10,7 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeReseponse extends UResponse {
     protected static final String TAG = "SocializeReseponse";
     private int mHttpCode;
@@ -28,9 +28,9 @@ public class SocializeReseponse extends UResponse {
     private void parseErrorMsg(String str) {
         try {
             JSONObject jSONObject = new JSONObject(str);
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                JSONObject jSONObject2 = jSONObject.getJSONObject(keys.next());
+            Iterator<String> itKeys = jSONObject.keys();
+            while (itKeys.hasNext()) {
+                JSONObject jSONObject2 = jSONObject.getJSONObject(itKeys.next());
                 if (TextUtils.isEmpty(jSONObject2.getString("msg"))) {
                     jSONObject2.getJSONObject("data").getString(SocializeProtocolConstants.PROTOCOL_KEY_PLATFORM_ERROR);
                 }
@@ -65,14 +65,14 @@ public class SocializeReseponse extends UResponse {
                 return null;
             }
             this.mMsg = jSONObject.optString("msg", "");
-            String optString = jSONObject.optString("data", null);
-            if (TextUtils.isEmpty(optString)) {
+            String strOptString = jSONObject.optString("data", null);
+            if (TextUtils.isEmpty(strOptString)) {
                 return null;
             }
             if (this.mStCode != 200) {
-                parseErrorMsg(optString);
+                parseErrorMsg(strOptString);
             }
-            return new JSONObject(optString);
+            return new JSONObject(strOptString);
         } catch (JSONException e2) {
             SLog.error(UmengText.NET.PARSEERROR, e2);
             return null;

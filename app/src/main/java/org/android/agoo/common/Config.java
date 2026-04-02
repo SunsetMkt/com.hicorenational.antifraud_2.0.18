@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import com.taobao.accs.ACCSManager;
 import com.taobao.accs.utl.ALog;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class Config {
     public static final String AGOO_CLEAR_TIME = "agoo_clear_time";
     public static final String AGOO_UNREPORT_TIMES = "agoo_UnReport_times";
@@ -20,62 +20,56 @@ public class Config {
     public static final String PROPERTY_SECRET_KEY = "agoo_secret";
     public static final String PROPERTY_TT_ID = "app_tt_id";
     public static final String TAG = "Config";
+    public static String a;
 
-    /* renamed from: a */
-    public static String f21466a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static String f12863b;
 
-    /* renamed from: b */
-    private static String f21467b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static String f12864c;
 
-    /* renamed from: c */
-    private static String f21468c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static String f12865d;
 
-    /* renamed from: d */
-    private static String f21469d;
-
-    /* renamed from: a */
-    public static String m24934a(Context context) {
-        String str = f21467b;
-        if (!TextUtils.isEmpty(str)) {
-            return str;
+    public static String a(Context context) {
+        String string = f12863b;
+        if (!TextUtils.isEmpty(string)) {
+            return string;
         }
         try {
-            str = context.getSharedPreferences(PREFERENCES, 4).getString(PROPERTY_APP_KEY, f21467b);
+            string = context.getSharedPreferences(PREFERENCES, 4).getString(PROPERTY_APP_KEY, f12863b);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "getAgooAppKey", th, new Object[0]);
+            ALog.e(TAG, "getAgooAppKey", th, new Object[0]);
         }
-        if (TextUtils.isEmpty(str)) {
-            ALog.m9182e(TAG, "getAgooAppKey null!!", new Object[0]);
+        if (TextUtils.isEmpty(string)) {
+            ALog.e(TAG, "getAgooAppKey null!!", new Object[0]);
         }
-        ALog.m9180d(TAG, "getAgooAppKey", "appkey", str);
-        return str;
+        ALog.d(TAG, "getAgooAppKey", "appkey", string);
+        return string;
     }
 
-    /* renamed from: b */
-    public static String m24938b(Context context) {
-        String str = f21468c;
-        if (!TextUtils.isEmpty(str)) {
-            return str;
+    public static String b(Context context) {
+        String string = f12864c;
+        if (!TextUtils.isEmpty(string)) {
+            return string;
         }
         try {
-            str = context.getSharedPreferences(PREFERENCES, 4).getString(PROPERTY_SECRET_KEY, f21468c);
+            string = context.getSharedPreferences(PREFERENCES, 4).getString(PROPERTY_SECRET_KEY, f12864c);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "getAgooMessageSecret", th, new Object[0]);
+            ALog.e(TAG, "getAgooMessageSecret", th, new Object[0]);
         }
-        if (TextUtils.isEmpty(str)) {
-            ALog.m9182e(TAG, "getAgooMessageSecret null!!", new Object[0]);
+        if (TextUtils.isEmpty(string)) {
+            ALog.e(TAG, "getAgooMessageSecret null!!", new Object[0]);
         }
-        ALog.m9180d(TAG, "getAgooMessageSecret", "secret", str);
-        return str;
+        ALog.d(TAG, "getAgooMessageSecret", "secret", string);
+        return string;
     }
 
-    /* renamed from: c */
-    public static String m24941c(Context context) {
-        return TextUtils.isEmpty(f21466a) ? ACCSManager.getDefaultConfig(context) : f21466a;
+    public static String c(Context context) {
+        return TextUtils.isEmpty(a) ? ACCSManager.getDefaultConfig(context) : a;
     }
 
-    /* renamed from: d */
-    public static boolean m24943d(Context context) {
+    public static boolean d(Context context) {
         try {
             return context.getSharedPreferences(PREFERENCES, 4).getInt(AGOO_UNREPORT_TIMES, 0) > 0;
         } catch (Throwable unused) {
@@ -83,18 +77,16 @@ public class Config {
         }
     }
 
-    /* renamed from: e */
-    public static void m24944e(Context context) {
+    public static void e(Context context) {
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(PREFERENCES, 4).edit();
-            edit.putInt(AGOO_UNREPORT_TIMES, 0);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(PREFERENCES, 4).edit();
+            editorEdit.putInt(AGOO_UNREPORT_TIMES, 0);
+            editorEdit.apply();
         } catch (Throwable unused) {
         }
     }
 
-    /* renamed from: f */
-    public static int m24945f(Context context) {
+    public static int f(Context context) {
         try {
             return context.getSharedPreferences(PREFERENCES, 4).getInt(AGOO_UNREPORT_TIMES, 0);
         } catch (Throwable unused) {
@@ -102,20 +94,18 @@ public class Config {
         }
     }
 
-    /* renamed from: g */
-    public static String m24946g(Context context) {
-        String str = f21469d;
+    public static String g(Context context) {
+        String string = f12865d;
         try {
-            str = context.getSharedPreferences(PREFERENCES, 4).getString("deviceId", f21469d);
+            string = context.getSharedPreferences(PREFERENCES, 4).getString("deviceId", f12865d);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "getDeviceToken", th, new Object[0]);
+            ALog.e(TAG, "getDeviceToken", th, new Object[0]);
         }
-        ALog.m9183i(TAG, "getDeviceToken", "token", str);
-        return str;
+        ALog.i(TAG, "getDeviceToken", "token", string);
+        return string;
     }
 
-    /* renamed from: h */
-    public static String m24947h(Context context) {
+    public static String h(Context context) {
         try {
             return context.getSharedPreferences(PREFERENCES, 4).getString(PROPERTY_PUSH_USER_TOKEN, "");
         } catch (Throwable unused) {
@@ -126,80 +116,76 @@ public class Config {
     public static void setAgooAppKey(Context context, String str) {
         try {
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "setAgooAppKey", th, new Object[0]);
+            ALog.e(TAG, "setAgooAppKey", th, new Object[0]);
         }
         if (TextUtils.isEmpty(str)) {
-            ALog.m9182e(TAG, "setAgooAppKey appkey null", new Object[0]);
+            ALog.e(TAG, "setAgooAppKey appkey null", new Object[0]);
             return;
         }
-        if (!TextUtils.isEmpty(f21467b)) {
-            if (TextUtils.equals(str, f21467b)) {
+        if (!TextUtils.isEmpty(f12863b)) {
+            if (TextUtils.equals(str, f12863b)) {
                 return;
             }
-            ALog.m9182e(TAG, "setAgooAppKey error!", "new", str, "old", f21467b);
+            ALog.e(TAG, "setAgooAppKey error!", "new", str, "old", f12863b);
         } else {
-            f21467b = str;
-            SharedPreferences.Editor edit = context.getSharedPreferences(PREFERENCES, 4).edit();
-            edit.putString(PROPERTY_APP_KEY, str);
-            edit.apply();
-            ALog.m9180d(TAG, "setAgooAppKey", "appkey", str);
+            f12863b = str;
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(PREFERENCES, 4).edit();
+            editorEdit.putString(PROPERTY_APP_KEY, str);
+            editorEdit.apply();
+            ALog.d(TAG, "setAgooAppKey", "appkey", str);
         }
     }
 
-    /* renamed from: c */
-    public static void m24942c(Context context, String str) {
+    public static void c(Context context, String str) {
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(PREFERENCES, 4).edit();
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(PREFERENCES, 4).edit();
             if (!TextUtils.isEmpty(str)) {
-                edit.putString(PROPERTY_PUSH_USER_TOKEN, str);
+                editorEdit.putString(PROPERTY_PUSH_USER_TOKEN, str);
             }
-            edit.apply();
+            editorEdit.apply();
         } catch (Throwable unused) {
         }
     }
 
-    /* renamed from: a */
-    public static void m24937a(Context context, String str) {
+    public static void a(Context context, String str) {
         try {
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "setAgooMessageSecret", th, new Object[0]);
+            ALog.e(TAG, "setAgooMessageSecret", th, new Object[0]);
         }
         if (TextUtils.isEmpty(str)) {
-            ALog.m9182e(TAG, "setAgooMessageSecret secret null", new Object[0]);
+            ALog.e(TAG, "setAgooMessageSecret secret null", new Object[0]);
             return;
         }
-        if (!TextUtils.isEmpty(f21468c)) {
-            if (TextUtils.equals(str, f21468c)) {
+        if (!TextUtils.isEmpty(f12864c)) {
+            if (TextUtils.equals(str, f12864c)) {
                 return;
             }
-            ALog.m9182e(TAG, "setAgooMessageSecret error!", "new", str, "old", f21468c);
+            ALog.e(TAG, "setAgooMessageSecret error!", "new", str, "old", f12864c);
         } else {
-            f21468c = str;
-            SharedPreferences.Editor edit = context.getSharedPreferences(PREFERENCES, 4).edit();
-            edit.putString(PROPERTY_SECRET_KEY, f21468c);
-            edit.apply();
-            ALog.m9180d(TAG, "setAgooMessageSecret", "secret", str);
+            f12864c = str;
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(PREFERENCES, 4).edit();
+            editorEdit.putString(PROPERTY_SECRET_KEY, f12864c);
+            editorEdit.apply();
+            ALog.d(TAG, "setAgooMessageSecret", "secret", str);
         }
     }
 
-    /* renamed from: b */
-    public static void m24939b(Context context, String str) {
-        ALog.m9183i(TAG, "setDeviceToken", "token", str);
+    public static void b(Context context, String str) {
+        ALog.i(TAG, "setDeviceToken", "token", str);
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        f21469d = str;
+        f12865d = str;
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(PREFERENCES, 4).edit();
-            edit.putString("deviceId", str);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(PREFERENCES, 4).edit();
+            editorEdit.putString("deviceId", str);
+            editorEdit.apply();
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "setDeviceToken", th, new Object[0]);
+            ALog.e(TAG, "setDeviceToken", th, new Object[0]);
         }
     }
 
-    /* renamed from: b */
-    public static boolean m24940b(Context context, long j2) {
+    public static boolean b(Context context, long j2) {
         try {
             long j3 = context.getSharedPreferences(PREFERENCES, 4).getLong(AGOO_CLEAR_TIME, 0L);
             StringBuilder sb = new StringBuilder();
@@ -210,30 +196,28 @@ public class Config {
             sb.append(j4);
             sb.append(",istrue=");
             sb.append(j4 > 86400000);
-            ALog.m9180d("isClearTime", sb.toString(), new Object[0]);
+            ALog.d("isClearTime", sb.toString(), new Object[0]);
             return j2 != 0 && j4 > 86400000;
         } catch (Throwable unused) {
             return false;
         }
     }
 
-    /* renamed from: a */
-    public static void m24935a(Context context, int i2) {
+    public static void a(Context context, int i2) {
         try {
             SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCES, 4);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt(AGOO_UNREPORT_TIMES, sharedPreferences.getInt(AGOO_UNREPORT_TIMES, 0) + i2);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+            editorEdit.putInt(AGOO_UNREPORT_TIMES, sharedPreferences.getInt(AGOO_UNREPORT_TIMES, 0) + i2);
+            editorEdit.apply();
         } catch (Throwable unused) {
         }
     }
 
-    /* renamed from: a */
-    public static void m24936a(Context context, long j2) {
+    public static void a(Context context, long j2) {
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(PREFERENCES, 4).edit();
-            edit.putLong(AGOO_CLEAR_TIME, j2);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(PREFERENCES, 4).edit();
+            editorEdit.putLong(AGOO_CLEAR_TIME, j2);
+            editorEdit.apply();
         } catch (Throwable unused) {
         }
     }

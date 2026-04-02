@@ -5,8 +5,8 @@ import android.view.WindowId;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(18)
-/* loaded from: classes.dex */
 class WindowIdApi18 implements WindowIdImpl {
     private final WindowId mWindowId;
 

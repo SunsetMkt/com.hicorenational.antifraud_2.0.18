@@ -7,9 +7,9 @@ import com.xiaomi.mipush.sdk.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "conn_stat")
-/* loaded from: classes.dex */
 public class SessionConnStat extends StatObject {
 
     @Dimension
@@ -27,9 +27,8 @@ public class SessionConnStat extends StatObject {
     @Dimension
     public String host;
 
-    /* renamed from: ip */
     @Dimension
-    public String f1003ip;
+    public String ip;
 
     @Dimension
     public int port;
@@ -118,8 +117,8 @@ public class SessionConnStat extends StatObject {
     }
 
     public void syncValueFromSession(Session session) {
-        SessionStatistic sessionStatistic = session.f699q;
-        this.f1003ip = sessionStatistic.f1004ip;
+        SessionStatistic sessionStatistic = session.q;
+        this.ip = sessionStatistic.ip;
         this.port = sessionStatistic.port;
         this.ipRefer = sessionStatistic.ipRefer;
         this.ipType = sessionStatistic.ipType;

@@ -8,7 +8,7 @@ import com.alibaba.sdk.android.oss.model.OSSRequest;
 import com.alibaba.sdk.android.oss.model.OSSResult;
 import okhttp3.OkHttpClient;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ExecutionContext<Request extends OSSRequest, Result extends OSSResult> {
     private Context applicationContext;
     private CancellationHandler cancellationHandler;

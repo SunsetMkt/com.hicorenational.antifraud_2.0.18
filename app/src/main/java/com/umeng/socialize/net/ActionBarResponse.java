@@ -7,7 +7,7 @@ import com.umeng.socialize.utils.UmengText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ActionBarResponse extends SocializeReseponse {
     public int mCommentCount;
     public String mEntityKey;
@@ -28,7 +28,7 @@ public class ActionBarResponse extends SocializeReseponse {
     public void parseJsonObject() {
         JSONObject jSONObject = this.mJsonData;
         if (jSONObject == null) {
-            SLog.m12717I(UmengText.NET.JSONNULL);
+            SLog.I(UmengText.NET.JSONNULL);
             return;
         }
         try {

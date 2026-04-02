@@ -3,14 +3,12 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AccountListBean extends BaseBean {
     private String caseInfoID;
     private String createTime;
     private String description;
-
-    /* renamed from: id */
-    private String f1579id;
+    private String id;
     private boolean isEdit;
     private boolean isSelect;
     private List<UploadFileBean> paymentDetails;
@@ -43,7 +41,7 @@ public class AccountListBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1579id;
+        return this.id;
     }
 
     public List<UploadFileBean> getPaymentDetails() {
@@ -135,7 +133,7 @@ public class AccountListBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1579id = str;
+        this.id = str;
     }
 
     public void setPaymentDetails(List<UploadFileBean> list) {

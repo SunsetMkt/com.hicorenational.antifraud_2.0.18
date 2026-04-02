@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class RemoteInput {
     public static final int EDIT_CHOICES_BEFORE_SENDING_AUTO = 0;
     public static final int EDIT_CHOICES_BEFORE_SENDING_DISABLED = 1;
@@ -235,19 +235,19 @@ public final class RemoteInput {
         if (i2 < 16 || (clipDataIntentFromIntent = getClipDataIntentFromIntent(intent)) == null) {
             return null;
         }
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (String str2 : clipDataIntentFromIntent.getExtras().keySet()) {
             if (str2.startsWith(EXTRA_DATA_TYPE_RESULTS_DATA)) {
-                String substring = str2.substring(39);
-                if (!substring.isEmpty() && (string = clipDataIntentFromIntent.getBundleExtra(str2).getString(str)) != null && !string.isEmpty()) {
-                    hashMap.put(substring, Uri.parse(string));
+                String strSubstring = str2.substring(39);
+                if (!strSubstring.isEmpty() && (string = clipDataIntentFromIntent.getBundleExtra(str2).getString(str)) != null && !string.isEmpty()) {
+                    map.put(strSubstring, Uri.parse(string));
                 }
             }
         }
-        if (hashMap.isEmpty()) {
+        if (map.isEmpty()) {
             return null;
         }
-        return hashMap;
+        return map;
     }
 
     private static String getExtraResultsKeyForData(String str) {
@@ -328,10 +328,10 @@ public final class RemoteInput {
 
     @RequiresApi(20)
     static android.app.RemoteInput fromCompat(RemoteInput remoteInput) {
-        RemoteInput.Builder addExtras = new RemoteInput.Builder(remoteInput.getResultKey()).setLabel(remoteInput.getLabel()).setChoices(remoteInput.getChoices()).setAllowFreeFormInput(remoteInput.getAllowFreeFormInput()).addExtras(remoteInput.getExtras());
+        RemoteInput.Builder builderAddExtras = new RemoteInput.Builder(remoteInput.getResultKey()).setLabel(remoteInput.getLabel()).setChoices(remoteInput.getChoices()).setAllowFreeFormInput(remoteInput.getAllowFreeFormInput()).addExtras(remoteInput.getExtras());
         if (Build.VERSION.SDK_INT >= 29) {
-            addExtras.setEditChoicesBeforeSending(remoteInput.getEditChoicesBeforeSending());
+            builderAddExtras.setEditChoicesBeforeSending(remoteInput.getEditChoicesBeforeSending());
         }
-        return addExtras.build();
+        return builderAddExtras.build();
     }
 }

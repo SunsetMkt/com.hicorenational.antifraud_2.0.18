@@ -3,10 +3,9 @@ package com.google.android.material.shape;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
-import com.google.android.material.internal.Experimental;
+import androidx.annotation.NonNull;
 
-@Experimental("The shapes API is currently experimental and subject to change")
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InterpolateOnScrollPositionChangeHelper {
     private ScrollView containingScrollView;
     private MaterialShapeDrawable materialShapeDrawable;
@@ -34,11 +33,11 @@ public class InterpolateOnScrollPositionChangeHelper {
         this.materialShapeDrawable = materialShapeDrawable;
     }
 
-    public void startListeningForScrollChanges(ViewTreeObserver viewTreeObserver) {
+    public void startListeningForScrollChanges(@NonNull ViewTreeObserver viewTreeObserver) {
         viewTreeObserver.addOnScrollChangedListener(this.scrollChangedListener);
     }
 
-    public void stopListeningForScrollChanges(ViewTreeObserver viewTreeObserver) {
+    public void stopListeningForScrollChanges(@NonNull ViewTreeObserver viewTreeObserver) {
         viewTreeObserver.removeOnScrollChangedListener(this.scrollChangedListener);
     }
 

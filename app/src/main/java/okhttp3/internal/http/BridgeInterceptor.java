@@ -15,7 +15,7 @@ import okhttp3.internal.Version;
 import okio.GzipSource;
 import okio.Okio;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class BridgeInterceptor implements Interceptor {
     private final CookieJar cookieJar;
 
@@ -41,48 +41,48 @@ public final class BridgeInterceptor implements Interceptor {
     @Override // okhttp3.Interceptor
     public Response intercept(Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
-        Request.Builder newBuilder = request.newBuilder();
-        RequestBody body = request.body();
-        if (body != null) {
-            MediaType contentType = body.contentType();
-            if (contentType != null) {
-                newBuilder.header("Content-Type", contentType.toString());
+        Request.Builder builderNewBuilder = request.newBuilder();
+        RequestBody requestBodyBody = request.body();
+        if (requestBodyBody != null) {
+            MediaType mediaTypeContentType = requestBodyBody.contentType();
+            if (mediaTypeContentType != null) {
+                builderNewBuilder.header("Content-Type", mediaTypeContentType.toString());
             }
-            long contentLength = body.contentLength();
-            if (contentLength != -1) {
-                newBuilder.header("Content-Length", Long.toString(contentLength));
-                newBuilder.removeHeader("Transfer-Encoding");
+            long jContentLength = requestBodyBody.contentLength();
+            if (jContentLength != -1) {
+                builderNewBuilder.header("Content-Length", Long.toString(jContentLength));
+                builderNewBuilder.removeHeader("Transfer-Encoding");
             } else {
-                newBuilder.header("Transfer-Encoding", "chunked");
-                newBuilder.removeHeader("Content-Length");
+                builderNewBuilder.header("Transfer-Encoding", "chunked");
+                builderNewBuilder.removeHeader("Content-Length");
             }
         }
         boolean z = false;
         if (request.header("Host") == null) {
-            newBuilder.header("Host", Util.hostHeader(request.url(), false));
+            builderNewBuilder.header("Host", Util.hostHeader(request.url(), false));
         }
         if (request.header("Connection") == null) {
-            newBuilder.header("Connection", "Keep-Alive");
+            builderNewBuilder.header("Connection", "Keep-Alive");
         }
         if (request.header(HttpConstant.ACCEPT_ENCODING) == null && request.header(com.alibaba.sdk.android.oss.common.utils.HttpHeaders.RANGE) == null) {
             z = true;
-            newBuilder.header(HttpConstant.ACCEPT_ENCODING, HttpConstant.GZIP);
+            builderNewBuilder.header(HttpConstant.ACCEPT_ENCODING, HttpConstant.GZIP);
         }
-        List<Cookie> loadForRequest = this.cookieJar.loadForRequest(request.url());
-        if (!loadForRequest.isEmpty()) {
-            newBuilder.header("Cookie", cookieHeader(loadForRequest));
+        List<Cookie> listLoadForRequest = this.cookieJar.loadForRequest(request.url());
+        if (!listLoadForRequest.isEmpty()) {
+            builderNewBuilder.header("Cookie", cookieHeader(listLoadForRequest));
         }
         if (request.header(com.alibaba.sdk.android.oss.common.utils.HttpHeaders.USER_AGENT) == null) {
-            newBuilder.header(com.alibaba.sdk.android.oss.common.utils.HttpHeaders.USER_AGENT, Version.userAgent());
+            builderNewBuilder.header(com.alibaba.sdk.android.oss.common.utils.HttpHeaders.USER_AGENT, Version.userAgent());
         }
-        Response proceed = chain.proceed(newBuilder.build());
-        HttpHeaders.receiveHeaders(this.cookieJar, request.url(), proceed.headers());
-        Response.Builder request2 = proceed.newBuilder().request(request);
-        if (z && HttpConstant.GZIP.equalsIgnoreCase(proceed.header("Content-Encoding")) && HttpHeaders.hasBody(proceed)) {
-            GzipSource gzipSource = new GzipSource(proceed.body().source());
-            request2.headers(proceed.headers().newBuilder().removeAll("Content-Encoding").removeAll("Content-Length").build());
-            request2.body(new RealResponseBody(proceed.header("Content-Type"), -1L, Okio.buffer(gzipSource)));
+        Response responseProceed = chain.proceed(builderNewBuilder.build());
+        HttpHeaders.receiveHeaders(this.cookieJar, request.url(), responseProceed.headers());
+        Response.Builder builderRequest = responseProceed.newBuilder().request(request);
+        if (z && HttpConstant.GZIP.equalsIgnoreCase(responseProceed.header("Content-Encoding")) && HttpHeaders.hasBody(responseProceed)) {
+            GzipSource gzipSource = new GzipSource(responseProceed.body().source());
+            builderRequest.headers(responseProceed.headers().newBuilder().removeAll("Content-Encoding").removeAll("Content-Length").build());
+            builderRequest.body(new RealResponseBody(responseProceed.header("Content-Type"), -1L, Okio.buffer(gzipSource)));
         }
-        return request2.build();
+        return builderRequest.build();
     }
 }

@@ -7,7 +7,7 @@ import android.os.Build;
 import android.view.PointerIcon;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PointerIconCompat {
     public static final int TYPE_ALIAS = 1010;
     public static final int TYPE_ALL_SCROLL = 1013;

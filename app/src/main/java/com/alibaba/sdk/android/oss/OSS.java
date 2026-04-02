@@ -75,13 +75,13 @@ import com.alibaba.sdk.android.oss.model.UploadPartRequest;
 import com.alibaba.sdk.android.oss.model.UploadPartResult;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface OSS {
-    AbortMultipartUploadResult abortMultipartUpload(AbortMultipartUploadRequest abortMultipartUploadRequest) throws ClientException, ServiceException;
+    AbortMultipartUploadResult abortMultipartUpload(AbortMultipartUploadRequest abortMultipartUploadRequest) throws ServiceException, ClientException;
 
     void abortResumableUpload(ResumableUploadRequest resumableUploadRequest) throws IOException;
 
-    AppendObjectResult appendObject(AppendObjectRequest appendObjectRequest) throws ClientException, ServiceException;
+    AppendObjectResult appendObject(AppendObjectRequest appendObjectRequest) throws ServiceException, ClientException;
 
     OSSAsyncTask<AbortMultipartUploadResult> asyncAbortMultipartUpload(AbortMultipartUploadRequest abortMultipartUploadRequest, OSSCompletedCallback<AbortMultipartUploadRequest, AbortMultipartUploadResult> oSSCompletedCallback);
 
@@ -155,55 +155,55 @@ public interface OSS {
 
     OSSAsyncTask<UploadPartResult> asyncUploadPart(UploadPartRequest uploadPartRequest, OSSCompletedCallback<UploadPartRequest, UploadPartResult> oSSCompletedCallback);
 
-    CompleteMultipartUploadResult completeMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest) throws ClientException, ServiceException;
+    CompleteMultipartUploadResult completeMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest) throws ServiceException, ClientException;
 
-    CopyObjectResult copyObject(CopyObjectRequest copyObjectRequest) throws ClientException, ServiceException;
+    CopyObjectResult copyObject(CopyObjectRequest copyObjectRequest) throws ServiceException, ClientException;
 
-    CreateBucketResult createBucket(CreateBucketRequest createBucketRequest) throws ClientException, ServiceException;
+    CreateBucketResult createBucket(CreateBucketRequest createBucketRequest) throws ServiceException, ClientException;
 
-    DeleteBucketResult deleteBucket(DeleteBucketRequest deleteBucketRequest) throws ClientException, ServiceException;
+    DeleteBucketResult deleteBucket(DeleteBucketRequest deleteBucketRequest) throws ServiceException, ClientException;
 
-    DeleteBucketLifecycleResult deleteBucketLifecycle(DeleteBucketLifecycleRequest deleteBucketLifecycleRequest) throws ClientException, ServiceException;
+    DeleteBucketLifecycleResult deleteBucketLifecycle(DeleteBucketLifecycleRequest deleteBucketLifecycleRequest) throws ServiceException, ClientException;
 
-    DeleteBucketLoggingResult deleteBucketLogging(DeleteBucketLoggingRequest deleteBucketLoggingRequest) throws ClientException, ServiceException;
+    DeleteBucketLoggingResult deleteBucketLogging(DeleteBucketLoggingRequest deleteBucketLoggingRequest) throws ServiceException, ClientException;
 
-    DeleteMultipleObjectResult deleteMultipleObject(DeleteMultipleObjectRequest deleteMultipleObjectRequest) throws ClientException, ServiceException;
+    DeleteMultipleObjectResult deleteMultipleObject(DeleteMultipleObjectRequest deleteMultipleObjectRequest) throws ServiceException, ClientException;
 
-    DeleteObjectResult deleteObject(DeleteObjectRequest deleteObjectRequest) throws ClientException, ServiceException;
+    DeleteObjectResult deleteObject(DeleteObjectRequest deleteObjectRequest) throws ServiceException, ClientException;
 
-    boolean doesObjectExist(String str, String str2) throws ClientException, ServiceException;
+    boolean doesObjectExist(String str, String str2) throws ServiceException, ClientException;
 
-    GetBucketACLResult getBucketACL(GetBucketACLRequest getBucketACLRequest) throws ClientException, ServiceException;
+    GetBucketACLResult getBucketACL(GetBucketACLRequest getBucketACLRequest) throws ServiceException, ClientException;
 
-    GetBucketInfoResult getBucketInfo(GetBucketInfoRequest getBucketInfoRequest) throws ClientException, ServiceException;
+    GetBucketInfoResult getBucketInfo(GetBucketInfoRequest getBucketInfoRequest) throws ServiceException, ClientException;
 
-    GetBucketLifecycleResult getBucketLifecycle(GetBucketLifecycleRequest getBucketLifecycleRequest) throws ClientException, ServiceException;
+    GetBucketLifecycleResult getBucketLifecycle(GetBucketLifecycleRequest getBucketLifecycleRequest) throws ServiceException, ClientException;
 
-    GetBucketLoggingResult getBucketLogging(GetBucketLoggingRequest getBucketLoggingRequest) throws ClientException, ServiceException;
+    GetBucketLoggingResult getBucketLogging(GetBucketLoggingRequest getBucketLoggingRequest) throws ServiceException, ClientException;
 
-    GetBucketRefererResult getBucketReferer(GetBucketRefererRequest getBucketRefererRequest) throws ClientException, ServiceException;
+    GetBucketRefererResult getBucketReferer(GetBucketRefererRequest getBucketRefererRequest) throws ServiceException, ClientException;
 
-    GetObjectResult getObject(GetObjectRequest getObjectRequest) throws ClientException, ServiceException;
+    GetObjectResult getObject(GetObjectRequest getObjectRequest) throws ServiceException, ClientException;
 
-    GetObjectACLResult getObjectACL(GetObjectACLRequest getObjectACLRequest) throws ClientException, ServiceException;
+    GetObjectACLResult getObjectACL(GetObjectACLRequest getObjectACLRequest) throws ServiceException, ClientException;
 
-    GetSymlinkResult getSymlink(GetSymlinkRequest getSymlinkRequest) throws ClientException, ServiceException;
+    GetSymlinkResult getSymlink(GetSymlinkRequest getSymlinkRequest) throws ServiceException, ClientException;
 
-    HeadObjectResult headObject(HeadObjectRequest headObjectRequest) throws ClientException, ServiceException;
+    HeadObjectResult headObject(HeadObjectRequest headObjectRequest) throws ServiceException, ClientException;
 
-    ImagePersistResult imagePersist(ImagePersistRequest imagePersistRequest) throws ClientException, ServiceException;
+    ImagePersistResult imagePersist(ImagePersistRequest imagePersistRequest) throws ServiceException, ClientException;
 
-    InitiateMultipartUploadResult initMultipartUpload(InitiateMultipartUploadRequest initiateMultipartUploadRequest) throws ClientException, ServiceException;
+    InitiateMultipartUploadResult initMultipartUpload(InitiateMultipartUploadRequest initiateMultipartUploadRequest) throws ServiceException, ClientException;
 
-    ListBucketsResult listBuckets(ListBucketsRequest listBucketsRequest) throws ClientException, ServiceException;
+    ListBucketsResult listBuckets(ListBucketsRequest listBucketsRequest) throws ServiceException, ClientException;
 
-    ListMultipartUploadsResult listMultipartUploads(ListMultipartUploadsRequest listMultipartUploadsRequest) throws ClientException, ServiceException;
+    ListMultipartUploadsResult listMultipartUploads(ListMultipartUploadsRequest listMultipartUploadsRequest) throws ServiceException, ClientException;
 
-    ListObjectsResult listObjects(ListObjectsRequest listObjectsRequest) throws ClientException, ServiceException;
+    ListObjectsResult listObjects(ListObjectsRequest listObjectsRequest) throws ServiceException, ClientException;
 
-    ListPartsResult listParts(ListPartsRequest listPartsRequest) throws ClientException, ServiceException;
+    ListPartsResult listParts(ListPartsRequest listPartsRequest) throws ServiceException, ClientException;
 
-    CompleteMultipartUploadResult multipartUpload(MultipartUploadRequest multipartUploadRequest) throws ClientException, ServiceException;
+    CompleteMultipartUploadResult multipartUpload(MultipartUploadRequest multipartUploadRequest) throws ServiceException, ClientException;
 
     String presignConstrainedObjectURL(GeneratePresignedUrlRequest generatePresignedUrlRequest) throws ClientException;
 
@@ -211,25 +211,25 @@ public interface OSS {
 
     String presignPublicObjectURL(String str, String str2);
 
-    PutBucketLifecycleResult putBucketLifecycle(PutBucketLifecycleRequest putBucketLifecycleRequest) throws ClientException, ServiceException;
+    PutBucketLifecycleResult putBucketLifecycle(PutBucketLifecycleRequest putBucketLifecycleRequest) throws ServiceException, ClientException;
 
-    PutBucketLoggingResult putBucketLogging(PutBucketLoggingRequest putBucketLoggingRequest) throws ClientException, ServiceException;
+    PutBucketLoggingResult putBucketLogging(PutBucketLoggingRequest putBucketLoggingRequest) throws ServiceException, ClientException;
 
-    PutBucketRefererResult putBucketReferer(PutBucketRefererRequest putBucketRefererRequest) throws ClientException, ServiceException;
+    PutBucketRefererResult putBucketReferer(PutBucketRefererRequest putBucketRefererRequest) throws ServiceException, ClientException;
 
-    PutObjectResult putObject(PutObjectRequest putObjectRequest) throws ClientException, ServiceException;
+    PutObjectResult putObject(PutObjectRequest putObjectRequest) throws ServiceException, ClientException;
 
-    PutSymlinkResult putSymlink(PutSymlinkRequest putSymlinkRequest) throws ClientException, ServiceException;
+    PutSymlinkResult putSymlink(PutSymlinkRequest putSymlinkRequest) throws ServiceException, ClientException;
 
-    RestoreObjectResult restoreObject(RestoreObjectRequest restoreObjectRequest) throws ClientException, ServiceException;
+    RestoreObjectResult restoreObject(RestoreObjectRequest restoreObjectRequest) throws ServiceException, ClientException;
 
-    ResumableUploadResult resumableUpload(ResumableUploadRequest resumableUploadRequest) throws ClientException, ServiceException;
+    ResumableUploadResult resumableUpload(ResumableUploadRequest resumableUploadRequest) throws ServiceException, ClientException;
 
-    ResumableUploadResult sequenceUpload(ResumableUploadRequest resumableUploadRequest) throws ClientException, ServiceException;
+    ResumableUploadResult sequenceUpload(ResumableUploadRequest resumableUploadRequest) throws ServiceException, ClientException;
 
-    TriggerCallbackResult triggerCallback(TriggerCallbackRequest triggerCallbackRequest) throws ClientException, ServiceException;
+    TriggerCallbackResult triggerCallback(TriggerCallbackRequest triggerCallbackRequest) throws ServiceException, ClientException;
 
     void updateCredentialProvider(OSSCredentialProvider oSSCredentialProvider);
 
-    UploadPartResult uploadPart(UploadPartRequest uploadPartRequest) throws ClientException, ServiceException;
+    UploadPartResult uploadPart(UploadPartRequest uploadPartRequest) throws ServiceException, ClientException;
 }

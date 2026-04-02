@@ -39,6 +39,7 @@ import androidx.core.view.ViewCompat;
 import androidx.versionedparcelable.CustomVersionedParcelable;
 import anet.channel.strategy.dispatch.DispatchConstants;
 import com.xiaomi.mipush.sdk.Constants;
+import j.a.a.a.c;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,9 +49,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
-import p324i.p325a.p326a.p327a.C5758c;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IconCompat extends CustomVersionedParcelable {
     private static final float ADAPTIVE_ICON_INSET_FACTOR = 0.25f;
     private static final int AMBIENT_SHADOW_ALPHA = 30;
@@ -184,11 +184,11 @@ public class IconCompat extends CustomVersionedParcelable {
 
     @VisibleForTesting
     static Bitmap createLegacyIconFromAdaptiveIcon(Bitmap bitmap, boolean z) {
-        int min = (int) (Math.min(bitmap.getWidth(), bitmap.getHeight()) * DEFAULT_VIEW_PORT_SCALE);
-        Bitmap createBitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        int iMin = (int) (Math.min(bitmap.getWidth(), bitmap.getHeight()) * DEFAULT_VIEW_PORT_SCALE);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iMin, iMin, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         Paint paint = new Paint(3);
-        float f2 = min;
+        float f2 = iMin;
         float f3 = 0.5f * f2;
         float f4 = ICON_DIAMETER_FACTOR * f3;
         if (z) {
@@ -204,12 +204,12 @@ public class IconCompat extends CustomVersionedParcelable {
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         Matrix matrix = new Matrix();
-        matrix.setTranslate((-(bitmap.getWidth() - min)) / 2, (-(bitmap.getHeight() - min)) / 2);
+        matrix.setTranslate((-(bitmap.getWidth() - iMin)) / 2, (-(bitmap.getHeight() - iMin)) / 2);
         bitmapShader.setLocalMatrix(matrix);
         paint.setShader(bitmapShader);
         canvas.drawCircle(f3, f3, f4, paint);
         canvas.setBitmap(null);
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public static IconCompat createWithAdaptiveBitmap(Bitmap bitmap) {
@@ -317,8 +317,8 @@ public class IconCompat extends CustomVersionedParcelable {
                     return ResourcesCompat.getDrawable(getResources(context, resPackage), this.mInt1, context.getTheme());
                 } catch (RuntimeException unused) {
                     String.format("Unable to load resource 0x%08x from pkg=%s", Integer.valueOf(this.mInt1), this.mObj1);
-                    break;
                 }
+                break;
             case 3:
                 return new BitmapDrawable(context.getResources(), BitmapFactory.decodeByteArray((byte[]) this.mObj1, this.mInt1, this.mInt2));
             case 4:
@@ -361,31 +361,30 @@ public class IconCompat extends CustomVersionedParcelable {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void addToShortcutIntent(@NonNull Intent intent, @Nullable Drawable drawable, @NonNull Context context) {
-        Bitmap bitmap;
+        Bitmap bitmapCopy;
         checkResource(context);
         int i2 = this.mType;
         if (i2 == 1) {
-            bitmap = (Bitmap) this.mObj1;
+            bitmapCopy = (Bitmap) this.mObj1;
             if (drawable != null) {
-                bitmap = bitmap.copy(bitmap.getConfig(), true);
+                bitmapCopy = bitmapCopy.copy(bitmapCopy.getConfig(), true);
             }
         } else if (i2 == 2) {
             try {
-                Context createPackageContext = context.createPackageContext(getResPackage(), 0);
+                Context contextCreatePackageContext = context.createPackageContext(getResPackage(), 0);
                 if (drawable == null) {
-                    intent.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(createPackageContext, this.mInt1));
+                    intent.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(contextCreatePackageContext, this.mInt1));
                     return;
                 }
-                Drawable drawable2 = ContextCompat.getDrawable(createPackageContext, this.mInt1);
-                if (drawable2.getIntrinsicWidth() > 0 && drawable2.getIntrinsicHeight() > 0) {
-                    bitmap = Bitmap.createBitmap(drawable2.getIntrinsicWidth(), drawable2.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-                    drawable2.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                    drawable2.draw(new Canvas(bitmap));
+                Drawable drawable2 = ContextCompat.getDrawable(contextCreatePackageContext, this.mInt1);
+                if (drawable2.getIntrinsicWidth() <= 0 || drawable2.getIntrinsicHeight() <= 0) {
+                    int launcherLargeIconSize = ((ActivityManager) contextCreatePackageContext.getSystemService("activity")).getLauncherLargeIconSize();
+                    bitmapCopy = Bitmap.createBitmap(launcherLargeIconSize, launcherLargeIconSize, Bitmap.Config.ARGB_8888);
+                } else {
+                    bitmapCopy = Bitmap.createBitmap(drawable2.getIntrinsicWidth(), drawable2.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
                 }
-                int launcherLargeIconSize = ((ActivityManager) createPackageContext.getSystemService("activity")).getLauncherLargeIconSize();
-                bitmap = Bitmap.createBitmap(launcherLargeIconSize, launcherLargeIconSize, Bitmap.Config.ARGB_8888);
-                drawable2.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                drawable2.draw(new Canvas(bitmap));
+                drawable2.setBounds(0, 0, bitmapCopy.getWidth(), bitmapCopy.getHeight());
+                drawable2.draw(new Canvas(bitmapCopy));
             } catch (PackageManager.NameNotFoundException e2) {
                 throw new IllegalArgumentException("Can't find package " + this.mObj1, e2);
             }
@@ -393,15 +392,15 @@ public class IconCompat extends CustomVersionedParcelable {
             if (i2 != 5) {
                 throw new IllegalArgumentException("Icon type not supported for intent shortcuts");
             }
-            bitmap = createLegacyIconFromAdaptiveIcon((Bitmap) this.mObj1, true);
+            bitmapCopy = createLegacyIconFromAdaptiveIcon((Bitmap) this.mObj1, true);
         }
         if (drawable != null) {
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
+            int width = bitmapCopy.getWidth();
+            int height = bitmapCopy.getHeight();
             drawable.setBounds(width / 2, height / 2, width, height);
-            drawable.draw(new Canvas(bitmap));
+            drawable.draw(new Canvas(bitmapCopy));
         }
-        intent.putExtra("android.intent.extra.shortcut.ICON", bitmap);
+        intent.putExtra("android.intent.extra.shortcut.ICON", bitmapCopy);
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -486,13 +485,13 @@ public class IconCompat extends CustomVersionedParcelable {
         if (Build.VERSION.SDK_INT >= 23) {
             return toIcon(context).loadDrawable(context);
         }
-        Drawable loadDrawableInner = loadDrawableInner(context);
-        if (loadDrawableInner != null && (this.mTintList != null || this.mTintMode != DEFAULT_TINT_MODE)) {
-            loadDrawableInner.mutate();
-            DrawableCompat.setTintList(loadDrawableInner, this.mTintList);
-            DrawableCompat.setTintMode(loadDrawableInner, this.mTintMode);
+        Drawable drawableLoadDrawableInner = loadDrawableInner(context);
+        if (drawableLoadDrawableInner != null && (this.mTintList != null || this.mTintMode != DEFAULT_TINT_MODE)) {
+            drawableLoadDrawableInner.mutate();
+            DrawableCompat.setTintList(drawableLoadDrawableInner, this.mTintList);
+            DrawableCompat.setTintMode(drawableLoadDrawableInner, this.mTintMode);
         }
-        return loadDrawableInner;
+        return drawableLoadDrawableInner;
     }
 
     @Override // androidx.versionedparcelable.CustomVersionedParcelable
@@ -525,7 +524,7 @@ public class IconCompat extends CustomVersionedParcelable {
             case 2:
             case 4:
             case 6:
-                this.mObj1 = new String(this.mData, Charset.forName(C5758c.f20752c));
+                this.mObj1 = new String(this.mData, Charset.forName(c.f12441c));
                 return;
             case 3:
                 this.mObj1 = this.mData;
@@ -558,14 +557,14 @@ public class IconCompat extends CustomVersionedParcelable {
                 this.mData = byteArrayOutputStream.toByteArray();
                 return;
             case 2:
-                this.mData = ((String) this.mObj1).getBytes(Charset.forName(C5758c.f20752c));
+                this.mData = ((String) this.mObj1).getBytes(Charset.forName(c.f12441c));
                 return;
             case 3:
                 this.mData = (byte[]) this.mObj1;
                 return;
             case 4:
             case 6:
-                this.mData = this.mObj1.toString().getBytes(Charset.forName(C5758c.f20752c));
+                this.mData = this.mObj1.toString().getBytes(Charset.forName(c.f12441c));
                 return;
         }
     }
@@ -654,7 +653,6 @@ public class IconCompat extends CustomVersionedParcelable {
                 if (this.mInt2 != 0) {
                     sb.append(" off=");
                     sb.append(this.mInt2);
-                    break;
                 }
                 break;
             case 4:
@@ -678,7 +676,7 @@ public class IconCompat extends CustomVersionedParcelable {
     @NonNull
     @RequiresApi(23)
     public Icon toIcon(@Nullable Context context) {
-        Icon createWithBitmap;
+        Icon iconCreateWithBitmap;
         switch (this.mType) {
             case -1:
                 return (Icon) this.mObj1;
@@ -686,25 +684,20 @@ public class IconCompat extends CustomVersionedParcelable {
             default:
                 throw new IllegalArgumentException("Unknown type");
             case 1:
-                createWithBitmap = Icon.createWithBitmap((Bitmap) this.mObj1);
+                iconCreateWithBitmap = Icon.createWithBitmap((Bitmap) this.mObj1);
                 break;
             case 2:
-                createWithBitmap = Icon.createWithResource(getResPackage(), this.mInt1);
+                iconCreateWithBitmap = Icon.createWithResource(getResPackage(), this.mInt1);
                 break;
             case 3:
-                createWithBitmap = Icon.createWithData((byte[]) this.mObj1, this.mInt1, this.mInt2);
+                iconCreateWithBitmap = Icon.createWithData((byte[]) this.mObj1, this.mInt1, this.mInt2);
                 break;
             case 4:
-                createWithBitmap = Icon.createWithContentUri((String) this.mObj1);
+                iconCreateWithBitmap = Icon.createWithContentUri((String) this.mObj1);
                 break;
             case 5:
-                if (Build.VERSION.SDK_INT < 26) {
-                    createWithBitmap = Icon.createWithBitmap(createLegacyIconFromAdaptiveIcon((Bitmap) this.mObj1, false));
-                    break;
-                } else {
-                    createWithBitmap = Icon.createWithAdaptiveBitmap((Bitmap) this.mObj1);
-                    break;
-                }
+                iconCreateWithBitmap = Build.VERSION.SDK_INT < 26 ? Icon.createWithBitmap(createLegacyIconFromAdaptiveIcon((Bitmap) this.mObj1, false)) : Icon.createWithAdaptiveBitmap((Bitmap) this.mObj1);
+                break;
             case 6:
                 if (context == null) {
                     throw new IllegalArgumentException("Context is required to resolve the file uri of the icon: " + getUri());
@@ -714,22 +707,22 @@ public class IconCompat extends CustomVersionedParcelable {
                     throw new IllegalStateException("Cannot load adaptive icon from uri: " + getUri());
                 }
                 if (Build.VERSION.SDK_INT < 26) {
-                    createWithBitmap = Icon.createWithBitmap(createLegacyIconFromAdaptiveIcon(BitmapFactory.decodeStream(uriInputStream), false));
-                    break;
+                    iconCreateWithBitmap = Icon.createWithBitmap(createLegacyIconFromAdaptiveIcon(BitmapFactory.decodeStream(uriInputStream), false));
                 } else {
-                    createWithBitmap = Icon.createWithAdaptiveBitmap(BitmapFactory.decodeStream(uriInputStream));
-                    break;
+                    iconCreateWithBitmap = Icon.createWithAdaptiveBitmap(BitmapFactory.decodeStream(uriInputStream));
                 }
+                break;
+                break;
         }
         ColorStateList colorStateList = this.mTintList;
         if (colorStateList != null) {
-            createWithBitmap.setTintList(colorStateList);
+            iconCreateWithBitmap.setTintList(colorStateList);
         }
         PorterDuff.Mode mode = this.mTintMode;
         if (mode != DEFAULT_TINT_MODE) {
-            createWithBitmap.setTintMode(mode);
+            iconCreateWithBitmap.setTintMode(mode);
         }
-        return createWithBitmap;
+        return iconCreateWithBitmap;
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})

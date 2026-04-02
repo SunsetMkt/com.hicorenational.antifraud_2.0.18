@@ -4,7 +4,7 @@ import android.webkit.WebView;
 import com.just.agentweb.AgentWeb;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JsInterfaceHolderImpl extends JsBaseInterfaceHolder {
     private static final String TAG = "JsInterfaceHolderImpl";
     private AgentWeb.SecurityType mSecurityType;
@@ -19,7 +19,7 @@ public class JsInterfaceHolderImpl extends JsBaseInterfaceHolder {
     }
 
     private JsInterfaceHolder addJavaObjectDirect(String str, Object obj) {
-        LogUtils.m8083i(TAG, "k:" + str + "  v:" + obj);
+        LogUtils.i(TAG, "k:" + str + "  v:" + obj);
         this.mWebView.addJavascriptInterface(obj, str);
         return this;
     }
@@ -43,7 +43,7 @@ public class JsInterfaceHolderImpl extends JsBaseInterfaceHolder {
     @Override // com.just.agentweb.JsInterfaceHolder
     public JsInterfaceHolder addJavaObjects(Map<String, Object> map) {
         if (!checkSecurity()) {
-            LogUtils.m8081e(TAG, "The injected object is not safe, give up injection");
+            LogUtils.e(TAG, "The injected object is not safe, give up injection");
             return this;
         }
         for (Map.Entry<String, Object> entry : map.entrySet()) {

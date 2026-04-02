@@ -18,9 +18,8 @@ import androidx.camera.core.internal.ImmutableZoomState;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ZoomControl {
     public static final float DEFAULT_ZOOM_RATIO = 1.0f;
     public static final float MIN_ZOOM = 1.0f;
@@ -42,12 +41,21 @@ final class ZoomControl {
     @GuardedBy("mActiveLock")
     private boolean mIsActive = false;
     private Camera2CameraControl.CaptureResultListener mCaptureResultListener = new Camera2CameraControl.CaptureResultListener() { // from class: androidx.camera.camera2.internal.ZoomControl.1
+        AnonymousClass1() {
+        }
+
+        /* JADX WARN: Removed duplicated region for block: B:42:0x0039  */
         @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
         @WorkerThread
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
         public boolean onCaptureResult(@NonNull TotalCaptureResult totalCaptureResult) {
             CallbackToFutureAdapter.Completer<Void> completer;
             synchronized (ZoomControl.this.mCompleterLock) {
-                if (ZoomControl.this.mPendingZoomRatioCompleter != null) {
+                if (ZoomControl.this.mPendingZoomRatioCompleter == null) {
+                    completer = null;
+                } else {
                     CaptureRequest request = totalCaptureResult.getRequest();
                     Rect rect = request == null ? null : (Rect) request.get(CaptureRequest.SCALER_CROP_REGION);
                     if (ZoomControl.this.mPendingZoomCropRegion != null && ZoomControl.this.mPendingZoomCropRegion.equals(rect)) {
@@ -56,7 +64,6 @@ final class ZoomControl {
                         ZoomControl.this.mPendingZoomCropRegion = null;
                     }
                 }
-                completer = null;
             }
             if (completer == null) {
                 return false;
@@ -65,6 +72,40 @@ final class ZoomControl {
             return false;
         }
     };
+
+    /* JADX INFO: renamed from: androidx.camera.camera2.internal.ZoomControl$1 */
+    class AnonymousClass1 implements Camera2CameraControl.CaptureResultListener {
+        AnonymousClass1() {
+        }
+
+        /* JADX WARN: Removed duplicated region for block: B:42:0x0039  */
+        @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
+        @WorkerThread
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
+        public boolean onCaptureResult(@NonNull TotalCaptureResult totalCaptureResult) {
+            CallbackToFutureAdapter.Completer<Void> completer;
+            synchronized (ZoomControl.this.mCompleterLock) {
+                if (ZoomControl.this.mPendingZoomRatioCompleter == null) {
+                    completer = null;
+                } else {
+                    CaptureRequest request = totalCaptureResult.getRequest();
+                    Rect rect = request == null ? null : (Rect) request.get(CaptureRequest.SCALER_CROP_REGION);
+                    if (ZoomControl.this.mPendingZoomCropRegion != null && ZoomControl.this.mPendingZoomCropRegion.equals(rect)) {
+                        completer = ZoomControl.this.mPendingZoomRatioCompleter;
+                        ZoomControl.this.mPendingZoomRatioCompleter = null;
+                        ZoomControl.this.mPendingZoomCropRegion = null;
+                    }
+                }
+            }
+            if (completer == null) {
+                return false;
+            }
+            completer.set(null);
+            return false;
+        }
+    }
 
     ZoomControl(@NonNull Camera2CameraControl camera2CameraControl, @NonNull CameraCharacteristics cameraCharacteristics) {
         this.mCamera2CameraControl = camera2CameraControl;
@@ -77,11 +118,11 @@ final class ZoomControl {
     @NonNull
     @VisibleForTesting
     static Rect getCropRectByRatio(@NonNull Rect rect, float f2) {
-        float width = rect.width() / f2;
-        float height = rect.height() / f2;
-        float width2 = (rect.width() - width) / 2.0f;
-        float height2 = (rect.height() - height) / 2.0f;
-        return new Rect((int) width2, (int) height2, (int) (width2 + width), (int) (height2 + height));
+        float fWidth = rect.width() / f2;
+        float fHeight = rect.height() / f2;
+        float fWidth2 = (rect.width() - fWidth) / 2.0f;
+        float fHeight2 = (rect.height() - fHeight) / 2.0f;
+        return new Rect((int) fWidth2, (int) fHeight2, (int) (fWidth2 + fWidth), (int) (fHeight2 + fHeight));
     }
 
     private static float getMaxDigitalZoom(CameraCharacteristics cameraCharacteristics) {
@@ -94,13 +135,13 @@ final class ZoomControl {
 
     @NonNull
     @GuardedBy("mActiveLock")
-    private InterfaceFutureC0952a<Void> submitCameraZoomRatio(float f2) {
+    private d.b.b.a.a.a<Void> submitCameraZoomRatio(float f2) {
         final Rect cropRectByRatio = getCropRectByRatio(this.mCamera2CameraControl.getSensorRect(), f2);
         this.mCamera2CameraControl.setCropRegion(cropRectByRatio);
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.a0
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return ZoomControl.this.m320a(cropRectByRatio, completer);
+                return this.a.a(cropRectByRatio, completer);
             }
         });
     }
@@ -113,8 +154,7 @@ final class ZoomControl {
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m320a(Rect rect, CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(Rect rect, CallbackToFutureAdapter.Completer completer) throws Exception {
         CallbackToFutureAdapter.Completer<Void> completer2;
         synchronized (this.mCompleterLock) {
             if (this.mPendingZoomRatioCompleter != null) {
@@ -173,7 +213,7 @@ final class ZoomControl {
     }
 
     @NonNull
-    InterfaceFutureC0952a<Void> setLinearZoom(@FloatRange(from = 0.0d, m293to = 1.0d) float f2) {
+    d.b.b.a.a.a<Void> setLinearZoom(@FloatRange(from = 0.0d, to = 1.0d) float f2) {
         synchronized (this.mActiveLock) {
             if (!this.mIsActive) {
                 return Futures.immediateFailedFuture(new CameraControl.OperationCanceledException("Camera is not active."));
@@ -189,7 +229,7 @@ final class ZoomControl {
     }
 
     @NonNull
-    InterfaceFutureC0952a<Void> setZoomRatio(float f2) {
+    d.b.b.a.a.a<Void> setZoomRatio(float f2) {
         synchronized (this.mActiveLock) {
             if (!this.mIsActive) {
                 return Futures.immediateFailedFuture(new CameraControl.OperationCanceledException("Camera is not active."));

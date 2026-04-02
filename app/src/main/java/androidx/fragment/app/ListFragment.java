@@ -18,7 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ListFragment extends Fragment {
     static final int INTERNAL_EMPTY_ID = 16711681;
     static final int INTERNAL_LIST_CONTAINER_ID = 16711683;
@@ -66,14 +66,14 @@ public class ListFragment extends Fragment {
             }
             this.mProgressContainer = view.findViewById(INTERNAL_PROGRESS_CONTAINER_ID);
             this.mListContainer = view.findViewById(INTERNAL_LIST_CONTAINER_ID);
-            View findViewById = view.findViewById(R.id.list);
-            if (!(findViewById instanceof ListView)) {
-                if (findViewById != null) {
+            View viewFindViewById = view.findViewById(R.id.list);
+            if (!(viewFindViewById instanceof ListView)) {
+                if (viewFindViewById != null) {
                     throw new RuntimeException("Content has view with id attribute 'android.R.id.list' that is not a ListView class");
                 }
                 throw new RuntimeException("Your content must have a ListView whose id attribute is 'android.R.id.list'");
             }
-            this.mList = (ListView) findViewById;
+            this.mList = (ListView) viewFindViewById;
             View view2 = this.mEmptyView;
             if (view2 != null) {
                 this.mList.setEmptyView(view2);
@@ -121,22 +121,22 @@ public class ListFragment extends Fragment {
     @Override // androidx.fragment.app.Fragment
     @Nullable
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        Context requireContext = requireContext();
-        FrameLayout frameLayout = new FrameLayout(requireContext);
-        LinearLayout linearLayout = new LinearLayout(requireContext);
+        Context contextRequireContext = requireContext();
+        FrameLayout frameLayout = new FrameLayout(contextRequireContext);
+        LinearLayout linearLayout = new LinearLayout(contextRequireContext);
         linearLayout.setId(INTERNAL_PROGRESS_CONTAINER_ID);
         linearLayout.setOrientation(1);
         linearLayout.setVisibility(8);
         linearLayout.setGravity(17);
-        linearLayout.addView(new ProgressBar(requireContext, null, R.attr.progressBarStyleLarge), new FrameLayout.LayoutParams(-2, -2));
+        linearLayout.addView(new ProgressBar(contextRequireContext, null, R.attr.progressBarStyleLarge), new FrameLayout.LayoutParams(-2, -2));
         frameLayout.addView(linearLayout, new FrameLayout.LayoutParams(-1, -1));
-        FrameLayout frameLayout2 = new FrameLayout(requireContext);
+        FrameLayout frameLayout2 = new FrameLayout(contextRequireContext);
         frameLayout2.setId(INTERNAL_LIST_CONTAINER_ID);
-        TextView textView = new TextView(requireContext);
+        TextView textView = new TextView(contextRequireContext);
         textView.setId(INTERNAL_EMPTY_ID);
         textView.setGravity(17);
         frameLayout2.addView(textView, new FrameLayout.LayoutParams(-1, -1));
-        ListView listView = new ListView(requireContext);
+        ListView listView = new ListView(contextRequireContext);
         listView.setId(R.id.list);
         listView.setDrawSelectorOnTop(false);
         frameLayout2.addView(listView, new FrameLayout.LayoutParams(-1, -1));

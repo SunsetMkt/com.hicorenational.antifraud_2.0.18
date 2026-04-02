@@ -9,12 +9,12 @@ import android.widget.RadioButton;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.TintableCompoundButton;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatRadioButton extends RadioButton implements TintableCompoundButton, TintableBackgroundView {
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
     private final AppCompatCompoundButtonHelper mCompoundButtonHelper;
@@ -152,7 +152,7 @@ public class AppCompatRadioButton extends RadioButton implements TintableCompoun
     }
 
     public AppCompatRadioButton(Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0120R.attr.radioButtonStyle);
+        this(context, attributeSet, R.attr.radioButtonStyle);
     }
 
     public AppCompatRadioButton(Context context, @Nullable AttributeSet attributeSet, int i2) {

@@ -9,16 +9,35 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.core.Preview;
-import com.luck.picture.lib.C2639R;
+import com.luck.picture.lib.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PreviewView extends FrameLayout {
     private final DisplayManager.DisplayListener mDisplayListener;
     Implementation mImplementation;
     private ImplementationMode mImplementationMode;
 
-    /* renamed from: androidx.camera.view.PreviewView$2 */
-    static /* synthetic */ class C04272 {
+    /* JADX INFO: renamed from: androidx.camera.view.PreviewView$1 */
+    class AnonymousClass1 implements DisplayManager.DisplayListener {
+        AnonymousClass1() {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayAdded(int i2) {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayChanged(int i2) {
+            PreviewView.this.mImplementation.onDisplayChanged();
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayRemoved(int i2) {
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.view.PreviewView$2 */
+    static /* synthetic */ class AnonymousClass2 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$view$PreviewView$ImplementationMode = new int[ImplementationMode.values().length];
 
         static {
@@ -81,7 +100,7 @@ public class PreviewView extends FrameLayout {
 
     private void setUp() {
         removeAllViews();
-        int i2 = C04272.$SwitchMap$androidx$camera$view$PreviewView$ImplementationMode[this.mImplementationMode.ordinal()];
+        int i2 = AnonymousClass2.$SwitchMap$androidx$camera$view$PreviewView$ImplementationMode[this.mImplementationMode.ordinal()];
         if (i2 == 1) {
             this.mImplementation = new SurfaceViewImplementation();
         } else {
@@ -137,29 +156,32 @@ public class PreviewView extends FrameLayout {
     public PreviewView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2, int i3) {
         super(context, attributeSet, i2, i3);
         this.mDisplayListener = new DisplayManager.DisplayListener() { // from class: androidx.camera.view.PreviewView.1
-            @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayAdded(int i4) {
+            AnonymousClass1() {
             }
 
             @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayChanged(int i4) {
+            public void onDisplayAdded(int i22) {
+            }
+
+            @Override // android.hardware.display.DisplayManager.DisplayListener
+            public void onDisplayChanged(int i22) {
                 PreviewView.this.mImplementation.onDisplayChanged();
             }
 
             @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayRemoved(int i4) {
+            public void onDisplayRemoved(int i22) {
             }
         };
-        TypedArray obtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, C2639R.styleable.PreviewView, i2, i3);
+        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R.styleable.PreviewView, i2, i3);
         if (Build.VERSION.SDK_INT >= 29) {
-            saveAttributeDataForStyleable(context, C2639R.styleable.PreviewView, attributeSet, obtainStyledAttributes, i2, i3);
+            saveAttributeDataForStyleable(context, R.styleable.PreviewView, attributeSet, typedArrayObtainStyledAttributes, i2, i3);
         }
         try {
-            this.mImplementationMode = ImplementationMode.fromId(obtainStyledAttributes.getInteger(C2639R.styleable.PreviewView_implementationMode, ImplementationMode.TEXTURE_VIEW.getId()));
-            obtainStyledAttributes.recycle();
+            this.mImplementationMode = ImplementationMode.fromId(typedArrayObtainStyledAttributes.getInteger(R.styleable.PreviewView_implementationMode, ImplementationMode.TEXTURE_VIEW.getId()));
+            typedArrayObtainStyledAttributes.recycle();
             setUp();
         } catch (Throwable th) {
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
             throw th;
         }
     }

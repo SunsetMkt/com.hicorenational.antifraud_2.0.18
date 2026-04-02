@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.RejectedExecutionException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InitReport {
     private static final int EVENT_LIMIT = 10;
     private static final String TAG = "HaReport";
@@ -27,16 +27,16 @@ public class InitReport {
                 }
             });
         } catch (RejectedExecutionException unused) {
-            Logger.m6796e(TAG, "the thread submit has rejectedExecutionException!");
+            Logger.e(TAG, "the thread submit has rejectedExecutionException!");
         } catch (Throwable unused2) {
-            Logger.m6796e(TAG, "the thread submit has fatal error!");
+            Logger.e(TAG, "the thread submit has fatal error!");
         }
     }
 
     public static void reportWhenInit(Runnable runnable) {
         if (!hasConnectNet) {
             if (eventsToReport.size() > 10) {
-                Logger.m6796e("TAG", "the event to be report when init exceed the limit!");
+                Logger.e("TAG", "the event to be report when init exceed the limit!");
                 return;
             } else {
                 eventsToReport.add(runnable);
@@ -46,9 +46,9 @@ public class InitReport {
         try {
             HianalyticsHelper.getInstance().getReportExecutor().execute(runnable);
         } catch (RejectedExecutionException unused) {
-            Logger.m6796e(TAG, "the thread submit has rejectedExecutionException!");
+            Logger.e(TAG, "the thread submit has rejectedExecutionException!");
         } catch (Throwable unused2) {
-            Logger.m6796e(TAG, "the thread submit has fatal error!");
+            Logger.e(TAG, "the thread submit has fatal error!");
         }
     }
 
@@ -61,11 +61,11 @@ public class InitReport {
             }
             eventsToReport.clear();
         } catch (NullPointerException unused) {
-            Logger.m6796e(TAG, "event is null occured");
+            Logger.e(TAG, "event is null occured");
         } catch (RejectedExecutionException unused2) {
-            Logger.m6796e(TAG, "submit failed of rejected execution exception");
+            Logger.e(TAG, "submit failed of rejected execution exception");
         } catch (Exception unused3) {
-            Logger.m6796e(TAG, "submit failed because of some exception");
+            Logger.e(TAG, "submit failed because of some exception");
         }
     }
 }

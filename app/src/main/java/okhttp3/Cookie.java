@@ -1,7 +1,9 @@
 package okhttp3;
 
+import anet.channel.strategy.dispatch.DispatchConstants;
 import anet.channel.util.HttpConstant;
 import com.xiaomi.mipush.sdk.Constants;
+import i.q2.t.m0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -13,9 +15,9 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import okhttp3.internal.Util;
 import okhttp3.internal.http.HttpDate;
-import p286h.p309q2.p311t.C5556m0;
+import okhttp3.internal.publicsuffix.PublicSuffixDatabase;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Cookie {
     private final String domain;
     private final long expiresAt;
@@ -110,9 +112,9 @@ public final class Cookie {
             if (str == null) {
                 throw new NullPointerException("domain == null");
             }
-            String canonicalizeHost = Util.canonicalizeHost(str);
-            if (canonicalizeHost != null) {
-                this.domain = canonicalizeHost;
+            String strCanonicalizeHost = Util.canonicalizeHost(str);
+            if (strCanonicalizeHost != null) {
+                this.domain = strCanonicalizeHost;
                 this.hostOnly = z;
                 return this;
             }
@@ -134,8 +136,8 @@ public final class Cookie {
 
     private static int dateCharacterOffset(String str, int i2, int i3, boolean z) {
         while (i2 < i3) {
-            char charAt = str.charAt(i2);
-            if (((charAt < ' ' && charAt != '\t') || charAt >= 127 || (charAt >= '0' && charAt <= '9') || ((charAt >= 'a' && charAt <= 'z') || ((charAt >= 'A' && charAt <= 'Z') || charAt == ':'))) == (!z)) {
+            char cCharAt = str.charAt(i2);
+            if (((cCharAt < ' ' && cCharAt != '\t') || cCharAt >= '\u007f' || (cCharAt >= '0' && cCharAt <= '9') || ((cCharAt >= 'a' && cCharAt <= 'z') || ((cCharAt >= 'A' && cCharAt <= 'Z') || cCharAt == ':'))) == (!z)) {
                 return i2;
             }
             i2++;
@@ -156,16 +158,16 @@ public final class Cookie {
     }
 
     public static List<Cookie> parseAll(HttpUrl httpUrl, Headers headers) {
-        List<String> values = headers.values(HttpConstant.SET_COOKIE);
-        int size = values.size();
+        List<String> listValues = headers.values(HttpConstant.SET_COOKIE);
+        int size = listValues.size();
         ArrayList arrayList = null;
         for (int i2 = 0; i2 < size; i2++) {
-            Cookie parse = parse(httpUrl, values.get(i2));
-            if (parse != null) {
+            Cookie cookie = parse(httpUrl, listValues.get(i2));
+            if (cookie != null) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                arrayList.add(parse);
+                arrayList.add(cookie);
             }
         }
         return arrayList != null ? Collections.unmodifiableList(arrayList) : Collections.emptyList();
@@ -178,39 +180,39 @@ public final class Cookie {
         if (str.startsWith(".")) {
             str = str.substring(1);
         }
-        String canonicalizeHost = Util.canonicalizeHost(str);
-        if (canonicalizeHost != null) {
-            return canonicalizeHost;
+        String strCanonicalizeHost = Util.canonicalizeHost(str);
+        if (strCanonicalizeHost != null) {
+            return strCanonicalizeHost;
         }
         throw new IllegalArgumentException();
     }
 
     private static long parseExpires(String str, int i2, int i3) {
-        int dateCharacterOffset = dateCharacterOffset(str, i2, i3, false);
+        int iDateCharacterOffset = dateCharacterOffset(str, i2, i3, false);
         Matcher matcher = TIME_PATTERN.matcher(str);
         int i4 = -1;
         int i5 = -1;
         int i6 = -1;
+        int iIndexOf = -1;
         int i7 = -1;
         int i8 = -1;
-        int i9 = -1;
-        while (dateCharacterOffset < i3) {
-            int dateCharacterOffset2 = dateCharacterOffset(str, dateCharacterOffset + 1, i3, true);
-            matcher.region(dateCharacterOffset, dateCharacterOffset2);
+        while (iDateCharacterOffset < i3) {
+            int iDateCharacterOffset2 = dateCharacterOffset(str, iDateCharacterOffset + 1, i3, true);
+            matcher.region(iDateCharacterOffset, iDateCharacterOffset2);
             if (i5 == -1 && matcher.usePattern(TIME_PATTERN).matches()) {
-                int parseInt = Integer.parseInt(matcher.group(1));
-                int parseInt2 = Integer.parseInt(matcher.group(2));
-                i9 = Integer.parseInt(matcher.group(3));
-                i8 = parseInt2;
-                i5 = parseInt;
+                int i9 = Integer.parseInt(matcher.group(1));
+                int i10 = Integer.parseInt(matcher.group(2));
+                i8 = Integer.parseInt(matcher.group(3));
+                i7 = i10;
+                i5 = i9;
             } else if (i6 == -1 && matcher.usePattern(DAY_OF_MONTH_PATTERN).matches()) {
                 i6 = Integer.parseInt(matcher.group(1));
-            } else if (i7 == -1 && matcher.usePattern(MONTH_PATTERN).matches()) {
-                i7 = MONTH_PATTERN.pattern().indexOf(matcher.group(1).toLowerCase(Locale.US)) / 4;
+            } else if (iIndexOf == -1 && matcher.usePattern(MONTH_PATTERN).matches()) {
+                iIndexOf = MONTH_PATTERN.pattern().indexOf(matcher.group(1).toLowerCase(Locale.US)) / 4;
             } else if (i4 == -1 && matcher.usePattern(YEAR_PATTERN).matches()) {
                 i4 = Integer.parseInt(matcher.group(1));
             }
-            dateCharacterOffset = dateCharacterOffset(str, dateCharacterOffset2 + 1, i3, false);
+            iDateCharacterOffset = dateCharacterOffset(str, iDateCharacterOffset2 + 1, i3, false);
         }
         if (i4 >= 70 && i4 <= 99) {
             i4 += 1900;
@@ -221,7 +223,7 @@ public final class Cookie {
         if (i4 < 1601) {
             throw new IllegalArgumentException();
         }
-        if (i7 == -1) {
+        if (iIndexOf == -1) {
             throw new IllegalArgumentException();
         }
         if (i6 < 1 || i6 > 31) {
@@ -230,31 +232,31 @@ public final class Cookie {
         if (i5 < 0 || i5 > 23) {
             throw new IllegalArgumentException();
         }
-        if (i8 < 0 || i8 > 59) {
+        if (i7 < 0 || i7 > 59) {
             throw new IllegalArgumentException();
         }
-        if (i9 < 0 || i9 > 59) {
+        if (i8 < 0 || i8 > 59) {
             throw new IllegalArgumentException();
         }
         GregorianCalendar gregorianCalendar = new GregorianCalendar(Util.UTC);
         gregorianCalendar.setLenient(false);
         gregorianCalendar.set(1, i4);
-        gregorianCalendar.set(2, i7 - 1);
+        gregorianCalendar.set(2, iIndexOf - 1);
         gregorianCalendar.set(5, i6);
         gregorianCalendar.set(11, i5);
-        gregorianCalendar.set(12, i8);
-        gregorianCalendar.set(13, i9);
+        gregorianCalendar.set(12, i7);
+        gregorianCalendar.set(13, i8);
         gregorianCalendar.set(14, 0);
         return gregorianCalendar.getTimeInMillis();
     }
 
     private static long parseMaxAge(String str) {
         try {
-            long parseLong = Long.parseLong(str);
-            if (parseLong <= 0) {
+            long j2 = Long.parseLong(str);
+            if (j2 <= 0) {
                 return Long.MIN_VALUE;
             }
-            return parseLong;
+            return j2;
         } catch (NumberFormatException e2) {
             if (!str.matches("-?\\d+")) {
                 throw e2;
@@ -262,17 +264,17 @@ public final class Cookie {
             if (str.startsWith(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) {
                 return Long.MIN_VALUE;
             }
-            return C5556m0.f20396b;
+            return m0.f12222b;
         }
     }
 
     private static boolean pathMatch(HttpUrl httpUrl, String str) {
-        String encodedPath = httpUrl.encodedPath();
-        if (encodedPath.equals(str)) {
+        String strEncodedPath = httpUrl.encodedPath();
+        if (strEncodedPath.equals(str)) {
             return true;
         }
-        if (encodedPath.startsWith(str)) {
-            return str.endsWith("/") || encodedPath.charAt(str.length()) == '/';
+        if (strEncodedPath.startsWith(str)) {
+            return str.endsWith("/") || strEncodedPath.charAt(str.length()) == '/';
         }
         return false;
     }
@@ -294,9 +296,9 @@ public final class Cookie {
     }
 
     public int hashCode() {
-        int hashCode = (((((((527 + this.name.hashCode()) * 31) + this.value.hashCode()) * 31) + this.domain.hashCode()) * 31) + this.path.hashCode()) * 31;
+        int iHashCode = (((((((527 + this.name.hashCode()) * 31) + this.value.hashCode()) * 31) + this.domain.hashCode()) * 31) + this.path.hashCode()) * 31;
         long j2 = this.expiresAt;
-        return ((((((((hashCode + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (!this.secure ? 1 : 0)) * 31) + (!this.httpOnly ? 1 : 0)) * 31) + (!this.persistent ? 1 : 0)) * 31) + (!this.hostOnly ? 1 : 0);
+        return ((((((((iHashCode + ((int) (j2 ^ (j2 >>> 32)))) * 31) + (!this.secure ? 1 : 0)) * 31) + (!this.httpOnly ? 1 : 0)) * 31) + (!this.persistent ? 1 : 0)) * 31) + (!this.hostOnly ? 1 : 0);
     }
 
     public boolean hostOnly() {
@@ -338,20 +340,102 @@ public final class Cookie {
         return this.value;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:55:0x00f4  */
-    /* JADX WARN: Removed duplicated region for block: B:70:0x0131  */
-    /* JADX WARN: Removed duplicated region for block: B:72:0x00f7  */
-    @javax.annotation.Nullable
+    /* JADX WARN: Removed duplicated region for block: B:43:0x00c7 A[PHI: r0
+  0x00c7: PHI (r0v15 long) = (r0v2 long), (r0v5 long) binds: [B:42:0x00c5, B:53:0x00e8] A[DONT_GENERATE, DONT_INLINE]] */
+    @Nullable
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    static okhttp3.Cookie parse(long r24, okhttp3.HttpUrl r26, java.lang.String r27) {
-        /*
-            Method dump skipped, instructions count: 328
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.Cookie.parse(long, okhttp3.HttpUrl, java.lang.String):okhttp3.Cookie");
+    static Cookie parse(long j2, HttpUrl httpUrl, String str) {
+        long j3;
+        Cookie cookie;
+        String str2;
+        String strSubstring;
+        int length = str.length();
+        char c2 = ';';
+        int iDelimiterOffset = Util.delimiterOffset(str, 0, length, ';');
+        char c3 = '=';
+        int iDelimiterOffset2 = Util.delimiterOffset(str, 0, iDelimiterOffset, '=');
+        if (iDelimiterOffset2 == iDelimiterOffset) {
+            return null;
+        }
+        String strTrimSubstring = Util.trimSubstring(str, 0, iDelimiterOffset2);
+        if (strTrimSubstring.isEmpty() || Util.indexOfControlOrNonAscii(strTrimSubstring) != -1) {
+            return null;
+        }
+        String strTrimSubstring2 = Util.trimSubstring(str, iDelimiterOffset2 + 1, iDelimiterOffset);
+        if (Util.indexOfControlOrNonAscii(strTrimSubstring2) != -1) {
+            return null;
+        }
+        int i2 = iDelimiterOffset + 1;
+        String domain = null;
+        String str3 = null;
+        long maxAge = -1;
+        long expires = 253402300799999L;
+        boolean z = false;
+        boolean z2 = false;
+        boolean z3 = true;
+        boolean z4 = false;
+        while (i2 < length) {
+            int iDelimiterOffset3 = Util.delimiterOffset(str, i2, length, c2);
+            int iDelimiterOffset4 = Util.delimiterOffset(str, i2, iDelimiterOffset3, c3);
+            String strTrimSubstring3 = Util.trimSubstring(str, i2, iDelimiterOffset4);
+            String strTrimSubstring4 = iDelimiterOffset4 < iDelimiterOffset3 ? Util.trimSubstring(str, iDelimiterOffset4 + 1, iDelimiterOffset3) : "";
+            if (strTrimSubstring3.equalsIgnoreCase("expires")) {
+                try {
+                    expires = parseExpires(strTrimSubstring4, 0, strTrimSubstring4.length());
+                    z4 = true;
+                } catch (NumberFormatException | IllegalArgumentException unused) {
+                }
+            } else if (strTrimSubstring3.equalsIgnoreCase("max-age")) {
+                maxAge = parseMaxAge(strTrimSubstring4);
+                z4 = true;
+            } else if (strTrimSubstring3.equalsIgnoreCase(DispatchConstants.DOMAIN)) {
+                domain = parseDomain(strTrimSubstring4);
+                z3 = false;
+            } else if (strTrimSubstring3.equalsIgnoreCase("path")) {
+                str3 = strTrimSubstring4;
+            } else if (strTrimSubstring3.equalsIgnoreCase("secure")) {
+                z = true;
+            } else if (strTrimSubstring3.equalsIgnoreCase("httponly")) {
+                z2 = true;
+            }
+            i2 = iDelimiterOffset3 + 1;
+            c2 = ';';
+            c3 = '=';
+        }
+        long j4 = Long.MIN_VALUE;
+        if (maxAge != Long.MIN_VALUE) {
+            if (maxAge != -1) {
+                j4 = j2 + (maxAge <= 9223372036854775L ? maxAge * 1000 : m0.f12222b);
+                j3 = (j4 < j2 || j4 > HttpDate.MAX_DATE) ? 253402300799999L : j4;
+            } else {
+                j3 = expires;
+            }
+        }
+        String strHost = httpUrl.host();
+        if (domain == null) {
+            str2 = strHost;
+            cookie = null;
+        } else {
+            if (!domainMatch(strHost, domain)) {
+                return null;
+            }
+            cookie = null;
+            str2 = domain;
+        }
+        if (strHost.length() != str2.length() && PublicSuffixDatabase.get().getEffectiveTldPlusOne(str2) == null) {
+            return cookie;
+        }
+        String str4 = str3;
+        if (str4 == null || !str4.startsWith("/")) {
+            String strEncodedPath = httpUrl.encodedPath();
+            int iLastIndexOf = strEncodedPath.lastIndexOf(47);
+            strSubstring = iLastIndexOf != 0 ? strEncodedPath.substring(0, iLastIndexOf) : "/";
+        } else {
+            strSubstring = str4;
+        }
+        return new Cookie(strTrimSubstring, strTrimSubstring2, j3, str2, strSubstring, z, z2, z3, z4);
     }
 
     String toString(boolean z) {

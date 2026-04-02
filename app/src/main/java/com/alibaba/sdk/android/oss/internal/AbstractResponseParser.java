@@ -12,7 +12,7 @@ import java.util.zip.CheckedInputStream;
 import okhttp3.Headers;
 import okhttp3.Response;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractResponseParser<T extends OSSResult> implements ResponseParser {
     private CaseInsensitiveHashMap<String, String> parseResponseHeader(Response response) {
         CaseInsensitiveHashMap<String, String> caseInsensitiveHashMap = new CaseInsensitiveHashMap<>();
@@ -44,7 +44,7 @@ public abstract class AbstractResponseParser<T extends OSSResult> implements Res
                     t.setStatusCode(responseMessage.getStatusCode());
                     t.setResponseHeader(parseResponseHeader(responseMessage.getResponse()));
                     setCRC(t, responseMessage);
-                    t = parseData(responseMessage, t);
+                    t = (T) parseData(responseMessage, t);
                 }
                 return t;
             } catch (Exception e2) {

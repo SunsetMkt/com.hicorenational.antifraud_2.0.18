@@ -3,10 +3,10 @@ package network.http;
 import android.app.Activity;
 import java.util.HashMap;
 import manager.AccountManager;
-import p388ui.basemvp.BaseView;
-import p388ui.model.ModelPresent;
+import ui.basemvp.BaseView;
+import ui.model.ModelPresent;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class StatisticsShareHttp extends ModelPresent {
     private static final String SOURCE_ARTICLE = "2";
     public static final String SOURCE_CHECK = "3";
@@ -29,23 +29,23 @@ public class StatisticsShareHttp extends ModelPresent {
         return mHttp;
     }
 
-    private void shareHttp(HashMap<String, String> hashMap) {
+    private void shareHttp(HashMap<String, String> map) {
     }
 
     public void shareArticleHttp(String str) {
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("source", "2");
-        hashMap.put("sourceID", str);
-        hashMap.put("policeUserID", AccountManager.getPoliceUserID());
-        hashMap.put("pCode", AccountManager.getPoliceUserPCode());
-        shareHttp(hashMap);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("source", "2");
+        map.put("sourceID", str);
+        map.put("policeUserID", AccountManager.getPoliceUserID());
+        map.put("pCode", AccountManager.getPoliceUserPCode());
+        shareHttp(map);
     }
 
     public void shareOtherHttp(String str) {
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("source", str);
-        hashMap.put("policeUserID", AccountManager.getPoliceUserID());
-        hashMap.put("pCode", AccountManager.getPoliceUserPCode());
-        shareHttp(hashMap);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("source", str);
+        map.put("policeUserID", AccountManager.getPoliceUserID());
+        map.put("pCode", AccountManager.getPoliceUserPCode());
+        shareHttp(map);
     }
 }

@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BlockAppBean extends BaseBean {
     private String fileID;
     private String fileName;

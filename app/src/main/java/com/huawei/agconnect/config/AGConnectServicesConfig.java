@@ -3,13 +3,13 @@ package com.huawei.agconnect.config;
 import android.content.Context;
 import com.huawei.agconnect.AGCRoutePolicy;
 import com.huawei.agconnect.AGConnectOptions;
-import com.huawei.agconnect.config.impl.C2250c;
+import com.huawei.agconnect.config.impl.c;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public abstract class AGConnectServicesConfig implements AGConnectOptions {
     private static final Map<String, AGConnectServicesConfig> INSTANCES = new HashMap();
     private static final Object INSTANCES_LOCK = new Object();
@@ -23,15 +23,15 @@ public abstract class AGConnectServicesConfig implements AGConnectOptions {
     }
 
     public static AGConnectServicesConfig fromContext(Context context, String str) {
-        AGConnectServicesConfig aGConnectServicesConfig;
+        AGConnectServicesConfig cVar;
         synchronized (INSTANCES_LOCK) {
-            aGConnectServicesConfig = INSTANCES.get(str);
-            if (aGConnectServicesConfig == null) {
-                aGConnectServicesConfig = new C2250c(context, str);
-                INSTANCES.put(str, aGConnectServicesConfig);
+            cVar = INSTANCES.get(str);
+            if (cVar == null) {
+                cVar = new c(context, str);
+                INSTANCES.put(str, cVar);
             }
         }
-        return aGConnectServicesConfig;
+        return cVar;
     }
 
     public abstract void overlayWith(LazyInputStream lazyInputStream);

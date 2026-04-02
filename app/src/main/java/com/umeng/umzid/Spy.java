@@ -2,7 +2,7 @@ package com.umeng.umzid;
 
 import android.content.Context;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Spy {
     public static boolean initSuccess = false;
 
@@ -29,21 +29,17 @@ public class Spy {
     public static native String getNativeTag(boolean z, boolean z2);
 
     public static synchronized String getTag(Context context) {
-        boolean m12754j;
-        String nativeTag;
-        synchronized (Spy.class) {
-            if (context != null) {
-                try {
-                    m12754j = C3795d.m12754j(context);
-                } catch (Throwable th) {
-                    throw th;
-                }
-            } else {
-                m12754j = false;
+        boolean zJ;
+        if (context != null) {
+            try {
+                zJ = d.j(context);
+            } catch (Throwable th) {
+                throw th;
             }
-            nativeTag = getNativeTag(m12754j, context != null ? C3795d.m12753i(context) : false);
+        } else {
+            zJ = false;
         }
-        return nativeTag;
+        return getNativeTag(zJ, context != null ? d.i(context) : false);
     }
 
     public static String getVersion() {

@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Map;
 import okhttp3.Response;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ResponseMessage extends HttpMessage {
     private RequestMessage request;
     private Response response;

@@ -15,7 +15,7 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class UMTencentSSOHandler extends UMSSOHandler {
     protected static final String FIGUREURL_QQ_2 = "figureurl_qq_2";
     protected static final String IS_YELLOW_VIP = "is_yellow_vip";
@@ -63,14 +63,14 @@ public abstract class UMTencentSSOHandler extends UMSSOHandler {
         super.onCreate(context, platform);
         this.config = (PlatformConfig.APPIDPlatform) platform;
         if (TextUtils.isEmpty(this.config.getFileProvider())) {
-            SLog.m12716E(UmengText.C3778QQ.QQ_FILE_PROVIDER_ERROR);
+            SLog.E(UmengText.QQ.QQ_FILE_PROVIDER_ERROR);
             this.mTencent = Tencent.createInstance(this.config.appId, context);
         } else {
             PlatformConfig.APPIDPlatform aPPIDPlatform = this.config;
             this.mTencent = Tencent.createInstance(aPPIDPlatform.appId, context, aPPIDPlatform.getFileProvider());
         }
         if (this.mTencent == null) {
-            SLog.m12716E(UmengText.C3778QQ.QQ_TENCENT_ERROR);
+            SLog.E(UmengText.QQ.QQ_TENCENT_ERROR);
         }
     }
 
@@ -79,13 +79,13 @@ public abstract class UMTencentSSOHandler extends UMSSOHandler {
         if (obj == null) {
             return bundle;
         }
-        String trim = obj.toString().trim();
-        if (TextUtils.isEmpty(trim)) {
+        String strTrim = obj.toString().trim();
+        if (TextUtils.isEmpty(strTrim)) {
             return bundle;
         }
         JSONObject jSONObject = null;
         try {
-            jSONObject = new JSONObject(trim);
+            jSONObject = new JSONObject(strTrim);
         } catch (JSONException e2) {
             e2.printStackTrace();
         }

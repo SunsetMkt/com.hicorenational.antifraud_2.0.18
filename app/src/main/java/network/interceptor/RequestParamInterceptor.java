@@ -1,8 +1,10 @@
 package network.interceptor;
 
 import android.text.TextUtils;
-import com.google.gson.C2051e;
+import com.google.gson.e;
 import com.hihonor.honorid.core.data.UserInfo;
+import e.b;
+import e.d;
 import interfaces.IOneClickListener;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -22,19 +24,15 @@ import okhttp3.Response;
 import okio.Buffer;
 import org.json.JSONException;
 import org.json.JSONObject;
-import p245d.C4441b;
-import p245d.C4443d;
-import p388ui.Hicore;
-import p388ui.presenter.JNIHandStamp;
-import receiver.C6088e;
-import util.C7301n1;
-import util.C7328v1;
-import util.C7337y1;
+import ui.Hicore;
+import ui.presenter.JNIHandStamp;
+import util.d2;
+import util.g2;
+import util.s1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class RequestParamInterceptor implements Interceptor {
-    /* renamed from: a */
-    static /* synthetic */ void m24921a(Request.Builder builder) {
+    static /* synthetic */ void a(Request.Builder builder) {
         builder.header("deviceid", JNIHandStamp.getInstance().getUUID());
         builder.header("identity", JNIHandStamp.identity + "");
         builder.header("seqid", JNIHandStamp.getInstance().getSeqid());
@@ -53,12 +51,12 @@ public class RequestParamInterceptor implements Interceptor {
     }
 
     private String getDecodeParam(Request request) throws IOException {
-        RequestBody body = request.body();
-        if (body != null && !(body instanceof FormBody) && !(body instanceof MultipartBody) && !(body instanceof FileRequestBody) && body.contentLength() > 0) {
+        RequestBody requestBodyBody = request.body();
+        if (requestBodyBody != null && !(requestBodyBody instanceof FormBody) && !(requestBodyBody instanceof MultipartBody) && !(requestBodyBody instanceof FileRequestBody) && requestBodyBody.contentLength() > 0) {
             try {
-                String optString = new JSONObject(getParamContent(body)).optString("data");
-                if (!TextUtils.isEmpty(optString)) {
-                    return JNIHandStamp.jni.paramJsonDecode(optString);
+                String strOptString = new JSONObject(getParamContent(requestBodyBody)).optString("data");
+                if (!TextUtils.isEmpty(strOptString)) {
+                    return JNIHandStamp.jni.paramJsonDecode(strOptString);
                 }
             } catch (JSONException e2) {
                 e2.printStackTrace();
@@ -74,39 +72,39 @@ public class RequestParamInterceptor implements Interceptor {
     }
 
     private synchronized Request handleRequest(Request request, String str, int i2) {
-        RequestBody body = request.body();
-        if (body == null) {
+        RequestBody requestBodyBody = request.body();
+        if (requestBodyBody == null) {
             return request;
         }
         if (infilterRequest(request)) {
             return request;
         }
-        if (!(body instanceof FormBody) && !(body instanceof MultipartBody) && !(body instanceof FileRequestBody)) {
+        if (!(requestBodyBody instanceof FormBody) && !(requestBodyBody instanceof MultipartBody) && !(requestBodyBody instanceof FileRequestBody)) {
             try {
-                String m26781g = C7337y1.m26781g(request.url().toString());
+                String strG = g2.g(request.url().toString());
                 String str2 = Api.getmHost();
-                if (!TextUtils.isEmpty(str2) && !TextUtils.equals(m26781g, str2)) {
+                if (!TextUtils.isEmpty(str2) && !TextUtils.equals(strG, str2)) {
                     JNIHandStamp.getInstance().cleanJNIData();
                     i2 = APICode.CODE_EXPRIE;
                 }
-                Api.setHost(m26781g);
+                Api.setHost(strG);
                 JSONObject jSONObject = new JSONObject();
-                HashMap hashMap = new HashMap();
-                final Request.Builder newBuilder = request.newBuilder();
+                HashMap map = new HashMap();
+                final Request.Builder builderNewBuilder = request.newBuilder();
                 if (JNIHandStamp.getInstance().expireFail(false) || i2 == 470) {
                     JNIHandStamp.getInstance().expireFail(true);
-                    JNIHandStamp.getInstance().handshareKeySyn(m26781g, new IOneClickListener() { // from class: network.interceptor.a
+                    JNIHandStamp.getInstance().handshareKeySyn(strG, new IOneClickListener() { // from class: network.interceptor.a
                         @Override // interfaces.IOneClickListener
                         public final void clickOKBtn() {
-                            RequestParamInterceptor.m24921a(Request.Builder.this);
+                            RequestParamInterceptor.a(builderNewBuilder);
                         }
                     });
                 }
                 if (!TextUtils.isEmpty(str)) {
-                    hashMap.put("data", JNIHandStamp.jni.paramJsonEncode(str));
-                    jSONObject = new JSONObject(hashMap);
+                    map.put("data", JNIHandStamp.jni.paramJsonEncode(str));
+                    jSONObject = new JSONObject(map);
                 }
-                request = newBuilder.method(request.method(), RequestBody.create(body.contentType(), jSONObject.toString())).build();
+                request = builderNewBuilder.method(request.method(), RequestBody.create(requestBodyBody.contentType(), jSONObject.toString())).build();
             } catch (Exception unused) {
                 return request;
             }
@@ -115,14 +113,14 @@ public class RequestParamInterceptor implements Interceptor {
     }
 
     private Response handleResponse(Interceptor.Chain chain, Request request, String str) throws IOException {
-        Response proceed = chain.proceed(request);
-        C7301n1.m26457b("RetrofitLog", "<-- " + proceed.code() + "  " + new C2051e().m5572a(request.newBuilder()) + C4443d.f16920D);
-        return proceed.code() == 470 ? chain.proceed(handleRequest(request, str, APICode.CODE_EXPRIE)) : proceed;
+        Response responseProceed = chain.proceed(request);
+        s1.b("RetrofitLog", "<-- " + responseProceed.code() + "  " + new e().a(request.newBuilder()) + d.F);
+        return responseProceed.code() == 470 ? chain.proceed(handleRequest(request, str, APICode.CODE_EXPRIE)) : responseProceed;
     }
 
     private boolean infilterRequest(Request request) {
-        String httpUrl = request.url().toString();
-        return httpUrl.contains("getalldictionaryv2") || httpUrl.contains("handshark") || httpUrl.contains("oss-test.gjfzpt.cn") || httpUrl.contains("oss.gjfzpt.cn");
+        String string = request.url().toString();
+        return string.contains("getalldictionaryv2") || string.contains("handshark") || string.contains("oss-test.gjfzpt.cn") || string.contains("oss.gjfzpt.cn");
     }
 
     private void setHeader(Request.Builder builder) {
@@ -137,39 +135,39 @@ public class RequestParamInterceptor implements Interceptor {
         } else {
             builder.addHeader("delay", "0");
         }
-        builder.addHeader("os-version", C7328v1.m26668i());
+        builder.addHeader("os-version", d2.i());
         builder.addHeader("os-type", "0");
-        builder.addHeader("os-brand", C7328v1.m26650b());
-        builder.addHeader("os-model", C7328v1.m26672k());
+        builder.addHeader("os-brand", d2.b());
+        builder.addHeader("os-model", d2.k());
         builder.addHeader("market", Hicore.getApp().getChannel());
-        builder.addHeader("app-version", C7328v1.m26678o());
-        builder.addHeader("app-version-code", C7328v1.m26677n() + "");
+        builder.addHeader("app-version", d2.o());
+        builder.addHeader("app-version-code", d2.n() + "");
         builder.addHeader("api-version", "175");
-        builder.addHeader("UM-deviceToken", C6088e.f21713a + "");
+        builder.addHeader("UM-deviceToken", receiver.e.a + "");
         builder.addHeader("nodeid", RegionConfigHttp.getNodeRegionId());
         builder.addHeader("nodeCode", RegionConfigHttp.getNodeRegionId());
         builder.addHeader("longitude", "0");
         builder.addHeader("latitude", "0");
         builder.addHeader(UserInfo.ADDRESS, "");
         builder.addHeader("Authorization", AccountManager.getAccountToken());
-        builder.addHeader("policeToken", C4441b.m16415c());
+        builder.addHeader("policeToken", b.c());
     }
 
     @Override // okhttp3.Interceptor
     public Response intercept(Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
-        Request.Builder newBuilder = request.newBuilder();
-        setHeader(newBuilder);
+        Request.Builder builderNewBuilder = request.newBuilder();
+        setHeader(builderNewBuilder);
         if (request.body() instanceof FormBody) {
             FormBody.Builder builder = new FormBody.Builder();
             FormBody formBody = (FormBody) request.body();
             for (int i2 = 0; i2 < formBody.size(); i2++) {
                 builder.addEncoded(formBody.encodedName(i2), formBody.encodedValue(i2));
             }
-            newBuilder.method(request.method(), builder.build());
+            builderNewBuilder.method(request.method(), builder.build());
         }
-        Request build = newBuilder.build();
-        String decodeParam = getDecodeParam(build);
-        return handleResponse(chain, handleRequest(build, decodeParam, 0), decodeParam);
+        Request requestBuild = builderNewBuilder.build();
+        String decodeParam = getDecodeParam(requestBuild);
+        return handleResponse(chain, handleRequest(requestBuild, decodeParam, 0), decodeParam);
     }
 }

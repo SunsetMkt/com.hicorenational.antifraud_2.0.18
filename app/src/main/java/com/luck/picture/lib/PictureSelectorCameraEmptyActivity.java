@@ -23,21 +23,20 @@ import com.luck.picture.lib.tools.ValueOf;
 import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.util.ArrayList;
-import util.permissionutil.C7308a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
     private void cameraHandleResult(LocalMedia localMedia, String str) {
-        boolean eqImage = PictureMimeType.eqImage(str);
+        boolean zEqImage = PictureMimeType.eqImage(str);
         PictureSelectionConfig pictureSelectionConfig = this.config;
-        if (pictureSelectionConfig.enableCrop && eqImage) {
+        if (pictureSelectionConfig.enableCrop && zEqImage) {
             String str2 = pictureSelectionConfig.cameraPath;
             pictureSelectionConfig.originalPath = str2;
             startCrop(str2, str);
             return;
         }
         PictureSelectionConfig pictureSelectionConfig2 = this.config;
-        if (pictureSelectionConfig2.isCompress && eqImage && !pictureSelectionConfig2.isCheckOriginalImage) {
+        if (pictureSelectionConfig2.isCompress && zEqImage && !pictureSelectionConfig2.isCheckOriginalImage) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(localMedia);
             compressImage(arrayList);
@@ -49,14 +48,14 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
     }
 
     private void onTakePhoto() {
-        if (!PermissionChecker.checkSelfPermission(this, C7308a.f25524c)) {
-            PermissionChecker.requestPermissions(this, new String[]{C7308a.f25524c}, 2);
+        if (!PermissionChecker.checkSelfPermission(this, util.permissionutil.a.f15026c)) {
+            PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f15026c}, 2);
             return;
         }
-        if (this.config.isUseCustomCamera ? PermissionChecker.checkSelfPermission(this, C7308a.f25530i) : true) {
+        if (this.config.isUseCustomCamera ? PermissionChecker.checkSelfPermission(this, util.permissionutil.a.f15032i) : true) {
             startCamera();
         } else {
-            PermissionChecker.requestPermissions(this, new String[]{C7308a.f25530i}, 4);
+            PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f15032i}, 4);
         }
     }
 
@@ -76,16 +75,16 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return C2639R.layout.picture_empty;
+        return R.layout.picture_empty;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public void immersive() {
-        ImmersiveManage.immersiveAboveAPI23(this, ContextCompat.getColor(this, C2639R.color.picture_color_transparent), ContextCompat.getColor(this, C2639R.color.picture_color_transparent), this.openWhiteStatusBar);
+        ImmersiveManage.immersiveAboveAPI23(this, ContextCompat.getColor(this, R.color.picture_color_transparent), ContextCompat.getColor(this, R.color.picture_color_transparent), this.openWhiteStatusBar);
     }
 
     @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
-    protected void onActivityResult(int i2, int i3, @Nullable Intent intent) {
+    protected void onActivityResult(int i2, int i3, @Nullable Intent intent) throws Throwable {
         OnResultCallbackListener onResultCallbackListener;
         super.onActivityResult(i2, i3, intent);
         if (i3 == -1) {
@@ -110,13 +109,13 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
         if (i3 != 96 || intent == null) {
             return;
         }
-        ToastUtils.m8140s(getContext(), ((Throwable) intent.getSerializableExtra(UCrop.EXTRA_ERROR)).getMessage());
+        ToastUtils.s(getContext(), ((Throwable) intent.getSerializableExtra(UCrop.EXTRA_ERROR)).getMessage());
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
-    /* renamed from: onBackPressed */
-    public void m8092a() {
-        super.m8092a();
+    /* JADX INFO: renamed from: onBackPressed */
+    public void a() {
+        super.a();
         closeActivity();
     }
 
@@ -124,13 +123,13 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
     protected void onCreate(Bundle bundle) {
         if (!this.config.isUseCustomCamera && PictureSelectionConfig.onPictureSelectorInterfaceListener == null) {
             if (bundle == null) {
-                if (PermissionChecker.checkSelfPermission(this, C7308a.f25547z) && PermissionChecker.checkSelfPermission(this, C7308a.f25521A)) {
+                if (PermissionChecker.checkSelfPermission(this, util.permissionutil.a.z) && PermissionChecker.checkSelfPermission(this, util.permissionutil.a.A)) {
                     onTakePhoto();
                 } else {
-                    PermissionChecker.requestPermissions(this, new String[]{C7308a.f25547z, C7308a.f25521A}, 1);
+                    PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.z, util.permissionutil.a.A}, 1);
                 }
             }
-            setTheme(C2639R.style.Picture_Theme_Translucent);
+            setTheme(R.style.Picture_Theme_Translucent);
         }
         super.onCreate(bundle);
     }
@@ -140,10 +139,10 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
         super.onRequestPermissionsResult(i2, strArr, iArr);
         if (i2 == 1) {
             if (iArr.length > 0 && iArr[0] == 0) {
-                PermissionChecker.requestPermissions(this, new String[]{C7308a.f25524c}, 2);
+                PermissionChecker.requestPermissions(this, new String[]{util.permissionutil.a.f15026c}, 2);
                 return;
             } else {
-                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_jurisdiction));
+                ToastUtils.s(getContext(), getString(R.string.picture_jurisdiction));
                 closeActivity();
                 return;
             }
@@ -154,7 +153,7 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
                 return;
             } else {
                 closeActivity();
-                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_camera));
+                ToastUtils.s(getContext(), getString(R.string.picture_camera));
                 return;
             }
         }
@@ -165,36 +164,36 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
             onTakePhoto();
         } else {
             closeActivity();
-            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_audio));
+            ToastUtils.s(getContext(), getString(R.string.picture_audio));
         }
     }
 
     protected void requestCamera(Intent intent) {
-        String str;
-        long j2;
+        String mimeType;
+        long jExtractDuration;
         int lastImageId;
         int[] videoSizeForUrl;
         int[] videoSizeForUri;
-        long extractDuration;
-        boolean checkedAndroid_Q = SdkVersionUtils.checkedAndroid_Q();
-        long j3 = 0;
+        long jExtractDuration2;
+        boolean zCheckedAndroid_Q = SdkVersionUtils.checkedAndroid_Q();
+        long length = 0;
         if (this.config.chooseMode == PictureMimeType.ofAudio()) {
             this.config.cameraPath = getAudioPath(intent);
             if (TextUtils.isEmpty(this.config.cameraPath)) {
                 return;
             }
-            j2 = MediaUtils.extractDuration(getContext(), checkedAndroid_Q, this.config.cameraPath);
-            str = PictureMimeType.MIME_TYPE_AUDIO;
+            jExtractDuration = MediaUtils.extractDuration(getContext(), zCheckedAndroid_Q, this.config.cameraPath);
+            mimeType = PictureMimeType.MIME_TYPE_AUDIO;
         } else {
-            str = null;
-            j2 = 0;
+            mimeType = null;
+            jExtractDuration = 0;
         }
         if (TextUtils.isEmpty(this.config.cameraPath)) {
             return;
         }
         new File(this.config.cameraPath);
         int[] iArr = new int[2];
-        if (!checkedAndroid_Q) {
+        if (!zCheckedAndroid_Q) {
             PictureSelectionConfig pictureSelectionConfig = this.config;
             if (pictureSelectionConfig.isFallbackVersion3) {
                 new PictureMediaScannerConnection(getContext(), this.config.cameraPath);
@@ -206,57 +205,61 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
         if (this.config.chooseMode != PictureMimeType.ofAudio()) {
             if (PictureMimeType.isContent(this.config.cameraPath)) {
                 String path = PictureFileUtils.getPath(getApplicationContext(), Uri.parse(this.config.cameraPath));
-                long length = new File(path).length();
-                String mimeType = PictureMimeType.getMimeType(this.config.cameraMimeType);
-                if (PictureMimeType.eqImage(mimeType)) {
-                    long j4 = j2;
+                long length2 = new File(path).length();
+                String mimeType2 = PictureMimeType.getMimeType(this.config.cameraMimeType);
+                if (PictureMimeType.eqImage(mimeType2)) {
+                    long j2 = jExtractDuration;
                     videoSizeForUri = MediaUtils.getImageSizeForUrlToAndroidQ(this, this.config.cameraPath);
-                    extractDuration = j4;
+                    jExtractDuration2 = j2;
                 } else {
                     videoSizeForUri = MediaUtils.getVideoSizeForUri(this, Uri.parse(this.config.cameraPath));
-                    extractDuration = MediaUtils.extractDuration(getContext(), true, this.config.cameraPath);
+                    jExtractDuration2 = MediaUtils.extractDuration(getContext(), true, this.config.cameraPath);
                 }
-                int lastIndexOf = this.config.cameraPath.lastIndexOf("/") + 1;
-                localMedia.setId(lastIndexOf > 0 ? ValueOf.toLong(this.config.cameraPath.substring(lastIndexOf)) : -1L);
+                int iLastIndexOf = this.config.cameraPath.lastIndexOf("/") + 1;
+                localMedia.setId(iLastIndexOf > 0 ? ValueOf.toLong(this.config.cameraPath.substring(iLastIndexOf)) : -1L);
                 localMedia.setRealPath(path);
                 if (this.config.isUseCustomCamera && intent != null) {
                     localMedia.setAndroidQToPath(intent.getStringExtra(PictureConfig.EXTRA_MEDIA_PATH));
                 }
-                j3 = length;
-                str = mimeType;
+                length = length2;
+                mimeType = mimeType2;
                 iArr = videoSizeForUri;
-                j2 = extractDuration;
+                jExtractDuration = jExtractDuration2;
             } else {
                 File file = new File(this.config.cameraPath);
-                str = PictureMimeType.getMimeType(this.config.cameraMimeType);
-                j3 = file.length();
-                if (PictureMimeType.eqImage(str)) {
+                mimeType = PictureMimeType.getMimeType(this.config.cameraMimeType);
+                length = file.length();
+                if (PictureMimeType.eqImage(mimeType)) {
                     BitmapUtils.rotateImage(PictureFileUtils.readPictureDegree(this, this.config.cameraPath), this.config.cameraPath);
                     videoSizeForUrl = MediaUtils.getImageSizeForUrl(this.config.cameraPath);
                 } else {
                     videoSizeForUrl = MediaUtils.getVideoSizeForUrl(this.config.cameraPath);
-                    j2 = MediaUtils.extractDuration(getContext(), false, this.config.cameraPath);
+                    jExtractDuration = MediaUtils.extractDuration(getContext(), false, this.config.cameraPath);
                 }
                 iArr = videoSizeForUrl;
                 localMedia.setId(System.currentTimeMillis());
             }
         }
-        localMedia.setDuration(j2);
+        localMedia.setDuration(jExtractDuration);
         localMedia.setWidth(iArr[0]);
         localMedia.setHeight(iArr[1]);
         localMedia.setPath(this.config.cameraPath);
-        localMedia.setMimeType(str);
-        localMedia.setSize(j3);
+        localMedia.setMimeType(mimeType);
+        localMedia.setSize(length);
         localMedia.setChooseModel(this.config.chooseMode);
         MediaUtils.setOrientation(getContext(), localMedia);
-        cameraHandleResult(localMedia, str);
-        if (checkedAndroid_Q || !PictureMimeType.eqImage(localMedia.getMimeType()) || (lastImageId = MediaUtils.getLastImageId(getContext(), localMedia.getMimeType())) == -1) {
+        cameraHandleResult(localMedia, mimeType);
+        if (zCheckedAndroid_Q || !PictureMimeType.eqImage(localMedia.getMimeType()) || (lastImageId = MediaUtils.getLastImageId(getContext(), localMedia.getMimeType())) == -1) {
             return;
         }
         MediaUtils.removeMedia(getContext(), lastImageId);
     }
 
-    protected void singleCropHandleResult(Intent intent) {
+    /* JADX WARN: Removed duplicated region for block: B:43:0x0142  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    protected void singleCropHandleResult(Intent intent) throws Throwable {
         int i2;
         if (intent == null) {
             return;
@@ -267,14 +270,14 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
             return;
         }
         String path = output.getPath();
-        boolean isEmpty = TextUtils.isEmpty(path);
+        boolean zIsEmpty = TextUtils.isEmpty(path);
         PictureSelectionConfig pictureSelectionConfig = this.config;
         LocalMedia localMedia = new LocalMedia(pictureSelectionConfig.cameraPath, 0L, false, pictureSelectionConfig.isCamera ? 1 : 0, 0, pictureSelectionConfig.chooseMode);
         if (SdkVersionUtils.checkedAndroid_Q()) {
-            int lastIndexOf = this.config.cameraPath.lastIndexOf("/") + 1;
-            localMedia.setId(lastIndexOf > 0 ? ValueOf.toLong(this.config.cameraPath.substring(lastIndexOf)) : -1L);
+            int iLastIndexOf = this.config.cameraPath.lastIndexOf("/") + 1;
+            localMedia.setId(iLastIndexOf > 0 ? ValueOf.toLong(this.config.cameraPath.substring(iLastIndexOf)) : -1L);
             localMedia.setAndroidQToPath(path);
-            if (!isEmpty) {
+            if (!zIsEmpty) {
                 localMedia.setSize(new File(path).length());
             } else if (PictureMimeType.isContent(this.config.cameraPath)) {
                 String path2 = PictureFileUtils.getPath(this, Uri.parse(this.config.cameraPath));
@@ -284,9 +287,9 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
             }
         } else {
             localMedia.setId(System.currentTimeMillis());
-            localMedia.setSize(new File(isEmpty ? localMedia.getPath() : path).length());
+            localMedia.setSize(new File(zIsEmpty ? localMedia.getPath() : path).length());
         }
-        localMedia.setCut(!isEmpty);
+        localMedia.setCut(!zIsEmpty);
         localMedia.setCutPath(path);
         localMedia.setMimeType(PictureMimeType.getImageMimeType(path));
         localMedia.setOrientation(-1);
@@ -296,25 +299,21 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
                 int[] videoSizeForUri = MediaUtils.getVideoSizeForUri(getContext(), Uri.parse(localMedia.getPath()));
                 i3 = videoSizeForUri[0];
                 i2 = videoSizeForUri[1];
+            } else if (PictureMimeType.eqImage(localMedia.getMimeType())) {
+                int[] imageSizeForUri = MediaUtils.getImageSizeForUri(getContext(), Uri.parse(localMedia.getPath()));
+                i3 = imageSizeForUri[0];
+                i2 = imageSizeForUri[1];
             } else {
-                if (PictureMimeType.eqImage(localMedia.getMimeType())) {
-                    int[] imageSizeForUri = MediaUtils.getImageSizeForUri(getContext(), Uri.parse(localMedia.getPath()));
-                    i3 = imageSizeForUri[0];
-                    i2 = imageSizeForUri[1];
-                }
                 i2 = 0;
             }
         } else if (PictureMimeType.eqVideo(localMedia.getMimeType())) {
             int[] videoSizeForUrl = MediaUtils.getVideoSizeForUrl(localMedia.getPath());
             i3 = videoSizeForUrl[0];
             i2 = videoSizeForUrl[1];
-        } else {
-            if (PictureMimeType.eqImage(localMedia.getMimeType())) {
-                int[] imageSizeForUrl = MediaUtils.getImageSizeForUrl(localMedia.getPath());
-                i3 = imageSizeForUrl[0];
-                i2 = imageSizeForUrl[1];
-            }
-            i2 = 0;
+        } else if (PictureMimeType.eqImage(localMedia.getMimeType())) {
+            int[] imageSizeForUrl = MediaUtils.getImageSizeForUrl(localMedia.getPath());
+            i3 = imageSizeForUrl[0];
+            i2 = imageSizeForUrl[1];
         }
         localMedia.setWidth(i3);
         localMedia.setHeight(i2);

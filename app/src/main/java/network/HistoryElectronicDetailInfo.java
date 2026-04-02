@@ -2,7 +2,7 @@ package network;
 
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HistoryElectronicDetailInfo extends BaseBean {
     private int caseCategory;
     private String caseCategoryText;
@@ -12,9 +12,7 @@ public class HistoryElectronicDetailInfo extends BaseBean {
     private String createTime;
     private String createUser;
     private List<FileDetailsBean> fileDetails;
-
-    /* renamed from: id */
-    private String f21446id;
+    private String id;
     private boolean isDeleted;
     private String reporterIdNumber;
     private String reporterName;
@@ -36,9 +34,7 @@ public class HistoryElectronicDetailInfo extends BaseBean {
         private int timestamp = 0;
         private int heartBeat = 0;
         private int clusterID = 0;
-
-        /* renamed from: id */
-        private String f21447id = "";
+        private String id = "";
         private String createTime = "";
         private String createUser = "";
         private String updateTime = "";
@@ -61,7 +57,7 @@ public class HistoryElectronicDetailInfo extends BaseBean {
         }
 
         public String getId() {
-            return this.f21447id;
+            return this.id;
         }
 
         public String getMD5() {
@@ -125,7 +121,7 @@ public class HistoryElectronicDetailInfo extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f21447id = str;
+            this.id = str;
         }
 
         public void setIsDeleted(boolean z) {
@@ -206,7 +202,7 @@ public class HistoryElectronicDetailInfo extends BaseBean {
     }
 
     public String getId() {
-        return this.f21446id;
+        return this.id;
     }
 
     public String getReporterIdNumber() {
@@ -274,7 +270,7 @@ public class HistoryElectronicDetailInfo extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f21446id = str;
+        this.id = str;
     }
 
     public void setIsDeleted(boolean z) {

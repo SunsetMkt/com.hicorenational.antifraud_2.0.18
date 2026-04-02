@@ -3,11 +3,11 @@ package com.sina.weibo.sdk.api;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.sina.weibo.sdk.p194b.C2925c;
+import com.sina.weibo.sdk.b.c;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ImageObject extends MediaObject {
     private static final int CONTENT_LENGTH_LIMIT = 1048576;
     public static final Parcelable.Creator<ImageObject> CREATOR = new Parcelable.Creator<ImageObject>() { // from class: com.sina.weibo.sdk.api.ImageObject.1
@@ -47,24 +47,24 @@ public class ImageObject extends MediaObject {
         String str;
         byte[] bArr = this.imageData;
         if ((bArr == null || bArr.length == 0) && ((str = this.imagePath) == null || str.length() == 0)) {
-            C2925c.m8838b(TAG, "checkArgs fail, all arguments are null");
+            c.b(TAG, "checkArgs fail, all arguments are null");
             return false;
         }
         byte[] bArr2 = this.imageData;
         if (bArr2 != null && bArr2.length > 1048576) {
-            C2925c.m8838b(TAG, "checkArgs fail, content is too large");
+            c.b(TAG, "checkArgs fail, content is too large");
             return false;
         }
         String str2 = this.imagePath;
         if (str2 != null && str2.length() > 512) {
-            C2925c.m8838b(TAG, "checkArgs fail, path is invalid");
+            c.b(TAG, "checkArgs fail, path is invalid");
             return false;
         }
         String str3 = this.imagePath;
         if (str3 == null || getFileSize(str3) <= 1048576) {
             return true;
         }
-        C2925c.m8838b(TAG, "checkArgs fail, image content is too large");
+        c.b(TAG, "checkArgs fail, image content is too large");
         return false;
     }
 
@@ -80,7 +80,7 @@ public class ImageObject extends MediaObject {
             this.imageData = byteArrayOutputStream.toByteArray();
             byteArrayOutputStream.close();
         } catch (Exception e2) {
-            C2925c.m8838b(TAG, "ImageObject :" + e2.getMessage());
+            c.b(TAG, "ImageObject :" + e2.getMessage());
         }
     }
 

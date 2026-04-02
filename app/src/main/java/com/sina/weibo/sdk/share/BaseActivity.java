@@ -8,34 +8,32 @@ import android.os.Bundle;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BaseActivity extends Activity {
-    /* renamed from: h */
-    private boolean m8861h() {
+    private boolean h() {
         Method method;
-        boolean booleanValue;
+        boolean zBooleanValue;
         boolean z = false;
         try {
-            TypedArray obtainStyledAttributes = obtainStyledAttributes((int[]) Class.forName("com.android.internal.R$styleable").getField("Window").get(null));
+            TypedArray typedArrayObtainStyledAttributes = obtainStyledAttributes((int[]) Class.forName("com.android.internal.R$styleable").getField("Window").get(null));
             method = ActivityInfo.class.getMethod("isTranslucentOrFloating", TypedArray.class);
             method.setAccessible(true);
-            booleanValue = ((Boolean) method.invoke(null, obtainStyledAttributes)).booleanValue();
+            zBooleanValue = ((Boolean) method.invoke(null, typedArrayObtainStyledAttributes)).booleanValue();
         } catch (Exception e2) {
             e = e2;
         }
         try {
             method.setAccessible(false);
-            return booleanValue;
+            return zBooleanValue;
         } catch (Exception e3) {
-            z = booleanValue;
+            z = zBooleanValue;
             e = e3;
             e.printStackTrace();
             return z;
         }
     }
 
-    /* renamed from: i */
-    private boolean m8862i() {
+    private boolean i() {
         try {
             Field declaredField = Activity.class.getDeclaredField("mActivityInfo");
             declaredField.setAccessible(true);
@@ -50,15 +48,15 @@ public class BaseActivity extends Activity {
 
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
-        if (Build.VERSION.SDK_INT == 26 && m8861h()) {
-            m8862i();
+        if (Build.VERSION.SDK_INT == 26 && h()) {
+            i();
         }
         super.onCreate(bundle);
     }
 
     @Override // android.app.Activity
     public void setRequestedOrientation(int i2) {
-        if (Build.VERSION.SDK_INT == 26 && m8861h()) {
+        if (Build.VERSION.SDK_INT == 26 && h()) {
             return;
         }
         super.setRequestedOrientation(i2);

@@ -11,7 +11,7 @@ import com.umeng.socialize.media.UMediaObject;
 import com.umeng.socialize.media.UMusic;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ShareContent {
     public static final int EMOJI_STYLE = 64;
     public static final int ERROR_STYLE = 0;

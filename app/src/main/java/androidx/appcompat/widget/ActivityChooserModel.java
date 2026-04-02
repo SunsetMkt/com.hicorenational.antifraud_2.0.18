@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Xml;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ import java.util.List;
 import java.util.Map;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ActivityChooserModel extends DataSetObservable {
     static final String ATTRIBUTE_ACTIVITY = "activity";
     static final String ATTRIBUTE_TIME = "time";
@@ -148,9 +150,9 @@ class ActivityChooserModel extends DataSetObservable {
 
         public int hashCode() {
             ComponentName componentName = this.activity;
-            int hashCode = componentName == null ? 0 : componentName.hashCode();
+            int iHashCode = componentName == null ? 0 : componentName.hashCode();
             long j2 = this.time;
-            return ((((hashCode + 31) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31) + Float.floatToIntBits(this.weight);
+            return ((((iHashCode + 31) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31) + Float.floatToIntBits(this.weight);
         }
 
         public String toString() {
@@ -172,145 +174,77 @@ class ActivityChooserModel extends DataSetObservable {
         PersistHistoryAsyncTask() {
         }
 
-        /* JADX WARN: Code restructure failed: missing block: B:12:0x006e, code lost:
-        
-            if (r15 != null) goto L36;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:16:0x0070, code lost:
-        
-            r15.close();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:30:0x00c4, code lost:
-        
-            if (r15 == null) goto L27;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:33:0x008e, code lost:
-        
-            if (r15 == null) goto L27;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:36:0x00a9, code lost:
-        
-            if (r15 == null) goto L27;
-         */
+        /* JADX WARN: Removed duplicated region for block: B:36:0x0071 A[EXC_TOP_SPLITTER, SYNTHETIC] */
         @Override // android.os.AsyncTask
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public java.lang.Void doInBackground(java.lang.Object... r15) {
-            /*
-                r14 = this;
-                java.lang.String r0 = "historical-record"
-                java.lang.String r1 = "historical-records"
-                java.lang.String r2 = "Error writing historical record file: "
-                r3 = 0
-                r4 = r15[r3]
-                java.util.List r4 = (java.util.List) r4
-                r5 = 1
-                r15 = r15[r5]
-                java.lang.String r15 = (java.lang.String) r15
-                r6 = 0
-                androidx.appcompat.widget.ActivityChooserModel r7 = androidx.appcompat.widget.ActivityChooserModel.this     // Catch: java.io.FileNotFoundException -> Ld2
-                android.content.Context r7 = r7.mContext     // Catch: java.io.FileNotFoundException -> Ld2
-                java.io.FileOutputStream r15 = r7.openFileOutput(r15, r3)     // Catch: java.io.FileNotFoundException -> Ld2
-                org.xmlpull.v1.XmlSerializer r7 = android.util.Xml.newSerializer()
-                r7.setOutput(r15, r6)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r8 = "UTF-8"
-                java.lang.Boolean r9 = java.lang.Boolean.valueOf(r5)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.startDocument(r8, r9)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.startTag(r6, r1)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                int r8 = r4.size()     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r9 = 0
-            L31:
-                if (r9 >= r8) goto L64
-                java.lang.Object r10 = r4.remove(r3)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                androidx.appcompat.widget.ActivityChooserModel$HistoricalRecord r10 = (androidx.appcompat.widget.ActivityChooserModel.HistoricalRecord) r10     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.startTag(r6, r0)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r11 = "activity"
-                android.content.ComponentName r12 = r10.activity     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r12 = r12.flattenToString()     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.attribute(r6, r11, r12)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r11 = "time"
-                long r12 = r10.time     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r12 = java.lang.String.valueOf(r12)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.attribute(r6, r11, r12)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r11 = "weight"
-                float r10 = r10.weight     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                java.lang.String r10 = java.lang.String.valueOf(r10)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.attribute(r6, r11, r10)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.endTag(r6, r0)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                int r9 = r9 + 1
-                goto L31
-            L64:
-                r7.endTag(r6, r1)     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                r7.endDocument()     // Catch: java.lang.Throwable -> L74 java.io.IOException -> L76 java.lang.IllegalStateException -> L91 java.lang.IllegalArgumentException -> Lac
-                androidx.appcompat.widget.ActivityChooserModel r0 = androidx.appcompat.widget.ActivityChooserModel.this
-                r0.mCanReadHistoricalData = r5
-                if (r15 == 0) goto Lc7
-            L70:
-                r15.close()     // Catch: java.io.IOException -> Lc7
-                goto Lc7
-            L74:
-                r0 = move-exception
-                goto Lc8
-            L76:
-                java.lang.String r0 = androidx.appcompat.widget.ActivityChooserModel.LOG_TAG     // Catch: java.lang.Throwable -> L74
-                java.lang.StringBuilder r0 = new java.lang.StringBuilder     // Catch: java.lang.Throwable -> L74
-                r0.<init>()     // Catch: java.lang.Throwable -> L74
-                r0.append(r2)     // Catch: java.lang.Throwable -> L74
-                androidx.appcompat.widget.ActivityChooserModel r1 = androidx.appcompat.widget.ActivityChooserModel.this     // Catch: java.lang.Throwable -> L74
-                java.lang.String r1 = r1.mHistoryFileName     // Catch: java.lang.Throwable -> L74
-                r0.append(r1)     // Catch: java.lang.Throwable -> L74
-                r0.toString()     // Catch: java.lang.Throwable -> L74
-                androidx.appcompat.widget.ActivityChooserModel r0 = androidx.appcompat.widget.ActivityChooserModel.this
-                r0.mCanReadHistoricalData = r5
-                if (r15 == 0) goto Lc7
-                goto L70
-            L91:
-                java.lang.String r0 = androidx.appcompat.widget.ActivityChooserModel.LOG_TAG     // Catch: java.lang.Throwable -> L74
-                java.lang.StringBuilder r0 = new java.lang.StringBuilder     // Catch: java.lang.Throwable -> L74
-                r0.<init>()     // Catch: java.lang.Throwable -> L74
-                r0.append(r2)     // Catch: java.lang.Throwable -> L74
-                androidx.appcompat.widget.ActivityChooserModel r1 = androidx.appcompat.widget.ActivityChooserModel.this     // Catch: java.lang.Throwable -> L74
-                java.lang.String r1 = r1.mHistoryFileName     // Catch: java.lang.Throwable -> L74
-                r0.append(r1)     // Catch: java.lang.Throwable -> L74
-                r0.toString()     // Catch: java.lang.Throwable -> L74
-                androidx.appcompat.widget.ActivityChooserModel r0 = androidx.appcompat.widget.ActivityChooserModel.this
-                r0.mCanReadHistoricalData = r5
-                if (r15 == 0) goto Lc7
-                goto L70
-            Lac:
-                java.lang.String r0 = androidx.appcompat.widget.ActivityChooserModel.LOG_TAG     // Catch: java.lang.Throwable -> L74
-                java.lang.StringBuilder r0 = new java.lang.StringBuilder     // Catch: java.lang.Throwable -> L74
-                r0.<init>()     // Catch: java.lang.Throwable -> L74
-                r0.append(r2)     // Catch: java.lang.Throwable -> L74
-                androidx.appcompat.widget.ActivityChooserModel r1 = androidx.appcompat.widget.ActivityChooserModel.this     // Catch: java.lang.Throwable -> L74
-                java.lang.String r1 = r1.mHistoryFileName     // Catch: java.lang.Throwable -> L74
-                r0.append(r1)     // Catch: java.lang.Throwable -> L74
-                r0.toString()     // Catch: java.lang.Throwable -> L74
-                androidx.appcompat.widget.ActivityChooserModel r0 = androidx.appcompat.widget.ActivityChooserModel.this
-                r0.mCanReadHistoricalData = r5
-                if (r15 == 0) goto Lc7
-                goto L70
-            Lc7:
-                return r6
-            Lc8:
-                androidx.appcompat.widget.ActivityChooserModel r1 = androidx.appcompat.widget.ActivityChooserModel.this
-                r1.mCanReadHistoricalData = r5
-                if (r15 == 0) goto Ld1
-                r15.close()     // Catch: java.io.IOException -> Ld1
-            Ld1:
-                throw r0
-            Ld2:
-                java.lang.String r0 = androidx.appcompat.widget.ActivityChooserModel.LOG_TAG
-                java.lang.StringBuilder r0 = new java.lang.StringBuilder
-                r0.<init>()
-                r0.append(r2)
-                r0.append(r15)
-                r0.toString()
-                return r6
-            */
-            throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.ActivityChooserModel.PersistHistoryAsyncTask.doInBackground(java.lang.Object[]):java.lang.Void");
+        public Void doInBackground(Object... objArr) {
+            List list = (List) objArr[0];
+            String str = (String) objArr[1];
+            try {
+                FileOutputStream fileOutputStreamOpenFileOutput = ActivityChooserModel.this.mContext.openFileOutput(str, 0);
+                XmlSerializer xmlSerializerNewSerializer = Xml.newSerializer();
+                try {
+                    try {
+                        try {
+                            xmlSerializerNewSerializer.setOutput(fileOutputStreamOpenFileOutput, null);
+                            xmlSerializerNewSerializer.startDocument("UTF-8", true);
+                            xmlSerializerNewSerializer.startTag(null, ActivityChooserModel.TAG_HISTORICAL_RECORDS);
+                            int size = list.size();
+                            for (int i2 = 0; i2 < size; i2++) {
+                                HistoricalRecord historicalRecord = (HistoricalRecord) list.remove(0);
+                                xmlSerializerNewSerializer.startTag(null, ActivityChooserModel.TAG_HISTORICAL_RECORD);
+                                xmlSerializerNewSerializer.attribute(null, ActivityChooserModel.ATTRIBUTE_ACTIVITY, historicalRecord.activity.flattenToString());
+                                xmlSerializerNewSerializer.attribute(null, "time", String.valueOf(historicalRecord.time));
+                                xmlSerializerNewSerializer.attribute(null, ActivityChooserModel.ATTRIBUTE_WEIGHT, String.valueOf(historicalRecord.weight));
+                                xmlSerializerNewSerializer.endTag(null, ActivityChooserModel.TAG_HISTORICAL_RECORD);
+                            }
+                            xmlSerializerNewSerializer.endTag(null, ActivityChooserModel.TAG_HISTORICAL_RECORDS);
+                            xmlSerializerNewSerializer.endDocument();
+                            ActivityChooserModel.this.mCanReadHistoricalData = true;
+                        } catch (IOException unused) {
+                            String str2 = ActivityChooserModel.LOG_TAG;
+                            String str3 = "Error writing historical record file: " + ActivityChooserModel.this.mHistoryFileName;
+                            ActivityChooserModel.this.mCanReadHistoricalData = true;
+                            if (fileOutputStreamOpenFileOutput != null) {
+                            }
+                        } catch (IllegalStateException unused2) {
+                            String str4 = ActivityChooserModel.LOG_TAG;
+                            String str5 = "Error writing historical record file: " + ActivityChooserModel.this.mHistoryFileName;
+                            ActivityChooserModel.this.mCanReadHistoricalData = true;
+                            if (fileOutputStreamOpenFileOutput != null) {
+                            }
+                        }
+                    } catch (IllegalArgumentException unused3) {
+                        String str6 = ActivityChooserModel.LOG_TAG;
+                        String str7 = "Error writing historical record file: " + ActivityChooserModel.this.mHistoryFileName;
+                        ActivityChooserModel.this.mCanReadHistoricalData = true;
+                        if (fileOutputStreamOpenFileOutput != null) {
+                        }
+                    }
+                    if (fileOutputStreamOpenFileOutput != null) {
+                        try {
+                            fileOutputStreamOpenFileOutput.close();
+                        } catch (IOException unused4) {
+                        }
+                    }
+                    return null;
+                } catch (Throwable th) {
+                    ActivityChooserModel.this.mCanReadHistoricalData = true;
+                    if (fileOutputStreamOpenFileOutput != null) {
+                        try {
+                            fileOutputStreamOpenFileOutput.close();
+                        } catch (IOException unused5) {
+                        }
+                    }
+                    throw th;
+                }
+            } catch (FileNotFoundException unused6) {
+                String str8 = ActivityChooserModel.LOG_TAG;
+                String str9 = "Error writing historical record file: " + str;
+                return null;
+            }
         }
     }
 
@@ -324,21 +258,21 @@ class ActivityChooserModel extends DataSetObservable {
     }
 
     private boolean addHistoricalRecord(HistoricalRecord historicalRecord) {
-        boolean add = this.mHistoricalRecords.add(historicalRecord);
-        if (add) {
+        boolean zAdd = this.mHistoricalRecords.add(historicalRecord);
+        if (zAdd) {
             this.mHistoricalRecordsChanged = true;
             pruneExcessiveHistoricalRecordsIfNeeded();
             persistHistoricalDataIfNeeded();
             sortActivitiesIfNeeded();
             notifyChanged();
         }
-        return add;
+        return zAdd;
     }
 
     private void ensureConsistentState() {
-        boolean loadActivitiesIfNeeded = loadActivitiesIfNeeded() | readHistoricalDataIfNeeded();
+        boolean zLoadActivitiesIfNeeded = loadActivitiesIfNeeded() | readHistoricalDataIfNeeded();
         pruneExcessiveHistoricalRecordsIfNeeded();
-        if (loadActivitiesIfNeeded) {
+        if (zLoadActivitiesIfNeeded) {
             sortActivitiesIfNeeded();
             notifyChanged();
         }
@@ -362,10 +296,10 @@ class ActivityChooserModel extends DataSetObservable {
         }
         this.mReloadActivities = false;
         this.mActivities.clear();
-        List<ResolveInfo> queryIntentActivities = this.mContext.getPackageManager().queryIntentActivities(this.mIntent, 0);
-        int size = queryIntentActivities.size();
+        List<ResolveInfo> listQueryIntentActivities = this.mContext.getPackageManager().queryIntentActivities(this.mIntent, 0);
+        int size = listQueryIntentActivities.size();
         for (int i2 = 0; i2 < size; i2++) {
-            this.mActivities.add(new ActivityResolveInfo(queryIntentActivities.get(i2)));
+            this.mActivities.add(new ActivityResolveInfo(listQueryIntentActivities.get(i2)));
         }
         return true;
     }
@@ -404,60 +338,68 @@ class ActivityChooserModel extends DataSetObservable {
         return true;
     }
 
+    /* JADX WARN: Code restructure failed: missing block: B:16:0x0038, code lost:
+    
+        r1.close();
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:64:?, code lost:
+    
+        return;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:65:?, code lost:
+    
+        return;
+     */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     private void readHistoricalDataImpl() {
-        FileInputStream openFileInput;
-        XmlPullParser newPullParser;
+        FileInputStream fileInputStreamOpenFileInput;
         try {
             try {
-                openFileInput = this.mContext.openFileInput(this.mHistoryFileName);
+                fileInputStreamOpenFileInput = this.mContext.openFileInput(this.mHistoryFileName);
                 try {
-                    newPullParser = Xml.newPullParser();
-                    newPullParser.setInput(openFileInput, "UTF-8");
-                    for (int i2 = 0; i2 != 1 && i2 != 2; i2 = newPullParser.next()) {
+                    XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+                    xmlPullParserNewPullParser.setInput(fileInputStreamOpenFileInput, "UTF-8");
+                    for (int next = 0; next != 1 && next != 2; next = xmlPullParserNewPullParser.next()) {
+                    }
+                    if (!TAG_HISTORICAL_RECORDS.equals(xmlPullParserNewPullParser.getName())) {
+                        throw new XmlPullParserException("Share records file does not start with historical-records tag.");
+                    }
+                    List<HistoricalRecord> list = this.mHistoricalRecords;
+                    list.clear();
+                    while (true) {
+                        int next2 = xmlPullParserNewPullParser.next();
+                        if (next2 == 1) {
+                            if (fileInputStreamOpenFileInput == null) {
+                                return;
+                            }
+                        } else if (next2 != 3 && next2 != 4) {
+                            if (!TAG_HISTORICAL_RECORD.equals(xmlPullParserNewPullParser.getName())) {
+                                throw new XmlPullParserException("Share records file not well-formed.");
+                            }
+                            list.add(new HistoricalRecord(xmlPullParserNewPullParser.getAttributeValue(null, ATTRIBUTE_ACTIVITY), Long.parseLong(xmlPullParserNewPullParser.getAttributeValue(null, "time")), Float.parseFloat(xmlPullParserNewPullParser.getAttributeValue(null, ATTRIBUTE_WEIGHT))));
+                        }
                     }
                 } catch (IOException unused) {
                     String str = "Error reading historical recrod file: " + this.mHistoryFileName;
-                    if (openFileInput == null) {
-                        return;
+                    if (fileInputStreamOpenFileInput == null) {
                     }
                 } catch (XmlPullParserException unused2) {
                     String str2 = "Error reading historical recrod file: " + this.mHistoryFileName;
-                    if (openFileInput == null) {
-                        return;
+                    if (fileInputStreamOpenFileInput == null) {
                     }
-                }
-                if (!TAG_HISTORICAL_RECORDS.equals(newPullParser.getName())) {
-                    throw new XmlPullParserException("Share records file does not start with historical-records tag.");
-                }
-                List<HistoricalRecord> list = this.mHistoricalRecords;
-                list.clear();
-                while (true) {
-                    int next = newPullParser.next();
-                    if (next == 1) {
-                        if (openFileInput == null) {
-                            return;
-                        }
-                    } else if (next != 3 && next != 4) {
-                        if (!TAG_HISTORICAL_RECORD.equals(newPullParser.getName())) {
-                            throw new XmlPullParserException("Share records file not well-formed.");
-                        }
-                        list.add(new HistoricalRecord(newPullParser.getAttributeValue(null, ATTRIBUTE_ACTIVITY), Long.parseLong(newPullParser.getAttributeValue(null, "time")), Float.parseFloat(newPullParser.getAttributeValue(null, ATTRIBUTE_WEIGHT))));
-                    }
-                }
-                try {
-                    openFileInput.close();
-                } catch (IOException unused3) {
                 }
             } catch (Throwable th) {
-                if (openFileInput != null) {
+                if (fileInputStreamOpenFileInput != null) {
                     try {
-                        openFileInput.close();
-                    } catch (IOException unused4) {
+                        fileInputStreamOpenFileInput.close();
+                    } catch (IOException unused3) {
                     }
                 }
                 throw th;
             }
-        } catch (FileNotFoundException unused5) {
+        } catch (FileNotFoundException unused4) {
         }
     }
 

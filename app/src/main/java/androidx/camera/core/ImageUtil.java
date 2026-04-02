@@ -14,7 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImageUtil {
     private static final String TAG = "ImageUtil";
 
@@ -23,7 +23,7 @@ final class ImageUtil {
 
     @Nullable
     public static Rect computeCropRectFromAspectRatio(@NonNull Size size, @NonNull Rational rational) {
-        int round;
+        int iRound;
         int i2;
         int i3;
         int i4;
@@ -38,18 +38,18 @@ final class ImageUtil {
         int numerator = rational.getNumerator();
         int denominator = rational.getDenominator();
         if (rational.floatValue() > f4) {
-            int round2 = Math.round((f2 / numerator) * denominator);
-            i4 = (height - round2) / 2;
-            i3 = round2;
-            round = width;
+            int iRound2 = Math.round((f2 / numerator) * denominator);
+            i4 = (height - iRound2) / 2;
+            i3 = iRound2;
+            iRound = width;
             i2 = 0;
         } else {
-            round = Math.round((f3 / denominator) * numerator);
-            i2 = (width - round) / 2;
+            iRound = Math.round((f3 / denominator) * numerator);
+            i2 = (width - iRound) / 2;
             i3 = height;
             i4 = 0;
         }
-        return new Rect(i2, i4, round + i2, i3 + i4);
+        return new Rect(i2, i4, iRound + i2, i3 + i4);
     }
 
     @NonNull
@@ -58,17 +58,17 @@ final class ImageUtil {
             return bArr;
         }
         try {
-            BitmapRegionDecoder newInstance = BitmapRegionDecoder.newInstance(bArr, 0, bArr.length, false);
-            Bitmap decodeRegion = newInstance.decodeRegion(rect, new BitmapFactory.Options());
-            newInstance.recycle();
-            if (decodeRegion == null) {
+            BitmapRegionDecoder bitmapRegionDecoderNewInstance = BitmapRegionDecoder.newInstance(bArr, 0, bArr.length, false);
+            Bitmap bitmapDecodeRegion = bitmapRegionDecoderNewInstance.decodeRegion(rect, new BitmapFactory.Options());
+            bitmapRegionDecoderNewInstance.recycle();
+            if (bitmapDecodeRegion == null) {
                 throw new CodecFailedException("Decode byte array failed.", CodecFailedException.FailureType.DECODE_FAILED);
             }
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            if (!decodeRegion.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)) {
+            if (!bitmapDecodeRegion.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)) {
                 throw new CodecFailedException("Encode bitmap failed.", CodecFailedException.FailureType.ENCODE_FAILED);
             }
-            decodeRegion.recycle();
+            bitmapDecodeRegion.recycle();
             return byteArrayOutputStream.toByteArray();
         } catch (IOException unused) {
             throw new CodecFailedException("Decode byte array failed.", CodecFailedException.FailureType.DECODE_FAILED);
@@ -147,40 +147,40 @@ final class ImageUtil {
         buffer.rewind();
         buffer2.rewind();
         buffer3.rewind();
-        int remaining = buffer.remaining();
-        byte[] bArr = new byte[((imageProxy.getWidth() * imageProxy.getHeight()) / 2) + remaining];
-        int i2 = 0;
-        for (int i3 = 0; i3 < imageProxy.getHeight(); i3++) {
-            buffer.get(bArr, i2, imageProxy.getWidth());
-            i2 += imageProxy.getWidth();
-            buffer.position(Math.min(remaining, (buffer.position() - imageProxy.getWidth()) + planeProxy.getRowStride()));
+        int iRemaining = buffer.remaining();
+        byte[] bArr = new byte[((imageProxy.getWidth() * imageProxy.getHeight()) / 2) + iRemaining];
+        int width = 0;
+        for (int i2 = 0; i2 < imageProxy.getHeight(); i2++) {
+            buffer.get(bArr, width, imageProxy.getWidth());
+            width += imageProxy.getWidth();
+            buffer.position(Math.min(iRemaining, (buffer.position() - imageProxy.getWidth()) + planeProxy.getRowStride()));
         }
         int height = imageProxy.getHeight() / 2;
-        int width = imageProxy.getWidth() / 2;
+        int width2 = imageProxy.getWidth() / 2;
         int rowStride = planeProxy3.getRowStride();
         int rowStride2 = planeProxy2.getRowStride();
         int pixelStride = planeProxy3.getPixelStride();
         int pixelStride2 = planeProxy2.getPixelStride();
         byte[] bArr2 = new byte[rowStride];
         byte[] bArr3 = new byte[rowStride2];
-        int i4 = i2;
-        int i5 = 0;
-        while (i5 < height) {
+        int i3 = width;
+        int i4 = 0;
+        while (i4 < height) {
             buffer3.get(bArr2, 0, Math.min(rowStride, buffer3.remaining()));
             buffer2.get(bArr3, 0, Math.min(rowStride2, buffer2.remaining()));
-            int i6 = i4;
+            int i5 = i3;
+            int i6 = 0;
             int i7 = 0;
-            int i8 = 0;
-            for (int i9 = 0; i9 < width; i9++) {
-                int i10 = i6 + 1;
-                bArr[i6] = bArr2[i7];
-                i6 = i10 + 1;
-                bArr[i10] = bArr3[i8];
-                i7 += pixelStride;
-                i8 += pixelStride2;
+            for (int i8 = 0; i8 < width2; i8++) {
+                int i9 = i5 + 1;
+                bArr[i5] = bArr2[i6];
+                i5 = i9 + 1;
+                bArr[i9] = bArr3[i7];
+                i6 += pixelStride;
+                i7 += pixelStride2;
             }
-            i5++;
-            i4 = i6;
+            i4++;
+            i3 = i5;
         }
         return bArr;
     }

@@ -1,6 +1,6 @@
 package com.youth.banner;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BannerConfig {
     public static final int CENTER = 6;
     public static final int CIRCLE_INDICATOR = 1;

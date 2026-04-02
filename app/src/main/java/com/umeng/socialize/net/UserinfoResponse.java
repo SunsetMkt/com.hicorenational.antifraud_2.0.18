@@ -5,7 +5,7 @@ import com.umeng.socialize.utils.SocializeUtils;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UserinfoResponse extends SocializeReseponse {
     public Map<String, String> result;
 

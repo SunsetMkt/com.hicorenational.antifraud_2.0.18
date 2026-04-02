@@ -2,7 +2,7 @@ package com.huawei.hms.adapter.sysobs;
 
 import android.content.Intent;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface SystemObserver {
     boolean onNoticeResult(int i2);
 

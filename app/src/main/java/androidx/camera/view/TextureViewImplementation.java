@@ -21,13 +21,12 @@ import androidx.core.util.Consumer;
 import androidx.core.util.Preconditions;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TextureViewImplementation implements PreviewView.Implementation {
     private static final String TAG = "TextureViewImpl";
     private Size mResolution;
-    InterfaceFutureC0952a<SurfaceRequest.Result> mSurfaceReleaseFuture;
+    d.b.b.a.a.a<SurfaceRequest.Result> mSurfaceReleaseFuture;
     SurfaceRequest mSurfaceRequest;
     SurfaceTexture mSurfaceTexture;
     private WeakReference<FrameLayout> mWeakReferenceParent;
@@ -65,13 +64,13 @@ public class TextureViewImplementation implements PreviewView.Implementation {
 
             @Override // android.view.TextureView.SurfaceTextureListener
             public boolean onSurfaceTextureDestroyed(final SurfaceTexture surfaceTexture) {
-                InterfaceFutureC0952a<SurfaceRequest.Result> interfaceFutureC0952a;
+                d.b.b.a.a.a<SurfaceRequest.Result> aVar;
                 TextureViewImplementation textureViewImplementation = TextureViewImplementation.this;
                 textureViewImplementation.mSurfaceTexture = null;
-                if (textureViewImplementation.mSurfaceRequest != null || (interfaceFutureC0952a = textureViewImplementation.mSurfaceReleaseFuture) == null) {
+                if (textureViewImplementation.mSurfaceRequest != null || (aVar = textureViewImplementation.mSurfaceReleaseFuture) == null) {
                     return true;
                 }
-                Futures.addCallback(interfaceFutureC0952a, new FutureCallback<SurfaceRequest.Result>() { // from class: androidx.camera.view.TextureViewImplementation.1.1
+                Futures.addCallback(aVar, new FutureCallback<SurfaceRequest.Result>() { // from class: androidx.camera.view.TextureViewImplementation.1.1
                     @Override // androidx.camera.core.impl.utils.futures.FutureCallback
                     public void onFailure(Throwable th) {
                         throw new IllegalStateException("SurfaceReleaseFuture did not complete nicely.", th);
@@ -99,8 +98,7 @@ public class TextureViewImplementation implements PreviewView.Implementation {
         getParent().addView(textureView);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m381a(final SurfaceRequest surfaceRequest) {
+    public /* synthetic */ void a(final SurfaceRequest surfaceRequest) {
         this.mResolution = surfaceRequest.getResolution();
         initInternal();
         SurfaceRequest surfaceRequest2 = this.mSurfaceRequest;
@@ -111,14 +109,13 @@ public class TextureViewImplementation implements PreviewView.Implementation {
         surfaceRequest.addRequestCancellationListener(ContextCompat.getMainExecutor(getTextureView().getContext().getApplicationContext()), new Runnable() { // from class: androidx.camera.view.e
             @Override // java.lang.Runnable
             public final void run() {
-                TextureViewImplementation.this.m382b(surfaceRequest);
+                this.a.b(surfaceRequest);
             }
         });
         tryToProvidePreviewSurface();
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m382b(SurfaceRequest surfaceRequest) {
+    public /* synthetic */ void b(SurfaceRequest surfaceRequest) {
         SurfaceRequest surfaceRequest2 = this.mSurfaceRequest;
         if (surfaceRequest2 == null || surfaceRequest2 != surfaceRequest) {
             return;
@@ -133,7 +130,7 @@ public class TextureViewImplementation implements PreviewView.Implementation {
         return new Preview.SurfaceProvider() { // from class: androidx.camera.view.f
             @Override // androidx.camera.core.Preview.SurfaceProvider
             public final void onSurfaceRequested(SurfaceRequest surfaceRequest) {
-                TextureViewImplementation.this.m381a(surfaceRequest);
+                this.a.a(surfaceRequest);
             }
         };
     }
@@ -159,41 +156,39 @@ public class TextureViewImplementation implements PreviewView.Implementation {
         }
         surfaceTexture.setDefaultBufferSize(size.getWidth(), this.mResolution.getHeight());
         final Surface surface = new Surface(this.mSurfaceTexture);
-        final InterfaceFutureC0952a<SurfaceRequest.Result> future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.view.g
+        final d.b.b.a.a.a<SurfaceRequest.Result> future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.view.g
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return TextureViewImplementation.this.m379a(surface, completer);
+                return this.a.a(surface, completer);
             }
         });
         this.mSurfaceReleaseFuture = future;
         this.mSurfaceReleaseFuture.addListener(new Runnable() { // from class: androidx.camera.view.d
             @Override // java.lang.Runnable
             public final void run() {
-                TextureViewImplementation.this.m380a(surface, future);
+                this.a.a(surface, future);
             }
         }, ContextCompat.getMainExecutor(getTextureView().getContext().getApplicationContext()));
         this.mSurfaceRequest = null;
         correctPreviewForCenterCrop(getParent(), getTextureView(), this.mResolution);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m379a(Surface surface, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(Surface surface, final CallbackToFutureAdapter.Completer completer) throws Exception {
         SurfaceRequest surfaceRequest = this.mSurfaceRequest;
-        Executor directExecutor = CameraXExecutors.directExecutor();
+        Executor executorDirectExecutor = CameraXExecutors.directExecutor();
         completer.getClass();
-        surfaceRequest.provideSurface(surface, directExecutor, new Consumer() { // from class: androidx.camera.view.a
+        surfaceRequest.provideSurface(surface, executorDirectExecutor, new Consumer() { // from class: androidx.camera.view.a
             @Override // androidx.core.util.Consumer
             public final void accept(Object obj) {
-                CallbackToFutureAdapter.Completer.this.set((SurfaceRequest.Result) obj);
+                completer.set((SurfaceRequest.Result) obj);
             }
         });
         return "provideSurface[request=" + this.mSurfaceRequest + " surface=" + surface + "]";
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m380a(Surface surface, InterfaceFutureC0952a interfaceFutureC0952a) {
+    public /* synthetic */ void a(Surface surface, d.b.b.a.a.a aVar) {
         surface.release();
-        if (this.mSurfaceReleaseFuture == interfaceFutureC0952a) {
+        if (this.mSurfaceReleaseFuture == aVar) {
             this.mSurfaceReleaseFuture = null;
         }
     }

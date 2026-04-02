@@ -7,7 +7,7 @@ import java.net.Proxy;
 import java.util.List;
 import javax.annotation.Nullable;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class EventListener {
     public static final EventListener NONE = new EventListener() { // from class: okhttp3.EventListener.1
     };

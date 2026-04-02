@@ -1,6 +1,6 @@
 package com.huawei.agconnect.exception;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AGCException extends Exception {
     private int code;
     private String errMsg;

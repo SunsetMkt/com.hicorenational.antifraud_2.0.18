@@ -3,10 +3,10 @@ package manager;
 import android.text.TextUtils;
 import network.account.AccountInfo;
 import network.http.RegionConfigHttp;
-import util.C7307p1;
-import util.C7325u1;
+import util.c2;
+import util.u1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AccountManager {
     public static int LOGIN_NORMAL = -1;
     public static int LOGIN_QQ = 1;
@@ -20,7 +20,7 @@ public class AccountManager {
     }
 
     public static AccountInfo getAccountInfo() {
-        return (AccountInfo) C7325u1.m26615a(C7325u1.f25709y0, AccountInfo.class);
+        return (AccountInfo) c2.a(c2.y0, AccountInfo.class);
     }
 
     public static String getAccountPhone() {
@@ -93,14 +93,14 @@ public class AccountManager {
 
     public static void loginOut() {
         saveAccount(null);
-        C7325u1.m26630b(C7325u1.f25646M, "");
-        C7325u1.m26631b(C7325u1.f25645L, false);
-        C7307p1.m26478a(C7307p1.f25503l, (Object) null);
+        c2.b(c2.M, "");
+        c2.b(c2.L, false);
+        u1.a(u1.f15089l, (Object) null);
     }
 
     public static void saveAccount(AccountInfo accountInfo) {
         mToken = accountInfo == null ? "" : accountInfo.getToken();
-        C7325u1.m26619a(accountInfo, C7325u1.f25709y0);
+        c2.a(accountInfo, c2.y0);
     }
 
     public static void setRegion(String str) {
@@ -121,6 +121,6 @@ public class AccountManager {
         if (accountInfo != null) {
             accountInfo.setVisiblePhone(str);
         }
-        C7325u1.m26619a(accountInfo, C7325u1.f25709y0);
+        c2.a(accountInfo, c2.y0);
     }
 }

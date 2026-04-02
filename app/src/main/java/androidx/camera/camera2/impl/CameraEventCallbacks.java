@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallback> {
 
     public static final class ComboCameraEventCallback {
@@ -32,9 +32,9 @@ public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallbac
             LinkedList linkedList = new LinkedList();
             Iterator<CameraEventCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
-                CaptureConfig onDisableSession = it.next().onDisableSession();
-                if (onDisableSession != null) {
-                    linkedList.add(onDisableSession);
+                CaptureConfig captureConfigOnDisableSession = it.next().onDisableSession();
+                if (captureConfigOnDisableSession != null) {
+                    linkedList.add(captureConfigOnDisableSession);
                 }
             }
             return linkedList;
@@ -45,9 +45,9 @@ public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallbac
             LinkedList linkedList = new LinkedList();
             Iterator<CameraEventCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
-                CaptureConfig onEnableSession = it.next().onEnableSession();
-                if (onEnableSession != null) {
-                    linkedList.add(onEnableSession);
+                CaptureConfig captureConfigOnEnableSession = it.next().onEnableSession();
+                if (captureConfigOnEnableSession != null) {
+                    linkedList.add(captureConfigOnEnableSession);
                 }
             }
             return linkedList;
@@ -58,9 +58,9 @@ public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallbac
             LinkedList linkedList = new LinkedList();
             Iterator<CameraEventCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
-                CaptureConfig onPresetSession = it.next().onPresetSession();
-                if (onPresetSession != null) {
-                    linkedList.add(onPresetSession);
+                CaptureConfig captureConfigOnPresetSession = it.next().onPresetSession();
+                if (captureConfigOnPresetSession != null) {
+                    linkedList.add(captureConfigOnPresetSession);
                 }
             }
             return linkedList;
@@ -71,9 +71,9 @@ public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallbac
             LinkedList linkedList = new LinkedList();
             Iterator<CameraEventCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
-                CaptureConfig onRepeating = it.next().onRepeating();
-                if (onRepeating != null) {
-                    linkedList.add(onRepeating);
+                CaptureConfig captureConfigOnRepeating = it.next().onRepeating();
+                if (captureConfigOnRepeating != null) {
+                    linkedList.add(captureConfigOnRepeating);
                 }
             }
             return linkedList;
@@ -96,10 +96,10 @@ public final class CameraEventCallbacks extends MultiValueSet<CameraEventCallbac
 
     @Override // androidx.camera.core.impl.MultiValueSet
     @NonNull
-    /* renamed from: clone */
-    public MultiValueSet<CameraEventCallback> mo26841clone() {
-        CameraEventCallbacks createEmptyCallback = createEmptyCallback();
-        createEmptyCallback.addAll(getAllItems());
-        return createEmptyCallback;
+    /* JADX INFO: renamed from: clone */
+    public MultiValueSet<CameraEventCallback> mo0clone() {
+        CameraEventCallbacks cameraEventCallbacksCreateEmptyCallback = createEmptyCallback();
+        cameraEventCallbacksCreateEmptyCallback.addAll(getAllItems());
+        return cameraEventCallbacksCreateEmptyCallback;
     }
 }

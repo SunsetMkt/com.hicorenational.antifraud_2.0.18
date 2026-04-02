@@ -2,7 +2,7 @@ package org.android.spdy;
 
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SessionInfo {
     private static int INVALID_PUBLIC_SEQNUM = -1;
     private String domain;

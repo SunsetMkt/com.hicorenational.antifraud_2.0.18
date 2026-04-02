@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public enum RequestPriority {
     HIGHEST(0),
     HIGH(1),

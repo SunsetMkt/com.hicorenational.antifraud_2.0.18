@@ -5,12 +5,12 @@ import android.os.Build;
 import android.text.TextUtils;
 import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.Config;
+import com.umeng.socialize.c.a.a;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.media.BaseMediaObject;
 import com.umeng.socialize.media.UMediaObject;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.umeng.socialize.net.utils.URequest;
-import com.umeng.socialize.p217c.p218a.C3633a;
 import com.umeng.socialize.utils.DefaultClass;
 import com.umeng.socialize.utils.DeviceConfig;
 import com.umeng.socialize.utils.SLog;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class SocializeRequest extends URequest {
     private static final String BASE_URL = "https://log.umsns.com/";
     public static final int REQUEST_ANALYTIC = 1;
@@ -32,8 +32,8 @@ public abstract class SocializeRequest extends URequest {
     public int mOpId;
     private int mReqType;
 
-    /* renamed from: com.umeng.socialize.net.base.SocializeRequest$1 */
-    static /* synthetic */ class C37311 {
+    /* JADX INFO: renamed from: com.umeng.socialize.net.base.SocializeRequest$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$com$umeng$socialize$net$utils$URequest$RequestMethod = new int[URequest.RequestMethod.values().length];
 
         static {
@@ -65,47 +65,47 @@ public abstract class SocializeRequest extends URequest {
     }
 
     public static Map<String, Object> getBaseQuery(Context context) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         String deviceId = DeviceConfig.getDeviceId(context);
         if (!TextUtils.isEmpty(deviceId)) {
-            hashMap.put("imei", deviceId);
+            map.put("imei", deviceId);
         }
         String mac = DeviceConfig.getMac(context);
         if (TextUtils.isEmpty(mac)) {
             mac = DefaultClass.getMac();
-            SLog.m12717I(UmengText.NET.MACNULL);
+            SLog.I(UmengText.NET.MACNULL);
         }
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_MAC, mac);
+        map.put(SocializeProtocolConstants.PROTOCOL_KEY_MAC, mac);
         if (!TextUtils.isEmpty(SocializeConstants.UID)) {
-            hashMap.put("uid", SocializeConstants.UID);
+            map.put("uid", SocializeConstants.UID);
         }
         try {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_EN, DeviceConfig.getNetworkAccessMode(context)[0]);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_EN, DeviceConfig.getNetworkAccessMode(context)[0]);
         } catch (Exception unused) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_EN, "Unknown");
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_EN, "Unknown");
         }
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_DE, Build.MODEL);
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_VERSION, "7.3.2");
-        hashMap.put("os", "Android");
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_ANDROID_ID, DeviceConfig.getAndroidID(context));
-        hashMap.put("sn", DeviceConfig.getDeviceSN());
-        hashMap.put("os_version", DeviceConfig.getOsVersion());
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_DT, Long.valueOf(System.currentTimeMillis()));
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_AK, SocializeUtils.getAppkey(context));
-        hashMap.put(SocializeProtocolConstants.PROTOCOL_VERSION, SocializeConstants.PROTOCOL_VERSON);
-        hashMap.put(SocializeConstants.USHARETYPE, Config.shareType);
+        map.put(SocializeProtocolConstants.PROTOCOL_KEY_DE, Build.MODEL);
+        map.put(SocializeProtocolConstants.PROTOCOL_KEY_VERSION, "7.3.2");
+        map.put("os", "Android");
+        map.put(SocializeProtocolConstants.PROTOCOL_KEY_ANDROID_ID, DeviceConfig.getAndroidID(context));
+        map.put("sn", DeviceConfig.getDeviceSN());
+        map.put("os_version", DeviceConfig.getOsVersion());
+        map.put(SocializeProtocolConstants.PROTOCOL_KEY_DT, Long.valueOf(System.currentTimeMillis()));
+        map.put(SocializeProtocolConstants.PROTOCOL_KEY_AK, SocializeUtils.getAppkey(context));
+        map.put(SocializeProtocolConstants.PROTOCOL_VERSION, SocializeConstants.PROTOCOL_VERSON);
+        map.put(SocializeConstants.USHARETYPE, Config.shareType);
         if (!TextUtils.isEmpty(Config.EntityKey)) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_ENTITY_KEY, Config.EntityKey);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_ENTITY_KEY, Config.EntityKey);
         }
         if (!TextUtils.isEmpty(Config.SessionId)) {
-            hashMap.put("sid", Config.SessionId);
+            map.put("sid", Config.SessionId);
         }
         try {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_REQUEST_TYPE, 0);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_REQUEST_TYPE, 0);
         } catch (Exception e2) {
             SLog.error(e2);
         }
-        return hashMap;
+        return map;
     }
 
     private String mapTostring(Map<String, Object> map) {
@@ -122,11 +122,11 @@ public abstract class SocializeRequest extends URequest {
 
     public void addFileParams(byte[] bArr, FILE_TYPE file_type, String str) {
         if (FILE_TYPE.IMAGE == file_type) {
-            String m12625c = C3633a.m12625c(bArr);
-            if (TextUtils.isEmpty(m12625c)) {
-                m12625c = "png";
+            String strC = a.c(bArr);
+            if (TextUtils.isEmpty(strC)) {
+                strC = "png";
             }
-            this.mFileMap.put(SocializeProtocolConstants.PROTOCOL_KEY_IMAGE, new URequest.FilePair(SocializeUtils.md5(bArr) + "." + m12625c, bArr));
+            this.mFileMap.put(SocializeProtocolConstants.PROTOCOL_KEY_IMAGE, new URequest.FilePair(SocializeUtils.md5(bArr) + "." + strC, bArr));
         }
     }
 
@@ -177,7 +177,7 @@ public abstract class SocializeRequest extends URequest {
 
     @Override // com.umeng.socialize.net.utils.URequest
     protected String getHttpMethod() {
-        return C37311.$SwitchMap$com$umeng$socialize$net$utils$URequest$RequestMethod[this.mMethod.ordinal()] != 1 ? URequest.GET : URequest.POST;
+        return AnonymousClass1.$SwitchMap$com$umeng$socialize$net$utils$URequest$RequestMethod[this.mMethod.ordinal()] != 1 ? URequest.GET : URequest.POST;
     }
 
     protected abstract String getPath();
@@ -198,15 +198,15 @@ public abstract class SocializeRequest extends URequest {
 
     @Override // com.umeng.socialize.net.utils.URequest
     public void setBaseUrl(String str) {
-        String str2 = "";
+        String string = "";
         try {
             if (!TextUtils.isEmpty(getPath())) {
-                str2 = new URL(new URL(str), getPath()).toString();
+                string = new URL(new URL(str), getPath()).toString();
             }
         } catch (Exception e2) {
             SLog.error(UmengText.NET.getURLERROR(str), e2);
         }
-        super.setBaseUrl(str2);
+        super.setBaseUrl(string);
     }
 
     public void setReqType(int i2) {

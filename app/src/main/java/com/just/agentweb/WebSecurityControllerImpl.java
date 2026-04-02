@@ -5,7 +5,7 @@ import android.webkit.WebView;
 import androidx.collection.ArrayMap;
 import com.just.agentweb.AgentWeb;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebSecurityControllerImpl implements WebSecurityController<WebSecurityCheckLogic> {
     private ArrayMap<String, Object> mMap;
     private AgentWeb.SecurityType mSecurityType;

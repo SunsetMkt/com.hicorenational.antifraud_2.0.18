@@ -15,7 +15,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MediaMetadataCompat implements Parcelable {
     public static final Parcelable.Creator<MediaMetadataCompat> CREATOR;
     static final ArrayMap<String, Integer> METADATA_KEYS_TYPE = new ArrayMap<>();
@@ -141,13 +141,13 @@ public final class MediaMetadataCompat implements Parcelable {
         if (obj == null || Build.VERSION.SDK_INT < 21) {
             return null;
         }
-        Parcel obtain = Parcel.obtain();
-        MediaMetadataCompatApi21.writeToParcel(obj, obtain, 0);
-        obtain.setDataPosition(0);
-        MediaMetadataCompat createFromParcel = CREATOR.createFromParcel(obtain);
-        obtain.recycle();
-        createFromParcel.mMetadataObj = obj;
-        return createFromParcel;
+        Parcel parcelObtain = Parcel.obtain();
+        MediaMetadataCompatApi21.writeToParcel(obj, parcelObtain, 0);
+        parcelObtain.setDataPosition(0);
+        MediaMetadataCompat mediaMetadataCompatCreateFromParcel = CREATOR.createFromParcel(parcelObtain);
+        parcelObtain.recycle();
+        mediaMetadataCompatCreateFromParcel.mMetadataObj = obj;
+        return mediaMetadataCompatCreateFromParcel;
     }
 
     public boolean containsKey(String str) {
@@ -230,7 +230,7 @@ public final class MediaMetadataCompat implements Parcelable {
             i6++;
         }
         String string3 = getString(METADATA_KEY_MEDIA_URI);
-        Uri parse = TextUtils.isEmpty(string3) ? null : Uri.parse(string3);
+        Uri uri2 = TextUtils.isEmpty(string3) ? null : Uri.parse(string3);
         MediaDescriptionCompat.Builder builder = new MediaDescriptionCompat.Builder();
         builder.setMediaId(string);
         builder.setTitle(charSequenceArr[0]);
@@ -238,7 +238,7 @@ public final class MediaMetadataCompat implements Parcelable {
         builder.setDescription(charSequenceArr[2]);
         builder.setIconBitmap(bitmap);
         builder.setIconUri(uri);
-        builder.setMediaUri(parse);
+        builder.setMediaUri(uri2);
         Bundle bundle = new Bundle();
         if (this.mBundle.containsKey(METADATA_KEY_BT_FOLDER_TYPE)) {
             bundle.putLong(MediaDescriptionCompat.EXTRA_BT_FOLDER_TYPE, getLong(METADATA_KEY_BT_FOLDER_TYPE));
@@ -259,11 +259,11 @@ public final class MediaMetadataCompat implements Parcelable {
 
     public Object getMediaMetadata() {
         if (this.mMetadataObj == null && Build.VERSION.SDK_INT >= 21) {
-            Parcel obtain = Parcel.obtain();
-            writeToParcel(obtain, 0);
-            obtain.setDataPosition(0);
-            this.mMetadataObj = MediaMetadataCompatApi21.createFromParcel(obtain);
-            obtain.recycle();
+            Parcel parcelObtain = Parcel.obtain();
+            writeToParcel(parcelObtain, 0);
+            parcelObtain.setDataPosition(0);
+            this.mMetadataObj = MediaMetadataCompatApi21.createFromParcel(parcelObtain);
+            parcelObtain.recycle();
         }
         return this.mMetadataObj;
     }
@@ -310,8 +310,8 @@ public final class MediaMetadataCompat implements Parcelable {
 
         private Bitmap scaleBitmap(Bitmap bitmap, int i2) {
             float f2 = i2;
-            float min = Math.min(f2 / bitmap.getWidth(), f2 / bitmap.getHeight());
-            return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * min), (int) (bitmap.getHeight() * min), true);
+            float fMin = Math.min(f2 / bitmap.getWidth(), f2 / bitmap.getHeight());
+            return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * fMin), (int) (bitmap.getHeight() * fMin), true);
         }
 
         public MediaMetadataCompat build() {

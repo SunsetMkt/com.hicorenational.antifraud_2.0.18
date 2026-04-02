@@ -8,9 +8,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private static final int[] ATTRS = {R.attr.listDivider};
     public static final int HORIZONTAL = 0;
@@ -21,31 +22,31 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private int mOrientation;
 
     public DividerItemDecoration(Context context, int i2) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(ATTRS);
-        this.mDivider = obtainStyledAttributes.getDrawable(0);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(ATTRS);
+        this.mDivider = typedArrayObtainStyledAttributes.getDrawable(0);
         Drawable drawable = this.mDivider;
-        obtainStyledAttributes.recycle();
+        typedArrayObtainStyledAttributes.recycle();
         setOrientation(i2);
     }
 
     private void drawHorizontal(Canvas canvas, RecyclerView recyclerView) {
         int height;
-        int i2;
+        int paddingTop;
         canvas.save();
         if (recyclerView.getClipToPadding()) {
-            i2 = recyclerView.getPaddingTop();
+            paddingTop = recyclerView.getPaddingTop();
             height = recyclerView.getHeight() - recyclerView.getPaddingBottom();
-            canvas.clipRect(recyclerView.getPaddingLeft(), i2, recyclerView.getWidth() - recyclerView.getPaddingRight(), height);
+            canvas.clipRect(recyclerView.getPaddingLeft(), paddingTop, recyclerView.getWidth() - recyclerView.getPaddingRight(), height);
         } else {
             height = recyclerView.getHeight();
-            i2 = 0;
+            paddingTop = 0;
         }
         int childCount = recyclerView.getChildCount();
-        for (int i3 = 0; i3 < childCount; i3++) {
-            View childAt = recyclerView.getChildAt(i3);
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = recyclerView.getChildAt(i2);
             recyclerView.getLayoutManager().getDecoratedBoundsWithMargins(childAt, this.mBounds);
-            int round = this.mBounds.right + Math.round(childAt.getTranslationX());
-            this.mDivider.setBounds(round - this.mDivider.getIntrinsicWidth(), i2, round, height);
+            int iRound = this.mBounds.right + Math.round(childAt.getTranslationX());
+            this.mDivider.setBounds(iRound - this.mDivider.getIntrinsicWidth(), paddingTop, iRound, height);
             this.mDivider.draw(canvas);
         }
         canvas.restore();
@@ -53,25 +54,30 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private void drawVertical(Canvas canvas, RecyclerView recyclerView) {
         int width;
-        int i2;
+        int paddingLeft;
         canvas.save();
         if (recyclerView.getClipToPadding()) {
-            i2 = recyclerView.getPaddingLeft();
+            paddingLeft = recyclerView.getPaddingLeft();
             width = recyclerView.getWidth() - recyclerView.getPaddingRight();
-            canvas.clipRect(i2, recyclerView.getPaddingTop(), width, recyclerView.getHeight() - recyclerView.getPaddingBottom());
+            canvas.clipRect(paddingLeft, recyclerView.getPaddingTop(), width, recyclerView.getHeight() - recyclerView.getPaddingBottom());
         } else {
             width = recyclerView.getWidth();
-            i2 = 0;
+            paddingLeft = 0;
         }
         int childCount = recyclerView.getChildCount();
-        for (int i3 = 0; i3 < childCount; i3++) {
-            View childAt = recyclerView.getChildAt(i3);
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = recyclerView.getChildAt(i2);
             recyclerView.getDecoratedBoundsWithMargins(childAt, this.mBounds);
-            int round = this.mBounds.bottom + Math.round(childAt.getTranslationY());
-            this.mDivider.setBounds(i2, round - this.mDivider.getIntrinsicHeight(), width, round);
+            int iRound = this.mBounds.bottom + Math.round(childAt.getTranslationY());
+            this.mDivider.setBounds(paddingLeft, iRound - this.mDivider.getIntrinsicHeight(), width, iRound);
             this.mDivider.draw(canvas);
         }
         canvas.restore();
+    }
+
+    @Nullable
+    public Drawable getDrawable() {
+        return this.mDivider;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration

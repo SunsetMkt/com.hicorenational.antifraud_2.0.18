@@ -1,12 +1,10 @@
 package network.account;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class VerifyBody {
     private String apiAddress;
     private String areaCode;
-
-    /* renamed from: id */
-    private String f21454id;
+    private String id;
     private String identityCardNum;
     private String image;
     private String name;
@@ -21,7 +19,7 @@ public class VerifyBody {
     }
 
     public String getId() {
-        return this.f21454id;
+        return this.id;
     }
 
     public String getIdentityCardNum() {
@@ -49,7 +47,7 @@ public class VerifyBody {
     }
 
     public void setId(String str) {
-        this.f21454id = str;
+        this.id = str;
     }
 
     public void setIdentityCardNum(String str) {

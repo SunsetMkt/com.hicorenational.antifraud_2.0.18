@@ -15,7 +15,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class ShareBoardMenuHelper {
     private static String TAG = "ShareBoardMenuHelper";
     private ShareBoardConfig mShareBoardConfig;
@@ -27,28 +27,28 @@ class ShareBoardMenuHelper {
     private View createBtnView(Context context, final SnsPlatform snsPlatform) {
         String str;
         LinearLayout linearLayout = new LinearLayout(context);
-        int i2 = 0;
+        int resourceId = 0;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, -2);
         layoutParams.weight = 1.0f;
         linearLayout.setLayoutParams(layoutParams);
         linearLayout.setGravity(17);
         if (snsPlatform != null) {
             ResContainer resContainer = ResContainer.get(context);
-            View inflate = LayoutInflater.from(context).inflate(resContainer.layout("socialize_share_menu_item"), (ViewGroup) null);
-            SocializeImageView socializeImageView = (SocializeImageView) inflate.findViewById(resContainer.m12637id("socialize_image_view"));
-            TextView textView = (TextView) inflate.findViewById(resContainer.m12637id("socialize_text_view"));
+            View viewInflate = LayoutInflater.from(context).inflate(resContainer.layout("socialize_share_menu_item"), (ViewGroup) null);
+            SocializeImageView socializeImageView = (SocializeImageView) viewInflate.findViewById(resContainer.id("socialize_image_view"));
+            TextView textView = (TextView) viewInflate.findViewById(resContainer.id("socialize_text_view"));
             ShareBoardConfig shareBoardConfig = this.mShareBoardConfig;
-            int i3 = shareBoardConfig.mMenuBgColor;
-            if (i3 == 0 || shareBoardConfig.mMenuBgShape == ShareBoardConfig.BG_SHAPE_NONE) {
+            int i2 = shareBoardConfig.mMenuBgColor;
+            if (i2 == 0 || shareBoardConfig.mMenuBgShape == ShareBoardConfig.BG_SHAPE_NONE) {
                 socializeImageView.setPadding(0, 0, 0, 0);
             } else {
-                socializeImageView.setBackgroundColor(i3, shareBoardConfig.mMenuBgPressedColor);
+                socializeImageView.setBackgroundColor(i2, shareBoardConfig.mMenuBgPressedColor);
                 ShareBoardConfig shareBoardConfig2 = this.mShareBoardConfig;
                 socializeImageView.setBackgroundShape(shareBoardConfig2.mMenuBgShape, shareBoardConfig2.mMenuBgShapeAngle);
             }
-            int i4 = this.mShareBoardConfig.mMenuIconPressedColor;
-            if (i4 != 0) {
-                socializeImageView.setPressedColor(i4);
+            int i3 = this.mShareBoardConfig.mMenuIconPressedColor;
+            if (i3 != 0) {
+                socializeImageView.setPressedColor(i3);
             }
             try {
                 str = snsPlatform.mShowWord;
@@ -62,19 +62,19 @@ class ShareBoardMenuHelper {
             }
             textView.setGravity(17);
             try {
-                i2 = ResContainer.getResourceId(context, "drawable", snsPlatform.mIcon);
+                resourceId = ResContainer.getResourceId(context, "drawable", snsPlatform.mIcon);
             } catch (Exception e3) {
                 SHARE_MEDIA share_media2 = snsPlatform.mPlatform;
                 SLog.error(UmengText.SHAREBOARD.NULLNAME + (share_media2 != null ? share_media2.toString() : ""), e3);
             }
-            if (i2 != 0) {
-                socializeImageView.setImageResource(i2);
+            if (resourceId != 0) {
+                socializeImageView.setImageResource(resourceId);
             }
-            int i5 = this.mShareBoardConfig.mMenuTextColor;
-            if (i5 != 0) {
-                textView.setTextColor(i5);
+            int i4 = this.mShareBoardConfig.mMenuTextColor;
+            if (i4 != 0) {
+                textView.setTextColor(i4);
             }
-            inflate.setOnClickListener(new View.OnClickListener() { // from class: com.umeng.socialize.shareboard.ShareBoardMenuHelper.1
+            viewInflate.setOnClickListener(new View.OnClickListener() { // from class: com.umeng.socialize.shareboard.ShareBoardMenuHelper.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
                     SHARE_MEDIA share_media3 = snsPlatform.mPlatform;
@@ -84,7 +84,7 @@ class ShareBoardMenuHelper {
                     ShareBoardMenuHelper.this.mShareBoardConfig.getShareBoardlistener().onclick(snsPlatform, share_media3);
                 }
             });
-            linearLayout.addView(inflate);
+            linearLayout.addView(viewInflate);
         }
         return linearLayout;
     }

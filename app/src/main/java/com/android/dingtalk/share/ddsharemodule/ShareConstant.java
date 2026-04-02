@@ -1,6 +1,6 @@
 package com.android.dingtalk.share.ddsharemodule;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ShareConstant {
     public static String ACTION_APP_REGISTER = "dd://registerapp?appid=";
     public static String ACTION_APP_UNREGISTER = "dd://unregisterapp?appid=";

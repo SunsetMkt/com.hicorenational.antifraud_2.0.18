@@ -1,27 +1,33 @@
 package com.luck.picture.lib.model;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import com.huawei.hms.framework.common.ContainerUtils;
+import com.luck.picture.lib.R;
+import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.entity.LocalMediaFolder;
 import com.luck.picture.lib.tools.DESUtils;
 import com.luck.picture.lib.tools.MediaUtils;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.ValueOf;
-import com.umeng.analytics.pro.C3355bl;
+import com.umeng.analytics.pro.bl;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
+import i.q2.t.m0;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import p286h.p309q2.p311t.C5556m0;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class LocalMediaLoader {
     private static final int AUDIO_DURATION = 500;
     private static final long FILE_SIZE_UNIT = 1048576;
@@ -35,7 +41,7 @@ public class LocalMediaLoader {
     private boolean isAndroidQ = SdkVersionUtils.checkedAndroid_Q();
     private Context mContext;
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
-    private static final String[] PROJECTION = {C3355bl.f11732d, "_data", "mime_type", SocializeProtocolConstants.WIDTH, SocializeProtocolConstants.HEIGHT, "duration", "_size", "bucket_display_name", "_display_name"};
+    private static final String[] PROJECTION = {bl.f7101d, "_data", "mime_type", SocializeProtocolConstants.WIDTH, SocializeProtocolConstants.HEIGHT, "duration", "_size", "bucket_display_name", "_display_name"};
     private static final String[] SELECTION_ALL_ARGS = {String.valueOf(1), String.valueOf(3)};
 
     public LocalMediaLoader(Context context, PictureSelectionConfig pictureSelectionConfig) {
@@ -43,8 +49,7 @@ public class LocalMediaLoader {
         this.config = pictureSelectionConfig;
     }
 
-    /* renamed from: a */
-    static /* synthetic */ int m8139a(LocalMediaFolder localMediaFolder, LocalMediaFolder localMediaFolder2) {
+    static /* synthetic */ int a(LocalMediaFolder localMediaFolder, LocalMediaFolder localMediaFolder2) {
         if (localMediaFolder.getImages() == null || localMediaFolder2.getImages() == null) {
             return 0;
         }
@@ -53,15 +58,15 @@ public class LocalMediaLoader {
 
     private String getDurationCondition(long j2, long j3) {
         int i2 = this.config.videoMaxSecond;
-        long j4 = i2 == 0 ? C5556m0.f20396b : i2;
+        long jMin = i2 == 0 ? m0.f12222b : i2;
         if (j2 != 0) {
-            j4 = Math.min(j4, j2);
+            jMin = Math.min(jMin, j2);
         }
         Locale locale = Locale.CHINA;
         Object[] objArr = new Object[3];
         objArr[0] = Long.valueOf(Math.max(j3, this.config.videoMinSecond));
         objArr[1] = Math.max(j3, (long) this.config.videoMinSecond) == 0 ? "" : ContainerUtils.KEY_VALUE_DELIMITER;
-        objArr[2] = Long.valueOf(j4);
+        objArr[2] = Long.valueOf(jMin);
         return String.format(locale, "%d <%s duration and duration <= %d", objArr);
     }
 
@@ -181,7 +186,7 @@ public class LocalMediaLoader {
         Collections.sort(list, new Comparator() { // from class: com.luck.picture.lib.model.a
             @Override // java.util.Comparator
             public final int compare(Object obj, Object obj2) {
-                return LocalMediaLoader.m8139a((LocalMediaFolder) obj, (LocalMediaFolder) obj2);
+                return LocalMediaLoader.a((LocalMediaFolder) obj, (LocalMediaFolder) obj2);
             }
         });
     }
@@ -192,18 +197,18 @@ public class LocalMediaLoader {
         File file2;
         File[] fileArr;
         LocalMediaLoader localMediaLoader = this;
-        File[] listFiles = file.listFiles();
-        if (listFiles == null) {
+        File[] fileArrListFiles = file.listFiles();
+        if (fileArrListFiles == null) {
             return;
         }
         boolean z = false;
         int i3 = 0;
-        while (i3 < listFiles.length) {
-            String absolutePath = listFiles[i3].getAbsolutePath();
+        while (i3 < fileArrListFiles.length) {
+            String absolutePath = fileArrListFiles[i3].getAbsolutePath();
             File file3 = new File(absolutePath);
             String name = file3.getName();
-            long extractDuration = SdkVersionUtils.checkedAndroid_Q() ? MediaUtils.extractDuration(localMediaLoader.mContext, true, absolutePath) : MediaUtils.extractDuration(localMediaLoader.mContext, z, absolutePath);
-            if (extractDuration >= 1000) {
+            long jExtractDuration = SdkVersionUtils.checkedAndroid_Q() ? MediaUtils.extractDuration(localMediaLoader.mContext, true, absolutePath) : MediaUtils.extractDuration(localMediaLoader.mContext, z, absolutePath);
+            if (jExtractDuration >= 1000) {
                 try {
                     str2 = "audio/" + file3.getName().substring(file3.getName().lastIndexOf(".") + 1);
                 } catch (Exception unused) {
@@ -211,18 +216,18 @@ public class LocalMediaLoader {
                 }
                 i2 = i3;
                 file2 = file3;
-                fileArr = listFiles;
-                savaCourseMedia(0L, absolutePath, name, str, extractDuration, str2, 0, 0, file3.length(), list, list2, localMediaFolder);
+                fileArr = fileArrListFiles;
+                savaCourseMedia(0L, absolutePath, name, str, jExtractDuration, str2, 0, 0, file3.length(), list, list2, localMediaFolder);
             } else {
                 i2 = i3;
                 file2 = file3;
-                fileArr = listFiles;
+                fileArr = fileArrListFiles;
             }
             getFilesAllName(str, file2, list, list2, localMediaFolder);
             i3 = i2 + 1;
             z = false;
             localMediaLoader = this;
-            listFiles = fileArr;
+            fileArrListFiles = fileArr;
         }
     }
 
@@ -230,25 +235,149 @@ public class LocalMediaLoader {
         return !TextUtils.isEmpty(str) && new File(str).exists();
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:110:0x015c, code lost:
-    
-        if (r15.isExist(com.luck.picture.lib.tools.SdkVersionUtils.checkedAndroid_Q() ? com.luck.picture.lib.tools.PictureFileUtils.getPath(r15.mContext, android.net.Uri.parse(r4)) : r4) == false) goto L22;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:26:0x0093, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:21:0x0093, code lost:
     
         if (com.luck.picture.lib.config.PictureMimeType.isGif(r1) != false) goto L22;
      */
-    /* JADX WARN: Removed duplicated region for block: B:30:0x01fc A[LOOP:0: B:14:0x0036->B:30:0x01fc, LOOP_END] */
-    /* JADX WARN: Removed duplicated region for block: B:31:0x017d A[EDGE_INSN: B:31:0x017d->B:32:0x017d BREAK  A[LOOP:0: B:14:0x0036->B:30:0x01fc], SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:121:0x017d A[EDGE_INSN: B:121:0x017d->B:62:0x017d BREAK  A[LOOP:0: B:7:0x0036->B:81:0x01fc], SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:81:0x01fc A[LOOP:0: B:7:0x0036->B:81:0x01fc, LOOP_END] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public java.util.List<com.luck.picture.lib.entity.LocalMediaFolder> loadAllMedia() {
-        /*
-            Method dump skipped, instructions count: 613
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.model.LocalMediaLoader.loadAllMedia():java.util.List");
+    public List<LocalMediaFolder> loadAllMedia() throws Throwable {
+        Cursor cursor;
+        LocalMediaFolder localMediaFolder;
+        ArrayList arrayList;
+        Context context;
+        int i2;
+        LocalMediaLoader localMediaLoader = this;
+        Cursor cursorQuery = localMediaLoader.mContext.getContentResolver().query(QUERY_URI, PROJECTION, getSelection(), getSelectionArgs(), ORDER_BY);
+        if (cursorQuery == null) {
+            if (cursorQuery != null && !cursorQuery.isClosed()) {
+                cursorQuery.close();
+            }
+            return null;
+        }
+        try {
+            ArrayList arrayList2 = new ArrayList();
+            LocalMediaFolder localMediaFolder2 = new LocalMediaFolder();
+            ArrayList arrayList3 = new ArrayList();
+            if (cursorQuery.getCount() > 0) {
+                cursorQuery.moveToFirst();
+                while (true) {
+                    long j2 = cursorQuery.getLong(cursorQuery.getColumnIndexOrThrow(PROJECTION[0]));
+                    String realPathAndroid_Q = localMediaLoader.isAndroidQ ? localMediaLoader.getRealPathAndroid_Q(j2) : cursorQuery.getString(cursorQuery.getColumnIndexOrThrow(PROJECTION[1]));
+                    String string = cursorQuery.getString(cursorQuery.getColumnIndexOrThrow(PROJECTION[2]));
+                    if (string.endsWith("image/*")) {
+                        string = PictureMimeType.isContent(realPathAndroid_Q) ? PictureMimeType.getImageMimeType(PictureFileUtils.getPath(localMediaLoader.mContext, Uri.parse(realPathAndroid_Q))) : PictureMimeType.getImageMimeType(realPathAndroid_Q);
+                        if (!localMediaLoader.config.isGif) {
+                        }
+                    }
+                    String str = string;
+                    int i3 = cursorQuery.getInt(cursorQuery.getColumnIndexOrThrow(PROJECTION[3]));
+                    int i4 = cursorQuery.getInt(cursorQuery.getColumnIndexOrThrow(PROJECTION[4]));
+                    long j3 = cursorQuery.getLong(cursorQuery.getColumnIndexOrThrow(PROJECTION[5]));
+                    long j4 = cursorQuery.getLong(cursorQuery.getColumnIndexOrThrow(PROJECTION[6]));
+                    String string2 = cursorQuery.getString(cursorQuery.getColumnIndexOrThrow(PROJECTION[7]));
+                    String string3 = cursorQuery.getString(cursorQuery.getColumnIndexOrThrow(PROJECTION[8]));
+                    if (localMediaLoader.config.filterFileSize <= 0 || j4 <= ((long) localMediaLoader.config.filterFileSize) * 1048576) {
+                        try {
+                            if (PictureMimeType.eqVideo(str) || PictureMimeType.eqAudio(str)) {
+                                if ((localMediaLoader.config.videoMinSecond <= 0 || j3 >= localMediaLoader.config.videoMinSecond) && ((localMediaLoader.config.videoMaxSecond <= 0 || j3 <= localMediaLoader.config.videoMaxSecond) && j3 != 0 && j4 > 0 && !MediaUtils.getFolder(string2))) {
+                                    if (!localMediaLoader.isExist(SdkVersionUtils.checkedAndroid_Q() ? PictureFileUtils.getPath(localMediaLoader.mContext, Uri.parse(realPathAndroid_Q)) : realPathAndroid_Q)) {
+                                    }
+                                    if (!cursor.moveToNext()) {
+                                        break;
+                                    }
+                                    localMediaLoader = this;
+                                    localMediaFolder2 = localMediaFolder;
+                                    cursorQuery = cursor;
+                                    arrayList3 = arrayList;
+                                }
+                            }
+                            savaCourseMedia(j2, realPathAndroid_Q, string3, string2, j3, str, i3, i4, j4, arrayList2, arrayList, localMediaFolder);
+                            if (!cursor.moveToNext()) {
+                            }
+                        } catch (Exception e2) {
+                            e = e2;
+                            e.printStackTrace();
+                            String str2 = "loadAllMedia Data Error: " + e.getMessage();
+                            if (cursor != null) {
+                                cursor.close();
+                            }
+                            return null;
+                        } catch (Throwable th) {
+                            th = th;
+                            if (cursor != null) {
+                                cursor.close();
+                            }
+                            throw th;
+                        }
+                        localMediaFolder = localMediaFolder2;
+                        arrayList = arrayList3;
+                        cursor = cursorQuery;
+                    }
+                    localMediaFolder = localMediaFolder2;
+                    arrayList = arrayList3;
+                    cursor = cursorQuery;
+                    if (!cursor.moveToNext()) {
+                    }
+                }
+                try {
+                    try {
+                        if (this.config.chooseMode == PictureMimeType.ofAudio() || this.config.chooseMode == PictureMimeType.ofAll()) {
+                            String recordFolder = MediaUtils.getRecordFolder(this.mContext);
+                            if (!TextUtils.isEmpty(recordFolder)) {
+                                getFilesAllName(recordFolder, new File(Environment.getExternalStorageDirectory(), recordFolder), arrayList2, arrayList, localMediaFolder);
+                            }
+                        }
+                        if (arrayList.size() > 0) {
+                            sortFolder(arrayList2);
+                            LocalMediaFolder localMediaFolder3 = localMediaFolder;
+                            arrayList2.add(0, localMediaFolder3);
+                            ArrayList arrayList4 = arrayList;
+                            localMediaFolder3.setFirstImagePath(arrayList4.get(0).getPath());
+                            if (this.config.chooseMode == PictureMimeType.ofAudio()) {
+                                context = this.mContext;
+                                i2 = R.string.picture_all_audio;
+                            } else {
+                                context = this.mContext;
+                                i2 = R.string.picture_camera_roll;
+                            }
+                            localMediaFolder3.setName(context.getString(i2));
+                            localMediaFolder3.setOfAllType(this.config.chooseMode);
+                            localMediaFolder3.setCameraFolder(true);
+                            localMediaFolder3.setImages(arrayList4);
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        if (cursor != null && !cursor.isClosed()) {
+                            cursor.close();
+                        }
+                        throw th;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    e.printStackTrace();
+                    String str22 = "loadAllMedia Data Error: " + e.getMessage();
+                    if (cursor != null && !cursor.isClosed()) {
+                        cursor.close();
+                    }
+                    return null;
+                }
+            } else {
+                cursor = cursorQuery;
+            }
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+            return arrayList2;
+        } catch (Exception e4) {
+            e = e4;
+            cursor = cursorQuery;
+        } catch (Throwable th3) {
+            th = th3;
+            cursor = cursorQuery;
+        }
     }
 }

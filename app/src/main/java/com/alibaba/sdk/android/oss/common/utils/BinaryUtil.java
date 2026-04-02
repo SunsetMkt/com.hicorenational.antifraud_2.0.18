@@ -1,15 +1,15 @@
 package com.alibaba.sdk.android.oss.common.utils;
 
 import android.util.Base64;
+import i.f1;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BinaryUtil {
     public static String calculateBase64Md5(byte[] bArr) {
         return toBase64String(calculateMd5(bArr));
@@ -21,12 +21,12 @@ public class BinaryUtil {
             byte[] bArr = new byte[10240];
             FileInputStream fileInputStream = new FileInputStream(fileDescriptor);
             while (true) {
-                int read = fileInputStream.read(bArr);
-                if (read == -1) {
+                int i2 = fileInputStream.read(bArr);
+                if (i2 == -1) {
                     fileInputStream.close();
                     return messageDigest.digest();
                 }
-                messageDigest.update(bArr, 0, read);
+                messageDigest.update(bArr, 0, i2);
             }
         } catch (NoSuchAlgorithmException unused) {
             throw new RuntimeException("MD5 algorithm not found.");
@@ -40,12 +40,12 @@ public class BinaryUtil {
     private static String convertHashToString(byte[] bArr) {
         String str = "";
         for (byte b2 : bArr) {
-            str = str + Integer.toString((b2 & C5230f1.f20085c) + 256, 16).substring(1);
+            str = str + Integer.toString((b2 & f1.f12066c) + 256, 16).substring(1);
         }
         return str.toLowerCase();
     }
 
-    public static String fileToSHA1(String str) {
+    public static String fileToSHA1(String str) throws Throwable {
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(str);
@@ -65,12 +65,12 @@ public class BinaryUtil {
                     messageDigest.update(bArr, 0, i2);
                 }
             }
-            String convertHashToString = convertHashToString(messageDigest.digest());
+            String strConvertHashToString = convertHashToString(messageDigest.digest());
             try {
                 fileInputStream.close();
             } catch (Exception unused2) {
             }
-            return convertHashToString;
+            return strConvertHashToString;
         } catch (Exception unused3) {
             if (fileInputStream != null) {
                 try {
@@ -136,7 +136,7 @@ public class BinaryUtil {
         }
     }
 
-    public static String fileToSHA1(FileDescriptor fileDescriptor) {
+    public static String fileToSHA1(FileDescriptor fileDescriptor) throws Throwable {
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(fileDescriptor);
@@ -156,12 +156,12 @@ public class BinaryUtil {
                     messageDigest.update(bArr, 0, i2);
                 }
             }
-            String convertHashToString = convertHashToString(messageDigest.digest());
+            String strConvertHashToString = convertHashToString(messageDigest.digest());
             try {
                 fileInputStream.close();
             } catch (Exception unused2) {
             }
-            return convertHashToString;
+            return strConvertHashToString;
         } catch (Exception unused3) {
             if (fileInputStream != null) {
                 try {
@@ -188,9 +188,9 @@ public class BinaryUtil {
             byte[] bArr = new byte[10240];
             FileInputStream fileInputStream = new FileInputStream(new File(str));
             while (true) {
-                int read = fileInputStream.read(bArr);
-                if (read != -1) {
-                    messageDigest.update(bArr, 0, read);
+                int i2 = fileInputStream.read(bArr);
+                if (i2 != -1) {
+                    messageDigest.update(bArr, 0, i2);
                 } else {
                     fileInputStream.close();
                     return messageDigest.digest();

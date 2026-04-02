@@ -12,8 +12,8 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.savedstate.Recreator;
 import java.util.Map;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedApi"})
-/* loaded from: classes.dex */
 public final class SavedStateRegistry {
     private static final String SAVED_COMPONENTS_KEY = "androidx.lifecycle.BundlableSavedStateRegistry.key";
     private Recreator.SavedStateProvider mRecreatorProvider;

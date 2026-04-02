@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public enum SpdySessionKind {
     NONE_SESSION(0),
     WIFI_SESSION(1),

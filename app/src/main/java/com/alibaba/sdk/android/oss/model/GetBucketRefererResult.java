@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GetBucketRefererResult extends OSSResult {
     private String mAllowEmpty;
     private ArrayList<String> mReferers;

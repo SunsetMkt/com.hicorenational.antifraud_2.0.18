@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MimeTypeFilter {
     private MimeTypeFilter() {
     }
@@ -22,9 +22,9 @@ public final class MimeTypeFilter {
             return new String[0];
         }
         ArrayList arrayList = new ArrayList();
-        String[] split = str.split("/");
+        String[] strArrSplit = str.split("/");
         for (String str2 : strArr) {
-            if (mimeTypeAgainstFilter(str2.split("/"), split)) {
+            if (mimeTypeAgainstFilter(str2.split("/"), strArrSplit)) {
                 arrayList.add(str2);
             }
         }
@@ -52,9 +52,9 @@ public final class MimeTypeFilter {
         if (str == null) {
             return null;
         }
-        String[] split = str.split("/");
+        String[] strArrSplit = str.split("/");
         for (String str2 : strArr) {
-            if (mimeTypeAgainstFilter(split, str2.split("/"))) {
+            if (mimeTypeAgainstFilter(strArrSplit, str2.split("/"))) {
                 return str2;
             }
         }
@@ -66,9 +66,9 @@ public final class MimeTypeFilter {
         if (strArr == null) {
             return null;
         }
-        String[] split = str.split("/");
+        String[] strArrSplit = str.split("/");
         for (String str2 : strArr) {
-            if (mimeTypeAgainstFilter(str2.split("/"), split)) {
+            if (mimeTypeAgainstFilter(str2.split("/"), strArrSplit)) {
                 return str2;
             }
         }

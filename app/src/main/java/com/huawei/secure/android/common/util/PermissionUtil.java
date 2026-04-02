@@ -6,11 +6,9 @@ import android.os.Process;
 import androidx.core.content.PermissionChecker;
 import com.huawei.secure.android.common.exception.NoPermissionCheckerException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PermissionUtil {
-
-    /* renamed from: a */
-    private static final String f8274a = "PermissionUtil";
+    private static final String a = "PermissionUtil";
 
     public static boolean checkCallingPermission(Context context, String str, String str2) throws NoPermissionCheckerException {
         if (Binder.getCallingPid() == Process.myPid()) {

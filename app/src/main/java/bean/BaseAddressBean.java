@@ -1,6 +1,6 @@
 package bean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseAddressBean {
     public static final int UPDATE_ADDRESS_STATE = 1;
     private int areaVersion;

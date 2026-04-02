@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AtomicFile {
     private final File mBackupName;
     private final File mBaseName;
@@ -71,25 +71,25 @@ public class AtomicFile {
 
     @NonNull
     public byte[] readFully() throws IOException {
-        FileInputStream openRead = openRead();
+        FileInputStream fileInputStreamOpenRead = openRead();
         try {
-            byte[] bArr = new byte[openRead.available()];
+            byte[] bArr = new byte[fileInputStreamOpenRead.available()];
             int i2 = 0;
             while (true) {
-                int read = openRead.read(bArr, i2, bArr.length - i2);
-                if (read <= 0) {
+                int i3 = fileInputStreamOpenRead.read(bArr, i2, bArr.length - i2);
+                if (i3 <= 0) {
                     return bArr;
                 }
-                i2 += read;
-                int available = openRead.available();
-                if (available > bArr.length - i2) {
-                    byte[] bArr2 = new byte[available + i2];
+                i2 += i3;
+                int iAvailable = fileInputStreamOpenRead.available();
+                if (iAvailable > bArr.length - i2) {
+                    byte[] bArr2 = new byte[iAvailable + i2];
                     System.arraycopy(bArr, 0, bArr2, 0, i2);
                     bArr = bArr2;
                 }
             }
         } finally {
-            openRead.close();
+            fileInputStreamOpenRead.close();
         }
     }
 

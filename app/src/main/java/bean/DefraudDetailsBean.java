@@ -3,7 +3,7 @@ package bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefraudDetailsBean implements Parcelable {
     public static final Parcelable.Creator<DefraudDetailsBean> CREATOR = new Parcelable.Creator<DefraudDetailsBean>() { // from class: bean.DefraudDetailsBean.1
         /* JADX WARN: Can't rename method to resolve collision */

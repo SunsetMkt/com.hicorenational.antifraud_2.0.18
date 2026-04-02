@@ -1,6 +1,6 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportSmsInfo extends ReportCallInfo {
     private String content;
     private String url;

@@ -6,7 +6,7 @@ import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
 import com.alibaba.sdk.android.oss.model.MultipartUploadRequest;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MultipartUploadRequest<T extends MultipartUploadRequest> extends OSSRequest {
     protected String bucketName;
     protected Map<String, String> callbackParam;

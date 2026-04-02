@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Camera2DeviceSurfaceManager implements CameraDeviceSurfaceManager {
     private static final Size MAXIMUM_PREVIEW_SIZE = new Size(1920, 1080);
     private static final String TAG = "Camera2DeviceSurfaceManager";

@@ -1,6 +1,6 @@
 package androidx.lifecycle;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MutableLiveData<T> extends LiveData<T> {
     public MutableLiveData(T t) {
         super(t);

@@ -2,12 +2,10 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ReportResultBean extends BaseBean {
     private String appReportDetailId;
-
-    /* renamed from: id */
-    private String f1617id;
+    private String id;
     private String reportDetailId;
 
     public String getAppReportDetailId() {
@@ -15,7 +13,7 @@ public class ReportResultBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1617id;
+        return this.id;
     }
 
     public String getReportDetailId() {
@@ -27,7 +25,7 @@ public class ReportResultBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1617id = str;
+        this.id = str;
     }
 
     public void setReportDetailId(String str) {

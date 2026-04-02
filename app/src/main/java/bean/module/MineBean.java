@@ -2,7 +2,7 @@ package bean.module;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MineBean extends BaseBean {
     private String caseRecord;
     private String reportRecord;

@@ -1,11 +1,9 @@
 package androidx.camera.core;
 
-import p031c.p035b.p036a.p037a.InterfaceC0950c;
-
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImageReaderFormatRecommender {
 
-    @InterfaceC0950c
+    @d.b.a.a.c
     static abstract class FormatCombo {
         FormatCombo() {
         }

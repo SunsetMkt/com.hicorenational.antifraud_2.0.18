@@ -3,7 +3,7 @@ package cn.cloudwalk.libproject.util;
 import java.util.Collection;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NullUtils {
     public static Boolean isEmpty(String str) {
         return Boolean.valueOf(isNull(str).booleanValue() || str.trim().length() == 0);

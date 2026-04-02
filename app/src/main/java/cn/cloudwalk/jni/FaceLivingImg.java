@@ -1,6 +1,6 @@
 package cn.cloudwalk.jni;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FaceLivingImg {
     public int faceId = -1;
     public int faceRectHeight;

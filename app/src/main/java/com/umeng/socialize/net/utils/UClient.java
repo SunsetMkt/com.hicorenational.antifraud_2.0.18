@@ -1,5 +1,6 @@
 package com.umeng.socialize.net.utils;
 
+import android.net.Uri;
 import android.text.TextUtils;
 import anet.channel.util.HttpConstant;
 import com.alibaba.sdk.android.oss.common.OSSConstants;
@@ -7,6 +8,7 @@ import com.umeng.socialize.Config;
 import com.umeng.socialize.net.utils.URequest;
 import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
+import e.d;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.DataOutputStream;
@@ -18,14 +20,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONObject;
-import p245d.C4443d;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UClient {
     private static final String END = "\r\n";
     private static final String TAG = "UClient";
@@ -73,13 +75,13 @@ public class UClient {
     }
 
     private void addFilePart(String str, byte[] bArr, String str2, OutputStream outputStream) throws IOException {
-        outputStream.write((C4443d.f16920D + str2 + END + "Content-Disposition: form-data; name=\"pic\"; filename=\"" + str + "\"" + END + "Content-Type: " + OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE + END + "Content-Transfer-Encoding: binary" + END + END).getBytes());
+        outputStream.write((d.F + str2 + END + "Content-Disposition: form-data; name=\"pic\"; filename=\"" + str + "\"" + END + "Content-Type: " + OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE + END + "Content-Transfer-Encoding: binary" + END + END).getBytes());
         outputStream.write(bArr);
         outputStream.write(END.getBytes());
     }
 
     private void addFormField(StringBuilder sb, String str, String str2, String str3) {
-        sb.append(C4443d.f16920D);
+        sb.append(d.F);
         sb.append(str3);
         sb.append(END);
         sb.append("Content-Disposition: form-data; name=\"");
@@ -105,69 +107,68 @@ public class UClient {
 
     private void finishWrite(OutputStream outputStream, String str) throws IOException {
         outputStream.write(END.getBytes());
-        outputStream.write((C4443d.f16920D + str + C4443d.f16920D).getBytes());
+        outputStream.write((d.F + str + d.F).getBytes());
         outputStream.write(END.getBytes());
         outputStream.flush();
         outputStream.close();
     }
 
     private ResponseObj httpGetRequest(URequest uRequest) {
-        HttpURLConnection httpURLConnection;
+        HttpURLConnection httpURLConnectionOpenUrlConnection;
         InputStream inputStream;
         try {
-            httpURLConnection = openUrlConnection(uRequest);
-            if (httpURLConnection == null) {
+            httpURLConnectionOpenUrlConnection = openUrlConnection(uRequest);
+        } catch (Throwable th) {
+            th = th;
+            httpURLConnectionOpenUrlConnection = null;
+            inputStream = null;
+        }
+        if (httpURLConnectionOpenUrlConnection == null) {
+            closeQuietly(null);
+            if (httpURLConnectionOpenUrlConnection != null) {
+                httpURLConnectionOpenUrlConnection.disconnect();
+            }
+            return null;
+        }
+        try {
+            int responseCode = httpURLConnectionOpenUrlConnection.getResponseCode();
+            ResponseObj responseObj = new ResponseObj();
+            responseObj.httpResponseCode = responseCode;
+            if (responseCode != 200) {
                 closeQuietly(null);
-                if (httpURLConnection != null) {
-                    httpURLConnection.disconnect();
+                if (httpURLConnectionOpenUrlConnection != null) {
+                    httpURLConnectionOpenUrlConnection.disconnect();
                 }
                 return null;
             }
+            inputStream = httpURLConnectionOpenUrlConnection.getInputStream();
             try {
-                int responseCode = httpURLConnection.getResponseCode();
-                ResponseObj responseObj = new ResponseObj();
-                responseObj.httpResponseCode = responseCode;
-                if (responseCode != 200) {
-                    closeQuietly(null);
-                    if (httpURLConnection != null) {
-                        httpURLConnection.disconnect();
-                    }
-                    return null;
-                }
-                inputStream = httpURLConnection.getInputStream();
-                try {
-                    responseObj.jsonObject = parseResult(uRequest, httpURLConnection.getRequestMethod(), httpURLConnection.getContentEncoding(), inputStream);
-                    SLog.debug(UmengText.NET.JSONRESULT);
-                    return responseObj;
-                } catch (Throwable th) {
-                    th = th;
-                    try {
-                        SLog.error(UmengText.NET.PARSEERROR, th);
-                        closeQuietly(inputStream);
-                        if (httpURLConnection != null) {
-                            httpURLConnection.disconnect();
-                        }
-                        return null;
-                    } finally {
-                        closeQuietly(inputStream);
-                        if (httpURLConnection != null) {
-                            httpURLConnection.disconnect();
-                        }
-                    }
-                }
+                responseObj.jsonObject = parseResult(uRequest, httpURLConnectionOpenUrlConnection.getRequestMethod(), httpURLConnectionOpenUrlConnection.getContentEncoding(), inputStream);
+                SLog.debug(UmengText.NET.JSONRESULT);
+                return responseObj;
             } catch (Throwable th2) {
                 th = th2;
-                inputStream = null;
             }
         } catch (Throwable th3) {
             th = th3;
-            httpURLConnection = null;
             inputStream = null;
+        }
+        try {
+            SLog.error(UmengText.NET.PARSEERROR, th);
+            closeQuietly(inputStream);
+            if (httpURLConnectionOpenUrlConnection != null) {
+                httpURLConnectionOpenUrlConnection.disconnect();
+            }
+            return null;
+        } finally {
+            closeQuietly(inputStream);
+            if (httpURLConnectionOpenUrlConnection != null) {
+                httpURLConnectionOpenUrlConnection.disconnect();
+            }
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Removed duplicated region for block: B:46:0x01b5  */
     /* JADX WARN: Type inference failed for: r0v11, types: [java.lang.StringBuilder] */
     /* JADX WARN: Type inference failed for: r1v1, types: [java.lang.String] */
     /* JADX WARN: Type inference failed for: r1v10 */
@@ -185,21 +186,140 @@ public class UClient {
     /* JADX WARN: Type inference failed for: r1v6 */
     /* JADX WARN: Type inference failed for: r1v9 */
     /* JADX WARN: Type inference failed for: r9v0, types: [com.umeng.socialize.net.utils.UClient] */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    private com.umeng.socialize.net.utils.UClient.ResponseObj httpPostRequest(com.umeng.socialize.net.utils.URequest r10) {
-        /*
-            Method dump skipped, instructions count: 454
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.umeng.socialize.net.utils.UClient.httpPostRequest(com.umeng.socialize.net.utils.URequest):com.umeng.socialize.net.utils.UClient$ResponseObj");
+    private ResponseObj httpPostRequest(URequest uRequest) {
+        InputStream inputStream;
+        HttpURLConnection httpURLConnectionOpenUrlConnection;
+        String string = uRequest.toJson() == null ? "" : uRequest.toJson().toString();
+        ?? string2 = UUID.randomUUID().toString();
+        try {
+            httpURLConnectionOpenUrlConnection = openUrlConnection(uRequest);
+        } catch (Throwable th) {
+            th = th;
+            inputStream = null;
+            string2 = 0;
+            httpURLConnectionOpenUrlConnection = null;
+        }
+        if (httpURLConnectionOpenUrlConnection == null) {
+            closeQuietly(null);
+            closeQuietly(null);
+            if (httpURLConnectionOpenUrlConnection != null) {
+                httpURLConnectionOpenUrlConnection.disconnect();
+            }
+            return null;
+        }
+        try {
+            Map<String, Object> bodyPair = uRequest.getBodyPair();
+            try {
+                if (uRequest.mMimeType != null) {
+                    String str = (String) bodyPair.get("data");
+                    httpURLConnectionOpenUrlConnection.setRequestProperty("Content-Type", uRequest.mMimeType.toString());
+                    OutputStream outputStream = httpURLConnectionOpenUrlConnection.getOutputStream();
+                    string2 = outputStream;
+                    if (!TextUtils.isEmpty(str)) {
+                        outputStream.write(str.getBytes());
+                        string2 = outputStream;
+                    }
+                } else if (uRequest.postStyle == URequest.PostStyle.APPLICATION) {
+                    httpURLConnectionOpenUrlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    Uri.Builder builder = new Uri.Builder();
+                    for (String str2 : bodyPair.keySet()) {
+                        try {
+                            builder.appendQueryParameter(str2, bodyPair.get(str2).toString());
+                        } catch (Throwable th2) {
+                            SLog.error(th2);
+                        }
+                    }
+                    String encodedQuery = builder.build().getEncodedQuery();
+                    DataOutputStream dataOutputStream = new DataOutputStream(httpURLConnectionOpenUrlConnection.getOutputStream());
+                    string2 = dataOutputStream;
+                    if (!TextUtils.isEmpty(encodedQuery)) {
+                        dataOutputStream.write(encodedQuery.getBytes());
+                        string2 = dataOutputStream;
+                    }
+                } else if ((bodyPair == null || bodyPair.size() <= 0) && uRequest.postStyle != URequest.PostStyle.MULTIPART) {
+                    httpURLConnectionOpenUrlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    Uri.Builder builder2 = new Uri.Builder();
+                    builder2.appendQueryParameter("content", string);
+                    String encodedQuery2 = builder2.build().getEncodedQuery();
+                    DataOutputStream dataOutputStream2 = new DataOutputStream(httpURLConnectionOpenUrlConnection.getOutputStream());
+                    string2 = dataOutputStream2;
+                    if (!TextUtils.isEmpty(encodedQuery2)) {
+                        dataOutputStream2.write(encodedQuery2.getBytes());
+                        string2 = dataOutputStream2;
+                    }
+                } else {
+                    httpURLConnectionOpenUrlConnection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + string2);
+                    OutputStream outputStream2 = httpURLConnectionOpenUrlConnection.getOutputStream();
+                    try {
+                        addBodyParams(uRequest, outputStream2, string2);
+                        string2 = outputStream2;
+                    } catch (Throwable th3) {
+                        th = th3;
+                        string2 = outputStream2;
+                        inputStream = null;
+                    }
+                }
+                string2.flush();
+                int responseCode = httpURLConnectionOpenUrlConnection.getResponseCode();
+                ResponseObj responseObj = new ResponseObj();
+                responseObj.httpResponseCode = responseCode;
+                if (responseCode != 200) {
+                    closeQuietly(null);
+                    closeQuietly(string2);
+                    if (httpURLConnectionOpenUrlConnection != null) {
+                        httpURLConnectionOpenUrlConnection.disconnect();
+                    }
+                    return null;
+                }
+                inputStream = httpURLConnectionOpenUrlConnection.getInputStream();
+                try {
+                    String contentEncoding = httpURLConnectionOpenUrlConnection.getContentEncoding();
+                    String strConvertStreamToString = convertStreamToString(wrapStream(contentEncoding, inputStream));
+                    if (!strConvertStreamToString.startsWith("success") && !strConvertStreamToString.startsWith("fail")) {
+                        JSONObject result = parseResult(uRequest, httpURLConnectionOpenUrlConnection.getRequestMethod(), contentEncoding, inputStream);
+                        SLog.debug(UmengText.NET.POSTJSON + result);
+                        responseObj.jsonObject = result;
+                        return responseObj;
+                    }
+                    responseObj.jsonObject = new JSONObject("{\"result\":\"" + strConvertStreamToString + "\"}");
+                    closeQuietly(inputStream);
+                    closeQuietly(string2);
+                    if (httpURLConnectionOpenUrlConnection != null) {
+                        httpURLConnectionOpenUrlConnection.disconnect();
+                    }
+                    return responseObj;
+                } catch (Throwable th4) {
+                    th = th4;
+                }
+            } catch (Throwable th5) {
+                th = th5;
+            }
+            inputStream = null;
+        } catch (Throwable th6) {
+            th = th6;
+            inputStream = null;
+            string2 = 0;
+        }
+        try {
+            SLog.error(UmengText.NET.PARSEERROR, th);
+            closeQuietly(inputStream);
+            closeQuietly(string2);
+            if (httpURLConnectionOpenUrlConnection != null) {
+                httpURLConnectionOpenUrlConnection.disconnect();
+            }
+            return null;
+        } finally {
+            closeQuietly(inputStream);
+            closeQuietly(string2);
+            if (httpURLConnectionOpenUrlConnection != null) {
+                httpURLConnectionOpenUrlConnection.disconnect();
+            }
+        }
     }
 
     private HttpURLConnection openUrlConnection(URequest uRequest) throws IOException {
-        String trim = uRequest.getHttpMethod().trim();
-        String getUrl = URequest.GET.equals(trim) ? uRequest.toGetUrl() : URequest.POST.equals(trim) ? uRequest.mBaseUrl : null;
+        String strTrim = uRequest.getHttpMethod().trim();
+        String getUrl = URequest.GET.equals(strTrim) ? uRequest.toGetUrl() : URequest.POST.equals(strTrim) ? uRequest.mBaseUrl : null;
         if (TextUtils.isEmpty(getUrl)) {
             return null;
         }
@@ -207,8 +327,8 @@ public class UClient {
         HttpURLConnection httpURLConnection = HttpConstant.HTTPS.equals(url.getProtocol()) ? (HttpsURLConnection) url.openConnection() : (HttpURLConnection) url.openConnection();
         httpURLConnection.setConnectTimeout(Config.connectionTimeOut);
         httpURLConnection.setReadTimeout(Config.readSocketTimeOut);
-        httpURLConnection.setRequestMethod(trim);
-        if (URequest.GET.equals(trim)) {
+        httpURLConnection.setRequestMethod(strTrim);
+        if (URequest.GET.equals(strTrim)) {
             httpURLConnection.setRequestProperty(HttpConstant.ACCEPT_ENCODING, HttpConstant.GZIP);
             Map<String, String> map = uRequest.mHeaders;
             if (map != null && map.size() > 0) {
@@ -216,7 +336,7 @@ public class UClient {
                     httpURLConnection.setRequestProperty(str, uRequest.mHeaders.get(str));
                 }
             }
-        } else if (URequest.POST.equals(trim)) {
+        } else if (URequest.POST.equals(strTrim)) {
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
         }
@@ -245,13 +365,13 @@ public class UClient {
         StringBuilder sb = new StringBuilder();
         while (true) {
             try {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
+                String line = bufferedReader.readLine();
+                if (line == null) {
                     closeQuietly(inputStreamReader);
                     closeQuietly(bufferedReader);
                     return sb.toString();
                 }
-                sb.append(readLine + "\n");
+                sb.append(line + "\n");
             } catch (Throwable th) {
                 try {
                     SLog.error(UmengText.NET.TOOL, th);
@@ -278,44 +398,42 @@ public class UClient {
 
     public <T extends UResponse> T execute(URequest uRequest, Class<T> cls) {
         uRequest.onPrepareRequest();
-        String trim = uRequest.getHttpMethod().trim();
-        verifyMethod(trim);
-        return (T) createResponse(URequest.GET.equals(trim) ? httpGetRequest(uRequest) : URequest.POST.equals(trim) ? httpPostRequest(uRequest) : null, cls);
+        String strTrim = uRequest.getHttpMethod().trim();
+        verifyMethod(strTrim);
+        return (T) createResponse(URequest.GET.equals(strTrim) ? httpGetRequest(uRequest) : URequest.POST.equals(strTrim) ? httpPostRequest(uRequest) : null, cls);
     }
 
     protected JSONObject parseResult(URequest uRequest, String str, String str2, InputStream inputStream) {
-        InputStream inputStream2;
-        String convertStreamToString;
+        InputStream inputStreamWrapStream;
         try {
-            inputStream2 = wrapStream(str2, inputStream);
+            inputStreamWrapStream = wrapStream(str2, inputStream);
         } catch (Throwable th) {
             th = th;
-            inputStream2 = null;
+            inputStreamWrapStream = null;
         }
         try {
-            convertStreamToString = convertStreamToString(inputStream2);
-        } catch (Throwable th2) {
-            th = th2;
+            String strConvertStreamToString = convertStreamToString(inputStreamWrapStream);
+            if ("POST".equals(str)) {
+                try {
+                    return new JSONObject(strConvertStreamToString);
+                } catch (Throwable th2) {
+                    SLog.error(UmengText.NET.PARSEERROR, th2);
+                    return decryptData(uRequest, strConvertStreamToString);
+                }
+            }
+            if ("GET".equals(str)) {
+                if (TextUtils.isEmpty(strConvertStreamToString)) {
+                    return null;
+                }
+                return decryptData(uRequest, strConvertStreamToString);
+            }
+        } catch (Throwable th3) {
+            th = th3;
             try {
                 SLog.error(UmengText.NET.PARSEERROR, th);
-                return null;
             } finally {
-                closeQuietly(inputStream2);
+                closeQuietly(inputStreamWrapStream);
             }
-        }
-        if ("POST".equals(str)) {
-            try {
-                return new JSONObject(convertStreamToString);
-            } catch (Throwable th3) {
-                SLog.error(UmengText.NET.PARSEERROR, th3);
-                return decryptData(uRequest, convertStreamToString);
-            }
-        }
-        if ("GET".equals(str)) {
-            if (TextUtils.isEmpty(convertStreamToString)) {
-                return null;
-            }
-            return decryptData(uRequest, convertStreamToString);
         }
         return null;
     }

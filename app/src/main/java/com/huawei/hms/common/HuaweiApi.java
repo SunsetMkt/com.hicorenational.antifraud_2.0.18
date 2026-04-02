@@ -44,280 +44,438 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HuaweiApi<TOption extends Api.ApiOptions> {
+    private Context a;
 
-    /* renamed from: a */
-    private Context f7197a;
+    /* JADX INFO: renamed from: b */
+    private TOption f4506b;
 
-    /* renamed from: b */
-    private TOption f7198b;
+    /* JADX INFO: renamed from: c */
+    private Context f4507c;
 
-    /* renamed from: c */
-    private Context f7199c;
+    /* JADX INFO: renamed from: d */
+    private AbstractClientBuilder<?, TOption> f4508d;
 
-    /* renamed from: d */
-    private AbstractClientBuilder<?, TOption> f7200d;
+    /* JADX INFO: renamed from: e */
+    private String f4509e;
 
-    /* renamed from: e */
-    private String f7201e;
+    /* JADX INFO: renamed from: f */
+    private String f4510f;
 
-    /* renamed from: f */
-    private String f7202f;
+    /* JADX INFO: renamed from: g */
+    private SubAppInfo f4511g;
 
-    /* renamed from: g */
-    private SubAppInfo f7203g;
+    /* JADX INFO: renamed from: h */
+    private WeakReference<Activity> f4512h;
 
-    /* renamed from: h */
-    private WeakReference<Activity> f7204h;
+    /* JADX INFO: renamed from: i */
+    private int f4513i;
 
-    /* renamed from: i */
-    private int f7205i;
+    /* JADX INFO: renamed from: j */
+    private int f4514j = 1;
 
-    /* renamed from: j */
-    private int f7206j = 1;
+    /* JADX INFO: renamed from: k */
+    private boolean f4515k = false;
 
-    /* renamed from: k */
-    private boolean f7207k = false;
+    /* JADX INFO: renamed from: l */
+    private String f4516l;
 
-    /* renamed from: l */
-    private String f7208l;
+    /* JADX INFO: renamed from: m */
+    private boolean f4517m;
 
-    /* renamed from: m */
-    private boolean f7209m;
+    /* JADX INFO: renamed from: n */
+    private RequestManager f4518n;
 
-    /* renamed from: n */
-    private RequestManager f7210n;
+    /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$1 */
+    class AnonymousClass1 implements Runnable {
+        final /* synthetic */ HuaweiApi a;
+
+        /* JADX INFO: renamed from: b */
+        final /* synthetic */ TaskCompletionSource f4519b;
+
+        AnonymousClass1(HuaweiApi huaweiApi, TaskCompletionSource taskCompletionSource) {
+            huaweiApi = huaweiApi;
+            taskCompletionSource = taskCompletionSource;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            HuaweiApi.this.a((HuaweiApi<?>) huaweiApi, (TaskCompletionSource<Boolean>) taskCompletionSource);
+        }
+    }
 
     public static class RequestHandler<OptionsT extends Api.ApiOptions> implements BaseHmsClient.ConnectionCallbacks, BaseHmsClient.OnConnectionFailedListener {
 
-        /* renamed from: b */
-        private final AnyClient f7215b;
+        /* JADX INFO: renamed from: b */
+        private final AnyClient f4521b;
 
-        /* renamed from: d */
-        private final HuaweiApi<OptionsT> f7217d;
+        /* JADX INFO: renamed from: d */
+        private final HuaweiApi<OptionsT> f4523d;
 
-        /* renamed from: e */
-        private ResolveClientBean f7218e;
+        /* JADX INFO: renamed from: e */
+        private ResolveClientBean f4524e;
         public final Queue<TaskApiCallbackWrapper> callbackWaitQueue = new LinkedList();
+        private final Queue<TaskApiCallbackWrapper> a = new LinkedList();
 
-        /* renamed from: a */
-        private final Queue<TaskApiCallbackWrapper> f7214a = new LinkedList();
+        /* JADX INFO: renamed from: c */
+        private ConnectionResult f4522c = null;
 
-        /* renamed from: c */
-        private ConnectionResult f7216c = null;
+        /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$1 */
+        class AnonymousClass1 implements AnyClient.CallBack {
+            private AtomicBoolean a = new AtomicBoolean(true);
+
+            /* JADX INFO: renamed from: b */
+            final /* synthetic */ TaskApiCallWrapper f4525b;
+
+            AnonymousClass1(TaskApiCallWrapper taskApiCallWrapper) {
+                taskApiCallWrapper = taskApiCallWrapper;
+            }
+
+            @Override // com.huawei.hms.common.internal.AnyClient.CallBack
+            public void onCallback(IMessageEntity iMessageEntity, String str) {
+                if (!(iMessageEntity instanceof ResponseHeader)) {
+                    HMSLog.e("HuaweiApi", "header is not instance of ResponseHeader");
+                    return;
+                }
+                ResponseHeader responseHeader = (ResponseHeader) iMessageEntity;
+                if (responseHeader.getErrorCode() == 11) {
+                    RequestHandler.this.a();
+                    HMSLog.i("HuaweiApi", "unbind service");
+                }
+                if (!TextUtils.isEmpty(responseHeader.getResolution())) {
+                    HMSLog.e("HuaweiApi", "Response has resolution: " + responseHeader.getResolution());
+                }
+                if (this.a.compareAndSet(true, false)) {
+                    HiAnalyticsInnerClient.reportEntryExit(RequestHandler.this.f4523d.getContext(), responseHeader, String.valueOf(RequestHandler.this.f4523d.getKitSdkVersion()));
+                }
+                taskApiCallWrapper.getTaskApiCall().onResponse(RequestHandler.this.f4521b, responseHeader, str, taskApiCallWrapper.getTaskCompletionSource());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$2 */
+        class AnonymousClass2 implements AnyClient.CallBack {
+            final /* synthetic */ TaskApiCallbackWrapper a;
+
+            /* JADX INFO: renamed from: b */
+            final /* synthetic */ RequestHeader f4527b;
+
+            /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$2$1 */
+            class AnonymousClass1 implements Runnable {
+                AnonymousClass1() {
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    RequestHandler.this.a.remove(taskApiCallbackWrapper);
+                }
+            }
+
+            AnonymousClass2(TaskApiCallbackWrapper taskApiCallbackWrapper, RequestHeader requestHeader) {
+                taskApiCallbackWrapper = taskApiCallbackWrapper;
+                requestHeader = requestHeader;
+            }
+
+            @Override // com.huawei.hms.common.internal.AnyClient.CallBack
+            public void onCallback(IMessageEntity iMessageEntity, String str) {
+                AnyClient.CallBack callBackB = taskApiCallbackWrapper.b();
+                if (callBackB != null) {
+                    callBackB.onCallback(iMessageEntity, str);
+                }
+                RequestManager.removeReqByTransId(requestHeader.getTransactionId());
+                RequestManager.getHandler().post(new Runnable() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.2.1
+                    AnonymousClass1() {
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        RequestHandler.this.a.remove(taskApiCallbackWrapper);
+                    }
+                });
+            }
+        }
+
+        /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$3 */
+        class AnonymousClass3 implements Runnable {
+            final /* synthetic */ ConnectionResult a;
+
+            AnonymousClass3(ConnectionResult connectionResult) {
+                connectionResult = connectionResult;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                RequestHandler.this.b(connectionResult);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$4 */
+        class AnonymousClass4 implements Runnable {
+            AnonymousClass4() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                RequestHandler.this.b();
+            }
+        }
+
+        /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$5 */
+        class AnonymousClass5 implements Runnable {
+            AnonymousClass5() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                RequestHandler.this.c();
+            }
+        }
 
         RequestHandler(HuaweiApi<OptionsT> huaweiApi) {
-            this.f7217d = huaweiApi;
-            this.f7215b = huaweiApi.getClient(RequestManager.getHandler().getLooper(), this);
+            this.f4523d = huaweiApi;
+            this.f4521b = huaweiApi.getClient(RequestManager.getHandler().getLooper(), this);
         }
 
         public AnyClient getClient() {
-            return this.f7215b;
+            return this.f4521b;
         }
 
         @Override // com.huawei.hms.common.internal.BaseHmsClient.ConnectionCallbacks
         public void onConnected() {
-            HMSLog.m7717i("HuaweiApi", "onConnected");
-            BindResolveClients.getInstance().unRegister(this.f7218e);
-            this.f7218e = null;
+            HMSLog.i("HuaweiApi", "onConnected");
+            BindResolveClients.getInstance().unRegister(this.f4524e);
+            this.f4524e = null;
             RequestManager.getHandler().post(new Runnable() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.4
+                AnonymousClass4() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    RequestHandler.this.m6701b();
+                    RequestHandler.this.b();
                 }
             });
         }
 
         @Override // com.huawei.hms.common.internal.BaseHmsClient.OnConnectionFailedListener
-        public void onConnectionFailed(final ConnectionResult connectionResult) {
-            HMSLog.m7717i("HuaweiApi", "onConnectionFailed");
-            BindResolveClients.getInstance().unRegister(this.f7218e);
-            this.f7218e = null;
+        public void onConnectionFailed(ConnectionResult connectionResult) {
+            HMSLog.i("HuaweiApi", "onConnectionFailed");
+            BindResolveClients.getInstance().unRegister(this.f4524e);
+            this.f4524e = null;
             RequestManager.getHandler().post(new Runnable() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.3
+                final /* synthetic */ ConnectionResult a;
+
+                AnonymousClass3(ConnectionResult connectionResult2) {
+                    connectionResult = connectionResult2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    RequestHandler.this.m6702b(connectionResult);
+                    RequestHandler.this.b(connectionResult);
                 }
             });
         }
 
         @Override // com.huawei.hms.common.internal.BaseHmsClient.ConnectionCallbacks
         public void onConnectionSuspended(int i2) {
-            HMSLog.m7717i("HuaweiApi", "onConnectionSuspended");
-            BindResolveClients.getInstance().unRegister(this.f7218e);
-            this.f7218e = null;
+            HMSLog.i("HuaweiApi", "onConnectionSuspended");
+            BindResolveClients.getInstance().unRegister(this.f4524e);
+            this.f4524e = null;
             RequestManager.getHandler().post(new Runnable() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.5
+                AnonymousClass5() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    RequestHandler.this.m6705c();
+                    RequestHandler.this.c();
                 }
             });
         }
 
-        public void postMessage(final TaskApiCallbackWrapper taskApiCallbackWrapper) {
-            RequestManager.addToConnectedReqMap(taskApiCallbackWrapper.m6711a().getTaskApiCall().getTransactionId(), this);
-            this.f7214a.add(taskApiCallbackWrapper);
-            String uri = taskApiCallbackWrapper.m6711a().getTaskApiCall().getUri();
-            String packageName = (((HuaweiApi) this.f7217d).f7199c == null ? this.f7217d.getContext() : ((HuaweiApi) this.f7217d).f7199c).getPackageName();
-            if (((HuaweiApi) this.f7217d).f7199c != null) {
-                HuaweiApi<OptionsT> huaweiApi = this.f7217d;
-                huaweiApi.m6692b(((HuaweiApi) huaweiApi).f7199c);
+        public void postMessage(TaskApiCallbackWrapper taskApiCallbackWrapper) {
+            RequestManager.addToConnectedReqMap(taskApiCallbackWrapper.a().getTaskApiCall().getTransactionId(), this);
+            this.a.add(taskApiCallbackWrapper);
+            String uri = taskApiCallbackWrapper.a().getTaskApiCall().getUri();
+            String packageName = (((HuaweiApi) this.f4523d).f4507c == null ? this.f4523d.getContext() : ((HuaweiApi) this.f4523d).f4507c).getPackageName();
+            if (((HuaweiApi) this.f4523d).f4507c != null) {
+                HuaweiApi<OptionsT> huaweiApi = this.f4523d;
+                huaweiApi.b(((HuaweiApi) huaweiApi).f4507c);
             }
-            final RequestHeader requestHeader = new RequestHeader();
+            RequestHeader requestHeader = new RequestHeader();
             requestHeader.setSrvName(uri.split("\\.")[0]);
             requestHeader.setApiName(uri);
-            requestHeader.setAppID(this.f7217d.getAppID() + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + this.f7217d.getSubAppID());
+            requestHeader.setAppID(this.f4523d.getAppID() + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + this.f4523d.getSubAppID());
             requestHeader.setPkgName(packageName);
-            requestHeader.setSessionId(this.f7215b.getSessionId());
-            TaskApiCall taskApiCall = taskApiCallbackWrapper.m6711a().getTaskApiCall();
-            requestHeader.setTransactionId(m6697a(taskApiCall.getTransactionId(), uri));
+            requestHeader.setSessionId(this.f4521b.getSessionId());
+            TaskApiCall taskApiCall = taskApiCallbackWrapper.a().getTaskApiCall();
+            requestHeader.setTransactionId(a(taskApiCall.getTransactionId(), uri));
             requestHeader.setParcelable(taskApiCall.getParcelable());
-            requestHeader.setKitSdkVersion(this.f7217d.getKitSdkVersion());
-            requestHeader.setApiLevel(Math.max(this.f7217d.getApiLevel(), taskApiCall.getApiLevel()));
-            this.f7215b.post(requestHeader, taskApiCall.getRequestJson(), new AnyClient.CallBack() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.2
+            requestHeader.setKitSdkVersion(this.f4523d.getKitSdkVersion());
+            requestHeader.setApiLevel(Math.max(this.f4523d.getApiLevel(), taskApiCall.getApiLevel()));
+            this.f4521b.post(requestHeader, taskApiCall.getRequestJson(), new AnyClient.CallBack() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.2
+                final /* synthetic */ TaskApiCallbackWrapper a;
+
+                /* JADX INFO: renamed from: b */
+                final /* synthetic */ RequestHeader f4527b;
+
+                /* JADX INFO: renamed from: com.huawei.hms.common.HuaweiApi$RequestHandler$2$1 */
+                class AnonymousClass1 implements Runnable {
+                    AnonymousClass1() {
+                    }
+
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        RequestHandler.this.a.remove(taskApiCallbackWrapper);
+                    }
+                }
+
+                AnonymousClass2(TaskApiCallbackWrapper taskApiCallbackWrapper2, RequestHeader requestHeader2) {
+                    taskApiCallbackWrapper = taskApiCallbackWrapper2;
+                    requestHeader = requestHeader2;
+                }
+
                 @Override // com.huawei.hms.common.internal.AnyClient.CallBack
                 public void onCallback(IMessageEntity iMessageEntity, String str) {
-                    AnyClient.CallBack m6712b = taskApiCallbackWrapper.m6712b();
-                    if (m6712b != null) {
-                        m6712b.onCallback(iMessageEntity, str);
+                    AnyClient.CallBack callBackB = taskApiCallbackWrapper.b();
+                    if (callBackB != null) {
+                        callBackB.onCallback(iMessageEntity, str);
                     }
                     RequestManager.removeReqByTransId(requestHeader.getTransactionId());
                     RequestManager.getHandler().post(new Runnable() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.2.1
+                        AnonymousClass1() {
+                        }
+
                         @Override // java.lang.Runnable
                         public void run() {
-                            RequestHandler.this.f7214a.remove(taskApiCallbackWrapper);
+                            RequestHandler.this.a.remove(taskApiCallbackWrapper);
                         }
                     });
                 }
             });
         }
 
-        /* renamed from: b */
-        private TaskApiCallbackWrapper m6700b(final TaskApiCallWrapper taskApiCallWrapper) {
+        private TaskApiCallbackWrapper b(TaskApiCallWrapper taskApiCallWrapper) {
             return new TaskApiCallbackWrapper(taskApiCallWrapper, new AnyClient.CallBack() { // from class: com.huawei.hms.common.HuaweiApi.RequestHandler.1
+                private AtomicBoolean a = new AtomicBoolean(true);
 
-                /* renamed from: a */
-                private AtomicBoolean f7219a = new AtomicBoolean(true);
+                /* JADX INFO: renamed from: b */
+                final /* synthetic */ TaskApiCallWrapper f4525b;
+
+                AnonymousClass1(TaskApiCallWrapper taskApiCallWrapper2) {
+                    taskApiCallWrapper = taskApiCallWrapper2;
+                }
 
                 @Override // com.huawei.hms.common.internal.AnyClient.CallBack
                 public void onCallback(IMessageEntity iMessageEntity, String str) {
                     if (!(iMessageEntity instanceof ResponseHeader)) {
-                        HMSLog.m7715e("HuaweiApi", "header is not instance of ResponseHeader");
+                        HMSLog.e("HuaweiApi", "header is not instance of ResponseHeader");
                         return;
                     }
                     ResponseHeader responseHeader = (ResponseHeader) iMessageEntity;
                     if (responseHeader.getErrorCode() == 11) {
-                        RequestHandler.this.m6708a();
-                        HMSLog.m7717i("HuaweiApi", "unbind service");
+                        RequestHandler.this.a();
+                        HMSLog.i("HuaweiApi", "unbind service");
                     }
                     if (!TextUtils.isEmpty(responseHeader.getResolution())) {
-                        HMSLog.m7715e("HuaweiApi", "Response has resolution: " + responseHeader.getResolution());
+                        HMSLog.e("HuaweiApi", "Response has resolution: " + responseHeader.getResolution());
                     }
-                    if (this.f7219a.compareAndSet(true, false)) {
-                        HiAnalyticsInnerClient.reportEntryExit(RequestHandler.this.f7217d.getContext(), responseHeader, String.valueOf(RequestHandler.this.f7217d.getKitSdkVersion()));
+                    if (this.a.compareAndSet(true, false)) {
+                        HiAnalyticsInnerClient.reportEntryExit(RequestHandler.this.f4523d.getContext(), responseHeader, String.valueOf(RequestHandler.this.f4523d.getKitSdkVersion()));
                     }
-                    taskApiCallWrapper.getTaskApiCall().onResponse(RequestHandler.this.f7215b, responseHeader, str, taskApiCallWrapper.getTaskCompletionSource());
+                    taskApiCallWrapper.getTaskApiCall().onResponse(RequestHandler.this.f4521b, responseHeader, str, taskApiCallWrapper.getTaskCompletionSource());
                 }
             });
         }
 
-        /* JADX INFO: Access modifiers changed from: private */
-        /* renamed from: c */
-        public void m6705c() {
-            HMSLog.m7717i("HuaweiApi", "wait queue size = " + this.callbackWaitQueue.size());
-            HMSLog.m7717i("HuaweiApi", "run queue size = " + this.f7214a.size());
+        public void c() {
+            HMSLog.i("HuaweiApi", "wait queue size = " + this.callbackWaitQueue.size());
+            HMSLog.i("HuaweiApi", "run queue size = " + this.a.size());
             Iterator<TaskApiCallbackWrapper> it = this.callbackWaitQueue.iterator();
             while (it.hasNext()) {
-                m6699a(it.next());
+                a(it.next());
             }
-            Iterator<TaskApiCallbackWrapper> it2 = this.f7214a.iterator();
+            Iterator<TaskApiCallbackWrapper> it2 = this.a.iterator();
             while (it2.hasNext()) {
-                m6699a(it2.next());
+                a(it2.next());
             }
             this.callbackWaitQueue.clear();
-            this.f7214a.clear();
-            this.f7216c = null;
-            this.f7215b.disconnect();
+            this.a.clear();
+            this.f4522c = null;
+            this.f4521b.disconnect();
         }
 
-        /* JADX INFO: Access modifiers changed from: private */
-        /* renamed from: b */
-        public void m6702b(ConnectionResult connectionResult) {
-            this.f7216c = connectionResult;
+        public void b(ConnectionResult connectionResult) {
+            this.f4522c = connectionResult;
             Iterator<TaskApiCallbackWrapper> it = this.callbackWaitQueue.iterator();
             boolean z = true;
             while (it.hasNext()) {
-                TaskApiCallWrapper m6711a = it.next().m6711a();
-                ResponseHeader responseHeader = new ResponseHeader(1, CommonCode.ErrorCode.CLIENT_API_INVALID, "Connection Failed:" + m6696a(connectionResult) + "(" + connectionResult.getErrorCode() + ")");
-                responseHeader.setTransactionId(m6711a.getTaskApiCall().getTransactionId());
-                HiAnalyticsInnerClient.reportEntryExit(this.f7217d.getContext(), responseHeader, String.valueOf(this.f7217d.getKitSdkVersion()));
-                if (this.f7216c.getResolution() != null && z) {
-                    responseHeader.setParcelable(this.f7216c.getResolution());
+                TaskApiCallWrapper taskApiCallWrapperA = it.next().a();
+                ResponseHeader responseHeader = new ResponseHeader(1, CommonCode.ErrorCode.CLIENT_API_INVALID, "Connection Failed:" + a(connectionResult) + "(" + connectionResult.getErrorCode() + ")");
+                responseHeader.setTransactionId(taskApiCallWrapperA.getTaskApiCall().getTransactionId());
+                HiAnalyticsInnerClient.reportEntryExit(this.f4523d.getContext(), responseHeader, String.valueOf(this.f4523d.getKitSdkVersion()));
+                if (this.f4522c.getResolution() != null && z) {
+                    responseHeader.setParcelable(this.f4522c.getResolution());
                     z = false;
-                    if (Util.isAvailableLibExist(this.f7217d.getContext()) && this.f7216c.getErrorCode() == 26) {
+                    if (Util.isAvailableLibExist(this.f4523d.getContext()) && this.f4522c.getErrorCode() == 26) {
                         responseHeader.setResolution(CommonCode.Resolution.HAS_RESOLUTION);
                     }
                 }
-                int errorCode = this.f7216c.getErrorCode();
+                int errorCode = this.f4522c.getErrorCode();
                 if (errorCode == 30 || errorCode == 31) {
                     responseHeader.setErrorCode(errorCode);
                 }
-                m6711a.getTaskApiCall().onResponse(this.f7215b, responseHeader, null, m6711a.getTaskCompletionSource());
+                taskApiCallWrapperA.getTaskApiCall().onResponse(this.f4521b, responseHeader, null, taskApiCallWrapperA.getTaskCompletionSource());
             }
             this.callbackWaitQueue.clear();
-            this.f7214a.clear();
-            this.f7216c = null;
-            this.f7215b.disconnect();
+            this.a.clear();
+            this.f4522c = null;
+            this.f4521b.disconnect();
         }
 
-        /* renamed from: a */
-        void m6710a(TaskApiCallWrapper taskApiCallWrapper) {
-            HMSLog.m7717i("HuaweiApi", "sendRequest");
-            TaskApiCallbackWrapper m6700b = m6700b(taskApiCallWrapper);
-            if (HMSPackageManager.getInstance(this.f7217d.getContext()).isUpdateHmsForThirdPartyDevice()) {
-                this.f7215b.disconnect();
+        void a(TaskApiCallWrapper taskApiCallWrapper) {
+            HMSLog.i("HuaweiApi", "sendRequest");
+            TaskApiCallbackWrapper taskApiCallbackWrapperB = b(taskApiCallWrapper);
+            if (HMSPackageManager.getInstance(this.f4523d.getContext()).isUpdateHmsForThirdPartyDevice()) {
+                this.f4521b.disconnect();
             }
-            int hmsVersionCode = HMSPackageManager.getInstance(((HuaweiApi) this.f7217d).f7197a).getHmsVersionCode();
-            if ((hmsVersionCode < 40000000 && hmsVersionCode > 0) && this.f7215b.isConnected() && !((HuaweiApi) this.f7217d).f7209m && ((BaseHmsClient) this.f7215b).getAdapter().getServiceAction().equals("com.huawei.hms.core.aidlservice")) {
-                int requestHmsVersionCode = this.f7215b.getRequestHmsVersionCode();
+            int hmsVersionCode = HMSPackageManager.getInstance(((HuaweiApi) this.f4523d).a).getHmsVersionCode();
+            if ((hmsVersionCode < 40000000 && hmsVersionCode > 0) && this.f4521b.isConnected() && !((HuaweiApi) this.f4523d).f4517m && ((BaseHmsClient) this.f4521b).getAdapter().getServiceAction().equals("com.huawei.hms.core.aidlservice")) {
+                int requestHmsVersionCode = this.f4521b.getRequestHmsVersionCode();
                 if (requestHmsVersionCode <= taskApiCallWrapper.getTaskApiCall().getMinApkVersion()) {
                     requestHmsVersionCode = taskApiCallWrapper.getTaskApiCall().getMinApkVersion();
                 }
                 if (requestHmsVersionCode > hmsVersionCode) {
-                    this.f7215b.disconnect();
+                    this.f4521b.disconnect();
                 }
             }
-            if (this.f7215b.isConnected()) {
-                HMSLog.m7717i("HuaweiApi", "isConnected:true.");
-                BinderAdapter adapter2 = ((BaseHmsClient) this.f7215b).getAdapter();
+            if (this.f4521b.isConnected()) {
+                HMSLog.i("HuaweiApi", "isConnected:true.");
+                BinderAdapter adapter2 = ((BaseHmsClient) this.f4521b).getAdapter();
                 adapter2.updateDelayTask();
-                ((HmsClient) this.f7215b).setService(IAIDLInvoke.Stub.asInterface(adapter2.getServiceBinder()));
-                postMessage(m6700b);
+                ((HmsClient) this.f4521b).setService(IAIDLInvoke.Stub.asInterface(adapter2.getServiceBinder()));
+                postMessage(taskApiCallbackWrapperB);
                 return;
             }
-            HMSLog.m7717i("HuaweiApi", "isConnected:false.");
-            this.callbackWaitQueue.add(m6700b);
-            ConnectionResult connectionResult = this.f7216c;
+            HMSLog.i("HuaweiApi", "isConnected:false.");
+            this.callbackWaitQueue.add(taskApiCallbackWrapperB);
+            ConnectionResult connectionResult = this.f4522c;
             if (connectionResult != null && connectionResult.getErrorCode() != 0) {
-                HMSLog.m7717i("HuaweiApi", "onConnectionFailed, ErrorCode:" + this.f7216c.getErrorCode());
-                onConnectionFailed(this.f7216c);
+                HMSLog.i("HuaweiApi", "onConnectionFailed, ErrorCode:" + this.f4522c.getErrorCode());
+                onConnectionFailed(this.f4522c);
                 return;
             }
             RequestManager.addRequestToQueue(this);
-            Object obj = this.f7215b;
+            Object obj = this.f4521b;
             if (obj instanceof BaseHmsClient) {
                 ((BaseHmsClient) obj).setInternalRequest(this);
             }
-            m6709a(taskApiCallWrapper.getTaskApiCall().getMinApkVersion(), m6700b);
+            a(taskApiCallWrapper.getTaskApiCall().getMinApkVersion(), taskApiCallbackWrapperB);
         }
 
-        /* JADX INFO: Access modifiers changed from: private */
-        /* renamed from: b */
-        public void m6701b() {
-            this.f7216c = null;
-            this.f7214a.clear();
+        public void b() {
+            this.f4522c = null;
+            this.a.clear();
             Iterator<TaskApiCallbackWrapper> it = this.callbackWaitQueue.iterator();
             while (it.hasNext()) {
                 postMessage(it.next());
@@ -325,50 +483,45 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
             this.callbackWaitQueue.clear();
         }
 
-        /* renamed from: a */
-        private String m6697a(String str, String str2) {
-            return TextUtils.isEmpty(str) ? TransactionIdCreater.getId(this.f7217d.getAppID(), str2) : str;
+        private String a(String str, String str2) {
+            return TextUtils.isEmpty(str) ? TransactionIdCreater.getId(this.f4523d.getAppID(), str2) : str;
         }
 
-        /* renamed from: a */
-        synchronized void m6709a(int i2, TaskApiCallbackWrapper taskApiCallbackWrapper) {
-            if (this.f7215b.isConnected()) {
-                HMSLog.m7712d("HuaweiApi", "client is connected");
+        synchronized void a(int i2, TaskApiCallbackWrapper taskApiCallbackWrapper) {
+            if (this.f4521b.isConnected()) {
+                HMSLog.d("HuaweiApi", "client is connected");
                 return;
             }
-            if (this.f7215b.isConnecting()) {
-                HMSLog.m7712d("HuaweiApi", "client is isConnecting");
+            if (this.f4521b.isConnecting()) {
+                HMSLog.d("HuaweiApi", "client is isConnecting");
                 return;
             }
-            if (this.f7217d.getActivity() != null) {
-                if (this.f7218e == null) {
-                    this.f7218e = new ResolveClientBean(this.f7215b, i2);
+            if (this.f4523d.getActivity() != null) {
+                if (this.f4524e == null) {
+                    this.f4524e = new ResolveClientBean(this.f4521b, i2);
                 }
-                if (BindResolveClients.getInstance().isClientRegistered(this.f7218e)) {
-                    HMSLog.m7717i("HuaweiApi", "mResolveClientBean has already register, return!");
+                if (BindResolveClients.getInstance().isClientRegistered(this.f4524e)) {
+                    HMSLog.i("HuaweiApi", "mResolveClientBean has already register, return!");
                     return;
                 }
-                BindResolveClients.getInstance().register(this.f7218e);
+                BindResolveClients.getInstance().register(this.f4524e);
             }
-            this.f7215b.connect(i2);
+            this.f4521b.connect(i2);
         }
 
-        /* renamed from: a */
-        void m6708a() {
-            this.f7215b.disconnect();
+        void a() {
+            this.f4521b.disconnect();
         }
 
-        /* renamed from: a */
-        private void m6699a(TaskApiCallbackWrapper taskApiCallbackWrapper) {
-            TaskApiCallWrapper m6711a = taskApiCallbackWrapper.m6711a();
+        private void a(TaskApiCallbackWrapper taskApiCallbackWrapper) {
+            TaskApiCallWrapper taskApiCallWrapperA = taskApiCallbackWrapper.a();
             ResponseHeader responseHeader = new ResponseHeader(1, CommonCode.ErrorCode.CLIENT_API_INVALID, "Connection Suspended");
-            responseHeader.setTransactionId(m6711a.getTaskApiCall().getTransactionId());
-            m6711a.getTaskApiCall().onResponse(this.f7215b, responseHeader, null, m6711a.getTaskCompletionSource());
+            responseHeader.setTransactionId(taskApiCallWrapperA.getTaskApiCall().getTransactionId());
+            taskApiCallWrapperA.getTaskApiCall().onResponse(this.f4521b, responseHeader, null, taskApiCallWrapperA.getTaskCompletionSource());
         }
 
-        /* renamed from: a */
-        private String m6696a(ConnectionResult connectionResult) {
-            if (Util.isAvailableLibExist(this.f7217d.getContext())) {
+        private String a(ConnectionResult connectionResult) {
+            if (Util.isAvailableLibExist(this.f4523d.getContext())) {
                 int errorCode = connectionResult.getErrorCode();
                 if (errorCode != -1) {
                     if (errorCode == 3) {
@@ -414,172 +567,149 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
     }
 
     public static class TaskApiCallbackWrapper {
+        private final TaskApiCallWrapper a;
 
-        /* renamed from: a */
-        private final TaskApiCallWrapper f7230a;
-
-        /* renamed from: b */
-        private final AnyClient.CallBack f7231b;
+        /* JADX INFO: renamed from: b */
+        private final AnyClient.CallBack f4530b;
 
         TaskApiCallbackWrapper(TaskApiCallWrapper taskApiCallWrapper, AnyClient.CallBack callBack) {
-            this.f7230a = taskApiCallWrapper;
-            this.f7231b = callBack;
+            this.a = taskApiCallWrapper;
+            this.f4530b = callBack;
         }
 
-        /* renamed from: a */
-        TaskApiCallWrapper m6711a() {
-            return this.f7230a;
+        TaskApiCallWrapper a() {
+            return this.a;
         }
 
-        /* renamed from: b */
-        AnyClient.CallBack m6712b() {
-            return this.f7231b;
+        AnyClient.CallBack b() {
+            return this.f4530b;
         }
     }
 
-    /* renamed from: com.huawei.hms.common.HuaweiApi$a */
-    private static class RunnableC2328a<OptionsT extends Api.ApiOptions> implements Runnable {
+    private static class a<OptionsT extends Api.ApiOptions> implements Runnable {
+        private final HuaweiApi<OptionsT> a;
 
-        /* renamed from: a */
-        private final HuaweiApi<OptionsT> f7232a;
+        /* JADX INFO: renamed from: b */
+        private final TaskApiCallWrapper f4531b;
 
-        /* renamed from: b */
-        private final TaskApiCallWrapper f7233b;
-
-        public RunnableC2328a(HuaweiApi<OptionsT> huaweiApi, TaskApiCallWrapper taskApiCallWrapper) {
-            this.f7232a = huaweiApi;
-            this.f7233b = taskApiCallWrapper;
+        public a(HuaweiApi<OptionsT> huaweiApi, TaskApiCallWrapper taskApiCallWrapper) {
+            this.a = huaweiApi;
+            this.f4531b = taskApiCallWrapper;
         }
 
-        /* JADX WARN: Removed duplicated region for block: B:14:0x0056 A[ADDED_TO_REGION] */
-        /* JADX WARN: Removed duplicated region for block: B:19:0x0062  */
-        /* JADX WARN: Removed duplicated region for block: B:22:0x0066  */
-        /* renamed from: a */
+        /* JADX WARN: Removed duplicated region for block: B:70:0x005f  */
+        /* JADX WARN: Removed duplicated region for block: B:72:0x0062  */
+        /* JADX WARN: Removed duplicated region for block: B:73:0x0066  */
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        private void m6713a(com.huawei.hms.common.HuaweiApi.RequestHandler r9, java.lang.Throwable r10) {
-            /*
-                r8 = this;
-                java.lang.String r0 = "HuaweiApi"
-                r1 = 1
-                r2 = 0
-                com.huawei.hms.common.internal.AnyClient r9 = r9.getClient()     // Catch: java.lang.Throwable -> L36
-                com.huawei.hms.common.internal.ResponseHeader r3 = new com.huawei.hms.common.internal.ResponseHeader     // Catch: java.lang.Throwable -> L33
-                r4 = 907135001(0x3611c819, float:2.1723156E-6)
-                java.lang.String r10 = r10.getMessage()     // Catch: java.lang.Throwable -> L33
-                r3.<init>(r1, r4, r10)     // Catch: java.lang.Throwable -> L33
-                org.json.JSONObject r10 = new org.json.JSONObject     // Catch: java.lang.Throwable -> L2f
-                r10.<init>()     // Catch: java.lang.Throwable -> L2f
-                java.lang.String r10 = r10.toString()     // Catch: java.lang.Throwable -> L2f
-                com.huawei.hms.common.internal.TaskApiCallWrapper r4 = r8.f7233b     // Catch: java.lang.Throwable -> L2c
-                com.huawei.hmf.tasks.TaskCompletionSource r4 = r4.getTaskCompletionSource()     // Catch: java.lang.Throwable -> L2c
-                com.huawei.hms.common.internal.TaskApiCallWrapper r5 = r8.f7233b     // Catch: java.lang.Throwable -> L2a
-                com.huawei.hms.common.internal.TaskApiCall r2 = r5.getTaskApiCall()     // Catch: java.lang.Throwable -> L2a
-                goto L54
-            L2a:
-                r5 = move-exception
-                goto L3c
-            L2c:
-                r5 = move-exception
-                r4 = r2
-                goto L3c
-            L2f:
-                r5 = move-exception
-                r10 = r2
-                r4 = r10
-                goto L3c
-            L33:
-                r10 = move-exception
-                r5 = r10
-                goto L39
-            L36:
-                r9 = move-exception
-                r5 = r9
-                r9 = r2
-            L39:
-                r10 = r2
-                r3 = r10
-                r4 = r3
-            L3c:
-                java.lang.StringBuilder r6 = new java.lang.StringBuilder
-                r6.<init>()
-                java.lang.String r7 = "<notifyCpException> "
-                r6.append(r7)
-                java.lang.String r5 = r5.getMessage()
-                r6.append(r5)
-                java.lang.String r5 = r6.toString()
-                com.huawei.hms.support.log.HMSLog.m7715e(r0, r5)
-            L54:
-                if (r9 == 0) goto L5f
-                if (r3 == 0) goto L5f
-                if (r10 == 0) goto L5f
-                if (r4 == 0) goto L5f
-                if (r2 == 0) goto L5f
-                goto L60
-            L5f:
-                r1 = 0
-            L60:
-                if (r1 == 0) goto L66
-                r2.onResponse(r9, r3, r10, r4)
-                goto L6b
-            L66:
-                java.lang.String r9 = "<notifyCpException> isNotify is false, Can not notify CP."
-                com.huawei.hms.support.log.HMSLog.m7715e(r0, r9)
-            L6b:
-                return
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.huawei.hms.common.HuaweiApi.RunnableC2328a.m6713a(com.huawei.hms.common.HuaweiApi$RequestHandler, java.lang.Throwable):void");
+        private void a(RequestHandler requestHandler, Throwable th) {
+            Throwable th2;
+            AnyClient client;
+            String string;
+            ResponseHeader responseHeader;
+            TaskCompletionSource taskCompletionSource;
+            TaskApiCall taskApiCall = null;
+            try {
+                client = requestHandler.getClient();
+            } catch (Throwable th3) {
+                th2 = th3;
+                client = null;
+            }
+            try {
+                responseHeader = new ResponseHeader(1, CommonCode.ErrorCode.INTERNAL_ERROR, th.getMessage());
+                try {
+                    string = new JSONObject().toString();
+                    try {
+                        taskCompletionSource = this.f4531b.getTaskCompletionSource();
+                    } catch (Throwable th4) {
+                        th2 = th4;
+                        taskCompletionSource = null;
+                    }
+                } catch (Throwable th5) {
+                    th2 = th5;
+                    string = null;
+                    taskCompletionSource = null;
+                }
+                try {
+                    taskApiCall = this.f4531b.getTaskApiCall();
+                } catch (Throwable th6) {
+                    th2 = th6;
+                    HMSLog.e("HuaweiApi", "<notifyCpException> " + th2.getMessage());
+                }
+            } catch (Throwable th7) {
+                th2 = th7;
+                string = null;
+                responseHeader = null;
+                taskCompletionSource = null;
+                HMSLog.e("HuaweiApi", "<notifyCpException> " + th2.getMessage());
+                if ((client != null || responseHeader == null || string == null || taskCompletionSource == null || taskApiCall == null) ? false : true) {
+                }
+            }
+            if ((client != null || responseHeader == null || string == null || taskCompletionSource == null || taskApiCall == null) ? false : true) {
+                HMSLog.e("HuaweiApi", "<notifyCpException> isNotify is false, Can not notify CP.");
+            } else {
+                taskApiCall.onResponse(client, responseHeader, string, taskCompletionSource);
+            }
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            RequestHandler requestHandler = new RequestHandler(this.f7232a);
+            RequestHandler requestHandler = new RequestHandler(this.a);
             try {
-                requestHandler.m6710a(this.f7233b);
+                requestHandler.a(this.f4531b);
             } catch (Throwable th) {
-                m6713a(requestHandler, th);
+                a(requestHandler, th);
             }
         }
     }
 
     public HuaweiApi(Activity activity, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder, int i2) {
         Checker.checkNonNull(activity, "Null activity is not permitted.");
-        this.f7204h = new WeakReference<>(activity);
-        m6688a(activity, api, toption, abstractClientBuilder, i2, null);
+        this.f4512h = new WeakReference<>(activity);
+        a(activity, api, toption, abstractClientBuilder, i2, null);
     }
 
     @Deprecated
     public Task<Boolean> disconnectService() {
-        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         RequestManager.getInstance();
         RequestManager.getHandler().post(new Runnable() { // from class: com.huawei.hms.common.HuaweiApi.1
+            final /* synthetic */ HuaweiApi a;
+
+            /* JADX INFO: renamed from: b */
+            final /* synthetic */ TaskCompletionSource f4519b;
+
+            AnonymousClass1(HuaweiApi this, TaskCompletionSource taskCompletionSource2) {
+                huaweiApi = this;
+                taskCompletionSource = taskCompletionSource2;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
-                HuaweiApi.this.m6690a((HuaweiApi<?>) this, (TaskCompletionSource<Boolean>) taskCompletionSource);
+                HuaweiApi.this.a((HuaweiApi<?>) huaweiApi, (TaskCompletionSource<Boolean>) taskCompletionSource);
             }
         });
-        return taskCompletionSource.getTask();
+        return taskCompletionSource2.getTask();
     }
 
     public <TResult, TClient extends AnyClient> Task<TResult> doWrite(TaskApiCall<TClient, TResult> taskApiCall) {
-        this.f7207k = true;
+        this.f4515k = true;
         if (taskApiCall == null) {
-            HMSLog.m7715e("HuaweiApi", "in doWrite:taskApiCall is null");
+            HMSLog.e("HuaweiApi", "in doWrite:taskApiCall is null");
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
             taskCompletionSource.setException(new ApiException(Status.FAILURE));
             return taskCompletionSource.getTask();
         }
-        HiAnalyticsInnerClient.reportEntryClient(this.f7197a, taskApiCall.getUri(), TextUtils.isEmpty(this.f7203g.getSubAppID()) ? this.f7202f : this.f7203g.getSubAppID(), taskApiCall.getTransactionId(), String.valueOf(getKitSdkVersion()));
-        if (this.f7210n == null) {
-            this.f7210n = RequestManager.getInstance();
+        HiAnalyticsInnerClient.reportEntryClient(this.a, taskApiCall.getUri(), TextUtils.isEmpty(this.f4511g.getSubAppID()) ? this.f4510f : this.f4511g.getSubAppID(), taskApiCall.getTransactionId(), String.valueOf(getKitSdkVersion()));
+        if (this.f4518n == null) {
+            this.f4518n = RequestManager.getInstance();
         }
-        return m6686a(taskApiCall);
+        return a(taskApiCall);
     }
 
     public Activity getActivity() {
-        WeakReference<Activity> weakReference = this.f7204h;
+        WeakReference<Activity> weakReference = this.f4512h;
         if (weakReference != null) {
             return weakReference.get();
         }
@@ -587,31 +717,30 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
     }
 
     public int getApiLevel() {
-        return this.f7206j;
+        return this.f4514j;
     }
 
     public String getAppID() {
-        return this.f7202f;
+        return this.f4510f;
     }
 
-    /* JADX WARN: Type inference failed for: r3v2, types: [com.huawei.hms.common.internal.AnyClient] */
     public AnyClient getClient(Looper looper, RequestHandler requestHandler) {
-        return this.f7200d.buildClient(this.f7197a, getClientSetting(), requestHandler, requestHandler);
+        return this.f4508d.buildClient(this.a, getClientSetting(), requestHandler, requestHandler);
     }
 
     protected ClientSettings getClientSetting() {
-        ClientSettings clientSettings = new ClientSettings(this.f7197a.getPackageName(), this.f7197a.getClass().getName(), getScopes(), this.f7201e, null, this.f7203g);
-        if (!this.f7209m) {
-            String hMSPackageNameForMultiService = HMSPackageManager.getInstance(this.f7197a).getHMSPackageNameForMultiService();
+        ClientSettings clientSettings = new ClientSettings(this.a.getPackageName(), this.a.getClass().getName(), getScopes(), this.f4509e, null, this.f4511g);
+        if (!this.f4517m) {
+            String hMSPackageNameForMultiService = HMSPackageManager.getInstance(this.a).getHMSPackageNameForMultiService();
             if (TextUtils.isEmpty(hMSPackageNameForMultiService)) {
                 hMSPackageNameForMultiService = "com.huawei.hwid";
             }
-            this.f7208l = hMSPackageNameForMultiService;
-            HMSLog.m7717i("HuaweiApi", "No setInnerHms, hms pkg name is " + this.f7208l);
+            this.f4516l = hMSPackageNameForMultiService;
+            HMSLog.i("HuaweiApi", "No setInnerHms, hms pkg name is " + this.f4516l);
         }
-        clientSettings.setInnerHmsPkg(this.f7208l);
-        clientSettings.setUseInnerHms(this.f7209m);
-        WeakReference<Activity> weakReference = this.f7204h;
+        clientSettings.setInnerHmsPkg(this.f4516l);
+        clientSettings.setUseInnerHms(this.f4517m);
+        WeakReference<Activity> weakReference = this.f4512h;
         if (weakReference != null) {
             clientSettings.setCpActivity(weakReference.get());
         }
@@ -619,15 +748,15 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
     }
 
     public Context getContext() {
-        return this.f7197a;
+        return this.a;
     }
 
     public int getKitSdkVersion() {
-        return this.f7205i;
+        return this.f4513i;
     }
 
     public TOption getOption() {
-        return this.f7198b;
+        return this.f4506b;
     }
 
     protected List<Scope> getScopes() {
@@ -635,25 +764,25 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
     }
 
     public String getSubAppID() {
-        return this.f7203g.getSubAppID();
+        return this.f4511g.getSubAppID();
     }
 
     public void setApiLevel(int i2) {
-        this.f7206j = i2;
+        this.f4514j = i2;
     }
 
     public void setHostContext(Context context) {
-        this.f7199c = context;
+        this.f4507c = context;
     }
 
     public void setInnerHms() {
-        this.f7208l = this.f7197a.getPackageName();
-        this.f7209m = true;
-        HMSLog.m7717i("HuaweiApi", "<setInnerHms> init inner hms pkg info:" + this.f7208l);
+        this.f4516l = this.a.getPackageName();
+        this.f4517m = true;
+        HMSLog.i("HuaweiApi", "<setInnerHms> init inner hms pkg info:" + this.f4516l);
     }
 
     public void setKitSdkVersion(int i2) {
-        this.f7205i = i2;
+        this.f4513i = i2;
     }
 
     public void setSubAppId(String str) throws ApiException {
@@ -664,58 +793,55 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
 
     @Deprecated
     public boolean setSubAppInfo(SubAppInfo subAppInfo) {
-        HMSLog.m7717i("HuaweiApi", "Enter setSubAppInfo");
-        SubAppInfo subAppInfo2 = this.f7203g;
+        HMSLog.i("HuaweiApi", "Enter setSubAppInfo");
+        SubAppInfo subAppInfo2 = this.f4511g;
         if (subAppInfo2 != null && !TextUtils.isEmpty(subAppInfo2.getSubAppID())) {
-            HMSLog.m7715e("HuaweiApi", "subAppInfo is already set");
+            HMSLog.e("HuaweiApi", "subAppInfo is already set");
             return false;
         }
         if (subAppInfo == null) {
-            HMSLog.m7715e("HuaweiApi", "subAppInfo is null");
+            HMSLog.e("HuaweiApi", "subAppInfo is null");
             return false;
         }
         String subAppID = subAppInfo.getSubAppID();
         if (TextUtils.isEmpty(subAppID)) {
-            HMSLog.m7715e("HuaweiApi", "subAppId is empty");
+            HMSLog.e("HuaweiApi", "subAppId is empty");
             return false;
         }
-        if (subAppID.equals(this.f7201e)) {
-            HMSLog.m7715e("HuaweiApi", "subAppId is host appid");
+        if (subAppID.equals(this.f4509e)) {
+            HMSLog.e("HuaweiApi", "subAppId is host appid");
             return false;
         }
-        if (this.f7207k) {
-            HMSLog.m7715e("HuaweiApi", "Client has sent request to Huawei Mobile Services, setting subAppId is not allowed");
+        if (this.f4515k) {
+            HMSLog.e("HuaweiApi", "Client has sent request to Huawei Mobile Services, setting subAppId is not allowed");
             return false;
         }
-        this.f7203g = new SubAppInfo(subAppInfo);
+        this.f4511g = new SubAppInfo(subAppInfo);
         return true;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public void m6692b(Context context) {
+    public void b(Context context) {
         String appId = Util.getAppId(context);
-        this.f7201e = appId;
-        this.f7202f = appId;
+        this.f4509e = appId;
+        this.f4510f = appId;
     }
 
-    /* renamed from: a */
-    private void m6688a(Context context, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder, int i2, String str) {
-        this.f7197a = context.getApplicationContext();
-        this.f7198b = toption;
-        this.f7200d = abstractClientBuilder;
-        m6692b(context);
-        this.f7203g = new SubAppInfo("");
-        this.f7205i = i2;
+    private void a(Context context, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder, int i2, String str) {
+        this.a = context.getApplicationContext();
+        this.f4506b = toption;
+        this.f4508d = abstractClientBuilder;
+        b(context);
+        this.f4511g = new SubAppInfo("");
+        this.f4513i = i2;
         if (!TextUtils.isEmpty(str)) {
-            if (str.equals(this.f7201e)) {
-                HMSLog.m7715e("HuaweiApi", "subAppId is host appid");
+            if (str.equals(this.f4509e)) {
+                HMSLog.e("HuaweiApi", "subAppId is host appid");
             } else {
-                HMSLog.m7717i("HuaweiApi", "subAppId is " + str);
-                this.f7203g = new SubAppInfo(str);
+                HMSLog.i("HuaweiApi", "subAppId is " + str);
+                this.f4511g = new SubAppInfo(str);
             }
         }
-        m6687a(context);
+        a(context);
         if (Util.isAvailableLibExist(context)) {
             AvailableUtil.asyncCheckHmsUpdateInfo(context);
         }
@@ -723,57 +849,53 @@ public class HuaweiApi<TOption extends Api.ApiOptions> {
 
     public HuaweiApi(Activity activity, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder, int i2, String str) {
         Checker.checkNonNull(activity, "Null activity is not permitted.");
-        this.f7204h = new WeakReference<>(activity);
-        m6688a(activity, api, toption, abstractClientBuilder, i2, str);
+        this.f4512h = new WeakReference<>(activity);
+        a(activity, api, toption, abstractClientBuilder, i2, str);
     }
 
     public HuaweiApi(Activity activity, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder) {
         Checker.checkNonNull(activity, "Null activity is not permitted.");
-        this.f7204h = new WeakReference<>(activity);
-        m6688a(activity, api, toption, abstractClientBuilder, 0, null);
+        this.f4512h = new WeakReference<>(activity);
+        a(activity, api, toption, abstractClientBuilder, 0, null);
     }
 
-    /* renamed from: a */
-    private void m6687a(Context context) {
+    private void a(Context context) {
         HMSBIInitializer.getInstance(context).initBI();
     }
 
     public HuaweiApi(Context context, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder, int i2) {
         Checker.checkNonNull(context, "Null context is not permitted.");
-        m6688a(context, api, toption, abstractClientBuilder, i2, null);
+        a(context, api, toption, abstractClientBuilder, i2, null);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m6690a(HuaweiApi<?> huaweiApi, TaskCompletionSource<Boolean> taskCompletionSource) {
-        HMSLog.m7717i("HuaweiApi", "innerDisconnect.");
+    public void a(HuaweiApi<?> huaweiApi, TaskCompletionSource<Boolean> taskCompletionSource) {
+        HMSLog.i("HuaweiApi", "innerDisconnect.");
         try {
             huaweiApi.getClient(RequestManager.getHandler().getLooper(), null).disconnect();
             taskCompletionSource.setResult(Boolean.TRUE);
         } catch (Exception e2) {
-            HMSLog.m7718w("HuaweiApi", "disconnect the binder failed for:" + e2.getMessage());
+            HMSLog.w("HuaweiApi", "disconnect the binder failed for:" + e2.getMessage());
         }
     }
 
     public HuaweiApi(Context context, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder, int i2, String str) {
         Checker.checkNonNull(context, "Null context is not permitted.");
-        m6688a(context, api, toption, abstractClientBuilder, i2, str);
+        a(context, api, toption, abstractClientBuilder, i2, str);
     }
 
-    /* renamed from: a */
-    private <TResult, TClient extends AnyClient> Task<TResult> m6686a(TaskApiCall<TClient, TResult> taskApiCall) {
+    private <TResult, TClient extends AnyClient> Task<TResult> a(TaskApiCall<TClient, TResult> taskApiCall) {
         TaskCompletionSource taskCompletionSource;
         if (taskApiCall.getToken() == null) {
             taskCompletionSource = new TaskCompletionSource();
         } else {
             taskCompletionSource = new TaskCompletionSource(taskApiCall.getToken());
         }
-        RequestManager.getHandler().post(new RunnableC2328a(this, new TaskApiCallWrapper(taskApiCall, taskCompletionSource)));
+        RequestManager.getHandler().post(new a(this, new TaskApiCallWrapper(taskApiCall, taskCompletionSource)));
         return taskCompletionSource.getTask();
     }
 
     public HuaweiApi(Context context, Api<TOption> api, TOption toption, AbstractClientBuilder abstractClientBuilder) {
         Checker.checkNonNull(context, "Null context is not permitted.");
-        m6688a(context, api, toption, abstractClientBuilder, 0, null);
+        a(context, api, toption, abstractClientBuilder, 0, null);
     }
 }

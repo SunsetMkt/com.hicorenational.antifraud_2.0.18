@@ -11,7 +11,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Explode extends Visibility {
     private static final String PROPNAME_SCREEN_BOUNDS = "android:explode:screenBounds";
     private int[] mTempLoc;
@@ -32,31 +32,31 @@ public class Explode extends Visibility {
     }
 
     private void calculateOut(View view, Rect rect, int[] iArr) {
-        int centerY;
-        int i2;
+        int iCenterY;
+        int width;
         view.getLocationOnScreen(this.mTempLoc);
         int[] iArr2 = this.mTempLoc;
-        int i3 = iArr2[0];
-        int i4 = iArr2[1];
+        int i2 = iArr2[0];
+        int i3 = iArr2[1];
         Rect epicenter = getEpicenter();
         if (epicenter == null) {
-            i2 = (view.getWidth() / 2) + i3 + Math.round(view.getTranslationX());
-            centerY = (view.getHeight() / 2) + i4 + Math.round(view.getTranslationY());
+            width = (view.getWidth() / 2) + i2 + Math.round(view.getTranslationX());
+            iCenterY = (view.getHeight() / 2) + i3 + Math.round(view.getTranslationY());
         } else {
-            int centerX = epicenter.centerX();
-            centerY = epicenter.centerY();
-            i2 = centerX;
+            int iCenterX = epicenter.centerX();
+            iCenterY = epicenter.centerY();
+            width = iCenterX;
         }
-        float centerX2 = rect.centerX() - i2;
-        float centerY2 = rect.centerY() - centerY;
-        if (centerX2 == 0.0f && centerY2 == 0.0f) {
-            centerX2 = ((float) (Math.random() * 2.0d)) - 1.0f;
-            centerY2 = ((float) (Math.random() * 2.0d)) - 1.0f;
+        float fCenterX = rect.centerX() - width;
+        float fCenterY = rect.centerY() - iCenterY;
+        if (fCenterX == 0.0f && fCenterY == 0.0f) {
+            fCenterX = ((float) (Math.random() * 2.0d)) - 1.0f;
+            fCenterY = ((float) (Math.random() * 2.0d)) - 1.0f;
         }
-        float calculateDistance = calculateDistance(centerX2, centerY2);
-        float calculateMaxDistance = calculateMaxDistance(view, i2 - i3, centerY - i4);
-        iArr[0] = Math.round((centerX2 / calculateDistance) * calculateMaxDistance);
-        iArr[1] = Math.round(calculateMaxDistance * (centerY2 / calculateDistance));
+        float fCalculateDistance = calculateDistance(fCenterX, fCenterY);
+        float fCalculateMaxDistance = calculateMaxDistance(view, width - i2, iCenterY - i3);
+        iArr[0] = Math.round((fCenterX / fCalculateDistance) * fCalculateMaxDistance);
+        iArr[1] = Math.round(fCalculateMaxDistance * (fCenterY / fCalculateDistance));
     }
 
     private void captureValues(TransitionValues transitionValues) {
@@ -90,7 +90,7 @@ public class Explode extends Visibility {
         float translationY = view.getTranslationY();
         calculateOut(viewGroup, rect, this.mTempLoc);
         int[] iArr = this.mTempLoc;
-        return TranslationAnimationCreator.createAnimation(view, transitionValues2, rect.left, rect.top, translationX + iArr[0], translationY + iArr[1], translationX, translationY, sDecelerate);
+        return TranslationAnimationCreator.createAnimation(view, transitionValues2, rect.left, rect.top, translationX + iArr[0], translationY + iArr[1], translationX, translationY, sDecelerate, this);
     }
 
     @Override // androidx.transition.Visibility
@@ -105,7 +105,7 @@ public class Explode extends Visibility {
         int i3 = rect.top;
         float translationX = view.getTranslationX();
         float translationY = view.getTranslationY();
-        int[] iArr = (int[]) transitionValues.view.getTag(C0703R.id.transition_position);
+        int[] iArr = (int[]) transitionValues.view.getTag(R.id.transition_position);
         if (iArr != null) {
             f2 = (iArr[0] - rect.left) + translationX;
             f3 = (iArr[1] - rect.top) + translationY;
@@ -116,7 +116,7 @@ public class Explode extends Visibility {
         }
         calculateOut(viewGroup, rect, this.mTempLoc);
         int[] iArr2 = this.mTempLoc;
-        return TranslationAnimationCreator.createAnimation(view, transitionValues, i2, i3, translationX, translationY, f2 + iArr2[0], f3 + iArr2[1], sAccelerate);
+        return TranslationAnimationCreator.createAnimation(view, transitionValues, i2, i3, translationX, translationY, f2 + iArr2[0], f3 + iArr2[1], sAccelerate, this);
     }
 
     public Explode(Context context, AttributeSet attributeSet) {

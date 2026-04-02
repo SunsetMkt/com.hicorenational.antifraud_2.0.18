@@ -4,7 +4,7 @@ import android.hardware.camera2.CameraCaptureSession;
 import androidx.annotation.NonNull;
 import androidx.camera.core.impl.CameraCaptureCallback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class CaptureCallbackContainer extends CameraCaptureCallback {
     private final CameraCaptureSession.CaptureCallback mCaptureCallback;
 

@@ -7,7 +7,7 @@ import com.huawei.hms.support.api.client.Status;
 import com.huawei.hms.support.api.entity.auth.AuthCode;
 import com.huawei.hms.support.api.entity.core.CommonCode;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum ErrorEnum {
     SUCCESS(0, 0, "success"),
     ERROR_NO_TOKEN(800000000, SendException.ERROR_NO_TOKEN, "token missing"),

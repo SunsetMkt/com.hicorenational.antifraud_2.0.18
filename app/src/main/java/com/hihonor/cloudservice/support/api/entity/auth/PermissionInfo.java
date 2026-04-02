@@ -3,22 +3,19 @@ package com.hihonor.cloudservice.support.api.entity.auth;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PermissionInfo implements Parcelable {
-    public static final Parcelable.Creator<PermissionInfo> CREATOR = new C2136a();
+    public static final Parcelable.Creator<PermissionInfo> CREATOR = new a();
+    private String a;
 
-    /* renamed from: a */
-    private String f6391a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f4032b;
 
-    /* renamed from: b */
-    private String f6392b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4033c;
 
-    /* renamed from: c */
-    private String f6393c;
-
-    /* renamed from: com.hihonor.cloudservice.support.api.entity.auth.PermissionInfo$a */
-    class C2136a implements Parcelable.Creator {
-        C2136a() {
+    class a implements Parcelable.Creator {
+        a() {
         }
 
         @Override // android.os.Parcelable.Creator
@@ -35,9 +32,8 @@ public class PermissionInfo implements Parcelable {
     public PermissionInfo() {
     }
 
-    /* renamed from: a */
-    public String m6018a() {
-        return this.f6393c;
+    public String a() {
+        return this.f4033c;
     }
 
     @Override // android.os.Parcelable
@@ -47,20 +43,19 @@ public class PermissionInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6391a);
-        parcel.writeString(this.f6392b);
-        parcel.writeString(this.f6393c);
+        parcel.writeString(this.a);
+        parcel.writeString(this.f4032b);
+        parcel.writeString(this.f4033c);
     }
 
     public PermissionInfo(Parcel parcel) {
-        this.f6391a = parcel.readString();
-        this.f6392b = parcel.readString();
-        this.f6393c = parcel.readString();
+        this.a = parcel.readString();
+        this.f4032b = parcel.readString();
+        this.f4033c = parcel.readString();
     }
 
-    /* renamed from: a */
-    public PermissionInfo m6017a(String str) {
-        this.f6393c = str;
+    public PermissionInfo a(String str) {
+        this.f4033c = str;
         return this;
     }
 }

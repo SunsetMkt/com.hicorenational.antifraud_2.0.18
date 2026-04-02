@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultItemAnimator extends SimpleItemAnimator {
     private static final boolean DEBUG = false;
     private static TimeInterpolator sDefaultInterpolator;
@@ -47,12 +47,12 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
 
     private void animateRemoveImpl(final RecyclerView.ViewHolder viewHolder) {
         final View view = viewHolder.itemView;
-        final ViewPropertyAnimator animate = view.animate();
+        final ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
         this.mRemoveAnimations.add(viewHolder);
-        animate.setDuration(getRemoveDuration()).alpha(0.0f).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.4
+        viewPropertyAnimatorAnimate.setDuration(getRemoveDuration()).alpha(0.0f).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.4
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {
-                animate.setListener(null);
+                viewPropertyAnimatorAnimate.setListener(null);
                 view.setAlpha(1.0f);
                 DefaultItemAnimator.this.dispatchRemoveFinished(viewHolder);
                 DefaultItemAnimator.this.mRemoveAnimations.remove(viewHolder);
@@ -104,9 +104,9 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
 
     void animateAddImpl(final RecyclerView.ViewHolder viewHolder) {
         final View view = viewHolder.itemView;
-        final ViewPropertyAnimator animate = view.animate();
+        final ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
         this.mAddAnimations.add(viewHolder);
-        animate.alpha(1.0f).setDuration(getAddDuration()).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.5
+        viewPropertyAnimatorAnimate.alpha(1.0f).setDuration(getAddDuration()).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.5
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationCancel(Animator animator) {
                 view.setAlpha(1.0f);
@@ -114,7 +114,7 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
 
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {
-                animate.setListener(null);
+                viewPropertyAnimatorAnimate.setListener(null);
                 DefaultItemAnimator.this.dispatchAddFinished(viewHolder);
                 DefaultItemAnimator.this.mAddAnimations.remove(viewHolder);
                 DefaultItemAnimator.this.dispatchFinishedWhenDone();
@@ -180,12 +180,12 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
             }).start();
         }
         if (view2 != null) {
-            final ViewPropertyAnimator animate = view2.animate();
+            final ViewPropertyAnimator viewPropertyAnimatorAnimate = view2.animate();
             this.mChangeAnimations.add(changeInfo.newHolder);
-            animate.translationX(0.0f).translationY(0.0f).setDuration(getChangeDuration()).alpha(1.0f).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.8
+            viewPropertyAnimatorAnimate.translationX(0.0f).translationY(0.0f).setDuration(getChangeDuration()).alpha(1.0f).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.8
                 @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                 public void onAnimationEnd(Animator animator) {
-                    animate.setListener(null);
+                    viewPropertyAnimatorAnimate.setListener(null);
                     view2.setAlpha(1.0f);
                     view2.setTranslationX(0.0f);
                     view2.setTranslationY(0.0f);
@@ -234,9 +234,9 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
         if (i7 != 0) {
             view.animate().translationY(0.0f);
         }
-        final ViewPropertyAnimator animate = view.animate();
+        final ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
         this.mMoveAnimations.add(viewHolder);
-        animate.setDuration(getMoveDuration()).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.6
+        viewPropertyAnimatorAnimate.setDuration(getMoveDuration()).setListener(new AnimatorListenerAdapter() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.6
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationCancel(Animator animator) {
                 if (i6 != 0) {
@@ -249,7 +249,7 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
 
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {
-                animate.setListener(null);
+                viewPropertyAnimatorAnimate.setListener(null);
                 DefaultItemAnimator.this.dispatchMoveFinished(viewHolder);
                 DefaultItemAnimator.this.mMoveAnimations.remove(viewHolder);
                 DefaultItemAnimator.this.dispatchFinishedWhenDone();
@@ -460,9 +460,7 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
                 Runnable runnable = new Runnable() { // from class: androidx.recyclerview.widget.DefaultItemAnimator.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        Iterator it2 = arrayList.iterator();
-                        while (it2.hasNext()) {
-                            MoveInfo moveInfo = (MoveInfo) it2.next();
+                        for (MoveInfo moveInfo : arrayList) {
                             DefaultItemAnimator.this.animateMoveImpl(moveInfo.holder, moveInfo.fromX, moveInfo.fromY, moveInfo.toX, moveInfo.toY);
                         }
                         arrayList.clear();

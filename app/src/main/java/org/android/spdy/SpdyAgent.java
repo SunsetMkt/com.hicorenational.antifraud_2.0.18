@@ -1,6 +1,10 @@
 package org.android.spdy;
 
 import android.content.Context;
+import com.xiaomi.mipush.sdk.Constants;
+import i.f1;
+import i.z2.h0;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,10 +13,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import okio.Utf8;
-import p286h.C5230f1;
-import p286h.p323z2.C5736h0;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class SpdyAgent {
     public static final int ACCS_ONLINE_SERVER = 1;
     public static final int ACCS_TEST_SERVER = 0;
@@ -39,12 +41,8 @@ public final class SpdyAgent {
     private AccsSSLCallback accsSSLCallback;
     private long agentNativePtr;
     private static final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
-
-    /* renamed from: r */
-    private static final Lock f21519r = rwLock.readLock();
-
-    /* renamed from: w */
-    private static final Lock f21520w = rwLock.writeLock();
+    private static final Lock r = rwLock.readLock();
+    private static final Lock w = rwLock.writeLock();
     private static volatile boolean loadSucc = false;
     private static volatile SpdyAgent gSingleInstance = null;
     private static Object lock = new Object();
@@ -75,12 +73,12 @@ public final class SpdyAgent {
 
     static void InvlidCharJudge(byte[] bArr, byte[] bArr2) {
         for (int i2 = 0; i2 < bArr.length; i2++) {
-            if ((bArr[i2] & C5230f1.f20085c) < 32 || (bArr[i2] & C5230f1.f20085c) > 126) {
+            if ((bArr[i2] & f1.f12066c) < 32 || (bArr[i2] & f1.f12066c) > 126) {
                 bArr[i2] = Utf8.REPLACEMENT_BYTE;
             }
         }
         for (int i3 = 0; i3 < bArr2.length; i3++) {
-            if ((bArr2[i3] & C5230f1.f20085c) < 32 || (bArr2[i3] & C5230f1.f20085c) > 126) {
+            if ((bArr2[i3] & f1.f12066c) < 32 || (bArr2[i3] & f1.f12066c) > 126) {
                 bArr2[i3] = Utf8.REPLACEMENT_BYTE;
             }
         }
@@ -154,8 +152,8 @@ public final class SpdyAgent {
         if (spdyDataProvider == null) {
             return null;
         }
-        String mapBodyToString = mapBodyToString(spdyDataProvider.postBody);
-        byte[] bytes = mapBodyToString != null ? mapBodyToString.getBytes() : spdyDataProvider.data;
+        String strMapBodyToString = mapBodyToString(spdyDataProvider.postBody);
+        byte[] bytes = strMapBodyToString != null ? strMapBodyToString.getBytes() : spdyDataProvider.data;
         if (bytes == null || bytes.length < 5242880) {
             return bytes;
         }
@@ -165,21 +163,21 @@ public final class SpdyAgent {
     private native int freeAgent(long j2);
 
     private int getDomainHashIndex(String str) {
-        Integer num;
+        Integer numValueOf;
         synchronized (domainHashLock) {
-            num = domainHashMap.get(str);
-            if (num == null) {
-                HashMap<String, Integer> hashMap = domainHashMap;
+            numValueOf = domainHashMap.get(str);
+            if (numValueOf == null) {
+                HashMap<String, Integer> map = domainHashMap;
                 int i2 = totalDomain + 1;
                 totalDomain = i2;
-                hashMap.put(str, Integer.valueOf(i2));
-                num = Integer.valueOf(totalDomain);
+                map.put(str, Integer.valueOf(i2));
+                numValueOf = Integer.valueOf(totalDomain);
             }
         }
-        return num.intValue();
+        return numValueOf.intValue();
     }
 
-    public static SpdyAgent getInstance(Context context, SpdyVersion spdyVersion, SpdySessionKind spdySessionKind) throws UnsatisfiedLinkError, SpdyErrorException {
+    public static SpdyAgent getInstance(Context context, SpdyVersion spdyVersion, SpdySessionKind spdySessionKind) throws SpdyErrorException, UnsatisfiedLinkError {
         if (gSingleInstance == null) {
             synchronized (lock) {
                 if (gSingleInstance == null) {
@@ -219,13 +217,13 @@ public final class SpdyAgent {
 
     static void headJudge(Map<String, String> map) {
         if (map != null) {
-            int i2 = 0;
+            int length = 0;
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 InvlidCharJudge(key.getBytes(), value.getBytes());
-                i2 += key.length() + 1 + value.length();
-                securityCheck(i2, value.length());
+                length += key.length() + 1 + value.length();
+                securityCheck(length, value.length());
             }
         }
     }
@@ -245,16 +243,16 @@ public final class SpdyAgent {
         if (map == null) {
             return null;
         }
-        int i2 = 0;
+        int length = 0;
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             sb.append(key);
             sb.append('=');
             sb.append(value);
-            sb.append(C5736h0.f20714c);
-            i2 += key.length() + 1 + value.length();
-            tableListJudge(i2);
+            sb.append(h0.f12423c);
+            length += key.length() + 1 + value.length();
+            tableListJudge(length);
         }
         if (sb.length() > 0) {
             sb.setLength(sb.length() - 1);
@@ -333,7 +331,7 @@ public final class SpdyAgent {
 
     private void spdyDataChunkRecvCB(SpdySession spdySession, boolean z, int i2, SpdyByteArray spdyByteArray, int i3) {
         spduLog.Logi("tnet-jni", "[spdyDataChunkRecvCB] - ");
-        long j2 = i2 & 4294967295L;
+        long j2 = ((long) i2) & 4294967295L;
         if (spdySession == null) {
             spduLog.Logi("tnet-jni", "[spdyDataChunkRecvCB] - session is null");
             return;
@@ -348,7 +346,7 @@ public final class SpdyAgent {
 
     private void spdyDataRecvCallback(SpdySession spdySession, boolean z, int i2, int i3, int i4) {
         spduLog.Logi("tnet-jni", "[spdyDataRecvCallback] - ");
-        long j2 = i2 & 4294967295L;
+        long j2 = ((long) i2) & 4294967295L;
         if (spdySession == null) {
             spduLog.Logi("tnet-jni", "[spdyDataRecvCallback] - session is null");
             return;
@@ -362,7 +360,7 @@ public final class SpdyAgent {
     }
 
     private void spdyDataSendCallback(SpdySession spdySession, boolean z, int i2, int i3, int i4) {
-        long j2 = i2 & 4294967295L;
+        long j2 = ((long) i2) & 4294967295L;
         if (spdySession == null) {
             spduLog.Logi("tnet-jni", "[spdyDataSendCallback] - session is null");
             return;
@@ -390,7 +388,7 @@ public final class SpdyAgent {
     }
 
     private void spdyRequestRecvCallback(SpdySession spdySession, int i2, int i3) {
-        long j2 = i2 & 4294967295L;
+        long j2 = ((long) i2) & 4294967295L;
         if (spdySession == null) {
             spduLog.Logi("tnet-jni", "[spdyRequestRecvCallback] - session is null");
             return;
@@ -472,7 +470,7 @@ public final class SpdyAgent {
 
     private void spdyStreamCloseCallback(SpdySession spdySession, int i2, int i3, int i4, SuperviseData superviseData) {
         spduLog.Logi("tnet-jni", "[spdyStreamCloseCallback] - ");
-        long j2 = i2 & 4294967295L;
+        long j2 = ((long) i2) & 4294967295L;
         if (spdySession == null) {
             spduLog.Logi("tnet-jni", "[spdyStreamCloseCallback] - session is null");
             return;
@@ -487,8 +485,8 @@ public final class SpdyAgent {
 
     private void spdyStreamResponseRecv(SpdySession spdySession, int i2, String[] strArr, int i3) {
         spduLog.Logi("tnet-jni", "[spdyStreamResponseRecv] - ");
-        Map<String, List<String>> stringArrayToMap = stringArrayToMap(strArr);
-        long j2 = i2 & 4294967295L;
+        Map<String, List<String>> mapStringArrayToMap = stringArrayToMap(strArr);
+        long j2 = ((long) i2) & 4294967295L;
         if (spdySession == null) {
             spduLog.Logi("tnet-jni", "[spdyStreamResponseRecv] - session is null");
             return;
@@ -497,59 +495,37 @@ public final class SpdyAgent {
         if (intenalcb == null) {
             spduLog.Logi("tnet-jni", "[spdyStreamResponseRecv] - session.intenalcb is null");
         } else {
-            intenalcb.spdyOnStreamResponse(spdySession, j2, stringArrayToMap, i3);
+            intenalcb.spdyOnStreamResponse(spdySession, j2, mapStringArrayToMap, i3);
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:19:0x0037, code lost:
-    
+    static Map<String, List<String>> stringArrayToMap(String[] strArr) {
+        if (strArr == null) {
+            return null;
+        }
+        HashMap map = new HashMap(5);
+        int i2 = 0;
+        while (true) {
+            int i3 = i2 + 2;
+            if (i3 > strArr.length) {
+                return map;
+            }
+            if (strArr[i2] == null) {
+                break;
+            }
+            int i4 = i2 + 1;
+            if (strArr[i4] == null) {
+                break;
+            }
+            List arrayList = (List) map.get(strArr[i2]);
+            if (arrayList == null) {
+                arrayList = new ArrayList(1);
+                map.put(strArr[i2], arrayList);
+            }
+            arrayList.add(strArr[i4]);
+            i2 = i3;
+        }
         return null;
-     */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    static java.util.Map<java.lang.String, java.util.List<java.lang.String>> stringArrayToMap(java.lang.String[] r7) {
-        /*
-            r0 = 0
-            if (r7 != 0) goto L4
-            return r0
-        L4:
-            java.util.HashMap r1 = new java.util.HashMap
-            r2 = 5
-            r1.<init>(r2)
-            r2 = 0
-        Lb:
-            int r3 = r2 + 2
-            int r4 = r7.length
-            if (r3 > r4) goto L38
-            r4 = r7[r2]
-            if (r4 == 0) goto L37
-            int r4 = r2 + 1
-            r5 = r7[r4]
-            if (r5 != 0) goto L1b
-            goto L37
-        L1b:
-            r5 = r7[r2]
-            java.lang.Object r5 = r1.get(r5)
-            java.util.List r5 = (java.util.List) r5
-            if (r5 != 0) goto L30
-            java.util.ArrayList r5 = new java.util.ArrayList
-            r6 = 1
-            r5.<init>(r6)
-            r2 = r7[r2]
-            r1.put(r2, r5)
-        L30:
-            r2 = r7[r4]
-            r5.add(r2)
-            r2 = r3
-            goto Lb
-        L37:
-            return r0
-        L38:
-            return r1
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.spdy.SpdyAgent.stringArrayToMap(java.lang.String[]):java.util.Map");
     }
 
     static void tableListJudge(int i2) {
@@ -561,7 +537,7 @@ public final class SpdyAgent {
 
     void clearSpdySession(String str, String str2, int i2) {
         if (str != null) {
-            f21520w.lock();
+            w.lock();
             if (str != null) {
                 try {
                     this.sessionMgr.remove(str + str2 + i2);
@@ -611,11 +587,11 @@ public final class SpdyAgent {
     }
 
     void removeSession(SpdySession spdySession) {
-        f21520w.lock();
+        w.lock();
         try {
             this.sessionQueue.remove(spdySession);
         } finally {
-            f21520w.unlock();
+            w.unlock();
         }
     }
 
@@ -653,9 +629,9 @@ public final class SpdyAgent {
 
     @Deprecated
     public SpdySession submitRequest(SpdyRequest spdyRequest, SpdyDataProvider spdyDataProvider, Object obj, Object obj2, Spdycb spdycb, SessionCb sessionCb, SslCertcb sslCertcb, int i2) throws SpdyErrorException {
-        SpdySession createSession = createSession(spdyRequest.getAuthority(), spdyRequest.getDomain(), obj, sessionCb, sslCertcb, i2, 0, spdyRequest.getConnectionTimeoutMs());
-        createSession.submitRequest(spdyRequest, spdyDataProvider, obj2, spdycb);
-        return createSession;
+        SpdySession spdySessionCreateSession = createSession(spdyRequest.getAuthority(), spdyRequest.getDomain(), obj, sessionCb, sslCertcb, i2, 0, spdyRequest.getConnectionTimeoutMs());
+        spdySessionCreateSession.submitRequest(spdyRequest, spdyDataProvider, obj2, spdycb);
+        return spdySessionCreateSession;
     }
 
     @Deprecated
@@ -681,9 +657,9 @@ public final class SpdyAgent {
 
     @Deprecated
     public SpdySession submitRequest(SpdyRequest spdyRequest, SpdyDataProvider spdyDataProvider, Object obj, Object obj2, Spdycb spdycb, SessionCb sessionCb, SslCertcb sslCertcb, int i2, int i3) throws SpdyErrorException {
-        SpdySession createSession = createSession(spdyRequest.getAuthority(), spdyRequest.getDomain(), obj, sessionCb, sslCertcb, i2, i3, spdyRequest.getConnectionTimeoutMs());
-        createSession.submitRequest(spdyRequest, spdyDataProvider, obj2, spdycb);
-        return createSession;
+        SpdySession spdySessionCreateSession = createSession(spdyRequest.getAuthority(), spdyRequest.getDomain(), obj, sessionCb, sslCertcb, i2, i3, spdyRequest.getConnectionTimeoutMs());
+        spdySessionCreateSession.submitRequest(spdyRequest, spdyDataProvider, obj2, spdycb);
+        return spdySessionCreateSession;
     }
 
     public SpdySession createSession(SessionInfo sessionInfo) throws SpdyErrorException {
@@ -709,7 +685,7 @@ public final class SpdyAgent {
     }
 
     @Deprecated
-    public static SpdyAgent getInstance(Context context, SpdyVersion spdyVersion, SpdySessionKind spdySessionKind, AccsSSLCallback accsSSLCallback) throws UnsatisfiedLinkError, SpdyErrorException {
+    public static SpdyAgent getInstance(Context context, SpdyVersion spdyVersion, SpdySessionKind spdySessionKind, AccsSSLCallback accsSSLCallback) throws SpdyErrorException, UnsatisfiedLinkError {
         if (gSingleInstance == null) {
             synchronized (lock) {
                 if (gSingleInstance == null) {
@@ -720,19 +696,108 @@ public final class SpdyAgent {
         return gSingleInstance;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:36:0x0189 A[Catch: all -> 0x013d, TryCatch #3 {all -> 0x013d, blocks: (B:59:0x0109, B:61:0x010d, B:34:0x0169, B:36:0x0189, B:40:0x0193, B:33:0x0165), top: B:58:0x0109 }] */
-    /* JADX WARN: Removed duplicated region for block: B:40:0x0193 A[Catch: all -> 0x013d, TRY_LEAVE, TryCatch #3 {all -> 0x013d, blocks: (B:59:0x0109, B:61:0x010d, B:34:0x0169, B:36:0x0189, B:40:0x0193, B:33:0x0165), top: B:58:0x0109 }] */
-    /* JADX WARN: Removed duplicated region for block: B:50:0x01bd  */
-    /* JADX WARN: Removed duplicated region for block: B:56:0x018e  */
+    /* JADX WARN: Removed duplicated region for block: B:38:0x0142  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public org.android.spdy.SpdySession createSession(java.lang.String r25, java.lang.String r26, java.lang.Object r27, org.android.spdy.SessionCb r28, org.android.spdy.SslCertcb r29, int r30, int r31, int r32, java.lang.String r33) throws org.android.spdy.SpdyErrorException {
-        /*
-            Method dump skipped, instructions count: 520
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.spdy.SpdyAgent.createSession(java.lang.String, java.lang.String, java.lang.Object, org.android.spdy.SessionCb, org.android.spdy.SslCertcb, int, int, int, java.lang.String):org.android.spdy.SpdySession");
+    public SpdySession createSession(String str, String str2, Object obj, SessionCb sessionCb, SslCertcb sslCertcb, int i2, int i3, int i4, String str3) throws Throwable {
+        String str4;
+        byte[] bArr;
+        char c2;
+        SpdySession spdySession;
+        long jCreateSessionN;
+        int i5;
+        SpdySession spdySession2;
+        SpdyAgent spdyAgent = this;
+        if (str != null) {
+            String[] strArrSplit = str.split("/");
+            int iLastIndexOf = strArrSplit[0].lastIndexOf(58);
+            String strSubstring = strArrSplit[0].substring(0, iLastIndexOf);
+            String strSubstring2 = strArrSplit[0].substring(iLastIndexOf + 1);
+            byte[] bytes = "0.0.0.0".getBytes();
+            if (strArrSplit.length != 1) {
+                String[] strArrSplit2 = strArrSplit[1].split(Constants.COLON_SEPARATOR);
+                byte[] bytes2 = strArrSplit2[0].getBytes();
+                str4 = str;
+                c2 = (char) Integer.parseInt(strArrSplit2[1]);
+                bArr = bytes2;
+            } else {
+                str4 = str + "/0.0.0.0:0";
+                bArr = bytes;
+                c2 = 0;
+            }
+            agentIsOpen();
+            r.lock();
+            try {
+                SpdySession spdySession3 = spdyAgent.sessionMgr.get(str4 + str2 + i2);
+                if (spdyAgent.sessionMgr.size() >= 50) {
+                    throw new SpdyErrorException("SPDY_SESSION_EXCEED_MAXED: session count exceed max", TnetStatusCode.TNET_SESSION_EXCEED_MAXED);
+                }
+                if (spdySession3 != null) {
+                    spdySession3.increRefCount();
+                    return spdySession3;
+                }
+                w.lock();
+                try {
+                    spdySession = spdyAgent.sessionMgr.get(str4 + str2 + i2);
+                } catch (Throwable unused) {
+                    spdySession = null;
+                }
+                if (spdySession != null) {
+                    w.unlock();
+                    spdySession.increRefCount();
+                    return spdySession;
+                }
+                try {
+                    String str5 = str4;
+                    SpdySession spdySession4 = new SpdySession(0L, this, str4, str2, sessionCb, i2, i3, obj);
+                    byte[] bytes3 = str3 == null ? null : str3.getBytes();
+                    int domainHashIndex = spdyAgent.getDomainHashIndex(str2 + i2);
+                    if (spdyAgent.proxyUsername != null) {
+                        try {
+                            if (spdyAgent.proxyPassword != null) {
+                                jCreateSessionN = createSessionN(spdyAgent.agentNativePtr, spdySession4, domainHashIndex, strSubstring.getBytes(), (char) Integer.parseInt(strSubstring2), bArr, c2, spdyAgent.proxyUsername.getBytes(), spdyAgent.proxyPassword.getBytes(), obj, i2, i3, i4, bytes3);
+                            } else {
+                                spdyAgent = this;
+                                jCreateSessionN = createSessionN(spdyAgent.agentNativePtr, spdySession4, domainHashIndex, strSubstring.getBytes(), (char) Integer.parseInt(strSubstring2), bArr, c2, null, null, obj, i2, i3, i4, bytes3);
+                            }
+                            spduLog.Logi("tnet-jni", " create new session: " + str);
+                            if ((jCreateSessionN & 1) == 1) {
+                                i5 = (int) (jCreateSessionN >> 1);
+                                jCreateSessionN = 0;
+                            } else {
+                                i5 = 0;
+                            }
+                            try {
+                                if (jCreateSessionN != 0) {
+                                    spdySession2 = spdySession4;
+                                    spdySession2.setSessionNativePtr(jCreateSessionN);
+                                    this.sessionMgr.put(str5 + str2 + i2, spdySession2);
+                                    this.sessionQueue.add(spdySession2);
+                                } else {
+                                    if (i5 != 0) {
+                                        throw new SpdyErrorException("create session error: " + i5, i5);
+                                    }
+                                    spdySession2 = null;
+                                }
+                                w.unlock();
+                                return spdySession2;
+                            } catch (Throwable th) {
+                                th = th;
+                            }
+                        } catch (Throwable th2) {
+                            th = th2;
+                        }
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                }
+                w.unlock();
+                throw th;
+            } finally {
+                r.unlock();
+            }
+        }
+        throw new SpdyErrorException("SPDY_JNI_ERR_INVALID_PARAM", TnetStatusCode.TNET_JNI_ERR_INVLID_PARAM);
     }
 }

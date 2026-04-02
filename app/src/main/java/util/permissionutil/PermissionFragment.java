@@ -12,37 +12,32 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import p388ui.C6813c;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PermissionFragment extends Fragment {
 
-    /* renamed from: c */
-    private static final int f25518c = 1;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final int f15023c = 1;
+    Activity a;
 
-    /* renamed from: a */
-    Activity f25519a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private b f15024b;
 
-    /* renamed from: b */
-    private InterfaceC7309b f25520b;
-
-    /* renamed from: b */
-    private void m26491b() {
-        InterfaceC7309b interfaceC7309b = this.f25520b;
-        if (interfaceC7309b != null) {
-            interfaceC7309b.onGranted();
+    private void b() {
+        b bVar = this.f15024b;
+        if (bVar != null) {
+            bVar.onGranted();
         }
     }
 
-    /* renamed from: a */
-    public void m26494a(InterfaceC7309b interfaceC7309b) {
-        this.f25520b = interfaceC7309b;
+    public void a(b bVar) {
+        this.f15024b = bVar;
     }
 
     @Override // android.app.Fragment
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.f25519a = getActivity();
+        this.a = getActivity();
     }
 
     @Override // android.app.Fragment
@@ -67,48 +62,45 @@ public class PermissionFragment extends Fragment {
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    m26491b();
+                    b();
                     return;
                 }
                 Iterator<String> it = arrayList.iterator();
                 while (it.hasNext()) {
                     if (!shouldShowRequestPermissionRationale(it.next())) {
-                        m26492b(arrayList);
+                        b(arrayList);
                         return;
                     }
                 }
-                m26490a(arrayList);
+                a(arrayList);
             }
         } catch (Exception unused) {
         }
     }
 
-    /* renamed from: a */
-    public Activity m26493a() {
-        Activity activity = this.f25519a;
-        return activity == null ? C6813c.m25437i().m25453h() : activity;
+    public Activity a() {
+        Activity activity = this.a;
+        return activity == null ? ui.c.i().h() : activity;
     }
 
-    /* renamed from: b */
-    private void m26492b(List<String> list) {
-        InterfaceC7309b interfaceC7309b = this.f25520b;
-        if (interfaceC7309b != null) {
-            interfaceC7309b.mo26509a(list);
+    private void b(List<String> list) {
+        b bVar = this.f15024b;
+        if (bVar != null) {
+            bVar.a(list);
         }
     }
 
     @TargetApi(23)
-    /* renamed from: a */
-    public void m26495a(@NonNull String[] strArr) {
+    public void a(@NonNull String[] strArr) {
         try {
             ArrayList arrayList = new ArrayList();
             for (String str : strArr) {
-                if (ContextCompat.checkSelfPermission(m26493a(), str) != 0) {
+                if (ContextCompat.checkSelfPermission(a(), str) != 0) {
                     arrayList.add(str);
                 }
             }
             if (arrayList.isEmpty()) {
-                m26491b();
+                b();
             } else {
                 requestPermissions((String[]) arrayList.toArray(new String[arrayList.size()]), 1);
             }
@@ -116,11 +108,10 @@ public class PermissionFragment extends Fragment {
         }
     }
 
-    /* renamed from: a */
-    private void m26490a(List<String> list) {
-        InterfaceC7309b interfaceC7309b = this.f25520b;
-        if (interfaceC7309b != null) {
-            interfaceC7309b.mo26510b(list);
+    private void a(List<String> list) {
+        b bVar = this.f15024b;
+        if (bVar != null) {
+            bVar.b(list);
         }
     }
 }

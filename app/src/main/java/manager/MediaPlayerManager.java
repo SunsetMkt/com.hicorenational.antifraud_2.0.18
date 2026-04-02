@@ -1,10 +1,10 @@
 package manager;
 
 import android.media.MediaPlayer;
-import p000a.p001a.p014u.C0052a;
-import util.C7301n1;
+import b.a.u.a;
+import util.s1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MediaPlayerManager {
     static MediaPlayer mediaPlayer;
 
@@ -40,7 +40,7 @@ public class MediaPlayerManager {
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() { // from class: manager.MediaPlayerManager.1
                 @Override // android.media.MediaPlayer.OnPreparedListener
                 public void onPrepared(MediaPlayer mediaPlayer2) {
-                    C7301n1.m26459c(C0052a.f162n, "onPrepared        开始播放          ");
+                    s1.c(a.f1912n, "onPrepared        \u5f00\u59cb\u64ad\u653e          ");
                     MediaPlayerManager.mediaPlayer.start();
                 }
             });

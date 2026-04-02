@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import com.umeng.social.tool.UMImageMark;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMEmoji extends UMImage {
     public UMEmoji(Context context, File file) {
         super(context, file);

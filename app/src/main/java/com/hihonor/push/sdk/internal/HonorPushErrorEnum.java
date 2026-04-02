@@ -3,7 +3,7 @@ package com.hihonor.push.sdk.internal;
 import android.util.SparseArray;
 import com.hihonor.push.sdk.common.data.ApiException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum HonorPushErrorEnum {
     SUCCESS(0, "success"),
     ERROR_NOT_SUPPORT_PUSH(8001000, "device is not support push."),
@@ -35,9 +35,9 @@ public enum HonorPushErrorEnum {
     public int statusCode;
 
     static {
-        HonorPushErrorEnum[] values = values();
+        HonorPushErrorEnum[] honorPushErrorEnumArrValues = values();
         for (int i2 = 0; i2 < 24; i2++) {
-            HonorPushErrorEnum honorPushErrorEnum = values[i2];
+            HonorPushErrorEnum honorPushErrorEnum = honorPushErrorEnumArrValues[i2];
             ENUM_MAPPER.put(honorPushErrorEnum.statusCode, honorPushErrorEnum);
         }
     }

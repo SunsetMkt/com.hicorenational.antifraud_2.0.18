@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AndroidViewModel extends ViewModel {
 
     @SuppressLint({"StaticFieldLeak"})

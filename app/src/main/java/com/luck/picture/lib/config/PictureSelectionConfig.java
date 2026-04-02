@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.StyleRes;
-import com.luck.picture.lib.C2639R;
+import com.luck.picture.lib.R;
 import com.luck.picture.lib.camera.CustomCameraView;
 import com.luck.picture.lib.engine.CacheResourcesEngine;
 import com.luck.picture.lib.engine.ImageEngine;
@@ -18,7 +18,7 @@ import com.luck.picture.lib.style.PictureWindowAnimationStyle;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class PictureSelectionConfig implements Parcelable {
     public static final Parcelable.Creator<PictureSelectionConfig> CREATOR = new Parcelable.Creator<PictureSelectionConfig>() { // from class: com.luck.picture.lib.config.PictureSelectionConfig.1
         /* JADX WARN: Can't rename method to resolve collision */
@@ -198,7 +198,7 @@ public final class PictureSelectionConfig implements Parcelable {
     protected void initDefaultValue() {
         this.chooseMode = PictureMimeType.ofImage();
         this.camera = false;
-        this.themeStyleId = C2639R.style.picture_default_style;
+        this.themeStyleId = R.style.picture_default_style;
         this.selectionMode = 2;
         this.maxSelectNum = 9;
         this.minSelectNum = 0;

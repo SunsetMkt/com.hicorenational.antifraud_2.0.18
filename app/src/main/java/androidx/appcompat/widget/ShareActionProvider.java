@@ -9,12 +9,12 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.core.view.ActionProvider;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ShareActionProvider extends ActionProvider {
     private static final int DEFAULT_INITIAL_ACTIVITY_COUNT = 4;
     public static final String DEFAULT_SHARE_HISTORY_FILE_NAME = "share_history.xml";
@@ -52,15 +52,15 @@ public class ShareActionProvider extends ActionProvider {
         @Override // android.view.MenuItem.OnMenuItemClickListener
         public boolean onMenuItemClick(MenuItem menuItem) {
             ShareActionProvider shareActionProvider = ShareActionProvider.this;
-            Intent chooseActivity = ActivityChooserModel.get(shareActionProvider.mContext, shareActionProvider.mShareHistoryFileName).chooseActivity(menuItem.getItemId());
-            if (chooseActivity == null) {
+            Intent intentChooseActivity = ActivityChooserModel.get(shareActionProvider.mContext, shareActionProvider.mShareHistoryFileName).chooseActivity(menuItem.getItemId());
+            if (intentChooseActivity == null) {
                 return true;
             }
-            String action = chooseActivity.getAction();
+            String action = intentChooseActivity.getAction();
             if ("android.intent.action.SEND".equals(action) || "android.intent.action.SEND_MULTIPLE".equals(action)) {
-                ShareActionProvider.this.updateIntent(chooseActivity);
+                ShareActionProvider.this.updateIntent(intentChooseActivity);
             }
-            ShareActionProvider.this.mContext.startActivity(chooseActivity);
+            ShareActionProvider.this.mContext.startActivity(intentChooseActivity);
             return true;
         }
     }
@@ -95,11 +95,11 @@ public class ShareActionProvider extends ActionProvider {
             activityChooserView.setActivityChooserModel(ActivityChooserModel.get(this.mContext, this.mShareHistoryFileName));
         }
         TypedValue typedValue = new TypedValue();
-        this.mContext.getTheme().resolveAttribute(C0120R.attr.actionModeShareDrawable, typedValue, true);
+        this.mContext.getTheme().resolveAttribute(R.attr.actionModeShareDrawable, typedValue, true);
         activityChooserView.setExpandActivityOverflowButtonDrawable(AppCompatResources.getDrawable(this.mContext, typedValue.resourceId));
         activityChooserView.setProvider(this);
-        activityChooserView.setDefaultActionButtonContentDescription(C0120R.string.abc_shareactionprovider_share_with_application);
-        activityChooserView.setExpandActivityOverflowButtonContentDescription(C0120R.string.abc_shareactionprovider_share_with);
+        activityChooserView.setDefaultActionButtonContentDescription(R.string.abc_shareactionprovider_share_with_application);
+        activityChooserView.setExpandActivityOverflowButtonContentDescription(R.string.abc_shareactionprovider_share_with);
         return activityChooserView;
     }
 
@@ -109,16 +109,16 @@ public class ShareActionProvider extends ActionProvider {
         ActivityChooserModel activityChooserModel = ActivityChooserModel.get(this.mContext, this.mShareHistoryFileName);
         PackageManager packageManager = this.mContext.getPackageManager();
         int activityCount = activityChooserModel.getActivityCount();
-        int min = Math.min(activityCount, this.mMaxShownActivityCount);
-        for (int i2 = 0; i2 < min; i2++) {
+        int iMin = Math.min(activityCount, this.mMaxShownActivityCount);
+        for (int i2 = 0; i2 < iMin; i2++) {
             ResolveInfo activity = activityChooserModel.getActivity(i2);
             subMenu.add(0, i2, i2, activity.loadLabel(packageManager)).setIcon(activity.loadIcon(packageManager)).setOnMenuItemClickListener(this.mOnMenuItemClickListener);
         }
-        if (min < activityCount) {
-            SubMenu addSubMenu = subMenu.addSubMenu(0, min, min, this.mContext.getString(C0120R.string.abc_activity_chooser_view_see_all));
+        if (iMin < activityCount) {
+            SubMenu subMenuAddSubMenu = subMenu.addSubMenu(0, iMin, iMin, this.mContext.getString(R.string.abc_activity_chooser_view_see_all));
             for (int i3 = 0; i3 < activityCount; i3++) {
                 ResolveInfo activity2 = activityChooserModel.getActivity(i3);
-                addSubMenu.add(0, i3, i3, activity2.loadLabel(packageManager)).setIcon(activity2.loadIcon(packageManager)).setOnMenuItemClickListener(this.mOnMenuItemClickListener);
+                subMenuAddSubMenu.add(0, i3, i3, activity2.loadLabel(packageManager)).setIcon(activity2.loadIcon(packageManager)).setOnMenuItemClickListener(this.mOnMenuItemClickListener);
             }
         }
     }

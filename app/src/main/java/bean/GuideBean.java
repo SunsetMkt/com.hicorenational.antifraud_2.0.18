@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GuideBean extends BaseBean {
     public static final int GUIDE_CODE_AUTO = 10005;
     public static final int GUIDE_CODE_FLOW = 10001;
@@ -14,9 +14,7 @@ public class GuideBean extends BaseBean {
     private int code;
     private String content;
     private String createTime;
-
-    /* renamed from: id */
-    private int f1598id;
+    private int id;
     private String imgUrl;
     private String updateTime;
 
@@ -33,7 +31,7 @@ public class GuideBean extends BaseBean {
     }
 
     public int getId() {
-        return this.f1598id;
+        return this.id;
     }
 
     public String getImgUrl() {
@@ -57,7 +55,7 @@ public class GuideBean extends BaseBean {
     }
 
     public void setId(int i2) {
-        this.f1598id = i2;
+        this.id = i2;
     }
 
     public void setImgUrl(String str) {

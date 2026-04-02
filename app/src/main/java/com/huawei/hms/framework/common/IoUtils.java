@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IoUtils {
     private static final int BUFF_SIZE = 4096;
     private static final int MAX_SIZE = 16777216;
@@ -32,15 +32,15 @@ public class IoUtils {
         byte[] bArr = new byte[4096];
         long j2 = 0;
         while (true) {
-            int read = inputStream.read(bArr);
-            if (-1 == read) {
+            int i2 = inputStream.read(bArr);
+            if (-1 == i2) {
                 return j2;
             }
             if (j2 > 16777216 && !"com.huawei.health".equals(packageName)) {
                 throw new IOException("input data too large for byte.");
             }
-            outputStream.write(bArr, 0, read);
-            j2 += read;
+            outputStream.write(bArr, 0, i2);
+            j2 += (long) i2;
         }
     }
 
@@ -68,10 +68,10 @@ public class IoUtils {
                 closeable.close();
                 return;
             } catch (IOException e2) {
-                Logger.m6804w("IOUtil", "closeSecure IOException", e2);
+                Logger.w("IOUtil", "closeSecure IOException", e2);
                 return;
             }
         }
-        Logger.m6803w("IOUtil", "closeable is null");
+        Logger.w("IOUtil", "closeable is null");
     }
 }

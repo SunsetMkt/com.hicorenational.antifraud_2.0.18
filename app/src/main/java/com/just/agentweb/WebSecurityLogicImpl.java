@@ -6,7 +6,7 @@ import android.webkit.WebView;
 import androidx.collection.ArrayMap;
 import com.just.agentweb.AgentWeb;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebSecurityLogicImpl implements WebSecurityCheckLogic {
     private String TAG = WebSecurityLogicImpl.class.getSimpleName();
     private int webviewType;
@@ -36,7 +36,7 @@ public class WebSecurityLogicImpl implements WebSecurityCheckLogic {
         if (securityType != AgentWeb.SecurityType.STRICT_CHECK || this.webviewType == 2 || Build.VERSION.SDK_INT >= 17) {
             return;
         }
-        LogUtils.m8081e(this.TAG, "Give up all inject objects");
+        LogUtils.e(this.TAG, "Give up all inject objects");
         arrayMap.clear();
         System.gc();
     }

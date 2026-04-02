@@ -2,8 +2,8 @@ package anet.channel;
 
 import anet.channel.heartbeat.IHeartbeat;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class SessionInfo {
     public final IAuth auth;
     public final DataFrameCb dataFrameCb;

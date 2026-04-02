@@ -3,7 +3,7 @@ package com.vivo.push.model;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UPSNotificationMessage {
     public static final int CUSTOM = 3;
     public static final int ISMACROREPLACE = 1;

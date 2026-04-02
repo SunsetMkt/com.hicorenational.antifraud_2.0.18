@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.widget.AppCompatImageView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PhotoView extends AppCompatImageView {
     private PhotoViewAttacher attacher;
     private ImageView.ScaleType pendingScaleType;

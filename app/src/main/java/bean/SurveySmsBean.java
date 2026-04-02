@@ -2,13 +2,11 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveySmsBean extends BaseBean {
     private String caseInfoID;
     private String content;
-
-    /* renamed from: id */
-    private String f1629id;
+    private String id;
     private String mobileNumber;
     private String receivedTime;
 
@@ -21,7 +19,7 @@ public class SurveySmsBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1629id;
+        return this.id;
     }
 
     public String getMobileNumber() {
@@ -41,7 +39,7 @@ public class SurveySmsBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1629id = str;
+        this.id = str;
     }
 
     public void setMobileNumber(String str) {

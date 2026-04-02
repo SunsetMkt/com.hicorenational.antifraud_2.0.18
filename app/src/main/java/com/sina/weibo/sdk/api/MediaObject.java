@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MediaObject implements Parcelable, Serializable {
     public static final Parcelable.Creator<MediaObject> CREATOR = new Parcelable.Creator<MediaObject>() { // from class: com.sina.weibo.sdk.api.MediaObject.1
         /* JADX WARN: Can't rename method to resolve collision */

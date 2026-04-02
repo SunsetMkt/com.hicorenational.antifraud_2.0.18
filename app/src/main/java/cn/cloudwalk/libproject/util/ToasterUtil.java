@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ToasterUtil {
     public static Toast showToast(Context context, Toast toast, String str, float f2) {
         if (toast != null) {

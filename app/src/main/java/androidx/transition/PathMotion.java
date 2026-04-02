@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Path;
 import android.util.AttributeSet;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class PathMotion {
     public PathMotion() {
     }

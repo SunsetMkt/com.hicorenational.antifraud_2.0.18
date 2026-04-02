@@ -22,7 +22,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CircularProgressDrawable extends Drawable implements Animatable {
     private static final int ANIMATION_DURATION = 1332;
     private static final int ARROW_HEIGHT = 5;
@@ -91,24 +91,24 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
         void draw(Canvas canvas, Rect rect) {
             RectF rectF = this.mTempBounds;
             float f2 = this.mRingCenterRadius;
-            float f3 = (this.mStrokeWidth / 2.0f) + f2;
+            float fMin = (this.mStrokeWidth / 2.0f) + f2;
             if (f2 <= 0.0f) {
-                f3 = (Math.min(rect.width(), rect.height()) / 2.0f) - Math.max((this.mArrowWidth * this.mArrowScale) / 2.0f, this.mStrokeWidth / 2.0f);
+                fMin = (Math.min(rect.width(), rect.height()) / 2.0f) - Math.max((this.mArrowWidth * this.mArrowScale) / 2.0f, this.mStrokeWidth / 2.0f);
             }
-            rectF.set(rect.centerX() - f3, rect.centerY() - f3, rect.centerX() + f3, rect.centerY() + f3);
-            float f4 = this.mStartTrim;
-            float f5 = this.mRotation;
-            float f6 = (f4 + f5) * 360.0f;
-            float f7 = ((this.mEndTrim + f5) * 360.0f) - f6;
+            rectF.set(rect.centerX() - fMin, rect.centerY() - fMin, rect.centerX() + fMin, rect.centerY() + fMin);
+            float f3 = this.mStartTrim;
+            float f4 = this.mRotation;
+            float f5 = (f3 + f4) * 360.0f;
+            float f6 = ((this.mEndTrim + f4) * 360.0f) - f5;
             this.mPaint.setColor(this.mCurrentColor);
             this.mPaint.setAlpha(this.mAlpha);
-            float f8 = this.mStrokeWidth / 2.0f;
-            rectF.inset(f8, f8);
+            float f7 = this.mStrokeWidth / 2.0f;
+            rectF.inset(f7, f7);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.mCirclePaint);
-            float f9 = -f8;
-            rectF.inset(f9, f9);
-            canvas.drawArc(rectF, f6, f7, false, this.mPaint);
-            drawTriangle(canvas, f6, f7, rectF);
+            float f8 = -f7;
+            rectF.inset(f8, f8);
+            canvas.drawArc(rectF, f5, f6, false, this.mPaint);
+            drawTriangle(canvas, f5, f6, rectF);
         }
 
         void drawTriangle(Canvas canvas, float f2, float f3, RectF rectF) {
@@ -120,7 +120,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
                 } else {
                     path.reset();
                 }
-                float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
+                float fMin = Math.min(rectF.width(), rectF.height()) / 2.0f;
                 float f4 = (this.mArrowWidth * this.mArrowScale) / 2.0f;
                 this.mArrow.moveTo(0.0f, 0.0f);
                 this.mArrow.lineTo(this.mArrowWidth * this.mArrowScale, 0.0f);
@@ -128,7 +128,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
                 float f5 = this.mArrowWidth;
                 float f6 = this.mArrowScale;
                 path2.lineTo((f5 * f6) / 2.0f, this.mArrowHeight * f6);
-                this.mArrow.offset((min + rectF.centerX()) - f4, rectF.centerY() + (this.mStrokeWidth / 2.0f));
+                this.mArrow.offset((fMin + rectF.centerX()) - f4, rectF.centerY() + (this.mStrokeWidth / 2.0f));
                 this.mArrow.close();
                 this.mArrowPaint.setColor(this.mCurrentColor);
                 this.mArrowPaint.setAlpha(this.mAlpha);
@@ -312,10 +312,10 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 
     private void applyFinishTranslation(float f2, Ring ring) {
         updateRingColor(f2, ring);
-        float floor = (float) (Math.floor(ring.getStartingRotation() / MAX_PROGRESS_ARC) + 1.0d);
+        float fFloor = (float) (Math.floor(ring.getStartingRotation() / MAX_PROGRESS_ARC) + 1.0d);
         ring.setStartTrim(ring.getStartingStartTrim() + (((ring.getStartingEndTrim() - MIN_PROGRESS_ARC) - ring.getStartingStartTrim()) * f2));
         ring.setEndTrim(ring.getStartingEndTrim());
-        ring.setRotation(ring.getStartingRotation() + ((floor - ring.getStartingRotation()) * f2));
+        ring.setRotation(ring.getStartingRotation() + ((fFloor - ring.getStartingRotation()) * f2));
     }
 
     private int evaluateColorChange(float f2, int i2, int i3) {
@@ -341,20 +341,20 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 
     private void setupAnimators() {
         final Ring ring = this.mRing;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: androidx.swiperefreshlayout.widget.CircularProgressDrawable.1
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: androidx.swiperefreshlayout.widget.CircularProgressDrawable.1
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                CircularProgressDrawable.this.updateRingColor(floatValue, ring);
-                CircularProgressDrawable.this.applyTransformation(floatValue, ring, false);
+                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                CircularProgressDrawable.this.updateRingColor(fFloatValue, ring);
+                CircularProgressDrawable.this.applyTransformation(fFloatValue, ring, false);
                 CircularProgressDrawable.this.invalidateSelf();
             }
         });
-        ofFloat.setRepeatCount(-1);
-        ofFloat.setRepeatMode(1);
-        ofFloat.setInterpolator(LINEAR_INTERPOLATOR);
-        ofFloat.addListener(new Animator.AnimatorListener() { // from class: androidx.swiperefreshlayout.widget.CircularProgressDrawable.2
+        valueAnimatorOfFloat.setRepeatCount(-1);
+        valueAnimatorOfFloat.setRepeatMode(1);
+        valueAnimatorOfFloat.setInterpolator(LINEAR_INTERPOLATOR);
+        valueAnimatorOfFloat.addListener(new Animator.AnimatorListener() { // from class: androidx.swiperefreshlayout.widget.CircularProgressDrawable.2
             @Override // android.animation.Animator.AnimatorListener
             public void onAnimationCancel(Animator animator) {
             }
@@ -385,7 +385,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
                 CircularProgressDrawable.this.mRotationCount = 0.0f;
             }
         });
-        this.mAnimator = ofFloat;
+        this.mAnimator = valueAnimatorOfFloat;
     }
 
     void applyTransformation(float f2, Ring ring, boolean z) {
@@ -397,22 +397,20 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
         }
         if (f2 != 1.0f || z) {
             float startingRotation = ring.getStartingRotation();
-            if (f2 < SHRINK_OFFSET) {
-                float f3 = f2 / SHRINK_OFFSET;
+            if (f2 < 0.5f) {
                 float startingStartTrim2 = ring.getStartingStartTrim();
-                startingStartTrim = (MATERIAL_INTERPOLATOR.getInterpolation(f3) * 0.79f) + MIN_PROGRESS_ARC + startingStartTrim2;
+                startingStartTrim = (MATERIAL_INTERPOLATOR.getInterpolation(f2 / 0.5f) * 0.79f) + MIN_PROGRESS_ARC + startingStartTrim2;
                 interpolation = startingStartTrim2;
             } else {
-                float f4 = (f2 - SHRINK_OFFSET) / SHRINK_OFFSET;
                 startingStartTrim = ring.getStartingStartTrim() + 0.79f;
-                interpolation = startingStartTrim - (((1.0f - MATERIAL_INTERPOLATOR.getInterpolation(f4)) * 0.79f) + MIN_PROGRESS_ARC);
+                interpolation = startingStartTrim - (((1.0f - MATERIAL_INTERPOLATOR.getInterpolation((f2 - 0.5f) / 0.5f)) * 0.79f) + MIN_PROGRESS_ARC);
             }
-            float f5 = startingRotation + (RING_ROTATION * f2);
-            float f6 = (f2 + this.mRotationCount) * GROUP_FULL_ROTATION;
+            float f3 = startingRotation + (RING_ROTATION * f2);
+            float f4 = (f2 + this.mRotationCount) * GROUP_FULL_ROTATION;
             ring.setStartTrim(interpolation);
             ring.setEndTrim(startingStartTrim);
-            ring.setRotation(f5);
-            setRotation(f6);
+            ring.setRotation(f3);
+            setRotation(f4);
         }
     }
 
@@ -590,8 +588,8 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
     }
 
     void updateRingColor(float f2, Ring ring) {
-        if (f2 > COLOR_CHANGE_OFFSET) {
-            ring.setColor(evaluateColorChange((f2 - COLOR_CHANGE_OFFSET) / 0.25f, ring.getStartingColor(), ring.getNextColor()));
+        if (f2 > 0.75f) {
+            ring.setColor(evaluateColorChange((f2 - 0.75f) / 0.25f, ring.getStartingColor(), ring.getNextColor()));
         } else {
             ring.setColor(ring.getStartingColor());
         }

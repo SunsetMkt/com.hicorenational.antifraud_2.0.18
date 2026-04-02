@@ -5,8 +5,8 @@ import com.taobao.accs.common.Constants;
 import java.util.HashMap;
 import org.json.JSONObject;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class MsgDO {
     public boolean agooFlag;
     public String body;
@@ -30,22 +30,22 @@ public class MsgDO {
     public boolean isFromCache = false;
 
     public String getMsgInfo() {
-        HashMap hashMap = new HashMap();
-        hashMap.put("msgIds", this.msgIds);
-        hashMap.put(AgooConstants.MESSAGE_EXT, this.extData);
-        hashMap.put("body", this.body);
-        hashMap.put(Constants.KEY_DATA_ID, this.dataId);
-        hashMap.put("pack", this.pack);
-        hashMap.put("messageSource", this.messageSource);
+        HashMap map = new HashMap();
+        map.put("msgIds", this.msgIds);
+        map.put(AgooConstants.MESSAGE_EXT, this.extData);
+        map.put("body", this.body);
+        map.put(Constants.KEY_DATA_ID, this.dataId);
+        map.put("pack", this.pack);
+        map.put("messageSource", this.messageSource);
         if (!TextUtils.isEmpty(this.removePacks)) {
-            hashMap.put("removePacks", this.removePacks);
+            map.put("removePacks", this.removePacks);
         }
         if (!TextUtils.isEmpty(this.errorCode)) {
-            hashMap.put(Constants.KEY_ERROR_CODE, this.errorCode);
+            map.put(Constants.KEY_ERROR_CODE, this.errorCode);
         }
         if (!TextUtils.isEmpty(this.type)) {
-            hashMap.put("type", this.type);
+            map.put("type", this.type);
         }
-        return new JSONObject(hashMap).toString();
+        return new JSONObject(map).toString();
     }
 }

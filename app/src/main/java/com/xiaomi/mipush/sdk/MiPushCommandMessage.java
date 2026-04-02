@@ -5,8 +5,8 @@ import com.xiaomi.mipush.sdk.PushMessageHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
-public class MiPushCommandMessage implements PushMessageHandler.InterfaceC4046a {
+/* JADX INFO: loaded from: classes2.dex */
+public class MiPushCommandMessage implements PushMessageHandler.a {
     private static final String KEY_AUTO_MARK_PKGS = "autoMarkPkgs";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_COMMAND = "command";

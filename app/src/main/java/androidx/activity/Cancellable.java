@@ -1,6 +1,6 @@
 package androidx.activity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 interface Cancellable {
     void cancel();
 }

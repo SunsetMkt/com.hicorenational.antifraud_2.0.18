@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class CircleImageView extends ImageView {
     private static final int FILL_SHADOW_COLOR = 1023410176;
     private static final int KEY_SHADOW_COLOR = 503316480;
@@ -55,8 +55,8 @@ class CircleImageView extends ImageView {
     }
 
     CircleImageView(Context context, int i2) {
-        super(context);
         ShapeDrawable shapeDrawable;
+        super(context);
         float f2 = getContext().getResources().getDisplayMetrics().density;
         int i3 = (int) (Y_OFFSET * f2);
         int i4 = (int) (0.0f * f2);

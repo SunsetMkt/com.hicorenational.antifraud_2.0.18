@@ -3,7 +3,7 @@ package com.huawei.hms.opendevice;
 import android.content.Context;
 import com.huawei.hms.utils.Checker;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OpenDevice {
     private OpenDevice() {
     }

@@ -2,7 +2,7 @@ package butterknife.internal;
 
 import android.view.View;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class DebouncingOnClickListener implements View.OnClickListener {
     private static final Runnable ENABLE_AGAIN = new Runnable() { // from class: butterknife.internal.a
         @Override // java.lang.Runnable

@@ -15,126 +15,102 @@ import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.customview.widget.ViewDragHelper;
 import androidx.viewpager.widget.ViewPager;
-import com.lxj.xpopup.C2768b;
-import com.lxj.xpopup.p184c.C2773e;
-import com.lxj.xpopup.p185d.EnumC2802b;
-import com.lxj.xpopup.p185d.EnumC2804d;
-import com.lxj.xpopup.p187f.C2819c;
+import com.lxj.xpopup.c.e;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PopupDrawerLayout extends FrameLayout {
+    com.lxj.xpopup.d.b a;
 
-    /* renamed from: a */
-    EnumC2802b f8926a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    ViewDragHelper f5543b;
 
-    /* renamed from: b */
-    ViewDragHelper f8927b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    View f5544c;
 
-    /* renamed from: c */
-    View f8928c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    View f5545d;
 
-    /* renamed from: d */
-    View f8929d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    public com.lxj.xpopup.d.d f5546e;
 
-    /* renamed from: e */
-    public EnumC2804d f8930e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    e f5547f;
 
-    /* renamed from: f */
-    C2773e f8931f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    ArgbEvaluator f5548g;
 
-    /* renamed from: g */
-    ArgbEvaluator f8932g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    int f5549h;
 
-    /* renamed from: h */
-    int f8933h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    public boolean f5550i;
 
-    /* renamed from: i */
-    public boolean f8934i;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    float f5551j;
 
-    /* renamed from: j */
-    float f8935j;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    public boolean f5552k;
 
-    /* renamed from: k */
-    public boolean f8936k;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    float f5553l;
 
-    /* renamed from: l */
-    float f8937l;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    boolean f5554m;
 
-    /* renamed from: m */
-    boolean f8938m;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    boolean f5555n;
+    float o;
+    float p;
+    boolean q;
+    boolean r;
+    ViewDragHelper.Callback s;
+    Paint t;
+    Rect u;
+    private d v;
 
-    /* renamed from: n */
-    boolean f8939n;
-
-    /* renamed from: o */
-    float f8940o;
-
-    /* renamed from: p */
-    float f8941p;
-
-    /* renamed from: q */
-    boolean f8942q;
-
-    /* renamed from: r */
-    boolean f8943r;
-
-    /* renamed from: s */
-    ViewDragHelper.Callback f8944s;
-
-    /* renamed from: t */
-    Paint f8945t;
-
-    /* renamed from: u */
-    Rect f8946u;
-
-    /* renamed from: v */
-    private InterfaceC2846d f8947v;
-
-    /* renamed from: com.lxj.xpopup.widget.PopupDrawerLayout$a */
-    class C2843a extends ViewDragHelper.Callback {
-        C2843a() {
+    class a extends ViewDragHelper.Callback {
+        a() {
         }
 
-        /* renamed from: a */
-        private void m8601a(int i2) {
+        private void a(int i2) {
             PopupDrawerLayout popupDrawerLayout = PopupDrawerLayout.this;
-            EnumC2804d enumC2804d = popupDrawerLayout.f8930e;
-            if (enumC2804d == EnumC2804d.Left) {
-                popupDrawerLayout.f8935j = ((popupDrawerLayout.f8929d.getMeasuredWidth() + i2) * 1.0f) / PopupDrawerLayout.this.f8929d.getMeasuredWidth();
-                if (i2 == (-PopupDrawerLayout.this.f8929d.getMeasuredWidth()) && PopupDrawerLayout.this.f8947v != null) {
+            com.lxj.xpopup.d.d dVar = popupDrawerLayout.f5546e;
+            if (dVar == com.lxj.xpopup.d.d.Left) {
+                popupDrawerLayout.f5551j = ((popupDrawerLayout.f5545d.getMeasuredWidth() + i2) * 1.0f) / PopupDrawerLayout.this.f5545d.getMeasuredWidth();
+                if (i2 == (-PopupDrawerLayout.this.f5545d.getMeasuredWidth()) && PopupDrawerLayout.this.v != null) {
                     PopupDrawerLayout popupDrawerLayout2 = PopupDrawerLayout.this;
-                    EnumC2802b enumC2802b = popupDrawerLayout2.f8926a;
-                    EnumC2802b enumC2802b2 = EnumC2802b.Close;
-                    if (enumC2802b != enumC2802b2) {
-                        popupDrawerLayout2.f8926a = enumC2802b2;
-                        popupDrawerLayout2.f8947v.onClose();
+                    com.lxj.xpopup.d.b bVar = popupDrawerLayout2.a;
+                    com.lxj.xpopup.d.b bVar2 = com.lxj.xpopup.d.b.Close;
+                    if (bVar != bVar2) {
+                        popupDrawerLayout2.a = bVar2;
+                        popupDrawerLayout2.v.onClose();
                     }
                 }
-            } else if (enumC2804d == EnumC2804d.Right) {
-                popupDrawerLayout.f8935j = ((popupDrawerLayout.getMeasuredWidth() - i2) * 1.0f) / PopupDrawerLayout.this.f8929d.getMeasuredWidth();
-                if (i2 == PopupDrawerLayout.this.getMeasuredWidth() && PopupDrawerLayout.this.f8947v != null) {
+            } else if (dVar == com.lxj.xpopup.d.d.Right) {
+                popupDrawerLayout.f5551j = ((popupDrawerLayout.getMeasuredWidth() - i2) * 1.0f) / PopupDrawerLayout.this.f5545d.getMeasuredWidth();
+                if (i2 == PopupDrawerLayout.this.getMeasuredWidth() && PopupDrawerLayout.this.v != null) {
                     PopupDrawerLayout popupDrawerLayout3 = PopupDrawerLayout.this;
-                    EnumC2802b enumC2802b3 = popupDrawerLayout3.f8926a;
-                    EnumC2802b enumC2802b4 = EnumC2802b.Close;
-                    if (enumC2802b3 != enumC2802b4) {
-                        popupDrawerLayout3.f8926a = enumC2802b4;
-                        popupDrawerLayout3.f8947v.onClose();
+                    com.lxj.xpopup.d.b bVar3 = popupDrawerLayout3.a;
+                    com.lxj.xpopup.d.b bVar4 = com.lxj.xpopup.d.b.Close;
+                    if (bVar3 != bVar4) {
+                        popupDrawerLayout3.a = bVar4;
+                        popupDrawerLayout3.v.onClose();
                     }
                 }
             }
             PopupDrawerLayout popupDrawerLayout4 = PopupDrawerLayout.this;
-            if (popupDrawerLayout4.f8936k) {
-                popupDrawerLayout4.setBackgroundColor(popupDrawerLayout4.f8931f.m8361a(popupDrawerLayout4.f8935j));
+            if (popupDrawerLayout4.f5552k) {
+                popupDrawerLayout4.setBackgroundColor(popupDrawerLayout4.f5547f.a(popupDrawerLayout4.f5551j));
             }
-            if (PopupDrawerLayout.this.f8947v != null) {
-                PopupDrawerLayout.this.f8947v.mo8401a(PopupDrawerLayout.this.f8935j);
+            if (PopupDrawerLayout.this.v != null) {
+                PopupDrawerLayout.this.v.a(PopupDrawerLayout.this.f5551j);
                 PopupDrawerLayout popupDrawerLayout5 = PopupDrawerLayout.this;
-                if (popupDrawerLayout5.f8935j == 1.0f) {
-                    EnumC2802b enumC2802b5 = popupDrawerLayout5.f8926a;
-                    EnumC2802b enumC2802b6 = EnumC2802b.Open;
-                    if (enumC2802b5 != enumC2802b6) {
-                        popupDrawerLayout5.f8926a = enumC2802b6;
-                        popupDrawerLayout5.f8947v.mo8400a();
+                if (popupDrawerLayout5.f5551j == 1.0f) {
+                    com.lxj.xpopup.d.b bVar5 = popupDrawerLayout5.a;
+                    com.lxj.xpopup.d.b bVar6 = com.lxj.xpopup.d.b.Open;
+                    if (bVar5 != bVar6) {
+                        popupDrawerLayout5.a = bVar6;
+                        popupDrawerLayout5.v.a();
                     }
                 }
             }
@@ -143,7 +119,7 @@ public class PopupDrawerLayout extends FrameLayout {
         @Override // androidx.customview.widget.ViewDragHelper.Callback
         public int clampViewPositionHorizontal(@NonNull View view, int i2, int i3) {
             PopupDrawerLayout popupDrawerLayout = PopupDrawerLayout.this;
-            return view == popupDrawerLayout.f8928c ? i2 : popupDrawerLayout.m8594a(i2);
+            return view == popupDrawerLayout.f5544c ? i2 : popupDrawerLayout.a(i2);
         }
 
         @Override // androidx.customview.widget.ViewDragHelper.Callback
@@ -154,17 +130,17 @@ public class PopupDrawerLayout extends FrameLayout {
         @Override // androidx.customview.widget.ViewDragHelper.Callback
         public void onViewPositionChanged(@NonNull View view, int i2, int i3, int i4, int i5) {
             super.onViewPositionChanged(view, i2, i3, i4, i5);
-            View view2 = PopupDrawerLayout.this.f8928c;
+            View view2 = PopupDrawerLayout.this.f5544c;
             if (view != view2) {
-                m8601a(i2);
+                a(i2);
                 return;
             }
-            view2.layout(0, 0, view2.getMeasuredWidth(), PopupDrawerLayout.this.f8928c.getMeasuredHeight());
+            view2.layout(0, 0, view2.getMeasuredWidth(), PopupDrawerLayout.this.f5544c.getMeasuredHeight());
             PopupDrawerLayout popupDrawerLayout = PopupDrawerLayout.this;
-            int m8594a = popupDrawerLayout.m8594a(popupDrawerLayout.f8929d.getLeft() + i4);
-            View view3 = PopupDrawerLayout.this.f8929d;
-            view3.layout(m8594a, view3.getTop(), PopupDrawerLayout.this.f8929d.getMeasuredWidth() + m8594a, PopupDrawerLayout.this.f8929d.getBottom());
-            m8601a(m8594a);
+            int iA = popupDrawerLayout.a(popupDrawerLayout.f5545d.getLeft() + i4);
+            View view3 = PopupDrawerLayout.this.f5545d;
+            view3.layout(iA, view3.getTop(), PopupDrawerLayout.this.f5545d.getMeasuredWidth() + iA, PopupDrawerLayout.this.f5545d.getBottom());
+            a(iA);
         }
 
         @Override // androidx.customview.widget.ViewDragHelper.Callback
@@ -173,22 +149,22 @@ public class PopupDrawerLayout extends FrameLayout {
             int measuredWidth2;
             super.onViewReleased(view, f2, f3);
             PopupDrawerLayout popupDrawerLayout = PopupDrawerLayout.this;
-            if (view == popupDrawerLayout.f8928c && f2 == 0.0f) {
-                popupDrawerLayout.m8599a();
+            if (view == popupDrawerLayout.f5544c && f2 == 0.0f) {
+                popupDrawerLayout.a();
                 return;
             }
             PopupDrawerLayout popupDrawerLayout2 = PopupDrawerLayout.this;
-            if (view == popupDrawerLayout2.f8929d && popupDrawerLayout2.f8942q && !popupDrawerLayout2.f8943r && f2 < -500.0f) {
-                popupDrawerLayout2.m8599a();
+            if (view == popupDrawerLayout2.f5545d && popupDrawerLayout2.q && !popupDrawerLayout2.r && f2 < -500.0f) {
+                popupDrawerLayout2.a();
                 return;
             }
             PopupDrawerLayout popupDrawerLayout3 = PopupDrawerLayout.this;
-            if (popupDrawerLayout3.f8930e == EnumC2804d.Left) {
+            if (popupDrawerLayout3.f5546e == com.lxj.xpopup.d.d.Left) {
                 if (f2 < -1000.0f) {
-                    measuredWidth2 = popupDrawerLayout3.f8929d.getMeasuredWidth();
+                    measuredWidth2 = popupDrawerLayout3.f5545d.getMeasuredWidth();
                 } else {
-                    if (PopupDrawerLayout.this.f8929d.getLeft() < (-popupDrawerLayout3.f8929d.getMeasuredWidth()) / 2) {
-                        measuredWidth2 = PopupDrawerLayout.this.f8929d.getMeasuredWidth();
+                    if (PopupDrawerLayout.this.f5545d.getLeft() < (-popupDrawerLayout3.f5545d.getMeasuredWidth()) / 2) {
+                        measuredWidth2 = PopupDrawerLayout.this.f5545d.getMeasuredWidth();
                     } else {
                         measuredWidth = 0;
                     }
@@ -197,56 +173,51 @@ public class PopupDrawerLayout extends FrameLayout {
             } else if (f2 > 1000.0f) {
                 measuredWidth = popupDrawerLayout3.getMeasuredWidth();
             } else {
-                measuredWidth = view.getLeft() < popupDrawerLayout3.getMeasuredWidth() - (PopupDrawerLayout.this.f8929d.getMeasuredWidth() / 2) ? PopupDrawerLayout.this.getMeasuredWidth() - PopupDrawerLayout.this.f8929d.getMeasuredWidth() : PopupDrawerLayout.this.getMeasuredWidth();
+                measuredWidth = view.getLeft() < popupDrawerLayout3.getMeasuredWidth() - (PopupDrawerLayout.this.f5545d.getMeasuredWidth() / 2) ? PopupDrawerLayout.this.getMeasuredWidth() - PopupDrawerLayout.this.f5545d.getMeasuredWidth() : PopupDrawerLayout.this.getMeasuredWidth();
             }
             PopupDrawerLayout popupDrawerLayout4 = PopupDrawerLayout.this;
-            popupDrawerLayout4.f8927b.smoothSlideViewTo(popupDrawerLayout4.f8929d, measuredWidth, view.getTop());
+            popupDrawerLayout4.f5543b.smoothSlideViewTo(popupDrawerLayout4.f5545d, measuredWidth, view.getTop());
             ViewCompat.postInvalidateOnAnimation(PopupDrawerLayout.this);
         }
 
         @Override // androidx.customview.widget.ViewDragHelper.Callback
         public boolean tryCaptureView(@NonNull View view, int i2) {
-            return !PopupDrawerLayout.this.f8927b.continueSettling(true);
+            return !PopupDrawerLayout.this.f5543b.continueSettling(true);
         }
     }
 
-    /* renamed from: com.lxj.xpopup.widget.PopupDrawerLayout$b */
-    class RunnableC2844b implements Runnable {
-        RunnableC2844b() {
+    class b implements Runnable {
+        b() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
             PopupDrawerLayout popupDrawerLayout = PopupDrawerLayout.this;
-            ViewDragHelper viewDragHelper = popupDrawerLayout.f8927b;
-            View view = popupDrawerLayout.f8929d;
-            viewDragHelper.smoothSlideViewTo(view, popupDrawerLayout.f8930e == EnumC2804d.Left ? 0 : view.getLeft() - PopupDrawerLayout.this.f8929d.getMeasuredWidth(), 0);
+            ViewDragHelper viewDragHelper = popupDrawerLayout.f5543b;
+            View view = popupDrawerLayout.f5545d;
+            viewDragHelper.smoothSlideViewTo(view, popupDrawerLayout.f5546e == com.lxj.xpopup.d.d.Left ? 0 : view.getLeft() - PopupDrawerLayout.this.f5545d.getMeasuredWidth(), 0);
             ViewCompat.postInvalidateOnAnimation(PopupDrawerLayout.this);
         }
     }
 
-    /* renamed from: com.lxj.xpopup.widget.PopupDrawerLayout$c */
-    class RunnableC2845c implements Runnable {
-        RunnableC2845c() {
+    class c implements Runnable {
+        c() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
             PopupDrawerLayout popupDrawerLayout = PopupDrawerLayout.this;
-            ViewDragHelper viewDragHelper = popupDrawerLayout.f8927b;
-            View view = popupDrawerLayout.f8929d;
-            viewDragHelper.smoothSlideViewTo(view, popupDrawerLayout.f8930e == EnumC2804d.Left ? -view.getMeasuredWidth() : popupDrawerLayout.getMeasuredWidth(), 0);
+            ViewDragHelper viewDragHelper = popupDrawerLayout.f5543b;
+            View view = popupDrawerLayout.f5545d;
+            viewDragHelper.smoothSlideViewTo(view, popupDrawerLayout.f5546e == com.lxj.xpopup.d.d.Left ? -view.getMeasuredWidth() : popupDrawerLayout.getMeasuredWidth(), 0);
             ViewCompat.postInvalidateOnAnimation(PopupDrawerLayout.this);
         }
     }
 
-    /* renamed from: com.lxj.xpopup.widget.PopupDrawerLayout$d */
-    public interface InterfaceC2846d {
-        /* renamed from: a */
-        void mo8400a();
+    public interface d {
+        void a();
 
-        /* renamed from: a */
-        void mo8401a(float f2);
+        void a(float f2);
 
         void onClose();
     }
@@ -255,15 +226,14 @@ public class PopupDrawerLayout extends FrameLayout {
         this(context, null);
     }
 
-    /* renamed from: b */
-    public void m8600b() {
-        post(new RunnableC2844b());
+    public void b() {
+        post(new b());
     }
 
     @Override // android.view.View
     public void computeScroll() {
         super.computeScroll();
-        if (this.f8927b.continueSettling(false)) {
+        if (this.f5543b.continueSettling(false)) {
             ViewCompat.postInvalidateOnAnimation(this);
         }
     }
@@ -271,84 +241,84 @@ public class PopupDrawerLayout extends FrameLayout {
     @Override // android.view.ViewGroup, android.view.View
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f8934i) {
-            if (this.f8945t == null) {
-                this.f8945t = new Paint();
-                this.f8946u = new Rect(0, 0, getMeasuredHeight(), C2819c.m8471c());
+        if (this.f5550i) {
+            if (this.t == null) {
+                this.t = new Paint();
+                this.u = new Rect(0, 0, getMeasuredHeight(), com.lxj.xpopup.f.c.c());
             }
-            this.f8945t.setColor(((Integer) this.f8932g.evaluate(this.f8935j, Integer.valueOf(this.f8933h), Integer.valueOf(C2768b.f8564c))).intValue());
-            canvas.drawRect(this.f8946u, this.f8945t);
+            this.t.setColor(((Integer) this.f5548g.evaluate(this.f5551j, Integer.valueOf(this.f5549h), Integer.valueOf(com.lxj.xpopup.b.f5398c))).intValue());
+            canvas.drawRect(this.u, this.t);
         }
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f8937l = getTranslationY();
+        this.f5553l = getTranslationY();
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f8926a = null;
-        this.f8935j = 0.0f;
-        setTranslationY(this.f8937l);
+        this.a = null;
+        this.f5551j = 0.0f;
+        setTranslationY(this.f5553l);
     }
 
     @Override // android.view.View
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.f8928c = getChildAt(0);
-        this.f8929d = getChildAt(1);
+        this.f5544c = getChildAt(0);
+        this.f5545d = getChildAt(1);
     }
 
     @Override // android.view.ViewGroup
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.f8942q = motionEvent.getX() < this.f8940o;
-        this.f8940o = motionEvent.getX();
-        this.f8941p = motionEvent.getY();
-        this.f8943r = m8598a(this, motionEvent.getX(), motionEvent.getY(), 1);
+        this.q = motionEvent.getX() < this.o;
+        this.o = motionEvent.getX();
+        this.p = motionEvent.getY();
+        this.r = a(this, motionEvent.getX(), motionEvent.getY(), 1);
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.f8940o = 0.0f;
-            this.f8941p = 0.0f;
+            this.o = 0.0f;
+            this.p = 0.0f;
         }
-        this.f8939n = this.f8927b.shouldInterceptTouchEvent(motionEvent);
-        return (!this.f8942q || this.f8943r) ? !m8597a(this, motionEvent.getX(), motionEvent.getY()) ? this.f8939n : super.onInterceptTouchEvent(motionEvent) : this.f8939n;
+        this.f5555n = this.f5543b.shouldInterceptTouchEvent(motionEvent);
+        return (!this.q || this.r) ? !a(this, motionEvent.getX(), motionEvent.getY()) ? this.f5555n : super.onInterceptTouchEvent(motionEvent) : this.f5555n;
     }
 
     @Override // android.widget.FrameLayout, android.view.ViewGroup, android.view.View
     protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-        View view = this.f8928c;
-        view.layout(0, 0, view.getMeasuredWidth(), this.f8928c.getMeasuredHeight());
-        if (this.f8938m) {
-            View view2 = this.f8929d;
-            view2.layout(view2.getLeft(), this.f8929d.getTop(), this.f8929d.getRight(), this.f8929d.getBottom());
+        View view = this.f5544c;
+        view.layout(0, 0, view.getMeasuredWidth(), this.f5544c.getMeasuredHeight());
+        if (this.f5554m) {
+            View view2 = this.f5545d;
+            view2.layout(view2.getLeft(), this.f5545d.getTop(), this.f5545d.getRight(), this.f5545d.getBottom());
             return;
         }
-        if (this.f8930e == EnumC2804d.Left) {
-            View view3 = this.f8929d;
+        if (this.f5546e == com.lxj.xpopup.d.d.Left) {
+            View view3 = this.f5545d;
             view3.layout(-view3.getMeasuredWidth(), 0, 0, getMeasuredHeight());
         } else {
-            this.f8929d.layout(getMeasuredWidth(), 0, getMeasuredWidth() + this.f8929d.getMeasuredWidth(), getMeasuredHeight());
+            this.f5545d.layout(getMeasuredWidth(), 0, getMeasuredWidth() + this.f5545d.getMeasuredWidth(), getMeasuredHeight());
         }
-        this.f8938m = true;
+        this.f5554m = true;
     }
 
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f8927b.continueSettling(true)) {
+        if (this.f5543b.continueSettling(true)) {
             return true;
         }
-        this.f8927b.processTouchEvent(motionEvent);
+        this.f5543b.processTouchEvent(motionEvent);
         return true;
     }
 
-    public void setDrawerPosition(EnumC2804d enumC2804d) {
-        this.f8930e = enumC2804d;
+    public void setDrawerPosition(com.lxj.xpopup.d.d dVar) {
+        this.f5546e = dVar;
     }
 
-    public void setOnCloseListener(InterfaceC2846d interfaceC2846d) {
-        this.f8947v = interfaceC2846d;
+    public void setOnCloseListener(d dVar) {
+        this.v = dVar;
     }
 
     public PopupDrawerLayout(Context context, AttributeSet attributeSet) {
@@ -357,27 +327,26 @@ public class PopupDrawerLayout extends FrameLayout {
 
     public PopupDrawerLayout(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f8926a = null;
-        this.f8930e = EnumC2804d.Left;
-        this.f8931f = new C2773e();
-        this.f8932g = new ArgbEvaluator();
-        this.f8933h = 0;
-        this.f8934i = false;
-        this.f8935j = 0.0f;
-        this.f8936k = true;
-        this.f8938m = false;
-        this.f8939n = false;
-        this.f8944s = new C2843a();
-        this.f8927b = ViewDragHelper.create(this, this.f8944s);
+        this.a = null;
+        this.f5546e = com.lxj.xpopup.d.d.Left;
+        this.f5547f = new e();
+        this.f5548g = new ArgbEvaluator();
+        this.f5549h = 0;
+        this.f5550i = false;
+        this.f5551j = 0.0f;
+        this.f5552k = true;
+        this.f5554m = false;
+        this.f5555n = false;
+        this.s = new a();
+        this.f5543b = ViewDragHelper.create(this, this.s);
     }
 
-    /* renamed from: a */
-    private boolean m8598a(ViewGroup viewGroup, float f2, float f3, int i2) {
+    private boolean a(ViewGroup viewGroup, float f2, float f3, int i2) {
         for (int i3 = 0; i3 < viewGroup.getChildCount(); i3++) {
             View childAt = viewGroup.getChildAt(i3);
             int[] iArr = new int[2];
             childAt.getLocationInWindow(iArr);
-            if (C2819c.m8462a(f2, f3, new Rect(iArr[0], iArr[1], iArr[0] + childAt.getWidth(), iArr[1] + childAt.getHeight())) && (childAt instanceof ViewGroup)) {
+            if (com.lxj.xpopup.f.c.a(f2, f3, new Rect(iArr[0], iArr[1], iArr[0] + childAt.getWidth(), iArr[1] + childAt.getHeight())) && (childAt instanceof ViewGroup)) {
                 if (childAt instanceof ViewPager) {
                     ViewPager viewPager = (ViewPager) childAt;
                     if (i2 == 0) {
@@ -392,44 +361,41 @@ public class PopupDrawerLayout extends FrameLayout {
                     }
                     return horizontalScrollView.canScrollHorizontally(i2);
                 }
-                return m8598a((ViewGroup) childAt, f2, f3, i2);
+                return a((ViewGroup) childAt, f2, f3, i2);
             }
         }
         return false;
     }
 
-    /* renamed from: a */
-    private boolean m8597a(ViewGroup viewGroup, float f2, float f3) {
-        return m8598a(viewGroup, f2, f3, 0);
+    private boolean a(ViewGroup viewGroup, float f2, float f3) {
+        return a(viewGroup, f2, f3, 0);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public int m8594a(int i2) {
-        EnumC2804d enumC2804d = this.f8930e;
-        if (enumC2804d == EnumC2804d.Left) {
-            if (i2 < (-this.f8929d.getMeasuredWidth())) {
-                i2 = -this.f8929d.getMeasuredWidth();
+    public int a(int i2) {
+        com.lxj.xpopup.d.d dVar = this.f5546e;
+        if (dVar == com.lxj.xpopup.d.d.Left) {
+            if (i2 < (-this.f5545d.getMeasuredWidth())) {
+                i2 = -this.f5545d.getMeasuredWidth();
             }
             if (i2 > 0) {
                 return 0;
             }
             return i2;
         }
-        if (enumC2804d != EnumC2804d.Right) {
+        if (dVar != com.lxj.xpopup.d.d.Right) {
             return i2;
         }
-        if (i2 < getMeasuredWidth() - this.f8929d.getMeasuredWidth()) {
-            i2 = getMeasuredWidth() - this.f8929d.getMeasuredWidth();
+        if (i2 < getMeasuredWidth() - this.f5545d.getMeasuredWidth()) {
+            i2 = getMeasuredWidth() - this.f5545d.getMeasuredWidth();
         }
         return i2 > getMeasuredWidth() ? getMeasuredWidth() : i2;
     }
 
-    /* renamed from: a */
-    public void m8599a() {
-        if (this.f8927b.continueSettling(true)) {
+    public void a() {
+        if (this.f5543b.continueSettling(true)) {
             return;
         }
-        post(new RunnableC2845c());
+        post(new c());
     }
 }

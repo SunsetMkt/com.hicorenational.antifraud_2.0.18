@@ -9,6 +9,8 @@ import android.graphics.YuvImage;
 import androidx.core.view.ViewCompat;
 import cn.cloudwalk.jni.FaceLivingImg;
 import com.xiaomi.mipush.sdk.Constants;
+import d.c.a.b.a.a;
+import i.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,32 +20,30 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Utils {
     public static void assetsDataToDest(Context context, String str, String str2) throws IOException {
-        InputStream open = context.getAssets().open(str);
+        InputStream inputStreamOpen = context.getAssets().open(str);
         FileOutputStream fileOutputStream = new FileOutputStream(str2);
         byte[] bArr = new byte[1024];
-        for (int read = open.read(bArr); read > 0; read = open.read(bArr)) {
-            fileOutputStream.write(bArr, 0, read);
+        for (int i2 = inputStreamOpen.read(bArr); i2 > 0; i2 = inputStreamOpen.read(bArr)) {
+            fileOutputStream.write(bArr, 0, i2);
         }
         fileOutputStream.flush();
-        open.close();
+        inputStreamOpen.close();
         fileOutputStream.close();
     }
 
     static byte[] bitmapToByte(Bitmap bitmap, Bitmap.CompressFormat compressFormat) {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         if (bitmap == null) {
             return null;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(compressFormat, 80, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-        TestLog.netE("2222", "bitmapToByte" + (System.currentTimeMillis() - currentTimeMillis));
+        TestLog.netE("2222", "bitmapToByte" + (System.currentTimeMillis() - jCurrentTimeMillis));
         return byteArray;
     }
 
@@ -55,9 +55,9 @@ public class Utils {
         int[] iArr = new int[i4];
         for (int i5 = 0; i5 < i4; i5++) {
             int i6 = i5 * 3;
-            int i7 = bArr[i6] & C5230f1.f20085c;
-            int i8 = bArr[i6 + 1] & C5230f1.f20085c;
-            int i9 = bArr[i6 + 2] & C5230f1.f20085c;
+            int i7 = bArr[i6] & f1.f12066c;
+            int i8 = bArr[i6 + 1] & f1.f12066c;
+            int i9 = bArr[i6 + 2] & f1.f12066c;
             if (i7 < 0) {
                 i7 = 0;
             } else if (i7 > 255) {
@@ -75,20 +75,20 @@ public class Utils {
             }
             iArr[i5] = (i9 << 16) + ViewCompat.MEASURED_STATE_MASK + (i8 << 8) + i7;
         }
-        Bitmap createBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-        createBitmap.setPixels(iArr, 0, i2, 0, 0, i2, i3);
-        return createBitmap;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
+        bitmapCreateBitmap.setPixels(iArr, 0, i2, 0, 0, i2, i3);
+        return bitmapCreateBitmap;
     }
 
     public static void copyAssetsToDest(Context context, String str, String str2) throws IOException {
-        InputStream open = context.getAssets().open(str);
+        InputStream inputStreamOpen = context.getAssets().open(str);
         FileOutputStream fileOutputStream = new FileOutputStream(str2);
         byte[] bArr = new byte[1024];
-        for (int read = open.read(bArr); read > 0; read = open.read(bArr)) {
-            fileOutputStream.write(bArr, 0, read);
+        for (int i2 = inputStreamOpen.read(bArr); i2 > 0; i2 = inputStreamOpen.read(bArr)) {
+            fileOutputStream.write(bArr, 0, i2);
         }
         fileOutputStream.flush();
-        open.close();
+        inputStreamOpen.close();
         fileOutputStream.close();
     }
 
@@ -116,8 +116,8 @@ public class Utils {
     }
 
     public static String getExtensionNameWithDot(String str) {
-        int lastIndexOf;
-        return (str == null || str.length() <= 0 || (lastIndexOf = str.lastIndexOf(46)) <= -1 || lastIndexOf >= str.length() + (-1)) ? str : str.substring(lastIndexOf);
+        int iLastIndexOf;
+        return (str == null || str.length() <= 0 || (iLastIndexOf = str.lastIndexOf(46)) <= -1 || iLastIndexOf >= str.length() + (-1)) ? str : str.substring(iLastIndexOf);
     }
 
     public static float getFloatVal(Object obj, float f2) {
@@ -145,7 +145,7 @@ public class Utils {
     }
 
     public static boolean isEmpty(String str) {
-        return str == null || "".equals(str) || AbstractC1191a.f2571h.equals(str) || "unknown".equals(str);
+        return str == null || "".equals(str) || a.f10075h.equals(str) || "unknown".equals(str);
     }
 
     public static boolean isFileExist(String str) {
@@ -160,7 +160,7 @@ public class Utils {
     }
 
     static Bitmap rotaingImageView(Bitmap bitmap, int i2, int i3) {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         Matrix matrix = new Matrix();
         if (i3 == 1) {
             matrix.postScale(-1.0f, 1.0f);
@@ -184,9 +184,9 @@ public class Utils {
                 matrix.postRotate(90.0f);
             }
         }
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-        TestLog.netE("2222", "rotaingImageView" + (System.currentTimeMillis() - currentTimeMillis));
-        return createBitmap;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        TestLog.netE("2222", "rotaingImageView" + (System.currentTimeMillis() - jCurrentTimeMillis));
+        return bitmapCreateBitmap;
     }
 
     public static byte[] rotateNV21Degree90(byte[] bArr, int i2, int i3) {
@@ -252,11 +252,11 @@ public class Utils {
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     byte[] bArr = new byte[1024];
                     while (true) {
-                        int read = zipInputStream.read(bArr);
-                        if (read == -1) {
+                        int i2 = zipInputStream.read(bArr);
+                        if (i2 == -1) {
                             break;
                         }
-                        fileOutputStream.write(bArr, 0, read);
+                        fileOutputStream.write(bArr, 0, i2);
                         fileOutputStream.flush();
                     }
                     fileOutputStream.close();
@@ -266,18 +266,18 @@ public class Utils {
     }
 
     static Bitmap yuv2Img(byte[] bArr, int i2, int i3, int i4, int i5) {
-        Long valueOf = Long.valueOf(System.currentTimeMillis());
-        Bitmap bitmap = null;
+        Long lValueOf = Long.valueOf(System.currentTimeMillis());
+        Bitmap bitmapDecodeByteArray = null;
         try {
             YuvImage yuvImage = new YuvImage(bArr, i2, i3, i4, null);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             yuvImage.compressToJpeg(new Rect(0, 0, i3, i4), i5, byteArrayOutputStream);
-            bitmap = BitmapFactory.decodeByteArray(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
+            bitmapDecodeByteArray = BitmapFactory.decodeByteArray(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
             byteArrayOutputStream.close();
         } catch (Exception e2) {
-            TestLog.netE("ContentValues", "yuv2Img异常:" + e2.getMessage());
+            TestLog.netE("ContentValues", "yuv2Img\u5f02\u5e38:" + e2.getMessage());
         }
-        TestLog.netE("ContentValues", "yuv2Img" + (System.currentTimeMillis() - valueOf.longValue()));
-        return bitmap;
+        TestLog.netE("ContentValues", "yuv2Img" + (System.currentTimeMillis() - lValueOf.longValue()));
+        return bitmapDecodeByteArray;
     }
 }

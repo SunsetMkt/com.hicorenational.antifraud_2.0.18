@@ -13,70 +13,63 @@ import android.view.Gravity;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
-import com.bumptech.glide.ComponentCallbacks2C1576b;
-import com.bumptech.glide.load.InterfaceC1600n;
-import com.bumptech.glide.load.p118p.p119a0.InterfaceC1626e;
-import com.bumptech.glide.load.resource.gif.C1775f;
-import com.bumptech.glide.p134o.InterfaceC1804a;
-import com.bumptech.glide.util.C1876j;
+import com.bumptech.glide.load.n;
+import com.bumptech.glide.load.resource.gif.f;
+import com.bumptech.glide.util.j;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
-public class GifDrawable extends Drawable implements C1775f.b, Animatable, Animatable2Compat {
+/* JADX INFO: loaded from: classes.dex */
+public class GifDrawable extends Drawable implements f.b, Animatable, Animatable2Compat {
 
-    /* renamed from: l */
-    public static final int f4990l = -1;
+    /* JADX INFO: renamed from: l */
+    public static final int f3260l = -1;
 
-    /* renamed from: m */
-    public static final int f4991m = 0;
+    /* JADX INFO: renamed from: m */
+    public static final int f3261m = 0;
 
-    /* renamed from: n */
-    private static final int f4992n = 119;
+    /* JADX INFO: renamed from: n */
+    private static final int f3262n = 119;
+    private final a a;
 
-    /* renamed from: a */
-    private final C1769a f4993a;
+    /* JADX INFO: renamed from: b */
+    private boolean f3263b;
 
-    /* renamed from: b */
-    private boolean f4994b;
+    /* JADX INFO: renamed from: c */
+    private boolean f3264c;
 
-    /* renamed from: c */
-    private boolean f4995c;
+    /* JADX INFO: renamed from: d */
+    private boolean f3265d;
 
-    /* renamed from: d */
-    private boolean f4996d;
+    /* JADX INFO: renamed from: e */
+    private boolean f3266e;
 
-    /* renamed from: e */
-    private boolean f4997e;
+    /* JADX INFO: renamed from: f */
+    private int f3267f;
 
-    /* renamed from: f */
-    private int f4998f;
+    /* JADX INFO: renamed from: g */
+    private int f3268g;
 
-    /* renamed from: g */
-    private int f4999g;
+    /* JADX INFO: renamed from: h */
+    private boolean f3269h;
 
-    /* renamed from: h */
-    private boolean f5000h;
+    /* JADX INFO: renamed from: i */
+    private Paint f3270i;
 
-    /* renamed from: i */
-    private Paint f5001i;
+    /* JADX INFO: renamed from: j */
+    private Rect f3271j;
 
-    /* renamed from: j */
-    private Rect f5002j;
+    /* JADX INFO: renamed from: k */
+    private List<Animatable2Compat.AnimationCallback> f3272k;
 
-    /* renamed from: k */
-    private List<Animatable2Compat.AnimationCallback> f5003k;
+    static final class a extends Drawable.ConstantState {
 
-    /* renamed from: com.bumptech.glide.load.resource.gif.GifDrawable$a */
-    static final class C1769a extends Drawable.ConstantState {
-
-        /* renamed from: a */
         @VisibleForTesting
-        final C1775f f5004a;
+        final f a;
 
-        C1769a(C1775f c1775f) {
-            this.f5004a = c1775f;
+        a(f fVar) {
+            this.a = fVar;
         }
 
         @Override // android.graphics.drawable.Drawable.ConstantState
@@ -98,13 +91,12 @@ public class GifDrawable extends Drawable implements C1775f.b, Animatable, Anima
     }
 
     @Deprecated
-    public GifDrawable(Context context, InterfaceC1804a interfaceC1804a, InterfaceC1626e interfaceC1626e, InterfaceC1600n<Bitmap> interfaceC1600n, int i2, int i3, Bitmap bitmap) {
-        this(context, interfaceC1804a, interfaceC1600n, i2, i3, bitmap);
+    public GifDrawable(Context context, com.bumptech.glide.o.a aVar, com.bumptech.glide.load.p.a0.e eVar, n<Bitmap> nVar, int i2, int i3, Bitmap bitmap) {
+        this(context, aVar, nVar, i2, i3, bitmap);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    /* renamed from: k */
-    private Drawable.Callback m4439k() {
+    private Drawable.Callback k() {
         Drawable.Callback callback = getCallback();
         while (callback instanceof Drawable) {
             callback = ((Drawable) callback).getCallback();
@@ -112,127 +104,114 @@ public class GifDrawable extends Drawable implements C1775f.b, Animatable, Anima
         return callback;
     }
 
-    /* renamed from: l */
-    private Rect m4440l() {
-        if (this.f5002j == null) {
-            this.f5002j = new Rect();
+    private Rect l() {
+        if (this.f3271j == null) {
+            this.f3271j = new Rect();
         }
-        return this.f5002j;
+        return this.f3271j;
     }
 
-    /* renamed from: m */
-    private Paint m4441m() {
-        if (this.f5001i == null) {
-            this.f5001i = new Paint(2);
+    private Paint m() {
+        if (this.f3270i == null) {
+            this.f3270i = new Paint(2);
         }
-        return this.f5001i;
+        return this.f3270i;
     }
 
-    /* renamed from: n */
-    private void m4442n() {
-        List<Animatable2Compat.AnimationCallback> list = this.f5003k;
+    private void n() {
+        List<Animatable2Compat.AnimationCallback> list = this.f3272k;
         if (list != null) {
             int size = list.size();
             for (int i2 = 0; i2 < size; i2++) {
-                this.f5003k.get(i2).onAnimationEnd(this);
+                this.f3272k.get(i2).onAnimationEnd(this);
             }
         }
     }
 
-    /* renamed from: o */
-    private void m4443o() {
-        this.f4998f = 0;
+    private void o() {
+        this.f3267f = 0;
     }
 
-    /* renamed from: p */
-    private void m4444p() {
-        C1876j.m4989a(!this.f4996d, "You cannot start a recycled Drawable. Ensure thatyou clear any references to the Drawable when clearing the corresponding request.");
-        if (this.f4993a.f5004a.m4486f() == 1) {
+    private void p() {
+        j.a(!this.f3265d, "You cannot start a recycled Drawable. Ensure thatyou clear any references to the Drawable when clearing the corresponding request.");
+        if (this.a.a.f() == 1) {
             invalidateSelf();
         } else {
-            if (this.f4994b) {
+            if (this.f3263b) {
                 return;
             }
-            this.f4994b = true;
-            this.f4993a.f5004a.m4480a(this);
+            this.f3263b = true;
+            this.a.a.a(this);
             invalidateSelf();
         }
     }
 
-    /* renamed from: q */
-    private void m4445q() {
-        this.f4994b = false;
-        this.f4993a.f5004a.m4482b(this);
+    private void q() {
+        this.f3263b = false;
+        this.a.a.b(this);
     }
 
-    /* renamed from: a */
-    public void m4448a(InterfaceC1600n<Bitmap> interfaceC1600n, Bitmap bitmap) {
-        this.f4993a.f5004a.m4478a(interfaceC1600n, bitmap);
+    public void a(n<Bitmap> nVar, Bitmap bitmap) {
+        this.a.a.a(nVar, bitmap);
     }
 
-    /* renamed from: b */
-    public ByteBuffer m4450b() {
-        return this.f4993a.f5004a.m4481b();
+    public ByteBuffer b() {
+        return this.a.a.b();
     }
 
-    /* renamed from: c */
-    public Bitmap m4451c() {
-        return this.f4993a.f5004a.m4485e();
+    public Bitmap c() {
+        return this.a.a.e();
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
     public void clearAnimationCallbacks() {
-        List<Animatable2Compat.AnimationCallback> list = this.f5003k;
+        List<Animatable2Compat.AnimationCallback> list = this.f3272k;
         if (list != null) {
             list.clear();
         }
     }
 
-    /* renamed from: d */
-    public int m4452d() {
-        return this.f4993a.f5004a.m4486f();
+    public int d() {
+        return this.a.a.f();
     }
 
     @Override // android.graphics.drawable.Drawable
     public void draw(@NonNull Canvas canvas) {
-        if (this.f4996d) {
+        if (this.f3265d) {
             return;
         }
-        if (this.f5000h) {
-            Gravity.apply(119, getIntrinsicWidth(), getIntrinsicHeight(), getBounds(), m4440l());
-            this.f5000h = false;
+        if (this.f3269h) {
+            Gravity.apply(119, getIntrinsicWidth(), getIntrinsicHeight(), getBounds(), l());
+            this.f3269h = false;
         }
-        canvas.drawBitmap(this.f4993a.f5004a.m4483c(), (Rect) null, m4440l(), m4441m());
+        canvas.drawBitmap(this.a.a.c(), (Rect) null, l(), m());
     }
 
-    /* renamed from: e */
-    public int m4453e() {
-        return this.f4993a.f5004a.m4484d();
+    public int e() {
+        return this.a.a.d();
     }
 
-    /* renamed from: f */
-    public InterfaceC1600n<Bitmap> m4454f() {
-        return this.f4993a.f5004a.m4487g();
+    public n<Bitmap> f() {
+        return this.a.a.g();
     }
 
-    /* renamed from: g */
-    public int m4455g() {
-        return this.f4993a.f5004a.m4490j();
+    public int g() {
+        return this.a.a.j();
     }
 
     @Override // android.graphics.drawable.Drawable
     public Drawable.ConstantState getConstantState() {
-        return this.f4993a;
+        return this.a;
     }
 
     @Override // android.graphics.drawable.Drawable
     public int getIntrinsicHeight() {
-        return this.f4993a.f5004a.m4488h();
+        return this.a.a.h();
     }
 
     @Override // android.graphics.drawable.Drawable
     public int getIntrinsicWidth() {
-        return this.f4993a.f5004a.m4491k();
+        return this.a.a.k();
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -240,33 +219,30 @@ public class GifDrawable extends Drawable implements C1775f.b, Animatable, Anima
         return -2;
     }
 
-    /* renamed from: h */
-    boolean m4456h() {
-        return this.f4996d;
+    boolean h() {
+        return this.f3265d;
     }
 
-    /* renamed from: i */
-    public void m4457i() {
-        this.f4996d = true;
-        this.f4993a.f5004a.m4477a();
+    public void i() {
+        this.f3265d = true;
+        this.a.a.a();
     }
 
     @Override // android.graphics.drawable.Animatable
     public boolean isRunning() {
-        return this.f4994b;
+        return this.f3263b;
     }
 
-    /* renamed from: j */
-    public void m4458j() {
-        C1876j.m4989a(!this.f4994b, "You cannot restart a currently running animation.");
-        this.f4993a.f5004a.m4492l();
+    public void j() {
+        j.a(!this.f3263b, "You cannot restart a currently running animation.");
+        this.a.a.l();
         start();
     }
 
     @Override // android.graphics.drawable.Drawable
     protected void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f5000h = true;
+        this.f3269h = true;
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
@@ -274,112 +250,109 @@ public class GifDrawable extends Drawable implements C1775f.b, Animatable, Anima
         if (animationCallback == null) {
             return;
         }
-        if (this.f5003k == null) {
-            this.f5003k = new ArrayList();
+        if (this.f3272k == null) {
+            this.f3272k = new ArrayList();
         }
-        this.f5003k.add(animationCallback);
+        this.f3272k.add(animationCallback);
     }
 
     @Override // android.graphics.drawable.Drawable
     public void setAlpha(int i2) {
-        m4441m().setAlpha(i2);
+        m().setAlpha(i2);
     }
 
     @Override // android.graphics.drawable.Drawable
     public void setColorFilter(ColorFilter colorFilter) {
-        m4441m().setColorFilter(colorFilter);
+        m().setColorFilter(colorFilter);
     }
 
     @Override // android.graphics.drawable.Drawable
     public boolean setVisible(boolean z, boolean z2) {
-        C1876j.m4989a(!this.f4996d, "Cannot change the visibility of a recycled resource. Ensure that you unset the Drawable from your View before changing the View's visibility.");
-        this.f4997e = z;
+        j.a(!this.f3265d, "Cannot change the visibility of a recycled resource. Ensure that you unset the Drawable from your View before changing the View's visibility.");
+        this.f3266e = z;
         if (!z) {
-            m4445q();
-        } else if (this.f4995c) {
-            m4444p();
+            q();
+        } else if (this.f3264c) {
+            p();
         }
         return super.setVisible(z, z2);
     }
 
     @Override // android.graphics.drawable.Animatable
     public void start() {
-        this.f4995c = true;
-        m4443o();
-        if (this.f4997e) {
-            m4444p();
+        this.f3264c = true;
+        o();
+        if (this.f3266e) {
+            p();
         }
     }
 
     @Override // android.graphics.drawable.Animatable
     public void stop() {
-        this.f4995c = false;
-        m4445q();
+        this.f3264c = false;
+        q();
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
     public boolean unregisterAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
-        List<Animatable2Compat.AnimationCallback> list = this.f5003k;
+        List<Animatable2Compat.AnimationCallback> list = this.f3272k;
         if (list == null || animationCallback == null) {
             return false;
         }
         return list.remove(animationCallback);
     }
 
-    public GifDrawable(Context context, InterfaceC1804a interfaceC1804a, InterfaceC1600n<Bitmap> interfaceC1600n, int i2, int i3, Bitmap bitmap) {
-        this(new C1769a(new C1775f(ComponentCallbacks2C1576b.m3633a(context), interfaceC1804a, i2, i3, interfaceC1600n, bitmap)));
+    public GifDrawable(Context context, com.bumptech.glide.o.a aVar, n<Bitmap> nVar, int i2, int i3, Bitmap bitmap) {
+        this(new a(new f(com.bumptech.glide.b.a(context), aVar, i2, i3, nVar, bitmap)));
     }
 
-    /* renamed from: a */
-    void m4449a(boolean z) {
-        this.f4994b = z;
+    void a(boolean z) {
+        this.f3263b = z;
     }
 
-    @Override // com.bumptech.glide.load.resource.gif.C1775f.b
-    /* renamed from: a */
-    public void mo4446a() {
-        if (m4439k() == null) {
+    @Override // com.bumptech.glide.load.resource.gif.f.b
+    public void a() {
+        if (k() == null) {
             stop();
             invalidateSelf();
             return;
         }
         invalidateSelf();
-        if (m4453e() == m4452d() - 1) {
-            this.f4998f++;
+        if (e() == d() - 1) {
+            this.f3267f++;
         }
-        int i2 = this.f4999g;
-        if (i2 == -1 || this.f4998f < i2) {
+        int i2 = this.f3268g;
+        if (i2 == -1 || this.f3267f < i2) {
             return;
         }
-        m4442n();
+        n();
         stop();
     }
 
-    GifDrawable(C1769a c1769a) {
-        this.f4997e = true;
-        this.f4999g = -1;
-        this.f4993a = (C1769a) C1876j.m4985a(c1769a);
+    GifDrawable(a aVar) {
+        this.f3266e = true;
+        this.f3268g = -1;
+        this.a = (a) j.a(aVar);
     }
 
     @VisibleForTesting
-    GifDrawable(C1775f c1775f, Paint paint) {
-        this(new C1769a(c1775f));
-        this.f5001i = paint;
+    GifDrawable(f fVar, Paint paint) {
+        this(new a(fVar));
+        this.f3270i = paint;
     }
 
-    /* renamed from: a */
-    public void m4447a(int i2) {
+    public void a(int i2) {
         if (i2 <= 0 && i2 != -1 && i2 != 0) {
             throw new IllegalArgumentException("Loop count must be greater than 0, or equal to GlideDrawable.LOOP_FOREVER, or equal to GlideDrawable.LOOP_INTRINSIC");
         }
         if (i2 == 0) {
-            int m4489i = this.f4993a.f5004a.m4489i();
-            if (m4489i == 0) {
-                m4489i = -1;
+            int i3 = this.a.a.i();
+            if (i3 == 0) {
+                i3 = -1;
             }
-            this.f4999g = m4489i;
+            this.f3268g = i3;
             return;
         }
-        this.f4999g = i2;
+        this.f3268g = i2;
     }
 }

@@ -10,33 +10,30 @@ import com.tencent.connect.common.AssistActivity;
 import com.tencent.connect.common.Constants;
 import com.tencent.connect.common.UIListenerManager;
 import com.tencent.open.log.SLog;
-import com.tencent.open.utils.C3293k;
-import com.tencent.open.utils.C3295m;
+import com.tencent.open.utils.k;
+import com.tencent.open.utils.m;
 import java.util.HashMap;
 import java.util.Map;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public class AuthActivity extends Activity {
     public static final String ACTION_SHARE_PRIZE = "sharePrize";
+    private static int a;
 
-    /* renamed from: a */
-    private static int f11340a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Map<String, ActionHandler> f6936b = new HashMap();
 
-    /* renamed from: b */
-    private Map<String, ActionHandler> f11341b = new HashMap();
-
-    /* compiled from: ProGuard */
+    /* JADX INFO: compiled from: ProGuard */
     interface ActionHandler {
         void handleAction(Activity activity, Bundle bundle);
     }
 
-    /* renamed from: a */
-    private void m10726a() {
-        this.f11341b.put("action_common_channel", new ActionHandler() { // from class: com.tencent.tauth.AuthActivity.1
+    private void a() {
+        this.f6936b.put("action_common_channel", new ActionHandler() { // from class: com.tencent.tauth.AuthActivity.1
             @Override // com.tencent.tauth.AuthActivity.ActionHandler
             public void handleAction(Activity activity, Bundle bundle) {
-                SLog.m10502i("openSDK_LOG.AuthActivity", "-->handleActionUri--common channel. ");
+                SLog.i("openSDK_LOG.AuthActivity", "-->handleActionUri--common channel. ");
                 Intent intent = new Intent(activity, (Class<?>) AssistActivity.class);
                 intent.putExtras(bundle);
                 intent.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_COMMON_CHANNEL);
@@ -52,7 +49,7 @@ public class AuthActivity extends Activity {
         try {
             super.finish();
         } catch (Exception e2) {
-            SLog.m10501e("openSDK_LOG.AuthActivity", "activity finish exception: ", e2);
+            SLog.e("openSDK_LOG.AuthActivity", "activity finish exception: ", e2);
         }
     }
 
@@ -60,151 +57,150 @@ public class AuthActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         if (getIntent() == null) {
-            SLog.m10508w("openSDK_LOG.AuthActivity", "-->onCreate, getIntent() return null");
+            SLog.w("openSDK_LOG.AuthActivity", "-->onCreate, getIntent() return null");
             finish();
             return;
         }
-        Uri uri = null;
+        Uri data = null;
         try {
-            uri = getIntent().getData();
+            data = getIntent().getData();
         } catch (Exception e2) {
-            SLog.m10501e("openSDK_LOG.AuthActivity", "onCreate exception: ", e2);
+            SLog.e("openSDK_LOG.AuthActivity", "onCreate exception: ", e2);
         }
-        SLog.m10506v("openSDK_LOG.AuthActivity", "-->onCreate, uri: " + uri);
-        m10726a();
+        SLog.v("openSDK_LOG.AuthActivity", "-->onCreate, uri: " + data);
+        a();
         try {
-            m10727a(uri);
+            a(data);
         } catch (Exception e3) {
-            SLog.m10501e("openSDK_LOG.AuthActivity", "onCreate exception: ", e3);
+            SLog.e("openSDK_LOG.AuthActivity", "onCreate exception: ", e3);
             finish();
         }
     }
 
-    /* renamed from: a */
-    private void m10727a(Uri uri) {
-        SLog.m10502i("openSDK_LOG.AuthActivity", "-->handleActionUri--start");
+    private void a(Uri uri) {
+        SLog.i("openSDK_LOG.AuthActivity", "-->handleActionUri--start");
         if (uri != null && uri.toString() != null) {
-            String str = "";
+            String string = "";
             if (!uri.toString().equals("")) {
-                String uri2 = uri.toString();
-                Bundle m10664a = C3295m.m10664a(uri2.substring(uri2.indexOf("#") + 1));
-                if (m10664a == null) {
-                    SLog.m10508w("openSDK_LOG.AuthActivity", "-->handleActionUri, bundle is null");
+                String string2 = uri.toString();
+                Bundle bundleA = m.a(string2.substring(string2.indexOf("#") + 1));
+                if (bundleA == null) {
+                    SLog.w("openSDK_LOG.AuthActivity", "-->handleActionUri, bundle is null");
                     finish();
                     return;
                 }
-                String string = m10664a.getString("action");
-                SLog.m10502i("openSDK_LOG.AuthActivity", "-->handleActionUri, action: " + string);
-                if (string == null) {
+                String string3 = bundleA.getString("action");
+                SLog.i("openSDK_LOG.AuthActivity", "-->handleActionUri, action: " + string3);
+                if (string3 == null) {
                     finish();
                     return;
                 }
-                if (string.equals("shareToQQ") || string.equals("shareToQzone") || string.equals("sendToMyComputer") || string.equals("shareToTroopBar")) {
-                    if (string.equals("shareToQzone") && C3293k.m10634a((Context) this, "com.tencent.mobileqq") != null && C3293k.m10645c(this, "5.2.0") < 0) {
-                        f11340a++;
-                        if (f11340a == 2) {
-                            f11340a = 0;
+                if (string3.equals("shareToQQ") || string3.equals("shareToQzone") || string3.equals("sendToMyComputer") || string3.equals("shareToTroopBar")) {
+                    if (string3.equals("shareToQzone") && k.a((Context) this, "com.tencent.mobileqq") != null && k.c(this, "5.2.0") < 0) {
+                        a++;
+                        if (a == 2) {
+                            a = 0;
                             finish();
                             return;
                         }
                     }
-                    SLog.m10502i("openSDK_LOG.AuthActivity", "-->handleActionUri, most share action, start assistactivity");
+                    SLog.i("openSDK_LOG.AuthActivity", "-->handleActionUri, most share action, start assistactivity");
                     Intent intent = new Intent(this, (Class<?>) AssistActivity.class);
-                    intent.putExtras(m10664a);
+                    intent.putExtras(bundleA);
                     intent.setFlags(603979776);
                     startActivity(intent);
                     finish();
                     return;
                 }
-                if (string.equals("addToQQFavorites")) {
+                if (string3.equals("addToQQFavorites")) {
                     Intent intent2 = getIntent();
-                    intent2.putExtras(m10664a);
+                    intent2.putExtras(bundleA);
                     intent2.putExtra(Constants.KEY_ACTION, "action_share");
-                    IUiListener listnerWithAction = UIListenerManager.getInstance().getListnerWithAction(string);
+                    IUiListener listnerWithAction = UIListenerManager.getInstance().getListnerWithAction(string3);
                     if (listnerWithAction != null) {
                         UIListenerManager.getInstance().handleDataToListener(intent2, listnerWithAction);
                     }
                     finish();
                     return;
                 }
-                if (string.equals(ACTION_SHARE_PRIZE)) {
+                if (string3.equals(ACTION_SHARE_PRIZE)) {
                     Intent launchIntentForPackage = getPackageManager().getLaunchIntentForPackage(getPackageName());
                     try {
-                        str = C3295m.m10696d(m10664a.getString("response")).getString("activityid");
+                        string = m.d(bundleA.getString("response")).getString("activityid");
                     } catch (Exception e2) {
-                        SLog.m10501e("openSDK_LOG.AuthActivity", "sharePrize parseJson has exception.", e2);
+                        SLog.e("openSDK_LOG.AuthActivity", "sharePrize parseJson has exception.", e2);
                     }
-                    if (!TextUtils.isEmpty(str)) {
+                    if (!TextUtils.isEmpty(string)) {
                         launchIntentForPackage.putExtra(ACTION_SHARE_PRIZE, true);
                         Bundle bundle = new Bundle();
-                        bundle.putString("activityid", str);
+                        bundle.putString("activityid", string);
                         launchIntentForPackage.putExtras(bundle);
                     }
                     startActivity(launchIntentForPackage);
                     finish();
                     return;
                 }
-                if (string.equals("sdkSetAvatar")) {
+                if (string3.equals("sdkSetAvatar")) {
                     boolean booleanExtra = getIntent().getBooleanExtra(Constants.KEY_STAY, false);
                     Intent intent3 = new Intent(this, (Class<?>) AssistActivity.class);
                     intent3.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_EDIT_AVATAR);
                     intent3.putExtra(Constants.KEY_STAY, booleanExtra);
-                    intent3.putExtras(m10664a);
+                    intent3.putExtras(bundleA);
                     intent3.setFlags(603979776);
                     startActivity(intent3);
                     finish();
                     return;
                 }
-                if ("sdkSetDynamicAvatar".equals(string)) {
+                if ("sdkSetDynamicAvatar".equals(string3)) {
                     boolean booleanExtra2 = getIntent().getBooleanExtra(Constants.KEY_STAY, false);
                     Intent intent4 = new Intent(this, (Class<?>) AssistActivity.class);
                     intent4.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_EDIT_DYNAMIC_AVATAR);
                     intent4.putExtra(Constants.KEY_STAY, booleanExtra2);
-                    intent4.putExtras(m10664a);
+                    intent4.putExtras(bundleA);
                     intent4.setFlags(603979776);
                     startActivity(intent4);
                     finish();
                     return;
                 }
-                if (string.equals("sdkSetEmotion")) {
+                if (string3.equals("sdkSetEmotion")) {
                     boolean booleanExtra3 = getIntent().getBooleanExtra(Constants.KEY_STAY, false);
                     Intent intent5 = new Intent(this, (Class<?>) AssistActivity.class);
                     intent5.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_EDIT_EMOTION);
                     intent5.putExtra(Constants.KEY_STAY, booleanExtra3);
-                    intent5.putExtras(m10664a);
+                    intent5.putExtras(bundleA);
                     intent5.setFlags(603979776);
                     startActivity(intent5);
                     finish();
                     return;
                 }
-                if (string.equals("bindGroup")) {
-                    SLog.m10502i("openSDK_LOG.AuthActivity", "-->handleActionUri--bind group callback.");
+                if (string3.equals("bindGroup")) {
+                    SLog.i("openSDK_LOG.AuthActivity", "-->handleActionUri--bind group callback.");
                     boolean booleanExtra4 = getIntent().getBooleanExtra(Constants.KEY_STAY, false);
                     Intent intent6 = new Intent(this, (Class<?>) AssistActivity.class);
                     intent6.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_BIND_GROUP);
                     intent6.putExtra(Constants.KEY_STAY, booleanExtra4);
-                    intent6.putExtras(m10664a);
+                    intent6.putExtras(bundleA);
                     intent6.setFlags(603979776);
                     startActivity(intent6);
                     finish();
                     return;
                 }
-                if (string.equals("joinGroup")) {
-                    SLog.m10502i("openSDK_LOG.AuthActivity", "-->handleActionUri--join group callback. ");
+                if (string3.equals("joinGroup")) {
+                    SLog.i("openSDK_LOG.AuthActivity", "-->handleActionUri--join group callback. ");
                     boolean booleanExtra5 = getIntent().getBooleanExtra(Constants.KEY_STAY, false);
                     Intent intent7 = new Intent(this, (Class<?>) AssistActivity.class);
                     intent7.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_JOIN_GROUP);
                     intent7.putExtra(Constants.KEY_STAY, booleanExtra5);
-                    intent7.putExtras(m10664a);
+                    intent7.putExtras(bundleA);
                     intent7.setFlags(603979776);
                     startActivity(intent7);
                     finish();
                     return;
                 }
-                if (!"guildOpen".equals(string)) {
-                    ActionHandler actionHandler = this.f11341b.get(string);
+                if (!"guildOpen".equals(string3)) {
+                    ActionHandler actionHandler = this.f6936b.get(string3);
                     if (actionHandler != null) {
-                        actionHandler.handleAction(this, m10664a);
+                        actionHandler.handleAction(this, bundleA);
                         return;
                     } else {
                         finish();
@@ -212,7 +208,7 @@ public class AuthActivity extends Activity {
                     }
                 }
                 Intent intent8 = new Intent(this, (Class<?>) AssistActivity.class);
-                intent8.putExtras(m10664a);
+                intent8.putExtras(bundleA);
                 intent8.putExtra(Constants.KEY_REQUEST_CODE, Constants.REQUEST_GUILD);
                 intent8.setFlags(603979776);
                 startActivity(intent8);
@@ -220,7 +216,7 @@ public class AuthActivity extends Activity {
                 return;
             }
         }
-        SLog.m10508w("openSDK_LOG.AuthActivity", "-->handleActionUri, uri invalid");
+        SLog.w("openSDK_LOG.AuthActivity", "-->handleActionUri, uri invalid");
         finish();
     }
 }

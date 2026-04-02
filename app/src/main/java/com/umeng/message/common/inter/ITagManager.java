@@ -1,10 +1,10 @@
 package com.umeng.message.common.inter;
 
-import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.bh;
 import java.util.List;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface ITagManager {
     public static final String FAIL = "fail";
     public static final String SUCCESS = "ok";
@@ -50,7 +50,7 @@ public interface ITagManager {
             this.jsonString = jSONObject.toString();
             this.status = jSONObject.optString("success", "fail");
             this.remain = jSONObject.optInt("remain", 0);
-            this.interval = jSONObject.optLong(C3351bh.f11599aX, 0L);
+            this.interval = jSONObject.optLong(bh.aX, 0L);
             this.errors = jSONObject.optString("errors");
         }
     }

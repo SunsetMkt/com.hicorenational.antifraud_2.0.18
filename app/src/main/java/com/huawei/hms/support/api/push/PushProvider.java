@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Objects;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PushProvider extends ContentProvider {
     @Override // android.content.ContentProvider
     public int delete(Uri uri, String str, String[] strArr) {
@@ -41,9 +41,9 @@ public class PushProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
-        HMSLog.m7717i("PushProvider", "use sdk PushProvider openFile");
+        HMSLog.i("PushProvider", "use sdk PushProvider openFile");
         if (!"xml".equals(getType(uri))) {
-            HMSLog.m7718w("PushProvider", "Incorrect file uri");
+            HMSLog.w("PushProvider", "Incorrect file uri");
             throw new FileNotFoundException(uri.getPath());
         }
         if (Build.VERSION.SDK_INT >= 24) {

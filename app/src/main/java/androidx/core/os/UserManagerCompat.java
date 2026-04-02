@@ -5,7 +5,7 @@ import android.os.Build;
 import android.os.UserManager;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UserManagerCompat {
     private UserManagerCompat() {
     }

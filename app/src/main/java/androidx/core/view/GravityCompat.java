@@ -4,7 +4,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.view.Gravity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class GravityCompat {
     public static final int END = 8388613;
     public static final int RELATIVE_HORIZONTAL_GRAVITY_MASK = 8388615;

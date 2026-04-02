@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.constraintlayout.widget.ConstraintAttribute;
 import androidx.core.app.NotificationCompat;
+import com.umeng.analytics.pro.cw;
 import com.xiaomi.mipush.sdk.Constants;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
@@ -13,7 +14,7 @@ import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class SplineSet {
     private static final String TAG = "SplineSet";
     private int count;
@@ -56,15 +57,15 @@ public abstract class SplineSet {
         @Override // androidx.constraintlayout.motion.widget.SplineSet
         public void setup(int i2) {
             int size = this.mConstraintAttributeList.size();
-            int noOfInterpValues = this.mConstraintAttributeList.valueAt(0).noOfInterpValues();
+            int iNoOfInterpValues = this.mConstraintAttributeList.valueAt(0).noOfInterpValues();
             double[] dArr = new double[size];
-            this.mTempValues = new float[noOfInterpValues];
-            double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, noOfInterpValues);
+            this.mTempValues = new float[iNoOfInterpValues];
+            double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, iNoOfInterpValues);
             for (int i3 = 0; i3 < size; i3++) {
-                int keyAt = this.mConstraintAttributeList.keyAt(i3);
-                ConstraintAttribute valueAt = this.mConstraintAttributeList.valueAt(i3);
-                dArr[i3] = keyAt * 0.01d;
-                valueAt.getValuesToInterpolate(this.mTempValues);
+                int iKeyAt = this.mConstraintAttributeList.keyAt(i3);
+                ConstraintAttribute constraintAttributeValueAt = this.mConstraintAttributeList.valueAt(i3);
+                dArr[i3] = ((double) iKeyAt) * 0.01d;
+                constraintAttributeValueAt.getValuesToInterpolate(this.mTempValues);
                 int i4 = 0;
                 while (true) {
                     if (i4 < this.mTempValues.length) {
@@ -221,15 +222,15 @@ public abstract class SplineSet {
                 i4 = i5 - 1;
                 int i7 = iArr2[i4];
                 if (i6 < i7) {
-                    int partition = partition(iArr, fArr, i6, i7);
+                    int iPartition = partition(iArr, fArr, i6, i7);
                     int i8 = i4 + 1;
-                    iArr2[i4] = partition - 1;
+                    iArr2[i4] = iPartition - 1;
                     int i9 = i8 + 1;
                     iArr2[i8] = i6;
                     int i10 = i9 + 1;
                     iArr2[i9] = i7;
                     i4 = i10 + 1;
-                    iArr2[i10] = partition + 1;
+                    iArr2[i10] = iPartition + 1;
                 }
             }
         }
@@ -295,126 +296,109 @@ public abstract class SplineSet {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    /* JADX WARN: Removed duplicated region for block: B:142:0x00c0  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     static SplineSet makeSpline(String str) {
-        char c2;
+        byte b2;
         switch (str.hashCode()) {
             case -1249320806:
-                if (str.equals("rotationX")) {
-                    c2 = 3;
-                    break;
-                }
-                c2 = 65535;
+                b2 = !str.equals("rotationX") ? (byte) -1 : (byte) 3;
                 break;
             case -1249320805:
                 if (str.equals("rotationY")) {
-                    c2 = 4;
+                    b2 = 4;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497657:
                 if (str.equals("translationX")) {
-                    c2 = '\f';
+                    b2 = 12;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497656:
                 if (str.equals("translationY")) {
-                    c2 = '\r';
+                    b2 = cw.f7203k;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497655:
                 if (str.equals("translationZ")) {
-                    c2 = 14;
+                    b2 = cw.f7204l;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1001078227:
                 if (str.equals(NotificationCompat.CATEGORY_PROGRESS)) {
-                    c2 = 15;
+                    b2 = cw.f7205m;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -908189618:
                 if (str.equals("scaleX")) {
-                    c2 = '\b';
+                    b2 = 8;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -908189617:
                 if (str.equals("scaleY")) {
-                    c2 = '\t';
+                    b2 = 9;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -797520672:
                 if (str.equals("waveVariesBy")) {
-                    c2 = 11;
+                    b2 = 11;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -760884510:
                 if (str.equals("transformPivotX")) {
-                    c2 = 5;
+                    b2 = 5;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -760884509:
                 if (str.equals("transformPivotY")) {
-                    c2 = 6;
+                    b2 = 6;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -40300674:
                 if (str.equals("rotation")) {
-                    c2 = 2;
+                    b2 = 2;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -4379043:
                 if (str.equals("elevation")) {
-                    c2 = 1;
+                    b2 = 1;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 37232917:
                 if (str.equals("transitionPathRotate")) {
-                    c2 = 7;
+                    b2 = 7;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 92909918:
                 if (str.equals("alpha")) {
-                    c2 = 0;
+                    b2 = 0;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 156108012:
                 if (str.equals("waveOffset")) {
-                    c2 = '\n';
+                    b2 = 10;
                     break;
                 }
-                c2 = 65535;
-                break;
-            default:
-                c2 = 65535;
                 break;
         }
-        switch (c2) {
+        switch (b2) {
             case 0:
                 return new AlphaSet();
             case 1:
@@ -431,17 +415,17 @@ public abstract class SplineSet {
                 return new PivotYset();
             case 7:
                 return new PathRotate();
-            case '\b':
+            case 8:
                 return new ScaleXset();
-            case '\t':
+            case 9:
                 return new ScaleYset();
-            case '\n':
+            case 10:
                 return new AlphaSet();
             case 11:
                 return new AlphaSet();
-            case '\f':
+            case 12:
                 return new TranslationXset();
-            case '\r':
+            case 13:
                 return new TranslationYset();
             case 14:
                 return new TranslationZset();
@@ -484,31 +468,35 @@ public abstract class SplineSet {
         this.mType = str;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:48:0x0045  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public void setup(int i2) {
-        int i3;
-        int i4 = this.count;
-        if (i4 == 0) {
+        int i3 = this.count;
+        if (i3 == 0) {
             return;
         }
-        Sort.doubleQuickSort(this.mTimePoints, this.mValues, 0, i4 - 1);
-        int i5 = 1;
-        for (int i6 = 1; i6 < this.count; i6++) {
+        Sort.doubleQuickSort(this.mTimePoints, this.mValues, 0, i3 - 1);
+        int i4 = 1;
+        for (int i5 = 1; i5 < this.count; i5++) {
             int[] iArr = this.mTimePoints;
-            if (iArr[i6 - 1] != iArr[i6]) {
-                i5++;
+            if (iArr[i5 - 1] != iArr[i5]) {
+                i4++;
             }
         }
-        double[] dArr = new double[i5];
-        double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, i5, 1);
-        int i7 = 0;
-        while (i3 < this.count) {
-            if (i3 > 0) {
+        double[] dArr = new double[i4];
+        double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, i4, 1);
+        int i6 = 0;
+        for (int i7 = 0; i7 < this.count; i7++) {
+            if (i7 > 0) {
                 int[] iArr2 = this.mTimePoints;
-                i3 = iArr2[i3] == iArr2[i3 + (-1)] ? i3 + 1 : 0;
+                if (iArr2[i7] != iArr2[i7 - 1]) {
+                    dArr[i6] = ((double) this.mTimePoints[i7]) * 0.01d;
+                    dArr2[i6][0] = this.mValues[i7];
+                    i6++;
+                }
             }
-            dArr[i7] = this.mTimePoints[i3] * 0.01d;
-            dArr2[i7][0] = this.mValues[i3];
-            i7++;
         }
         this.mCurveFit = CurveFit.get(i2, dArr, dArr2);
     }

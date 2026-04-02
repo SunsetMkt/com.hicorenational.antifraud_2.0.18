@@ -2,7 +2,7 @@ package com.umeng.commonsdk.framework;
 
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface UMLogDataProtocol {
 
     public enum UMBusinessType {

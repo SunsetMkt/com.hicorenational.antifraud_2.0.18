@@ -9,7 +9,7 @@ import com.umeng.socialize.utils.ShareBoardlistener;
 import com.umeng.socialize.utils.SocializeSpUtils;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ShareBoard extends PopupWindow {
     private ShareBoardConfig mShareBoardConfig;
 

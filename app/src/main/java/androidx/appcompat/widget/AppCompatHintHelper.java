@@ -5,7 +5,7 @@ import android.view.ViewParent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class AppCompatHintHelper {
     private AppCompatHintHelper() {
     }

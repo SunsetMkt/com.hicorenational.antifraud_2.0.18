@@ -6,7 +6,7 @@ import androidx.collection.ArrayMap;
 import anet.channel.util.HttpConstant;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpHeaders {
     private final Map<String, Map<String, String>> mHeaders = new ArrayMap();
 
@@ -21,43 +21,43 @@ public class HttpHeaders {
         if (TextUtils.isEmpty(str)) {
             return str;
         }
-        Uri parse = Uri.parse(str);
-        return parse.getScheme() + HttpConstant.SCHEME_SPLIT + parse.getAuthority();
+        Uri uri = Uri.parse(str);
+        return uri.getScheme() + HttpConstant.SCHEME_SPLIT + uri.getAuthority();
     }
 
     public void additionalHttpHeader(String str, String str2, String str3) {
         if (str == null) {
             return;
         }
-        String subBaseUrl = subBaseUrl(str);
+        String strSubBaseUrl = subBaseUrl(str);
         Map<String, Map<String, String>> headers = getHeaders();
-        Map<String, String> map = headers.get(subBaseUrl(subBaseUrl));
-        if (map == null) {
-            map = new ArrayMap<>();
+        Map<String, String> arrayMap = headers.get(subBaseUrl(strSubBaseUrl));
+        if (arrayMap == null) {
+            arrayMap = new ArrayMap<>();
         }
-        map.put(str2, str3);
-        headers.put(subBaseUrl, map);
+        arrayMap.put(str2, str3);
+        headers.put(strSubBaseUrl, arrayMap);
     }
 
     public void additionalHttpHeaders(String str, Map<String, String> map) {
         if (str == null) {
             return;
         }
-        String subBaseUrl = subBaseUrl(str);
+        String strSubBaseUrl = subBaseUrl(str);
         Map<String, Map<String, String>> headers = getHeaders();
         if (map == null) {
             map = new ArrayMap<>();
         }
-        headers.put(subBaseUrl, map);
+        headers.put(strSubBaseUrl, map);
     }
 
     public Map<String, String> getHeaders(String str) {
-        String subBaseUrl = subBaseUrl(str);
-        if (this.mHeaders.get(subBaseUrl) != null) {
-            return this.mHeaders.get(subBaseUrl);
+        String strSubBaseUrl = subBaseUrl(str);
+        if (this.mHeaders.get(strSubBaseUrl) != null) {
+            return this.mHeaders.get(strSubBaseUrl);
         }
         ArrayMap arrayMap = new ArrayMap();
-        this.mHeaders.put(subBaseUrl, arrayMap);
+        this.mHeaders.put(strSubBaseUrl, arrayMap);
         return arrayMap;
     }
 

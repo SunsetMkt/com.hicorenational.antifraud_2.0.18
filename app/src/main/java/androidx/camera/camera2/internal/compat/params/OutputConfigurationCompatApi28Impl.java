@@ -7,8 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.Preconditions;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(28)
-/* loaded from: classes.dex */
 class OutputConfigurationCompatApi28Impl extends OutputConfigurationCompatApi26Impl {
     OutputConfigurationCompatApi28Impl(@NonNull Surface surface) {
         super(new OutputConfiguration(surface));

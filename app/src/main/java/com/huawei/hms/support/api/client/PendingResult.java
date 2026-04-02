@@ -4,7 +4,7 @@ import android.os.Looper;
 import com.huawei.hms.support.api.client.Result;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class PendingResult<R extends Result> {
     public abstract R await();
 

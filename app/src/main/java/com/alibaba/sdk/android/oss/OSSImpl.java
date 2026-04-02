@@ -85,7 +85,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class OSSImpl implements OSS {
     private ClientConfiguration conf;
     private OSSCredentialProvider credentialProvider;
@@ -96,21 +96,21 @@ class OSSImpl implements OSS {
     public OSSImpl(Context context, String str, OSSCredentialProvider oSSCredentialProvider, ClientConfiguration clientConfiguration) {
         OSSLogToFileUtils.init(context.getApplicationContext(), clientConfiguration);
         try {
-            String trim = str.trim();
-            if (!trim.startsWith(HttpConstant.HTTP)) {
-                trim = DefaultWebClient.HTTP_SCHEME + trim;
+            String strTrim = str.trim();
+            if (!strTrim.startsWith(HttpConstant.HTTP)) {
+                strTrim = DefaultWebClient.HTTP_SCHEME + strTrim;
             }
-            this.endpointURI = new URI(trim);
+            this.endpointURI = new URI(strTrim);
             if (oSSCredentialProvider == null) {
                 throw new IllegalArgumentException("CredentialProvider can't be null.");
             }
-            Boolean bool = false;
+            Boolean boolValueOf = false;
             try {
-                bool = Boolean.valueOf(OSSUtils.isValidateIP(this.endpointURI.getHost()));
+                boolValueOf = Boolean.valueOf(OSSUtils.isValidateIP(this.endpointURI.getHost()));
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
-            if (this.endpointURI.getScheme().equals(HttpConstant.HTTPS) && bool.booleanValue()) {
+            if (this.endpointURI.getScheme().equals(HttpConstant.HTTPS) && boolValueOf.booleanValue()) {
                 throw new IllegalArgumentException("endpoint should not be format with https://ip.");
             }
             this.credentialProvider = oSSCredentialProvider;
@@ -123,8 +123,8 @@ class OSSImpl implements OSS {
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public AbortMultipartUploadResult abortMultipartUpload(AbortMultipartUploadRequest abortMultipartUploadRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.abortMultipartUpload(abortMultipartUploadRequest, null).getResult();
+    public AbortMultipartUploadResult abortMultipartUpload(AbortMultipartUploadRequest abortMultipartUploadRequest) throws ServiceException, ClientException {
+        return (AbortMultipartUploadResult) this.internalRequestOperation.abortMultipartUpload(abortMultipartUploadRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
@@ -133,7 +133,7 @@ class OSSImpl implements OSS {
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public AppendObjectResult appendObject(AppendObjectRequest appendObjectRequest) throws ClientException, ServiceException {
+    public AppendObjectResult appendObject(AppendObjectRequest appendObjectRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncAppendObject(appendObjectRequest);
     }
 
@@ -318,128 +318,128 @@ class OSSImpl implements OSS {
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public CompleteMultipartUploadResult completeMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest) throws ClientException, ServiceException {
+    public CompleteMultipartUploadResult completeMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncCompleteMultipartUpload(completeMultipartUploadRequest);
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public CopyObjectResult copyObject(CopyObjectRequest copyObjectRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.copyObject(copyObjectRequest, null).getResult();
+    public CopyObjectResult copyObject(CopyObjectRequest copyObjectRequest) throws ServiceException, ClientException {
+        return (CopyObjectResult) this.internalRequestOperation.copyObject(copyObjectRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public CreateBucketResult createBucket(CreateBucketRequest createBucketRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.createBucket(createBucketRequest, null).getResult();
+    public CreateBucketResult createBucket(CreateBucketRequest createBucketRequest) throws ServiceException, ClientException {
+        return (CreateBucketResult) this.internalRequestOperation.createBucket(createBucketRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public DeleteBucketResult deleteBucket(DeleteBucketRequest deleteBucketRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.deleteBucket(deleteBucketRequest, null).getResult();
+    public DeleteBucketResult deleteBucket(DeleteBucketRequest deleteBucketRequest) throws ServiceException, ClientException {
+        return (DeleteBucketResult) this.internalRequestOperation.deleteBucket(deleteBucketRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public DeleteBucketLifecycleResult deleteBucketLifecycle(DeleteBucketLifecycleRequest deleteBucketLifecycleRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.deleteBucketLifecycle(deleteBucketLifecycleRequest, null).getResult();
+    public DeleteBucketLifecycleResult deleteBucketLifecycle(DeleteBucketLifecycleRequest deleteBucketLifecycleRequest) throws ServiceException, ClientException {
+        return (DeleteBucketLifecycleResult) this.internalRequestOperation.deleteBucketLifecycle(deleteBucketLifecycleRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public DeleteBucketLoggingResult deleteBucketLogging(DeleteBucketLoggingRequest deleteBucketLoggingRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.deleteBucketLogging(deleteBucketLoggingRequest, null).getResult();
+    public DeleteBucketLoggingResult deleteBucketLogging(DeleteBucketLoggingRequest deleteBucketLoggingRequest) throws ServiceException, ClientException {
+        return (DeleteBucketLoggingResult) this.internalRequestOperation.deleteBucketLogging(deleteBucketLoggingRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public DeleteMultipleObjectResult deleteMultipleObject(DeleteMultipleObjectRequest deleteMultipleObjectRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.deleteMultipleObject(deleteMultipleObjectRequest, null).getResult();
+    public DeleteMultipleObjectResult deleteMultipleObject(DeleteMultipleObjectRequest deleteMultipleObjectRequest) throws ServiceException, ClientException {
+        return (DeleteMultipleObjectResult) this.internalRequestOperation.deleteMultipleObject(deleteMultipleObjectRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public DeleteObjectResult deleteObject(DeleteObjectRequest deleteObjectRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.deleteObject(deleteObjectRequest, null).getResult();
+    public DeleteObjectResult deleteObject(DeleteObjectRequest deleteObjectRequest) throws ServiceException, ClientException {
+        return (DeleteObjectResult) this.internalRequestOperation.deleteObject(deleteObjectRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public boolean doesObjectExist(String str, String str2) throws ClientException, ServiceException {
+    public boolean doesObjectExist(String str, String str2) throws ServiceException, ClientException {
         return this.extensionRequestOperation.doesObjectExist(str, str2);
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetBucketACLResult getBucketACL(GetBucketACLRequest getBucketACLRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getBucketACL(getBucketACLRequest, null).getResult();
+    public GetBucketACLResult getBucketACL(GetBucketACLRequest getBucketACLRequest) throws ServiceException, ClientException {
+        return (GetBucketACLResult) this.internalRequestOperation.getBucketACL(getBucketACLRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetBucketInfoResult getBucketInfo(GetBucketInfoRequest getBucketInfoRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getBucketInfo(getBucketInfoRequest, null).getResult();
+    public GetBucketInfoResult getBucketInfo(GetBucketInfoRequest getBucketInfoRequest) throws ServiceException, ClientException {
+        return (GetBucketInfoResult) this.internalRequestOperation.getBucketInfo(getBucketInfoRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetBucketLifecycleResult getBucketLifecycle(GetBucketLifecycleRequest getBucketLifecycleRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getBucketLifecycle(getBucketLifecycleRequest, null).getResult();
+    public GetBucketLifecycleResult getBucketLifecycle(GetBucketLifecycleRequest getBucketLifecycleRequest) throws ServiceException, ClientException {
+        return (GetBucketLifecycleResult) this.internalRequestOperation.getBucketLifecycle(getBucketLifecycleRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetBucketLoggingResult getBucketLogging(GetBucketLoggingRequest getBucketLoggingRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getBucketLogging(getBucketLoggingRequest, null).getResult();
+    public GetBucketLoggingResult getBucketLogging(GetBucketLoggingRequest getBucketLoggingRequest) throws ServiceException, ClientException {
+        return (GetBucketLoggingResult) this.internalRequestOperation.getBucketLogging(getBucketLoggingRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetBucketRefererResult getBucketReferer(GetBucketRefererRequest getBucketRefererRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getBucketReferer(getBucketRefererRequest, null).getResult();
+    public GetBucketRefererResult getBucketReferer(GetBucketRefererRequest getBucketRefererRequest) throws ServiceException, ClientException {
+        return (GetBucketRefererResult) this.internalRequestOperation.getBucketReferer(getBucketRefererRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetObjectResult getObject(GetObjectRequest getObjectRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getObject(getObjectRequest, null).getResult();
+    public GetObjectResult getObject(GetObjectRequest getObjectRequest) throws ServiceException, ClientException {
+        return (GetObjectResult) this.internalRequestOperation.getObject(getObjectRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetObjectACLResult getObjectACL(GetObjectACLRequest getObjectACLRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.getObjectACL(getObjectACLRequest, null).getResult();
+    public GetObjectACLResult getObjectACL(GetObjectACLRequest getObjectACLRequest) throws ServiceException, ClientException {
+        return (GetObjectACLResult) this.internalRequestOperation.getObjectACL(getObjectACLRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public GetSymlinkResult getSymlink(GetSymlinkRequest getSymlinkRequest) throws ClientException, ServiceException {
+    public GetSymlinkResult getSymlink(GetSymlinkRequest getSymlinkRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncGetSymlink(getSymlinkRequest);
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public HeadObjectResult headObject(HeadObjectRequest headObjectRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.headObject(headObjectRequest, null).getResult();
+    public HeadObjectResult headObject(HeadObjectRequest headObjectRequest) throws ServiceException, ClientException {
+        return (HeadObjectResult) this.internalRequestOperation.headObject(headObjectRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ImagePersistResult imagePersist(ImagePersistRequest imagePersistRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.imageActionPersist(imagePersistRequest, null).getResult();
+    public ImagePersistResult imagePersist(ImagePersistRequest imagePersistRequest) throws ServiceException, ClientException {
+        return (ImagePersistResult) this.internalRequestOperation.imageActionPersist(imagePersistRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public InitiateMultipartUploadResult initMultipartUpload(InitiateMultipartUploadRequest initiateMultipartUploadRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.initMultipartUpload(initiateMultipartUploadRequest, null).getResult();
+    public InitiateMultipartUploadResult initMultipartUpload(InitiateMultipartUploadRequest initiateMultipartUploadRequest) throws ServiceException, ClientException {
+        return (InitiateMultipartUploadResult) this.internalRequestOperation.initMultipartUpload(initiateMultipartUploadRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ListBucketsResult listBuckets(ListBucketsRequest listBucketsRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.listBuckets(listBucketsRequest, null).getResult();
+    public ListBucketsResult listBuckets(ListBucketsRequest listBucketsRequest) throws ServiceException, ClientException {
+        return (ListBucketsResult) this.internalRequestOperation.listBuckets(listBucketsRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ListMultipartUploadsResult listMultipartUploads(ListMultipartUploadsRequest listMultipartUploadsRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.listMultipartUploads(listMultipartUploadsRequest, null).getResult();
+    public ListMultipartUploadsResult listMultipartUploads(ListMultipartUploadsRequest listMultipartUploadsRequest) throws ServiceException, ClientException {
+        return (ListMultipartUploadsResult) this.internalRequestOperation.listMultipartUploads(listMultipartUploadsRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ListObjectsResult listObjects(ListObjectsRequest listObjectsRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.listObjects(listObjectsRequest, null).getResult();
+    public ListObjectsResult listObjects(ListObjectsRequest listObjectsRequest) throws ServiceException, ClientException {
+        return (ListObjectsResult) this.internalRequestOperation.listObjects(listObjectsRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ListPartsResult listParts(ListPartsRequest listPartsRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.listParts(listPartsRequest, null).getResult();
+    public ListPartsResult listParts(ListPartsRequest listPartsRequest) throws ServiceException, ClientException {
+        return (ListPartsResult) this.internalRequestOperation.listParts(listPartsRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public CompleteMultipartUploadResult multipartUpload(MultipartUploadRequest multipartUploadRequest) throws ClientException, ServiceException {
-        return this.extensionRequestOperation.multipartUpload(multipartUploadRequest, null).getResult();
+    public CompleteMultipartUploadResult multipartUpload(MultipartUploadRequest multipartUploadRequest) throws ServiceException, ClientException {
+        return (CompleteMultipartUploadResult) this.extensionRequestOperation.multipartUpload(multipartUploadRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
@@ -453,47 +453,47 @@ class OSSImpl implements OSS {
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public PutBucketLifecycleResult putBucketLifecycle(PutBucketLifecycleRequest putBucketLifecycleRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.putBucketLifecycle(putBucketLifecycleRequest, null).getResult();
+    public PutBucketLifecycleResult putBucketLifecycle(PutBucketLifecycleRequest putBucketLifecycleRequest) throws ServiceException, ClientException {
+        return (PutBucketLifecycleResult) this.internalRequestOperation.putBucketLifecycle(putBucketLifecycleRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public PutBucketLoggingResult putBucketLogging(PutBucketLoggingRequest putBucketLoggingRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.putBucketLogging(putBucketLoggingRequest, null).getResult();
+    public PutBucketLoggingResult putBucketLogging(PutBucketLoggingRequest putBucketLoggingRequest) throws ServiceException, ClientException {
+        return (PutBucketLoggingResult) this.internalRequestOperation.putBucketLogging(putBucketLoggingRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public PutBucketRefererResult putBucketReferer(PutBucketRefererRequest putBucketRefererRequest) throws ClientException, ServiceException {
-        return this.internalRequestOperation.putBucketReferer(putBucketRefererRequest, null).getResult();
+    public PutBucketRefererResult putBucketReferer(PutBucketRefererRequest putBucketRefererRequest) throws ServiceException, ClientException {
+        return (PutBucketRefererResult) this.internalRequestOperation.putBucketReferer(putBucketRefererRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public PutObjectResult putObject(PutObjectRequest putObjectRequest) throws ClientException, ServiceException {
+    public PutObjectResult putObject(PutObjectRequest putObjectRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncPutObject(putObjectRequest);
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public PutSymlinkResult putSymlink(PutSymlinkRequest putSymlinkRequest) throws ClientException, ServiceException {
+    public PutSymlinkResult putSymlink(PutSymlinkRequest putSymlinkRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncPutSymlink(putSymlinkRequest);
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public RestoreObjectResult restoreObject(RestoreObjectRequest restoreObjectRequest) throws ClientException, ServiceException {
+    public RestoreObjectResult restoreObject(RestoreObjectRequest restoreObjectRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncRestoreObject(restoreObjectRequest);
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ResumableUploadResult resumableUpload(ResumableUploadRequest resumableUploadRequest) throws ClientException, ServiceException {
-        return this.extensionRequestOperation.resumableUpload(resumableUploadRequest, null).getResult();
+    public ResumableUploadResult resumableUpload(ResumableUploadRequest resumableUploadRequest) throws ServiceException, ClientException {
+        return (ResumableUploadResult) this.extensionRequestOperation.resumableUpload(resumableUploadRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public ResumableUploadResult sequenceUpload(ResumableUploadRequest resumableUploadRequest) throws ClientException, ServiceException {
-        return this.extensionRequestOperation.sequenceUpload(resumableUploadRequest, null).getResult();
+    public ResumableUploadResult sequenceUpload(ResumableUploadRequest resumableUploadRequest) throws ServiceException, ClientException {
+        return (ResumableUploadResult) this.extensionRequestOperation.sequenceUpload(resumableUploadRequest, null).getResult();
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public TriggerCallbackResult triggerCallback(TriggerCallbackRequest triggerCallbackRequest) throws ClientException, ServiceException {
+    public TriggerCallbackResult triggerCallback(TriggerCallbackRequest triggerCallbackRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.asyncTriggerCallback(triggerCallbackRequest);
     }
 
@@ -504,7 +504,7 @@ class OSSImpl implements OSS {
     }
 
     @Override // com.alibaba.sdk.android.oss.OSS
-    public UploadPartResult uploadPart(UploadPartRequest uploadPartRequest) throws ClientException, ServiceException {
+    public UploadPartResult uploadPart(UploadPartRequest uploadPartRequest) throws ServiceException, ClientException {
         return this.internalRequestOperation.syncUploadPart(uploadPartRequest);
     }
 

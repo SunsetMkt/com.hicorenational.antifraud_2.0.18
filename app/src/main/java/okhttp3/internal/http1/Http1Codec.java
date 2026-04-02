@@ -29,7 +29,7 @@ import okio.Sink;
 import okio.Source;
 import okio.Timeout;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Http1Codec implements HttpCodec {
     private static final int HEADER_LIMIT = 262144;
     private static final int STATE_CLOSED = 6;
@@ -77,11 +77,11 @@ public final class Http1Codec implements HttpCodec {
         @Override // okio.Source
         public long read(Buffer buffer, long j2) throws IOException {
             try {
-                long read = Http1Codec.this.source.read(buffer, j2);
-                if (read > 0) {
-                    this.bytesRead += read;
+                long j3 = Http1Codec.this.source.read(buffer, j2);
+                if (j3 > 0) {
+                    this.bytesRead += j3;
                 }
-                return read;
+                return j3;
             } catch (IOException e2) {
                 endOfInput(false, e2);
                 throw e2;
@@ -160,9 +160,9 @@ public final class Http1Codec implements HttpCodec {
             }
             try {
                 this.bytesRemainingInChunk = Http1Codec.this.source.readHexadecimalUnsignedLong();
-                String trim = Http1Codec.this.source.readUtf8LineStrict().trim();
-                if (this.bytesRemainingInChunk < 0 || !(trim.isEmpty() || trim.startsWith(";"))) {
-                    throw new ProtocolException("expected chunk size and optional extensions but was \"" + this.bytesRemainingInChunk + trim + "\"");
+                String strTrim = Http1Codec.this.source.readUtf8LineStrict().trim();
+                if (this.bytesRemainingInChunk < 0 || !(strTrim.isEmpty() || strTrim.startsWith(";"))) {
+                    throw new ProtocolException("expected chunk size and optional extensions but was \"" + this.bytesRemainingInChunk + strTrim + "\"");
                 }
                 if (this.bytesRemainingInChunk == 0) {
                     this.hasMoreChunks = false;
@@ -203,10 +203,10 @@ public final class Http1Codec implements HttpCodec {
                     return -1L;
                 }
             }
-            long read = super.read(buffer, Math.min(j2, this.bytesRemainingInChunk));
-            if (read != -1) {
-                this.bytesRemainingInChunk -= read;
-                return read;
+            long j4 = super.read(buffer, Math.min(j2, this.bytesRemainingInChunk));
+            if (j4 != -1) {
+                this.bytesRemainingInChunk -= j4;
+                return j4;
             }
             ProtocolException protocolException = new ProtocolException("unexpected end of stream");
             endOfInput(false, protocolException);
@@ -299,17 +299,17 @@ public final class Http1Codec implements HttpCodec {
             if (j3 == 0) {
                 return -1L;
             }
-            long read = super.read(buffer, Math.min(j3, j2));
-            if (read == -1) {
+            long j4 = super.read(buffer, Math.min(j3, j2));
+            if (j4 == -1) {
                 ProtocolException protocolException = new ProtocolException("unexpected end of stream");
                 endOfInput(false, protocolException);
                 throw protocolException;
             }
-            this.bytesRemaining -= read;
+            this.bytesRemaining -= j4;
             if (this.bytesRemaining == 0) {
                 endOfInput(true, null);
             }
-            return read;
+            return j4;
         }
     }
 
@@ -342,9 +342,9 @@ public final class Http1Codec implements HttpCodec {
             if (this.inputExhausted) {
                 return -1L;
             }
-            long read = super.read(buffer, j2);
-            if (read != -1) {
-                return read;
+            long j3 = super.read(buffer, j2);
+            if (j3 != -1) {
+                return j3;
             }
             this.inputExhausted = true;
             endOfInput(true, null);
@@ -360,16 +360,16 @@ public final class Http1Codec implements HttpCodec {
     }
 
     private String readHeaderLine() throws IOException {
-        String readUtf8LineStrict = this.source.readUtf8LineStrict(this.headerLimit);
-        this.headerLimit -= readUtf8LineStrict.length();
-        return readUtf8LineStrict;
+        String utf8LineStrict = this.source.readUtf8LineStrict(this.headerLimit);
+        this.headerLimit -= (long) utf8LineStrict.length();
+        return utf8LineStrict;
     }
 
     @Override // okhttp3.internal.http.HttpCodec
     public void cancel() {
-        RealConnection connection = this.streamAllocation.connection();
-        if (connection != null) {
-            connection.cancel();
+        RealConnection realConnectionConnection = this.streamAllocation.connection();
+        if (realConnectionConnection != null) {
+            realConnectionConnection.cancel();
         }
     }
 
@@ -385,10 +385,10 @@ public final class Http1Codec implements HttpCodec {
     }
 
     void detachTimeout(ForwardingTimeout forwardingTimeout) {
-        Timeout delegate = forwardingTimeout.delegate();
+        Timeout timeoutDelegate = forwardingTimeout.delegate();
         forwardingTimeout.setDelegate(Timeout.NONE);
-        delegate.clearDeadline();
-        delegate.clearTimeout();
+        timeoutDelegate.clearDeadline();
+        timeoutDelegate.clearTimeout();
     }
 
     @Override // okhttp3.internal.http.HttpCodec
@@ -454,25 +454,25 @@ public final class Http1Codec implements HttpCodec {
     public ResponseBody openResponseBody(Response response) throws IOException {
         StreamAllocation streamAllocation = this.streamAllocation;
         streamAllocation.eventListener.responseBodyStart(streamAllocation.call);
-        String header = response.header("Content-Type");
+        String strHeader = response.header("Content-Type");
         if (!HttpHeaders.hasBody(response)) {
-            return new RealResponseBody(header, 0L, Okio.buffer(newFixedLengthSource(0L)));
+            return new RealResponseBody(strHeader, 0L, Okio.buffer(newFixedLengthSource(0L)));
         }
         if ("chunked".equalsIgnoreCase(response.header("Transfer-Encoding"))) {
-            return new RealResponseBody(header, -1L, Okio.buffer(newChunkedSource(response.request().url())));
+            return new RealResponseBody(strHeader, -1L, Okio.buffer(newChunkedSource(response.request().url())));
         }
-        long contentLength = HttpHeaders.contentLength(response);
-        return contentLength != -1 ? new RealResponseBody(header, contentLength, Okio.buffer(newFixedLengthSource(contentLength))) : new RealResponseBody(header, -1L, Okio.buffer(newUnknownLengthSource()));
+        long jContentLength = HttpHeaders.contentLength(response);
+        return jContentLength != -1 ? new RealResponseBody(strHeader, jContentLength, Okio.buffer(newFixedLengthSource(jContentLength))) : new RealResponseBody(strHeader, -1L, Okio.buffer(newUnknownLengthSource()));
     }
 
     public Headers readHeaders() throws IOException {
         Headers.Builder builder = new Headers.Builder();
         while (true) {
-            String readHeaderLine = readHeaderLine();
-            if (readHeaderLine.length() == 0) {
+            String headerLine = readHeaderLine();
+            if (headerLine.length() == 0) {
                 return builder.build();
             }
-            Internal.instance.addLenient(builder, readHeaderLine);
+            Internal.instance.addLenient(builder, headerLine);
         }
     }
 
@@ -483,17 +483,17 @@ public final class Http1Codec implements HttpCodec {
             throw new IllegalStateException("state: " + this.state);
         }
         try {
-            StatusLine parse = StatusLine.parse(readHeaderLine());
-            Response.Builder headers = new Response.Builder().protocol(parse.protocol).code(parse.code).message(parse.message).headers(readHeaders());
-            if (z && parse.code == 100) {
+            StatusLine statusLine = StatusLine.parse(readHeaderLine());
+            Response.Builder builderHeaders = new Response.Builder().protocol(statusLine.protocol).code(statusLine.code).message(statusLine.message).headers(readHeaders());
+            if (z && statusLine.code == 100) {
                 return null;
             }
-            if (parse.code == 100) {
+            if (statusLine.code == 100) {
                 this.state = 3;
-                return headers;
+                return builderHeaders;
             }
             this.state = 4;
-            return headers;
+            return builderHeaders;
         } catch (EOFException e2) {
             IOException iOException = new IOException("unexpected end of stream on " + this.streamAllocation);
             iOException.initCause(e2);

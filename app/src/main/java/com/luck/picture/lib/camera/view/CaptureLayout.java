@@ -12,12 +12,12 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.luck.picture.lib.C2639R;
+import com.luck.picture.lib.R;
 import com.luck.picture.lib.camera.listener.CaptureListener;
 import com.luck.picture.lib.camera.listener.ClickListener;
 import com.luck.picture.lib.camera.listener.TypeListener;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CaptureLayout extends FrameLayout {
     private TypeButton btn_cancel;
     private CaptureButton btn_capture;
@@ -43,7 +43,7 @@ public class CaptureLayout extends FrameLayout {
     /* JADX INFO: Access modifiers changed from: private */
     public String getCaptureTip() {
         int buttonFeatures = this.btn_capture.getButtonFeatures();
-        return buttonFeatures != 257 ? buttonFeatures != 258 ? getContext().getString(C2639R.string.picture_photo_camera) : getContext().getString(C2639R.string.picture_photo_recording) : getContext().getString(C2639R.string.picture_photo_pictures);
+        return buttonFeatures != 257 ? buttonFeatures != 258 ? getContext().getString(R.string.picture_photo_camera) : getContext().getString(R.string.picture_photo_recording) : getContext().getString(R.string.picture_photo_pictures);
     }
 
     private void initView() {
@@ -106,7 +106,7 @@ public class CaptureLayout extends FrameLayout {
         this.btn_cancel.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.f
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.m8132a(view);
+                this.a.a(view);
             }
         });
         this.btn_confirm = new TypeButton(getContext(), 2, this.button_size);
@@ -117,7 +117,7 @@ public class CaptureLayout extends FrameLayout {
         this.btn_confirm.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.d
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.m8133b(view);
+                this.a.b(view);
             }
         });
         this.btn_return = new ReturnButton(getContext(), (int) (this.button_size / 2.5f));
@@ -128,7 +128,7 @@ public class CaptureLayout extends FrameLayout {
         this.btn_return.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.e
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.m8134c(view);
+                this.a.c(view);
             }
         });
         this.iv_custom_left = new ImageView(getContext());
@@ -140,7 +140,7 @@ public class CaptureLayout extends FrameLayout {
         this.iv_custom_left.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.g
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.m8135d(view);
+                this.a.d(view);
             }
         });
         this.iv_custom_right = new ImageView(getContext());
@@ -152,7 +152,7 @@ public class CaptureLayout extends FrameLayout {
         this.iv_custom_right.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.view.h
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CaptureLayout.this.m8136e(view);
+                this.a.e(view);
             }
         });
         this.txt_tip = new TextView(getContext());
@@ -172,40 +172,35 @@ public class CaptureLayout extends FrameLayout {
         addView(this.txt_tip);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8132a(View view) {
+    public /* synthetic */ void a(View view) {
         TypeListener typeListener = this.typeListener;
         if (typeListener != null) {
             typeListener.cancel();
         }
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m8133b(View view) {
+    public /* synthetic */ void b(View view) {
         TypeListener typeListener = this.typeListener;
         if (typeListener != null) {
             typeListener.confirm();
         }
     }
 
-    /* renamed from: c */
-    public /* synthetic */ void m8134c(View view) {
+    public /* synthetic */ void c(View view) {
         ClickListener clickListener = this.leftClickListener;
         if (clickListener != null) {
             clickListener.onClick();
         }
     }
 
-    /* renamed from: d */
-    public /* synthetic */ void m8135d(View view) {
+    public /* synthetic */ void d(View view) {
         ClickListener clickListener = this.leftClickListener;
         if (clickListener != null) {
             clickListener.onClick();
         }
     }
 
-    /* renamed from: e */
-    public /* synthetic */ void m8136e(View view) {
+    public /* synthetic */ void e(View view) {
         ClickListener clickListener = this.rightClickListener;
         if (clickListener != null) {
             clickListener.onClick();
@@ -287,8 +282,8 @@ public class CaptureLayout extends FrameLayout {
 
     public void setTextWithAnimation(String str) {
         this.txt_tip.setText(str);
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.txt_tip, "alpha", 0.0f, 1.0f, 1.0f, 0.0f);
-        ofFloat.addListener(new AnimatorListenerAdapter() { // from class: com.luck.picture.lib.camera.view.CaptureLayout.3
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.txt_tip, "alpha", 0.0f, 1.0f, 1.0f, 0.0f);
+        objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() { // from class: com.luck.picture.lib.camera.view.CaptureLayout.3
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {
                 super.onAnimationEnd(animator);
@@ -296,8 +291,8 @@ public class CaptureLayout extends FrameLayout {
                 CaptureLayout.this.txt_tip.setAlpha(1.0f);
             }
         });
-        ofFloat.setDuration(2500L);
-        ofFloat.start();
+        objectAnimatorOfFloat.setDuration(2500L);
+        objectAnimatorOfFloat.start();
     }
 
     public void setTip(String str) {
@@ -331,10 +326,10 @@ public class CaptureLayout extends FrameLayout {
         this.btn_cancel.setClickable(false);
         this.btn_confirm.setClickable(false);
         this.iv_custom_left.setVisibility(8);
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.btn_cancel, "translationX", this.layout_width / 4, 0.0f);
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.btn_confirm, "translationX", (-this.layout_width) / 4, 0.0f);
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.btn_cancel, "translationX", this.layout_width / 4, 0.0f);
+        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.btn_confirm, "translationX", (-this.layout_width) / 4, 0.0f);
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ofFloat, ofFloat2);
+        animatorSet.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2);
         animatorSet.addListener(new AnimatorListenerAdapter() { // from class: com.luck.picture.lib.camera.view.CaptureLayout.1
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {

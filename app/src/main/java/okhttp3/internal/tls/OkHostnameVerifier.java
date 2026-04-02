@@ -13,7 +13,7 @@ import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class OkHostnameVerifier implements HostnameVerifier {
     private static final int ALT_DNS_NAME = 2;
     private static final int ALT_IPA_NAME = 7;
@@ -104,11 +104,11 @@ public final class OkHostnameVerifier implements HostnameVerifier {
             if (!lowerCase.startsWith("*.") || lowerCase.indexOf(42, 1) != -1 || str.length() < lowerCase.length() || "*.".equals(lowerCase)) {
                 return false;
             }
-            String substring = lowerCase.substring(1);
-            if (!str.endsWith(substring)) {
+            String strSubstring = lowerCase.substring(1);
+            if (!str.endsWith(strSubstring)) {
                 return false;
             }
-            int length = str.length() - substring.length();
+            int length = str.length() - strSubstring.length();
             return length <= 0 || str.lastIndexOf(46, length - 1) == -1;
         }
         return false;

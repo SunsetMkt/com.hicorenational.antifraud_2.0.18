@@ -14,7 +14,7 @@ import okio.ForwardingSink;
 import okio.Okio;
 import okio.Sink;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class CallServerInterceptor implements Interceptor {
     private final boolean forWebSocket;
 
@@ -39,51 +39,51 @@ public final class CallServerInterceptor implements Interceptor {
     @Override // okhttp3.Interceptor
     public Response intercept(Interceptor.Chain chain) throws IOException {
         RealInterceptorChain realInterceptorChain = (RealInterceptorChain) chain;
-        HttpCodec httpStream = realInterceptorChain.httpStream();
+        HttpCodec httpCodecHttpStream = realInterceptorChain.httpStream();
         StreamAllocation streamAllocation = realInterceptorChain.streamAllocation();
         RealConnection realConnection = (RealConnection) realInterceptorChain.connection();
         Request request = realInterceptorChain.request();
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         realInterceptorChain.eventListener().requestHeadersStart(realInterceptorChain.call());
-        httpStream.writeRequestHeaders(request);
+        httpCodecHttpStream.writeRequestHeaders(request);
         realInterceptorChain.eventListener().requestHeadersEnd(realInterceptorChain.call(), request);
-        Response.Builder builder = null;
+        Response.Builder responseHeaders = null;
         if (HttpMethod.permitsRequestBody(request.method()) && request.body() != null) {
             if ("100-continue".equalsIgnoreCase(request.header("Expect"))) {
-                httpStream.flushRequest();
+                httpCodecHttpStream.flushRequest();
                 realInterceptorChain.eventListener().responseHeadersStart(realInterceptorChain.call());
-                builder = httpStream.readResponseHeaders(true);
+                responseHeaders = httpCodecHttpStream.readResponseHeaders(true);
             }
-            if (builder == null) {
+            if (responseHeaders == null) {
                 realInterceptorChain.eventListener().requestBodyStart(realInterceptorChain.call());
-                CountingSink countingSink = new CountingSink(httpStream.createRequestBody(request, request.body().contentLength()));
-                BufferedSink buffer = Okio.buffer(countingSink);
-                request.body().writeTo(buffer);
-                buffer.close();
+                CountingSink countingSink = new CountingSink(httpCodecHttpStream.createRequestBody(request, request.body().contentLength()));
+                BufferedSink bufferedSinkBuffer = Okio.buffer(countingSink);
+                request.body().writeTo(bufferedSinkBuffer);
+                bufferedSinkBuffer.close();
                 realInterceptorChain.eventListener().requestBodyEnd(realInterceptorChain.call(), countingSink.successfulCount);
             } else if (!realConnection.isMultiplexed()) {
                 streamAllocation.noNewStreams();
             }
         }
-        httpStream.finishRequest();
-        if (builder == null) {
+        httpCodecHttpStream.finishRequest();
+        if (responseHeaders == null) {
             realInterceptorChain.eventListener().responseHeadersStart(realInterceptorChain.call());
-            builder = httpStream.readResponseHeaders(false);
+            responseHeaders = httpCodecHttpStream.readResponseHeaders(false);
         }
-        Response build = builder.request(request).handshake(streamAllocation.connection().handshake()).sentRequestAtMillis(currentTimeMillis).receivedResponseAtMillis(System.currentTimeMillis()).build();
-        int code = build.code();
-        if (code == 100) {
-            build = httpStream.readResponseHeaders(false).request(request).handshake(streamAllocation.connection().handshake()).sentRequestAtMillis(currentTimeMillis).receivedResponseAtMillis(System.currentTimeMillis()).build();
-            code = build.code();
+        Response responseBuild = responseHeaders.request(request).handshake(streamAllocation.connection().handshake()).sentRequestAtMillis(jCurrentTimeMillis).receivedResponseAtMillis(System.currentTimeMillis()).build();
+        int iCode = responseBuild.code();
+        if (iCode == 100) {
+            responseBuild = httpCodecHttpStream.readResponseHeaders(false).request(request).handshake(streamAllocation.connection().handshake()).sentRequestAtMillis(jCurrentTimeMillis).receivedResponseAtMillis(System.currentTimeMillis()).build();
+            iCode = responseBuild.code();
         }
-        realInterceptorChain.eventListener().responseHeadersEnd(realInterceptorChain.call(), build);
-        Response build2 = (this.forWebSocket && code == 101) ? build.newBuilder().body(Util.EMPTY_RESPONSE).build() : build.newBuilder().body(httpStream.openResponseBody(build)).build();
-        if ("close".equalsIgnoreCase(build2.request().header("Connection")) || "close".equalsIgnoreCase(build2.header("Connection"))) {
+        realInterceptorChain.eventListener().responseHeadersEnd(realInterceptorChain.call(), responseBuild);
+        Response responseBuild2 = (this.forWebSocket && iCode == 101) ? responseBuild.newBuilder().body(Util.EMPTY_RESPONSE).build() : responseBuild.newBuilder().body(httpCodecHttpStream.openResponseBody(responseBuild)).build();
+        if ("close".equalsIgnoreCase(responseBuild2.request().header("Connection")) || "close".equalsIgnoreCase(responseBuild2.header("Connection"))) {
             streamAllocation.noNewStreams();
         }
-        if ((code != 204 && code != 205) || build2.body().contentLength() <= 0) {
-            return build2;
+        if ((iCode != 204 && iCode != 205) || responseBuild2.body().contentLength() <= 0) {
+            return responseBuild2;
         }
-        throw new ProtocolException("HTTP " + code + " had non-zero Content-Length: " + build2.body().contentLength());
+        throw new ProtocolException("HTTP " + iCode + " had non-zero Content-Length: " + responseBuild2.body().contentLength());
     }
 }

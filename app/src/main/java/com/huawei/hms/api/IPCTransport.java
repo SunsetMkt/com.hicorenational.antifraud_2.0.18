@@ -14,7 +14,7 @@ import com.huawei.hms.support.api.entity.core.CommonCode;
 import com.huawei.hms.support.api.transport.DatagramTransport;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IPCTransport implements DatagramTransport {
     private static final String TAG = "IPCTransport";
     private int apiLevel;
@@ -38,14 +38,14 @@ public class IPCTransport implements DatagramTransport {
                     aidlApiClient.getService().asyncCall(dataBuffer, iAIDLCallback);
                     return 0;
                 } catch (Exception e2) {
-                    HMSLog.m7715e(TAG, "sync call ex:" + e2);
+                    HMSLog.e(TAG, "sync call ex:" + e2);
                 }
             }
             return CommonCode.ErrorCode.INTERNAL_ERROR;
         }
         DataBuffer dataBuffer2 = new DataBuffer(this.mURI, ProtocolNegotiate.getInstance().getVersion());
-        MessageCodec find = CodecLookup.find(dataBuffer2.getProtocol());
-        dataBuffer2.addBody(find.encode(this.mEntity, new Bundle()));
+        MessageCodec messageCodecFind = CodecLookup.find(dataBuffer2.getProtocol());
+        dataBuffer2.addBody(messageCodecFind.encode(this.mEntity, new Bundle()));
         RequestHeader requestHeader = new RequestHeader();
         requestHeader.setAppID(apiClient.getAppID());
         requestHeader.setPackageName(apiClient.getPackageName());
@@ -53,33 +53,33 @@ public class IPCTransport implements DatagramTransport {
         requestHeader.setApiNameList(((AidlApiClient) apiClient).getApiNameList());
         requestHeader.setSessionId(apiClient.getSessionId());
         requestHeader.setApiLevel(this.apiLevel);
-        dataBuffer2.header = find.encode(requestHeader, new Bundle());
+        dataBuffer2.header = messageCodecFind.encode(requestHeader, new Bundle());
         try {
             AidlApiClient aidlApiClient2 = (AidlApiClient) apiClient;
             if (aidlApiClient2.getService() == null) {
-                HMSLog.m7715e(TAG, "HuaweiApiClient is not binded to service yet.");
+                HMSLog.e(TAG, "HuaweiApiClient is not binded to service yet.");
                 return CommonCode.ErrorCode.INTERNAL_ERROR;
             }
             aidlApiClient2.getService().asyncCall(dataBuffer2, iAIDLCallback);
             return 0;
         } catch (Exception e3) {
-            HMSLog.m7715e(TAG, "sync call ex:" + e3);
+            HMSLog.e(TAG, "sync call ex:" + e3);
             return CommonCode.ErrorCode.INTERNAL_ERROR;
         }
     }
 
     @Override // com.huawei.hms.support.api.transport.DatagramTransport
-    public final void post(ApiClient apiClient, DatagramTransport.InterfaceC2523a interfaceC2523a) {
-        send(apiClient, interfaceC2523a);
+    public final void post(ApiClient apiClient, DatagramTransport.a aVar) {
+        send(apiClient, aVar);
     }
 
     @Override // com.huawei.hms.support.api.transport.DatagramTransport
-    public final void send(ApiClient apiClient, DatagramTransport.InterfaceC2523a interfaceC2523a) {
-        int syncCall = syncCall(apiClient, new IPCCallback(this.mResponseClass, interfaceC2523a));
-        if (syncCall == 0 || interfaceC2523a == null) {
+    public final void send(ApiClient apiClient, DatagramTransport.a aVar) {
+        int iSyncCall = syncCall(apiClient, new IPCCallback(this.mResponseClass, aVar));
+        if (iSyncCall == 0 || aVar == null) {
             return;
         }
-        interfaceC2523a.mo7669a(syncCall, null);
+        aVar.a(iSyncCall, null);
     }
 
     public IPCTransport(String str, IMessageEntity iMessageEntity, Class<? extends IMessageEntity> cls, int i2) {

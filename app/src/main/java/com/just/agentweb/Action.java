@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Action implements Parcelable {
     public static final transient int ACTION_CAMERA = 3;
     public static final transient int ACTION_FILE = 2;

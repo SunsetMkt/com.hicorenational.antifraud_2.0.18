@@ -6,7 +6,7 @@ import network.BaseInfo;
 import network.ReportCallInfo;
 import network.ReportSmsInfo;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class EvidenceCommInfo extends BaseInfo {
     private String[] appFileIDs;
     private ReportCaseInfo caseInfo;

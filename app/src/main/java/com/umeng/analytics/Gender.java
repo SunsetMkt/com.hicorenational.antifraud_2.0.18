@@ -13,33 +13,29 @@ jadx.core.utils.exceptions.JadxRuntimeException: Init of enum field 'Male' uses 
 	at jadx.core.dex.visitors.EnumVisitor.visit(EnumVisitor.java:100)
  */
 /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Gender {
     public static final Gender Female;
     public static final Gender Male;
     public static final Gender Unknown;
-
-    /* renamed from: a */
-    private static final /* synthetic */ Gender[] f11357a;
+    private static final /* synthetic */ Gender[] a;
     public int value;
 
-    /* renamed from: com.umeng.analytics.Gender$4 */
-    static /* synthetic */ class C33084 {
-
-        /* renamed from: a */
-        static final /* synthetic */ int[] f11358a = new int[Gender.values().length];
+    /* JADX INFO: renamed from: com.umeng.analytics.Gender$4, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass4 {
+        static final /* synthetic */ int[] a = new int[Gender.values().length];
 
         static {
             try {
-                f11358a[Gender.Male.ordinal()] = 1;
+                a[Gender.Male.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f11358a[Gender.Female.ordinal()] = 2;
+                a[Gender.Female.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f11358a[Gender.Unknown.ordinal()] = 3;
+                a[Gender.Unknown.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }
@@ -67,7 +63,7 @@ public class Gender {
                 return String.format(Locale.US, "Unknown:%d", Integer.valueOf(this.value));
             }
         };
-        f11357a = new Gender[]{Male, Female, Unknown};
+        a = new Gender[]{Male, Female, Unknown};
     }
 
     public static Gender getGender(int i2) {
@@ -75,7 +71,7 @@ public class Gender {
     }
 
     public static com.umeng.commonsdk.statistics.proto.Gender transGender(Gender gender) {
-        int i2 = C33084.f11358a[gender.ordinal()];
+        int i2 = AnonymousClass4.a[gender.ordinal()];
         return i2 != 1 ? i2 != 2 ? com.umeng.commonsdk.statistics.proto.Gender.UNKNOWN : com.umeng.commonsdk.statistics.proto.Gender.FEMALE : com.umeng.commonsdk.statistics.proto.Gender.MALE;
     }
 
@@ -84,7 +80,7 @@ public class Gender {
     }
 
     public static Gender[] values() {
-        return (Gender[]) f11357a.clone();
+        return (Gender[]) a.clone();
     }
 
     public int value() {

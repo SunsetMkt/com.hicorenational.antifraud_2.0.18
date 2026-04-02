@@ -3,23 +3,24 @@ package bean.module;
 import android.app.Activity;
 import android.text.TextUtils;
 import bean.RegionConfigBean;
-import com.google.gson.C2051e;
-import com.google.gson.p152d0.C2049a;
+import com.google.gson.e;
+import e.a;
+import f.b;
 import interfaces.IResultMuCallback;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import network.APIException;
 import network.MiddleSubscriber;
 import network.account.APIresult;
-import p245d.C4440a;
-import p247e.C4445b;
-import p388ui.basemvp.BaseView;
-import p388ui.model.ModelPresent;
-import util.C7307p1;
-import util.C7331w1;
+import ui.basemvp.BaseView;
+import ui.model.ModelPresent;
+import util.e2;
+import util.u1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ModuelConfig extends ModelPresent {
+    public static final String MODEL_AICK = "1021";
+    public static final String MODEL_CARDCK = "1020";
     public static final String MODEL_CASEXC = "1012";
     public static final String MODEL_FEEDBACK = "1018";
     public static final String MODEL_FRAUDCHECK = "1015";
@@ -46,10 +47,10 @@ public class ModuelConfig extends ModelPresent {
     }
 
     public void getRegionJsonApi(final boolean z, String str, final IResultMuCallback iResultMuCallback) {
-        String str2 = C4440a.f16882d + C4445b.f17079e;
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("regionCode", str);
-        getRegionJson(str2, hashMap, new MiddleSubscriber<APIresult<RegionConfigBean>>() { // from class: bean.module.ModuelConfig.1
+        String str2 = a.f10140d + b.f10186e;
+        HashMap<String, String> map = new HashMap<>();
+        map.put("regionCode", str);
+        getRegionJson(str2, map, new MiddleSubscriber<APIresult<RegionConfigBean>>() { // from class: bean.module.ModuelConfig.1
             @Override // network.MiddleSubscriber
             protected Type getType() {
                 return RegionConfigBean.class;
@@ -58,7 +59,7 @@ public class ModuelConfig extends ModelPresent {
             @Override // network.MiddleSubscriber
             protected void onErrorMiddle(APIException aPIException) {
                 super.onErrorMiddle(aPIException);
-                C7331w1.m26688a(aPIException.getMessage());
+                e2.a(aPIException.getMessage());
                 iResultMuCallback.onIRFail();
             }
 
@@ -77,7 +78,7 @@ public class ModuelConfig extends ModelPresent {
                     ModuelConfig.this.getRegionJsonData(data, iResultMuCallback);
                     return;
                 }
-                RegionMudelBean regionMudelBean = (RegionMudelBean) C7307p1.m26476a(data.getJsonRegionCode(), RegionMudelBean.class);
+                RegionMudelBean regionMudelBean = (RegionMudelBean) u1.a(data.getJsonRegionCode(), RegionMudelBean.class);
                 if (regionMudelBean == null) {
                     ModuelConfig.this.getRegionJsonData(data, iResultMuCallback);
                 } else if (TextUtils.equals(data.getJsonVersion(), regionMudelBean.getJsonVersion())) {
@@ -90,11 +91,11 @@ public class ModuelConfig extends ModelPresent {
     }
 
     public void getRegionJsonData(final RegionConfigBean regionConfigBean, final IResultMuCallback iResultMuCallback) {
-        String str = C4440a.f16882d + C4445b.f17083f;
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("jsonRegionCode", regionConfigBean.getJsonRegionCode());
-        hashMap.put("jsonVersion", regionConfigBean.getJsonVersion());
-        getRegionJsonData(str, hashMap, new MiddleSubscriber<APIresult<String>>() { // from class: bean.module.ModuelConfig.2
+        String str = a.f10140d + b.f10187f;
+        HashMap<String, String> map = new HashMap<>();
+        map.put("jsonRegionCode", regionConfigBean.getJsonRegionCode());
+        map.put("jsonVersion", regionConfigBean.getJsonVersion());
+        getRegionJsonData(str, map, new MiddleSubscriber<APIresult<String>>() { // from class: bean.module.ModuelConfig.2
             @Override // network.MiddleSubscriber
             protected Type getType() {
                 return String.class;
@@ -103,7 +104,7 @@ public class ModuelConfig extends ModelPresent {
             @Override // network.MiddleSubscriber
             protected void onErrorMiddle(APIException aPIException) {
                 super.onErrorMiddle(aPIException);
-                C7331w1.m26688a(aPIException.getMessage());
+                e2.a(aPIException.getMessage());
                 iResultMuCallback.onIRFail();
             }
 
@@ -117,7 +118,7 @@ public class ModuelConfig extends ModelPresent {
                 }
                 String data = aPIresult.getData();
                 try {
-                    if (!TextUtils.isEmpty(data) && (regionMudelBean = (RegionMudelBean) new C2051e().m5570a(data, new C2049a<RegionMudelBean>() { // from class: bean.module.ModuelConfig.2.1
+                    if (!TextUtils.isEmpty(data) && (regionMudelBean = (RegionMudelBean) new e().a(data, new com.google.gson.d0.a<RegionMudelBean>() { // from class: bean.module.ModuelConfig.2.1
                     }.getType())) != null) {
                         regionMudelBean.setJsonRegionCode(regionConfigBean.getJsonRegionCode());
                         regionMudelBean.setJsonVersion(regionConfigBean.getJsonVersion());

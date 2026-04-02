@@ -7,14 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TransactionIdCreater {
-    /* renamed from: a */
-    private static SecureRandom m6748a() {
+    private static SecureRandom a() {
         try {
             return SecureRandom.getInstance("SHA1PRNG");
         } catch (Exception unused) {
-            HMSLog.m7715e("TransactionIdCreater", "SecureRandom getInstance happpened NoSuchAlgorithmException!");
+            HMSLog.e("TransactionIdCreater", "SecureRandom getInstance happpened NoSuchAlgorithmException!");
             return new SecureRandom();
         }
     }
@@ -25,7 +24,7 @@ public class TransactionIdCreater {
         sb.append(StringUtil.addByteForNum(str2, 6, '0'));
         Locale locale = Locale.ENGLISH;
         sb.append(new SimpleDateFormat("yyyyMMddHHmmssSSS", locale).format(new Date()));
-        sb.append(String.format(locale, "%06d", Integer.valueOf(m6748a().nextInt(1000000))));
+        sb.append(String.format(locale, "%06d", Integer.valueOf(a().nextInt(1000000))));
         return sb.toString();
     }
 }

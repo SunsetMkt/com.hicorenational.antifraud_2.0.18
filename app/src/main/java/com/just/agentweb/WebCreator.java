@@ -3,7 +3,7 @@ package com.just.agentweb;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface WebCreator extends IWebIndicator {
     WebCreator create();
 

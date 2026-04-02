@@ -3,7 +3,7 @@ package bean;
 import java.io.Serializable;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CallBean implements Serializable {
     private String callDuration;
     private String callTelDetailID;

@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class HandlerCompat {
     private static final String TAG = "HandlerCompat";
 
@@ -43,9 +43,9 @@ public final class HandlerCompat {
         if (Build.VERSION.SDK_INT >= 28) {
             return handler.postDelayed(runnable, obj, j2);
         }
-        Message obtain = Message.obtain(handler, runnable);
-        obtain.obj = obj;
-        return handler.sendMessageDelayed(obtain, j2);
+        Message messageObtain = Message.obtain(handler, runnable);
+        messageObtain.obj = obj;
+        return handler.sendMessageDelayed(messageObtain, j2);
     }
 
     @NonNull

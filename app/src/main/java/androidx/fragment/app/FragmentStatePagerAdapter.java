@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.PagerAdapter;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class FragmentStatePagerAdapter extends PagerAdapter {
     public static final int BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT = 1;
 
@@ -110,14 +110,14 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
             }
             for (String str : bundle.keySet()) {
                 if (str.startsWith("f")) {
-                    int parseInt = Integer.parseInt(str.substring(1));
+                    int i2 = Integer.parseInt(str.substring(1));
                     Fragment fragment = this.mFragmentManager.getFragment(bundle, str);
                     if (fragment != null) {
-                        while (this.mFragments.size() <= parseInt) {
+                        while (this.mFragments.size() <= i2) {
                             this.mFragments.add(null);
                         }
                         fragment.setMenuVisibility(false);
-                        this.mFragments.set(parseInt, fragment);
+                        this.mFragments.set(i2, fragment);
                     } else {
                         String str2 = "Bad fragment at key " + str;
                     }

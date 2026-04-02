@@ -2,14 +2,12 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveyWebsitBean extends BaseBean {
     private String account;
     private String caseInfoID;
     private String createTime;
-
-    /* renamed from: id */
-    private String f1631id;
+    private String id;
     private String pwd;
     private String updateTime;
     private String url;
@@ -27,7 +25,7 @@ public class SurveyWebsitBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1631id;
+        return this.id;
     }
 
     public String getPwd() {
@@ -55,7 +53,7 @@ public class SurveyWebsitBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1631id = str;
+        this.id = str;
     }
 
     public void setPwd(String str) {

@@ -2,17 +2,15 @@ package com.huawei.hms.support.api.opendevice;
 
 import com.huawei.hms.support.api.client.Result;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OdidResult extends Result {
-
-    /* renamed from: id */
-    private String f7852id;
+    private String id;
 
     public String getId() {
-        return this.f7852id;
+        return this.id;
     }
 
     public void setId(String str) {
-        this.f7852id = str;
+        this.id = str;
     }
 }

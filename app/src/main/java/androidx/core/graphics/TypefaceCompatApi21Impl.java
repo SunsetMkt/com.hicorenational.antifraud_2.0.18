@@ -21,9 +21,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
     private static final String ADD_FONT_WEIGHT_STYLE_METHOD = "addFontWeightStyle";
     private static final String CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD = "createFromFamiliesWithDefault";
@@ -38,7 +38,7 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
     TypefaceCompatApi21Impl() {
     }
 
-    private static boolean addFontWeightStyle(Object obj, String str, int i2, boolean z) {
+    private static boolean addFontWeightStyle(Object obj, String str, int i2, boolean z) throws NoSuchMethodException {
         init();
         try {
             return ((Boolean) sAddFontWeightStyle.invoke(obj, str, Integer.valueOf(i2), Boolean.valueOf(z))).booleanValue();
@@ -47,12 +47,12 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
         }
     }
 
-    private static Typeface createFromFamiliesWithDefault(Object obj) {
+    private static Typeface createFromFamiliesWithDefault(Object obj) throws NoSuchMethodException {
         init();
         try {
-            Object newInstance = Array.newInstance(sFontFamily, 1);
-            Array.set(newInstance, 0, obj);
-            return (Typeface) sCreateFromFamiliesWithDefault.invoke(null, newInstance);
+            Object objNewInstance = Array.newInstance(sFontFamily, 1);
+            Array.set(objNewInstance, 0, obj);
+            return (Typeface) sCreateFromFamiliesWithDefault.invoke(null, objNewInstance);
         } catch (IllegalAccessException | InvocationTargetException e2) {
             throw new RuntimeException(e2);
         }
@@ -60,16 +60,16 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
 
     private File getFile(@NonNull ParcelFileDescriptor parcelFileDescriptor) {
         try {
-            String readlink = Os.readlink("/proc/self/fd/" + parcelFileDescriptor.getFd());
-            if (OsConstants.S_ISREG(Os.stat(readlink).st_mode)) {
-                return new File(readlink);
+            String str = Os.readlink("/proc/self/fd/" + parcelFileDescriptor.getFd());
+            if (OsConstants.S_ISREG(Os.stat(str).st_mode)) {
+                return new File(str);
             }
         } catch (ErrnoException unused) {
         }
         return null;
     }
 
-    private static void init() {
+    private static void init() throws NoSuchMethodException {
         Method method;
         Class<?> cls;
         Method method2;
@@ -96,7 +96,7 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
         sCreateFromFamiliesWithDefault = method;
     }
 
-    private static Object newFamily() {
+    private static Object newFamily() throws NoSuchMethodException {
         init();
         try {
             return sFontFamilyCtor.newInstance(new Object[0]);
@@ -106,8 +106,8 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
     }
 
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
-    public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i2) {
-        Object newFamily = newFamily();
+    public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i2) throws NoSuchMethodException {
+        Object objNewFamily = newFamily();
         for (FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry : fontFamilyFilesResourceEntry.getEntries()) {
             File tempFile = TypefaceCompatUtil.getTempFile(context);
             if (tempFile == null) {
@@ -117,7 +117,7 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
                 if (!TypefaceCompatUtil.copyToFile(tempFile, resources, fontFileResourceEntry.getResourceId())) {
                     return null;
                 }
-                if (!addFontWeightStyle(newFamily, tempFile.getPath(), fontFileResourceEntry.getWeight(), fontFileResourceEntry.isItalic())) {
+                if (!addFontWeightStyle(objNewFamily, tempFile.getPath(), fontFileResourceEntry.getWeight(), fontFileResourceEntry.isItalic())) {
                     return null;
                 }
                 tempFile.delete();
@@ -127,7 +127,7 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
                 tempFile.delete();
             }
         }
-        return createFromFamiliesWithDefault(newFamily);
+        return createFromFamiliesWithDefault(objNewFamily);
     }
 
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
@@ -135,32 +135,32 @@ class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
         if (fontInfoArr.length < 1) {
             return null;
         }
-        FontsContractCompat.FontInfo findBestInfo = findBestInfo(fontInfoArr, i2);
+        FontsContractCompat.FontInfo fontInfoFindBestInfo = findBestInfo(fontInfoArr, i2);
         try {
-            ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(findBestInfo.getUri(), "r", cancellationSignal);
-            if (openFileDescriptor == null) {
-                if (openFileDescriptor != null) {
-                    openFileDescriptor.close();
+            ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = context.getContentResolver().openFileDescriptor(fontInfoFindBestInfo.getUri(), "r", cancellationSignal);
+            if (parcelFileDescriptorOpenFileDescriptor == null) {
+                if (parcelFileDescriptorOpenFileDescriptor != null) {
+                    parcelFileDescriptorOpenFileDescriptor.close();
                 }
                 return null;
             }
             try {
-                File file = getFile(openFileDescriptor);
+                File file = getFile(parcelFileDescriptorOpenFileDescriptor);
                 if (file != null && file.canRead()) {
-                    Typeface createFromFile = Typeface.createFromFile(file);
-                    if (openFileDescriptor != null) {
-                        openFileDescriptor.close();
+                    Typeface typefaceCreateFromFile = Typeface.createFromFile(file);
+                    if (parcelFileDescriptorOpenFileDescriptor != null) {
+                        parcelFileDescriptorOpenFileDescriptor.close();
                     }
-                    return createFromFile;
+                    return typefaceCreateFromFile;
                 }
-                FileInputStream fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
+                FileInputStream fileInputStream = new FileInputStream(parcelFileDescriptorOpenFileDescriptor.getFileDescriptor());
                 try {
-                    Typeface createFromInputStream = super.createFromInputStream(context, fileInputStream);
+                    Typeface typefaceCreateFromInputStream = super.createFromInputStream(context, fileInputStream);
                     fileInputStream.close();
-                    if (openFileDescriptor != null) {
-                        openFileDescriptor.close();
+                    if (parcelFileDescriptorOpenFileDescriptor != null) {
+                        parcelFileDescriptorOpenFileDescriptor.close();
                     }
-                    return createFromInputStream;
+                    return typefaceCreateFromInputStream;
                 } finally {
                 }
             } finally {

@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ExecutorsEnhance {
 
     private static class DelegatedExecutorService extends AbstractExecutorService {
@@ -38,7 +38,7 @@ public class ExecutorsEnhance {
         }
 
         @Override // java.util.concurrent.AbstractExecutorService, java.util.concurrent.ExecutorService
-        public <T> T invokeAny(Collection<? extends Callable<T>> collection, long j2, TimeUnit timeUnit) throws InterruptedException, ExecutionException, TimeoutException {
+        public <T> T invokeAny(Collection<? extends Callable<T>> collection, long j2, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
             return (T) this.executorService.invokeAny(collection, j2, timeUnit);
         }
 
@@ -73,7 +73,7 @@ public class ExecutorsEnhance {
         }
 
         @Override // java.util.concurrent.AbstractExecutorService, java.util.concurrent.ExecutorService
-        public <T> T invokeAny(Collection<? extends Callable<T>> collection) throws InterruptedException, ExecutionException {
+        public <T> T invokeAny(Collection<? extends Callable<T>> collection) throws ExecutionException, InterruptedException {
             return (T) this.executorService.invokeAny(collection);
         }
 

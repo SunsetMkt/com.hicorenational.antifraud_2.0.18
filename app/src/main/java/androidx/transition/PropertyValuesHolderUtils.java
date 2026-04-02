@@ -7,7 +7,7 @@ import android.graphics.PointF;
 import android.os.Build;
 import android.util.Property;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class PropertyValuesHolderUtils {
     private PropertyValuesHolderUtils() {
     }

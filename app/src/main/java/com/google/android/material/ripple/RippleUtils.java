@@ -10,20 +10,28 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.graphics.ColorUtils;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class RippleUtils {
+    private static final int[] ENABLED_PRESSED_STATE_SET;
     private static final int[] FOCUSED_STATE_SET;
     private static final int[] HOVERED_FOCUSED_STATE_SET;
     private static final int[] HOVERED_STATE_SET;
+
+    @VisibleForTesting
+    static final String LOG_TAG;
     private static final int[] PRESSED_STATE_SET;
     private static final int[] SELECTED_FOCUSED_STATE_SET;
     private static final int[] SELECTED_HOVERED_FOCUSED_STATE_SET;
     private static final int[] SELECTED_HOVERED_STATE_SET;
     private static final int[] SELECTED_PRESSED_STATE_SET;
     private static final int[] SELECTED_STATE_SET;
+
+    @VisibleForTesting
+    static final String TRANSPARENT_DEFAULT_COLOR_WARNING = "Use a non-transparent color for the default color as it will be used to finish ripple animations.";
     public static final boolean USE_FRAMEWORK_RIPPLE;
 
     static {
@@ -37,6 +45,8 @@ public class RippleUtils {
         SELECTED_FOCUSED_STATE_SET = new int[]{R.attr.state_selected, R.attr.state_focused};
         SELECTED_HOVERED_STATE_SET = new int[]{R.attr.state_selected, R.attr.state_hovered};
         SELECTED_STATE_SET = new int[]{R.attr.state_selected};
+        ENABLED_PRESSED_STATE_SET = new int[]{R.attr.state_enabled, R.attr.state_pressed};
+        LOG_TAG = RippleUtils.class.getSimpleName();
     }
 
     private RippleUtils() {
@@ -68,5 +78,30 @@ public class RippleUtils {
     private static int getColorForState(@Nullable ColorStateList colorStateList, int[] iArr) {
         int colorForState = colorStateList != null ? colorStateList.getColorForState(iArr, colorStateList.getDefaultColor()) : 0;
         return USE_FRAMEWORK_RIPPLE ? doubleAlpha(colorForState) : colorForState;
+    }
+
+    @NonNull
+    public static ColorStateList sanitizeRippleDrawableColor(@Nullable ColorStateList colorStateList) {
+        if (colorStateList == null) {
+            return ColorStateList.valueOf(0);
+        }
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 22 && i2 <= 27 && Color.alpha(colorStateList.getDefaultColor()) == 0) {
+            Color.alpha(colorStateList.getColorForState(ENABLED_PRESSED_STATE_SET, 0));
+        }
+        return colorStateList;
+    }
+
+    public static boolean shouldDrawRippleCompat(@NonNull int[] iArr) {
+        boolean z = false;
+        boolean z2 = false;
+        for (int i2 : iArr) {
+            if (i2 == 16842910) {
+                z = true;
+            } else if (i2 == 16842908 || i2 == 16842919 || i2 == 16843623) {
+                z2 = true;
+            }
+        }
+        return z && z2;
     }
 }

@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.common.utils;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface HttpHeaders {
     public static final String AUTHORIZATION = "Authorization";
     public static final String CACHE_CONTROL = "Cache-Control";

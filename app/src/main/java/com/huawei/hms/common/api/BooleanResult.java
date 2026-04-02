@@ -4,7 +4,7 @@ import com.huawei.hms.common.internal.Preconditions;
 import com.huawei.hms.support.api.client.Result;
 import com.huawei.hms.support.api.client.Status;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BooleanResult extends Result {
     private final Status myStatus;
     private final boolean resultValue;

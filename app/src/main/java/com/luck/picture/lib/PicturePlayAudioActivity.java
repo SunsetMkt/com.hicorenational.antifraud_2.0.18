@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.tools.DateUtils;
 
+/* JADX INFO: loaded from: classes2.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class PicturePlayAudioActivity extends PictureBaseActivity implements View.OnClickListener {
     private String audio_path;
     private MediaPlayer mediaPlayer;
@@ -58,13 +58,13 @@ public class PicturePlayAudioActivity extends PictureBaseActivity implements Vie
             this.musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
             this.musicSeekBar.setMax(this.mediaPlayer.getDuration());
         }
-        if (this.tv_PlayPause.getText().toString().equals(getString(C2639R.string.picture_play_audio))) {
-            this.tv_PlayPause.setText(getString(C2639R.string.picture_pause_audio));
-            this.tv_musicStatus.setText(getString(C2639R.string.picture_play_audio));
+        if (this.tv_PlayPause.getText().toString().equals(getString(R.string.picture_play_audio))) {
+            this.tv_PlayPause.setText(getString(R.string.picture_pause_audio));
+            this.tv_musicStatus.setText(getString(R.string.picture_play_audio));
             playOrPause();
         } else {
-            this.tv_PlayPause.setText(getString(C2639R.string.picture_play_audio));
-            this.tv_musicStatus.setText(getString(C2639R.string.picture_pause_audio));
+            this.tv_PlayPause.setText(getString(R.string.picture_play_audio));
+            this.tv_musicStatus.setText(getString(R.string.picture_pause_audio));
             playOrPause();
         }
         if (this.isPlayAudio) {
@@ -74,36 +74,34 @@ public class PicturePlayAudioActivity extends PictureBaseActivity implements Vie
         this.isPlayAudio = true;
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8104a() {
+    public /* synthetic */ void a() {
         initPlayer(this.audio_path);
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m8105b() {
+    public /* synthetic */ void b() {
         stop(this.audio_path);
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return C2639R.layout.picture_play_audio;
+        return R.layout.picture_play_audio;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     protected void initWidgets() {
         super.initWidgets();
         this.audio_path = getIntent().getStringExtra(PictureConfig.EXTRA_AUDIO_PATH);
-        this.tv_musicStatus = (TextView) findViewById(C2639R.id.tv_musicStatus);
-        this.tv_musicTime = (TextView) findViewById(C2639R.id.tv_musicTime);
-        this.musicSeekBar = (SeekBar) findViewById(C2639R.id.musicSeekBar);
-        this.tv_musicTotal = (TextView) findViewById(C2639R.id.tv_musicTotal);
-        this.tv_PlayPause = (TextView) findViewById(C2639R.id.tv_PlayPause);
-        this.tv_Stop = (TextView) findViewById(C2639R.id.tv_Stop);
-        this.tv_Quit = (TextView) findViewById(C2639R.id.tv_Quit);
+        this.tv_musicStatus = (TextView) findViewById(R.id.tv_musicStatus);
+        this.tv_musicTime = (TextView) findViewById(R.id.tv_musicTime);
+        this.musicSeekBar = (SeekBar) findViewById(R.id.musicSeekBar);
+        this.tv_musicTotal = (TextView) findViewById(R.id.tv_musicTotal);
+        this.tv_PlayPause = (TextView) findViewById(R.id.tv_PlayPause);
+        this.tv_Stop = (TextView) findViewById(R.id.tv_Stop);
+        this.tv_Quit = (TextView) findViewById(R.id.tv_Quit);
         this.handler.postDelayed(new Runnable() { // from class: com.luck.picture.lib.m
             @Override // java.lang.Runnable
             public final void run() {
-                PicturePlayAudioActivity.this.m8104a();
+                this.a.a();
             }
         }, 30L);
         this.tv_PlayPause.setOnClickListener(this);
@@ -128,29 +126,28 @@ public class PicturePlayAudioActivity extends PictureBaseActivity implements Vie
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
-    /* renamed from: onBackPressed */
-    public void m8092a() {
-        super.m8092a();
+    public void onBackPressed() {
+        super.onBackPressed();
         closeActivity();
     }
 
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         int id = view.getId();
-        if (id == C2639R.id.tv_PlayPause) {
+        if (id == R.id.tv_PlayPause) {
             playAudio();
         }
-        if (id == C2639R.id.tv_Stop) {
-            this.tv_musicStatus.setText(getString(C2639R.string.picture_stop_audio));
-            this.tv_PlayPause.setText(getString(C2639R.string.picture_play_audio));
+        if (id == R.id.tv_Stop) {
+            this.tv_musicStatus.setText(getString(R.string.picture_stop_audio));
+            this.tv_PlayPause.setText(getString(R.string.picture_play_audio));
             stop(this.audio_path);
         }
-        if (id == C2639R.id.tv_Quit) {
+        if (id == R.id.tv_Quit) {
             this.handler.removeCallbacks(this.runnable);
             new Handler().postDelayed(new Runnable() { // from class: com.luck.picture.lib.n
                 @Override // java.lang.Runnable
                 public final void run() {
-                    PicturePlayAudioActivity.this.m8105b();
+                    this.a.b();
                 }
             }, 30L);
             try {

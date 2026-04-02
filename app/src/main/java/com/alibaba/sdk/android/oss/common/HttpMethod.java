@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.common;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum HttpMethod {
     DELETE,
     GET,

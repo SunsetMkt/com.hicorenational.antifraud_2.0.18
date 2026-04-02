@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import com.huawei.hms.framework.common.Logger;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GrsApp {
     private static final String BRAND;
     private static final GrsApp INSTANCE = new GrsApp();
@@ -17,9 +17,9 @@ public class GrsApp {
         if ("com.huawei.hms.framework.network.grs".equals(name)) {
             str = "";
         } else {
-            String[] split = name.split("\\.");
-            Logger.m6801v(TAG, "current brand is: " + split[1]);
-            str = split[1];
+            String[] strArrSplit = name.split("\\.");
+            Logger.v(TAG, "current brand is: " + strArrSplit[1]);
+            str = strArrSplit[1];
         }
         BRAND = str;
     }
@@ -43,7 +43,7 @@ public class GrsApp {
     }
 
     public String getIssueCountryCode(Context context) {
-        return C2357a.m6806a(context, false).getCountryCode();
+        return a.a(context, false).getCountryCode();
     }
 
     public void setAppConfigName(String str) {

@@ -5,14 +5,15 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
-import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintAttribute;
+import androidx.constraintlayout.widget.R;
 import androidx.core.app.NotificationCompat;
+import com.umeng.analytics.pro.cw;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class KeyCycle extends Key {
     public static final int KEY_TYPE = 4;
     static final String NAME = "KeyCycle";
@@ -60,26 +61,26 @@ public class KeyCycle extends Key {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(C0471R.styleable.KeyCycle_motionTarget, 1);
-            mAttrMap.append(C0471R.styleable.KeyCycle_framePosition, 2);
-            mAttrMap.append(C0471R.styleable.KeyCycle_transitionEasing, 3);
-            mAttrMap.append(C0471R.styleable.KeyCycle_curveFit, 4);
-            mAttrMap.append(C0471R.styleable.KeyCycle_waveShape, 5);
-            mAttrMap.append(C0471R.styleable.KeyCycle_wavePeriod, 6);
-            mAttrMap.append(C0471R.styleable.KeyCycle_waveOffset, 7);
-            mAttrMap.append(C0471R.styleable.KeyCycle_waveVariesBy, 8);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_alpha, 9);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_elevation, 10);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_rotation, 11);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_rotationX, 12);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_rotationY, 13);
-            mAttrMap.append(C0471R.styleable.KeyCycle_transitionPathRotate, 14);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_scaleX, 15);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_scaleY, 16);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_translationX, 17);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_translationY, 18);
-            mAttrMap.append(C0471R.styleable.KeyCycle_android_translationZ, 19);
-            mAttrMap.append(C0471R.styleable.KeyCycle_motionProgress, 20);
+            mAttrMap.append(R.styleable.KeyCycle_motionTarget, 1);
+            mAttrMap.append(R.styleable.KeyCycle_framePosition, 2);
+            mAttrMap.append(R.styleable.KeyCycle_transitionEasing, 3);
+            mAttrMap.append(R.styleable.KeyCycle_curveFit, 4);
+            mAttrMap.append(R.styleable.KeyCycle_waveShape, 5);
+            mAttrMap.append(R.styleable.KeyCycle_wavePeriod, 6);
+            mAttrMap.append(R.styleable.KeyCycle_waveOffset, 7);
+            mAttrMap.append(R.styleable.KeyCycle_waveVariesBy, 8);
+            mAttrMap.append(R.styleable.KeyCycle_android_alpha, 9);
+            mAttrMap.append(R.styleable.KeyCycle_android_elevation, 10);
+            mAttrMap.append(R.styleable.KeyCycle_android_rotation, 11);
+            mAttrMap.append(R.styleable.KeyCycle_android_rotationX, 12);
+            mAttrMap.append(R.styleable.KeyCycle_android_rotationY, 13);
+            mAttrMap.append(R.styleable.KeyCycle_transitionPathRotate, 14);
+            mAttrMap.append(R.styleable.KeyCycle_android_scaleX, 15);
+            mAttrMap.append(R.styleable.KeyCycle_android_scaleY, 16);
+            mAttrMap.append(R.styleable.KeyCycle_android_translationX, 17);
+            mAttrMap.append(R.styleable.KeyCycle_android_translationY, 18);
+            mAttrMap.append(R.styleable.KeyCycle_android_translationZ, 19);
+            mAttrMap.append(R.styleable.KeyCycle_motionProgress, 20);
         }
 
         private Loader() {
@@ -96,17 +97,13 @@ public class KeyCycle extends Key {
                             keyCycle.mTargetId = typedArray.getResourceId(index, keyCycle.mTargetId);
                             if (keyCycle.mTargetId == -1) {
                                 keyCycle.mTargetString = typedArray.getString(index);
-                                break;
-                            } else {
-                                break;
                             }
                         } else if (typedArray.peekValue(index).type == 3) {
                             keyCycle.mTargetString = typedArray.getString(index);
-                            break;
                         } else {
                             keyCycle.mTargetId = typedArray.getResourceId(index, keyCycle.mTargetId);
-                            break;
                         }
+                        break;
                     case 2:
                         keyCycle.mFramePosition = typedArray.getInt(index, keyCycle.mFramePosition);
                         break;
@@ -125,11 +122,10 @@ public class KeyCycle extends Key {
                     case 7:
                         if (typedArray.peekValue(index).type == 5) {
                             keyCycle.mWaveOffset = typedArray.getDimension(index, keyCycle.mWaveOffset);
-                            break;
                         } else {
                             keyCycle.mWaveOffset = typedArray.getFloat(index, keyCycle.mWaveOffset);
-                            break;
                         }
+                        break;
                     case 8:
                         keyCycle.mWaveVariesBy = typedArray.getInt(index, keyCycle.mWaveVariesBy);
                         break;
@@ -166,10 +162,8 @@ public class KeyCycle extends Key {
                     case 19:
                         if (Build.VERSION.SDK_INT >= 21) {
                             keyCycle.mTranslationZ = typedArray.getDimension(index, keyCycle.mTranslationZ);
-                            break;
-                        } else {
-                            break;
                         }
+                        break;
                     case 20:
                         keyCycle.mProgress = typedArray.getFloat(index, keyCycle.mProgress);
                         break;
@@ -186,28 +180,28 @@ public class KeyCycle extends Key {
         this.mCustomConstraints = new HashMap<>();
     }
 
-    public void addCycleValues(HashMap<String, KeyCycleOscillator> hashMap) {
-        for (String str : hashMap.keySet()) {
+    public void addCycleValues(HashMap<String, KeyCycleOscillator> map) {
+        for (String str : map.keySet()) {
             if (str.startsWith("CUSTOM")) {
                 ConstraintAttribute constraintAttribute = this.mCustomConstraints.get(str.substring(7));
                 if (constraintAttribute != null && constraintAttribute.getType() == ConstraintAttribute.AttributeType.FLOAT_TYPE) {
-                    hashMap.get(str).setPoint(this.mFramePosition, this.mWaveShape, this.mWaveVariesBy, this.mWavePeriod, this.mWaveOffset, constraintAttribute.getValueToInterpolate(), constraintAttribute);
+                    map.get(str).setPoint(this.mFramePosition, this.mWaveShape, this.mWaveVariesBy, this.mWavePeriod, this.mWaveOffset, constraintAttribute.getValueToInterpolate(), constraintAttribute);
                 }
             } else {
                 float value = getValue(str);
                 if (!Float.isNaN(value)) {
-                    hashMap.get(str).setPoint(this.mFramePosition, this.mWaveShape, this.mWaveVariesBy, this.mWavePeriod, this.mWaveOffset, value);
+                    map.get(str).setPoint(this.mFramePosition, this.mWaveShape, this.mWaveVariesBy, this.mWavePeriod, this.mWaveOffset, value);
                 }
             }
         }
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
-    public void addValues(HashMap<String, SplineSet> hashMap) {
+    public void addValues(HashMap<String, SplineSet> map) {
         SplineSet splineSet;
-        Debug.logStack("KeyCycle", "add " + hashMap.size() + " values", 2);
-        for (String str : hashMap.keySet()) {
-            splineSet = hashMap.get(str);
+        Debug.logStack("KeyCycle", "add " + map.size() + " values", 2);
+        for (String str : map.keySet()) {
+            splineSet = map.get(str);
             switch (str) {
                 case "alpha":
                     splineSet.setPoint(this.mFramePosition, this.mAlpha);
@@ -299,130 +293,37 @@ public class KeyCycle extends Key {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Removed duplicated region for block: B:44:0x0098  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public float getValue(String str) {
-        char c2;
-        switch (str.hashCode()) {
-            case -1249320806:
-                if (str.equals("rotationX")) {
-                    c2 = 3;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1249320805:
-                if (str.equals("rotationY")) {
-                    c2 = 4;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1225497657:
-                if (str.equals("translationX")) {
-                    c2 = '\b';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1225497656:
-                if (str.equals("translationY")) {
-                    c2 = '\t';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1225497655:
-                if (str.equals("translationZ")) {
-                    c2 = '\n';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1001078227:
-                if (str.equals(NotificationCompat.CATEGORY_PROGRESS)) {
-                    c2 = '\f';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -908189618:
-                if (str.equals("scaleX")) {
-                    c2 = 6;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -908189617:
-                if (str.equals("scaleY")) {
-                    c2 = 7;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -40300674:
-                if (str.equals("rotation")) {
-                    c2 = 2;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -4379043:
-                if (str.equals("elevation")) {
-                    c2 = 1;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case 37232917:
-                if (str.equals("transitionPathRotate")) {
-                    c2 = 5;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case 92909918:
-                if (str.equals("alpha")) {
-                    c2 = 0;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case 156108012:
-                if (str.equals("waveOffset")) {
-                    c2 = 11;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            default:
-                c2 = 65535;
-                break;
-        }
-        switch (c2) {
-            case 0:
+        switch (str) {
+            case "alpha":
                 return this.mAlpha;
-            case 1:
+            case "elevation":
                 return this.mElevation;
-            case 2:
+            case "rotation":
                 return this.mRotation;
-            case 3:
+            case "rotationX":
                 return this.mRotationX;
-            case 4:
+            case "rotationY":
                 return this.mRotationY;
-            case 5:
+            case "transitionPathRotate":
                 return this.mTransitionPathRotate;
-            case 6:
+            case "scaleX":
                 return this.mScaleX;
-            case 7:
+            case "scaleY":
                 return this.mScaleY;
-            case '\b':
+            case "translationX":
                 return this.mTranslationX;
-            case '\t':
+            case "translationY":
                 return this.mTranslationY;
-            case '\n':
+            case "translationZ":
                 return this.mTranslationZ;
-            case 11:
+            case "waveOffset":
                 return this.mWaveOffset;
-            case '\f':
+            case "progress":
                 return this.mProgress;
             default:
                 String str2 = "WARNING! KeyCycle UNKNOWN  " + str;
@@ -432,131 +333,114 @@ public class KeyCycle extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyCycle));
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyCycle));
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    /* JADX WARN: Removed duplicated region for block: B:53:0x00bd  */
     @Override // androidx.constraintlayout.motion.widget.Key
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public void setValue(String str, Object obj) {
-        char c2;
+        byte b2;
         switch (str.hashCode()) {
             case -1812823328:
-                if (str.equals("transitionEasing")) {
-                    c2 = '\t';
-                    break;
-                }
-                c2 = 65535;
+                b2 = !str.equals("transitionEasing") ? (byte) -1 : (byte) 9;
                 break;
             case -1249320806:
                 if (str.equals("rotationX")) {
-                    c2 = 5;
+                    b2 = 5;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1249320805:
                 if (str.equals("rotationY")) {
-                    c2 = 6;
+                    b2 = 6;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497657:
                 if (str.equals("translationX")) {
-                    c2 = 11;
+                    b2 = 11;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1225497656:
                 if (str.equals("translationY")) {
-                    c2 = '\f';
+                    b2 = 12;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -1001078227:
                 if (str.equals(NotificationCompat.CATEGORY_PROGRESS)) {
-                    c2 = 3;
+                    b2 = 3;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -908189618:
                 if (str.equals("scaleX")) {
-                    c2 = 7;
+                    b2 = 7;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -908189617:
                 if (str.equals("scaleY")) {
-                    c2 = '\b';
+                    b2 = 8;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -40300674:
                 if (str.equals("rotation")) {
-                    c2 = 4;
+                    b2 = 4;
                     break;
                 }
-                c2 = 65535;
                 break;
             case -4379043:
                 if (str.equals("elevation")) {
-                    c2 = 2;
+                    b2 = 2;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 37232917:
                 if (str.equals("transitionPathRotate")) {
-                    c2 = '\n';
+                    b2 = 10;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 92909918:
                 if (str.equals("alpha")) {
-                    c2 = 0;
+                    b2 = 0;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 156108012:
                 if (str.equals("waveOffset")) {
-                    c2 = 15;
+                    b2 = cw.f7205m;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 184161818:
                 if (str.equals("wavePeriod")) {
-                    c2 = 14;
+                    b2 = cw.f7204l;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 579057826:
                 if (str.equals("curveFit")) {
-                    c2 = 1;
+                    b2 = 1;
                     break;
                 }
-                c2 = 65535;
                 break;
             case 1317633238:
                 if (str.equals("mTranslationZ")) {
-                    c2 = '\r';
+                    b2 = cw.f7203k;
                     break;
                 }
-                c2 = 65535;
-                break;
-            default:
-                c2 = 65535;
                 break;
         }
-        switch (c2) {
+        switch (b2) {
             case 0:
                 this.mAlpha = toFloat(obj);
                 break;
@@ -581,22 +465,22 @@ public class KeyCycle extends Key {
             case 7:
                 this.mScaleX = toFloat(obj);
                 break;
-            case '\b':
+            case 8:
                 this.mScaleY = toFloat(obj);
                 break;
-            case '\t':
+            case 9:
                 this.mTransitionEasing = obj.toString();
                 break;
-            case '\n':
+            case 10:
                 this.mTransitionPathRotate = toFloat(obj);
                 break;
             case 11:
                 this.mTranslationX = toFloat(obj);
                 break;
-            case '\f':
+            case 12:
                 this.mTranslationY = toFloat(obj);
                 break;
-            case '\r':
+            case 13:
                 this.mTranslationZ = toFloat(obj);
                 break;
             case 14:

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.android.dingtalk.share.ddsharemodule.ShareConstant;
 import java.io.ByteArrayOutputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DDMediaMessage {
     private static final int MAX_CONTENT_LENGTH = 1024;
     private static final int MAX_THUMB_DATA_LENGTH = 32768;

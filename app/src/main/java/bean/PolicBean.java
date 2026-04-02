@@ -2,11 +2,9 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PolicBean extends BaseBean {
-
-    /* renamed from: id */
-    private String f1605id;
+    private String id;
     private String policeName;
     private String policeNumber;
     private String policeToken;
@@ -14,7 +12,7 @@ public class PolicBean extends BaseBean {
     private String telNumber;
 
     public String getId() {
-        return this.f1605id;
+        return this.id;
     }
 
     public String getPoliceName() {
@@ -38,7 +36,7 @@ public class PolicBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1605id = str;
+        this.id = str;
     }
 
     public void setPoliceName(String str) {

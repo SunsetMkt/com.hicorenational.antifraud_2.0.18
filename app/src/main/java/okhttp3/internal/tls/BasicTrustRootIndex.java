@@ -7,19 +7,19 @@ import java.util.Map;
 import java.util.Set;
 import javax.security.auth.x500.X500Principal;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class BasicTrustRootIndex implements TrustRootIndex {
     private final Map<X500Principal, Set<X509Certificate>> subjectToCaCerts = new LinkedHashMap();
 
     public BasicTrustRootIndex(X509Certificate... x509CertificateArr) {
         for (X509Certificate x509Certificate : x509CertificateArr) {
             X500Principal subjectX500Principal = x509Certificate.getSubjectX500Principal();
-            Set<X509Certificate> set = this.subjectToCaCerts.get(subjectX500Principal);
-            if (set == null) {
-                set = new LinkedHashSet<>(1);
-                this.subjectToCaCerts.put(subjectX500Principal, set);
+            Set<X509Certificate> linkedHashSet = this.subjectToCaCerts.get(subjectX500Principal);
+            if (linkedHashSet == null) {
+                linkedHashSet = new LinkedHashSet<>(1);
+                this.subjectToCaCerts.put(subjectX500Principal, linkedHashSet);
             }
-            set.add(x509Certificate);
+            linkedHashSet.add(x509Certificate);
         }
     }
 

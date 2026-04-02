@@ -3,7 +3,7 @@ package com.hihonor.push.sdk.common.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ApiException extends Exception implements Parcelable {
     public static final Parcelable.Creator<ApiException> CREATOR = new Parcelable.Creator<ApiException>() { // from class: com.hihonor.push.sdk.common.data.ApiException.1
         /* JADX WARN: Can't rename method to resolve collision */

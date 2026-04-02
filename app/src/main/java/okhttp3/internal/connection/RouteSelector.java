@@ -19,7 +19,7 @@ import okhttp3.HttpUrl;
 import okhttp3.Route;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class RouteSelector {
     private final Address address;
     private final Call call;
@@ -87,37 +87,37 @@ public final class RouteSelector {
     }
 
     private void resetNextInetSocketAddress(Proxy proxy) throws IOException {
-        String host;
-        int port;
+        String strHost;
+        int iPort;
         this.inetSocketAddresses = new ArrayList();
         if (proxy.type() == Proxy.Type.DIRECT || proxy.type() == Proxy.Type.SOCKS) {
-            host = this.address.url().host();
-            port = this.address.url().port();
+            strHost = this.address.url().host();
+            iPort = this.address.url().port();
         } else {
-            SocketAddress address = proxy.address();
-            if (!(address instanceof InetSocketAddress)) {
-                throw new IllegalArgumentException("Proxy.address() is not an InetSocketAddress: " + address.getClass());
+            SocketAddress socketAddressAddress = proxy.address();
+            if (!(socketAddressAddress instanceof InetSocketAddress)) {
+                throw new IllegalArgumentException("Proxy.address() is not an InetSocketAddress: " + socketAddressAddress.getClass());
             }
-            InetSocketAddress inetSocketAddress = (InetSocketAddress) address;
-            host = getHostString(inetSocketAddress);
-            port = inetSocketAddress.getPort();
+            InetSocketAddress inetSocketAddress = (InetSocketAddress) socketAddressAddress;
+            strHost = getHostString(inetSocketAddress);
+            iPort = inetSocketAddress.getPort();
         }
-        if (port < 1 || port > 65535) {
-            throw new SocketException("No route to " + host + Constants.COLON_SEPARATOR + port + "; port is out of range");
+        if (iPort < 1 || iPort > 65535) {
+            throw new SocketException("No route to " + strHost + Constants.COLON_SEPARATOR + iPort + "; port is out of range");
         }
         if (proxy.type() == Proxy.Type.SOCKS) {
-            this.inetSocketAddresses.add(InetSocketAddress.createUnresolved(host, port));
+            this.inetSocketAddresses.add(InetSocketAddress.createUnresolved(strHost, iPort));
             return;
         }
-        this.eventListener.dnsStart(this.call, host);
-        List<InetAddress> lookup = this.address.dns().lookup(host);
-        if (lookup.isEmpty()) {
-            throw new UnknownHostException(this.address.dns() + " returned no addresses for " + host);
+        this.eventListener.dnsStart(this.call, strHost);
+        List<InetAddress> listLookup = this.address.dns().lookup(strHost);
+        if (listLookup.isEmpty()) {
+            throw new UnknownHostException(this.address.dns() + " returned no addresses for " + strHost);
         }
-        this.eventListener.dnsEnd(this.call, host, lookup);
-        int size = lookup.size();
+        this.eventListener.dnsEnd(this.call, strHost, listLookup);
+        int size = listLookup.size();
         for (int i2 = 0; i2 < size; i2++) {
-            this.inetSocketAddresses.add(new InetSocketAddress(lookup.get(i2), port));
+            this.inetSocketAddresses.add(new InetSocketAddress(listLookup.get(i2), iPort));
         }
     }
 
@@ -125,8 +125,8 @@ public final class RouteSelector {
         if (proxy != null) {
             this.proxies = Collections.singletonList(proxy);
         } else {
-            List<Proxy> select = this.address.proxySelector().select(httpUrl.uri());
-            this.proxies = (select == null || select.isEmpty()) ? Util.immutableList(Proxy.NO_PROXY) : Util.immutableList(select);
+            List<Proxy> listSelect = this.address.proxySelector().select(httpUrl.uri());
+            this.proxies = (listSelect == null || listSelect.isEmpty()) ? Util.immutableList(Proxy.NO_PROXY) : Util.immutableList(listSelect);
         }
         this.nextProxyIndex = 0;
     }
@@ -148,10 +148,10 @@ public final class RouteSelector {
         }
         ArrayList arrayList = new ArrayList();
         while (hasNextProxy()) {
-            Proxy nextProxy = nextProxy();
+            Proxy proxyNextProxy = nextProxy();
             int size = this.inetSocketAddresses.size();
             for (int i2 = 0; i2 < size; i2++) {
-                Route route = new Route(this.address, nextProxy, this.inetSocketAddresses.get(i2));
+                Route route = new Route(this.address, proxyNextProxy, this.inetSocketAddresses.get(i2));
                 if (this.routeDatabase.shouldPostpone(route)) {
                     this.postponedRoutes.add(route);
                 } else {

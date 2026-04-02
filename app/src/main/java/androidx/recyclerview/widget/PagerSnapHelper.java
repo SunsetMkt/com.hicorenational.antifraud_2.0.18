@@ -1,5 +1,6 @@
 package androidx.recyclerview.widget;
 
+import android.content.Context;
 import android.graphics.PointF;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -7,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PagerSnapHelper extends SnapHelper {
     private static final int MAX_SCROLL_ON_FLING_DURATION = 100;
 
@@ -17,8 +18,37 @@ public class PagerSnapHelper extends SnapHelper {
     @Nullable
     private OrientationHelper mVerticalHelper;
 
+    /* JADX INFO: renamed from: androidx.recyclerview.widget.PagerSnapHelper$1 */
+    class AnonymousClass1 extends LinearSmoothScroller {
+        AnonymousClass1(Context context) {
+            super(context);
+        }
+
+        @Override // androidx.recyclerview.widget.LinearSmoothScroller
+        protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+            return 100.0f / displayMetrics.densityDpi;
+        }
+
+        @Override // androidx.recyclerview.widget.LinearSmoothScroller
+        protected int calculateTimeForScrolling(int i2) {
+            return Math.min(100, super.calculateTimeForScrolling(i2));
+        }
+
+        @Override // androidx.recyclerview.widget.LinearSmoothScroller, androidx.recyclerview.widget.RecyclerView.SmoothScroller
+        protected void onTargetFound(View view, RecyclerView.State state, RecyclerView.SmoothScroller.Action action) {
+            PagerSnapHelper pagerSnapHelper = PagerSnapHelper.this;
+            int[] iArrCalculateDistanceToFinalSnap = pagerSnapHelper.calculateDistanceToFinalSnap(pagerSnapHelper.mRecyclerView.getLayoutManager(), view);
+            int i2 = iArrCalculateDistanceToFinalSnap[0];
+            int i3 = iArrCalculateDistanceToFinalSnap[1];
+            int iCalculateTimeForDeceleration = calculateTimeForDeceleration(Math.max(Math.abs(i2), Math.abs(i3)));
+            if (iCalculateTimeForDeceleration > 0) {
+                action.update(i2, i3, iCalculateTimeForDeceleration, this.mDecelerateInterpolator);
+            }
+        }
+    }
+
     private int distanceToCenter(@NonNull RecyclerView.LayoutManager layoutManager, @NonNull View view, OrientationHelper orientationHelper) {
-        return (orientationHelper.getDecoratedStart(view) + (orientationHelper.getDecoratedMeasurement(view) / 2)) - (layoutManager.getClipToPadding() ? orientationHelper.getStartAfterPadding() + (orientationHelper.getTotalSpace() / 2) : orientationHelper.getEnd() / 2);
+        return (orientationHelper.getDecoratedStart(view) + (orientationHelper.getDecoratedMeasurement(view) / 2)) - (orientationHelper.getStartAfterPadding() + (orientationHelper.getTotalSpace() / 2));
     }
 
     @Nullable
@@ -28,33 +58,14 @@ public class PagerSnapHelper extends SnapHelper {
         if (childCount == 0) {
             return null;
         }
-        int startAfterPadding = layoutManager.getClipToPadding() ? orientationHelper.getStartAfterPadding() + (orientationHelper.getTotalSpace() / 2) : orientationHelper.getEnd() / 2;
+        int startAfterPadding = orientationHelper.getStartAfterPadding() + (orientationHelper.getTotalSpace() / 2);
         int i2 = Integer.MAX_VALUE;
         for (int i3 = 0; i3 < childCount; i3++) {
             View childAt = layoutManager.getChildAt(i3);
-            int abs = Math.abs((orientationHelper.getDecoratedStart(childAt) + (orientationHelper.getDecoratedMeasurement(childAt) / 2)) - startAfterPadding);
-            if (abs < i2) {
+            int iAbs = Math.abs((orientationHelper.getDecoratedStart(childAt) + (orientationHelper.getDecoratedMeasurement(childAt) / 2)) - startAfterPadding);
+            if (iAbs < i2) {
                 view = childAt;
-                i2 = abs;
-            }
-        }
-        return view;
-    }
-
-    @Nullable
-    private View findStartView(RecyclerView.LayoutManager layoutManager, OrientationHelper orientationHelper) {
-        int childCount = layoutManager.getChildCount();
-        View view = null;
-        if (childCount == 0) {
-            return null;
-        }
-        int i2 = Integer.MAX_VALUE;
-        for (int i3 = 0; i3 < childCount; i3++) {
-            View childAt = layoutManager.getChildAt(i3);
-            int decoratedStart = orientationHelper.getDecoratedStart(childAt);
-            if (decoratedStart < i2) {
-                view = childAt;
-                i2 = decoratedStart;
+                i2 = iAbs;
             }
         }
         return view;
@@ -69,6 +80,17 @@ public class PagerSnapHelper extends SnapHelper {
         return this.mHorizontalHelper;
     }
 
+    @Nullable
+    private OrientationHelper getOrientationHelper(RecyclerView.LayoutManager layoutManager) {
+        if (layoutManager.canScrollVertically()) {
+            return getVerticalHelper(layoutManager);
+        }
+        if (layoutManager.canScrollHorizontally()) {
+            return getHorizontalHelper(layoutManager);
+        }
+        return null;
+    }
+
     @NonNull
     private OrientationHelper getVerticalHelper(@NonNull RecyclerView.LayoutManager layoutManager) {
         OrientationHelper orientationHelper = this.mVerticalHelper;
@@ -76,6 +98,20 @@ public class PagerSnapHelper extends SnapHelper {
             this.mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager);
         }
         return this.mVerticalHelper;
+    }
+
+    private boolean isForwardFling(RecyclerView.LayoutManager layoutManager, int i2, int i3) {
+        return layoutManager.canScrollHorizontally() ? i2 > 0 : i3 > 0;
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    private boolean isReverseLayout(RecyclerView.LayoutManager layoutManager) {
+        PointF pointFComputeScrollVectorForPosition;
+        int itemCount = layoutManager.getItemCount();
+        if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider) || (pointFComputeScrollVectorForPosition = ((RecyclerView.SmoothScroller.ScrollVectorProvider) layoutManager).computeScrollVectorForPosition(itemCount - 1)) == null) {
+            return false;
+        }
+        return pointFComputeScrollVectorForPosition.x < 0.0f || pointFComputeScrollVectorForPosition.y < 0.0f;
     }
 
     @Override // androidx.recyclerview.widget.SnapHelper
@@ -99,6 +135,10 @@ public class PagerSnapHelper extends SnapHelper {
     protected LinearSmoothScroller createSnapScroller(RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider) {
             return new LinearSmoothScroller(this.mRecyclerView.getContext()) { // from class: androidx.recyclerview.widget.PagerSnapHelper.1
+                AnonymousClass1(Context context) {
+                    super(context);
+                }
+
                 @Override // androidx.recyclerview.widget.LinearSmoothScroller
                 protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
                     return 100.0f / displayMetrics.densityDpi;
@@ -112,12 +152,12 @@ public class PagerSnapHelper extends SnapHelper {
                 @Override // androidx.recyclerview.widget.LinearSmoothScroller, androidx.recyclerview.widget.RecyclerView.SmoothScroller
                 protected void onTargetFound(View view, RecyclerView.State state, RecyclerView.SmoothScroller.Action action) {
                     PagerSnapHelper pagerSnapHelper = PagerSnapHelper.this;
-                    int[] calculateDistanceToFinalSnap = pagerSnapHelper.calculateDistanceToFinalSnap(pagerSnapHelper.mRecyclerView.getLayoutManager(), view);
-                    int i2 = calculateDistanceToFinalSnap[0];
-                    int i3 = calculateDistanceToFinalSnap[1];
-                    int calculateTimeForDeceleration = calculateTimeForDeceleration(Math.max(Math.abs(i2), Math.abs(i3)));
-                    if (calculateTimeForDeceleration > 0) {
-                        action.update(i2, i3, calculateTimeForDeceleration, this.mDecelerateInterpolator);
+                    int[] iArrCalculateDistanceToFinalSnap = pagerSnapHelper.calculateDistanceToFinalSnap(pagerSnapHelper.mRecyclerView.getLayoutManager(), view);
+                    int i2 = iArrCalculateDistanceToFinalSnap[0];
+                    int i3 = iArrCalculateDistanceToFinalSnap[1];
+                    int iCalculateTimeForDeceleration = calculateTimeForDeceleration(Math.max(Math.abs(i2), Math.abs(i3)));
+                    if (iCalculateTimeForDeceleration > 0) {
+                        action.update(i2, i3, iCalculateTimeForDeceleration, this.mDecelerateInterpolator);
                     }
                 }
             };
@@ -137,29 +177,49 @@ public class PagerSnapHelper extends SnapHelper {
         return null;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
     @Override // androidx.recyclerview.widget.SnapHelper
     public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int i2, int i3) {
-        int position;
-        PointF computeScrollVectorForPosition;
+        OrientationHelper orientationHelper;
         int itemCount = layoutManager.getItemCount();
-        if (itemCount == 0) {
+        if (itemCount == 0 || (orientationHelper = getOrientationHelper(layoutManager)) == null) {
             return -1;
         }
+        int childCount = layoutManager.getChildCount();
         View view = null;
-        if (layoutManager.canScrollVertically()) {
-            view = findStartView(layoutManager, getVerticalHelper(layoutManager));
-        } else if (layoutManager.canScrollHorizontally()) {
-            view = findStartView(layoutManager, getHorizontalHelper(layoutManager));
+        View view2 = null;
+        int i4 = Integer.MIN_VALUE;
+        int i5 = Integer.MAX_VALUE;
+        for (int i6 = 0; i6 < childCount; i6++) {
+            View childAt = layoutManager.getChildAt(i6);
+            if (childAt != null) {
+                int iDistanceToCenter = distanceToCenter(layoutManager, childAt, orientationHelper);
+                if (iDistanceToCenter <= 0 && iDistanceToCenter > i4) {
+                    view2 = childAt;
+                    i4 = iDistanceToCenter;
+                }
+                if (iDistanceToCenter >= 0 && iDistanceToCenter < i5) {
+                    view = childAt;
+                    i5 = iDistanceToCenter;
+                }
+            }
         }
-        if (view == null || (position = layoutManager.getPosition(view)) == -1) {
+        boolean zIsForwardFling = isForwardFling(layoutManager, i2, i3);
+        if (zIsForwardFling && view != null) {
+            return layoutManager.getPosition(view);
+        }
+        if (!zIsForwardFling && view2 != null) {
+            return layoutManager.getPosition(view2);
+        }
+        if (!zIsForwardFling) {
+            view2 = view;
+        }
+        if (view2 == null) {
             return -1;
         }
-        boolean z = false;
-        boolean z2 = !layoutManager.canScrollHorizontally() ? i3 <= 0 : i2 <= 0;
-        if ((layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider) && (computeScrollVectorForPosition = ((RecyclerView.SmoothScroller.ScrollVectorProvider) layoutManager).computeScrollVectorForPosition(itemCount - 1)) != null && (computeScrollVectorForPosition.x < 0.0f || computeScrollVectorForPosition.y < 0.0f)) {
-            z = true;
+        int position = layoutManager.getPosition(view2) + (isReverseLayout(layoutManager) == zIsForwardFling ? -1 : 1);
+        if (position < 0 || position >= itemCount) {
+            return -1;
         }
-        return z ? z2 ? position - 1 : position : z2 ? position + 1 : position;
+        return position;
     }
 }

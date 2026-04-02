@@ -7,100 +7,99 @@ import android.os.IBinder;
 import android.os.Parcelable;
 import android.util.Size;
 import android.util.SizeF;
+import i.e1;
+import i.i0;
+import i.y;
+import i.z2.h0;
+import j.c.a.d;
 import java.io.Serializable;
-import p286h.C5226e1;
-import p286h.C5334i0;
-import p286h.InterfaceC5713y;
-import p286h.p309q2.p311t.C5544i0;
-import p286h.p323z2.C5736h0;
-import p324i.p336c.p337a.InterfaceC5816d;
 
-/* compiled from: Bundle.kt */
-@InterfaceC5713y(m23544bv = {1, 0, 2}, m23545d1 = {"\u0000\u001c\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0010\u0000\n\u0002\b\u0002\u001a;\u0010\u0000\u001a\u00020\u00012.\u0010\u0002\u001a\u0018\u0012\u0014\b\u0001\u0012\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u00040\u0003\"\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u0004¢\u0006\u0002\u0010\u0007¨\u0006\b"}, m23546d2 = {"bundleOf", "Landroid/os/Bundle;", "pairs", "", "Lkotlin/Pair;", "", "", "([Lkotlin/Pair;)Landroid/os/Bundle;", "core-ktx_release"}, m23547k = 2, m23548mv = {1, 1, 10})
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Bundle.kt */
+/* JADX INFO: loaded from: classes.dex */
+@y(bv = {1, 0, 2}, d1 = {"\u0000\u001c\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0010\u0000\n\u0002\b\u0002\u001a;\u0010\u0000\u001a\u00020\u00012.\u0010\u0002\u001a\u0018\u0012\u0014\b\u0001\u0012\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u00040\u0003\"\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u0004\u00a2\u0006\u0002\u0010\u0007\u00a8\u0006\b"}, d2 = {"bundleOf", "Landroid/os/Bundle;", "pairs", "", "Lkotlin/Pair;", "", "", "([Lkotlin/Pair;)Landroid/os/Bundle;", "core-ktx_release"}, k = 2, mv = {1, 1, 10})
 public final class BundleKt {
-    @InterfaceC5816d
-    public static final Bundle bundleOf(@InterfaceC5816d C5334i0<String, ? extends Object>... c5334i0Arr) {
-        C5544i0.m22546f(c5334i0Arr, "pairs");
-        Bundle bundle = new Bundle(c5334i0Arr.length);
-        for (C5334i0<String, ? extends Object> c5334i0 : c5334i0Arr) {
-            String component1 = c5334i0.component1();
-            Object component2 = c5334i0.component2();
-            if (component2 == null) {
-                bundle.putString(component1, null);
-            } else if (component2 instanceof Boolean) {
-                bundle.putBoolean(component1, ((Boolean) component2).booleanValue());
-            } else if (component2 instanceof Byte) {
-                bundle.putByte(component1, ((Number) component2).byteValue());
-            } else if (component2 instanceof Character) {
-                bundle.putChar(component1, ((Character) component2).charValue());
-            } else if (component2 instanceof Double) {
-                bundle.putDouble(component1, ((Number) component2).doubleValue());
-            } else if (component2 instanceof Float) {
-                bundle.putFloat(component1, ((Number) component2).floatValue());
-            } else if (component2 instanceof Integer) {
-                bundle.putInt(component1, ((Number) component2).intValue());
-            } else if (component2 instanceof Long) {
-                bundle.putLong(component1, ((Number) component2).longValue());
-            } else if (component2 instanceof Short) {
-                bundle.putShort(component1, ((Number) component2).shortValue());
-            } else if (component2 instanceof Bundle) {
-                bundle.putBundle(component1, (Bundle) component2);
-            } else if (component2 instanceof CharSequence) {
-                bundle.putCharSequence(component1, (CharSequence) component2);
-            } else if (component2 instanceof Parcelable) {
-                bundle.putParcelable(component1, (Parcelable) component2);
-            } else if (component2 instanceof boolean[]) {
-                bundle.putBooleanArray(component1, (boolean[]) component2);
-            } else if (component2 instanceof byte[]) {
-                bundle.putByteArray(component1, (byte[]) component2);
-            } else if (component2 instanceof char[]) {
-                bundle.putCharArray(component1, (char[]) component2);
-            } else if (component2 instanceof double[]) {
-                bundle.putDoubleArray(component1, (double[]) component2);
-            } else if (component2 instanceof float[]) {
-                bundle.putFloatArray(component1, (float[]) component2);
-            } else if (component2 instanceof int[]) {
-                bundle.putIntArray(component1, (int[]) component2);
-            } else if (component2 instanceof long[]) {
-                bundle.putLongArray(component1, (long[]) component2);
-            } else if (component2 instanceof short[]) {
-                bundle.putShortArray(component1, (short[]) component2);
-            } else if (component2 instanceof Object[]) {
-                Class<?> componentType = component2.getClass().getComponentType();
+    @d
+    public static final Bundle bundleOf(@d i0<String, ? extends Object>... i0VarArr) {
+        i.q2.t.i0.f(i0VarArr, "pairs");
+        Bundle bundle = new Bundle(i0VarArr.length);
+        for (i0<String, ? extends Object> i0Var : i0VarArr) {
+            String strComponent1 = i0Var.component1();
+            Object objComponent2 = i0Var.component2();
+            if (objComponent2 == null) {
+                bundle.putString(strComponent1, null);
+            } else if (objComponent2 instanceof Boolean) {
+                bundle.putBoolean(strComponent1, ((Boolean) objComponent2).booleanValue());
+            } else if (objComponent2 instanceof Byte) {
+                bundle.putByte(strComponent1, ((Number) objComponent2).byteValue());
+            } else if (objComponent2 instanceof Character) {
+                bundle.putChar(strComponent1, ((Character) objComponent2).charValue());
+            } else if (objComponent2 instanceof Double) {
+                bundle.putDouble(strComponent1, ((Number) objComponent2).doubleValue());
+            } else if (objComponent2 instanceof Float) {
+                bundle.putFloat(strComponent1, ((Number) objComponent2).floatValue());
+            } else if (objComponent2 instanceof Integer) {
+                bundle.putInt(strComponent1, ((Number) objComponent2).intValue());
+            } else if (objComponent2 instanceof Long) {
+                bundle.putLong(strComponent1, ((Number) objComponent2).longValue());
+            } else if (objComponent2 instanceof Short) {
+                bundle.putShort(strComponent1, ((Number) objComponent2).shortValue());
+            } else if (objComponent2 instanceof Bundle) {
+                bundle.putBundle(strComponent1, (Bundle) objComponent2);
+            } else if (objComponent2 instanceof CharSequence) {
+                bundle.putCharSequence(strComponent1, (CharSequence) objComponent2);
+            } else if (objComponent2 instanceof Parcelable) {
+                bundle.putParcelable(strComponent1, (Parcelable) objComponent2);
+            } else if (objComponent2 instanceof boolean[]) {
+                bundle.putBooleanArray(strComponent1, (boolean[]) objComponent2);
+            } else if (objComponent2 instanceof byte[]) {
+                bundle.putByteArray(strComponent1, (byte[]) objComponent2);
+            } else if (objComponent2 instanceof char[]) {
+                bundle.putCharArray(strComponent1, (char[]) objComponent2);
+            } else if (objComponent2 instanceof double[]) {
+                bundle.putDoubleArray(strComponent1, (double[]) objComponent2);
+            } else if (objComponent2 instanceof float[]) {
+                bundle.putFloatArray(strComponent1, (float[]) objComponent2);
+            } else if (objComponent2 instanceof int[]) {
+                bundle.putIntArray(strComponent1, (int[]) objComponent2);
+            } else if (objComponent2 instanceof long[]) {
+                bundle.putLongArray(strComponent1, (long[]) objComponent2);
+            } else if (objComponent2 instanceof short[]) {
+                bundle.putShortArray(strComponent1, (short[]) objComponent2);
+            } else if (objComponent2 instanceof Object[]) {
+                Class<?> componentType = objComponent2.getClass().getComponentType();
                 if (Parcelable.class.isAssignableFrom(componentType)) {
-                    if (component2 == null) {
-                        throw new C5226e1("null cannot be cast to non-null type kotlin.Array<android.os.Parcelable>");
+                    if (objComponent2 == null) {
+                        throw new e1("null cannot be cast to non-null type kotlin.Array<android.os.Parcelable>");
                     }
-                    bundle.putParcelableArray(component1, (Parcelable[]) component2);
+                    bundle.putParcelableArray(strComponent1, (Parcelable[]) objComponent2);
                 } else if (String.class.isAssignableFrom(componentType)) {
-                    if (component2 == null) {
-                        throw new C5226e1("null cannot be cast to non-null type kotlin.Array<kotlin.String>");
+                    if (objComponent2 == null) {
+                        throw new e1("null cannot be cast to non-null type kotlin.Array<kotlin.String>");
                     }
-                    bundle.putStringArray(component1, (String[]) component2);
+                    bundle.putStringArray(strComponent1, (String[]) objComponent2);
                 } else if (CharSequence.class.isAssignableFrom(componentType)) {
-                    if (component2 == null) {
-                        throw new C5226e1("null cannot be cast to non-null type kotlin.Array<kotlin.CharSequence>");
+                    if (objComponent2 == null) {
+                        throw new e1("null cannot be cast to non-null type kotlin.Array<kotlin.CharSequence>");
                     }
-                    bundle.putCharSequenceArray(component1, (CharSequence[]) component2);
+                    bundle.putCharSequenceArray(strComponent1, (CharSequence[]) objComponent2);
                 } else {
                     if (!Serializable.class.isAssignableFrom(componentType)) {
-                        C5544i0.m22521a((Object) componentType, "componentType");
-                        throw new IllegalArgumentException("Illegal value array type " + componentType.getCanonicalName() + " for key \"" + component1 + C5736h0.f20712a);
+                        i.q2.t.i0.a((Object) componentType, "componentType");
+                        throw new IllegalArgumentException("Illegal value array type " + componentType.getCanonicalName() + " for key \"" + strComponent1 + h0.a);
                     }
-                    bundle.putSerializable(component1, (Serializable) component2);
+                    bundle.putSerializable(strComponent1, (Serializable) objComponent2);
                 }
-            } else if (component2 instanceof Serializable) {
-                bundle.putSerializable(component1, (Serializable) component2);
-            } else if (Build.VERSION.SDK_INT >= 18 && (component2 instanceof Binder)) {
-                bundle.putBinder(component1, (IBinder) component2);
-            } else if (Build.VERSION.SDK_INT >= 21 && (component2 instanceof Size)) {
-                bundle.putSize(component1, (Size) component2);
+            } else if (objComponent2 instanceof Serializable) {
+                bundle.putSerializable(strComponent1, (Serializable) objComponent2);
+            } else if (Build.VERSION.SDK_INT >= 18 && (objComponent2 instanceof Binder)) {
+                bundle.putBinder(strComponent1, (IBinder) objComponent2);
+            } else if (Build.VERSION.SDK_INT >= 21 && (objComponent2 instanceof Size)) {
+                bundle.putSize(strComponent1, (Size) objComponent2);
             } else {
-                if (Build.VERSION.SDK_INT < 21 || !(component2 instanceof SizeF)) {
-                    throw new IllegalArgumentException("Illegal value type " + component2.getClass().getCanonicalName() + " for key \"" + component1 + C5736h0.f20712a);
+                if (Build.VERSION.SDK_INT < 21 || !(objComponent2 instanceof SizeF)) {
+                    throw new IllegalArgumentException("Illegal value type " + objComponent2.getClass().getCanonicalName() + " for key \"" + strComponent1 + h0.a);
                 }
-                bundle.putSizeF(component1, (SizeF) component2);
+                bundle.putSizeF(strComponent1, (SizeF) objComponent2);
             }
         }
         return bundle;

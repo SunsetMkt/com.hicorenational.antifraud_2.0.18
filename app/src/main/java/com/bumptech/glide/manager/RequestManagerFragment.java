@@ -10,54 +10,48 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import com.bumptech.glide.ComponentCallbacks2C1576b;
-import com.bumptech.glide.ComponentCallbacks2C1585k;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class RequestManagerFragment extends Fragment {
 
-    /* renamed from: g */
-    private static final String f5054g = "RMFragment";
+    /* JADX INFO: renamed from: g */
+    private static final String f3307g = "RMFragment";
+    private final com.bumptech.glide.manager.a a;
 
-    /* renamed from: a */
-    private final C1787a f5055a;
+    /* JADX INFO: renamed from: b */
+    private final l f3308b;
 
-    /* renamed from: b */
-    private final InterfaceC1798l f5056b;
+    /* JADX INFO: renamed from: c */
+    private final Set<RequestManagerFragment> f3309c;
 
-    /* renamed from: c */
-    private final Set<RequestManagerFragment> f5057c;
-
-    /* renamed from: d */
+    /* JADX INFO: renamed from: d */
     @Nullable
-    private ComponentCallbacks2C1585k f5058d;
+    private com.bumptech.glide.k f3310d;
 
-    /* renamed from: e */
+    /* JADX INFO: renamed from: e */
     @Nullable
-    private RequestManagerFragment f5059e;
+    private RequestManagerFragment f3311e;
 
-    /* renamed from: f */
+    /* JADX INFO: renamed from: f */
     @Nullable
-    private Fragment f5060f;
+    private Fragment f3312f;
 
-    /* renamed from: com.bumptech.glide.manager.RequestManagerFragment$a */
-    private class C1785a implements InterfaceC1798l {
-        C1785a() {
+    private class a implements l {
+        a() {
         }
 
-        @Override // com.bumptech.glide.manager.InterfaceC1798l
+        @Override // com.bumptech.glide.manager.l
         @NonNull
-        /* renamed from: a */
-        public Set<ComponentCallbacks2C1585k> mo4509a() {
-            Set<RequestManagerFragment> m4503a = RequestManagerFragment.this.m4503a();
-            HashSet hashSet = new HashSet(m4503a.size());
-            for (RequestManagerFragment requestManagerFragment : m4503a) {
-                if (requestManagerFragment.m4507c() != null) {
-                    hashSet.add(requestManagerFragment.m4507c());
+        public Set<com.bumptech.glide.k> a() {
+            Set<RequestManagerFragment> setA = RequestManagerFragment.this.a();
+            HashSet hashSet = new HashSet(setA.size());
+            for (RequestManagerFragment requestManagerFragment : setA) {
+                if (requestManagerFragment.c() != null) {
+                    hashSet.add(requestManagerFragment.c());
                 }
             }
             return hashSet;
@@ -69,110 +63,101 @@ public class RequestManagerFragment extends Fragment {
     }
 
     public RequestManagerFragment() {
-        this(new C1787a());
+        this(new com.bumptech.glide.manager.a());
     }
 
     @Nullable
     @TargetApi(17)
-    /* renamed from: e */
-    private Fragment m4501e() {
+    private Fragment e() {
         Fragment parentFragment = Build.VERSION.SDK_INT >= 17 ? getParentFragment() : null;
-        return parentFragment != null ? parentFragment : this.f5060f;
+        return parentFragment != null ? parentFragment : this.f3312f;
     }
 
-    /* renamed from: f */
-    private void m4502f() {
-        RequestManagerFragment requestManagerFragment = this.f5059e;
+    private void f() {
+        RequestManagerFragment requestManagerFragment = this.f3311e;
         if (requestManagerFragment != null) {
-            requestManagerFragment.m4499b(this);
-            this.f5059e = null;
+            requestManagerFragment.b(this);
+            this.f3311e = null;
         }
     }
 
-    /* renamed from: a */
-    public void m4505a(@Nullable ComponentCallbacks2C1585k componentCallbacks2C1585k) {
-        this.f5058d = componentCallbacks2C1585k;
+    public void a(@Nullable com.bumptech.glide.k kVar) {
+        this.f3310d = kVar;
     }
 
     @NonNull
-    /* renamed from: b */
-    C1787a m4506b() {
-        return this.f5055a;
+    com.bumptech.glide.manager.a b() {
+        return this.a;
     }
 
     @Nullable
-    /* renamed from: c */
-    public ComponentCallbacks2C1585k m4507c() {
-        return this.f5058d;
+    public com.bumptech.glide.k c() {
+        return this.f3310d;
     }
 
     @NonNull
-    /* renamed from: d */
-    public InterfaceC1798l m4508d() {
-        return this.f5056b;
+    public l d() {
+        return this.f3308b;
     }
 
     @Override // android.app.Fragment
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            m4497a(activity);
+            a(activity);
         } catch (IllegalStateException unused) {
-            Log.isLoggable(f5054g, 5);
+            Log.isLoggable(f3307g, 5);
         }
     }
 
     @Override // android.app.Fragment
     public void onDestroy() {
         super.onDestroy();
-        this.f5055a.m4523a();
-        m4502f();
+        this.a.a();
+        f();
     }
 
     @Override // android.app.Fragment
     public void onDetach() {
         super.onDetach();
-        m4502f();
+        f();
     }
 
     @Override // android.app.Fragment
     public void onStart() {
         super.onStart();
-        this.f5055a.m4525b();
+        this.a.b();
     }
 
     @Override // android.app.Fragment
     public void onStop() {
         super.onStop();
-        this.f5055a.m4527c();
+        this.a.c();
     }
 
     @Override // android.app.Fragment
     public String toString() {
-        return super.toString() + "{parent=" + m4501e() + "}";
+        return super.toString() + "{parent=" + e() + "}";
     }
 
     @SuppressLint({"ValidFragment"})
     @VisibleForTesting
-    RequestManagerFragment(@NonNull C1787a c1787a) {
-        this.f5056b = new C1785a();
-        this.f5057c = new HashSet();
-        this.f5055a = c1787a;
+    RequestManagerFragment(@NonNull com.bumptech.glide.manager.a aVar) {
+        this.f3308b = new a();
+        this.f3309c = new HashSet();
+        this.a = aVar;
     }
 
-    /* renamed from: a */
-    private void m4498a(RequestManagerFragment requestManagerFragment) {
-        this.f5057c.add(requestManagerFragment);
+    private void a(RequestManagerFragment requestManagerFragment) {
+        this.f3309c.add(requestManagerFragment);
     }
 
-    /* renamed from: b */
-    private void m4499b(RequestManagerFragment requestManagerFragment) {
-        this.f5057c.remove(requestManagerFragment);
+    private void b(RequestManagerFragment requestManagerFragment) {
+        this.f3309c.remove(requestManagerFragment);
     }
 
     @TargetApi(17)
-    /* renamed from: b */
-    private boolean m4500b(@NonNull Fragment fragment) {
+    private boolean b(@NonNull Fragment fragment) {
         Fragment parentFragment = getParentFragment();
         while (true) {
             Fragment parentFragment2 = fragment.getParentFragment();
@@ -188,15 +173,14 @@ public class RequestManagerFragment extends Fragment {
 
     @NonNull
     @TargetApi(17)
-    /* renamed from: a */
-    Set<RequestManagerFragment> m4503a() {
-        if (equals(this.f5059e)) {
-            return Collections.unmodifiableSet(this.f5057c);
+    Set<RequestManagerFragment> a() {
+        if (equals(this.f3311e)) {
+            return Collections.unmodifiableSet(this.f3309c);
         }
-        if (this.f5059e != null && Build.VERSION.SDK_INT >= 17) {
+        if (this.f3311e != null && Build.VERSION.SDK_INT >= 17) {
             HashSet hashSet = new HashSet();
-            for (RequestManagerFragment requestManagerFragment : this.f5059e.m4503a()) {
-                if (m4500b(requestManagerFragment.getParentFragment())) {
+            for (RequestManagerFragment requestManagerFragment : this.f3311e.a()) {
+                if (b(requestManagerFragment.getParentFragment())) {
                     hashSet.add(requestManagerFragment);
                 }
             }
@@ -205,22 +189,20 @@ public class RequestManagerFragment extends Fragment {
         return Collections.emptySet();
     }
 
-    /* renamed from: a */
-    void m4504a(@Nullable Fragment fragment) {
-        this.f5060f = fragment;
+    void a(@Nullable Fragment fragment) {
+        this.f3312f = fragment;
         if (fragment == null || fragment.getActivity() == null) {
             return;
         }
-        m4497a(fragment.getActivity());
+        a(fragment.getActivity());
     }
 
-    /* renamed from: a */
-    private void m4497a(@NonNull Activity activity) {
-        m4502f();
-        this.f5059e = ComponentCallbacks2C1576b.m3633a((Context) activity).m3665i().m4552b(activity);
-        if (equals(this.f5059e)) {
+    private void a(@NonNull Activity activity) {
+        f();
+        this.f3311e = com.bumptech.glide.b.a((Context) activity).i().b(activity);
+        if (equals(this.f3311e)) {
             return;
         }
-        this.f5059e.m4498a(this);
+        this.f3311e.a(this);
     }
 }

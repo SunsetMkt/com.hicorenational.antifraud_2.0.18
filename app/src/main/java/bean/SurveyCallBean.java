@@ -2,16 +2,14 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveyCallBean extends BaseBean {
     private long callDuration;
     private String caseInfoID;
     private String description;
     private String fileName;
     private long fileSize;
-
-    /* renamed from: id */
-    private String f1627id;
+    private String id;
     private String localPath;
     private long progress;
     private String startTime;
@@ -42,7 +40,7 @@ public class SurveyCallBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1627id;
+        return this.id;
     }
 
     public String getLocalPath() {
@@ -98,7 +96,7 @@ public class SurveyCallBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1627id = str;
+        this.id = str;
     }
 
     public void setLocalPath(String str) {

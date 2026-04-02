@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LocalBrdMnger {
     private static final int MSG_EXEC_PENDING_BROADCASTS = 1;
     private static final Object M_LOCK = new Object();
@@ -36,16 +36,16 @@ public class LocalBrdMnger {
         boolean broadcasting;
         final IntentFilter filter;
 
-        /* renamed from: receiver, reason: collision with root package name */
-        final BroadcastReceiver f25893receiver;
+        /* JADX INFO: renamed from: receiver, reason: collision with root package name */
+        final BroadcastReceiver f4301receiver;
 
         ReceiverRecord(IntentFilter intentFilter, BroadcastReceiver broadcastReceiver) {
             this.filter = intentFilter;
-            this.f25893receiver = broadcastReceiver;
+            this.f4301receiver = broadcastReceiver;
         }
 
         public String toString() {
-            return "Receiver{" + this.f25893receiver + " filter=" + this.filter + "}";
+            return "Receiver{" + this.f4301receiver + " filter=" + this.filter + "}";
         }
     }
 
@@ -78,7 +78,7 @@ public class LocalBrdMnger {
             }
             for (BroadcastRecord broadcastRecord : broadcastRecordArr) {
                 for (int i2 = 0; i2 < broadcastRecord.receivers.size(); i2++) {
-                    broadcastRecord.receivers.get(i2).f25893receiver.onReceive(this.mAppContext, broadcastRecord.intent);
+                    broadcastRecord.receivers.get(i2).f4301receiver.onReceive(this.mAppContext, broadcastRecord.intent);
                 }
             }
         }
@@ -125,7 +125,7 @@ public class LocalBrdMnger {
         Uri uri;
         synchronized (this.mReceivers) {
             String action = intent.getAction();
-            String resolveTypeIfNeeded = intent.resolveTypeIfNeeded(this.mAppContext.getContentResolver());
+            String strResolveTypeIfNeeded = intent.resolveTypeIfNeeded(this.mAppContext.getContentResolver());
             Uri data = intent.getData();
             String scheme = intent.getScheme();
             Set<String> categories = intent.getCategories();
@@ -138,13 +138,13 @@ public class LocalBrdMnger {
                     if (receiverRecord.broadcasting) {
                         i2 = i3;
                         str = action;
-                        str2 = resolveTypeIfNeeded;
+                        str2 = strResolveTypeIfNeeded;
                         uri = data;
                         arrayList = arrayList3;
                     } else {
                         str = action;
-                        String str3 = resolveTypeIfNeeded;
-                        str2 = resolveTypeIfNeeded;
+                        String str3 = strResolveTypeIfNeeded;
+                        str2 = strResolveTypeIfNeeded;
                         arrayList = arrayList3;
                         i2 = i3;
                         uri = data;
@@ -152,16 +152,16 @@ public class LocalBrdMnger {
                             arrayList3 = arrayList == null ? new ArrayList() : arrayList;
                             arrayList3.add(receiverRecord);
                             receiverRecord.broadcasting = true;
-                            i3 = i2 + 1;
-                            action = str;
-                            resolveTypeIfNeeded = str2;
-                            data = uri;
                         }
+                        i3 = i2 + 1;
+                        action = str;
+                        strResolveTypeIfNeeded = str2;
+                        data = uri;
                     }
                     arrayList3 = arrayList;
                     i3 = i2 + 1;
                     action = str;
-                    resolveTypeIfNeeded = str2;
+                    strResolveTypeIfNeeded = str2;
                     data = uri;
                 }
                 ArrayList arrayList4 = arrayList3;
@@ -185,19 +185,19 @@ public class LocalBrdMnger {
 
     public void unregisterReceiver(BroadcastReceiver broadcastReceiver) {
         synchronized (this.mReceivers) {
-            ArrayList<IntentFilter> remove = this.mReceivers.remove(broadcastReceiver);
-            if (remove == null) {
+            ArrayList<IntentFilter> arrayListRemove = this.mReceivers.remove(broadcastReceiver);
+            if (arrayListRemove == null) {
                 return;
             }
-            for (int i2 = 0; i2 < remove.size(); i2++) {
-                IntentFilter intentFilter = remove.get(i2);
+            for (int i2 = 0; i2 < arrayListRemove.size(); i2++) {
+                IntentFilter intentFilter = arrayListRemove.get(i2);
                 for (int i3 = 0; i3 < intentFilter.countActions(); i3++) {
                     String action = intentFilter.getAction(i3);
                     ArrayList<ReceiverRecord> arrayList = this.mActions.get(action);
                     if (arrayList != null) {
                         int i4 = 0;
                         while (i4 < arrayList.size()) {
-                            if (arrayList.get(i4).f25893receiver == broadcastReceiver) {
+                            if (arrayList.get(i4).f4301receiver == broadcastReceiver) {
                                 arrayList.remove(i4);
                                 i4--;
                             }

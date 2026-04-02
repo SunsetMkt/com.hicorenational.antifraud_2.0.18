@@ -2,7 +2,7 @@ package com.huawei.agconnect;
 
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface AGConnectOptions {
     boolean getBoolean(String str);
 

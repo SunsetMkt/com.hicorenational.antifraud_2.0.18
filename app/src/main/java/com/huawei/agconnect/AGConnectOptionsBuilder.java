@@ -1,7 +1,7 @@
 package com.huawei.agconnect;
 
 import android.content.Context;
-import com.huawei.agconnect.config.impl.C2249b;
+import com.huawei.agconnect.config.impl.b;
 import com.huawei.agconnect.core.Service;
 import com.huawei.agconnect.core.service.auth.AuthProvider;
 import com.huawei.agconnect.core.service.auth.CredentialsProvider;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AGConnectOptionsBuilder {
     private static final String API_KEY_PATH = "/client/api_key";
     private static final String APP_ID_PATH = "/client/app_id";
@@ -28,12 +28,63 @@ public final class AGConnectOptionsBuilder {
     private final Map<String, String> customConfigMap = new HashMap();
     private final List<Service> customServices = new ArrayList();
 
+    /* JADX INFO: renamed from: com.huawei.agconnect.AGConnectOptionsBuilder$1 */
+    class AnonymousClass1 implements CredentialsProvider {
+        final /* synthetic */ CustomCredentialsProvider val$provider;
+
+        AnonymousClass1(CustomCredentialsProvider customCredentialsProvider) {
+            customCredentialsProvider = customCredentialsProvider;
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.CredentialsProvider
+        public Task<Token> getTokens() {
+            return customCredentialsProvider.getTokens(false);
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.CredentialsProvider
+        public Task<Token> getTokens(boolean z) {
+            return customCredentialsProvider.getTokens(z);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.huawei.agconnect.AGConnectOptionsBuilder$2 */
+    class AnonymousClass2 implements AuthProvider {
+        final /* synthetic */ CustomAuthProvider val$provider;
+
+        AnonymousClass2(CustomAuthProvider customAuthProvider) {
+            customAuthProvider = customAuthProvider;
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.AuthProvider
+        public void addTokenListener(OnTokenListener onTokenListener) {
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.AuthProvider
+        public Task<Token> getTokens() {
+            return customAuthProvider.getTokens(false);
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.AuthProvider
+        public Task<Token> getTokens(boolean z) {
+            return customAuthProvider.getTokens(z);
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.AuthProvider
+        public String getUid() {
+            return customAuthProvider.getUid();
+        }
+
+        @Override // com.huawei.agconnect.core.service.auth.AuthProvider
+        public void removeTokenListener(OnTokenListener onTokenListener) {
+        }
+    }
+
     public AGConnectOptions build(Context context) {
-        return new C2249b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, null);
+        return new b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, null);
     }
 
     public AGConnectOptions build(Context context, String str) {
-        return new C2249b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, str);
+        return new b(context, this.packageName, this.routePolicy, this.inputStream, this.customConfigMap, this.customServices, str);
     }
 
     public Map<String, String> getCustomConfigMap() {
@@ -73,9 +124,15 @@ public final class AGConnectOptionsBuilder {
         return this;
     }
 
-    public AGConnectOptionsBuilder setCustomAuthProvider(final CustomAuthProvider customAuthProvider) {
+    public AGConnectOptionsBuilder setCustomAuthProvider(CustomAuthProvider customAuthProvider) {
         if (customAuthProvider != null) {
             this.customServices.add(Service.builder((Class<?>) AuthProvider.class, new AuthProvider() { // from class: com.huawei.agconnect.AGConnectOptionsBuilder.2
+                final /* synthetic */ CustomAuthProvider val$provider;
+
+                AnonymousClass2(CustomAuthProvider customAuthProvider2) {
+                    customAuthProvider = customAuthProvider2;
+                }
+
                 @Override // com.huawei.agconnect.core.service.auth.AuthProvider
                 public void addTokenListener(OnTokenListener onTokenListener) {
                 }
@@ -103,9 +160,15 @@ public final class AGConnectOptionsBuilder {
         return this;
     }
 
-    public AGConnectOptionsBuilder setCustomCredentialProvider(final CustomCredentialsProvider customCredentialsProvider) {
+    public AGConnectOptionsBuilder setCustomCredentialProvider(CustomCredentialsProvider customCredentialsProvider) {
         if (customCredentialsProvider != null) {
             this.customServices.add(Service.builder((Class<?>) CredentialsProvider.class, new CredentialsProvider() { // from class: com.huawei.agconnect.AGConnectOptionsBuilder.1
+                final /* synthetic */ CustomCredentialsProvider val$provider;
+
+                AnonymousClass1(CustomCredentialsProvider customCredentialsProvider2) {
+                    customCredentialsProvider = customCredentialsProvider2;
+                }
+
                 @Override // com.huawei.agconnect.core.service.auth.CredentialsProvider
                 public Task<Token> getTokens() {
                     return customCredentialsProvider.getTokens(false);

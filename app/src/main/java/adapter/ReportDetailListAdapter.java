@@ -9,130 +9,125 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import bean.DetailBean;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.List;
 import network.HistoryDetailInfo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ReportDetailListAdapter extends RecyclerView.Adapter<ItemHolder> {
+    private final Context a;
 
-    /* renamed from: a */
-    private final Context f284a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public int f1169b;
 
-    /* renamed from: b */
-    public int f285b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    public int f1170c;
 
-    /* renamed from: c */
-    public int f286c;
-
-    /* renamed from: d */
-    private List<List<DetailBean>> f287d;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private List<List<DetailBean>> f1171d;
 
     public class ItemHolder extends RecyclerView.ViewHolder {
+        TextView a;
 
-        /* renamed from: a */
-        TextView f288a;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        TextView f1172b;
 
-        /* renamed from: b */
-        TextView f289b;
-
-        /* renamed from: c */
-        TextView f290c;
+        /* JADX INFO: renamed from: c, reason: collision with root package name */
+        TextView f1173c;
 
         public ItemHolder(View view) {
             super(view);
-            this.f288a = (TextView) view.findViewById(C2113R.id.tv_content);
-            this.f289b = (TextView) view.findViewById(C2113R.id.item_time);
-            this.f290c = (TextView) view.findViewById(C2113R.id.tv_desc);
-            this.f289b.setVisibility(8);
-            this.f290c.setVisibility(8);
+            this.a = (TextView) view.findViewById(R.id.tv_content);
+            this.f1172b = (TextView) view.findViewById(R.id.item_time);
+            this.f1173c = (TextView) view.findViewById(R.id.tv_desc);
+            this.f1172b.setVisibility(8);
+            this.f1173c.setVisibility(8);
         }
     }
 
     public ReportDetailListAdapter(Context context, List<List<DetailBean>> list, int i2, int i3) {
-        this.f284a = context;
-        this.f287d = list;
-        this.f286c = i2;
-        this.f285b = i3;
+        this.a = context;
+        this.f1171d = list;
+        this.f1170c = i2;
+        this.f1169b = i3;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* renamed from: a, reason: merged with bridge method [inline-methods] */
+    /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
     public void onBindViewHolder(ItemHolder itemHolder, int i2) {
-        DetailBean detailBean = this.f287d.get(this.f286c).get(i2);
-        if (this.f285b == 1) {
-            itemHolder.f288a.setText(detailBean.getNumber());
+        DetailBean detailBean = this.f1171d.get(this.f1170c).get(i2);
+        if (this.f1169b == 1) {
+            itemHolder.a.setText(detailBean.getNumber());
             if (!TextUtils.isEmpty(detailBean.getOccurTime())) {
-                itemHolder.f289b.setVisibility(0);
-                itemHolder.f289b.setText(detailBean.getOccurTime());
+                itemHolder.f1172b.setVisibility(0);
+                itemHolder.f1172b.setText(detailBean.getOccurTime());
             }
         }
-        if (this.f285b == 2) {
-            itemHolder.f289b.setVisibility(0);
-            itemHolder.f290c.setVisibility(0);
-            itemHolder.f288a.setText(detailBean.getNumber());
-            itemHolder.f290c.setText(detailBean.getContent());
+        if (this.f1169b == 2) {
+            itemHolder.f1172b.setVisibility(0);
+            itemHolder.f1173c.setVisibility(0);
+            itemHolder.a.setText(detailBean.getNumber());
+            itemHolder.f1173c.setText(detailBean.getContent());
             if (!TextUtils.isEmpty(detailBean.getOccurTime())) {
-                itemHolder.f289b.setVisibility(0);
-                itemHolder.f289b.setText(detailBean.getOccurTime());
+                itemHolder.f1172b.setVisibility(0);
+                itemHolder.f1172b.setText(detailBean.getOccurTime());
             }
         }
         if (detailBean.getType() == 3) {
-            itemHolder.f288a.setText(detailBean.getFileName());
+            itemHolder.a.setText(detailBean.getFileName());
             if (detailBean.getOs() > 0) {
-                itemHolder.f288a.setText(Html.fromHtml(detailBean.getFileName() + "  <font color=#999999>(ios)</font>"));
+                itemHolder.a.setText(Html.fromHtml(detailBean.getFileName() + "  <font color=#999999>(ios)</font>"));
             } else {
-                itemHolder.f288a.setText(Html.fromHtml(detailBean.getFileName() + "  <font color=#999999>(Android)</font>"));
+                itemHolder.a.setText(Html.fromHtml(detailBean.getFileName() + "  <font color=#999999>(Android)</font>"));
             }
             String version = detailBean.getVersion();
             if (!TextUtils.isEmpty(version)) {
-                itemHolder.f289b.setVisibility(0);
-                itemHolder.f289b.setText("版本：" + version);
+                itemHolder.f1172b.setVisibility(0);
+                itemHolder.f1172b.setText("\u7248\u672c\uff1a" + version);
             }
             String downloadUrl = detailBean.getDownloadUrl();
             HistoryDetailInfo.AppInnerPicture appAuthorInfo = detailBean.getAppAuthorInfo();
             HistoryDetailInfo.AppInnerPicture downloadQRCode = detailBean.getDownloadQRCode();
             if (!TextUtils.isEmpty(downloadUrl)) {
-                String str = "下载链接：" + downloadUrl;
-                itemHolder.f290c.setVisibility(0);
+                String str = "\u4e0b\u8f7d\u94fe\u63a5\uff1a" + downloadUrl;
+                itemHolder.f1173c.setVisibility(0);
                 if (appAuthorInfo != null && !TextUtils.isEmpty(appAuthorInfo.name)) {
-                    str = str + "\r\n下载二维码：" + appAuthorInfo.name;
+                    str = str + "\r\n\u4e0b\u8f7d\u4e8c\u7ef4\u7801\uff1a" + appAuthorInfo.name;
                 }
                 if (downloadQRCode != null && !TextUtils.isEmpty(downloadQRCode.name)) {
-                    str = str + "\r\n应用开发者信息：" + downloadQRCode.name;
+                    str = str + "\r\n\u5e94\u7528\u5f00\u53d1\u8005\u4fe1\u606f\uff1a" + downloadQRCode.name;
                 }
-                itemHolder.f290c.setText(str);
+                itemHolder.f1173c.setText(str);
             }
         }
         if (detailBean.getType() == 4) {
-            itemHolder.f288a.setText(detailBean.getFileName());
+            itemHolder.a.setText(detailBean.getFileName());
         }
         if (detailBean.getType() == 5) {
-            itemHolder.f288a.setText(detailBean.getFileName());
+            itemHolder.a.setText(detailBean.getFileName());
         }
         if (detailBean.getType() == 6) {
-            itemHolder.f288a.setText(detailBean.getFileName());
+            itemHolder.a.setText(detailBean.getFileName());
         }
         if (detailBean.getType() == 7) {
-            itemHolder.f288a.setText(detailBean.getFileName());
-            itemHolder.f289b.setText(detailBean.getOccurTime());
+            itemHolder.a.setText(detailBean.getFileName());
+            itemHolder.f1172b.setText(detailBean.getOccurTime());
         }
         if (detailBean.getType() == 8) {
-            itemHolder.f288a.setText(detailBean.getAccountType() + "账号：" + detailBean.getAccount());
+            itemHolder.a.setText(detailBean.getAccountType() + "\u8d26\u53f7\uff1a" + detailBean.getAccount());
         }
         if (detailBean.getType() == 9) {
-            itemHolder.f288a.setText(detailBean.getAccountType() + "账户：" + detailBean.getAccount());
+            itemHolder.a.setText(detailBean.getAccountType() + "\u8d26\u6237\uff1a" + detailBean.getAccount());
         }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
-        return this.f287d.get(this.f286c).size();
+        return this.f1171d.get(this.f1170c).size();
     }
 
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public ItemHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return new ItemHolder(LayoutInflater.from(this.f284a).inflate(C2113R.layout.report_group_sub_item, viewGroup, false));
+        return new ItemHolder(LayoutInflater.from(this.a).inflate(R.layout.report_group_sub_item, viewGroup, false));
     }
 }

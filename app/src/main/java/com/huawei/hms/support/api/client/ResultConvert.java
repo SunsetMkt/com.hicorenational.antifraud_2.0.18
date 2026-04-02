@@ -3,7 +3,7 @@ package com.huawei.hms.support.api.client;
 import com.huawei.hms.common.internal.Preconditions;
 import com.huawei.hms.support.api.client.Result;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class ResultConvert<R extends Result, S extends Result> {
 
     public class FailPendingResult extends EmptyPendingResult {

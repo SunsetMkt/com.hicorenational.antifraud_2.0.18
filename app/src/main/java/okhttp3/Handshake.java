@@ -11,7 +11,7 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Handshake {
     private final CipherSuite cipherSuite;
     private final List<Certificate> localCertificates;
@@ -26,7 +26,7 @@ public final class Handshake {
     }
 
     public static Handshake get(SSLSession sSLSession) throws IOException {
-        Certificate[] certificateArr;
+        Certificate[] peerCertificates;
         String cipherSuite = sSLSession.getCipherSuite();
         if (cipherSuite == null) {
             throw new IllegalStateException("cipherSuite == null");
@@ -34,7 +34,7 @@ public final class Handshake {
         if ("SSL_NULL_WITH_NULL_NULL".equals(cipherSuite)) {
             throw new IOException("cipherSuite == SSL_NULL_WITH_NULL_NULL");
         }
-        CipherSuite forJavaName = CipherSuite.forJavaName(cipherSuite);
+        CipherSuite cipherSuiteForJavaName = CipherSuite.forJavaName(cipherSuite);
         String protocol = sSLSession.getProtocol();
         if (protocol == null) {
             throw new IllegalStateException("tlsVersion == null");
@@ -42,15 +42,15 @@ public final class Handshake {
         if ("NONE".equals(protocol)) {
             throw new IOException("tlsVersion == NONE");
         }
-        TlsVersion forJavaName2 = TlsVersion.forJavaName(protocol);
+        TlsVersion tlsVersionForJavaName = TlsVersion.forJavaName(protocol);
         try {
-            certificateArr = sSLSession.getPeerCertificates();
+            peerCertificates = sSLSession.getPeerCertificates();
         } catch (SSLPeerUnverifiedException unused) {
-            certificateArr = null;
+            peerCertificates = null;
         }
-        List immutableList = certificateArr != null ? Util.immutableList(certificateArr) : Collections.emptyList();
+        List listImmutableList = peerCertificates != null ? Util.immutableList(peerCertificates) : Collections.emptyList();
         Certificate[] localCertificates = sSLSession.getLocalCertificates();
-        return new Handshake(forJavaName2, forJavaName, immutableList, localCertificates != null ? Util.immutableList(localCertificates) : Collections.emptyList());
+        return new Handshake(tlsVersionForJavaName, cipherSuiteForJavaName, listImmutableList, localCertificates != null ? Util.immutableList(localCertificates) : Collections.emptyList());
     }
 
     public CipherSuite cipherSuite() {

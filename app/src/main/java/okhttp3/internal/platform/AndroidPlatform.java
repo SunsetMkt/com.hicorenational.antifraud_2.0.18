@@ -25,7 +25,7 @@ import okhttp3.internal.Util;
 import okhttp3.internal.tls.CertificateChainCleaner;
 import okhttp3.internal.tls.TrustRootIndex;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class AndroidPlatform extends Platform {
     private static final int MAX_LOG_LENGTH = 4000;
     private final CloseGuard closeGuard = CloseGuard.get();
@@ -117,7 +117,7 @@ class AndroidPlatform extends Platform {
             this.warnIfOpenMethod = method3;
         }
 
-        static CloseGuard get() {
+        static CloseGuard get() throws NoSuchMethodException {
             Method method;
             Method method2;
             Method method3 = null;
@@ -138,9 +138,9 @@ class AndroidPlatform extends Platform {
             Method method = this.getMethod;
             if (method != null) {
                 try {
-                    Object invoke = method.invoke(null, new Object[0]);
-                    this.openMethod.invoke(invoke, str);
-                    return invoke;
+                    Object objInvoke = method.invoke(null, new Object[0]);
+                    this.openMethod.invoke(objInvoke, str);
+                    return objInvoke;
                 } catch (Exception unused) {
                 }
             }
@@ -168,7 +168,7 @@ class AndroidPlatform extends Platform {
         this.setAlpnProtocols = optionalMethod4;
     }
 
-    private boolean api23IsCleartextTrafficPermitted(String str, Class<?> cls, Object obj) throws InvocationTargetException, IllegalAccessException {
+    private boolean api23IsCleartextTrafficPermitted(String str, Class<?> cls, Object obj) throws IllegalAccessException, InvocationTargetException {
         try {
             return ((Boolean) cls.getMethod("isCleartextTrafficPermitted", new Class[0]).invoke(obj, new Object[0])).booleanValue();
         } catch (NoSuchMethodException unused) {
@@ -176,7 +176,7 @@ class AndroidPlatform extends Platform {
         }
     }
 
-    private boolean api24IsCleartextTrafficPermitted(String str, Class<?> cls, Object obj) throws InvocationTargetException, IllegalAccessException {
+    private boolean api24IsCleartextTrafficPermitted(String str, Class<?> cls, Object obj) throws IllegalAccessException, InvocationTargetException {
         try {
             return ((Boolean) cls.getMethod("isCleartextTrafficPermitted", String.class).invoke(obj, str)).booleanValue();
         } catch (NoSuchMethodException unused) {
@@ -333,7 +333,7 @@ class AndroidPlatform extends Platform {
 
     @Override // okhttp3.internal.platform.Platform
     public void log(int i2, String str, Throwable th) {
-        int min;
+        int iMin;
         int i3 = i2 != 5 ? 3 : 5;
         if (th != null) {
             str = str + '\n' + Log.getStackTraceString(th);
@@ -341,20 +341,20 @@ class AndroidPlatform extends Platform {
         int i4 = 0;
         int length = str.length();
         while (i4 < length) {
-            int indexOf = str.indexOf(10, i4);
-            if (indexOf == -1) {
-                indexOf = length;
+            int iIndexOf = str.indexOf(10, i4);
+            if (iIndexOf == -1) {
+                iIndexOf = length;
             }
             while (true) {
-                min = Math.min(indexOf, i4 + MAX_LOG_LENGTH);
-                Log.println(i3, "OkHttp", str.substring(i4, min));
-                if (min >= indexOf) {
+                iMin = Math.min(iIndexOf, i4 + MAX_LOG_LENGTH);
+                Log.println(i3, "OkHttp", str.substring(i4, iMin));
+                if (iMin >= iIndexOf) {
                     break;
                 } else {
-                    i4 = min;
+                    i4 = iMin;
                 }
             }
-            i4 = min + 1;
+            i4 = iMin + 1;
         }
     }
 
@@ -368,15 +368,15 @@ class AndroidPlatform extends Platform {
 
     @Override // okhttp3.internal.platform.Platform
     protected X509TrustManager trustManager(SSLSocketFactory sSLSocketFactory) {
-        Object readFieldOrNull = Platform.readFieldOrNull(sSLSocketFactory, this.sslParametersClass, "sslParameters");
-        if (readFieldOrNull == null) {
+        Object fieldOrNull = Platform.readFieldOrNull(sSLSocketFactory, this.sslParametersClass, "sslParameters");
+        if (fieldOrNull == null) {
             try {
-                readFieldOrNull = Platform.readFieldOrNull(sSLSocketFactory, Class.forName("com.google.android.gms.org.conscrypt.SSLParametersImpl", false, sSLSocketFactory.getClass().getClassLoader()), "sslParameters");
+                fieldOrNull = Platform.readFieldOrNull(sSLSocketFactory, Class.forName("com.google.android.gms.org.conscrypt.SSLParametersImpl", false, sSLSocketFactory.getClass().getClassLoader()), "sslParameters");
             } catch (ClassNotFoundException unused) {
                 return super.trustManager(sSLSocketFactory);
             }
         }
-        X509TrustManager x509TrustManager = (X509TrustManager) Platform.readFieldOrNull(readFieldOrNull, X509TrustManager.class, "x509TrustManager");
-        return x509TrustManager != null ? x509TrustManager : (X509TrustManager) Platform.readFieldOrNull(readFieldOrNull, X509TrustManager.class, "trustManager");
+        X509TrustManager x509TrustManager = (X509TrustManager) Platform.readFieldOrNull(fieldOrNull, X509TrustManager.class, "x509TrustManager");
+        return x509TrustManager != null ? x509TrustManager : (X509TrustManager) Platform.readFieldOrNull(fieldOrNull, X509TrustManager.class, "trustManager");
     }
 }

@@ -4,7 +4,7 @@ import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.view.View;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class TabletTransformer extends ABaseTransformer {
     private static final Matrix OFFSET_MATRIX = new Matrix();
     private static final Camera OFFSET_CAMERA = new Camera();
@@ -29,10 +29,10 @@ public class TabletTransformer extends ABaseTransformer {
 
     @Override // com.youth.banner.transformer.ABaseTransformer
     protected void onTransform(View view, float f2) {
-        float abs = (f2 < 0.0f ? 30.0f : -30.0f) * Math.abs(f2);
-        view.setTranslationX(getOffsetXForRotation(abs, view.getWidth(), view.getHeight()));
+        float fAbs = (f2 < 0.0f ? 30.0f : -30.0f) * Math.abs(f2);
+        view.setTranslationX(getOffsetXForRotation(fAbs, view.getWidth(), view.getHeight()));
         view.setPivotX(view.getWidth() * 0.5f);
         view.setPivotY(0.0f);
-        view.setRotationY(abs);
+        view.setRotationY(fAbs);
     }
 }

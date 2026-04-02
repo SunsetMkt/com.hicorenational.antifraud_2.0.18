@@ -5,7 +5,7 @@ import android.graphics.PathMeasure;
 import android.graphics.PointF;
 import android.util.Property;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class PathProperty<T> extends Property<T, Float> {
     private float mCurrentFraction;
     private final float mPathLength;
@@ -23,26 +23,14 @@ class PathProperty<T> extends Property<T, Float> {
         this.mPathLength = this.mPathMeasure.getLength();
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // android.util.Property
-    public /* bridge */ /* synthetic */ Float get(Object obj) {
-        return get((PathProperty<T>) obj);
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // android.util.Property
-    public /* bridge */ /* synthetic */ void set(Object obj, Float f2) {
-        set2((PathProperty<T>) obj, f2);
-    }
-
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // android.util.Property
     public Float get(T t) {
         return Float.valueOf(this.mCurrentFraction);
     }
 
-    /* renamed from: set, reason: avoid collision after fix types in other method */
-    public void set2(T t, Float f2) {
+    @Override // android.util.Property
+    public void set(T t, Float f2) {
         this.mCurrentFraction = f2.floatValue();
         this.mPathMeasure.getPosTan(this.mPathLength * f2.floatValue(), this.mPosition, null);
         PointF pointF = this.mPointF;

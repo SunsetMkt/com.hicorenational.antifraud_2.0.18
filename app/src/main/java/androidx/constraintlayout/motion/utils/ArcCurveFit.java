@@ -2,7 +2,7 @@ package androidx.constraintlayout.motion.utils;
 
 import java.util.Arrays;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ArcCurveFit extends CurveFit {
     public static final int ARC_START_FLIP = 3;
     public static final int ARC_START_HORIZONTAL = 2;
@@ -50,8 +50,8 @@ class ArcCurveFit extends CurveFit {
             double d9 = d7 - d5;
             if (!this.linear && Math.abs(d8) >= EPSILON && Math.abs(d9) >= EPSILON) {
                 this.mLut = new double[101];
-                this.mEllipseA = d8 * (this.mVertical ? -1 : 1);
-                this.mEllipseB = d9 * (this.mVertical ? 1 : -1);
+                this.mEllipseA = d8 * ((double) (this.mVertical ? -1 : 1));
+                this.mEllipseB = d9 * ((double) (this.mVertical ? 1 : -1));
                 this.mEllipseCenterX = this.mVertical ? d6 : d4;
                 this.mEllipseCenterY = this.mVertical ? d5 : d7;
                 buildTable(d4, d5, d6, d7);
@@ -72,41 +72,41 @@ class ArcCurveFit extends CurveFit {
         }
 
         private void buildTable(double d2, double d3, double d4, double d5) {
-            double d6;
-            double d7 = d4 - d2;
-            double d8 = d3 - d5;
+            double dHypot;
+            double d6 = d4 - d2;
+            double d7 = d3 - d5;
             int i2 = 0;
+            double d8 = 0.0d;
             double d9 = 0.0d;
             double d10 = 0.0d;
-            double d11 = 0.0d;
             while (true) {
                 if (i2 >= ourPercent.length) {
                     break;
                 }
-                double d12 = d9;
-                double radians = Math.toRadians((i2 * 90.0d) / (r15.length - 1));
-                double sin = Math.sin(radians) * d7;
-                double cos = Math.cos(radians) * d8;
+                double d11 = d8;
+                double radians = Math.toRadians((((double) i2) * 90.0d) / ((double) (r15.length - 1)));
+                double dSin = Math.sin(radians) * d6;
+                double dCos = Math.cos(radians) * d7;
                 if (i2 > 0) {
-                    d6 = d12 + Math.hypot(sin - d10, cos - d11);
-                    ourPercent[i2] = d6;
+                    dHypot = d11 + Math.hypot(dSin - d9, dCos - d10);
+                    ourPercent[i2] = dHypot;
                 } else {
-                    d6 = d12;
+                    dHypot = d11;
                 }
                 i2++;
-                d11 = cos;
-                d9 = d6;
-                d10 = sin;
+                d10 = dCos;
+                d8 = dHypot;
+                d9 = dSin;
             }
-            double d13 = d9;
-            this.mArcDistance = d13;
+            double d12 = d8;
+            this.mArcDistance = d12;
             int i3 = 0;
             while (true) {
                 double[] dArr = ourPercent;
                 if (i3 >= dArr.length) {
                     break;
                 }
-                dArr[i3] = dArr[i3] / d13;
+                dArr[i3] = dArr[i3] / d12;
                 i3++;
             }
             int i4 = 0;
@@ -114,17 +114,17 @@ class ArcCurveFit extends CurveFit {
                 if (i4 >= this.mLut.length) {
                     return;
                 }
-                double length = i4 / (r2.length - 1);
-                int binarySearch = Arrays.binarySearch(ourPercent, length);
-                if (binarySearch >= 0) {
-                    this.mLut[i4] = binarySearch / (ourPercent.length - 1);
-                } else if (binarySearch == -1) {
+                double length = ((double) i4) / ((double) (r2.length - 1));
+                int iBinarySearch = Arrays.binarySearch(ourPercent, length);
+                if (iBinarySearch >= 0) {
+                    this.mLut[i4] = iBinarySearch / (ourPercent.length - 1);
+                } else if (iBinarySearch == -1) {
                     this.mLut[i4] = 0.0d;
                 } else {
-                    int i5 = -binarySearch;
+                    int i5 = -iBinarySearch;
                     int i6 = i5 - 2;
                     double[] dArr2 = ourPercent;
-                    this.mLut[i4] = (i6 + ((length - dArr2[i6]) / (dArr2[i5 - 1] - dArr2[i6]))) / (dArr2.length - 1);
+                    this.mLut[i4] = (((double) i6) + ((length - dArr2[i6]) / (dArr2[i5 - 1] - dArr2[i6]))) / ((double) (dArr2.length - 1));
                 }
                 i4++;
             }
@@ -132,18 +132,18 @@ class ArcCurveFit extends CurveFit {
 
         double getDX() {
             double d2 = this.mEllipseA * this.mTmpCosAngle;
-            double hypot = this.mArcVelocity / Math.hypot(d2, (-this.mEllipseB) * this.mTmpSinAngle);
+            double dHypot = this.mArcVelocity / Math.hypot(d2, (-this.mEllipseB) * this.mTmpSinAngle);
             if (this.mVertical) {
                 d2 = -d2;
             }
-            return d2 * hypot;
+            return d2 * dHypot;
         }
 
         double getDY() {
             double d2 = this.mEllipseA * this.mTmpCosAngle;
             double d3 = (-this.mEllipseB) * this.mTmpSinAngle;
-            double hypot = this.mArcVelocity / Math.hypot(d2, d3);
-            return this.mVertical ? (-d3) * hypot : d3 * hypot;
+            double dHypot = this.mArcVelocity / Math.hypot(d2, d3);
+            return this.mVertical ? (-d3) * dHypot : d3 * dHypot;
         }
 
         public double getLinearDX(double d2) {
@@ -182,15 +182,15 @@ class ArcCurveFit extends CurveFit {
                 return 1.0d;
             }
             double[] dArr = this.mLut;
-            double length = d2 * (dArr.length - 1);
+            double length = d2 * ((double) (dArr.length - 1));
             int i2 = (int) length;
-            return dArr[i2] + ((length - i2) * (dArr[i2 + 1] - dArr[i2]));
+            return dArr[i2] + ((length - ((double) i2)) * (dArr[i2 + 1] - dArr[i2]));
         }
 
         void setPoint(double d2) {
-            double lookup = lookup((this.mVertical ? this.mTime2 - d2 : d2 - this.mTime1) * this.mOneOverDeltaTime) * 1.5707963267948966d;
-            this.mTmpSinAngle = Math.sin(lookup);
-            this.mTmpCosAngle = Math.cos(lookup);
+            double dLookup = lookup((this.mVertical ? this.mTime2 - d2 : d2 - this.mTime1) * this.mOneOverDeltaTime) * 1.5707963267948966d;
+            this.mTmpSinAngle = Math.sin(dLookup);
+            this.mTmpCosAngle = Math.cos(dLookup);
         }
     }
 
@@ -203,22 +203,22 @@ class ArcCurveFit extends CurveFit {
         while (i2 < this.mArcs.length) {
             int i5 = iArr[i2];
             if (i5 == 0) {
-                r9 = 3;
+                i = 3;
             } else if (i5 == 1) {
                 i3 = 1;
-                r9 = 1;
+                i = 1;
             } else if (i5 == 2) {
                 i3 = 2;
             } else if (i5 != 3) {
-                r9 = i4;
+                i = i4;
             } else {
-                r9 = i3 != 1 ? 1 : 2;
-                i3 = r9;
+                i = i3 != 1 ? 1 : 2;
+                i3 = i;
             }
             int i6 = i2 + 1;
-            this.mArcs[i2] = new Arc(r9, dArr[i2], dArr[i6], dArr2[i2][0], dArr2[i2][1], dArr2[i6][0], dArr2[i6][1]);
+            this.mArcs[i2] = new Arc(i, dArr[i2], dArr[i6], dArr2[i2][0], dArr2[i2][1], dArr2[i6][0], dArr2[i6][1]);
             i2 = i6;
-            i4 = r9;
+            i4 = i;
         }
     }
 

@@ -13,8 +13,8 @@ import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class FingerprintManagerCompat {
     private final Context mContext;
 
@@ -88,22 +88,22 @@ public class FingerprintManagerCompat {
         return new FingerprintManager.AuthenticationCallback() { // from class: androidx.core.hardware.fingerprint.FingerprintManagerCompat.1
             @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
             public void onAuthenticationError(int i2, CharSequence charSequence) {
-                AuthenticationCallback.this.onAuthenticationError(i2, charSequence);
+                authenticationCallback.onAuthenticationError(i2, charSequence);
             }
 
             @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
             public void onAuthenticationFailed() {
-                AuthenticationCallback.this.onAuthenticationFailed();
+                authenticationCallback.onAuthenticationFailed();
             }
 
             @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
             public void onAuthenticationHelp(int i2, CharSequence charSequence) {
-                AuthenticationCallback.this.onAuthenticationHelp(i2, charSequence);
+                authenticationCallback.onAuthenticationHelp(i2, charSequence);
             }
 
             @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
             public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-                AuthenticationCallback.this.onAuthenticationSucceeded(new AuthenticationResult(FingerprintManagerCompat.unwrapCryptoObject(authenticationResult.getCryptoObject())));
+                authenticationCallback.onAuthenticationSucceeded(new AuthenticationResult(FingerprintManagerCompat.unwrapCryptoObject(authenticationResult.getCryptoObject())));
             }
         };
     }

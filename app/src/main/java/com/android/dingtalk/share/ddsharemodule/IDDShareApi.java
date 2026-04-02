@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.android.dingtalk.share.ddsharemodule.message.BaseReq;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IDDShareApi {
     int getDDSupportAPI();
 

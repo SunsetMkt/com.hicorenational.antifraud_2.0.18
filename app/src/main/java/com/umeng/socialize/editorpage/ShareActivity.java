@@ -26,59 +26,51 @@ import com.umeng.socialize.utils.SocializeUtils;
 import com.umeng.socialize.utils.UmengText;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ShareActivity extends Activity implements View.OnClickListener {
 
-    /* renamed from: c */
-    private static final String f13611c = "ShareActivity";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f8259c = "ShareActivity";
 
-    /* renamed from: d */
-    private static int f13612d = 140;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static int f8260d = 140;
+    protected ImageView a;
 
-    /* renamed from: a */
-    protected ImageView f13613a;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private String f8263f;
 
-    /* renamed from: f */
-    private String f13616f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private String f8264g;
 
-    /* renamed from: g */
-    private String f13617g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f8265h;
 
-    /* renamed from: h */
-    private String f13618h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private ResContainer f8266i;
 
-    /* renamed from: i */
-    private ResContainer f13619i;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private EditText f8267j;
 
-    /* renamed from: j */
-    private EditText f13620j;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private TextView f8268k;
 
-    /* renamed from: k */
-    private TextView f13621k;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private Context f8269l;
 
-    /* renamed from: l */
-    private Context f13622l;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private boolean f8270m;
 
-    /* renamed from: m */
-    private boolean f13623m;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private SHARE_MEDIA f8271n;
+    private ImageView p;
+    private TextView q;
 
-    /* renamed from: n */
-    private SHARE_MEDIA f13624n;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f8262e = "7.3.2";
+    private boolean o = false;
 
-    /* renamed from: p */
-    private ImageView f13626p;
-
-    /* renamed from: q */
-    private TextView f13627q;
-
-    /* renamed from: e */
-    private String f13615e = "7.3.2";
-
-    /* renamed from: o */
-    private boolean f13625o = false;
-
-    /* renamed from: b */
-    TextWatcher f13614b = new TextWatcher() { // from class: com.umeng.socialize.editorpage.ShareActivity.1
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    TextWatcher f8261b = new TextWatcher() { // from class: com.umeng.socialize.editorpage.ShareActivity.1
         @Override // android.text.TextWatcher
         public void afterTextChanged(Editable editable) {
         }
@@ -90,51 +82,47 @@ public class ShareActivity extends Activity implements View.OnClickListener {
         @Override // android.text.TextWatcher
         public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
             ShareActivity shareActivity = ShareActivity.this;
-            shareActivity.f13623m = shareActivity.m12645e();
+            shareActivity.f8270m = shareActivity.e();
         }
     };
 
-    /* renamed from: b */
-    private String m12641b(String str) {
-        return str.equals("TENCENT") ? getResources().getString(this.f13619i.string("umeng_socialize_sharetotencent")) : str.equals("RENREN") ? getResources().getString(this.f13619i.string("umeng_socialize_sharetorenren")) : str.equals("DOUBAN") ? getResources().getString(this.f13619i.string("umeng_socialize_sharetodouban")) : str.equals("TWITTER") ? getResources().getString(this.f13619i.string("umeng_socialize_sharetotwitter")) : str.equals("LINKEDIN") ? getResources().getString(this.f13619i.string("umeng_socialize_sharetolinkin")) : getResources().getString(this.f13619i.string("umeng_socialize_sharetosina"));
+    private String b(String str) {
+        return str.equals("TENCENT") ? getResources().getString(this.f8266i.string("umeng_socialize_sharetotencent")) : str.equals("RENREN") ? getResources().getString(this.f8266i.string("umeng_socialize_sharetorenren")) : str.equals("DOUBAN") ? getResources().getString(this.f8266i.string("umeng_socialize_sharetodouban")) : str.equals("TWITTER") ? getResources().getString(this.f8266i.string("umeng_socialize_sharetotwitter")) : str.equals("LINKEDIN") ? getResources().getString(this.f8266i.string("umeng_socialize_sharetolinkin")) : getResources().getString(this.f8266i.string("umeng_socialize_sharetosina"));
     }
 
-    /* renamed from: c */
-    private void m12643c() {
+    private void c() {
         SHARE_MEDIA share_media;
-        String obj = this.f13620j.getText().toString();
-        if (TextUtils.isEmpty(obj.trim()) && this.f13624n == SHARE_MEDIA.SINA && (TextUtils.isEmpty(this.f13618h) || this.f13618h.equals("web") || this.f13618h.equals("video") || this.f13618h.equals("music"))) {
-            Toast.makeText(this.f13622l, UmengText.SHARE.CONTEXT_EMPTY, 0).show();
+        String string = this.f8267j.getText().toString();
+        if (TextUtils.isEmpty(string.trim()) && this.f8271n == SHARE_MEDIA.SINA && (TextUtils.isEmpty(this.f8265h) || this.f8265h.equals("web") || this.f8265h.equals("video") || this.f8265h.equals("music"))) {
+            Toast.makeText(this.f8269l, UmengText.SHARE.CONTEXT_EMPTY, 0).show();
             return;
         }
-        if (SocializeUtils.countContentLength(obj) <= f13612d || (share_media = this.f13624n) == SHARE_MEDIA.TWITTER || share_media == SHARE_MEDIA.LINKEDIN) {
-            if (this.f13623m && this.f13624n != SHARE_MEDIA.TWITTER) {
-                Toast.makeText(this.f13622l, UmengText.SHARE.CONTEXT_LONG, 0).show();
+        if (SocializeUtils.countContentLength(string) <= f8260d || (share_media = this.f8271n) == SHARE_MEDIA.TWITTER || share_media == SHARE_MEDIA.LINKEDIN) {
+            if (this.f8270m && this.f8271n != SHARE_MEDIA.TWITTER) {
+                Toast.makeText(this.f8269l, UmengText.SHARE.CONTEXT_LONG, 0).show();
                 return;
             }
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
-            bundle.putString(SocializeConstants.KEY_TEXT, obj);
-            bundle.putString("pic", this.f13618h);
+            bundle.putString(SocializeConstants.KEY_TEXT, string);
+            bundle.putString("pic", this.f8265h);
             intent.putExtras(bundle);
             setResult(-1, intent);
-            m12646a();
+            a();
         }
     }
 
-    /* renamed from: d */
-    private void m12644d() {
-        this.f13618h = null;
-        findViewById(this.f13619i.m12637id("root")).setBackgroundColor(Color.parseColor("#D4E0E5"));
-        findViewById(this.f13619i.m12637id("umeng_socialize_share_bottom_area")).setVisibility(8);
+    private void d() {
+        this.f8265h = null;
+        findViewById(this.f8266i.id("root")).setBackgroundColor(Color.parseColor("#D4E0E5"));
+        findViewById(this.f8266i.id("umeng_socialize_share_bottom_area")).setVisibility(8);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: e */
-    public boolean m12645e() {
-        int countContentLength = f13612d - SocializeUtils.countContentLength(this.f13620j.getText().toString());
-        this.f13621k.setText(SocializeUtils.countContentLength(this.f13620j.getText().toString()) + "/" + f13612d);
-        return countContentLength < 0;
+    public boolean e() {
+        int iCountContentLength = f8260d - SocializeUtils.countContentLength(this.f8267j.getText().toString());
+        this.f8268k.setText(SocializeUtils.countContentLength(this.f8267j.getText().toString()) + "/" + f8260d);
+        return iCountContentLength < 0;
     }
 
     @Override // android.app.Activity, android.view.Window.Callback
@@ -154,52 +142,52 @@ public class ShareActivity extends Activity implements View.OnClickListener {
 
     public void onCancel(View view) {
         setResult(1000);
-        m12646a();
+        a();
     }
 
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         int id = view.getId();
-        if (id == this.f13619i.m12637id("umeng_back")) {
+        if (id == this.f8266i.id("umeng_back")) {
             onCancel(view);
-        } else if (id == this.f13619i.m12637id("umeng_share_btn")) {
-            m12643c();
-        } else if (id == this.f13619i.m12637id("umeng_del")) {
-            m12644d();
+        } else if (id == this.f8266i.id("umeng_share_btn")) {
+            c();
+        } else if (id == this.f8266i.id("umeng_del")) {
+            d();
         }
     }
 
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
-        this.f13619i = ResContainer.get(this);
-        this.f13625o = SocializeUtils.isFloatWindowStyle(this);
+        this.f8266i = ResContainer.get(this);
+        this.o = SocializeUtils.isFloatWindowStyle(this);
         super.onCreate(bundle);
-        this.f13622l = this;
-        setContentView(this.f13619i.layout("umeng_socialize_share"));
+        this.f8269l = this;
+        setContentView(this.f8266i.layout("umeng_socialize_share"));
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.softInputMode = 32;
-        if (this.f13625o) {
-            int[] floatWindowSize = SocializeUtils.getFloatWindowSize(this.f13622l);
+        if (this.o) {
+            int[] floatWindowSize = SocializeUtils.getFloatWindowSize(this.f8269l);
             attributes.width = floatWindowSize[0];
             attributes.height = floatWindowSize[1];
         }
         getWindow().setAttributes(attributes);
-        SLog.m12716E(UmengText.SHARE.SHAREVIEWV + this.f13615e);
+        SLog.E(UmengText.SHARE.SHAREVIEWV + this.f8262e);
         Bundle extras = getIntent().getExtras();
-        this.f13624n = m12638a(extras.getString(SocializeConstants.KEY_PLATFORM));
-        f13612d = HandlerRequestCode.TWITTER_REQUEST_AUTH_CODE;
-        this.f13616f = extras.getString(SocializeConstants.KEY_TEXT);
-        this.f13618h = extras.getString("pic");
-        this.f13617g = extras.getString("title");
-        m12642b();
-        this.f13626p = (ImageView) findViewById(this.f13619i.m12637id("umeng_del"));
-        this.f13620j.addTextChangedListener(this.f13614b);
-        ((TextView) findViewById(this.f13619i.m12637id("umeng_title"))).setText(m12641b(extras.getString(SocializeConstants.KEY_PLATFORM)));
-        findViewById(this.f13619i.m12637id("umeng_back")).setOnClickListener(this);
-        findViewById(this.f13619i.m12637id("umeng_share_btn")).setOnClickListener(this);
-        this.f13626p.setOnClickListener(this);
-        this.f13621k = (TextView) findViewById(this.f13619i.m12637id("umeng_socialize_share_word_num"));
-        this.f13623m = m12645e();
+        this.f8271n = a(extras.getString(SocializeConstants.KEY_PLATFORM));
+        f8260d = HandlerRequestCode.TWITTER_REQUEST_AUTH_CODE;
+        this.f8263f = extras.getString(SocializeConstants.KEY_TEXT);
+        this.f8265h = extras.getString("pic");
+        this.f8264g = extras.getString("title");
+        b();
+        this.p = (ImageView) findViewById(this.f8266i.id("umeng_del"));
+        this.f8267j.addTextChangedListener(this.f8261b);
+        ((TextView) findViewById(this.f8266i.id("umeng_title"))).setText(b(extras.getString(SocializeConstants.KEY_PLATFORM)));
+        findViewById(this.f8266i.id("umeng_back")).setOnClickListener(this);
+        findViewById(this.f8266i.id("umeng_share_btn")).setOnClickListener(this);
+        this.p.setOnClickListener(this);
+        this.f8268k = (TextView) findViewById(this.f8266i.id("umeng_socialize_share_word_num"));
+        this.f8270m = e();
     }
 
     @Override // android.app.Activity
@@ -222,7 +210,7 @@ public class ShareActivity extends Activity implements View.OnClickListener {
 
     @Override // android.app.Activity
     protected void onResume() {
-        this.f13620j.requestFocus();
+        this.f8267j.requestFocus();
         super.onResume();
     }
 
@@ -231,8 +219,7 @@ public class ShareActivity extends Activity implements View.OnClickListener {
         super.onStop();
     }
 
-    /* renamed from: a */
-    private SHARE_MEDIA m12638a(String str) {
+    private SHARE_MEDIA a(String str) {
         if (str.equals("DOUBAN")) {
             return SHARE_MEDIA.DOUBAN;
         }
@@ -245,45 +232,43 @@ public class ShareActivity extends Activity implements View.OnClickListener {
         return SHARE_MEDIA.SINA;
     }
 
-    /* renamed from: a */
-    protected void m12646a() {
+    protected void a() {
         finish();
     }
 
-    /* renamed from: b */
-    private void m12642b() {
-        this.f13620j = (EditText) findViewById(this.f13619i.m12637id("umeng_socialize_share_edittext"));
-        if (!TextUtils.isEmpty(this.f13616f)) {
-            this.f13620j.setText(this.f13616f);
-            this.f13620j.setSelection(this.f13616f.length());
+    private void b() {
+        this.f8267j = (EditText) findViewById(this.f8266i.id("umeng_socialize_share_edittext"));
+        if (!TextUtils.isEmpty(this.f8263f)) {
+            this.f8267j.setText(this.f8263f);
+            this.f8267j.setSelection(this.f8263f.length());
         }
-        this.f13627q = (TextView) findViewById(this.f13619i.m12637id("umeng_web_title"));
-        this.f13613a = (ImageView) findViewById(this.f13619i.m12637id("umeng_share_icon"));
-        if (this.f13618h != null) {
-            findViewById(this.f13619i.m12637id("umeng_socialize_share_bottom_area")).setVisibility(0);
-            this.f13613a = (ImageView) findViewById(this.f13619i.m12637id("umeng_share_icon"));
-            this.f13613a.setVisibility(0);
-            if (this.f13618h.equals("video")) {
-                this.f13613a.setImageResource(ResContainer.getResourceId(this.f13622l, "drawable", "umeng_socialize_share_video"));
-            } else if (this.f13618h.equals("music")) {
-                this.f13613a.setImageResource(ResContainer.getResourceId(this.f13622l, "drawable", "umeng_socialize_share_music"));
-            } else if (this.f13618h.equals("web")) {
-                this.f13613a.setImageResource(ResContainer.getResourceId(this.f13622l, "drawable", "umeng_socialize_share_web"));
+        this.q = (TextView) findViewById(this.f8266i.id("umeng_web_title"));
+        this.a = (ImageView) findViewById(this.f8266i.id("umeng_share_icon"));
+        if (this.f8265h != null) {
+            findViewById(this.f8266i.id("umeng_socialize_share_bottom_area")).setVisibility(0);
+            this.a = (ImageView) findViewById(this.f8266i.id("umeng_share_icon"));
+            this.a.setVisibility(0);
+            if (this.f8265h.equals("video")) {
+                this.a.setImageResource(ResContainer.getResourceId(this.f8269l, "drawable", "umeng_socialize_share_video"));
+            } else if (this.f8265h.equals("music")) {
+                this.a.setImageResource(ResContainer.getResourceId(this.f8269l, "drawable", "umeng_socialize_share_music"));
+            } else if (this.f8265h.equals("web")) {
+                this.a.setImageResource(ResContainer.getResourceId(this.f8269l, "drawable", "umeng_socialize_share_web"));
             } else {
-                this.f13613a.setImageURI(Uri.fromFile(new File(this.f13618h)));
+                this.a.setImageURI(Uri.fromFile(new File(this.f8265h)));
             }
-            if (!TextUtils.isEmpty(this.f13617g)) {
-                this.f13627q.setVisibility(0);
-                this.f13627q.setText(this.f13617g);
+            if (!TextUtils.isEmpty(this.f8264g)) {
+                this.q.setVisibility(0);
+                this.q.setText(this.f8264g);
             }
-            findViewById(this.f13619i.m12637id("root")).setBackgroundColor(-1);
+            findViewById(this.f8266i.id("root")).setBackgroundColor(-1);
             return;
         }
-        if (TextUtils.isEmpty(this.f13617g)) {
+        if (TextUtils.isEmpty(this.f8264g)) {
             return;
         }
-        this.f13613a.setImageResource(ResContainer.getResourceId(this.f13622l, "drawable", "umeng_socialize_share_web"));
-        this.f13627q.setVisibility(0);
-        this.f13627q.setText(this.f13617g);
+        this.a.setImageResource(ResContainer.getResourceId(this.f8269l, "drawable", "umeng_socialize_share_web"));
+        this.q.setVisibility(0);
+        this.q.setText(this.f8264g);
     }
 }

@@ -2,23 +2,22 @@ package com.umeng.commonsdk.statistics.idtracking;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.umeng.analytics.pro.C3336at;
-import com.umeng.analytics.pro.C3351bh;
-import com.umeng.analytics.pro.C3369bz;
+import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.bt;
+import com.umeng.analytics.pro.bz;
 import com.umeng.commonsdk.debug.UMRTLog;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
 import com.umeng.commonsdk.statistics.AnalyticsConstants;
 import com.umeng.commonsdk.statistics.common.DataHelper;
 import com.umeng.commonsdk.statistics.common.HelperUtils;
 import com.umeng.commonsdk.statistics.common.ULog;
-import com.umeng.commonsdk.statistics.internal.InterfaceC3516d;
 import com.umeng.commonsdk.statistics.internal.UMImprintChangeCallback;
 import com.umeng.commonsdk.statistics.internal.UMImprintPreProcessCallback;
-import com.umeng.commonsdk.statistics.proto.C3526d;
-import com.umeng.commonsdk.statistics.proto.C3527e;
 import com.umeng.commonsdk.utils.FileLockCallback;
 import com.umeng.commonsdk.utils.FileLockUtil;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -29,148 +28,143 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ImprintHandler implements FileLockCallback {
+    private static final String a = "ImprintHandler";
 
-    /* renamed from: a */
-    private static final String f12756a = "ImprintHandler";
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private static Context f7698k = null;
 
-    /* renamed from: k */
-    private static Context f12763k = null;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private static FileLockUtil f7699l = null;
 
-    /* renamed from: l */
-    private static FileLockUtil f12764l = null;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private static final int f7700m = 0;
 
-    /* renamed from: m */
-    private static final int f12765m = 0;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private static final int f7701n = 1;
 
-    /* renamed from: n */
-    private static final int f12766n = 1;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private com.umeng.commonsdk.statistics.internal.d f7702e;
 
-    /* renamed from: e */
-    private InterfaceC3516d f12769e;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private a f7703h = new a();
 
-    /* renamed from: h */
-    private C3500a f12770h = new C3500a();
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private com.umeng.commonsdk.statistics.proto.d f7704i = null;
 
-    /* renamed from: i */
-    private C3526d f12771i = null;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static Object f7692b = new Object();
 
-    /* renamed from: b */
-    private static Object f12757b = new Object();
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f7693c = at.b().b(at.f7017c);
 
-    /* renamed from: c */
-    private static final String f12758c = C3336at.m10865b().m10868b(C3336at.f11489c);
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final byte[] f7694d = "pbl0".getBytes();
 
-    /* renamed from: d */
-    private static final byte[] f12759d = "pbl0".getBytes();
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static Map<String, ArrayList<UMImprintChangeCallback>> f7695f = new HashMap();
 
-    /* renamed from: f */
-    private static Map<String, ArrayList<UMImprintChangeCallback>> f12760f = new HashMap();
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private static Object f7696g = new Object();
 
-    /* renamed from: g */
-    private static Object f12761g = new Object();
-
-    /* renamed from: j */
-    private static ImprintHandler f12762j = null;
-
-    /* renamed from: o */
-    private static Map<String, UMImprintPreProcessCallback> f12767o = new HashMap();
-
-    /* renamed from: p */
-    private static Object f12768p = new Object();
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private static ImprintHandler f7697j = null;
+    private static Map<String, UMImprintPreProcessCallback> o = new HashMap();
+    private static Object p = new Object();
 
     private ImprintHandler(Context context) {
-        f12763k = context.getApplicationContext();
+        f7698k = context.getApplicationContext();
     }
 
-    /* renamed from: a */
-    private static void m11825a(String str, UMImprintChangeCallback uMImprintChangeCallback) {
-        synchronized (f12761g) {
+    private static void a(String str, UMImprintChangeCallback uMImprintChangeCallback) {
+        synchronized (f7696g) {
             try {
                 int i2 = 0;
-                if (f12760f.containsKey(str)) {
-                    ArrayList<UMImprintChangeCallback> arrayList = f12760f.get(str);
+                if (f7695f.containsKey(str)) {
+                    ArrayList<UMImprintChangeCallback> arrayList = f7695f.get(str);
                     int size = arrayList.size();
-                    ULog.m11780i("--->>> addCallback: before add: callbacks size is: " + size);
+                    ULog.i("--->>> addCallback: before add: callbacks size is: " + size);
                     while (i2 < size) {
                         if (uMImprintChangeCallback == arrayList.get(i2)) {
-                            ULog.m11780i("--->>> addCallback: callback has exist, just exit");
+                            ULog.i("--->>> addCallback: callback has exist, just exit");
                             return;
                         }
                         i2++;
                     }
                     arrayList.add(uMImprintChangeCallback);
-                    ULog.m11780i("--->>> addCallback: after add: callbacks size is: " + arrayList.size());
+                    ULog.i("--->>> addCallback: after add: callbacks size is: " + arrayList.size());
                 } else {
                     ArrayList<UMImprintChangeCallback> arrayList2 = new ArrayList<>();
                     int size2 = arrayList2.size();
-                    ULog.m11780i("--->>> addCallback: before add: callbacks size is: " + size2);
+                    ULog.i("--->>> addCallback: before add: callbacks size is: " + size2);
                     while (i2 < size2) {
                         if (uMImprintChangeCallback == arrayList2.get(i2)) {
-                            ULog.m11780i("--->>> addCallback: callback has exist, just exit");
+                            ULog.i("--->>> addCallback: callback has exist, just exit");
                             return;
                         }
                         i2++;
                     }
                     arrayList2.add(uMImprintChangeCallback);
-                    ULog.m11780i("--->>> addCallback: after add: callbacks size is: " + arrayList2.size());
-                    f12760f.put(str, arrayList2);
+                    ULog.i("--->>> addCallback: after add: callbacks size is: " + arrayList2.size());
+                    f7695f.put(str, arrayList2);
                 }
             } catch (Throwable th) {
-                UMCrashManager.reportCrash(f12763k, th);
+                UMCrashManager.reportCrash(f7698k, th);
             }
         }
     }
 
-    /* renamed from: b */
-    private static void m11827b(String str, UMImprintChangeCallback uMImprintChangeCallback) {
+    /* JADX WARN: Removed duplicated region for block: B:26:0x009f A[Catch: all -> 0x00a1, DONT_GENERATE, TryCatch #0 {, blocks: (B:26:0x009f, B:25:0x009a, B:8:0x000d, B:10:0x0015, B:12:0x001f, B:14:0x0025, B:16:0x0040, B:18:0x0046, B:19:0x005e, B:20:0x0061, B:22:0x007f), top: B:32:0x000d, inners: #1 }] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    private static void b(String str, UMImprintChangeCallback uMImprintChangeCallback) {
         if (TextUtils.isEmpty(str) || uMImprintChangeCallback == null) {
             return;
         }
-        synchronized (f12761g) {
+        synchronized (f7696g) {
             try {
-                if (f12760f.containsKey(str)) {
-                    ArrayList<UMImprintChangeCallback> arrayList = f12760f.get(str);
-                    if (uMImprintChangeCallback != null && arrayList.size() > 0) {
-                        int size = arrayList.size();
-                        ULog.m11780i("--->>> removeCallback: before remove: callbacks size is: " + size);
-                        int i2 = 0;
-                        while (true) {
-                            if (i2 >= size) {
-                                break;
-                            }
-                            if (uMImprintChangeCallback == arrayList.get(i2)) {
-                                ULog.m11780i("--->>> removeCallback: remove index " + i2);
-                                arrayList.remove(i2);
-                                break;
-                            }
-                            i2++;
+            } finally {
+            }
+            if (f7695f.containsKey(str)) {
+                ArrayList<UMImprintChangeCallback> arrayList = f7695f.get(str);
+                if (uMImprintChangeCallback != null && arrayList.size() > 0) {
+                    int size = arrayList.size();
+                    ULog.i("--->>> removeCallback: before remove: callbacks size is: " + size);
+                    int i2 = 0;
+                    while (true) {
+                        if (i2 >= size) {
+                            break;
                         }
-                        ULog.m11780i("--->>> removeCallback: after remove: callbacks size is: " + arrayList.size());
-                        if (arrayList.size() == 0) {
-                            ULog.m11780i("--->>> removeCallback: remove key from map: key = " + str);
-                            f12760f.remove(str);
+                        if (uMImprintChangeCallback == arrayList.get(i2)) {
+                            ULog.i("--->>> removeCallback: remove index " + i2);
+                            arrayList.remove(i2);
+                            break;
                         }
+                        i2++;
+                    }
+                    ULog.i("--->>> removeCallback: after remove: callbacks size is: " + arrayList.size());
+                    if (arrayList.size() == 0) {
+                        ULog.i("--->>> removeCallback: remove key from map: key = " + str);
+                        f7695f.remove(str);
                     }
                 }
-            } finally {
             }
         }
     }
 
-    /* renamed from: c */
-    private boolean m11828c(C3526d c3526d) {
-        if (!c3526d.m12037i().equals(m11832a(c3526d))) {
+    private boolean c(com.umeng.commonsdk.statistics.proto.d dVar) {
+        if (!dVar.i().equals(a(dVar))) {
             return false;
         }
-        for (C3527e c3527e : c3526d.m12030c().values()) {
-            String m12070h = c3527e.m12070h();
-            if (!TextUtils.isEmpty(m12070h)) {
-                byte[] reverseHexString = DataHelper.reverseHexString(m12070h);
-                byte[] m11836a = m11836a(c3527e);
+        for (com.umeng.commonsdk.statistics.proto.e eVar : dVar.c().values()) {
+            String strH = eVar.h();
+            if (!TextUtils.isEmpty(strH)) {
+                byte[] bArrReverseHexString = DataHelper.reverseHexString(strH);
+                byte[] bArrA = a(eVar);
                 for (int i2 = 0; i2 < 4; i2++) {
-                    if (reverseHexString[i2] != m11836a[i2]) {
+                    if (bArrReverseHexString[i2] != bArrA[i2]) {
                         return false;
                     }
                 }
@@ -179,43 +173,41 @@ public class ImprintHandler implements FileLockCallback {
         return true;
     }
 
-    /* renamed from: d */
-    private C3526d m11829d(C3526d c3526d) {
-        Map<String, C3527e> m12030c = c3526d.m12030c();
-        if (m12030c.containsKey(C3351bh.f11652f)) {
-            m12030c.remove(C3351bh.f11652f);
-            this.f12770h.m11844a(C3351bh.f11652f);
-            c3526d.m12022a(c3526d.m12034f());
-            c3526d.m12023a(m11832a(c3526d));
+    private com.umeng.commonsdk.statistics.proto.d d(com.umeng.commonsdk.statistics.proto.d dVar) {
+        Map<String, com.umeng.commonsdk.statistics.proto.e> mapC = dVar.c();
+        if (mapC.containsKey(bh.f7054f)) {
+            mapC.remove(bh.f7054f);
+            this.f7703h.a(bh.f7054f);
+            dVar.a(dVar.f());
+            dVar.a(a(dVar));
         }
-        return c3526d;
+        return dVar;
     }
 
-    /* renamed from: e */
-    private C3526d m11830e(C3526d c3526d) {
+    private com.umeng.commonsdk.statistics.proto.d e(com.umeng.commonsdk.statistics.proto.d dVar) {
         ArrayList<UMImprintChangeCallback> arrayList;
         boolean z;
         ArrayList<UMImprintChangeCallback> arrayList2;
         UMImprintPreProcessCallback uMImprintPreProcessCallback;
-        Map<String, C3527e> m12030c = c3526d.m12030c();
-        ArrayList<String> arrayList3 = new ArrayList(m12030c.size() / 2);
-        Iterator<Map.Entry<String, C3527e>> it = m12030c.entrySet().iterator();
+        Map<String, com.umeng.commonsdk.statistics.proto.e> mapC = dVar.c();
+        ArrayList<String> arrayList3 = new ArrayList(mapC.size() / 2);
+        Iterator<Map.Entry<String, com.umeng.commonsdk.statistics.proto.e>> it = mapC.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map.Entry<String, C3527e> next = it.next();
-            if (next.getValue().m12066d()) {
+            Map.Entry<String, com.umeng.commonsdk.statistics.proto.e> next = it.next();
+            if (next.getValue().d()) {
                 String key = next.getKey();
-                String str = next.getValue().f12918a;
-                synchronized (f12768p) {
-                    z = !TextUtils.isEmpty(key) && f12767o.containsKey(key) && (uMImprintPreProcessCallback = f12767o.get(key)) != null && uMImprintPreProcessCallback.onPreProcessImprintKey(key, str);
+                String str = next.getValue().a;
+                synchronized (p) {
+                    z = !TextUtils.isEmpty(key) && o.containsKey(key) && (uMImprintPreProcessCallback = o.get(key)) != null && uMImprintPreProcessCallback.onPreProcessImprintKey(key, str);
                 }
                 if (z) {
                     arrayList3.add(key);
                 }
-                synchronized (f12761g) {
-                    if (!TextUtils.isEmpty(key) && f12760f.containsKey(key) && (arrayList2 = f12760f.get(key)) != null) {
+                synchronized (f7696g) {
+                    if (!TextUtils.isEmpty(key) && f7695f.containsKey(key) && (arrayList2 = f7695f.get(key)) != null) {
                         for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                             arrayList2.get(i2).onImprintValueChanged(key, str);
                         }
@@ -226,39 +218,35 @@ public class ImprintHandler implements FileLockCallback {
             }
         }
         for (String str2 : arrayList3) {
-            synchronized (f12761g) {
-                if (!TextUtils.isEmpty(str2) && f12760f.containsKey(str2) && (arrayList = f12760f.get(str2)) != null) {
+            synchronized (f7696g) {
+                if (!TextUtils.isEmpty(str2) && f7695f.containsKey(str2) && (arrayList = f7695f.get(str2)) != null) {
                     for (int i3 = 0; i3 < arrayList.size(); i3++) {
                         arrayList.get(i3).onImprintValueChanged(str2, null);
                     }
                 }
             }
-            m12030c.remove(str2);
+            mapC.remove(str2);
         }
-        return c3526d;
+        return dVar;
     }
 
     public static synchronized ImprintHandler getImprintService(Context context) {
-        ImprintHandler imprintHandler;
-        synchronized (ImprintHandler.class) {
-            if (f12762j == null) {
-                f12762j = new ImprintHandler(context);
-                f12764l = new FileLockUtil();
-                if (f12764l != null) {
-                    f12764l.doFileOperateion(new File(f12763k.getFilesDir(), f12758c), f12762j, 0);
-                }
+        if (f7697j == null) {
+            f7697j = new ImprintHandler(context);
+            f7699l = new FileLockUtil();
+            if (f7699l != null) {
+                f7699l.doFileOperateion(new File(f7698k.getFilesDir(), f7693c), f7697j, 0);
             }
-            imprintHandler = f12762j;
         }
-        return imprintHandler;
+        return f7697j;
     }
 
     @Override // com.umeng.commonsdk.utils.FileLockCallback
     public boolean onFileLock(File file, int i2) {
         if (i2 == 0) {
-            f12762j.m11831e();
+            f7697j.e();
         } else if (i2 == 1) {
-            f12762j.m11824a(file);
+            f7697j.a(file);
         }
         return true;
     }
@@ -277,20 +265,20 @@ public class ImprintHandler implements FileLockCallback {
         if (TextUtils.isEmpty(str) || uMImprintChangeCallback == null) {
             return;
         }
-        m11825a(str, uMImprintChangeCallback);
+        a(str, uMImprintChangeCallback);
     }
 
     public void registPreProcessCallback(String str, UMImprintPreProcessCallback uMImprintPreProcessCallback) {
         if (TextUtils.isEmpty(str) || uMImprintPreProcessCallback == null) {
             return;
         }
-        synchronized (f12768p) {
+        synchronized (p) {
             try {
-                if (f12767o.containsKey(str)) {
-                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> key : " + str + " PreProcesser has registed!");
+                if (o.containsKey(str)) {
+                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> key : " + str + " PreProcesser has registed!");
                 } else {
-                    f12767o.put(str, uMImprintPreProcessCallback);
-                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> registPreProcessCallback: key : " + str + " regist success.");
+                    o.put(str, uMImprintPreProcessCallback);
+                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> registPreProcessCallback: key : " + str + " regist success.");
                 }
             } finally {
             }
@@ -301,74 +289,69 @@ public class ImprintHandler implements FileLockCallback {
         if (TextUtils.isEmpty(str) || uMImprintChangeCallback == null) {
             return;
         }
-        m11827b(str, uMImprintChangeCallback);
+        b(str, uMImprintChangeCallback);
     }
 
-    /* renamed from: com.umeng.commonsdk.statistics.idtracking.ImprintHandler$a */
-    public static class C3500a {
+    public static class a {
+        private Map<String, String> a = new HashMap();
 
-        /* renamed from: a */
-        private Map<String, String> f12772a = new HashMap();
-
-        C3500a() {
+        a() {
         }
 
-        /* renamed from: b */
-        private synchronized void m11841b(C3526d c3526d) {
-            C3527e c3527e;
-            if (c3526d != null) {
-                if (c3526d.m12033e()) {
-                    Map<String, C3527e> m12030c = c3526d.m12030c();
-                    for (String str : m12030c.keySet()) {
-                        if (!TextUtils.isEmpty(str) && (c3527e = m12030c.get(str)) != null) {
-                            String m12062b = c3527e.m12062b();
-                            if (!TextUtils.isEmpty(m12062b)) {
-                                this.f12772a.put(str, m12062b);
-                                if (AnalyticsConstants.UM_DEBUG) {
-                                    String str2 = "imKey is " + str + ", imValue is " + m12062b;
+        private synchronized void b(com.umeng.commonsdk.statistics.proto.d dVar) {
+            com.umeng.commonsdk.statistics.proto.e eVar;
+            if (dVar != null) {
+                try {
+                    if (dVar.e()) {
+                        Map<String, com.umeng.commonsdk.statistics.proto.e> mapC = dVar.c();
+                        for (String str : mapC.keySet()) {
+                            if (!TextUtils.isEmpty(str) && (eVar = mapC.get(str)) != null) {
+                                String strB = eVar.b();
+                                if (!TextUtils.isEmpty(strB)) {
+                                    this.a.put(str, strB);
+                                    if (AnalyticsConstants.UM_DEBUG) {
+                                        String str2 = "imKey is " + str + ", imValue is " + strB;
+                                    }
                                 }
                             }
                         }
                     }
+                } catch (Throwable unused) {
                 }
             }
         }
 
-        /* renamed from: a */
-        public synchronized void m11844a(String str) {
-            if (this.f12772a != null && this.f12772a.size() > 0 && !TextUtils.isEmpty(str) && this.f12772a.containsKey(str)) {
-                this.f12772a.remove(str);
+        public synchronized void a(String str) {
+            if (this.a != null && this.a.size() > 0 && !TextUtils.isEmpty(str) && this.a.containsKey(str)) {
+                this.a.remove(str);
             }
         }
 
-        C3500a(C3526d c3526d) {
-            m11843a(c3526d);
+        a(com.umeng.commonsdk.statistics.proto.d dVar) {
+            a(dVar);
         }
 
-        /* renamed from: a */
-        public void m11843a(C3526d c3526d) {
-            if (c3526d == null) {
+        public void a(com.umeng.commonsdk.statistics.proto.d dVar) {
+            if (dVar == null) {
                 return;
             }
-            m11841b(c3526d);
+            b(dVar);
         }
 
-        /* renamed from: a */
-        public synchronized String m11842a(String str, String str2) {
-            if (!TextUtils.isEmpty(str) && this.f12772a.size() > 0) {
-                String str3 = this.f12772a.get(str);
+        public synchronized String a(String str, String str2) {
+            if (!TextUtils.isEmpty(str) && this.a.size() > 0) {
+                String str3 = this.a.get(str);
                 return !TextUtils.isEmpty(str3) ? str3 : str2;
             }
             return str2;
         }
     }
 
-    /* renamed from: d */
-    public void m11840d() {
-        if (this.f12771i == null || f12764l == null) {
+    public void d() {
+        if (this.f7704i == null || f7699l == null) {
             return;
         }
-        File file = new File(f12763k.getFilesDir(), f12758c);
+        File file = new File(f7698k.getFilesDir(), f7693c);
         if (!file.exists()) {
             try {
                 try {
@@ -377,72 +360,70 @@ public class ImprintHandler implements FileLockCallback {
                     file.createNewFile();
                 }
             } catch (IOException e2) {
-                UMCrashManager.reportCrash(f12763k, e2);
+                UMCrashManager.reportCrash(f7698k, e2);
             }
         }
-        f12764l.doFileOperateion(file, f12762j, 1);
+        f7699l.doFileOperateion(file, f7697j, 1);
     }
 
-    /* renamed from: c */
-    public C3500a m11839c() {
-        return this.f12770h;
+    public a c() {
+        return this.f7703h;
     }
 
-    /* renamed from: b */
-    public void m11838b(C3526d c3526d) {
-        C3526d m11823a;
+    public void b(com.umeng.commonsdk.statistics.proto.d dVar) {
+        com.umeng.commonsdk.statistics.proto.d dVarA;
         boolean z;
-        if (c3526d == null) {
+        if (dVar == null) {
             if (AnalyticsConstants.UM_DEBUG) {
-                UMRTLog.m11554d(UMRTLog.RTLOG_TAG, "Imprint is null");
+                UMRTLog.d(UMRTLog.RTLOG_TAG, "Imprint is null");
                 return;
             }
             return;
         }
-        if (!m11828c(c3526d)) {
+        if (!c(dVar)) {
             if (AnalyticsConstants.UM_DEBUG) {
-                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "Imprint is not valid");
+                UMRTLog.e(UMRTLog.RTLOG_TAG, "Imprint is not valid");
                 return;
             }
             return;
         }
         boolean z2 = AnalyticsConstants.UM_DEBUG;
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         synchronized (this) {
-            C3526d c3526d2 = this.f12771i;
-            C3526d m11829d = m11829d(c3526d);
-            String str = null;
-            String m12037i = c3526d2 == null ? null : c3526d2.m12037i();
-            if (c3526d2 == null) {
-                m11823a = m11830e(m11829d);
+            com.umeng.commonsdk.statistics.proto.d dVar2 = this.f7704i;
+            com.umeng.commonsdk.statistics.proto.d dVarD = d(dVar);
+            String strI = null;
+            String strI2 = dVar2 == null ? null : dVar2.i();
+            if (dVar2 == null) {
+                dVarA = e(dVarD);
             } else {
-                m11823a = m11823a(c3526d2, m11829d, hashMap);
+                dVarA = a(dVar2, dVarD, map);
             }
-            this.f12771i = m11823a;
-            if (m11823a != null) {
-                str = m11823a.m12037i();
+            this.f7704i = dVarA;
+            if (dVarA != null) {
+                strI = dVarA.i();
             }
-            z = !m11826a(m12037i, str);
+            z = !a(strI2, strI);
         }
-        C3526d c3526d3 = this.f12771i;
-        if (c3526d3 != null) {
+        com.umeng.commonsdk.statistics.proto.d dVar3 = this.f7704i;
+        if (dVar3 != null) {
             boolean z3 = AnalyticsConstants.UM_DEBUG;
             if (z) {
-                this.f12770h.m11843a(c3526d3);
-                InterfaceC3516d interfaceC3516d = this.f12769e;
-                if (interfaceC3516d != null) {
-                    interfaceC3516d.onImprintChanged(this.f12770h);
+                this.f7703h.a(dVar3);
+                com.umeng.commonsdk.statistics.internal.d dVar4 = this.f7702e;
+                if (dVar4 != null) {
+                    dVar4.onImprintChanged(this.f7703h);
                 }
             }
         }
-        if (hashMap.size() > 0) {
-            synchronized (f12761g) {
-                for (Map.Entry<String, String> entry : hashMap.entrySet()) {
+        if (map.size() > 0) {
+            synchronized (f7696g) {
+                for (Map.Entry<String, String> entry : map.entrySet()) {
                     String key = entry.getKey();
                     String value = entry.getValue();
-                    if (!TextUtils.isEmpty(key) && f12760f.containsKey(key)) {
-                        ULog.m11780i("--->>> target imprint key is: " + key + "; value is: " + value);
-                        ArrayList<UMImprintChangeCallback> arrayList = f12760f.get(key);
+                    if (!TextUtils.isEmpty(key) && f7695f.containsKey(key)) {
+                        ULog.i("--->>> target imprint key is: " + key + "; value is: " + value);
+                        ArrayList<UMImprintChangeCallback> arrayList = f7695f.get(key);
                         if (arrayList != null) {
                             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                                 arrayList.get(i2).onImprintValueChanged(key, value);
@@ -454,222 +435,183 @@ public class ImprintHandler implements FileLockCallback {
         }
     }
 
-    /* renamed from: a */
-    public void m11834a(String str) {
+    public void a(String str) {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        synchronized (f12768p) {
+        synchronized (p) {
             try {
-                if (f12767o.containsKey(str)) {
-                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> unregistPreProcessCallback: unregist [" + str + "] success.");
-                    f12760f.remove(str);
+                if (o.containsKey(str)) {
+                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> unregistPreProcessCallback: unregist [" + str + "] success.");
+                    f7695f.remove(str);
                 } else {
-                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> unregistPreProcessCallback: can't find [" + str + "], pls regist first.");
+                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> unregistPreProcessCallback: can't find [" + str + "], pls regist first.");
                 }
             } finally {
             }
         }
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:18:0x0035 A[EXC_TOP_SPLITTER, SYNTHETIC] */
-    /* renamed from: e */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    private void m11831e() {
-        /*
-            r5 = this;
-            java.io.File r0 = new java.io.File
-            android.content.Context r1 = com.umeng.commonsdk.statistics.idtracking.ImprintHandler.f12763k
-            java.io.File r1 = r1.getFilesDir()
-            java.lang.String r2 = com.umeng.commonsdk.statistics.idtracking.ImprintHandler.f12758c
-            r0.<init>(r1, r2)
-            java.lang.Object r1 = com.umeng.commonsdk.statistics.idtracking.ImprintHandler.f12757b
-            monitor-enter(r1)
-            boolean r0 = r0.exists()     // Catch: java.lang.Throwable -> L60
-            if (r0 != 0) goto L18
-            monitor-exit(r1)     // Catch: java.lang.Throwable -> L60
-            return
-        L18:
-            r0 = 0
-            android.content.Context r2 = com.umeng.commonsdk.statistics.idtracking.ImprintHandler.f12763k     // Catch: java.lang.Throwable -> L2b java.lang.Exception -> L2d
-            java.lang.String r3 = com.umeng.commonsdk.statistics.idtracking.ImprintHandler.f12758c     // Catch: java.lang.Throwable -> L2b java.lang.Exception -> L2d
-            java.io.FileInputStream r2 = r2.openFileInput(r3)     // Catch: java.lang.Throwable -> L2b java.lang.Exception -> L2d
-            byte[] r0 = com.umeng.commonsdk.statistics.common.HelperUtils.readStreamToByteArray(r2)     // Catch: java.lang.Exception -> L29 java.lang.Throwable -> L58
-        L25:
-            com.umeng.commonsdk.statistics.common.HelperUtils.safeClose(r2)     // Catch: java.lang.Throwable -> L60
-            goto L33
-        L29:
-            r3 = move-exception
-            goto L2f
-        L2b:
-            r2 = move-exception
-            goto L5c
-        L2d:
-            r3 = move-exception
-            r2 = r0
-        L2f:
-            r3.printStackTrace()     // Catch: java.lang.Throwable -> L58
-            goto L25
-        L33:
-            if (r0 == 0) goto L56
-            com.umeng.commonsdk.statistics.proto.d r2 = new com.umeng.commonsdk.statistics.proto.d     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            r2.<init>()     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            com.umeng.analytics.pro.bt r3 = new com.umeng.analytics.pro.bt     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            r3.<init>()     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            r3.m11061a(r2, r0)     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            r5.f12771i = r2     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            com.umeng.commonsdk.statistics.idtracking.ImprintHandler$a r0 = r5.f12770h     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            r0.m11843a(r2)     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            com.umeng.commonsdk.statistics.proto.d r0 = r5.f12771i     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            com.umeng.commonsdk.statistics.proto.d r0 = r5.m11829d(r0)     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            r5.f12771i = r0     // Catch: java.lang.Exception -> L52 java.lang.Throwable -> L60
-            goto L56
-        L52:
-            r0 = move-exception
-            r0.printStackTrace()     // Catch: java.lang.Throwable -> L60
-        L56:
-            monitor-exit(r1)     // Catch: java.lang.Throwable -> L60
-            return
-        L58:
-            r0 = move-exception
-            r4 = r2
-            r2 = r0
-            r0 = r4
-        L5c:
-            com.umeng.commonsdk.statistics.common.HelperUtils.safeClose(r0)     // Catch: java.lang.Throwable -> L60
-            throw r2     // Catch: java.lang.Throwable -> L60
-        L60:
-            r0 = move-exception
-            monitor-exit(r1)     // Catch: java.lang.Throwable -> L60
-            throw r0
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.umeng.commonsdk.statistics.idtracking.ImprintHandler.m11831e():void");
-    }
-
-    /* renamed from: a */
-    public void m11833a(InterfaceC3516d interfaceC3516d) {
-        this.f12769e = interfaceC3516d;
-    }
-
-    /* renamed from: a */
-    public String m11832a(C3526d c3526d) {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry entry : new TreeMap(c3526d.m12030c()).entrySet()) {
-            sb.append((String) entry.getKey());
-            if (((C3527e) entry.getValue()).m12066d()) {
-                sb.append(((C3527e) entry.getValue()).m12062b());
+    private void e() {
+        FileInputStream fileInputStreamOpenFileInput;
+        File file = new File(f7698k.getFilesDir(), f7693c);
+        synchronized (f7692b) {
+            if (file.exists()) {
+                FileInputStream fileInputStream = null;
+                byte[] streamToByteArray = null;
+                try {
+                    fileInputStreamOpenFileInput = f7698k.openFileInput(f7693c);
+                } catch (Exception e2) {
+                    e = e2;
+                    fileInputStreamOpenFileInput = null;
+                } catch (Throwable th) {
+                    th = th;
+                    HelperUtils.safeClose(fileInputStream);
+                    throw th;
+                }
+                try {
+                    try {
+                        streamToByteArray = HelperUtils.readStreamToByteArray(fileInputStreamOpenFileInput);
+                    } catch (Throwable th2) {
+                        FileInputStream fileInputStream2 = fileInputStreamOpenFileInput;
+                        th = th2;
+                        fileInputStream = fileInputStream2;
+                        HelperUtils.safeClose(fileInputStream);
+                        throw th;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    e.printStackTrace();
+                }
+                HelperUtils.safeClose(fileInputStreamOpenFileInput);
+                if (streamToByteArray != null) {
+                    try {
+                        com.umeng.commonsdk.statistics.proto.d dVar = new com.umeng.commonsdk.statistics.proto.d();
+                        new bt().a(dVar, streamToByteArray);
+                        this.f7704i = dVar;
+                        this.f7703h.a(dVar);
+                        this.f7704i = d(this.f7704i);
+                    } catch (Exception e4) {
+                        e4.printStackTrace();
+                    }
+                }
             }
         }
-        sb.append(c3526d.f12900b);
+    }
+
+    public void a(com.umeng.commonsdk.statistics.internal.d dVar) {
+        this.f7702e = dVar;
+    }
+
+    public String a(com.umeng.commonsdk.statistics.proto.d dVar) {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry entry : new TreeMap(dVar.c()).entrySet()) {
+            sb.append((String) entry.getKey());
+            if (((com.umeng.commonsdk.statistics.proto.e) entry.getValue()).d()) {
+                sb.append(((com.umeng.commonsdk.statistics.proto.e) entry.getValue()).b());
+            }
+        }
+        sb.append(dVar.f7805b);
         return HelperUtils.MD5(sb.toString()).toLowerCase(Locale.US);
     }
 
-    /* renamed from: a */
-    public byte[] m11836a(C3527e c3527e) {
-        ByteBuffer allocate = ByteBuffer.allocate(8);
-        allocate.order(null);
-        allocate.putLong(c3527e.m12067e());
-        byte[] array = allocate.array();
-        byte[] bArr = f12759d;
+    public byte[] a(com.umeng.commonsdk.statistics.proto.e eVar) {
+        ByteBuffer byteBufferAllocate = ByteBuffer.allocate(8);
+        byteBufferAllocate.order(null);
+        byteBufferAllocate.putLong(eVar.e());
+        byte[] bArrArray = byteBufferAllocate.array();
+        byte[] bArr = f7694d;
         byte[] bArr2 = new byte[4];
         for (int i2 = 0; i2 < 4; i2++) {
-            bArr2[i2] = (byte) (array[i2] ^ bArr[i2]);
+            bArr2[i2] = (byte) (bArrArray[i2] ^ bArr[i2]);
         }
         return bArr2;
     }
 
-    /* renamed from: a */
-    public byte[] m11835a() {
+    public byte[] a() {
         try {
             synchronized (this) {
-                if (this.f12771i == null) {
+                if (this.f7704i == null) {
                     return null;
                 }
-                if (this.f12771i.m12027b() <= 0) {
+                if (this.f7704i.b() <= 0) {
                     return null;
                 }
-                return new C3369bz().m11073a(this.f12771i);
+                return new bz().a(this.f7704i);
             }
         } catch (Throwable th) {
-            UMCrashManager.reportCrash(f12763k, th);
+            UMCrashManager.reportCrash(f7698k, th);
             return null;
         }
     }
 
-    /* renamed from: b */
-    public synchronized C3526d m11837b() {
-        return this.f12771i;
+    public synchronized com.umeng.commonsdk.statistics.proto.d b() {
+        return this.f7704i;
     }
 
-    /* renamed from: a */
-    private boolean m11826a(String str, String str2) {
+    private boolean a(String str, String str2) {
         if (str == null) {
             return str2 == null;
         }
         return str.equals(str2);
     }
 
-    /* renamed from: a */
-    private C3526d m11823a(C3526d c3526d, C3526d c3526d2, Map<String, String> map) {
+    private com.umeng.commonsdk.statistics.proto.d a(com.umeng.commonsdk.statistics.proto.d dVar, com.umeng.commonsdk.statistics.proto.d dVar2, Map<String, String> map) {
         UMImprintPreProcessCallback uMImprintPreProcessCallback;
         ArrayList<UMImprintChangeCallback> arrayList;
-        if (c3526d2 == null) {
-            return c3526d;
+        if (dVar2 == null) {
+            return dVar;
         }
-        Map<String, C3527e> m12030c = c3526d.m12030c();
-        for (Map.Entry<String, C3527e> entry : c3526d2.m12030c().entrySet()) {
+        Map<String, com.umeng.commonsdk.statistics.proto.e> mapC = dVar.c();
+        for (Map.Entry<String, com.umeng.commonsdk.statistics.proto.e> entry : dVar2.c().entrySet()) {
             int i2 = 0;
-            if (entry.getValue().m12066d()) {
+            if (entry.getValue().d()) {
                 String key = entry.getKey();
-                String str = entry.getValue().f12918a;
-                synchronized (f12768p) {
-                    if (!TextUtils.isEmpty(key) && f12767o.containsKey(key) && (uMImprintPreProcessCallback = f12767o.get(key)) != null && uMImprintPreProcessCallback.onPreProcessImprintKey(key, str)) {
+                String str = entry.getValue().a;
+                synchronized (p) {
+                    if (!TextUtils.isEmpty(key) && o.containsKey(key) && (uMImprintPreProcessCallback = o.get(key)) != null && uMImprintPreProcessCallback.onPreProcessImprintKey(key, str)) {
                         i2 = 1;
                     }
                 }
                 if (i2 == 0) {
-                    m12030c.put(entry.getKey(), entry.getValue());
-                    synchronized (f12761g) {
-                        if (!TextUtils.isEmpty(key) && f12760f.containsKey(key) && f12760f.get(key) != null) {
+                    mapC.put(entry.getKey(), entry.getValue());
+                    synchronized (f7696g) {
+                        if (!TextUtils.isEmpty(key) && f7695f.containsKey(key) && f7695f.get(key) != null) {
                             map.put(key, str);
                         }
                     }
                 } else {
-                    UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> merge: [" + key + "] should be ignored.");
+                    UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> merge: [" + key + "] should be ignored.");
                 }
             } else {
                 String key2 = entry.getKey();
-                synchronized (f12761g) {
-                    if (!TextUtils.isEmpty(key2) && f12760f.containsKey(key2) && (arrayList = f12760f.get(key2)) != null) {
+                synchronized (f7696g) {
+                    if (!TextUtils.isEmpty(key2) && f7695f.containsKey(key2) && (arrayList = f7695f.get(key2)) != null) {
                         while (i2 < arrayList.size()) {
                             arrayList.get(i2).onImprintValueChanged(key2, null);
                             i2++;
                         }
                     }
                 }
-                m12030c.remove(key2);
-                this.f12770h.m11844a(key2);
+                mapC.remove(key2);
+                this.f7703h.a(key2);
             }
         }
-        c3526d.m12022a(c3526d2.m12034f());
-        c3526d.m12023a(m11832a(c3526d));
-        return c3526d;
+        dVar.a(dVar2.f());
+        dVar.a(a(dVar));
+        return dVar;
     }
 
-    /* renamed from: a */
-    private void m11824a(File file) {
-        if (this.f12771i == null) {
+    private void a(File file) {
+        if (this.f7704i == null) {
             return;
         }
         try {
-            synchronized (f12757b) {
-                byte[] m11073a = new C3369bz().m11073a(this.f12771i);
+            synchronized (f7692b) {
+                byte[] bArrA = new bz().a(this.f7704i);
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 try {
-                    fileOutputStream.write(m11073a);
+                    fileOutputStream.write(bArrA);
                     fileOutputStream.flush();
                 } finally {
                     HelperUtils.safeClose(fileOutputStream);

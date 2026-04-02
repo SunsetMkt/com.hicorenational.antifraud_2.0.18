@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import java.lang.ref.WeakReference;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ViewPropertyAnimatorCompat {
     static final int LISTENER_TAG_ID = 2113929216;
     private WeakReference<View> mView;
@@ -377,8 +377,7 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    /* renamed from: x */
-    public ViewPropertyAnimatorCompat m393x(float f2) {
+    public ViewPropertyAnimatorCompat x(float f2) {
         View view = this.mView.get();
         if (view != null) {
             view.animate().x(f2);
@@ -394,8 +393,7 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    /* renamed from: y */
-    public ViewPropertyAnimatorCompat m394y(float f2) {
+    public ViewPropertyAnimatorCompat y(float f2) {
         View view = this.mView.get();
         if (view != null) {
             view.animate().y(f2);
@@ -411,8 +409,7 @@ public final class ViewPropertyAnimatorCompat {
         return this;
     }
 
-    /* renamed from: z */
-    public ViewPropertyAnimatorCompat m395z(float f2) {
+    public ViewPropertyAnimatorCompat z(float f2) {
         View view = this.mView.get();
         if (view != null && Build.VERSION.SDK_INT >= 21) {
             view.animate().z(f2);

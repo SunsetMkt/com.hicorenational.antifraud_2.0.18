@@ -7,15 +7,14 @@ import android.text.TextUtils;
 import com.umeng.message.api.UPushMessageHandler;
 import com.umeng.message.common.UPLog;
 import com.umeng.message.entity.UMessage;
-import com.umeng.message.proguard.C3574aw;
+import com.umeng.message.proguard.aw;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
+import d.c.a.b.a.a;
 import java.util.Map;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UmengNotificationClickHandler implements UPushMessageHandler {
-    /* renamed from: a */
-    private static void m12137a(Intent intent, UMessage uMessage) {
+    private static void a(Intent intent, UMessage uMessage) {
         if (intent == null || uMessage == null || uMessage.getExtra() == null) {
             return;
         }
@@ -30,11 +29,11 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
 
     public void changeBadgeNum(Context context, UMessage uMessage) {
         MessageSharedPrefs messageSharedPrefs = MessageSharedPrefs.getInstance(context);
-        if (TextUtils.equals(uMessage.getMsgId(), messageSharedPrefs.m12126f())) {
+        if (TextUtils.equals(uMessage.getMsgId(), messageSharedPrefs.f())) {
             return;
         }
-        messageSharedPrefs.m12123c(uMessage.getMsgId());
-        C3574aw.m12314b(context, -1);
+        messageSharedPrefs.c(uMessage.getMsgId());
+        aw.b(context, -1);
     }
 
     public void dealWithCustomAction(Context context, UMessage uMessage) {
@@ -48,11 +47,15 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
         if (launchIntentForPackage == null) {
             return null;
         }
-        launchIntentForPackage.setFlags(AbstractC1191a.f2487B1);
+        launchIntentForPackage.setFlags(a.B1);
         return launchIntentForPackage;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:32:0x0080 A[Catch: all -> 0x0087, TryCatch #0 {all -> 0x0087, blocks: (B:2:0x0000, B:4:0x0004, B:6:0x0008, B:8:0x0014, B:10:0x001c, B:33:0x0083, B:11:0x0020, B:13:0x0028, B:14:0x002c, B:16:0x0034, B:17:0x0038, B:19:0x003e, B:21:0x004c, B:22:0x0050, B:24:0x0056, B:26:0x0064, B:27:0x0068, B:29:0x006e, B:31:0x007c, B:32:0x0080), top: B:38:0x0000 }] */
     @Override // com.umeng.message.api.UPushMessageHandler
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public void handleMessage(Context context, UMessage uMessage) {
         try {
             if (uMessage.dismiss) {
@@ -60,26 +63,24 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
                 return;
             }
             String action = uMessage.getAction();
-            if (!TextUtils.equals("go_app", action)) {
-                if (TextUtils.equals("go_url", action)) {
-                    openUrl(context, uMessage);
-                } else if (TextUtils.equals("go_activity", action)) {
-                    openActivity(context, uMessage);
-                } else if (TextUtils.equals(UMessage.NOTIFICATION_GO_CUSTOM, action)) {
-                    dealWithCustomAction(context, uMessage);
-                } else if (uMessage.getDeeplink() != null && !TextUtils.isEmpty(uMessage.getDeeplink().trim())) {
-                    openUrl(context, uMessage);
-                } else if (uMessage.getActivity() != null && !TextUtils.isEmpty(uMessage.getActivity().trim())) {
-                    openActivity(context, uMessage);
-                } else if (uMessage.getCustom() != null && !TextUtils.isEmpty(uMessage.getContent().trim())) {
-                    dealWithCustomAction(context, uMessage);
-                }
-                changeBadgeNum(context, uMessage);
+            if (TextUtils.equals("go_app", action)) {
+                launchApp(context, uMessage);
+            } else if (TextUtils.equals("go_url", action)) {
+                openUrl(context, uMessage);
+            } else if (TextUtils.equals("go_activity", action)) {
+                openActivity(context, uMessage);
+            } else if (TextUtils.equals(UMessage.NOTIFICATION_GO_CUSTOM, action)) {
+                dealWithCustomAction(context, uMessage);
+            } else if (uMessage.getDeeplink() != null && !TextUtils.isEmpty(uMessage.getDeeplink().trim())) {
+                openUrl(context, uMessage);
+            } else if (uMessage.getActivity() != null && !TextUtils.isEmpty(uMessage.getActivity().trim())) {
+                openActivity(context, uMessage);
+            } else if (uMessage.getCustom() != null && !TextUtils.isEmpty(uMessage.getContent().trim())) {
+                dealWithCustomAction(context, uMessage);
             }
-            launchApp(context, uMessage);
             changeBadgeNum(context, uMessage);
         } catch (Throwable th) {
-            UPLog.m12143e("UmengNotificationClickHandler", th);
+            UPLog.e("UmengNotificationClickHandler", th);
         }
     }
 
@@ -87,15 +88,15 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
         try {
             Intent mainIntent = getMainIntent(context);
             if (mainIntent == null) {
-                UPLog.m12144e("UmengNotificationClickHandler", "can't find launchIntent:", context.getPackageName());
+                UPLog.e("UmengNotificationClickHandler", "can't find launchIntent:", context.getPackageName());
                 return;
             }
             mainIntent.addFlags(CommonNetImpl.FLAG_AUTH);
-            m12137a(mainIntent, uMessage);
-            UPLog.m12142d("UmengNotificationClickHandler", "open app:", context.getPackageName());
+            a(mainIntent, uMessage);
+            UPLog.d("UmengNotificationClickHandler", "open app:", context.getPackageName());
             context.startActivity(mainIntent);
         } catch (Throwable th) {
-            UPLog.m12143e("UmengNotificationClickHandler", th);
+            UPLog.e("UmengNotificationClickHandler", th);
         }
     }
 
@@ -105,18 +106,18 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
             if (activity == null) {
                 return;
             }
-            String trim = activity.trim();
-            if (TextUtils.isEmpty(trim)) {
+            String strTrim = activity.trim();
+            if (TextUtils.isEmpty(strTrim)) {
                 return;
             }
-            UPLog.m12142d("UmengNotificationClickHandler", "open activity:", trim);
+            UPLog.d("UmengNotificationClickHandler", "open activity:", strTrim);
             Intent intent = new Intent();
-            m12137a(intent, uMessage);
-            intent.setClassName(context, trim);
+            a(intent, uMessage);
+            intent.setClassName(context, strTrim);
             intent.addFlags(CommonNetImpl.FLAG_AUTH);
             context.startActivity(intent);
         } catch (Throwable th) {
-            UPLog.m12143e("UmengNotificationClickHandler", th);
+            UPLog.e("UmengNotificationClickHandler", th);
         }
     }
 
@@ -126,17 +127,17 @@ public class UmengNotificationClickHandler implements UPushMessageHandler {
             if (deeplink == null) {
                 return;
             }
-            String trim = deeplink.trim();
-            if (TextUtils.isEmpty(trim)) {
+            String strTrim = deeplink.trim();
+            if (TextUtils.isEmpty(strTrim)) {
                 return;
             }
-            UPLog.m12142d("UmengNotificationClickHandler", "open deeplink:".concat(String.valueOf(trim)));
-            Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(trim));
-            m12137a(intent, uMessage);
+            UPLog.d("UmengNotificationClickHandler", "open deeplink:".concat(String.valueOf(strTrim)));
+            Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(strTrim));
+            a(intent, uMessage);
             intent.addFlags(CommonNetImpl.FLAG_AUTH);
             context.startActivity(intent);
         } catch (Throwable th) {
-            UPLog.m12143e("UmengNotificationClickHandler", th);
+            UPLog.e("UmengNotificationClickHandler", th);
         }
     }
 }

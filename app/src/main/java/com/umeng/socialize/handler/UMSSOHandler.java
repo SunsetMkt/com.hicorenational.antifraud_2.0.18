@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import com.umeng.analytics.pro.C3355bl;
+import com.umeng.analytics.pro.bl;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.ShareContent;
 import com.umeng.socialize.UMAuthListener;
@@ -22,7 +22,7 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class UMSSOHandler {
     protected static final String ACCESSTOKEN = "accessToken";
     protected static final String ACCESS_SECRET = "access_secret";
@@ -36,9 +36,7 @@ public abstract class UMSSOHandler {
     protected static final String FIRST_NAME = "first_name";
     protected static final String GENDER = "gender";
     protected static final String ICON = "iconurl";
-
-    /* renamed from: ID */
-    protected static final String f13631ID = "id";
+    protected static final String ID = "id";
     protected static final String JSON = "json";
     protected static final String LAST_NAME = "last_name";
     protected static final String MIDDLE_NAME = "middle_name";
@@ -67,6 +65,56 @@ public abstract class UMSSOHandler {
     private boolean isInit = false;
     protected int mThumbLimit = 32768;
 
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMSSOHandler$1 */
+    class AnonymousClass1 implements UMShareListener {
+        AnonymousClass1() {
+        }
+
+        @Override // com.umeng.socialize.UMShareListener
+        public void onCancel(SHARE_MEDIA share_media) {
+            SLog.E(UmengText.CHECK.LISTENRNULL);
+        }
+
+        @Override // com.umeng.socialize.UMShareListener
+        public void onError(SHARE_MEDIA share_media, Throwable th) {
+            SLog.E(UmengText.CHECK.LISTENRNULL);
+        }
+
+        @Override // com.umeng.socialize.UMShareListener
+        public void onResult(SHARE_MEDIA share_media) {
+            SLog.E(UmengText.CHECK.LISTENRNULL);
+        }
+
+        @Override // com.umeng.socialize.UMShareListener
+        public void onStart(SHARE_MEDIA share_media) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMSSOHandler$2 */
+    class AnonymousClass2 implements UMAuthListener {
+        AnonymousClass2() {
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onCancel(SHARE_MEDIA share_media, int i2) {
+            SLog.E(UmengText.CHECK.LISTENRNULL);
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onComplete(SHARE_MEDIA share_media, int i2, Map<String, String> map) {
+            SLog.E(UmengText.CHECK.LISTENRNULL);
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onError(SHARE_MEDIA share_media, int i2, Throwable th) {
+            SLog.E(UmengText.CHECK.LISTENRNULL);
+        }
+
+        @Override // com.umeng.socialize.UMAuthListener
+        public void onStart(SHARE_MEDIA share_media) {
+        }
+    }
+
     public void authorize(UMAuthListener uMAuthListener) {
     }
 
@@ -75,19 +123,22 @@ public abstract class UMSSOHandler {
 
     public UMAuthListener getAuthListener(UMAuthListener uMAuthListener) {
         return uMAuthListener != null ? uMAuthListener : new UMAuthListener() { // from class: com.umeng.socialize.handler.UMSSOHandler.2
+            AnonymousClass2() {
+            }
+
             @Override // com.umeng.socialize.UMAuthListener
             public void onCancel(SHARE_MEDIA share_media, int i2) {
-                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
+                SLog.E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMAuthListener
             public void onComplete(SHARE_MEDIA share_media, int i2, Map<String, String> map) {
-                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
+                SLog.E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMAuthListener
             public void onError(SHARE_MEDIA share_media, int i2, Throwable th) {
-                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
+                SLog.E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMAuthListener
@@ -120,7 +171,7 @@ public abstract class UMSSOHandler {
             return "";
         }
         if (obj instanceof String) {
-            return (obj.equals("m") || obj.equals("1") || obj.equals("男")) ? str : (obj.equals("f") || obj.equals("0") || obj.equals("女")) ? str2 : obj.toString();
+            return (obj.equals("m") || obj.equals("1") || obj.equals("\u7537")) ? str : (obj.equals("f") || obj.equals("0") || obj.equals("\u5973")) ? str2 : obj.toString();
         }
         if (!(obj instanceof Integer)) {
             return obj.toString();
@@ -132,8 +183,8 @@ public abstract class UMSSOHandler {
     public Uri getImageContentUri(File file) {
         String absolutePath = file.getAbsolutePath();
         Context applicationContext = this.mContext.getApplicationContext();
-        Cursor query = applicationContext.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{C3355bl.f11732d}, "_data=? ", new String[]{absolutePath}, null);
-        if (query == null || !query.moveToFirst()) {
+        Cursor cursorQuery = applicationContext.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{bl.f7101d}, "_data=? ", new String[]{absolutePath}, null);
+        if (cursorQuery == null || !cursorQuery.moveToFirst()) {
             if (!file.exists()) {
                 return null;
             }
@@ -141,9 +192,9 @@ public abstract class UMSSOHandler {
             contentValues.put("_data", absolutePath);
             return applicationContext.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
         }
-        int i2 = query.getInt(query.getColumnIndex(C3355bl.f11732d));
+        int i2 = cursorQuery.getInt(cursorQuery.getColumnIndex(bl.f7101d));
         try {
-            query.close();
+            cursorQuery.close();
         } catch (Throwable th) {
             th.printStackTrace();
         }
@@ -168,19 +219,22 @@ public abstract class UMSSOHandler {
 
     public UMShareListener getShareListener(UMShareListener uMShareListener) {
         return uMShareListener != null ? uMShareListener : new UMShareListener() { // from class: com.umeng.socialize.handler.UMSSOHandler.1
+            AnonymousClass1() {
+            }
+
             @Override // com.umeng.socialize.UMShareListener
             public void onCancel(SHARE_MEDIA share_media) {
-                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
+                SLog.E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMShareListener
             public void onError(SHARE_MEDIA share_media, Throwable th) {
-                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
+                SLog.E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMShareListener
             public void onResult(SHARE_MEDIA share_media) {
-                SLog.m12716E(UmengText.CHECK.LISTENRNULL);
+                SLog.E(UmengText.CHECK.LISTENRNULL);
             }
 
             @Override // com.umeng.socialize.UMShareListener
@@ -192,7 +246,7 @@ public abstract class UMSSOHandler {
     public abstract String getVersion();
 
     public boolean isAuthorize() {
-        SLog.m12716E(UmengText.CHECK.NO_SUPPORT_AUTH);
+        SLog.E(UmengText.CHECK.NO_SUPPORT_AUTH);
         return true;
     }
 
@@ -201,12 +255,12 @@ public abstract class UMSSOHandler {
     }
 
     public boolean isInstall() {
-        SLog.m12716E(UmengText.CHECK.NO_SUPPORT_INSTALL);
+        SLog.E(UmengText.CHECK.NO_SUPPORT_INSTALL);
         return true;
     }
 
     public boolean isSupport() {
-        SLog.m12716E(UmengText.CHECK.NO_SUPPORT_SDKL);
+        SLog.E(UmengText.CHECK.NO_SUPPORT_SDKL);
         return true;
     }
 
@@ -218,7 +272,7 @@ public abstract class UMSSOHandler {
     }
 
     public void onCreate(Context context, PlatformConfig.Platform platform) {
-        SLog.m12716E("xxxxxx UMSSOHandler 7.3.2");
+        SLog.E("xxxxxx UMSSOHandler 7.3.2");
         this.mContext = ContextUtil.getContext();
         this.mConfig = platform;
         if (context instanceof Activity) {

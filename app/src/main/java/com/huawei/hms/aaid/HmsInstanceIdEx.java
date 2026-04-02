@@ -16,41 +16,38 @@ import com.huawei.hms.common.ApiException;
 import com.huawei.hms.common.HuaweiApi;
 import com.huawei.hms.common.internal.AbstractClientBuilder;
 import com.huawei.hms.common.internal.Preconditions;
-import com.huawei.hms.opendevice.C2464b;
-import com.huawei.hms.opendevice.C2469g;
-import com.huawei.hms.opendevice.C2470h;
+import com.huawei.hms.opendevice.b;
+import com.huawei.hms.opendevice.g;
+import com.huawei.hms.opendevice.h;
 import com.huawei.hms.support.log.HMSLog;
 import java.util.UUID;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class HmsInstanceIdEx {
     public static final String TAG = "HmsInstanceIdEx";
+    private Context a;
 
-    /* renamed from: a */
-    private Context f7007a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private PushPreferences f4395b;
 
-    /* renamed from: b */
-    private PushPreferences f7008b;
-
-    /* renamed from: c */
-    private HuaweiApi<Api.ApiOptions.NoOptions> f7009c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private HuaweiApi<Api.ApiOptions.NoOptions> f4396c;
 
     private HmsInstanceIdEx(Context context) {
-        this.f7008b = null;
-        this.f7007a = context;
-        this.f7008b = new PushPreferences(context, "aaid");
+        this.f4395b = null;
+        this.a = context;
+        this.f4395b = new PushPreferences(context, "aaid");
         Api api = new Api(HuaweiApiAvailability.HMS_API_NAME_PUSH);
         if (context instanceof Activity) {
-            this.f7009c = new HuaweiApi<>((Activity) context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, (AbstractClientBuilder) new PushClientBuilder());
+            this.f4396c = new HuaweiApi<>((Activity) context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, (AbstractClientBuilder) new PushClientBuilder());
         } else {
-            this.f7009c = new HuaweiApi<>(context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, new PushClientBuilder());
+            this.f4396c = new HuaweiApi<>(context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, new PushClientBuilder());
         }
-        this.f7009c.setKitSdkVersion(61200300);
+        this.f4396c.setKitSdkVersion(61200300);
     }
 
-    /* renamed from: a */
-    private String m6503a(String str) {
+    private String a(String str) {
         return "creationTime" + str;
     }
 
@@ -64,9 +61,9 @@ public class HmsInstanceIdEx {
             throw ErrorEnum.ERROR_ARGUMENTS_INVALID.toApiException();
         }
         try {
-            if (this.f7008b.containsKey(str)) {
-                this.f7008b.removeKey(str);
-                this.f7008b.removeKey(m6503a(str));
+            if (this.f4395b.containsKey(str)) {
+                this.f4395b.removeKey(str);
+                this.f4395b.removeKey(a(str));
             }
         } catch (RuntimeException unused) {
             throw ErrorEnum.ERROR_INTERNAL_ERROR.toApiException();
@@ -80,13 +77,13 @@ public class HmsInstanceIdEx {
             throw ErrorEnum.ERROR_ARGUMENTS_INVALID.toApiException();
         }
         try {
-            if (this.f7008b.containsKey(str)) {
-                return this.f7008b.getString(str);
+            if (this.f4395b.containsKey(str)) {
+                return this.f4395b.getString(str);
             }
-            String uuid = UUID.randomUUID().toString();
-            this.f7008b.saveString(str, uuid);
-            this.f7008b.saveLong(m6503a(str), Long.valueOf(System.currentTimeMillis()));
-            return uuid;
+            String string = UUID.randomUUID().toString();
+            this.f4395b.saveString(str, string);
+            this.f4395b.saveLong(a(str), Long.valueOf(System.currentTimeMillis()));
+            return string;
         } catch (RuntimeException unused) {
             throw ErrorEnum.ERROR_INTERNAL_ERROR.toApiException();
         } catch (Exception unused2) {
@@ -99,10 +96,10 @@ public class HmsInstanceIdEx {
             throw ErrorEnum.ERROR_ARGUMENTS_INVALID.toApiException();
         }
         try {
-            if (!this.f7008b.containsKey(m6503a(str))) {
+            if (!this.f4395b.containsKey(a(str))) {
                 getAAId(str);
             }
-            return this.f7008b.getLong(m6503a(str));
+            return this.f4395b.getLong(a(str));
         } catch (RuntimeException unused) {
             throw ErrorEnum.ERROR_INTERNAL_ERROR.toApiException();
         } catch (Exception unused2) {
@@ -113,37 +110,36 @@ public class HmsInstanceIdEx {
     public Task<TokenResult> getToken() {
         if (ProxyCenter.getProxy() != null) {
             try {
-                HMSLog.m7717i(TAG, "use proxy get token, please check HmsMessageService.onNewToken receive result.");
-                ProxyCenter.getProxy().getToken(this.f7007a, null, null);
+                HMSLog.i(TAG, "use proxy get token, please check HmsMessageService.onNewToken receive result.");
+                ProxyCenter.getProxy().getToken(this.a, null, null);
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
                 taskCompletionSource.setResult(new TokenResult());
                 return taskCompletionSource.getTask();
             } catch (ApiException e2) {
-                return m6502a(e2);
+                return a(e2);
             } catch (Exception unused) {
-                return m6502a(ErrorEnum.ERROR_INTERNAL_ERROR.toApiException());
+                return a(ErrorEnum.ERROR_INTERNAL_ERROR.toApiException());
             }
         }
-        String m7465a = C2470h.m7465a(this.f7007a, "push.gettoken");
+        String strA = h.a(this.a, "push.gettoken");
         try {
-            TokenReq m7446b = C2464b.m7446b(this.f7007a, null, null);
-            m7446b.setAaid(HmsInstanceId.getInstance(this.f7007a).getId());
-            return this.f7009c.doWrite(new C2469g("push.gettoken", m7446b, this.f7007a, m7465a));
+            TokenReq tokenReqB = b.b(this.a, null, null);
+            tokenReqB.setAaid(HmsInstanceId.getInstance(this.a).getId());
+            return this.f4396c.doWrite(new g("push.gettoken", tokenReqB, this.a, strA));
         } catch (RuntimeException unused2) {
-            Context context = this.f7007a;
+            Context context = this.a;
             ErrorEnum errorEnum = ErrorEnum.ERROR_INTERNAL_ERROR;
-            C2470h.m7468a(context, "push.gettoken", m7465a, errorEnum);
-            return m6502a(errorEnum.toApiException());
+            h.a(context, "push.gettoken", strA, errorEnum);
+            return a(errorEnum.toApiException());
         } catch (Exception unused3) {
-            Context context2 = this.f7007a;
+            Context context2 = this.a;
             ErrorEnum errorEnum2 = ErrorEnum.ERROR_INTERNAL_ERROR;
-            C2470h.m7468a(context2, "push.gettoken", m7465a, errorEnum2);
-            return m6502a(errorEnum2.toApiException());
+            h.a(context2, "push.gettoken", strA, errorEnum2);
+            return a(errorEnum2.toApiException());
         }
     }
 
-    /* renamed from: a */
-    private Task<TokenResult> m6502a(Exception exc) {
+    private Task<TokenResult> a(Exception exc) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         taskCompletionSource.setException(exc);
         return taskCompletionSource.getTask();

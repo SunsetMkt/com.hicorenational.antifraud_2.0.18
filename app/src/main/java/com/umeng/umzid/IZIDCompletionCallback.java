@@ -1,6 +1,6 @@
 package com.umeng.umzid;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IZIDCompletionCallback {
     void onFailure(String str, String str2);
 

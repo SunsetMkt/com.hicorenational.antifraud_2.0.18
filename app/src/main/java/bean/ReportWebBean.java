@@ -4,14 +4,12 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ReportWebBean extends BaseBean {
     private String caseInfoID;
     private String createTime;
     private String firm;
-
-    /* renamed from: id */
-    private String f1618id;
+    private String id;
     private List<LocalMedia> localMedias;
     private String updateTime;
     private String url;
@@ -29,7 +27,7 @@ public class ReportWebBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1618id;
+        return this.id;
     }
 
     public List<LocalMedia> getLocalMedias() {
@@ -57,7 +55,7 @@ public class ReportWebBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1618id = str;
+        this.id = str;
     }
 
     public void setLocalMedias(List<LocalMedia> list) {

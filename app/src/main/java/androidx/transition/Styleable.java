@@ -3,8 +3,8 @@ package androidx.transition;
 import android.annotation.SuppressLint;
 import androidx.annotation.StyleableRes;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"InlinedApi"})
-/* loaded from: classes.dex */
 class Styleable {
 
     @StyleableRes

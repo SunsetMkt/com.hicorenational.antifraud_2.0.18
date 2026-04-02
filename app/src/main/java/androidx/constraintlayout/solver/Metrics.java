@@ -2,7 +2,7 @@ package androidx.constraintlayout.solver;
 
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Metrics {
     public long additionalMeasures;
     public long barrierConnectionResolved;

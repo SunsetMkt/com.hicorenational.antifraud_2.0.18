@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PackageManagerCompat {
     private static final String TAG = "PackageUtils";
     private static final String VERSION = "6.0.11.300";
@@ -25,7 +25,7 @@ public class PackageManagerCompat {
         try {
             return packageManager.getPackageInfo(context.getPackageName(), 16384).packageName;
         } catch (PackageManager.NameNotFoundException | RuntimeException unused) {
-            Logger.m6803w(TAG, "Failed to get Package managers Package Info");
+            Logger.w(TAG, "Failed to get Package managers Package Info");
             return "";
         }
     }
@@ -44,7 +44,7 @@ public class PackageManagerCompat {
         try {
             sAppVersion = String.valueOf(packageManager.getPackageInfo(context.getPackageName(), 16384).versionCode);
         } catch (PackageManager.NameNotFoundException | RuntimeException unused) {
-            Logger.m6803w(TAG, "Failed to get Package managers Package Info");
+            Logger.w(TAG, "Failed to get Package managers Package Info");
         }
         return sAppVersion;
     }
@@ -62,7 +62,7 @@ public class PackageManagerCompat {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 128);
             return (applicationInfo == null || applicationInfo.metaData == null) ? bundle : applicationInfo.metaData;
         } catch (PackageManager.NameNotFoundException | RuntimeException e2) {
-            Logger.m6804w(TAG, "NameNotFoundException:", e2);
+            Logger.w(TAG, "NameNotFoundException:", e2);
             return bundle;
         }
     }
@@ -72,14 +72,14 @@ public class PackageManagerCompat {
             context = ContextHolder.getKitContext();
         }
         if (context == null) {
-            Logger.m6801v(TAG, "the kitContext is null");
+            Logger.v(TAG, "the kitContext is null");
             return Bundle.EMPTY;
         }
         if (context.getApplicationInfo() == null) {
-            Logger.m6801v(TAG, "the kit applicationInfo is null");
+            Logger.v(TAG, "the kit applicationInfo is null");
             return Bundle.EMPTY;
         }
-        Logger.m6799i(TAG, "kitContext: " + context.getPackageName());
+        Logger.i(TAG, "kitContext: " + context.getPackageName());
         Bundle bundle = context.getApplicationInfo().metaData;
         return bundle == null ? Bundle.EMPTY : bundle;
     }
@@ -99,7 +99,7 @@ public class PackageManagerCompat {
             Bundle bundleFromKit = getBundleFromKit(context);
             return bundleFromKit == null ? str2 : bundleFromKit.getString(str, str2);
         } catch (RuntimeException unused) {
-            Logger.m6801v(TAG, "the kit metaData is runtimeException");
+            Logger.v(TAG, "the kit metaData is runtimeException");
             return str2;
         }
     }
@@ -109,16 +109,16 @@ public class PackageManagerCompat {
     }
 
     public static Map<String, String> getMetaDataMapFromKitOrApp(Context context, String str) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         Bundle bundleFromKitOrAPP = getBundleFromKitOrAPP(context);
         for (String str2 : bundleFromKitOrAPP.keySet()) {
             if (str2.startsWith(str)) {
                 String string = bundleFromKitOrAPP.getString(str2);
                 if (!TextUtils.isEmpty(string)) {
-                    hashMap.put(str2.substring(str.length()), string);
+                    map.put(str2.substring(str.length()), string);
                 }
             }
         }
-        return hashMap;
+        return map;
     }
 }

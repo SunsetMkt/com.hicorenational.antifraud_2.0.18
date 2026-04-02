@@ -7,10 +7,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/* JADX INFO: loaded from: classes.dex */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @ListenerClass(callbacks = Callback.class, remover = "removeOnPageChangeListener", setter = "addOnPageChangeListener", targetType = "androidx.viewpager.widget.ViewPager", type = "androidx.viewpager.widget.ViewPager.OnPageChangeListener")
-/* loaded from: classes.dex */
 public @interface OnPageChange {
 
     public enum Callback {

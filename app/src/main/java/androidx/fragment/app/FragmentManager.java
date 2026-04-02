@@ -13,7 +13,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class FragmentManager {
     static final FragmentFactory DEFAULT_FACTORY = new FragmentFactory();
     public static final int POP_BACK_STACK_INCLUSIVE = 1;

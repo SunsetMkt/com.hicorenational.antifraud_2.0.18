@@ -1,6 +1,6 @@
 package com.huawei.hms.framework.common.hianalytics;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WiseOpenHianalyticsData {
     public static final String UNION_API_NAME = "apiName";
     public static final String UNION_APP_VERSION = "cpAppVersion";

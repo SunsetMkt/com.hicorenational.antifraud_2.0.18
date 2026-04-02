@@ -4,7 +4,7 @@ import androidx.annotation.RestrictTo;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AspectRatio {
     public static final int RATIO_16_9 = 1;
     public static final int RATIO_4_3 = 0;

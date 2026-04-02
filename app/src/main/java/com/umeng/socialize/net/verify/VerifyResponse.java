@@ -6,38 +6,36 @@ import com.umeng.socialize.utils.UmengText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class VerifyResponse extends SocializeReseponse {
+    private int a;
 
-    /* renamed from: a */
-    private int f13765a;
-
-    /* renamed from: b */
-    private boolean f13766b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private boolean f8363b;
 
     public VerifyResponse(Integer num, JSONObject jSONObject) {
         super(null);
-        this.f13765a = num.intValue();
-        this.f13766b = false;
+        this.a = num.intValue();
+        this.f8363b = false;
         parseJsonObject(jSONObject);
     }
 
     @Override // com.umeng.socialize.net.base.SocializeReseponse
     public boolean isHttpOK() {
-        return this.f13765a == 200;
+        return this.a == 200;
     }
 
     @Override // com.umeng.socialize.net.base.SocializeReseponse
     public boolean isOk() {
-        return this.f13766b;
+        return this.f8363b;
     }
 
     public void parseJsonObject(JSONObject jSONObject) {
         try {
             if (jSONObject.getString("result").startsWith("success")) {
-                this.f13766b = true;
+                this.f8363b = true;
             } else {
-                this.f13766b = false;
+                this.f8363b = false;
             }
         } catch (JSONException e2) {
             SLog.error(UmengText.NET.PARSEERROR, e2);

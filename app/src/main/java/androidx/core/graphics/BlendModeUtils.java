@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class BlendModeUtils {
 
-    /* renamed from: androidx.core.graphics.BlendModeUtils$1 */
-    static /* synthetic */ class C04861 {
+    /* JADX INFO: renamed from: androidx.core.graphics.BlendModeUtils$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$core$graphics$BlendModeCompat = new int[BlendModeCompat.values().length];
 
         static {
@@ -139,7 +139,7 @@ class BlendModeUtils {
     @Nullable
     @RequiresApi(29)
     static BlendMode obtainBlendModeFromCompat(@NonNull BlendModeCompat blendModeCompat) {
-        switch (C04861.$SwitchMap$androidx$core$graphics$BlendModeCompat[blendModeCompat.ordinal()]) {
+        switch (AnonymousClass1.$SwitchMap$androidx$core$graphics$BlendModeCompat[blendModeCompat.ordinal()]) {
             case 1:
                 return BlendMode.CLEAR;
             case 2:
@@ -208,7 +208,7 @@ class BlendModeUtils {
         if (blendModeCompat == null) {
             return null;
         }
-        switch (C04861.$SwitchMap$androidx$core$graphics$BlendModeCompat[blendModeCompat.ordinal()]) {
+        switch (AnonymousClass1.$SwitchMap$androidx$core$graphics$BlendModeCompat[blendModeCompat.ordinal()]) {
             case 1:
                 return PorterDuff.Mode.CLEAR;
             case 2:

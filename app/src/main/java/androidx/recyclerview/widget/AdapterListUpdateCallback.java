@@ -3,7 +3,7 @@ package androidx.recyclerview.widget;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AdapterListUpdateCallback implements ListUpdateCallback {
 
     @NonNull

@@ -10,9 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
-import com.yalantis.ucrop.C4415R;
+import com.yalantis.ucrop.R;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HorizontalProgressWheelView extends View {
     private final Rect mCanvasClipBounds;
     private float mLastTouchedPosition;
@@ -39,18 +39,18 @@ public class HorizontalProgressWheelView extends View {
     }
 
     private void init() {
-        this.mMiddleLineColor = ContextCompat.getColor(getContext(), C4415R.color.ucrop_color_widget_rotate_mid_line);
-        this.mProgressLineWidth = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_width_horizontal_wheel_progress_line);
-        this.mProgressLineHeight = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_height_horizontal_wheel_progress_line);
-        this.mProgressLineMargin = getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_margin_horizontal_wheel_progress_line);
+        this.mMiddleLineColor = ContextCompat.getColor(getContext(), R.color.ucrop_color_widget_rotate_mid_line);
+        this.mProgressLineWidth = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_width_horizontal_wheel_progress_line);
+        this.mProgressLineHeight = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_height_horizontal_wheel_progress_line);
+        this.mProgressLineMargin = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_margin_horizontal_wheel_progress_line);
         this.mProgressLinePaint = new Paint(1);
         this.mProgressLinePaint.setStyle(Paint.Style.STROKE);
         this.mProgressLinePaint.setStrokeWidth(this.mProgressLineWidth);
-        this.mProgressLinePaint.setColor(getResources().getColor(C4415R.color.ucrop_color_progress_wheel_line));
+        this.mProgressLinePaint.setColor(getResources().getColor(R.color.ucrop_color_progress_wheel_line));
         this.mProgressMiddleLinePaint = new Paint(this.mProgressLinePaint);
         this.mProgressMiddleLinePaint.setColor(this.mMiddleLineColor);
         this.mProgressMiddleLinePaint.setStrokeCap(Paint.Cap.ROUND);
-        this.mProgressMiddleLinePaint.setStrokeWidth(getContext().getResources().getDimensionPixelSize(C4415R.dimen.ucrop_width_middle_wheel_progress_line));
+        this.mProgressMiddleLinePaint.setStrokeWidth(getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_width_middle_wheel_progress_line));
     }
 
     private void onScrollEvent(MotionEvent motionEvent, float f2) {
@@ -67,23 +67,23 @@ public class HorizontalProgressWheelView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.getClipBounds(this.mCanvasClipBounds);
-        int width = this.mCanvasClipBounds.width() / (this.mProgressLineWidth + this.mProgressLineMargin);
+        int iWidth = this.mCanvasClipBounds.width() / (this.mProgressLineWidth + this.mProgressLineMargin);
         float f2 = this.mTotalScrollDistance % (r2 + r1);
-        for (int i2 = 0; i2 < width; i2++) {
-            int i3 = width / 4;
+        for (int i2 = 0; i2 < iWidth; i2++) {
+            int i3 = iWidth / 4;
             if (i2 < i3) {
                 this.mProgressLinePaint.setAlpha((int) ((i2 / i3) * 255.0f));
-            } else if (i2 > (width * 3) / 4) {
-                this.mProgressLinePaint.setAlpha((int) (((width - i2) / i3) * 255.0f));
+            } else if (i2 > (iWidth * 3) / 4) {
+                this.mProgressLinePaint.setAlpha((int) (((iWidth - i2) / i3) * 255.0f));
             } else {
                 this.mProgressLinePaint.setAlpha(255);
             }
             float f3 = -f2;
             Rect rect = this.mCanvasClipBounds;
             float f4 = rect.left + f3 + ((this.mProgressLineWidth + this.mProgressLineMargin) * i2);
-            float centerY = rect.centerY() - (this.mProgressLineHeight / 4.0f);
+            float fCenterY = rect.centerY() - (this.mProgressLineHeight / 4.0f);
             Rect rect2 = this.mCanvasClipBounds;
-            canvas.drawLine(f4, centerY, f3 + rect2.left + ((this.mProgressLineWidth + this.mProgressLineMargin) * i2), rect2.centerY() + (this.mProgressLineHeight / 4.0f), this.mProgressLinePaint);
+            canvas.drawLine(f4, fCenterY, f3 + rect2.left + ((this.mProgressLineWidth + this.mProgressLineMargin) * i2), rect2.centerY() + (this.mProgressLineHeight / 4.0f), this.mProgressLinePaint);
         }
         canvas.drawLine(this.mCanvasClipBounds.centerX(), this.mCanvasClipBounds.centerY() - (this.mProgressLineHeight / 2.0f), this.mCanvasClipBounds.centerX(), (this.mProgressLineHeight / 2.0f) + this.mCanvasClipBounds.centerY(), this.mProgressMiddleLinePaint);
     }

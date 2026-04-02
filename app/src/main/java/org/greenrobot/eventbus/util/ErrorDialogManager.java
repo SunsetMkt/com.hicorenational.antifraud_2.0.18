@@ -8,45 +8,41 @@ import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
-import org.greenrobot.eventbus.C6049c;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ErrorDialogManager {
+    public static c<?> a = null;
 
-    /* renamed from: a */
-    public static AbstractC6071c<?> f21627a = null;
+    /* JADX INFO: renamed from: b */
+    protected static final String f12967b = "de.greenrobot.eventbus.error_dialog";
 
-    /* renamed from: b */
-    protected static final String f21628b = "de.greenrobot.eventbus.error_dialog";
+    /* JADX INFO: renamed from: c */
+    protected static final String f12968c = "de.greenrobot.eventbus.error_dialog_manager";
 
-    /* renamed from: c */
-    protected static final String f21629c = "de.greenrobot.eventbus.error_dialog_manager";
+    /* JADX INFO: renamed from: d */
+    public static final String f12969d = "de.greenrobot.eventbus.errordialog.title";
 
-    /* renamed from: d */
-    public static final String f21630d = "de.greenrobot.eventbus.errordialog.title";
+    /* JADX INFO: renamed from: e */
+    public static final String f12970e = "de.greenrobot.eventbus.errordialog.message";
 
-    /* renamed from: e */
-    public static final String f21631e = "de.greenrobot.eventbus.errordialog.message";
+    /* JADX INFO: renamed from: f */
+    public static final String f12971f = "de.greenrobot.eventbus.errordialog.finish_after_dialog";
 
-    /* renamed from: f */
-    public static final String f21632f = "de.greenrobot.eventbus.errordialog.finish_after_dialog";
+    /* JADX INFO: renamed from: g */
+    public static final String f12972g = "de.greenrobot.eventbus.errordialog.icon_id";
 
-    /* renamed from: g */
-    public static final String f21633g = "de.greenrobot.eventbus.errordialog.icon_id";
+    /* JADX INFO: renamed from: h */
+    public static final String f12973h = "de.greenrobot.eventbus.errordialog.event_type_on_close";
 
-    /* renamed from: h */
-    public static final String f21634h = "de.greenrobot.eventbus.errordialog.event_type_on_close";
-
-    /* renamed from: b */
-    private static boolean m25063b(Activity activity) {
+    private static boolean b(Activity activity) {
         String name;
-        Class<?> cls = activity.getClass();
+        Class<?> superclass = activity.getClass();
         do {
-            cls = cls.getSuperclass();
-            if (cls == null) {
+            superclass = superclass.getSuperclass();
+            if (superclass == null) {
                 throw new RuntimeException("Illegal activity type: " + activity.getClass());
             }
-            name = cls.getName();
+            name = superclass.getName();
             if (name.equals("androidx.fragment.app.FragmentActivity")) {
                 return true;
             }
@@ -60,29 +56,25 @@ public class ErrorDialogManager {
         throw new RuntimeException("Illegal activity without fragment support. Either use Android 3.0+ or android.support.v4.app.FragmentActivity.");
     }
 
-    /* renamed from: a */
-    public static void m25057a(Activity activity) {
-        m25060a(activity, false, null);
+    public static void a(Activity activity) {
+        a(activity, false, null);
     }
 
-    /* renamed from: a */
-    public static void m25059a(Activity activity, boolean z) {
-        m25060a(activity, z, null);
+    public static void a(Activity activity, boolean z) {
+        a(activity, z, null);
     }
 
-    /* renamed from: a */
-    public static void m25060a(Activity activity, boolean z, Bundle bundle) {
-        m25058a(activity, activity.getClass(), z, bundle);
+    public static void a(Activity activity, boolean z, Bundle bundle) {
+        a(activity, activity.getClass(), z, bundle);
     }
 
-    /* renamed from: a */
-    public static void m25058a(Activity activity, Object obj, boolean z, Bundle bundle) {
-        if (f21627a != null) {
-            if (m25063b(activity)) {
-                SupportManagerFragment.m25067a(activity, obj, z, bundle);
+    public static void a(Activity activity, Object obj, boolean z, Bundle bundle) {
+        if (a != null) {
+            if (b(activity)) {
+                SupportManagerFragment.a(activity, obj, z, bundle);
                 return;
             } else {
-                HoneycombManagerFragment.m25065a(activity, obj, z, bundle);
+                HoneycombManagerFragment.a(activity, obj, z, bundle);
                 return;
             }
         }
@@ -91,94 +83,87 @@ public class ErrorDialogManager {
 
     @TargetApi(11)
     public static class HoneycombManagerFragment extends Fragment {
+        protected boolean a;
 
-        /* renamed from: a */
-        protected boolean f21635a;
+        /* JADX INFO: renamed from: b */
+        protected Bundle f12974b;
 
-        /* renamed from: b */
-        protected Bundle f21636b;
+        /* JADX INFO: renamed from: c */
+        private org.greenrobot.eventbus.c f12975c;
 
-        /* renamed from: c */
-        private C6049c f21637c;
+        /* JADX INFO: renamed from: d */
+        private Object f12976d;
 
-        /* renamed from: d */
-        private Object f21638d;
-
-        /* renamed from: a */
-        public void m25066a(C6074f c6074f) {
-            if (ErrorDialogManager.m25064b(this.f21638d, c6074f)) {
-                ErrorDialogManager.m25061a(c6074f);
+        public void a(f fVar) {
+            if (ErrorDialogManager.b(this.f12976d, fVar)) {
+                ErrorDialogManager.a(fVar);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.executePendingTransactions();
-                DialogFragment dialogFragment = (DialogFragment) fragmentManager.findFragmentByTag(ErrorDialogManager.f21628b);
+                DialogFragment dialogFragment = (DialogFragment) fragmentManager.findFragmentByTag(ErrorDialogManager.f12967b);
                 if (dialogFragment != null) {
                     dialogFragment.dismiss();
                 }
-                DialogFragment dialogFragment2 = (DialogFragment) ErrorDialogManager.f21627a.m25089a(c6074f, this.f21635a, this.f21636b);
+                DialogFragment dialogFragment2 = (DialogFragment) ErrorDialogManager.a.a(fVar, this.a, this.f12974b);
                 if (dialogFragment2 != null) {
-                    dialogFragment2.show(fragmentManager, ErrorDialogManager.f21628b);
+                    dialogFragment2.show(fragmentManager, ErrorDialogManager.f12967b);
                 }
             }
         }
 
         @Override // android.app.Fragment
         public void onPause() {
-            this.f21637c.m25003g(this);
+            this.f12975c.g(this);
             super.onPause();
         }
 
         @Override // android.app.Fragment
         public void onResume() {
             super.onResume();
-            this.f21637c = ErrorDialogManager.f21627a.f21662a.m25087b();
-            this.f21637c.m25001e(this);
+            this.f12975c = ErrorDialogManager.a.a.b();
+            this.f12975c.e(this);
         }
 
-        /* renamed from: a */
-        public static void m25065a(Activity activity, Object obj, boolean z, Bundle bundle) {
+        public static void a(Activity activity, Object obj, boolean z, Bundle bundle) {
             FragmentManager fragmentManager = activity.getFragmentManager();
-            HoneycombManagerFragment honeycombManagerFragment = (HoneycombManagerFragment) fragmentManager.findFragmentByTag(ErrorDialogManager.f21629c);
+            HoneycombManagerFragment honeycombManagerFragment = (HoneycombManagerFragment) fragmentManager.findFragmentByTag(ErrorDialogManager.f12968c);
             if (honeycombManagerFragment == null) {
                 honeycombManagerFragment = new HoneycombManagerFragment();
-                fragmentManager.beginTransaction().add(honeycombManagerFragment, ErrorDialogManager.f21629c).commit();
+                fragmentManager.beginTransaction().add(honeycombManagerFragment, ErrorDialogManager.f12968c).commit();
                 fragmentManager.executePendingTransactions();
             }
-            honeycombManagerFragment.f21635a = z;
-            honeycombManagerFragment.f21636b = bundle;
-            honeycombManagerFragment.f21638d = obj;
+            honeycombManagerFragment.a = z;
+            honeycombManagerFragment.f12974b = bundle;
+            honeycombManagerFragment.f12976d = obj;
         }
     }
 
     public static class SupportManagerFragment extends androidx.fragment.app.Fragment {
+        protected boolean a;
 
-        /* renamed from: a */
-        protected boolean f21639a;
+        /* JADX INFO: renamed from: b */
+        protected Bundle f12977b;
 
-        /* renamed from: b */
-        protected Bundle f21640b;
+        /* JADX INFO: renamed from: c */
+        private org.greenrobot.eventbus.c f12978c;
 
-        /* renamed from: c */
-        private C6049c f21641c;
+        /* JADX INFO: renamed from: d */
+        private boolean f12979d;
 
-        /* renamed from: d */
-        private boolean f21642d;
+        /* JADX INFO: renamed from: e */
+        private Object f12980e;
 
-        /* renamed from: e */
-        private Object f21643e;
-
-        /* renamed from: a */
-        public void m25068a(C6074f c6074f) {
-            if (ErrorDialogManager.m25064b(this.f21643e, c6074f)) {
-                ErrorDialogManager.m25061a(c6074f);
+        public void a(f fVar) {
+            if (ErrorDialogManager.b(this.f12980e, fVar)) {
+                ErrorDialogManager.a(fVar);
                 androidx.fragment.app.FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.executePendingTransactions();
-                androidx.fragment.app.DialogFragment dialogFragment = (androidx.fragment.app.DialogFragment) fragmentManager.findFragmentByTag(ErrorDialogManager.f21628b);
+                androidx.fragment.app.DialogFragment dialogFragment = (androidx.fragment.app.DialogFragment) fragmentManager.findFragmentByTag(ErrorDialogManager.f12967b);
                 if (dialogFragment != null) {
                     dialogFragment.dismiss();
                 }
-                androidx.fragment.app.DialogFragment dialogFragment2 = (androidx.fragment.app.DialogFragment) ErrorDialogManager.f21627a.m25089a(c6074f, this.f21639a, this.f21640b);
+                androidx.fragment.app.DialogFragment dialogFragment2 = (androidx.fragment.app.DialogFragment) ErrorDialogManager.a.a(fVar, this.a, this.f12977b);
                 if (dialogFragment2 != null) {
-                    dialogFragment2.show(fragmentManager, ErrorDialogManager.f21628b);
+                    dialogFragment2.show(fragmentManager, ErrorDialogManager.f12967b);
                 }
             }
         }
@@ -186,58 +171,54 @@ public class ErrorDialogManager {
         @Override // androidx.fragment.app.Fragment
         public void onCreate(Bundle bundle) {
             super.onCreate(bundle);
-            this.f21641c = ErrorDialogManager.f21627a.f21662a.m25087b();
-            this.f21641c.m25001e(this);
-            this.f21642d = true;
+            this.f12978c = ErrorDialogManager.a.a.b();
+            this.f12978c.e(this);
+            this.f12979d = true;
         }
 
         @Override // androidx.fragment.app.Fragment
         public void onPause() {
-            this.f21641c.m25003g(this);
+            this.f12978c.g(this);
             super.onPause();
         }
 
         @Override // androidx.fragment.app.Fragment
         public void onResume() {
             super.onResume();
-            if (this.f21642d) {
-                this.f21642d = false;
+            if (this.f12979d) {
+                this.f12979d = false;
             } else {
-                this.f21641c = ErrorDialogManager.f21627a.f21662a.m25087b();
-                this.f21641c.m25001e(this);
+                this.f12978c = ErrorDialogManager.a.a.b();
+                this.f12978c.e(this);
             }
         }
 
-        /* renamed from: a */
-        public static void m25067a(Activity activity, Object obj, boolean z, Bundle bundle) {
+        public static void a(Activity activity, Object obj, boolean z, Bundle bundle) {
             androidx.fragment.app.FragmentManager supportFragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
-            SupportManagerFragment supportManagerFragment = (SupportManagerFragment) supportFragmentManager.findFragmentByTag(ErrorDialogManager.f21629c);
+            SupportManagerFragment supportManagerFragment = (SupportManagerFragment) supportFragmentManager.findFragmentByTag(ErrorDialogManager.f12968c);
             if (supportManagerFragment == null) {
                 supportManagerFragment = new SupportManagerFragment();
-                supportFragmentManager.beginTransaction().add(supportManagerFragment, ErrorDialogManager.f21629c).commit();
+                supportFragmentManager.beginTransaction().add(supportManagerFragment, ErrorDialogManager.f12968c).commit();
                 supportFragmentManager.executePendingTransactions();
             }
-            supportManagerFragment.f21639a = z;
-            supportManagerFragment.f21640b = bundle;
-            supportManagerFragment.f21643e = obj;
+            supportManagerFragment.a = z;
+            supportManagerFragment.f12977b = bundle;
+            supportManagerFragment.f12980e = obj;
         }
     }
 
-    /* renamed from: a */
-    protected static void m25061a(C6074f c6074f) {
-        C6070b c6070b = f21627a.f21662a;
-        if (c6070b.f21658f) {
-            if (c6070b.f21659g == null) {
-                String str = C6049c.f21526s;
+    protected static void a(f fVar) {
+        b bVar = a.a;
+        if (bVar.f12991f) {
+            if (bVar.f12992g == null) {
+                String str = org.greenrobot.eventbus.c.s;
             }
-            Throwable th = c6074f.f21664a;
+            Throwable th = fVar.a;
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public static boolean m25064b(Object obj, C6074f c6074f) {
-        Object mo25095a;
-        return c6074f == null || (mo25095a = c6074f.mo25095a()) == null || mo25095a.equals(obj);
+    public static boolean b(Object obj, f fVar) {
+        Object objA;
+        return fVar == null || (objA = fVar.a()) == null || objA.equals(obj);
     }
 }

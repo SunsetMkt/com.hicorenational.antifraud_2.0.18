@@ -1,6 +1,6 @@
 package com.umeng.socialize.common;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeConstants {
     public static String APPKEY = null;
     public static final int AUTH_EVENT = 24579;
@@ -23,9 +23,7 @@ public class SocializeConstants {
     public static final String KEY_TEXT = "txt";
     public static final String KEY_TITLE = "title";
     public static final String LAST_AZX_TIME = "last_azx_time";
-
-    /* renamed from: OS */
-    public static final String f13601OS = "Android";
+    public static final String OS = "Android";
     public static final String PROTOCOL_VERSON = "3.0";
     public static final int REGIST_TO_WORK_QUEUE = 24592;
     public static final int RELEASE_DB_CONNECTION = 24584;

@@ -11,7 +11,7 @@ import com.huawei.hms.support.hianalytics.HiAnalyticsClient;
 import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.JsonUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OpenDeviceTaskApiCall extends TaskApiCall<OpenDeviceHmsClient, OdidResult> {
     public OpenDeviceTaskApiCall(String str, String str2, String str3) {
         super(str, str2, str3);
@@ -27,7 +27,6 @@ public class OpenDeviceTaskApiCall extends TaskApiCall<OpenDeviceHmsClient, Odid
         return 50002300;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.huawei.hms.common.internal.TaskApiCall
     public void doExecute(OpenDeviceHmsClient openDeviceHmsClient, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<OdidResult> taskCompletionSource) {
         if (responseErrorCode == null) {
@@ -36,11 +35,11 @@ public class OpenDeviceTaskApiCall extends TaskApiCall<OpenDeviceHmsClient, Odid
         }
         HiAnalyticsClient.reportExit(openDeviceHmsClient.getContext(), getUri(), getTransactionId(), responseErrorCode.getStatusCode(), responseErrorCode.getErrorCode(), 61200300);
         if (responseErrorCode.getErrorCode() != 0) {
-            HMSLog.m7717i("OpenDeviceTaskApiCall", "onResult, returnCode: " + responseErrorCode.getErrorCode());
+            HMSLog.i("OpenDeviceTaskApiCall", "onResult, returnCode: " + responseErrorCode.getErrorCode());
             taskCompletionSource.setException(new ApiException(new Status(responseErrorCode.getErrorCode(), responseErrorCode.getErrorReason())));
             return;
         }
-        HMSLog.m7717i("OpenDeviceTaskApiCall", "onResult, success");
+        HMSLog.i("OpenDeviceTaskApiCall", "onResult, success");
         OdidResp odidResp = new OdidResp();
         JsonUtil.jsonToEntity(str, odidResp);
         OdidResult odidResult = new OdidResult();

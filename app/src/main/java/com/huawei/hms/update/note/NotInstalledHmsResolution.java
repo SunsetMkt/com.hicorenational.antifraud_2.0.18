@@ -6,95 +6,88 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.KeyEvent;
 import com.huawei.hms.activity.IBridgeActivityDelegate;
-import com.huawei.hms.availableupdate.C2311b;
+import com.huawei.hms.availableupdate.b;
 import com.huawei.hms.support.log.HMSLog;
-import com.huawei.hms.update.p183ui.NotInstalledHmsDialogHelper;
+import com.huawei.hms.update.ui.NotInstalledHmsDialogHelper;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NotInstalledHmsResolution implements IBridgeActivityDelegate {
+    private Dialog a;
 
-    /* renamed from: a */
-    private Dialog f7907a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Activity f4965b;
 
-    /* renamed from: b */
-    private Activity f7908b;
+    private static class a implements DialogInterface.OnClickListener {
+        private final Activity a;
 
-    /* renamed from: com.huawei.hms.update.note.NotInstalledHmsResolution$a */
-    private static class DialogInterfaceOnClickListenerC2536a implements DialogInterface.OnClickListener {
-
-        /* renamed from: a */
-        private final Activity f7909a;
-
-        public DialogInterfaceOnClickListenerC2536a(Activity activity) {
-            this.f7909a = activity;
+        public a(Activity activity) {
+            this.a = activity;
         }
 
         @Override // android.content.DialogInterface.OnClickListener
         public void onClick(DialogInterface dialogInterface, int i2) {
-            HMSLog.m7717i("NotInstalledHmsResolution", "<Dialog onClick>");
-            this.f7909a.finish();
+            HMSLog.i("NotInstalledHmsResolution", "<Dialog onClick>");
+            this.a.finish();
         }
     }
 
-    /* renamed from: a */
-    private void m7725a(Activity activity) {
-        m7724a();
-        this.f7907a = NotInstalledHmsDialogHelper.getDialogBuilder(activity).setPositiveButton(NotInstalledHmsDialogHelper.getConfirmResId(activity), new DialogInterfaceOnClickListenerC2536a(activity)).show();
+    private void a(Activity activity) {
+        a();
+        this.a = NotInstalledHmsDialogHelper.getDialogBuilder(activity).setPositiveButton(NotInstalledHmsDialogHelper.getConfirmResId(activity), new a(activity)).show();
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public int getRequestCode() {
-        HMSLog.m7717i("NotInstalledHmsResolution", "<Resolution getRequestCode>");
+        HMSLog.i("NotInstalledHmsResolution", "<Resolution getRequestCode>");
         return 0;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
-        HMSLog.m7717i("NotInstalledHmsResolution", "<Resolution onBridgeActivityCreate>");
+        HMSLog.i("NotInstalledHmsResolution", "<Resolution onBridgeActivityCreate>");
         if (activity == null || activity.isFinishing()) {
-            HMSLog.m7715e("NotInstalledHmsResolution", "<Resolution onBridgeActivityCreate> activity is null or finishing");
+            HMSLog.e("NotInstalledHmsResolution", "<Resolution onBridgeActivityCreate> activity is null or finishing");
             return;
         }
-        this.f7908b = activity;
-        C2311b.f7169b.m6656a(activity);
-        m7725a(activity);
+        this.f4965b = activity;
+        b.f4488b.a(activity);
+        a(activity);
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityDestroy() {
-        HMSLog.m7717i("NotInstalledHmsResolution", "<Resolution onBridgeActivityDestroy>");
-        m7724a();
-        C2311b.f7169b.m6657b(this.f7908b);
+        HMSLog.i("NotInstalledHmsResolution", "<Resolution onBridgeActivityDestroy>");
+        a();
+        b.f4488b.b(this.f4965b);
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public boolean onBridgeActivityResult(int i2, int i3, Intent intent) {
-        HMSLog.m7717i("NotInstalledHmsResolution", "<Resolution onBridgeActivityResult>");
+        HMSLog.i("NotInstalledHmsResolution", "<Resolution onBridgeActivityResult>");
         return false;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeConfigurationChanged() {
-        HMSLog.m7717i("NotInstalledHmsResolution", "<Resolution onBridgeConfigurationChanged>");
-        Activity activity = this.f7908b;
+        HMSLog.i("NotInstalledHmsResolution", "<Resolution onBridgeConfigurationChanged>");
+        Activity activity = this.f4965b;
         if (activity == null || activity.isFinishing()) {
-            HMSLog.m7715e("NotInstalledHmsResolution", "<Resolution onBridgeActivityCreate> mActivity is null or finishing");
+            HMSLog.e("NotInstalledHmsResolution", "<Resolution onBridgeActivityCreate> mActivity is null or finishing");
         } else {
-            m7725a(this.f7908b);
+            a(this.f4965b);
         }
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onKeyUp(int i2, KeyEvent keyEvent) {
-        HMSLog.m7717i("NotInstalledHmsResolution", "<Resolution onKeyUp>");
+        HMSLog.i("NotInstalledHmsResolution", "<Resolution onKeyUp>");
     }
 
-    /* renamed from: a */
-    private void m7724a() {
-        Dialog dialog = this.f7907a;
+    private void a() {
+        Dialog dialog = this.a;
         if (dialog == null || !dialog.isShowing()) {
             return;
         }
-        this.f7907a.cancel();
+        this.a.cancel();
     }
 }

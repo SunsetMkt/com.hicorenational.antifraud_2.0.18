@@ -1,6 +1,6 @@
 package cn.cloudwalk.util;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LogUtils {
     public static final String LOG_EXCEPTION = "Exception";
     private static final String LOG_PREFIX = "cw_";

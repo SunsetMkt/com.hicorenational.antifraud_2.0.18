@@ -12,7 +12,7 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.handler.UMDingSSoHandler;
 import com.umeng.socialize.utils.SLog;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DingCallBack extends Activity implements IDDAPIEventHandler {
     protected UMDingSSoHandler dingSSoHandler = null;
 
@@ -25,7 +25,7 @@ public class DingCallBack extends Activity implements IDDAPIEventHandler {
             try {
                 this.dingSSoHandler.getApi().handleIntent(getIntent(), this);
             } catch (Throwable th) {
-                SLog.error("Activity可能正在被攻击", th);
+                SLog.error("Activity\u53ef\u80fd\u6b63\u5728\u88ab\u653b\u51fb", th);
             }
         }
     }
@@ -39,7 +39,7 @@ public class DingCallBack extends Activity implements IDDAPIEventHandler {
         try {
             this.dingSSoHandler.getApi().handleIntent(intent, this);
         } catch (Throwable th) {
-            SLog.error("Activity可能正在被攻击", th);
+            SLog.error("Activity\u53ef\u80fd\u6b63\u5728\u88ab\u653b\u51fb", th);
         }
     }
 

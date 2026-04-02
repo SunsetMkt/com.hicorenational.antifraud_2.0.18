@@ -2,7 +2,7 @@ package com.umeng.socialize;
 
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface UMShareListener {
     void onCancel(SHARE_MEDIA share_media);
 

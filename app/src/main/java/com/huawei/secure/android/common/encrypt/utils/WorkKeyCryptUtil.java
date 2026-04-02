@@ -3,7 +3,7 @@ package com.huawei.secure.android.common.encrypt.utils;
 import com.huawei.secure.android.common.encrypt.aes.AesCbc;
 import com.huawei.secure.android.common.encrypt.aes.AesGcm;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WorkKeyCryptUtil {
     private WorkKeyCryptUtil() {
     }

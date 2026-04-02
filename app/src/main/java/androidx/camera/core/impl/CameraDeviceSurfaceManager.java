@@ -9,7 +9,7 @@ import androidx.camera.core.UseCase;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CameraDeviceSurfaceManager {
 
     public interface Provider {

@@ -14,9 +14,9 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.LayoutRes;
-import cn.cloudwalk.libproject.C1241R;
+import cn.cloudwalk.libproject.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class BaseDialog extends Dialog implements View.OnClickListener {
     protected int animType;
     protected Context context;
@@ -131,9 +131,7 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener 
             setGravity(80);
         } else if (3 == i2) {
             setGravity(48);
-        } else if (1 == i2) {
-            setGravity(17);
-        } else if (i2 == 0) {
+        } else if (1 == i2 || i2 == 0) {
             setGravity(17);
         }
         return this;
@@ -146,11 +144,11 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener 
     }
 
     public BaseDialog setOnCilckListener(int i2) {
-        View findView = findView(i2);
-        if (findView == null) {
+        View viewFindView = findView(i2);
+        if (viewFindView == null) {
             return this;
         }
-        findView.setOnClickListener(this);
+        viewFindView.setOnClickListener(this);
         return this;
     }
 
@@ -189,16 +187,16 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener 
         Window window = getWindow();
         if (2 == i2) {
             setGravity(80);
-            window.setWindowAnimations(C1241R.style.dialog_anim_bottom2top);
+            window.setWindowAnimations(R.style.dialog_anim_bottom2top);
         } else if (3 == i2) {
             setGravity(48);
-            window.setWindowAnimations(C1241R.style.dialog_anim_top2bottom);
+            window.setWindowAnimations(R.style.dialog_anim_top2bottom);
         } else if (1 == i2) {
             setGravity(17);
-            window.setWindowAnimations(C1241R.style.dialog_anim_scale);
+            window.setWindowAnimations(R.style.dialog_anim_scale);
         } else if (i2 == 0) {
             setGravity(17);
-            window.setWindowAnimations(C1241R.style.dialog_anim_alpha);
+            window.setWindowAnimations(R.style.dialog_anim_alpha);
         }
         super.show();
     }
@@ -211,9 +209,9 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener 
     }
 
     public void setViewVisiable(int i2, int i3) {
-        View findView = findView(i2);
-        if (findView != null) {
-            findView.setVisibility(i3);
+        View viewFindView = findView(i2);
+        if (viewFindView != null) {
+            viewFindView.setVisibility(i3);
         }
     }
 

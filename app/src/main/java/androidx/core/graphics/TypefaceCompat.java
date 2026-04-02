@@ -16,8 +16,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.provider.FontsContractCompat;
 import com.xiaomi.mipush.sdk.Constants;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"NewApi"})
-/* loaded from: classes.dex */
 public class TypefaceCompat {
     private static final LruCache<String, Typeface> sTypefaceCache;
     private static final TypefaceCompatBaseImpl sTypefaceCompatImpl;
@@ -61,38 +61,38 @@ public class TypefaceCompat {
     @Nullable
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static Typeface createFromResourcesFamilyXml(@NonNull Context context, @NonNull FontResourcesParserCompat.FamilyResourceEntry familyResourceEntry, @NonNull Resources resources, int i2, int i3, @Nullable ResourcesCompat.FontCallback fontCallback, @Nullable Handler handler, boolean z) {
-        Typeface createFromFontFamilyFilesResourceEntry;
+        Typeface typefaceCreateFromFontFamilyFilesResourceEntry;
         if (familyResourceEntry instanceof FontResourcesParserCompat.ProviderResourceEntry) {
             FontResourcesParserCompat.ProviderResourceEntry providerResourceEntry = (FontResourcesParserCompat.ProviderResourceEntry) familyResourceEntry;
             boolean z2 = false;
             if (!z ? fontCallback == null : providerResourceEntry.getFetchStrategy() == 0) {
                 z2 = true;
             }
-            createFromFontFamilyFilesResourceEntry = FontsContractCompat.getFontSync(context, providerResourceEntry.getRequest(), fontCallback, handler, z2, z ? providerResourceEntry.getTimeout() : -1, i3);
+            typefaceCreateFromFontFamilyFilesResourceEntry = FontsContractCompat.getFontSync(context, providerResourceEntry.getRequest(), fontCallback, handler, z2, z ? providerResourceEntry.getTimeout() : -1, i3);
         } else {
-            createFromFontFamilyFilesResourceEntry = sTypefaceCompatImpl.createFromFontFamilyFilesResourceEntry(context, (FontResourcesParserCompat.FontFamilyFilesResourceEntry) familyResourceEntry, resources, i3);
+            typefaceCreateFromFontFamilyFilesResourceEntry = sTypefaceCompatImpl.createFromFontFamilyFilesResourceEntry(context, (FontResourcesParserCompat.FontFamilyFilesResourceEntry) familyResourceEntry, resources, i3);
             if (fontCallback != null) {
-                if (createFromFontFamilyFilesResourceEntry != null) {
-                    fontCallback.callbackSuccessAsync(createFromFontFamilyFilesResourceEntry, handler);
+                if (typefaceCreateFromFontFamilyFilesResourceEntry != null) {
+                    fontCallback.callbackSuccessAsync(typefaceCreateFromFontFamilyFilesResourceEntry, handler);
                 } else {
                     fontCallback.callbackFailAsync(-3, handler);
                 }
             }
         }
-        if (createFromFontFamilyFilesResourceEntry != null) {
-            sTypefaceCache.put(createResourceUid(resources, i2, i3), createFromFontFamilyFilesResourceEntry);
+        if (typefaceCreateFromFontFamilyFilesResourceEntry != null) {
+            sTypefaceCache.put(createResourceUid(resources, i2, i3), typefaceCreateFromFontFamilyFilesResourceEntry);
         }
-        return createFromFontFamilyFilesResourceEntry;
+        return typefaceCreateFromFontFamilyFilesResourceEntry;
     }
 
     @Nullable
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static Typeface createFromResourcesFontFile(@NonNull Context context, @NonNull Resources resources, int i2, String str, int i3) {
-        Typeface createFromResourcesFontFile = sTypefaceCompatImpl.createFromResourcesFontFile(context, resources, i2, str, i3);
-        if (createFromResourcesFontFile != null) {
-            sTypefaceCache.put(createResourceUid(resources, i2, i3), createFromResourcesFontFile);
+        Typeface typefaceCreateFromResourcesFontFile = sTypefaceCompatImpl.createFromResourcesFontFile(context, resources, i2, str, i3);
+        if (typefaceCreateFromResourcesFontFile != null) {
+            sTypefaceCache.put(createResourceUid(resources, i2, i3), typefaceCreateFromResourcesFontFile);
         }
-        return createFromResourcesFontFile;
+        return typefaceCreateFromResourcesFontFile;
     }
 
     private static String createResourceUid(Resources resources, int i2, int i3) {

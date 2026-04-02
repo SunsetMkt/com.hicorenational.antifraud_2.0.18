@@ -6,10 +6,10 @@ import com.taobao.accs.IProcessName;
 import com.taobao.accs.client.AccsConfig;
 import com.taobao.accs.data.Message;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.C3052t;
+import com.taobao.accs.utl.t;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class GlobalConfig {
     public static AccsConfig.ACCS_GROUP mGroup = AccsConfig.ACCS_GROUP.OPEN;
     public static boolean enableCookie = true;
@@ -25,16 +25,16 @@ public class GlobalConfig {
     }
 
     public static void setAlarmHeartbeatEnable(boolean z) {
-        ALog.m9180d("GlobalConfig", "setAlarmHeartbeatEnable", "enable", Boolean.valueOf(z));
+        ALog.d("GlobalConfig", "setAlarmHeartbeatEnable", "enable", Boolean.valueOf(z));
         enableAlarmHeartbeat = z;
     }
 
     public static void setChannelProcessName(String str) {
-        C2978a.f9403d = str;
+        a.f5731d = str;
     }
 
     public static void setChannelReuse(boolean z, AccsConfig.ACCS_GROUP accs_group) {
-        GlobalClientInfo.f9389d = z;
+        GlobalClientInfo.f5718d = z;
         mGroup = accs_group;
     }
 
@@ -43,20 +43,20 @@ public class GlobalConfig {
     }
 
     public static void setCurrProcessNameImpl(IProcessName iProcessName) {
-        C2978a.f9404e = iProcessName;
+        a.f5732e = iProcessName;
     }
 
     public static void setEnableForeground(Context context, boolean z) {
-        ALog.m9183i("GlobalConfig", "setEnableForeground", "enable", Boolean.valueOf(z));
-        C3052t.m9275a(context, ChannelService.SUPPORT_FOREGROUND_VERSION_KEY, z ? 21 : 0);
+        ALog.i("GlobalConfig", "setEnableForeground", "enable", Boolean.valueOf(z));
+        t.a(context, ChannelService.SUPPORT_FOREGROUND_VERSION_KEY, z ? 21 : 0);
     }
 
     public static void setJobHeartbeatEnable(boolean z) {
-        ALog.m9180d("GlobalConfig", "setJobHeartBeatEnable", "enable", Boolean.valueOf(z));
+        ALog.d("GlobalConfig", "setJobHeartBeatEnable", "enable", Boolean.valueOf(z));
         enableJobHeartbeat = z;
     }
 
     public static void setMainProcessName(String str) {
-        C2978a.f9402c = str;
+        a.f5730c = str;
     }
 }

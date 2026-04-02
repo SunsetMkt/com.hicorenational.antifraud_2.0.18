@@ -31,72 +31,66 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 class ExceptionDetector {
+    long a;
 
-    /* renamed from: a */
-    long f773a;
+    /* JADX INFO: renamed from: b */
+    String f1402b;
 
-    /* renamed from: b */
-    String f774b;
+    /* JADX INFO: renamed from: c */
+    String f1403c;
 
-    /* renamed from: c */
-    String f775c;
+    /* JADX INFO: renamed from: d */
+    String f1404d;
 
-    /* renamed from: d */
-    String f776d;
+    /* JADX INFO: renamed from: e */
+    LimitedQueue<Pair<String, Integer>> f1405e = new LimitedQueue<>(10);
 
-    /* renamed from: e */
-    LimitedQueue<Pair<String, Integer>> f777e = new LimitedQueue<>(10);
-
-    /* JADX INFO: Access modifiers changed from: private */
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     class LimitedQueue<E> extends LinkedList<E> {
 
-        /* renamed from: b */
-        private int f779b;
+        /* JADX INFO: renamed from: b */
+        private int f1406b;
 
         public LimitedQueue(int i2) {
-            this.f779b = i2;
+            this.f1406b = i2;
         }
 
         @Override // java.util.LinkedList, java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List, java.util.Deque, java.util.Queue
         public boolean add(E e2) {
-            boolean add = super.add(e2);
-            while (add && size() > this.f779b) {
+            boolean zAdd = super.add(e2);
+            while (zAdd && size() > this.f1406b) {
                 super.remove();
             }
-            return add;
+            return zAdd;
         }
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.detect.ExceptionDetector$a */
-    private class C0758a {
+    /* JADX INFO: compiled from: Taobao */
+    private class a {
+        String a;
 
-        /* renamed from: a */
-        String f780a;
+        /* JADX INFO: renamed from: b */
+        String f1407b;
 
-        /* renamed from: b */
-        String f781b;
+        /* JADX INFO: renamed from: c */
+        String f1408c;
 
-        /* renamed from: c */
-        String f782c;
+        /* JADX INFO: renamed from: d */
+        Future<PingResponse> f1409d;
 
-        /* renamed from: d */
-        Future<PingResponse> f783d;
+        /* JADX INFO: renamed from: e */
+        Future<PingResponse> f1410e;
 
-        /* renamed from: e */
-        Future<PingResponse> f784e;
+        /* JADX INFO: renamed from: f */
+        Future<PingResponse> f1411f;
 
-        /* renamed from: f */
-        Future<PingResponse> f785f;
-
-        private C0758a() {
+        private a() {
         }
 
-        /* synthetic */ C0758a(ExceptionDetector exceptionDetector, C0759a c0759a) {
+        /* synthetic */ a(ExceptionDetector exceptionDetector, anet.channel.detect.a aVar) {
             this();
         }
     }
@@ -104,14 +98,12 @@ class ExceptionDetector {
     ExceptionDetector() {
     }
 
-    /* renamed from: a */
-    public void m466a() {
-        NetworkStatusHelper.addStatusChangeListener(new C0759a(this));
+    public void a() {
+        NetworkStatusHelper.addStatusChangeListener(new anet.channel.detect.a(this));
     }
 
-    /* renamed from: b */
-    void m468b() throws JSONException {
-        ALog.m715e("anet.ExceptionDetector", "network detect start.", null, new Object[0]);
+    void b() throws JSONException {
+        ALog.e("anet.ExceptionDetector", "network detect start.", null, new Object[0]);
         SpdyAgent.getInstance(GlobalAppRuntimeInfo.getContext(), SpdyVersion.SPDY3, SpdySessionKind.NONE_SESSION);
         JSONObject jSONObject = new JSONObject();
         JSONObject jSONObject2 = new JSONObject();
@@ -130,69 +122,64 @@ class ExceptionDetector {
         }
         jSONObject.put("NetworkInfo", jSONObject2);
         String defaultGateway = status.isWifi() ? NetUtils.getDefaultGateway("114.114.114.114") : NetUtils.getPreferNextHop("114.114.114.114", 2);
-        Future<PingResponse> launch = !TextUtils.isEmpty(defaultGateway) ? new PingTask(defaultGateway, 1000, 3, 0, 0).launch() : null;
-        C0758a m462a = m462a("guide-acs.m.taobao.com", this.f774b);
-        C0758a m462a2 = m462a("gw.alicdn.com", this.f776d);
-        C0758a m462a3 = m462a("msgacs.m.taobao.com", this.f775c);
+        Future<PingResponse> futureLaunch = !TextUtils.isEmpty(defaultGateway) ? new PingTask(defaultGateway, 1000, 3, 0, 0).launch() : null;
+        a aVarA = a("guide-acs.m.taobao.com", this.f1402b);
+        a aVarA2 = a("gw.alicdn.com", this.f1404d);
+        a aVarA3 = a("msgacs.m.taobao.com", this.f1403c);
         JSONObject jSONObject3 = new JSONObject();
         jSONObject3.put("nextHop", defaultGateway);
-        jSONObject3.put("ping", m465a(launch));
+        jSONObject3.put("ping", a(futureLaunch));
         jSONObject.put("LocalDetect", jSONObject3);
         JSONArray jSONArray = new JSONArray();
-        jSONArray.put(m464a(m462a));
-        jSONArray.put(m464a(m462a2));
-        jSONArray.put(m464a(m462a3));
+        jSONArray.put(a(aVarA));
+        jSONArray.put(a(aVarA2));
+        jSONArray.put(a(aVarA3));
         jSONObject.put("InternetDetect", jSONArray);
         JSONObject jSONObject4 = new JSONObject();
-        Iterator<Pair<String, Integer>> it = this.f777e.iterator();
-        while (it.hasNext()) {
-            Pair<String, Integer> next = it.next();
-            jSONObject4.put((String) next.first, next.second);
+        for (Pair<String, Integer> pair : this.f1405e) {
+            jSONObject4.put((String) pair.first, pair.second);
         }
         jSONObject.put("BizDetect", jSONObject4);
-        this.f777e.clear();
-        ALog.m715e("anet.ExceptionDetector", "network detect result: " + jSONObject.toString(), null, new Object[0]);
+        this.f1405e.clear();
+        ALog.e("anet.ExceptionDetector", "network detect result: " + jSONObject.toString(), null, new Object[0]);
     }
 
-    /* renamed from: c */
-    boolean m469c() {
-        if (this.f777e.size() != 10) {
+    boolean c() {
+        if (this.f1405e.size() != 10) {
             return false;
         }
         if (NetworkStatusHelper.getStatus() == NetworkStatusHelper.NetworkStatus.NO) {
-            ALog.m715e("anet.ExceptionDetector", "no network", null, new Object[0]);
+            ALog.e("anet.ExceptionDetector", "no network", null, new Object[0]);
             return false;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        if (currentTimeMillis < this.f773a) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (jCurrentTimeMillis < this.a) {
             return false;
         }
-        Iterator<Pair<String, Integer>> it = this.f777e.iterator();
+        Iterator<Pair<String, Integer>> it = this.f1405e.iterator();
         int i2 = 0;
         while (it.hasNext()) {
-            int intValue = ((Integer) it.next().second).intValue();
-            if (intValue == -202 || intValue == -400 || intValue == -401 || intValue == -405 || intValue == -406) {
+            int iIntValue = ((Integer) it.next().second).intValue();
+            if (iIntValue == -202 || iIntValue == -400 || iIntValue == -401 || iIntValue == -405 || iIntValue == -406) {
                 i2++;
             }
         }
         boolean z = i2 * 2 > 10;
         if (z) {
-            this.f773a = currentTimeMillis + 1800000;
+            this.a = jCurrentTimeMillis + 1800000;
         }
         return z;
     }
 
-    /* renamed from: a */
-    public void m467a(RequestStatistic requestStatistic) {
+    public void a(RequestStatistic requestStatistic) {
         if (AwcnConfig.isNetworkDetectEnable()) {
-            ThreadPoolExecutorFactory.submitDetectTask(new RunnableC0761c(this, requestStatistic));
+            ThreadPoolExecutorFactory.submitDetectTask(new c(this, requestStatistic));
         } else {
-            ALog.m716i("anet.ExceptionDetector", "network detect closed.", null, new Object[0]);
+            ALog.i("anet.ExceptionDetector", "network detect closed.", null, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    private ArrayList<String> m463a(String str, int i2) {
+    private ArrayList<String> a(String str, int i2) {
         PingResponse pingResponse;
         ArrayList<String> arrayList = new ArrayList<>();
         if (TextUtils.isEmpty(str)) {
@@ -226,51 +213,49 @@ class ExceptionDetector {
         return arrayList;
     }
 
-    /* renamed from: a */
-    private C0758a m462a(String str, String str2) {
-        C0758a c0758a = new C0758a(this, null);
-        c0758a.f780a = str;
+    private a a(String str, String str2) {
+        a aVar = new a(this, null);
+        aVar.a = str;
         try {
-            c0758a.f781b = InetAddress.getByName(str).getHostAddress();
+            aVar.f1407b = InetAddress.getByName(str).getHostAddress();
         } catch (UnknownHostException unused) {
         }
         if (!TextUtils.isEmpty(str2)) {
-            c0758a.f782c = str2;
+            aVar.f1408c = str2;
         } else {
             List<IConnStrategy> connStrategyListByHost = StrategyCenter.getInstance().getConnStrategyListByHost(str);
             if (connStrategyListByHost != null && !connStrategyListByHost.isEmpty()) {
-                c0758a.f782c = connStrategyListByHost.get(0).getIp();
+                aVar.f1408c = connStrategyListByHost.get(0).getIp();
             }
         }
-        String str3 = !TextUtils.isEmpty(c0758a.f782c) ? c0758a.f782c : c0758a.f781b;
+        String str3 = !TextUtils.isEmpty(aVar.f1408c) ? aVar.f1408c : aVar.f1407b;
         if (!TextUtils.isEmpty(str3)) {
             String str4 = str3;
-            c0758a.f783d = new PingTask(str4, 1000, 3, 0, 0).launch();
-            c0758a.f784e = new PingTask(str4, 1000, 3, 1172, 0).launch();
-            c0758a.f785f = new PingTask(str4, 1000, 3, 1432, 0).launch();
+            aVar.f1409d = new PingTask(str4, 1000, 3, 0, 0).launch();
+            aVar.f1410e = new PingTask(str4, 1000, 3, 1172, 0).launch();
+            aVar.f1411f = new PingTask(str4, 1000, 3, 1432, 0).launch();
         }
-        return c0758a;
+        return aVar;
     }
 
-    /* renamed from: a */
-    private JSONObject m464a(C0758a c0758a) throws JSONException {
+    private JSONObject a(a aVar) throws JSONException {
         JSONObject jSONObject = new JSONObject();
-        if (c0758a != null && c0758a.f783d != null) {
-            jSONObject.put(Constants.KEY_HOST, c0758a.f780a);
-            jSONObject.put("currentIp", c0758a.f782c);
-            jSONObject.put("localIp", c0758a.f781b);
-            jSONObject.put("ping", m465a(c0758a.f783d));
+        if (aVar != null && aVar.f1409d != null) {
+            jSONObject.put(Constants.KEY_HOST, aVar.a);
+            jSONObject.put("currentIp", aVar.f1408c);
+            jSONObject.put("localIp", aVar.f1407b);
+            jSONObject.put("ping", a(aVar.f1409d));
             JSONObject jSONObject2 = new JSONObject();
-            jSONObject2.put("1200", m465a(c0758a.f784e));
-            jSONObject2.put("1460", m465a(c0758a.f785f));
+            jSONObject2.put("1200", a(aVar.f1410e));
+            jSONObject2.put("1460", a(aVar.f1411f));
             jSONObject.put("MTU", jSONObject2);
-            if ("guide-acs.m.taobao.com".equals(c0758a.f780a)) {
-                ArrayList<String> m463a = m463a(!TextUtils.isEmpty(c0758a.f782c) ? c0758a.f782c : c0758a.f781b, 5);
+            if ("guide-acs.m.taobao.com".equals(aVar.a)) {
+                ArrayList<String> arrayListA = a(!TextUtils.isEmpty(aVar.f1408c) ? aVar.f1408c : aVar.f1407b, 5);
                 JSONObject jSONObject3 = new JSONObject();
                 int i2 = 0;
-                while (i2 < m463a.size()) {
+                while (i2 < arrayListA.size()) {
                     int i3 = i2 + 1;
-                    jSONObject3.put(String.valueOf(i3), m463a.get(i2));
+                    jSONObject3.put(String.valueOf(i3), arrayListA.get(i2));
                     i2 = i3;
                 }
                 jSONObject.put("traceRoute", jSONObject3);
@@ -279,8 +264,7 @@ class ExceptionDetector {
         return jSONObject;
     }
 
-    /* renamed from: a */
-    private JSONObject m465a(Future<PingResponse> future) throws JSONException {
+    private JSONObject a(Future<PingResponse> future) throws JSONException {
         PingResponse pingResponse;
         JSONObject jSONObject = new JSONObject();
         if (future == null) {

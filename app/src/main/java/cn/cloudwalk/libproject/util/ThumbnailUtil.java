@@ -9,10 +9,10 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
-import com.umeng.analytics.pro.C3355bl;
+import com.umeng.analytics.pro.bl;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ThumbnailUtil {
     static final String TAG = "ThumbnailUtil";
 
@@ -25,25 +25,24 @@ public class ThumbnailUtil {
     }
 
     public static String[] getRealPathFromURI(Uri uri, Context context) {
-        Cursor cursor;
+        Cursor cursorQuery;
         String[] strArr;
-        String[] strArr2 = {"_data", C3355bl.f11732d};
+        String[] strArr2 = {"_data", bl.f7101d};
         try {
-            cursor = context.getContentResolver().query(uri, strArr2, null, null, null);
+            cursorQuery = context.getContentResolver().query(uri, strArr2, null, null, null);
             try {
-                int columnIndexOrThrow = cursor.getColumnIndexOrThrow(strArr2[0]);
-                int columnIndexOrThrow2 = cursor.getColumnIndexOrThrow(strArr2[1]);
-                cursor.moveToFirst();
-                strArr = new String[]{cursor.getString(columnIndexOrThrow), cursor.getLong(columnIndexOrThrow2) + ""};
+                int columnIndexOrThrow = cursorQuery.getColumnIndexOrThrow(strArr2[0]);
+                int columnIndexOrThrow2 = cursorQuery.getColumnIndexOrThrow(strArr2[1]);
+                cursorQuery.moveToFirst();
+                strArr = new String[]{cursorQuery.getString(columnIndexOrThrow), cursorQuery.getLong(columnIndexOrThrow2) + ""};
                 try {
-                    cursor.close();
+                    cursorQuery.close();
                 } catch (Exception e2) {
                     e = e2;
-                    if (cursor != null) {
-                        cursor.close();
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
                     }
                     e.printStackTrace();
-                    return strArr;
                 }
             } catch (Exception e3) {
                 e = e3;
@@ -51,7 +50,7 @@ public class ThumbnailUtil {
             }
         } catch (Exception e4) {
             e = e4;
-            cursor = null;
+            cursorQuery = null;
             strArr = null;
         }
         return strArr;
@@ -59,13 +58,13 @@ public class ThumbnailUtil {
 
     public static Bitmap getThumbnail(ContentResolver contentResolver, long j2) {
         int i2 = 0;
-        Cursor query = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"_data"}, "_id=?", new String[]{String.valueOf(j2)}, null);
-        if (query == null || query.getCount() <= 0) {
+        Cursor cursorQuery = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"_data"}, "_id=?", new String[]{String.valueOf(j2)}, null);
+        if (cursorQuery == null || cursorQuery.getCount() <= 0) {
             return null;
         }
-        query.moveToFirst();
-        String string = query.getString(0);
-        query.close();
+        cursorQuery.moveToFirst();
+        String string = cursorQuery.getString(0);
+        cursorQuery.close();
         try {
             int attributeInt = new ExifInterface(string).getAttributeInt(androidx.exifinterface.media.ExifInterface.TAG_ORIENTATION, 0);
             if (attributeInt != 0) {
@@ -88,7 +87,7 @@ public class ThumbnailUtil {
             matrix.setRotate(i2);
             thumbnail = Bitmap.createBitmap(thumbnail, 0, 0, width, height, matrix, true);
         }
-        LogUtils.LOGE(TAG, "缩略图长宽:" + width + "" + height);
+        LogUtils.LOGE(TAG, "\u7f29\u7565\u56fe\u957f\u5bbd:" + width + "" + height);
         return thumbnail;
     }
 }

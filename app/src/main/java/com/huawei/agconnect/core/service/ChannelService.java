@@ -1,6 +1,6 @@
 package com.huawei.agconnect.core.service;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ChannelService {
     String getCurrentChannelId();
 

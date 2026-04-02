@@ -2,7 +2,7 @@ package androidx.transition;
 
 import android.os.IBinder;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class WindowIdApi14 implements WindowIdImpl {
     private final IBinder mToken;
 

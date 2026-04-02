@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveyAppBean extends BaseBean {
     private String account;
     private BlockFileBean appLogoFile;
@@ -14,9 +14,7 @@ public class SurveyAppBean extends BaseBean {
     private String appVersion;
     private String caseInfoID;
     private String createTime;
-
-    /* renamed from: id */
-    private String f1626id;
+    private String id;
     private String invitationCode;
     private BlockFileBean packageFile;
     private String packageFileID;
@@ -74,7 +72,7 @@ public class SurveyAppBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1626id;
+        return this.id;
     }
 
     public String getInvitationCode() {
@@ -178,7 +176,7 @@ public class SurveyAppBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1626id = str;
+        this.id = str;
     }
 
     public void setInvitationCode(String str) {

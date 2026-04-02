@@ -4,6 +4,7 @@ import anet.channel.util.HttpConstant;
 import com.alibaba.sdk.android.oss.common.RequestParameters;
 import com.taobao.accs.common.Constants;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
+import i.f1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,9 +18,8 @@ import okio.BufferedSource;
 import okio.ByteString;
 import okio.Okio;
 import okio.Source;
-import p286h.C5230f1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class Hpack {
     private static final int PREFIX_4_BITS = 15;
     private static final int PREFIX_5_BITS = 31;
@@ -92,11 +92,11 @@ final class Hpack {
             if (isStaticHeader(i2)) {
                 return Hpack.STATIC_HEADER_TABLE[i2].name;
             }
-            int dynamicTableIndex = dynamicTableIndex(i2 - Hpack.STATIC_HEADER_TABLE.length);
-            if (dynamicTableIndex >= 0) {
+            int iDynamicTableIndex = dynamicTableIndex(i2 - Hpack.STATIC_HEADER_TABLE.length);
+            if (iDynamicTableIndex >= 0) {
                 Header[] headerArr = this.dynamicTable;
-                if (dynamicTableIndex < headerArr.length) {
-                    return headerArr[dynamicTableIndex].name;
+                if (iDynamicTableIndex < headerArr.length) {
+                    return headerArr[iDynamicTableIndex].name;
                 }
             }
             throw new IOException("Header index too large " + (i2 + 1));
@@ -113,7 +113,7 @@ final class Hpack {
                 clearDynamicTable();
                 return;
             }
-            int evictToRecoverBytes = evictToRecoverBytes((this.dynamicTableByteCount + i3) - i4);
+            int iEvictToRecoverBytes = evictToRecoverBytes((this.dynamicTableByteCount + i3) - i4);
             if (i2 == -1) {
                 int i5 = this.headerCount + 1;
                 Header[] headerArr = this.dynamicTable;
@@ -128,7 +128,7 @@ final class Hpack {
                 this.dynamicTable[i6] = header;
                 this.headerCount++;
             } else {
-                this.dynamicTable[i2 + dynamicTableIndex(i2) + evictToRecoverBytes] = header;
+                this.dynamicTable[i2 + dynamicTableIndex(i2) + iEvictToRecoverBytes] = header;
             }
             this.dynamicTableByteCount += i3;
         }
@@ -138,7 +138,7 @@ final class Hpack {
         }
 
         private int readByte() throws IOException {
-            return this.source.readByte() & C5230f1.f20085c;
+            return this.source.readByte() & f1.f12066c;
         }
 
         private void readIndexedHeader(int i2) throws IOException {
@@ -146,11 +146,11 @@ final class Hpack {
                 this.headerList.add(Hpack.STATIC_HEADER_TABLE[i2]);
                 return;
             }
-            int dynamicTableIndex = dynamicTableIndex(i2 - Hpack.STATIC_HEADER_TABLE.length);
-            if (dynamicTableIndex >= 0) {
+            int iDynamicTableIndex = dynamicTableIndex(i2 - Hpack.STATIC_HEADER_TABLE.length);
+            if (iDynamicTableIndex >= 0) {
                 Header[] headerArr = this.dynamicTable;
-                if (dynamicTableIndex < headerArr.length) {
-                    this.headerList.add(headerArr[dynamicTableIndex]);
+                if (iDynamicTableIndex < headerArr.length) {
+                    this.headerList.add(headerArr[iDynamicTableIndex]);
                     return;
                 }
             }
@@ -184,35 +184,35 @@ final class Hpack {
         }
 
         ByteString readByteString() throws IOException {
-            int readByte = readByte();
-            boolean z = (readByte & 128) == 128;
-            int readInt = readInt(readByte, 127);
-            return z ? ByteString.m24926of(Huffman.get().decode(this.source.readByteArray(readInt))) : this.source.readByteString(readInt);
+            int i2 = readByte();
+            boolean z = (i2 & 128) == 128;
+            int i3 = readInt(i2, 127);
+            return z ? ByteString.of(Huffman.get().decode(this.source.readByteArray(i3))) : this.source.readByteString(i3);
         }
 
         void readHeaders() throws IOException {
             while (!this.source.exhausted()) {
-                int readByte = this.source.readByte() & C5230f1.f20085c;
-                if (readByte == 128) {
+                int i2 = this.source.readByte() & f1.f12066c;
+                if (i2 == 128) {
                     throw new IOException("index == 0");
                 }
-                if ((readByte & 128) == 128) {
-                    readIndexedHeader(readInt(readByte, 127) - 1);
-                } else if (readByte == 64) {
+                if ((i2 & 128) == 128) {
+                    readIndexedHeader(readInt(i2, 127) - 1);
+                } else if (i2 == 64) {
                     readLiteralHeaderWithIncrementalIndexingNewName();
-                } else if ((readByte & 64) == 64) {
-                    readLiteralHeaderWithIncrementalIndexingIndexedName(readInt(readByte, 63) - 1);
-                } else if ((readByte & 32) == 32) {
-                    this.maxDynamicTableByteCount = readInt(readByte, 31);
-                    int i2 = this.maxDynamicTableByteCount;
-                    if (i2 < 0 || i2 > this.headerTableSizeSetting) {
+                } else if ((i2 & 64) == 64) {
+                    readLiteralHeaderWithIncrementalIndexingIndexedName(readInt(i2, 63) - 1);
+                } else if ((i2 & 32) == 32) {
+                    this.maxDynamicTableByteCount = readInt(i2, 31);
+                    int i3 = this.maxDynamicTableByteCount;
+                    if (i3 < 0 || i3 > this.headerTableSizeSetting) {
                         throw new IOException("Invalid dynamic table size update " + this.maxDynamicTableByteCount);
                     }
                     adjustDynamicTableByteCount();
-                } else if (readByte == 16 || readByte == 0) {
+                } else if (i2 == 16 || i2 == 0) {
                     readLiteralHeaderWithoutIndexingNewName();
                 } else {
-                    readLiteralHeaderWithoutIndexingIndexedName(readInt(readByte, 15) - 1);
+                    readLiteralHeaderWithoutIndexingIndexedName(readInt(i2, 15) - 1);
                 }
             }
         }
@@ -224,11 +224,11 @@ final class Hpack {
             }
             int i5 = 0;
             while (true) {
-                int readByte = readByte();
-                if ((readByte & 128) == 0) {
-                    return i3 + (readByte << i5);
+                int i6 = readByte();
+                if ((i6 & 128) == 0) {
+                    return i3 + (i6 << i5);
                 }
-                i3 += (readByte & 127) << i5;
+                i3 += (i6 & 127) << i5;
                 i5 += 7;
             }
         }
@@ -333,16 +333,16 @@ final class Hpack {
 
         void setHeaderTableSizeSetting(int i2) {
             this.headerTableSizeSetting = i2;
-            int min = Math.min(i2, 16384);
+            int iMin = Math.min(i2, 16384);
             int i3 = this.maxDynamicTableByteCount;
-            if (i3 == min) {
+            if (i3 == iMin) {
                 return;
             }
-            if (min < i3) {
-                this.smallestHeaderTableSizeSetting = Math.min(this.smallestHeaderTableSizeSetting, min);
+            if (iMin < i3) {
+                this.smallestHeaderTableSizeSetting = Math.min(this.smallestHeaderTableSizeSetting, iMin);
             }
             this.emitDynamicTableSizeUpdate = true;
-            this.maxDynamicTableByteCount = min;
+            this.maxDynamicTableByteCount = iMin;
             adjustDynamicTableByteCount();
         }
 
@@ -354,76 +354,79 @@ final class Hpack {
             }
             Buffer buffer = new Buffer();
             Huffman.get().encode(byteString, buffer);
-            ByteString readByteString = buffer.readByteString();
-            writeInt(readByteString.size(), 127, 128);
-            this.out.write(readByteString);
+            ByteString byteString2 = buffer.readByteString();
+            writeInt(byteString2.size(), 127, 128);
+            this.out.write(byteString2);
         }
 
+        /* JADX WARN: Removed duplicated region for block: B:22:0x006c  */
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
         void writeHeaders(List<Header> list) throws IOException {
-            int i2;
-            int i3;
+            int length;
+            int length2;
             if (this.emitDynamicTableSizeUpdate) {
-                int i4 = this.smallestHeaderTableSizeSetting;
-                if (i4 < this.maxDynamicTableByteCount) {
-                    writeInt(i4, 31, 32);
+                int i2 = this.smallestHeaderTableSizeSetting;
+                if (i2 < this.maxDynamicTableByteCount) {
+                    writeInt(i2, 31, 32);
                 }
                 this.emitDynamicTableSizeUpdate = false;
                 this.smallestHeaderTableSizeSetting = Integer.MAX_VALUE;
                 writeInt(this.maxDynamicTableByteCount, 31, 32);
             }
             int size = list.size();
-            for (int i5 = 0; i5 < size; i5++) {
-                Header header = list.get(i5);
+            for (int i3 = 0; i3 < size; i3++) {
+                Header header = list.get(i3);
                 ByteString asciiLowercase = header.name.toAsciiLowercase();
                 ByteString byteString = header.value;
                 Integer num = Hpack.NAME_TO_FIRST_INDEX.get(asciiLowercase);
                 if (num != null) {
-                    i2 = num.intValue() + 1;
-                    if (i2 > 1 && i2 < 8) {
-                        if (Util.equal(Hpack.STATIC_HEADER_TABLE[i2 - 1].value, byteString)) {
-                            i3 = i2;
-                        } else if (Util.equal(Hpack.STATIC_HEADER_TABLE[i2].value, byteString)) {
-                            i3 = i2;
-                            i2++;
-                        }
+                    length = num.intValue() + 1;
+                    if (length <= 1 || length >= 8) {
+                        length2 = length;
+                        length = -1;
+                    } else if (Util.equal(Hpack.STATIC_HEADER_TABLE[length - 1].value, byteString)) {
+                        length2 = length;
+                    } else if (Util.equal(Hpack.STATIC_HEADER_TABLE[length].value, byteString)) {
+                        length2 = length;
+                        length++;
                     }
-                    i3 = i2;
-                    i2 = -1;
                 } else {
-                    i2 = -1;
-                    i3 = -1;
+                    length = -1;
+                    length2 = -1;
                 }
-                if (i2 == -1) {
-                    int i6 = this.nextHeaderIndex + 1;
-                    int length = this.dynamicTable.length;
+                if (length == -1) {
+                    int i4 = this.nextHeaderIndex + 1;
+                    int length3 = this.dynamicTable.length;
                     while (true) {
-                        if (i6 >= length) {
+                        if (i4 >= length3) {
                             break;
                         }
-                        if (Util.equal(this.dynamicTable[i6].name, asciiLowercase)) {
-                            if (Util.equal(this.dynamicTable[i6].value, byteString)) {
-                                i2 = Hpack.STATIC_HEADER_TABLE.length + (i6 - this.nextHeaderIndex);
+                        if (Util.equal(this.dynamicTable[i4].name, asciiLowercase)) {
+                            if (Util.equal(this.dynamicTable[i4].value, byteString)) {
+                                length = Hpack.STATIC_HEADER_TABLE.length + (i4 - this.nextHeaderIndex);
                                 break;
-                            } else if (i3 == -1) {
-                                i3 = (i6 - this.nextHeaderIndex) + Hpack.STATIC_HEADER_TABLE.length;
+                            } else if (length2 == -1) {
+                                length2 = (i4 - this.nextHeaderIndex) + Hpack.STATIC_HEADER_TABLE.length;
                             }
                         }
-                        i6++;
+                        i4++;
                     }
                 }
-                if (i2 != -1) {
-                    writeInt(i2, 127, 128);
-                } else if (i3 == -1) {
+                if (length != -1) {
+                    writeInt(length, 127, 128);
+                } else if (length2 == -1) {
                     this.out.writeByte(64);
                     writeByteString(asciiLowercase);
                     writeByteString(byteString);
                     insertIntoDynamicTable(header);
                 } else if (!asciiLowercase.startsWith(Header.PSEUDO_PREFIX) || Header.TARGET_AUTHORITY.equals(asciiLowercase)) {
-                    writeInt(i3, 63, 64);
+                    writeInt(length2, 63, 64);
                     writeByteString(byteString);
                     insertIntoDynamicTable(header);
                 } else {
-                    writeInt(i3, 15, 0);
+                    writeInt(length2, 15, 0);
                     writeByteString(byteString);
                 }
             }

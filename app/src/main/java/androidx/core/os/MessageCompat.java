@@ -5,7 +5,7 @@ import android.os.Build;
 import android.os.Message;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MessageCompat {
     private static boolean sTryIsAsynchronous = true;
     private static boolean sTrySetAsynchronous = true;

@@ -20,15 +20,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.internal.view.SupportMenuItem;
 import androidx.core.view.ActionProvider;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public final class MenuItemImpl implements SupportMenuItem {
     private static final int CHECKABLE = 1;
     private static final int CHECKED = 2;
@@ -70,6 +70,18 @@ public final class MenuItemImpl implements SupportMenuItem {
     private boolean mNeedToApplyIconTint = false;
     private int mFlags = 16;
     private boolean mIsActionViewExpanded = false;
+
+    /* JADX INFO: renamed from: androidx.appcompat.view.menu.MenuItemImpl$1 */
+    class AnonymousClass1 implements ActionProvider.VisibilityListener {
+        AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.ActionProvider.VisibilityListener
+        public void onActionProviderVisibilityChanged(boolean z) {
+            MenuItemImpl menuItemImpl = MenuItemImpl.this;
+            menuItemImpl.mMenu.onItemVisibleChanged(menuItemImpl);
+        }
+    }
 
     MenuItemImpl(MenuBuilder menuBuilder, int i2, int i3, int i4, int i5, CharSequence charSequence, int i6) {
         this.mShowAsAction = 0;
@@ -248,23 +260,23 @@ public final class MenuItemImpl implements SupportMenuItem {
         Resources resources = this.mMenu.getContext().getResources();
         StringBuilder sb = new StringBuilder();
         if (ViewConfiguration.get(this.mMenu.getContext()).hasPermanentMenuKey()) {
-            sb.append(resources.getString(C0120R.string.abc_prepend_shortcut_label));
+            sb.append(resources.getString(R.string.abc_prepend_shortcut_label));
         }
         int i2 = this.mMenu.isQwertyMode() ? this.mShortcutAlphabeticModifiers : this.mShortcutNumericModifiers;
-        appendModifier(sb, i2, 65536, resources.getString(C0120R.string.abc_menu_meta_shortcut_label));
-        appendModifier(sb, i2, 4096, resources.getString(C0120R.string.abc_menu_ctrl_shortcut_label));
-        appendModifier(sb, i2, 2, resources.getString(C0120R.string.abc_menu_alt_shortcut_label));
-        appendModifier(sb, i2, 1, resources.getString(C0120R.string.abc_menu_shift_shortcut_label));
-        appendModifier(sb, i2, 4, resources.getString(C0120R.string.abc_menu_sym_shortcut_label));
-        appendModifier(sb, i2, 8, resources.getString(C0120R.string.abc_menu_function_shortcut_label));
+        appendModifier(sb, i2, 65536, resources.getString(R.string.abc_menu_meta_shortcut_label));
+        appendModifier(sb, i2, 4096, resources.getString(R.string.abc_menu_ctrl_shortcut_label));
+        appendModifier(sb, i2, 2, resources.getString(R.string.abc_menu_alt_shortcut_label));
+        appendModifier(sb, i2, 1, resources.getString(R.string.abc_menu_shift_shortcut_label));
+        appendModifier(sb, i2, 4, resources.getString(R.string.abc_menu_sym_shortcut_label));
+        appendModifier(sb, i2, 8, resources.getString(R.string.abc_menu_function_shortcut_label));
         if (shortcut == '\b') {
-            sb.append(resources.getString(C0120R.string.abc_menu_delete_shortcut_label));
+            sb.append(resources.getString(R.string.abc_menu_delete_shortcut_label));
         } else if (shortcut == '\n') {
-            sb.append(resources.getString(C0120R.string.abc_menu_enter_shortcut_label));
+            sb.append(resources.getString(R.string.abc_menu_enter_shortcut_label));
         } else if (shortcut != ' ') {
             sb.append(shortcut);
         } else {
-            sb.append(resources.getString(C0120R.string.abc_menu_space_shortcut_label));
+            sb.append(resources.getString(R.string.abc_menu_space_shortcut_label));
         }
         return sb.toString();
     }
@@ -562,6 +574,9 @@ public final class MenuItemImpl implements SupportMenuItem {
         ActionProvider actionProvider3 = this.mActionProvider;
         if (actionProvider3 != null) {
             actionProvider3.setVisibilityListener(new ActionProvider.VisibilityListener() { // from class: androidx.appcompat.view.menu.MenuItemImpl.1
+                AnonymousClass1() {
+                }
+
                 @Override // androidx.core.view.ActionProvider.VisibilityListener
                 public void onActionProviderVisibilityChanged(boolean z) {
                     MenuItemImpl menuItemImpl = MenuItemImpl.this;

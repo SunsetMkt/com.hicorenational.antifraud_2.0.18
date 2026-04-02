@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+    <FrameLayout
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_18"
+        android:layout_weight="1">
+        <FrameLayout
+            android:layout_gravity="center"
+            android:id="@+id/mCheckLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include layout="@layout/layout_ai_check_border_bg"/>
+            <FrameLayout
+                android:layout_gravity="center"
+                android:padding="@dimen/dp_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ui.view.VideoTouchView
+                    android:id="@+id/mVideoPlayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <ui.view.LoadingLottieView
+                    android:id="@+id/mLoadingView"
+                    android:background="#ccffffff"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+            <View
+                android:id="@+id/clickVideoView"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+        <include layout="@layout/layout_ai_uncheck_tip"/>
+    </FrameLayout>
+    <TextView
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:id="@+id/mCheckBtn"
+        android:background="@drawable/bg_radius_grey_22"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_58"
+        android:layout_marginBottom="@dimen/dp_26"
+        android:text="@string/ai_check_btn_text"/>
+</LinearLayout>

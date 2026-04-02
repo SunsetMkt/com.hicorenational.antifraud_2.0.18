@@ -4,14 +4,14 @@ import android.text.TextUtils;
 import com.huawei.hms.push.constant.RemoteMessageConst;
 import com.just.agentweb.DefaultWebClient;
 import com.tencent.open.SocialConstants;
-import com.umeng.analytics.pro.C3351bh;
-import com.umeng.ccg.C3438a;
+import com.umeng.analytics.pro.bh;
+import com.umeng.ccg.a;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMessage {
     public static final String DISPLAY_TYPE_CUSTOM = "custom";
     public static final String DISPLAY_TYPE_NOTIFICATION = "notification";
@@ -69,61 +69,61 @@ public class UMessage {
         this.msg_id = jSONObject.optString("msg_id");
         this.display_type = jSONObject.optString("display_type");
         this.alias = jSONObject.optString("alias");
-        JSONObject optJSONObject = jSONObject.optJSONObject("body");
-        if (optJSONObject != null) {
-            this.ticker = optJSONObject.optString(RemoteMessageConst.Notification.TICKER);
-            this.title = optJSONObject.optString("title");
-            this.text = optJSONObject.optString("text");
-            this.play_vibrate = optJSONObject.optBoolean("play_vibrate", true);
-            this.play_lights = optJSONObject.optBoolean("play_lights", true);
-            this.play_sound = optJSONObject.optBoolean("play_sound", true);
-            this.screen_on = optJSONObject.optBoolean(C3438a.f12333f, false);
-            this.url = optJSONObject.optString("url");
-            this.img = optJSONObject.optString(SocialConstants.PARAM_IMG_URL);
-            this.sound = optJSONObject.optString(RemoteMessageConst.Notification.SOUND);
-            this.icon = optJSONObject.optString(RemoteMessageConst.Notification.ICON);
-            this.after_open = optJSONObject.optString("after_open");
-            this.largeIcon = optJSONObject.optString("largeIcon");
-            this.activity = optJSONObject.optString("activity");
-            this.custom = optJSONObject.optString("custom");
-            this.recall = optJSONObject.optString("recall");
-            this.bar_image = optJSONObject.optString("bar_image");
-            this.expand_image = optJSONObject.optString("expand_image");
-            this.bgImage = optJSONObject.optString("bg_image");
-            this.builder_id = optJSONObject.optInt("builder_id", 0);
-            this.badgeSet = optJSONObject.optInt("badge", -1);
-            this.badgeAdd = optJSONObject.optInt("add_badge", 0);
-            if (optJSONObject.optInt("re_pop", 0) == 1) {
-                int optInt = optJSONObject.optInt("pop_start", 0);
-                int optInt2 = optJSONObject.optInt("pop_interval", 0);
-                int optInt3 = optJSONObject.optInt("pop_count", 0);
-                if (optInt2 > 0 && optInt > 0 && optInt3 > 0) {
-                    this.repostStart = optInt;
-                    this.repostInterval = optInt2;
-                    this.repostCount = optInt3;
+        JSONObject jSONObjectOptJSONObject = jSONObject.optJSONObject("body");
+        if (jSONObjectOptJSONObject != null) {
+            this.ticker = jSONObjectOptJSONObject.optString(RemoteMessageConst.Notification.TICKER);
+            this.title = jSONObjectOptJSONObject.optString("title");
+            this.text = jSONObjectOptJSONObject.optString("text");
+            this.play_vibrate = jSONObjectOptJSONObject.optBoolean("play_vibrate", true);
+            this.play_lights = jSONObjectOptJSONObject.optBoolean("play_lights", true);
+            this.play_sound = jSONObjectOptJSONObject.optBoolean("play_sound", true);
+            this.screen_on = jSONObjectOptJSONObject.optBoolean(a.f7442f, false);
+            this.url = jSONObjectOptJSONObject.optString("url");
+            this.img = jSONObjectOptJSONObject.optString(SocialConstants.PARAM_IMG_URL);
+            this.sound = jSONObjectOptJSONObject.optString(RemoteMessageConst.Notification.SOUND);
+            this.icon = jSONObjectOptJSONObject.optString(RemoteMessageConst.Notification.ICON);
+            this.after_open = jSONObjectOptJSONObject.optString("after_open");
+            this.largeIcon = jSONObjectOptJSONObject.optString("largeIcon");
+            this.activity = jSONObjectOptJSONObject.optString("activity");
+            this.custom = jSONObjectOptJSONObject.optString("custom");
+            this.recall = jSONObjectOptJSONObject.optString("recall");
+            this.bar_image = jSONObjectOptJSONObject.optString("bar_image");
+            this.expand_image = jSONObjectOptJSONObject.optString("expand_image");
+            this.bgImage = jSONObjectOptJSONObject.optString("bg_image");
+            this.builder_id = jSONObjectOptJSONObject.optInt("builder_id", 0);
+            this.badgeSet = jSONObjectOptJSONObject.optInt("badge", -1);
+            this.badgeAdd = jSONObjectOptJSONObject.optInt("add_badge", 0);
+            if (jSONObjectOptJSONObject.optInt("re_pop", 0) == 1) {
+                int iOptInt = jSONObjectOptJSONObject.optInt("pop_start", 0);
+                int iOptInt2 = jSONObjectOptJSONObject.optInt("pop_interval", 0);
+                int iOptInt3 = jSONObjectOptJSONObject.optInt("pop_count", 0);
+                if (iOptInt2 > 0 && iOptInt > 0 && iOptInt3 > 0) {
+                    this.repostStart = iOptInt;
+                    this.repostInterval = iOptInt2;
+                    this.repostCount = iOptInt3;
                     this.repost = true;
                 }
             }
-            this.titleColor = optJSONObject.optString("title_color");
-            this.textColor = optJSONObject.optString("text_color");
+            this.titleColor = jSONObjectOptJSONObject.optString("title_color");
+            this.textColor = jSONObjectOptJSONObject.optString("text_color");
         } else {
             this.recall = null;
         }
-        JSONObject optJSONObject2 = jSONObject.optJSONObject("extra");
-        if (optJSONObject2 != null && optJSONObject2.length() > 0) {
-            Iterator<String> keys = optJSONObject2.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
-                String optString = optJSONObject2.optString(next);
-                this.extra.put(next, optString);
+        JSONObject jSONObjectOptJSONObject2 = jSONObject.optJSONObject("extra");
+        if (jSONObjectOptJSONObject2 != null && jSONObjectOptJSONObject2.length() > 0) {
+            Iterator<String> itKeys = jSONObjectOptJSONObject2.keys();
+            while (itKeys.hasNext()) {
+                String next = itKeys.next();
+                String strOptString = jSONObjectOptJSONObject2.optString(next);
+                this.extra.put(next, strOptString);
                 if ("umeng_big_title".equals(next)) {
-                    this.bigTitle = optString;
+                    this.bigTitle = strOptString;
                 } else if ("umeng_big_body".equals(next)) {
-                    this.bigBody = optString;
+                    this.bigBody = strOptString;
                 }
             }
         }
-        if (this.msg_id.length() == 22 && this.msg_id.startsWith(C3351bh.f11586aK)) {
+        if (this.msg_id.length() == 22 && this.msg_id.startsWith(bh.aK)) {
             try {
                 this.timestamp = Long.parseLong(this.msg_id.substring(7, 20));
             } catch (Throwable unused) {
@@ -132,10 +132,10 @@ public class UMessage {
         if (this.timestamp == 0) {
             this.timestamp = System.currentTimeMillis();
         }
-        JSONObject optJSONObject3 = jSONObject.optJSONObject("local_properties");
-        if (optJSONObject3 != null) {
-            this.category = optJSONObject3.optString("category");
-            this.importance = optJSONObject3.optInt("importance", 3);
+        JSONObject jSONObjectOptJSONObject3 = jSONObject.optJSONObject("local_properties");
+        if (jSONObjectOptJSONObject3 != null) {
+            this.category = jSONObjectOptJSONObject3.optString("category");
+            this.importance = jSONObjectOptJSONObject3.optInt("importance", 3);
         }
     }
 

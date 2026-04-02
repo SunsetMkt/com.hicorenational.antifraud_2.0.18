@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class CaptureBundles {
 
     static final class CaptureBundleImpl implements CaptureBundle {

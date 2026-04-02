@@ -3,7 +3,7 @@ package com.huawei.hms.core.aidl;
 import com.huawei.hms.core.aidl.annotation.Packed;
 import com.huawei.hms.support.api.client.Status;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AbstractMessageEntity implements IMessageEntity {
 
     @Packed

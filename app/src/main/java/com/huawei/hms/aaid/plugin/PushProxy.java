@@ -5,7 +5,7 @@ import com.huawei.hmf.tasks.Task;
 import com.huawei.hms.common.ApiException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface PushProxy {
     void deleteAllToken(Context context) throws ApiException;
 

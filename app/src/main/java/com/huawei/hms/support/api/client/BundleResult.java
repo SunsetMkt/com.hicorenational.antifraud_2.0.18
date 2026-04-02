@@ -2,33 +2,31 @@ package com.huawei.hms.support.api.client;
 
 import android.os.Bundle;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BundleResult {
+    private int a;
 
-    /* renamed from: a */
-    private int f7841a;
-
-    /* renamed from: b */
-    private Bundle f7842b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Bundle f4929b;
 
     public BundleResult(int i2, Bundle bundle) {
-        this.f7841a = i2;
-        this.f7842b = bundle;
+        this.a = i2;
+        this.f4929b = bundle;
     }
 
     public int getResultCode() {
-        return this.f7841a;
+        return this.a;
     }
 
     public Bundle getRspBody() {
-        return this.f7842b;
+        return this.f4929b;
     }
 
     public void setResultCode(int i2) {
-        this.f7841a = i2;
+        this.a = i2;
     }
 
     public void setRspBody(Bundle bundle) {
-        this.f7842b = bundle;
+        this.f4929b = bundle;
     }
 }

@@ -10,20 +10,18 @@ import com.huawei.hms.support.api.opendevice.OdidResult;
 import com.huawei.hms.support.hianalytics.HiAnalyticsClient;
 import com.huawei.hms.utils.JsonUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OpenDeviceClientImpl extends HuaweiApi<OpenDeviceOptions> implements OpenDeviceClient {
+    private static final OpenDeviceHmsClientBuilder a = new OpenDeviceHmsClientBuilder();
 
-    /* renamed from: a */
-    private static final OpenDeviceHmsClientBuilder f7651a = new OpenDeviceHmsClientBuilder();
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final Api<OpenDeviceOptions> f4829b = new Api<>(HuaweiApiAvailability.HMS_API_NAME_OD);
 
-    /* renamed from: b */
-    private static final Api<OpenDeviceOptions> f7652b = new Api<>(HuaweiApiAvailability.HMS_API_NAME_OD);
-
-    /* renamed from: c */
-    private static OpenDeviceOptions f7653c = new OpenDeviceOptions();
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static OpenDeviceOptions f4830c = new OpenDeviceOptions();
 
     OpenDeviceClientImpl(Context context) {
-        super(context, f7652b, f7653c, f7651a);
+        super(context, f4829b, f4830c, a);
         super.setKitSdkVersion(61200300);
     }
 

@@ -14,7 +14,7 @@ import cn.cloudwalk.util.LogUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Builder {
     public static final int BESTFACE_FAIL = 8;
     public static final String FACE_DETECT_ACTIVITY = "LiveActivity";
@@ -24,7 +24,7 @@ public class Builder {
     public static final int FACE_VERFY_NETFAIL = 7;
     public static final int FACE_VERFY_PASS = 5;
     public static final String GUIDE_PAGE_ACTIVITY = "LiveStartActivity";
-    private static final String SDK_VERSION = "通用动作活体新UIV5.0.1.20201218";
+    private static final String SDK_VERSION = "\u901a\u7528\u52a8\u4f5c\u6d3b\u4f53\u65b0UIV5.0.1.20201218";
     public static int antiHackMethod;
     public static byte[] bestFaceData;
     public static String bestInfo;

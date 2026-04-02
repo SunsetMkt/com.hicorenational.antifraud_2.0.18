@@ -2,25 +2,25 @@ package org.android.spdy;
 
 import org.android.spdy.ProtectedPointer;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ProtectedPointerTest {
 
     static class Data {
 
-        /* renamed from: i */
-        private int f21518i = 0;
+        /* JADX INFO: renamed from: i, reason: collision with root package name */
+        private int f12890i = 0;
 
         Data() {
         }
 
         public void destroy() {
             System.out.println("destroy");
-            this.f21518i = 1;
+            this.f12890i = 1;
         }
 
         public void work() {
             System.out.println("work");
-            if (this.f21518i == 1) {
+            if (this.f12890i == 1) {
                 System.exit(-1);
             }
         }
@@ -53,9 +53,9 @@ public class ProtectedPointerTest {
             @Override // java.lang.Runnable
             public void run() {
                 for (int i2 = 0; i2 < 1000; i2++) {
-                    if (ProtectedPointer.this.enter()) {
-                        ((Data) ProtectedPointer.this.getData()).work();
-                        ProtectedPointer.this.exit();
+                    if (protectedPointer.enter()) {
+                        ((Data) protectedPointer.getData()).work();
+                        protectedPointer.exit();
                     } else {
                         System.out.println("the data has been destroy");
                     }
@@ -65,7 +65,7 @@ public class ProtectedPointerTest {
         new Thread(new Runnable() { // from class: org.android.spdy.ProtectedPointerTest.2
             @Override // java.lang.Runnable
             public void run() {
-                ProtectedPointer.this.release();
+                protectedPointer.release();
             }
         }).run();
         thread.run();

@@ -1,13 +1,11 @@
 package com.huawei.secure.android.common.util;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SafeString {
+    private static final String a = "SafeString";
 
-    /* renamed from: a */
-    private static final String f8276a = "SafeString";
-
-    /* renamed from: b */
-    private static final String f8277b = "";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5239b = "";
 
     public static String replace(String str, CharSequence charSequence, CharSequence charSequence2) {
         if (str != null && charSequence != null && charSequence2 != null) {

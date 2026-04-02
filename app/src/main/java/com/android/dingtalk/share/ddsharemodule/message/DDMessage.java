@@ -9,7 +9,7 @@ import com.android.dingtalk.share.ddsharemodule.plugin.SignatureCheck;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DDMessage {
     private static final String TAG = "DDMessage";
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 import okhttp3.internal.Util;
 import okio.ByteString;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Http2 {
     static final byte FLAG_ACK = 1;
     static final byte FLAG_COMPRESSED = 32;
@@ -94,14 +94,14 @@ public final class Http2 {
 
     static String frameLog(boolean z, int i2, int i3, byte b2, byte b3) {
         String[] strArr = FRAME_NAMES;
-        String format = b2 < strArr.length ? strArr[b2] : Util.format("0x%02x", Byte.valueOf(b2));
-        String formatFlags = formatFlags(b2, b3);
+        String str = b2 < strArr.length ? strArr[b2] : Util.format("0x%02x", Byte.valueOf(b2));
+        String flags = formatFlags(b2, b3);
         Object[] objArr = new Object[5];
         objArr[0] = z ? "<<" : ">>";
         objArr[1] = Integer.valueOf(i2);
         objArr[2] = Integer.valueOf(i3);
-        objArr[3] = format;
-        objArr[4] = formatFlags;
+        objArr[3] = str;
+        objArr[4] = flags;
         return Util.format("%s 0x%08x %5d %-13s %s", objArr);
     }
 

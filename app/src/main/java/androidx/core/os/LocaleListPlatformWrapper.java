@@ -6,8 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import java.util.Locale;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(24)
-/* loaded from: classes.dex */
 final class LocaleListPlatformWrapper implements LocaleListInterface {
     private final LocaleList mLocaleList;
 

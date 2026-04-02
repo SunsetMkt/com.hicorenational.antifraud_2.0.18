@@ -9,9 +9,10 @@ import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class LocaleListCompatWrapper implements LocaleListInterface {
     private final Locale[] mList;
 
@@ -52,69 +53,50 @@ final class LocaleListCompatWrapper implements LocaleListInterface {
     }
 
     private Locale computeFirstMatch(Collection<String> collection, boolean z) {
-        int computeFirstMatchIndex = computeFirstMatchIndex(collection, z);
-        if (computeFirstMatchIndex == -1) {
+        int iComputeFirstMatchIndex = computeFirstMatchIndex(collection, z);
+        if (iComputeFirstMatchIndex == -1) {
             return null;
         }
-        return this.mList[computeFirstMatchIndex];
+        return this.mList[iComputeFirstMatchIndex];
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:13:0x001b, code lost:
-    
-        if (r6 < Integer.MAX_VALUE) goto L17;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:50:0x001e  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private int computeFirstMatchIndex(java.util.Collection<java.lang.String> r5, boolean r6) {
-        /*
-            r4 = this;
-            java.util.Locale[] r0 = r4.mList
-            int r1 = r0.length
-            r2 = 0
-            r3 = 1
-            if (r1 != r3) goto L8
-            return r2
-        L8:
-            int r0 = r0.length
-            if (r0 != 0) goto Ld
-            r5 = -1
-            return r5
-        Ld:
-            r0 = 2147483647(0x7fffffff, float:NaN)
-            if (r6 == 0) goto L1e
-            java.util.Locale r6 = androidx.core.os.LocaleListCompatWrapper.EN_LATN
-            int r6 = r4.findFirstMatchIndex(r6)
-            if (r6 != 0) goto L1b
-            return r2
-        L1b:
-            if (r6 >= r0) goto L1e
-            goto L21
-        L1e:
-            r6 = 2147483647(0x7fffffff, float:NaN)
-        L21:
-            java.util.Iterator r5 = r5.iterator()
-        L25:
-            boolean r1 = r5.hasNext()
-            if (r1 == 0) goto L40
-            java.lang.Object r1 = r5.next()
-            java.lang.String r1 = (java.lang.String) r1
-            java.util.Locale r1 = androidx.core.os.LocaleListCompat.forLanguageTagCompat(r1)
-            int r1 = r4.findFirstMatchIndex(r1)
-            if (r1 != 0) goto L3c
-            return r2
-        L3c:
-            if (r1 >= r6) goto L25
-            r6 = r1
-            goto L25
-        L40:
-            if (r6 != r0) goto L43
-            return r2
-        L43:
-            return r6
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.core.os.LocaleListCompatWrapper.computeFirstMatchIndex(java.util.Collection, boolean):int");
+    private int computeFirstMatchIndex(Collection<String> collection, boolean z) {
+        int iFindFirstMatchIndex;
+        Locale[] localeArr = this.mList;
+        if (localeArr.length == 1) {
+            return 0;
+        }
+        if (localeArr.length == 0) {
+            return -1;
+        }
+        if (z) {
+            iFindFirstMatchIndex = findFirstMatchIndex(EN_LATN);
+            if (iFindFirstMatchIndex == 0) {
+                return 0;
+            }
+            if (iFindFirstMatchIndex >= Integer.MAX_VALUE) {
+            }
+        } else {
+            iFindFirstMatchIndex = Integer.MAX_VALUE;
+        }
+        Iterator<String> it = collection.iterator();
+        while (it.hasNext()) {
+            int iFindFirstMatchIndex2 = findFirstMatchIndex(LocaleListCompat.forLanguageTagCompat(it.next()));
+            if (iFindFirstMatchIndex2 == 0) {
+                return 0;
+            }
+            if (iFindFirstMatchIndex2 < iFindFirstMatchIndex) {
+                iFindFirstMatchIndex = iFindFirstMatchIndex2;
+            }
+        }
+        if (iFindFirstMatchIndex == Integer.MAX_VALUE) {
+            return 0;
+        }
+        return iFindFirstMatchIndex;
     }
 
     private int findFirstMatchIndex(Locale locale) {
@@ -145,7 +127,7 @@ final class LocaleListCompatWrapper implements LocaleListInterface {
         return LOCALE_EN_XA.equals(locale) || LOCALE_AR_XB.equals(locale);
     }
 
-    @IntRange(from = 0, m294to = 1)
+    @IntRange(from = 0, to = 1)
     private static int matchScore(Locale locale, Locale locale2) {
         if (locale.equals(locale2)) {
             return 1;
@@ -219,15 +201,15 @@ final class LocaleListCompatWrapper implements LocaleListInterface {
     }
 
     public int hashCode() {
-        int i2 = 1;
-        int i3 = 0;
+        int iHashCode = 1;
+        int i2 = 0;
         while (true) {
             Locale[] localeArr = this.mList;
-            if (i3 >= localeArr.length) {
-                return i2;
+            if (i2 >= localeArr.length) {
+                return iHashCode;
             }
-            i2 = (i2 * 31) + localeArr[i3].hashCode();
-            i3++;
+            iHashCode = (iHashCode * 31) + localeArr[i2].hashCode();
+            i2++;
         }
     }
 

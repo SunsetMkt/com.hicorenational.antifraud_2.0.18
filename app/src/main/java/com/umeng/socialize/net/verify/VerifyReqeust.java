@@ -14,7 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class VerifyReqeust extends URequest {
     public VerifyReqeust(Context context, String str, Class<? extends SocializeReseponse> cls, URequest.RequestMethod requestMethod) {
         super(str);
@@ -46,9 +46,9 @@ public class VerifyReqeust extends URequest {
         } catch (JSONException e2) {
             SLog.error(UmengText.NET.PARSEERROR, e2);
         }
-        HashMap hashMap = new HashMap();
-        hashMap.put("data", jSONObject.toString());
-        return hashMap;
+        HashMap map = new HashMap();
+        map.put("data", jSONObject.toString());
+        return map;
     }
 
     @Override // com.umeng.socialize.net.utils.URequest

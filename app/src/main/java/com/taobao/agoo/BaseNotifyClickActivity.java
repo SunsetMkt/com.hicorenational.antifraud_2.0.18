@@ -7,8 +7,8 @@ import com.taobao.accs.utl.ALog;
 import java.util.HashSet;
 import java.util.Set;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class BaseNotifyClickActivity extends Activity {
     private static final String TAG = "Naccs.BaseNotifyClickActivity";
     public static Set<INotifyListener> notifyListeners;
@@ -19,7 +19,7 @@ public class BaseNotifyClickActivity extends Activity {
         }
     };
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public interface INotifyListener {
         String getMsgSource();
 
@@ -36,7 +36,7 @@ public class BaseNotifyClickActivity extends Activity {
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        ALog.m9183i(TAG, "onCreate", new Object[0]);
+        ALog.i(TAG, "onCreate", new Object[0]);
         this.baseNotifyClick.onCreate(this, getIntent());
     }
 
@@ -46,7 +46,7 @@ public class BaseNotifyClickActivity extends Activity {
     @Override // android.app.Activity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        ALog.m9183i(TAG, "onNewIntent", new Object[0]);
+        ALog.i(TAG, "onNewIntent", new Object[0]);
         this.baseNotifyClick.onNewIntent(intent);
     }
 }

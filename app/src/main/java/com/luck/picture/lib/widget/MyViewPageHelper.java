@@ -3,7 +3,7 @@ package com.luck.picture.lib.widget;
 import androidx.viewpager.widget.ViewPager;
 import java.lang.reflect.Field;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MyViewPageHelper {
     MScroller scroller;
     ViewPager viewPager;

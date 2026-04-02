@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import com.yalantis.ucrop.util.RotationGestureDetector;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class GestureCropImageView extends CropImageView {
     private static final int DOUBLE_TAP_ZOOM_DURATION = 200;
     private int mDoubleTapScaleSteps;

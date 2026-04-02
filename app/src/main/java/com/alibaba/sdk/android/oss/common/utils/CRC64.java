@@ -1,10 +1,10 @@
 package com.alibaba.sdk.android.oss.common.utils;
 
+import i.f1;
 import java.lang.reflect.Array;
 import java.util.zip.Checksum;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CRC64 implements Checksum {
     private static final int GF2_DIM = 64;
     private static final long POLY = -3932672073523589310L;
@@ -43,24 +43,24 @@ public class CRC64 implements Checksum {
         }
         gf2MatrixSquare(jArr, jArr2);
         gf2MatrixSquare(jArr2, jArr);
-        long j6 = j2;
-        long j7 = j4;
+        long jGf2MatrixTimes = j2;
+        long j6 = j4;
         do {
             gf2MatrixSquare(jArr, jArr2);
-            if ((j7 & 1) == 1) {
-                j6 = gf2MatrixTimes(jArr, j6);
+            if ((j6 & 1) == 1) {
+                jGf2MatrixTimes = gf2MatrixTimes(jArr, jGf2MatrixTimes);
             }
-            long j8 = j7 >>> 1;
-            if (j8 == 0) {
+            long j7 = j6 >>> 1;
+            if (j7 == 0) {
                 break;
             }
             gf2MatrixSquare(jArr2, jArr);
-            if ((j8 & 1) == 1) {
-                j6 = gf2MatrixTimes(jArr2, j6);
+            if ((j7 & 1) == 1) {
+                jGf2MatrixTimes = gf2MatrixTimes(jArr2, jGf2MatrixTimes);
             }
-            j7 = j8 >>> 1;
-        } while (j7 != 0);
-        return j6 ^ j3;
+            j6 = j7 >>> 1;
+        } while (j6 != 0);
+        return jGf2MatrixTimes ^ j3;
     }
 
     private static void gf2MatrixSquare(long[] jArr, long[] jArr2) {
@@ -111,14 +111,14 @@ public class CRC64 implements Checksum {
             long[][] jArr = table;
             long[] jArr2 = jArr[7];
             long j2 = this.value;
-            this.value = ((((((jArr[6][(int) ((bArr[i4 + 1] & C5230f1.f20085c) ^ ((j2 >>> 8) & 255))] ^ jArr2[(int) ((j2 & 255) ^ (bArr[i4] & C5230f1.f20085c))]) ^ jArr[5][(int) (((j2 >>> 16) & 255) ^ (bArr[i4 + 2] & C5230f1.f20085c))]) ^ jArr[4][(int) (((j2 >>> 24) & 255) ^ (bArr[i4 + 3] & C5230f1.f20085c))]) ^ jArr[3][(int) (((j2 >>> 32) & 255) ^ (bArr[i4 + 4] & C5230f1.f20085c))]) ^ jArr[2][(int) (((j2 >>> 40) & 255) ^ (bArr[i4 + 5] & C5230f1.f20085c))]) ^ jArr[1][(int) ((255 & (j2 >>> 48)) ^ (bArr[i4 + 6] & C5230f1.f20085c))]) ^ jArr[0][(int) ((j2 >>> 56) ^ (bArr[i4 + 7] & C5230f1.f20085c))];
+            this.value = ((((((jArr[6][(int) (((long) (bArr[i4 + 1] & f1.f12066c)) ^ ((j2 >>> 8) & 255))] ^ jArr2[(int) ((j2 & 255) ^ ((long) (bArr[i4] & f1.f12066c)))]) ^ jArr[5][(int) (((j2 >>> 16) & 255) ^ ((long) (bArr[i4 + 2] & f1.f12066c)))]) ^ jArr[4][(int) (((j2 >>> 24) & 255) ^ ((long) (bArr[i4 + 3] & f1.f12066c)))]) ^ jArr[3][(int) (((j2 >>> 32) & 255) ^ ((long) (bArr[i4 + 4] & f1.f12066c)))]) ^ jArr[2][(int) (((j2 >>> 40) & 255) ^ ((long) (bArr[i4 + 5] & f1.f12066c)))]) ^ jArr[1][(int) ((255 & (j2 >>> 48)) ^ ((long) (bArr[i4 + 6] & f1.f12066c)))]) ^ jArr[0][(int) ((j2 >>> 56) ^ ((long) (bArr[i4 + 7] & f1.f12066c)))];
             i4 += 8;
             i5 -= 8;
         }
         while (i5 > 0) {
             long[] jArr3 = table[0];
             long j3 = this.value;
-            this.value = (j3 >>> 8) ^ jArr3[(int) ((bArr[i4] ^ j3) & 255)];
+            this.value = (j3 >>> 8) ^ jArr3[(int) ((((long) bArr[i4]) ^ j3) & 255)];
             i4++;
             i5--;
         }

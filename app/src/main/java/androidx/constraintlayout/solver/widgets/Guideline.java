@@ -6,7 +6,7 @@ import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Guideline extends ConstraintWidget {
     public static final int HORIZONTAL = 0;
     public static final int RELATIVE_BEGIN = 1;
@@ -22,47 +22,45 @@ public class Guideline extends ConstraintWidget {
     private int mOrientation = 0;
     private int mMinimumPosition = 0;
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.Guideline$1 */
-    static /* synthetic */ class C04611 {
-
-        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
-        static final /* synthetic */ int[] f602x4c44d048 = new int[ConstraintAnchor.Type.values().length];
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.Guideline$1 */
+    static /* synthetic */ class AnonymousClass1 {
+        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = new int[ConstraintAnchor.Type.values().length];
 
         static {
             try {
-                f602x4c44d048[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.TOP.ordinal()] = 3;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.TOP.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.BOTTOM.ordinal()] = 4;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BOTTOM.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.BASELINE.ordinal()] = 5;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BASELINE.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.CENTER.ordinal()] = 6;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.CENTER_X.ordinal()] = 7;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER_X.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.CENTER_Y.ordinal()] = 8;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER_Y.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
-                f602x4c44d048[ConstraintAnchor.Type.NONE.ordinal()] = 9;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.NONE.ordinal()] = 9;
             } catch (NoSuchFieldError unused9) {
             }
         }
@@ -94,25 +92,25 @@ public class Guideline extends ConstraintWidget {
             z2 = constraintWidget2 != null && constraintWidget2.mListDimensionBehaviors[1] == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
         }
         if (this.resolved && this.mAnchor.hasFinalValue()) {
-            SolverVariable createObjectVariable = linearSystem.createObjectVariable(this.mAnchor);
-            linearSystem.addEquality(createObjectVariable, this.mAnchor.getFinalValue());
+            SolverVariable solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mAnchor);
+            linearSystem.addEquality(solverVariableCreateObjectVariable, this.mAnchor.getFinalValue());
             if (this.mRelativeBegin != -1) {
                 if (z2) {
-                    linearSystem.addGreaterThan(linearSystem.createObjectVariable(anchor2), createObjectVariable, 0, 5);
+                    linearSystem.addGreaterThan(linearSystem.createObjectVariable(anchor2), solverVariableCreateObjectVariable, 0, 5);
                 }
             } else if (this.mRelativeEnd != -1 && z2) {
-                SolverVariable createObjectVariable2 = linearSystem.createObjectVariable(anchor2);
-                linearSystem.addGreaterThan(createObjectVariable, linearSystem.createObjectVariable(anchor), 0, 5);
-                linearSystem.addGreaterThan(createObjectVariable2, createObjectVariable, 0, 5);
+                SolverVariable solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(anchor2);
+                linearSystem.addGreaterThan(solverVariableCreateObjectVariable, linearSystem.createObjectVariable(anchor), 0, 5);
+                linearSystem.addGreaterThan(solverVariableCreateObjectVariable2, solverVariableCreateObjectVariable, 0, 5);
             }
             this.resolved = false;
             return;
         }
         if (this.mRelativeBegin != -1) {
-            SolverVariable createObjectVariable3 = linearSystem.createObjectVariable(this.mAnchor);
-            linearSystem.addEquality(createObjectVariable3, linearSystem.createObjectVariable(anchor), this.mRelativeBegin, 8);
+            SolverVariable solverVariableCreateObjectVariable3 = linearSystem.createObjectVariable(this.mAnchor);
+            linearSystem.addEquality(solverVariableCreateObjectVariable3, linearSystem.createObjectVariable(anchor), this.mRelativeBegin, 8);
             if (z2) {
-                linearSystem.addGreaterThan(linearSystem.createObjectVariable(anchor2), createObjectVariable3, 0, 5);
+                linearSystem.addGreaterThan(linearSystem.createObjectVariable(anchor2), solverVariableCreateObjectVariable3, 0, 5);
                 return;
             }
             return;
@@ -124,12 +122,12 @@ public class Guideline extends ConstraintWidget {
             }
             return;
         }
-        SolverVariable createObjectVariable4 = linearSystem.createObjectVariable(this.mAnchor);
-        SolverVariable createObjectVariable5 = linearSystem.createObjectVariable(anchor2);
-        linearSystem.addEquality(createObjectVariable4, createObjectVariable5, -this.mRelativeEnd, 8);
+        SolverVariable solverVariableCreateObjectVariable4 = linearSystem.createObjectVariable(this.mAnchor);
+        SolverVariable solverVariableCreateObjectVariable5 = linearSystem.createObjectVariable(anchor2);
+        linearSystem.addEquality(solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable5, -this.mRelativeEnd, 8);
         if (z2) {
-            linearSystem.addGreaterThan(createObjectVariable4, linearSystem.createObjectVariable(anchor), 0, 5);
-            linearSystem.addGreaterThan(createObjectVariable5, createObjectVariable4, 0, 5);
+            linearSystem.addGreaterThan(solverVariableCreateObjectVariable4, linearSystem.createObjectVariable(anchor), 0, 5);
+            linearSystem.addGreaterThan(solverVariableCreateObjectVariable5, solverVariableCreateObjectVariable4, 0, 5);
         }
     }
 
@@ -139,8 +137,8 @@ public class Guideline extends ConstraintWidget {
     }
 
     @Override // androidx.constraintlayout.solver.widgets.ConstraintWidget
-    public void copy(ConstraintWidget constraintWidget, HashMap<ConstraintWidget, ConstraintWidget> hashMap) {
-        super.copy(constraintWidget, hashMap);
+    public void copy(ConstraintWidget constraintWidget, HashMap<ConstraintWidget, ConstraintWidget> map) {
+        super.copy(constraintWidget, map);
         Guideline guideline = (Guideline) constraintWidget;
         this.mRelativePercent = guideline.mRelativePercent;
         this.mRelativeBegin = guideline.mRelativeBegin;
@@ -299,7 +297,7 @@ public class Guideline extends ConstraintWidget {
 
     @Override // androidx.constraintlayout.solver.widgets.ConstraintWidget
     public ConstraintAnchor getAnchor(ConstraintAnchor.Type type) {
-        switch (C04611.f602x4c44d048[type.ordinal()]) {
+        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[type.ordinal()]) {
             case 1:
             case 2:
                 if (this.mOrientation == 1) {

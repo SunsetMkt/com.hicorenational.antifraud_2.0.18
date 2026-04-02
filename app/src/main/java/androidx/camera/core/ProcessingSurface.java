@@ -16,9 +16,8 @@ import androidx.camera.core.impl.SingleImageProxyBundle;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ProcessingSurface extends DeferrableSurface {
     private static final int MAX_IMAGES = 2;
     private static final String TAG = "ProcessingSurfaceTextur";
@@ -57,11 +56,11 @@ final class ProcessingSurface extends DeferrableSurface {
         if (handler != null) {
             this.mImageReaderHandler = handler;
         } else {
-            Looper myLooper = Looper.myLooper();
-            if (myLooper == null) {
+            Looper looperMyLooper = Looper.myLooper();
+            if (looperMyLooper == null) {
                 throw new IllegalStateException("Creating a ProcessingSurface requires a non-null Handler, or be created  on a thread with a Looper.");
             }
-            this.mImageReaderHandler = new Handler(myLooper);
+            this.mImageReaderHandler = new Handler(looperMyLooper);
         }
         this.mInputImageReader = new MetadataImageReader(i2, i3, i4, 2, this.mImageReaderHandler);
         this.mInputImageReader.setOnImageAvailableListener(this.mTransformedListener, this.mImageReaderHandler);
@@ -86,7 +85,7 @@ final class ProcessingSurface extends DeferrableSurface {
         getTerminationFuture().addListener(new Runnable() { // from class: androidx.camera.core.h0
             @Override // java.lang.Runnable
             public final void run() {
-                ProcessingSurface.this.release();
+                this.a.release();
             }
         }, CameraXExecutors.directExecutor());
     }
@@ -121,42 +120,42 @@ final class ProcessingSurface extends DeferrableSurface {
         if (this.mReleased) {
             return;
         }
-        ImageProxy imageProxy = null;
+        ImageProxy imageProxyAcquireNextImage = null;
         try {
-            imageProxy = imageReaderProxy.acquireNextImage();
+            imageProxyAcquireNextImage = imageReaderProxy.acquireNextImage();
         } catch (IllegalStateException unused) {
         }
-        if (imageProxy == null) {
+        if (imageProxyAcquireNextImage == null) {
             return;
         }
-        ImageInfo imageInfo = imageProxy.getImageInfo();
+        ImageInfo imageInfo = imageProxyAcquireNextImage.getImageInfo();
         if (imageInfo == null) {
-            imageProxy.close();
+            imageProxyAcquireNextImage.close();
             return;
         }
         Object tag = imageInfo.getTag();
         if (tag == null) {
-            imageProxy.close();
+            imageProxyAcquireNextImage.close();
             return;
         }
         if (!(tag instanceof Integer)) {
-            imageProxy.close();
+            imageProxyAcquireNextImage.close();
             return;
         }
         Integer num = (Integer) tag;
         if (this.mCaptureStage.getId() == num.intValue()) {
-            SingleImageProxyBundle singleImageProxyBundle = new SingleImageProxyBundle(imageProxy);
+            SingleImageProxyBundle singleImageProxyBundle = new SingleImageProxyBundle(imageProxyAcquireNextImage);
             this.mCaptureProcessor.process(singleImageProxyBundle);
             singleImageProxyBundle.close();
         } else {
             String str = "ImageProxyBundle does not contain this id: " + num;
-            imageProxy.close();
+            imageProxyAcquireNextImage.close();
         }
     }
 
     @Override // androidx.camera.core.impl.DeferrableSurface
     @NonNull
-    public InterfaceFutureC0952a<Surface> provideSurface() {
+    public d.b.b.a.a.a<Surface> provideSurface() {
         return Futures.immediateFuture(this.mInputSurface);
     }
 }

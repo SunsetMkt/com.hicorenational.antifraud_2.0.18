@@ -2,7 +2,7 @@ package com.huawei.hms.support.api.client;
 
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ApiClient {
     String getAppID();
 

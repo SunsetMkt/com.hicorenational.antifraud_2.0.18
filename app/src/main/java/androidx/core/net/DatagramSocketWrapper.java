@@ -11,7 +11,7 @@ import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketImpl;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class DatagramSocketWrapper extends Socket {
 
     private static class DatagramSocketImplWrapper extends SocketImpl {

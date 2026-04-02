@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.dialog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public @interface OnKeyType {
     public static final int DISMISS_KILL_ACTIVITY = 0;
     public static final int DISMISS_NOT_KILL_ACTIVITY = 1;

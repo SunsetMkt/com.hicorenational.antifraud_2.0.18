@@ -5,8 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class HMacUtil {
     private static final String TAG = "awcn.HMacUtil";
 
@@ -25,7 +25,7 @@ public class HMacUtil {
         try {
             return StringUtils.bytesToHexString(hmacSha1(bArr, bArr2));
         } catch (Throwable th) {
-            ALog.m715e(TAG, "hmacSha1Hex", null, "result", "", th);
+            ALog.e(TAG, "hmacSha1Hex", null, "result", "", th);
             return "";
         }
     }

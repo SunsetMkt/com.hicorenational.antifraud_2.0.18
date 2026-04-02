@@ -3,6 +3,9 @@ package com.google.android.material.snackbar;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,23 +15,21 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import androidx.annotation.ColorInt;
-import androidx.annotation.IntRange;
+import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.C1921R;
+import com.google.android.material.R;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
-public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
-    public static final int LENGTH_INDEFINITE = -2;
-    public static final int LENGTH_LONG = 0;
-    public static final int LENGTH_SHORT = -1;
-    private static final int[] SNACKBAR_BUTTON_STYLE_ATTR = {C1921R.attr.snackbarButtonStyle};
+/* JADX INFO: loaded from: classes.dex */
+public class Snackbar extends BaseTransientBottomBar<Snackbar> {
+    private static final int[] SNACKBAR_BUTTON_STYLE_ATTR;
+    private static final int[] SNACKBAR_CONTENT_STYLE_ATTRS;
+
+    @Nullable
     private final AccessibilityManager accessibilityManager;
 
     @Nullable
@@ -51,12 +52,6 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
         }
     }
 
-    @IntRange(from = 1)
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface Duration {
-    }
-
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static final class SnackbarLayout extends BaseTransientBottomBar.SnackbarBaseLayout {
         public SnackbarLayout(Context context) {
@@ -76,16 +71,48 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
             }
         }
 
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
+        public /* bridge */ /* synthetic */ void setBackground(@Nullable Drawable drawable) {
+            super.setBackground(drawable);
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
+        public /* bridge */ /* synthetic */ void setBackgroundDrawable(@Nullable Drawable drawable) {
+            super.setBackgroundDrawable(drawable);
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
+        public /* bridge */ /* synthetic */ void setBackgroundTintList(@Nullable ColorStateList colorStateList) {
+            super.setBackgroundTintList(colorStateList);
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
+        public /* bridge */ /* synthetic */ void setBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
+            super.setBackgroundTintMode(mode);
+        }
+
+        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
+        public /* bridge */ /* synthetic */ void setOnClickListener(@Nullable View.OnClickListener onClickListener) {
+            super.setOnClickListener(onClickListener);
+        }
+
         public SnackbarLayout(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
         }
     }
 
-    private Snackbar(ViewGroup viewGroup, View view, ContentViewCallback contentViewCallback) {
-        super(viewGroup, view, contentViewCallback);
+    static {
+        int i2 = R.attr.snackbarButtonStyle;
+        SNACKBAR_BUTTON_STYLE_ATTR = new int[]{i2};
+        SNACKBAR_CONTENT_STYLE_ATTRS = new int[]{i2, R.attr.snackbarTextViewStyle};
+    }
+
+    private Snackbar(@NonNull Context context, @NonNull ViewGroup viewGroup, @NonNull View view, @NonNull ContentViewCallback contentViewCallback) {
+        super(context, viewGroup, view, contentViewCallback);
         this.accessibilityManager = (AccessibilityManager) viewGroup.getContext().getSystemService("accessibility");
     }
 
+    @Nullable
     private static ViewGroup findSuitableParent(View view) {
         ViewGroup viewGroup = null;
         while (!(view instanceof CoordinatorLayout)) {
@@ -106,21 +133,38 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
         return (ViewGroup) view;
     }
 
-    protected static boolean hasSnackbarButtonStyleAttr(Context context) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(SNACKBAR_BUTTON_STYLE_ATTR);
-        int resourceId = obtainStyledAttributes.getResourceId(0, -1);
-        obtainStyledAttributes.recycle();
+    @Deprecated
+    protected static boolean hasSnackbarButtonStyleAttr(@NonNull Context context) {
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(SNACKBAR_BUTTON_STYLE_ATTR);
+        int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, -1);
+        typedArrayObtainStyledAttributes.recycle();
         return resourceId != -1;
+    }
+
+    private static boolean hasSnackbarContentStyleAttrs(@NonNull Context context) {
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(SNACKBAR_CONTENT_STYLE_ATTRS);
+        int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, -1);
+        int resourceId2 = typedArrayObtainStyledAttributes.getResourceId(1, -1);
+        typedArrayObtainStyledAttributes.recycle();
+        return (resourceId == -1 || resourceId2 == -1) ? false : true;
     }
 
     @NonNull
     public static Snackbar make(@NonNull View view, @NonNull CharSequence charSequence, int i2) {
-        ViewGroup findSuitableParent = findSuitableParent(view);
-        if (findSuitableParent == null) {
+        return makeInternal(null, view, charSequence, i2);
+    }
+
+    @NonNull
+    private static Snackbar makeInternal(@Nullable Context context, @NonNull View view, @NonNull CharSequence charSequence, int i2) {
+        ViewGroup viewGroupFindSuitableParent = findSuitableParent(view);
+        if (viewGroupFindSuitableParent == null) {
             throw new IllegalArgumentException("No suitable parent found from the given view. Please provide a valid view.");
         }
-        SnackbarContentLayout snackbarContentLayout = (SnackbarContentLayout) LayoutInflater.from(findSuitableParent.getContext()).inflate(hasSnackbarButtonStyleAttr(findSuitableParent.getContext()) ? C1921R.layout.mtrl_layout_snackbar_include : C1921R.layout.design_layout_snackbar_include, findSuitableParent, false);
-        Snackbar snackbar = new Snackbar(findSuitableParent, snackbarContentLayout, snackbarContentLayout);
+        if (context == null) {
+            context = viewGroupFindSuitableParent.getContext();
+        }
+        SnackbarContentLayout snackbarContentLayout = (SnackbarContentLayout) LayoutInflater.from(context).inflate(hasSnackbarContentStyleAttrs(context) ? R.layout.mtrl_layout_snackbar_include : R.layout.design_layout_snackbar_include, viewGroupFindSuitableParent, false);
+        Snackbar snackbar = new Snackbar(context, viewGroupFindSuitableParent, snackbarContentLayout, snackbarContentLayout);
         snackbar.setText(charSequence);
         snackbar.setDuration(i2);
         return snackbar;
@@ -133,10 +177,17 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
 
     @Override // com.google.android.material.snackbar.BaseTransientBottomBar
     public int getDuration() {
+        int duration = super.getDuration();
+        if (duration == -2) {
+            return -2;
+        }
+        if (Build.VERSION.SDK_INT >= 29) {
+            return this.accessibilityManager.getRecommendedTimeoutMillis(duration, (this.hasAction ? 4 : 0) | 1 | 2);
+        }
         if (this.hasAction && this.accessibilityManager.isTouchExplorationEnabled()) {
             return -2;
         }
-        return super.getDuration();
+        return duration;
     }
 
     @Override // com.google.android.material.snackbar.BaseTransientBottomBar
@@ -156,8 +207,25 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
+    public Snackbar setBackgroundTint(@ColorInt int i2) {
+        return setBackgroundTintList(ColorStateList.valueOf(i2));
+    }
+
+    @NonNull
+    public Snackbar setBackgroundTintList(@Nullable ColorStateList colorStateList) {
+        this.view.setBackgroundTintList(colorStateList);
+        return this;
+    }
+
+    @NonNull
+    public Snackbar setBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
+        this.view.setBackgroundTintMode(mode);
+        return this;
+    }
+
+    @NonNull
     @Deprecated
-    public Snackbar setCallback(Callback callback) {
+    public Snackbar setCallback(@Nullable Callback callback) {
         BaseTransientBottomBar.BaseCallback<Snackbar> baseCallback = this.callback;
         if (baseCallback != null) {
             removeCallback(baseCallback);
@@ -170,8 +238,20 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
+    public Snackbar setMaxInlineActionWidth(@Dimension int i2) {
+        ((SnackbarContentLayout) this.view.getChildAt(0)).setMaxInlineActionWidth(i2);
+        return this;
+    }
+
+    @NonNull
     public Snackbar setText(@NonNull CharSequence charSequence) {
         ((SnackbarContentLayout) this.view.getChildAt(0)).getMessageView().setText(charSequence);
+        return this;
+    }
+
+    @NonNull
+    public Snackbar setTextColor(ColorStateList colorStateList) {
+        ((SnackbarContentLayout) this.view.getChildAt(0)).getMessageView().setTextColor(colorStateList);
         return this;
     }
 
@@ -181,7 +261,12 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
-    public Snackbar setAction(CharSequence charSequence, final View.OnClickListener onClickListener) {
+    public static Snackbar make(@NonNull Context context, @NonNull View view, @NonNull CharSequence charSequence, int i2) {
+        return makeInternal(context, view, charSequence, i2);
+    }
+
+    @NonNull
+    public Snackbar setAction(@Nullable CharSequence charSequence, @Nullable final View.OnClickListener onClickListener) {
         Button actionView = ((SnackbarContentLayout) this.view.getChildAt(0)).getActionView();
         if (TextUtils.isEmpty(charSequence) || onClickListener == null) {
             actionView.setVisibility(8);
@@ -203,6 +288,11 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
+    public static Snackbar make(@NonNull View view, @StringRes int i2, int i3) {
+        return make(view, view.getResources().getText(i2), i3);
+    }
+
+    @NonNull
     public Snackbar setActionTextColor(@ColorInt int i2) {
         ((SnackbarContentLayout) this.view.getChildAt(0)).getActionView().setTextColor(i2);
         return this;
@@ -214,7 +304,8 @@ public final class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
-    public static Snackbar make(@NonNull View view, @StringRes int i2, int i3) {
-        return make(view, view.getResources().getText(i2), i3);
+    public Snackbar setTextColor(@ColorInt int i2) {
+        ((SnackbarContentLayout) this.view.getChildAt(0)).getMessageView().setTextColor(i2);
+        return this;
     }
 }

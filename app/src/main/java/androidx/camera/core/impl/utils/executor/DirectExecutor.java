@@ -2,7 +2,7 @@ package androidx.camera.core.impl.utils.executor;
 
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class DirectExecutor implements Executor {
     private static volatile DirectExecutor sDirectExecutor;
 

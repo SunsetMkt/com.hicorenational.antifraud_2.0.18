@@ -12,155 +12,145 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ThreadPoolExecutorFactory {
+    private static ScheduledThreadPoolExecutor a = new ScheduledThreadPoolExecutor(1, new b("AWCN Scheduler"));
 
-    /* renamed from: a */
-    private static ScheduledThreadPoolExecutor f1148a = new ScheduledThreadPoolExecutor(1, new ThreadFactoryC0850b("AWCN Scheduler"));
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static ThreadPoolExecutor f1637b = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new LinkedBlockingDeque(), new b("AWCN Worker(H)"));
 
-    /* renamed from: b */
-    private static ThreadPoolExecutor f1149b = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new LinkedBlockingDeque(), new ThreadFactoryC0850b("AWCN Worker(H)"));
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static ThreadPoolExecutor f1638c = new anet.channel.thread.a(16, 16, 60, TimeUnit.SECONDS, new PriorityBlockingQueue(), new b("AWCN Worker(M)"));
 
-    /* renamed from: c */
-    private static ThreadPoolExecutor f1150c = new C0851a(16, 16, 60, TimeUnit.SECONDS, new PriorityBlockingQueue(), new ThreadFactoryC0850b("AWCN Worker(M)"));
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static ThreadPoolExecutor f1639d = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new LinkedBlockingDeque(), new b("AWCN Worker(L)"));
 
-    /* renamed from: d */
-    private static ThreadPoolExecutor f1151d = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new LinkedBlockingDeque(), new ThreadFactoryC0850b("AWCN Worker(L)"));
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static ThreadPoolExecutor f1640e = new ThreadPoolExecutor(32, 32, 60, TimeUnit.SECONDS, new LinkedBlockingDeque(), new b("AWCN Worker(Backup)"));
 
-    /* renamed from: e */
-    private static ThreadPoolExecutor f1152e = new ThreadPoolExecutor(32, 32, 60, TimeUnit.SECONDS, new LinkedBlockingDeque(), new ThreadFactoryC0850b("AWCN Worker(Backup)"));
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static ThreadPoolExecutor f1641f = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque(), new b("AWCN Detector"));
 
-    /* renamed from: f */
-    private static ThreadPoolExecutor f1153f = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque(), new ThreadFactoryC0850b("AWCN Detector"));
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private static ThreadPoolExecutor f1642g = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque(), new b("AWCN HR"));
 
-    /* renamed from: g */
-    private static ThreadPoolExecutor f1154g = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque(), new ThreadFactoryC0850b("AWCN HR"));
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private static ThreadPoolExecutor f1643h = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque(), new b("AWCN Cookie"));
 
-    /* renamed from: h */
-    private static ThreadPoolExecutor f1155h = new ThreadPoolExecutor(1, 1, 30, TimeUnit.SECONDS, new LinkedBlockingDeque(), new ThreadFactoryC0850b("AWCN Cookie"));
-
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class Priority {
         public static int HIGH = 0;
         public static int LOW = 9;
         public static int NORMAL = 1;
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.thread.ThreadPoolExecutorFactory$a */
-    static class RunnableC0849a implements Comparable<RunnableC0849a>, Runnable {
+    /* JADX INFO: compiled from: Taobao */
+    static class a implements Comparable<a>, Runnable {
+        Runnable a;
 
-        /* renamed from: a */
-        Runnable f1156a;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        int f1644b;
 
-        /* renamed from: b */
-        int f1157b;
+        /* JADX INFO: renamed from: c, reason: collision with root package name */
+        long f1645c;
 
-        /* renamed from: c */
-        long f1158c;
-
-        public RunnableC0849a(Runnable runnable, int i2) {
-            this.f1156a = null;
-            this.f1157b = 0;
-            this.f1158c = System.currentTimeMillis();
-            this.f1156a = runnable;
-            this.f1157b = i2;
-            this.f1158c = System.currentTimeMillis();
+        public a(Runnable runnable, int i2) {
+            this.a = null;
+            this.f1644b = 0;
+            this.f1645c = System.currentTimeMillis();
+            this.a = runnable;
+            this.f1644b = i2;
+            this.f1645c = System.currentTimeMillis();
         }
 
         @Override // java.lang.Comparable
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
-        public int compareTo(RunnableC0849a runnableC0849a) {
-            int i2 = this.f1157b;
-            int i3 = runnableC0849a.f1157b;
-            return i2 != i3 ? i2 - i3 : (int) (runnableC0849a.f1158c - this.f1158c);
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
+        public int compareTo(a aVar) {
+            int i2 = this.f1644b;
+            int i3 = aVar.f1644b;
+            return i2 != i3 ? i2 - i3 : (int) (aVar.f1645c - this.f1645c);
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            this.f1156a.run();
+            this.a.run();
         }
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.thread.ThreadPoolExecutorFactory$b */
-    private static class ThreadFactoryC0850b implements ThreadFactory {
+    /* JADX INFO: compiled from: Taobao */
+    private static class b implements ThreadFactory {
+        AtomicInteger a = new AtomicInteger(0);
 
-        /* renamed from: a */
-        AtomicInteger f1159a = new AtomicInteger(0);
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        String f1646b;
 
-        /* renamed from: b */
-        String f1160b;
-
-        ThreadFactoryC0850b(String str) {
-            this.f1160b = str;
+        b(String str) {
+            this.f1646b = str;
         }
 
         @Override // java.util.concurrent.ThreadFactory
         public Thread newThread(Runnable runnable) {
-            Thread thread = new Thread(runnable, this.f1160b + this.f1159a.incrementAndGet());
-            ALog.m716i("awcn.ThreadPoolExecutorFactory", "thread created!", null, CommonNetImpl.NAME, thread.getName());
+            Thread thread = new Thread(runnable, this.f1646b + this.a.incrementAndGet());
+            ALog.i("awcn.ThreadPoolExecutorFactory", "thread created!", null, CommonNetImpl.NAME, thread.getName());
             thread.setPriority(5);
             return thread;
         }
     }
 
     static {
-        f1149b.allowCoreThreadTimeOut(true);
-        f1150c.allowCoreThreadTimeOut(true);
-        f1151d.allowCoreThreadTimeOut(true);
-        f1152e.allowCoreThreadTimeOut(true);
-        f1153f.allowCoreThreadTimeOut(true);
-        f1154g.allowCoreThreadTimeOut(true);
-        f1155h.allowCoreThreadTimeOut(true);
+        f1637b.allowCoreThreadTimeOut(true);
+        f1638c.allowCoreThreadTimeOut(true);
+        f1639d.allowCoreThreadTimeOut(true);
+        f1640e.allowCoreThreadTimeOut(true);
+        f1641f.allowCoreThreadTimeOut(true);
+        f1642g.allowCoreThreadTimeOut(true);
+        f1643h.allowCoreThreadTimeOut(true);
     }
 
     public static void removeScheduleTask(Runnable runnable) {
-        f1148a.remove(runnable);
+        a.remove(runnable);
     }
 
     public static synchronized void setNormalExecutorPoolSize(int i2) {
-        synchronized (ThreadPoolExecutorFactory.class) {
-            if (i2 < 6) {
-                i2 = 6;
-            }
-            f1150c.setCorePoolSize(i2);
-            f1150c.setMaximumPoolSize(i2);
+        if (i2 < 6) {
+            i2 = 6;
         }
+        f1638c.setCorePoolSize(i2);
+        f1638c.setMaximumPoolSize(i2);
     }
 
     public static Future<?> submitBackupTask(Runnable runnable) {
-        return f1152e.submit(runnable);
+        return f1640e.submit(runnable);
     }
 
     public static Future<?> submitCookieMonitor(Runnable runnable) {
-        return f1155h.submit(runnable);
+        return f1643h.submit(runnable);
     }
 
     public static Future<?> submitDetectTask(Runnable runnable) {
-        return f1153f.submit(runnable);
+        return f1641f.submit(runnable);
     }
 
     public static Future<?> submitHRTask(Runnable runnable) {
-        return f1154g.submit(runnable);
+        return f1642g.submit(runnable);
     }
 
     public static Future<?> submitPriorityTask(Runnable runnable, int i2) {
         if (ALog.isPrintLog(1)) {
-            ALog.m713d("awcn.ThreadPoolExecutorFactory", "submit priority task", null, RemoteMessageConst.Notification.PRIORITY, Integer.valueOf(i2));
+            ALog.d("awcn.ThreadPoolExecutorFactory", "submit priority task", null, RemoteMessageConst.Notification.PRIORITY, Integer.valueOf(i2));
         }
         if (i2 < Priority.HIGH || i2 > Priority.LOW) {
             i2 = Priority.LOW;
         }
-        return i2 == Priority.HIGH ? f1149b.submit(runnable) : i2 == Priority.LOW ? f1151d.submit(runnable) : f1150c.submit(new RunnableC0849a(runnable, i2));
+        return i2 == Priority.HIGH ? f1637b.submit(runnable) : i2 == Priority.LOW ? f1639d.submit(runnable) : f1638c.submit(new a(runnable, i2));
     }
 
     public static Future<?> submitScheduledTask(Runnable runnable) {
-        return f1148a.submit(runnable);
+        return a.submit(runnable);
     }
 
     public static Future<?> submitScheduledTask(Runnable runnable, long j2, TimeUnit timeUnit) {
-        return f1148a.schedule(runnable, j2, timeUnit);
+        return a.schedule(runnable, j2, timeUnit);
     }
 }

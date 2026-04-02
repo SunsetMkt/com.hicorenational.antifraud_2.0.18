@@ -6,9 +6,9 @@ import com.huawei.hms.common.internal.Objects;
 import com.huawei.hms.core.aidl.IMessageEntity;
 import com.huawei.hms.core.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PermissionInfo implements IMessageEntity, Parcelable {
-    public static final Parcelable.Creator<PermissionInfo> CREATOR = new C2517a();
+    public static final Parcelable.Creator<PermissionInfo> CREATOR = new a();
 
     @Packed
     private String appID;
@@ -19,19 +19,18 @@ public class PermissionInfo implements IMessageEntity, Parcelable {
     @Packed
     private String permission;
 
-    /* renamed from: com.huawei.hms.support.api.entity.auth.PermissionInfo$a */
-    class C2517a implements Parcelable.Creator<PermissionInfo> {
-        C2517a() {
+    class a implements Parcelable.Creator<PermissionInfo> {
+        a() {
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public PermissionInfo createFromParcel(Parcel parcel) {
             return new PermissionInfo(parcel);
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public PermissionInfo[] newArray(int i2) {
             return new PermissionInfo[i2];
         }

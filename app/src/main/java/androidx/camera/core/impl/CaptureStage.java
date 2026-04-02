@@ -2,7 +2,7 @@ package androidx.camera.core.impl;
 
 import androidx.camera.core.impl.CaptureConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CaptureStage {
 
     public static final class DefaultCaptureStage implements CaptureStage {

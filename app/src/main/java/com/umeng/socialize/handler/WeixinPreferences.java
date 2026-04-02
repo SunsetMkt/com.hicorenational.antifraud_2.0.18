@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class WeixinPreferences {
     private static final String KEY_ACCESS_TOKEN = "access_token";
     private static final String KEY_EXPIRES_IN = "expires_in";
@@ -52,13 +52,13 @@ public class WeixinPreferences {
     }
 
     public Map<String, String> getMap() {
-        HashMap hashMap = new HashMap();
-        hashMap.put("access_token", this.mAccessToken);
-        hashMap.put("unionid", this.mUID);
-        hashMap.put("openid", this.mOpenid);
-        hashMap.put(KEY_REFRESH_TOKEN, this.mRefreshToken);
-        hashMap.put("expires_in", String.valueOf(this.mAccessTokenTTL));
-        return hashMap;
+        HashMap map = new HashMap();
+        map.put("access_token", this.mAccessToken);
+        map.put("unionid", this.mUID);
+        map.put("openid", this.mOpenid);
+        map.put(KEY_REFRESH_TOKEN, this.mRefreshToken);
+        map.put("expires_in", String.valueOf(this.mAccessTokenTTL));
+        return map;
     }
 
     public String getOpenid() {

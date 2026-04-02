@@ -4,7 +4,7 @@ import android.os.Looper;
 import com.huawei.hms.support.api.client.Result;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class EmptyPendingResult<R extends Result> extends PendingResult<R> {
     private R result;
 

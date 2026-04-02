@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PutBucketRefererRequest extends OSSRequest {
     private boolean mAllowEmpty;
     private String mBucketName;

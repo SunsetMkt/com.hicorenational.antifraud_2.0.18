@@ -12,7 +12,7 @@ import javax.net.ssl.SSLSocketFactory;
 import okhttp3.HttpUrl;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Address {
 
     @Nullable
@@ -94,15 +94,15 @@ public final class Address {
     }
 
     public int hashCode() {
-        int hashCode = (((((((((((527 + this.url.hashCode()) * 31) + this.dns.hashCode()) * 31) + this.proxyAuthenticator.hashCode()) * 31) + this.protocols.hashCode()) * 31) + this.connectionSpecs.hashCode()) * 31) + this.proxySelector.hashCode()) * 31;
+        int iHashCode = (((((((((((527 + this.url.hashCode()) * 31) + this.dns.hashCode()) * 31) + this.proxyAuthenticator.hashCode()) * 31) + this.protocols.hashCode()) * 31) + this.connectionSpecs.hashCode()) * 31) + this.proxySelector.hashCode()) * 31;
         Proxy proxy = this.proxy;
-        int hashCode2 = (hashCode + (proxy != null ? proxy.hashCode() : 0)) * 31;
+        int iHashCode2 = (iHashCode + (proxy != null ? proxy.hashCode() : 0)) * 31;
         SSLSocketFactory sSLSocketFactory = this.sslSocketFactory;
-        int hashCode3 = (hashCode2 + (sSLSocketFactory != null ? sSLSocketFactory.hashCode() : 0)) * 31;
+        int iHashCode3 = (iHashCode2 + (sSLSocketFactory != null ? sSLSocketFactory.hashCode() : 0)) * 31;
         HostnameVerifier hostnameVerifier = this.hostnameVerifier;
-        int hashCode4 = (hashCode3 + (hostnameVerifier != null ? hostnameVerifier.hashCode() : 0)) * 31;
+        int iHashCode4 = (iHashCode3 + (hostnameVerifier != null ? hostnameVerifier.hashCode() : 0)) * 31;
         CertificatePinner certificatePinner = this.certificatePinner;
-        return hashCode4 + (certificatePinner != null ? certificatePinner.hashCode() : 0);
+        return iHashCode4 + (certificatePinner != null ? certificatePinner.hashCode() : 0);
     }
 
     @Nullable

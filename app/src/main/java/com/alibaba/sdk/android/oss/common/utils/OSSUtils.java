@@ -41,6 +41,7 @@ import com.alibaba.sdk.android.oss.model.PutBucketLoggingRequest;
 import com.alibaba.sdk.android.oss.model.PutBucketRefererRequest;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.xiaomi.mipush.sdk.Constants;
+import i.z2.h0;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
@@ -51,9 +52,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.json.JSONObject;
-import p286h.p323z2.C5736h0;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSUtils {
     private static final String NEW_LINE = "\n";
     private static final List<String> SIGNED_PARAMTERS = Arrays.asList(RequestParameters.SUBRESOURCE_BUCKETINFO, RequestParameters.SUBRESOURCE_ACL, RequestParameters.SUBRESOURCE_UPLOADS, "location", RequestParameters.SUBRESOURCE_CORS, RequestParameters.SUBRESOURCE_LOGGING, RequestParameters.SUBRESOURCE_WEBSITE, RequestParameters.SUBRESOURCE_REFERER, RequestParameters.SUBRESOURCE_LIFECYCLE, RequestParameters.SUBRESOURCE_DELETE, RequestParameters.SUBRESOURCE_APPEND, RequestParameters.UPLOAD_ID, RequestParameters.PART_NUMBER, RequestParameters.SECURITY_TOKEN, "position", RequestParameters.RESPONSE_HEADER_CACHE_CONTROL, RequestParameters.RESPONSE_HEADER_CONTENT_DISPOSITION, RequestParameters.RESPONSE_HEADER_CONTENT_ENCODING, RequestParameters.RESPONSE_HEADER_CONTENT_LANGUAGE, RequestParameters.RESPONSE_HEADER_CONTENT_TYPE, RequestParameters.RESPONSE_HEADER_EXPIRES, RequestParameters.X_OSS_PROCESS, RequestParameters.SUBRESOURCE_SEQUENTIAL, RequestParameters.X_OSS_SYMLINK, RequestParameters.X_OSS_RESTORE);
@@ -102,8 +102,8 @@ public class OSSUtils {
     public static String buildBaseLogInfo(Context context) {
         StringBuilder sb = new StringBuilder();
         sb.append("=====[device info]=====\n");
-        sb.append("[INFO]: android_version：" + Build.VERSION.RELEASE + NEW_LINE);
-        sb.append("[INFO]: mobile_model：" + Build.MODEL + NEW_LINE);
+        sb.append("[INFO]: android_version\uff1a" + Build.VERSION.RELEASE + NEW_LINE);
+        sb.append("[INFO]: mobile_model\uff1a" + Build.MODEL + NEW_LINE);
         return sb.toString();
     }
 
@@ -167,16 +167,16 @@ public class OSSUtils {
         }
         sb.append("|sys/");
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
-            String encodeToString = Base64.encodeToString(str.getBytes(), 2);
-            String encodeToString2 = Base64.encodeToString(str2.getBytes(), 2);
+            String strEncodeToString = Base64.encodeToString(str.getBytes(), 2);
+            String strEncodeToString2 = Base64.encodeToString(str2.getBytes(), 2);
             sb.append("saveas,o_");
-            sb.append(encodeToString2);
+            sb.append(strEncodeToString2);
             sb.append(",b_");
-            sb.append(encodeToString);
+            sb.append(strEncodeToString);
         }
-        String sb2 = sb.toString();
-        OSSLog.logDebug("ImagePersistent body : " + sb2);
-        return sb2;
+        String string = sb.toString();
+        OSSLog.logDebug("ImagePersistent body : " + string);
+        return string;
     }
 
     public static String buildTriggerCallbackBody(Map<String, String> map, Map<String, String> map2) {
@@ -455,39 +455,39 @@ public class OSSUtils {
     }
 
     public static void signRequest(RequestMessage requestMessage) throws Exception {
-        String sign;
+        String strSign;
         OSSLog.logDebug("signRequest start");
         if (requestMessage.isAuthorizationRequired()) {
             if (requestMessage.getCredentialProvider() == null) {
-                throw new IllegalStateException("当前CredentialProvider为空！！！\n1. 请检查您是否在初始化OSSService时设置CredentialProvider;\n2. 如果您bucket为公共权限，请确认获取到Bucket后已经调用Bucket中接口声明ACL;");
+                throw new IllegalStateException("\u5f53\u524dCredentialProvider\u4e3a\u7a7a\uff01\uff01\uff01\n1. \u8bf7\u68c0\u67e5\u60a8\u662f\u5426\u5728\u521d\u59cb\u5316OSSService\u65f6\u8bbe\u7f6eCredentialProvider;\n2. \u5982\u679c\u60a8bucket\u4e3a\u516c\u5171\u6743\u9650\uff0c\u8bf7\u786e\u8ba4\u83b7\u53d6\u5230Bucket\u540e\u5df2\u7ecf\u8c03\u7528Bucket\u4e2d\u63a5\u53e3\u58f0\u660eACL;");
             }
             OSSCredentialProvider credentialProvider = requestMessage.getCredentialProvider();
-            OSSFederationToken oSSFederationToken = null;
+            OSSFederationToken federationToken = null;
             boolean z = credentialProvider instanceof OSSFederationCredentialProvider;
             if (z) {
-                oSSFederationToken = ((OSSFederationCredentialProvider) credentialProvider).getValidFederationToken();
-                if (oSSFederationToken == null) {
+                federationToken = ((OSSFederationCredentialProvider) credentialProvider).getValidFederationToken();
+                if (federationToken == null) {
                     OSSLog.logError("Can't get a federation token");
                     throw new IOException("Can't get a federation token");
                 }
-                requestMessage.getHeaders().put(OSSHeaders.OSS_SECURITY_TOKEN, oSSFederationToken.getSecurityToken());
+                requestMessage.getHeaders().put(OSSHeaders.OSS_SECURITY_TOKEN, federationToken.getSecurityToken());
             } else if (credentialProvider instanceof OSSStsTokenCredentialProvider) {
-                oSSFederationToken = credentialProvider.getFederationToken();
-                requestMessage.getHeaders().put(OSSHeaders.OSS_SECURITY_TOKEN, oSSFederationToken.getSecurityToken());
+                federationToken = credentialProvider.getFederationToken();
+                requestMessage.getHeaders().put(OSSHeaders.OSS_SECURITY_TOKEN, federationToken.getSecurityToken());
             }
-            String buildCanonicalString = buildCanonicalString(requestMessage);
+            String strBuildCanonicalString = buildCanonicalString(requestMessage);
             OSSLog.logDebug("get contentToSign");
             if (z || (credentialProvider instanceof OSSStsTokenCredentialProvider)) {
-                sign = sign(oSSFederationToken.getTempAK(), oSSFederationToken.getTempSK(), buildCanonicalString);
+                strSign = sign(federationToken.getTempAK(), federationToken.getTempSK(), strBuildCanonicalString);
             } else if (credentialProvider instanceof OSSPlainTextAKSKCredentialProvider) {
                 OSSPlainTextAKSKCredentialProvider oSSPlainTextAKSKCredentialProvider = (OSSPlainTextAKSKCredentialProvider) credentialProvider;
-                sign = sign(oSSPlainTextAKSKCredentialProvider.getAccessKeyId(), oSSPlainTextAKSKCredentialProvider.getAccessKeySecret(), buildCanonicalString);
+                strSign = sign(oSSPlainTextAKSKCredentialProvider.getAccessKeyId(), oSSPlainTextAKSKCredentialProvider.getAccessKeySecret(), strBuildCanonicalString);
             } else {
-                sign = credentialProvider instanceof OSSCustomSignerCredentialProvider ? ((OSSCustomSignerCredentialProvider) credentialProvider).signContent(buildCanonicalString) : "---initValue---";
+                strSign = credentialProvider instanceof OSSCustomSignerCredentialProvider ? ((OSSCustomSignerCredentialProvider) credentialProvider).signContent(strBuildCanonicalString) : "---initValue---";
             }
-            OSSLog.logDebug("signed content: " + buildCanonicalString + "   \n ---------   signature: " + sign, false);
+            OSSLog.logDebug("signed content: " + strBuildCanonicalString + "   \n ---------   signature: " + strSign, false);
             OSSLog.logDebug("get signature");
-            requestMessage.getHeaders().put("Authorization", sign);
+            requestMessage.getHeaders().put("Authorization", strSign);
         }
     }
 
@@ -534,7 +534,7 @@ public class OSSUtils {
                         sb.append(ContainerUtils.KEY_VALUE_DELIMITER);
                         sb.append(str3);
                     }
-                    c2 = C5736h0.f20714c;
+                    c2 = h0.f12423c;
                 }
             }
         }

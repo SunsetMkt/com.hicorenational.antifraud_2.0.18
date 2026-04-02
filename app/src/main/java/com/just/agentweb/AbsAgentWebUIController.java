@@ -7,7 +7,7 @@ import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AbsAgentWebUIController {
     public static boolean HAS_DESIGN_LIB = false;
     private Activity mActivity;
@@ -46,9 +46,9 @@ public abstract class AbsAgentWebUIController {
         if (absAgentWebUIController != null) {
             return absAgentWebUIController;
         }
-        AbsAgentWebUIController create = create();
-        this.mAgentWebUIControllerDelegate = create;
-        return create;
+        AbsAgentWebUIController absAgentWebUIControllerCreate = create();
+        this.mAgentWebUIControllerDelegate = absAgentWebUIControllerCreate;
+        return absAgentWebUIControllerCreate;
     }
 
     public abstract void onCancelLoading();

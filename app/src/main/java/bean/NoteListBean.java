@@ -2,14 +2,13 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NoteListBean extends BaseBean {
     private String content;
-
-    /* renamed from: id */
-    private String f1604id;
+    private String id;
     private boolean isRead;
     private String title;
+    private String type;
     private String url;
     private String vaildEndTime;
     private String vaildStartTime;
@@ -19,11 +18,15 @@ public class NoteListBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1604id;
+        return this.id;
     }
 
     public String getTitle() {
         return this.title;
+    }
+
+    public String getType() {
+        return this.type;
     }
 
     public String getUrl() {
@@ -47,7 +50,7 @@ public class NoteListBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1604id = str;
+        this.id = str;
     }
 
     public void setRead(boolean z) {
@@ -56,6 +59,10 @@ public class NoteListBean extends BaseBean {
 
     public void setTitle(String str) {
         this.title = str;
+    }
+
+    public void setType(String str) {
+        this.type = str;
     }
 
     public void setUrl(String str) {

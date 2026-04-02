@@ -3,7 +3,7 @@ package com.just.agentweb;
 import android.webkit.DownloadListener;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface WebListenerManager {
     WebListenerManager setDownloader(WebView webView, DownloadListener downloadListener);
 

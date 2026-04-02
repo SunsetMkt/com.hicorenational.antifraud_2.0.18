@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PermissionUtils {
     private static final int OPEN_PERMISSIONS_MANUALLY = 1011;
     private static final int PERMISSION_REQUEST_CODE = 136;
@@ -75,13 +75,13 @@ public class PermissionUtils {
         AlertDialog alertDialog;
         final String packageName = activity.getPackageName();
         if (this.mPermissionDialog == null) {
-            this.mPermissionDialog = new AlertDialog.Builder(activity).setTitle("申请权限").setMessage("已禁用权限，请手动授予").setPositiveButton("设置", new DialogInterface.OnClickListener() { // from class: cn.cloudwalk.libproject.util.PermissionUtils.2
+            this.mPermissionDialog = new AlertDialog.Builder(activity).setTitle("\u7533\u8bf7\u6743\u9650").setMessage("\u5df2\u7981\u7528\u6743\u9650\uff0c\u8bf7\u624b\u52a8\u6388\u4e88").setPositiveButton("\u8bbe\u7f6e", new DialogInterface.OnClickListener() { // from class: cn.cloudwalk.libproject.util.PermissionUtils.2
                 @Override // android.content.DialogInterface.OnClickListener
                 public void onClick(DialogInterface dialogInterface, int i2) {
                     PermissionUtils.this.cancelPermissionDialog();
                     activity.startActivityForResult(new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.parse("package:" + packageName)), 1011);
                 }
-            }).setNegativeButton("取消", new DialogInterface.OnClickListener() { // from class: cn.cloudwalk.libproject.util.PermissionUtils.1
+            }).setNegativeButton("\u53d6\u6d88", new DialogInterface.OnClickListener() { // from class: cn.cloudwalk.libproject.util.PermissionUtils.1
                 @Override // android.content.DialogInterface.OnClickListener
                 public void onClick(DialogInterface dialogInterface, int i2) {
                     PermissionUtils.this.cancelPermissionDialog();

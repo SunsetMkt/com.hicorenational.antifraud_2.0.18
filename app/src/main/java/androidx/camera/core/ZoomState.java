@@ -1,6 +1,6 @@
 package androidx.camera.core;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ZoomState {
     float getLinearZoom();
 

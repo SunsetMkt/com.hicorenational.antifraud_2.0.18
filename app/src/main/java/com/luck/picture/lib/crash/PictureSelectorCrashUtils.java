@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureSelectorCrashUtils {
     private static final String CRASH_HEAD;
     private static final String FILE_SEP = System.getProperty("file.separator");
@@ -48,7 +48,7 @@ public class PictureSelectorCrashUtils {
         CRASH_HEAD = "\n************* Crash Log Head ****************\nDevice Manufacturer: " + Build.MANUFACTURER + "\nDevice Model       : " + Build.MODEL + "\nAndroid Version    : " + Build.VERSION.RELEASE + "\nAndroid SDK        : " + Build.VERSION.SDK_INT + "\nApp VersionName    : " + versionName + "\nApp VersionCode    : " + versionCode + "\n************* Crash Log Head ****************\n\n";
         UNCAUGHT_EXCEPTION_HANDLER = new Thread.UncaughtExceptionHandler() { // from class: com.luck.picture.lib.crash.PictureSelectorCrashUtils.1
             @Override // java.lang.Thread.UncaughtExceptionHandler
-            public void uncaughtException(Thread thread, Throwable th) {
+            public void uncaughtException(Thread thread, Throwable th) throws Throwable {
                 PrintWriter printWriter;
                 if (PictureSelectorCrashUtils.mFinishAppListener != null) {
                     PictureSelectorCrashUtils.mFinishAppListener.onFinishApp(thread, th);
@@ -57,12 +57,12 @@ public class PictureSelectorCrashUtils {
                 StringBuilder sb = new StringBuilder();
                 sb.append(PictureSelectorCrashUtils.dir == null ? PictureSelectorCrashUtils.defaultDir : PictureSelectorCrashUtils.dir);
                 sb.append(str);
-                String sb2 = sb.toString();
-                if (PictureSelectorCrashUtils.createOrExistsFile(sb2)) {
+                String string = sb.toString();
+                if (PictureSelectorCrashUtils.createOrExistsFile(string)) {
                     PrintWriter printWriter2 = null;
                     try {
                         try {
-                            printWriter = new PrintWriter(new FileWriter(sb2, false));
+                            printWriter = new PrintWriter(new FileWriter(string, false));
                             try {
                                 printWriter.write(PictureSelectorCrashUtils.CRASH_HEAD);
                                 th.printStackTrace(printWriter);
@@ -77,8 +77,6 @@ public class PictureSelectorCrashUtils {
                                 if (printWriter2 != null) {
                                     printWriter2.close();
                                 }
-                                Process.killProcess(Process.myPid());
-                                System.exit(0);
                             } catch (Throwable th2) {
                                 th = th2;
                                 if (printWriter != null) {

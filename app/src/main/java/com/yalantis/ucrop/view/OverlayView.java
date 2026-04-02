@@ -14,13 +14,13 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
-import com.yalantis.ucrop.C4415R;
+import com.yalantis.ucrop.R;
 import com.yalantis.ucrop.callback.OverlayViewChangeListener;
 import com.yalantis.ucrop.util.RectUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class OverlayView extends View {
     public static final boolean DEFAULT_CIRCLE_DIMMED_LAYER = false;
     public static final int DEFAULT_CROP_GRID_COLUMN_COUNT = 2;
@@ -76,10 +76,10 @@ public class OverlayView extends View {
         double d2 = this.mTouchPointThreshold;
         int i2 = -1;
         for (int i3 = 0; i3 < 8; i3 += 2) {
-            double sqrt = Math.sqrt(Math.pow(f2 - this.mCropGridCorners[i3], 2.0d) + Math.pow(f3 - this.mCropGridCorners[i3 + 1], 2.0d));
-            if (sqrt < d2) {
+            double dSqrt = Math.sqrt(Math.pow(f2 - this.mCropGridCorners[i3], 2.0d) + Math.pow(f3 - this.mCropGridCorners[i3 + 1], 2.0d));
+            if (dSqrt < d2) {
                 i2 = i3 / 2;
-                d2 = sqrt;
+                d2 = dSqrt;
             }
         }
         if (this.mFreestyleCropMode == 1 && i2 < 0 && this.mCropViewRect.contains(f2, f3)) {
@@ -89,8 +89,8 @@ public class OverlayView extends View {
     }
 
     private void initCropFrameStyle(@NonNull TypedArray typedArray) {
-        int dimensionPixelSize = typedArray.getDimensionPixelSize(C4415R.styleable.ucrop_UCropView_ucrop_frame_stroke_size, getResources().getDimensionPixelSize(C4415R.dimen.ucrop_default_crop_frame_stoke_width));
-        int color = typedArray.getColor(C4415R.styleable.ucrop_UCropView_ucrop_frame_color, getResources().getColor(C4415R.color.ucrop_color_default_crop_frame));
+        int dimensionPixelSize = typedArray.getDimensionPixelSize(R.styleable.ucrop_UCropView_ucrop_frame_stroke_size, getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_frame_stoke_width));
+        int color = typedArray.getColor(R.styleable.ucrop_UCropView_ucrop_frame_color, getResources().getColor(R.color.ucrop_color_default_crop_frame));
         this.mCropFramePaint.setStrokeWidth(dimensionPixelSize);
         this.mCropFramePaint.setColor(color);
         this.mCropFramePaint.setStyle(Paint.Style.STROKE);
@@ -100,12 +100,12 @@ public class OverlayView extends View {
     }
 
     private void initCropGridStyle(@NonNull TypedArray typedArray) {
-        int dimensionPixelSize = typedArray.getDimensionPixelSize(C4415R.styleable.ucrop_UCropView_ucrop_grid_stroke_size, getResources().getDimensionPixelSize(C4415R.dimen.ucrop_default_crop_grid_stoke_width));
-        int color = typedArray.getColor(C4415R.styleable.ucrop_UCropView_ucrop_grid_color, getResources().getColor(C4415R.color.ucrop_color_default_crop_grid));
+        int dimensionPixelSize = typedArray.getDimensionPixelSize(R.styleable.ucrop_UCropView_ucrop_grid_stroke_size, getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_grid_stoke_width));
+        int color = typedArray.getColor(R.styleable.ucrop_UCropView_ucrop_grid_color, getResources().getColor(R.color.ucrop_color_default_crop_grid));
         this.mCropGridPaint.setStrokeWidth(dimensionPixelSize);
         this.mCropGridPaint.setColor(color);
-        this.mCropGridRowCount = typedArray.getInt(C4415R.styleable.ucrop_UCropView_ucrop_grid_row_count, 2);
-        this.mCropGridColumnCount = typedArray.getInt(C4415R.styleable.ucrop_UCropView_ucrop_grid_column_count, 2);
+        this.mCropGridRowCount = typedArray.getInt(R.styleable.ucrop_UCropView_ucrop_grid_row_count, 2);
+        this.mCropGridColumnCount = typedArray.getInt(R.styleable.ucrop_UCropView_ucrop_grid_column_count, 2);
     }
 
     private void updateCropViewRect(float f2, float f3) {
@@ -175,9 +175,9 @@ public class OverlayView extends View {
                     fArr[i2] = rectF.left;
                     int i5 = i4 + 1;
                     float f2 = i3 + 1.0f;
-                    float height = rectF.height() * (f2 / (this.mCropGridRowCount + 1));
+                    float fHeight = rectF.height() * (f2 / (this.mCropGridRowCount + 1));
                     RectF rectF2 = this.mCropViewRect;
-                    fArr[i4] = height + rectF2.top;
+                    fArr[i4] = fHeight + rectF2.top;
                     float[] fArr2 = this.mGridPoints;
                     int i6 = i5 + 1;
                     fArr2[i5] = rectF2.right;
@@ -188,16 +188,16 @@ public class OverlayView extends View {
                     float[] fArr3 = this.mGridPoints;
                     int i8 = i2 + 1;
                     float f3 = i7 + 1.0f;
-                    float width = this.mCropViewRect.width() * (f3 / (this.mCropGridColumnCount + 1));
+                    float fWidth = this.mCropViewRect.width() * (f3 / (this.mCropGridColumnCount + 1));
                     RectF rectF3 = this.mCropViewRect;
-                    fArr3[i2] = width + rectF3.left;
+                    fArr3[i2] = fWidth + rectF3.left;
                     float[] fArr4 = this.mGridPoints;
                     int i9 = i8 + 1;
                     fArr4[i8] = rectF3.top;
                     int i10 = i9 + 1;
-                    float width2 = rectF3.width() * (f3 / (this.mCropGridColumnCount + 1));
+                    float fWidth2 = rectF3.width() * (f3 / (this.mCropGridColumnCount + 1));
                     RectF rectF4 = this.mCropViewRect;
-                    fArr4[i9] = width2 + rectF4.left;
+                    fArr4[i9] = fWidth2 + rectF4.left;
                     i2 = i10 + 1;
                     this.mGridPoints[i10] = rectF4.bottom;
                 }
@@ -307,11 +307,11 @@ public class OverlayView extends View {
                 return z;
             }
             if ((motionEvent.getAction() & 255) == 2 && motionEvent.getPointerCount() == 1 && this.mCurrentTouchCornerIndex != -1) {
-                float min = Math.min(Math.max(x, getPaddingLeft()), getWidth() - getPaddingRight());
-                float min2 = Math.min(Math.max(y, getPaddingTop()), getHeight() - getPaddingBottom());
-                updateCropViewRect(min, min2);
-                this.mPreviousTouchX = min;
-                this.mPreviousTouchY = min2;
+                float fMin = Math.min(Math.max(x, getPaddingLeft()), getWidth() - getPaddingRight());
+                float fMin2 = Math.min(Math.max(y, getPaddingTop()), getHeight() - getPaddingBottom());
+                updateCropViewRect(fMin, fMin2);
+                this.mPreviousTouchX = fMin;
+                this.mPreviousTouchY = fMin2;
                 return true;
             }
             if ((motionEvent.getAction() & 255) == 1) {
@@ -328,15 +328,15 @@ public class OverlayView extends View {
     }
 
     protected void processStyledAttributes(@NonNull TypedArray typedArray) {
-        this.mCircleDimmedLayer = typedArray.getBoolean(C4415R.styleable.ucrop_UCropView_ucrop_circle_dimmed_layer, false);
-        this.mDimmedColor = typedArray.getColor(C4415R.styleable.ucrop_UCropView_ucrop_dimmed_color, getResources().getColor(C4415R.color.ucrop_color_default_dimmed));
+        this.mCircleDimmedLayer = typedArray.getBoolean(R.styleable.ucrop_UCropView_ucrop_circle_dimmed_layer, false);
+        this.mDimmedColor = typedArray.getColor(R.styleable.ucrop_UCropView_ucrop_dimmed_color, getResources().getColor(R.color.ucrop_color_default_dimmed));
         this.mDimmedStrokePaint.setColor(this.mDimmedBorderColor);
         this.mDimmedStrokePaint.setStyle(Paint.Style.STROKE);
         this.mDimmedStrokePaint.setStrokeWidth(this.mStrokeWidth);
         initCropFrameStyle(typedArray);
-        this.mShowCropFrame = typedArray.getBoolean(C4415R.styleable.ucrop_UCropView_ucrop_show_frame, true);
+        this.mShowCropFrame = typedArray.getBoolean(R.styleable.ucrop_UCropView_ucrop_show_frame, true);
         initCropGridStyle(typedArray);
-        this.mShowCropGrid = typedArray.getBoolean(C4415R.styleable.ucrop_UCropView_ucrop_show_grid, true);
+        this.mShowCropGrid = typedArray.getBoolean(R.styleable.ucrop_UCropView_ucrop_show_grid, true);
     }
 
     public void setCircleDimmedLayer(boolean z) {
@@ -464,9 +464,9 @@ public class OverlayView extends View {
         this.mCurrentTouchCornerIndex = -1;
         this.mStrokeWidth = 1;
         this.mIsDragFrame = true;
-        this.mTouchPointThreshold = getResources().getDimensionPixelSize(C4415R.dimen.ucrop_default_crop_rect_corner_touch_threshold);
-        this.mCropRectMinSize = getResources().getDimensionPixelSize(C4415R.dimen.ucrop_default_crop_rect_min_size);
-        this.mCropRectCornerTouchAreaLineLength = getResources().getDimensionPixelSize(C4415R.dimen.ucrop_default_crop_rect_corner_touch_area_line_length);
+        this.mTouchPointThreshold = getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_rect_corner_touch_threshold);
+        this.mCropRectMinSize = getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_rect_min_size);
+        this.mCropRectCornerTouchAreaLineLength = getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_rect_corner_touch_area_line_length);
         init();
     }
 }

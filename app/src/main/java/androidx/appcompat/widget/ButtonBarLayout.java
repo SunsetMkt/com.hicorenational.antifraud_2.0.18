@@ -8,11 +8,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.view.ViewCompat;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class ButtonBarLayout extends LinearLayout {
     private static final int PEEK_BUTTON_DP = 16;
     private boolean mAllowStacking;
@@ -23,10 +23,10 @@ public class ButtonBarLayout extends LinearLayout {
         super(context, attributeSet);
         this.mLastWidthSize = -1;
         this.mMinimumHeight = 0;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0120R.styleable.ButtonBarLayout);
-        ViewCompat.saveAttributeDataForStyleable(this, context, C0120R.styleable.ButtonBarLayout, attributeSet, obtainStyledAttributes, 0, 0);
-        this.mAllowStacking = obtainStyledAttributes.getBoolean(C0120R.styleable.ButtonBarLayout_allowStacking, true);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ButtonBarLayout);
+        ViewCompat.saveAttributeDataForStyleable(this, context, R.styleable.ButtonBarLayout, attributeSet, typedArrayObtainStyledAttributes, 0, 0);
+        this.mAllowStacking = typedArrayObtainStyledAttributes.getBoolean(R.styleable.ButtonBarLayout_allowStacking, true);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     private int getNextVisibleChildIndex(int i2) {
@@ -47,9 +47,9 @@ public class ButtonBarLayout extends LinearLayout {
     private void setStacked(boolean z) {
         setOrientation(z ? 1 : 0);
         setGravity(z ? 5 : 80);
-        View findViewById = findViewById(C0120R.id.spacer);
-        if (findViewById != null) {
-            findViewById.setVisibility(z ? 8 : 4);
+        View viewFindViewById = findViewById(R.id.spacer);
+        if (viewFindViewById != null) {
+            viewFindViewById.setVisibility(z ? 8 : 4);
         }
         for (int childCount = getChildCount() - 2; childCount >= 0; childCount--) {
             bringChildToFront(getChildAt(childCount));
@@ -63,10 +63,10 @@ public class ButtonBarLayout extends LinearLayout {
 
     @Override // android.widget.LinearLayout, android.view.View
     protected void onMeasure(int i2, int i3) {
-        int i4;
+        int iMakeMeasureSpec;
         boolean z;
         int size = View.MeasureSpec.getSize(i2);
-        int i5 = 0;
+        int paddingBottom = 0;
         if (this.mAllowStacking) {
             if (size > this.mLastWidthSize && isStacked()) {
                 setStacked(false);
@@ -74,13 +74,13 @@ public class ButtonBarLayout extends LinearLayout {
             this.mLastWidthSize = size;
         }
         if (isStacked() || View.MeasureSpec.getMode(i2) != 1073741824) {
-            i4 = i2;
+            iMakeMeasureSpec = i2;
             z = false;
         } else {
-            i4 = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
+            iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
             z = true;
         }
-        super.onMeasure(i4, i3);
+        super.onMeasure(iMakeMeasureSpec, i3);
         if (this.mAllowStacking && !isStacked()) {
             if ((getMeasuredWidthAndState() & ViewCompat.MEASURED_STATE_MASK) == 16777216) {
                 setStacked(true);
@@ -100,13 +100,13 @@ public class ButtonBarLayout extends LinearLayout {
                 if (nextVisibleChildIndex2 >= 0) {
                     paddingTop += getChildAt(nextVisibleChildIndex2).getPaddingTop() + ((int) (getResources().getDisplayMetrics().density * 16.0f));
                 }
-                i5 = paddingTop;
+                paddingBottom = paddingTop;
             } else {
-                i5 = paddingTop + getPaddingBottom();
+                paddingBottom = paddingTop + getPaddingBottom();
             }
         }
-        if (ViewCompat.getMinimumHeight(this) != i5) {
-            setMinimumHeight(i5);
+        if (ViewCompat.getMinimumHeight(this) != paddingBottom) {
+            setMinimumHeight(paddingBottom);
         }
     }
 

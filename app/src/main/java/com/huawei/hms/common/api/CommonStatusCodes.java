@@ -2,7 +2,7 @@ package com.huawei.hms.common.api;
 
 import anet.channel.util.HttpConstant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CommonStatusCodes {
     public static final int API_NOT_CONNECTED = 17;
     public static final int CANCELED = 16;

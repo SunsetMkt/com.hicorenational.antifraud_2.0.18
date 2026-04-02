@@ -31,7 +31,7 @@ import androidx.core.widget.TintableCompoundDrawablesView;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatTextView extends TextView implements TintableBackgroundView, TintableCompoundDrawablesView, AutoSizeableTextView {
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
 
@@ -430,9 +430,9 @@ public class AppCompatTextView extends TextView implements TintableBackgroundVie
 
     @Override // android.widget.TextView
     public void setTypeface(@Nullable Typeface typeface, int i2) {
-        Typeface create = (typeface == null || i2 <= 0) ? null : TypefaceCompat.create(getContext(), typeface, i2);
-        if (create != null) {
-            typeface = create;
+        Typeface typefaceCreate = (typeface == null || i2 <= 0) ? null : TypefaceCompat.create(getContext(), typeface, i2);
+        if (typefaceCreate != null) {
+            typeface = typefaceCreate;
         }
         super.setTypeface(typeface, i2);
     }

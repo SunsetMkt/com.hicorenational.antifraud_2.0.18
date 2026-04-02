@@ -9,8 +9,8 @@ import com.tencent.tinker.loader.shareutil.SharePatchInfo;
 import java.io.File;
 import java.util.List;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerPatchReporter extends DefaultPatchReporter {
     private final PatchReporter userPatchReporter;
 

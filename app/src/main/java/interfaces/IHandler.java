@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class IHandler {
     public static final int MSGWHAT0 = 0;
     public static final int MSGWHAT1 = 1;

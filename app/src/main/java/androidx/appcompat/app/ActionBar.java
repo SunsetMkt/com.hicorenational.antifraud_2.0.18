@@ -14,13 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StringRes;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.view.ActionMode;
 import androidx.fragment.app.FragmentTransaction;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class ActionBar {
     public static final int DISPLAY_HOME_AS_UP = 4;
     public static final int DISPLAY_SHOW_CUSTOM = 16;
@@ -348,9 +348,9 @@ public abstract class ActionBar {
         public LayoutParams(@NonNull Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
             this.gravity = 0;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0120R.styleable.ActionBarLayout);
-            this.gravity = obtainStyledAttributes.getInt(C0120R.styleable.ActionBarLayout_android_layout_gravity, 0);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ActionBarLayout);
+            this.gravity = typedArrayObtainStyledAttributes.getInt(R.styleable.ActionBarLayout_android_layout_gravity, 0);
+            typedArrayObtainStyledAttributes.recycle();
         }
 
         public LayoutParams(int i2, int i3) {

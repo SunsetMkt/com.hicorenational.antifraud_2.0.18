@@ -4,7 +4,7 @@ import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class RunGroup {
     public static final int BASELINE = 2;
     public static final int END = 1;
@@ -73,21 +73,21 @@ class RunGroup {
             return j2;
         }
         int size = dependencyNode.dependencies.size();
-        long j3 = j2;
+        long jMin = j2;
         for (int i2 = 0; i2 < size; i2++) {
             Dependency dependency = dependencyNode.dependencies.get(i2);
             if (dependency instanceof DependencyNode) {
                 DependencyNode dependencyNode2 = (DependencyNode) dependency;
                 if (dependencyNode2.run != widgetRun) {
-                    j3 = Math.min(j3, traverseEnd(dependencyNode2, dependencyNode2.margin + j2));
+                    jMin = Math.min(jMin, traverseEnd(dependencyNode2, ((long) dependencyNode2.margin) + j2));
                 }
             }
         }
         if (dependencyNode != widgetRun.end) {
-            return j3;
+            return jMin;
         }
         long wrapDimension = j2 - widgetRun.getWrapDimension();
-        return Math.min(Math.min(j3, traverseEnd(widgetRun.start, wrapDimension)), wrapDimension - widgetRun.start.margin);
+        return Math.min(Math.min(jMin, traverseEnd(widgetRun.start, wrapDimension)), wrapDimension - ((long) widgetRun.start.margin));
     }
 
     private long traverseStart(DependencyNode dependencyNode, long j2) {
@@ -96,21 +96,21 @@ class RunGroup {
             return j2;
         }
         int size = dependencyNode.dependencies.size();
-        long j3 = j2;
+        long jMax = j2;
         for (int i2 = 0; i2 < size; i2++) {
             Dependency dependency = dependencyNode.dependencies.get(i2);
             if (dependency instanceof DependencyNode) {
                 DependencyNode dependencyNode2 = (DependencyNode) dependency;
                 if (dependencyNode2.run != widgetRun) {
-                    j3 = Math.max(j3, traverseStart(dependencyNode2, dependencyNode2.margin + j2));
+                    jMax = Math.max(jMax, traverseStart(dependencyNode2, ((long) dependencyNode2.margin) + j2));
                 }
             }
         }
         if (dependencyNode != widgetRun.start) {
-            return j3;
+            return jMax;
         }
         long wrapDimension = j2 + widgetRun.getWrapDimension();
-        return Math.max(Math.max(j3, traverseStart(widgetRun.end, wrapDimension)), wrapDimension - widgetRun.end.margin);
+        return Math.max(Math.max(jMax, traverseStart(widgetRun.end, wrapDimension)), wrapDimension - ((long) widgetRun.end.margin));
     }
 
     public void add(WidgetRun widgetRun) {
@@ -135,38 +135,40 @@ class RunGroup {
         }
         DependencyNode dependencyNode = (i2 == 0 ? constraintWidgetContainer.horizontalRun : constraintWidgetContainer.verticalRun).start;
         DependencyNode dependencyNode2 = (i2 == 0 ? constraintWidgetContainer.horizontalRun : constraintWidgetContainer.verticalRun).end;
-        boolean contains = this.firstRun.start.targets.contains(dependencyNode);
-        boolean contains2 = this.firstRun.end.targets.contains(dependencyNode2);
+        boolean zContains = this.firstRun.start.targets.contains(dependencyNode);
+        boolean zContains2 = this.firstRun.end.targets.contains(dependencyNode2);
         long wrapDimension2 = this.firstRun.getWrapDimension();
-        if (contains && contains2) {
-            long traverseStart = traverseStart(this.firstRun.start, 0L);
-            long traverseEnd = traverseEnd(this.firstRun.end, 0L);
-            long j2 = traverseStart - wrapDimension2;
+        if (zContains && zContains2) {
+            long jTraverseStart = traverseStart(this.firstRun.start, 0L);
+            long jTraverseEnd = traverseEnd(this.firstRun.end, 0L);
+            long j2 = jTraverseStart - wrapDimension2;
             int i4 = this.firstRun.end.margin;
             if (j2 >= (-i4)) {
-                j2 += i4;
+                j2 += (long) i4;
             }
             int i5 = this.firstRun.start.margin;
-            long j3 = ((-traverseEnd) - wrapDimension2) - i5;
+            long j3 = ((-jTraverseEnd) - wrapDimension2) - ((long) i5);
             if (j3 >= i5) {
-                j3 -= i5;
+                j3 -= (long) i5;
             }
             float biasPercent = this.firstRun.widget.getBiasPercent(i2);
             float f2 = biasPercent > 0.0f ? (long) ((j3 / biasPercent) + (j2 / (1.0f - biasPercent))) : 0L;
             long j4 = ((long) ((f2 * biasPercent) + 0.5f)) + wrapDimension2 + ((long) ((f2 * (1.0f - biasPercent)) + 0.5f));
-            wrapDimension = r12.start.margin + j4;
-            i3 = this.firstRun.end.margin;
+            WidgetRun widgetRun2 = this.firstRun;
+            wrapDimension = ((long) widgetRun2.start.margin) + j4;
+            i3 = widgetRun2.end.margin;
         } else {
-            if (contains) {
-                return Math.max(traverseStart(this.firstRun.start, r12.margin), this.firstRun.start.margin + wrapDimension2);
+            if (zContains) {
+                return Math.max(traverseStart(this.firstRun.start, r12.margin), ((long) this.firstRun.start.margin) + wrapDimension2);
             }
-            if (contains2) {
-                return Math.max(-traverseEnd(this.firstRun.end, r12.margin), (-this.firstRun.end.margin) + wrapDimension2);
+            if (zContains2) {
+                return Math.max(-traverseEnd(this.firstRun.end, r12.margin), ((long) (-this.firstRun.end.margin)) + wrapDimension2);
             }
-            wrapDimension = r12.start.margin + this.firstRun.getWrapDimension();
+            WidgetRun widgetRun3 = this.firstRun;
+            wrapDimension = ((long) widgetRun3.start.margin) + widgetRun3.getWrapDimension();
             i3 = this.firstRun.end.margin;
         }
-        return wrapDimension - i3;
+        return wrapDimension - ((long) i3);
     }
 
     public void defineTerminalWidgets(boolean z, boolean z2) {

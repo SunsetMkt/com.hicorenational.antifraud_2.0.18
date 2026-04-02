@@ -6,20 +6,21 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class DescendantOffsetUtils {
     private static final ThreadLocal<Matrix> matrix = new ThreadLocal<>();
     private static final ThreadLocal<RectF> rectF = new ThreadLocal<>();
 
-    public static void getDescendantRect(ViewGroup viewGroup, View view, Rect rect) {
+    public static void getDescendantRect(@NonNull ViewGroup viewGroup, @NonNull View view, @NonNull Rect rect) {
         rect.set(0, 0, view.getWidth(), view.getHeight());
         offsetDescendantRect(viewGroup, view, rect);
     }
 
-    private static void offsetDescendantMatrix(ViewParent viewParent, View view, Matrix matrix2) {
+    private static void offsetDescendantMatrix(ViewParent viewParent, @NonNull View view, @NonNull Matrix matrix2) {
         Object parent = view.getParent();
         if ((parent instanceof View) && parent != viewParent) {
             offsetDescendantMatrix(viewParent, (View) parent, matrix2);
@@ -32,7 +33,7 @@ public class DescendantOffsetUtils {
         matrix2.preConcat(view.getMatrix());
     }
 
-    public static void offsetDescendantRect(ViewGroup viewGroup, View view, Rect rect) {
+    public static void offsetDescendantRect(@NonNull ViewGroup viewGroup, @NonNull View view, @NonNull Rect rect) {
         Matrix matrix2 = matrix.get();
         if (matrix2 == null) {
             matrix2 = new Matrix();

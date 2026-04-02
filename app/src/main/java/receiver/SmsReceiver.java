@@ -15,22 +15,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import bean.SMSWarnBean;
 import bean.SmsBean;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.List;
 import manager.AccountManager;
 import manager.FloatingWindow;
 import manager.IFloatingWindow;
-import org.greenrobot.eventbus.C6049c;
-import p388ui.Hicore;
-import p388ui.callview.SMSWarnCallView;
-import p388ui.presenter.WarnPresenter;
-import util.C7325u1;
-import util.C7328v1;
-import util.C7331w1;
-import util.C7340z1;
-import util.p395c2.C7265a;
+import ui.Hicore;
+import ui.callview.SMSWarnCallView;
+import ui.presenter.WarnPresenter;
+import util.c2;
+import util.d2;
+import util.e2;
+import util.h2;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
     private static final String TAG = SmsReceiver.class.getSimpleName();
     private String contentSMS;
@@ -44,19 +42,16 @@ public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
     private String crimeTime = "";
     private List<String> mWebUrlList = null;
 
-    /* renamed from: receiver.SmsReceiver$a */
-    class RunnableC6082a implements Runnable {
+    class a implements Runnable {
+        final /* synthetic */ String a;
 
-        /* renamed from: a */
-        final /* synthetic */ String f21704a;
-
-        RunnableC6082a(String str) {
-            this.f21704a = str;
+        a(String str) {
+            this.a = str;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            SmsReceiver.this.showSmsWindowReady(this.f21704a);
+            SmsReceiver.this.showSmsWindowReady(this.a);
         }
     }
 
@@ -64,26 +59,26 @@ public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
         if (this.window == null) {
             this.window = new FloatingWindow(this.mContext);
             this.window.setParams(this.window.getSMSWarnLayoutParams());
-            View inflate = LayoutInflater.from(this.mContext).inflate(C2113R.layout.dialog_sms_intercepte, (ViewGroup) null);
-            ((TextView) inflate.findViewById(C2113R.id.txt_dialog_title)).setTypeface(Typeface.createFromAsset(Hicore.getApp().getAssets(), "DIN-Medium.otf"));
-            this.mTvSmsAddress = (TextView) inflate.findViewById(C2113R.id.txt_dialog_sms_address);
-            this.mTvSmsContent = (TextView) inflate.findViewById(C2113R.id.txt_dialog_sms_content);
-            this.mTvWarn = (TextView) inflate.findViewById(C2113R.id.txt_dialog_sms_warn);
-            Button button = (Button) inflate.findViewById(C2113R.id.btn_dialog_sms_close);
-            Button button2 = (Button) inflate.findViewById(C2113R.id.btn_dialog_sms_report);
+            View viewInflate = LayoutInflater.from(this.mContext).inflate(R.layout.dialog_sms_intercepte, (ViewGroup) null);
+            ((TextView) viewInflate.findViewById(R.id.txt_dialog_title)).setTypeface(Typeface.createFromAsset(Hicore.getApp().getAssets(), "DIN-Medium.otf"));
+            this.mTvSmsAddress = (TextView) viewInflate.findViewById(R.id.txt_dialog_sms_address);
+            this.mTvSmsContent = (TextView) viewInflate.findViewById(R.id.txt_dialog_sms_content);
+            this.mTvWarn = (TextView) viewInflate.findViewById(R.id.txt_dialog_sms_warn);
+            Button button = (Button) viewInflate.findViewById(R.id.btn_dialog_sms_close);
+            Button button2 = (Button) viewInflate.findViewById(R.id.btn_dialog_sms_report);
             button.setOnClickListener(new View.OnClickListener() { // from class: receiver.b
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    SmsReceiver.this.m25173a(view);
+                    this.a.a(view);
                 }
             });
             button2.setOnClickListener(new View.OnClickListener() { // from class: receiver.a
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    SmsReceiver.this.m25174b(view);
+                    this.a.b(view);
                 }
             });
-            this.window.setContentView(inflate);
+            this.window.setContentView(viewInflate);
         }
     }
 
@@ -96,7 +91,7 @@ public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
 
     private void showSmsWindow(String str) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            new Handler(Looper.getMainLooper()).post(new RunnableC6082a(str));
+            new Handler(Looper.getMainLooper()).post(new a(str));
         } else {
             showSmsWindowReady(str);
         }
@@ -111,19 +106,17 @@ public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
         this.mTvWarn.setText(str);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m25173a(View view) {
+    public /* synthetic */ void a(View view) {
         dismissDlg();
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m25174b(View view) {
+    public /* synthetic */ void b(View view) {
         onRightBtnClick();
     }
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        if (C7325u1.m26623a(C7325u1.f25635G, false)) {
+        if (c2.a(c2.G, false)) {
             this.mContext = context;
             if (this.warnPresenter == null) {
                 this.warnPresenter = new WarnPresenter(context, this);
@@ -134,13 +127,13 @@ public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
                     Object[] objArr = (Object[]) extras.get("pdus");
                     StringBuilder sb = new StringBuilder();
                     for (Object obj : objArr) {
-                        SmsMessage createFromPdu = SmsMessage.createFromPdu((byte[]) obj);
-                        this.senderPhoneNum = createFromPdu.getDisplayOriginatingAddress();
-                        this.crimeTime = C7328v1.m26658d();
+                        SmsMessage smsMessageCreateFromPdu = SmsMessage.createFromPdu((byte[]) obj);
+                        this.senderPhoneNum = smsMessageCreateFromPdu.getDisplayOriginatingAddress();
+                        this.crimeTime = d2.d();
                         if (this.senderPhoneNum.contains("+86")) {
                             this.senderPhoneNum = this.senderPhoneNum.substring(3, this.senderPhoneNum.length());
                         }
-                        sb.append(createFromPdu.getMessageBody());
+                        sb.append(smsMessageCreateFromPdu.getMessageBody());
                     }
                     this.contentSMS = sb.toString();
                     this.warnPresenter.requestSMSHttp(this.senderPhoneNum, this.contentSMS);
@@ -152,20 +145,20 @@ public class SmsReceiver extends BroadcastReceiver implements SMSWarnCallView {
 
     public void onRightBtnClick() {
         if (!AccountManager.isLogin()) {
-            C6049c.m24987f().m25000d(new C7265a(155, null));
+            org.greenrobot.eventbus.c.f().d(new util.n2.a(155, null));
             dismissDlg();
             return;
         }
         SmsBean smsBean = new SmsBean(this.senderPhoneNum, this.contentSMS, this.crimeTime, false);
-        if (!C7340z1.m26805a(this.mContext).m26814a()) {
-            C7331w1.m26688a("提交失败,还未完成实名认证");
+        if (!h2.a(this.mContext).a()) {
+            e2.a("\u63d0\u4ea4\u5931\u8d25,\u8fd8\u672a\u5b8c\u6210\u5b9e\u540d\u8ba4\u8bc1");
         } else {
             this.warnPresenter.oneKeyReportSMS(smsBean, this.mWebUrlList);
             dismissDlg();
         }
     }
 
-    @Override // p388ui.callview.SMSWarnCallView
+    @Override // ui.callview.SMSWarnCallView
     public void onSuccRequest(SMSWarnBean sMSWarnBean) {
         if (sMSWarnBean == null || !sMSWarnBean.earlyWarning) {
             return;

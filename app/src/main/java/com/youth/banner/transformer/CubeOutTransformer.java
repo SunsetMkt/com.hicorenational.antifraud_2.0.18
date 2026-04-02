@@ -2,7 +2,7 @@ package com.youth.banner.transformer;
 
 import android.view.View;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CubeOutTransformer extends ABaseTransformer {
     @Override // com.youth.banner.transformer.ABaseTransformer
     public boolean isPagingEnabled() {

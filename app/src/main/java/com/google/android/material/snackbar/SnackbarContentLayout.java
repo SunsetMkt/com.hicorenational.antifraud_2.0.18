@@ -7,23 +7,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.C1921R;
+import com.google.android.material.R;
+import com.google.android.material.color.MaterialColors;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class SnackbarContentLayout extends LinearLayout implements ContentViewCallback {
     private Button actionView;
     private int maxInlineActionWidth;
     private int maxWidth;
     private TextView messageView;
 
-    public SnackbarContentLayout(Context context) {
+    public SnackbarContentLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    private static void updateTopBottomPadding(View view, int i2, int i3) {
+    private static void updateTopBottomPadding(@NonNull View view, int i2, int i3) {
         if (ViewCompat.isPaddingRelative(view)) {
             ViewCompat.setPaddingRelative(view, ViewCompat.getPaddingStart(view), i2, ViewCompat.getPaddingEnd(view), i3);
         } else {
@@ -81,93 +84,58 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
     @Override // android.view.View
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.messageView = (TextView) findViewById(C1921R.id.snackbar_text);
-        this.actionView = (Button) findViewById(C1921R.id.snackbar_action);
+        this.messageView = (TextView) findViewById(R.id.snackbar_text);
+        this.actionView = (Button) findViewById(R.id.snackbar_action);
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:15:0x0053, code lost:
-    
-        if (updateViewsWithinLayout(1, r0, r0 - r1) != false) goto L26;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:16:0x0061, code lost:
-    
-        r4 = false;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:25:0x005e, code lost:
-    
-        if (updateViewsWithinLayout(0, r0, r0) != false) goto L26;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:25:0x0061  */
     @Override // android.widget.LinearLayout, android.view.View
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    protected void onMeasure(int r8, int r9) {
-        /*
-            r7 = this;
-            super.onMeasure(r8, r9)
-            int r0 = r7.maxWidth
-            if (r0 <= 0) goto L18
-            int r0 = r7.getMeasuredWidth()
-            int r1 = r7.maxWidth
-            if (r0 <= r1) goto L18
-            r8 = 1073741824(0x40000000, float:2.0)
-            int r8 = android.view.View.MeasureSpec.makeMeasureSpec(r1, r8)
-            super.onMeasure(r8, r9)
-        L18:
-            android.content.res.Resources r0 = r7.getResources()
-            int r1 = com.google.android.material.C1921R.dimen.design_snackbar_padding_vertical_2lines
-            int r0 = r0.getDimensionPixelSize(r1)
-            android.content.res.Resources r1 = r7.getResources()
-            int r2 = com.google.android.material.C1921R.dimen.design_snackbar_padding_vertical
-            int r1 = r1.getDimensionPixelSize(r2)
-            android.widget.TextView r2 = r7.messageView
-            android.text.Layout r2 = r2.getLayout()
-            int r2 = r2.getLineCount()
-            r3 = 0
-            r4 = 1
-            if (r2 <= r4) goto L3c
-            r2 = 1
-            goto L3d
-        L3c:
-            r2 = 0
-        L3d:
-            if (r2 == 0) goto L56
-            int r5 = r7.maxInlineActionWidth
-            if (r5 <= 0) goto L56
-            android.widget.Button r5 = r7.actionView
-            int r5 = r5.getMeasuredWidth()
-            int r6 = r7.maxInlineActionWidth
-            if (r5 <= r6) goto L56
-            int r1 = r0 - r1
-            boolean r0 = r7.updateViewsWithinLayout(r4, r0, r1)
-            if (r0 == 0) goto L61
-            goto L62
-        L56:
-            if (r2 == 0) goto L59
-            goto L5a
-        L59:
-            r0 = r1
-        L5a:
-            boolean r0 = r7.updateViewsWithinLayout(r3, r0, r0)
-            if (r0 == 0) goto L61
-            goto L62
-        L61:
-            r4 = 0
-        L62:
-            if (r4 == 0) goto L67
-            super.onMeasure(r8, r9)
-        L67:
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.material.snackbar.SnackbarContentLayout.onMeasure(int, int):void");
+    protected void onMeasure(int i2, int i3) {
+        super.onMeasure(i2, i3);
+        if (this.maxWidth > 0) {
+            int measuredWidth = getMeasuredWidth();
+            int i4 = this.maxWidth;
+            if (measuredWidth > i4) {
+                i2 = View.MeasureSpec.makeMeasureSpec(i4, 1073741824);
+                super.onMeasure(i2, i3);
+            }
+        }
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.design_snackbar_padding_vertical_2lines);
+        int dimensionPixelSize2 = getResources().getDimensionPixelSize(R.dimen.design_snackbar_padding_vertical);
+        boolean z = true;
+        boolean z2 = this.messageView.getLayout().getLineCount() > 1;
+        if (!z2 || this.maxInlineActionWidth <= 0 || this.actionView.getMeasuredWidth() <= this.maxInlineActionWidth) {
+            if (!z2) {
+                dimensionPixelSize = dimensionPixelSize2;
+            }
+            if (!updateViewsWithinLayout(0, dimensionPixelSize, dimensionPixelSize)) {
+                z = false;
+            }
+        } else if (!updateViewsWithinLayout(1, dimensionPixelSize, dimensionPixelSize - dimensionPixelSize2)) {
+        }
+        if (z) {
+            super.onMeasure(i2, i3);
+        }
     }
 
-    public SnackbarContentLayout(Context context, AttributeSet attributeSet) {
+    public void setMaxInlineActionWidth(int i2) {
+        this.maxInlineActionWidth = i2;
+    }
+
+    void updateActionTextColorAlphaIfNeeded(float f2) {
+        if (f2 != 1.0f) {
+            this.actionView.setTextColor(MaterialColors.layer(MaterialColors.getColor(this, R.attr.colorSurface), this.actionView.getCurrentTextColor(), f2));
+        }
+    }
+
+    public SnackbarContentLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.SnackbarLayout);
-        this.maxWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.SnackbarLayout_android_maxWidth, -1);
-        this.maxInlineActionWidth = obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.SnackbarLayout_maxActionInlineWidth, -1);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.SnackbarLayout);
+        this.maxWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.SnackbarLayout_android_maxWidth, -1);
+        this.maxInlineActionWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.SnackbarLayout_maxActionInlineWidth, -1);
+        typedArrayObtainStyledAttributes.recycle();
     }
 }

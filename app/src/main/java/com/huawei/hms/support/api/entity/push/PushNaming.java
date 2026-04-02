@@ -1,6 +1,6 @@
 package com.huawei.hms.support.api.entity.push;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PushNaming {
     public static final String GETTOKEN_ASYNC_RSP = "push.onNewToken";
     public static final String PUSH_ANALYSIS_REPORT = "push.analysisReport";

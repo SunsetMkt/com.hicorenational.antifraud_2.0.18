@@ -7,12 +7,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import p000a.p001a.p014u.C0052a;
 
+/* JADX INFO: loaded from: classes.dex */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@ListenerClass(method = {@ListenerMethod(defaultReturn = C0052a.f158j, name = "onEditorAction", parameters = {"android.widget.TextView", "int", "android.view.KeyEvent"}, returnType = "boolean")}, setter = "setOnEditorActionListener", targetType = "android.widget.TextView", type = "android.widget.TextView.OnEditorActionListener")
-/* loaded from: classes.dex */
+@ListenerClass(method = {@ListenerMethod(defaultReturn = b.a.u.a.f1908j, name = "onEditorAction", parameters = {"android.widget.TextView", "int", "android.view.KeyEvent"}, returnType = "boolean")}, setter = "setOnEditorActionListener", targetType = "android.widget.TextView", type = "android.widget.TextView.OnEditorActionListener")
 public @interface OnEditorAction {
     @IdRes
     int[] value() default {-1};

@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v4.media.session.MediaSessionCompatApi21;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-/* loaded from: classes.dex */
 class MediaSessionCompatApi23 {
 
     public interface Callback extends MediaSessionCompatApi21.Callback {

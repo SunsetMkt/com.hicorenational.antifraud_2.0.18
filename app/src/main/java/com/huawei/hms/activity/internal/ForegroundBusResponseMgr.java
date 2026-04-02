@@ -4,17 +4,15 @@ import android.text.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ForegroundBusResponseMgr {
 
-    /* renamed from: b */
-    private static final ForegroundBusResponseMgr f7034b = new ForegroundBusResponseMgr();
-
-    /* renamed from: a */
-    private final Map<String, BusResponseCallback> f7035a = new HashMap();
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final ForegroundBusResponseMgr f4410b = new ForegroundBusResponseMgr();
+    private final Map<String, BusResponseCallback> a = new HashMap();
 
     public static ForegroundBusResponseMgr getInstance() {
-        return f7034b;
+        return f4410b;
     }
 
     public BusResponseCallback get(String str) {
@@ -22,8 +20,8 @@ public class ForegroundBusResponseMgr {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        synchronized (this.f7035a) {
-            busResponseCallback = this.f7035a.get(str);
+        synchronized (this.a) {
+            busResponseCallback = this.a.get(str);
         }
         return busResponseCallback;
     }
@@ -32,9 +30,9 @@ public class ForegroundBusResponseMgr {
         if (TextUtils.isEmpty(str) || busResponseCallback == null) {
             return;
         }
-        synchronized (this.f7035a) {
-            if (!this.f7035a.containsKey(str)) {
-                this.f7035a.put(str, busResponseCallback);
+        synchronized (this.a) {
+            if (!this.a.containsKey(str)) {
+                this.a.put(str, busResponseCallback);
             }
         }
     }
@@ -43,8 +41,8 @@ public class ForegroundBusResponseMgr {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        synchronized (this.f7035a) {
-            this.f7035a.remove(str);
+        synchronized (this.a) {
+            this.a.remove(str);
         }
     }
 }

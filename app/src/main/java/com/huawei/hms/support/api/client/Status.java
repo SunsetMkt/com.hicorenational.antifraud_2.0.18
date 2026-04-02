@@ -10,7 +10,7 @@ import com.huawei.hms.core.aidl.annotation.Packed;
 import com.tencent.bugly.beta.tinker.TinkerReport;
 import java.util.Arrays;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Status extends Result implements Parcelable {
 
     @Packed
@@ -43,21 +43,20 @@ public final class Status extends Result implements Parcelable {
     public static final Status RESULT_TIMEOUT = new Status(15);
     public static final Status MessageNotFound = new Status(TinkerReport.KEY_LOADED_SUCC_COST_OTHER);
     public static final Status CoreException = new Status(500);
-    public static final Parcelable.Creator<Status> CREATOR = new C2513a();
+    public static final Parcelable.Creator<Status> CREATOR = new a();
 
-    /* renamed from: com.huawei.hms.support.api.client.Status$a */
-    class C2513a implements Parcelable.Creator {
-        C2513a() {
+    class a implements Parcelable.Creator {
+        a() {
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public Status createFromParcel(Parcel parcel) {
             return new Status(parcel.readInt(), parcel.readString(), PendingIntent.readPendingIntentOrNullFromParcel(parcel));
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public Status[] newArray(int i2) {
             return new Status[i2];
         }

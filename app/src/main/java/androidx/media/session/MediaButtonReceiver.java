@@ -18,7 +18,7 @@ import androidx.annotation.RestrictTo;
 import androidx.media.MediaBrowserServiceCompat;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MediaButtonReceiver extends BroadcastReceiver {
     private static final String TAG = "MediaButtonReceiver";
 
@@ -75,12 +75,12 @@ public class MediaButtonReceiver extends BroadcastReceiver {
     public static ComponentName getMediaButtonReceiverComponent(Context context) {
         Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
         intent.setPackage(context.getPackageName());
-        List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);
-        if (queryBroadcastReceivers.size() == 1) {
-            ResolveInfo resolveInfo = queryBroadcastReceivers.get(0);
+        List<ResolveInfo> listQueryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);
+        if (listQueryBroadcastReceivers.size() == 1) {
+            ResolveInfo resolveInfo = listQueryBroadcastReceivers.get(0);
             return new ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
         }
-        queryBroadcastReceivers.size();
+        listQueryBroadcastReceivers.size();
         return null;
     }
 
@@ -88,15 +88,15 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         PackageManager packageManager = context.getPackageManager();
         Intent intent = new Intent(str);
         intent.setPackage(context.getPackageName());
-        List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
-        if (queryIntentServices.size() == 1) {
-            ResolveInfo resolveInfo = queryIntentServices.get(0);
+        List<ResolveInfo> listQueryIntentServices = packageManager.queryIntentServices(intent, 0);
+        if (listQueryIntentServices.size() == 1) {
+            ResolveInfo resolveInfo = listQueryIntentServices.get(0);
             return new ComponentName(resolveInfo.serviceInfo.packageName, resolveInfo.serviceInfo.name);
         }
-        if (queryIntentServices.isEmpty()) {
+        if (listQueryIntentServices.isEmpty()) {
             return null;
         }
-        throw new IllegalStateException("Expected 1 service that handles " + str + ", found " + queryIntentServices.size());
+        throw new IllegalStateException("Expected 1 service that handles " + str + ", found " + listQueryIntentServices.size());
     }
 
     public static KeyEvent handleIntent(MediaSessionCompat mediaSessionCompat, Intent intent) {
@@ -132,9 +132,9 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         if (serviceComponentByAction2 == null) {
             throw new IllegalStateException("Could not find any Service that handles android.intent.action.MEDIA_BUTTON or implements a media browser service.");
         }
-        BroadcastReceiver.PendingResult goAsync = goAsync();
+        BroadcastReceiver.PendingResult pendingResultGoAsync = goAsync();
         Context applicationContext = context.getApplicationContext();
-        MediaButtonConnectionCallback mediaButtonConnectionCallback = new MediaButtonConnectionCallback(applicationContext, intent, goAsync);
+        MediaButtonConnectionCallback mediaButtonConnectionCallback = new MediaButtonConnectionCallback(applicationContext, intent, pendingResultGoAsync);
         MediaBrowserCompat mediaBrowserCompat = new MediaBrowserCompat(applicationContext, serviceComponentByAction2, mediaButtonConnectionCallback, null);
         mediaButtonConnectionCallback.setMediaBrowser(mediaBrowserCompat);
         mediaBrowserCompat.connect();

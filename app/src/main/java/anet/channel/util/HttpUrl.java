@@ -1,12 +1,13 @@
 package anet.channel.util;
 
-import anet.channel.strategy.utils.C0848c;
+import android.text.TextUtils;
+import anet.channel.strategy.StrategyCenter;
 import com.xiaomi.mipush.sdk.Constants;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpUrl {
     private String host;
     private volatile boolean isSchemeLocked;
@@ -20,27 +21,147 @@ public class HttpUrl {
         this.isSchemeLocked = false;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:49:0x00b3, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:52:0x00b3, code lost:
     
         if (r0.port > 65535) goto L53;
      */
     /* JADX WARN: Removed duplicated region for block: B:67:0x00d1  */
-    /* JADX WARN: Removed duplicated region for block: B:70:0x00de  */
-    /* JADX WARN: Removed duplicated region for block: B:79:0x0102  */
-    /* JADX WARN: Removed duplicated region for block: B:83:0x0122  */
-    /* JADX WARN: Removed duplicated region for block: B:86:0x0130  */
+    /* JADX WARN: Removed duplicated region for block: B:68:0x00d8  */
+    /* JADX WARN: Removed duplicated region for block: B:71:0x00de  */
+    /* JADX WARN: Removed duplicated region for block: B:85:0x0122  */
+    /* JADX WARN: Removed duplicated region for block: B:88:0x0130  */
     /* JADX WARN: Removed duplicated region for block: B:89:0x0134  */
-    /* JADX WARN: Removed duplicated region for block: B:92:0x00d8  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static anet.channel.util.HttpUrl parse(java.lang.String r15) {
-        /*
-            Method dump skipped, instructions count: 336
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: anet.channel.util.HttpUrl.parse(java.lang.String):anet.channel.util.HttpUrl");
+    public static HttpUrl parse(String str) {
+        int i2;
+        int i3;
+        String str2;
+        if (TextUtils.isEmpty(str)) {
+            return null;
+        }
+        String strTrim = str.trim();
+        HttpUrl httpUrl = new HttpUrl();
+        httpUrl.url = strTrim;
+        int i4 = 0;
+        if (strTrim.startsWith("//")) {
+            httpUrl.scheme = null;
+            i2 = 0;
+        } else {
+            if (!strTrim.regionMatches(true, 0, "https:", 0, 6)) {
+                if (strTrim.regionMatches(true, 0, "http:", 0, 5)) {
+                    httpUrl.scheme = HttpConstant.HTTP;
+                    i2 = 5;
+                }
+                return null;
+            }
+            httpUrl.scheme = HttpConstant.HTTPS;
+            i2 = 6;
+        }
+        int length = strTrim.length();
+        int i5 = i2 + 2;
+        int i6 = i5;
+        boolean z = false;
+        while (i6 < length) {
+            char cCharAt = strTrim.charAt(i6);
+            if (cCharAt == '[') {
+                z = true;
+            } else if (cCharAt == ']') {
+                z = false;
+            } else if (cCharAt == '/' || cCharAt == '?' || cCharAt == '#' || (cCharAt == ':' && !z)) {
+                httpUrl.host = strTrim.substring(i5, i6);
+                break;
+            }
+            i6++;
+        }
+        if (i6 == length) {
+            httpUrl.host = strTrim.substring(i5);
+        }
+        int i7 = 0;
+        while (i6 < length) {
+            char cCharAt2 = strTrim.charAt(i6);
+            if (cCharAt2 == ':' && i7 == 0) {
+                i7 = i6 + 1;
+            } else if (cCharAt2 == '/' || cCharAt2 == '#' || cCharAt2 == '?') {
+                i3 = i6;
+                break;
+            }
+            i6++;
+        }
+        i3 = length;
+        if (i7 != 0) {
+            try {
+                httpUrl.port = Integer.parseInt(strTrim.substring(i7, i3));
+                if (httpUrl.port > 0) {
+                }
+            } catch (NumberFormatException unused) {
+            }
+            return null;
+        }
+        while (i6 < length) {
+            char cCharAt3 = strTrim.charAt(i6);
+            if (cCharAt3 == '/' && i4 == 0) {
+                i4 = i6;
+            } else if (cCharAt3 == '?' || cCharAt3 == '#') {
+                int i8 = i4 != 0 ? i6 : length;
+                if (i4 == 0) {
+                    httpUrl.path = strTrim.substring(i4, i8);
+                } else {
+                    httpUrl.path = null;
+                }
+                if (httpUrl.scheme == null) {
+                    int i9 = httpUrl.port;
+                    if (i9 == 80) {
+                        httpUrl.scheme = HttpConstant.HTTP;
+                    } else if (i9 == 443) {
+                        httpUrl.scheme = HttpConstant.HTTPS;
+                    } else {
+                        httpUrl.scheme = StrategyCenter.getInstance().getSchemeByHost(httpUrl.host, null);
+                    }
+                }
+                if (!TextUtils.isEmpty(httpUrl.scheme) && !TextUtils.isEmpty(httpUrl.host)) {
+                    StringBuilder sb = new StringBuilder(httpUrl.scheme);
+                    sb.append(HttpConstant.SCHEME_SPLIT);
+                    sb.append(httpUrl.host);
+                    if (httpUrl.containsNonDefaultPort()) {
+                        sb.append(Constants.COLON_SEPARATOR);
+                        sb.append(httpUrl.port);
+                    }
+                    str2 = httpUrl.path;
+                    if (str2 == null) {
+                        sb.append(str2);
+                    } else if (i6 != length) {
+                        sb.append("/");
+                    }
+                    httpUrl.simpleUrl = sb.toString();
+                    sb.append(strTrim.substring(i6));
+                    httpUrl.url = sb.toString();
+                    return httpUrl;
+                }
+                return null;
+            }
+            i6++;
+        }
+        if (i4 == 0) {
+        }
+        if (httpUrl.scheme == null) {
+        }
+        if (!TextUtils.isEmpty(httpUrl.scheme)) {
+            StringBuilder sb2 = new StringBuilder(httpUrl.scheme);
+            sb2.append(HttpConstant.SCHEME_SPLIT);
+            sb2.append(httpUrl.host);
+            if (httpUrl.containsNonDefaultPort()) {
+            }
+            str2 = httpUrl.path;
+            if (str2 == null) {
+            }
+            httpUrl.simpleUrl = sb2.toString();
+            sb2.append(strTrim.substring(i6));
+            httpUrl.url = sb2.toString();
+            return httpUrl;
+        }
+        return null;
     }
 
     public boolean containsNonDefaultPort() {
@@ -80,19 +201,19 @@ public class HttpUrl {
 
     public void replaceIpAndPort(String str, int i2) {
         if (str != null) {
-            int indexOf = this.url.indexOf("//") + 2;
-            while (indexOf < this.url.length() && this.url.charAt(indexOf) != '/') {
-                indexOf++;
+            int iIndexOf = this.url.indexOf("//") + 2;
+            while (iIndexOf < this.url.length() && this.url.charAt(iIndexOf) != '/') {
+                iIndexOf++;
             }
-            boolean m708b = C0848c.m708b(str);
+            boolean zB = anet.channel.strategy.utils.c.b(str);
             StringBuilder sb = new StringBuilder(this.url.length() + str.length());
             sb.append(this.scheme);
             sb.append(HttpConstant.SCHEME_SPLIT);
-            if (m708b) {
+            if (zB) {
                 sb.append('[');
             }
             sb.append(str);
-            if (m708b) {
+            if (zB) {
                 sb.append(']');
             }
             if (i2 != 0) {
@@ -102,7 +223,7 @@ public class HttpUrl {
                 sb.append(':');
                 sb.append(this.port);
             }
-            sb.append(this.url.substring(indexOf));
+            sb.append(this.url.substring(iIndexOf));
             this.url = sb.toString();
         }
     }

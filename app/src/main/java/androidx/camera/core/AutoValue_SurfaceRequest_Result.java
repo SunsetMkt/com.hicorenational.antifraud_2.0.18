@@ -4,7 +4,7 @@ import android.view.Surface;
 import androidx.annotation.NonNull;
 import androidx.camera.core.SurfaceRequest;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_SurfaceRequest_Result extends SurfaceRequest.Result {
     private final int resultCode;
     private final Surface surface;

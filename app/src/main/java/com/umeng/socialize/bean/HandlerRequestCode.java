@@ -1,6 +1,6 @@
 package com.umeng.socialize.bean;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class HandlerRequestCode {
     public static final int DEFAULT_REQUEST_CODE = 0;
     public static final int DOUBAN_REQUEST_CODE = 5660;

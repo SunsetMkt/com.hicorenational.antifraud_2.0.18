@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class OnBackPressedCallback {
     private CopyOnWriteArrayList<Cancellable> mCancellables = new CopyOnWriteArrayList<>();
     private boolean mEnabled;

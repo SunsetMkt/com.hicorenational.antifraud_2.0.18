@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BannerScroller extends Scroller {
     private int mDuration;
 

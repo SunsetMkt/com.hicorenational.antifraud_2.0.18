@@ -19,7 +19,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.reflect.Modifier;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class LoaderManagerImpl extends LoaderManager {
     static boolean DEBUG = false;
     static final String TAG = "LoaderManager";
@@ -263,13 +263,13 @@ class LoaderManagerImpl extends LoaderManager {
                 printWriter.println("Loaders:");
                 String str2 = str + "    ";
                 for (int i2 = 0; i2 < this.mLoaders.size(); i2++) {
-                    LoaderInfo valueAt = this.mLoaders.valueAt(i2);
+                    LoaderInfo loaderInfoValueAt = this.mLoaders.valueAt(i2);
                     printWriter.print(str);
                     printWriter.print("  #");
                     printWriter.print(this.mLoaders.keyAt(i2));
                     printWriter.print(": ");
-                    printWriter.println(valueAt.toString());
-                    valueAt.dump(str2, fileDescriptor, printWriter, strArr);
+                    printWriter.println(loaderInfoValueAt.toString());
+                    loaderInfoValueAt.dump(str2, fileDescriptor, printWriter, strArr);
                 }
             }
         }
@@ -336,14 +336,14 @@ class LoaderManagerImpl extends LoaderManager {
     private <D> Loader<D> createAndInstallLoader(int i2, @Nullable Bundle bundle, @NonNull LoaderManager.LoaderCallbacks<D> loaderCallbacks, @Nullable Loader<D> loader) {
         try {
             this.mLoaderViewModel.startCreatingLoader();
-            Loader<D> onCreateLoader = loaderCallbacks.onCreateLoader(i2, bundle);
-            if (onCreateLoader == null) {
+            Loader<D> loaderOnCreateLoader = loaderCallbacks.onCreateLoader(i2, bundle);
+            if (loaderOnCreateLoader == null) {
                 throw new IllegalArgumentException("Object returned from onCreateLoader must not be null");
             }
-            if (onCreateLoader.getClass().isMemberClass() && !Modifier.isStatic(onCreateLoader.getClass().getModifiers())) {
-                throw new IllegalArgumentException("Object returned from onCreateLoader must not be a non-static inner member class: " + onCreateLoader);
+            if (loaderOnCreateLoader.getClass().isMemberClass() && !Modifier.isStatic(loaderOnCreateLoader.getClass().getModifiers())) {
+                throw new IllegalArgumentException("Object returned from onCreateLoader must not be a non-static inner member class: " + loaderOnCreateLoader);
             }
-            LoaderInfo loaderInfo = new LoaderInfo(i2, bundle, onCreateLoader, loader);
+            LoaderInfo loaderInfo = new LoaderInfo(i2, bundle, loaderOnCreateLoader, loader);
             if (DEBUG) {
                 String str = "  Created new loader " + loaderInfo;
             }

@@ -2,7 +2,7 @@ package com.huawei.hms.common.internal;
 
 import com.huawei.hms.core.aidl.IMessageEntity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface AnyClient {
 
     public interface CallBack {

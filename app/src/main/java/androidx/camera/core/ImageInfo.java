@@ -3,7 +3,7 @@ package androidx.camera.core;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ImageInfo {
     int getRotationDegrees();
 

@@ -1,99 +1,98 @@
 package network.gson;
 
 import androidx.exifinterface.media.ExifInterface;
-import com.google.gson.AbstractC2077y;
-import com.google.gson.C2051e;
-import com.google.gson.C2058f;
-import com.google.gson.p147b0.C2016i;
-import com.google.gson.p152d0.C2049a;
-import com.google.gson.p153e0.C2052a;
-import com.google.gson.p153e0.C2055d;
-import com.google.gson.p153e0.EnumC2054c;
+import com.google.gson.b0.i;
+import com.google.gson.d0.a;
+import com.google.gson.e;
+import com.google.gson.e0.c;
+import com.google.gson.e0.d;
+import com.google.gson.f;
+import com.google.gson.y;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
-public final class ObjectTypeAdapter extends AbstractC2077y<Object> {
-    private static final C2051e gson = new C2051e();
-    private AbstractC2077y objectTypeAdapter = gson.m5559a(Object.class);
+/* JADX INFO: loaded from: classes2.dex */
+public final class ObjectTypeAdapter extends y<Object> {
+    private static final e gson = new e();
+    private y objectTypeAdapter = gson.a(Object.class);
 
-    /* renamed from: network.gson.ObjectTypeAdapter$2 */
-    static /* synthetic */ class C59542 {
-        static final /* synthetic */ int[] $SwitchMap$com$google$gson$stream$JsonToken = new int[EnumC2054c.values().length];
+    /* JADX INFO: renamed from: network.gson.ObjectTypeAdapter$2, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass2 {
+        static final /* synthetic */ int[] $SwitchMap$com$google$gson$stream$JsonToken = new int[c.values().length];
 
         static {
             try {
-                $SwitchMap$com$google$gson$stream$JsonToken[EnumC2054c.BEGIN_ARRAY.ordinal()] = 1;
+                $SwitchMap$com$google$gson$stream$JsonToken[c.BEGIN_ARRAY.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$com$google$gson$stream$JsonToken[EnumC2054c.BEGIN_OBJECT.ordinal()] = 2;
+                $SwitchMap$com$google$gson$stream$JsonToken[c.BEGIN_OBJECT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$com$google$gson$stream$JsonToken[EnumC2054c.STRING.ordinal()] = 3;
+                $SwitchMap$com$google$gson$stream$JsonToken[c.STRING.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                $SwitchMap$com$google$gson$stream$JsonToken[EnumC2054c.NUMBER.ordinal()] = 4;
+                $SwitchMap$com$google$gson$stream$JsonToken[c.NUMBER.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                $SwitchMap$com$google$gson$stream$JsonToken[EnumC2054c.BOOLEAN.ordinal()] = 5;
+                $SwitchMap$com$google$gson$stream$JsonToken[c.BOOLEAN.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                $SwitchMap$com$google$gson$stream$JsonToken[EnumC2054c.NULL.ordinal()] = 6;
+                $SwitchMap$com$google$gson$stream$JsonToken[c.NULL.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
         }
     }
 
-    public static C2051e buildNewGson() {
-        C2058f c2058f = new C2058f();
-        c2058f.m5644a(new C2049a<Map<String, Object>>() { // from class: network.gson.ObjectTypeAdapter.1
+    public static e buildNewGson() {
+        f fVar = new f();
+        fVar.a(new a<Map<String, Object>>() { // from class: network.gson.ObjectTypeAdapter.1
         }.getType(), new ObjectTypeAdapter());
-        c2058f.m5647b();
-        return c2058f.m5631a();
+        fVar.b();
+        return fVar.a();
     }
 
-    @Override // com.google.gson.AbstractC2077y
-    public Object read(C2052a c2052a) throws IOException {
-        switch (C59542.$SwitchMap$com$google$gson$stream$JsonToken[c2052a.peek().ordinal()]) {
+    @Override // com.google.gson.y
+    public Object read(com.google.gson.e0.a aVar) throws IOException {
+        switch (AnonymousClass2.$SwitchMap$com$google$gson$stream$JsonToken[aVar.peek().ordinal()]) {
             case 1:
                 ArrayList arrayList = new ArrayList();
-                c2052a.mo5417c();
-                while (c2052a.mo5423j()) {
-                    arrayList.add(read(c2052a));
+                aVar.c();
+                while (aVar.j()) {
+                    arrayList.add(read(aVar));
                 }
-                c2052a.mo5419f();
+                aVar.f();
                 return arrayList;
             case 2:
-                C2016i c2016i = new C2016i();
-                c2052a.mo5418d();
-                while (c2052a.mo5423j()) {
-                    c2016i.put(c2052a.mo5428q(), read(c2052a));
+                i iVar = new i();
+                aVar.d();
+                while (aVar.j()) {
+                    iVar.put(aVar.q(), read(aVar));
                 }
-                c2052a.mo5420g();
-                return c2016i;
+                aVar.g();
+                return iVar;
             case 3:
-                return c2052a.mo5430s();
+                return aVar.s();
             case 4:
-                String mo5430s = c2052a.mo5430s();
-                return (mo5430s.contains(".") || mo5430s.contains("e") || mo5430s.contains(ExifInterface.LONGITUDE_EAST)) ? Double.valueOf(Double.parseDouble(mo5430s)) : Long.valueOf(Long.parseLong(mo5430s));
+                String strS = aVar.s();
+                return (strS.contains(".") || strS.contains("e") || strS.contains(ExifInterface.LONGITUDE_EAST)) ? Double.valueOf(Double.parseDouble(strS)) : Long.valueOf(Long.parseLong(strS));
             case 5:
-                return Boolean.valueOf(c2052a.mo5424m());
+                return Boolean.valueOf(aVar.m());
             case 6:
-                c2052a.mo5429r();
+                aVar.r();
                 return null;
             default:
                 throw new IllegalStateException();
         }
     }
 
-    @Override // com.google.gson.AbstractC2077y
-    public void write(C2055d c2055d, Object obj) throws IOException {
-        this.objectTypeAdapter.write(c2055d, obj);
+    @Override // com.google.gson.y
+    public void write(d dVar, Object obj) throws IOException {
+        this.objectTypeAdapter.write(dVar, obj);
     }
 }

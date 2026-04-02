@@ -1,8 +1,8 @@
 package anet.channel.statist;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "session_monitor")
-/* loaded from: classes.dex */
 public class SessionMonitor extends SessionStatistic {
     public SessionMonitor(SessionStatistic sessionStatistic) {
         super(null);
@@ -10,7 +10,7 @@ public class SessionMonitor extends SessionStatistic {
             return;
         }
         this.host = sessionStatistic.host;
-        this.f1004ip = sessionStatistic.f1004ip;
+        this.ip = sessionStatistic.ip;
         this.port = sessionStatistic.port;
         this.closeReason = sessionStatistic.closeReason;
         this.retryTimes = sessionStatistic.retryTimes;

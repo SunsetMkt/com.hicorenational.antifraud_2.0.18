@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.ImageInfo;
 import androidx.camera.core.impl.CameraCaptureResult;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraCaptureResultImageInfo implements ImageInfo {
     private final CameraCaptureResult mCameraCaptureResult;
 

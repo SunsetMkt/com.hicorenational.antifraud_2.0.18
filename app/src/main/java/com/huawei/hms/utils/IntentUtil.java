@@ -3,7 +3,7 @@ package com.huawei.hms.utils;
 import android.content.Intent;
 import android.os.Build;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IntentUtil {
     public static Intent modifyIntentBehaviorsSafe(Intent intent) {
         if (intent == null) {

@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class DialogRedirect implements DialogInterface.OnClickListener {
     public static DialogRedirect getInstance(Activity activity, Intent intent, int i2) {
         return new DialogRedirectImpl(intent, activity, i2);
@@ -19,7 +19,7 @@ public abstract class DialogRedirect implements DialogInterface.OnClickListener 
                 if (dialogInterface == null) {
                 }
             } catch (Throwable unused) {
-                HMSLog.m7715e("DialogRedirect", "Failed to start resolution intent");
+                HMSLog.e("DialogRedirect", "Failed to start resolution intent");
             }
         } finally {
             if (dialogInterface != null) {

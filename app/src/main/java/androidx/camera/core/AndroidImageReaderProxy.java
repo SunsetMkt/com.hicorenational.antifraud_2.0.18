@@ -12,7 +12,7 @@ import androidx.camera.core.impl.utils.MainThreadAsyncHandler;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AndroidImageReaderProxy implements ImageReaderProxy {
 
     @GuardedBy("this")
@@ -29,37 +29,37 @@ final class AndroidImageReaderProxy implements ImageReaderProxy {
     @Override // androidx.camera.core.impl.ImageReaderProxy
     @Nullable
     public synchronized ImageProxy acquireLatestImage() {
-        Image image;
+        Image imageAcquireLatestImage;
         try {
-            image = this.mImageReader.acquireLatestImage();
+            imageAcquireLatestImage = this.mImageReader.acquireLatestImage();
         } catch (RuntimeException e2) {
             if (!isImageReaderContextNotInitializedException(e2)) {
                 throw e2;
             }
-            image = null;
+            imageAcquireLatestImage = null;
         }
-        if (image == null) {
+        if (imageAcquireLatestImage == null) {
             return null;
         }
-        return new AndroidImageProxy(image);
+        return new AndroidImageProxy(imageAcquireLatestImage);
     }
 
     @Override // androidx.camera.core.impl.ImageReaderProxy
     @Nullable
     public synchronized ImageProxy acquireNextImage() {
-        Image image;
+        Image imageAcquireNextImage;
         try {
-            image = this.mImageReader.acquireNextImage();
+            imageAcquireNextImage = this.mImageReader.acquireNextImage();
         } catch (RuntimeException e2) {
             if (!isImageReaderContextNotInitializedException(e2)) {
                 throw e2;
             }
-            image = null;
+            imageAcquireNextImage = null;
         }
-        if (image == null) {
+        if (imageAcquireNextImage == null) {
             return null;
         }
-        return new AndroidImageProxy(image);
+        return new AndroidImageProxy(imageAcquireNextImage);
     }
 
     @Override // androidx.camera.core.impl.ImageReaderProxy
@@ -106,7 +106,7 @@ final class AndroidImageReaderProxy implements ImageReaderProxy {
                 executor.execute(new Runnable() { // from class: androidx.camera.core.AndroidImageReaderProxy.1.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        C02881 c02881 = C02881.this;
+                        AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
                         onImageAvailableListener.onImageAvailable(AndroidImageReaderProxy.this);
                     }
                 });

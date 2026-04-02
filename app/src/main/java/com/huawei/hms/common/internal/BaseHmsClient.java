@@ -24,54 +24,169 @@ import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.HMSPackageManager;
 import com.huawei.hms.utils.PackageManagerHelper;
 import com.huawei.hms.utils.Util;
+import d.c.a.b.a.a;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class BaseHmsClient implements AidlApiClient {
     protected static final int TIMEOUT_DISCONNECTED = 6;
 
-    /* renamed from: i */
-    private static final Object f7244i = new Object();
+    /* JADX INFO: renamed from: i */
+    private static final Object f4537i = new Object();
 
-    /* renamed from: j */
-    private static final AtomicInteger f7245j = new AtomicInteger(1);
+    /* JADX INFO: renamed from: j */
+    private static final AtomicInteger f4538j = new AtomicInteger(1);
 
-    /* renamed from: k */
-    private static final AtomicInteger f7246k = new AtomicInteger(1);
+    /* JADX INFO: renamed from: k */
+    private static final AtomicInteger f4539k = new AtomicInteger(1);
 
-    /* renamed from: l */
-    private static BinderAdapter f7247l;
+    /* JADX INFO: renamed from: l */
+    private static BinderAdapter f4540l;
 
-    /* renamed from: m */
-    private static BinderAdapter f7248m;
+    /* JADX INFO: renamed from: m */
+    private static BinderAdapter f4541m;
+    private final Context a;
 
-    /* renamed from: a */
-    private final Context f7249a;
+    /* JADX INFO: renamed from: b */
+    private String f4542b;
 
-    /* renamed from: b */
-    private String f7250b;
+    /* JADX INFO: renamed from: c */
+    private final ClientSettings f4543c;
 
-    /* renamed from: c */
-    private final ClientSettings f7251c;
+    /* JADX INFO: renamed from: d */
+    private volatile IAIDLInvoke f4544d;
 
-    /* renamed from: d */
-    private volatile IAIDLInvoke f7252d;
+    /* JADX INFO: renamed from: e */
+    private final ConnectionCallbacks f4545e;
 
-    /* renamed from: e */
-    private final ConnectionCallbacks f7253e;
+    /* JADX INFO: renamed from: f */
+    private final OnConnectionFailedListener f4546f;
 
-    /* renamed from: f */
-    private final OnConnectionFailedListener f7254f;
+    /* JADX INFO: renamed from: g */
+    private Handler f4547g = null;
 
-    /* renamed from: g */
-    private Handler f7255g = null;
-
-    /* renamed from: h */
-    private HuaweiApi.RequestHandler f7256h;
+    /* JADX INFO: renamed from: h */
+    private HuaweiApi.RequestHandler f4548h;
     protected String sessionId;
+
+    /* JADX INFO: renamed from: com.huawei.hms.common.internal.BaseHmsClient$1 */
+    class AnonymousClass1 implements BinderAdapter.BinderCallBack {
+
+        /* JADX INFO: renamed from: com.huawei.hms.common.internal.BaseHmsClient$1$1 */
+        class C00921 implements FailedBinderCallBack.BinderCallBack {
+            C00921() {
+            }
+
+            @Override // com.huawei.hms.api.FailedBinderCallBack.BinderCallBack
+            public void binderCallBack(int i2) {
+                if (i2 != 0) {
+                    BaseHmsClient.this.a(new ConnectionResult(10, (PendingIntent) null));
+                    BaseHmsClient.this.f4544d = null;
+                }
+            }
+        }
+
+        AnonymousClass1() {
+        }
+
+        @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
+        public void onBinderFailed(int i2) {
+            onBinderFailed(i2, null);
+        }
+
+        @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
+        public void onNullBinding(ComponentName componentName) {
+            BaseHmsClient.this.b(1);
+            BaseHmsClient.this.a(10);
+        }
+
+        @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            HMSLog.i("BaseHmsClient", "Enter onServiceConnected.");
+            BaseHmsClient.this.connectedInternal(iBinder);
+        }
+
+        @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
+        public void onServiceDisconnected(ComponentName componentName) {
+            HMSLog.i("BaseHmsClient", "Enter onServiceDisconnected.");
+            BaseHmsClient.this.b(1);
+            RequestManager.getHandler().sendEmptyMessage(RequestManager.NOTIFY_CONNECT_SUSPENDED);
+            if (BaseHmsClient.this.f4545e == null || (BaseHmsClient.this.f4545e instanceof HuaweiApi.RequestHandler)) {
+                return;
+            }
+            BaseHmsClient.this.f4545e.onConnectionSuspended(1);
+        }
+
+        @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
+        public void onTimedDisconnected() {
+            BaseHmsClient.this.b(6);
+            if (BaseHmsClient.this.f4545e == null || (BaseHmsClient.this.f4545e instanceof HuaweiApi.RequestHandler)) {
+                return;
+            }
+            BaseHmsClient.this.f4545e.onConnectionSuspended(1);
+        }
+
+        @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
+        public void onBinderFailed(int i2, Intent intent) {
+            if (intent == null) {
+                HMSLog.i("BaseHmsClient", "onBinderFailed: intent is null!");
+                BaseHmsClient.this.a(new ConnectionResult(10, (PendingIntent) null));
+                BaseHmsClient.this.f4544d = null;
+                return;
+            }
+            Activity activeActivity = Util.getActiveActivity(BaseHmsClient.this.getClientSettings().getCpActivity(), BaseHmsClient.this.getContext());
+            if (activeActivity == null) {
+                HMSLog.i("BaseHmsClient", "onBinderFailed: return pendingIntent to kit and cp");
+                BaseHmsClient.this.a(new ConnectionResult(10, PendingIntent.getActivity(BaseHmsClient.this.a, 11, intent, a.B1)));
+                BaseHmsClient.this.f4544d = null;
+                return;
+            }
+            HMSLog.i("BaseHmsClient", "onBinderFailed: SDK try to resolve and reConnect!");
+            long time = new Timestamp(System.currentTimeMillis()).getTime();
+            FailedBinderCallBack.getInstance().setCallBack(Long.valueOf(time), new FailedBinderCallBack.BinderCallBack() { // from class: com.huawei.hms.common.internal.BaseHmsClient.1.1
+                C00921() {
+                }
+
+                @Override // com.huawei.hms.api.FailedBinderCallBack.BinderCallBack
+                public void binderCallBack(int i22) {
+                    if (i22 != 0) {
+                        BaseHmsClient.this.a(new ConnectionResult(10, (PendingIntent) null));
+                        BaseHmsClient.this.f4544d = null;
+                    }
+                }
+            });
+            intent.putExtra(FailedBinderCallBack.CALLER_ID, time);
+            activeActivity.startActivity(intent);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.huawei.hms.common.internal.BaseHmsClient$2 */
+    class AnonymousClass2 implements AvailableAdapter.AvailableCallBack {
+        AnonymousClass2() {
+        }
+
+        @Override // com.huawei.hms.adapter.AvailableAdapter.AvailableCallBack
+        public void onComplete(int i2) {
+            BaseHmsClient.this.a(i2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.huawei.hms.common.internal.BaseHmsClient$3 */
+    class AnonymousClass3 implements AvailableAdapter.AvailableCallBack {
+        AnonymousClass3() {
+        }
+
+        @Override // com.huawei.hms.adapter.AvailableAdapter.AvailableCallBack
+        public void onComplete(int i2) {
+            if (i2 == 0 && BaseHmsClient.this.c()) {
+                BaseHmsClient.this.a();
+            } else {
+                BaseHmsClient.this.a(i2);
+            }
+        }
+    }
 
     public interface ConnectionCallbacks {
         public static final int CAUSE_API_CLIENT_EXPIRED = 3;
@@ -84,24 +199,22 @@ public abstract class BaseHmsClient implements AidlApiClient {
     }
 
     public static final class ConnectionResultWrapper {
+        private HuaweiApi.RequestHandler a;
 
-        /* renamed from: a */
-        private HuaweiApi.RequestHandler f7261a;
-
-        /* renamed from: b */
-        private ConnectionResult f7262b;
+        /* JADX INFO: renamed from: b */
+        private ConnectionResult f4549b;
 
         public ConnectionResultWrapper(HuaweiApi.RequestHandler requestHandler, ConnectionResult connectionResult) {
-            this.f7261a = requestHandler;
-            this.f7262b = connectionResult;
+            this.a = requestHandler;
+            this.f4549b = connectionResult;
         }
 
         public ConnectionResult getConnectionResult() {
-            return this.f7262b;
+            return this.f4549b;
         }
 
         public HuaweiApi.RequestHandler getRequest() {
-            return this.f7261a;
+            return this.a;
         }
     }
 
@@ -110,18 +223,35 @@ public abstract class BaseHmsClient implements AidlApiClient {
     }
 
     public BaseHmsClient(Context context, ClientSettings clientSettings, OnConnectionFailedListener onConnectionFailedListener, ConnectionCallbacks connectionCallbacks) {
-        this.f7249a = context;
-        this.f7251c = clientSettings;
+        this.a = context;
+        this.f4543c = clientSettings;
         if (clientSettings != null) {
-            this.f7250b = clientSettings.getAppID();
+            this.f4542b = clientSettings.getAppID();
         }
-        this.f7254f = onConnectionFailedListener;
-        this.f7253e = connectionCallbacks;
+        this.f4546f = onConnectionFailedListener;
+        this.f4545e = connectionCallbacks;
     }
 
-    /* renamed from: d */
-    private BinderAdapter.BinderCallBack m6732d() {
+    private BinderAdapter.BinderCallBack d() {
         return new BinderAdapter.BinderCallBack() { // from class: com.huawei.hms.common.internal.BaseHmsClient.1
+
+            /* JADX INFO: renamed from: com.huawei.hms.common.internal.BaseHmsClient$1$1 */
+            class C00921 implements FailedBinderCallBack.BinderCallBack {
+                C00921() {
+                }
+
+                @Override // com.huawei.hms.api.FailedBinderCallBack.BinderCallBack
+                public void binderCallBack(int i22) {
+                    if (i22 != 0) {
+                        BaseHmsClient.this.a(new ConnectionResult(10, (PendingIntent) null));
+                        BaseHmsClient.this.f4544d = null;
+                    }
+                }
+            }
+
+            AnonymousClass1() {
+            }
+
             @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
             public void onBinderFailed(int i2) {
                 onBinderFailed(i2, null);
@@ -129,59 +259,62 @@ public abstract class BaseHmsClient implements AidlApiClient {
 
             @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
             public void onNullBinding(ComponentName componentName) {
-                BaseHmsClient.this.m6736b(1);
-                BaseHmsClient.this.m6720a(10);
+                BaseHmsClient.this.b(1);
+                BaseHmsClient.this.a(10);
             }
 
             @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                HMSLog.m7717i("BaseHmsClient", "Enter onServiceConnected.");
+                HMSLog.i("BaseHmsClient", "Enter onServiceConnected.");
                 BaseHmsClient.this.connectedInternal(iBinder);
             }
 
             @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
             public void onServiceDisconnected(ComponentName componentName) {
-                HMSLog.m7717i("BaseHmsClient", "Enter onServiceDisconnected.");
-                BaseHmsClient.this.m6736b(1);
+                HMSLog.i("BaseHmsClient", "Enter onServiceDisconnected.");
+                BaseHmsClient.this.b(1);
                 RequestManager.getHandler().sendEmptyMessage(RequestManager.NOTIFY_CONNECT_SUSPENDED);
-                if (BaseHmsClient.this.f7253e == null || (BaseHmsClient.this.f7253e instanceof HuaweiApi.RequestHandler)) {
+                if (BaseHmsClient.this.f4545e == null || (BaseHmsClient.this.f4545e instanceof HuaweiApi.RequestHandler)) {
                     return;
                 }
-                BaseHmsClient.this.f7253e.onConnectionSuspended(1);
+                BaseHmsClient.this.f4545e.onConnectionSuspended(1);
             }
 
             @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
             public void onTimedDisconnected() {
-                BaseHmsClient.this.m6736b(6);
-                if (BaseHmsClient.this.f7253e == null || (BaseHmsClient.this.f7253e instanceof HuaweiApi.RequestHandler)) {
+                BaseHmsClient.this.b(6);
+                if (BaseHmsClient.this.f4545e == null || (BaseHmsClient.this.f4545e instanceof HuaweiApi.RequestHandler)) {
                     return;
                 }
-                BaseHmsClient.this.f7253e.onConnectionSuspended(1);
+                BaseHmsClient.this.f4545e.onConnectionSuspended(1);
             }
 
             @Override // com.huawei.hms.adapter.BinderAdapter.BinderCallBack
             public void onBinderFailed(int i2, Intent intent) {
                 if (intent == null) {
-                    HMSLog.m7717i("BaseHmsClient", "onBinderFailed: intent is null!");
-                    BaseHmsClient.this.m6723a(new ConnectionResult(10, (PendingIntent) null));
-                    BaseHmsClient.this.f7252d = null;
+                    HMSLog.i("BaseHmsClient", "onBinderFailed: intent is null!");
+                    BaseHmsClient.this.a(new ConnectionResult(10, (PendingIntent) null));
+                    BaseHmsClient.this.f4544d = null;
                     return;
                 }
                 Activity activeActivity = Util.getActiveActivity(BaseHmsClient.this.getClientSettings().getCpActivity(), BaseHmsClient.this.getContext());
                 if (activeActivity == null) {
-                    HMSLog.m7717i("BaseHmsClient", "onBinderFailed: return pendingIntent to kit and cp");
-                    BaseHmsClient.this.m6723a(new ConnectionResult(10, PendingIntent.getActivity(BaseHmsClient.this.f7249a, 11, intent, AbstractC1191a.f2487B1)));
-                    BaseHmsClient.this.f7252d = null;
+                    HMSLog.i("BaseHmsClient", "onBinderFailed: return pendingIntent to kit and cp");
+                    BaseHmsClient.this.a(new ConnectionResult(10, PendingIntent.getActivity(BaseHmsClient.this.a, 11, intent, a.B1)));
+                    BaseHmsClient.this.f4544d = null;
                     return;
                 }
-                HMSLog.m7717i("BaseHmsClient", "onBinderFailed: SDK try to resolve and reConnect!");
+                HMSLog.i("BaseHmsClient", "onBinderFailed: SDK try to resolve and reConnect!");
                 long time = new Timestamp(System.currentTimeMillis()).getTime();
                 FailedBinderCallBack.getInstance().setCallBack(Long.valueOf(time), new FailedBinderCallBack.BinderCallBack() { // from class: com.huawei.hms.common.internal.BaseHmsClient.1.1
+                    C00921() {
+                    }
+
                     @Override // com.huawei.hms.api.FailedBinderCallBack.BinderCallBack
-                    public void binderCallBack(int i3) {
-                        if (i3 != 0) {
-                            BaseHmsClient.this.m6723a(new ConnectionResult(10, (PendingIntent) null));
-                            BaseHmsClient.this.f7252d = null;
+                    public void binderCallBack(int i22) {
+                        if (i22 != 0) {
+                            BaseHmsClient.this.a(new ConnectionResult(10, (PendingIntent) null));
+                            BaseHmsClient.this.f4544d = null;
                         }
                     }
                 });
@@ -191,39 +324,37 @@ public abstract class BaseHmsClient implements AidlApiClient {
         };
     }
 
-    /* renamed from: e */
-    private void m6733e() {
-        HMSLog.m7718w("BaseHmsClient", "Failed to get service as interface, trying to unbind.");
-        if (this.f7251c.isUseInnerHms()) {
-            BinderAdapter binderAdapter = f7248m;
+    private void e() {
+        HMSLog.w("BaseHmsClient", "Failed to get service as interface, trying to unbind.");
+        if (this.f4543c.isUseInnerHms()) {
+            BinderAdapter binderAdapter = f4541m;
             if (binderAdapter == null) {
-                HMSLog.m7718w("BaseHmsClient", "mInnerBinderAdapter is null.");
+                HMSLog.w("BaseHmsClient", "mInnerBinderAdapter is null.");
                 return;
             }
             binderAdapter.unBind();
         } else {
-            BinderAdapter binderAdapter2 = f7247l;
+            BinderAdapter binderAdapter2 = f4540l;
             if (binderAdapter2 == null) {
-                HMSLog.m7718w("BaseHmsClient", "mOuterBinderAdapter is null.");
+                HMSLog.w("BaseHmsClient", "mOuterBinderAdapter is null.");
                 return;
             }
             binderAdapter2.unBind();
         }
-        m6736b(1);
-        m6720a(10);
+        b(1);
+        a(10);
     }
 
-    /* renamed from: f */
-    private void m6734f() {
-        if (this.f7251c.isUseInnerHms()) {
-            BinderAdapter binderAdapter = f7248m;
+    private void f() {
+        if (this.f4543c.isUseInnerHms()) {
+            BinderAdapter binderAdapter = f4541m;
             if (binderAdapter != null) {
                 binderAdapter.unBind();
                 return;
             }
             return;
         }
-        BinderAdapter binderAdapter2 = f7247l;
+        BinderAdapter binderAdapter2 = f4540l;
         if (binderAdapter2 != null) {
             binderAdapter2.unBind();
         }
@@ -236,23 +367,23 @@ public abstract class BaseHmsClient implements AidlApiClient {
     }
 
     public void connect(int i2) {
-        m6721a(i2, false);
+        a(i2, false);
     }
 
     public void connectedInternal(IBinder iBinder) {
-        this.f7252d = IAIDLInvoke.Stub.asInterface(iBinder);
-        if (this.f7252d != null) {
+        this.f4544d = IAIDLInvoke.Stub.asInterface(iBinder);
+        if (this.f4544d != null) {
             onConnecting();
         } else {
-            HMSLog.m7715e("BaseHmsClient", "mService is null, try to unBind.");
-            m6733e();
+            HMSLog.e("BaseHmsClient", "mService is null, try to unBind.");
+            e();
         }
     }
 
     protected final void connectionConnected() {
-        m6736b(3);
+        b(3);
         RequestManager.getHandler().sendEmptyMessage(RequestManager.NOTIFY_CONNECT_SUCCESS);
-        ConnectionCallbacks connectionCallbacks = this.f7253e;
+        ConnectionCallbacks connectionCallbacks = this.f4545e;
         if (connectionCallbacks == null || (connectionCallbacks instanceof HuaweiApi.RequestHandler)) {
             return;
         }
@@ -260,51 +391,51 @@ public abstract class BaseHmsClient implements AidlApiClient {
     }
 
     public void disconnect() {
-        int i2 = (this.f7251c.isUseInnerHms() ? f7246k : f7245j).get();
-        HMSLog.m7717i("BaseHmsClient", "Enter disconnect, Connection Status: " + i2);
+        int i2 = (this.f4543c.isUseInnerHms() ? f4539k : f4538j).get();
+        HMSLog.i("BaseHmsClient", "Enter disconnect, Connection Status: " + i2);
         if (i2 == 3) {
-            m6734f();
-            m6736b(1);
+            f();
+            b(1);
         } else {
             if (i2 != 5) {
                 return;
             }
-            m6728b();
-            m6736b(1);
+            b();
+            b(1);
         }
     }
 
     public BinderAdapter getAdapter() {
-        HMSLog.m7717i("BaseHmsClient", "getAdapter:isInner:" + this.f7251c.isUseInnerHms() + ", mInnerBinderAdapter:" + f7248m + ", mOuterBinderAdapter:" + f7247l);
-        return this.f7251c.isUseInnerHms() ? f7248m : f7247l;
+        HMSLog.i("BaseHmsClient", "getAdapter:isInner:" + this.f4543c.isUseInnerHms() + ", mInnerBinderAdapter:" + f4541m + ", mOuterBinderAdapter:" + f4540l);
+        return this.f4543c.isUseInnerHms() ? f4541m : f4540l;
     }
 
     @Override // com.huawei.hms.support.api.client.AidlApiClient
     public List<String> getApiNameList() {
-        return this.f7251c.getApiName();
+        return this.f4543c.getApiName();
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getAppID() {
-        return this.f7250b;
+        return this.f4542b;
     }
 
     protected ClientSettings getClientSettings() {
-        return this.f7251c;
+        return this.f4543c;
     }
 
     public int getConnectionStatus() {
-        return (this.f7251c.isUseInnerHms() ? f7246k : f7245j).get();
+        return (this.f4543c.isUseInnerHms() ? f4539k : f4538j).get();
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public Context getContext() {
-        return this.f7249a;
+        return this.a;
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getCpID() {
-        return this.f7251c.getCpID();
+        return this.f4543c.getCpID();
     }
 
     @Deprecated
@@ -314,7 +445,7 @@ public abstract class BaseHmsClient implements AidlApiClient {
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public String getPackageName() {
-        return this.f7251c.getClientPackageName();
+        return this.f4543c.getClientPackageName();
     }
 
     public int getRequestHmsVersionCode() {
@@ -323,12 +454,12 @@ public abstract class BaseHmsClient implements AidlApiClient {
 
     @Override // com.huawei.hms.support.api.client.AidlApiClient
     public IAIDLInvoke getService() {
-        return this.f7252d;
+        return this.f4544d;
     }
 
     public String getServiceAction() {
-        HMSPackageManager hMSPackageManager = HMSPackageManager.getInstance(this.f7249a);
-        return this.f7251c.isUseInnerHms() ? hMSPackageManager.getInnerServiceAction() : hMSPackageManager.getServiceAction();
+        HMSPackageManager hMSPackageManager = HMSPackageManager.getInstance(this.a);
+        return this.f4543c.isUseInnerHms() ? hMSPackageManager.getInnerServiceAction() : hMSPackageManager.getServiceAction();
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
@@ -338,7 +469,7 @@ public abstract class BaseHmsClient implements AidlApiClient {
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public SubAppInfo getSubAppInfo() {
-        return this.f7251c.getSubAppID();
+        return this.f4543c.getSubAppID();
     }
 
     @Override // com.huawei.hms.support.api.client.ApiClient
@@ -348,11 +479,11 @@ public abstract class BaseHmsClient implements AidlApiClient {
 
     @Override // com.huawei.hms.support.api.client.ApiClient
     public boolean isConnected() {
-        return !this.f7251c.isUseInnerHms() ? f7245j.get() != 3 : f7246k.get() != 3;
+        return !this.f4543c.isUseInnerHms() ? f4538j.get() != 3 : f4539k.get() != 3;
     }
 
     public boolean isConnecting() {
-        return (this.f7251c.isUseInnerHms() ? f7246k : f7245j).get() == 5;
+        return (this.f4543c.isUseInnerHms() ? f4539k : f4538j).get() == 5;
     }
 
     public void onConnecting() {
@@ -360,198 +491,191 @@ public abstract class BaseHmsClient implements AidlApiClient {
     }
 
     public final void setInternalRequest(HuaweiApi.RequestHandler requestHandler) {
-        this.f7256h = requestHandler;
+        this.f4548h = requestHandler;
     }
 
     public void setService(IAIDLInvoke iAIDLInvoke) {
-        this.f7252d = iAIDLInvoke;
+        this.f4544d = iAIDLInvoke;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: c */
-    public boolean m6730c() {
-        return HMSPackageManager.getInstance(this.f7249a).getHMSPackageStatesForMultiService() == PackageManagerHelper.PackageStates.ENABLED;
+    public boolean c() {
+        return HMSPackageManager.getInstance(this.a).getHMSPackageStatesForMultiService() == PackageManagerHelper.PackageStates.ENABLED;
     }
 
-    /* renamed from: b */
-    void m6736b(int i2) {
-        if (this.f7251c.isUseInnerHms()) {
-            f7246k.set(i2);
+    void b(int i2) {
+        if (this.f4543c.isUseInnerHms()) {
+            f4539k.set(i2);
         } else {
-            f7245j.set(i2);
+            f4538j.set(i2);
         }
     }
 
     public void connect(int i2, boolean z) {
-        m6721a(i2, z);
+        a(i2, z);
     }
 
-    /* renamed from: b */
-    private void m6728b() {
-        synchronized (f7244i) {
-            Handler handler = this.f7255g;
+    private void b() {
+        synchronized (f4537i) {
+            Handler handler = this.f4547g;
             if (handler != null) {
                 handler.removeMessages(2);
-                this.f7255g = null;
+                this.f4547g = null;
             }
         }
     }
 
-    /* renamed from: a */
-    void m6735a() {
-        String innerHmsPkg = this.f7251c.getInnerHmsPkg();
+    void a() {
+        String innerHmsPkg = this.f4543c.getInnerHmsPkg();
         String serviceAction = getServiceAction();
-        HMSLog.m7717i("BaseHmsClient", "enter bindCoreService, packageName is " + innerHmsPkg + ", serviceAction is " + serviceAction);
-        m6726a(innerHmsPkg, serviceAction);
+        HMSLog.i("BaseHmsClient", "enter bindCoreService, packageName is " + innerHmsPkg + ", serviceAction is " + serviceAction);
+        a(innerHmsPkg, serviceAction);
     }
 
-    /* renamed from: a */
-    private void m6726a(String str, String str2) {
-        if (this.f7251c.isUseInnerHms()) {
-            f7248m = InnerBinderAdapter.getInstance(this.f7249a, str2, str);
+    private void a(String str, String str2) {
+        if (this.f4543c.isUseInnerHms()) {
+            f4541m = InnerBinderAdapter.getInstance(this.a, str2, str);
             if (isConnected()) {
-                HMSLog.m7717i("BaseHmsClient", "The binder is already connected.");
+                HMSLog.i("BaseHmsClient", "The binder is already connected.");
                 getAdapter().updateDelayTask();
                 connectedInternal(getAdapter().getServiceBinder());
                 return;
             } else {
-                m6736b(5);
-                f7248m.binder(m6732d());
+                b(5);
+                f4541m.binder(d());
                 return;
             }
         }
-        f7247l = OuterBinderAdapter.getInstance(this.f7249a, str2, str);
+        f4540l = OuterBinderAdapter.getInstance(this.a, str2, str);
         if (isConnected()) {
-            HMSLog.m7717i("BaseHmsClient", "The binder is already connected.");
+            HMSLog.i("BaseHmsClient", "The binder is already connected.");
             getAdapter().updateDelayTask();
             connectedInternal(getAdapter().getServiceBinder());
         } else {
-            m6736b(5);
-            f7247l.binder(m6732d());
+            b(5);
+            f4540l.binder(d());
         }
     }
 
-    /* renamed from: b */
-    private void m6729b(AvailableAdapter availableAdapter, int i2) {
-        HMSLog.m7717i("BaseHmsClient", "enter HmsCore resolution");
+    private void b(AvailableAdapter availableAdapter, int i2) {
+        HMSLog.i("BaseHmsClient", "enter HmsCore resolution");
         if (!getClientSettings().isHasActivity()) {
-            m6723a(new ConnectionResult(26, HuaweiApiAvailability.getInstance().getErrPendingIntent(this.f7249a, i2, 0)));
+            a(new ConnectionResult(26, HuaweiApiAvailability.getInstance().getErrPendingIntent(this.a, i2, 0)));
             return;
         }
         Activity activeActivity = Util.getActiveActivity(getClientSettings().getCpActivity(), getContext());
         if (activeActivity != null) {
             availableAdapter.startResolution(activeActivity, new AvailableAdapter.AvailableCallBack() { // from class: com.huawei.hms.common.internal.BaseHmsClient.3
+                AnonymousClass3() {
+                }
+
                 @Override // com.huawei.hms.adapter.AvailableAdapter.AvailableCallBack
-                public void onComplete(int i3) {
-                    if (i3 == 0 && BaseHmsClient.this.m6730c()) {
-                        BaseHmsClient.this.m6735a();
+                public void onComplete(int i22) {
+                    if (i22 == 0 && BaseHmsClient.this.c()) {
+                        BaseHmsClient.this.a();
                     } else {
-                        BaseHmsClient.this.m6720a(i3);
+                        BaseHmsClient.this.a(i22);
                     }
                 }
             });
         } else {
-            m6720a(26);
+            a(26);
         }
     }
 
-    /* renamed from: a */
-    private void m6721a(int i2, boolean z) {
-        HMSLog.m7717i("BaseHmsClient", "====== HMSSDK version: 61100302 ======");
-        int i3 = (this.f7251c.isUseInnerHms() ? f7246k : f7245j).get();
-        HMSLog.m7717i("BaseHmsClient", "Enter connect, Connection Status: " + i3);
+    private void a(int i2, boolean z) {
+        HMSLog.i("BaseHmsClient", "====== HMSSDK version: 61100302 ======");
+        int i3 = (this.f4543c.isUseInnerHms() ? f4539k : f4538j).get();
+        HMSLog.i("BaseHmsClient", "Enter connect, Connection Status: " + i3);
         if (z || !(i3 == 3 || i3 == 5)) {
             if (getMinApkVersion() > i2) {
                 i2 = getMinApkVersion();
             }
-            HMSLog.m7717i("BaseHmsClient", "connect minVersion:" + i2 + " packageName:" + this.f7251c.getInnerHmsPkg());
-            if (this.f7249a.getPackageName().equals(this.f7251c.getInnerHmsPkg())) {
-                HMSLog.m7717i("BaseHmsClient", "service packageName is same, bind core service return");
-                m6735a();
+            HMSLog.i("BaseHmsClient", "connect minVersion:" + i2 + " packageName:" + this.f4543c.getInnerHmsPkg());
+            if (this.a.getPackageName().equals(this.f4543c.getInnerHmsPkg())) {
+                HMSLog.i("BaseHmsClient", "service packageName is same, bind core service return");
+                a();
                 return;
             }
-            if (Util.isAvailableLibExist(this.f7249a)) {
+            if (Util.isAvailableLibExist(this.a)) {
                 AvailableAdapter availableAdapter = new AvailableAdapter(i2);
-                int isHuaweiMobileServicesAvailable = availableAdapter.isHuaweiMobileServicesAvailable(this.f7249a);
-                HMSLog.m7717i("BaseHmsClient", "check available result: " + isHuaweiMobileServicesAvailable);
-                if (isHuaweiMobileServicesAvailable == 0) {
-                    m6735a();
+                int iIsHuaweiMobileServicesAvailable = availableAdapter.isHuaweiMobileServicesAvailable(this.a);
+                HMSLog.i("BaseHmsClient", "check available result: " + iIsHuaweiMobileServicesAvailable);
+                if (iIsHuaweiMobileServicesAvailable == 0) {
+                    a();
                     return;
                 }
-                if (availableAdapter.isUserResolvableError(isHuaweiMobileServicesAvailable)) {
-                    HMSLog.m7717i("BaseHmsClient", "bindCoreService3.0 fail, start resolution now.");
-                    m6729b(availableAdapter, isHuaweiMobileServicesAvailable);
+                if (availableAdapter.isUserResolvableError(iIsHuaweiMobileServicesAvailable)) {
+                    HMSLog.i("BaseHmsClient", "bindCoreService3.0 fail, start resolution now.");
+                    b(availableAdapter, iIsHuaweiMobileServicesAvailable);
                     return;
                 } else {
-                    if (availableAdapter.isUserNoticeError(isHuaweiMobileServicesAvailable)) {
-                        HMSLog.m7717i("BaseHmsClient", "bindCoreService3.0 fail, start notice now.");
-                        m6722a(availableAdapter, isHuaweiMobileServicesAvailable);
+                    if (availableAdapter.isUserNoticeError(iIsHuaweiMobileServicesAvailable)) {
+                        HMSLog.i("BaseHmsClient", "bindCoreService3.0 fail, start notice now.");
+                        a(availableAdapter, iIsHuaweiMobileServicesAvailable);
                         return;
                     }
-                    HMSLog.m7717i("BaseHmsClient", "bindCoreService3.0 fail: " + isHuaweiMobileServicesAvailable + " is not resolvable.");
-                    m6720a(isHuaweiMobileServicesAvailable);
+                    HMSLog.i("BaseHmsClient", "bindCoreService3.0 fail: " + iIsHuaweiMobileServicesAvailable + " is not resolvable.");
+                    a(iIsHuaweiMobileServicesAvailable);
                     return;
                 }
             }
-            int isHuaweiMobileServicesAvailable2 = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(this.f7249a, i2);
-            HMSLog.m7717i("BaseHmsClient", "HuaweiApiAvailability check available result: " + isHuaweiMobileServicesAvailable2);
-            if (isHuaweiMobileServicesAvailable2 == 0) {
-                m6735a();
+            int iIsHuaweiMobileServicesAvailable2 = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(this.a, i2);
+            HMSLog.i("BaseHmsClient", "HuaweiApiAvailability check available result: " + iIsHuaweiMobileServicesAvailable2);
+            if (iIsHuaweiMobileServicesAvailable2 == 0) {
+                a();
             } else {
-                m6720a(isHuaweiMobileServicesAvailable2);
+                a(iIsHuaweiMobileServicesAvailable2);
             }
         }
     }
 
-    /* renamed from: a */
-    private void m6722a(AvailableAdapter availableAdapter, int i2) {
-        HMSLog.m7717i("BaseHmsClient", "enter notice");
+    private void a(AvailableAdapter availableAdapter, int i2) {
+        HMSLog.i("BaseHmsClient", "enter notice");
         if (!getClientSettings().isHasActivity()) {
             if (i2 == 29) {
                 i2 = 9;
             }
-            m6723a(new ConnectionResult(26, HuaweiApiAvailability.getInstance().getErrPendingIntent(this.f7249a, i2, 0)));
+            a(new ConnectionResult(26, HuaweiApiAvailability.getInstance().getErrPendingIntent(this.a, i2, 0)));
         } else {
             Activity activeActivity = Util.getActiveActivity(getClientSettings().getCpActivity(), getContext());
             if (activeActivity != null) {
                 availableAdapter.startNotice(activeActivity, new AvailableAdapter.AvailableCallBack() { // from class: com.huawei.hms.common.internal.BaseHmsClient.2
+                    AnonymousClass2() {
+                    }
+
                     @Override // com.huawei.hms.adapter.AvailableAdapter.AvailableCallBack
-                    public void onComplete(int i3) {
-                        BaseHmsClient.this.m6720a(i3);
+                    public void onComplete(int i22) {
+                        BaseHmsClient.this.a(i22);
                     }
                 });
             } else {
-                m6720a(26);
+                a(26);
             }
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m6720a(int i2) {
-        HMSLog.m7717i("BaseHmsClient", "notifyFailed result: " + i2);
+    public void a(int i2) {
+        HMSLog.i("BaseHmsClient", "notifyFailed result: " + i2);
         Message message = new Message();
         message.what = RequestManager.NOTIFY_CONNECT_FAILED;
-        message.obj = new ConnectionResultWrapper(this.f7256h, new ConnectionResult(i2));
+        message.obj = new ConnectionResultWrapper(this.f4548h, new ConnectionResult(i2));
         RequestManager.getHandler().sendMessage(message);
-        OnConnectionFailedListener onConnectionFailedListener = this.f7254f;
+        OnConnectionFailedListener onConnectionFailedListener = this.f4546f;
         if (onConnectionFailedListener == null || (onConnectionFailedListener instanceof HuaweiApi.RequestHandler)) {
             return;
         }
         onConnectionFailedListener.onConnectionFailed(new ConnectionResult(i2));
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m6723a(ConnectionResult connectionResult) {
-        HMSLog.m7717i("BaseHmsClient", "notifyFailed result: " + connectionResult.getErrorCode());
+    public void a(ConnectionResult connectionResult) {
+        HMSLog.i("BaseHmsClient", "notifyFailed result: " + connectionResult.getErrorCode());
         Message message = new Message();
         message.what = RequestManager.NOTIFY_CONNECT_FAILED;
-        HuaweiApi.RequestHandler requestHandler = this.f7256h;
-        this.f7256h = null;
+        HuaweiApi.RequestHandler requestHandler = this.f4548h;
+        this.f4548h = null;
         message.obj = new ConnectionResultWrapper(requestHandler, connectionResult);
         RequestManager.getHandler().sendMessage(message);
-        OnConnectionFailedListener onConnectionFailedListener = this.f7254f;
+        OnConnectionFailedListener onConnectionFailedListener = this.f4546f;
         if (onConnectionFailedListener == null || (onConnectionFailedListener instanceof HuaweiApi.RequestHandler)) {
             return;
         }

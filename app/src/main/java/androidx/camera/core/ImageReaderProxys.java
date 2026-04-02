@@ -4,7 +4,7 @@ import android.media.ImageReader;
 import androidx.annotation.NonNull;
 import androidx.camera.core.impl.ImageReaderProxy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImageReaderProxys {
     private ImageReaderProxys() {
     }

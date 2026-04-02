@@ -1,7 +1,7 @@
 package anet.channel.strategy;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class StrategyCenter {
     private static volatile IStrategyInstance instance;
 
@@ -12,7 +12,7 @@ public class StrategyCenter {
         if (instance == null) {
             synchronized (StrategyCenter.class) {
                 if (instance == null) {
-                    instance = new C0837g();
+                    instance = new g();
                 }
             }
         }

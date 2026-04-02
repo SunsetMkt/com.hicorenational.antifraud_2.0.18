@@ -2,8 +2,8 @@ package androidx.camera.core;
 
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public final class CameraXThreads {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})

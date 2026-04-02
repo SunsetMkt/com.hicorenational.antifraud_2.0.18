@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 import java.util.zip.CRC32;
 import java.util.zip.ZipException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ZipUtil {
     private static final int BUFFER_SIZE = 16384;
     private static final int ENDHDR = 22;
@@ -29,36 +29,36 @@ final class ZipUtil {
         long j2 = centralDirectory.size;
         randomAccessFile.seek(centralDirectory.offset);
         byte[] bArr = new byte[16384];
-        int read = randomAccessFile.read(bArr, 0, (int) Math.min(PlaybackStateCompat.ACTION_PREPARE, j2));
-        while (read != -1) {
-            crc32.update(bArr, 0, read);
-            j2 -= read;
+        int i2 = randomAccessFile.read(bArr, 0, (int) Math.min(PlaybackStateCompat.ACTION_PREPARE, j2));
+        while (i2 != -1) {
+            crc32.update(bArr, 0, i2);
+            j2 -= (long) i2;
             if (j2 == 0) {
                 break;
             }
-            read = randomAccessFile.read(bArr, 0, (int) Math.min(PlaybackStateCompat.ACTION_PREPARE, j2));
+            i2 = randomAccessFile.read(bArr, 0, (int) Math.min(PlaybackStateCompat.ACTION_PREPARE, j2));
         }
         return crc32.getValue();
     }
 
-    static CentralDirectory findCentralDirectory(RandomAccessFile randomAccessFile) throws IOException, ZipException {
+    static CentralDirectory findCentralDirectory(RandomAccessFile randomAccessFile) throws IOException {
         long length = randomAccessFile.length() - 22;
         if (length < 0) {
             throw new ZipException("File too short to be a zip file: " + randomAccessFile.length());
         }
         long j2 = length - 65536;
         long j3 = j2 >= 0 ? j2 : 0L;
-        int reverseBytes = Integer.reverseBytes(ENDSIG);
+        int iReverseBytes = Integer.reverseBytes(ENDSIG);
         do {
             randomAccessFile.seek(length);
-            if (randomAccessFile.readInt() == reverseBytes) {
+            if (randomAccessFile.readInt() == iReverseBytes) {
                 randomAccessFile.skipBytes(2);
                 randomAccessFile.skipBytes(2);
                 randomAccessFile.skipBytes(2);
                 randomAccessFile.skipBytes(2);
                 CentralDirectory centralDirectory = new CentralDirectory();
-                centralDirectory.size = Integer.reverseBytes(randomAccessFile.readInt()) & 4294967295L;
-                centralDirectory.offset = Integer.reverseBytes(randomAccessFile.readInt()) & 4294967295L;
+                centralDirectory.size = ((long) Integer.reverseBytes(randomAccessFile.readInt())) & 4294967295L;
+                centralDirectory.offset = ((long) Integer.reverseBytes(randomAccessFile.readInt())) & 4294967295L;
                 return centralDirectory;
             }
             length--;

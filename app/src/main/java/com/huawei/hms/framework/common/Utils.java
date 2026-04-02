@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Process;
 import android.os.SystemClock;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Utils {
     private static final String TAG = "Utils";
 
@@ -17,7 +17,7 @@ public class Utils {
 
     public static boolean is64Bit(Context context) {
         if (context == null) {
-            Logger.m6796e(TAG, "Null context, please check it.");
+            Logger.e(TAG, "Null context, please check it.");
             return false;
         }
         Context applicationContext = context.getApplicationContext() == null ? context : context.getApplicationContext();
@@ -31,19 +31,19 @@ public class Utils {
         try {
             return applicationContext.getPackageManager().getApplicationInfo(applicationContext.getPackageName(), 128).nativeLibraryDir.contains("64");
         } catch (PackageManager.NameNotFoundException unused) {
-            Logger.m6796e(TAG, "Get application info failed: name not found, try to get baseContext.");
+            Logger.e(TAG, "Get application info failed: name not found, try to get baseContext.");
             if (!(context instanceof ContextWrapper)) {
                 return false;
             }
             Context baseContext = ((ContextWrapper) context).getBaseContext();
             if (baseContext == null) {
-                Logger.m6803w(TAG, "Get baseContext failed: null. Return default: is64-bit.");
+                Logger.w(TAG, "Get baseContext failed: null. Return default: is64-bit.");
                 return true;
             }
             try {
                 return baseContext.getPackageManager().getApplicationInfo(baseContext.getPackageName(), 128).nativeLibraryDir.contains("64");
             } catch (PackageManager.NameNotFoundException unused2) {
-                Logger.m6796e(TAG, "Get baseContext application info failed: name not found");
+                Logger.e(TAG, "Get baseContext application info failed: name not found");
                 return true;
             }
         }

@@ -7,7 +7,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LollipopFixedWebView extends WebView {
     public LollipopFixedWebView(Context context) {
         super(getFixedContext(context));

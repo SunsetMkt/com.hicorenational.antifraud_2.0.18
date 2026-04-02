@@ -59,7 +59,7 @@ import java.util.Map;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ResponseParsers {
 
     public static final class AbortMultipartUploadResponseParser extends AbstractResponseParser<AbortMultipartUploadResult> {
@@ -87,11 +87,11 @@ public final class ResponseParsers {
             if (((String) responseMessage.getHeaders().get("Content-Type")).equals("application/xml")) {
                 return ResponseParsers.parseCompleteMultipartUploadResponseXML(responseMessage.getContent(), completeMultipartUploadResult);
             }
-            String string = responseMessage.getResponse().body().string();
-            if (TextUtils.isEmpty(string)) {
+            String strString = responseMessage.getResponse().body().string();
+            if (TextUtils.isEmpty(strString)) {
                 return completeMultipartUploadResult;
             }
-            completeMultipartUploadResult.setServerCallbackReturnBody(string);
+            completeMultipartUploadResult.setServerCallbackReturnBody(strString);
             return completeMultipartUploadResult;
         }
     }
@@ -135,7 +135,6 @@ public final class ResponseParsers {
     }
 
     public static final class DeleteMultipleObjectResponseParser extends AbstractResponseParser<DeleteMultipleObjectResult> {
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public DeleteMultipleObjectResult parseData(ResponseMessage responseMessage, DeleteMultipleObjectResult deleteMultipleObjectResult) throws Exception {
             return ResponseParsers.parseDeleteMultipleObjectResponse(responseMessage.getContent(), deleteMultipleObjectResult);
@@ -185,7 +184,6 @@ public final class ResponseParsers {
     }
 
     public static final class GetObjectACLResponseParser extends AbstractResponseParser<GetObjectACLResult> {
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public GetObjectACLResult parseData(ResponseMessage responseMessage, GetObjectACLResult getObjectACLResult) throws Exception {
             return ResponseParsers.parseGetObjectACLResponse(responseMessage.getContent(), getObjectACLResult);
@@ -212,7 +210,6 @@ public final class ResponseParsers {
     }
 
     public static final class GetSymlinkResponseParser extends AbstractResponseParser<GetSymlinkResult> {
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public GetSymlinkResult parseData(ResponseMessage responseMessage, GetSymlinkResult getSymlinkResult) throws Exception {
             getSymlinkResult.setTargetObjectName((String) responseMessage.getHeaders().get(OSSHeaders.OSS_HEADER_SYMLINK_TARGET));
@@ -243,7 +240,6 @@ public final class ResponseParsers {
     }
 
     public static final class ListBucketResponseParser extends AbstractResponseParser<ListBucketsResult> {
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public ListBucketsResult parseData(ResponseMessage responseMessage, ListBucketsResult listBucketsResult) throws Exception {
             return ResponseParsers.parseBucketListResponse(responseMessage.getContent(), listBucketsResult);
@@ -296,16 +292,15 @@ public final class ResponseParsers {
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public PutObjectResult parseData(ResponseMessage responseMessage, PutObjectResult putObjectResult) throws IOException {
             putObjectResult.setETag(ResponseParsers.trimQuotes((String) responseMessage.getHeaders().get(HttpHeaders.ETAG)));
-            String string = responseMessage.getResponse().body().string();
-            if (!TextUtils.isEmpty(string)) {
-                putObjectResult.setServerCallbackReturnBody(string);
+            String strString = responseMessage.getResponse().body().string();
+            if (!TextUtils.isEmpty(strString)) {
+                putObjectResult.setServerCallbackReturnBody(strString);
             }
             return putObjectResult;
         }
     }
 
     public static final class PutSymlinkResponseParser extends AbstractResponseParser<PutSymlinkResult> {
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public PutSymlinkResult parseData(ResponseMessage responseMessage, PutSymlinkResult putSymlinkResult) throws Exception {
             return putSymlinkResult;
@@ -313,7 +308,6 @@ public final class ResponseParsers {
     }
 
     public static final class RestoreObjectResponseParser extends AbstractResponseParser<RestoreObjectResult> {
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public RestoreObjectResult parseData(ResponseMessage responseMessage, RestoreObjectResult restoreObjectResult) throws Exception {
             return restoreObjectResult;
@@ -323,9 +317,9 @@ public final class ResponseParsers {
     public static final class TriggerCallbackResponseParser extends AbstractResponseParser<TriggerCallbackResult> {
         @Override // com.alibaba.sdk.android.oss.internal.AbstractResponseParser
         public TriggerCallbackResult parseData(ResponseMessage responseMessage, TriggerCallbackResult triggerCallbackResult) throws Exception {
-            String string = responseMessage.getResponse().body().string();
-            if (!TextUtils.isEmpty(string)) {
-                triggerCallbackResult.setServerCallbackReturnBody(string);
+            String strString = responseMessage.getResponse().body().string();
+            if (!TextUtils.isEmpty(strString)) {
+                triggerCallbackResult.setServerCallbackReturnBody(strString);
             }
             return triggerCallbackResult;
         }
@@ -339,216 +333,210 @@ public final class ResponseParsers {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static ListBucketsResult parseBucketListResponse(InputStream inputStream, ListBucketsResult listBucketsResult) throws Exception {
         listBucketsResult.clearBucketList();
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         OSSBucketSummary oSSBucketSummary = null;
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if (name != null) {
                     if ("Prefix".equals(name)) {
-                        listBucketsResult.setPrefix(newPullParser.nextText());
+                        listBucketsResult.setPrefix(xmlPullParserNewPullParser.nextText());
                     } else if ("Marker".equals(name)) {
-                        listBucketsResult.setMarker(newPullParser.nextText());
+                        listBucketsResult.setMarker(xmlPullParserNewPullParser.nextText());
                     } else if ("MaxKeys".equals(name)) {
-                        String nextText = newPullParser.nextText();
-                        if (nextText != null) {
-                            listBucketsResult.setMaxKeys(Integer.valueOf(nextText).intValue());
+                        String strNextText = xmlPullParserNewPullParser.nextText();
+                        if (strNextText != null) {
+                            listBucketsResult.setMaxKeys(Integer.valueOf(strNextText).intValue());
                         }
                     } else if ("IsTruncated".equals(name)) {
-                        String nextText2 = newPullParser.nextText();
-                        if (nextText2 != null) {
-                            listBucketsResult.setTruncated(Boolean.valueOf(nextText2).booleanValue());
+                        String strNextText2 = xmlPullParserNewPullParser.nextText();
+                        if (strNextText2 != null) {
+                            listBucketsResult.setTruncated(Boolean.valueOf(strNextText2).booleanValue());
                         }
                     } else if ("NextMarker".equals(name)) {
-                        listBucketsResult.setNextMarker(newPullParser.nextText());
+                        listBucketsResult.setNextMarker(xmlPullParserNewPullParser.nextText());
                     } else if ("ID".equals(name)) {
-                        listBucketsResult.setOwnerId(newPullParser.nextText());
+                        listBucketsResult.setOwnerId(xmlPullParserNewPullParser.nextText());
                     } else if ("DisplayName".equals(name)) {
-                        listBucketsResult.setOwnerDisplayName(newPullParser.nextText());
+                        listBucketsResult.setOwnerDisplayName(xmlPullParserNewPullParser.nextText());
                     } else if ("Bucket".equals(name)) {
                         oSSBucketSummary = new OSSBucketSummary();
                     } else if ("CreationDate".equals(name)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.createDate = DateUtil.parseIso8601Date(newPullParser.nextText());
+                            oSSBucketSummary.createDate = DateUtil.parseIso8601Date(xmlPullParserNewPullParser.nextText());
                         }
                     } else if ("ExtranetEndpoint".equals(name)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.extranetEndpoint = newPullParser.nextText();
+                            oSSBucketSummary.extranetEndpoint = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("IntranetEndpoint".equals(name)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.intranetEndpoint = newPullParser.nextText();
+                            oSSBucketSummary.intranetEndpoint = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("Location".equals(name)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.location = newPullParser.nextText();
+                            oSSBucketSummary.location = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("Name".equals(name)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.name = newPullParser.nextText();
+                            oSSBucketSummary.name = xmlPullParserNewPullParser.nextText();
                         }
                     } else if (CreateBucketRequest.TAB_STORAGECLASS.equals(name) && oSSBucketSummary != null) {
-                        oSSBucketSummary.storageClass = newPullParser.nextText();
+                        oSSBucketSummary.storageClass = xmlPullParserNewPullParser.nextText();
                     }
                 }
-            } else if (eventType == 3 && "Bucket".equals(newPullParser.getName()) && oSSBucketSummary != null) {
+            } else if (eventType == 3 && "Bucket".equals(xmlPullParserNewPullParser.getName()) && oSSBucketSummary != null) {
                 listBucketsResult.addBucket(oSSBucketSummary);
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return listBucketsResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static CompleteMultipartUploadResult parseCompleteMultipartUploadResponseXML(InputStream inputStream, CompleteMultipartUploadResult completeMultipartUploadResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Location".equals(name)) {
-                    completeMultipartUploadResult.setLocation(newPullParser.nextText());
+                    completeMultipartUploadResult.setLocation(xmlPullParserNewPullParser.nextText());
                 } else if ("Bucket".equals(name)) {
-                    completeMultipartUploadResult.setBucketName(newPullParser.nextText());
+                    completeMultipartUploadResult.setBucketName(xmlPullParserNewPullParser.nextText());
                 } else if ("Key".equals(name)) {
-                    completeMultipartUploadResult.setObjectKey(newPullParser.nextText());
+                    completeMultipartUploadResult.setObjectKey(xmlPullParserNewPullParser.nextText());
                 } else if (HttpHeaders.ETAG.equals(name)) {
-                    completeMultipartUploadResult.setETag(newPullParser.nextText());
+                    completeMultipartUploadResult.setETag(xmlPullParserNewPullParser.nextText());
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return completeMultipartUploadResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static CopyObjectResult parseCopyObjectResponseXML(InputStream inputStream, CopyObjectResult copyObjectResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("LastModified".equals(name)) {
-                    copyObjectResult.setLastModified(DateUtil.parseIso8601Date(newPullParser.nextText()));
+                    copyObjectResult.setLastModified(DateUtil.parseIso8601Date(xmlPullParserNewPullParser.nextText()));
                 } else if (HttpHeaders.ETAG.equals(name)) {
-                    copyObjectResult.setEtag(newPullParser.nextText());
+                    copyObjectResult.setEtag(xmlPullParserNewPullParser.nextText());
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return copyObjectResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static DeleteMultipleObjectResult parseDeleteMultipleObjectResponse(InputStream inputStream, DeleteMultipleObjectResult deleteMultipleObjectResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
-            if (eventType == 2 && "Key".equals(newPullParser.getName())) {
-                deleteMultipleObjectResult.addDeletedObject(newPullParser.nextText());
+            if (eventType == 2 && "Key".equals(xmlPullParserNewPullParser.getName())) {
+                deleteMultipleObjectResult.addDeletedObject(xmlPullParserNewPullParser.nextText());
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return deleteMultipleObjectResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static GetBucketACLResult parseGetBucketACLResponse(InputStream inputStream, GetBucketACLResult getBucketACLResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Grant".equals(name)) {
-                    getBucketACLResult.setBucketACL(newPullParser.nextText());
+                    getBucketACLResult.setBucketACL(xmlPullParserNewPullParser.nextText());
                 } else if ("ID".equals(name)) {
-                    getBucketACLResult.setBucketOwnerID(newPullParser.nextText());
+                    getBucketACLResult.setBucketOwnerID(xmlPullParserNewPullParser.nextText());
                 } else if ("DisplayName".equals(name)) {
-                    getBucketACLResult.setBucketOwner(newPullParser.nextText());
+                    getBucketACLResult.setBucketOwner(xmlPullParserNewPullParser.nextText());
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return getBucketACLResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static GetBucketInfoResult parseGetBucketInfoResponse(InputStream inputStream, GetBucketInfoResult getBucketInfoResult) throws Exception {
         String name;
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         OSSBucketSummary oSSBucketSummary = null;
         Owner owner = null;
         while (eventType != 1) {
             if (eventType == 2) {
-                String name2 = newPullParser.getName();
+                String name2 = xmlPullParserNewPullParser.getName();
                 if (name2 != null) {
                     if ("Owner".equals(name2)) {
                         owner = new Owner();
                     } else if ("ID".equals(name2)) {
                         if (owner != null) {
-                            owner.setId(newPullParser.nextText());
+                            owner.setId(xmlPullParserNewPullParser.nextText());
                         }
                     } else if ("DisplayName".equals(name2)) {
                         if (owner != null) {
-                            owner.setDisplayName(newPullParser.nextText());
+                            owner.setDisplayName(xmlPullParserNewPullParser.nextText());
                         }
                     } else if ("Bucket".equals(name2)) {
                         oSSBucketSummary = new OSSBucketSummary();
                     } else if ("CreationDate".equals(name2)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.createDate = DateUtil.parseIso8601Date(newPullParser.nextText());
+                            oSSBucketSummary.createDate = DateUtil.parseIso8601Date(xmlPullParserNewPullParser.nextText());
                         }
                     } else if ("ExtranetEndpoint".equals(name2)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.extranetEndpoint = newPullParser.nextText();
+                            oSSBucketSummary.extranetEndpoint = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("IntranetEndpoint".equals(name2)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.intranetEndpoint = newPullParser.nextText();
+                            oSSBucketSummary.intranetEndpoint = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("Location".equals(name2)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.location = newPullParser.nextText();
+                            oSSBucketSummary.location = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("Name".equals(name2)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.name = newPullParser.nextText();
+                            oSSBucketSummary.name = xmlPullParserNewPullParser.nextText();
                         }
                     } else if (CreateBucketRequest.TAB_STORAGECLASS.equals(name2)) {
                         if (oSSBucketSummary != null) {
-                            oSSBucketSummary.storageClass = newPullParser.nextText();
+                            oSSBucketSummary.storageClass = xmlPullParserNewPullParser.nextText();
                         }
                     } else if ("Grant".equals(name2) && oSSBucketSummary != null) {
-                        oSSBucketSummary.setAcl(newPullParser.nextText());
+                        oSSBucketSummary.setAcl(xmlPullParserNewPullParser.nextText());
                     }
                 }
-            } else if (eventType == 3 && (name = newPullParser.getName()) != null) {
+            } else if (eventType == 3 && (name = xmlPullParserNewPullParser.getName()) != null) {
                 if ("Bucket".equals(name)) {
                     if (oSSBucketSummary != null) {
                         getBucketInfoResult.setBucket(oSSBucketSummary);
@@ -557,19 +545,18 @@ public final class ResponseParsers {
                     oSSBucketSummary.owner = owner;
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return getBucketInfoResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static GetBucketLifecycleResult parseGetBucketLifecycleResponse(InputStream inputStream, GetBucketLifecycleResult getBucketLifecycleResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         BucketLifecycleRule bucketLifecycleRule = null;
         boolean z = false;
         boolean z2 = false;
@@ -579,15 +566,15 @@ public final class ResponseParsers {
         String str3 = null;
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Rule".equals(name)) {
                     bucketLifecycleRule = new BucketLifecycleRule();
                 } else if ("ID".equals(name)) {
-                    bucketLifecycleRule.setIdentifier(newPullParser.nextText());
+                    bucketLifecycleRule.setIdentifier(xmlPullParserNewPullParser.nextText());
                 } else if ("Prefix".equals(name)) {
-                    bucketLifecycleRule.setPrefix(newPullParser.nextText());
+                    bucketLifecycleRule.setPrefix(xmlPullParserNewPullParser.nextText());
                 } else if ("Status".equals(name)) {
-                    if ("Enabled".equals(newPullParser.nextText())) {
+                    if ("Enabled".equals(xmlPullParserNewPullParser.nextText())) {
                         bucketLifecycleRule.setStatus(true);
                     } else {
                         bucketLifecycleRule.setStatus(false);
@@ -599,52 +586,52 @@ public final class ResponseParsers {
                 } else if ("Transition".equals(name)) {
                     z3 = true;
                 } else if ("Days".equals(name)) {
-                    String nextText = newPullParser.nextText();
+                    String strNextText = xmlPullParserNewPullParser.nextText();
                     if (bucketLifecycleRule != null) {
                         if (z) {
-                            bucketLifecycleRule.setDays(nextText);
+                            bucketLifecycleRule.setDays(strNextText);
                         } else if (z2) {
-                            bucketLifecycleRule.setMultipartDays(nextText);
+                            bucketLifecycleRule.setMultipartDays(strNextText);
                         } else if (z3 && str3 != null) {
                             if ("IA".equals(str3)) {
-                                bucketLifecycleRule.setIADays(nextText);
+                                bucketLifecycleRule.setIADays(strNextText);
                             } else if ("Archive".equals(str3)) {
-                                bucketLifecycleRule.setArchiveDays(nextText);
+                                bucketLifecycleRule.setArchiveDays(strNextText);
                             }
                         }
                     }
-                    str = nextText;
+                    str = strNextText;
                 } else if (HttpHeaders.DATE.equals(name)) {
-                    String nextText2 = newPullParser.nextText();
+                    String strNextText2 = xmlPullParserNewPullParser.nextText();
                     if (bucketLifecycleRule != null) {
                         if (z) {
-                            bucketLifecycleRule.setExpireDate(nextText2);
+                            bucketLifecycleRule.setExpireDate(strNextText2);
                         } else if (z2) {
-                            bucketLifecycleRule.setMultipartExpireDate(nextText2);
+                            bucketLifecycleRule.setMultipartExpireDate(strNextText2);
                         } else if (z3 && str3 != null) {
                             if ("IA".equals(str3)) {
-                                bucketLifecycleRule.setIAExpireDate(nextText2);
+                                bucketLifecycleRule.setIAExpireDate(strNextText2);
                             } else if ("Archive".equals(str3)) {
-                                bucketLifecycleRule.setArchiveExpireDate(nextText2);
+                                bucketLifecycleRule.setArchiveExpireDate(strNextText2);
                             }
                         }
                     }
-                    str2 = nextText2;
+                    str2 = strNextText2;
                 } else if (CreateBucketRequest.TAB_STORAGECLASS.equals(name)) {
-                    String nextText3 = newPullParser.nextText();
+                    String strNextText3 = xmlPullParserNewPullParser.nextText();
                     if (bucketLifecycleRule != null) {
-                        if ("IA".equals(nextText3)) {
+                        if ("IA".equals(strNextText3)) {
                             bucketLifecycleRule.setIADays(str);
                             bucketLifecycleRule.setIAExpireDate(str2);
-                        } else if ("Archive".equals(nextText3)) {
+                        } else if ("Archive".equals(strNextText3)) {
                             bucketLifecycleRule.setArchiveDays(str2);
                             bucketLifecycleRule.setArchiveExpireDate(str2);
                         }
                     }
-                    str3 = nextText3;
+                    str3 = strNextText3;
                 }
             } else if (eventType == 3) {
-                String name2 = newPullParser.getName();
+                String name2 = xmlPullParserNewPullParser.getName();
                 if ("Rule".equals(name2)) {
                     getBucketLifecycleResult.addLifecycleRule(bucketLifecycleRule);
                 } else if ("Expiration".equals(name2)) {
@@ -658,164 +645,159 @@ public final class ResponseParsers {
                     str3 = null;
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return getBucketLifecycleResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static GetBucketLoggingResult parseGetBucketLoggingResponse(InputStream inputStream, GetBucketLoggingResult getBucketLoggingResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("LoggingEnabled".equals(name)) {
                     getBucketLoggingResult.setLoggingEnabled(true);
                 } else if ("TargetBucket".equals(name)) {
-                    getBucketLoggingResult.setTargetBucketName(newPullParser.nextText());
+                    getBucketLoggingResult.setTargetBucketName(xmlPullParserNewPullParser.nextText());
                 } else if ("TargetPrefix".equals(name)) {
-                    getBucketLoggingResult.setTargetPrefix(newPullParser.nextText());
+                    getBucketLoggingResult.setTargetPrefix(xmlPullParserNewPullParser.nextText());
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return getBucketLoggingResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static GetBucketRefererResult parseGetBucketRefererResponse(InputStream inputStream, GetBucketRefererResult getBucketRefererResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
-            if (eventType == 2 && "Referer".equals(newPullParser.getName())) {
-                getBucketRefererResult.addReferer(newPullParser.nextText());
+            if (eventType == 2 && "Referer".equals(xmlPullParserNewPullParser.getName())) {
+                getBucketRefererResult.addReferer(xmlPullParserNewPullParser.nextText());
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return getBucketRefererResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static GetObjectACLResult parseGetObjectACLResponse(InputStream inputStream, GetObjectACLResult getObjectACLResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Grant".equals(name)) {
-                    getObjectACLResult.setObjectACL(newPullParser.nextText());
+                    getObjectACLResult.setObjectACL(xmlPullParserNewPullParser.nextText());
                 } else if ("ID".equals(name)) {
-                    getObjectACLResult.setObjectOwnerID(newPullParser.nextText());
+                    getObjectACLResult.setObjectOwnerID(xmlPullParserNewPullParser.nextText());
                 } else if ("DisplayName".equals(name)) {
-                    getObjectACLResult.setObjectOwner(newPullParser.nextText());
+                    getObjectACLResult.setObjectOwner(xmlPullParserNewPullParser.nextText());
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return getObjectACLResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static InitiateMultipartUploadResult parseInitMultipartResponseXML(InputStream inputStream, InitiateMultipartUploadResult initiateMultipartUploadResult) throws Exception {
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Bucket".equals(name)) {
-                    initiateMultipartUploadResult.setBucketName(newPullParser.nextText());
+                    initiateMultipartUploadResult.setBucketName(xmlPullParserNewPullParser.nextText());
                 } else if ("Key".equals(name)) {
-                    initiateMultipartUploadResult.setObjectKey(newPullParser.nextText());
+                    initiateMultipartUploadResult.setObjectKey(xmlPullParserNewPullParser.nextText());
                 } else if ("UploadId".equals(name)) {
-                    initiateMultipartUploadResult.setUploadId(newPullParser.nextText());
+                    initiateMultipartUploadResult.setUploadId(xmlPullParserNewPullParser.nextText());
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return initiateMultipartUploadResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static ListPartsResult parseListPartsResponseXML(InputStream inputStream, ListPartsResult listPartsResult) throws Exception {
         ArrayList arrayList = new ArrayList();
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         PartSummary partSummary = null;
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Bucket".equals(name)) {
-                    listPartsResult.setBucketName(newPullParser.nextText());
+                    listPartsResult.setBucketName(xmlPullParserNewPullParser.nextText());
                 } else if ("Key".equals(name)) {
-                    listPartsResult.setKey(newPullParser.nextText());
+                    listPartsResult.setKey(xmlPullParserNewPullParser.nextText());
                 } else if ("UploadId".equals(name)) {
-                    listPartsResult.setUploadId(newPullParser.nextText());
+                    listPartsResult.setUploadId(xmlPullParserNewPullParser.nextText());
                 } else if ("PartNumberMarker".equals(name)) {
-                    String nextText = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText)) {
-                        listPartsResult.setPartNumberMarker(Integer.parseInt(nextText));
+                    String strNextText = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText)) {
+                        listPartsResult.setPartNumberMarker(Integer.parseInt(strNextText));
                     }
                 } else if ("NextPartNumberMarker".equals(name)) {
-                    String nextText2 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText2)) {
-                        listPartsResult.setNextPartNumberMarker(Integer.parseInt(nextText2));
+                    String strNextText2 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText2)) {
+                        listPartsResult.setNextPartNumberMarker(Integer.parseInt(strNextText2));
                     }
                 } else if ("MaxParts".equals(name)) {
-                    String nextText3 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText3)) {
-                        listPartsResult.setMaxParts(Integer.parseInt(nextText3));
+                    String strNextText3 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText3)) {
+                        listPartsResult.setMaxParts(Integer.parseInt(strNextText3));
                     }
                 } else if ("IsTruncated".equals(name)) {
-                    String nextText4 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText4)) {
-                        listPartsResult.setTruncated(Boolean.valueOf(nextText4).booleanValue());
+                    String strNextText4 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText4)) {
+                        listPartsResult.setTruncated(Boolean.valueOf(strNextText4).booleanValue());
                     }
                 } else if (CreateBucketRequest.TAB_STORAGECLASS.equals(name)) {
-                    listPartsResult.setStorageClass(newPullParser.nextText());
+                    listPartsResult.setStorageClass(xmlPullParserNewPullParser.nextText());
                 } else if ("Part".equals(name)) {
                     partSummary = new PartSummary();
                 } else if ("PartNumber".equals(name)) {
-                    String nextText5 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText5)) {
-                        partSummary.setPartNumber(Integer.valueOf(nextText5).intValue());
+                    String strNextText5 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText5)) {
+                        partSummary.setPartNumber(Integer.valueOf(strNextText5).intValue());
                     }
                 } else if ("LastModified".equals(name)) {
-                    partSummary.setLastModified(DateUtil.parseIso8601Date(newPullParser.nextText()));
+                    partSummary.setLastModified(DateUtil.parseIso8601Date(xmlPullParserNewPullParser.nextText()));
                 } else if (HttpHeaders.ETAG.equals(name)) {
-                    partSummary.setETag(newPullParser.nextText());
+                    partSummary.setETag(xmlPullParserNewPullParser.nextText());
                 } else if ("Size".equals(name)) {
-                    String nextText6 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText6)) {
-                        partSummary.setSize(Long.valueOf(nextText6).longValue());
+                    String strNextText6 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText6)) {
+                        partSummary.setSize(Long.valueOf(strNextText6).longValue());
                     }
                 }
-            } else if (eventType == 3 && "Part".equals(newPullParser.getName())) {
+            } else if (eventType == 3 && "Part".equals(xmlPullParserNewPullParser.getName())) {
                 arrayList.add(partSummary);
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         if (arrayList.size() > 0) {
@@ -824,77 +806,76 @@ public final class ResponseParsers {
         return listPartsResult;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public static ListObjectsResult parseObjectListResponse(InputStream inputStream, ListObjectsResult listObjectsResult) throws Exception {
         listObjectsResult.clearCommonPrefixes();
         listObjectsResult.clearObjectSummaries();
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(inputStream, "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(inputStream, "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         Owner owner = null;
         OSSObjectSummary oSSObjectSummary = null;
         boolean z = false;
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Name".equals(name)) {
-                    listObjectsResult.setBucketName(newPullParser.nextText());
+                    listObjectsResult.setBucketName(xmlPullParserNewPullParser.nextText());
                 } else if ("Prefix".equals(name)) {
                     if (z) {
-                        String nextText = newPullParser.nextText();
-                        if (!OSSUtils.isEmptyString(nextText)) {
-                            listObjectsResult.addCommonPrefix(nextText);
+                        String strNextText = xmlPullParserNewPullParser.nextText();
+                        if (!OSSUtils.isEmptyString(strNextText)) {
+                            listObjectsResult.addCommonPrefix(strNextText);
                         }
                     } else {
-                        listObjectsResult.setPrefix(newPullParser.nextText());
+                        listObjectsResult.setPrefix(xmlPullParserNewPullParser.nextText());
                     }
                 } else if ("Marker".equals(name)) {
-                    listObjectsResult.setMarker(newPullParser.nextText());
+                    listObjectsResult.setMarker(xmlPullParserNewPullParser.nextText());
                 } else if ("Delimiter".equals(name)) {
-                    listObjectsResult.setDelimiter(newPullParser.nextText());
+                    listObjectsResult.setDelimiter(xmlPullParserNewPullParser.nextText());
                 } else if ("EncodingType".equals(name)) {
-                    listObjectsResult.setEncodingType(newPullParser.nextText());
+                    listObjectsResult.setEncodingType(xmlPullParserNewPullParser.nextText());
                 } else if ("MaxKeys".equals(name)) {
-                    String nextText2 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText2)) {
-                        listObjectsResult.setMaxKeys(Integer.valueOf(nextText2).intValue());
+                    String strNextText2 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText2)) {
+                        listObjectsResult.setMaxKeys(Integer.valueOf(strNextText2).intValue());
                     }
                 } else if ("NextMarker".equals(name)) {
-                    listObjectsResult.setNextMarker(newPullParser.nextText());
+                    listObjectsResult.setNextMarker(xmlPullParserNewPullParser.nextText());
                 } else if ("IsTruncated".equals(name)) {
-                    String nextText3 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText3)) {
-                        listObjectsResult.setTruncated(Boolean.valueOf(nextText3).booleanValue());
+                    String strNextText3 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText3)) {
+                        listObjectsResult.setTruncated(Boolean.valueOf(strNextText3).booleanValue());
                     }
                 } else if ("Contents".equals(name)) {
                     oSSObjectSummary = new OSSObjectSummary();
                 } else if ("Key".equals(name)) {
-                    oSSObjectSummary.setKey(newPullParser.nextText());
+                    oSSObjectSummary.setKey(xmlPullParserNewPullParser.nextText());
                 } else if ("LastModified".equals(name)) {
-                    oSSObjectSummary.setLastModified(DateUtil.parseIso8601Date(newPullParser.nextText()));
+                    oSSObjectSummary.setLastModified(DateUtil.parseIso8601Date(xmlPullParserNewPullParser.nextText()));
                 } else if ("Size".equals(name)) {
-                    String nextText4 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText4)) {
-                        oSSObjectSummary.setSize(Long.valueOf(nextText4).longValue());
+                    String strNextText4 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText4)) {
+                        oSSObjectSummary.setSize(Long.valueOf(strNextText4).longValue());
                     }
                 } else if (HttpHeaders.ETAG.equals(name)) {
-                    oSSObjectSummary.setETag(newPullParser.nextText());
+                    oSSObjectSummary.setETag(xmlPullParserNewPullParser.nextText());
                 } else if ("Type".equals(name)) {
-                    oSSObjectSummary.setType(newPullParser.nextText());
+                    oSSObjectSummary.setType(xmlPullParserNewPullParser.nextText());
                 } else if (CreateBucketRequest.TAB_STORAGECLASS.equals(name)) {
-                    oSSObjectSummary.setStorageClass(newPullParser.nextText());
+                    oSSObjectSummary.setStorageClass(xmlPullParserNewPullParser.nextText());
                 } else if ("Owner".equals(name)) {
                     owner = new Owner();
                 } else if ("ID".equals(name)) {
-                    owner.setId(newPullParser.nextText());
+                    owner.setId(xmlPullParserNewPullParser.nextText());
                 } else if ("DisplayName".equals(name)) {
-                    owner.setDisplayName(newPullParser.nextText());
+                    owner.setDisplayName(xmlPullParserNewPullParser.nextText());
                 } else if ("CommonPrefixes".equals(name)) {
                     z = true;
                 }
             } else if (eventType == 3) {
-                String name2 = newPullParser.getName();
-                if ("Owner".equals(newPullParser.getName())) {
+                String name2 = xmlPullParserNewPullParser.getName();
+                if ("Owner".equals(xmlPullParserNewPullParser.getName())) {
                     if (owner != null) {
                         oSSObjectSummary.setOwner(owner);
                     }
@@ -907,9 +888,9 @@ public final class ResponseParsers {
                     z = false;
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         return listObjectsResult;
@@ -921,21 +902,18 @@ public final class ResponseParsers {
             for (String str : map.keySet()) {
                 if (str.indexOf(OSSHeaders.OSS_USER_METADATA_PREFIX) >= 0) {
                     objectMetadata.addUserMetadata(str, map.get(str));
-                } else {
-                    if (!str.equalsIgnoreCase(HttpHeaders.LAST_MODIFIED) && !str.equalsIgnoreCase(HttpHeaders.DATE)) {
-                        if (str.equalsIgnoreCase("Content-Length")) {
-                            objectMetadata.setHeader(str, Long.valueOf(map.get(str)));
-                        } else if (str.equalsIgnoreCase(HttpHeaders.ETAG)) {
-                            objectMetadata.setHeader(str, trimQuotes(map.get(str)));
-                        } else {
-                            objectMetadata.setHeader(str, map.get(str));
-                        }
-                    }
+                } else if (str.equalsIgnoreCase(HttpHeaders.LAST_MODIFIED) || str.equalsIgnoreCase(HttpHeaders.DATE)) {
                     try {
                         objectMetadata.setHeader(str, DateUtil.parseRfc822Date(map.get(str)));
                     } catch (ParseException e2) {
                         throw new IOException(e2.getMessage(), e2);
                     }
+                } else if (str.equalsIgnoreCase("Content-Length")) {
+                    objectMetadata.setHeader(str, Long.valueOf(map.get(str)));
+                } else if (str.equalsIgnoreCase(HttpHeaders.ETAG)) {
+                    objectMetadata.setHeader(str, trimQuotes(map.get(str)));
+                } else {
+                    objectMetadata.setHeader(str, map.get(str));
                 }
             }
             return objectMetadata;
@@ -945,73 +923,73 @@ public final class ResponseParsers {
     }
 
     public static ServiceException parseResponseErrorXML(ResponseMessage responseMessage, boolean z) throws ClientException {
+        String strNextText;
+        String strNextText2;
         String str;
         String str2;
         String str3;
         String str4;
-        String str5;
-        String str6;
         int statusCode = responseMessage.getStatusCode();
-        String header = responseMessage.getResponse().header(OSSHeaders.OSS_HEADER_REQUEST_ID);
-        String str7 = null;
+        String strHeader = responseMessage.getResponse().header(OSSHeaders.OSS_HEADER_REQUEST_ID);
+        String strNextText3 = null;
         if (z) {
-            str4 = header;
-            str6 = null;
-            str3 = null;
+            str2 = strHeader;
+            str4 = null;
             str = null;
-            str5 = null;
-            str2 = null;
+            strNextText = null;
+            str3 = null;
+            strNextText2 = null;
         } else {
             try {
-                String string = responseMessage.getResponse().body().string();
-                OSSLog.logDebug("errorMessage  ：  \n " + string);
-                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(string.getBytes());
-                XmlPullParser newPullParser = Xml.newPullParser();
-                newPullParser.setInput(byteArrayInputStream, "utf-8");
-                int eventType = newPullParser.getEventType();
-                String str8 = null;
-                str = null;
-                String str9 = null;
-                str2 = null;
+                String strString = responseMessage.getResponse().body().string();
+                OSSLog.logDebug("errorMessage  \uff1a  \n " + strString);
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(strString.getBytes());
+                XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+                xmlPullParserNewPullParser.setInput(byteArrayInputStream, "utf-8");
+                int eventType = xmlPullParserNewPullParser.getEventType();
+                String strNextText4 = null;
+                strNextText = null;
+                String strNextText5 = null;
+                strNextText2 = null;
                 while (eventType != 1) {
                     if (eventType == 2) {
-                        if ("Code".equals(newPullParser.getName())) {
-                            str7 = newPullParser.nextText();
-                        } else if ("Message".equals(newPullParser.getName())) {
-                            str8 = newPullParser.nextText();
-                        } else if ("RequestId".equals(newPullParser.getName())) {
-                            header = newPullParser.nextText();
-                        } else if ("HostId".equals(newPullParser.getName())) {
-                            str = newPullParser.nextText();
-                        } else if ("PartNumber".equals(newPullParser.getName())) {
-                            str9 = newPullParser.nextText();
-                        } else if ("PartEtag".equals(newPullParser.getName())) {
-                            str2 = newPullParser.nextText();
+                        if ("Code".equals(xmlPullParserNewPullParser.getName())) {
+                            strNextText3 = xmlPullParserNewPullParser.nextText();
+                        } else if ("Message".equals(xmlPullParserNewPullParser.getName())) {
+                            strNextText4 = xmlPullParserNewPullParser.nextText();
+                        } else if ("RequestId".equals(xmlPullParserNewPullParser.getName())) {
+                            strHeader = xmlPullParserNewPullParser.nextText();
+                        } else if ("HostId".equals(xmlPullParserNewPullParser.getName())) {
+                            strNextText = xmlPullParserNewPullParser.nextText();
+                        } else if ("PartNumber".equals(xmlPullParserNewPullParser.getName())) {
+                            strNextText5 = xmlPullParserNewPullParser.nextText();
+                        } else if ("PartEtag".equals(xmlPullParserNewPullParser.getName())) {
+                            strNextText2 = xmlPullParserNewPullParser.nextText();
                         }
                     }
-                    eventType = newPullParser.next();
+                    eventType = xmlPullParserNewPullParser.next();
                     if (eventType == 4) {
-                        eventType = newPullParser.next();
+                        eventType = xmlPullParserNewPullParser.next();
                     }
                 }
-                str3 = str7;
-                str7 = str8;
-                str4 = header;
-                String str10 = str9;
-                str5 = string;
-                str6 = str10;
+                str = strNextText3;
+                strNextText3 = strNextText4;
+                str2 = strHeader;
+                String str5 = strNextText5;
+                str3 = strString;
+                str4 = str5;
             } catch (IOException e2) {
                 throw new ClientException(e2);
             } catch (XmlPullParserException e3) {
                 throw new ClientException(e3);
             }
         }
-        ServiceException serviceException = new ServiceException(statusCode, str7, str3, str4, str, str5);
-        if (!TextUtils.isEmpty(str2)) {
-            serviceException.setPartEtag(str2);
+        ServiceException serviceException = new ServiceException(statusCode, strNextText3, str, str2, strNextText, str3);
+        if (!TextUtils.isEmpty(strNextText2)) {
+            serviceException.setPartEtag(strNextText2);
         }
-        if (!TextUtils.isEmpty(str6)) {
-            serviceException.setPartNumber(str6);
+        if (!TextUtils.isEmpty(str4)) {
+            serviceException.setPartNumber(str4);
         }
         return serviceException;
     }
@@ -1020,10 +998,10 @@ public final class ResponseParsers {
         if (str == null) {
             return null;
         }
-        String trim = str.trim();
-        if (trim.startsWith("\"")) {
-            trim = trim.substring(1);
+        String strTrim = str.trim();
+        if (strTrim.startsWith("\"")) {
+            strTrim = strTrim.substring(1);
         }
-        return trim.endsWith("\"") ? trim.substring(0, trim.length() - 1) : trim;
+        return strTrim.endsWith("\"") ? strTrim.substring(0, strTrim.length() - 1) : strTrim;
     }
 }

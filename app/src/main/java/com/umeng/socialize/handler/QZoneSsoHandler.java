@@ -24,7 +24,7 @@ import com.umeng.socialize.utils.SocializeUtils;
 import com.umeng.socialize.utils.UmengText;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class QZoneSsoHandler extends UMTencentSSOHandler {
     private static final String TAG = "QZoneSsoHandler";
     private QZoneShareContent mShareContent;
@@ -79,14 +79,14 @@ public class QZoneSsoHandler extends UMTencentSSOHandler {
             @Override // com.tencent.tauth.IUiListener
             public void onComplete(Object obj) {
                 SocializeUtils.safeCloseDialog(QZoneSsoHandler.this.mProgressDialog);
-                Bundle parseOauthData = QZoneSsoHandler.this.parseOauthData(obj);
-                QZoneSsoHandler.this.qqPreferences.setAuthData(parseOauthData).commit();
+                Bundle oauthData = QZoneSsoHandler.this.parseOauthData(obj);
+                QZoneSsoHandler.this.qqPreferences.setAuthData(oauthData).commit();
                 QZoneSsoHandler.this.initOpenidAndToken((JSONObject) obj);
                 UMAuthListener uMAuthListener2 = QZoneSsoHandler.this.mAuthListener;
                 if (uMAuthListener2 != null) {
-                    uMAuthListener2.onComplete(SHARE_MEDIA.QQ, 0, SocializeUtils.bundleTomap(parseOauthData));
+                    uMAuthListener2.onComplete(SHARE_MEDIA.QQ, 0, SocializeUtils.bundleTomap(oauthData));
                 }
-                if (parseOauthData == null || TextUtils.isEmpty(parseOauthData.getString("ret"))) {
+                if (oauthData == null || TextUtils.isEmpty(oauthData.getString("ret"))) {
                 }
             }
 
@@ -138,7 +138,7 @@ public class QZoneSsoHandler extends UMTencentSSOHandler {
             this.mTencent.setAccessToken(string, string2);
             this.mTencent.setOpenId(string3);
         } catch (Exception e2) {
-            SLog.error(UmengText.C3778QQ.OPENIDANDTOKEN, e2);
+            SLog.error(UmengText.QQ.OPENIDANDTOKEN, e2);
         }
     }
 
@@ -154,12 +154,12 @@ public class QZoneSsoHandler extends UMTencentSSOHandler {
     }
 
     private void shareToQZone() {
-        Bundle buildParamsQzone = this.mShareContent.buildParamsQzone();
-        buildParamsQzone.putString("appName", getShareConfig().getAppName());
+        Bundle bundleBuildParamsQzone = this.mShareContent.buildParamsQzone();
+        bundleBuildParamsQzone.putString("appName", getShareConfig().getAppName());
         if (this.mShareContent.getisPublish()) {
-            doPublishToQzone(buildParamsQzone);
+            doPublishToQzone(bundleBuildParamsQzone);
         } else {
-            defaultQZoneShare(buildParamsQzone);
+            defaultQZoneShare(bundleBuildParamsQzone);
         }
     }
 

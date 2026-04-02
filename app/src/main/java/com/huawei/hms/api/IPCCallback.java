@@ -11,37 +11,37 @@ import com.huawei.hms.core.aidl.ResponseHeader;
 import com.huawei.hms.support.api.transport.DatagramTransport;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IPCCallback extends IAIDLCallback.Stub {
     private static final String TAG = "IPCCallback";
-    private final DatagramTransport.InterfaceC2523a mCallback;
+    private final DatagramTransport.a mCallback;
     private final Class<? extends IMessageEntity> mResponseClass;
 
-    public IPCCallback(Class<? extends IMessageEntity> cls, DatagramTransport.InterfaceC2523a interfaceC2523a) {
+    public IPCCallback(Class<? extends IMessageEntity> cls, DatagramTransport.a aVar) {
         this.mResponseClass = cls;
-        this.mCallback = interfaceC2523a;
+        this.mCallback = aVar;
     }
 
     @Override // com.huawei.hms.core.aidl.IAIDLCallback
     public void call(DataBuffer dataBuffer) throws RemoteException {
         if (dataBuffer == null || TextUtils.isEmpty(dataBuffer.URI)) {
-            HMSLog.m7715e(TAG, "In call, URI cannot be empty.");
+            HMSLog.e(TAG, "In call, URI cannot be empty.");
             throw new RemoteException();
         }
-        MessageCodec find = CodecLookup.find(dataBuffer.getProtocol());
-        IMessageEntity iMessageEntity = null;
-        if (dataBuffer.getBodySize() > 0 && (iMessageEntity = newResponseInstance()) != null) {
-            find.decode(dataBuffer.getBody(), iMessageEntity);
+        MessageCodec messageCodecFind = CodecLookup.find(dataBuffer.getProtocol());
+        IMessageEntity iMessageEntityNewResponseInstance = null;
+        if (dataBuffer.getBodySize() > 0 && (iMessageEntityNewResponseInstance = newResponseInstance()) != null) {
+            messageCodecFind.decode(dataBuffer.getBody(), iMessageEntityNewResponseInstance);
         }
-        DatagramTransport.InterfaceC2523a interfaceC2523a = this.mCallback;
-        if (interfaceC2523a != null) {
+        DatagramTransport.a aVar = this.mCallback;
+        if (aVar != null) {
             if (dataBuffer.header == null) {
-                interfaceC2523a.mo7669a(0, iMessageEntity);
+                aVar.a(0, iMessageEntityNewResponseInstance);
                 return;
             }
             ResponseHeader responseHeader = new ResponseHeader();
-            find.decode(dataBuffer.header, responseHeader);
-            this.mCallback.mo7669a(responseHeader.getStatusCode(), iMessageEntity);
+            messageCodecFind.decode(dataBuffer.header, responseHeader);
+            this.mCallback.a(responseHeader.getStatusCode(), iMessageEntityNewResponseInstance);
         }
     }
 
@@ -53,7 +53,7 @@ public class IPCCallback extends IAIDLCallback.Stub {
         try {
             return cls.newInstance();
         } catch (IllegalAccessException | InstantiationException e2) {
-            HMSLog.m7715e(TAG, "In newResponseInstance, instancing exception." + e2.getMessage());
+            HMSLog.e(TAG, "In newResponseInstance, instancing exception." + e2.getMessage());
             return null;
         }
     }

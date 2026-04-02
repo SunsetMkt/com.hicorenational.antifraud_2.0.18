@@ -22,7 +22,7 @@ import androidx.core.content.IntentCompat;
 import androidx.core.util.Preconditions;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ShareCompat {
     public static final String EXTRA_CALLING_ACTIVITY = "androidx.core.app.EXTRA_CALLING_ACTIVITY";
     public static final String EXTRA_CALLING_ACTIVITY_INTEROP = "android.support.v4.app.EXTRA_CALLING_ACTIVITY";
@@ -151,8 +151,8 @@ public final class ShareCompat {
             }
             ArrayList<Uri> arrayList4 = this.mStreams;
             boolean z = arrayList4 != null && arrayList4.size() > 1;
-            boolean equals = "android.intent.action.SEND_MULTIPLE".equals(this.mIntent.getAction());
-            if (!z && equals) {
+            boolean zEquals = "android.intent.action.SEND_MULTIPLE".equals(this.mIntent.getAction());
+            if (!z && zEquals) {
                 this.mIntent.setAction("android.intent.action.SEND");
                 ArrayList<Uri> arrayList5 = this.mStreams;
                 if (arrayList5 == null || arrayList5.isEmpty()) {
@@ -162,7 +162,7 @@ public final class ShareCompat {
                 }
                 this.mStreams = null;
             }
-            if (z && !equals) {
+            if (z && !zEquals) {
                 this.mIntent.setAction("android.intent.action.SEND_MULTIPLE");
                 ArrayList<Uri> arrayList6 = this.mStreams;
                 if (arrayList6 == null || arrayList6.isEmpty()) {
@@ -315,18 +315,18 @@ public final class ShareCompat {
 
         private static void withinStyle(StringBuilder sb, CharSequence charSequence, int i2, int i3) {
             while (i2 < i3) {
-                char charAt = charSequence.charAt(i2);
-                if (charAt == '<') {
+                char cCharAt = charSequence.charAt(i2);
+                if (cCharAt == '<') {
                     sb.append("&lt;");
-                } else if (charAt == '>') {
+                } else if (cCharAt == '>') {
                     sb.append("&gt;");
-                } else if (charAt == '&') {
+                } else if (cCharAt == '&') {
                     sb.append("&amp;");
-                } else if (charAt > '~' || charAt < ' ') {
+                } else if (cCharAt > '~' || cCharAt < ' ') {
                     sb.append("&#");
-                    sb.append((int) charAt);
+                    sb.append((int) cCharAt);
                     sb.append(";");
-                } else if (charAt == ' ') {
+                } else if (cCharAt == ' ') {
                     while (true) {
                         int i4 = i2 + 1;
                         if (i4 >= i3 || charSequence.charAt(i4) != ' ') {
@@ -337,7 +337,7 @@ public final class ShareCompat {
                     }
                     sb.append(' ');
                 } else {
-                    sb.append(charAt);
+                    sb.append(cCharAt);
                 }
                 i2++;
             }
@@ -530,9 +530,9 @@ public final class ShareCompat {
     }
 
     public static void configureMenuItem(@NonNull Menu menu, @IdRes int i2, @NonNull IntentBuilder intentBuilder) {
-        MenuItem findItem = menu.findItem(i2);
-        if (findItem != null) {
-            configureMenuItem(findItem, intentBuilder);
+        MenuItem menuItemFindItem = menu.findItem(i2);
+        if (menuItemFindItem != null) {
+            configureMenuItem(menuItemFindItem, intentBuilder);
             return;
         }
         throw new IllegalArgumentException("Could not find menu item with id " + i2 + " in the supplied menu");

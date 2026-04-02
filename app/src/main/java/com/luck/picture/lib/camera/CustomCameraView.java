@@ -23,8 +23,8 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
-import com.luck.picture.lib.C2639R;
 import com.luck.picture.lib.PictureMediaScannerConnection;
+import com.luck.picture.lib.R;
 import com.luck.picture.lib.camera.listener.CameraListener;
 import com.luck.picture.lib.camera.listener.CaptureListener;
 import com.luck.picture.lib.camera.listener.ClickListener;
@@ -43,7 +43,7 @@ import com.luck.picture.lib.tools.StringUtils;
 import java.io.File;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CustomCameraView extends RelativeLayout {
     public static final int BUTTON_STATE_BOTH = 259;
     public static final int BUTTON_STATE_ONLY_CAPTURE = 257;
@@ -68,9 +68,9 @@ public class CustomCameraView extends RelativeLayout {
     private TextureView.SurfaceTextureListener surfaceTextureListener;
     private int type_flash;
 
-    /* renamed from: com.luck.picture.lib.camera.CustomCameraView$1 */
-    class C26511 implements CaptureListener {
-        C26511() {
+    /* JADX INFO: renamed from: com.luck.picture.lib.camera.CustomCameraView$1, reason: invalid class name */
+    class AnonymousClass1 implements CaptureListener {
+        AnonymousClass1() {
         }
 
         @Override // com.luck.picture.lib.camera.listener.CaptureListener
@@ -92,7 +92,7 @@ public class CustomCameraView extends RelativeLayout {
             CustomCameraView.this.mSwitchCamera.setVisibility(0);
             CustomCameraView.this.mFlashLamp.setVisibility(0);
             CustomCameraView.this.mCaptureLayout.resetCaptureLayout();
-            CustomCameraView.this.mCaptureLayout.setTextWithAnimation(CustomCameraView.this.getContext().getString(C2639R.string.picture_recording_time_is_short));
+            CustomCameraView.this.mCaptureLayout.setTextWithAnimation(CustomCameraView.this.getContext().getString(R.string.picture_recording_time_is_short));
             CustomCameraView.this.mCameraView.stopRecording();
         }
 
@@ -149,11 +149,11 @@ public class CustomCameraView extends RelativeLayout {
             CustomCameraView.this.mSwitchCamera.setVisibility(4);
             CustomCameraView.this.mFlashLamp.setVisibility(4);
             CustomCameraView.this.mCameraView.setCaptureMode(CameraView.CaptureMode.IMAGE);
-            final File createImageFile = CustomCameraView.this.createImageFile();
-            if (createImageFile == null) {
+            final File fileCreateImageFile = CustomCameraView.this.createImageFile();
+            if (fileCreateImageFile == null) {
                 return;
             }
-            CustomCameraView.this.mCameraView.takePicture(createImageFile, ContextCompat.getMainExecutor(CustomCameraView.this.getContext().getApplicationContext()), new ImageCapture.OnImageSavedCallback() { // from class: com.luck.picture.lib.camera.CustomCameraView.1.1
+            CustomCameraView.this.mCameraView.takePicture(fileCreateImageFile, ContextCompat.getMainExecutor(CustomCameraView.this.getContext().getApplicationContext()), new ImageCapture.OnImageSavedCallback() { // from class: com.luck.picture.lib.camera.CustomCameraView.1.1
                 @Override // androidx.camera.core.ImageCapture.OnImageSavedCallback
                 public void onError(@NonNull ImageCaptureException imageCaptureException) {
                     if (CustomCameraView.this.mCameraListener != null) {
@@ -168,8 +168,8 @@ public class CustomCameraView extends RelativeLayout {
                             @Override // com.luck.picture.lib.thread.PictureThreadUtils.Task
                             public Boolean doInBackground() {
                                 Context context = CustomCameraView.this.getContext();
-                                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                                return Boolean.valueOf(AndroidQTransformUtils.copyPathToDCIM(context, createImageFile, Uri.parse(CustomCameraView.this.mConfig.cameraPath)));
+                                C00961 c00961 = C00961.this;
+                                return Boolean.valueOf(AndroidQTransformUtils.copyPathToDCIM(context, fileCreateImageFile, Uri.parse(CustomCameraView.this.mConfig.cameraPath)));
                             }
 
                             @Override // com.luck.picture.lib.thread.PictureThreadUtils.Task
@@ -178,9 +178,9 @@ public class CustomCameraView extends RelativeLayout {
                             }
                         });
                     }
-                    CustomCameraView.this.mPhotoFile = createImageFile;
+                    CustomCameraView.this.mPhotoFile = fileCreateImageFile;
                     if (CustomCameraView.this.mImageCallbackListener != null) {
-                        CustomCameraView.this.mImageCallbackListener.onLoadImage(createImageFile, CustomCameraView.this.mImagePreview);
+                        CustomCameraView.this.mImageCallbackListener.onLoadImage(fileCreateImageFile, CustomCameraView.this.mImagePreview);
                     }
                     CustomCameraView.this.mImagePreview.setVisibility(0);
                     CustomCameraView.this.mCaptureLayout.startTypeBtnAnimator();
@@ -193,8 +193,7 @@ public class CustomCameraView extends RelativeLayout {
         this(context, null);
     }
 
-    /* renamed from: a */
-    static /* synthetic */ void m8124a(LifecycleOwner lifecycleOwner, Lifecycle.Event event2) {
+    static /* synthetic */ void a(LifecycleOwner lifecycleOwner, Lifecycle.Event event2) {
     }
 
     private Uri getOutUri(int i2) {
@@ -237,15 +236,15 @@ public class CustomCameraView extends RelativeLayout {
     private void setFlashRes() {
         switch (this.type_flash) {
             case 33:
-                this.mFlashLamp.setImageResource(C2639R.drawable.picture_ic_flash_auto);
+                this.mFlashLamp.setImageResource(R.drawable.picture_ic_flash_auto);
                 this.mCameraView.setFlash(0);
                 break;
             case 34:
-                this.mFlashLamp.setImageResource(C2639R.drawable.picture_ic_flash_on);
+                this.mFlashLamp.setImageResource(R.drawable.picture_ic_flash_on);
                 this.mCameraView.setFlash(1);
                 break;
             case 35:
-                this.mFlashLamp.setImageResource(C2639R.drawable.picture_ic_flash_off);
+                this.mFlashLamp.setImageResource(R.drawable.picture_ic_flash_off);
                 this.mCameraView.setFlash(2);
                 break;
         }
@@ -263,7 +262,7 @@ public class CustomCameraView extends RelativeLayout {
             this.mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() { // from class: com.luck.picture.lib.camera.d
                 @Override // android.media.MediaPlayer.OnPreparedListener
                 public final void onPrepared(MediaPlayer mediaPlayer) {
-                    CustomCameraView.this.m8126a(mediaPlayer);
+                    this.a.a(mediaPlayer);
                 }
             });
             this.mMediaPlayer.prepareAsync();
@@ -283,8 +282,7 @@ public class CustomCameraView extends RelativeLayout {
         this.mTextureView.setVisibility(8);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8127a(View view) {
+    public /* synthetic */ void a(View view) {
         this.type_flash++;
         if (this.type_flash > 35) {
             this.type_flash = 33;
@@ -292,27 +290,26 @@ public class CustomCameraView extends RelativeLayout {
         setFlashRes();
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m8128b(View view) {
+    public /* synthetic */ void b(View view) {
         this.mCameraView.toggleCamera();
     }
 
     public File createImageFile() {
+        String strRename;
         String str;
-        String str2;
         if (SdkVersionUtils.checkedAndroid_Q()) {
             File file = new File(PictureFileUtils.getDiskCacheDir(getContext()));
             if (!file.exists()) {
                 file.mkdirs();
             }
-            boolean isEmpty = TextUtils.isEmpty(this.mConfig.cameraFileName);
-            String str3 = TextUtils.isEmpty(this.mConfig.suffixType) ? ".jpg" : this.mConfig.suffixType;
-            if (isEmpty) {
-                str2 = DateUtils.getCreateFileName("IMG_") + str3;
+            boolean zIsEmpty = TextUtils.isEmpty(this.mConfig.cameraFileName);
+            String str2 = TextUtils.isEmpty(this.mConfig.suffixType) ? ".jpg" : this.mConfig.suffixType;
+            if (zIsEmpty) {
+                str = DateUtils.getCreateFileName("IMG_") + str2;
             } else {
-                str2 = this.mConfig.cameraFileName;
+                str = this.mConfig.cameraFileName;
             }
-            File file2 = new File(file, str2);
+            File file2 = new File(file, str);
             Uri outUri = getOutUri(PictureMimeType.ofImage());
             if (outUri != null) {
                 this.mConfig.cameraPath = outUri.toString();
@@ -320,44 +317,44 @@ public class CustomCameraView extends RelativeLayout {
             return file2;
         }
         if (TextUtils.isEmpty(this.mConfig.cameraFileName)) {
-            str = "";
+            strRename = "";
         } else {
-            boolean isSuffixOfImage = PictureMimeType.isSuffixOfImage(this.mConfig.cameraFileName);
+            boolean zIsSuffixOfImage = PictureMimeType.isSuffixOfImage(this.mConfig.cameraFileName);
             PictureSelectionConfig pictureSelectionConfig = this.mConfig;
-            pictureSelectionConfig.cameraFileName = !isSuffixOfImage ? StringUtils.renameSuffix(pictureSelectionConfig.cameraFileName, ".jpg") : pictureSelectionConfig.cameraFileName;
+            pictureSelectionConfig.cameraFileName = !zIsSuffixOfImage ? StringUtils.renameSuffix(pictureSelectionConfig.cameraFileName, ".jpg") : pictureSelectionConfig.cameraFileName;
             PictureSelectionConfig pictureSelectionConfig2 = this.mConfig;
             boolean z = pictureSelectionConfig2.camera;
-            str = pictureSelectionConfig2.cameraFileName;
+            strRename = pictureSelectionConfig2.cameraFileName;
             if (!z) {
-                str = StringUtils.rename(str);
+                strRename = StringUtils.rename(strRename);
             }
         }
         Context context = getContext();
-        int ofImage = PictureMimeType.ofImage();
+        int iOfImage = PictureMimeType.ofImage();
         PictureSelectionConfig pictureSelectionConfig3 = this.mConfig;
-        File createCameraFile = PictureFileUtils.createCameraFile(context, ofImage, str, pictureSelectionConfig3.suffixType, pictureSelectionConfig3.outPutCameraPath);
-        if (createCameraFile != null) {
-            this.mConfig.cameraPath = createCameraFile.getAbsolutePath();
+        File fileCreateCameraFile = PictureFileUtils.createCameraFile(context, iOfImage, strRename, pictureSelectionConfig3.suffixType, pictureSelectionConfig3.outPutCameraPath);
+        if (fileCreateCameraFile != null) {
+            this.mConfig.cameraPath = fileCreateCameraFile.getAbsolutePath();
         }
-        return createCameraFile;
+        return fileCreateCameraFile;
     }
 
     public File createVideoFile() {
+        String strRename;
         String str;
-        String str2;
         if (SdkVersionUtils.checkedAndroid_Q()) {
             File file = new File(PictureFileUtils.getVideoDiskCacheDir(getContext()));
             if (!file.exists()) {
                 file.mkdirs();
             }
-            boolean isEmpty = TextUtils.isEmpty(this.mConfig.cameraFileName);
-            String str3 = TextUtils.isEmpty(this.mConfig.suffixType) ? ".mp4" : this.mConfig.suffixType;
-            if (isEmpty) {
-                str2 = DateUtils.getCreateFileName("VID_") + str3;
+            boolean zIsEmpty = TextUtils.isEmpty(this.mConfig.cameraFileName);
+            String str2 = TextUtils.isEmpty(this.mConfig.suffixType) ? ".mp4" : this.mConfig.suffixType;
+            if (zIsEmpty) {
+                str = DateUtils.getCreateFileName("VID_") + str2;
             } else {
-                str2 = this.mConfig.cameraFileName;
+                str = this.mConfig.cameraFileName;
             }
-            File file2 = new File(file, str2);
+            File file2 = new File(file, str);
             Uri outUri = getOutUri(PictureMimeType.ofVideo());
             if (outUri != null) {
                 this.mConfig.cameraPath = outUri.toString();
@@ -365,24 +362,24 @@ public class CustomCameraView extends RelativeLayout {
             return file2;
         }
         if (TextUtils.isEmpty(this.mConfig.cameraFileName)) {
-            str = "";
+            strRename = "";
         } else {
-            boolean isSuffixOfImage = PictureMimeType.isSuffixOfImage(this.mConfig.cameraFileName);
+            boolean zIsSuffixOfImage = PictureMimeType.isSuffixOfImage(this.mConfig.cameraFileName);
             PictureSelectionConfig pictureSelectionConfig = this.mConfig;
-            pictureSelectionConfig.cameraFileName = !isSuffixOfImage ? StringUtils.renameSuffix(pictureSelectionConfig.cameraFileName, ".mp4") : pictureSelectionConfig.cameraFileName;
+            pictureSelectionConfig.cameraFileName = !zIsSuffixOfImage ? StringUtils.renameSuffix(pictureSelectionConfig.cameraFileName, ".mp4") : pictureSelectionConfig.cameraFileName;
             PictureSelectionConfig pictureSelectionConfig2 = this.mConfig;
             boolean z = pictureSelectionConfig2.camera;
-            str = pictureSelectionConfig2.cameraFileName;
+            strRename = pictureSelectionConfig2.cameraFileName;
             if (!z) {
-                str = StringUtils.rename(str);
+                strRename = StringUtils.rename(strRename);
             }
         }
         Context context = getContext();
-        int ofVideo = PictureMimeType.ofVideo();
+        int iOfVideo = PictureMimeType.ofVideo();
         PictureSelectionConfig pictureSelectionConfig3 = this.mConfig;
-        File createCameraFile = PictureFileUtils.createCameraFile(context, ofVideo, str, pictureSelectionConfig3.suffixType, pictureSelectionConfig3.outPutCameraPath);
-        this.mConfig.cameraPath = createCameraFile.getAbsolutePath();
-        return createCameraFile;
+        File fileCreateCameraFile = PictureFileUtils.createCameraFile(context, iOfVideo, strRename, pictureSelectionConfig3.suffixType, pictureSelectionConfig3.outPutCameraPath);
+        this.mConfig.cameraPath = fileCreateCameraFile.getAbsolutePath();
+        return fileCreateCameraFile;
     }
 
     public CameraView getCameraView() {
@@ -395,31 +392,31 @@ public class CustomCameraView extends RelativeLayout {
 
     public void initView() {
         setWillNotDraw(false);
-        setBackgroundColor(ContextCompat.getColor(getContext(), C2639R.color.picture_color_black));
-        View inflate = LayoutInflater.from(getContext()).inflate(C2639R.layout.picture_camera_view, this);
-        this.mCameraView = (CameraView) inflate.findViewById(C2639R.id.cameraView);
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.picture_color_black));
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.picture_camera_view, this);
+        this.mCameraView = (CameraView) viewInflate.findViewById(R.id.cameraView);
         this.mCameraView.enableTorch(true);
-        this.mTextureView = (TextureView) inflate.findViewById(C2639R.id.video_play_preview);
-        this.mImagePreview = (ImageView) inflate.findViewById(C2639R.id.image_preview);
-        this.mSwitchCamera = (ImageView) inflate.findViewById(C2639R.id.image_switch);
-        this.mSwitchCamera.setImageResource(C2639R.drawable.picture_ic_camera);
-        this.mFlashLamp = (ImageView) inflate.findViewById(C2639R.id.image_flash);
+        this.mTextureView = (TextureView) viewInflate.findViewById(R.id.video_play_preview);
+        this.mImagePreview = (ImageView) viewInflate.findViewById(R.id.image_preview);
+        this.mSwitchCamera = (ImageView) viewInflate.findViewById(R.id.image_switch);
+        this.mSwitchCamera.setImageResource(R.drawable.picture_ic_camera);
+        this.mFlashLamp = (ImageView) viewInflate.findViewById(R.id.image_flash);
         setFlashRes();
         this.mFlashLamp.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.e
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CustomCameraView.this.m8127a(view);
+                this.a.a(view);
             }
         });
-        this.mCaptureLayout = (CaptureLayout) inflate.findViewById(C2639R.id.capture_layout);
+        this.mCaptureLayout = (CaptureLayout) viewInflate.findViewById(R.id.capture_layout);
         this.mCaptureLayout.setDuration(15000);
         this.mSwitchCamera.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.camera.a
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                CustomCameraView.this.m8128b(view);
+                this.a.b(view);
             }
         });
-        this.mCaptureLayout.setCaptureListener(new C26511());
+        this.mCaptureLayout.setCaptureListener(new AnonymousClass1());
         this.mCaptureLayout.setTypeListener(new TypeListener() { // from class: com.luck.picture.lib.camera.CustomCameraView.2
             @Override // com.luck.picture.lib.camera.listener.TypeListener
             public void cancel() {
@@ -452,7 +449,7 @@ public class CustomCameraView extends RelativeLayout {
         this.mCaptureLayout.setLeftClickListener(new ClickListener() { // from class: com.luck.picture.lib.camera.c
             @Override // com.luck.picture.lib.camera.listener.ClickListener
             public final void onClick() {
-                CustomCameraView.this.m8125a();
+                this.a.a();
             }
         });
     }
@@ -462,7 +459,7 @@ public class CustomCameraView extends RelativeLayout {
         lifecycleOwner.getLifecycle().addObserver(new LifecycleEventObserver() { // from class: com.luck.picture.lib.camera.b
             @Override // androidx.lifecycle.LifecycleEventObserver
             public final void onStateChanged(LifecycleOwner lifecycleOwner2, Lifecycle.Event event2) {
-                CustomCameraView.m8124a(lifecycleOwner2, event2);
+                CustomCameraView.a(lifecycleOwner2, event2);
             }
         });
     }
@@ -522,16 +519,14 @@ public class CustomCameraView extends RelativeLayout {
         initView();
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8125a() {
+    public /* synthetic */ void a() {
         ClickListener clickListener = this.mOnClickListener;
         if (clickListener != null) {
             clickListener.onClick();
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8126a(MediaPlayer mediaPlayer) {
+    public /* synthetic */ void a(MediaPlayer mediaPlayer) {
         mediaPlayer.start();
         float videoWidth = (mediaPlayer.getVideoWidth() * 1.0f) / mediaPlayer.getVideoHeight();
         int width = this.mTextureView.getWidth();

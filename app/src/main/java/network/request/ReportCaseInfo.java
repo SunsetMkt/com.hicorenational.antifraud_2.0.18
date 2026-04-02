@@ -2,17 +2,15 @@ package network.request;
 
 import manager.AccountManager;
 import network.BaseBean;
-import util.C7328v1;
+import util.d2;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportCaseInfo extends BaseBean {
     private int caseCategory;
     private String caseCategoryText;
     private String caseDescription;
     private String caseNumber;
-
-    /* renamed from: id */
-    private String f21457id;
+    private String id;
     private boolean isSelf;
     private String region;
     private String reporterIdNumber;
@@ -38,7 +36,7 @@ public class ReportCaseInfo extends BaseBean {
     }
 
     public String getId() {
-        return this.f21457id;
+        return this.id;
     }
 
     public String getRegion() {
@@ -87,11 +85,11 @@ public class ReportCaseInfo extends BaseBean {
 
     public void setCommonParams() {
         this.submitterID = AccountManager.getAccountId();
-        this.submitTime = C7328v1.m26658d();
+        this.submitTime = d2.d();
     }
 
     public void setId(String str) {
-        this.f21457id = str;
+        this.id = str;
     }
 
     public void setRegion(String str) {

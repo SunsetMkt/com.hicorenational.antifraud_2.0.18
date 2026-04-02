@@ -8,7 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import java.lang.reflect.Field;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class LayoutInflaterCompat {
     private static final String TAG = "LayoutInflaterCompatHC";
     private static boolean sCheckedField;

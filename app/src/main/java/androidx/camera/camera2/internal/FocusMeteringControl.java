@@ -25,9 +25,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class FocusMeteringControl {
     private static final String TAG = "FocusMeteringControl";
     private ScheduledFuture<?> mAutoCancelHandle;
@@ -105,11 +104,11 @@ class FocusMeteringControl {
             this.mCameraControl.updateSessionConfig();
         }
         this.mCurrentAfState = 0;
-        final boolean isAfModeSupported = isAfModeSupported();
+        final boolean zIsAfModeSupported = isAfModeSupported();
         this.mSessionListenerForFocus = new Camera2CameraControl.CaptureResultListener() { // from class: androidx.camera.camera2.internal.w
             @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
             public final boolean onCaptureResult(TotalCaptureResult totalCaptureResult) {
-                return FocusMeteringControl.this.m316a(isAfModeSupported, meteringRectangleArr, meteringRectangleArr2, meteringRectangleArr3, totalCaptureResult);
+                return this.a.a(zIsAfModeSupported, meteringRectangleArr, meteringRectangleArr2, meteringRectangleArr3, totalCaptureResult);
             }
         };
         this.mCameraControl.addCaptureResultListener(this.mSessionListenerForFocus);
@@ -119,7 +118,7 @@ class FocusMeteringControl {
             this.mAutoCancelHandle = this.mScheduler.schedule(new Runnable() { // from class: androidx.camera.camera2.internal.u
                 @Override // java.lang.Runnable
                 public final void run() {
-                    FocusMeteringControl.this.m313a(j2);
+                    this.a.a(j2);
                 }
             }, focusMeteringAction.getAutoCancelDurationInMillis(), TimeUnit.MILLISECONDS);
         }
@@ -158,11 +157,11 @@ class FocusMeteringControl {
         PointF pointF = new PointF(meteringPoint.getX(), meteringPoint.getY());
         if (!rational2.equals(rational)) {
             if (rational2.compareTo(rational) > 0) {
-                float doubleValue = (float) (rational2.doubleValue() / rational.doubleValue());
-                pointF.y = (((float) ((doubleValue - 1.0d) / 2.0d)) + pointF.y) * (1.0f / doubleValue);
+                float fDoubleValue = (float) (rational2.doubleValue() / rational.doubleValue());
+                pointF.y = (((float) ((((double) fDoubleValue) - 1.0d) / 2.0d)) + pointF.y) * (1.0f / fDoubleValue);
             } else {
-                float doubleValue2 = (float) (rational.doubleValue() / rational2.doubleValue());
-                pointF.x = (((float) ((doubleValue2 - 1.0d) / 2.0d)) + pointF.x) * (1.0f / doubleValue2);
+                float fDoubleValue2 = (float) (rational.doubleValue() / rational2.doubleValue());
+                pointF.x = (((float) ((((double) fDoubleValue2) - 1.0d) / 2.0d)) + pointF.x) * (1.0f / fDoubleValue2);
             }
         }
         return pointF;
@@ -170,11 +169,11 @@ class FocusMeteringControl {
 
     @WorkerThread
     private MeteringRectangle getMeteringRect(MeteringPoint meteringPoint, PointF pointF, Rect rect) {
-        int width = (int) (rect.left + (pointF.x * rect.width()));
-        int height = (int) (rect.top + (pointF.y * rect.height()));
+        int iWidth = (int) (rect.left + (pointF.x * rect.width()));
+        int iHeight = (int) (rect.top + (pointF.y * rect.height()));
         int size = ((int) (meteringPoint.getSize() * rect.width())) / 2;
         int size2 = ((int) (meteringPoint.getSize() * rect.height())) / 2;
-        Rect rect2 = new Rect(width - size, height - size2, width + size, height + size2);
+        Rect rect2 = new Rect(iWidth - size, iHeight - size2, iWidth + size, iHeight + size2);
         rect2.left = rangeLimit(rect2.left, rect.right, rect.left);
         rect2.right = rangeLimit(rect2.right, rect.right, rect.left);
         rect2.top = rangeLimit(rect2.top, rect.bottom, rect.top);
@@ -237,10 +236,9 @@ class FocusMeteringControl {
         }
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m317b(long j2) {
+    public /* synthetic */ void b(long j2) {
         if (j2 == this.mFocusTimeoutCounter) {
-            m312a();
+            a();
         }
     }
 
@@ -258,23 +256,22 @@ class FocusMeteringControl {
                 builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, 2);
             }
             builder.addImplementationOptions(builder2.build());
-            this.mCameraControl.m297a(Collections.singletonList(builder.build()));
+            this.mCameraControl.a(Collections.singletonList(builder.build()));
         }
     }
 
-    InterfaceFutureC0952a<Void> cancelFocusAndMetering() {
+    d.b.b.a.a.a<Void> cancelFocusAndMetering() {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.p
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return FocusMeteringControl.this.m311a(completer);
+                return this.a.a(completer);
             }
         });
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
-    /* renamed from: cancelFocusAndMeteringInternal, reason: merged with bridge method [inline-methods] */
-    public void m318b(@Nullable CallbackToFutureAdapter.Completer<Void> completer) {
+    /* JADX INFO: renamed from: cancelFocusAndMeteringInternal */
+    public void b(@Nullable CallbackToFutureAdapter.Completer<Void> completer) {
         failCancelFuture("Cancelled by another cancelFocusAndMetering()");
         failActionFuture("Cancelled by cancelFocusAndMetering()");
         this.mRunningCancelCompleter = completer;
@@ -284,7 +281,7 @@ class FocusMeteringControl {
             this.mSessionListenerForCancel = new Camera2CameraControl.CaptureResultListener() { // from class: androidx.camera.camera2.internal.x
                 @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
                 public final boolean onCaptureResult(TotalCaptureResult totalCaptureResult) {
-                    return FocusMeteringControl.this.m315a(supportedAfMode, totalCaptureResult);
+                    return this.a.a(supportedAfMode, totalCaptureResult);
                 }
             };
             this.mCameraControl.addCaptureResultListener(this.mSessionListenerForCancel);
@@ -300,11 +297,10 @@ class FocusMeteringControl {
         this.mCurrentFocusMeteringAction = null;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
-    /* renamed from: cancelFocusAndMeteringWithoutAsyncResult, reason: merged with bridge method [inline-methods] */
-    public void m312a() {
-        m318b(null);
+    /* JADX INFO: renamed from: cancelFocusAndMeteringWithoutAsyncResult */
+    public void a() {
+        b(null);
     }
 
     void setActive(boolean z) {
@@ -318,7 +314,7 @@ class FocusMeteringControl {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.q
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.m312a();
+                this.a.a();
             }
         });
     }
@@ -329,19 +325,18 @@ class FocusMeteringControl {
         this.mDefaultAwbRects = (MeteringRectangle[]) builder.get(CaptureRequest.CONTROL_AWB_REGIONS);
     }
 
-    InterfaceFutureC0952a<FocusMeteringResult> startFocusAndMetering(@NonNull final FocusMeteringAction focusMeteringAction, @Nullable final Rational rational) {
+    d.b.b.a.a.a<FocusMeteringResult> startFocusAndMetering(@NonNull final FocusMeteringAction focusMeteringAction, @Nullable final Rational rational) {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.r
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return FocusMeteringControl.this.m310a(focusMeteringAction, rational, completer);
+                return this.a.a(focusMeteringAction, rational, completer);
             }
         });
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
-    /* renamed from: startFocusAndMeteringInternal, reason: merged with bridge method [inline-methods] */
-    public void m314a(@NonNull CallbackToFutureAdapter.Completer<FocusMeteringResult> completer, @NonNull FocusMeteringAction focusMeteringAction, @Nullable Rational rational) {
+    /* JADX INFO: renamed from: startFocusAndMeteringInternal */
+    public void a(@NonNull CallbackToFutureAdapter.Completer<FocusMeteringResult> completer, @NonNull FocusMeteringAction focusMeteringAction, @Nullable Rational rational) {
         if (!this.mIsActive) {
             completer.setException(new CameraControl.OperationCanceledException("Camera is not active."));
             return;
@@ -350,29 +345,29 @@ class FocusMeteringControl {
             completer.setException(new IllegalArgumentException("No AF/AE/AWB MeteringPoints are added."));
             return;
         }
-        int min = Math.min(focusMeteringAction.getMeteringPointsAf().size(), this.mCameraControl.getMaxAfRegionCount());
-        int min2 = Math.min(focusMeteringAction.getMeteringPointsAe().size(), this.mCameraControl.getMaxAeRegionCount());
-        int min3 = Math.min(focusMeteringAction.getMeteringPointsAwb().size(), this.mCameraControl.getMaxAwbRegionCount());
-        if (min + min2 + min3 <= 0) {
+        int iMin = Math.min(focusMeteringAction.getMeteringPointsAf().size(), this.mCameraControl.getMaxAfRegionCount());
+        int iMin2 = Math.min(focusMeteringAction.getMeteringPointsAe().size(), this.mCameraControl.getMaxAeRegionCount());
+        int iMin3 = Math.min(focusMeteringAction.getMeteringPointsAwb().size(), this.mCameraControl.getMaxAwbRegionCount());
+        if (iMin + iMin2 + iMin3 <= 0) {
             completer.setException(new IllegalArgumentException("None of the specified AF/AE/AWB MeteringPoints is supported on this camera."));
             return;
         }
         ArrayList<MeteringPoint> arrayList = new ArrayList();
         ArrayList<MeteringPoint> arrayList2 = new ArrayList();
         ArrayList<MeteringPoint> arrayList3 = new ArrayList();
-        if (min > 0) {
-            arrayList.addAll(focusMeteringAction.getMeteringPointsAf().subList(0, min));
+        if (iMin > 0) {
+            arrayList.addAll(focusMeteringAction.getMeteringPointsAf().subList(0, iMin));
         }
-        if (min2 > 0) {
-            arrayList2.addAll(focusMeteringAction.getMeteringPointsAe().subList(0, min2));
+        if (iMin2 > 0) {
+            arrayList2.addAll(focusMeteringAction.getMeteringPointsAe().subList(0, iMin2));
         }
-        if (min3 > 0) {
-            arrayList3.addAll(focusMeteringAction.getMeteringPointsAwb().subList(0, min3));
+        if (iMin3 > 0) {
+            arrayList3.addAll(focusMeteringAction.getMeteringPointsAwb().subList(0, iMin3));
         }
         failActionFuture("Cancelled by another startFocusAndMetering()");
         failCancelFuture("Cancelled by another startFocusAndMetering()");
         if (this.mCurrentFocusMeteringAction != null) {
-            m312a();
+            a();
         }
         disableAutoCancel();
         this.mCurrentFocusMeteringAction = focusMeteringAction;
@@ -406,7 +401,7 @@ class FocusMeteringControl {
             Camera2ImplConfig.Builder builder2 = new Camera2ImplConfig.Builder();
             builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, 1);
             builder.addImplementationOptions(builder2.build());
-            this.mCameraControl.m297a(Collections.singletonList(builder.build()));
+            this.mCameraControl.a(Collections.singletonList(builder.build()));
         }
     }
 
@@ -419,23 +414,21 @@ class FocusMeteringControl {
             Camera2ImplConfig.Builder builder2 = new Camera2ImplConfig.Builder();
             builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AF_TRIGGER, 1);
             builder.addImplementationOptions(builder2.build());
-            this.mCameraControl.m297a(Collections.singletonList(builder.build()));
+            this.mCameraControl.a(Collections.singletonList(builder.build()));
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m310a(final FocusMeteringAction focusMeteringAction, final Rational rational, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(final FocusMeteringAction focusMeteringAction, final Rational rational, final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.s
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.m314a(completer, focusMeteringAction, rational);
+                this.a.a(completer, focusMeteringAction, rational);
             }
         });
         return "startFocusAndMetering";
     }
 
-    /* renamed from: a */
-    public /* synthetic */ boolean m316a(boolean z, MeteringRectangle[] meteringRectangleArr, MeteringRectangle[] meteringRectangleArr2, MeteringRectangle[] meteringRectangleArr3, TotalCaptureResult totalCaptureResult) {
+    public /* synthetic */ boolean a(boolean z, MeteringRectangle[] meteringRectangleArr, MeteringRectangle[] meteringRectangleArr2, MeteringRectangle[] meteringRectangleArr3, TotalCaptureResult totalCaptureResult) {
         Integer num = (Integer) totalCaptureResult.get(CaptureResult.CONTROL_AF_STATE);
         if (shouldTriggerAF()) {
             if (this.mCurrentAfState.intValue() == 3) {
@@ -473,29 +466,26 @@ class FocusMeteringControl {
         return false;
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m313a(final long j2) {
+    public /* synthetic */ void a(final long j2) {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.t
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.m317b(j2);
+                this.a.b(j2);
             }
         });
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m311a(final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.v
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.m318b(completer);
+                this.a.b(completer);
             }
         });
         return "cancelFocusAndMetering";
     }
 
-    /* renamed from: a */
-    public /* synthetic */ boolean m315a(int i2, TotalCaptureResult totalCaptureResult) {
+    public /* synthetic */ boolean a(int i2, TotalCaptureResult totalCaptureResult) {
         Integer num = (Integer) totalCaptureResult.get(CaptureResult.CONTROL_AF_MODE);
         CaptureRequest request = totalCaptureResult.getRequest();
         MeteringRectangle[] meteringRectangleArr = (MeteringRectangle[]) request.get(CaptureRequest.CONTROL_AF_REGIONS);

@@ -1,20 +1,20 @@
 package com.huawei.hms.push.ups.entity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TokenResult extends CodeResult {
 
-    /* renamed from: c */
-    private String f7810c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4910c;
 
     public TokenResult() {
     }
 
     public String getToken() {
-        return this.f7810c;
+        return this.f4910c;
     }
 
     public void setToken(String str) {
-        this.f7810c = str;
+        this.f4910c = str;
     }
 
     public TokenResult(int i2) {
@@ -26,6 +26,6 @@ public class TokenResult extends CodeResult {
     }
 
     public TokenResult(String str) {
-        this.f7810c = str;
+        this.f4910c = str;
     }
 }

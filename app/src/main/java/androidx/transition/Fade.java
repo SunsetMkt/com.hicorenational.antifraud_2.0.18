@@ -3,6 +3,7 @@ package androidx.transition;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
@@ -13,11 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Fade extends Visibility {
-
-    /* renamed from: IN */
-    public static final int f629IN = 1;
+    public static final int IN = 1;
     private static final String LOG_TAG = "Fade";
     public static final int OUT = 2;
     private static final String PROPNAME_TRANSITION_ALPHA = "android:fade:transitionAlpha";
@@ -56,8 +55,8 @@ public class Fade extends Visibility {
             return null;
         }
         ViewUtils.setTransitionAlpha(view, f2);
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, ViewUtils.TRANSITION_ALPHA, f3);
-        ofFloat.addListener(new FadeAnimatorListener(view));
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(view, ViewUtils.TRANSITION_ALPHA, f3);
+        objectAnimatorOfFloat.addListener(new FadeAnimatorListener(view));
         addListener(new TransitionListenerAdapter() { // from class: androidx.transition.Fade.1
             @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
             public void onTransitionEnd(@NonNull Transition transition) {
@@ -66,7 +65,7 @@ public class Fade extends Visibility {
                 transition.removeListener(this);
             }
         });
-        return ofFloat;
+        return objectAnimatorOfFloat;
     }
 
     private static float getStartAlpha(TransitionValues transitionValues, float f2) {
@@ -95,10 +94,11 @@ public class Fade extends Visibility {
     public Fade() {
     }
 
+    @SuppressLint({"RestrictedApi"})
     public Fade(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.FADE);
-        setMode(TypedArrayUtils.getNamedInt(obtainStyledAttributes, (XmlResourceParser) attributeSet, "fadingMode", 0, getMode()));
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.FADE);
+        setMode(TypedArrayUtils.getNamedInt(typedArrayObtainStyledAttributes, (XmlResourceParser) attributeSet, "fadingMode", 0, getMode()));
+        typedArrayObtainStyledAttributes.recycle();
     }
 }

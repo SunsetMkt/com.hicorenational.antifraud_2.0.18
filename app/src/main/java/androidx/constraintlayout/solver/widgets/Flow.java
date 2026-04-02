@@ -3,9 +3,10 @@ package androidx.constraintlayout.solver.widgets;
 import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Flow extends VirtualLayout {
     public static final int HORIZONTAL_ALIGN_CENTER = 2;
     public static final int HORIZONTAL_ALIGN_END = 1;
@@ -268,8 +269,6 @@ public class Flow extends VirtualLayout {
                                     constraintWidget5.mRight.connect(constraintWidget3.mRight, 0);
                                 }
                             }
-                            i10++;
-                            constraintWidget4 = constraintWidget5;
                         }
                     }
                     i10++;
@@ -290,7 +289,9 @@ public class Flow extends VirtualLayout {
             if (i2 > 0) {
                 this.mTop.mOwner.mBottom.connect(constraintWidget6.mTop, 0);
             }
-            if (Flow.this.mVerticalAlign == 3 && !constraintWidget6.hasBaseline()) {
+            if (Flow.this.mVerticalAlign != 3 || constraintWidget6.hasBaseline()) {
+                constraintWidget = constraintWidget6;
+            } else {
                 for (int i15 = 0; i15 < i3; i15++) {
                     int i16 = z ? (i3 - 1) - i15 : i15;
                     if (this.mStartIndex + i16 >= Flow.this.mDisplayedWidgetsCount) {
@@ -301,8 +302,8 @@ public class Flow extends VirtualLayout {
                         break;
                     }
                 }
+                constraintWidget = constraintWidget6;
             }
-            constraintWidget = constraintWidget6;
             ConstraintWidget constraintWidget7 = null;
             int i17 = 0;
             while (i17 < i3) {
@@ -536,21 +537,157 @@ public class Flow extends VirtualLayout {
         return constraintWidget.getWidth();
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:28:0x006b  */
-    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:78:0x011e -> B:23:0x0065). Please report as a decompilation issue!!! */
-    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:79:0x0120 -> B:23:0x0065). Please report as a decompilation issue!!! */
-    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:81:0x0126 -> B:23:0x0065). Please report as a decompilation issue!!! */
-    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:82:0x0128 -> B:23:0x0065). Please report as a decompilation issue!!! */
+    /* JADX WARN: Removed duplicated region for block: B:48:0x006b  */
+    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:108:0x011e -> B:45:0x0065). Please report as a decompilation issue!!! */
+    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:109:0x0120 -> B:45:0x0065). Please report as a decompilation issue!!! */
+    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:111:0x0126 -> B:45:0x0065). Please report as a decompilation issue!!! */
+    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:112:0x0128 -> B:45:0x0065). Please report as a decompilation issue!!! */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private void measureAligned(androidx.constraintlayout.solver.widgets.ConstraintWidget[] r17, int r18, int r19, int r20, int[] r21) {
-        /*
-            Method dump skipped, instructions count: 309
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.solver.widgets.Flow.measureAligned(androidx.constraintlayout.solver.widgets.ConstraintWidget[], int, int, int, int[]):void");
+    private void measureAligned(ConstraintWidget[] constraintWidgetArr, int i2, int i3, int i4, int[] iArr) {
+        int i5;
+        int iCeil;
+        int iCeil2;
+        boolean z;
+        ConstraintWidget constraintWidget;
+        if (i3 == 0) {
+            int i6 = this.mMaxElementsWrap;
+            if (i6 <= 0) {
+                int widgetWidth = 0;
+                iCeil = 0;
+                for (int i7 = 0; i7 < i2; i7++) {
+                    if (i7 > 0) {
+                        widgetWidth += this.mHorizontalGap;
+                    }
+                    ConstraintWidget constraintWidget2 = constraintWidgetArr[i7];
+                    if (constraintWidget2 != null) {
+                        widgetWidth += getWidgetWidth(constraintWidget2, i4);
+                        if (widgetWidth > i4) {
+                            break;
+                        } else {
+                            iCeil++;
+                        }
+                    }
+                }
+            } else {
+                iCeil = i6;
+            }
+            i5 = 0;
+        } else {
+            i5 = this.mMaxElementsWrap;
+            if (i5 <= 0) {
+                int widgetHeight = 0;
+                int i8 = 0;
+                for (int i9 = 0; i9 < i2; i9++) {
+                    if (i9 > 0) {
+                        widgetHeight += this.mVerticalGap;
+                    }
+                    ConstraintWidget constraintWidget3 = constraintWidgetArr[i9];
+                    if (constraintWidget3 != null) {
+                        widgetHeight += getWidgetHeight(constraintWidget3, i4);
+                        if (widgetHeight > i4) {
+                            break;
+                        } else {
+                            i8++;
+                        }
+                    }
+                }
+                i5 = i8;
+            }
+            iCeil = 0;
+        }
+        if (this.mAlignedDimensions == null) {
+            this.mAlignedDimensions = new int[2];
+        }
+        if ((i5 == 0 && i3 == 1) || (iCeil == 0 && i3 == 0)) {
+            iCeil2 = i5;
+            z = true;
+            while (!z) {
+            }
+            int[] iArr2 = this.mAlignedDimensions;
+            iArr2[0] = iCeil;
+            iArr2[1] = iCeil2;
+        }
+        iCeil2 = i5;
+        z = false;
+        while (!z) {
+            if (i3 == 0) {
+                iCeil2 = (int) Math.ceil(i2 / iCeil);
+            } else {
+                iCeil = (int) Math.ceil(i2 / iCeil2);
+            }
+            ConstraintWidget[] constraintWidgetArr2 = this.mAlignedBiggestElementsInCols;
+            if (constraintWidgetArr2 == null || constraintWidgetArr2.length < iCeil) {
+                this.mAlignedBiggestElementsInCols = new ConstraintWidget[iCeil];
+            } else {
+                Arrays.fill(constraintWidgetArr2, (Object) null);
+            }
+            ConstraintWidget[] constraintWidgetArr3 = this.mAlignedBiggestElementsInRows;
+            if (constraintWidgetArr3 == null || constraintWidgetArr3.length < iCeil2) {
+                this.mAlignedBiggestElementsInRows = new ConstraintWidget[iCeil2];
+            } else {
+                Arrays.fill(constraintWidgetArr3, (Object) null);
+            }
+            for (int i10 = 0; i10 < iCeil; i10++) {
+                for (int i11 = 0; i11 < iCeil2; i11++) {
+                    int i12 = (i11 * iCeil) + i10;
+                    if (i3 == 1) {
+                        i12 = (i10 * iCeil2) + i11;
+                    }
+                    if (i12 < constraintWidgetArr.length && (constraintWidget = constraintWidgetArr[i12]) != null) {
+                        int widgetWidth2 = getWidgetWidth(constraintWidget, i4);
+                        ConstraintWidget[] constraintWidgetArr4 = this.mAlignedBiggestElementsInCols;
+                        if (constraintWidgetArr4[i10] == null || constraintWidgetArr4[i10].getWidth() < widgetWidth2) {
+                            this.mAlignedBiggestElementsInCols[i10] = constraintWidget;
+                        }
+                        int widgetHeight2 = getWidgetHeight(constraintWidget, i4);
+                        ConstraintWidget[] constraintWidgetArr5 = this.mAlignedBiggestElementsInRows;
+                        if (constraintWidgetArr5[i11] == null || constraintWidgetArr5[i11].getHeight() < widgetHeight2) {
+                            this.mAlignedBiggestElementsInRows[i11] = constraintWidget;
+                        }
+                    }
+                }
+            }
+            int widgetWidth3 = 0;
+            for (int i13 = 0; i13 < iCeil; i13++) {
+                ConstraintWidget constraintWidget4 = this.mAlignedBiggestElementsInCols[i13];
+                if (constraintWidget4 != null) {
+                    if (i13 > 0) {
+                        widgetWidth3 += this.mHorizontalGap;
+                    }
+                    widgetWidth3 += getWidgetWidth(constraintWidget4, i4);
+                }
+            }
+            int widgetHeight3 = 0;
+            for (int i14 = 0; i14 < iCeil2; i14++) {
+                ConstraintWidget constraintWidget5 = this.mAlignedBiggestElementsInRows[i14];
+                if (constraintWidget5 != null) {
+                    if (i14 > 0) {
+                        widgetHeight3 += this.mVerticalGap;
+                    }
+                    widgetHeight3 += getWidgetHeight(constraintWidget5, i4);
+                }
+            }
+            iArr[0] = widgetWidth3;
+            iArr[1] = widgetHeight3;
+            if (i3 != 0) {
+                if (widgetHeight3 <= i4 || iCeil2 <= 1) {
+                    z = true;
+                } else {
+                    iCeil2--;
+                }
+            } else if (widgetWidth3 <= i4 || iCeil <= 1) {
+                z = true;
+            } else {
+                iCeil--;
+            }
+            while (!z) {
+            }
+        }
+        int[] iArr22 = this.mAlignedDimensions;
+        iArr22[0] = iCeil;
+        iArr22[1] = iCeil2;
     }
 
     private void measureChainWrap(ConstraintWidget[] constraintWidgetArr, int i2, int i3, int i4, int[] iArr) {
@@ -644,52 +781,52 @@ public class Flow extends VirtualLayout {
         }
         ConstraintAnchor constraintAnchor5 = constraintAnchor3;
         int i15 = paddingTop;
-        int i16 = paddingRight;
-        int i17 = paddingBottom;
+        int paddingRight2 = paddingRight;
+        int paddingBottom2 = paddingBottom;
         ConstraintAnchor constraintAnchor6 = constraintAnchor;
-        int i18 = paddingLeft;
-        int i19 = 0;
+        int i16 = paddingLeft;
+        int width = 0;
         ConstraintAnchor constraintAnchor7 = constraintAnchor4;
         ConstraintAnchor constraintAnchor8 = constraintAnchor2;
-        int i20 = 0;
-        for (int i21 = 0; i21 < size; i21++) {
-            WidgetsList widgetsList7 = this.mChainList.get(i21);
+        int iMax = 0;
+        for (int i17 = 0; i17 < size; i17++) {
+            WidgetsList widgetsList7 = this.mChainList.get(i17);
             if (i3 == 0) {
-                if (i21 < size - 1) {
-                    constraintAnchor7 = this.mChainList.get(i21 + 1).biggest.mTop;
-                    i17 = 0;
+                if (i17 < size - 1) {
+                    constraintAnchor7 = this.mChainList.get(i17 + 1).biggest.mTop;
+                    paddingBottom2 = 0;
                 } else {
                     constraintAnchor7 = this.mBottom;
-                    i17 = getPaddingBottom();
+                    paddingBottom2 = getPaddingBottom();
                 }
                 constraintAnchor8 = widgetsList7.biggest.mBottom;
-                widgetsList7.setup(i3, constraintAnchor6, constraintAnchor8, constraintAnchor5, constraintAnchor7, i18, i15, i16, i17, i4);
-                i19 = Math.max(i19, widgetsList7.getWidth());
-                i20 += widgetsList7.getHeight();
-                if (i21 > 0) {
-                    i20 += this.mVerticalGap;
+                widgetsList7.setup(i3, constraintAnchor6, constraintAnchor8, constraintAnchor5, constraintAnchor7, i16, i15, paddingRight2, paddingBottom2, i4);
+                width = Math.max(width, widgetsList7.getWidth());
+                iMax += widgetsList7.getHeight();
+                if (i17 > 0) {
+                    iMax += this.mVerticalGap;
                 }
                 i15 = 0;
             } else {
-                if (i21 < size - 1) {
-                    constraintAnchor5 = this.mChainList.get(i21 + 1).biggest.mLeft;
-                    i16 = 0;
+                if (i17 < size - 1) {
+                    constraintAnchor5 = this.mChainList.get(i17 + 1).biggest.mLeft;
+                    paddingRight2 = 0;
                 } else {
                     constraintAnchor5 = this.mRight;
-                    i16 = getPaddingRight();
+                    paddingRight2 = getPaddingRight();
                 }
                 constraintAnchor6 = widgetsList7.biggest.mRight;
-                widgetsList7.setup(i3, constraintAnchor6, constraintAnchor8, constraintAnchor5, constraintAnchor7, i18, i15, i16, i17, i4);
-                i19 += widgetsList7.getWidth();
-                i20 = Math.max(i20, widgetsList7.getHeight());
-                if (i21 > 0) {
-                    i19 += this.mHorizontalGap;
+                widgetsList7.setup(i3, constraintAnchor6, constraintAnchor8, constraintAnchor5, constraintAnchor7, i16, i15, paddingRight2, paddingBottom2, i4);
+                width += widgetsList7.getWidth();
+                iMax = Math.max(iMax, widgetsList7.getHeight());
+                if (i17 > 0) {
+                    width += this.mHorizontalGap;
                 }
-                i18 = 0;
+                i16 = 0;
             }
         }
-        iArr[0] = i19;
-        iArr[1] = i20;
+        iArr[0] = width;
+        iArr[1] = iMax;
     }
 
     private void measureNoWrap(ConstraintWidget[] constraintWidgetArr, int i2, int i3, int i4, int[] iArr) {
@@ -716,28 +853,28 @@ public class Flow extends VirtualLayout {
     @Override // androidx.constraintlayout.solver.widgets.ConstraintWidget
     public void addToSolver(LinearSystem linearSystem, boolean z) {
         super.addToSolver(linearSystem, z);
-        boolean isRtl = getParent() != null ? ((ConstraintWidgetContainer) getParent()).isRtl() : false;
+        boolean zIsRtl = getParent() != null ? ((ConstraintWidgetContainer) getParent()).isRtl() : false;
         int i2 = this.mWrapMode;
         if (i2 != 0) {
             if (i2 == 1) {
                 int size = this.mChainList.size();
                 int i3 = 0;
                 while (i3 < size) {
-                    this.mChainList.get(i3).createConstraints(isRtl, i3, i3 == size + (-1));
+                    this.mChainList.get(i3).createConstraints(zIsRtl, i3, i3 == size + (-1));
                     i3++;
                 }
             } else if (i2 == 2) {
-                createAlignedConstraints(isRtl);
+                createAlignedConstraints(zIsRtl);
             }
         } else if (this.mChainList.size() > 0) {
-            this.mChainList.get(0).createConstraints(isRtl, 0, true);
+            this.mChainList.get(0).createConstraints(zIsRtl, 0, true);
         }
         needsCallbackFromSolver(false);
     }
 
     @Override // androidx.constraintlayout.solver.widgets.HelperWidget, androidx.constraintlayout.solver.widgets.ConstraintWidget
-    public void copy(ConstraintWidget constraintWidget, HashMap<ConstraintWidget, ConstraintWidget> hashMap) {
-        super.copy(constraintWidget, hashMap);
+    public void copy(ConstraintWidget constraintWidget, HashMap<ConstraintWidget, ConstraintWidget> map) {
+        super.copy(constraintWidget, map);
         Flow flow = (Flow) constraintWidget;
         this.mHorizontalStyle = flow.mHorizontalStyle;
         this.mVerticalStyle = flow.mVerticalStyle;
@@ -842,25 +979,25 @@ public class Flow extends VirtualLayout {
             iArr = iArr2;
             measureAligned(constraintWidgetArr, i7, this.mOrientation, i9, iArr2);
         }
-        int i15 = iArr[0] + paddingLeft + paddingRight;
-        int i16 = iArr[z ? 1 : 0] + paddingTop + paddingBottom;
+        int iMin = iArr[0] + paddingLeft + paddingRight;
+        int iMin2 = iArr[z ? 1 : 0] + paddingTop + paddingBottom;
         if (i2 == 1073741824) {
-            i15 = i3;
+            iMin = i3;
         } else if (i2 == Integer.MIN_VALUE) {
-            i15 = Math.min(i15, i3);
+            iMin = Math.min(iMin, i3);
         } else if (i2 != 0) {
-            i15 = 0;
+            iMin = 0;
         }
         if (i4 == 1073741824) {
-            i16 = i5;
+            iMin2 = i5;
         } else if (i4 == Integer.MIN_VALUE) {
-            i16 = Math.min(i16, i5);
+            iMin2 = Math.min(iMin2, i5);
         } else if (i4 != 0) {
-            i16 = 0;
+            iMin2 = 0;
         }
-        setMeasure(i15, i16);
-        setWidth(i15);
-        setHeight(i16);
+        setMeasure(iMin, iMin2);
+        setWidth(iMin);
+        setHeight(iMin2);
         if (this.mWidgetsCount <= 0) {
             z = false;
         }

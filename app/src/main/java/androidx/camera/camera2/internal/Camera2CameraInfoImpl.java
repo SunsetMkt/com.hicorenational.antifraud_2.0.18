@@ -10,7 +10,7 @@ import androidx.camera.core.impl.utils.CameraOrientationUtil;
 import androidx.core.util.Preconditions;
 import androidx.lifecycle.LiveData;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Camera2CameraInfoImpl implements CameraInfoInternal {
     private static final String TAG = "Camera2CameraInfo";
     private final CameraCharacteristics mCameraCharacteristics;
@@ -67,9 +67,9 @@ public final class Camera2CameraInfoImpl implements CameraInfoInternal {
     public Integer getLensFacing() {
         Integer num = (Integer) this.mCameraCharacteristics.get(CameraCharacteristics.LENS_FACING);
         Preconditions.checkNotNull(num);
-        int intValue = num.intValue();
-        if (intValue != 0) {
-            return intValue != 1 ? null : 1;
+        int iIntValue = num.intValue();
+        if (iIntValue != 0) {
+            return iIntValue != 1 ? null : 1;
         }
         return 0;
     }
@@ -82,10 +82,10 @@ public final class Camera2CameraInfoImpl implements CameraInfoInternal {
 
     @Override // androidx.camera.core.CameraInfo
     public int getSensorRotationDegrees(int i2) {
-        Integer valueOf = Integer.valueOf(getSensorOrientation());
-        int surfaceRotationToDegrees = CameraOrientationUtil.surfaceRotationToDegrees(i2);
+        Integer numValueOf = Integer.valueOf(getSensorOrientation());
+        int iSurfaceRotationToDegrees = CameraOrientationUtil.surfaceRotationToDegrees(i2);
         Integer lensFacing = getLensFacing();
-        return CameraOrientationUtil.getRelativeImageRotation(surfaceRotationToDegrees, valueOf.intValue(), lensFacing != null && 1 == lensFacing.intValue());
+        return CameraOrientationUtil.getRelativeImageRotation(iSurfaceRotationToDegrees, numValueOf.intValue(), lensFacing != null && 1 == lensFacing.intValue());
     }
 
     int getSupportedHardwareLevel() {

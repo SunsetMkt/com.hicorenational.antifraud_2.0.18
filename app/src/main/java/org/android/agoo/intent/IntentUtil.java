@@ -3,8 +3,8 @@ package org.android.agoo.intent;
 import android.content.Context;
 import com.taobao.accs.utl.ALog;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public final class IntentUtil {
     private static final String INTENT_FROM_AGOO_COMMAND = ".intent.action.COMMAND";
     private static final String INTENT_FROM_THIRDPUSH_COMMAND = ".intent.thirdPush.action.COMMAND";
@@ -17,7 +17,7 @@ public final class IntentUtil {
         try {
             return context.getPackageName() + INTENT_FROM_AGOO_COMMAND;
         } catch (Throwable th) {
-            ALog.m9185w(TAG, "getAgooCommand", th, new Object[0]);
+            ALog.w(TAG, "getAgooCommand", th, new Object[0]);
             return null;
         }
     }
@@ -29,7 +29,7 @@ public final class IntentUtil {
         try {
             return context.getPackageName() + INTENT_FROM_THIRDPUSH_COMMAND;
         } catch (Throwable th) {
-            ALog.m9185w(TAG, "getAgooCommand", th, new Object[0]);
+            ALog.w(TAG, "getAgooCommand", th, new Object[0]);
             return null;
         }
     }

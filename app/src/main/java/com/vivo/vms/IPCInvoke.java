@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import com.vivo.vms.IPCCallback;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IPCInvoke extends IInterface {
     public static final String DESCRIPTOR = "com.vivo.vms.IPCInvoke";
 
@@ -42,25 +42,25 @@ public interface IPCInvoke extends IInterface {
 
             @Override // com.vivo.vms.IPCInvoke
             public Bundle asyncCall(Bundle bundle, IPCCallback iPCCallback) throws RemoteException {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
+                Parcel parcelObtain2 = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(IPCInvoke.DESCRIPTOR);
+                    parcelObtain.writeInterfaceToken(IPCInvoke.DESCRIPTOR);
                     if (bundle != null) {
-                        obtain.writeInt(1);
-                        bundle.writeToParcel(obtain, 0);
+                        parcelObtain.writeInt(1);
+                        bundle.writeToParcel(parcelObtain, 0);
                     } else {
-                        obtain.writeInt(0);
+                        parcelObtain.writeInt(0);
                     }
-                    obtain.writeStrongBinder(iPCCallback != null ? iPCCallback.asBinder() : null);
-                    if (!this.mRemote.transact(1, obtain, obtain2, 0) && Stub.getDefaultImpl() != null) {
+                    parcelObtain.writeStrongBinder(iPCCallback != null ? iPCCallback.asBinder() : null);
+                    if (!this.mRemote.transact(1, parcelObtain, parcelObtain2, 0) && Stub.getDefaultImpl() != null) {
                         return Stub.getDefaultImpl().asyncCall(bundle, iPCCallback);
                     }
-                    obtain2.readException();
-                    return obtain2.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(obtain2) : null;
+                    parcelObtain2.readException();
+                    return parcelObtain2.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcelObtain2) : null;
                 } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
+                    parcelObtain2.recycle();
+                    parcelObtain.recycle();
                 }
             }
 
@@ -77,8 +77,8 @@ public interface IPCInvoke extends IInterface {
             if (iBinder == null) {
                 return null;
             }
-            IInterface queryLocalInterface = iBinder.queryLocalInterface(IPCInvoke.DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IPCInvoke)) ? new Proxy(iBinder) : (IPCInvoke) queryLocalInterface;
+            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(IPCInvoke.DESCRIPTOR);
+            return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof IPCInvoke)) ? new Proxy(iBinder) : (IPCInvoke) iInterfaceQueryLocalInterface;
         }
 
         public static IPCInvoke getDefaultImpl() {
@@ -111,11 +111,11 @@ public interface IPCInvoke extends IInterface {
                 return super.onTransact(i2, parcel, parcel2, i3);
             }
             parcel.enforceInterface(IPCInvoke.DESCRIPTOR);
-            Bundle asyncCall = asyncCall(parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null, IPCCallback.Stub.asInterface(parcel.readStrongBinder()));
+            Bundle bundleAsyncCall = asyncCall(parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null, IPCCallback.Stub.asInterface(parcel.readStrongBinder()));
             parcel2.writeNoException();
-            if (asyncCall != null) {
+            if (bundleAsyncCall != null) {
                 parcel2.writeInt(1);
-                asyncCall.writeToParcel(parcel2, 1);
+                bundleAsyncCall.writeToParcel(parcel2, 1);
             } else {
                 parcel2.writeInt(0);
             }

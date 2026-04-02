@@ -9,7 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PermissionChecker {
     public static boolean checkSelfPermission(Context context, String str) {
         return ContextCompat.checkSelfPermission(context.getApplicationContext(), str) == 0;

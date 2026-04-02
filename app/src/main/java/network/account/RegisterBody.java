@@ -2,7 +2,7 @@ package network.account;
 
 import network.BaseBean;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class RegisterBody extends BaseBean {
     private String appVersion;
     private String idNumber;
@@ -10,9 +10,7 @@ public class RegisterBody extends BaseBean {
     private String innerversion;
     private int loginType;
     private String name;
-
-    /* renamed from: os */
-    private int f21453os;
+    private int os;
     private String osVersion;
     private String pCode;
     private String password;
@@ -48,7 +46,7 @@ public class RegisterBody extends BaseBean {
     }
 
     public int getOs() {
-        return this.f21453os;
+        return this.os;
     }
 
     public String getOsVersion() {
@@ -112,7 +110,7 @@ public class RegisterBody extends BaseBean {
     }
 
     public void setOs(int i2) {
-        this.f21453os = i2;
+        this.os = i2;
     }
 
     public void setOsVersion(String str) {
@@ -152,6 +150,6 @@ public class RegisterBody extends BaseBean {
     }
 
     public String toString() {
-        return "RegisterBody{phoneNum='" + this.phoneNum + "', password='" + this.password + "', appVersion='" + this.appVersion + "', os=" + this.f21453os + ", osVersion='" + this.osVersion + "', imei='" + this.imei + "', requestIP='" + this.requestIP + "', region='" + this.region + "'}";
+        return "RegisterBody{phoneNum='" + this.phoneNum + "', password='" + this.password + "', appVersion='" + this.appVersion + "', os=" + this.os + ", osVersion='" + this.osVersion + "', imei='" + this.imei + "', requestIP='" + this.requestIP + "', region='" + this.region + "'}";
     }
 }

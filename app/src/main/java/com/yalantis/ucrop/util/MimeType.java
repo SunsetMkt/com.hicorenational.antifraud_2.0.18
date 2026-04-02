@@ -8,7 +8,7 @@ import anet.channel.util.HttpConstant;
 import com.luck.picture.lib.config.PictureMimeType;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MimeType {
     public static final String MIME_TYPE_PREFIX_IMAGE = "image";
     public static final String MIME_TYPE_PREFIX_VIDEO = "video";
@@ -35,12 +35,12 @@ public class MimeType {
     }
 
     public static String getLastImgType(String str) {
-        String substring;
+        String strSubstring;
         try {
-            int lastIndexOf = str.lastIndexOf(".");
-            if (lastIndexOf > 0) {
-                substring = str.substring(lastIndexOf);
-                switch (substring) {
+            int iLastIndexOf = str.lastIndexOf(".");
+            if (iLastIndexOf > 0) {
+                strSubstring = str.substring(iLastIndexOf);
+                switch (strSubstring) {
                     case ".png":
                     case ".PNG":
                     case ".jpg":
@@ -52,7 +52,7 @@ public class MimeType {
                     case ".webp":
                     case ".gif":
                     case ".GIF":
-                        return substring;
+                        return strSubstring;
                 }
             }
             return PictureMimeType.PNG;

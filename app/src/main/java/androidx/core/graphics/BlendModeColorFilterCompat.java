@@ -9,7 +9,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BlendModeColorFilterCompat {
     private BlendModeColorFilterCompat() {
     }
@@ -17,15 +17,15 @@ public class BlendModeColorFilterCompat {
     @Nullable
     public static ColorFilter createBlendModeColorFilterCompat(int i2, @NonNull BlendModeCompat blendModeCompat) {
         if (Build.VERSION.SDK_INT >= 29) {
-            BlendMode obtainBlendModeFromCompat = BlendModeUtils.obtainBlendModeFromCompat(blendModeCompat);
-            if (obtainBlendModeFromCompat != null) {
-                return new BlendModeColorFilter(i2, obtainBlendModeFromCompat);
+            BlendMode blendModeObtainBlendModeFromCompat = BlendModeUtils.obtainBlendModeFromCompat(blendModeCompat);
+            if (blendModeObtainBlendModeFromCompat != null) {
+                return new BlendModeColorFilter(i2, blendModeObtainBlendModeFromCompat);
             }
             return null;
         }
-        PorterDuff.Mode obtainPorterDuffFromCompat = BlendModeUtils.obtainPorterDuffFromCompat(blendModeCompat);
-        if (obtainPorterDuffFromCompat != null) {
-            return new PorterDuffColorFilter(i2, obtainPorterDuffFromCompat);
+        PorterDuff.Mode modeObtainPorterDuffFromCompat = BlendModeUtils.obtainPorterDuffFromCompat(blendModeCompat);
+        if (modeObtainPorterDuffFromCompat != null) {
+            return new PorterDuffColorFilter(i2, modeObtainPorterDuffFromCompat);
         }
         return null;
     }

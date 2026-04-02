@@ -21,8 +21,8 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuItemImpl;
 import java.lang.reflect.Method;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class MenuPopupWindow extends ListPopupWindow implements MenuItemHoverListener {
     private static final String TAG = "MenuPopupWindow";
     private static Method sSetTouchModalMethod;
@@ -88,33 +88,33 @@ public class MenuPopupWindow extends ListPopupWindow implements MenuItemHoverLis
 
         @Override // androidx.appcompat.widget.DropDownListView, android.view.View
         public boolean onHoverEvent(MotionEvent motionEvent) {
-            int i2;
+            int headersCount;
             MenuAdapter menuAdapter;
-            int pointToPosition;
-            int i3;
+            int iPointToPosition;
+            int i2;
             if (this.mHoverListener != null) {
                 ListAdapter adapter2 = getAdapter();
                 if (adapter2 instanceof HeaderViewListAdapter) {
                     HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter2;
-                    i2 = headerViewListAdapter.getHeadersCount();
+                    headersCount = headerViewListAdapter.getHeadersCount();
                     menuAdapter = (MenuAdapter) headerViewListAdapter.getWrappedAdapter();
                 } else {
-                    i2 = 0;
+                    headersCount = 0;
                     menuAdapter = (MenuAdapter) adapter2;
                 }
-                MenuItemImpl menuItemImpl = null;
-                if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i3 = pointToPosition - i2) >= 0 && i3 < menuAdapter.getCount()) {
-                    menuItemImpl = menuAdapter.getItem(i3);
+                MenuItemImpl item = null;
+                if (motionEvent.getAction() != 10 && (iPointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i2 = iPointToPosition - headersCount) >= 0 && i2 < menuAdapter.getCount()) {
+                    item = menuAdapter.getItem(i2);
                 }
                 MenuItem menuItem = this.mHoveredMenuItem;
-                if (menuItem != menuItemImpl) {
+                if (menuItem != item) {
                     MenuBuilder adapterMenu = menuAdapter.getAdapterMenu();
                     if (menuItem != null) {
                         this.mHoverListener.onItemHoverExit(adapterMenu, menuItem);
                     }
-                    this.mHoveredMenuItem = menuItemImpl;
-                    if (menuItemImpl != null) {
-                        this.mHoverListener.onItemHoverEnter(adapterMenu, menuItemImpl);
+                    this.mHoveredMenuItem = item;
+                    if (item != null) {
+                        this.mHoverListener.onItemHoverEnter(adapterMenu, item);
                     }
                 }
             }

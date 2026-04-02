@@ -2,12 +2,10 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SocialTypeBean extends BaseBean {
     private String createTime;
-
-    /* renamed from: id */
-    private long f1625id;
+    private long id;
     private boolean isShow;
     private int sort;
     private String text;
@@ -21,7 +19,7 @@ public class SocialTypeBean extends BaseBean {
     }
 
     public long getId() {
-        return this.f1625id;
+        return this.id;
     }
 
     public int getSort() {
@@ -45,7 +43,7 @@ public class SocialTypeBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.f1625id = j2;
+        this.id = j2;
     }
 
     public void setIsShow(boolean z) {

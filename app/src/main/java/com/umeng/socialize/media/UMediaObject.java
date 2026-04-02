@@ -2,7 +2,7 @@ package com.umeng.socialize.media;
 
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface UMediaObject {
 
     public enum MediaType {

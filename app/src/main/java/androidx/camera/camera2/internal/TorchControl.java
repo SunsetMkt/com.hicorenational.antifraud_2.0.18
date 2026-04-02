@@ -12,9 +12,8 @@ import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class TorchControl {
     private static final String TAG = "TorchControl";
     private final Camera2CameraControl mCamera2CameraControl;
@@ -32,18 +31,26 @@ final class TorchControl {
     final Object mEnableTorchLock = new Object();
     private final Object mActiveLock = new Object();
     private final Camera2CameraControl.CaptureResultListener mCaptureResultListener = new Camera2CameraControl.CaptureResultListener() { // from class: androidx.camera.camera2.internal.TorchControl.1
+        AnonymousClass1() {
+        }
+
+        /* JADX WARN: Removed duplicated region for block: B:40:0x0034  */
         @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
         public boolean onCaptureResult(@NonNull TotalCaptureResult totalCaptureResult) {
             CallbackToFutureAdapter.Completer<Void> completer;
             synchronized (TorchControl.this.mEnableTorchLock) {
-                if (TorchControl.this.mEnableTorchCompleter != null) {
+                if (TorchControl.this.mEnableTorchCompleter == null) {
+                    completer = null;
+                } else {
                     Integer num = (Integer) totalCaptureResult.getRequest().get(CaptureRequest.FLASH_MODE);
                     if ((num != null && num.intValue() == 2) == TorchControl.this.mTargetTorchEnabled) {
                         completer = TorchControl.this.mEnableTorchCompleter;
                         TorchControl.this.mEnableTorchCompleter = null;
                     }
                 }
-                completer = null;
             }
             if (completer != null) {
                 completer.set(null);
@@ -51,6 +58,36 @@ final class TorchControl {
             return false;
         }
     };
+
+    /* JADX INFO: renamed from: androidx.camera.camera2.internal.TorchControl$1 */
+    class AnonymousClass1 implements Camera2CameraControl.CaptureResultListener {
+        AnonymousClass1() {
+        }
+
+        /* JADX WARN: Removed duplicated region for block: B:40:0x0034  */
+        @Override // androidx.camera.camera2.internal.Camera2CameraControl.CaptureResultListener
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
+        public boolean onCaptureResult(@NonNull TotalCaptureResult totalCaptureResult) {
+            CallbackToFutureAdapter.Completer<Void> completer;
+            synchronized (TorchControl.this.mEnableTorchLock) {
+                if (TorchControl.this.mEnableTorchCompleter == null) {
+                    completer = null;
+                } else {
+                    Integer num = (Integer) totalCaptureResult.getRequest().get(CaptureRequest.FLASH_MODE);
+                    if ((num != null && num.intValue() == 2) == TorchControl.this.mTargetTorchEnabled) {
+                        completer = TorchControl.this.mEnableTorchCompleter;
+                        TorchControl.this.mEnableTorchCompleter = null;
+                    }
+                }
+            }
+            if (completer != null) {
+                completer.set(null);
+            }
+            return false;
+        }
+    }
 
     TorchControl(@NonNull Camera2CameraControl camera2CameraControl, @NonNull CameraCharacteristics cameraCharacteristics) {
         this.mCamera2CameraControl = camera2CameraControl;
@@ -68,8 +105,7 @@ final class TorchControl {
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m319a(boolean z, CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(boolean z, CallbackToFutureAdapter.Completer completer) throws Exception {
         CallbackToFutureAdapter.Completer<Void> completer2;
         synchronized (this.mEnableTorchLock) {
             completer2 = this.mEnableTorchCompleter != null ? this.mEnableTorchCompleter : null;
@@ -84,7 +120,7 @@ final class TorchControl {
         return "enableTorch: " + z;
     }
 
-    InterfaceFutureC0952a<Void> enableTorch(final boolean z) {
+    d.b.b.a.a.a<Void> enableTorch(final boolean z) {
         if (!this.mHasFlashUnit) {
             return Futures.immediateFailedFuture(new IllegalStateException("No flash unit"));
         }
@@ -93,7 +129,7 @@ final class TorchControl {
                 return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.y
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                        return TorchControl.this.m319a(z, completer);
+                        return this.a.a(z, completer);
                     }
                 });
             }

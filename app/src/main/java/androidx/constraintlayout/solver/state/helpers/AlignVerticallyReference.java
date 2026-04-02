@@ -5,7 +5,7 @@ import androidx.constraintlayout.solver.state.HelperReference;
 import androidx.constraintlayout.solver.state.State;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AlignVerticallyReference extends HelperReference {
     private float mBias;
     private Object mBottomToBottom;
@@ -22,33 +22,33 @@ public class AlignVerticallyReference extends HelperReference {
     public void apply() {
         Iterator<Object> it = this.mReferences.iterator();
         while (it.hasNext()) {
-            ConstraintReference constraints = this.mState.constraints(it.next());
-            constraints.clearVertical();
+            ConstraintReference constraintReferenceConstraints = this.mState.constraints(it.next());
+            constraintReferenceConstraints.clearVertical();
             Object obj = this.mTopToTop;
             if (obj != null) {
-                constraints.topToTop(obj);
+                constraintReferenceConstraints.topToTop(obj);
             } else {
                 Object obj2 = this.mTopToBottom;
                 if (obj2 != null) {
-                    constraints.topToBottom(obj2);
+                    constraintReferenceConstraints.topToBottom(obj2);
                 } else {
-                    constraints.topToTop(State.PARENT);
+                    constraintReferenceConstraints.topToTop(State.PARENT);
                 }
             }
             Object obj3 = this.mBottomToTop;
             if (obj3 != null) {
-                constraints.bottomToTop(obj3);
+                constraintReferenceConstraints.bottomToTop(obj3);
             } else {
                 Object obj4 = this.mBottomToBottom;
                 if (obj4 != null) {
-                    constraints.bottomToBottom(obj4);
+                    constraintReferenceConstraints.bottomToBottom(obj4);
                 } else {
-                    constraints.bottomToBottom(State.PARENT);
+                    constraintReferenceConstraints.bottomToBottom(State.PARENT);
                 }
             }
             float f2 = this.mBias;
             if (f2 != 0.5f) {
-                constraints.verticalBias(f2);
+                constraintReferenceConstraints.verticalBias(f2);
             }
         }
     }

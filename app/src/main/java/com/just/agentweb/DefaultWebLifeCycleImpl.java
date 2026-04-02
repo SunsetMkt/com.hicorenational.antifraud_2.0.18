@@ -3,7 +3,7 @@ package com.just.agentweb;
 import android.os.Build;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultWebLifeCycleImpl implements WebLifeCycle {
     private WebView mWebView;
 

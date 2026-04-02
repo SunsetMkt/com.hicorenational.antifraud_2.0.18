@@ -7,7 +7,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ImageViewUtil {
     public static void matchAll(Context context, ImageView imageView) {
         WindowManager windowManager = (WindowManager) context.getSystemService("window");

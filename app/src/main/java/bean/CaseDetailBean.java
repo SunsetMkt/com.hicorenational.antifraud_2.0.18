@@ -1,11 +1,11 @@
 package bean;
 
-import com.google.gson.p146a0.InterfaceC2003c;
+import com.google.gson.a0.c;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CaseDetailBean extends BaseBean {
     private int appCount;
     private int callTelCount;
@@ -19,9 +19,7 @@ public class CaseDetailBean extends BaseBean {
     private String createTime;
     private String documentNumber;
     private String documentTypeText;
-
-    /* renamed from: id */
-    private String f1583id;
+    private String id;
     private int linkTelCount;
     private int mailingTelCount;
     private String name;
@@ -50,7 +48,7 @@ public class CaseDetailBean extends BaseBean {
         private int caseInfoID;
         private String downloadUrl;
 
-        @InterfaceC2003c("id")
+        @c("id")
         private int idX;
         private int packageFileID;
         private String packageFileUrl;
@@ -192,11 +190,11 @@ public class CaseDetailBean extends BaseBean {
     public static class PaymentsBean {
         private String caseInfoID;
 
-        @InterfaceC2003c("createTime")
+        @c("createTime")
         private String createTimeX;
         private String description;
 
-        @InterfaceC2003c("id")
+        @c("id")
         private String idX;
         private List<PaymentDetailsBean> paymentDetails;
         private String paymentTime;
@@ -207,7 +205,7 @@ public class CaseDetailBean extends BaseBean {
         private String suspectAccountTypeText;
         private String suspectAccountTypeText1;
 
-        @InterfaceC2003c("updateTime")
+        @c("updateTime")
         private String updateTimeX;
         private String victimAccount;
         private String victimAccountType;
@@ -216,18 +214,18 @@ public class CaseDetailBean extends BaseBean {
 
         public static class PaymentDetailsBean {
 
-            @InterfaceC2003c("createTime")
+            @c("createTime")
             private String createTimeX;
             private String fileID;
             private String fileName;
             private String fileUrl;
 
-            @InterfaceC2003c("id")
+            @c("id")
             private String idX;
             private String localPath;
             private String paymentInfoID;
 
-            @InterfaceC2003c("updateTime")
+            @c("updateTime")
             private String updateTimeX;
 
             public String getCreateTimeX() {
@@ -435,16 +433,16 @@ public class CaseDetailBean extends BaseBean {
     public static class SuspectsBean {
         private int caseInfoID;
 
-        @InterfaceC2003c("createTime")
+        @c("createTime")
         private String createTimeX;
 
-        @InterfaceC2003c("id")
+        @c("id")
         private int idX;
         private List<MobilesBean> mobiles;
         private List<PrintscreensBean> printscreens;
         private List<SocialAccountsBean> socialAccounts;
 
-        @InterfaceC2003c("updateTime")
+        @c("updateTime")
         private String updateTimeX;
 
         public static class MobilesBean {
@@ -452,14 +450,14 @@ public class CaseDetailBean extends BaseBean {
             private int accountType;
             private String accountTypeName;
 
-            @InterfaceC2003c("createTime")
+            @c("createTime")
             private String createTimeX;
 
-            @InterfaceC2003c("id")
+            @c("id")
             private int idX;
             private int suspectInfoID;
 
-            @InterfaceC2003c("updateTime")
+            @c("updateTime")
             private String updateTimeX;
 
             public String getAccount() {
@@ -521,18 +519,18 @@ public class CaseDetailBean extends BaseBean {
 
         public static class PrintscreensBean {
 
-            @InterfaceC2003c("createTime")
+            @c("createTime")
             private String createTimeX;
             private int fileID;
             private String fileName;
             private String fileUrl;
 
-            @InterfaceC2003c("id")
+            @c("id")
             private int idX;
             private String localPath;
             private int suspectInfoID;
 
-            @InterfaceC2003c("updateTime")
+            @c("updateTime")
             private String updateTimeX;
 
             public String getCreateTimeX() {
@@ -605,14 +603,14 @@ public class CaseDetailBean extends BaseBean {
             private int accountType;
             private String accountTypeName;
 
-            @InterfaceC2003c("createTime")
+            @c("createTime")
             private String createTimeX;
 
-            @InterfaceC2003c("id")
+            @c("id")
             private int idX;
             private int suspectInfoID;
 
-            @InterfaceC2003c("updateTime")
+            @c("updateTime")
             private String updateTimeX;
 
             public String getAccount() {
@@ -732,13 +730,13 @@ public class CaseDetailBean extends BaseBean {
     public static class UrlsBean {
         private int caseInfoID;
 
-        @InterfaceC2003c("createTime")
+        @c("createTime")
         private String createTimeX;
 
-        @InterfaceC2003c("id")
+        @c("id")
         private int idX;
 
-        @InterfaceC2003c("updateTime")
+        @c("updateTime")
         private String updateTimeX;
         private String url;
         private String urlCompany;
@@ -746,17 +744,17 @@ public class CaseDetailBean extends BaseBean {
 
         public static class UrlDetailsBean {
 
-            @InterfaceC2003c("createTime")
+            @c("createTime")
             private String createTimeX;
             private int fileID;
             private String fileName;
             private String fileUrl;
 
-            @InterfaceC2003c("id")
+            @c("id")
             private int idX;
             private String localPath;
 
-            @InterfaceC2003c("updateTime")
+            @c("updateTime")
             private String updateTimeX;
             private int urlInfoID;
 
@@ -889,25 +887,25 @@ public class CaseDetailBean extends BaseBean {
         private int age;
         private int caseInfoID;
 
-        @InterfaceC2003c("createTime")
+        @c("createTime")
         private String createTimeX;
         private int cultural;
         private String culturalName;
         private String culturalText;
         private String documentName;
 
-        @InterfaceC2003c("documentNumber")
+        @c("documentNumber")
         private String documentNumberX;
         private int documentType;
 
-        @InterfaceC2003c("documentTypeText")
+        @c("documentTypeText")
         private String documentTypeTextX;
 
-        @InterfaceC2003c("id")
+        @c("id")
         private int idX;
         private String mobileNumber;
 
-        @InterfaceC2003c(CommonNetImpl.NAME)
+        @c(CommonNetImpl.NAME)
         private String nameX;
         private int nationality;
         private String nationalityName;
@@ -919,7 +917,7 @@ public class CaseDetailBean extends BaseBean {
         private int sex;
         private String unit;
 
-        @InterfaceC2003c("updateTime")
+        @c("updateTime")
         private String updateTimeX;
 
         public String getAddress() {
@@ -1180,7 +1178,7 @@ public class CaseDetailBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1583id;
+        return this.id;
     }
 
     public int getLinkTelCount() {
@@ -1300,7 +1298,7 @@ public class CaseDetailBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1583id = str;
+        this.id = str;
     }
 
     public void setLinkTelCount(int i2) {

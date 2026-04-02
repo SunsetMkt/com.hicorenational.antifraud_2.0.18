@@ -22,7 +22,7 @@ import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ObjectURLPresigner {
     private ClientConfiguration conf;
     private OSSCredentialProvider credentialProvider;
@@ -39,24 +39,24 @@ public class ObjectURLPresigner {
         String host = uri.getHost();
         String path = uri.getPath();
         int port = uri.getPort();
-        String valueOf = port != -1 ? String.valueOf(port) : null;
-        boolean z = false;
-        if (TextUtils.isEmpty(valueOf)) {
+        String strValueOf = port != -1 ? String.valueOf(port) : null;
+        boolean zIsValidateIP = false;
+        if (TextUtils.isEmpty(strValueOf)) {
             str2 = host;
         } else {
-            str2 = host + Constants.COLON_SEPARATOR + valueOf;
+            str2 = host + Constants.COLON_SEPARATOR + strValueOf;
         }
         if (!TextUtils.isEmpty(str)) {
             if (OSSUtils.isOssOriginHost(host)) {
                 str2 = str + "." + host;
             } else if (!OSSUtils.isInCustomCnameExcludeList(host, clientConfiguration.getCustomCnameExcludeList())) {
                 try {
-                    z = OSSUtils.isValidateIP(host);
+                    zIsValidateIP = OSSUtils.isValidateIP(host);
                 } catch (Exception e2) {
                     e2.printStackTrace();
                 }
             } else if (clientConfiguration.isPathStyleAccessEnable()) {
-                z = true;
+                zIsValidateIP = true;
             } else {
                 str2 = str + "." + host;
             }
@@ -64,24 +64,24 @@ public class ObjectURLPresigner {
         if (clientConfiguration.isCustomPathPrefixEnable() && path != null) {
             str2 = str2 + path;
         }
-        if (!z) {
+        if (!zIsValidateIP) {
             return str2;
         }
         return str2 + "/" + str;
     }
 
     public String presignConstrainedURL(GeneratePresignedUrlRequest generatePresignedUrlRequest) throws ClientException {
-        String sign;
+        String strSign;
         String bucketName = generatePresignedUrlRequest.getBucketName();
         String key = generatePresignedUrlRequest.getKey();
-        String valueOf = String.valueOf((DateUtil.getFixedSkewedTimeMillis() / 1000) + generatePresignedUrlRequest.getExpiration());
+        String strValueOf = String.valueOf((DateUtil.getFixedSkewedTimeMillis() / 1000) + generatePresignedUrlRequest.getExpiration());
         HttpMethod method = generatePresignedUrlRequest.getMethod() != null ? generatePresignedUrlRequest.getMethod() : HttpMethod.GET;
         RequestMessage requestMessage = new RequestMessage();
         requestMessage.setEndpoint(this.endpoint);
         requestMessage.setMethod(method);
         requestMessage.setBucketName(bucketName);
         requestMessage.setObjectKey(key);
-        requestMessage.getHeaders().put(HttpHeaders.DATE, valueOf);
+        requestMessage.getHeaders().put(HttpHeaders.DATE, strValueOf);
         if (generatePresignedUrlRequest.getContentType() != null && !generatePresignedUrlRequest.getContentType().trim().equals("")) {
             requestMessage.getHeaders().put("Content-Type", generatePresignedUrlRequest.getContentType());
         }
@@ -96,39 +96,39 @@ public class ObjectURLPresigner {
         if (generatePresignedUrlRequest.getProcess() != null && !generatePresignedUrlRequest.getProcess().trim().equals("")) {
             requestMessage.getParameters().put(RequestParameters.X_OSS_PROCESS, generatePresignedUrlRequest.getProcess());
         }
-        OSSFederationToken oSSFederationToken = null;
+        OSSFederationToken federationToken = null;
         OSSCredentialProvider oSSCredentialProvider = this.credentialProvider;
         if (oSSCredentialProvider instanceof OSSFederationCredentialProvider) {
-            oSSFederationToken = ((OSSFederationCredentialProvider) oSSCredentialProvider).getValidFederationToken();
-            requestMessage.getParameters().put(RequestParameters.SECURITY_TOKEN, oSSFederationToken.getSecurityToken());
-            if (oSSFederationToken == null) {
+            federationToken = ((OSSFederationCredentialProvider) oSSCredentialProvider).getValidFederationToken();
+            requestMessage.getParameters().put(RequestParameters.SECURITY_TOKEN, federationToken.getSecurityToken());
+            if (federationToken == null) {
                 throw new ClientException("Can not get a federation token!");
             }
         } else if (oSSCredentialProvider instanceof OSSStsTokenCredentialProvider) {
-            oSSFederationToken = ((OSSStsTokenCredentialProvider) oSSCredentialProvider).getFederationToken();
-            requestMessage.getParameters().put(RequestParameters.SECURITY_TOKEN, oSSFederationToken.getSecurityToken());
+            federationToken = ((OSSStsTokenCredentialProvider) oSSCredentialProvider).getFederationToken();
+            requestMessage.getParameters().put(RequestParameters.SECURITY_TOKEN, federationToken.getSecurityToken());
         }
-        String buildCanonicalString = OSSUtils.buildCanonicalString(requestMessage);
+        String strBuildCanonicalString = OSSUtils.buildCanonicalString(requestMessage);
         OSSCredentialProvider oSSCredentialProvider2 = this.credentialProvider;
         if ((oSSCredentialProvider2 instanceof OSSFederationCredentialProvider) || (oSSCredentialProvider2 instanceof OSSStsTokenCredentialProvider)) {
-            sign = OSSUtils.sign(oSSFederationToken.getTempAK(), oSSFederationToken.getTempSK(), buildCanonicalString);
+            strSign = OSSUtils.sign(federationToken.getTempAK(), federationToken.getTempSK(), strBuildCanonicalString);
         } else if (oSSCredentialProvider2 instanceof OSSPlainTextAKSKCredentialProvider) {
-            sign = OSSUtils.sign(((OSSPlainTextAKSKCredentialProvider) oSSCredentialProvider2).getAccessKeyId(), ((OSSPlainTextAKSKCredentialProvider) this.credentialProvider).getAccessKeySecret(), buildCanonicalString);
+            strSign = OSSUtils.sign(((OSSPlainTextAKSKCredentialProvider) oSSCredentialProvider2).getAccessKeyId(), ((OSSPlainTextAKSKCredentialProvider) this.credentialProvider).getAccessKeySecret(), strBuildCanonicalString);
         } else {
             if (!(oSSCredentialProvider2 instanceof OSSCustomSignerCredentialProvider)) {
                 throw new ClientException("Unknown credentialProvider!");
             }
-            sign = ((OSSCustomSignerCredentialProvider) oSSCredentialProvider2).signContent(buildCanonicalString);
+            strSign = ((OSSCustomSignerCredentialProvider) oSSCredentialProvider2).signContent(strBuildCanonicalString);
         }
-        String substring = sign.split(Constants.COLON_SEPARATOR)[0].substring(4);
-        String str = sign.split(Constants.COLON_SEPARATOR)[1];
-        String buildCanonicalHost = buildCanonicalHost(this.endpoint, bucketName, this.conf);
+        String strSubstring = strSign.split(Constants.COLON_SEPARATOR)[0].substring(4);
+        String str = strSign.split(Constants.COLON_SEPARATOR)[1];
+        String strBuildCanonicalHost = buildCanonicalHost(this.endpoint, bucketName, this.conf);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put(HttpHeaders.EXPIRES, valueOf);
-        linkedHashMap.put(RequestParameters.OSS_ACCESS_KEY_ID, substring);
+        linkedHashMap.put(HttpHeaders.EXPIRES, strValueOf);
+        linkedHashMap.put(RequestParameters.OSS_ACCESS_KEY_ID, strSubstring);
         linkedHashMap.put(RequestParameters.SIGNATURE, str);
         linkedHashMap.putAll(requestMessage.getParameters());
-        return this.endpoint.getScheme() + HttpConstant.SCHEME_SPLIT + buildCanonicalHost + "/" + HttpUtil.urlEncode(key, "utf-8") + "?" + HttpUtil.paramToQueryString(linkedHashMap, "utf-8");
+        return this.endpoint.getScheme() + HttpConstant.SCHEME_SPLIT + strBuildCanonicalHost + "/" + HttpUtil.urlEncode(key, "utf-8") + "?" + HttpUtil.paramToQueryString(linkedHashMap, "utf-8");
     }
 
     public String presignPublicURL(String str, String str2) {

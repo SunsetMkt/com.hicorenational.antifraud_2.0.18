@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class WeakHandler {
     private final Handler.Callback mCallback;
     private final ExecHandler mExec;
@@ -82,9 +82,9 @@ public class WeakHandler {
     }
 
     public final void removeCallbacks(Runnable runnable) {
-        WeakRunnable remove = this.mRunnables.remove(runnable);
-        if (remove != null) {
-            this.mExec.removeCallbacks(remove);
+        WeakRunnable weakRunnableRemove = this.mRunnables.remove(runnable);
+        if (weakRunnableRemove != null) {
+            this.mExec.removeCallbacks(weakRunnableRemove);
         }
     }
 
@@ -169,9 +169,9 @@ public class WeakHandler {
     }
 
     public final void removeCallbacks(Runnable runnable, Object obj) {
-        WeakRunnable remove = this.mRunnables.remove(runnable);
-        if (remove != null) {
-            this.mExec.removeCallbacks(remove, obj);
+        WeakRunnable weakRunnableRemove = this.mRunnables.remove(runnable);
+        if (weakRunnableRemove != null) {
+            this.mExec.removeCallbacks(weakRunnableRemove, obj);
         }
     }
 

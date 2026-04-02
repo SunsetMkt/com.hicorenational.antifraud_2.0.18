@@ -15,8 +15,8 @@ import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleableRes;
 import org.xmlpull.v1.XmlPullParser;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class TypedArrayUtils {
     private static final String NAMESPACE = "http://schemas.android.com/apk/res/android";
 
@@ -79,9 +79,9 @@ public class TypedArrayUtils {
             if (i4 >= 28 && i4 <= 31) {
                 return ComplexColorCompat.from(typedValue.data);
             }
-            ComplexColorCompat inflate = ComplexColorCompat.inflate(typedArray.getResources(), typedArray.getResourceId(i2, 0), theme);
-            if (inflate != null) {
-                return inflate;
+            ComplexColorCompat complexColorCompatInflate = ComplexColorCompat.inflate(typedArray.getResources(), typedArray.getResourceId(i2, 0), theme);
+            if (complexColorCompatInflate != null) {
+                return complexColorCompatInflate;
             }
         }
         return ComplexColorCompat.from(i3);

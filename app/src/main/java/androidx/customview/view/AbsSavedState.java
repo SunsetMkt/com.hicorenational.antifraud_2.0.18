@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AbsSavedState implements Parcelable {
     private final Parcelable mSuperState;
     public static final AbsSavedState EMPTY_STATE = new AbsSavedState() { // from class: androidx.customview.view.AbsSavedState.1
@@ -63,7 +63,7 @@ public abstract class AbsSavedState implements Parcelable {
     }
 
     protected AbsSavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
-        Parcelable readParcelable = parcel.readParcelable(classLoader);
-        this.mSuperState = readParcelable == null ? EMPTY_STATE : readParcelable;
+        Parcelable parcelable = parcel.readParcelable(classLoader);
+        this.mSuperState = parcelable == null ? EMPTY_STATE : parcelable;
     }
 }

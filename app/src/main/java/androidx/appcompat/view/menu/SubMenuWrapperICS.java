@@ -8,8 +8,8 @@ import android.view.View;
 import androidx.annotation.RestrictTo;
 import androidx.core.internal.view.SupportSubMenu;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 class SubMenuWrapperICS extends MenuWrapperICS implements SubMenu {
     private final SupportSubMenu mSubMenu;
 

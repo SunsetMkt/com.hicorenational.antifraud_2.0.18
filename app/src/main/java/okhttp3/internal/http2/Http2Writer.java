@@ -1,5 +1,6 @@
 package okhttp3.internal.http2;
 
+import i.f1;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -9,9 +10,8 @@ import okhttp3.internal.Util;
 import okhttp3.internal.http2.Hpack;
 import okio.Buffer;
 import okio.BufferedSink;
-import p286h.C5230f1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class Http2Writer implements Closeable {
     private static final Logger logger = Logger.getLogger(Http2.class.getName());
     private final boolean client;
@@ -28,10 +28,10 @@ final class Http2Writer implements Closeable {
 
     private void writeContinuationFrames(int i2, long j2) throws IOException {
         while (j2 > 0) {
-            int min = (int) Math.min(this.maxFrameSize, j2);
-            long j3 = min;
+            int iMin = (int) Math.min(this.maxFrameSize, j2);
+            long j3 = iMin;
             j2 -= j3;
-            frameHeader(i2, min, (byte) 9, j2 == 0 ? (byte) 4 : (byte) 0);
+            frameHeader(i2, iMin, (byte) 9, j2 == 0 ? (byte) 4 : (byte) 0);
             this.sink.write(this.hpackBuffer, j3);
         }
     }
@@ -106,8 +106,8 @@ final class Http2Writer implements Closeable {
             throw Http2.illegalArgument("reserved bit set: %s", Integer.valueOf(i2));
         }
         writeMedium(this.sink, i3);
-        this.sink.writeByte(b2 & C5230f1.f20085c);
-        this.sink.writeByte(b3 & C5230f1.f20085c);
+        this.sink.writeByte(b2 & f1.f12066c);
+        this.sink.writeByte(b3 & f1.f12066c);
         this.sink.writeInt(i2 & Integer.MAX_VALUE);
     }
 
@@ -154,9 +154,9 @@ final class Http2Writer implements Closeable {
         }
         this.hpackWriter.writeHeaders(list);
         long size = this.hpackBuffer.size();
-        int min = (int) Math.min(this.maxFrameSize - 4, size);
-        long j2 = min;
-        frameHeader(i2, min + 4, (byte) 5, size == j2 ? (byte) 4 : (byte) 0);
+        int iMin = (int) Math.min(this.maxFrameSize - 4, size);
+        long j2 = iMin;
+        frameHeader(i2, iMin + 4, (byte) 5, size == j2 ? (byte) 4 : (byte) 0);
         this.sink.writeInt(i3 & Integer.MAX_VALUE);
         this.sink.write(this.hpackBuffer, j2);
         if (size > j2) {
@@ -222,13 +222,13 @@ final class Http2Writer implements Closeable {
         if (!this.closed) {
             this.hpackWriter.writeHeaders(list);
             long size = this.hpackBuffer.size();
-            int min = (int) Math.min(this.maxFrameSize, size);
-            long j2 = min;
+            int iMin = (int) Math.min(this.maxFrameSize, size);
+            long j2 = iMin;
             byte b2 = size == j2 ? (byte) 4 : (byte) 0;
             if (z) {
                 b2 = (byte) (b2 | 1);
             }
-            frameHeader(i2, min, (byte) 1, b2);
+            frameHeader(i2, iMin, (byte) 1, b2);
             this.sink.write(this.hpackBuffer, j2);
             if (size > j2) {
                 writeContinuationFrames(i2, size - j2);

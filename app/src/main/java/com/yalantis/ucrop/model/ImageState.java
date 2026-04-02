@@ -2,7 +2,7 @@ package com.yalantis.ucrop.model;
 
 import android.graphics.RectF;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ImageState {
     private RectF mCropRect;
     private float mCurrentAngle;

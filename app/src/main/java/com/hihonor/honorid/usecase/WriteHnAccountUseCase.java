@@ -6,38 +6,35 @@ import android.os.Parcelable;
 import cn.cloudwalk.util.LogUtils;
 import com.hihonor.honorid.UseCase;
 import com.hihonor.honorid.core.data.HonorAccount;
-import com.hihonor.honorid.p166g.p167c.C2177b;
+import com.hihonor.honorid.g.c.b;
 import java.util.ArrayList;
-import p358k.p359a.p360a.p361a.C5849c;
-import p358k.p359a.p360a.p361a.p363j.C5863e;
+import l.a.a.a.c;
+import l.a.a.a.j.e;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WriteHnAccountUseCase extends UseCase<RequestValues> {
 
-    /* renamed from: b */
-    private Context f6734b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Context f4225b;
 
-    /* renamed from: c */
-    private ArrayList<HonorAccount> f6735c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private ArrayList<HonorAccount> f4226c;
 
-    /* renamed from: d */
-    private boolean f6736d;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private boolean f4227d;
 
     public WriteHnAccountUseCase(Context context, ArrayList<HonorAccount> arrayList, boolean z) {
-        this.f6734b = context;
-        this.f6735c = arrayList;
-        this.f6736d = z;
+        this.f4225b = context;
+        this.f4226c = arrayList;
+        this.f4227d = z;
     }
 
     public static final class RequestValues extends UseCase.RequestValues {
-        public static final Parcelable.Creator<RequestValues> CREATOR = new C2179a();
+        public static final Parcelable.Creator<RequestValues> CREATOR = new a();
+        private String a;
 
-        /* renamed from: a */
-        private String f6737a;
-
-        /* renamed from: com.hihonor.honorid.usecase.WriteHnAccountUseCase$RequestValues$a */
-        class C2179a implements Parcelable.Creator<RequestValues> {
-            C2179a() {
+        class a implements Parcelable.Creator<RequestValues> {
+            a() {
             }
 
             /* JADX WARN: Can't rename method to resolve collision */
@@ -54,7 +51,7 @@ public class WriteHnAccountUseCase extends UseCase<RequestValues> {
         }
 
         public RequestValues(String str) {
-            this.f6737a = str;
+            this.a = str;
         }
 
         @Override // android.os.Parcelable
@@ -64,24 +61,23 @@ public class WriteHnAccountUseCase extends UseCase<RequestValues> {
 
         @Override // android.os.Parcelable
         public void writeToParcel(Parcel parcel, int i2) {
-            parcel.writeString(this.f6737a);
+            parcel.writeString(this.a);
         }
 
         protected RequestValues(Parcel parcel) {
-            this.f6737a = parcel.readString();
+            this.a = parcel.readString();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.hihonor.honorid.UseCase
-    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
-    public void mo6090a(RequestValues requestValues) {
-        C5863e.m24692b("WriteHnAccountUseCase", "writeHnAccount", true);
-        C5849c.m24630a(this.f6734b, "accounts.xml");
+    public void a(RequestValues requestValues) {
+        e.b("WriteHnAccountUseCase", "writeHnAccount", true);
+        c.a(this.f4225b, "accounts.xml");
         try {
-            C2177b.m6340a(this.f6734b, "accounts.xml", this.f6735c, this.f6736d);
+            b.a(this.f4225b, "accounts.xml", this.f4226c, this.f4227d);
         } catch (Exception unused) {
-            C5863e.m24694d("WriteHnAccountUseCase", LogUtils.LOG_EXCEPTION, true);
+            e.d("WriteHnAccountUseCase", LogUtils.LOG_EXCEPTION, true);
         }
     }
 }

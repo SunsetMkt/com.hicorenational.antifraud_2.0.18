@@ -19,9 +19,9 @@ import cn.cloudwalk.FaceInterface;
 import java.io.IOException;
 import java.io.InputStream;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(29)
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class TypefaceCompatApi29Impl extends TypefaceCompatBaseImpl {
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
     @Nullable
@@ -41,11 +41,11 @@ public class TypefaceCompatApi29Impl extends TypefaceCompatBaseImpl {
                 if (!fontFileResourceEntry.isItalic()) {
                     i4 = 0;
                 }
-                Font build = weight.setSlant(i4).setTtcIndex(fontFileResourceEntry.getTtcIndex()).setFontVariationSettings(fontFileResourceEntry.getVariationSettings()).build();
+                Font fontBuild = weight.setSlant(i4).setTtcIndex(fontFileResourceEntry.getTtcIndex()).setFontVariationSettings(fontFileResourceEntry.getVariationSettings()).build();
                 if (builder == null) {
-                    builder = new FontFamily.Builder(build);
+                    builder = new FontFamily.Builder(fontBuild);
                 } else {
-                    builder.addFont(build);
+                    builder.addFont(fontBuild);
                 }
             } catch (IOException unused) {
             }
@@ -57,14 +57,18 @@ public class TypefaceCompatApi29Impl extends TypefaceCompatBaseImpl {
         return new Typeface.CustomFallbackBuilder(builder.build()).setStyle(new FontStyle((i2 & 1) != 0 ? FaceInterface.CW_LivenessCode.CW_FACE_LIVENESS_NOPEOPLE : 400, (i2 & 2) != 0 ? 1 : 0)).build();
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:9:0x001c A[Catch: IOException -> 0x0060, PHI: r4
+  0x001c: PHI (r4v5 android.graphics.fonts.FontFamily$Builder) = (r4v3 android.graphics.fonts.FontFamily$Builder), (r4v1 android.graphics.fonts.FontFamily$Builder) binds: [B:19:0x0051, B:8:0x001a] A[DONT_GENERATE, DONT_INLINE], TRY_LEAVE, TryCatch #2 {IOException -> 0x0060, blocks: (B:6:0x000e, B:9:0x001c, B:27:0x005f, B:26:0x005c, B:11:0x0020, B:15:0x0035, B:17:0x0047, B:18:0x004e, B:23:0x0057), top: B:45:0x000e, inners: #0, #1 }] */
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
     @Nullable
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public Typeface createFromFontInfo(Context context, @Nullable CancellationSignal cancellationSignal, @NonNull FontsContractCompat.FontInfo[] fontInfoArr, int i2) {
-        int i3;
-        ParcelFileDescriptor openFileDescriptor;
         ContentResolver contentResolver = context.getContentResolver();
         int length = fontInfoArr.length;
         FontFamily.Builder builder = null;
+        int i3 = 0;
         while (true) {
             int i4 = 1;
             if (i3 >= length) {
@@ -75,38 +79,38 @@ public class TypefaceCompatApi29Impl extends TypefaceCompatBaseImpl {
             }
             FontsContractCompat.FontInfo fontInfo = fontInfoArr[i3];
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(fontInfo.getUri(), "r", cancellationSignal);
+                ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = contentResolver.openFileDescriptor(fontInfo.getUri(), "r", cancellationSignal);
+                if (parcelFileDescriptorOpenFileDescriptor != null) {
+                    try {
+                        Font.Builder weight = new Font.Builder(parcelFileDescriptorOpenFileDescriptor).setWeight(fontInfo.getWeight());
+                        if (!fontInfo.isItalic()) {
+                            i4 = 0;
+                        }
+                        Font fontBuild = weight.setSlant(i4).setTtcIndex(fontInfo.getTtcIndex()).build();
+                        if (builder == null) {
+                            builder = new FontFamily.Builder(fontBuild);
+                        } else {
+                            builder.addFont(fontBuild);
+                        }
+                        if (parcelFileDescriptorOpenFileDescriptor != null) {
+                        }
+                    } catch (Throwable th) {
+                        if (parcelFileDescriptorOpenFileDescriptor != null) {
+                            try {
+                                parcelFileDescriptorOpenFileDescriptor.close();
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                            }
+                        }
+                        throw th;
+                    }
+                } else if (parcelFileDescriptorOpenFileDescriptor != null) {
+                    parcelFileDescriptorOpenFileDescriptor.close();
+                }
             } catch (IOException unused) {
                 continue;
             }
-            if (openFileDescriptor == null) {
-                i3 = openFileDescriptor == null ? i3 + 1 : 0;
-            } else {
-                try {
-                    Font.Builder weight = new Font.Builder(openFileDescriptor).setWeight(fontInfo.getWeight());
-                    if (!fontInfo.isItalic()) {
-                        i4 = 0;
-                    }
-                    Font build = weight.setSlant(i4).setTtcIndex(fontInfo.getTtcIndex()).build();
-                    if (builder == null) {
-                        builder = new FontFamily.Builder(build);
-                    } else {
-                        builder.addFont(build);
-                    }
-                    if (openFileDescriptor == null) {
-                    }
-                } catch (Throwable th) {
-                    if (openFileDescriptor != null) {
-                        try {
-                            openFileDescriptor.close();
-                        } catch (Throwable th2) {
-                            th.addSuppressed(th2);
-                        }
-                    }
-                    throw th;
-                }
-            }
-            openFileDescriptor.close();
+            i3++;
         }
     }
 
@@ -119,8 +123,8 @@ public class TypefaceCompatApi29Impl extends TypefaceCompatBaseImpl {
     @Nullable
     public Typeface createFromResourcesFontFile(Context context, Resources resources, int i2, String str, int i3) {
         try {
-            Font build = new Font.Builder(resources, i2).build();
-            return new Typeface.CustomFallbackBuilder(new FontFamily.Builder(build).build()).setStyle(build.getStyle()).build();
+            Font fontBuild = new Font.Builder(resources, i2).build();
+            return new Typeface.CustomFallbackBuilder(new FontFamily.Builder(fontBuild).build()).setStyle(fontBuild.getStyle()).build();
         } catch (IOException unused) {
             return null;
         }

@@ -18,83 +18,71 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import com.scwang.smartrefresh.layout.b.h;
+import com.scwang.smartrefresh.layout.b.i;
+import com.scwang.smartrefresh.layout.b.j;
+import com.scwang.smartrefresh.layout.e.e;
 import com.scwang.smartrefresh.layout.internal.InternalClassics;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2874h;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2875i;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2876j;
-import com.scwang.smartrefresh.layout.p190c.EnumC2880c;
-import com.scwang.smartrefresh.layout.p192e.AbstractC2892e;
-import com.scwang.smartrefresh.layout.p192e.C2889b;
 
-/* loaded from: classes.dex */
-public abstract class InternalClassics<T extends InternalClassics> extends InternalAbstract implements InterfaceC2874h {
+/* JADX INFO: loaded from: classes2.dex */
+public abstract class InternalClassics<T extends InternalClassics> extends InternalAbstract implements h {
+    public static final byte q = 1;
+    public static final byte r = 2;
+    public static final byte s = 3;
 
-    /* renamed from: q */
-    public static final byte f9235q = 1;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    protected TextView f5666d;
 
-    /* renamed from: r */
-    public static final byte f9236r = 2;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    protected ImageView f5667e;
 
-    /* renamed from: s */
-    public static final byte f9237s = 3;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    protected ImageView f5668f;
 
-    /* renamed from: d */
-    protected TextView f9238d;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    protected LinearLayout f5669g;
 
-    /* renamed from: e */
-    protected ImageView f9239e;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    protected i f5670h;
 
-    /* renamed from: f */
-    protected ImageView f9240f;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    protected b f5671i;
 
-    /* renamed from: g */
-    protected LinearLayout f9241g;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    protected b f5672j;
 
-    /* renamed from: h */
-    protected InterfaceC2875i f9242h;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    protected Integer f5673k;
 
-    /* renamed from: i */
-    protected AbstractC2903b f9243i;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    protected Integer f5674l;
 
-    /* renamed from: j */
-    protected AbstractC2903b f9244j;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    protected int f5675m;
 
-    /* renamed from: k */
-    protected Integer f9245k;
-
-    /* renamed from: l */
-    protected Integer f9246l;
-
-    /* renamed from: m */
-    protected int f9247m;
-
-    /* renamed from: n */
-    protected int f9248n;
-
-    /* renamed from: o */
-    protected int f9249o;
-
-    /* renamed from: p */
-    protected int f9250p;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    protected int f5676n;
+    protected int o;
+    protected int p;
 
     public InternalClassics(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f9248n = 500;
-        this.f9249o = 20;
-        this.f9250p = 20;
-        this.f9233b = EnumC2880c.Translate;
-        this.f9239e = new ImageView(context);
-        this.f9240f = new ImageView(context);
-        this.f9238d = new TextView(context);
-        this.f9238d.setTextColor(-10066330);
-        this.f9241g = new LinearLayout(context);
-        this.f9241g.setGravity(1);
-        this.f9241g.setOrientation(1);
-        ImageView imageView = this.f9239e;
-        TextView textView = this.f9238d;
-        ImageView imageView2 = this.f9240f;
-        LinearLayout linearLayout = this.f9241g;
-        C2889b c2889b = new C2889b();
+        this.f5676n = 500;
+        this.o = 20;
+        this.p = 20;
+        this.f5664b = com.scwang.smartrefresh.layout.c.c.Translate;
+        this.f5667e = new ImageView(context);
+        this.f5668f = new ImageView(context);
+        this.f5666d = new TextView(context);
+        this.f5666d.setTextColor(-10066330);
+        this.f5669g = new LinearLayout(context);
+        this.f5669g.setGravity(1);
+        this.f5669g.setOrientation(1);
+        ImageView imageView = this.f5667e;
+        TextView textView = this.f5666d;
+        ImageView imageView2 = this.f5668f;
+        LinearLayout linearLayout = this.f5669g;
+        com.scwang.smartrefresh.layout.e.b bVar = new com.scwang.smartrefresh.layout.e.b();
         textView.setId(1);
         imageView.setId(2);
         imageView2.setId(3);
@@ -103,7 +91,7 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(-2, -2);
         layoutParams.addRule(13);
         addView(linearLayout, layoutParams);
-        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(c2889b.m8737a(20.0f), c2889b.m8737a(20.0f));
+        RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(bVar.a(20.0f), bVar.a(20.0f));
         layoutParams2.addRule(15);
         layoutParams2.addRule(0, R.id.widget_frame);
         addView(imageView, layoutParams2);
@@ -115,32 +103,32 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
         if (getPaddingTop() == 0) {
             if (getPaddingBottom() == 0) {
                 int paddingLeft = getPaddingLeft();
-                int m8737a = c2889b.m8737a(20.0f);
-                this.f9249o = m8737a;
+                int iA = bVar.a(20.0f);
+                this.o = iA;
                 int paddingRight = getPaddingRight();
-                int m8737a2 = c2889b.m8737a(20.0f);
-                this.f9250p = m8737a2;
-                setPadding(paddingLeft, m8737a, paddingRight, m8737a2);
+                int iA2 = bVar.a(20.0f);
+                this.p = iA2;
+                setPadding(paddingLeft, iA, paddingRight, iA2);
             } else {
                 int paddingLeft2 = getPaddingLeft();
-                int m8737a3 = c2889b.m8737a(20.0f);
-                this.f9249o = m8737a3;
+                int iA3 = bVar.a(20.0f);
+                this.o = iA3;
                 int paddingRight2 = getPaddingRight();
                 int paddingBottom = getPaddingBottom();
-                this.f9250p = paddingBottom;
-                setPadding(paddingLeft2, m8737a3, paddingRight2, paddingBottom);
+                this.p = paddingBottom;
+                setPadding(paddingLeft2, iA3, paddingRight2, paddingBottom);
             }
         } else if (getPaddingBottom() == 0) {
             int paddingLeft3 = getPaddingLeft();
             int paddingTop = getPaddingTop();
-            this.f9249o = paddingTop;
+            this.o = paddingTop;
             int paddingRight3 = getPaddingRight();
-            int m8737a4 = c2889b.m8737a(20.0f);
-            this.f9250p = m8737a4;
-            setPadding(paddingLeft3, paddingTop, paddingRight3, m8737a4);
+            int iA4 = bVar.a(20.0f);
+            this.p = iA4;
+            setPadding(paddingLeft3, paddingTop, paddingRight3, iA4);
         } else {
-            this.f9249o = getPaddingTop();
-            this.f9250p = getPaddingBottom();
+            this.o = getPaddingTop();
+            this.p = getPaddingBottom();
         }
         if (isInEditMode()) {
             imageView.setVisibility(8);
@@ -149,72 +137,64 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
         }
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-    /* renamed from: a */
-    public void mo8715a(@NonNull InterfaceC2875i interfaceC2875i, int i2, int i3) {
-        this.f9242h = interfaceC2875i;
-        this.f9242h.mo8691a(this, this.f9247m);
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
+    public void a(@NonNull i iVar, int i2, int i3) {
+        this.f5670h = iVar;
+        this.f5670h.a(this, this.f5675m);
     }
 
-    /* renamed from: b */
-    protected T m8788b() {
+    protected T b() {
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-    /* renamed from: b */
-    public void mo8719b(@NonNull InterfaceC2876j interfaceC2876j, int i2, int i3) {
-        mo8716a(interfaceC2876j, i2, i3);
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
+    public void b(@NonNull j jVar, int i2, int i3) {
+        a(jVar, i2, i3);
     }
 
-    /* renamed from: c */
-    public T m8793c(@DrawableRes int i2) {
-        this.f9243i = null;
-        this.f9239e.setImageResource(i2);
-        return m8788b();
+    public T c(@DrawableRes int i2) {
+        this.f5671i = null;
+        this.f5667e.setImageResource(i2);
+        return (T) b();
     }
 
-    /* renamed from: d */
-    public T m8795d(int i2) {
-        this.f9248n = i2;
-        return m8788b();
+    public T d(int i2) {
+        this.f5676n = i2;
+        return (T) b();
     }
 
-    /* renamed from: e */
-    public T m8797e(@ColorInt int i2) {
-        Integer valueOf = Integer.valueOf(i2);
-        this.f9246l = valueOf;
-        this.f9247m = valueOf.intValue();
-        InterfaceC2875i interfaceC2875i = this.f9242h;
-        if (interfaceC2875i != null) {
-            interfaceC2875i.mo8691a(this, this.f9246l.intValue());
+    public T e(@ColorInt int i2) {
+        Integer numValueOf = Integer.valueOf(i2);
+        this.f5674l = numValueOf;
+        this.f5675m = numValueOf.intValue();
+        i iVar = this.f5670h;
+        if (iVar != null) {
+            iVar.a(this, this.f5674l.intValue());
         }
-        return m8788b();
+        return (T) b();
     }
 
-    /* renamed from: f */
-    public T m8798f(@ColorRes int i2) {
-        m8797e(AbstractC2892e.m8745a(getContext(), i2));
-        return m8788b();
+    public T f(@ColorRes int i2) {
+        e(e.a(getContext(), i2));
+        return (T) b();
     }
 
-    /* renamed from: g */
-    public T m8799g(@DrawableRes int i2) {
-        this.f9244j = null;
-        this.f9240f.setImageResource(i2);
-        return m8788b();
+    public T g(@DrawableRes int i2) {
+        this.f5672j = null;
+        this.f5668f.setImageResource(i2);
+        return (T) b();
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (Build.VERSION.SDK_INT >= 14) {
-            ImageView imageView = this.f9239e;
-            ImageView imageView2 = this.f9240f;
+            ImageView imageView = this.f5667e;
+            ImageView imageView2 = this.f5668f;
             imageView.animate().cancel();
             imageView2.animate().cancel();
         }
-        Object drawable = this.f9240f.getDrawable();
+        Object drawable = this.f5668f.getDrawable();
         if (drawable instanceof Animatable) {
             Animatable animatable = (Animatable) drawable;
             if (animatable.isRunning()) {
@@ -228,41 +208,39 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
         if (View.MeasureSpec.getMode(i3) == 1073741824) {
             setPadding(getPaddingLeft(), 0, getPaddingRight(), 0);
         } else {
-            setPadding(getPaddingLeft(), this.f9249o, getPaddingRight(), this.f9250p);
+            setPadding(getPaddingLeft(), this.o, getPaddingRight(), this.p);
         }
         super.onMeasure(i2, i3);
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
     public void setPrimaryColors(@ColorInt int... iArr) {
         if (iArr.length > 0) {
-            if (!(getBackground() instanceof BitmapDrawable) && this.f9246l == null) {
-                m8797e(iArr[0]);
-                this.f9246l = null;
+            if (!(getBackground() instanceof BitmapDrawable) && this.f5674l == null) {
+                e(iArr[0]);
+                this.f5674l = null;
             }
-            if (this.f9245k == null) {
+            if (this.f5673k == null) {
                 if (iArr.length > 1) {
-                    mo8764a(iArr[1]);
+                    a(iArr[1]);
                 }
-                this.f9245k = null;
+                this.f5673k = null;
             }
         }
     }
 
-    /* renamed from: b */
-    public T m8791b(Drawable drawable) {
-        this.f9244j = null;
-        this.f9240f.setImageDrawable(drawable);
-        return m8788b();
+    public T b(Drawable drawable) {
+        this.f5672j = null;
+        this.f5668f.setImageDrawable(drawable);
+        return (T) b();
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-    /* renamed from: a */
-    public void mo8716a(@NonNull InterfaceC2876j interfaceC2876j, int i2, int i3) {
-        ImageView imageView = this.f9240f;
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
+    public void a(@NonNull j jVar, int i2, int i3) {
+        ImageView imageView = this.f5668f;
         if (imageView.getVisibility() != 0) {
             imageView.setVisibility(0);
-            Object drawable = this.f9240f.getDrawable();
+            Object drawable = this.f5668f.getDrawable();
             if (drawable instanceof Animatable) {
                 ((Animatable) drawable).start();
             } else {
@@ -271,68 +249,62 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
         }
     }
 
-    /* renamed from: d */
-    public T m8794d(float f2) {
-        ImageView imageView = this.f9239e;
-        ImageView imageView2 = this.f9240f;
+    public T d(float f2) {
+        ImageView imageView = this.f5667e;
+        ImageView imageView2 = this.f5668f;
         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
         ViewGroup.LayoutParams layoutParams2 = imageView2.getLayoutParams();
-        int m8735b = C2889b.m8735b(f2);
-        layoutParams2.width = m8735b;
-        layoutParams.width = m8735b;
-        int m8735b2 = C2889b.m8735b(f2);
-        layoutParams2.height = m8735b2;
-        layoutParams.height = m8735b2;
+        int iB = com.scwang.smartrefresh.layout.e.b.b(f2);
+        layoutParams2.width = iB;
+        layoutParams.width = iB;
+        int iB2 = com.scwang.smartrefresh.layout.e.b.b(f2);
+        layoutParams2.height = iB2;
+        layoutParams.height = iB2;
         imageView.setLayoutParams(layoutParams);
         imageView2.setLayoutParams(layoutParams2);
-        return m8788b();
+        return (T) b();
     }
 
-    /* renamed from: c */
-    public T m8792c(float f2) {
-        ImageView imageView = this.f9240f;
+    public T c(float f2) {
+        ImageView imageView = this.f5668f;
         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-        int m8735b = C2889b.m8735b(f2);
-        layoutParams.width = m8735b;
-        layoutParams.height = m8735b;
+        int iB = com.scwang.smartrefresh.layout.e.b.b(f2);
+        layoutParams.width = iB;
+        layoutParams.height = iB;
         imageView.setLayoutParams(layoutParams);
-        return m8788b();
+        return (T) b();
     }
 
-    /* renamed from: b */
-    public T m8790b(@ColorRes int i2) {
-        mo8764a(AbstractC2892e.m8745a(getContext(), i2));
-        return m8788b();
+    public T b(@ColorRes int i2) {
+        a(e.a(getContext(), i2));
+        return (T) b();
     }
 
-    /* renamed from: e */
-    public T m8796e(float f2) {
-        this.f9238d.setTextSize(f2);
-        InterfaceC2875i interfaceC2875i = this.f9242h;
-        if (interfaceC2875i != null) {
-            interfaceC2875i.mo8690a(this);
+    public T e(float f2) {
+        this.f5666d.setTextSize(f2);
+        i iVar = this.f5670h;
+        if (iVar != null) {
+            iVar.a(this);
         }
-        return m8788b();
+        return (T) b();
     }
 
-    /* renamed from: b */
-    public T m8789b(float f2) {
-        ImageView imageView = this.f9239e;
-        ImageView imageView2 = this.f9240f;
+    public T b(float f2) {
+        ImageView imageView = this.f5667e;
+        ImageView imageView2 = this.f5668f;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
         ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) imageView2.getLayoutParams();
-        int m8735b = C2889b.m8735b(f2);
-        marginLayoutParams2.rightMargin = m8735b;
-        marginLayoutParams.rightMargin = m8735b;
+        int iB = com.scwang.smartrefresh.layout.e.b.b(f2);
+        marginLayoutParams2.rightMargin = iB;
+        marginLayoutParams.rightMargin = iB;
         imageView.setLayoutParams(marginLayoutParams);
         imageView2.setLayoutParams(marginLayoutParams2);
-        return m8788b();
+        return (T) b();
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-    /* renamed from: a */
-    public int mo8713a(@NonNull InterfaceC2876j interfaceC2876j, boolean z) {
-        ImageView imageView = this.f9240f;
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
+    public int a(@NonNull j jVar, boolean z) {
+        ImageView imageView = this.f5668f;
         Object drawable = imageView.getDrawable();
         if (drawable instanceof Animatable) {
             Animatable animatable = (Animatable) drawable;
@@ -343,47 +315,43 @@ public abstract class InternalClassics<T extends InternalClassics> extends Inter
             imageView.animate().rotation(0.0f).setDuration(0L);
         }
         imageView.setVisibility(8);
-        return this.f9248n;
+        return this.f5676n;
     }
 
-    /* renamed from: a */
-    public T m8786a(Drawable drawable) {
-        this.f9243i = null;
-        this.f9239e.setImageDrawable(drawable);
-        return m8788b();
+    public T a(Drawable drawable) {
+        this.f5671i = null;
+        this.f5667e.setImageDrawable(drawable);
+        return (T) b();
     }
 
-    /* renamed from: a */
-    public T m8787a(EnumC2880c enumC2880c) {
-        this.f9233b = enumC2880c;
-        return m8788b();
+    public T a(com.scwang.smartrefresh.layout.c.c cVar) {
+        this.f5664b = cVar;
+        return (T) b();
     }
 
-    /* renamed from: a */
-    public T mo8764a(@ColorInt int i2) {
-        this.f9245k = Integer.valueOf(i2);
-        this.f9238d.setTextColor(i2);
-        AbstractC2903b abstractC2903b = this.f9243i;
-        if (abstractC2903b != null) {
-            abstractC2903b.m8800a(i2);
-            this.f9239e.invalidateDrawable(this.f9243i);
+    public T a(@ColorInt int i2) {
+        this.f5673k = Integer.valueOf(i2);
+        this.f5666d.setTextColor(i2);
+        b bVar = this.f5671i;
+        if (bVar != null) {
+            bVar.a(i2);
+            this.f5667e.invalidateDrawable(this.f5671i);
         }
-        AbstractC2903b abstractC2903b2 = this.f9244j;
-        if (abstractC2903b2 != null) {
-            abstractC2903b2.m8800a(i2);
-            this.f9240f.invalidateDrawable(this.f9244j);
+        b bVar2 = this.f5672j;
+        if (bVar2 != null) {
+            bVar2.a(i2);
+            this.f5668f.invalidateDrawable(this.f5672j);
         }
-        return m8788b();
+        return (T) b();
     }
 
-    /* renamed from: a */
-    public T m8785a(float f2) {
-        ImageView imageView = this.f9239e;
+    public T a(float f2) {
+        ImageView imageView = this.f5667e;
         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-        int m8735b = C2889b.m8735b(f2);
-        layoutParams.width = m8735b;
-        layoutParams.height = m8735b;
+        int iB = com.scwang.smartrefresh.layout.e.b.b(f2);
+        layoutParams.width = iB;
+        layoutParams.height = iB;
         imageView.setLayoutParams(layoutParams);
-        return m8788b();
+        return (T) b();
     }
 }

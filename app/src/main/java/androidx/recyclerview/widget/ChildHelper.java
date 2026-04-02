@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ChildHelper {
     private static final boolean DEBUG = false;
     private static final String TAG = "ChildrenHelper";
@@ -155,14 +155,14 @@ class ChildHelper {
         int childCount = this.mCallback.getChildCount();
         int i3 = i2;
         while (i3 < childCount) {
-            int countOnesBefore = i2 - (i3 - this.mBucket.countOnesBefore(i3));
-            if (countOnesBefore == 0) {
+            int iCountOnesBefore = i2 - (i3 - this.mBucket.countOnesBefore(i3));
+            if (iCountOnesBefore == 0) {
                 while (this.mBucket.get(i3)) {
                     i3++;
                 }
                 return i3;
             }
-            i3 += countOnesBefore;
+            i3 += iCountOnesBefore;
         }
         return -1;
     }
@@ -228,9 +228,9 @@ class ChildHelper {
     }
 
     void hide(View view) {
-        int indexOfChild = this.mCallback.indexOfChild(view);
-        if (indexOfChild >= 0) {
-            this.mBucket.set(indexOfChild);
+        int iIndexOfChild = this.mCallback.indexOfChild(view);
+        if (iIndexOfChild >= 0) {
+            this.mBucket.set(iIndexOfChild);
             hideViewInternal(view);
         } else {
             throw new IllegalArgumentException("view is not a child, cannot hide " + view);
@@ -238,11 +238,11 @@ class ChildHelper {
     }
 
     int indexOfChild(View view) {
-        int indexOfChild = this.mCallback.indexOfChild(view);
-        if (indexOfChild == -1 || this.mBucket.get(indexOfChild)) {
+        int iIndexOfChild = this.mCallback.indexOfChild(view);
+        if (iIndexOfChild == -1 || this.mBucket.get(iIndexOfChild)) {
             return -1;
         }
-        return indexOfChild - this.mBucket.countOnesBefore(indexOfChild);
+        return iIndexOfChild - this.mBucket.countOnesBefore(iIndexOfChild);
     }
 
     boolean isHidden(View view) {
@@ -259,14 +259,14 @@ class ChildHelper {
     }
 
     void removeView(View view) {
-        int indexOfChild = this.mCallback.indexOfChild(view);
-        if (indexOfChild < 0) {
+        int iIndexOfChild = this.mCallback.indexOfChild(view);
+        if (iIndexOfChild < 0) {
             return;
         }
-        if (this.mBucket.remove(indexOfChild)) {
+        if (this.mBucket.remove(iIndexOfChild)) {
             unhideViewInternal(view);
         }
-        this.mCallback.removeViewAt(indexOfChild);
+        this.mCallback.removeViewAt(iIndexOfChild);
     }
 
     void removeViewAt(int i2) {
@@ -282,17 +282,17 @@ class ChildHelper {
     }
 
     boolean removeViewIfHidden(View view) {
-        int indexOfChild = this.mCallback.indexOfChild(view);
-        if (indexOfChild == -1) {
+        int iIndexOfChild = this.mCallback.indexOfChild(view);
+        if (iIndexOfChild == -1) {
             unhideViewInternal(view);
             return true;
         }
-        if (!this.mBucket.get(indexOfChild)) {
+        if (!this.mBucket.get(iIndexOfChild)) {
             return false;
         }
-        this.mBucket.remove(indexOfChild);
+        this.mBucket.remove(iIndexOfChild);
         unhideViewInternal(view);
-        this.mCallback.removeViewAt(indexOfChild);
+        this.mCallback.removeViewAt(iIndexOfChild);
         return true;
     }
 
@@ -301,12 +301,12 @@ class ChildHelper {
     }
 
     void unhide(View view) {
-        int indexOfChild = this.mCallback.indexOfChild(view);
-        if (indexOfChild < 0) {
+        int iIndexOfChild = this.mCallback.indexOfChild(view);
+        if (iIndexOfChild < 0) {
             throw new IllegalArgumentException("view is not a child, cannot hide " + view);
         }
-        if (this.mBucket.get(indexOfChild)) {
-            this.mBucket.clear(indexOfChild);
+        if (this.mBucket.get(iIndexOfChild)) {
+            this.mBucket.clear(iIndexOfChild);
             unhideViewInternal(view);
         } else {
             throw new RuntimeException("trying to unhide a view that was not hidden" + view);

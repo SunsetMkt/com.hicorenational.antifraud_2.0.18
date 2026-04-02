@@ -4,8 +4,8 @@ import com.huawei.hms.common.api.Releasable;
 import com.huawei.hms.support.api.client.Result;
 import com.huawei.hms.support.log.HMSLog;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public abstract class ResultCallbacks<R extends Result> implements ResultCallback<R> {
     private static final String TAG = "ResultCallbacks";
 
@@ -26,7 +26,7 @@ public abstract class ResultCallbacks<R extends Result> implements ResultCallbac
                 }
             }
         } catch (Exception e2) {
-            HMSLog.m7718w(TAG, "Failed to release " + r + ", reason: " + e2);
+            HMSLog.w(TAG, "Failed to release " + r + ", reason: " + e2);
         }
     }
 }

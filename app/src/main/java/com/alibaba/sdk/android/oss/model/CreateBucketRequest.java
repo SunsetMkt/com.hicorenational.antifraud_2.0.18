@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.model;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CreateBucketRequest extends OSSRequest {
     public static final String TAB_LOCATIONCONSTRAINT = "LocationConstraint";
     public static final String TAB_STORAGECLASS = "StorageClass";

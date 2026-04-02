@@ -5,64 +5,63 @@ import com.huawei.hms.core.aidl.annotation.Packed;
 import com.huawei.hms.support.api.entity.auth.Scope;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ConnectInfo implements IMessageEntity {
 
-    /* renamed from: a */
     @Packed
-    private List<String> f7845a;
+    private List<String> a;
 
-    /* renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Packed
-    private List<Scope> f7846b;
+    private List<Scope> f4930b;
 
-    /* renamed from: c */
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
     @Packed
-    private String f7847c;
+    private String f4931c;
 
-    /* renamed from: d */
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
     @Packed
-    private String f7848d;
+    private String f4932d;
 
     public ConnectInfo() {
     }
 
     public List<String> getApiNameList() {
-        return this.f7845a;
+        return this.a;
     }
 
     public String getFingerprint() {
-        return this.f7847c;
+        return this.f4931c;
     }
 
     public List<Scope> getScopeList() {
-        return this.f7846b;
+        return this.f4930b;
     }
 
     public String getSubAppID() {
-        return this.f7848d;
+        return this.f4932d;
     }
 
     public void setApiNameList(List<String> list) {
-        this.f7845a = list;
+        this.a = list;
     }
 
     public void setFingerprint(String str) {
-        this.f7847c = str;
+        this.f4931c = str;
     }
 
     public void setScopeList(List<Scope> list) {
-        this.f7846b = list;
+        this.f4930b = list;
     }
 
     public void setSubAppID(String str) {
-        this.f7848d = str;
+        this.f4932d = str;
     }
 
     public ConnectInfo(List<String> list, List<Scope> list2, String str, String str2) {
-        this.f7845a = list;
-        this.f7846b = list2;
-        this.f7847c = str;
-        this.f7848d = str2;
+        this.a = list;
+        this.f4930b = list2;
+        this.f4931c = str;
+        this.f4932d = str2;
     }
 }

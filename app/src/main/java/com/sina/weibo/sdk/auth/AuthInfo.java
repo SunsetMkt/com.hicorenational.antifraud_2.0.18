@@ -3,10 +3,10 @@ package com.sina.weibo.sdk.auth;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.sina.weibo.sdk.p194b.C2927e;
+import com.sina.weibo.sdk.b.e;
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class AuthInfo implements Parcelable, Serializable {
     public static final Parcelable.Creator<AuthInfo> CREATOR = new Parcelable.Creator<AuthInfo>() { // from class: com.sina.weibo.sdk.auth.AuthInfo.1
         @Override // android.os.Parcelable.Creator
@@ -31,7 +31,7 @@ public final class AuthInfo implements Parcelable, Serializable {
         this.redirect_url = str2;
         this.scope = str3;
         this.package_name = context.getPackageName();
-        this.hash = C2927e.m8842b(context, this.package_name);
+        this.hash = e.b(context, this.package_name);
     }
 
     @Override // android.os.Parcelable

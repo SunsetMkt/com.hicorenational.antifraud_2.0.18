@@ -3,7 +3,7 @@ package event;
 import bean.AppInfoBean;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AppEventBean {
     private List<AppInfoBean> mAppBeans;
 

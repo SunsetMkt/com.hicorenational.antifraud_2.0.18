@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ICUCompat {
     private static final String TAG = "ICUCompat";
     private static Method sAddLikelySubtagsMethod;
@@ -42,14 +42,14 @@ public final class ICUCompat {
     }
 
     private static String addLikelySubtags(Locale locale) {
-        String locale2 = locale.toString();
+        String string = locale.toString();
         try {
             if (sAddLikelySubtagsMethod != null) {
-                return (String) sAddLikelySubtagsMethod.invoke(null, locale2);
+                return (String) sAddLikelySubtagsMethod.invoke(null, string);
             }
         } catch (IllegalAccessException | InvocationTargetException unused) {
         }
-        return locale2;
+        return string;
     }
 
     private static String getScript(String str) {
@@ -75,9 +75,9 @@ public final class ICUCompat {
                 return locale.getScript();
             }
         }
-        String addLikelySubtags = addLikelySubtags(locale);
-        if (addLikelySubtags != null) {
-            return getScript(addLikelySubtags);
+        String strAddLikelySubtags = addLikelySubtags(locale);
+        if (strAddLikelySubtags != null) {
+            return getScript(strAddLikelySubtags);
         }
         return null;
     }

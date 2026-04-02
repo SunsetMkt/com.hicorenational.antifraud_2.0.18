@@ -13,7 +13,7 @@ import androidx.lifecycle.Lifecycle;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class FragmentTransaction {
     static final int OP_ADD = 1;
     static final int OP_ATTACH = 7;
@@ -50,12 +50,11 @@ public abstract class FragmentTransaction {
     ArrayList<String> mSharedElementTargetNames;
     int mTransition;
     int mTransitionStyle;
-    ArrayList<C0547Op> mOps = new ArrayList<>();
+    ArrayList<Op> mOps = new ArrayList<>();
     boolean mAllowAddToBackStack = true;
     boolean mReorderingAllowed = false;
 
-    /* renamed from: androidx.fragment.app.FragmentTransaction$Op */
-    static final class C0547Op {
+    static final class Op {
         int mCmd;
         Lifecycle.State mCurrentMaxState;
         int mEnterAnim;
@@ -65,10 +64,10 @@ public abstract class FragmentTransaction {
         int mPopEnterAnim;
         int mPopExitAnim;
 
-        C0547Op() {
+        Op() {
         }
 
-        C0547Op(int i2, Fragment fragment) {
+        Op(int i2, Fragment fragment) {
             this.mCmd = i2;
             this.mFragment = fragment;
             Lifecycle.State state = Lifecycle.State.RESUMED;
@@ -76,7 +75,7 @@ public abstract class FragmentTransaction {
             this.mCurrentMaxState = state;
         }
 
-        C0547Op(int i2, @NonNull Fragment fragment, Lifecycle.State state) {
+        Op(int i2, @NonNull Fragment fragment, Lifecycle.State state) {
             this.mCmd = i2;
             this.mFragment = fragment;
             this.mOldMaxState = fragment.mMaxState;
@@ -90,12 +89,12 @@ public abstract class FragmentTransaction {
         return this;
     }
 
-    void addOp(C0547Op c0547Op) {
-        this.mOps.add(c0547Op);
-        c0547Op.mEnterAnim = this.mEnterAnim;
-        c0547Op.mExitAnim = this.mExitAnim;
-        c0547Op.mPopEnterAnim = this.mPopEnterAnim;
-        c0547Op.mPopExitAnim = this.mPopExitAnim;
+    void addOp(Op op) {
+        this.mOps.add(op);
+        op.mEnterAnim = this.mEnterAnim;
+        op.mExitAnim = this.mExitAnim;
+        op.mPopEnterAnim = this.mPopEnterAnim;
+        op.mPopExitAnim = this.mPopExitAnim;
     }
 
     @NonNull
@@ -134,7 +133,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction attach(@NonNull Fragment fragment) {
-        addOp(new C0547Op(7, fragment));
+        addOp(new Op(7, fragment));
         return this;
     }
 
@@ -148,7 +147,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction detach(@NonNull Fragment fragment) {
-        addOp(new C0547Op(6, fragment));
+        addOp(new Op(6, fragment));
         return this;
     }
 
@@ -185,12 +184,12 @@ public abstract class FragmentTransaction {
             fragment.mFragmentId = i2;
             fragment.mContainerId = i2;
         }
-        addOp(new C0547Op(i3, fragment));
+        addOp(new Op(i3, fragment));
     }
 
     @NonNull
     public FragmentTransaction hide(@NonNull Fragment fragment) {
-        addOp(new C0547Op(4, fragment));
+        addOp(new Op(4, fragment));
         return this;
     }
 
@@ -204,7 +203,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction remove(@NonNull Fragment fragment) {
-        addOp(new C0547Op(3, fragment));
+        addOp(new Op(3, fragment));
         return this;
     }
 
@@ -250,13 +249,13 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction setMaxLifecycle(@NonNull Fragment fragment, @NonNull Lifecycle.State state) {
-        addOp(new C0547Op(10, fragment, state));
+        addOp(new Op(10, fragment, state));
         return this;
     }
 
     @NonNull
     public FragmentTransaction setPrimaryNavigationFragment(@Nullable Fragment fragment) {
-        addOp(new C0547Op(8, fragment));
+        addOp(new Op(8, fragment));
         return this;
     }
 
@@ -280,7 +279,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction show(@NonNull Fragment fragment) {
-        addOp(new C0547Op(5, fragment));
+        addOp(new Op(5, fragment));
         return this;
     }
 

@@ -1,9 +1,9 @@
 package com.huawei.secure.android.common.encrypt.hash;
 
 import android.text.TextUtils;
-import com.huawei.secure.android.common.encrypt.utils.C2550a;
-import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.HexUtil;
+import com.huawei.secure.android.common.encrypt.utils.a;
+import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,47 +11,46 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class FileSHA256 {
+    private static final int a = 8192;
 
-    /* renamed from: a */
-    private static final int f8036a = 8192;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f5057c = "FileSHA256";
 
-    /* renamed from: c */
-    private static final String f8038c = "FileSHA256";
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final String f5058d = "";
 
-    /* renamed from: d */
-    private static final String f8039d = "";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5056b = "SHA-256";
 
-    /* renamed from: b */
-    private static final String f8037b = "SHA-256";
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static final String[] f5059e = {f5056b, "SHA-384", "SHA-512"};
 
-    /* renamed from: e */
-    private static final String[] f8040e = {f8037b, "SHA-384", "SHA-512"};
-
-    /* renamed from: a */
-    private static boolean m7848a(File file) {
+    private static boolean a(File file) {
         return file != null && file.exists() && file.length() > 0;
     }
 
     public static String fileSHA256Encrypt(File file) {
-        return fileSHAEncrypt(file, f8037b);
+        return fileSHAEncrypt(file, f5056b);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r1v0, types: [java.lang.String] */
     /* JADX WARN: Type inference failed for: r1v1 */
     /* JADX WARN: Type inference failed for: r1v4, types: [java.io.InputStream] */
-    public static String fileSHAEncrypt(File file, String str) {
+    public static String fileSHAEncrypt(File file, String str) throws Throwable {
         FileInputStream fileInputStream;
         MessageDigest messageDigest;
+        byte[] bArr;
+        boolean z;
         ?? r1 = "";
-        if (TextUtils.isEmpty(str) || !m7849a(str)) {
-            C2551b.m7898b(f8038c, "algorithm is empty or not safe");
+        if (TextUtils.isEmpty(str) || !a(str)) {
+            b.b(f5057c, "algorithm is empty or not safe");
             return "";
         }
-        if (!m7848a(file)) {
-            C2551b.m7898b(f8038c, "file is not valid");
+        if (!a(file)) {
+            b.b(f5057c, "file is not valid");
             return "";
         }
         try {
@@ -67,74 +66,75 @@ public abstract class FileSHA256 {
             } catch (Throwable th) {
                 th = th;
                 r1 = 0;
-                C2550a.m7889a((InputStream) r1);
+                a.a((InputStream) r1);
                 throw th;
             }
             try {
-                byte[] bArr = new byte[8192];
-                boolean z = false;
-                while (true) {
-                    int read = fileInputStream.read(bArr);
-                    if (read <= 0) {
-                        break;
-                    }
-                    messageDigest.update(bArr, 0, read);
-                    z = true;
-                }
-                r0 = z ? HexUtil.byteArray2HexStr(messageDigest.digest()) : null;
-                C2550a.m7889a((InputStream) fileInputStream);
+                bArr = new byte[8192];
+                z = false;
             } catch (IOException e4) {
                 e = e4;
-                C2551b.m7898b(f8038c, "IOException" + e.getMessage());
-                C2550a.m7889a((InputStream) fileInputStream);
-                return r0;
+                b.b(f5057c, "IOException" + e.getMessage());
+                a.a((InputStream) fileInputStream);
             } catch (NoSuchAlgorithmException e5) {
                 e = e5;
-                C2551b.m7898b(f8038c, "NoSuchAlgorithmException" + e.getMessage());
-                C2550a.m7889a((InputStream) fileInputStream);
-                return r0;
+                b.b(f5057c, "NoSuchAlgorithmException" + e.getMessage());
+                a.a((InputStream) fileInputStream);
             }
-            return r0;
+            while (true) {
+                int i2 = fileInputStream.read(bArr);
+                if (i2 <= 0) {
+                    break;
+                }
+                messageDigest.update(bArr, 0, i2);
+                z = true;
+                return strByteArray2HexStr;
+            }
+            strByteArray2HexStr = z ? HexUtil.byteArray2HexStr(messageDigest.digest()) : null;
+            a.a((InputStream) fileInputStream);
+            return strByteArray2HexStr;
         } catch (Throwable th2) {
             th = th2;
-            C2550a.m7889a((InputStream) r1);
+            a.a((InputStream) r1);
             throw th;
         }
     }
 
     public static String inputStreamSHA256Encrypt(InputStream inputStream) {
-        return inputStream == null ? "" : inputStreamSHAEncrypt(inputStream, f8037b);
+        return inputStream == null ? "" : inputStreamSHAEncrypt(inputStream, f5056b);
     }
 
     public static String inputStreamSHAEncrypt(InputStream inputStream, String str) {
+        MessageDigest messageDigest;
         if (inputStream == null) {
             return "";
         }
         byte[] bArr = new byte[8192];
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance(str);
-            while (true) {
-                int read = inputStream.read(bArr);
-                if (read < 0) {
-                    return HexUtil.byteArray2HexStr(messageDigest.digest());
-                }
-                if (read > 0) {
-                    messageDigest.update(bArr, 0, read);
-                }
-            }
+            messageDigest = MessageDigest.getInstance(str);
         } catch (IOException | NoSuchAlgorithmException unused) {
-            C2551b.m7898b(f8038c, "inputstraem exception");
+            b.b(f5057c, "inputstraem exception");
             return "";
         } finally {
-            C2550a.m7889a(inputStream);
+            a.a(inputStream);
+        }
+        while (true) {
+            int i2 = inputStream.read(bArr);
+            if (i2 < 0) {
+                return HexUtil.byteArray2HexStr(messageDigest.digest());
+            }
+            if (i2 > 0) {
+                messageDigest.update(bArr, 0, i2);
+            }
+            a.a(inputStream);
         }
     }
 
     public static boolean validateFileSHA(File file, String str, String str2) {
-        if (!TextUtils.isEmpty(str) && m7849a(str2)) {
+        if (!TextUtils.isEmpty(str) && a(str2)) {
             return str.equals(fileSHAEncrypt(file, str2));
         }
-        C2551b.m7898b(f8038c, "hash value is null || algorithm is illegal");
+        b.b(f5057c, "hash value is null || algorithm is illegal");
         return false;
     }
 
@@ -146,10 +146,10 @@ public abstract class FileSHA256 {
     }
 
     public static boolean validateInputStreamSHA(InputStream inputStream, String str, String str2) {
-        if (!TextUtils.isEmpty(str) && m7849a(str2)) {
+        if (!TextUtils.isEmpty(str) && a(str2)) {
             return str.equals(inputStreamSHAEncrypt(inputStream, str2));
         }
-        C2551b.m7898b(f8038c, "hash value is null || algorithm is illegal");
+        b.b(f5057c, "hash value is null || algorithm is illegal");
         return false;
     }
 
@@ -160,9 +160,8 @@ public abstract class FileSHA256 {
         return str.equals(inputStreamSHA256Encrypt(inputStream));
     }
 
-    /* renamed from: a */
-    private static boolean m7849a(String str) {
-        for (String str2 : f8040e) {
+    private static boolean a(String str) {
+        for (String str2 : f5059e) {
             if (str2.equals(str)) {
                 return true;
             }

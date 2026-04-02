@@ -15,20 +15,19 @@ import androidx.camera.view.SurfaceViewImplementation;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class SurfaceViewImplementation implements PreviewView.Implementation {
     private static final String TAG = "SurfaceViewPreviewView";
     TransformableSurfaceView mSurfaceView;
     final SurfaceRequestCallback mSurfaceRequestCallback = new SurfaceRequestCallback();
-    private Preview.SurfaceProvider mSurfaceProvider = new C04281();
+    private Preview.SurfaceProvider mSurfaceProvider = new AnonymousClass1();
 
-    /* renamed from: androidx.camera.view.SurfaceViewImplementation$1 */
-    class C04281 implements Preview.SurfaceProvider {
-        C04281() {
+    /* JADX INFO: renamed from: androidx.camera.view.SurfaceViewImplementation$1, reason: invalid class name */
+    class AnonymousClass1 implements Preview.SurfaceProvider {
+        AnonymousClass1() {
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m377a(@NonNull SurfaceRequest surfaceRequest) {
+        public /* synthetic */ void a(@NonNull SurfaceRequest surfaceRequest) {
             SurfaceViewImplementation.this.mSurfaceRequestCallback.setSurfaceRequest(surfaceRequest);
         }
 
@@ -37,7 +36,7 @@ final class SurfaceViewImplementation implements PreviewView.Implementation {
             SurfaceViewImplementation.this.mSurfaceView.post(new Runnable() { // from class: androidx.camera.view.b
                 @Override // java.lang.Runnable
                 public final void run() {
-                    SurfaceViewImplementation.C04281.this.m377a(surfaceRequest);
+                    this.a.a(surfaceRequest);
                 }
             });
         }
@@ -57,8 +56,7 @@ final class SurfaceViewImplementation implements PreviewView.Implementation {
         SurfaceRequestCallback() {
         }
 
-        /* renamed from: a */
-        static /* synthetic */ void m378a(SurfaceRequest.Result result) {
+        static /* synthetic */ void a(SurfaceRequest.Result result) {
         }
 
         @UiThread
@@ -81,7 +79,7 @@ final class SurfaceViewImplementation implements PreviewView.Implementation {
             this.mSurfaceRequest.provideSurface(surface, ContextCompat.getMainExecutor(SurfaceViewImplementation.this.mSurfaceView.getContext()), new Consumer() { // from class: androidx.camera.view.c
                 @Override // androidx.core.util.Consumer
                 public final void accept(Object obj) {
-                    SurfaceViewImplementation.SurfaceRequestCallback.m378a((SurfaceRequest.Result) obj);
+                    SurfaceViewImplementation.SurfaceRequestCallback.a((SurfaceRequest.Result) obj);
                 }
             });
             this.mSurfaceRequest = null;

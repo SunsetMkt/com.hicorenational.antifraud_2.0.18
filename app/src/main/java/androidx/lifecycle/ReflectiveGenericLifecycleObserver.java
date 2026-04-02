@@ -3,7 +3,7 @@ package androidx.lifecycle;
 import androidx.lifecycle.ClassesInfoCache;
 import androidx.lifecycle.Lifecycle;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ReflectiveGenericLifecycleObserver implements LifecycleEventObserver {
     private final ClassesInfoCache.CallbackInfo mInfo;
     private final Object mWrapped;

@@ -9,8 +9,8 @@ import androidx.core.util.Preconditions;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(28)
-/* loaded from: classes.dex */
 class CameraCaptureSessionCompatApi28Impl extends CameraCaptureSessionCompatBaseImpl {
     CameraCaptureSessionCompatApi28Impl() {
     }

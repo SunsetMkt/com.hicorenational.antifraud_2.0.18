@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.model;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InitiateMultipartUploadResult extends OSSResult {
     private String bucketName;
     private String objectKey;

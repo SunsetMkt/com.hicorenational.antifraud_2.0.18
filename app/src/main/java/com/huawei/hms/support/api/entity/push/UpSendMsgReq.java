@@ -3,7 +3,7 @@ package com.huawei.hms.support.api.entity.push;
 import com.huawei.hms.core.aidl.IMessageEntity;
 import com.huawei.hms.core.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UpSendMsgReq implements IMessageEntity {
 
     @Packed
@@ -27,9 +27,8 @@ public class UpSendMsgReq implements IMessageEntity {
     @Packed
     private int sendMode;
 
-    /* renamed from: to */
     @Packed
-    private String f7851to;
+    private String to;
 
     @Packed
     private String token;
@@ -66,7 +65,7 @@ public class UpSendMsgReq implements IMessageEntity {
     }
 
     public String getTo() {
-        return this.f7851to;
+        return this.to;
     }
 
     public String getToken() {
@@ -106,7 +105,7 @@ public class UpSendMsgReq implements IMessageEntity {
     }
 
     public void setTo(String str) {
-        this.f7851to = str;
+        this.to = str;
     }
 
     public void setToken(String str) {

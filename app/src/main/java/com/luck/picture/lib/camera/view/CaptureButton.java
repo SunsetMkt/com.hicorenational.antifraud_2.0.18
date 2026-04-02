@@ -15,7 +15,7 @@ import com.luck.picture.lib.camera.CheckPermission;
 import com.luck.picture.lib.camera.CustomCameraView;
 import com.luck.picture.lib.camera.listener.CaptureListener;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CaptureButton extends View {
     public static final int STATE_BAN = 5;
     public static final int STATE_IDLE = 1;
@@ -116,14 +116,14 @@ public class CaptureButton extends View {
     }
 
     private void startCaptureAnimation(float f2) {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, 0.75f * f2, f2);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.b
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f2, 0.75f * f2, f2);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.b
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CaptureButton.this.m8129a(valueAnimator);
+                this.a.a(valueAnimator);
             }
         });
-        ofFloat.addListener(new AnimatorListenerAdapter() { // from class: com.luck.picture.lib.camera.view.CaptureButton.1
+        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() { // from class: com.luck.picture.lib.camera.view.CaptureButton.1
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {
                 super.onAnimationEnd(animator);
@@ -138,24 +138,24 @@ public class CaptureButton extends View {
                 CaptureButton.this.state = 5;
             }
         });
-        ofFloat.setDuration(50L);
-        ofFloat.start();
+        valueAnimatorOfFloat.setDuration(50L);
+        valueAnimatorOfFloat.start();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void startRecordAnimation(float f2, float f3, float f4, float f5) {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f3);
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f4, f5);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.a
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f2, f3);
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(f4, f5);
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.a
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CaptureButton.this.m8130b(valueAnimator);
+                this.a.b(valueAnimator);
             }
         });
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.c
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.luck.picture.lib.camera.view.c
             @Override // android.animation.ValueAnimator.AnimatorUpdateListener
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CaptureButton.this.m8131c(valueAnimator);
+                this.a.c(valueAnimator);
             }
         });
         AnimatorSet animatorSet = new AnimatorSet();
@@ -174,7 +174,7 @@ public class CaptureButton extends View {
                 CaptureButton.this.timer.start();
             }
         });
-        animatorSet.playTogether(ofFloat, ofFloat2);
+        animatorSet.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2);
         animatorSet.setDuration(100L);
         animatorSet.start();
     }
@@ -182,25 +182,22 @@ public class CaptureButton extends View {
     /* JADX INFO: Access modifiers changed from: private */
     public void updateProgress(long j2) {
         int i2 = this.duration;
-        this.recorded_time = (int) (i2 - j2);
+        this.recorded_time = (int) (((long) i2) - j2);
         this.progress = 360.0f - ((j2 / i2) * 360.0f);
         invalidate();
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8129a(ValueAnimator valueAnimator) {
+    public /* synthetic */ void a(ValueAnimator valueAnimator) {
         this.button_inside_radius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m8130b(ValueAnimator valueAnimator) {
+    public /* synthetic */ void b(ValueAnimator valueAnimator) {
         this.button_outside_radius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
-    /* renamed from: c */
-    public /* synthetic */ void m8131c(ValueAnimator valueAnimator) {
+    public /* synthetic */ void c(ValueAnimator valueAnimator) {
         this.button_inside_radius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }

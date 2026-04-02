@@ -6,7 +6,7 @@ import com.just.agentweb.AgentWeb;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class JsBaseInterfaceHolder implements JsInterfaceHolder {
     private AgentWeb.SecurityType mSecurityType;
     private WebCreator mWebCreator;

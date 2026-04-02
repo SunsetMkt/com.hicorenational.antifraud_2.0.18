@@ -1,45 +1,43 @@
 package com.huawei.secure.android.common.encrypt.hash;
 
 import android.text.TextUtils;
-import com.huawei.secure.android.common.encrypt.utils.C2551b;
 import com.huawei.secure.android.common.encrypt.utils.HexUtil;
+import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class HMACSHA256 {
+    private static final String a = "HMACSHA256";
 
-    /* renamed from: a */
-    private static final String f8041a = "HMACSHA256";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5060b = "HmacSHA256";
 
-    /* renamed from: b */
-    private static final String f8042b = "HmacSHA256";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f5061c = "";
 
-    /* renamed from: c */
-    private static final String f8043c = "";
-
-    /* renamed from: d */
-    private static final int f8044d = 32;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final int f5062d = 32;
 
     public static byte[] hmacEncrypt(byte[] bArr, byte[] bArr2) {
         if (bArr == null || bArr2 == null) {
-            C2551b.m7898b(f8041a, "content or key is null.");
+            b.b(a, "content or key is null.");
             return new byte[0];
         }
         if (bArr2.length < 32) {
-            C2551b.m7898b(f8041a, "hmac key length is not right");
+            b.b(a, "hmac key length is not right");
             return new byte[0];
         }
         try {
-            SecretKeySpec secretKeySpec = new SecretKeySpec(bArr2, f8042b);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(bArr2, f5060b);
             Mac mac = Mac.getInstance(secretKeySpec.getAlgorithm());
             mac.init(secretKeySpec);
             return mac.doFinal(bArr);
         } catch (InvalidKeyException | NoSuchAlgorithmException e2) {
-            C2551b.m7898b(f8041a, "hmacsha256 encrypt exception" + e2.getMessage());
+            b.b(a, "hmacsha256 encrypt exception" + e2.getMessage());
             return new byte[0];
         }
     }
@@ -49,20 +47,20 @@ public abstract class HMACSHA256 {
     }
 
     public static String hmacSHA256Encrypt(String str, byte[] bArr) {
-        byte[] bArr2;
+        byte[] bytes;
         if (TextUtils.isEmpty(str) || bArr == null) {
             return "";
         }
         if (bArr.length < 32) {
-            C2551b.m7898b(f8041a, "hmac key length is not right");
+            b.b(a, "hmac key length is not right");
             return "";
         }
         try {
-            bArr2 = str.getBytes("UTF-8");
+            bytes = str.getBytes("UTF-8");
         } catch (UnsupportedEncodingException e2) {
-            C2551b.m7898b(f8041a, "hmacsha256 encrypt exception" + e2.getMessage());
-            bArr2 = new byte[0];
+            b.b(a, "hmacsha256 encrypt exception" + e2.getMessage());
+            bytes = new byte[0];
         }
-        return HexUtil.byteArray2HexStr(hmacEncrypt(bArr2, bArr));
+        return HexUtil.byteArray2HexStr(hmacEncrypt(bytes, bArr));
     }
 }

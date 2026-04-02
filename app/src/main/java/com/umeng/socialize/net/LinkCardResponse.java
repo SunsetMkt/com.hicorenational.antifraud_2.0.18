@@ -5,7 +5,7 @@ import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class LinkCardResponse extends SocializeReseponse {
     public String url;
 
@@ -17,7 +17,7 @@ public class LinkCardResponse extends SocializeReseponse {
     public void parseJsonObject() {
         JSONObject jSONObject = this.mJsonData;
         if (jSONObject == null) {
-            SLog.m12716E(UmengText.NET.JSONNULL);
+            SLog.E(UmengText.NET.JSONNULL);
         } else {
             this.url = jSONObject.optString("linkcard_url");
         }

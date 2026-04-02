@@ -1,42 +1,38 @@
 package com.huawei.secure.android.common.util;
 
 import android.text.TextUtils;
+import i.z2.h0;
 import java.util.Locale;
-import p286h.p323z2.C5736h0;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class EncodeUtil {
+    private static final String a = "EncodeUtil";
 
-    /* renamed from: a */
-    private static final String f8258a = "EncodeUtil";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final char[] f5229b = {',', '.', '-', '_'};
 
-    /* renamed from: b */
-    private static final char[] f8259b = {',', '.', '-', '_'};
-
-    /* renamed from: c */
-    private static final String[] f8260c = new String[256];
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String[] f5230c = new String[256];
 
     static {
-        for (char c2 = 0; c2 < 255; c2 = (char) (c2 + 1)) {
+        for (char c2 = 0; c2 < '\u00ff'; c2 = (char) (c2 + 1)) {
             if ((c2 < '0' || c2 > '9') && ((c2 < 'A' || c2 > 'Z') && (c2 < 'a' || c2 > 'z'))) {
-                f8260c[c2] = m8009b(c2).intern();
+                f5230c[c2] = b(c2).intern();
             } else {
-                f8260c[c2] = null;
+                f5230c[c2] = null;
             }
         }
     }
 
-    /* renamed from: a */
-    private static String m8007a(char[] cArr, String str) {
+    private static String a(char[] cArr, String str) {
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; i2 < str.length(); i2++) {
-            sb.append(m8006a(cArr, Character.valueOf(str.charAt(i2))));
+            sb.append(a(cArr, Character.valueOf(str.charAt(i2))));
         }
         return sb.toString();
     }
 
-    /* renamed from: b */
-    private static String m8009b(char c2) {
+    private static String b(char c2) {
         return Integer.toHexString(c2);
     }
 
@@ -46,13 +42,13 @@ public class EncodeUtil {
         }
         try {
             StringBuilder sb = new StringBuilder();
-            C2569a c2569a = new C2569a(str);
-            while (c2569a.m8062a()) {
-                Character m8004a = m8004a(c2569a);
-                if (m8004a != null) {
-                    sb.append(m8004a);
+            a aVar = new a(str);
+            while (aVar.a()) {
+                Character chA = a(aVar);
+                if (chA != null) {
+                    sb.append(chA);
                 } else {
-                    sb.append(c2569a.m8066d());
+                    sb.append(aVar.d());
                 }
             }
             return sb.toString();
@@ -63,7 +59,7 @@ public class EncodeUtil {
     }
 
     public static String encodeForJavaScript(String str) {
-        return encodeForJavaScript(str, f8259b);
+        return encodeForJavaScript(str, f5229b);
     }
 
     public static String encodeForJavaScript(String str, char[] cArr) {
@@ -71,30 +67,28 @@ public class EncodeUtil {
             return "";
         }
         try {
-            return m8007a(cArr, str);
+            return a(cArr, str);
         } catch (Exception e2) {
             String str2 = "encode js: " + e2.getMessage();
             return "";
         }
     }
 
-    /* renamed from: a */
-    private static String m8006a(char[] cArr, Character ch) {
-        if (m8008a(ch.charValue(), cArr)) {
+    private static String a(char[] cArr, Character ch) {
+        if (a(ch.charValue(), cArr)) {
             return "" + ch;
         }
-        if (m8005a(ch.charValue()) == null) {
+        if (a(ch.charValue()) == null) {
             return "" + ch;
         }
         String hexString = Integer.toHexString(ch.charValue());
-        if (ch.charValue() < 256) {
+        if (ch.charValue() < '\u0100') {
             return "\\x" + "00".substring(hexString.length()) + hexString.toUpperCase(Locale.ENGLISH);
         }
         return "\\u" + "0000".substring(hexString.length()) + hexString.toUpperCase(Locale.ENGLISH);
     }
 
-    /* renamed from: a */
-    private static boolean m8008a(char c2, char[] cArr) {
+    private static boolean a(char c2, char[] cArr) {
         for (char c3 : cArr) {
             if (c2 == c3) {
                 return true;
@@ -103,126 +97,124 @@ public class EncodeUtil {
         return false;
     }
 
-    /* renamed from: a */
-    private static String m8005a(char c2) {
-        if (c2 < 255) {
-            return f8260c[c2];
+    private static String a(char c2) {
+        if (c2 < '\u00ff') {
+            return f5230c[c2];
         }
-        return m8009b(c2);
+        return b(c2);
     }
 
-    /* renamed from: a */
-    private static Character m8004a(C2569a c2569a) {
-        c2569a.m8065c();
-        Character m8066d = c2569a.m8066d();
-        if (m8066d == null) {
-            c2569a.m8071i();
+    private static Character a(a aVar) {
+        aVar.c();
+        Character chD = aVar.d();
+        if (chD == null) {
+            aVar.i();
             return null;
         }
-        if (m8066d.charValue() != '\\') {
-            c2569a.m8071i();
+        if (chD.charValue() != '\\') {
+            aVar.i();
             return null;
         }
-        Character m8066d2 = c2569a.m8066d();
-        if (m8066d2 == null) {
-            c2569a.m8071i();
+        Character chD2 = aVar.d();
+        if (chD2 == null) {
+            aVar.i();
             return null;
         }
-        if (m8066d2.charValue() == 'b') {
+        if (chD2.charValue() == 'b') {
             return '\b';
         }
-        if (m8066d2.charValue() == 't') {
+        if (chD2.charValue() == 't') {
             return '\t';
         }
-        if (m8066d2.charValue() == 'n') {
+        if (chD2.charValue() == 'n') {
             return '\n';
         }
-        if (m8066d2.charValue() == 'v') {
+        if (chD2.charValue() == 'v') {
             return (char) 11;
         }
-        if (m8066d2.charValue() == 'f') {
+        if (chD2.charValue() == 'f') {
             return '\f';
         }
-        if (m8066d2.charValue() == 'r') {
+        if (chD2.charValue() == 'r') {
             return '\r';
         }
-        if (m8066d2.charValue() == '\"') {
-            return Character.valueOf(C5736h0.f20712a);
+        if (chD2.charValue() == '\"') {
+            return Character.valueOf(h0.a);
         }
-        if (m8066d2.charValue() == '\'') {
+        if (chD2.charValue() == '\'') {
             return '\'';
         }
-        if (m8066d2.charValue() == '\\') {
+        if (chD2.charValue() == '\\') {
             return '\\';
         }
         int i2 = 0;
-        if (Character.toLowerCase(m8066d2.charValue()) == 'x') {
+        if (Character.toLowerCase(chD2.charValue()) == 'x') {
             StringBuilder sb = new StringBuilder();
             while (i2 < 2) {
-                Character m8067e = c2569a.m8067e();
-                if (m8067e != null) {
-                    sb.append(m8067e);
+                Character chE = aVar.e();
+                if (chE != null) {
+                    sb.append(chE);
                     i2++;
                 } else {
-                    c2569a.m8071i();
+                    aVar.i();
                     return null;
                 }
             }
             try {
-                int parseInt = Integer.parseInt(sb.toString(), 16);
-                if (Character.isValidCodePoint(parseInt)) {
-                    return Character.valueOf((char) parseInt);
+                int i3 = Integer.parseInt(sb.toString(), 16);
+                if (Character.isValidCodePoint(i3)) {
+                    return Character.valueOf((char) i3);
                 }
             } catch (NumberFormatException unused) {
-                c2569a.m8071i();
+                aVar.i();
                 return null;
             }
-        } else if (Character.toLowerCase(m8066d2.charValue()) == 'u') {
+        } else if (Character.toLowerCase(chD2.charValue()) == 'u') {
             StringBuilder sb2 = new StringBuilder();
             while (i2 < 4) {
-                Character m8067e2 = c2569a.m8067e();
-                if (m8067e2 != null) {
-                    sb2.append(m8067e2);
+                Character chE2 = aVar.e();
+                if (chE2 != null) {
+                    sb2.append(chE2);
                     i2++;
                 } else {
-                    c2569a.m8071i();
+                    aVar.i();
                     return null;
                 }
             }
             try {
-                int parseInt2 = Integer.parseInt(sb2.toString(), 16);
-                if (Character.isValidCodePoint(parseInt2)) {
-                    return Character.valueOf((char) parseInt2);
+                int i4 = Integer.parseInt(sb2.toString(), 16);
+                if (Character.isValidCodePoint(i4)) {
+                    return Character.valueOf((char) i4);
                 }
             } catch (NumberFormatException unused2) {
-                c2569a.m8071i();
+                aVar.i();
                 return null;
             }
-        } else if (C2569a.m8060c(m8066d2)) {
+        } else if (a.c(chD2)) {
             StringBuilder sb3 = new StringBuilder();
-            sb3.append(m8066d2);
-            Character m8066d3 = c2569a.m8066d();
-            if (!C2569a.m8060c(m8066d3)) {
-                c2569a.m8061a(m8066d3);
+            sb3.append(chD2);
+            Character chD3 = aVar.d();
+            if (!a.c(chD3)) {
+                aVar.a(chD3);
             } else {
-                sb3.append(m8066d3);
-                Character m8066d4 = c2569a.m8066d();
-                if (!C2569a.m8060c(m8066d4)) {
-                    c2569a.m8061a(m8066d4);
+                sb3.append(chD3);
+                Character chD4 = aVar.d();
+                if (!a.c(chD4)) {
+                    aVar.a(chD4);
                 } else {
-                    sb3.append(m8066d4);
+                    sb3.append(chD4);
                 }
             }
             try {
-                int parseInt3 = Integer.parseInt(sb3.toString(), 8);
-                if (Character.isValidCodePoint(parseInt3)) {
-                    return Character.valueOf((char) parseInt3);
+                int i5 = Integer.parseInt(sb3.toString(), 8);
+                if (Character.isValidCodePoint(i5)) {
+                    return Character.valueOf((char) i5);
                 }
             } catch (NumberFormatException unused3) {
-                c2569a.m8071i();
+                aVar.i();
                 return null;
             }
         }
-        return m8066d2;
+        return chD2;
     }
 }

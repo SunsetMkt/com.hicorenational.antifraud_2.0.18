@@ -4,9 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.Camera;
 import androidx.camera.core.UseCase;
 import java.util.Collection;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CameraInternal extends Camera, UseCase.StateChangeCallback {
 
     public enum State {
@@ -35,7 +34,7 @@ public interface CameraInternal extends Camera, UseCase.StateChangeCallback {
     void open();
 
     @NonNull
-    InterfaceFutureC0952a<Void> release();
+    d.b.b.a.a.a<Void> release();
 
     void removeOnlineUseCase(@NonNull Collection<UseCase> collection);
 }

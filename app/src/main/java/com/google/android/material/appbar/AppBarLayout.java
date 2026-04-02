@@ -2,8 +2,12 @@ package com.google.android.material.appbar;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,53 +16,107 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ScrollView;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.math.MathUtils;
 import androidx.core.util.ObjectsCompat;
 import androidx.core.view.NestedScrollingChild;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityViewCommand;
 import androidx.customview.view.AbsSavedState;
-import com.google.android.material.C1921R;
+import com.google.android.material.R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.internal.ThemeEnforcement;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.MaterialShapeUtils;
+import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-@CoordinatorLayout.DefaultBehavior(Behavior.class)
-/* loaded from: classes.dex */
-public class AppBarLayout extends LinearLayout {
+/* JADX INFO: loaded from: classes.dex */
+public class AppBarLayout extends LinearLayout implements CoordinatorLayout.AttachedBehavior {
+    private static final int DEF_STYLE_RES = R.style.Widget_Design_AppBarLayout;
     private static final int INVALID_SCROLL_RANGE = -1;
     static final int PENDING_ACTION_ANIMATE_ENABLED = 4;
     static final int PENDING_ACTION_COLLAPSED = 2;
     static final int PENDING_ACTION_EXPANDED = 1;
     static final int PENDING_ACTION_FORCE = 8;
     static final int PENDING_ACTION_NONE = 0;
+    private int currentOffset;
     private int downPreScrollRange;
     private int downScrollRange;
+
+    @Nullable
+    private ValueAnimator elevationOverlayAnimator;
     private boolean haveChildWithInterpolator;
+
+    @Nullable
     private WindowInsetsCompat lastInsets;
     private boolean liftOnScroll;
+
+    @Nullable
+    private WeakReference<View> liftOnScrollTargetView;
+
+    @IdRes
+    private int liftOnScrollTargetViewId;
     private boolean liftable;
     private boolean liftableOverride;
     private boolean lifted;
     private List<BaseOnOffsetChangedListener> listeners;
     private int pendingAction;
+
+    @Nullable
+    private Drawable statusBarForeground;
     private int[] tmpStatesArray;
     private int totalScrollRange;
+
+    /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$1 */
+    class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            return AppBarLayout.this.onWindowInsetChanged(windowInsetsCompat);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$2 */
+    class AnonymousClass2 implements ValueAnimator.AnimatorUpdateListener {
+        final /* synthetic */ MaterialShapeDrawable val$background;
+
+        AnonymousClass2(MaterialShapeDrawable materialShapeDrawable) {
+            materialShapeDrawable = materialShapeDrawable;
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            materialShapeDrawable.setElevation(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
+    }
 
     protected static class BaseBehavior<T extends AppBarLayout> extends HeaderBehavior<T> {
         private static final int INVALID_POSITION = -1;
         private static final int MAX_OFFSET_ANIMATION_DURATION = 600;
+
+        @Nullable
         private WeakReference<View> lastNestedScrollingChildRef;
         private int lastStartedType;
         private ValueAnimator offsetAnimator;
@@ -68,6 +126,71 @@ public class AppBarLayout extends LinearLayout {
         private float offsetToChildIndexOnLayoutPerc;
         private BaseDragCallback onDragCallback;
 
+        /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$BaseBehavior$1 */
+        class AnonymousClass1 implements ValueAnimator.AnimatorUpdateListener {
+            final /* synthetic */ AppBarLayout val$child;
+            final /* synthetic */ CoordinatorLayout val$coordinatorLayout;
+
+            AnonymousClass1(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout) {
+                coordinatorLayout = coordinatorLayout;
+                appBarLayout = appBarLayout;
+            }
+
+            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+                BaseBehavior.this.setHeaderTopBottomOffset(coordinatorLayout, appBarLayout, ((Integer) valueAnimator.getAnimatedValue()).intValue());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$BaseBehavior$2 */
+        class AnonymousClass2 implements AccessibilityViewCommand {
+            final /* synthetic */ AppBarLayout val$appBarLayout;
+            final /* synthetic */ CoordinatorLayout val$coordinatorLayout;
+            final /* synthetic */ int val$dy;
+            final /* synthetic */ View val$scrollingView;
+
+            AnonymousClass2(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, View view, int i2) {
+                coordinatorLayout = coordinatorLayout;
+                appBarLayout = appBarLayout;
+                view = view;
+                i = i2;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference fix 'apply assigned field type' failed
+            java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
+            	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+            	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+            	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+            	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+            	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+            	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+            	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+             */
+            @Override // androidx.core.view.accessibility.AccessibilityViewCommand
+            public boolean perform(@NonNull View view, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
+                BaseBehavior.this.onNestedPreScroll(coordinatorLayout, appBarLayout, view, 0, i, new int[]{0, 0}, 1);
+                return true;
+            }
+        }
+
+        /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$BaseBehavior$3 */
+        class AnonymousClass3 implements AccessibilityViewCommand {
+            final /* synthetic */ AppBarLayout val$appBarLayout;
+            final /* synthetic */ boolean val$expand;
+
+            AnonymousClass3(AppBarLayout appBarLayout, boolean z) {
+                appBarLayout = appBarLayout;
+                z = z;
+            }
+
+            @Override // androidx.core.view.accessibility.AccessibilityViewCommand
+            public boolean perform(@NonNull View view, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
+                appBarLayout.setExpanded(z);
+                return true;
+            }
+        }
+
         public static abstract class BaseDragCallback<T extends AppBarLayout> {
             public abstract boolean canDrag(@NonNull T t);
         }
@@ -76,13 +199,76 @@ public class AppBarLayout extends LinearLayout {
             this.offsetToChildIndexOnLayout = -1;
         }
 
-        private void animateOffsetTo(CoordinatorLayout coordinatorLayout, T t, int i2, float f2) {
-            int abs = Math.abs(getTopBottomOffsetForScrollingSibling() - i2);
-            float abs2 = Math.abs(f2);
-            animateOffsetWithDuration(coordinatorLayout, t, i2, abs2 > 0.0f ? Math.round((abs / abs2) * 1000.0f) * 3 : (int) (((abs / t.getHeight()) + 1.0f) * 150.0f));
+        private void addAccessibilityScrollActions(CoordinatorLayout coordinatorLayout, @NonNull T t, @NonNull View view) {
+            if (getTopBottomOffsetForScrollingSibling() != (-t.getTotalScrollRange()) && view.canScrollVertically(1)) {
+                addActionToExpand(coordinatorLayout, t, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_FORWARD, false);
+            }
+            if (getTopBottomOffsetForScrollingSibling() != 0) {
+                if (!view.canScrollVertically(-1)) {
+                    addActionToExpand(coordinatorLayout, t, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_BACKWARD, true);
+                    return;
+                }
+                int i2 = -t.getDownNestedPreScrollRange();
+                if (i2 != 0) {
+                    ViewCompat.replaceAccessibilityAction(coordinatorLayout, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_BACKWARD, null, new AccessibilityViewCommand() { // from class: com.google.android.material.appbar.AppBarLayout.BaseBehavior.2
+                        final /* synthetic */ AppBarLayout val$appBarLayout;
+                        final /* synthetic */ CoordinatorLayout val$coordinatorLayout;
+                        final /* synthetic */ int val$dy;
+                        final /* synthetic */ View val$scrollingView;
+
+                        AnonymousClass2(CoordinatorLayout coordinatorLayout2, AppBarLayout t2, View view2, int i22) {
+                            coordinatorLayout = coordinatorLayout2;
+                            appBarLayout = t2;
+                            view = view2;
+                            i = i22;
+                        }
+
+                        /* JADX WARN: Multi-variable type inference failed */
+                        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+                        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
+                        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+                        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+                        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+                        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+                        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+                        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+                        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+                         */
+                        @Override // androidx.core.view.accessibility.AccessibilityViewCommand
+                        public boolean perform(@NonNull View view2, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
+                            BaseBehavior.this.onNestedPreScroll(coordinatorLayout, appBarLayout, view, 0, i, new int[]{0, 0}, 1);
+                            return true;
+                        }
+                    });
+                }
+            }
         }
 
-        private void animateOffsetWithDuration(final CoordinatorLayout coordinatorLayout, final T t, int i2, int i3) {
+        private void addActionToExpand(CoordinatorLayout coordinatorLayout, @NonNull T t, @NonNull AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat, boolean z) {
+            ViewCompat.replaceAccessibilityAction(coordinatorLayout, accessibilityActionCompat, null, new AccessibilityViewCommand() { // from class: com.google.android.material.appbar.AppBarLayout.BaseBehavior.3
+                final /* synthetic */ AppBarLayout val$appBarLayout;
+                final /* synthetic */ boolean val$expand;
+
+                AnonymousClass3(AppBarLayout t2, boolean z2) {
+                    appBarLayout = t2;
+                    z = z2;
+                }
+
+                @Override // androidx.core.view.accessibility.AccessibilityViewCommand
+                public boolean perform(@NonNull View view, @Nullable AccessibilityViewCommand.CommandArguments commandArguments) {
+                    appBarLayout.setExpanded(z);
+                    return true;
+                }
+            });
+        }
+
+        private void animateOffsetTo(CoordinatorLayout coordinatorLayout, @NonNull T t, int i2, float f2) {
+            int iAbs = Math.abs(getTopBottomOffsetForScrollingSibling() - i2);
+            float fAbs = Math.abs(f2);
+            animateOffsetWithDuration(coordinatorLayout, t, i2, fAbs > 0.0f ? Math.round((iAbs / fAbs) * 1000.0f) * 3 : (int) (((iAbs / t.getHeight()) + 1.0f) * 150.0f));
+        }
+
+        private void animateOffsetWithDuration(CoordinatorLayout coordinatorLayout, T t, int i2, int i3) {
             int topBottomOffsetForScrollingSibling = getTopBottomOffsetForScrollingSibling();
             if (topBottomOffsetForScrollingSibling == i2) {
                 ValueAnimator valueAnimator = this.offsetAnimator;
@@ -97,9 +283,17 @@ public class AppBarLayout extends LinearLayout {
                 this.offsetAnimator = new ValueAnimator();
                 this.offsetAnimator.setInterpolator(AnimationUtils.DECELERATE_INTERPOLATOR);
                 this.offsetAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.google.android.material.appbar.AppBarLayout.BaseBehavior.1
+                    final /* synthetic */ AppBarLayout val$child;
+                    final /* synthetic */ CoordinatorLayout val$coordinatorLayout;
+
+                    AnonymousClass1(CoordinatorLayout coordinatorLayout2, AppBarLayout t2) {
+                        coordinatorLayout = coordinatorLayout2;
+                        appBarLayout = t2;
+                    }
+
                     @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-                    public void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        BaseBehavior.this.setHeaderTopBottomOffset(coordinatorLayout, t, ((Integer) valueAnimator3.getAnimatedValue()).intValue());
+                    public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator3) {
+                        BaseBehavior.this.setHeaderTopBottomOffset(coordinatorLayout, appBarLayout, ((Integer) valueAnimator3.getAnimatedValue()).intValue());
                     }
                 });
             } else {
@@ -110,7 +304,7 @@ public class AppBarLayout extends LinearLayout {
             this.offsetAnimator.start();
         }
 
-        private boolean canScrollChildren(CoordinatorLayout coordinatorLayout, T t, View view) {
+        private boolean canScrollChildren(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, @NonNull View view) {
             return t.hasScrollableChildren() && coordinatorLayout.getHeight() - view.getHeight() <= t.getHeight();
         }
 
@@ -119,30 +313,31 @@ public class AppBarLayout extends LinearLayout {
         }
 
         @Nullable
-        private View findFirstScrollingChild(CoordinatorLayout coordinatorLayout) {
+        private View findFirstScrollingChild(@NonNull CoordinatorLayout coordinatorLayout) {
             int childCount = coordinatorLayout.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {
                 View childAt = coordinatorLayout.getChildAt(i2);
-                if (childAt instanceof NestedScrollingChild) {
+                if ((childAt instanceof NestedScrollingChild) || (childAt instanceof ListView) || (childAt instanceof ScrollView)) {
                     return childAt;
                 }
             }
             return null;
         }
 
-        private static View getAppBarChildOnOffset(AppBarLayout appBarLayout, int i2) {
-            int abs = Math.abs(i2);
+        @Nullable
+        private static View getAppBarChildOnOffset(@NonNull AppBarLayout appBarLayout, int i2) {
+            int iAbs = Math.abs(i2);
             int childCount = appBarLayout.getChildCount();
             for (int i3 = 0; i3 < childCount; i3++) {
                 View childAt = appBarLayout.getChildAt(i3);
-                if (abs >= childAt.getTop() && abs <= childAt.getBottom()) {
+                if (iAbs >= childAt.getTop() && iAbs <= childAt.getBottom()) {
                     return childAt;
                 }
             }
             return null;
         }
 
-        private int getChildIndexOnOffset(T t, int i2) {
+        private int getChildIndexOnOffset(@NonNull T t, int i2) {
             int childCount = t.getChildCount();
             for (int i3 = 0; i3 < childCount; i3++) {
                 View childAt = t.getChildAt(i3);
@@ -161,41 +356,41 @@ public class AppBarLayout extends LinearLayout {
             return -1;
         }
 
-        private int interpolateOffset(T t, int i2) {
-            int abs = Math.abs(i2);
+        private int interpolateOffset(@NonNull T t, int i2) {
+            int iAbs = Math.abs(i2);
             int childCount = t.getChildCount();
+            int topInset = 0;
             int i3 = 0;
-            int i4 = 0;
             while (true) {
-                if (i4 >= childCount) {
+                if (i3 >= childCount) {
                     break;
                 }
-                View childAt = t.getChildAt(i4);
+                View childAt = t.getChildAt(i3);
                 LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
                 Interpolator scrollInterpolator = layoutParams.getScrollInterpolator();
-                if (abs < childAt.getTop() || abs > childAt.getBottom()) {
-                    i4++;
+                if (iAbs < childAt.getTop() || iAbs > childAt.getBottom()) {
+                    i3++;
                 } else if (scrollInterpolator != null) {
                     int scrollFlags = layoutParams.getScrollFlags();
                     if ((scrollFlags & 1) != 0) {
-                        i3 = 0 + childAt.getHeight() + ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
+                        topInset = 0 + childAt.getHeight() + ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
                         if ((scrollFlags & 2) != 0) {
-                            i3 -= ViewCompat.getMinimumHeight(childAt);
+                            topInset -= ViewCompat.getMinimumHeight(childAt);
                         }
                     }
                     if (ViewCompat.getFitsSystemWindows(childAt)) {
-                        i3 -= t.getTopInset();
+                        topInset -= t.getTopInset();
                     }
-                    if (i3 > 0) {
-                        float f2 = i3;
-                        return Integer.signum(i2) * (childAt.getTop() + Math.round(f2 * scrollInterpolator.getInterpolation((abs - childAt.getTop()) / f2)));
+                    if (topInset > 0) {
+                        float f2 = topInset;
+                        return Integer.signum(i2) * (childAt.getTop() + Math.round(f2 * scrollInterpolator.getInterpolation((iAbs - childAt.getTop()) / f2)));
                     }
                 }
             }
             return i2;
         }
 
-        private boolean shouldJumpElevationState(CoordinatorLayout coordinatorLayout, T t) {
+        private boolean shouldJumpElevationState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t) {
             List<View> dependents = coordinatorLayout.getDependents(t);
             int size = dependents.size();
             for (int i2 = 0; i2 < size; i2++) {
@@ -207,7 +402,7 @@ public class AppBarLayout extends LinearLayout {
             return false;
         }
 
-        private void snapToChildIfNeeded(CoordinatorLayout coordinatorLayout, T t) {
+        private void snapToChildIfNeeded(CoordinatorLayout coordinatorLayout, @NonNull T t) {
             int topBottomOffsetForScrollingSibling = getTopBottomOffsetForScrollingSibling();
             int childIndexOnOffset = getChildIndexOnOffset(t, topBottomOffsetForScrollingSibling);
             if (childIndexOnOffset >= 0) {
@@ -216,113 +411,61 @@ public class AppBarLayout extends LinearLayout {
                 int scrollFlags = layoutParams.getScrollFlags();
                 if ((scrollFlags & 17) == 17) {
                     int i2 = -childAt.getTop();
-                    int i3 = -childAt.getBottom();
+                    int minimumHeight = -childAt.getBottom();
                     if (childIndexOnOffset == t.getChildCount() - 1) {
-                        i3 += t.getTopInset();
+                        minimumHeight += t.getTopInset();
                     }
                     if (checkFlag(scrollFlags, 2)) {
-                        i3 += ViewCompat.getMinimumHeight(childAt);
+                        minimumHeight += ViewCompat.getMinimumHeight(childAt);
                     } else if (checkFlag(scrollFlags, 5)) {
-                        int minimumHeight = ViewCompat.getMinimumHeight(childAt) + i3;
-                        if (topBottomOffsetForScrollingSibling < minimumHeight) {
-                            i2 = minimumHeight;
+                        int minimumHeight2 = ViewCompat.getMinimumHeight(childAt) + minimumHeight;
+                        if (topBottomOffsetForScrollingSibling < minimumHeight2) {
+                            i2 = minimumHeight2;
                         } else {
-                            i3 = minimumHeight;
+                            minimumHeight = minimumHeight2;
                         }
                     }
                     if (checkFlag(scrollFlags, 32)) {
                         i2 += ((LinearLayout.LayoutParams) layoutParams).topMargin;
-                        i3 -= ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
+                        minimumHeight -= ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
                     }
-                    if (topBottomOffsetForScrollingSibling < (i3 + i2) / 2) {
-                        i2 = i3;
+                    if (topBottomOffsetForScrollingSibling < (minimumHeight + i2) / 2) {
+                        i2 = minimumHeight;
                     }
                     animateOffsetTo(coordinatorLayout, t, MathUtils.clamp(i2, -t.getTotalScrollRange(), 0), 0.0f);
                 }
             }
         }
 
-        private void stopNestedScrollIfNeeded(int i2, T t, View view, int i3) {
-            if (i3 == 1) {
-                int topBottomOffsetForScrollingSibling = getTopBottomOffsetForScrollingSibling();
-                if ((i2 >= 0 || topBottomOffsetForScrollingSibling != 0) && (i2 <= 0 || topBottomOffsetForScrollingSibling != (-t.getDownNestedScrollRange()))) {
-                    return;
-                }
-                ViewCompat.stopNestedScroll(view, 1);
+        private void updateAccessibilityActions(CoordinatorLayout coordinatorLayout, @NonNull T t) {
+            ViewCompat.removeAccessibilityAction(coordinatorLayout, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_FORWARD.getId());
+            ViewCompat.removeAccessibilityAction(coordinatorLayout, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_BACKWARD.getId());
+            View viewFindFirstScrollingChild = findFirstScrollingChild(coordinatorLayout);
+            if (viewFindFirstScrollingChild == null || t.getTotalScrollRange() == 0 || !(((CoordinatorLayout.LayoutParams) viewFindFirstScrollingChild.getLayoutParams()).getBehavior() instanceof ScrollingViewBehavior)) {
+                return;
             }
+            addAccessibilityScrollActions(coordinatorLayout, t, viewFindFirstScrollingChild);
         }
 
-        /* JADX WARN: Removed duplicated region for block: B:18:0x0054  */
-        /* JADX WARN: Removed duplicated region for block: B:19:0x0056  */
-        /* JADX WARN: Removed duplicated region for block: B:22:0x0061  */
-        /* JADX WARN: Removed duplicated region for block: B:31:? A[RETURN, SYNTHETIC] */
-        /*
-            Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
-        */
-        private void updateAppBarLayoutDrawableState(androidx.coordinatorlayout.widget.CoordinatorLayout r6, T r7, int r8, int r9, boolean r10) {
-            /*
-                r5 = this;
-                android.view.View r0 = getAppBarChildOnOffset(r7, r8)
-                if (r0 == 0) goto L6e
-                android.view.ViewGroup$LayoutParams r1 = r0.getLayoutParams()
-                com.google.android.material.appbar.AppBarLayout$LayoutParams r1 = (com.google.android.material.appbar.AppBarLayout.LayoutParams) r1
-                int r1 = r1.getScrollFlags()
-                r2 = r1 & 1
-                r3 = 1
-                r4 = 0
-                if (r2 == 0) goto L41
-                int r2 = androidx.core.view.ViewCompat.getMinimumHeight(r0)
-                if (r9 <= 0) goto L2f
-                r9 = r1 & 12
-                if (r9 == 0) goto L2f
-                int r8 = -r8
-                int r9 = r0.getBottom()
-                int r9 = r9 - r2
-                int r0 = r7.getTopInset()
-                int r9 = r9 - r0
-                if (r8 < r9) goto L41
-            L2d:
-                r8 = 1
-                goto L42
-            L2f:
-                r9 = r1 & 2
-                if (r9 == 0) goto L41
-                int r8 = -r8
-                int r9 = r0.getBottom()
-                int r9 = r9 - r2
-                int r0 = r7.getTopInset()
-                int r9 = r9 - r0
-                if (r8 < r9) goto L41
-                goto L2d
-            L41:
-                r8 = 0
-            L42:
-                boolean r9 = r7.isLiftOnScroll()
-                if (r9 == 0) goto L57
-                android.view.View r9 = r5.findFirstScrollingChild(r6)
-                if (r9 == 0) goto L57
-                int r8 = r9.getScrollY()
-                if (r8 <= 0) goto L56
-                r8 = 1
-                goto L57
-            L56:
-                r8 = 0
-            L57:
-                boolean r8 = r7.setLiftedState(r8)
-                int r9 = android.os.Build.VERSION.SDK_INT
-                r0 = 11
-                if (r9 < r0) goto L6e
-                if (r10 != 0) goto L6b
-                if (r8 == 0) goto L6e
-                boolean r6 = r5.shouldJumpElevationState(r6, r7)
-                if (r6 == 0) goto L6e
-            L6b:
-                r7.jumpDrawablesToCurrentState()
-            L6e:
-                return
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.google.android.material.appbar.AppBarLayout.BaseBehavior.updateAppBarLayoutDrawableState(androidx.coordinatorlayout.widget.CoordinatorLayout, com.google.android.material.appbar.AppBarLayout, int, int, boolean):void");
+        private void updateAppBarLayoutDrawableState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, int i2, int i3, boolean z) {
+            View appBarChildOnOffset = getAppBarChildOnOffset(t, i2);
+            if (appBarChildOnOffset != null) {
+                int scrollFlags = ((LayoutParams) appBarChildOnOffset.getLayoutParams()).getScrollFlags();
+                boolean zShouldLift = false;
+                if ((scrollFlags & 1) != 0) {
+                    int minimumHeight = ViewCompat.getMinimumHeight(appBarChildOnOffset);
+                    if (i3 <= 0 || (scrollFlags & 12) == 0 ? !((scrollFlags & 2) == 0 || (-i2) < (appBarChildOnOffset.getBottom() - minimumHeight) - t.getTopInset()) : (-i2) >= (appBarChildOnOffset.getBottom() - minimumHeight) - t.getTopInset()) {
+                        zShouldLift = true;
+                    }
+                }
+                if (t.isLiftOnScroll()) {
+                    zShouldLift = t.shouldLift(findFirstScrollingChild(coordinatorLayout));
+                }
+                boolean liftedState = t.setLiftedState(zShouldLift);
+                if (z || (liftedState && shouldJumpElevationState(coordinatorLayout, t))) {
+                    t.jumpDrawablesToCurrentState();
+                }
+            }
         }
 
         @Override // com.google.android.material.appbar.HeaderBehavior
@@ -340,7 +483,6 @@ public class AppBarLayout extends LinearLayout {
             this.onDragCallback = baseDragCallback;
         }
 
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.google.android.material.appbar.HeaderBehavior
         public boolean canDragView(T t) {
             BaseDragCallback baseDragCallback = this.onDragCallback;
@@ -355,27 +497,27 @@ public class AppBarLayout extends LinearLayout {
             return (view == null || !view.isShown() || view.canScrollVertically(-1)) ? false : true;
         }
 
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.google.android.material.appbar.HeaderBehavior
-        public int getMaxDragOffset(T t) {
+        public int getMaxDragOffset(@NonNull T t) {
             return -t.getDownNestedScrollRange();
         }
 
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.google.android.material.appbar.HeaderBehavior
-        public int getScrollRangeForDragFling(T t) {
+        public int getScrollRangeForDragFling(@NonNull T t) {
             return t.getTotalScrollRange();
         }
 
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.google.android.material.appbar.HeaderBehavior
-        public void onFlingFinished(CoordinatorLayout coordinatorLayout, T t) {
+        public void onFlingFinished(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t) {
             snapToChildIfNeeded(coordinatorLayout, t);
+            if (t.isLiftOnScroll()) {
+                t.setLiftedState(t.shouldLift(findFirstScrollingChild(coordinatorLayout)));
+            }
         }
 
         @Override // com.google.android.material.appbar.ViewOffsetBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onLayoutChild(CoordinatorLayout coordinatorLayout, T t, int i2) {
-            boolean onLayoutChild = super.onLayoutChild(coordinatorLayout, (CoordinatorLayout) t, i2);
+        public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, int i2) {
+            boolean zOnLayoutChild = super.onLayoutChild(coordinatorLayout, t, i2);
             int pendingAction = t.getPendingAction();
             int i3 = this.offsetToChildIndexOnLayout;
             if (i3 >= 0 && (pendingAction & 8) == 0) {
@@ -402,85 +544,87 @@ public class AppBarLayout extends LinearLayout {
             this.offsetToChildIndexOnLayout = -1;
             setTopAndBottomOffset(MathUtils.clamp(getTopAndBottomOffset(), -t.getTotalScrollRange(), 0));
             updateAppBarLayoutDrawableState(coordinatorLayout, t, getTopAndBottomOffset(), 0, true);
-            t.dispatchOffsetUpdates(getTopAndBottomOffset());
-            return onLayoutChild;
+            t.onOffsetChanged(getTopAndBottomOffset());
+            updateAccessibilityActions(coordinatorLayout, t);
+            return zOnLayoutChild;
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onMeasureChild(CoordinatorLayout coordinatorLayout, T t, int i2, int i3, int i4, int i5) {
+        public boolean onMeasureChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, int i2, int i3, int i4, int i5) {
             if (((ViewGroup.MarginLayoutParams) ((CoordinatorLayout.LayoutParams) t.getLayoutParams())).height != -2) {
-                return super.onMeasureChild(coordinatorLayout, (CoordinatorLayout) t, i2, i3, i4, i5);
+                return super.onMeasureChild(coordinatorLayout, t, i2, i3, i4, i5);
             }
             coordinatorLayout.onMeasureChild(t, i2, i3, View.MeasureSpec.makeMeasureSpec(0, 0), i5);
             return true;
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, T t, View view, int i2, int i3, int[] iArr, int i4) {
+        public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, @NonNull T t, View view, int i2, int i3, int[] iArr, int i4) {
             int i5;
-            int i6;
+            int downNestedPreScrollRange;
             if (i3 != 0) {
                 if (i3 < 0) {
-                    int i7 = -t.getTotalScrollRange();
-                    i5 = i7;
-                    i6 = t.getDownNestedPreScrollRange() + i7;
+                    int i6 = -t.getTotalScrollRange();
+                    i5 = i6;
+                    downNestedPreScrollRange = t.getDownNestedPreScrollRange() + i6;
                 } else {
                     i5 = -t.getUpNestedPreScrollRange();
-                    i6 = 0;
+                    downNestedPreScrollRange = 0;
                 }
-                if (i5 != i6) {
-                    iArr[1] = scroll(coordinatorLayout, t, i3, i5, i6);
-                    stopNestedScrollIfNeeded(i3, t, view, i4);
+                if (i5 != downNestedPreScrollRange) {
+                    iArr[1] = scroll(coordinatorLayout, t, i3, i5, downNestedPreScrollRange);
                 }
-            }
-        }
-
-        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public void onNestedScroll(CoordinatorLayout coordinatorLayout, T t, View view, int i2, int i3, int i4, int i5, int i6) {
-            if (i5 < 0) {
-                scroll(coordinatorLayout, t, i5, -t.getDownNestedScrollRange(), 0);
-                stopNestedScrollIfNeeded(i5, t, view, i6);
             }
             if (t.isLiftOnScroll()) {
-                t.setLiftedState(view.getScrollY() > 0);
+                t.setLiftedState(t.shouldLift(view));
             }
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public void onRestoreInstanceState(CoordinatorLayout coordinatorLayout, T t, Parcelable parcelable) {
+        public void onNestedScroll(CoordinatorLayout coordinatorLayout, @NonNull T t, View view, int i2, int i3, int i4, int i5, int i6, int[] iArr) {
+            if (i5 < 0) {
+                iArr[1] = scroll(coordinatorLayout, t, i5, -t.getDownNestedScrollRange(), 0);
+            }
+            if (i5 == 0) {
+                updateAccessibilityActions(coordinatorLayout, t);
+            }
+        }
+
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public void onRestoreInstanceState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, Parcelable parcelable) {
             if (!(parcelable instanceof SavedState)) {
-                super.onRestoreInstanceState(coordinatorLayout, (CoordinatorLayout) t, parcelable);
+                super.onRestoreInstanceState(coordinatorLayout, t, parcelable);
                 this.offsetToChildIndexOnLayout = -1;
                 return;
             }
             SavedState savedState = (SavedState) parcelable;
-            super.onRestoreInstanceState(coordinatorLayout, (CoordinatorLayout) t, savedState.getSuperState());
+            super.onRestoreInstanceState(coordinatorLayout, t, savedState.getSuperState());
             this.offsetToChildIndexOnLayout = savedState.firstVisibleChildIndex;
             this.offsetToChildIndexOnLayoutPerc = savedState.firstVisibleChildPercentageShown;
             this.offsetToChildIndexOnLayoutIsMinHeight = savedState.firstVisibleChildAtMinimumHeight;
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public Parcelable onSaveInstanceState(CoordinatorLayout coordinatorLayout, T t) {
-            Parcelable onSaveInstanceState = super.onSaveInstanceState(coordinatorLayout, (CoordinatorLayout) t);
+        public Parcelable onSaveInstanceState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t) {
+            Parcelable parcelableOnSaveInstanceState = super.onSaveInstanceState(coordinatorLayout, t);
             int topAndBottomOffset = getTopAndBottomOffset();
             int childCount = t.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {
                 View childAt = t.getChildAt(i2);
                 int bottom = childAt.getBottom() + topAndBottomOffset;
                 if (childAt.getTop() + topAndBottomOffset <= 0 && bottom >= 0) {
-                    SavedState savedState = new SavedState(onSaveInstanceState);
+                    SavedState savedState = new SavedState(parcelableOnSaveInstanceState);
                     savedState.firstVisibleChildIndex = i2;
                     savedState.firstVisibleChildAtMinimumHeight = bottom == ViewCompat.getMinimumHeight(childAt) + t.getTopInset();
                     savedState.firstVisibleChildPercentageShown = bottom / childAt.getHeight();
                     return savedState;
                 }
             }
-            return onSaveInstanceState;
+            return parcelableOnSaveInstanceState;
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, T t, View view, View view2, int i2, int i3) {
+        public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, @NonNull View view, View view2, int i2, int i3) {
             ValueAnimator valueAnimator;
             boolean z = (i2 & 2) != 0 && (t.isLiftOnScroll() || canScrollChildren(coordinatorLayout, t, view));
             if (z && (valueAnimator = this.offsetAnimator) != null) {
@@ -492,34 +636,37 @@ public class AppBarLayout extends LinearLayout {
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, T t, View view, int i2) {
+        public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, @NonNull T t, View view, int i2) {
             if (this.lastStartedType == 0 || i2 == 1) {
                 snapToChildIfNeeded(coordinatorLayout, t);
+                if (t.isLiftOnScroll()) {
+                    t.setLiftedState(t.shouldLift(view));
+                }
             }
             this.lastNestedScrollingChildRef = new WeakReference<>(view);
         }
 
-        /* JADX INFO: Access modifiers changed from: package-private */
         @Override // com.google.android.material.appbar.HeaderBehavior
-        public int setHeaderTopBottomOffset(CoordinatorLayout coordinatorLayout, T t, int i2, int i3, int i4) {
+        public int setHeaderTopBottomOffset(@NonNull CoordinatorLayout coordinatorLayout, @NonNull T t, int i2, int i3, int i4) {
             int topBottomOffsetForScrollingSibling = getTopBottomOffsetForScrollingSibling();
             int i5 = 0;
             if (i3 == 0 || topBottomOffsetForScrollingSibling < i3 || topBottomOffsetForScrollingSibling > i4) {
                 this.offsetDelta = 0;
             } else {
-                int clamp = MathUtils.clamp(i2, i3, i4);
-                if (topBottomOffsetForScrollingSibling != clamp) {
-                    int interpolateOffset = t.hasChildWithInterpolator() ? interpolateOffset(t, clamp) : clamp;
-                    boolean topAndBottomOffset = setTopAndBottomOffset(interpolateOffset);
-                    i5 = topBottomOffsetForScrollingSibling - clamp;
-                    this.offsetDelta = clamp - interpolateOffset;
+                int iClamp = MathUtils.clamp(i2, i3, i4);
+                if (topBottomOffsetForScrollingSibling != iClamp) {
+                    int iInterpolateOffset = t.hasChildWithInterpolator() ? interpolateOffset(t, iClamp) : iClamp;
+                    boolean topAndBottomOffset = setTopAndBottomOffset(iInterpolateOffset);
+                    i5 = topBottomOffsetForScrollingSibling - iClamp;
+                    this.offsetDelta = iClamp - iInterpolateOffset;
                     if (!topAndBottomOffset && t.hasChildWithInterpolator()) {
                         coordinatorLayout.dispatchDependentViewsChanged(t);
                     }
-                    t.dispatchOffsetUpdates(getTopAndBottomOffset());
-                    updateAppBarLayoutDrawableState(coordinatorLayout, t, clamp, clamp < topBottomOffsetForScrollingSibling ? -1 : 1, false);
+                    t.onOffsetChanged(getTopAndBottomOffset());
+                    updateAppBarLayoutDrawableState(coordinatorLayout, t, iClamp, iClamp < topBottomOffsetForScrollingSibling ? -1 : 1, false);
                 }
             }
+            updateAccessibilityActions(coordinatorLayout, t);
             return i5;
         }
 
@@ -530,19 +677,24 @@ public class AppBarLayout extends LinearLayout {
 
         protected static class SavedState extends AbsSavedState {
             public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: com.google.android.material.appbar.AppBarLayout.BaseBehavior.SavedState.1
+                AnonymousClass1() {
+                }
+
                 @Override // android.os.Parcelable.Creator
+                @NonNull
                 public SavedState[] newArray(int i2) {
                     return new SavedState[i2];
                 }
 
-                /* JADX WARN: Can't rename method to resolve collision */
                 @Override // android.os.Parcelable.ClassLoaderCreator
-                public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                @NonNull
+                public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
                     return new SavedState(parcel, classLoader);
                 }
 
                 @Override // android.os.Parcelable.Creator
-                public SavedState createFromParcel(Parcel parcel) {
+                @Nullable
+                public SavedState createFromParcel(@NonNull Parcel parcel) {
                     return new SavedState(parcel, null);
                 }
             };
@@ -550,7 +702,31 @@ public class AppBarLayout extends LinearLayout {
             int firstVisibleChildIndex;
             float firstVisibleChildPercentageShown;
 
-            public SavedState(Parcel parcel, ClassLoader classLoader) {
+            /* JADX INFO: renamed from: com.google.android.material.appbar.AppBarLayout$BaseBehavior$SavedState$1 */
+            static class AnonymousClass1 implements Parcelable.ClassLoaderCreator<SavedState> {
+                AnonymousClass1() {
+                }
+
+                @Override // android.os.Parcelable.Creator
+                @NonNull
+                public SavedState[] newArray(int i2) {
+                    return new SavedState[i2];
+                }
+
+                @Override // android.os.Parcelable.ClassLoaderCreator
+                @NonNull
+                public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                    return new SavedState(parcel, classLoader);
+                }
+
+                @Override // android.os.Parcelable.Creator
+                @Nullable
+                public SavedState createFromParcel(@NonNull Parcel parcel) {
+                    return new SavedState(parcel, null);
+                }
+            }
+
+            public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
                 super(parcel, classLoader);
                 this.firstVisibleChildIndex = parcel.readInt();
                 this.firstVisibleChildPercentageShown = parcel.readFloat();
@@ -558,7 +734,7 @@ public class AppBarLayout extends LinearLayout {
             }
 
             @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-            public void writeToParcel(Parcel parcel, int i2) {
+            public void writeToParcel(@NonNull Parcel parcel, int i2) {
                 super.writeToParcel(parcel, i2);
                 parcel.writeInt(this.firstVisibleChildIndex);
                 parcel.writeFloat(this.firstVisibleChildPercentageShown);
@@ -593,49 +769,64 @@ public class AppBarLayout extends LinearLayout {
             return super.getTopAndBottomOffset();
         }
 
-        @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ boolean onLayoutChild(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, int i2) {
-            return super.onLayoutChild(coordinatorLayout, (CoordinatorLayout) appBarLayout, i2);
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ boolean isHorizontalOffsetEnabled() {
+            return super.isHorizontalOffsetEnabled();
+        }
+
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ boolean isVerticalOffsetEnabled() {
+            return super.isVerticalOffsetEnabled();
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ boolean onMeasureChild(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, int i2, int i3, int i4, int i5) {
-            return super.onMeasureChild(coordinatorLayout, (CoordinatorLayout) appBarLayout, i2, i3, i4, i5);
+        public /* bridge */ /* synthetic */ boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, int i2) {
+            return super.onLayoutChild(coordinatorLayout, appBarLayout, i2);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, View view, int i2, int i3, int[] iArr, int i4) {
-            super.onNestedPreScroll(coordinatorLayout, (CoordinatorLayout) appBarLayout, view, i2, i3, iArr, i4);
+        public /* bridge */ /* synthetic */ boolean onMeasureChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, int i2, int i3, int i4, int i5) {
+            return super.onMeasureChild(coordinatorLayout, appBarLayout, i2, i3, i4, i5);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ void onNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, View view, int i2, int i3, int i4, int i5, int i6) {
-            super.onNestedScroll(coordinatorLayout, (CoordinatorLayout) appBarLayout, view, i2, i3, i4, i5, i6);
+        public /* bridge */ /* synthetic */ void onNestedPreScroll(CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, View view, int i2, int i3, int[] iArr, int i4) {
+            super.onNestedPreScroll(coordinatorLayout, appBarLayout, view, i2, i3, iArr, i4);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ void onRestoreInstanceState(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, Parcelable parcelable) {
-            super.onRestoreInstanceState(coordinatorLayout, (CoordinatorLayout) appBarLayout, parcelable);
+        public /* bridge */ /* synthetic */ void onNestedScroll(CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, View view, int i2, int i3, int i4, int i5, int i6, int[] iArr) {
+            super.onNestedScroll(coordinatorLayout, appBarLayout, view, i2, i3, i4, i5, i6, iArr);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ Parcelable onSaveInstanceState(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout) {
-            return super.onSaveInstanceState(coordinatorLayout, (CoordinatorLayout) appBarLayout);
+        public /* bridge */ /* synthetic */ void onRestoreInstanceState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, Parcelable parcelable) {
+            super.onRestoreInstanceState(coordinatorLayout, appBarLayout, parcelable);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, View view, View view2, int i2, int i3) {
-            return super.onStartNestedScroll(coordinatorLayout, (CoordinatorLayout) appBarLayout, view, view2, i2, i3);
+        public /* bridge */ /* synthetic */ Parcelable onSaveInstanceState(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout) {
+            return super.onSaveInstanceState(coordinatorLayout, appBarLayout);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
-        public /* bridge */ /* synthetic */ void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout appBarLayout, View view, int i2) {
-            super.onStopNestedScroll(coordinatorLayout, (CoordinatorLayout) appBarLayout, view, i2);
+        public /* bridge */ /* synthetic */ boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, @NonNull View view, View view2, int i2, int i3) {
+            return super.onStartNestedScroll(coordinatorLayout, appBarLayout, view, view2, i2, i3);
+        }
+
+        @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
+        public /* bridge */ /* synthetic */ void onStopNestedScroll(CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, View view, int i2) {
+            super.onStopNestedScroll(coordinatorLayout, appBarLayout, view, i2);
         }
 
         @Override // com.google.android.material.appbar.AppBarLayout.BaseBehavior
         public /* bridge */ /* synthetic */ void setDragCallback(@Nullable BaseBehavior.BaseDragCallback baseDragCallback) {
             super.setDragCallback(baseDragCallback);
+        }
+
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ void setHorizontalOffsetEnabled(boolean z) {
+            super.setHorizontalOffsetEnabled(z);
         }
 
         @Override // com.google.android.material.appbar.ViewOffsetBehavior
@@ -646,6 +837,11 @@ public class AppBarLayout extends LinearLayout {
         @Override // com.google.android.material.appbar.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean setTopAndBottomOffset(int i2) {
             return super.setTopAndBottomOffset(i2);
+        }
+
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ void setVerticalOffsetEnabled(boolean z) {
+            super.setVerticalOffsetEnabled(z);
         }
 
         public Behavior(Context context, AttributeSet attributeSet) {
@@ -662,7 +858,7 @@ public class AppBarLayout extends LinearLayout {
         public ScrollingViewBehavior() {
         }
 
-        private static int getAppBarLayoutOffset(AppBarLayout appBarLayout) {
+        private static int getAppBarLayoutOffset(@NonNull AppBarLayout appBarLayout) {
             CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams()).getBehavior();
             if (behavior instanceof BaseBehavior) {
                 return ((BaseBehavior) behavior).getTopBottomOffsetForScrollingSibling();
@@ -670,7 +866,7 @@ public class AppBarLayout extends LinearLayout {
             return 0;
         }
 
-        private void offsetChildAsNeeded(View view, View view2) {
+        private void offsetChildAsNeeded(@NonNull View view, @NonNull View view2) {
             CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) view2.getLayoutParams()).getBehavior();
             if (behavior instanceof BaseBehavior) {
                 ViewCompat.offsetTopAndBottom(view, (((view2.getBottom() - view.getTop()) + ((BaseBehavior) behavior).offsetDelta) + getVerticalLayoutGap()) - getOverlapPixelsForOffset(view2));
@@ -681,13 +877,14 @@ public class AppBarLayout extends LinearLayout {
             if (view2 instanceof AppBarLayout) {
                 AppBarLayout appBarLayout = (AppBarLayout) view2;
                 if (appBarLayout.isLiftOnScroll()) {
-                    appBarLayout.setLiftedState(view.getScrollY() > 0);
+                    appBarLayout.setLiftedState(appBarLayout.shouldLift(view));
                 }
             }
         }
 
         @Override // com.google.android.material.appbar.HeaderScrollingViewBehavior
-        /* bridge */ /* synthetic */ View findFirstDependency(List list) {
+        @Nullable
+        /* bridge */ /* synthetic */ View findFirstDependency(@NonNull List list) {
             return findFirstDependency((List<View>) list);
         }
 
@@ -721,41 +918,64 @@ public class AppBarLayout extends LinearLayout {
             return super.getTopAndBottomOffset();
         }
 
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ boolean isHorizontalOffsetEnabled() {
+            return super.isHorizontalOffsetEnabled();
+        }
+
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ boolean isVerticalOffsetEnabled() {
+            return super.isVerticalOffsetEnabled();
+        }
+
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
         public boolean layoutDependsOn(CoordinatorLayout coordinatorLayout, View view, View view2) {
             return view2 instanceof AppBarLayout;
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onDependentViewChanged(CoordinatorLayout coordinatorLayout, View view, View view2) {
+        public boolean onDependentViewChanged(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull View view2) {
             offsetChildAsNeeded(view, view2);
             updateLiftedStateIfNeeded(view, view2);
             return false;
         }
 
+        @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        public void onDependentViewRemoved(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull View view2) {
+            if (view2 instanceof AppBarLayout) {
+                ViewCompat.removeAccessibilityAction(coordinatorLayout, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_FORWARD.getId());
+                ViewCompat.removeAccessibilityAction(coordinatorLayout, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_BACKWARD.getId());
+            }
+        }
+
         @Override // com.google.android.material.appbar.ViewOffsetBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public /* bridge */ /* synthetic */ boolean onLayoutChild(CoordinatorLayout coordinatorLayout, View view, int i2) {
+        public /* bridge */ /* synthetic */ boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i2) {
             return super.onLayoutChild(coordinatorLayout, view, i2);
         }
 
         @Override // com.google.android.material.appbar.HeaderScrollingViewBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public /* bridge */ /* synthetic */ boolean onMeasureChild(CoordinatorLayout coordinatorLayout, View view, int i2, int i3, int i4, int i5) {
+        public /* bridge */ /* synthetic */ boolean onMeasureChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i2, int i3, int i4, int i5) {
             return super.onMeasureChild(coordinatorLayout, view, i2, i3, i4, i5);
         }
 
         @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-        public boolean onRequestChildRectangleOnScreen(CoordinatorLayout coordinatorLayout, View view, Rect rect, boolean z) {
-            AppBarLayout findFirstDependency = findFirstDependency(coordinatorLayout.getDependencies(view));
-            if (findFirstDependency != null) {
+        public boolean onRequestChildRectangleOnScreen(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull Rect rect, boolean z) {
+            AppBarLayout appBarLayoutFindFirstDependency = findFirstDependency(coordinatorLayout.getDependencies(view));
+            if (appBarLayoutFindFirstDependency != null) {
                 rect.offset(view.getLeft(), view.getTop());
                 Rect rect2 = this.tempRect1;
                 rect2.set(0, 0, coordinatorLayout.getWidth(), coordinatorLayout.getHeight());
                 if (!rect2.contains(rect)) {
-                    findFirstDependency.setExpanded(false, !z);
+                    appBarLayoutFindFirstDependency.setExpanded(false, !z);
                     return true;
                 }
             }
             return false;
+        }
+
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ void setHorizontalOffsetEnabled(boolean z) {
+            super.setHorizontalOffsetEnabled(z);
         }
 
         @Override // com.google.android.material.appbar.ViewOffsetBehavior
@@ -768,15 +988,21 @@ public class AppBarLayout extends LinearLayout {
             return super.setTopAndBottomOffset(i2);
         }
 
+        @Override // com.google.android.material.appbar.ViewOffsetBehavior
+        public /* bridge */ /* synthetic */ void setVerticalOffsetEnabled(boolean z) {
+            super.setVerticalOffsetEnabled(z);
+        }
+
         public ScrollingViewBehavior(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.ScrollingViewBehavior_Layout);
-            setOverlayTop(obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.ScrollingViewBehavior_Layout_behavior_overlapTop, 0));
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ScrollingViewBehavior_Layout);
+            setOverlayTop(typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ScrollingViewBehavior_Layout_behavior_overlapTop, 0));
+            typedArrayObtainStyledAttributes.recycle();
         }
 
         @Override // com.google.android.material.appbar.HeaderScrollingViewBehavior
-        AppBarLayout findFirstDependency(List<View> list) {
+        @Nullable
+        AppBarLayout findFirstDependency(@NonNull List<View> list) {
             int size = list.size();
             for (int i2 = 0; i2 < size; i2++) {
                 View view = list.get(i2);
@@ -788,8 +1014,35 @@ public class AppBarLayout extends LinearLayout {
         }
     }
 
-    public AppBarLayout(Context context) {
+    public AppBarLayout(@NonNull Context context) {
         this(context, null);
+    }
+
+    private void clearLiftOnScrollTargetView() {
+        WeakReference<View> weakReference = this.liftOnScrollTargetView;
+        if (weakReference != null) {
+            weakReference.clear();
+        }
+        this.liftOnScrollTargetView = null;
+    }
+
+    @Nullable
+    private View findLiftOnScrollTargetView(@Nullable View view) {
+        int i2;
+        if (this.liftOnScrollTargetView == null && (i2 = this.liftOnScrollTargetViewId) != -1) {
+            View viewFindViewById = view != null ? view.findViewById(i2) : null;
+            if (viewFindViewById == null && (getParent() instanceof ViewGroup)) {
+                viewFindViewById = ((ViewGroup) getParent()).findViewById(this.liftOnScrollTargetViewId);
+            }
+            if (viewFindViewById != null) {
+                this.liftOnScrollTargetView = new WeakReference<>(viewFindViewById);
+            }
+        }
+        WeakReference<View> weakReference = this.liftOnScrollTargetView;
+        if (weakReference != null) {
+            return weakReference.get();
+        }
+        return null;
     }
 
     private boolean hasCollapsibleChild() {
@@ -817,7 +1070,51 @@ public class AppBarLayout extends LinearLayout {
         return true;
     }
 
-    public void addOnOffsetChangedListener(BaseOnOffsetChangedListener baseOnOffsetChangedListener) {
+    private boolean shouldDrawStatusBarForeground() {
+        return this.statusBarForeground != null && getTopInset() > 0;
+    }
+
+    private boolean shouldOffsetFirstChild() {
+        if (getChildCount() <= 0) {
+            return false;
+        }
+        View childAt = getChildAt(0);
+        return (childAt.getVisibility() == 8 || ViewCompat.getFitsSystemWindows(childAt)) ? false : true;
+    }
+
+    private void startLiftOnScrollElevationOverlayAnimation(@NonNull MaterialShapeDrawable materialShapeDrawable, boolean z) {
+        float dimension = getResources().getDimension(R.dimen.design_appbar_elevation);
+        float f2 = z ? 0.0f : dimension;
+        if (!z) {
+            dimension = 0.0f;
+        }
+        ValueAnimator valueAnimator = this.elevationOverlayAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.elevationOverlayAnimator = ValueAnimator.ofFloat(f2, dimension);
+        this.elevationOverlayAnimator.setDuration(getResources().getInteger(R.integer.app_bar_elevation_anim_duration));
+        this.elevationOverlayAnimator.setInterpolator(AnimationUtils.LINEAR_INTERPOLATOR);
+        this.elevationOverlayAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() { // from class: com.google.android.material.appbar.AppBarLayout.2
+            final /* synthetic */ MaterialShapeDrawable val$background;
+
+            AnonymousClass2(MaterialShapeDrawable materialShapeDrawable2) {
+                materialShapeDrawable = materialShapeDrawable2;
+            }
+
+            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator2) {
+                materialShapeDrawable.setElevation(((Float) valueAnimator2.getAnimatedValue()).floatValue());
+            }
+        });
+        this.elevationOverlayAnimator.start();
+    }
+
+    private void updateWillNotDraw() {
+        setWillNotDraw(!shouldDrawStatusBarForeground());
+    }
+
+    public void addOnOffsetChangedListener(@Nullable BaseOnOffsetChangedListener baseOnOffsetChangedListener) {
         if (this.listeners == null) {
             this.listeners = new ArrayList();
         }
@@ -832,20 +1129,36 @@ public class AppBarLayout extends LinearLayout {
         return layoutParams instanceof LayoutParams;
     }
 
-    void dispatchOffsetUpdates(int i2) {
-        List<BaseOnOffsetChangedListener> list = this.listeners;
-        if (list != null) {
-            int size = list.size();
-            for (int i3 = 0; i3 < size; i3++) {
-                BaseOnOffsetChangedListener baseOnOffsetChangedListener = this.listeners.get(i3);
-                if (baseOnOffsetChangedListener != null) {
-                    baseOnOffsetChangedListener.onOffsetChanged(this, i2);
-                }
-            }
+    @Override // android.view.View
+    public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
+        if (shouldDrawStatusBarForeground()) {
+            int iSave = canvas.save();
+            canvas.translate(0.0f, -this.currentOffset);
+            this.statusBarForeground.draw(canvas);
+            canvas.restoreToCount(iSave);
         }
     }
 
+    @Override // android.view.ViewGroup, android.view.View
+    protected void drawableStateChanged() {
+        super.drawableStateChanged();
+        int[] drawableState = getDrawableState();
+        Drawable drawable = this.statusBarForeground;
+        if (drawable != null && drawable.isStateful() && drawable.setState(drawableState)) {
+            invalidateDrawable(drawable);
+        }
+    }
+
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.AttachedBehavior
+    @NonNull
+    public CoordinatorLayout.Behavior<AppBarLayout> getBehavior() {
+        return new Behavior();
+    }
+
     int getDownNestedPreScrollRange() {
+        int iMin;
+        int minimumHeight;
         int i2 = this.downPreScrollRange;
         if (i2 != -1) {
             return i2;
@@ -861,13 +1174,28 @@ public class AppBarLayout extends LinearLayout {
                     break;
                 }
             } else {
-                int i5 = i3 + ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
-                i3 = (i4 & 8) != 0 ? i5 + ViewCompat.getMinimumHeight(childAt) : i5 + (measuredHeight - ((i4 & 2) != 0 ? ViewCompat.getMinimumHeight(childAt) : getTopInset()));
+                int i5 = ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
+                if ((i4 & 8) != 0) {
+                    minimumHeight = ViewCompat.getMinimumHeight(childAt);
+                } else if ((i4 & 2) != 0) {
+                    minimumHeight = measuredHeight - ViewCompat.getMinimumHeight(childAt);
+                } else {
+                    iMin = i5 + measuredHeight;
+                    if (childCount == 0 && ViewCompat.getFitsSystemWindows(childAt)) {
+                        iMin = Math.min(iMin, measuredHeight - getTopInset());
+                    }
+                    i3 += iMin;
+                }
+                iMin = i5 + minimumHeight;
+                if (childCount == 0) {
+                    iMin = Math.min(iMin, measuredHeight - getTopInset());
+                }
+                i3 += iMin;
             }
         }
-        int max = Math.max(0, i3);
-        this.downPreScrollRange = max;
-        return max;
+        int iMax = Math.max(0, i3);
+        this.downPreScrollRange = iMax;
+        return iMax;
     }
 
     int getDownNestedScrollRange() {
@@ -877,7 +1205,7 @@ public class AppBarLayout extends LinearLayout {
         }
         int childCount = getChildCount();
         int i3 = 0;
-        int i4 = 0;
+        int minimumHeight = 0;
         while (true) {
             if (i3 >= childCount) {
                 break;
@@ -885,20 +1213,25 @@ public class AppBarLayout extends LinearLayout {
             View childAt = getChildAt(i3);
             LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
             int measuredHeight = childAt.getMeasuredHeight() + ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
-            int i5 = layoutParams.scrollFlags;
-            if ((i5 & 1) == 0) {
+            int i4 = layoutParams.scrollFlags;
+            if ((i4 & 1) == 0) {
                 break;
             }
-            i4 += measuredHeight;
-            if ((i5 & 2) != 0) {
-                i4 -= ViewCompat.getMinimumHeight(childAt) + getTopInset();
+            minimumHeight += measuredHeight;
+            if ((i4 & 2) != 0) {
+                minimumHeight -= ViewCompat.getMinimumHeight(childAt);
                 break;
             }
             i3++;
         }
-        int max = Math.max(0, i4);
-        this.downScrollRange = max;
-        return max;
+        int iMax = Math.max(0, minimumHeight);
+        this.downScrollRange = iMax;
+        return iMax;
+    }
+
+    @IdRes
+    public int getLiftOnScrollTargetViewId() {
+        return this.liftOnScrollTargetViewId;
     }
 
     public final int getMinimumHeightForVisibleOverlappingContent() {
@@ -916,6 +1249,11 @@ public class AppBarLayout extends LinearLayout {
 
     int getPendingAction() {
         return this.pendingAction;
+    }
+
+    @Nullable
+    public Drawable getStatusBarForeground() {
+        return this.statusBarForeground;
     }
 
     @Deprecated
@@ -939,7 +1277,7 @@ public class AppBarLayout extends LinearLayout {
         }
         int childCount = getChildCount();
         int i3 = 0;
-        int i4 = 0;
+        int minimumHeight = 0;
         while (true) {
             if (i3 >= childCount) {
                 break;
@@ -947,20 +1285,23 @@ public class AppBarLayout extends LinearLayout {
             View childAt = getChildAt(i3);
             LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
             int measuredHeight = childAt.getMeasuredHeight();
-            int i5 = layoutParams.scrollFlags;
-            if ((i5 & 1) == 0) {
+            int i4 = layoutParams.scrollFlags;
+            if ((i4 & 1) == 0) {
                 break;
             }
-            i4 += measuredHeight + ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
-            if ((i5 & 2) != 0) {
-                i4 -= ViewCompat.getMinimumHeight(childAt);
+            minimumHeight += measuredHeight + ((LinearLayout.LayoutParams) layoutParams).topMargin + ((LinearLayout.LayoutParams) layoutParams).bottomMargin;
+            if (i3 == 0 && ViewCompat.getFitsSystemWindows(childAt)) {
+                minimumHeight -= getTopInset();
+            }
+            if ((i4 & 2) != 0) {
+                minimumHeight -= ViewCompat.getMinimumHeight(childAt);
                 break;
             }
             i3++;
         }
-        int max = Math.max(0, i4 - getTopInset());
-        this.totalScrollRange = max;
-        return max;
+        int iMax = Math.max(0, minimumHeight);
+        this.totalScrollRange = iMax;
+        return iMax;
     }
 
     int getUpNestedPreScrollRange() {
@@ -979,29 +1320,51 @@ public class AppBarLayout extends LinearLayout {
         return this.liftOnScroll;
     }
 
+    public boolean isLifted() {
+        return this.lifted;
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        MaterialShapeUtils.setParentAbsoluteElevation(this);
+    }
+
     @Override // android.view.ViewGroup, android.view.View
     protected int[] onCreateDrawableState(int i2) {
         if (this.tmpStatesArray == null) {
             this.tmpStatesArray = new int[4];
         }
         int[] iArr = this.tmpStatesArray;
-        int[] onCreateDrawableState = super.onCreateDrawableState(i2 + iArr.length);
-        iArr[0] = this.liftable ? C1921R.attr.state_liftable : -C1921R.attr.state_liftable;
-        iArr[1] = (this.liftable && this.lifted) ? C1921R.attr.state_lifted : -C1921R.attr.state_lifted;
-        iArr[2] = this.liftable ? C1921R.attr.state_collapsible : -C1921R.attr.state_collapsible;
-        iArr[3] = (this.liftable && this.lifted) ? C1921R.attr.state_collapsed : -C1921R.attr.state_collapsed;
-        return LinearLayout.mergeDrawableStates(onCreateDrawableState, iArr);
+        int[] iArrOnCreateDrawableState = super.onCreateDrawableState(i2 + iArr.length);
+        iArr[0] = this.liftable ? R.attr.state_liftable : -R.attr.state_liftable;
+        iArr[1] = (this.liftable && this.lifted) ? R.attr.state_lifted : -R.attr.state_lifted;
+        iArr[2] = this.liftable ? R.attr.state_collapsible : -R.attr.state_collapsible;
+        iArr[3] = (this.liftable && this.lifted) ? R.attr.state_collapsed : -R.attr.state_collapsed;
+        return LinearLayout.mergeDrawableStates(iArrOnCreateDrawableState, iArr);
+    }
+
+    @Override // android.view.ViewGroup, android.view.View
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        clearLiftOnScrollTargetView();
     }
 
     @Override // android.widget.LinearLayout, android.view.ViewGroup, android.view.View
     protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
         super.onLayout(z, i2, i3, i4, i5);
+        if (ViewCompat.getFitsSystemWindows(this) && shouldOffsetFirstChild()) {
+            int topInset = getTopInset();
+            for (int childCount = getChildCount() - 1; childCount >= 0; childCount--) {
+                ViewCompat.offsetTopAndBottom(getChildAt(childCount), topInset);
+            }
+        }
         invalidateScrollRanges();
         this.haveChildWithInterpolator = false;
-        int childCount = getChildCount();
+        int childCount2 = getChildCount();
         int i6 = 0;
         while (true) {
-            if (i6 >= childCount) {
+            if (i6 >= childCount2) {
                 break;
             }
             if (((LayoutParams) getChildAt(i6).getLayoutParams()).getScrollInterpolator() != null) {
@@ -1009,6 +1372,10 @@ public class AppBarLayout extends LinearLayout {
                 break;
             }
             i6++;
+        }
+        Drawable drawable = this.statusBarForeground;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, getWidth(), getTopInset());
         }
         if (this.liftableOverride) {
             return;
@@ -1019,19 +1386,47 @@ public class AppBarLayout extends LinearLayout {
     @Override // android.widget.LinearLayout, android.view.View
     protected void onMeasure(int i2, int i3) {
         super.onMeasure(i2, i3);
+        int mode = View.MeasureSpec.getMode(i3);
+        if (mode != 1073741824 && ViewCompat.getFitsSystemWindows(this) && shouldOffsetFirstChild()) {
+            int measuredHeight = getMeasuredHeight();
+            if (mode == Integer.MIN_VALUE) {
+                measuredHeight = MathUtils.clamp(getMeasuredHeight() + getTopInset(), 0, View.MeasureSpec.getSize(i3));
+            } else if (mode == 0) {
+                measuredHeight += getTopInset();
+            }
+            setMeasuredDimension(getMeasuredWidth(), measuredHeight);
+        }
         invalidateScrollRanges();
+    }
+
+    void onOffsetChanged(int i2) {
+        this.currentOffset = i2;
+        if (!willNotDraw()) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+        List<BaseOnOffsetChangedListener> list = this.listeners;
+        if (list != null) {
+            int size = list.size();
+            for (int i3 = 0; i3 < size; i3++) {
+                BaseOnOffsetChangedListener baseOnOffsetChangedListener = this.listeners.get(i3);
+                if (baseOnOffsetChangedListener != null) {
+                    baseOnOffsetChangedListener.onOffsetChanged(this, i2);
+                }
+            }
+        }
     }
 
     WindowInsetsCompat onWindowInsetChanged(WindowInsetsCompat windowInsetsCompat) {
         WindowInsetsCompat windowInsetsCompat2 = ViewCompat.getFitsSystemWindows(this) ? windowInsetsCompat : null;
         if (!ObjectsCompat.equals(this.lastInsets, windowInsetsCompat2)) {
             this.lastInsets = windowInsetsCompat2;
-            invalidateScrollRanges();
+            updateWillNotDraw();
+            requestLayout();
         }
         return windowInsetsCompat;
     }
 
-    public void removeOnOffsetChangedListener(BaseOnOffsetChangedListener baseOnOffsetChangedListener) {
+    public void removeOnOffsetChangedListener(@Nullable BaseOnOffsetChangedListener baseOnOffsetChangedListener) {
         List<BaseOnOffsetChangedListener> list = this.listeners;
         if (list == null || baseOnOffsetChangedListener == null) {
             return;
@@ -1043,12 +1438,24 @@ public class AppBarLayout extends LinearLayout {
         this.pendingAction = 0;
     }
 
+    @Override // android.view.View
+    @RequiresApi(21)
+    public void setElevation(float f2) {
+        super.setElevation(f2);
+        MaterialShapeUtils.setElevation(this, f2);
+    }
+
     public void setExpanded(boolean z) {
         setExpanded(z, ViewCompat.isLaidOut(this));
     }
 
     public void setLiftOnScroll(boolean z) {
         this.liftOnScroll = z;
+    }
+
+    public void setLiftOnScrollTargetViewId(@IdRes int i2) {
+        this.liftOnScrollTargetViewId = i2;
+        clearLiftOnScrollTargetView();
     }
 
     public boolean setLiftable(boolean z) {
@@ -1066,6 +1473,10 @@ public class AppBarLayout extends LinearLayout {
         }
         this.lifted = z;
         refreshDrawableState();
+        if (!this.liftOnScroll || !(getBackground() instanceof MaterialShapeDrawable)) {
+            return true;
+        }
+        startLiftOnScrollElevationOverlayAnimation((MaterialShapeDrawable) getBackground(), z);
         return true;
     }
 
@@ -1077,6 +1488,35 @@ public class AppBarLayout extends LinearLayout {
         super.setOrientation(i2);
     }
 
+    public void setStatusBarForeground(@Nullable Drawable drawable) {
+        Drawable drawable2 = this.statusBarForeground;
+        if (drawable2 != drawable) {
+            if (drawable2 != null) {
+                drawable2.setCallback(null);
+            }
+            this.statusBarForeground = drawable != null ? drawable.mutate() : null;
+            Drawable drawable3 = this.statusBarForeground;
+            if (drawable3 != null) {
+                if (drawable3.isStateful()) {
+                    this.statusBarForeground.setState(getDrawableState());
+                }
+                DrawableCompat.setLayoutDirection(this.statusBarForeground, ViewCompat.getLayoutDirection(this));
+                this.statusBarForeground.setVisible(getVisibility() == 0, false);
+                this.statusBarForeground.setCallback(this);
+            }
+            updateWillNotDraw();
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
+
+    public void setStatusBarForegroundColor(@ColorInt int i2) {
+        setStatusBarForeground(new ColorDrawable(i2));
+    }
+
+    public void setStatusBarForegroundResource(@DrawableRes int i2) {
+        setStatusBarForeground(AppCompatResources.getDrawable(getContext(), i2));
+    }
+
     @Deprecated
     public void setTargetElevation(float f2) {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -1084,36 +1524,80 @@ public class AppBarLayout extends LinearLayout {
         }
     }
 
-    public AppBarLayout(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet);
+    @Override // android.view.View
+    public void setVisibility(int i2) {
+        super.setVisibility(i2);
+        boolean z = i2 == 0;
+        Drawable drawable = this.statusBarForeground;
+        if (drawable != null) {
+            drawable.setVisible(z, false);
+        }
+    }
+
+    boolean shouldLift(@Nullable View view) {
+        View viewFindLiftOnScrollTargetView = findLiftOnScrollTargetView(view);
+        if (viewFindLiftOnScrollTargetView != null) {
+            view = viewFindLiftOnScrollTargetView;
+        }
+        return view != null && (view.canScrollVertically(-1) || view.getScrollY() > 0);
+    }
+
+    @Override // android.view.View
+    protected boolean verifyDrawable(@NonNull Drawable drawable) {
+        return super.verifyDrawable(drawable) || drawable == this.statusBarForeground;
+    }
+
+    public AppBarLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+        this(context, attributeSet, R.attr.appBarLayoutStyle);
+    }
+
+    public void setExpanded(boolean z, boolean z2) {
+        setExpanded(z, z2, true);
+    }
+
+    public AppBarLayout(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
+        super(MaterialThemeOverlay.wrap(context, attributeSet, i2, DEF_STYLE_RES), attributeSet, i2);
         this.totalScrollRange = -1;
         this.downPreScrollRange = -1;
         this.downScrollRange = -1;
         this.pendingAction = 0;
+        Context context2 = getContext();
         setOrientation(1);
         if (Build.VERSION.SDK_INT >= 21) {
             ViewUtilsLollipop.setBoundsViewOutlineProvider(this);
-            ViewUtilsLollipop.setStateListAnimatorFromAttrs(this, attributeSet, 0, C1921R.style.Widget_Design_AppBarLayout);
+            ViewUtilsLollipop.setStateListAnimatorFromAttrs(this, attributeSet, i2, DEF_STYLE_RES);
         }
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.AppBarLayout, 0, C1921R.style.Widget_Design_AppBarLayout, new int[0]);
-        ViewCompat.setBackground(this, obtainStyledAttributes.getDrawable(C1921R.styleable.AppBarLayout_android_background));
-        if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_expanded)) {
-            setExpanded(obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_expanded, false), false, false);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R.styleable.AppBarLayout, i2, DEF_STYLE_RES, new int[0]);
+        ViewCompat.setBackground(this, typedArrayObtainStyledAttributes.getDrawable(R.styleable.AppBarLayout_android_background));
+        if (getBackground() instanceof ColorDrawable) {
+            ColorDrawable colorDrawable = (ColorDrawable) getBackground();
+            MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable();
+            materialShapeDrawable.setFillColor(ColorStateList.valueOf(colorDrawable.getColor()));
+            materialShapeDrawable.initializeElevationOverlay(context2);
+            ViewCompat.setBackground(this, materialShapeDrawable);
         }
-        if (Build.VERSION.SDK_INT >= 21 && obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_elevation)) {
-            ViewUtilsLollipop.setDefaultAppBarLayoutStateListAnimator(this, obtainStyledAttributes.getDimensionPixelSize(C1921R.styleable.AppBarLayout_elevation, 0));
+        if (typedArrayObtainStyledAttributes.hasValue(R.styleable.AppBarLayout_expanded)) {
+            setExpanded(typedArrayObtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_expanded, false), false, false);
+        }
+        if (Build.VERSION.SDK_INT >= 21 && typedArrayObtainStyledAttributes.hasValue(R.styleable.AppBarLayout_elevation)) {
+            ViewUtilsLollipop.setDefaultAppBarLayoutStateListAnimator(this, typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.AppBarLayout_elevation, 0));
         }
         if (Build.VERSION.SDK_INT >= 26) {
-            if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_android_keyboardNavigationCluster)) {
-                setKeyboardNavigationCluster(obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_android_keyboardNavigationCluster, false));
+            if (typedArrayObtainStyledAttributes.hasValue(R.styleable.AppBarLayout_android_keyboardNavigationCluster)) {
+                setKeyboardNavigationCluster(typedArrayObtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_android_keyboardNavigationCluster, false));
             }
-            if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_android_touchscreenBlocksFocus)) {
-                setTouchscreenBlocksFocus(obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_android_touchscreenBlocksFocus, false));
+            if (typedArrayObtainStyledAttributes.hasValue(R.styleable.AppBarLayout_android_touchscreenBlocksFocus)) {
+                setTouchscreenBlocksFocus(typedArrayObtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_android_touchscreenBlocksFocus, false));
             }
         }
-        this.liftOnScroll = obtainStyledAttributes.getBoolean(C1921R.styleable.AppBarLayout_liftOnScroll, false);
-        obtainStyledAttributes.recycle();
+        this.liftOnScroll = typedArrayObtainStyledAttributes.getBoolean(R.styleable.AppBarLayout_liftOnScroll, false);
+        this.liftOnScrollTargetViewId = typedArrayObtainStyledAttributes.getResourceId(R.styleable.AppBarLayout_liftOnScrollTargetViewId, -1);
+        setStatusBarForeground(typedArrayObtainStyledAttributes.getDrawable(R.styleable.AppBarLayout_statusBarForeground));
+        typedArrayObtainStyledAttributes.recycle();
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() { // from class: com.google.android.material.appbar.AppBarLayout.1
+            AnonymousClass1() {
+            }
+
             @Override // androidx.core.view.OnApplyWindowInsetsListener
             public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
                 return AppBarLayout.this.onWindowInsetChanged(windowInsetsCompat);
@@ -1121,16 +1605,11 @@ public class AppBarLayout extends LinearLayout {
         });
     }
 
-    public void setExpanded(boolean z, boolean z2) {
-        setExpanded(z, z2, true);
-    }
-
     private void setExpanded(boolean z, boolean z2, boolean z3) {
         this.pendingAction = (z ? 1 : 2) | (z2 ? 4 : 0) | (z3 ? 8 : 0);
         requestLayout();
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // android.widget.LinearLayout, android.view.ViewGroup
     public LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams(-1, -2);
@@ -1149,7 +1628,6 @@ public class AppBarLayout extends LinearLayout {
         return new LayoutParams(getContext(), attributeSet);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // android.widget.LinearLayout, android.view.ViewGroup
     public LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
         if (Build.VERSION.SDK_INT >= 19 && (layoutParams instanceof LinearLayout.LayoutParams)) {
@@ -1168,6 +1646,7 @@ public class AppBarLayout extends LinearLayout {
         public static final int SCROLL_FLAG_ENTER_ALWAYS = 4;
         public static final int SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED = 8;
         public static final int SCROLL_FLAG_EXIT_UNTIL_COLLAPSED = 2;
+        public static final int SCROLL_FLAG_NO_SCROLL = 0;
         public static final int SCROLL_FLAG_SCROLL = 1;
         public static final int SCROLL_FLAG_SNAP = 16;
         public static final int SCROLL_FLAG_SNAP_MARGINS = 32;
@@ -1182,12 +1661,12 @@ public class AppBarLayout extends LinearLayout {
         public LayoutParams(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
             this.scrollFlags = 1;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1921R.styleable.AppBarLayout_Layout);
-            this.scrollFlags = obtainStyledAttributes.getInt(C1921R.styleable.AppBarLayout_Layout_layout_scrollFlags, 0);
-            if (obtainStyledAttributes.hasValue(C1921R.styleable.AppBarLayout_Layout_layout_scrollInterpolator)) {
-                this.scrollInterpolator = android.view.animation.AnimationUtils.loadInterpolator(context, obtainStyledAttributes.getResourceId(C1921R.styleable.AppBarLayout_Layout_layout_scrollInterpolator, 0));
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.AppBarLayout_Layout);
+            this.scrollFlags = typedArrayObtainStyledAttributes.getInt(R.styleable.AppBarLayout_Layout_layout_scrollFlags, 0);
+            if (typedArrayObtainStyledAttributes.hasValue(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator)) {
+                this.scrollInterpolator = android.view.animation.AnimationUtils.loadInterpolator(context, typedArrayObtainStyledAttributes.getResourceId(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator, 0));
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
 
         public int getScrollFlags() {
@@ -1238,7 +1717,7 @@ public class AppBarLayout extends LinearLayout {
         }
 
         @RequiresApi(19)
-        public LayoutParams(LayoutParams layoutParams) {
+        public LayoutParams(@NonNull LayoutParams layoutParams) {
             super((LinearLayout.LayoutParams) layoutParams);
             this.scrollFlags = 1;
             this.scrollFlags = layoutParams.scrollFlags;

@@ -3,12 +3,12 @@ package androidx.constraintlayout.solver;
 import androidx.constraintlayout.solver.SolverVariable;
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
+import d.c.a.b.a.a;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashMap;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LinearSystem {
     public static long ARRAY_ROW_CREATION = 0;
     public static final boolean DEBUG = false;
@@ -92,13 +92,13 @@ public class LinearSystem {
     }
 
     private SolverVariable acquireSolverVariable(SolverVariable.Type type, String str) {
-        SolverVariable acquire = this.mCache.solverVariablePool.acquire();
-        if (acquire == null) {
-            acquire = new SolverVariable(type, str);
-            acquire.setType(type, str);
+        SolverVariable solverVariableAcquire = this.mCache.solverVariablePool.acquire();
+        if (solverVariableAcquire == null) {
+            solverVariableAcquire = new SolverVariable(type, str);
+            solverVariableAcquire.setType(type, str);
         } else {
-            acquire.reset();
-            acquire.setType(type, str);
+            solverVariableAcquire.reset();
+            solverVariableAcquire.setType(type, str);
         }
         int i2 = this.mPoolVariablesCount;
         int i3 = POOL_SIZE;
@@ -109,8 +109,8 @@ public class LinearSystem {
         SolverVariable[] solverVariableArr = this.mPoolVariables;
         int i4 = this.mPoolVariablesCount;
         this.mPoolVariablesCount = i4 + 1;
-        solverVariableArr[i4] = acquire;
-        return acquire;
+        solverVariableArr[i4] = solverVariableAcquire;
+        return solverVariableAcquire;
     }
 
     private void addError(ArrayRow arrayRow) {
@@ -197,17 +197,17 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable acquireSolverVariable = acquireSolverVariable(type, null);
-        acquireSolverVariable.setName(str);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(type, null);
+        solverVariableAcquireSolverVariable.setName(str);
         this.mVariablesID++;
         this.mNumColumns++;
-        acquireSolverVariable.f594id = this.mVariablesID;
+        solverVariableAcquireSolverVariable.id = this.mVariablesID;
         if (this.mVariables == null) {
             this.mVariables = new HashMap<>();
         }
-        this.mVariables.put(str, acquireSolverVariable);
-        this.mCache.mIndexedVariables[this.mVariablesID] = acquireSolverVariable;
-        return acquireSolverVariable;
+        this.mVariables.put(str, solverVariableAcquireSolverVariable);
+        this.mCache.mIndexedVariables[this.mVariablesID] = solverVariableAcquireSolverVariable;
+        return solverVariableAcquireSolverVariable;
     }
 
     private void displayRows() {
@@ -274,7 +274,7 @@ public class LinearSystem {
                                     float f5 = variable.strengthVector[i14] / f4;
                                     if ((f5 < f3 && i14 == i13) || i14 > i13) {
                                         i11 = i7;
-                                        i10 = variable.f594id;
+                                        i10 = variable.id;
                                         f3 = f5;
                                         i13 = i14;
                                     }
@@ -389,12 +389,12 @@ public class LinearSystem {
                 return i3;
             }
             if (row.getKey() != null) {
-                this.mAlreadyTestedCandidates[row.getKey().f594id] = true;
+                this.mAlreadyTestedCandidates[row.getKey().id] = true;
             }
             SolverVariable pivotCandidate = row.getPivotCandidate(this, this.mAlreadyTestedCandidates);
             if (pivotCandidate != null) {
                 boolean[] zArr = this.mAlreadyTestedCandidates;
-                int i4 = pivotCandidate.f594id;
+                int i4 = pivotCandidate.id;
                 if (zArr[i4]) {
                     return i3;
                 }
@@ -459,35 +459,35 @@ public class LinearSystem {
     }
 
     public void addCenterPoint(ConstraintWidget constraintWidget, ConstraintWidget constraintWidget2, float f2, int i2) {
-        SolverVariable createObjectVariable = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.LEFT));
-        SolverVariable createObjectVariable2 = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.TOP));
-        SolverVariable createObjectVariable3 = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.RIGHT));
-        SolverVariable createObjectVariable4 = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.BOTTOM));
-        SolverVariable createObjectVariable5 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.LEFT));
-        SolverVariable createObjectVariable6 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.TOP));
-        SolverVariable createObjectVariable7 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT));
-        SolverVariable createObjectVariable8 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM));
-        ArrayRow createRow = createRow();
+        SolverVariable solverVariableCreateObjectVariable = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.LEFT));
+        SolverVariable solverVariableCreateObjectVariable2 = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.TOP));
+        SolverVariable solverVariableCreateObjectVariable3 = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.RIGHT));
+        SolverVariable solverVariableCreateObjectVariable4 = createObjectVariable(constraintWidget.getAnchor(ConstraintAnchor.Type.BOTTOM));
+        SolverVariable solverVariableCreateObjectVariable5 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.LEFT));
+        SolverVariable solverVariableCreateObjectVariable6 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.TOP));
+        SolverVariable solverVariableCreateObjectVariable7 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT));
+        SolverVariable solverVariableCreateObjectVariable8 = createObjectVariable(constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM));
+        ArrayRow arrayRowCreateRow = createRow();
         double d2 = f2;
         double d3 = i2;
-        createRow.createRowWithAngle(createObjectVariable2, createObjectVariable4, createObjectVariable6, createObjectVariable8, (float) (Math.sin(d2) * d3));
-        addConstraint(createRow);
-        ArrayRow createRow2 = createRow();
-        createRow2.createRowWithAngle(createObjectVariable, createObjectVariable3, createObjectVariable5, createObjectVariable7, (float) (Math.cos(d2) * d3));
-        addConstraint(createRow2);
+        arrayRowCreateRow.createRowWithAngle(solverVariableCreateObjectVariable2, solverVariableCreateObjectVariable4, solverVariableCreateObjectVariable6, solverVariableCreateObjectVariable8, (float) (Math.sin(d2) * d3));
+        addConstraint(arrayRowCreateRow);
+        ArrayRow arrayRowCreateRow2 = createRow();
+        arrayRowCreateRow2.createRowWithAngle(solverVariableCreateObjectVariable, solverVariableCreateObjectVariable3, solverVariableCreateObjectVariable5, solverVariableCreateObjectVariable7, (float) (Math.cos(d2) * d3));
+        addConstraint(arrayRowCreateRow2);
     }
 
     public void addCentering(SolverVariable solverVariable, SolverVariable solverVariable2, int i2, float f2, SolverVariable solverVariable3, SolverVariable solverVariable4, int i3, int i4) {
-        ArrayRow createRow = createRow();
-        createRow.createRowCentering(solverVariable, solverVariable2, i2, f2, solverVariable3, solverVariable4, i3);
+        ArrayRow arrayRowCreateRow = createRow();
+        arrayRowCreateRow.createRowCentering(solverVariable, solverVariable2, i2, f2, solverVariable3, solverVariable4, i3);
         if (i4 != 8) {
-            createRow.addError(this, i4);
+            arrayRowCreateRow.addError(this, i4);
         }
-        addConstraint(createRow);
+        addConstraint(arrayRowCreateRow);
     }
 
     public void addConstraint(ArrayRow arrayRow) {
-        SolverVariable pickPivot;
+        SolverVariable solverVariablePickPivot;
         if (arrayRow == null) {
             return;
         }
@@ -509,20 +509,20 @@ public class LinearSystem {
             }
             arrayRow.ensurePositiveConstant();
             if (arrayRow.chooseSubject(this)) {
-                SolverVariable createExtraVariable = createExtraVariable();
-                arrayRow.variable = createExtraVariable;
+                SolverVariable solverVariableCreateExtraVariable = createExtraVariable();
+                arrayRow.variable = solverVariableCreateExtraVariable;
                 int i2 = this.mNumRows;
                 addRow(arrayRow);
                 if (this.mNumRows == i2 + 1) {
                     this.mTempGoal.initFromRow(arrayRow);
                     optimize(this.mTempGoal, true);
-                    if (createExtraVariable.definitionId == -1) {
-                        if (arrayRow.variable == createExtraVariable && (pickPivot = arrayRow.pickPivot(createExtraVariable)) != null) {
+                    if (solverVariableCreateExtraVariable.definitionId == -1) {
+                        if (arrayRow.variable == solverVariableCreateExtraVariable && (solverVariablePickPivot = arrayRow.pickPivot(solverVariableCreateExtraVariable)) != null) {
                             Metrics metrics2 = sMetrics;
                             if (metrics2 != null) {
                                 metrics2.pivots++;
                             }
-                            arrayRow.pivot(pickPivot);
+                            arrayRow.pivot(solverVariablePickPivot);
                         }
                         if (!arrayRow.isSimpleDefinition) {
                             arrayRow.variable.updateReferencesWithNewDefinition(this, arrayRow);
@@ -552,60 +552,60 @@ public class LinearSystem {
             solverVariable.setFinalValue(this, solverVariable2.computedValue + i2);
             return null;
         }
-        ArrayRow createRow = createRow();
-        createRow.createRowEquals(solverVariable, solverVariable2, i2);
+        ArrayRow arrayRowCreateRow = createRow();
+        arrayRowCreateRow.createRowEquals(solverVariable, solverVariable2, i2);
         if (i3 != 8) {
-            createRow.addError(this, i3);
+            arrayRowCreateRow.addError(this, i3);
         }
-        addConstraint(createRow);
-        return createRow;
+        addConstraint(arrayRowCreateRow);
+        return arrayRowCreateRow;
     }
 
     public void addGreaterBarrier(SolverVariable solverVariable, SolverVariable solverVariable2, int i2, boolean z) {
-        ArrayRow createRow = createRow();
-        SolverVariable createSlackVariable = createSlackVariable();
-        createSlackVariable.strength = 0;
-        createRow.createRowGreaterThan(solverVariable, solverVariable2, createSlackVariable, i2);
-        addConstraint(createRow);
+        ArrayRow arrayRowCreateRow = createRow();
+        SolverVariable solverVariableCreateSlackVariable = createSlackVariable();
+        solverVariableCreateSlackVariable.strength = 0;
+        arrayRowCreateRow.createRowGreaterThan(solverVariable, solverVariable2, solverVariableCreateSlackVariable, i2);
+        addConstraint(arrayRowCreateRow);
     }
 
     public void addGreaterThan(SolverVariable solverVariable, SolverVariable solverVariable2, int i2, int i3) {
-        ArrayRow createRow = createRow();
-        SolverVariable createSlackVariable = createSlackVariable();
-        createSlackVariable.strength = 0;
-        createRow.createRowGreaterThan(solverVariable, solverVariable2, createSlackVariable, i2);
+        ArrayRow arrayRowCreateRow = createRow();
+        SolverVariable solverVariableCreateSlackVariable = createSlackVariable();
+        solverVariableCreateSlackVariable.strength = 0;
+        arrayRowCreateRow.createRowGreaterThan(solverVariable, solverVariable2, solverVariableCreateSlackVariable, i2);
         if (i3 != 8) {
-            addSingleError(createRow, (int) (createRow.variables.get(createSlackVariable) * (-1.0f)), i3);
+            addSingleError(arrayRowCreateRow, (int) (arrayRowCreateRow.variables.get(solverVariableCreateSlackVariable) * (-1.0f)), i3);
         }
-        addConstraint(createRow);
+        addConstraint(arrayRowCreateRow);
     }
 
     public void addLowerBarrier(SolverVariable solverVariable, SolverVariable solverVariable2, int i2, boolean z) {
-        ArrayRow createRow = createRow();
-        SolverVariable createSlackVariable = createSlackVariable();
-        createSlackVariable.strength = 0;
-        createRow.createRowLowerThan(solverVariable, solverVariable2, createSlackVariable, i2);
-        addConstraint(createRow);
+        ArrayRow arrayRowCreateRow = createRow();
+        SolverVariable solverVariableCreateSlackVariable = createSlackVariable();
+        solverVariableCreateSlackVariable.strength = 0;
+        arrayRowCreateRow.createRowLowerThan(solverVariable, solverVariable2, solverVariableCreateSlackVariable, i2);
+        addConstraint(arrayRowCreateRow);
     }
 
     public void addLowerThan(SolverVariable solverVariable, SolverVariable solverVariable2, int i2, int i3) {
-        ArrayRow createRow = createRow();
-        SolverVariable createSlackVariable = createSlackVariable();
-        createSlackVariable.strength = 0;
-        createRow.createRowLowerThan(solverVariable, solverVariable2, createSlackVariable, i2);
+        ArrayRow arrayRowCreateRow = createRow();
+        SolverVariable solverVariableCreateSlackVariable = createSlackVariable();
+        solverVariableCreateSlackVariable.strength = 0;
+        arrayRowCreateRow.createRowLowerThan(solverVariable, solverVariable2, solverVariableCreateSlackVariable, i2);
         if (i3 != 8) {
-            addSingleError(createRow, (int) (createRow.variables.get(createSlackVariable) * (-1.0f)), i3);
+            addSingleError(arrayRowCreateRow, (int) (arrayRowCreateRow.variables.get(solverVariableCreateSlackVariable) * (-1.0f)), i3);
         }
-        addConstraint(createRow);
+        addConstraint(arrayRowCreateRow);
     }
 
     public void addRatio(SolverVariable solverVariable, SolverVariable solverVariable2, SolverVariable solverVariable3, SolverVariable solverVariable4, float f2, int i2) {
-        ArrayRow createRow = createRow();
-        createRow.createRowDimensionRatio(solverVariable, solverVariable2, solverVariable3, solverVariable4, f2);
+        ArrayRow arrayRowCreateRow = createRow();
+        arrayRowCreateRow.createRowDimensionRatio(solverVariable, solverVariable2, solverVariable3, solverVariable4, f2);
         if (i2 != 8) {
-            createRow.addError(this, i2);
+            arrayRowCreateRow.addError(this, i2);
         }
-        addConstraint(createRow);
+        addConstraint(arrayRowCreateRow);
     }
 
     public void addSynonym(SolverVariable solverVariable, SolverVariable solverVariable2, int i2) {
@@ -669,15 +669,15 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable acquireSolverVariable = acquireSolverVariable(SolverVariable.Type.ERROR, str);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable.Type.ERROR, str);
         this.mVariablesID++;
         this.mNumColumns++;
         int i3 = this.mVariablesID;
-        acquireSolverVariable.f594id = i3;
-        acquireSolverVariable.strength = i2;
-        this.mCache.mIndexedVariables[i3] = acquireSolverVariable;
-        this.mGoal.addError(acquireSolverVariable);
-        return acquireSolverVariable;
+        solverVariableAcquireSolverVariable.id = i3;
+        solverVariableAcquireSolverVariable.strength = i2;
+        this.mCache.mIndexedVariables[i3] = solverVariableAcquireSolverVariable;
+        this.mGoal.addError(solverVariableAcquireSolverVariable);
+        return solverVariableAcquireSolverVariable;
     }
 
     public SolverVariable createExtraVariable() {
@@ -688,13 +688,13 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable acquireSolverVariable = acquireSolverVariable(SolverVariable.Type.SLACK, null);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable.Type.SLACK, null);
         this.mVariablesID++;
         this.mNumColumns++;
         int i2 = this.mVariablesID;
-        acquireSolverVariable.f594id = i2;
-        this.mCache.mIndexedVariables[i2] = acquireSolverVariable;
-        return acquireSolverVariable;
+        solverVariableAcquireSolverVariable.id = i2;
+        this.mCache.mIndexedVariables[i2] = solverVariableAcquireSolverVariable;
+        return solverVariableAcquireSolverVariable;
     }
 
     public SolverVariable createObjectVariable(Object obj) {
@@ -712,15 +712,15 @@ public class LinearSystem {
                 constraintAnchor.resetSolverVariable(this.mCache);
                 solverVariable = constraintAnchor.getSolverVariable();
             }
-            int i2 = solverVariable.f594id;
+            int i2 = solverVariable.id;
             if (i2 == -1 || i2 > this.mVariablesID || this.mCache.mIndexedVariables[i2] == null) {
-                if (solverVariable.f594id != -1) {
+                if (solverVariable.id != -1) {
                     solverVariable.reset();
                 }
                 this.mVariablesID++;
                 this.mNumColumns++;
                 int i3 = this.mVariablesID;
-                solverVariable.f594id = i3;
+                solverVariable.id = i3;
                 solverVariable.mType = SolverVariable.Type.UNRESTRICTED;
                 this.mCache.mIndexedVariables[i3] = solverVariable;
             }
@@ -729,26 +729,26 @@ public class LinearSystem {
     }
 
     public ArrayRow createRow() {
-        ArrayRow acquire;
+        ArrayRow arrayRowAcquire;
         if (OPTIMIZED_ENGINE) {
-            acquire = this.mCache.optimizedArrayRowPool.acquire();
-            if (acquire == null) {
-                acquire = new ValuesRow(this.mCache);
+            arrayRowAcquire = this.mCache.optimizedArrayRowPool.acquire();
+            if (arrayRowAcquire == null) {
+                arrayRowAcquire = new ValuesRow(this.mCache);
                 OPTIMIZED_ARRAY_ROW_CREATION++;
             } else {
-                acquire.reset();
+                arrayRowAcquire.reset();
             }
         } else {
-            acquire = this.mCache.arrayRowPool.acquire();
-            if (acquire == null) {
-                acquire = new ArrayRow(this.mCache);
+            arrayRowAcquire = this.mCache.arrayRowPool.acquire();
+            if (arrayRowAcquire == null) {
+                arrayRowAcquire = new ArrayRow(this.mCache);
                 ARRAY_ROW_CREATION++;
             } else {
-                acquire.reset();
+                arrayRowAcquire.reset();
             }
         }
         SolverVariable.increaseErrorId();
-        return acquire;
+        return arrayRowAcquire;
     }
 
     public SolverVariable createSlackVariable() {
@@ -759,13 +759,13 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable acquireSolverVariable = acquireSolverVariable(SolverVariable.Type.SLACK, null);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable.Type.SLACK, null);
         this.mVariablesID++;
         this.mNumColumns++;
         int i2 = this.mVariablesID;
-        acquireSolverVariable.f594id = i2;
-        this.mCache.mIndexedVariables[i2] = acquireSolverVariable;
-        return acquireSolverVariable;
+        solverVariableAcquireSolverVariable.id = i2;
+        this.mCache.mIndexedVariables[i2] = solverVariableAcquireSolverVariable;
+        return solverVariableAcquireSolverVariable;
     }
 
     public void displayReadableRows() {
@@ -796,18 +796,18 @@ public class LinearSystem {
     }
 
     void displaySystemInformations() {
-        int i2 = 0;
-        for (int i3 = 0; i3 < this.TABLE_SIZE; i3++) {
+        int iSizeInBytes = 0;
+        for (int i2 = 0; i2 < this.TABLE_SIZE; i2++) {
             ArrayRow[] arrayRowArr = this.mRows;
-            if (arrayRowArr[i3] != null) {
-                i2 += arrayRowArr[i3].sizeInBytes();
+            if (arrayRowArr[i2] != null) {
+                iSizeInBytes += arrayRowArr[i2].sizeInBytes();
             }
         }
-        int i4 = 0;
-        for (int i5 = 0; i5 < this.mNumRows; i5++) {
+        int iSizeInBytes2 = 0;
+        for (int i3 = 0; i3 < this.mNumRows; i3++) {
             ArrayRow[] arrayRowArr2 = this.mRows;
-            if (arrayRowArr2[i5] != null) {
-                i4 += arrayRowArr2[i5].sizeInBytes();
+            if (arrayRowArr2[i3] != null) {
+                iSizeInBytes2 += arrayRowArr2[i3].sizeInBytes();
             }
         }
         PrintStream printStream = System.out;
@@ -815,12 +815,12 @@ public class LinearSystem {
         sb.append("Linear System -> Table size: ");
         sb.append(this.TABLE_SIZE);
         sb.append(" (");
-        int i6 = this.TABLE_SIZE;
-        sb.append(getDisplaySize(i6 * i6));
+        int i4 = this.TABLE_SIZE;
+        sb.append(getDisplaySize(i4 * i4));
         sb.append(") -- row sizes: ");
-        sb.append(getDisplaySize(i2));
+        sb.append(getDisplaySize(iSizeInBytes));
         sb.append(", actual size: ");
-        sb.append(getDisplaySize(i4));
+        sb.append(getDisplaySize(iSizeInBytes2));
         sb.append(" rows: ");
         sb.append(this.mNumRows);
         sb.append("/");
@@ -829,7 +829,7 @@ public class LinearSystem {
         sb.append(this.mNumColumns);
         sb.append("/");
         sb.append(this.mMaxColumns);
-        sb.append(AbstractC1191a.f2568g);
+        sb.append(a.f10074g);
         sb.append(0);
         sb.append(" occupied cells, ");
         sb.append(getDisplaySize(0));
@@ -860,14 +860,14 @@ public class LinearSystem {
     }
 
     public int getMemoryUsed() {
-        int i2 = 0;
-        for (int i3 = 0; i3 < this.mNumRows; i3++) {
+        int iSizeInBytes = 0;
+        for (int i2 = 0; i2 < this.mNumRows; i2++) {
             ArrayRow[] arrayRowArr = this.mRows;
-            if (arrayRowArr[i3] != null) {
-                i2 += arrayRowArr[i3].sizeInBytes();
+            if (arrayRowArr[i2] != null) {
+                iSizeInBytes += arrayRowArr[i2].sizeInBytes();
             }
         }
-        return i2;
+        return iSizeInBytes;
     }
 
     public int getNumEquations() {
@@ -1012,9 +1012,9 @@ public class LinearSystem {
         cache.solverVariablePool.releaseAll(this.mPoolVariables, this.mPoolVariablesCount);
         this.mPoolVariablesCount = 0;
         Arrays.fill(this.mCache.mIndexedVariables, (Object) null);
-        HashMap<String, SolverVariable> hashMap = this.mVariables;
-        if (hashMap != null) {
-            hashMap.clear();
+        HashMap<String, SolverVariable> map = this.mVariables;
+        if (map != null) {
+            map.clear();
         }
         this.mVariablesID = 0;
         this.mGoal.clear();
@@ -1044,7 +1044,7 @@ public class LinearSystem {
             solverVariable.setFinalValue(this, f2);
             for (int i3 = 0; i3 < this.mVariablesID + 1; i3++) {
                 SolverVariable solverVariable2 = this.mCache.mIndexedVariables[i3];
-                if (solverVariable2 != null && solverVariable2.isSynonym && solverVariable2.synonym == solverVariable.f594id) {
+                if (solverVariable2 != null && solverVariable2.isSynonym && solverVariable2.synonym == solverVariable.id) {
                     solverVariable2.setFinalValue(this, solverVariable2.synonymDelta + f2);
                 }
             }
@@ -1062,14 +1062,14 @@ public class LinearSystem {
                 arrayRow.constantValue = i2;
                 return;
             } else {
-                ArrayRow createRow = createRow();
-                createRow.createRowEquals(solverVariable, i2);
-                addConstraint(createRow);
+                ArrayRow arrayRowCreateRow = createRow();
+                arrayRowCreateRow.createRowEquals(solverVariable, i2);
+                addConstraint(arrayRowCreateRow);
                 return;
             }
         }
-        ArrayRow createRow2 = createRow();
-        createRow2.createRowDefinition(solverVariable, i2);
-        addConstraint(createRow2);
+        ArrayRow arrayRowCreateRow2 = createRow();
+        arrayRowCreateRow2.createRowDefinition(solverVariable, i2);
+        addConstraint(arrayRowCreateRow2);
     }
 }

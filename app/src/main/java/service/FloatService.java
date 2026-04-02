@@ -3,19 +3,16 @@ package service;
 import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityEvent;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FloatService extends AccessibilityService {
-
-    /* renamed from: a */
-    private static AccessibilityService f21719a;
+    private static AccessibilityService a;
 
     public FloatService() {
-        f21719a = this;
+        a = this;
     }
 
-    /* renamed from: a */
-    public static AccessibilityService m25192a() {
-        AccessibilityService accessibilityService = f21719a;
+    public static AccessibilityService a() {
+        AccessibilityService accessibilityService = a;
         if (accessibilityService == null) {
             return null;
         }

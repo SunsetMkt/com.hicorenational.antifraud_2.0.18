@@ -5,8 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
-/* loaded from: classes.dex */
 final class FragmentManagerState implements Parcelable {
     public static final Parcelable.Creator<FragmentManagerState> CREATOR = new Parcelable.Creator<FragmentManagerState>() { // from class: androidx.fragment.app.FragmentManagerState.1
         /* JADX WARN: Can't rename method to resolve collision */

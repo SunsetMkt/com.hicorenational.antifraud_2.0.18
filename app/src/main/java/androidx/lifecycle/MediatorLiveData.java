@@ -8,7 +8,7 @@ import androidx.arch.core.internal.SafeIterableMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MediatorLiveData<T> extends MutableLiveData<T> {
     private SafeIterableMap<LiveData<?>, Source<?>> mSources = new SafeIterableMap<>();
 
@@ -42,11 +42,11 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
     @MainThread
     public <S> void addSource(@NonNull LiveData<S> liveData, @NonNull Observer<? super S> observer) {
         Source<?> source = new Source<>(liveData, observer);
-        Source<?> putIfAbsent = this.mSources.putIfAbsent(liveData, source);
-        if (putIfAbsent != null && putIfAbsent.mObserver != observer) {
+        Source<?> sourcePutIfAbsent = this.mSources.putIfAbsent(liveData, source);
+        if (sourcePutIfAbsent != null && sourcePutIfAbsent.mObserver != observer) {
             throw new IllegalArgumentException("This source was already added with the different observer");
         }
-        if (putIfAbsent == null && hasActiveObservers()) {
+        if (sourcePutIfAbsent == null && hasActiveObservers()) {
             source.plug();
         }
     }
@@ -71,9 +71,9 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
 
     @MainThread
     public <S> void removeSource(@NonNull LiveData<S> liveData) {
-        Source<?> remove = this.mSources.remove(liveData);
-        if (remove != null) {
-            remove.unplug();
+        Source<?> sourceRemove = this.mSources.remove(liveData);
+        if (sourceRemove != null) {
+            sourceRemove.unplug();
         }
     }
 }

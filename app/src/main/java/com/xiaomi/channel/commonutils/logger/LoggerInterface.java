@@ -1,6 +1,6 @@
 package com.xiaomi.channel.commonutils.logger;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface LoggerInterface {
     void log(String str);
 

@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleOwner;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class OnBackPressedDispatcher {
 
     @Nullable
@@ -93,9 +93,9 @@ public final class OnBackPressedDispatcher {
 
     @MainThread
     public boolean hasEnabledCallbacks() {
-        Iterator<OnBackPressedCallback> descendingIterator = this.mOnBackPressedCallbacks.descendingIterator();
-        while (descendingIterator.hasNext()) {
-            if (descendingIterator.next().isEnabled()) {
+        Iterator<OnBackPressedCallback> itDescendingIterator = this.mOnBackPressedCallbacks.descendingIterator();
+        while (itDescendingIterator.hasNext()) {
+            if (itDescendingIterator.next().isEnabled()) {
                 return true;
             }
         }
@@ -104,9 +104,9 @@ public final class OnBackPressedDispatcher {
 
     @MainThread
     public void onBackPressed() {
-        Iterator<OnBackPressedCallback> descendingIterator = this.mOnBackPressedCallbacks.descendingIterator();
-        while (descendingIterator.hasNext()) {
-            OnBackPressedCallback next = descendingIterator.next();
+        Iterator<OnBackPressedCallback> itDescendingIterator = this.mOnBackPressedCallbacks.descendingIterator();
+        while (itDescendingIterator.hasNext()) {
+            OnBackPressedCallback next = itDescendingIterator.next();
             if (next.isEnabled()) {
                 next.handleOnBackPressed();
                 return;

@@ -9,8 +9,8 @@ import androidx.annotation.RestrictTo;
 import androidx.camera.camera2.internal.compat.params.SessionConfigurationCompat;
 import java.util.concurrent.Executor;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 public final class CameraDeviceCompat {
     private static final CameraDeviceCompatImpl IMPL = chooseImplementation();
 
@@ -28,14 +28,78 @@ public final class CameraDeviceCompat {
         private final Executor mExecutor;
         final CameraDevice.StateCallback mWrappedCallback;
 
+        /* JADX INFO: renamed from: androidx.camera.camera2.internal.compat.CameraDeviceCompat$StateCallbackExecutorWrapper$1 */
+        class AnonymousClass1 implements Runnable {
+            final /* synthetic */ CameraDevice val$camera;
+
+            AnonymousClass1(CameraDevice cameraDevice) {
+                cameraDevice = cameraDevice;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                StateCallbackExecutorWrapper.this.mWrappedCallback.onOpened(cameraDevice);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.camera.camera2.internal.compat.CameraDeviceCompat$StateCallbackExecutorWrapper$2 */
+        class AnonymousClass2 implements Runnable {
+            final /* synthetic */ CameraDevice val$camera;
+
+            AnonymousClass2(CameraDevice cameraDevice) {
+                cameraDevice = cameraDevice;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                StateCallbackExecutorWrapper.this.mWrappedCallback.onDisconnected(cameraDevice);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.camera.camera2.internal.compat.CameraDeviceCompat$StateCallbackExecutorWrapper$3 */
+        class AnonymousClass3 implements Runnable {
+            final /* synthetic */ CameraDevice val$camera;
+            final /* synthetic */ int val$error;
+
+            AnonymousClass3(CameraDevice cameraDevice, int i2) {
+                cameraDevice = cameraDevice;
+                i = i2;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                StateCallbackExecutorWrapper.this.mWrappedCallback.onError(cameraDevice, i);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.camera.camera2.internal.compat.CameraDeviceCompat$StateCallbackExecutorWrapper$4 */
+        class AnonymousClass4 implements Runnable {
+            final /* synthetic */ CameraDevice val$camera;
+
+            AnonymousClass4(CameraDevice cameraDevice) {
+                cameraDevice = cameraDevice;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                StateCallbackExecutorWrapper.this.mWrappedCallback.onClosed(cameraDevice);
+            }
+        }
+
         StateCallbackExecutorWrapper(@NonNull Executor executor, @NonNull CameraDevice.StateCallback stateCallback) {
             this.mExecutor = executor;
             this.mWrappedCallback = stateCallback;
         }
 
         @Override // android.hardware.camera2.CameraDevice.StateCallback
-        public void onClosed(@NonNull final CameraDevice cameraDevice) {
+        public void onClosed(@NonNull CameraDevice cameraDevice) {
             this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.compat.CameraDeviceCompat.StateCallbackExecutorWrapper.4
+                final /* synthetic */ CameraDevice val$camera;
+
+                AnonymousClass4(CameraDevice cameraDevice2) {
+                    cameraDevice = cameraDevice2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     StateCallbackExecutorWrapper.this.mWrappedCallback.onClosed(cameraDevice);
@@ -44,8 +108,14 @@ public final class CameraDeviceCompat {
         }
 
         @Override // android.hardware.camera2.CameraDevice.StateCallback
-        public void onDisconnected(@NonNull final CameraDevice cameraDevice) {
+        public void onDisconnected(@NonNull CameraDevice cameraDevice) {
             this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.compat.CameraDeviceCompat.StateCallbackExecutorWrapper.2
+                final /* synthetic */ CameraDevice val$camera;
+
+                AnonymousClass2(CameraDevice cameraDevice2) {
+                    cameraDevice = cameraDevice2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     StateCallbackExecutorWrapper.this.mWrappedCallback.onDisconnected(cameraDevice);
@@ -54,18 +124,32 @@ public final class CameraDeviceCompat {
         }
 
         @Override // android.hardware.camera2.CameraDevice.StateCallback
-        public void onError(@NonNull final CameraDevice cameraDevice, final int i2) {
+        public void onError(@NonNull CameraDevice cameraDevice, int i2) {
             this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.compat.CameraDeviceCompat.StateCallbackExecutorWrapper.3
+                final /* synthetic */ CameraDevice val$camera;
+                final /* synthetic */ int val$error;
+
+                AnonymousClass3(CameraDevice cameraDevice2, int i22) {
+                    cameraDevice = cameraDevice2;
+                    i = i22;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    StateCallbackExecutorWrapper.this.mWrappedCallback.onError(cameraDevice, i2);
+                    StateCallbackExecutorWrapper.this.mWrappedCallback.onError(cameraDevice, i);
                 }
             });
         }
 
         @Override // android.hardware.camera2.CameraDevice.StateCallback
-        public void onOpened(@NonNull final CameraDevice cameraDevice) {
+        public void onOpened(@NonNull CameraDevice cameraDevice) {
             this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.compat.CameraDeviceCompat.StateCallbackExecutorWrapper.1
+                final /* synthetic */ CameraDevice val$camera;
+
+                AnonymousClass1(CameraDevice cameraDevice2) {
+                    cameraDevice = cameraDevice2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     StateCallbackExecutorWrapper.this.mWrappedCallback.onOpened(cameraDevice);

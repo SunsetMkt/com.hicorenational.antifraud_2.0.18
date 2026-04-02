@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PhoneInfoBean extends BaseBean {
     private String areaVid;
     private String carrier;

@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ViewGroupUtilsApi14 {
     private static final int LAYOUT_TRANSITION_CHANGING = 4;
     private static final String TAG = "ViewGroupUtilsApi14";
@@ -61,7 +61,7 @@ class ViewGroupUtilsApi14 {
                     cancelLayoutTransition(layoutTransition);
                 }
                 if (layoutTransition != sEmptyLayoutTransition) {
-                    viewGroup.setTag(C0703R.id.transition_layout_save, layoutTransition);
+                    viewGroup.setTag(R.id.transition_layout_save, layoutTransition);
                 }
             }
             viewGroup.setLayoutTransition(sEmptyLayoutTransition);
@@ -93,9 +93,9 @@ class ViewGroupUtilsApi14 {
         if (z2) {
             viewGroup.requestLayout();
         }
-        LayoutTransition layoutTransition2 = (LayoutTransition) viewGroup.getTag(C0703R.id.transition_layout_save);
+        LayoutTransition layoutTransition2 = (LayoutTransition) viewGroup.getTag(R.id.transition_layout_save);
         if (layoutTransition2 != null) {
-            viewGroup.setTag(C0703R.id.transition_layout_save, null);
+            viewGroup.setTag(R.id.transition_layout_save, null);
             viewGroup.setLayoutTransition(layoutTransition2);
         }
     }

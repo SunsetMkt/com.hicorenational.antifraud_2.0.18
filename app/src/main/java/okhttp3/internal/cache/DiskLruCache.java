@@ -1,5 +1,6 @@
 package okhttp3.internal.cache;
 
+import d.c.a.b.a.a;
 import java.io.Closeable;
 import java.io.EOFException;
 import java.io.File;
@@ -18,16 +19,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import okhttp3.internal.Util;
-import okhttp3.internal.p385io.FileSystem;
+import okhttp3.internal.io.FileSystem;
 import okhttp3.internal.platform.Platform;
 import okio.BufferedSink;
 import okio.BufferedSource;
 import okio.Okio;
 import okio.Sink;
 import okio.Source;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class DiskLruCache implements Closeable, Flushable {
     static final /* synthetic */ boolean $assertionsDisabled = false;
     static final long ANY_SEQUENCE_NUMBER = -1;
@@ -369,72 +369,72 @@ public final class DiskLruCache implements Closeable, Flushable {
     }
 
     private void readJournal() throws IOException {
-        BufferedSource buffer = Okio.buffer(this.fileSystem.source(this.journalFile));
+        BufferedSource bufferedSourceBuffer = Okio.buffer(this.fileSystem.source(this.journalFile));
         try {
-            String readUtf8LineStrict = buffer.readUtf8LineStrict();
-            String readUtf8LineStrict2 = buffer.readUtf8LineStrict();
-            String readUtf8LineStrict3 = buffer.readUtf8LineStrict();
-            String readUtf8LineStrict4 = buffer.readUtf8LineStrict();
-            String readUtf8LineStrict5 = buffer.readUtf8LineStrict();
-            if (!MAGIC.equals(readUtf8LineStrict) || !"1".equals(readUtf8LineStrict2) || !Integer.toString(this.appVersion).equals(readUtf8LineStrict3) || !Integer.toString(this.valueCount).equals(readUtf8LineStrict4) || !"".equals(readUtf8LineStrict5)) {
-                throw new IOException("unexpected journal header: [" + readUtf8LineStrict + ", " + readUtf8LineStrict2 + ", " + readUtf8LineStrict4 + ", " + readUtf8LineStrict5 + "]");
+            String utf8LineStrict = bufferedSourceBuffer.readUtf8LineStrict();
+            String utf8LineStrict2 = bufferedSourceBuffer.readUtf8LineStrict();
+            String utf8LineStrict3 = bufferedSourceBuffer.readUtf8LineStrict();
+            String utf8LineStrict4 = bufferedSourceBuffer.readUtf8LineStrict();
+            String utf8LineStrict5 = bufferedSourceBuffer.readUtf8LineStrict();
+            if (!MAGIC.equals(utf8LineStrict) || !"1".equals(utf8LineStrict2) || !Integer.toString(this.appVersion).equals(utf8LineStrict3) || !Integer.toString(this.valueCount).equals(utf8LineStrict4) || !"".equals(utf8LineStrict5)) {
+                throw new IOException("unexpected journal header: [" + utf8LineStrict + ", " + utf8LineStrict2 + ", " + utf8LineStrict4 + ", " + utf8LineStrict5 + "]");
             }
             int i2 = 0;
             while (true) {
                 try {
-                    readJournalLine(buffer.readUtf8LineStrict());
+                    readJournalLine(bufferedSourceBuffer.readUtf8LineStrict());
                     i2++;
                 } catch (EOFException unused) {
                     this.redundantOpCount = i2 - this.lruEntries.size();
-                    if (buffer.exhausted()) {
+                    if (bufferedSourceBuffer.exhausted()) {
                         this.journalWriter = newJournalWriter();
                     } else {
                         rebuildJournal();
                     }
-                    Util.closeQuietly(buffer);
+                    Util.closeQuietly(bufferedSourceBuffer);
                     return;
                 }
             }
         } catch (Throwable th) {
-            Util.closeQuietly(buffer);
+            Util.closeQuietly(bufferedSourceBuffer);
             throw th;
         }
     }
 
     private void readJournalLine(String str) throws IOException {
-        String substring;
-        int indexOf = str.indexOf(32);
-        if (indexOf == -1) {
+        String strSubstring;
+        int iIndexOf = str.indexOf(32);
+        if (iIndexOf == -1) {
             throw new IOException("unexpected journal line: " + str);
         }
-        int i2 = indexOf + 1;
-        int indexOf2 = str.indexOf(32, i2);
-        if (indexOf2 == -1) {
-            substring = str.substring(i2);
-            if (indexOf == 6 && str.startsWith(REMOVE)) {
-                this.lruEntries.remove(substring);
+        int i2 = iIndexOf + 1;
+        int iIndexOf2 = str.indexOf(32, i2);
+        if (iIndexOf2 == -1) {
+            strSubstring = str.substring(i2);
+            if (iIndexOf == 6 && str.startsWith(REMOVE)) {
+                this.lruEntries.remove(strSubstring);
                 return;
             }
         } else {
-            substring = str.substring(i2, indexOf2);
+            strSubstring = str.substring(i2, iIndexOf2);
         }
-        Entry entry = this.lruEntries.get(substring);
+        Entry entry = this.lruEntries.get(strSubstring);
         if (entry == null) {
-            entry = new Entry(substring);
-            this.lruEntries.put(substring, entry);
+            entry = new Entry(strSubstring);
+            this.lruEntries.put(strSubstring, entry);
         }
-        if (indexOf2 != -1 && indexOf == 5 && str.startsWith(CLEAN)) {
-            String[] split = str.substring(indexOf2 + 1).split(AbstractC1191a.f2568g);
+        if (iIndexOf2 != -1 && iIndexOf == 5 && str.startsWith(CLEAN)) {
+            String[] strArrSplit = str.substring(iIndexOf2 + 1).split(a.f10074g);
             entry.readable = true;
             entry.currentEditor = null;
-            entry.setLengths(split);
+            entry.setLengths(strArrSplit);
             return;
         }
-        if (indexOf2 == -1 && indexOf == 5 && str.startsWith(DIRTY)) {
+        if (iIndexOf2 == -1 && iIndexOf == 5 && str.startsWith(DIRTY)) {
             entry.currentEditor = new Editor(entry);
             return;
         }
-        if (indexOf2 == -1 && indexOf == 4 && str.startsWith(READ)) {
+        if (iIndexOf2 == -1 && iIndexOf == 4 && str.startsWith(READ)) {
             return;
         }
         throw new IOException("unexpected journal line: " + str);
@@ -596,6 +596,8 @@ public final class DiskLruCache implements Closeable, Flushable {
                 try {
                     delete();
                     this.closed = false;
+                    rebuildJournal();
+                    this.initialized = true;
                 } catch (Throwable th) {
                     this.closed = false;
                     throw th;
@@ -619,26 +621,26 @@ public final class DiskLruCache implements Closeable, Flushable {
         if (this.journalWriter != null) {
             this.journalWriter.close();
         }
-        BufferedSink buffer = Okio.buffer(this.fileSystem.sink(this.journalFileTmp));
+        BufferedSink bufferedSinkBuffer = Okio.buffer(this.fileSystem.sink(this.journalFileTmp));
         try {
-            buffer.writeUtf8(MAGIC).writeByte(10);
-            buffer.writeUtf8("1").writeByte(10);
-            buffer.writeDecimalLong(this.appVersion).writeByte(10);
-            buffer.writeDecimalLong(this.valueCount).writeByte(10);
-            buffer.writeByte(10);
+            bufferedSinkBuffer.writeUtf8(MAGIC).writeByte(10);
+            bufferedSinkBuffer.writeUtf8("1").writeByte(10);
+            bufferedSinkBuffer.writeDecimalLong(this.appVersion).writeByte(10);
+            bufferedSinkBuffer.writeDecimalLong(this.valueCount).writeByte(10);
+            bufferedSinkBuffer.writeByte(10);
             for (Entry entry : this.lruEntries.values()) {
                 if (entry.currentEditor != null) {
-                    buffer.writeUtf8(DIRTY).writeByte(32);
-                    buffer.writeUtf8(entry.key);
-                    buffer.writeByte(10);
+                    bufferedSinkBuffer.writeUtf8(DIRTY).writeByte(32);
+                    bufferedSinkBuffer.writeUtf8(entry.key);
+                    bufferedSinkBuffer.writeByte(10);
                 } else {
-                    buffer.writeUtf8(CLEAN).writeByte(32);
-                    buffer.writeUtf8(entry.key);
-                    entry.writeLengths(buffer);
-                    buffer.writeByte(10);
+                    bufferedSinkBuffer.writeUtf8(CLEAN).writeByte(32);
+                    bufferedSinkBuffer.writeUtf8(entry.key);
+                    entry.writeLengths(bufferedSinkBuffer);
+                    bufferedSinkBuffer.writeByte(10);
                 }
             }
-            buffer.close();
+            bufferedSinkBuffer.close();
             if (this.fileSystem.exists(this.journalFile)) {
                 this.fileSystem.rename(this.journalFile, this.journalFileBackup);
             }
@@ -648,7 +650,7 @@ public final class DiskLruCache implements Closeable, Flushable {
             this.hasJournalErrors = false;
             this.mostRecentRebuildFailed = false;
         } catch (Throwable th) {
-            buffer.close();
+            bufferedSinkBuffer.close();
             throw th;
         }
     }
@@ -661,11 +663,11 @@ public final class DiskLruCache implements Closeable, Flushable {
         if (entry == null) {
             return false;
         }
-        boolean removeEntry = removeEntry(entry);
-        if (removeEntry && this.size <= this.maxSize) {
+        boolean zRemoveEntry = removeEntry(entry);
+        if (zRemoveEntry && this.size <= this.maxSize) {
             this.mostRecentTrimFailed = false;
         }
-        return removeEntry;
+        return zRemoveEntry;
     }
 
     boolean removeEntry(Entry entry) throws IOException {

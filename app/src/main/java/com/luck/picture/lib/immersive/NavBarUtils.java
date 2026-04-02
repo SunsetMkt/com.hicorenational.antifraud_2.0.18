@@ -6,7 +6,7 @@ import android.view.Window;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class NavBarUtils {
     public static void setNavBarColor(@NonNull Activity activity, @ColorInt int i2) {
         setNavBarColor(activity.getWindow(), i2);

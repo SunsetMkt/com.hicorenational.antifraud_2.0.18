@@ -2,13 +2,11 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LeaguerBean extends BaseBean {
     private String createTime;
     private long groupIdStr;
-
-    /* renamed from: id */
-    private long f1601id;
+    private long id;
     private String joinTime;
     private String leaguerMobile;
     private String leaguerName;
@@ -27,7 +25,7 @@ public class LeaguerBean extends BaseBean {
     }
 
     public long getId() {
-        return this.f1601id;
+        return this.id;
     }
 
     public String getJoinTime() {
@@ -71,7 +69,7 @@ public class LeaguerBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.f1601id = j2;
+        this.id = j2;
     }
 
     public void setJoinTime(String str) {

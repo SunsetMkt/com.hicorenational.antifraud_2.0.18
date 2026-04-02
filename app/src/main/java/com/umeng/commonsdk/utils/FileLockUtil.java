@@ -1,55 +1,51 @@
 package com.umeng.commonsdk.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FileLockUtil {
     private final Object lockObject = new Object();
 
-    /* JADX WARN: Removed duplicated region for block: B:14:0x0022 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:22:0x0022 A[EXC_TOP_SPLITTER, SYNTHETIC] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static java.nio.channels.FileLock getFileLock(java.lang.String r3) {
-        /*
-            r0 = 0
-            java.io.RandomAccessFile r1 = new java.io.RandomAccessFile     // Catch: java.io.IOException -> L15 java.io.FileNotFoundException -> L1b
-            java.lang.String r2 = "rw"
-            r1.<init>(r3, r2)     // Catch: java.io.IOException -> L15 java.io.FileNotFoundException -> L1b
-            java.nio.channels.FileChannel r3 = r1.getChannel()     // Catch: java.io.IOException -> L15 java.io.FileNotFoundException -> L1b
-            java.nio.channels.FileLock r3 = r3.lock()     // Catch: java.io.IOException -> L11 java.io.FileNotFoundException -> L13
-            return r3
-        L11:
-            r1 = move-exception
-            goto L17
-        L13:
-            r1 = move-exception
-            goto L1d
-        L15:
-            r1 = move-exception
-            r3 = r0
-        L17:
-            r1.printStackTrace()
-            goto L20
-        L1b:
-            r1 = move-exception
-            r3 = r0
-        L1d:
-            r1.printStackTrace()
-        L20:
-            if (r3 == 0) goto L2a
-            r3.close()     // Catch: java.io.IOException -> L26
-            goto L2a
-        L26:
-            r3 = move-exception
-            r3.printStackTrace()
-        L2a:
-            return r0
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.umeng.commonsdk.utils.FileLockUtil.getFileLock(java.lang.String):java.nio.channels.FileLock");
+    private static FileLock getFileLock(String str) {
+        FileChannel channel;
+        try {
+            channel = new RandomAccessFile(str, "rw").getChannel();
+            try {
+                return channel.lock();
+            } catch (FileNotFoundException e2) {
+                e = e2;
+                e.printStackTrace();
+                if (channel != null) {
+                    try {
+                        channel.close();
+                    } catch (IOException e3) {
+                        e3.printStackTrace();
+                    }
+                }
+                return null;
+            } catch (IOException e4) {
+                e = e4;
+                e.printStackTrace();
+                if (channel != null) {
+                }
+                return null;
+            }
+        } catch (FileNotFoundException e5) {
+            e = e5;
+            channel = null;
+        } catch (IOException e6) {
+            e = e6;
+            channel = null;
+        }
     }
 
     public void doFileOperateion(File file, FileLockCallback fileLockCallback, Object obj) {
@@ -92,8 +88,6 @@ public class FileLockUtil {
                     try {
                         try {
                             fileLockCallback.onFileLock(file, i2);
-                        } catch (Exception e2) {
-                            e2.printStackTrace();
                             try {
                                 fileLock.release();
                                 fileLock.channel().close();
@@ -101,13 +95,15 @@ public class FileLockUtil {
                                 th = th;
                                 th.printStackTrace();
                             }
-                        }
-                        try {
-                            fileLock.release();
-                            fileLock.channel().close();
-                        } catch (Throwable th2) {
-                            th = th2;
-                            th.printStackTrace();
+                        } catch (Exception e2) {
+                            e2.printStackTrace();
+                            try {
+                                fileLock.release();
+                                fileLock.channel().close();
+                            } catch (Throwable th2) {
+                                th = th2;
+                                th.printStackTrace();
+                            }
                         }
                     } finally {
                     }
@@ -157,24 +153,24 @@ public class FileLockUtil {
                     try {
                         try {
                             fileLockCallback.onFileLock(file.getName());
+                            try {
+                                fileLock.release();
+                                fileLock.channel().close();
+                            } catch (IOException e2) {
+                                e = e2;
+                                e.printStackTrace();
+                            }
                         } finally {
                         }
-                    } catch (Exception e2) {
-                        e2.printStackTrace();
+                    } catch (Exception e3) {
+                        e3.printStackTrace();
                         try {
                             fileLock.release();
                             fileLock.channel().close();
-                        } catch (IOException e3) {
-                            e = e3;
+                        } catch (IOException e4) {
+                            e = e4;
                             e.printStackTrace();
                         }
-                    }
-                    try {
-                        fileLock.release();
-                        fileLock.channel().close();
-                    } catch (IOException e4) {
-                        e = e4;
-                        e.printStackTrace();
                     }
                 }
             }

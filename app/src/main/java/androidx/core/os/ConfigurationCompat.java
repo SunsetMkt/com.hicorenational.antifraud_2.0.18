@@ -4,7 +4,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ConfigurationCompat {
     private ConfigurationCompat() {
     }

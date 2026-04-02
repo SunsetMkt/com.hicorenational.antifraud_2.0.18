@@ -54,9 +54,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class Camera2CameraImpl implements CameraInternal {
     private static final int ERROR_NONE = 0;
     private static final String TAG = "Camera";
@@ -74,7 +73,7 @@ final class Camera2CameraImpl implements CameraInternal {
     private final Executor mExecutor;
     final Handler mHandler;
     private final UseCaseAttachState mUseCaseAttachState;
-    InterfaceFutureC0952a<Void> mUserReleaseFuture;
+    d.b.b.a.a.a<Void> mUserReleaseFuture;
     CallbackToFutureAdapter.Completer<Void> mUserReleaseNotifier;
     volatile InternalState mState = InternalState.INITIALIZED;
     private final LiveDataObservable<CameraInternal.State> mObservableState = new LiveDataObservable<>();
@@ -83,46 +82,44 @@ final class Camera2CameraImpl implements CameraInternal {
     private CaptureSession.Builder mCaptureSessionBuilder = new CaptureSession.Builder();
     SessionConfig mCameraControlSessionConfig = SessionConfig.defaultEmptySessionConfig();
     final AtomicInteger mReleaseRequestCount = new AtomicInteger(0);
-    final Map<CaptureSession, InterfaceFutureC0952a<Void>> mReleasedCaptureSessions = new LinkedHashMap();
+    final Map<CaptureSession, d.b.b.a.a.a<Void>> mReleasedCaptureSessions = new LinkedHashMap();
     final Set<CaptureSession> mConfiguringForClose = new HashSet();
 
-    /* renamed from: androidx.camera.camera2.internal.Camera2CameraImpl$15 */
-    static /* synthetic */ class C022315 {
-
-        /* renamed from: $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState */
-        static final /* synthetic */ int[] f373x193044d6 = new int[InternalState.values().length];
+    /* JADX INFO: renamed from: androidx.camera.camera2.internal.Camera2CameraImpl$15, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass15 {
+        static final /* synthetic */ int[] $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState = new int[InternalState.values().length];
 
         static {
             try {
-                f373x193044d6[InternalState.INITIALIZED.ordinal()] = 1;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.INITIALIZED.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f373x193044d6[InternalState.CLOSING.ordinal()] = 2;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.CLOSING.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f373x193044d6[InternalState.OPENED.ordinal()] = 3;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.OPENED.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                f373x193044d6[InternalState.OPENING.ordinal()] = 4;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.OPENING.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                f373x193044d6[InternalState.REOPENING.ordinal()] = 5;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.REOPENING.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                f373x193044d6[InternalState.PENDING_OPEN.ordinal()] = 6;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.PENDING_OPEN.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                f373x193044d6[InternalState.RELEASING.ordinal()] = 7;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.RELEASING.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                f373x193044d6[InternalState.RELEASED.ordinal()] = 8;
+                $SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[InternalState.RELEASED.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
         }
@@ -226,7 +223,7 @@ final class Camera2CameraImpl implements CameraInternal {
         public void onClosed(CameraDevice cameraDevice) {
             String str = "CameraDevice.onClosed(): " + cameraDevice.getId();
             Preconditions.checkState(Camera2CameraImpl.this.mCameraDevice == null, "Unexpected onClose callback on camera device: " + cameraDevice);
-            int i2 = C022315.f373x193044d6[Camera2CameraImpl.this.mState.ordinal()];
+            int i2 = AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[Camera2CameraImpl.this.mState.ordinal()];
             if (i2 != 2) {
                 if (i2 == 5) {
                     Camera2CameraImpl.this.openCameraDevice();
@@ -255,7 +252,7 @@ final class Camera2CameraImpl implements CameraInternal {
             Camera2CameraImpl camera2CameraImpl = Camera2CameraImpl.this;
             camera2CameraImpl.mCameraDevice = cameraDevice;
             camera2CameraImpl.mCameraDeviceError = i2;
-            int i3 = C022315.f373x193044d6[camera2CameraImpl.mState.ordinal()];
+            int i3 = AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[camera2CameraImpl.mState.ordinal()];
             if (i3 != 2) {
                 if (i3 == 3 || i3 == 4 || i3 == 5) {
                     handleErrorOnOpen(cameraDevice, i2);
@@ -276,7 +273,7 @@ final class Camera2CameraImpl implements CameraInternal {
             camera2CameraImpl.updateDefaultRequestBuilderToCameraControl(cameraDevice);
             Camera2CameraImpl camera2CameraImpl2 = Camera2CameraImpl.this;
             camera2CameraImpl2.mCameraDeviceError = 0;
-            int i2 = C022315.f373x193044d6[camera2CameraImpl2.mState.ordinal()];
+            int i2 = AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[camera2CameraImpl2.mState.ordinal()];
             if (i2 == 2 || i2 == 7) {
                 Preconditions.checkState(Camera2CameraImpl.this.isSessionCloseComplete());
                 Camera2CameraImpl.this.mCameraDevice.close();
@@ -294,17 +291,17 @@ final class Camera2CameraImpl implements CameraInternal {
         this.mCameraManager = cameraManagerCompat;
         this.mAvailableCamerasObservable = observable;
         this.mHandler = handler;
-        ScheduledExecutorService newHandlerExecutor = CameraXExecutors.newHandlerExecutor(this.mHandler);
-        this.mExecutor = newHandlerExecutor;
+        ScheduledExecutorService scheduledExecutorServiceNewHandlerExecutor = CameraXExecutors.newHandlerExecutor(this.mHandler);
+        this.mExecutor = scheduledExecutorServiceNewHandlerExecutor;
         this.mUseCaseAttachState = new UseCaseAttachState(str);
         this.mObservableState.postValue(CameraInternal.State.CLOSED);
         try {
             CameraCharacteristics cameraCharacteristics = this.mCameraManager.unwrap().getCameraCharacteristics(str);
-            this.mCameraControlInternal = new Camera2CameraControl(cameraCharacteristics, newHandlerExecutor, newHandlerExecutor, new ControlUpdateListenerInternal());
+            this.mCameraControlInternal = new Camera2CameraControl(cameraCharacteristics, scheduledExecutorServiceNewHandlerExecutor, scheduledExecutorServiceNewHandlerExecutor, new ControlUpdateListenerInternal());
             this.mCameraInfoInternal = new Camera2CameraInfoImpl(str, cameraCharacteristics, this.mCameraControlInternal.getZoomControl(), this.mCameraControlInternal.getTorchControl());
             this.mCaptureSessionBuilder.setSupportedHardwareLevel(((Camera2CameraInfoImpl) this.mCameraInfoInternal).getSupportedHardwareLevel());
             this.mCaptureSessionBuilder.setExecutor(this.mExecutor);
-            this.mCaptureSessionBuilder.setScheduledExecutorService(newHandlerExecutor);
+            this.mCaptureSessionBuilder.setScheduledExecutorService(scheduledExecutorServiceNewHandlerExecutor);
             this.mCaptureSession = this.mCaptureSessionBuilder.build();
             this.mCameraAvailability = new CameraAvailability(str);
             this.mAvailableCamerasObservable.addObserver(this.mExecutor, this.mCameraAvailability);
@@ -343,8 +340,8 @@ final class Camera2CameraImpl implements CameraInternal {
 
     @WorkerThread
     private void configAndClose(boolean z) {
-        final CaptureSession build = this.mCaptureSessionBuilder.build();
-        this.mConfiguringForClose.add(build);
+        final CaptureSession captureSessionBuild = this.mCaptureSessionBuilder.build();
+        this.mConfiguringForClose.add(captureSessionBuild);
         resetCaptureSession(z);
         final SurfaceTexture surfaceTexture = new SurfaceTexture(0);
         surfaceTexture.setDefaultBufferSize(Contants.PREVIEW_W, 480);
@@ -359,17 +356,17 @@ final class Camera2CameraImpl implements CameraInternal {
         SessionConfig.Builder builder = new SessionConfig.Builder();
         builder.addNonRepeatingSurface(new ImmediateSurface(surface));
         builder.setTemplateType(1);
-        Futures.addCallback(build.open(builder.build(), this.mCameraDevice), new FutureCallback<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.4
+        Futures.addCallback(captureSessionBuild.open(builder.build(), this.mCameraDevice), new FutureCallback<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.4
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onFailure(Throwable th) {
                 String str = "Unable to configure camera " + Camera2CameraImpl.this.mCameraInfoInternal.getCameraId() + " due to " + th.getMessage();
-                Camera2CameraImpl.this.releaseDummySession(build, runnable);
+                Camera2CameraImpl.this.releaseDummySession(captureSessionBuild, runnable);
             }
 
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onSuccess(@Nullable Void r3) {
-                Camera2CameraImpl.this.closeStaleCaptureSessions(build);
-                Camera2CameraImpl.this.releaseDummySession(build, runnable);
+                Camera2CameraImpl.this.closeStaleCaptureSessions(captureSessionBuild);
+                Camera2CameraImpl.this.releaseDummySession(captureSessionBuild, runnable);
             }
         }, this.mExecutor);
     }
@@ -389,7 +386,7 @@ final class Camera2CameraImpl implements CameraInternal {
         CameraXExecutors.mainThreadExecutor().execute(new Runnable() { // from class: androidx.camera.camera2.internal.i
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraImpl.this.m304a(list);
+                this.a.a(list);
             }
         });
     }
@@ -398,14 +395,14 @@ final class Camera2CameraImpl implements CameraInternal {
         CameraXExecutors.mainThreadExecutor().execute(new Runnable() { // from class: androidx.camera.camera2.internal.g
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraImpl.this.m306b(list);
+                this.a.b(list);
             }
         });
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: tryAddOnlineUseCases, reason: merged with bridge method [inline-methods] */
-    public void m303a(@NonNull Collection<UseCase> collection) {
+    /* JADX INFO: renamed from: tryAddOnlineUseCases, reason: merged with bridge method [inline-methods] */
+    public void a(@NonNull Collection<UseCase> collection) {
         ArrayList arrayList = new ArrayList();
         String cameraId = this.mCameraInfoInternal.getCameraId();
         for (UseCase useCase : collection) {
@@ -430,8 +427,8 @@ final class Camera2CameraImpl implements CameraInternal {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: tryRemoveOnlineUseCases, reason: merged with bridge method [inline-methods] */
-    public void m305b(@NonNull Collection<UseCase> collection) {
+    /* JADX INFO: renamed from: tryRemoveOnlineUseCases, reason: merged with bridge method [inline-methods] */
+    public void b(@NonNull Collection<UseCase> collection) {
         List<UseCase> arrayList = new ArrayList<>();
         for (UseCase useCase : collection) {
             if (this.mUseCaseAttachState.isUseCaseOnline(useCase)) {
@@ -468,12 +465,11 @@ final class Camera2CameraImpl implements CameraInternal {
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m301a(final UseCase useCase, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(final UseCase useCase, final CallbackToFutureAdapter.Completer completer) throws Exception {
         if (this.mHandler.post(new Runnable() { // from class: androidx.camera.camera2.internal.k
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraImpl.this.m302a(completer, useCase);
+                this.a.a(completer, useCase);
             }
         })) {
             return "isUseCaseOnline";
@@ -491,13 +487,12 @@ final class Camera2CameraImpl implements CameraInternal {
         this.mHandler.post(new Runnable() { // from class: androidx.camera.camera2.internal.j
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraImpl.this.m303a(collection);
+                this.a.a(collection);
             }
         });
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m306b(List list) {
+    public /* synthetic */ void b(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
             ((UseCase) it.next()).onStateOnline(this.mCameraInfoInternal.getCameraId());
@@ -516,7 +511,7 @@ final class Camera2CameraImpl implements CameraInternal {
             return;
         }
         String str = "Closing camera: " + this.mCameraInfoInternal.getCameraId();
-        int i2 = C022315.f373x193044d6[this.mState.ordinal()];
+        int i2 = AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[this.mState.ordinal()];
         if (i2 == 3) {
             setState(InternalState.CLOSING);
             closeCamera(false);
@@ -618,7 +613,7 @@ final class Camera2CameraImpl implements CameraInternal {
     }
 
     @WorkerThread
-    InterfaceFutureC0952a<Void> getOrCreateUserReleaseFuture() {
+    d.b.b.a.a.a<Void> getOrCreateUserReleaseFuture() {
         if (this.mUserReleaseFuture == null) {
             if (this.mState != InternalState.RELEASED) {
                 this.mUserReleaseFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.8
@@ -648,7 +643,7 @@ final class Camera2CameraImpl implements CameraInternal {
             return ((Boolean) CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.camera2.internal.h
                 @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                 public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                    return Camera2CameraImpl.this.m301a(useCase, completer);
+                    return this.a.a(useCase, completer);
                 }
             }).get()).booleanValue();
         } catch (InterruptedException | ExecutionException e2) {
@@ -734,7 +729,7 @@ final class Camera2CameraImpl implements CameraInternal {
             });
             return;
         }
-        int i2 = C022315.f373x193044d6[this.mState.ordinal()];
+        int i2 = AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[this.mState.ordinal()];
         if (i2 == 1) {
             openCameraDevice();
             return;
@@ -787,9 +782,9 @@ final class Camera2CameraImpl implements CameraInternal {
                         return;
                     }
                     if (th instanceof DeferrableSurface.SurfaceClosedException) {
-                        UseCase findUseCaseForSurface = Camera2CameraImpl.this.findUseCaseForSurface(((DeferrableSurface.SurfaceClosedException) th).getDeferrableSurface());
-                        if (findUseCaseForSurface != null) {
-                            Camera2CameraImpl.this.postSurfaceClosedError(findUseCaseForSurface);
+                        UseCase useCaseFindUseCaseForSurface = Camera2CameraImpl.this.findUseCaseForSurface(((DeferrableSurface.SurfaceClosedException) th).getDeferrableSurface());
+                        if (useCaseFindUseCaseForSurface != null) {
+                            Camera2CameraImpl.this.postSurfaceClosedError(useCaseFindUseCaseForSurface);
                             return;
                         }
                         return;
@@ -809,7 +804,7 @@ final class Camera2CameraImpl implements CameraInternal {
     }
 
     void postSurfaceClosedError(@NonNull UseCase useCase) {
-        ScheduledExecutorService mainThreadExecutor = CameraXExecutors.mainThreadExecutor();
+        ScheduledExecutorService scheduledExecutorServiceMainThreadExecutor = CameraXExecutors.mainThreadExecutor();
         final SessionConfig sessionConfig = useCase.getSessionConfig(this.mCameraInfoInternal.getCameraId());
         List<SessionConfig.ErrorListener> errorListeners = sessionConfig.getErrorListeners();
         if (errorListeners.isEmpty()) {
@@ -817,7 +812,7 @@ final class Camera2CameraImpl implements CameraInternal {
         }
         final SessionConfig.ErrorListener errorListener = errorListeners.get(0);
         new Throwable();
-        mainThreadExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.14
+        scheduledExecutorServiceMainThreadExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.14
             @Override // java.lang.Runnable
             public void run() {
                 errorListener.onError(sessionConfig, SessionConfig.SessionError.SESSION_ERROR_SURFACE_NEEDS_RESET);
@@ -827,8 +822,8 @@ final class Camera2CameraImpl implements CameraInternal {
 
     @Override // androidx.camera.core.impl.CameraInternal
     @NonNull
-    public InterfaceFutureC0952a<Void> release() {
-        InterfaceFutureC0952a<Void> future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.6
+    public d.b.b.a.a.a<Void> release() {
+        d.b.b.a.a.a<Void> future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.6
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public Object attachCompleter(@NonNull final CallbackToFutureAdapter.Completer<Void> completer) {
                 Camera2CameraImpl.this.mHandler.post(new Runnable() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.6.1
@@ -860,7 +855,7 @@ final class Camera2CameraImpl implements CameraInternal {
 
     @WorkerThread
     void releaseInternal() {
-        switch (C022315.f373x193044d6[this.mState.ordinal()]) {
+        switch (AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[this.mState.ordinal()]) {
             case 1:
             case 6:
                 Preconditions.checkState(this.mCameraDevice == null);
@@ -885,12 +880,12 @@ final class Camera2CameraImpl implements CameraInternal {
     }
 
     @WorkerThread
-    InterfaceFutureC0952a<Void> releaseSession(@NonNull final CaptureSession captureSession, boolean z) {
+    d.b.b.a.a.a<Void> releaseSession(@NonNull final CaptureSession captureSession, boolean z) {
         captureSession.close();
-        InterfaceFutureC0952a<Void> release = captureSession.release(z);
+        d.b.b.a.a.a<Void> aVarRelease = captureSession.release(z);
         String str = "releasing session in state " + this.mState.name();
-        this.mReleasedCaptureSessions.put(captureSession, release);
-        Futures.addCallback(release, new FutureCallback<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.5
+        this.mReleasedCaptureSessions.put(captureSession, aVarRelease);
+        Futures.addCallback(aVarRelease, new FutureCallback<Void>() { // from class: androidx.camera.camera2.internal.Camera2CameraImpl.5
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onFailure(Throwable th) {
             }
@@ -900,7 +895,7 @@ final class Camera2CameraImpl implements CameraInternal {
             public void onSuccess(@Nullable Void r2) {
                 CameraDevice cameraDevice;
                 Camera2CameraImpl.this.mReleasedCaptureSessions.remove(captureSession);
-                int i2 = C022315.f373x193044d6[Camera2CameraImpl.this.mState.ordinal()];
+                int i2 = AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[Camera2CameraImpl.this.mState.ordinal()];
                 if (i2 != 2) {
                     if (i2 != 5) {
                         if (i2 != 7) {
@@ -917,7 +912,7 @@ final class Camera2CameraImpl implements CameraInternal {
                 Camera2CameraImpl.this.mCameraDevice = null;
             }
         }, CameraXExecutors.directExecutor());
-        return release;
+        return aVarRelease;
     }
 
     @Override // androidx.camera.core.impl.CameraInternal
@@ -928,7 +923,7 @@ final class Camera2CameraImpl implements CameraInternal {
         this.mHandler.post(new Runnable() { // from class: androidx.camera.camera2.internal.l
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraImpl.this.m305b(collection);
+                this.a.b(collection);
             }
         });
     }
@@ -949,7 +944,7 @@ final class Camera2CameraImpl implements CameraInternal {
     void setState(InternalState internalState) {
         String str = "Transitioning camera internal state: " + this.mState + " --> " + internalState;
         this.mState = internalState;
-        switch (C022315.f373x193044d6[internalState.ordinal()]) {
+        switch (AnonymousClass15.$SwitchMap$androidx$camera$camera2$internal$Camera2CameraImpl$InternalState[internalState.ordinal()]) {
             case 1:
                 this.mObservableState.postValue(CameraInternal.State.CLOSED);
                 break;
@@ -978,9 +973,9 @@ final class Camera2CameraImpl implements CameraInternal {
     void submitCaptureRequests(@NonNull List<CaptureConfig> list) {
         ArrayList arrayList = new ArrayList();
         for (CaptureConfig captureConfig : list) {
-            CaptureConfig.Builder from = CaptureConfig.Builder.from(captureConfig);
-            if (!captureConfig.getSurfaces().isEmpty() || !captureConfig.isUseRepeatingSurface() || checkAndAttachRepeatingSurface(from)) {
-                arrayList.add(from.build());
+            CaptureConfig.Builder builderFrom = CaptureConfig.Builder.from(captureConfig);
+            if (!captureConfig.getSurfaces().isEmpty() || !captureConfig.isUseRepeatingSurface() || checkAndAttachRepeatingSurface(builderFrom)) {
+                arrayList.add(builderFrom.build());
             }
         }
         String str = "issue capture request for camera " + this.mCameraInfoInternal.getCameraId();
@@ -1007,13 +1002,11 @@ final class Camera2CameraImpl implements CameraInternal {
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m302a(CallbackToFutureAdapter.Completer completer, UseCase useCase) {
+    public /* synthetic */ void a(CallbackToFutureAdapter.Completer completer, UseCase useCase) {
         completer.set(Boolean.valueOf(this.mUseCaseAttachState.isUseCaseOnline(useCase)));
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m304a(List list) {
+    public /* synthetic */ void a(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
             ((UseCase) it.next()).onStateOffline(this.mCameraInfoInternal.getCameraId());

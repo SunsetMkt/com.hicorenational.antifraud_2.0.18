@@ -15,7 +15,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import java.lang.reflect.Array;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Utils {
     private static final TypedValue VALUE = new TypedValue();
 
@@ -62,9 +62,9 @@ public final class Utils {
     }
 
     public static View findRequiredView(View view, @IdRes int i2, String str) {
-        View findViewById = view.findViewById(i2);
-        if (findViewById != null) {
-            return findViewById;
+        View viewFindViewById = view.findViewById(i2);
+        if (viewFindViewById != null) {
+            return viewFindViewById;
         }
         throw new IllegalStateException("Required view '" + getResourceEntryName(view, i2) + "' with ID " + i2 + " for " + str + " was not found. If this view is optional add '@Nullable' (fields) or '@Optional' (methods) annotation.");
     }
@@ -90,9 +90,9 @@ public final class Utils {
     @UiThread
     public static Drawable getTintedDrawable(Context context, @DrawableRes int i2, @AttrRes int i3) {
         if (context.getTheme().resolveAttribute(i3, VALUE, true)) {
-            Drawable wrap = DrawableCompat.wrap(ContextCompat.getDrawable(context, i2).mutate());
-            DrawableCompat.setTint(wrap, ContextCompat.getColor(context, VALUE.resourceId));
-            return wrap;
+            Drawable drawableWrap = DrawableCompat.wrap(ContextCompat.getDrawable(context, i2).mutate());
+            DrawableCompat.setTint(drawableWrap, ContextCompat.getColor(context, VALUE.resourceId));
+            return drawableWrap;
         }
         throw new Resources.NotFoundException("Required tint color attribute with name " + context.getResources().getResourceEntryName(i3) + " and attribute ID " + i3 + " was not found.");
     }

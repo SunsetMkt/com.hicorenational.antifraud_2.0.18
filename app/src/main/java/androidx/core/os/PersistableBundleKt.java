@@ -3,64 +3,63 @@ package androidx.core.os;
 import android.os.Build;
 import android.os.PersistableBundle;
 import androidx.annotation.RequiresApi;
-import p286h.C5226e1;
-import p286h.C5334i0;
-import p286h.InterfaceC5713y;
-import p286h.p309q2.p311t.C5544i0;
-import p286h.p323z2.C5736h0;
-import p324i.p336c.p337a.InterfaceC5816d;
+import i.e1;
+import i.i0;
+import i.y;
+import i.z2.h0;
+import j.c.a.d;
 
-/* compiled from: PersistableBundle.kt */
-@InterfaceC5713y(m23544bv = {1, 0, 2}, m23545d1 = {"\u0000\u001c\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0010\u0000\n\u0002\b\u0002\u001a=\u0010\u0000\u001a\u00020\u00012.\u0010\u0002\u001a\u0018\u0012\u0014\b\u0001\u0012\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u00040\u0003\"\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u0004H\u0007¢\u0006\u0002\u0010\u0007¨\u0006\b"}, m23546d2 = {"persistableBundleOf", "Landroid/os/PersistableBundle;", "pairs", "", "Lkotlin/Pair;", "", "", "([Lkotlin/Pair;)Landroid/os/PersistableBundle;", "core-ktx_release"}, m23547k = 2, m23548mv = {1, 1, 10})
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: PersistableBundle.kt */
+/* JADX INFO: loaded from: classes.dex */
+@y(bv = {1, 0, 2}, d1 = {"\u0000\u001c\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\u0010\u0000\n\u0002\b\u0002\u001a=\u0010\u0000\u001a\u00020\u00012.\u0010\u0002\u001a\u0018\u0012\u0014\b\u0001\u0012\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u00040\u0003\"\u0010\u0012\u0004\u0012\u00020\u0005\u0012\u0006\u0012\u0004\u0018\u00010\u00060\u0004H\u0007\u00a2\u0006\u0002\u0010\u0007\u00a8\u0006\b"}, d2 = {"persistableBundleOf", "Landroid/os/PersistableBundle;", "pairs", "", "Lkotlin/Pair;", "", "", "([Lkotlin/Pair;)Landroid/os/PersistableBundle;", "core-ktx_release"}, k = 2, mv = {1, 1, 10})
 public final class PersistableBundleKt {
     @RequiresApi(21)
-    @InterfaceC5816d
-    public static final PersistableBundle persistableBundleOf(@InterfaceC5816d C5334i0<String, ? extends Object>... c5334i0Arr) {
-        C5544i0.m22546f(c5334i0Arr, "pairs");
-        PersistableBundle persistableBundle = new PersistableBundle(c5334i0Arr.length);
-        for (C5334i0<String, ? extends Object> c5334i0 : c5334i0Arr) {
-            String component1 = c5334i0.component1();
-            Object component2 = c5334i0.component2();
-            if (component2 == null) {
-                persistableBundle.putString(component1, null);
-            } else if (component2 instanceof Boolean) {
+    @d
+    public static final PersistableBundle persistableBundleOf(@d i0<String, ? extends Object>... i0VarArr) {
+        i.q2.t.i0.f(i0VarArr, "pairs");
+        PersistableBundle persistableBundle = new PersistableBundle(i0VarArr.length);
+        for (i0<String, ? extends Object> i0Var : i0VarArr) {
+            String strComponent1 = i0Var.component1();
+            Object objComponent2 = i0Var.component2();
+            if (objComponent2 == null) {
+                persistableBundle.putString(strComponent1, null);
+            } else if (objComponent2 instanceof Boolean) {
                 if (Build.VERSION.SDK_INT < 22) {
-                    throw new IllegalArgumentException("Illegal value type boolean for key \"" + component1 + C5736h0.f20712a);
+                    throw new IllegalArgumentException("Illegal value type boolean for key \"" + strComponent1 + h0.a);
                 }
-                persistableBundle.putBoolean(component1, ((Boolean) component2).booleanValue());
-            } else if (component2 instanceof Double) {
-                persistableBundle.putDouble(component1, ((Number) component2).doubleValue());
-            } else if (component2 instanceof Integer) {
-                persistableBundle.putInt(component1, ((Number) component2).intValue());
-            } else if (component2 instanceof Long) {
-                persistableBundle.putLong(component1, ((Number) component2).longValue());
-            } else if (component2 instanceof String) {
-                persistableBundle.putString(component1, (String) component2);
-            } else if (component2 instanceof boolean[]) {
+                persistableBundle.putBoolean(strComponent1, ((Boolean) objComponent2).booleanValue());
+            } else if (objComponent2 instanceof Double) {
+                persistableBundle.putDouble(strComponent1, ((Number) objComponent2).doubleValue());
+            } else if (objComponent2 instanceof Integer) {
+                persistableBundle.putInt(strComponent1, ((Number) objComponent2).intValue());
+            } else if (objComponent2 instanceof Long) {
+                persistableBundle.putLong(strComponent1, ((Number) objComponent2).longValue());
+            } else if (objComponent2 instanceof String) {
+                persistableBundle.putString(strComponent1, (String) objComponent2);
+            } else if (objComponent2 instanceof boolean[]) {
                 if (Build.VERSION.SDK_INT < 22) {
-                    throw new IllegalArgumentException("Illegal value type boolean[] for key \"" + component1 + C5736h0.f20712a);
+                    throw new IllegalArgumentException("Illegal value type boolean[] for key \"" + strComponent1 + h0.a);
                 }
-                persistableBundle.putBooleanArray(component1, (boolean[]) component2);
-            } else if (component2 instanceof double[]) {
-                persistableBundle.putDoubleArray(component1, (double[]) component2);
-            } else if (component2 instanceof int[]) {
-                persistableBundle.putIntArray(component1, (int[]) component2);
-            } else if (component2 instanceof long[]) {
-                persistableBundle.putLongArray(component1, (long[]) component2);
+                persistableBundle.putBooleanArray(strComponent1, (boolean[]) objComponent2);
+            } else if (objComponent2 instanceof double[]) {
+                persistableBundle.putDoubleArray(strComponent1, (double[]) objComponent2);
+            } else if (objComponent2 instanceof int[]) {
+                persistableBundle.putIntArray(strComponent1, (int[]) objComponent2);
+            } else if (objComponent2 instanceof long[]) {
+                persistableBundle.putLongArray(strComponent1, (long[]) objComponent2);
             } else {
-                if (!(component2 instanceof Object[])) {
-                    throw new IllegalArgumentException("Illegal value type " + component2.getClass().getCanonicalName() + " for key \"" + component1 + C5736h0.f20712a);
+                if (!(objComponent2 instanceof Object[])) {
+                    throw new IllegalArgumentException("Illegal value type " + objComponent2.getClass().getCanonicalName() + " for key \"" + strComponent1 + h0.a);
                 }
-                Class<?> componentType = component2.getClass().getComponentType();
+                Class<?> componentType = objComponent2.getClass().getComponentType();
                 if (!String.class.isAssignableFrom(componentType)) {
-                    C5544i0.m22521a((Object) componentType, "componentType");
-                    throw new IllegalArgumentException("Illegal value array type " + componentType.getCanonicalName() + " for key \"" + component1 + C5736h0.f20712a);
+                    i.q2.t.i0.a((Object) componentType, "componentType");
+                    throw new IllegalArgumentException("Illegal value array type " + componentType.getCanonicalName() + " for key \"" + strComponent1 + h0.a);
                 }
-                if (component2 == null) {
-                    throw new C5226e1("null cannot be cast to non-null type kotlin.Array<kotlin.String>");
+                if (objComponent2 == null) {
+                    throw new e1("null cannot be cast to non-null type kotlin.Array<kotlin.String>");
                 }
-                persistableBundle.putStringArray(component1, (String[]) component2);
+                persistableBundle.putStringArray(strComponent1, (String[]) objComponent2);
             }
         }
         return persistableBundle;

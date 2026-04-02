@@ -6,7 +6,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AccessibilityServiceInfoCompat {
     public static final int CAPABILITY_CAN_FILTER_KEY_EVENTS = 8;
     public static final int CAPABILITY_CAN_REQUEST_ENHANCED_WEB_ACCESSIBILITY = 4;
@@ -33,20 +33,20 @@ public final class AccessibilityServiceInfoCompat {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         while (i2 > 0) {
-            int numberOfTrailingZeros = 1 << Integer.numberOfTrailingZeros(i2);
-            i2 &= ~numberOfTrailingZeros;
+            int iNumberOfTrailingZeros = 1 << Integer.numberOfTrailingZeros(i2);
+            i2 &= ~iNumberOfTrailingZeros;
             if (sb.length() > 1) {
                 sb.append(", ");
             }
-            if (numberOfTrailingZeros == 1) {
+            if (iNumberOfTrailingZeros == 1) {
                 sb.append("FEEDBACK_SPOKEN");
-            } else if (numberOfTrailingZeros == 2) {
+            } else if (iNumberOfTrailingZeros == 2) {
                 sb.append("FEEDBACK_HAPTIC");
-            } else if (numberOfTrailingZeros == 4) {
+            } else if (iNumberOfTrailingZeros == 4) {
                 sb.append("FEEDBACK_AUDIBLE");
-            } else if (numberOfTrailingZeros == 8) {
+            } else if (iNumberOfTrailingZeros == 8) {
                 sb.append("FEEDBACK_VISUAL");
-            } else if (numberOfTrailingZeros == 16) {
+            } else if (iNumberOfTrailingZeros == 16) {
                 sb.append("FEEDBACK_GENERIC");
             }
         }

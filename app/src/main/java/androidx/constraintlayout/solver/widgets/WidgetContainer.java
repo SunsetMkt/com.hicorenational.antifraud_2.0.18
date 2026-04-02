@@ -3,7 +3,7 @@ package androidx.constraintlayout.solver.widgets;
 import androidx.constraintlayout.solver.Cache;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WidgetContainer extends ConstraintWidget {
     public ArrayList<ConstraintWidget> mChildren;
 

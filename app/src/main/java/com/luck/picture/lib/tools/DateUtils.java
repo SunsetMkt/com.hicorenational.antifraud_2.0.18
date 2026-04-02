@@ -4,18 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DateUtils {
-
-    /* renamed from: sf */
-    private static SimpleDateFormat f8403sf = new SimpleDateFormat("yyyyMMdd_HHmmssSS");
+    private static SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd_HHmmssSS");
 
     public static String cdTime(long j2, long j3) {
         long j4 = j3 - j2;
         if (j4 > 1000) {
-            return (j4 / 1000) + "秒";
+            return (j4 / 1000) + "\u79d2";
         }
-        return j4 + "毫秒";
+        return j4 + "\u6beb\u79d2";
     }
 
     public static int dateDiffer(long j2) {
@@ -32,10 +30,10 @@ public class DateUtils {
     }
 
     public static String getCreateFileName(String str) {
-        return str + f8403sf.format(Long.valueOf(System.currentTimeMillis()));
+        return str + sf.format(Long.valueOf(System.currentTimeMillis()));
     }
 
     public static String getCreateFileName() {
-        return f8403sf.format(Long.valueOf(System.currentTimeMillis()));
+        return sf.format(Long.valueOf(System.currentTimeMillis()));
     }
 }

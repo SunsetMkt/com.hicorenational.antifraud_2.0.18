@@ -12,7 +12,7 @@ import cn.cloudwalk.libproject.util.SystemUtil;
 import cn.cloudwalk.util.LogUtils;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
     private static final int DEFAULT_EXPOSURE = 0;
     private static final int DEFAULT_EXPOSURE_STEP = 1;

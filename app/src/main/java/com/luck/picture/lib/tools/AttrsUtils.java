@@ -5,13 +5,13 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AttrsUtils {
     public static boolean getTypeValueBoolean(Context context, int i2) {
         try {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(new TypedValue().resourceId, new int[]{i2});
-            boolean z = obtainStyledAttributes.getBoolean(0, false);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new TypedValue().resourceId, new int[]{i2});
+            boolean z = typedArrayObtainStyledAttributes.getBoolean(0, false);
+            typedArrayObtainStyledAttributes.recycle();
             return z;
         } catch (Exception e2) {
             e2.printStackTrace();
@@ -21,9 +21,9 @@ public class AttrsUtils {
 
     public static int getTypeValueColor(Context context, int i2) {
         try {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(new TypedValue().resourceId, new int[]{i2});
-            int color = obtainStyledAttributes.getColor(0, 0);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new TypedValue().resourceId, new int[]{i2});
+            int color = typedArrayObtainStyledAttributes.getColor(0, 0);
+            typedArrayObtainStyledAttributes.recycle();
             return color;
         } catch (Exception e2) {
             e2.printStackTrace();
@@ -33,9 +33,9 @@ public class AttrsUtils {
 
     public static Drawable getTypeValueDrawable(Context context, int i2) {
         try {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(new TypedValue().resourceId, new int[]{i2});
-            Drawable drawable = obtainStyledAttributes.getDrawable(0);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new TypedValue().resourceId, new int[]{i2});
+            Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(0);
+            typedArrayObtainStyledAttributes.recycle();
             return drawable;
         } catch (Exception e2) {
             e2.printStackTrace();

@@ -1,7 +1,7 @@
 package com.taobao.accs.common;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class Constants {
     public static final String ACTION_ACCS_CONNECT_INFO = "com.taobao.ACCS_CONNECT_INFO";
     public static final String ACTION_COMMAND = "com.taobao.accs.intent.action.COMMAND";

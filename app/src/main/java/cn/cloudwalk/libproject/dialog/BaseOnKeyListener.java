@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseOnKeyListener implements DialogInterface.OnKeyListener {
     private Activity activity;
     private int onKeyType;

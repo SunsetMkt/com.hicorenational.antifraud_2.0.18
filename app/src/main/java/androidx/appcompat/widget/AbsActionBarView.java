@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.view.ViewPropertyAnimatorListener;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 abstract class AbsActionBarView extends ViewGroup {
     private static final int FADE_DURATION = 200;
     protected ActionMenuPresenter mActionMenuPresenter;
@@ -27,6 +27,17 @@ abstract class AbsActionBarView extends ViewGroup {
     protected final Context mPopupContext;
     protected final VisibilityAnimListener mVisAnimListener;
     protected ViewPropertyAnimatorCompat mVisibilityAnim;
+
+    /* JADX INFO: renamed from: androidx.appcompat.widget.AbsActionBarView$1 */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            AbsActionBarView.this.showOverflowMenu();
+        }
+    }
 
     protected class VisibilityAnimListener implements ViewPropertyAnimatorListener {
         private boolean mCanceled = false;
@@ -131,9 +142,9 @@ abstract class AbsActionBarView extends ViewGroup {
     @Override // android.view.View
     protected void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(null, C0120R.styleable.ActionBar, C0120R.attr.actionBarStyle, 0);
-        setContentHeight(obtainStyledAttributes.getLayoutDimension(C0120R.styleable.ActionBar_height, 0));
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(null, R.styleable.ActionBar, R.attr.actionBarStyle, 0);
+        setContentHeight(typedArrayObtainStyledAttributes.getLayoutDimension(R.styleable.ActionBar_height, 0));
+        typedArrayObtainStyledAttributes.recycle();
         ActionMenuPresenter actionMenuPresenter = this.mActionMenuPresenter;
         if (actionMenuPresenter != null) {
             actionMenuPresenter.onConfigurationChanged(configuration);
@@ -147,8 +158,8 @@ abstract class AbsActionBarView extends ViewGroup {
             this.mEatingHover = false;
         }
         if (!this.mEatingHover) {
-            boolean onHoverEvent = super.onHoverEvent(motionEvent);
-            if (actionMasked == 9 && !onHoverEvent) {
+            boolean zOnHoverEvent = super.onHoverEvent(motionEvent);
+            if (actionMasked == 9 && !zOnHoverEvent) {
                 this.mEatingHover = true;
             }
         }
@@ -165,8 +176,8 @@ abstract class AbsActionBarView extends ViewGroup {
             this.mEatingTouch = false;
         }
         if (!this.mEatingTouch) {
-            boolean onTouchEvent = super.onTouchEvent(motionEvent);
-            if (actionMasked == 0 && !onTouchEvent) {
+            boolean zOnTouchEvent = super.onTouchEvent(motionEvent);
+            if (actionMasked == 0 && !zOnTouchEvent) {
                 this.mEatingTouch = true;
             }
         }
@@ -190,6 +201,9 @@ abstract class AbsActionBarView extends ViewGroup {
 
     public void postShowOverflowMenu() {
         post(new Runnable() { // from class: androidx.appcompat.widget.AbsActionBarView.1
+            AnonymousClass1() {
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 AbsActionBarView.this.showOverflowMenu();
@@ -219,18 +233,18 @@ abstract class AbsActionBarView extends ViewGroup {
             viewPropertyAnimatorCompat.cancel();
         }
         if (i2 != 0) {
-            ViewPropertyAnimatorCompat alpha = ViewCompat.animate(this).alpha(0.0f);
-            alpha.setDuration(j2);
-            alpha.setListener(this.mVisAnimListener.withFinalVisibility(alpha, i2));
-            return alpha;
+            ViewPropertyAnimatorCompat viewPropertyAnimatorCompatAlpha = ViewCompat.animate(this).alpha(0.0f);
+            viewPropertyAnimatorCompatAlpha.setDuration(j2);
+            viewPropertyAnimatorCompatAlpha.setListener(this.mVisAnimListener.withFinalVisibility(viewPropertyAnimatorCompatAlpha, i2));
+            return viewPropertyAnimatorCompatAlpha;
         }
         if (getVisibility() != 0) {
             setAlpha(0.0f);
         }
-        ViewPropertyAnimatorCompat alpha2 = ViewCompat.animate(this).alpha(1.0f);
-        alpha2.setDuration(j2);
-        alpha2.setListener(this.mVisAnimListener.withFinalVisibility(alpha2, i2));
-        return alpha2;
+        ViewPropertyAnimatorCompat viewPropertyAnimatorCompatAlpha2 = ViewCompat.animate(this).alpha(1.0f);
+        viewPropertyAnimatorCompatAlpha2.setDuration(j2);
+        viewPropertyAnimatorCompatAlpha2.setListener(this.mVisAnimListener.withFinalVisibility(viewPropertyAnimatorCompatAlpha2, i2));
+        return viewPropertyAnimatorCompatAlpha2;
     }
 
     public boolean showOverflowMenu() {
@@ -246,11 +260,11 @@ abstract class AbsActionBarView extends ViewGroup {
     }
 
     AbsActionBarView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
-        super(context, attributeSet, i2);
         int i3;
+        super(context, attributeSet, i2);
         this.mVisAnimListener = new VisibilityAnimListener();
         TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(C0120R.attr.actionBarPopupTheme, typedValue, true) && (i3 = typedValue.resourceId) != 0) {
+        if (context.getTheme().resolveAttribute(R.attr.actionBarPopupTheme, typedValue, true) && (i3 = typedValue.resourceId) != 0) {
             this.mPopupContext = new ContextThemeWrapper(context, i3);
         } else {
             this.mPopupContext = context;

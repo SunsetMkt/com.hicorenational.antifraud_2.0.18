@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CheckTimeBean extends BaseBean {
     public static final int CHECK_TIME_CODE_1 = 1;
     public static final int CHECK_TIME_CODE_2 = 2;

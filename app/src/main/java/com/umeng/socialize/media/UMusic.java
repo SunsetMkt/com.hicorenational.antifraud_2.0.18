@@ -6,49 +6,49 @@ import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMusic extends BaseMediaObject {
 
-    /* renamed from: f */
-    private String f13681f;
+    /* JADX INFO: renamed from: f */
+    private String f8311f;
 
-    /* renamed from: g */
-    private String f13682g;
+    /* JADX INFO: renamed from: g */
+    private String f8312g;
 
-    /* renamed from: h */
-    private String f13683h;
+    /* JADX INFO: renamed from: h */
+    private String f8313h;
 
-    /* renamed from: i */
-    private String f13684i;
+    /* JADX INFO: renamed from: i */
+    private String f8314i;
 
-    /* renamed from: j */
-    private int f13685j;
+    /* JADX INFO: renamed from: j */
+    private int f8315j;
 
-    /* renamed from: k */
-    private String f13686k;
+    /* JADX INFO: renamed from: k */
+    private String f8316k;
 
     public UMusic(String str) {
         super(str);
     }
 
     public int getDuration() {
-        return this.f13685j;
+        return this.f8315j;
     }
 
     public String getH5Url() {
-        return this.f13683h;
+        return this.f8313h;
     }
 
     public String getHighBandDataUrl() {
-        return this.f13682g;
+        return this.f8312g;
     }
 
     public String getLowBandDataUrl() {
-        return this.f13681f;
+        return this.f8311f;
     }
 
     public String getLowBandUrl() {
-        return this.f13684i;
+        return this.f8314i;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
@@ -58,40 +58,40 @@ public class UMusic extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public UMImage getThumbImage() {
-        return this.f13636e;
+        return this.f8275e;
     }
 
     public String getmTargetUrl() {
-        return this.f13686k;
+        return this.f8316k;
     }
 
     public void setDuration(int i2) {
-        this.f13685j = i2;
+        this.f8315j = i2;
     }
 
     public void setH5Url(String str) {
-        this.f13683h = str;
+        this.f8313h = str;
     }
 
     public void setHighBandDataUrl(String str) {
-        this.f13682g = str;
+        this.f8312g = str;
     }
 
     public void setLowBandDataUrl(String str) {
-        this.f13681f = str;
+        this.f8311f = str;
     }
 
     public void setLowBandUrl(String str) {
-        this.f13684i = str;
+        this.f8314i = str;
     }
 
     public void setmTargetUrl(String str) {
-        this.f13686k = str;
+        this.f8316k = str;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f13636e;
+        UMImage uMImage = this.f8275e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -100,18 +100,18 @@ public class UMusic extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public String toString() {
-        return "UMusic [title=" + this.f13633b + "media_url=" + this.f13632a + ", qzone_title=" + this.f13633b + ", qzone_thumb=]";
+        return "UMusic [title=" + this.f8272b + "media_url=" + this.a + ", qzone_title=" + this.f8272b + ", qzone_thumb=]";
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public final Map<String, Object> toUrlExtraParams() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f13633b);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.a);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f8272b);
         }
-        return hashMap;
+        return map;
     }
 
     protected UMusic(Parcel parcel) {

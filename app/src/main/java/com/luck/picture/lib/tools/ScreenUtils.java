@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ScreenUtils {
     public static int dip2px(Context context, float f2) {
         return (int) ((f2 * context.getApplicationContext().getResources().getDisplayMetrics().density) + 0.5f);
@@ -23,14 +23,14 @@ public class ScreenUtils {
     }
 
     public static int getStatusBarHeight(Context context) {
-        int i2;
+        int dimensionPixelSize;
         try {
             Class<?> cls = Class.forName("com.android.internal.R$dimen");
-            i2 = context.getApplicationContext().getResources().getDimensionPixelSize(((Integer) cls.getField("status_bar_height").get(cls.newInstance())).intValue());
+            dimensionPixelSize = context.getApplicationContext().getResources().getDimensionPixelSize(((Integer) cls.getField("status_bar_height").get(cls.newInstance())).intValue());
         } catch (Exception e2) {
             e2.printStackTrace();
-            i2 = 0;
+            dimensionPixelSize = 0;
         }
-        return i2 == 0 ? dip2px(context, 25.0f) : i2;
+        return dimensionPixelSize == 0 ? dip2px(context, 25.0f) : dimensionPixelSize;
     }
 }

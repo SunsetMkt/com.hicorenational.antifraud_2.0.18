@@ -2,7 +2,7 @@ package bean;
 
 import android.graphics.Bitmap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LocalVideoBean {
     public static final int TYPEMP3 = 1;
     public static final int TYPEMP4 = 2;

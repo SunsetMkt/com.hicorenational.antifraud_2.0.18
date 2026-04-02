@@ -1,16 +1,17 @@
 package androidx.recyclerview.widget;
 
+import android.annotation.SuppressLint;
 import androidx.annotation.Nullable;
 import androidx.core.os.TraceCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import i.q2.t.m0;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
-import p286h.p309q2.p311t.C5556m0;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class GapWorker implements Runnable {
     static final ThreadLocal<GapWorker> sGapWorker = new ThreadLocal<>();
     static Comparator<Task> sTaskComparator = new Comparator<Task>() { // from class: androidx.recyclerview.widget.GapWorker.1
@@ -39,6 +40,7 @@ final class GapWorker implements Runnable {
     ArrayList<RecyclerView> mRecyclerViews = new ArrayList<>();
     private ArrayList<Task> mTasks = new ArrayList<>();
 
+    @SuppressLint({"VisibleForTests"})
     static class LayoutPrefetchRegistryImpl implements RecyclerView.LayoutManager.LayoutPrefetchRegistry {
         int mCount;
         int[] mPrefetchArray;
@@ -161,7 +163,7 @@ final class GapWorker implements Runnable {
             RecyclerView recyclerView2 = this.mRecyclerViews.get(i5);
             if (recyclerView2.getWindowVisibility() == 0) {
                 LayoutPrefetchRegistryImpl layoutPrefetchRegistryImpl = recyclerView2.mPrefetchRegistry;
-                int abs = Math.abs(layoutPrefetchRegistryImpl.mPrefetchDx) + Math.abs(layoutPrefetchRegistryImpl.mPrefetchDy);
+                int iAbs = Math.abs(layoutPrefetchRegistryImpl.mPrefetchDx) + Math.abs(layoutPrefetchRegistryImpl.mPrefetchDy);
                 int i6 = i4;
                 for (int i7 = 0; i7 < layoutPrefetchRegistryImpl.mCount * 2; i7 += 2) {
                     if (i6 >= this.mTasks.size()) {
@@ -171,8 +173,8 @@ final class GapWorker implements Runnable {
                         task = this.mTasks.get(i6);
                     }
                     int i8 = layoutPrefetchRegistryImpl.mPrefetchArray[i7 + 1];
-                    task.immediate = i8 <= abs;
-                    task.viewVelocity = abs;
+                    task.immediate = i8 <= iAbs;
+                    task.viewVelocity = iAbs;
                     task.distanceToItem = i8;
                     task.view = recyclerView2;
                     task.position = layoutPrefetchRegistryImpl.mPrefetchArray[i7];
@@ -185,11 +187,11 @@ final class GapWorker implements Runnable {
     }
 
     private void flushTaskWithDeadline(Task task, long j2) {
-        RecyclerView.ViewHolder prefetchPositionWithDeadline = prefetchPositionWithDeadline(task.view, task.position, task.immediate ? C5556m0.f20396b : j2);
-        if (prefetchPositionWithDeadline == null || prefetchPositionWithDeadline.mNestedRecyclerView == null || !prefetchPositionWithDeadline.isBound() || prefetchPositionWithDeadline.isInvalid()) {
+        RecyclerView.ViewHolder viewHolderPrefetchPositionWithDeadline = prefetchPositionWithDeadline(task.view, task.position, task.immediate ? m0.f12222b : j2);
+        if (viewHolderPrefetchPositionWithDeadline == null || viewHolderPrefetchPositionWithDeadline.mNestedRecyclerView == null || !viewHolderPrefetchPositionWithDeadline.isBound() || viewHolderPrefetchPositionWithDeadline.isInvalid()) {
             return;
         }
-        prefetchInnerRecyclerViewWithDeadline(prefetchPositionWithDeadline.mNestedRecyclerView.get(), j2);
+        prefetchInnerRecyclerViewWithDeadline(viewHolderPrefetchPositionWithDeadline.mNestedRecyclerView.get(), j2);
     }
 
     private void flushTasksWithDeadline(long j2) {
@@ -243,15 +245,15 @@ final class GapWorker implements Runnable {
         RecyclerView.Recycler recycler = recyclerView.mRecycler;
         try {
             recyclerView.onEnterLayoutOrScroll();
-            RecyclerView.ViewHolder tryGetViewHolderForPositionByDeadline = recycler.tryGetViewHolderForPositionByDeadline(i2, false, j2);
-            if (tryGetViewHolderForPositionByDeadline != null) {
-                if (!tryGetViewHolderForPositionByDeadline.isBound() || tryGetViewHolderForPositionByDeadline.isInvalid()) {
-                    recycler.addViewHolderToRecycledViewPool(tryGetViewHolderForPositionByDeadline, false);
+            RecyclerView.ViewHolder viewHolderTryGetViewHolderForPositionByDeadline = recycler.tryGetViewHolderForPositionByDeadline(i2, false, j2);
+            if (viewHolderTryGetViewHolderForPositionByDeadline != null) {
+                if (!viewHolderTryGetViewHolderForPositionByDeadline.isBound() || viewHolderTryGetViewHolderForPositionByDeadline.isInvalid()) {
+                    recycler.addViewHolderToRecycledViewPool(viewHolderTryGetViewHolderForPositionByDeadline, false);
                 } else {
-                    recycler.recycleView(tryGetViewHolderForPositionByDeadline.itemView);
+                    recycler.recycleView(viewHolderTryGetViewHolderForPositionByDeadline.itemView);
                 }
             }
-            return tryGetViewHolderForPositionByDeadline;
+            return viewHolderTryGetViewHolderForPositionByDeadline;
         } finally {
             recyclerView.onExitLayoutOrScroll(false);
         }
@@ -284,15 +286,15 @@ final class GapWorker implements Runnable {
             TraceCompat.beginSection("RV Prefetch");
             if (!this.mRecyclerViews.isEmpty()) {
                 int size = this.mRecyclerViews.size();
-                long j2 = 0;
+                long jMax = 0;
                 for (int i2 = 0; i2 < size; i2++) {
                     RecyclerView recyclerView = this.mRecyclerViews.get(i2);
                     if (recyclerView.getWindowVisibility() == 0) {
-                        j2 = Math.max(recyclerView.getDrawingTime(), j2);
+                        jMax = Math.max(recyclerView.getDrawingTime(), jMax);
                     }
                 }
-                if (j2 != 0) {
-                    prefetch(TimeUnit.MILLISECONDS.toNanos(j2) + this.mFrameIntervalNs);
+                if (jMax != 0) {
+                    prefetch(TimeUnit.MILLISECONDS.toNanos(jMax) + this.mFrameIntervalNs);
                 }
             }
         } finally {

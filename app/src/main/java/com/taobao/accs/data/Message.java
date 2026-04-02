@@ -9,14 +9,13 @@ import com.taobao.accs.ACCSManager;
 import com.taobao.accs.base.TaoBaseService;
 import com.taobao.accs.client.GlobalClientInfo;
 import com.taobao.accs.common.Constants;
-import com.taobao.accs.net.AbstractC3001a;
-import com.taobao.accs.p199ut.monitor.NetPerformanceMonitor;
+import com.taobao.accs.ut.monitor.NetPerformanceMonitor;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.C3042j;
-import com.taobao.accs.utl.C3047o;
-import com.taobao.accs.utl.C3048p;
-import com.taobao.accs.utl.C3050r;
 import com.taobao.accs.utl.UtilityImpl;
+import com.taobao.accs.utl.o;
+import com.taobao.accs.utl.p;
+import com.taobao.accs.utl.r;
+import i.q2.t.n;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -28,11 +27,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.zip.GZIPOutputStream;
 import org.json.JSONException;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
-import p286h.p309q2.p311t.C5558n;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class Message implements Serializable {
     public static int CONTROL_MAX_RETRY_TIMES = 5;
     public static final int EXT_HEADER_VALUE_MAX_LEN = 1023;
@@ -50,167 +47,120 @@ public class Message implements Serializable {
     public static final String KEY_UNBINDSERVICE = "ctrl_unbindservice";
     public static final String KEY_UNBINDUSER = "ctrl_unbinduser";
     public static final int MAX_RETRY_TIMES = 3;
-
-    /* renamed from: a */
-    static long f9417a = 1;
-
-    /* renamed from: D */
-    byte[] f9421D;
-
-    /* renamed from: E */
-    int f9422E;
-
-    /* renamed from: F */
-    long f9423F;
-
-    /* renamed from: G */
-    transient NetPerformanceMonitor f9424G;
-
-    /* renamed from: I */
-    C2982Id f9426I;
+    static long a = 1;
+    byte[] D;
+    int E;
+    long F;
+    transient NetPerformanceMonitor G;
+    Id I;
     public String cunstomDataId;
 
-    /* renamed from: d */
-    short f9429d;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    short f5744d;
     public String dataId;
 
-    /* renamed from: e */
-    short f9430e;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    short f5745e;
 
-    /* renamed from: f */
-    short f9431f;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    short f5746f;
 
-    /* renamed from: g */
-    byte f9432g;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    byte f5747g;
 
-    /* renamed from: h */
-    byte f9433h;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    byte f5748h;
     public URL host;
 
-    /* renamed from: i */
-    String f9434i;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    String f5749i;
 
-    /* renamed from: j */
-    String f9435j;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    String f5750j;
 
-    /* renamed from: l */
-    Map<Integer, String> f9437l;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    Map<Integer, String> f5752l;
     public long startSendTime;
     public boolean isAck = false;
     public boolean force = false;
     public boolean isCancel = false;
 
-    /* renamed from: b */
-    byte f9427b = 0;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    byte f5742b = 0;
 
-    /* renamed from: c */
-    byte f9428c = 0;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    byte f5743c = 0;
 
-    /* renamed from: k */
-    int f9436k = -1;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    int f5751k = -1;
 
-    /* renamed from: m */
-    String f9438m = null;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    String f5753m = null;
     public Integer command = null;
 
-    /* renamed from: n */
-    Integer f9439n = 0;
-
-    /* renamed from: o */
-    String f9440o = null;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    Integer f5754n = 0;
+    String o = null;
     public String appSign = null;
-
-    /* renamed from: p */
-    Integer f9441p = null;
-
-    /* renamed from: q */
-    String f9442q = null;
-
-    /* renamed from: r */
-    String f9443r = null;
-
-    /* renamed from: s */
-    String f9444s = null;
-
-    /* renamed from: t */
-    String f9445t = null;
-
-    /* renamed from: u */
-    String f9446u = null;
-
-    /* renamed from: v */
-    Integer f9447v = null;
-
-    /* renamed from: w */
-    String f9448w = null;
-
-    /* renamed from: x */
-    String f9449x = null;
+    Integer p = null;
+    String q = null;
+    String r = null;
+    String s = null;
+    String t = null;
+    String u = null;
+    Integer v = null;
+    String w = null;
+    String x = null;
     public String userinfo = null;
     public String serviceId = null;
-
-    /* renamed from: y */
-    String f9450y = null;
-
-    /* renamed from: z */
-    String f9451z = null;
-
-    /* renamed from: A */
-    String f9418A = null;
-
-    /* renamed from: B */
-    String f9419B = null;
-
-    /* renamed from: C */
-    String f9420C = null;
+    String y = null;
+    String z = null;
+    String A = null;
+    String B = null;
+    String C = null;
     public long delyTime = 0;
     public int retryTimes = 0;
-    public int timeout = AbstractC3001a.ACCS_RECEIVE_TIMEOUT;
+    public int timeout = com.taobao.accs.net.a.ACCS_RECEIVE_TIMEOUT;
     public String bizId = null;
+    String H = null;
 
-    /* renamed from: H */
-    String f9425H = null;
+    /* JADX INFO: compiled from: Taobao */
+    public static class Id implements Serializable {
+        private int a;
 
-    /* compiled from: Taobao */
-    /* renamed from: com.taobao.accs.data.Message$Id */
-    public static class C2982Id implements Serializable {
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private String f5755b;
 
-        /* renamed from: a */
-        private int f9452a;
-
-        /* renamed from: b */
-        private String f9453b;
-
-        public C2982Id(int i2, String str) {
-            this.f9452a = i2;
-            this.f9453b = str;
+        public Id(int i2, String str) {
+            this.a = i2;
+            this.f5755b = str;
         }
 
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || C2982Id.class != obj.getClass()) {
+            if (obj == null || Id.class != obj.getClass()) {
                 return false;
             }
-            C2982Id c2982Id = (C2982Id) obj;
-            return this.f9452a == c2982Id.getId() || this.f9453b.equals(c2982Id.getDataId());
+            Id id = (Id) obj;
+            return this.a == id.getId() || this.f5755b.equals(id.getDataId());
         }
 
         public String getDataId() {
-            return this.f9453b;
+            return this.f5755b;
         }
 
         public int getId() {
-            return this.f9452a;
+            return this.a;
         }
 
         public int hashCode() {
-            return this.f9453b.hashCode();
+            return this.f5755b.hashCode();
         }
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class MsgResType implements Serializable {
         public static final int INVALID = -1;
         public static final int NEED_ACK = 1;
@@ -230,7 +180,7 @@ public class Message implements Serializable {
         }
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class MsgType implements Serializable {
         public static final int CONTROL = 0;
         public static final int DATA = 1;
@@ -260,7 +210,7 @@ public class Message implements Serializable {
         }
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public enum ReqType {
         DATA,
         ACK,
@@ -275,16 +225,16 @@ public class Message implements Serializable {
     private Message() {
         synchronized (Message.class) {
             this.startSendTime = System.currentTimeMillis();
-            this.dataId = this.startSendTime + "." + f9417a;
-            long j2 = f9417a;
-            f9417a = 1 + j2;
-            this.f9426I = new C2982Id((int) j2, this.dataId);
+            this.dataId = this.startSendTime + "." + a;
+            long j2 = a;
+            a = 1 + j2;
+            this.I = new Id((int) j2, this.dataId);
         }
     }
 
     public static Message BuildPing(boolean z, int i2) {
         Message message = new Message();
-        message.f9436k = 2;
+        message.f5751k = 2;
         message.command = 201;
         message.force = z;
         message.delyTime = i2;
@@ -293,26 +243,26 @@ public class Message implements Serializable {
 
     public static Message buildBackground(String str) {
         Message message = new Message();
-        message.m8989a(1, ReqType.DATA, 0);
+        message.a(1, ReqType.DATA, 0);
         message.command = 100;
-        message.f9434i = Constants.TARGET_BACK;
-        m8991a(str, message);
+        message.f5749i = Constants.TARGET_BACK;
+        a(str, message);
         return message;
     }
 
     @Deprecated
-    public static Message buildBindApp(AbstractC3001a abstractC3001a, Context context, Intent intent) {
-        return buildBindApp(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, context, intent);
+    public static Message buildBindApp(com.taobao.accs.net.a aVar, Context context, Intent intent) {
+        return buildBindApp(aVar.b((String) null), aVar.f5810m, context, intent);
     }
 
     @Deprecated
-    public static Message buildBindService(AbstractC3001a abstractC3001a, Context context, Intent intent) {
-        return buildBindService(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, intent);
+    public static Message buildBindService(com.taobao.accs.net.a aVar, Context context, Intent intent) {
+        return buildBindService(aVar.b((String) null), aVar.f5810m, intent);
     }
 
     @Deprecated
-    public static Message buildBindUser(AbstractC3001a abstractC3001a, Context context, Intent intent) {
-        return buildBindUser(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, intent);
+    public static Message buildBindUser(com.taobao.accs.net.a aVar, Context context, Intent intent) {
+        return buildBindUser(aVar.b((String) null), aVar.f5810m, intent);
     }
 
     public static Message buildErrorReportMessage(String str, String str2, String str3, int i2) {
@@ -322,119 +272,116 @@ public class Message implements Serializable {
         } catch (MalformedURLException e2) {
             e2.printStackTrace();
         }
-        message.f9434i = Constants.TARGET_SERVICE_ST;
-        message.m8989a(1, ReqType.DATA, 0);
+        message.f5749i = Constants.TARGET_SERVICE_ST;
+        message.a(1, ReqType.DATA, 0);
         message.command = 100;
-        message.f9421D = (0 + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + i2 + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + str + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + C3042j.m9247b(GlobalClientInfo.getContext()) + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + str2).getBytes();
+        message.D = (0 + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + i2 + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + str + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + com.taobao.accs.utl.j.b(GlobalClientInfo.getContext()) + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + str2).getBytes();
         return message;
     }
 
     public static Message buildForeground(String str) {
         Message message = new Message();
-        message.m8989a(1, ReqType.DATA, 0);
+        message.a(1, ReqType.DATA, 0);
         message.command = 100;
-        message.f9434i = Constants.TARGET_FORE;
-        m8991a(str, message);
+        message.f5749i = Constants.TARGET_FORE;
+        a(str, message);
         return message;
     }
 
     public static Message buildHandshake(String str) {
         Message message = new Message();
-        message.m8989a(3, ReqType.DATA, 1);
-        message.f9438m = str;
-        message.f9434i = Constants.TARGET_CONTROL;
+        message.a(3, ReqType.DATA, 1);
+        message.f5753m = str;
+        message.f5749i = Constants.TARGET_CONTROL;
         message.command = 200;
         return message;
     }
 
     public static Message buildParameterError(String str, int i2) {
         Message message = new Message();
-        message.m8989a(1, ReqType.ACK, 0);
+        message.a(1, ReqType.ACK, 0);
         message.command = Integer.valueOf(i2);
-        message.f9438m = str;
+        message.f5753m = str;
         return message;
     }
 
     @Deprecated
-    public static Message buildPushAck(AbstractC3001a abstractC3001a, String str, String str2, String str3, boolean z, short s, String str4, Map<Integer, String> map) {
-        return buildPushAck(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, str, str2, str3, z, s, str4, map);
+    public static Message buildPushAck(com.taobao.accs.net.a aVar, String str, String str2, String str3, boolean z, short s, String str4, Map<Integer, String> map) {
+        return buildPushAck(aVar.b((String) null), aVar.f5810m, str, str2, str3, z, s, str4, map);
     }
 
     @Deprecated
-    public static Message buildRequest(AbstractC3001a abstractC3001a, Context context, String str, String str2, String str3, ACCSManager.AccsRequest accsRequest, boolean z) {
-        return buildRequest(context, abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, abstractC3001a.f9529i.getStoreId(), str, str2, accsRequest, z);
+    public static Message buildRequest(com.taobao.accs.net.a aVar, Context context, String str, String str2, String str3, ACCSManager.AccsRequest accsRequest, boolean z) {
+        return buildRequest(context, aVar.b((String) null), aVar.f5810m, aVar.f5806i.getStoreId(), str, str2, accsRequest, z);
     }
 
     @Deprecated
-    public static Message buildSendData(AbstractC3001a abstractC3001a, Context context, String str, String str2, ACCSManager.AccsRequest accsRequest) {
-        return buildSendData(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, abstractC3001a.f9529i.getStoreId(), context, str, accsRequest, true);
+    public static Message buildSendData(com.taobao.accs.net.a aVar, Context context, String str, String str2, ACCSManager.AccsRequest accsRequest) {
+        return buildSendData(aVar.b((String) null), aVar.f5810m, aVar.f5806i.getStoreId(), context, str, accsRequest, true);
     }
 
     @Deprecated
-    public static Message buildUnbindApp(AbstractC3001a abstractC3001a, Context context, Intent intent) {
-        return buildUnbindApp(abstractC3001a.mo9091b((String) null), intent);
+    public static Message buildUnbindApp(com.taobao.accs.net.a aVar, Context context, Intent intent) {
+        return buildUnbindApp(aVar.b((String) null), intent);
     }
 
     @Deprecated
-    public static Message buildUnbindService(AbstractC3001a abstractC3001a, Context context, Intent intent) {
-        return buildUnbindService(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, intent);
+    public static Message buildUnbindService(com.taobao.accs.net.a aVar, Context context, Intent intent) {
+        return buildUnbindService(aVar.b((String) null), aVar.f5810m, intent);
     }
 
     @Deprecated
-    public static Message buildUnbindUser(AbstractC3001a abstractC3001a, Context context, Intent intent) {
-        return buildUnbindUser(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, intent);
+    public static Message buildUnbindUser(com.taobao.accs.net.a aVar, Context context, Intent intent) {
+        return buildUnbindUser(aVar.b((String) null), aVar.f5810m, intent);
     }
 
-    /* renamed from: c */
-    private String m8994c() {
-        return "Msg" + AbstractC1191a.f2606s1 + this.f9425H;
+    private String c() {
+        return "Msg" + d.c.a.b.a.a.s1 + this.H;
     }
 
-    /* renamed from: a */
-    short m8995a(Map<Integer, String> map) {
-        short s = 0;
+    short a(Map<Integer, String> map) {
+        short length = 0;
         if (map != null) {
             try {
                 Iterator<Integer> it = map.keySet().iterator();
                 while (it.hasNext()) {
                     String str = map.get(Integer.valueOf(it.next().intValue()));
                     if (!TextUtils.isEmpty(str)) {
-                        s = (short) (s + ((short) (str.getBytes("utf-8").length & EXT_HEADER_VALUE_MAX_LEN)) + 2);
+                        length = (short) (length + ((short) (str.getBytes("utf-8").length & 1023)) + 2);
                     }
                 }
             } catch (Exception e2) {
                 e2.toString();
             }
         }
-        return s;
+        return length;
     }
 
-    /* renamed from: b */
-    void m8997b() throws JSONException, UnsupportedEncodingException {
+    void b() throws JSONException, UnsupportedEncodingException {
         Integer num = this.command;
         if (num == null || num.intValue() == 100 || this.command.intValue() == 102) {
             return;
         }
-        this.f9421D = new C3048p.a().m9260a("command", this.command.intValue() == 100 ? null : this.command).m9262a("appKey", this.f9440o).m9260a(Constants.KEY_OS_TYPE, this.f9441p).m9262a("sign", this.appSign).m9260a("sdkVersion", this.f9447v).m9262a("appVersion", this.f9446u).m9262a(Constants.KEY_TTID, this.f9448w).m9262a(Constants.KEY_MODEL, this.f9450y).m9262a("brand", this.f9451z).m9262a("imei", this.f9418A).m9262a(Constants.KEY_IMSI, this.f9419B).m9262a(Constants.KYE_MAC_ADDRESS, this.f9449x).m9262a("os", this.f9442q).m9262a(Constants.KEY_EXTS, this.f9445t).m9263a().toString().getBytes("utf-8");
+        this.D = new p.a().a("command", this.command.intValue() == 100 ? null : this.command).a("appKey", this.o).a(Constants.KEY_OS_TYPE, this.p).a("sign", this.appSign).a("sdkVersion", this.v).a("appVersion", this.u).a(Constants.KEY_TTID, this.w).a(Constants.KEY_MODEL, this.y).a("brand", this.z).a("imei", this.A).a(Constants.KEY_IMSI, this.B).a(Constants.KYE_MAC_ADDRESS, this.x).a("os", this.q).a(Constants.KEY_EXTS, this.t).a().toString().getBytes("utf-8");
     }
 
     public byte[] build(Context context, int i2) {
         byte[] bytes;
         try {
-            m8997b();
+            b();
         } catch (UnsupportedEncodingException e2) {
-            ALog.m9181e(m8994c(), "build2", e2, new Object[0]);
+            ALog.e(c(), "build2", e2, new Object[0]);
         } catch (JSONException e3) {
-            ALog.m9181e(m8994c(), "build1", e3, new Object[0]);
+            ALog.e(c(), "build1", e3, new Object[0]);
         }
-        byte[] bArr = this.f9421D;
+        byte[] bArr = this.D;
         String str = bArr != null ? new String(bArr) : "";
-        m8996a();
+        a();
         if (!this.isAck) {
             StringBuilder sb = new StringBuilder();
-            sb.append(UtilityImpl.m9228j(context));
+            sb.append(UtilityImpl.j(context));
             sb.append(HiAnalyticsConstant.REPORT_VAL_SEPARATOR);
-            sb.append(this.f9438m);
+            sb.append(this.f5753m);
             sb.append(HiAnalyticsConstant.REPORT_VAL_SEPARATOR);
             String str2 = this.serviceId;
             if (str2 == null) {
@@ -447,113 +394,113 @@ public class Message implements Serializable {
                 str3 = "";
             }
             sb.append(str3);
-            this.f9435j = sb.toString();
+            this.f5750j = sb.toString();
         }
         try {
             bytes = (this.dataId + "").getBytes("utf-8");
-            this.f9433h = (byte) this.f9435j.getBytes("utf-8").length;
-            this.f9432g = (byte) this.f9434i.getBytes("utf-8").length;
+            this.f5748h = (byte) this.f5750j.getBytes("utf-8").length;
+            this.f5747g = (byte) this.f5749i.getBytes("utf-8").length;
         } catch (Exception e4) {
             e4.printStackTrace();
-            ALog.m9181e(m8994c(), "build3", e4, new Object[0]);
+            ALog.e(c(), "build3", e4, new Object[0]);
             bytes = (this.dataId + "").getBytes();
-            this.f9433h = (byte) this.f9435j.getBytes().length;
-            this.f9432g = (byte) this.f9434i.getBytes().length;
+            this.f5748h = (byte) this.f5750j.getBytes().length;
+            this.f5747g = (byte) this.f5749i.getBytes().length;
         }
-        short m8995a = m8995a(this.f9437l);
-        int length = this.f9432g + 3 + 1 + this.f9433h + 1 + bytes.length;
-        byte[] bArr2 = this.f9421D;
-        this.f9430e = (short) (length + (bArr2 == null ? 0 : bArr2.length) + m8995a + 2);
-        this.f9429d = (short) (this.f9430e + 2);
-        C3050r c3050r = new C3050r(this.f9429d + 2 + 4);
+        short sA = a(this.f5752l);
+        int length = this.f5747g + 3 + 1 + this.f5748h + 1 + bytes.length;
+        byte[] bArr2 = this.D;
+        this.f5745e = (short) (length + (bArr2 == null ? 0 : bArr2.length) + sA + 2);
+        this.f5744d = (short) (this.f5745e + 2);
+        r rVar = new r(this.f5744d + 2 + 4);
         if (ALog.isPrintLog(ALog.Level.D)) {
-            ALog.m9180d(m8994c(), "Build Message", Constants.KEY_DATA_ID, new String(bytes));
+            ALog.d(c(), "Build Message", Constants.KEY_DATA_ID, new String(bytes));
         }
         try {
-            c3050r.m9267a((byte) (this.f9427b | 32));
+            rVar.a((byte) (this.f5742b | 32));
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tversion:2 compress:" + ((int) this.f9427b), new Object[0]);
+                ALog.d(c(), "\tversion:2 compress:" + ((int) this.f5742b), new Object[0]);
             }
             if (i2 == 0) {
-                c3050r.m9267a(C5558n.f20401a);
+                rVar.a(n.a);
                 if (ALog.isPrintLog(ALog.Level.D)) {
-                    ALog.m9180d(m8994c(), "\tflag: 0x80", new Object[0]);
+                    ALog.d(c(), "\tflag: 0x80", new Object[0]);
                 }
             } else {
-                c3050r.m9267a((byte) 64);
+                rVar.a((byte) 64);
                 if (ALog.isPrintLog(ALog.Level.D)) {
-                    ALog.m9180d(m8994c(), "\tflag: 0x40", new Object[0]);
+                    ALog.d(c(), "\tflag: 0x40", new Object[0]);
                 }
             }
-            c3050r.m9268a(this.f9429d);
+            rVar.a(this.f5744d);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\ttotalLength:" + ((int) this.f9429d), new Object[0]);
+                ALog.d(c(), "\ttotalLength:" + ((int) this.f5744d), new Object[0]);
             }
-            c3050r.m9268a(this.f9430e);
+            rVar.a(this.f5745e);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tdataLength:" + ((int) this.f9430e), new Object[0]);
+                ALog.d(c(), "\tdataLength:" + ((int) this.f5745e), new Object[0]);
             }
-            c3050r.m9268a(this.f9431f);
+            rVar.a(this.f5746f);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tflags:" + Integer.toHexString(this.f9431f), new Object[0]);
+                ALog.d(c(), "\tflags:" + Integer.toHexString(this.f5746f), new Object[0]);
             }
-            c3050r.m9267a(this.f9432g);
+            rVar.a(this.f5747g);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\ttargetLength:" + ((int) this.f9432g), new Object[0]);
+                ALog.d(c(), "\ttargetLength:" + ((int) this.f5747g), new Object[0]);
             }
-            c3050r.write(this.f9434i.getBytes("utf-8"));
+            rVar.write(this.f5749i.getBytes("utf-8"));
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\ttarget:" + this.f9434i, new Object[0]);
+                ALog.d(c(), "\ttarget:" + this.f5749i, new Object[0]);
             }
-            c3050r.m9267a(this.f9433h);
+            rVar.a(this.f5748h);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tsourceLength:" + ((int) this.f9433h), new Object[0]);
+                ALog.d(c(), "\tsourceLength:" + ((int) this.f5748h), new Object[0]);
             }
-            c3050r.write(this.f9435j.getBytes("utf-8"));
+            rVar.write(this.f5750j.getBytes("utf-8"));
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tsource:" + this.f9435j, new Object[0]);
+                ALog.d(c(), "\tsource:" + this.f5750j, new Object[0]);
             }
-            c3050r.m9267a((byte) bytes.length);
+            rVar.a((byte) bytes.length);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tdataIdLength:" + bytes.length, new Object[0]);
+                ALog.d(c(), "\tdataIdLength:" + bytes.length, new Object[0]);
             }
-            c3050r.write(bytes);
+            rVar.write(bytes);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\tdataId:" + new String(bytes), new Object[0]);
+                ALog.d(c(), "\tdataId:" + new String(bytes), new Object[0]);
             }
-            c3050r.m9268a(m8995a);
+            rVar.a(sA);
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\textHeader len:" + ((int) m8995a), new Object[0]);
+                ALog.d(c(), "\textHeader len:" + ((int) sA), new Object[0]);
             }
-            if (this.f9437l != null) {
-                Iterator<Integer> it = this.f9437l.keySet().iterator();
+            if (this.f5752l != null) {
+                Iterator<Integer> it = this.f5752l.keySet().iterator();
                 while (it.hasNext()) {
-                    int intValue = it.next().intValue();
-                    String str4 = this.f9437l.get(Integer.valueOf(intValue));
+                    int iIntValue = it.next().intValue();
+                    String str4 = this.f5752l.get(Integer.valueOf(iIntValue));
                     if (!TextUtils.isEmpty(str4)) {
-                        c3050r.m9268a((short) ((((short) intValue) << 10) | ((short) (str4.getBytes("utf-8").length & EXT_HEADER_VALUE_MAX_LEN))));
-                        c3050r.write(str4.getBytes("utf-8"));
+                        rVar.a((short) ((((short) iIntValue) << 10) | ((short) (str4.getBytes("utf-8").length & 1023))));
+                        rVar.write(str4.getBytes("utf-8"));
                         if (ALog.isPrintLog(ALog.Level.D)) {
-                            ALog.m9180d(m8994c(), "\textHeader key:" + intValue + " value:" + str4, new Object[0]);
+                            ALog.d(c(), "\textHeader key:" + iIntValue + " value:" + str4, new Object[0]);
                         }
                     }
                 }
             }
-            if (this.f9421D != null) {
-                c3050r.write(this.f9421D);
+            if (this.D != null) {
+                rVar.write(this.D);
             }
             if (ALog.isPrintLog(ALog.Level.D)) {
-                ALog.m9180d(m8994c(), "\toriData:" + str, new Object[0]);
+                ALog.d(c(), "\toriData:" + str, new Object[0]);
             }
-            c3050r.flush();
+            rVar.flush();
         } catch (IOException e5) {
-            ALog.m9181e(m8994c(), "build4", e5, new Object[0]);
+            ALog.e(c(), "build4", e5, new Object[0]);
         }
-        byte[] byteArray = c3050r.toByteArray();
+        byte[] byteArray = rVar.toByteArray();
         try {
-            c3050r.close();
+            rVar.close();
         } catch (IOException e6) {
-            ALog.m9181e(m8994c(), "build5", e6, new Object[0]);
+            ALog.e(c(), "build5", e6, new Object[0]);
         }
         return byteArray;
     }
@@ -566,20 +513,20 @@ public class Message implements Serializable {
         return this.delyTime;
     }
 
-    public C2982Id getMsgId() {
-        return this.f9426I;
+    public Id getMsgId() {
+        return this.I;
     }
 
     public NetPerformanceMonitor getNetPermanceMonitor() {
-        return this.f9424G;
+        return this.G;
     }
 
     public int getNode() {
-        return this.f9422E;
+        return this.E;
     }
 
     public String getPackageName() {
-        String str = this.f9438m;
+        String str = this.f5753m;
         return str == null ? "" : str;
     }
 
@@ -588,75 +535,75 @@ public class Message implements Serializable {
     }
 
     public int getType() {
-        return this.f9436k;
+        return this.f5751k;
     }
 
     public boolean isControlFrame() {
-        return Constants.TARGET_CONTROL.equals(this.f9434i);
+        return Constants.TARGET_CONTROL.equals(this.f5749i);
     }
 
     public boolean isTimeOut() {
         boolean z = (System.currentTimeMillis() - this.startSendTime) + this.delyTime >= ((long) this.timeout);
         if (z) {
-            ALog.m9182e(m8994c(), "delay time:" + this.delyTime + " beforeSendTime:" + (System.currentTimeMillis() - this.startSendTime) + " timeout" + this.timeout, new Object[0]);
+            ALog.e(c(), "delay time:" + this.delyTime + " beforeSendTime:" + (System.currentTimeMillis() - this.startSendTime) + " timeout" + this.timeout, new Object[0]);
         }
         return z;
     }
 
     public void setSendTime(long j2) {
-        this.f9423F = j2;
+        this.F = j2;
     }
 
     public static Message buildBindApp(String str, String str2, Context context, Intent intent) {
-        Message message = null;
+        Message messageBuildBindApp = null;
         try {
-            message = buildBindApp(context, str2, intent.getStringExtra("appKey"), intent.getStringExtra("app_sercet"), intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra(Constants.KEY_TTID), intent.getStringExtra("appVersion"));
-            m8991a(str, message);
-            return message;
+            messageBuildBindApp = buildBindApp(context, str2, intent.getStringExtra("appKey"), intent.getStringExtra("app_sercet"), intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra(Constants.KEY_TTID), intent.getStringExtra("appVersion"));
+            a(str, messageBuildBindApp);
+            return messageBuildBindApp;
         } catch (Exception e2) {
-            ALog.m9182e("Msg", "buildBindApp", e2.getMessage());
-            return message;
+            ALog.e("Msg", "buildBindApp", e2.getMessage());
+            return messageBuildBindApp;
         }
     }
 
     public static Message buildBindService(String str, String str2, Intent intent) {
-        Message message = null;
+        Message messageBuildBindService = null;
         try {
-            message = buildBindService(intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra(Constants.KEY_SERVICE_ID));
-            message.f9425H = str2;
-            m8991a(str, message);
-            return message;
+            messageBuildBindService = buildBindService(intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra(Constants.KEY_SERVICE_ID));
+            messageBuildBindService.H = str2;
+            a(str, messageBuildBindService);
+            return messageBuildBindService;
         } catch (Exception e2) {
-            ALog.m9181e("Msg", "buildBindService", e2, new Object[0]);
+            ALog.e("Msg", "buildBindService", e2, new Object[0]);
             e2.printStackTrace();
-            return message;
+            return messageBuildBindService;
         }
     }
 
     public static Message buildBindUser(String str, String str2, Intent intent) {
-        Message message = null;
+        Message messageBuildBindUser = null;
         try {
-            message = buildBindUser(intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra("userInfo"));
-            if (message != null) {
-                message.f9425H = str2;
-                m8991a(str, message);
+            messageBuildBindUser = buildBindUser(intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra("userInfo"));
+            if (messageBuildBindUser != null) {
+                messageBuildBindUser.H = str2;
+                a(str, messageBuildBindUser);
             }
         } catch (Exception e2) {
-            ALog.m9181e("Msg", "buildBindUser", e2, new Object[0]);
+            ALog.e("Msg", "buildBindUser", e2, new Object[0]);
             e2.printStackTrace();
         }
-        return message;
+        return messageBuildBindUser;
     }
 
     public static Message buildPushAck(String str, String str2, String str3, String str4, String str5, boolean z, short s, String str6, Map<Integer, String> map) {
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8993a(s, z);
-        message.f9435j = str3;
-        message.f9434i = str4;
+        message.E = 1;
+        message.a(s, z);
+        message.f5750j = str3;
+        message.f5749i = str4;
         message.dataId = str5;
         message.isAck = true;
-        message.f9437l = map;
+        message.f5752l = map;
         try {
             try {
                 if (TextUtils.isEmpty(str6)) {
@@ -664,7 +611,7 @@ public class Message implements Serializable {
                 } else {
                     message.host = new URL(str6);
                 }
-                message.f9425H = str2;
+                message.H = str2;
                 if (message.host == null) {
                     message.host = new URL(str);
                 }
@@ -673,7 +620,7 @@ public class Message implements Serializable {
             }
         } catch (Throwable th) {
             try {
-                ALog.m9181e("Msg", "buildPushAck", th, new Object[0]);
+                ALog.e("Msg", "buildPushAck", th, new Object[0]);
                 if (message.host == null) {
                     message.host = new URL(str);
                 }
@@ -696,13 +643,13 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.REQ, 1);
+        message.E = 1;
+        message.a(1, ReqType.REQ, 1);
         message.command = 100;
-        message.f9438m = str4;
+        message.f5753m = str4;
         message.serviceId = accsRequest.serviceId;
         message.userinfo = accsRequest.userId;
-        message.f9421D = accsRequest.data;
+        message.D = accsRequest.data;
         String str6 = TextUtils.isEmpty(accsRequest.targetServiceName) ? accsRequest.serviceId : accsRequest.targetServiceName;
         StringBuilder sb = new StringBuilder();
         sb.append(str5);
@@ -713,74 +660,74 @@ public class Message implements Serializable {
             str7 = "";
         }
         sb.append(str7);
-        message.f9434i = sb.toString();
+        message.f5749i = sb.toString();
         if (TextUtils.isEmpty(accsRequest.dataId)) {
             accsRequest.dataId = message.getMsgId().getDataId();
         }
         message.cunstomDataId = accsRequest.dataId;
         message.bizId = accsRequest.businessId;
-        message.f9425H = str2;
+        message.H = str2;
         int i2 = accsRequest.timeout;
         if (i2 > 0) {
             message.timeout = i2;
         }
         if (z) {
-            m8992a(str, message, accsRequest);
+            a(str, message, accsRequest);
         } else {
             message.host = accsRequest.host;
         }
-        m8990a(message, GlobalClientInfo.getInstance(context).getSid(str2), GlobalClientInfo.getInstance(context).getUserId(str2), str3, GlobalClientInfo.f9388c, accsRequest.businessId, accsRequest.tag);
-        message.f9424G = new NetPerformanceMonitor();
-        message.f9424G.setDataId(accsRequest.dataId);
-        message.f9424G.setServiceId(accsRequest.serviceId);
-        message.f9424G.setHost(message.host.toString());
-        message.f9425H = str2;
+        a(message, GlobalClientInfo.getInstance(context).getSid(str2), GlobalClientInfo.getInstance(context).getUserId(str2), str3, GlobalClientInfo.f5717c, accsRequest.businessId, accsRequest.tag);
+        message.G = new NetPerformanceMonitor();
+        message.G.setDataId(accsRequest.dataId);
+        message.G.setServiceId(accsRequest.serviceId);
+        message.G.setHost(message.host.toString());
+        message.H = str2;
         return message;
     }
 
     @Deprecated
-    public static Message buildSendData(AbstractC3001a abstractC3001a, Context context, String str, String str2, ACCSManager.AccsRequest accsRequest, boolean z) {
-        return buildSendData(abstractC3001a.mo9091b((String) null), abstractC3001a.f9533m, abstractC3001a.f9529i.getStoreId(), context, str, accsRequest, z);
+    public static Message buildSendData(com.taobao.accs.net.a aVar, Context context, String str, String str2, ACCSManager.AccsRequest accsRequest, boolean z) {
+        return buildSendData(aVar.b((String) null), aVar.f5810m, aVar.f5806i.getStoreId(), context, str, accsRequest, z);
     }
 
     public static Message buildUnbindApp(String str, Intent intent) {
-        ALog.m9182e("Msg", "buildUnbindApp1" + UtilityImpl.m9198a(new Exception()), new Object[0]);
-        Message message = null;
+        ALog.e("Msg", "buildUnbindApp1" + UtilityImpl.a(new Exception()), new Object[0]);
+        Message messageBuildUnbindApp = null;
         try {
-            message = buildUnbindApp(str, intent.getStringExtra(Constants.KEY_PACKAGE_NAME));
-            m8991a(str, message);
-            return message;
+            messageBuildUnbindApp = buildUnbindApp(str, intent.getStringExtra(Constants.KEY_PACKAGE_NAME));
+            a(str, messageBuildUnbindApp);
+            return messageBuildUnbindApp;
         } catch (Exception e2) {
-            ALog.m9182e("Msg", "buildUnbindApp1", e2.getMessage());
-            return message;
+            ALog.e("Msg", "buildUnbindApp1", e2.getMessage());
+            return messageBuildUnbindApp;
         }
     }
 
     public static Message buildUnbindService(String str, String str2, Intent intent) {
-        Message message = null;
+        Message messageBuildUnbindService = null;
         try {
-            message = buildUnbindService(intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra(Constants.KEY_SERVICE_ID));
-            message.f9425H = str2;
-            m8991a(str, message);
-            return message;
+            messageBuildUnbindService = buildUnbindService(intent.getStringExtra(Constants.KEY_PACKAGE_NAME), intent.getStringExtra(Constants.KEY_SERVICE_ID));
+            messageBuildUnbindService.H = str2;
+            a(str, messageBuildUnbindService);
+            return messageBuildUnbindService;
         } catch (Exception e2) {
-            ALog.m9181e("Msg", "buildUnbindService", e2, new Object[0]);
+            ALog.e("Msg", "buildUnbindService", e2, new Object[0]);
             e2.printStackTrace();
-            return message;
+            return messageBuildUnbindService;
         }
     }
 
     public static Message buildUnbindUser(String str, String str2, Intent intent) {
-        Message message = null;
+        Message messageBuildUnbindUser = null;
         try {
-            message = buildUnbindUser(intent.getStringExtra(Constants.KEY_PACKAGE_NAME));
-            message.f9425H = str2;
-            m8991a(str, message);
-            return message;
+            messageBuildUnbindUser = buildUnbindUser(intent.getStringExtra(Constants.KEY_PACKAGE_NAME));
+            messageBuildUnbindUser.H = str2;
+            a(str, messageBuildUnbindUser);
+            return messageBuildUnbindUser;
         } catch (Exception e2) {
-            ALog.m9181e("Msg", "buildUnbindUser", e2, new Object[0]);
+            ALog.e("Msg", "buildUnbindUser", e2, new Object[0]);
             e2.printStackTrace();
-            return message;
+            return messageBuildUnbindUser;
         }
     }
 
@@ -793,13 +740,13 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.DATA, 1);
+        message.E = 1;
+        message.a(1, ReqType.DATA, 1);
         message.command = 100;
-        message.f9438m = str4;
+        message.f5753m = str4;
         message.serviceId = accsRequest.serviceId;
         message.userinfo = accsRequest.userId;
-        message.f9421D = accsRequest.data;
+        message.D = accsRequest.data;
         String str5 = TextUtils.isEmpty(accsRequest.targetServiceName) ? accsRequest.serviceId : accsRequest.targetServiceName;
         StringBuilder sb = new StringBuilder();
         sb.append(Constants.TARGET_SERVICE_PRE);
@@ -810,7 +757,7 @@ public class Message implements Serializable {
             str6 = "";
         }
         sb.append(str6);
-        message.f9434i = sb.toString();
+        message.f5749i = sb.toString();
         if (TextUtils.isEmpty(accsRequest.dataId)) {
             accsRequest.dataId = message.getMsgId().getDataId();
         }
@@ -821,22 +768,26 @@ public class Message implements Serializable {
             message.timeout = i2;
         }
         if (z) {
-            m8992a(str, message, accsRequest);
+            a(str, message, accsRequest);
         } else {
             message.host = accsRequest.host;
         }
-        m8990a(message, GlobalClientInfo.getInstance(context).getSid(str2), GlobalClientInfo.getInstance(context).getUserId(str2), str3, GlobalClientInfo.f9388c, accsRequest.businessId, accsRequest.tag);
-        message.f9424G = new NetPerformanceMonitor();
-        message.f9424G.setMsgType(0);
-        message.f9424G.setDataId(accsRequest.dataId);
-        message.f9424G.setServiceId(accsRequest.serviceId);
-        message.f9424G.setHost(message.host.toString());
-        message.f9425H = str2;
+        a(message, GlobalClientInfo.getInstance(context).getSid(str2), GlobalClientInfo.getInstance(context).getUserId(str2), str3, GlobalClientInfo.f5717c, accsRequest.businessId, accsRequest.tag);
+        message.G = new NetPerformanceMonitor();
+        message.G.setMsgType(0);
+        message.G.setDataId(accsRequest.dataId);
+        message.G.setServiceId(accsRequest.serviceId);
+        message.G.setHost(message.host.toString());
+        message.H = str2;
         return message;
     }
 
-    /* renamed from: a */
-    void m8996a() {
+    /* JADX WARN: Removed duplicated region for block: B:24:0x0046 A[Catch: Exception -> 0x004c, TRY_ENTER, TRY_LEAVE, TryCatch #2 {Exception -> 0x004c, blocks: (B:13:0x0029, B:14:0x002c, B:24:0x0046), top: B:40:0x0001 }] */
+    /* JADX WARN: Removed duplicated region for block: B:27:0x004c A[ORIG_RETURN, RETURN] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    void a() {
         GZIPOutputStream gZIPOutputStream;
         Throwable th;
         ByteArrayOutputStream byteArrayOutputStream;
@@ -847,66 +798,73 @@ public class Message implements Serializable {
                 th = th2;
                 byteArrayOutputStream = null;
             }
-            if (this.f9421D == null) {
-                return;
-            }
-            byteArrayOutputStream = new ByteArrayOutputStream();
             try {
-                gZIPOutputStream = new GZIPOutputStream(byteArrayOutputStream);
-            } catch (Throwable th3) {
-                gZIPOutputStream = null;
-                th = th3;
-            }
-            try {
-                gZIPOutputStream.write(this.f9421D);
-                gZIPOutputStream.finish();
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                if (byteArray != null && byteArray.length < this.f9421D.length) {
-                    this.f9421D = byteArray;
-                    this.f9427b = (byte) 1;
+                if (this.D == null) {
+                    return;
                 }
-                gZIPOutputStream.close();
-            } catch (Throwable th4) {
-                th = th4;
+                byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
-                    m8994c();
+                    gZIPOutputStream = new GZIPOutputStream(byteArrayOutputStream);
+                } catch (Throwable th3) {
+                    gZIPOutputStream = null;
+                    th = th3;
+                }
+                try {
+                    gZIPOutputStream.write(this.D);
+                    gZIPOutputStream.finish();
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    if (byteArray != null && byteArray.length < this.D.length) {
+                        this.D = byteArray;
+                        this.f5742b = (byte) 1;
+                    }
+                    gZIPOutputStream.close();
+                } catch (Throwable th4) {
+                    th = th4;
+                    c();
                     th.toString();
                     th.printStackTrace();
                     if (gZIPOutputStream != null) {
-                        gZIPOutputStream.close();
                     }
                     if (byteArrayOutputStream == null) {
-                        return;
                     }
-                    byteArrayOutputStream.close();
-                } catch (Throwable th5) {
-                    if (gZIPOutputStream != null) {
-                        try {
-                            gZIPOutputStream.close();
-                        } catch (Exception unused) {
-                            throw th5;
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        byteArrayOutputStream.close();
-                    }
-                    throw th5;
                 }
+                byteArrayOutputStream.close();
+                c();
+                th.toString();
+                th.printStackTrace();
+                if (gZIPOutputStream != null) {
+                    gZIPOutputStream.close();
+                }
+                if (byteArrayOutputStream == null) {
+                    return;
+                }
+                byteArrayOutputStream.close();
+            } catch (Throwable th5) {
+                if (gZIPOutputStream != null) {
+                    try {
+                        gZIPOutputStream.close();
+                    } catch (Exception unused) {
+                        throw th5;
+                    }
+                }
+                if (byteArrayOutputStream != null) {
+                    byteArrayOutputStream.close();
+                }
+                throw th5;
             }
-            byteArrayOutputStream.close();
         } catch (Exception unused2) {
         }
     }
 
     @Deprecated
-    public static Message buildUnbindApp(AbstractC3001a abstractC3001a, Context context, String str, String str2, String str3, String str4) {
-        return buildUnbindApp(abstractC3001a.mo9091b((String) null), str);
+    public static Message buildUnbindApp(com.taobao.accs.net.a aVar, Context context, String str, String str2, String str3, String str4) {
+        return buildUnbindApp(aVar.b((String) null), str);
     }
 
     public static Message buildUnbindApp(String str, String str2) {
         Message message;
         try {
-            ALog.m9180d("Msg", "buildUnbindApp", new Object[0]);
+            ALog.d("Msg", "buildUnbindApp", new Object[0]);
         } catch (Exception e2) {
             e = e2;
             message = null;
@@ -916,20 +874,21 @@ public class Message implements Serializable {
         }
         message = new Message();
         try {
-            message.f9422E = 1;
-            message.m8989a(1, ReqType.DATA, 1);
-            message.f9438m = str2;
-            message.f9434i = Constants.TARGET_CONTROL;
+            message.E = 1;
+            message.a(1, ReqType.DATA, 1);
+            message.f5753m = str2;
+            message.f5749i = Constants.TARGET_CONTROL;
             message.command = 2;
-            message.f9438m = str2;
-            message.f9447v = 221;
+            message.f5753m = str2;
+            message.v = 221;
             message.cunstomDataId = KEY_UNBINDAPP;
-            m8991a(str, message);
+            a(str, message);
         } catch (Exception e3) {
             e = e3;
-            ALog.m9182e("Msg", "buildUnbindApp", e.getMessage());
-            return message;
+            ALog.e("Msg", "buildUnbindApp", e.getMessage());
         }
+        return message;
+        ALog.e("Msg", "buildUnbindApp", e.getMessage());
         return message;
     }
 
@@ -958,12 +917,12 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.DATA, 1);
-        message.f9438m = str;
-        message.f9434i = Constants.TARGET_CONTROL;
+        message.E = 1;
+        message.a(1, ReqType.DATA, 1);
+        message.f5753m = str;
+        message.f5749i = Constants.TARGET_CONTROL;
         message.command = 4;
-        message.f9447v = 221;
+        message.v = 221;
         message.cunstomDataId = KEY_UNBINDUSER;
         return message;
     }
@@ -978,15 +937,15 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.DATA, 1);
-        message.f9438m = str;
+        message.E = 1;
+        message.a(1, ReqType.DATA, 1);
+        message.f5753m = str;
         message.serviceId = str2;
-        message.f9434i = Constants.TARGET_CONTROL;
+        message.f5749i = Constants.TARGET_CONTROL;
         message.command = 5;
-        message.f9438m = str;
+        message.f5753m = str;
         message.serviceId = str2;
-        message.f9447v = 221;
+        message.v = 221;
         message.cunstomDataId = KEY_BINDSERVICE;
         return message;
     }
@@ -996,15 +955,15 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.DATA, 1);
-        message.f9438m = str;
+        message.E = 1;
+        message.a(1, ReqType.DATA, 1);
+        message.f5753m = str;
         message.userinfo = str2;
-        message.f9434i = Constants.TARGET_CONTROL;
+        message.f5749i = Constants.TARGET_CONTROL;
         message.command = 3;
-        message.f9438m = str;
+        message.f5753m = str;
         message.userinfo = str2;
-        message.f9447v = 221;
+        message.v = 221;
         message.cunstomDataId = KEY_BINDUSER;
         return message;
     }
@@ -1014,15 +973,15 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.DATA, 1);
-        message.f9438m = str;
+        message.E = 1;
+        message.a(1, ReqType.DATA, 1);
+        message.f5753m = str;
         message.serviceId = str2;
-        message.f9434i = Constants.TARGET_CONTROL;
+        message.f5749i = Constants.TARGET_CONTROL;
         message.command = 6;
-        message.f9438m = str;
+        message.f5753m = str;
         message.serviceId = str2;
-        message.f9447v = 221;
+        message.v = 221;
         message.cunstomDataId = KEY_UNBINDSERVICE;
         return message;
     }
@@ -1032,37 +991,36 @@ public class Message implements Serializable {
             return null;
         }
         Message message = new Message();
-        message.f9422E = 1;
-        message.m8989a(1, ReqType.DATA, 1);
-        message.f9441p = 1;
-        message.f9442q = Build.VERSION.SDK_INT + "";
-        message.f9438m = str4;
-        message.f9434i = Constants.TARGET_CONTROL;
+        message.E = 1;
+        message.a(1, ReqType.DATA, 1);
+        message.p = 1;
+        message.q = Build.VERSION.SDK_INT + "";
+        message.f5753m = str4;
+        message.f5749i = Constants.TARGET_CONTROL;
         message.command = 1;
-        message.f9440o = str2;
-        message.appSign = UtilityImpl.m9197a(str2, str3, UtilityImpl.m9228j(context));
-        message.f9447v = 221;
-        message.f9446u = str6;
-        message.f9438m = str4;
-        message.f9448w = str5;
-        message.f9450y = Build.MODEL;
-        message.f9451z = Build.BRAND;
+        message.o = str2;
+        message.appSign = UtilityImpl.a(str2, str3, UtilityImpl.j(context));
+        message.v = 221;
+        message.u = str6;
+        message.f5753m = str4;
+        message.w = str5;
+        message.y = Build.MODEL;
+        message.z = Build.BRAND;
         message.cunstomDataId = KEY_BINDAPP;
-        message.f9425H = str;
-        message.f9445t = new C3048p.a().m9262a("notifyEnable", UtilityImpl.m9233o(context)).m9262a("romInfo", new C3047o().mo9258a()).m9263a().toString();
-        UtilityImpl.m9202a(context, Constants.SP_FILE_NAME, UtilityImpl.m9233o(context));
+        message.H = str;
+        message.t = new p.a().a("notifyEnable", UtilityImpl.o(context)).a("romInfo", new o().a()).a().toString();
+        UtilityImpl.a(context, Constants.SP_FILE_NAME, UtilityImpl.o(context));
         return message;
     }
 
-    /* renamed from: a */
-    private static void m8992a(String str, Message message, ACCSManager.AccsRequest accsRequest) {
+    private static void a(String str, Message message, ACCSManager.AccsRequest accsRequest) {
         URL url = accsRequest.host;
         if (url == null) {
             try {
                 message.host = new URL(str);
                 return;
             } catch (MalformedURLException e2) {
-                ALog.m9181e("Msg", "setUnit", e2, new Object[0]);
+                ALog.e("Msg", "setUnit", e2, new Object[0]);
                 e2.printStackTrace();
                 return;
             }
@@ -1070,60 +1028,56 @@ public class Message implements Serializable {
         message.host = url;
     }
 
-    /* renamed from: a */
-    private static void m8991a(String str, Message message) {
+    private static void a(String str, Message message) {
         try {
             message.host = new URL(str);
         } catch (Exception e2) {
-            ALog.m9181e("Msg", "setControlHost", e2, new Object[0]);
+            ALog.e("Msg", "setControlHost", e2, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    private static void m8990a(Message message, String str, String str2, String str3, String str4, String str5, String str6) {
+    private static void a(Message message, String str, String str2, String str3, String str4, String str5, String str6) {
         if (TextUtils.isEmpty(str5) && TextUtils.isEmpty(str) && TextUtils.isEmpty(str2) && TextUtils.isEmpty(str6) && str4 == null) {
             return;
         }
-        message.f9437l = new HashMap();
-        if (str5 != null && UtilityImpl.m9193a(str5) <= 1023) {
-            message.f9437l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_BUSINESS.ordinal()), str5);
+        message.f5752l = new HashMap();
+        if (str5 != null && UtilityImpl.a(str5) <= 1023) {
+            message.f5752l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_BUSINESS.ordinal()), str5);
         }
-        if (str != null && UtilityImpl.m9193a(str) <= 1023) {
-            message.f9437l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_SID.ordinal()), str);
+        if (str != null && UtilityImpl.a(str) <= 1023) {
+            message.f5752l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_SID.ordinal()), str);
         }
-        if (str2 != null && UtilityImpl.m9193a(str2) <= 1023) {
-            message.f9437l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_USERID.ordinal()), str2);
+        if (str2 != null && UtilityImpl.a(str2) <= 1023) {
+            message.f5752l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_USERID.ordinal()), str2);
         }
-        if (str6 != null && UtilityImpl.m9193a(str6) <= 1023) {
-            message.f9437l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_TAG.ordinal()), str6);
+        if (str6 != null && UtilityImpl.a(str6) <= 1023) {
+            message.f5752l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_TAG.ordinal()), str6);
         }
-        if (str4 != null && UtilityImpl.m9193a(str4) <= 1023) {
-            message.f9437l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_COOKIE.ordinal()), str4);
+        if (str4 != null && UtilityImpl.a(str4) <= 1023) {
+            message.f5752l.put(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_COOKIE.ordinal()), str4);
         }
-        if (str3 == null || UtilityImpl.m9193a(str3) > 1023) {
+        if (str3 == null || UtilityImpl.a(str3) > 1023) {
             return;
         }
-        message.f9437l.put(19, str3);
+        message.f5752l.put(19, str3);
     }
 
-    /* renamed from: a */
-    private void m8989a(int i2, ReqType reqType, int i3) {
-        this.f9436k = i2;
+    private void a(int i2, ReqType reqType, int i3) {
+        this.f5751k = i2;
         if (i2 != 2) {
-            this.f9431f = (short) (((((i2 & 1) << 4) | (reqType.ordinal() << 2)) | i3) << 11);
+            this.f5746f = (short) (((((i2 & 1) << 4) | (reqType.ordinal() << 2)) | i3) << 11);
         }
     }
 
-    /* renamed from: a */
-    private void m8993a(short s, boolean z) {
-        this.f9436k = 1;
-        this.f9431f = s;
-        this.f9431f = (short) (this.f9431f & (-16385));
-        this.f9431f = (short) (this.f9431f | 8192);
-        this.f9431f = (short) (this.f9431f & (-2049));
-        this.f9431f = (short) (this.f9431f & (-65));
+    private void a(short s, boolean z) {
+        this.f5751k = 1;
+        this.f5746f = s;
+        this.f5746f = (short) (this.f5746f & (-16385));
+        this.f5746f = (short) (this.f5746f | 8192);
+        this.f5746f = (short) (this.f5746f & (-2049));
+        this.f5746f = (short) (this.f5746f & (-65));
         if (z) {
-            this.f9431f = (short) (this.f9431f | 32);
+            this.f5746f = (short) (this.f5746f | 32);
         }
     }
 }

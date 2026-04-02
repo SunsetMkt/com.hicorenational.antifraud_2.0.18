@@ -6,7 +6,7 @@ import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class CustomGestureDetector {
     private static final int INVALID_POINTER_ID = -1;
     private int mActivePointerId = -1;

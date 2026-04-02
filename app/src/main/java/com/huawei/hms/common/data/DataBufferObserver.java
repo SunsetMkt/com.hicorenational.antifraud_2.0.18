@@ -1,6 +1,6 @@
 package com.huawei.hms.common.data;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface DataBufferObserver {
     void onDataChanged();
 

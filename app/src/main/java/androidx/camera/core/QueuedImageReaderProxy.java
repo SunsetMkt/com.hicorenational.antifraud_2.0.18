@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class QueuedImageReaderProxy implements ImageReaderProxy, ForwardingImageProxy.OnImageCloseListener {
     private final int mFormat;
     private final int mHeight;
@@ -204,10 +204,10 @@ final class QueuedImageReaderProxy implements ImageReaderProxy, ForwardingImageP
 
     @Override // androidx.camera.core.ForwardingImageProxy.OnImageCloseListener
     public synchronized void onImageClose(ImageProxy imageProxy) {
-        int indexOf = this.mImages.indexOf(imageProxy);
-        if (indexOf >= 0) {
-            this.mImages.remove(indexOf);
-            if (indexOf <= this.mCurrentPosition) {
+        int iIndexOf = this.mImages.indexOf(imageProxy);
+        if (iIndexOf >= 0) {
+            this.mImages.remove(iIndexOf);
+            if (iIndexOf <= this.mCurrentPosition) {
                 this.mCurrentPosition--;
             }
         }

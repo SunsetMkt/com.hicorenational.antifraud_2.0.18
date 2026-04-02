@@ -1,7 +1,7 @@
 package androidx.constraintlayout.motion.widget;
 
-/* compiled from: DesignTool.java */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: DesignTool.java */
+/* JADX INFO: loaded from: classes.dex */
 interface ProxyInterface {
     int designAccess(int i2, String str, Object obj, float[] fArr, int i3, float[] fArr2, int i4);
 

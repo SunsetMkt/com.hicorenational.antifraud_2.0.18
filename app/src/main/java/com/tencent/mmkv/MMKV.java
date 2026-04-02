@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     private static final int ASHMEM_MODE = 8;
     private static final int CONTEXT_MODE_MULTI_PROCESS = 4;
@@ -32,8 +32,8 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     private static String rootDir;
     private long nativeHandle;
 
-    /* renamed from: com.tencent.mmkv.MMKV$1 */
-    static /* synthetic */ class C32411 {
+    /* JADX INFO: renamed from: com.tencent.mmkv.MMKV$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$com$tencent$mmkv$MMKVLogLevel = new int[MMKVLogLevel.values().length];
 
         static {
@@ -65,14 +65,14 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     }
 
     static {
-        recoverIndex.put((EnumMap<MMKVRecoverStrategic, Integer>) MMKVRecoverStrategic.OnErrorDiscard, (MMKVRecoverStrategic) 0);
-        recoverIndex.put((EnumMap<MMKVRecoverStrategic, Integer>) MMKVRecoverStrategic.OnErrorRecover, (MMKVRecoverStrategic) 1);
+        recoverIndex.put(MMKVRecoverStrategic.OnErrorDiscard, 0);
+        recoverIndex.put(MMKVRecoverStrategic.OnErrorRecover, 1);
         logLevel2Index = new EnumMap<>(MMKVLogLevel.class);
-        logLevel2Index.put((EnumMap<MMKVLogLevel, Integer>) MMKVLogLevel.LevelDebug, (MMKVLogLevel) 0);
-        logLevel2Index.put((EnumMap<MMKVLogLevel, Integer>) MMKVLogLevel.LevelInfo, (MMKVLogLevel) 1);
-        logLevel2Index.put((EnumMap<MMKVLogLevel, Integer>) MMKVLogLevel.LevelWarning, (MMKVLogLevel) 2);
-        logLevel2Index.put((EnumMap<MMKVLogLevel, Integer>) MMKVLogLevel.LevelError, (MMKVLogLevel) 3);
-        logLevel2Index.put((EnumMap<MMKVLogLevel, Integer>) MMKVLogLevel.LevelNone, (MMKVLogLevel) 4);
+        logLevel2Index.put(MMKVLogLevel.LevelDebug, 0);
+        logLevel2Index.put(MMKVLogLevel.LevelInfo, 1);
+        logLevel2Index.put(MMKVLogLevel.LevelWarning, 2);
+        logLevel2Index.put(MMKVLogLevel.LevelError, 3);
+        logLevel2Index.put(MMKVLogLevel.LevelNone, 4);
         index2LogLevel = new MMKVLogLevel[]{MMKVLogLevel.LevelDebug, MMKVLogLevel.LevelInfo, MMKVLogLevel.LevelWarning, MMKVLogLevel.LevelError, MMKVLogLevel.LevelNone};
         rootDir = null;
         mCreators = new HashMap<>();
@@ -90,11 +90,11 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     private static native long createNB(int i2);
 
     public static NativeBuffer createNativeBuffer(int i2) {
-        long createNB = createNB(i2);
-        if (createNB <= 0) {
+        long jCreateNB = createNB(i2);
+        if (jCreateNB <= 0) {
             return null;
         }
-        return new NativeBuffer(createNB, i2);
+        return new NativeBuffer(jCreateNB, i2);
     }
 
     private native boolean decodeBool(long j2, String str, boolean z);
@@ -163,7 +163,7 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     private static native void jniInitialize(String str, int i2);
 
     private static int logLevel2Int(MMKVLogLevel mMKVLogLevel) {
-        int i2 = C32411.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[mMKVLogLevel.ordinal()];
+        int i2 = AnonymousClass1.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[mMKVLogLevel.ordinal()];
         if (i2 == 1) {
             return 0;
         }
@@ -187,7 +187,7 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
             mMKVHandler.mmkvLog(index2LogLevel[i2], str, i3, str2, str3);
             return;
         }
-        int i4 = C32411.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[index2LogLevel[i2].ordinal()];
+        int i4 = AnonymousClass1.$SwitchMap$com$tencent$mmkv$MMKVLogLevel[index2LogLevel[i2].ordinal()];
         if (i4 == 1 || i4 == 2 || i4 != 3) {
         }
     }
@@ -210,22 +210,22 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
             simpleLog(MMKVLogLevel.LevelInfo, "getting mmkv in main process");
             return new MMKV(getMMKVWithIDAndSize(str, i2, i3 | 8, str2));
         }
-        Uri contentUri = MMKVContentProvider.contentUri(context);
-        if (contentUri == null) {
+        Uri uriContentUri = MMKVContentProvider.contentUri(context);
+        if (uriContentUri == null) {
             simpleLog(MMKVLogLevel.LevelError, "MMKVContentProvider has invalid authority");
             return null;
         }
-        simpleLog(MMKVLogLevel.LevelInfo, "getting parcelable mmkv in process, Uri = " + contentUri);
+        simpleLog(MMKVLogLevel.LevelInfo, "getting parcelable mmkv in process, Uri = " + uriContentUri);
         Bundle bundle = new Bundle();
         bundle.putInt("KEY_SIZE", i2);
         bundle.putInt("KEY_MODE", i3);
         if (str2 != null) {
             bundle.putString("KEY_CRYPT", str2);
         }
-        Bundle call = context.getContentResolver().call(contentUri, "mmkvFromAshmemID", str, bundle);
-        if (call != null) {
-            call.setClassLoader(ParcelableMMKV.class.getClassLoader());
-            ParcelableMMKV parcelableMMKV = (ParcelableMMKV) call.getParcelable("KEY");
+        Bundle bundleCall = context.getContentResolver().call(uriContentUri, "mmkvFromAshmemID", str, bundle);
+        if (bundleCall != null) {
+            bundleCall.setClassLoader(ParcelableMMKV.class.getClassLoader());
+            ParcelableMMKV parcelableMMKV = (ParcelableMMKV) bundleCall.getParcelable("KEY");
             if (parcelableMMKV != null) {
                 MMKV mmkv = parcelableMMKV.toMMKV();
                 if (mmkv != null) {
@@ -254,13 +254,13 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     public static native void onExit();
 
     private static int onMMKVCRCCheckFail(String str) {
-        MMKVRecoverStrategic mMKVRecoverStrategic = MMKVRecoverStrategic.OnErrorDiscard;
+        MMKVRecoverStrategic mMKVRecoverStrategicOnMMKVCRCCheckFail = MMKVRecoverStrategic.OnErrorDiscard;
         MMKVHandler mMKVHandler = gCallbackHandler;
         if (mMKVHandler != null) {
-            mMKVRecoverStrategic = mMKVHandler.onMMKVCRCCheckFail(str);
+            mMKVRecoverStrategicOnMMKVCRCCheckFail = mMKVHandler.onMMKVCRCCheckFail(str);
         }
-        simpleLog(MMKVLogLevel.LevelInfo, "Recover strategic for " + str + " is " + mMKVRecoverStrategic);
-        Integer num = recoverIndex.get(mMKVRecoverStrategic);
+        simpleLog(MMKVLogLevel.LevelInfo, "Recover strategic for " + str + " is " + mMKVRecoverStrategicOnMMKVCRCCheckFail);
+        Integer num = recoverIndex.get(mMKVRecoverStrategicOnMMKVCRCCheckFail);
         if (num == null) {
             return 0;
         }
@@ -268,13 +268,13 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     }
 
     private static int onMMKVFileLengthError(String str) {
-        MMKVRecoverStrategic mMKVRecoverStrategic = MMKVRecoverStrategic.OnErrorDiscard;
+        MMKVRecoverStrategic mMKVRecoverStrategicOnMMKVFileLengthError = MMKVRecoverStrategic.OnErrorDiscard;
         MMKVHandler mMKVHandler = gCallbackHandler;
         if (mMKVHandler != null) {
-            mMKVRecoverStrategic = mMKVHandler.onMMKVFileLengthError(str);
+            mMKVRecoverStrategicOnMMKVFileLengthError = mMKVHandler.onMMKVFileLengthError(str);
         }
-        simpleLog(MMKVLogLevel.LevelInfo, "Recover strategic for " + str + " is " + mMKVRecoverStrategic);
-        Integer num = recoverIndex.get(mMKVRecoverStrategic);
+        simpleLog(MMKVLogLevel.LevelInfo, "Recover strategic for " + str + " is " + mMKVRecoverStrategicOnMMKVFileLengthError);
+        Integer num = recoverIndex.get(mMKVRecoverStrategicOnMMKVFileLengthError);
         if (num == null) {
             return 0;
         }
@@ -605,8 +605,8 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     }
 
     public byte[] decodeBytes(String str, byte[] bArr) {
-        byte[] decodeBytes = decodeBytes(this.nativeHandle, str);
-        return decodeBytes != null ? decodeBytes : bArr;
+        byte[] bArrDecodeBytes = decodeBytes(this.nativeHandle, str);
+        return bArrDecodeBytes != null ? bArrDecodeBytes : bArr;
     }
 
     public double decodeDouble(String str, double d2) {
@@ -626,31 +626,31 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     }
 
     public <T extends Parcelable> T decodeParcelable(String str, Class<T> cls, T t) {
-        byte[] decodeBytes;
+        byte[] bArrDecodeBytes;
         Parcelable.Creator<?> creator;
-        if (cls == null || (decodeBytes = decodeBytes(this.nativeHandle, str)) == null) {
+        if (cls == null || (bArrDecodeBytes = decodeBytes(this.nativeHandle, str)) == null) {
             return t;
         }
-        Parcel obtain = Parcel.obtain();
-        obtain.unmarshall(decodeBytes, 0, decodeBytes.length);
-        obtain.setDataPosition(0);
+        Parcel parcelObtain = Parcel.obtain();
+        parcelObtain.unmarshall(bArrDecodeBytes, 0, bArrDecodeBytes.length);
+        parcelObtain.setDataPosition(0);
         try {
-            String cls2 = cls.toString();
+            String string = cls.toString();
             synchronized (mCreators) {
-                creator = mCreators.get(cls2);
+                creator = mCreators.get(string);
                 if (creator == null && (creator = (Parcelable.Creator) cls.getField("CREATOR").get(null)) != null) {
-                    mCreators.put(cls2, creator);
+                    mCreators.put(string, creator);
                 }
             }
             if (creator != null) {
-                return (T) creator.createFromParcel(obtain);
+                return (T) creator.createFromParcel(parcelObtain);
             }
-            throw new Exception("Parcelable protocol requires a non-null static Parcelable.Creator object called CREATOR on class " + cls2);
+            throw new Exception("Parcelable protocol requires a non-null static Parcelable.Creator object called CREATOR on class " + string);
         } catch (Exception e2) {
             simpleLog(MMKVLogLevel.LevelError, e2.toString());
             return t;
         } finally {
-            obtain.recycle();
+            parcelObtain.recycle();
         }
     }
 
@@ -667,14 +667,14 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     }
 
     public Set<String> decodeStringSet(String str, Set<String> set, Class<? extends Set> cls) {
-        String[] decodeStringSet = decodeStringSet(this.nativeHandle, str);
-        if (decodeStringSet == null) {
+        String[] strArrDecodeStringSet = decodeStringSet(this.nativeHandle, str);
+        if (strArrDecodeStringSet == null) {
             return set;
         }
         try {
-            Set<String> newInstance = cls.newInstance();
-            newInstance.addAll(Arrays.asList(decodeStringSet));
-            return newInstance;
+            Set<String> setNewInstance = cls.newInstance();
+            setNewInstance.addAll(Arrays.asList(strArrDecodeStringSet));
+            return setNewInstance;
         } catch (IllegalAccessException | InstantiationException unused) {
             return set;
         }
@@ -742,11 +742,11 @@ public class MMKV implements SharedPreferences, SharedPreferences.Editor {
     }
 
     public boolean encode(String str, Parcelable parcelable) {
-        Parcel obtain = Parcel.obtain();
-        parcelable.writeToParcel(obtain, parcelable.describeContents());
-        byte[] marshall = obtain.marshall();
-        obtain.recycle();
-        return encodeBytes(this.nativeHandle, str, marshall);
+        Parcel parcelObtain = Parcel.obtain();
+        parcelable.writeToParcel(parcelObtain, parcelable.describeContents());
+        byte[] bArrMarshall = parcelObtain.marshall();
+        parcelObtain.recycle();
+        return encodeBytes(this.nativeHandle, str, bArrMarshall);
     }
 
     public static String initialize(String str, LibLoader libLoader, MMKVLogLevel mMKVLogLevel) {

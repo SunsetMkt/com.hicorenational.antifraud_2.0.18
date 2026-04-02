@@ -1,6 +1,6 @@
 package com.huawei.hms.push;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum AttributionEvent {
     APP_START_COMPLETE(1),
     OPEN_PRIVACY_PAGE(2),
@@ -10,15 +10,13 @@ public enum AttributionEvent {
     PERMISSION_DENIED(6),
     OPEN_LANDING_PAGE(7);
 
-
-    /* renamed from: a */
-    private final int f7677a;
+    private final int a;
 
     AttributionEvent(int i2) {
-        this.f7677a = i2;
+        this.a = i2;
     }
 
     public int getEventId() {
-        return this.f7677a;
+        return this.a;
     }
 }

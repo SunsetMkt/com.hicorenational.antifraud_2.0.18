@@ -4,36 +4,33 @@ import android.content.Context;
 import android.os.Bundle;
 import com.vivo.push.PushClient;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class VUpsManager {
 
-    /* renamed from: com.vivo.push.ups.VUpsManager$a */
-    private static class C3977a {
-
-        /* renamed from: a */
-        private static VUpsManager f14201a = new VUpsManager();
+    private static class a {
+        private static VUpsManager a = new VUpsManager();
     }
 
     public static VUpsManager getInstance() {
-        return C3977a.f14201a;
+        return a.a;
     }
 
     public void onCommandResult(Context context, Bundle bundle) {
     }
 
     public void registerToken(Context context, String str, String str2, String str3, UPSRegisterCallback uPSRegisterCallback) {
-        PushClient.getInstance(context).turnOnPush(new C3978a(this, uPSRegisterCallback));
+        PushClient.getInstance(context).turnOnPush(new com.vivo.push.ups.a(this, uPSRegisterCallback));
     }
 
     public void turnOffPush(Context context, UPSTurnCallback uPSTurnCallback) {
-        PushClient.getInstance(context).turnOffPush(new C3981d(this, uPSTurnCallback));
+        PushClient.getInstance(context).turnOffPush(new d(this, uPSTurnCallback));
     }
 
     public void turnOnPush(Context context, UPSTurnCallback uPSTurnCallback) {
-        PushClient.getInstance(context).turnOnPush(new C3980c(this, uPSTurnCallback));
+        PushClient.getInstance(context).turnOnPush(new c(this, uPSTurnCallback));
     }
 
     public void unRegisterToken(Context context, UPSRegisterCallback uPSRegisterCallback) {
-        PushClient.getInstance(context).turnOffPush(new C3979b(this, uPSRegisterCallback));
+        PushClient.getInstance(context).turnOffPush(new b(this, uPSRegisterCallback));
     }
 }

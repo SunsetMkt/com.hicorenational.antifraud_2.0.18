@@ -10,7 +10,7 @@ import androidx.core.app.AppOpsManagerCompat;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PermissionChecker {
     public static final int PERMISSION_DENIED = -1;
     public static final int PERMISSION_DENIED_APP_OP = -2;
@@ -39,8 +39,8 @@ public final class PermissionChecker {
         if (context.checkPermission(str, i2, i3) == -1) {
             return -1;
         }
-        String permissionToOp = AppOpsManagerCompat.permissionToOp(str);
-        if (permissionToOp == null) {
+        String strPermissionToOp = AppOpsManagerCompat.permissionToOp(str);
+        if (strPermissionToOp == null) {
             return 0;
         }
         if (str2 == null) {
@@ -50,7 +50,7 @@ public final class PermissionChecker {
             }
             str2 = packagesForUid[0];
         }
-        return AppOpsManagerCompat.noteProxyOpNoThrow(context, permissionToOp, str2) != 0 ? -2 : 0;
+        return AppOpsManagerCompat.noteProxyOpNoThrow(context, strPermissionToOp, str2) != 0 ? -2 : 0;
     }
 
     public static int checkSelfPermission(@NonNull Context context, @NonNull String str) {

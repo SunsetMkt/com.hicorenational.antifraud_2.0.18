@@ -2,7 +2,7 @@ package com.vivo.push.model;
 
 import android.content.Intent;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class NotifyArriveCallbackByUser {
     private Intent mIntent;
     private boolean mIsIntercept;

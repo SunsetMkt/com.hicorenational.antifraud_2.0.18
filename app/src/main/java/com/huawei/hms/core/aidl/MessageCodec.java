@@ -10,30 +10,28 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MessageCodec {
     protected static final int VAL_ENTITY = 0;
     protected static final int VAL_LIST = 1;
     protected static final int VAL_NULL = -1;
     protected static final String VAL_TYPE = "_val_type_";
 
-    /* renamed from: a */
-    private void m6768a(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
-        Object m6767a = m6767a(field, bundle);
-        if (m6767a != null) {
-            boolean isAccessible = field.isAccessible();
+    private void a(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
+        Object objA = a(field, bundle);
+        if (objA != null) {
+            boolean zIsAccessible = field.isAccessible();
             field.setAccessible(true);
-            field.set(iMessageEntity, m6767a);
-            field.setAccessible(isAccessible);
+            field.set(iMessageEntity, objA);
+            field.setAccessible(zIsAccessible);
         }
     }
 
-    /* renamed from: b */
-    private void m6770b(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
-        boolean isAccessible = field.isAccessible();
+    private void b(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
+        boolean zIsAccessible = field.isAccessible();
         field.setAccessible(true);
         writeValue(field.getName(), field.get(iMessageEntity), bundle);
-        field.setAccessible(isAccessible);
+        field.setAccessible(zIsAccessible);
     }
 
     public IMessageEntity decode(Bundle bundle, IMessageEntity iMessageEntity) {
@@ -41,11 +39,11 @@ public class MessageCodec {
             return iMessageEntity;
         }
         bundle.setClassLoader(getClass().getClassLoader());
-        for (Class<?> cls = iMessageEntity.getClass(); cls != null; cls = cls.getSuperclass()) {
-            for (Field field : cls.getDeclaredFields()) {
+        for (Class<?> superclass = iMessageEntity.getClass(); superclass != null; superclass = superclass.getSuperclass()) {
+            for (Field field : superclass.getDeclaredFields()) {
                 if (field.isAnnotationPresent(Packed.class)) {
                     try {
-                        m6768a(iMessageEntity, field, bundle);
+                        a(iMessageEntity, field, bundle);
                     } catch (IllegalAccessException | IllegalArgumentException unused) {
                         String str = "decode, set value of the field exception, field name:" + field.getName();
                     }
@@ -59,11 +57,11 @@ public class MessageCodec {
         if (iMessageEntity == null) {
             return bundle;
         }
-        for (Class<?> cls = iMessageEntity.getClass(); cls != null; cls = cls.getSuperclass()) {
-            for (Field field : cls.getDeclaredFields()) {
+        for (Class<?> superclass = iMessageEntity.getClass(); superclass != null; superclass = superclass.getSuperclass()) {
+            for (Field field : superclass.getDeclaredFields()) {
                 if (field.isAnnotationPresent(Packed.class)) {
                     try {
-                        m6770b(iMessageEntity, field, bundle);
+                        b(iMessageEntity, field, bundle);
                     } catch (IllegalAccessException | IllegalArgumentException unused) {
                         String str = "encode, get value of the field exception, field name: " + field.getName();
                     }
@@ -73,7 +71,7 @@ public class MessageCodec {
         return bundle;
     }
 
-    protected List<Object> readList(Type type, Bundle bundle) throws InstantiationException, IllegalAccessException {
+    protected List<Object> readList(Type type, Bundle bundle) throws IllegalAccessException, InstantiationException {
         ArrayList arrayList = new ArrayList();
         for (Bundle bundle2 = bundle.getBundle("_next_item_"); bundle2 != null; bundle2 = bundle2.getBundle("_next_item_")) {
             Object obj = bundle2.get("_value_");
@@ -97,19 +95,19 @@ public class MessageCodec {
     }
 
     protected void writeList(String str, List list, Bundle bundle) {
-        Bundle bundle2 = null;
+        Bundle bundleA = null;
         for (Object obj : list) {
-            if (bundle2 == null) {
-                bundle2 = new Bundle();
-                bundle.putBundle(str, bundle2);
-                bundle2.putInt(VAL_TYPE, 1);
+            if (bundleA == null) {
+                bundleA = new Bundle();
+                bundle.putBundle(str, bundleA);
+                bundleA.putInt(VAL_TYPE, 1);
             }
-            bundle2 = m6766a("_value_", bundle2, obj);
+            bundleA = a("_value_", bundleA, obj);
         }
     }
 
     protected void writeValue(String str, Object obj, Bundle bundle) {
-        if (obj == null || m6769a(str, obj, bundle)) {
+        if (obj == null || a(str, obj, bundle)) {
             return;
         }
         if (obj instanceof CharSequence) {
@@ -133,16 +131,15 @@ public class MessageCodec {
             return;
         }
         if (obj instanceof IMessageEntity) {
-            Bundle encode = encode((IMessageEntity) obj, new Bundle());
-            encode.putInt(VAL_TYPE, 0);
-            bundle.putBundle(str, encode);
+            Bundle bundleEncode = encode((IMessageEntity) obj, new Bundle());
+            bundleEncode.putInt(VAL_TYPE, 0);
+            bundle.putBundle(str, bundleEncode);
         } else {
             String str2 = "cannot support type, " + str;
         }
     }
 
-    /* renamed from: a */
-    private Object m6767a(Field field, Bundle bundle) {
+    private Object a(Field field, Bundle bundle) {
         String name = field.getName();
         Object obj = bundle.get(name);
         if (obj instanceof Bundle) {
@@ -163,16 +160,14 @@ public class MessageCodec {
         return obj;
     }
 
-    /* renamed from: a */
-    private Bundle m6766a(String str, Bundle bundle, Object obj) {
+    private Bundle a(String str, Bundle bundle, Object obj) {
         Bundle bundle2 = new Bundle();
         writeValue(str, obj, bundle2);
         bundle.putBundle("_next_item_", bundle2);
         return bundle2;
     }
 
-    /* renamed from: a */
-    private boolean m6769a(String str, Object obj, Bundle bundle) {
+    private boolean a(String str, Object obj, Bundle bundle) {
         if (obj instanceof String) {
             bundle.putString(str, (String) obj);
             return true;

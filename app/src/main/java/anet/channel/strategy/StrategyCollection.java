@@ -2,105 +2,102 @@ package anet.channel.strategy;
 
 import anet.channel.appmonitor.AppMonitor;
 import anet.channel.statist.PolicyVersionStat;
-import anet.channel.strategy.C0842l;
 import anet.channel.strategy.dispatch.DispatchConstants;
+import anet.channel.strategy.l;
 import anet.channel.util.ALog;
-import com.heytap.mcssdk.constant.C2084a;
 import com.taobao.accs.common.Constants;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 class StrategyCollection implements Serializable {
+    String a;
 
-    /* renamed from: a */
-    String f1040a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    volatile long f1560b;
 
-    /* renamed from: b */
-    volatile long f1041b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    volatile String f1561c;
 
-    /* renamed from: c */
-    volatile String f1042c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    boolean f1562d;
 
-    /* renamed from: d */
-    boolean f1043d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    int f1563e;
 
-    /* renamed from: e */
-    int f1044e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private StrategyList f1564f;
 
-    /* renamed from: f */
-    private StrategyList f1045f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private transient long f1565g;
 
-    /* renamed from: g */
-    private transient long f1046g;
-
-    /* renamed from: h */
-    private transient boolean f1047h;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private transient boolean f1566h;
 
     public StrategyCollection() {
-        this.f1045f = null;
-        this.f1041b = 0L;
-        this.f1042c = null;
-        this.f1043d = false;
-        this.f1044e = 0;
-        this.f1046g = 0L;
-        this.f1047h = true;
+        this.f1564f = null;
+        this.f1560b = 0L;
+        this.f1561c = null;
+        this.f1562d = false;
+        this.f1563e = 0;
+        this.f1565g = 0L;
+        this.f1566h = true;
     }
 
     public synchronized void checkInit() {
-        if (System.currentTimeMillis() - this.f1041b > 172800000) {
-            this.f1045f = null;
+        if (System.currentTimeMillis() - this.f1560b > 172800000) {
+            this.f1564f = null;
         } else {
-            if (this.f1045f != null) {
-                this.f1045f.checkInit();
+            if (this.f1564f != null) {
+                this.f1564f.checkInit();
             }
         }
     }
 
     public boolean isExpired() {
-        return System.currentTimeMillis() > this.f1041b;
+        return System.currentTimeMillis() > this.f1560b;
     }
 
     public synchronized void notifyConnEvent(IConnStrategy iConnStrategy, ConnEvent connEvent) {
-        if (this.f1045f != null) {
-            this.f1045f.notifyConnEvent(iConnStrategy, connEvent);
-            if (!connEvent.isSuccess && this.f1045f.shouldRefresh()) {
-                long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - this.f1046g > C2084a.f6122d) {
-                    StrategyCenter.getInstance().forceRefreshStrategy(this.f1040a);
-                    this.f1046g = currentTimeMillis;
+        if (this.f1564f != null) {
+            this.f1564f.notifyConnEvent(iConnStrategy, connEvent);
+            if (!connEvent.isSuccess && this.f1564f.shouldRefresh()) {
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                if (jCurrentTimeMillis - this.f1565g > com.heytap.mcssdk.constant.a.f3868d) {
+                    StrategyCenter.getInstance().forceRefreshStrategy(this.a);
+                    this.f1565g = jCurrentTimeMillis;
                 }
             }
         }
     }
 
     public synchronized List<IConnStrategy> queryStrategyList() {
-        if (this.f1045f == null) {
+        if (this.f1564f == null) {
             return Collections.EMPTY_LIST;
         }
-        if (this.f1047h) {
-            this.f1047h = false;
-            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.f1040a, this.f1044e);
+        if (this.f1566h) {
+            this.f1566h = false;
+            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.a, this.f1563e);
             policyVersionStat.reportType = 0;
             AppMonitor.getInstance().commitStat(policyVersionStat);
         }
-        return this.f1045f.getStrategyList();
+        return this.f1564f.getStrategyList();
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder(32);
         sb.append("\nStrategyList = ");
-        sb.append(this.f1041b);
-        StrategyList strategyList = this.f1045f;
+        sb.append(this.f1560b);
+        StrategyList strategyList = this.f1564f;
         if (strategyList != null) {
             sb.append(strategyList.toString());
-        } else if (this.f1042c != null) {
+        } else if (this.f1561c != null) {
             sb.append('[');
-            sb.append(this.f1040a);
+            sb.append(this.a);
             sb.append("=>");
-            sb.append(this.f1042c);
+            sb.append(this.f1561c);
             sb.append(']');
         } else {
             sb.append("[]");
@@ -108,38 +105,38 @@ class StrategyCollection implements Serializable {
         return sb.toString();
     }
 
-    public synchronized void update(C0842l.b bVar) {
-        this.f1041b = System.currentTimeMillis() + (bVar.f1118b * 1000);
-        if (!bVar.f1117a.equalsIgnoreCase(this.f1040a)) {
-            ALog.m715e("StrategyCollection", "update error!", null, Constants.KEY_HOST, this.f1040a, "dnsInfo.host", bVar.f1117a);
+    public synchronized void update(l.b bVar) {
+        this.f1560b = System.currentTimeMillis() + (((long) bVar.f1613b) * 1000);
+        if (!bVar.a.equalsIgnoreCase(this.a)) {
+            ALog.e("StrategyCollection", "update error!", null, Constants.KEY_HOST, this.a, "dnsInfo.host", bVar.a);
             return;
         }
-        if (this.f1044e != bVar.f1128l) {
-            this.f1044e = bVar.f1128l;
-            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.f1040a, this.f1044e);
+        if (this.f1563e != bVar.f1623l) {
+            this.f1563e = bVar.f1623l;
+            PolicyVersionStat policyVersionStat = new PolicyVersionStat(this.a, this.f1563e);
             policyVersionStat.reportType = 1;
             AppMonitor.getInstance().commitStat(policyVersionStat);
         }
-        this.f1042c = bVar.f1120d;
-        if ((bVar.f1122f != null && bVar.f1122f.length != 0 && bVar.f1124h != null && bVar.f1124h.length != 0) || (bVar.f1125i != null && bVar.f1125i.length != 0)) {
-            if (this.f1045f == null) {
-                this.f1045f = new StrategyList();
+        this.f1561c = bVar.f1615d;
+        if ((bVar.f1617f != null && bVar.f1617f.length != 0 && bVar.f1619h != null && bVar.f1619h.length != 0) || (bVar.f1620i != null && bVar.f1620i.length != 0)) {
+            if (this.f1564f == null) {
+                this.f1564f = new StrategyList();
             }
-            this.f1045f.update(bVar);
+            this.f1564f.update(bVar);
             return;
         }
-        this.f1045f = null;
+        this.f1564f = null;
     }
 
     protected StrategyCollection(String str) {
-        this.f1045f = null;
-        this.f1041b = 0L;
-        this.f1042c = null;
-        this.f1043d = false;
-        this.f1044e = 0;
-        this.f1046g = 0L;
-        this.f1047h = true;
-        this.f1040a = str;
-        this.f1043d = DispatchConstants.isAmdcServerDomain(str);
+        this.f1564f = null;
+        this.f1560b = 0L;
+        this.f1561c = null;
+        this.f1562d = false;
+        this.f1563e = 0;
+        this.f1565g = 0L;
+        this.f1566h = true;
+        this.a = str;
+        this.f1562d = DispatchConstants.isAmdcServerDomain(str);
     }
 }

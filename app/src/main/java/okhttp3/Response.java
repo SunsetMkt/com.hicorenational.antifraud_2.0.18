@@ -10,7 +10,7 @@ import okhttp3.internal.http.HttpHeaders;
 import okio.Buffer;
 import okio.BufferedSource;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Response implements Closeable {
 
     @Nullable
@@ -61,9 +61,9 @@ public final class Response implements Closeable {
         if (cacheControl != null) {
             return cacheControl;
         }
-        CacheControl parse = CacheControl.parse(this.headers);
-        this.cacheControl = parse;
-        return parse;
+        CacheControl cacheControl2 = CacheControl.parse(this.headers);
+        this.cacheControl = cacheControl2;
+        return cacheControl2;
     }
 
     @Nullable
@@ -146,16 +146,16 @@ public final class Response implements Closeable {
     }
 
     public ResponseBody peekBody(long j2) throws IOException {
-        BufferedSource source = this.body.source();
-        source.request(j2);
-        Buffer clone = source.buffer().clone();
-        if (clone.size() > j2) {
+        BufferedSource bufferedSourceSource = this.body.source();
+        bufferedSourceSource.request(j2);
+        Buffer bufferClone = bufferedSourceSource.buffer().clone();
+        if (bufferClone.size() > j2) {
             Buffer buffer = new Buffer();
-            buffer.write(clone, j2);
-            clone.clear();
-            clone = buffer;
+            buffer.write(bufferClone, j2);
+            bufferClone.clear();
+            bufferClone = buffer;
         }
-        return ResponseBody.create(this.body.contentType(), clone.size(), clone);
+        return ResponseBody.create(this.body.contentType(), bufferClone.size(), bufferClone);
     }
 
     @Nullable

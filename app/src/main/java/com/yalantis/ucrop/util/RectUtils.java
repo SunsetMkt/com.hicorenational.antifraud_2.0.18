@@ -2,7 +2,7 @@ package com.yalantis.ucrop.util;
 
 import android.graphics.RectF;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class RectUtils {
     public static float[] getCenterFromRect(RectF rectF) {
         return new float[]{rectF.centerX(), rectF.centerY()};
@@ -23,26 +23,26 @@ public class RectUtils {
     public static RectF trapToRect(float[] fArr) {
         RectF rectF = new RectF(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY);
         for (int i2 = 1; i2 < fArr.length; i2 += 2) {
-            float round = Math.round(fArr[i2 - 1] * 10.0f) / 10.0f;
-            float round2 = Math.round(fArr[i2] * 10.0f) / 10.0f;
+            float fRound = Math.round(fArr[i2 - 1] * 10.0f) / 10.0f;
+            float fRound2 = Math.round(fArr[i2] * 10.0f) / 10.0f;
             float f2 = rectF.left;
-            if (round < f2) {
-                f2 = round;
+            if (fRound < f2) {
+                f2 = fRound;
             }
             rectF.left = f2;
             float f3 = rectF.top;
-            if (round2 < f3) {
-                f3 = round2;
+            if (fRound2 < f3) {
+                f3 = fRound2;
             }
             rectF.top = f3;
             float f4 = rectF.right;
-            if (round <= f4) {
-                round = f4;
+            if (fRound <= f4) {
+                fRound = f4;
             }
-            rectF.right = round;
+            rectF.right = fRound;
             float f5 = rectF.bottom;
-            if (round2 > f5) {
-                f5 = round2;
+            if (fRound2 > f5) {
+                f5 = fRound2;
             }
             rectF.bottom = f5;
         }

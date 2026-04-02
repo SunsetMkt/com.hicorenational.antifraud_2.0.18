@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ListObjectsResult extends OSSResult {
     private String bucketName;
     private String delimiter;

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.huawei.hms.support.api.client.Result;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractDataBuffer<T> extends Result implements DataBuffer<T> {
     protected final DataHolder mDataHolder;
 

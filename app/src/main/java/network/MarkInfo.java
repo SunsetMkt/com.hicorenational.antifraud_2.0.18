@@ -1,6 +1,6 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MarkInfo extends BaseInfo {
     private int caseCategory;
     private String caseCategoryText;

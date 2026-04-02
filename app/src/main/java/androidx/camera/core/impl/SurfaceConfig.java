@@ -1,9 +1,7 @@
 package androidx.camera.core.impl;
 
-import p031c.p035b.p036a.p037a.InterfaceC0950c;
-
-@InterfaceC0950c
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@d.b.a.a.c
 public abstract class SurfaceConfig {
 
     public enum ConfigSize {

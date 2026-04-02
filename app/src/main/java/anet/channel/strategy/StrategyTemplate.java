@@ -3,24 +3,21 @@ package anet.channel.strategy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class StrategyTemplate {
     Map<String, ConnProtocol> templateMap = new ConcurrentHashMap();
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.strategy.StrategyTemplate$a */
-    static class C0824a {
+    /* JADX INFO: compiled from: Taobao */
+    static class a {
+        static StrategyTemplate a = new StrategyTemplate();
 
-        /* renamed from: a */
-        static StrategyTemplate f1068a = new StrategyTemplate();
-
-        C0824a() {
+        a() {
         }
     }
 
     public static StrategyTemplate getInstance() {
-        return C0824a.f1068a;
+        return a.a;
     }
 
     public ConnProtocol getConnProtocol(String str) {
@@ -32,8 +29,8 @@ public class StrategyTemplate {
             this.templateMap.put(str, connProtocol);
             try {
                 IStrategyInstance strategyCenter = StrategyCenter.getInstance();
-                if (strategyCenter instanceof C0837g) {
-                    ((C0837g) strategyCenter).f1098b.f1053c.m664a(str, connProtocol);
+                if (strategyCenter instanceof g) {
+                    ((g) strategyCenter).f1599b.f1570c.a(str, connProtocol);
                 }
             } catch (Exception unused) {
             }

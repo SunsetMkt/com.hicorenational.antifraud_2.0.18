@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ClientConfiguration {
     private static final int DEFAULT_MAX_RETRIES = 2;
     private String ipWithHeader;

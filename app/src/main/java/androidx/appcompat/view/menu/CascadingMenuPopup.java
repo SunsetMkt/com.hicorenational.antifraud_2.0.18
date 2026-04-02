@@ -1,6 +1,5 @@
 package androidx.appcompat.view.menu;
 
-import android.R;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -24,7 +23,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.view.menu.MenuPresenter;
 import androidx.appcompat.widget.MenuItemHoverListener;
 import androidx.appcompat.widget.MenuPopupWindow;
@@ -36,11 +35,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.OnKeyListener, PopupWindow.OnDismissListener {
     static final int HORIZ_POSITION_LEFT = 0;
     static final int HORIZ_POSITION_RIGHT = 1;
-    private static final int ITEM_LAYOUT = C0120R.layout.abc_cascading_menu_item_layout;
+    private static final int ITEM_LAYOUT = R.layout.abc_cascading_menu_item_layout;
     static final int SUBMENU_TIMEOUT_MS = 200;
     private View mAnchorView;
     private final Context mContext;
@@ -62,6 +61,9 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
     private final List<MenuBuilder> mPendingMenus = new ArrayList();
     final List<CascadingMenuInfo> mShowingMenus = new ArrayList();
     final ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() { // from class: androidx.appcompat.view.menu.CascadingMenuPopup.1
+        AnonymousClass1() {
+        }
+
         @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
         public void onGlobalLayout() {
             if (!CascadingMenuPopup.this.isShowing() || CascadingMenuPopup.this.mShowingMenus.size() <= 0 || CascadingMenuPopup.this.mShowingMenus.get(0).window.isModal()) {
@@ -79,6 +81,9 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
         }
     };
     private final View.OnAttachStateChangeListener mAttachStateChangeListener = new View.OnAttachStateChangeListener() { // from class: androidx.appcompat.view.menu.CascadingMenuPopup.2
+        AnonymousClass2() {
+        }
+
         @Override // android.view.View.OnAttachStateChangeListener
         public void onViewAttachedToWindow(View view) {
         }
@@ -97,8 +102,38 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
         }
     };
     private final MenuItemHoverListener mMenuItemHoverListener = new MenuItemHoverListener() { // from class: androidx.appcompat.view.menu.CascadingMenuPopup.3
+
+        /* JADX INFO: renamed from: androidx.appcompat.view.menu.CascadingMenuPopup$3$1 */
+        class AnonymousClass1 implements Runnable {
+            final /* synthetic */ MenuItem val$item;
+            final /* synthetic */ MenuBuilder val$menu;
+            final /* synthetic */ CascadingMenuInfo val$nextInfo;
+
+            AnonymousClass1(CascadingMenuInfo cascadingMenuInfo, MenuItem menuItem, MenuBuilder menuBuilder) {
+                cascadingMenuInfo = cascadingMenuInfo;
+                menuItem = menuItem;
+                menuBuilder = menuBuilder;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                CascadingMenuInfo cascadingMenuInfo = cascadingMenuInfo;
+                if (cascadingMenuInfo != null) {
+                    CascadingMenuPopup.this.mShouldCloseImmediately = true;
+                    cascadingMenuInfo.menu.close(false);
+                    CascadingMenuPopup.this.mShouldCloseImmediately = false;
+                }
+                if (menuItem.isEnabled() && menuItem.hasSubMenu()) {
+                    menuBuilder.performItemAction(menuItem, 4);
+                }
+            }
+        }
+
+        AnonymousClass3() {
+        }
+
         @Override // androidx.appcompat.widget.MenuItemHoverListener
-        public void onItemHoverEnter(@NonNull final MenuBuilder menuBuilder, @NonNull final MenuItem menuItem) {
+        public void onItemHoverEnter(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem) {
             CascadingMenuPopup.this.mSubMenuHoverHandler.removeCallbacksAndMessages(null);
             int size = CascadingMenuPopup.this.mShowingMenus.size();
             int i2 = 0;
@@ -116,21 +151,30 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
                 return;
             }
             int i3 = i2 + 1;
-            final CascadingMenuInfo cascadingMenuInfo = i3 < CascadingMenuPopup.this.mShowingMenus.size() ? CascadingMenuPopup.this.mShowingMenus.get(i3) : null;
             CascadingMenuPopup.this.mSubMenuHoverHandler.postAtTime(new Runnable() { // from class: androidx.appcompat.view.menu.CascadingMenuPopup.3.1
+                final /* synthetic */ MenuItem val$item;
+                final /* synthetic */ MenuBuilder val$menu;
+                final /* synthetic */ CascadingMenuInfo val$nextInfo;
+
+                AnonymousClass1(CascadingMenuInfo cascadingMenuInfo, MenuItem menuItem2, MenuBuilder menuBuilder2) {
+                    cascadingMenuInfo = cascadingMenuInfo;
+                    menuItem = menuItem2;
+                    menuBuilder = menuBuilder2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    CascadingMenuInfo cascadingMenuInfo2 = cascadingMenuInfo;
-                    if (cascadingMenuInfo2 != null) {
+                    CascadingMenuInfo cascadingMenuInfo = cascadingMenuInfo;
+                    if (cascadingMenuInfo != null) {
                         CascadingMenuPopup.this.mShouldCloseImmediately = true;
-                        cascadingMenuInfo2.menu.close(false);
+                        cascadingMenuInfo.menu.close(false);
                         CascadingMenuPopup.this.mShouldCloseImmediately = false;
                     }
                     if (menuItem.isEnabled() && menuItem.hasSubMenu()) {
                         menuBuilder.performItemAction(menuItem, 4);
                     }
                 }
-            }, menuBuilder, SystemClock.uptimeMillis() + 200);
+            }, menuBuilder2, SystemClock.uptimeMillis() + 200);
         }
 
         @Override // androidx.appcompat.widget.MenuItemHoverListener
@@ -142,6 +186,134 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
     private int mDropDownGravity = 0;
     private boolean mForceShowIcon = false;
     private int mLastPosition = getInitialMenuPosition();
+
+    /* JADX INFO: renamed from: androidx.appcompat.view.menu.CascadingMenuPopup$1 */
+    class AnonymousClass1 implements ViewTreeObserver.OnGlobalLayoutListener {
+        AnonymousClass1() {
+        }
+
+        @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
+        public void onGlobalLayout() {
+            if (!CascadingMenuPopup.this.isShowing() || CascadingMenuPopup.this.mShowingMenus.size() <= 0 || CascadingMenuPopup.this.mShowingMenus.get(0).window.isModal()) {
+                return;
+            }
+            View view = CascadingMenuPopup.this.mShownAnchorView;
+            if (view == null || !view.isShown()) {
+                CascadingMenuPopup.this.dismiss();
+                return;
+            }
+            Iterator<CascadingMenuInfo> it = CascadingMenuPopup.this.mShowingMenus.iterator();
+            while (it.hasNext()) {
+                it.next().window.show();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.appcompat.view.menu.CascadingMenuPopup$2 */
+    class AnonymousClass2 implements View.OnAttachStateChangeListener {
+        AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View view) {
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+            ViewTreeObserver viewTreeObserver = CascadingMenuPopup.this.mTreeObserver;
+            if (viewTreeObserver != null) {
+                if (!viewTreeObserver.isAlive()) {
+                    CascadingMenuPopup.this.mTreeObserver = view.getViewTreeObserver();
+                }
+                CascadingMenuPopup cascadingMenuPopup = CascadingMenuPopup.this;
+                cascadingMenuPopup.mTreeObserver.removeGlobalOnLayoutListener(cascadingMenuPopup.mGlobalLayoutListener);
+            }
+            view.removeOnAttachStateChangeListener(this);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.appcompat.view.menu.CascadingMenuPopup$3 */
+    class AnonymousClass3 implements MenuItemHoverListener {
+
+        /* JADX INFO: renamed from: androidx.appcompat.view.menu.CascadingMenuPopup$3$1 */
+        class AnonymousClass1 implements Runnable {
+            final /* synthetic */ MenuItem val$item;
+            final /* synthetic */ MenuBuilder val$menu;
+            final /* synthetic */ CascadingMenuInfo val$nextInfo;
+
+            AnonymousClass1(CascadingMenuInfo cascadingMenuInfo, MenuItem menuItem2, MenuBuilder menuBuilder2) {
+                cascadingMenuInfo = cascadingMenuInfo;
+                menuItem = menuItem2;
+                menuBuilder = menuBuilder2;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                CascadingMenuInfo cascadingMenuInfo = cascadingMenuInfo;
+                if (cascadingMenuInfo != null) {
+                    CascadingMenuPopup.this.mShouldCloseImmediately = true;
+                    cascadingMenuInfo.menu.close(false);
+                    CascadingMenuPopup.this.mShouldCloseImmediately = false;
+                }
+                if (menuItem.isEnabled() && menuItem.hasSubMenu()) {
+                    menuBuilder.performItemAction(menuItem, 4);
+                }
+            }
+        }
+
+        AnonymousClass3() {
+        }
+
+        @Override // androidx.appcompat.widget.MenuItemHoverListener
+        public void onItemHoverEnter(@NonNull MenuBuilder menuBuilder2, @NonNull MenuItem menuItem2) {
+            CascadingMenuPopup.this.mSubMenuHoverHandler.removeCallbacksAndMessages(null);
+            int size = CascadingMenuPopup.this.mShowingMenus.size();
+            int i2 = 0;
+            while (true) {
+                if (i2 >= size) {
+                    i2 = -1;
+                    break;
+                } else if (menuBuilder2 == CascadingMenuPopup.this.mShowingMenus.get(i2).menu) {
+                    break;
+                } else {
+                    i2++;
+                }
+            }
+            if (i2 == -1) {
+                return;
+            }
+            int i3 = i2 + 1;
+            CascadingMenuPopup.this.mSubMenuHoverHandler.postAtTime(new Runnable() { // from class: androidx.appcompat.view.menu.CascadingMenuPopup.3.1
+                final /* synthetic */ MenuItem val$item;
+                final /* synthetic */ MenuBuilder val$menu;
+                final /* synthetic */ CascadingMenuInfo val$nextInfo;
+
+                AnonymousClass1(CascadingMenuInfo cascadingMenuInfo, MenuItem menuItem22, MenuBuilder menuBuilder22) {
+                    cascadingMenuInfo = cascadingMenuInfo;
+                    menuItem = menuItem22;
+                    menuBuilder = menuBuilder22;
+                }
+
+                @Override // java.lang.Runnable
+                public void run() {
+                    CascadingMenuInfo cascadingMenuInfo = cascadingMenuInfo;
+                    if (cascadingMenuInfo != null) {
+                        CascadingMenuPopup.this.mShouldCloseImmediately = true;
+                        cascadingMenuInfo.menu.close(false);
+                        CascadingMenuPopup.this.mShouldCloseImmediately = false;
+                    }
+                    if (menuItem.isEnabled() && menuItem.hasSubMenu()) {
+                        menuBuilder.performItemAction(menuItem, 4);
+                    }
+                }
+            }, menuBuilder22, SystemClock.uptimeMillis() + 200);
+        }
+
+        @Override // androidx.appcompat.widget.MenuItemHoverListener
+        public void onItemHoverExit(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem) {
+            CascadingMenuPopup.this.mSubMenuHoverHandler.removeCallbacksAndMessages(menuBuilder);
+        }
+    }
 
     private static class CascadingMenuInfo {
         public final MenuBuilder menu;
@@ -170,7 +342,7 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
         this.mPopupStyleRes = i3;
         this.mOverflowOnly = z;
         Resources resources = context.getResources();
-        this.mMenuMaxWidth = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(C0120R.dimen.abc_config_prefDialogWidth));
+        this.mMenuMaxWidth = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(R.dimen.abc_config_prefDialogWidth));
         this.mSubMenuHoverHandler = new Handler();
     }
 
@@ -210,35 +382,35 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
     @Nullable
     private View findParentViewForSubmenu(@NonNull CascadingMenuInfo cascadingMenuInfo, @NonNull MenuBuilder menuBuilder) {
         MenuAdapter menuAdapter;
-        int i2;
+        int headersCount;
         int firstVisiblePosition;
-        MenuItem findMenuItemForSubmenu = findMenuItemForSubmenu(cascadingMenuInfo.menu, menuBuilder);
-        if (findMenuItemForSubmenu == null) {
+        MenuItem menuItemFindMenuItemForSubmenu = findMenuItemForSubmenu(cascadingMenuInfo.menu, menuBuilder);
+        if (menuItemFindMenuItemForSubmenu == null) {
             return null;
         }
         ListView listView = cascadingMenuInfo.getListView();
         ListAdapter adapter2 = listView.getAdapter();
-        int i3 = 0;
+        int i2 = 0;
         if (adapter2 instanceof HeaderViewListAdapter) {
             HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter2;
-            i2 = headerViewListAdapter.getHeadersCount();
+            headersCount = headerViewListAdapter.getHeadersCount();
             menuAdapter = (MenuAdapter) headerViewListAdapter.getWrappedAdapter();
         } else {
             menuAdapter = (MenuAdapter) adapter2;
-            i2 = 0;
+            headersCount = 0;
         }
         int count = menuAdapter.getCount();
         while (true) {
-            if (i3 >= count) {
-                i3 = -1;
+            if (i2 >= count) {
+                i2 = -1;
                 break;
             }
-            if (findMenuItemForSubmenu == menuAdapter.getItem(i3)) {
+            if (menuItemFindMenuItemForSubmenu == menuAdapter.getItem(i2)) {
                 break;
             }
-            i3++;
+            i2++;
         }
-        if (i3 != -1 && (firstVisiblePosition = (i3 + i2) - listView.getFirstVisiblePosition()) >= 0 && firstVisiblePosition < listView.getChildCount()) {
+        if (i2 != -1 && (firstVisiblePosition = (i2 + headersCount) - listView.getFirstVisiblePosition()) >= 0 && firstVisiblePosition < listView.getChildCount()) {
             return listView.getChildAt(firstVisiblePosition);
         }
         return null;
@@ -260,88 +432,88 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
 
     private void showMenu(@NonNull MenuBuilder menuBuilder) {
         CascadingMenuInfo cascadingMenuInfo;
-        View view;
+        View viewFindParentViewForSubmenu;
         int i2;
         int i3;
         int i4;
-        LayoutInflater from = LayoutInflater.from(this.mContext);
-        MenuAdapter menuAdapter = new MenuAdapter(menuBuilder, from, this.mOverflowOnly, ITEM_LAYOUT);
+        LayoutInflater layoutInflaterFrom = LayoutInflater.from(this.mContext);
+        MenuAdapter menuAdapter = new MenuAdapter(menuBuilder, layoutInflaterFrom, this.mOverflowOnly, ITEM_LAYOUT);
         if (!isShowing() && this.mForceShowIcon) {
             menuAdapter.setForceShowIcon(true);
         } else if (isShowing()) {
             menuAdapter.setForceShowIcon(MenuPopup.shouldPreserveIconSpacing(menuBuilder));
         }
-        int measureIndividualMenuWidth = MenuPopup.measureIndividualMenuWidth(menuAdapter, null, this.mContext, this.mMenuMaxWidth);
-        MenuPopupWindow createPopupWindow = createPopupWindow();
-        createPopupWindow.setAdapter(menuAdapter);
-        createPopupWindow.setContentWidth(measureIndividualMenuWidth);
-        createPopupWindow.setDropDownGravity(this.mDropDownGravity);
+        int iMeasureIndividualMenuWidth = MenuPopup.measureIndividualMenuWidth(menuAdapter, null, this.mContext, this.mMenuMaxWidth);
+        MenuPopupWindow menuPopupWindowCreatePopupWindow = createPopupWindow();
+        menuPopupWindowCreatePopupWindow.setAdapter(menuAdapter);
+        menuPopupWindowCreatePopupWindow.setContentWidth(iMeasureIndividualMenuWidth);
+        menuPopupWindowCreatePopupWindow.setDropDownGravity(this.mDropDownGravity);
         if (this.mShowingMenus.size() > 0) {
             List<CascadingMenuInfo> list = this.mShowingMenus;
             cascadingMenuInfo = list.get(list.size() - 1);
-            view = findParentViewForSubmenu(cascadingMenuInfo, menuBuilder);
+            viewFindParentViewForSubmenu = findParentViewForSubmenu(cascadingMenuInfo, menuBuilder);
         } else {
             cascadingMenuInfo = null;
-            view = null;
+            viewFindParentViewForSubmenu = null;
         }
-        if (view != null) {
-            createPopupWindow.setTouchModal(false);
-            createPopupWindow.setEnterTransition(null);
-            int nextMenuPosition = getNextMenuPosition(measureIndividualMenuWidth);
+        if (viewFindParentViewForSubmenu != null) {
+            menuPopupWindowCreatePopupWindow.setTouchModal(false);
+            menuPopupWindowCreatePopupWindow.setEnterTransition(null);
+            int nextMenuPosition = getNextMenuPosition(iMeasureIndividualMenuWidth);
             boolean z = nextMenuPosition == 1;
             this.mLastPosition = nextMenuPosition;
             if (Build.VERSION.SDK_INT >= 26) {
-                createPopupWindow.setAnchorView(view);
+                menuPopupWindowCreatePopupWindow.setAnchorView(viewFindParentViewForSubmenu);
                 i3 = 0;
                 i2 = 0;
             } else {
                 int[] iArr = new int[2];
                 this.mAnchorView.getLocationOnScreen(iArr);
                 int[] iArr2 = new int[2];
-                view.getLocationOnScreen(iArr2);
+                viewFindParentViewForSubmenu.getLocationOnScreen(iArr2);
                 if ((this.mDropDownGravity & 7) == 5) {
                     iArr[0] = iArr[0] + this.mAnchorView.getWidth();
-                    iArr2[0] = iArr2[0] + view.getWidth();
+                    iArr2[0] = iArr2[0] + viewFindParentViewForSubmenu.getWidth();
                 }
                 i2 = iArr2[0] - iArr[0];
                 i3 = iArr2[1] - iArr[1];
             }
             if ((this.mDropDownGravity & 5) == 5) {
                 if (!z) {
-                    measureIndividualMenuWidth = view.getWidth();
-                    i4 = i2 - measureIndividualMenuWidth;
+                    iMeasureIndividualMenuWidth = viewFindParentViewForSubmenu.getWidth();
+                    i4 = i2 - iMeasureIndividualMenuWidth;
                 }
-                i4 = i2 + measureIndividualMenuWidth;
+                i4 = i2 + iMeasureIndividualMenuWidth;
             } else {
                 if (z) {
-                    measureIndividualMenuWidth = view.getWidth();
-                    i4 = i2 + measureIndividualMenuWidth;
+                    iMeasureIndividualMenuWidth = viewFindParentViewForSubmenu.getWidth();
+                    i4 = i2 + iMeasureIndividualMenuWidth;
                 }
-                i4 = i2 - measureIndividualMenuWidth;
+                i4 = i2 - iMeasureIndividualMenuWidth;
             }
-            createPopupWindow.setHorizontalOffset(i4);
-            createPopupWindow.setOverlapAnchor(true);
-            createPopupWindow.setVerticalOffset(i3);
+            menuPopupWindowCreatePopupWindow.setHorizontalOffset(i4);
+            menuPopupWindowCreatePopupWindow.setOverlapAnchor(true);
+            menuPopupWindowCreatePopupWindow.setVerticalOffset(i3);
         } else {
             if (this.mHasXOffset) {
-                createPopupWindow.setHorizontalOffset(this.mXOffset);
+                menuPopupWindowCreatePopupWindow.setHorizontalOffset(this.mXOffset);
             }
             if (this.mHasYOffset) {
-                createPopupWindow.setVerticalOffset(this.mYOffset);
+                menuPopupWindowCreatePopupWindow.setVerticalOffset(this.mYOffset);
             }
-            createPopupWindow.setEpicenterBounds(getEpicenterBounds());
+            menuPopupWindowCreatePopupWindow.setEpicenterBounds(getEpicenterBounds());
         }
-        this.mShowingMenus.add(new CascadingMenuInfo(createPopupWindow, menuBuilder, this.mLastPosition));
-        createPopupWindow.show();
-        ListView listView = createPopupWindow.getListView();
+        this.mShowingMenus.add(new CascadingMenuInfo(menuPopupWindowCreatePopupWindow, menuBuilder, this.mLastPosition));
+        menuPopupWindowCreatePopupWindow.show();
+        ListView listView = menuPopupWindowCreatePopupWindow.getListView();
         listView.setOnKeyListener(this);
         if (cascadingMenuInfo == null && this.mShowTitle && menuBuilder.getHeaderTitle() != null) {
-            FrameLayout frameLayout = (FrameLayout) from.inflate(C0120R.layout.abc_popup_menu_header_item_layout, (ViewGroup) listView, false);
-            TextView textView = (TextView) frameLayout.findViewById(R.id.title);
+            FrameLayout frameLayout = (FrameLayout) layoutInflaterFrom.inflate(R.layout.abc_popup_menu_header_item_layout, (ViewGroup) listView, false);
+            TextView textView = (TextView) frameLayout.findViewById(android.R.id.title);
             frameLayout.setEnabled(false);
             textView.setText(menuBuilder.getHeaderTitle());
             listView.addHeaderView(frameLayout, null, false);
-            createPopupWindow.show();
+            menuPopupWindowCreatePopupWindow.show();
         }
     }
 
@@ -394,21 +566,21 @@ final class CascadingMenuPopup extends MenuPopup implements MenuPresenter, View.
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
-        int findIndexOfAddedMenu = findIndexOfAddedMenu(menuBuilder);
-        if (findIndexOfAddedMenu < 0) {
+        int iFindIndexOfAddedMenu = findIndexOfAddedMenu(menuBuilder);
+        if (iFindIndexOfAddedMenu < 0) {
             return;
         }
-        int i2 = findIndexOfAddedMenu + 1;
+        int i2 = iFindIndexOfAddedMenu + 1;
         if (i2 < this.mShowingMenus.size()) {
             this.mShowingMenus.get(i2).menu.close(false);
         }
-        CascadingMenuInfo remove = this.mShowingMenus.remove(findIndexOfAddedMenu);
-        remove.menu.removeMenuPresenter(this);
+        CascadingMenuInfo cascadingMenuInfoRemove = this.mShowingMenus.remove(iFindIndexOfAddedMenu);
+        cascadingMenuInfoRemove.menu.removeMenuPresenter(this);
         if (this.mShouldCloseImmediately) {
-            remove.window.setExitTransition(null);
-            remove.window.setAnimationStyle(0);
+            cascadingMenuInfoRemove.window.setExitTransition(null);
+            cascadingMenuInfoRemove.window.setAnimationStyle(0);
         }
-        remove.window.dismiss();
+        cascadingMenuInfoRemove.window.dismiss();
         int size = this.mShowingMenus.size();
         if (size > 0) {
             this.mLastPosition = this.mShowingMenus.get(size - 1).position;

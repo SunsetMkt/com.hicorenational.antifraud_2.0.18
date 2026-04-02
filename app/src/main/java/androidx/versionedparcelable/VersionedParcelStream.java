@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import androidx.annotation.RestrictTo;
 import androidx.collection.ArrayMap;
 import androidx.versionedparcelable.VersionedParcel;
+import j.a.a.a.c;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,10 +18,9 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.Set;
-import p324i.p325a.p326a.p327a.C5758c;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY})
-/* loaded from: classes.dex */
 class VersionedParcelStream extends VersionedParcel {
     private static final int TYPE_BOOLEAN = 5;
     private static final int TYPE_BOOLEAN_ARRAY = 6;
@@ -37,7 +37,7 @@ class VersionedParcelStream extends VersionedParcel {
     private static final int TYPE_STRING_ARRAY = 4;
     private static final int TYPE_SUB_BUNDLE = 1;
     private static final int TYPE_SUB_PERSISTABLE_BUNDLE = 2;
-    private static final Charset UTF_16 = Charset.forName(C5758c.f20752c);
+    private static final Charset UTF_16 = Charset.forName(c.f12441c);
     int mCount;
     private DataInputStream mCurrentInput;
     private DataOutputStream mCurrentOutput;
@@ -233,12 +233,12 @@ class VersionedParcelStream extends VersionedParcel {
 
     @Override // androidx.versionedparcelable.VersionedParcel
     public Bundle readBundle() {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
         Bundle bundle = new Bundle();
-        for (int i2 = 0; i2 < readInt; i2++) {
+        for (int i3 = 0; i3 < i2; i3++) {
             readObject(readInt(), readString(), bundle);
         }
         return bundle;
@@ -247,11 +247,11 @@ class VersionedParcelStream extends VersionedParcel {
     @Override // androidx.versionedparcelable.VersionedParcel
     public byte[] readByteArray() {
         try {
-            int readInt = this.mCurrentInput.readInt();
-            if (readInt <= 0) {
+            int i2 = this.mCurrentInput.readInt();
+            if (i2 <= 0) {
                 return null;
             }
-            byte[] bArr = new byte[readInt];
+            byte[] bArr = new byte[i2];
             this.mCurrentInput.readFully(bArr);
             return bArr;
         } catch (IOException e2) {
@@ -284,14 +284,14 @@ class VersionedParcelStream extends VersionedParcel {
                     this.mMasterInput.skip(this.mFieldSize - this.mCount);
                 }
                 this.mFieldSize = -1;
-                int readInt = this.mMasterInput.readInt();
+                int i3 = this.mMasterInput.readInt();
                 this.mCount = 0;
-                int i3 = readInt & 65535;
-                if (i3 == 65535) {
-                    i3 = this.mMasterInput.readInt();
+                int i4 = i3 & 65535;
+                if (i4 == 65535) {
+                    i4 = this.mMasterInput.readInt();
                 }
-                this.mFieldId = (readInt >> 16) & 65535;
-                this.mFieldSize = i3;
+                this.mFieldId = (i3 >> 16) & 65535;
+                this.mFieldSize = i4;
             } catch (IOException unused) {
                 return false;
             }
@@ -334,11 +334,11 @@ class VersionedParcelStream extends VersionedParcel {
     @Override // androidx.versionedparcelable.VersionedParcel
     public String readString() {
         try {
-            int readInt = this.mCurrentInput.readInt();
-            if (readInt <= 0) {
+            int i2 = this.mCurrentInput.readInt();
+            if (i2 <= 0) {
                 return null;
             }
-            byte[] bArr = new byte[readInt];
+            byte[] bArr = new byte[i2];
             this.mCurrentInput.readFully(bArr);
             return new String(bArr, UTF_16);
         } catch (IOException e2) {
@@ -382,9 +382,9 @@ class VersionedParcelStream extends VersionedParcel {
                 this.mCurrentOutput.writeInt(-1);
                 return;
             }
-            Set<String> keySet = bundle.keySet();
-            this.mCurrentOutput.writeInt(keySet.size());
-            for (String str : keySet) {
+            Set<String> setKeySet = bundle.keySet();
+            this.mCurrentOutput.writeInt(setKeySet.size());
+            for (String str : setKeySet) {
                 writeString(str);
                 writeObject(bundle.get(str));
             }
@@ -499,9 +499,9 @@ class VersionedParcelStream extends VersionedParcel {
                 if (i2 != -1 && versionedParcelStream.mCount >= i2) {
                     throw new IOException();
                 }
-                int read = super.read();
+                int i3 = super.read();
                 VersionedParcelStream.this.mCount++;
-                return read;
+                return i3;
             }
 
             @Override // java.io.FilterInputStream, java.io.InputStream
@@ -511,11 +511,11 @@ class VersionedParcelStream extends VersionedParcel {
                 if (i2 != -1 && versionedParcelStream.mCount >= i2) {
                     throw new IOException();
                 }
-                long skip = super.skip(j2);
-                if (skip > 0) {
-                    VersionedParcelStream.this.mCount += (int) skip;
+                long jSkip = super.skip(j2);
+                if (jSkip > 0) {
+                    VersionedParcelStream.this.mCount += (int) jSkip;
                 }
-                return skip;
+                return jSkip;
             }
 
             @Override // java.io.FilterInputStream, java.io.InputStream
@@ -525,11 +525,11 @@ class VersionedParcelStream extends VersionedParcel {
                 if (i4 != -1 && versionedParcelStream.mCount >= i4) {
                     throw new IOException();
                 }
-                int read = super.read(bArr, i2, i3);
-                if (read > 0) {
-                    VersionedParcelStream.this.mCount += read;
+                int i5 = super.read(bArr, i2, i3);
+                if (i5 > 0) {
+                    VersionedParcelStream.this.mCount += i5;
                 }
-                return read;
+                return i5;
             }
         }) : null;
         this.mMasterOutput = outputStream != null ? new DataOutputStream(outputStream) : null;

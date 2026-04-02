@@ -10,8 +10,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(24)
-/* loaded from: classes.dex */
 class OutputConfigurationCompatApi24Impl extends OutputConfigurationCompatBaseImpl {
 
     private static final class OutputConfigurationParamsApi24 {
@@ -34,8 +34,8 @@ class OutputConfigurationCompatApi24Impl extends OutputConfigurationCompatBaseIm
         }
 
         public int hashCode() {
-            int hashCode = this.mOutputConfiguration.hashCode() ^ 31;
-            int i2 = (this.mIsShared ? 1 : 0) ^ ((hashCode << 5) - hashCode);
+            int iHashCode = this.mOutputConfiguration.hashCode() ^ 31;
+            int i2 = (this.mIsShared ? 1 : 0) ^ ((iHashCode << 5) - iHashCode);
             int i3 = (i2 << 5) - i2;
             String str = this.mPhysicalCameraId;
             return (str == null ? 0 : str.hashCode()) ^ i3;

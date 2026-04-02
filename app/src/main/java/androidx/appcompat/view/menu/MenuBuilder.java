@@ -25,12 +25,11 @@ import androidx.core.view.ActionProvider;
 import androidx.core.view.ViewConfigurationCompat;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class MenuBuilder implements SupportMenu {
     private static final String ACTION_VIEW_STATES_KEY = "android:menu:actionviewstates";
     private static final String EXPANDED_ACTION_VIEW_ID = "android:menu:expandedactionview";
@@ -91,12 +90,10 @@ public class MenuBuilder implements SupportMenu {
             return;
         }
         stopDispatchingItemsChanged();
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter = next.get();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
             if (menuPresenter == null) {
-                this.mPresenters.remove(next);
+                this.mPresenters.remove(weakReference);
             } else {
                 menuPresenter.updateMenuView(z);
             }
@@ -110,12 +107,10 @@ public class MenuBuilder implements SupportMenu {
         if (sparseParcelableArray == null || this.mPresenters.isEmpty()) {
             return;
         }
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter = next.get();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
             if (menuPresenter == null) {
-                this.mPresenters.remove(next);
+                this.mPresenters.remove(weakReference);
             } else {
                 int id = menuPresenter.getId();
                 if (id > 0 && (parcelable = (Parcelable) sparseParcelableArray.get(id)) != null) {
@@ -126,21 +121,19 @@ public class MenuBuilder implements SupportMenu {
     }
 
     private void dispatchSaveInstanceState(Bundle bundle) {
-        Parcelable onSaveInstanceState;
+        Parcelable parcelableOnSaveInstanceState;
         if (this.mPresenters.isEmpty()) {
             return;
         }
         SparseArray<? extends Parcelable> sparseArray = new SparseArray<>();
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter = next.get();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
             if (menuPresenter == null) {
-                this.mPresenters.remove(next);
+                this.mPresenters.remove(weakReference);
             } else {
                 int id = menuPresenter.getId();
-                if (id > 0 && (onSaveInstanceState = menuPresenter.onSaveInstanceState()) != null) {
-                    sparseArray.put(id, onSaveInstanceState);
+                if (id > 0 && (parcelableOnSaveInstanceState = menuPresenter.onSaveInstanceState()) != null) {
+                    sparseArray.put(id, parcelableOnSaveInstanceState);
                 }
             }
         }
@@ -151,18 +144,16 @@ public class MenuBuilder implements SupportMenu {
         if (this.mPresenters.isEmpty()) {
             return false;
         }
-        boolean onSubMenuSelected = menuPresenter != null ? menuPresenter.onSubMenuSelected(subMenuBuilder) : false;
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter2 = next.get();
+        boolean zOnSubMenuSelected = menuPresenter != null ? menuPresenter.onSubMenuSelected(subMenuBuilder) : false;
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter2 = weakReference.get();
             if (menuPresenter2 == null) {
-                this.mPresenters.remove(next);
-            } else if (!onSubMenuSelected) {
-                onSubMenuSelected = menuPresenter2.onSubMenuSelected(subMenuBuilder);
+                this.mPresenters.remove(weakReference);
+            } else if (!zOnSubMenuSelected) {
+                zOnSubMenuSelected = menuPresenter2.onSubMenuSelected(subMenuBuilder);
             }
         }
-        return onSubMenuSelected;
+        return zOnSubMenuSelected;
     }
 
     private static int findInsertIndex(ArrayList<MenuItemImpl> arrayList, int i2) {
@@ -230,13 +221,13 @@ public class MenuBuilder implements SupportMenu {
     public int addIntentOptions(int i2, int i3, int i4, ComponentName componentName, Intent[] intentArr, Intent intent, int i5, MenuItem[] menuItemArr) {
         int i6;
         PackageManager packageManager = this.mContext.getPackageManager();
-        List<ResolveInfo> queryIntentActivityOptions = packageManager.queryIntentActivityOptions(componentName, intentArr, intent, 0);
-        int size = queryIntentActivityOptions != null ? queryIntentActivityOptions.size() : 0;
+        List<ResolveInfo> listQueryIntentActivityOptions = packageManager.queryIntentActivityOptions(componentName, intentArr, intent, 0);
+        int size = listQueryIntentActivityOptions != null ? listQueryIntentActivityOptions.size() : 0;
         if ((i5 & 1) == 0) {
             removeGroup(i2);
         }
         for (int i7 = 0; i7 < size; i7++) {
-            ResolveInfo resolveInfo = queryIntentActivityOptions.get(i7);
+            ResolveInfo resolveInfo = listQueryIntentActivityOptions.get(i7);
             int i8 = resolveInfo.specificIndex;
             Intent intent2 = new Intent(i8 < 0 ? intent : intentArr[i8]);
             intent2.setComponent(new ComponentName(resolveInfo.activityInfo.applicationInfo.packageName, resolveInfo.activityInfo.name));
@@ -250,15 +241,15 @@ public class MenuBuilder implements SupportMenu {
 
     protected MenuItem addInternal(int i2, int i3, int i4, CharSequence charSequence) {
         int ordering = getOrdering(i4);
-        MenuItemImpl createNewMenuItem = createNewMenuItem(i2, i3, i4, ordering, charSequence, this.mDefaultShowAsAction);
+        MenuItemImpl menuItemImplCreateNewMenuItem = createNewMenuItem(i2, i3, i4, ordering, charSequence, this.mDefaultShowAsAction);
         ContextMenu.ContextMenuInfo contextMenuInfo = this.mCurrentMenuInfo;
         if (contextMenuInfo != null) {
-            createNewMenuItem.setMenuInfo(contextMenuInfo);
+            menuItemImplCreateNewMenuItem.setMenuInfo(contextMenuInfo);
         }
         ArrayList<MenuItemImpl> arrayList = this.mItems;
-        arrayList.add(findInsertIndex(arrayList, ordering), createNewMenuItem);
+        arrayList.add(findInsertIndex(arrayList, ordering), menuItemImplCreateNewMenuItem);
         onItemsChanged(true);
-        return createNewMenuItem;
+        return menuItemImplCreateNewMenuItem;
     }
 
     public void addMenuPresenter(MenuPresenter menuPresenter) {
@@ -310,12 +301,10 @@ public class MenuBuilder implements SupportMenu {
             return;
         }
         this.mIsClosing = true;
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter = next.get();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
             if (menuPresenter == null) {
-                this.mPresenters.remove(next);
+                this.mPresenters.remove(weakReference);
             } else {
                 menuPresenter.onCloseMenu(this, z);
             }
@@ -324,28 +313,26 @@ public class MenuBuilder implements SupportMenu {
     }
 
     public boolean collapseItemActionView(MenuItemImpl menuItemImpl) {
-        boolean z = false;
+        boolean zCollapseItemActionView = false;
         if (!this.mPresenters.isEmpty() && this.mExpandedItem == menuItemImpl) {
             stopDispatchingItemsChanged();
-            Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-            while (it.hasNext()) {
-                WeakReference<MenuPresenter> next = it.next();
-                MenuPresenter menuPresenter = next.get();
-                if (menuPresenter == null) {
-                    this.mPresenters.remove(next);
-                } else {
-                    z = menuPresenter.collapseItemActionView(this, menuItemImpl);
-                    if (z) {
+            for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+                MenuPresenter menuPresenter = weakReference.get();
+                if (menuPresenter != null) {
+                    zCollapseItemActionView = menuPresenter.collapseItemActionView(this, menuItemImpl);
+                    if (zCollapseItemActionView) {
                         break;
                     }
+                } else {
+                    this.mPresenters.remove(weakReference);
                 }
             }
             startDispatchingItemsChanged();
-            if (z) {
+            if (zCollapseItemActionView) {
                 this.mExpandedItem = null;
             }
         }
-        return z;
+        return zCollapseItemActionView;
     }
 
     boolean dispatchMenuItemSelected(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem) {
@@ -354,29 +341,27 @@ public class MenuBuilder implements SupportMenu {
     }
 
     public boolean expandItemActionView(MenuItemImpl menuItemImpl) {
-        boolean z = false;
+        boolean zExpandItemActionView = false;
         if (this.mPresenters.isEmpty()) {
             return false;
         }
         stopDispatchingItemsChanged();
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter = next.get();
-            if (menuPresenter == null) {
-                this.mPresenters.remove(next);
-            } else {
-                z = menuPresenter.expandItemActionView(this, menuItemImpl);
-                if (z) {
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter = weakReference.get();
+            if (menuPresenter != null) {
+                zExpandItemActionView = menuPresenter.expandItemActionView(this, menuItemImpl);
+                if (zExpandItemActionView) {
                     break;
                 }
+            } else {
+                this.mPresenters.remove(weakReference);
             }
         }
         startDispatchingItemsChanged();
-        if (z) {
+        if (zExpandItemActionView) {
             this.mExpandedItem = menuItemImpl;
         }
-        return z;
+        return zExpandItemActionView;
     }
 
     public int findGroupIndex(int i2) {
@@ -385,15 +370,15 @@ public class MenuBuilder implements SupportMenu {
 
     @Override // android.view.Menu
     public MenuItem findItem(int i2) {
-        MenuItem findItem;
+        MenuItem menuItemFindItem;
         int size = size();
         for (int i3 = 0; i3 < size; i3++) {
             MenuItemImpl menuItemImpl = this.mItems.get(i3);
             if (menuItemImpl.getItemId() == i2) {
                 return menuItemImpl;
             }
-            if (menuItemImpl.hasSubMenu() && (findItem = menuItemImpl.getSubMenu().findItem(i2)) != null) {
-                return findItem;
+            if (menuItemImpl.hasSubMenu() && (menuItemFindItem = menuItemImpl.getSubMenu().findItem(i2)) != null) {
+                return menuItemFindItem;
             }
         }
         return null;
@@ -423,11 +408,11 @@ public class MenuBuilder implements SupportMenu {
         if (size == 1) {
             return arrayList.get(0);
         }
-        boolean isQwertyMode = isQwertyMode();
+        boolean zIsQwertyMode = isQwertyMode();
         for (int i3 = 0; i3 < size; i3++) {
             MenuItemImpl menuItemImpl = arrayList.get(i3);
-            char alphabeticShortcut = isQwertyMode ? menuItemImpl.getAlphabeticShortcut() : menuItemImpl.getNumericShortcut();
-            if ((alphabeticShortcut == keyData.meta[0] && (metaState & 2) == 0) || ((alphabeticShortcut == keyData.meta[2] && (metaState & 2) != 0) || (isQwertyMode && alphabeticShortcut == '\b' && i2 == 67))) {
+            char alphabeticShortcut = zIsQwertyMode ? menuItemImpl.getAlphabeticShortcut() : menuItemImpl.getNumericShortcut();
+            if ((alphabeticShortcut == keyData.meta[0] && (metaState & 2) == 0) || ((alphabeticShortcut == keyData.meta[2] && (metaState & 2) != 0) || (zIsQwertyMode && alphabeticShortcut == '\b' && i2 == 67))) {
                 return menuItemImpl;
             }
         }
@@ -435,7 +420,7 @@ public class MenuBuilder implements SupportMenu {
     }
 
     void findItemsWithShortcutForKey(List<MenuItemImpl> list, int i2, KeyEvent keyEvent) {
-        boolean isQwertyMode = isQwertyMode();
+        boolean zIsQwertyMode = isQwertyMode();
         int modifiers = keyEvent.getModifiers();
         KeyCharacterMap.KeyData keyData = new KeyCharacterMap.KeyData();
         if (keyEvent.getKeyData(keyData) || i2 == 67) {
@@ -445,10 +430,10 @@ public class MenuBuilder implements SupportMenu {
                 if (menuItemImpl.hasSubMenu()) {
                     ((MenuBuilder) menuItemImpl.getSubMenu()).findItemsWithShortcutForKey(list, i2, keyEvent);
                 }
-                char alphabeticShortcut = isQwertyMode ? menuItemImpl.getAlphabeticShortcut() : menuItemImpl.getNumericShortcut();
-                if (((modifiers & SupportMenu.SUPPORTED_MODIFIERS_MASK) == ((isQwertyMode ? menuItemImpl.getAlphabeticModifiers() : menuItemImpl.getNumericModifiers()) & SupportMenu.SUPPORTED_MODIFIERS_MASK)) && alphabeticShortcut != 0) {
+                char alphabeticShortcut = zIsQwertyMode ? menuItemImpl.getAlphabeticShortcut() : menuItemImpl.getNumericShortcut();
+                if (((modifiers & SupportMenu.SUPPORTED_MODIFIERS_MASK) == ((zIsQwertyMode ? menuItemImpl.getAlphabeticModifiers() : menuItemImpl.getNumericModifiers()) & SupportMenu.SUPPORTED_MODIFIERS_MASK)) && alphabeticShortcut != 0) {
                     char[] cArr = keyData.meta;
-                    if ((alphabeticShortcut == cArr[0] || alphabeticShortcut == cArr[2] || (isQwertyMode && alphabeticShortcut == '\b' && i2 == 67)) && menuItemImpl.isEnabled()) {
+                    if ((alphabeticShortcut == cArr[0] || alphabeticShortcut == cArr[2] || (zIsQwertyMode && alphabeticShortcut == '\b' && i2 == 67)) && menuItemImpl.isEnabled()) {
                         list.add(menuItemImpl);
                     }
                 }
@@ -459,18 +444,16 @@ public class MenuBuilder implements SupportMenu {
     public void flagActionItems() {
         ArrayList<MenuItemImpl> visibleItems = getVisibleItems();
         if (this.mIsActionItemsStale) {
-            Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-            boolean z = false;
-            while (it.hasNext()) {
-                WeakReference<MenuPresenter> next = it.next();
-                MenuPresenter menuPresenter = next.get();
+            boolean zFlagActionItems = false;
+            for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+                MenuPresenter menuPresenter = weakReference.get();
                 if (menuPresenter == null) {
-                    this.mPresenters.remove(next);
+                    this.mPresenters.remove(weakReference);
                 } else {
-                    z |= menuPresenter.flagActionItems();
+                    zFlagActionItems |= menuPresenter.flagActionItems();
                 }
             }
-            if (z) {
+            if (zFlagActionItems) {
                 this.mActionItems.clear();
                 this.mNonActionItems.clear();
                 int size = visibleItems.size();
@@ -628,26 +611,26 @@ public class MenuBuilder implements SupportMenu {
 
     @Override // android.view.Menu
     public boolean performShortcut(int i2, KeyEvent keyEvent, int i3) {
-        MenuItemImpl findItemWithShortcutForKey = findItemWithShortcutForKey(i2, keyEvent);
-        boolean performItemAction = findItemWithShortcutForKey != null ? performItemAction(findItemWithShortcutForKey, i3) : false;
+        MenuItemImpl menuItemImplFindItemWithShortcutForKey = findItemWithShortcutForKey(i2, keyEvent);
+        boolean zPerformItemAction = menuItemImplFindItemWithShortcutForKey != null ? performItemAction(menuItemImplFindItemWithShortcutForKey, i3) : false;
         if ((i3 & 2) != 0) {
             close(true);
         }
-        return performItemAction;
+        return zPerformItemAction;
     }
 
     @Override // android.view.Menu
     public void removeGroup(int i2) {
-        int findGroupIndex = findGroupIndex(i2);
-        if (findGroupIndex >= 0) {
-            int size = this.mItems.size() - findGroupIndex;
+        int iFindGroupIndex = findGroupIndex(i2);
+        if (iFindGroupIndex >= 0) {
+            int size = this.mItems.size() - iFindGroupIndex;
             int i3 = 0;
             while (true) {
                 int i4 = i3 + 1;
-                if (i3 >= size || this.mItems.get(findGroupIndex).getGroupId() != i2) {
+                if (i3 >= size || this.mItems.get(iFindGroupIndex).getGroupId() != i2) {
                     break;
                 }
-                removeItemAtInt(findGroupIndex, false);
+                removeItemAtInt(iFindGroupIndex, false);
                 i3 = i4;
             }
             onItemsChanged(true);
@@ -664,18 +647,16 @@ public class MenuBuilder implements SupportMenu {
     }
 
     public void removeMenuPresenter(MenuPresenter menuPresenter) {
-        Iterator<WeakReference<MenuPresenter>> it = this.mPresenters.iterator();
-        while (it.hasNext()) {
-            WeakReference<MenuPresenter> next = it.next();
-            MenuPresenter menuPresenter2 = next.get();
+        for (WeakReference<MenuPresenter> weakReference : this.mPresenters) {
+            MenuPresenter menuPresenter2 = weakReference.get();
             if (menuPresenter2 == null || menuPresenter2 == menuPresenter) {
-                this.mPresenters.remove(next);
+                this.mPresenters.remove(weakReference);
             }
         }
     }
 
     public void restoreActionViewStates(Bundle bundle) {
-        MenuItem findItem;
+        MenuItem menuItemFindItem;
         if (bundle == null) {
             return;
         }
@@ -692,10 +673,10 @@ public class MenuBuilder implements SupportMenu {
             }
         }
         int i3 = bundle.getInt(EXPANDED_ACTION_VIEW_ID);
-        if (i3 <= 0 || (findItem = findItem(i3)) == null) {
+        if (i3 <= 0 || (menuItemFindItem = findItem(i3)) == null) {
             return;
         }
-        findItem.expandActionView();
+        menuItemFindItem.expandActionView();
     }
 
     public void restorePresenterStates(Bundle bundle) {
@@ -893,12 +874,12 @@ public class MenuBuilder implements SupportMenu {
         if (menuItemImpl == null || !menuItemImpl.isEnabled()) {
             return false;
         }
-        boolean invoke = menuItemImpl.invoke();
+        boolean zInvoke = menuItemImpl.invoke();
         ActionProvider supportActionProvider = menuItemImpl.getSupportActionProvider();
         boolean z = supportActionProvider != null && supportActionProvider.hasSubMenu();
         if (menuItemImpl.hasCollapsibleActionView()) {
-            invoke |= menuItemImpl.expandActionView();
-            if (invoke) {
+            zInvoke |= menuItemImpl.expandActionView();
+            if (zInvoke) {
                 close(true);
             }
         } else if (menuItemImpl.hasSubMenu() || z) {
@@ -912,14 +893,14 @@ public class MenuBuilder implements SupportMenu {
             if (z) {
                 supportActionProvider.onPrepareSubMenu(subMenuBuilder);
             }
-            invoke |= dispatchSubMenuSelected(subMenuBuilder, menuPresenter);
-            if (!invoke) {
+            zInvoke |= dispatchSubMenuSelected(subMenuBuilder, menuPresenter);
+            if (!zInvoke) {
                 close(true);
             }
         } else if ((i2 & 1) == 0) {
             close(true);
         }
-        return invoke;
+        return zInvoke;
     }
 
     protected MenuBuilder setHeaderIconInt(int i2) {

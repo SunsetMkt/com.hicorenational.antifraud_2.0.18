@@ -2,26 +2,24 @@ package com.huawei.hms.common.internal;
 
 import com.huawei.hmf.tasks.TaskCompletionSource;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TaskApiCallWrapper<TResult> extends BaseContentWrapper {
+    private final TaskApiCall<? extends AnyClient, TResult> a;
 
-    /* renamed from: a */
-    private final TaskApiCall<? extends AnyClient, TResult> f7303a;
-
-    /* renamed from: b */
-    private final TaskCompletionSource<TResult> f7304b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final TaskCompletionSource<TResult> f4578b;
 
     public TaskApiCallWrapper(TaskApiCall<? extends AnyClient, TResult> taskApiCall, TaskCompletionSource<TResult> taskCompletionSource) {
         super(1);
-        this.f7303a = taskApiCall;
-        this.f7304b = taskCompletionSource;
+        this.a = taskApiCall;
+        this.f4578b = taskCompletionSource;
     }
 
     public TaskApiCall<? extends AnyClient, TResult> getTaskApiCall() {
-        return this.f7303a;
+        return this.a;
     }
 
     public TaskCompletionSource<TResult> getTaskCompletionSource() {
-        return this.f7304b;
+        return this.f4578b;
     }
 }

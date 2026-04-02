@@ -3,7 +3,7 @@ package com.huawei.hms.framework.common;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ContextHolder {
     private static final String TAG = "ContextHolder";
 

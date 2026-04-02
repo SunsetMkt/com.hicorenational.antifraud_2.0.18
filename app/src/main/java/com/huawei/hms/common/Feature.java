@@ -7,8 +7,8 @@ import com.huawei.hms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.huawei.hms.common.internal.safeparcel.SafeParcelWriter;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class Feature extends AbstractSafeParcelable {
     public static final int ARGS_NAME = 1;
     public static final int ARGS_SVC_VER = 2;
@@ -55,11 +55,11 @@ public class Feature extends AbstractSafeParcelable {
         if (parcel == null) {
             return;
         }
-        int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
+        int iBeginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
         SafeParcelWriter.writeString(parcel, 1, getName(), false);
         SafeParcelWriter.writeInt(parcel, 2, this.serviceVersion);
         SafeParcelWriter.writeLong(parcel, 3, getVersion());
-        SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
+        SafeParcelWriter.finishObjectHeader(parcel, iBeginObjectHeader);
     }
 
     public Feature(String str, int i2, long j2) {

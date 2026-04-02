@@ -1,5 +1,6 @@
 package androidx.transition;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Path;
@@ -7,7 +8,7 @@ import android.util.AttributeSet;
 import androidx.core.content.res.TypedArrayUtils;
 import org.xmlpull.v1.XmlPullParser;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ArcMotion extends PathMotion {
     private static final float DEFAULT_MAX_ANGLE_DEGREES = 70.0f;
     private static final float DEFAULT_MAX_TANGENT = (float) Math.tan(Math.toRadians(35.0d));
@@ -62,12 +63,12 @@ public class ArcMotion extends PathMotion {
         float f14 = 0.25f * f11;
         boolean z = f3 > f5;
         if (Math.abs(f9) < Math.abs(f10)) {
-            float abs = Math.abs(f11 / (f10 * 2.0f));
+            float fAbs = Math.abs(f11 / (f10 * 2.0f));
             if (z) {
-                f7 = abs + f5;
+                f7 = fAbs + f5;
                 f6 = f4;
             } else {
-                f7 = abs + f3;
+                f7 = fAbs + f3;
                 f6 = f2;
             }
             f8 = this.mMinimumVerticalTangent;
@@ -94,9 +95,9 @@ public class ArcMotion extends PathMotion {
             f21 = 0.0f;
         }
         if (f21 != 0.0f) {
-            float sqrt = (float) Math.sqrt(f21 / f19);
-            f6 = ((f6 - f12) * sqrt) + f12;
-            f7 = f13 + (sqrt * (f7 - f13));
+            float fSqrt = (float) Math.sqrt(f21 / f19);
+            f6 = ((f6 - f12) * fSqrt) + f12;
+            f7 = f13 + (fSqrt * (f7 - f13));
         }
         path.cubicTo((f2 + f6) / 2.0f, (f3 + f7) / 2.0f, (f6 + f4) / 2.0f, (f7 + f5) / 2.0f, f4, f5);
         return path;
@@ -117,6 +118,7 @@ public class ArcMotion extends PathMotion {
         this.mMinimumVerticalTangent = toTangent(f2);
     }
 
+    @SuppressLint({"RestrictedApi"})
     public ArcMotion(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.mMinimumHorizontalAngle = 0.0f;
@@ -125,11 +127,11 @@ public class ArcMotion extends PathMotion {
         this.mMinimumHorizontalTangent = 0.0f;
         this.mMinimumVerticalTangent = 0.0f;
         this.mMaximumTangent = DEFAULT_MAX_TANGENT;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.ARC_MOTION);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.ARC_MOTION);
         XmlPullParser xmlPullParser = (XmlPullParser) attributeSet;
-        setMinimumVerticalAngle(TypedArrayUtils.getNamedFloat(obtainStyledAttributes, xmlPullParser, "minimumVerticalAngle", 1, 0.0f));
-        setMinimumHorizontalAngle(TypedArrayUtils.getNamedFloat(obtainStyledAttributes, xmlPullParser, "minimumHorizontalAngle", 0, 0.0f));
-        setMaximumAngle(TypedArrayUtils.getNamedFloat(obtainStyledAttributes, xmlPullParser, "maximumAngle", 2, DEFAULT_MAX_ANGLE_DEGREES));
-        obtainStyledAttributes.recycle();
+        setMinimumVerticalAngle(TypedArrayUtils.getNamedFloat(typedArrayObtainStyledAttributes, xmlPullParser, "minimumVerticalAngle", 1, 0.0f));
+        setMinimumHorizontalAngle(TypedArrayUtils.getNamedFloat(typedArrayObtainStyledAttributes, xmlPullParser, "minimumHorizontalAngle", 0, 0.0f));
+        setMaximumAngle(TypedArrayUtils.getNamedFloat(typedArrayObtainStyledAttributes, xmlPullParser, "maximumAngle", 2, DEFAULT_MAX_ANGLE_DEGREES));
+        typedArrayObtainStyledAttributes.recycle();
     }
 }

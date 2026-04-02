@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class MeteringPointFactory {
 
     @Nullable
@@ -37,7 +37,7 @@ public abstract class MeteringPointFactory {
 
     @NonNull
     public final MeteringPoint createPoint(float f2, float f3, float f4) {
-        PointF convertPoint = convertPoint(f2, f3);
-        return new MeteringPoint(convertPoint.x, convertPoint.y, f4, this.mSurfaceAspectRatio);
+        PointF pointFConvertPoint = convertPoint(f2, f3);
+        return new MeteringPoint(pointFConvertPoint.x, pointFConvertPoint.y, f4, this.mSurfaceAspectRatio);
     }
 }

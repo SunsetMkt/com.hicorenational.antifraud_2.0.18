@@ -5,7 +5,7 @@ import java.util.concurrent.RunnableScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ScheduledThreadPoolExecutorEnhance extends ScheduledThreadPoolExecutor {
     private static final String TAG = "ScheduledThreadPoolExec";
 
@@ -17,14 +17,14 @@ public class ScheduledThreadPoolExecutorEnhance extends ScheduledThreadPoolExecu
     protected void beforeExecute(Thread thread, Runnable runnable) {
         if (runnable instanceof RunnableScheduledFutureEnhance) {
             String parentName = ((RunnableScheduledFutureEnhance) runnable).getParentName();
-            int lastIndexOf = parentName.lastIndexOf(" -->");
-            if (lastIndexOf != -1) {
-                parentName = StringUtils.substring(parentName, lastIndexOf + 4);
+            int iLastIndexOf = parentName.lastIndexOf(" -->");
+            if (iLastIndexOf != -1) {
+                parentName = StringUtils.substring(parentName, iLastIndexOf + 4);
             }
             String name = thread.getName();
-            int lastIndexOf2 = name.lastIndexOf(" -->");
-            if (lastIndexOf2 != -1) {
-                name = StringUtils.substring(name, lastIndexOf2 + 4);
+            int iLastIndexOf2 = name.lastIndexOf(" -->");
+            if (iLastIndexOf2 != -1) {
+                name = StringUtils.substring(name, iLastIndexOf2 + 4);
             }
             thread.setName(parentName + " -->" + name);
         }

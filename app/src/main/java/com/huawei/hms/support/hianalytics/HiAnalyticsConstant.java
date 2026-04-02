@@ -1,6 +1,6 @@
 package com.huawei.hms.support.hianalytics;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HiAnalyticsConstant {
     public static final String BI_KEY_API_NAME = "api_name";
     public static final String BI_KEY_APP_ID = "app_id";

@@ -3,7 +3,7 @@ package com.just.agentweb;
 import android.webkit.ValueCallback;
 import androidx.annotation.RequiresApi;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface QuickCallJs {
     void quickCallJs(String str);
 

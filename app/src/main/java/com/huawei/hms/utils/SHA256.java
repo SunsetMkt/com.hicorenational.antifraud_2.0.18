@@ -9,20 +9,21 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class SHA256 {
     public static byte[] digest(byte[] bArr) {
         try {
             return MessageDigest.getInstance("SHA-256").digest(bArr);
         } catch (NoSuchAlgorithmException e2) {
-            HMSLog.m7715e("SHA256", "NoSuchAlgorithmException" + e2.getMessage());
+            HMSLog.e("SHA256", "NoSuchAlgorithmException" + e2.getMessage());
             return new byte[0];
         }
     }
 
-    public static byte[] digest(File file) {
+    public static byte[] digest(File file) throws Throwable {
         BufferedInputStream bufferedInputStream;
         MessageDigest messageDigest;
+        byte[] bArr;
         int i2;
         BufferedInputStream bufferedInputStream2 = null;
         try {
@@ -30,21 +31,12 @@ public abstract class SHA256 {
                 messageDigest = MessageDigest.getInstance("SHA-256");
                 bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
                 try {
-                    byte[] bArr = new byte[4096];
+                    bArr = new byte[4096];
                     i2 = 0;
-                    while (true) {
-                        int read = bufferedInputStream.read(bArr);
-                        if (read == -1) {
-                            break;
-                        }
-                        i2 += read;
-                        messageDigest.update(bArr, 0, read);
-                    }
                 } catch (IOException | NoSuchAlgorithmException unused) {
                     bufferedInputStream2 = bufferedInputStream;
-                    HMSLog.m7715e("SHA256", "An exception occurred while computing file 'SHA-256'.");
+                    HMSLog.e("SHA256", "An exception occurred while computing file 'SHA-256'.");
                     IOUtils.closeQuietly((InputStream) bufferedInputStream2);
-                    return new byte[0];
                 } catch (Throwable th) {
                     th = th;
                     IOUtils.closeQuietly((InputStream) bufferedInputStream);
@@ -56,12 +48,21 @@ public abstract class SHA256 {
             }
         } catch (IOException | NoSuchAlgorithmException unused2) {
         }
-        if (i2 <= 0) {
-            IOUtils.closeQuietly((InputStream) bufferedInputStream);
+        while (true) {
+            int i3 = bufferedInputStream.read(bArr);
+            if (i3 == -1) {
+                break;
+            }
+            i2 += i3;
+            messageDigest.update(bArr, 0, i3);
             return new byte[0];
         }
-        byte[] digest = messageDigest.digest();
+        if (i2 > 0) {
+            byte[] bArrDigest = messageDigest.digest();
+            IOUtils.closeQuietly((InputStream) bufferedInputStream);
+            return bArrDigest;
+        }
         IOUtils.closeQuietly((InputStream) bufferedInputStream);
-        return digest;
+        return new byte[0];
     }
 }

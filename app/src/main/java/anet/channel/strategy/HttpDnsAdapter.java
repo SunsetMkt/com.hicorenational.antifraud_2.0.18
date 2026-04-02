@@ -7,11 +7,11 @@ import anet.channel.util.HttpConstant;
 import java.util.ArrayList;
 import java.util.List;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpDnsAdapter {
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static final class HttpDnsOrigin {
         final IConnStrategy connStrategy;
 

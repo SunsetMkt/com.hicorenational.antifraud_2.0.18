@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 import bean.CallWarnBean;
-import p388ui.callview.CallWarnCallView;
+import ui.callview.CallWarnCallView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CallIntercepeService extends Service implements CallWarnCallView {
     @Override // android.app.Service
     @Nullable
@@ -15,7 +15,7 @@ public class CallIntercepeService extends Service implements CallWarnCallView {
         return null;
     }
 
-    @Override // p388ui.callview.CallWarnCallView
+    @Override // ui.callview.CallWarnCallView
     public void onSuccRequest(CallWarnBean callWarnBean) {
     }
 }

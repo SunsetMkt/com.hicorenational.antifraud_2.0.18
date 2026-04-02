@@ -1,7 +1,7 @@
 package anet.channel.entity;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public enum ENV {
     ONLINE(0),
     PREPARE(1),

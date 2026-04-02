@@ -2,11 +2,11 @@ package network.http;
 
 import android.app.Activity;
 import android.text.TextUtils;
-import p388ui.basemvp.BaseView;
-import p388ui.model.ModelPresent;
-import util.C7307p1;
+import ui.basemvp.BaseView;
+import ui.model.ModelPresent;
+import util.u1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class RegionConfigHttp extends ModelPresent {
     private static RegionConfigHttp regionConfigHttp;
 
@@ -30,23 +30,23 @@ public class RegionConfigHttp extends ModelPresent {
     }
 
     public static String getNodeProvinceName() {
-        String m26477a = C7307p1.m26477a(C7307p1.f25497f);
-        return TextUtils.isEmpty(m26477a) ? "" : m26477a;
+        String strA = u1.a(u1.f15083f);
+        return TextUtils.isEmpty(strA) ? "" : strA;
     }
 
     public static String getNodeRegionId() {
-        String m26477a = C7307p1.m26477a(C7307p1.f25496e);
-        return TextUtils.isEmpty(m26477a) ? "" : m26477a;
+        String strA = u1.a(u1.f15082e);
+        return TextUtils.isEmpty(strA) ? "" : strA;
     }
 
     public static String getNodeRegionName() {
-        String m26477a = C7307p1.m26477a(C7307p1.f25498g);
-        return TextUtils.isEmpty(m26477a) ? "" : m26477a;
+        String strA = u1.a(u1.f15084g);
+        return TextUtils.isEmpty(strA) ? "" : strA;
     }
 
     public static void setNodeRegion(String str, String str2, String str3) {
-        C7307p1.m26479a(C7307p1.f25497f, str);
-        C7307p1.m26479a(C7307p1.f25498g, str2);
-        C7307p1.m26479a(C7307p1.f25496e, str3);
+        u1.a(u1.f15083f, str);
+        u1.a(u1.f15084g, str2);
+        u1.a(u1.f15082e, str3);
     }
 }

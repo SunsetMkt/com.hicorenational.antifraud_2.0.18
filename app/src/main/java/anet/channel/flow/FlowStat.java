@@ -2,8 +2,8 @@ package anet.channel.flow;
 
 import anet.channel.statist.RequestStatistic;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class FlowStat {
     public long downstream;
     public String protocoltype;

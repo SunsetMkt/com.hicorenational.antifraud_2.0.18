@@ -8,9 +8,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-import androidx.constraintlayout.widget.C0471R;
+import androidx.constraintlayout.widget.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MockView extends View {
     private int mDiagonalsColor;
     private boolean mDrawDiagonals;
@@ -42,25 +42,25 @@ public class MockView extends View {
 
     private void init(Context context, AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.MockView);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.MockView);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.MockView_mock_label) {
-                    this.mText = obtainStyledAttributes.getString(index);
-                } else if (index == C0471R.styleable.MockView_mock_showDiagonals) {
-                    this.mDrawDiagonals = obtainStyledAttributes.getBoolean(index, this.mDrawDiagonals);
-                } else if (index == C0471R.styleable.MockView_mock_diagonalsColor) {
-                    this.mDiagonalsColor = obtainStyledAttributes.getColor(index, this.mDiagonalsColor);
-                } else if (index == C0471R.styleable.MockView_mock_labelBackgroundColor) {
-                    this.mTextBackgroundColor = obtainStyledAttributes.getColor(index, this.mTextBackgroundColor);
-                } else if (index == C0471R.styleable.MockView_mock_labelColor) {
-                    this.mTextColor = obtainStyledAttributes.getColor(index, this.mTextColor);
-                } else if (index == C0471R.styleable.MockView_mock_showLabel) {
-                    this.mDrawLabel = obtainStyledAttributes.getBoolean(index, this.mDrawLabel);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.MockView_mock_label) {
+                    this.mText = typedArrayObtainStyledAttributes.getString(index);
+                } else if (index == R.styleable.MockView_mock_showDiagonals) {
+                    this.mDrawDiagonals = typedArrayObtainStyledAttributes.getBoolean(index, this.mDrawDiagonals);
+                } else if (index == R.styleable.MockView_mock_diagonalsColor) {
+                    this.mDiagonalsColor = typedArrayObtainStyledAttributes.getColor(index, this.mDiagonalsColor);
+                } else if (index == R.styleable.MockView_mock_labelBackgroundColor) {
+                    this.mTextBackgroundColor = typedArrayObtainStyledAttributes.getColor(index, this.mTextBackgroundColor);
+                } else if (index == R.styleable.MockView_mock_labelColor) {
+                    this.mTextColor = typedArrayObtainStyledAttributes.getColor(index, this.mTextColor);
+                } else if (index == R.styleable.MockView_mock_showLabel) {
+                    this.mDrawLabel = typedArrayObtainStyledAttributes.getBoolean(index, this.mDrawLabel);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
         if (this.mText == null) {
             try {
@@ -98,15 +98,15 @@ public class MockView extends View {
             return;
         }
         this.mPaintText.getTextBounds(str, 0, str.length(), this.mTextBounds);
-        float width2 = (width - this.mTextBounds.width()) / 2.0f;
-        float height2 = ((height - this.mTextBounds.height()) / 2.0f) + this.mTextBounds.height();
-        this.mTextBounds.offset((int) width2, (int) height2);
+        float fWidth = (width - this.mTextBounds.width()) / 2.0f;
+        float fHeight = ((height - this.mTextBounds.height()) / 2.0f) + this.mTextBounds.height();
+        this.mTextBounds.offset((int) fWidth, (int) fHeight);
         Rect rect = this.mTextBounds;
         int i2 = rect.left;
         int i3 = this.mMargin;
         rect.set(i2 - i3, rect.top - i3, rect.right + i3, rect.bottom + i3);
         canvas.drawRect(this.mTextBounds, this.mPaintTextBackground);
-        canvas.drawText(this.mText, width2, height2, this.mPaintText);
+        canvas.drawText(this.mText, fWidth, fHeight, this.mPaintText);
     }
 
     public MockView(Context context, AttributeSet attributeSet) {

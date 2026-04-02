@@ -10,8 +10,8 @@ import androidx.annotation.RestrictTo;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.TintTypedArray;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public final class ExpandedMenuView extends ListView implements MenuBuilder.ItemInvoker, MenuView, AdapterView.OnItemClickListener {
     private static final int[] TINT_ATTRS = {R.attr.background, R.attr.divider};
     private int mAnimations;
@@ -50,13 +50,13 @@ public final class ExpandedMenuView extends ListView implements MenuBuilder.Item
     public ExpandedMenuView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet);
         setOnItemClickListener(this);
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, TINT_ATTRS, i2, 0);
-        if (obtainStyledAttributes.hasValue(0)) {
-            setBackgroundDrawable(obtainStyledAttributes.getDrawable(0));
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, TINT_ATTRS, i2, 0);
+        if (tintTypedArrayObtainStyledAttributes.hasValue(0)) {
+            setBackgroundDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(0));
         }
-        if (obtainStyledAttributes.hasValue(1)) {
-            setDivider(obtainStyledAttributes.getDrawable(1));
+        if (tintTypedArrayObtainStyledAttributes.hasValue(1)) {
+            setDivider(tintTypedArrayObtainStyledAttributes.getDrawable(1));
         }
-        obtainStyledAttributes.recycle();
+        tintTypedArrayObtainStyledAttributes.recycle();
     }
 }

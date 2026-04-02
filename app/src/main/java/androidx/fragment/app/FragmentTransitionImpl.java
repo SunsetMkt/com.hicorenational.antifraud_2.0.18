@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"UnknownNullness"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public abstract class FragmentTransitionImpl {
     protected static void bfsAddViewChildren(List<View> list, View view) {
         int size = list.size();

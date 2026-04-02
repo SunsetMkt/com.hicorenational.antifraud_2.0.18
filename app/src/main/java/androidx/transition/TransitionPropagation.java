@@ -2,7 +2,7 @@ package androidx.transition;
 
 import android.view.ViewGroup;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class TransitionPropagation {
     public abstract void captureValues(TransitionValues transitionValues);
 

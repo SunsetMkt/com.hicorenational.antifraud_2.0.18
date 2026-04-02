@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ForwardingImageReaderListener implements ImageReaderProxy.OnImageAvailableListener {
 
     @GuardedBy("this")
@@ -20,11 +20,11 @@ final class ForwardingImageReaderListener implements ImageReaderProxy.OnImageAva
 
     @Override // androidx.camera.core.impl.ImageReaderProxy.OnImageAvailableListener
     public synchronized void onImageAvailable(@NonNull ImageReaderProxy imageReaderProxy) {
-        ImageProxy acquireNextImage = imageReaderProxy.acquireNextImage();
-        if (acquireNextImage == null) {
+        ImageProxy imageProxyAcquireNextImage = imageReaderProxy.acquireNextImage();
+        if (imageProxyAcquireNextImage == null) {
             return;
         }
-        ReferenceCountedImageProxy referenceCountedImageProxy = new ReferenceCountedImageProxy(acquireNextImage);
+        ReferenceCountedImageProxy referenceCountedImageProxy = new ReferenceCountedImageProxy(imageProxyAcquireNextImage);
         for (QueuedImageReaderProxy queuedImageReaderProxy : this.mImageReaders) {
             synchronized (queuedImageReaderProxy) {
                 if (!queuedImageReaderProxy.isClosed()) {

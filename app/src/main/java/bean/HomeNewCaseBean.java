@@ -3,7 +3,7 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HomeNewCaseBean extends BaseBean {
     private List<RowsBean> rows;
     private int total;
@@ -22,9 +22,7 @@ public class HomeNewCaseBean extends BaseBean {
         private String createTime;
         private String description;
         private String icon;
-
-        /* renamed from: id */
-        private String f1599id;
+        private String id;
         private int isTop;
         private List<String> keyWord;
         private String localFilePath;
@@ -88,7 +86,7 @@ public class HomeNewCaseBean extends BaseBean {
         }
 
         public String getId() {
-            return this.f1599id;
+            return this.id;
         }
 
         public int getIsTop() {
@@ -192,7 +190,7 @@ public class HomeNewCaseBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f1599id = str;
+            this.id = str;
         }
 
         public void setIsTop(int i2) {

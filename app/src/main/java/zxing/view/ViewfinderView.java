@@ -11,221 +11,203 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
+import d.b.c.t;
 import java.util.ArrayList;
 import java.util.List;
-import p031c.p035b.p043c.C1109t;
-import p381m.p382a.C5929d;
+import n.a.d;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ViewfinderView extends View {
+    private static final int[] o = {0, 64, 128, 192, 255, 192, 128, 64};
+    private static final long p = 80;
+    private static final int q = 160;
+    private static final int r = 20;
+    private static final int s = 6;
+    private d a;
 
-    /* renamed from: o */
-    private static final int[] f25867o = {0, 64, 128, 192, 255, 192, 128, 64};
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final Paint f15170b;
 
-    /* renamed from: p */
-    private static final long f25868p = 80;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private Bitmap f15171c;
 
-    /* renamed from: q */
-    private static final int f25869q = 160;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private final int f15172d;
 
-    /* renamed from: r */
-    private static final int f25870r = 20;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private final int f15173e;
 
-    /* renamed from: s */
-    private static final int f25871s = 6;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private final int f15174f;
 
-    /* renamed from: a */
-    private C5929d f25872a;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private final int f15175g;
 
-    /* renamed from: b */
-    private final Paint f25873b;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private final int f15176h;
 
-    /* renamed from: c */
-    private Bitmap f25874c;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private int f15177i;
 
-    /* renamed from: d */
-    private final int f25875d;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private List<t> f15178j;
 
-    /* renamed from: e */
-    private final int f25876e;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private List<t> f15179k;
 
-    /* renamed from: f */
-    private final int f25877f;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private int f15180l;
 
-    /* renamed from: g */
-    private final int f25878g;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private final int f15181m;
 
-    /* renamed from: h */
-    private final int f25879h;
-
-    /* renamed from: i */
-    private int f25880i;
-
-    /* renamed from: j */
-    private List<C1109t> f25881j;
-
-    /* renamed from: k */
-    private List<C1109t> f25882k;
-
-    /* renamed from: l */
-    private int f25883l;
-
-    /* renamed from: m */
-    private final int f25884m;
-
-    /* renamed from: n */
-    Bitmap f25885n;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    Bitmap f15182n;
 
     public ViewfinderView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.f25884m = 10;
-        this.f25873b = new Paint(1);
+        this.f15181m = 10;
+        this.f15170b = new Paint(1);
         Resources resources = getResources();
-        this.f25875d = resources.getColor(C2113R.color.viewfinder_mask);
-        this.f25876e = resources.getColor(C2113R.color.result_view);
-        this.f25877f = resources.getColor(C2113R.color.viewfinder_laser);
-        this.f25878g = resources.getColor(C2113R.color.possible_result_points);
-        this.f25879h = resources.getColor(C2113R.color.status_text);
-        this.f25880i = 0;
-        this.f25881j = new ArrayList(5);
-        this.f25882k = null;
-        this.f25885n = BitmapFactory.decodeResource(resources, C2113R.drawable.scan_light);
+        this.f15172d = resources.getColor(R.color.viewfinder_mask);
+        this.f15173e = resources.getColor(R.color.result_view);
+        this.f15174f = resources.getColor(R.color.viewfinder_laser);
+        this.f15175g = resources.getColor(R.color.possible_result_points);
+        this.f15176h = resources.getColor(R.color.status_text);
+        this.f15177i = 0;
+        this.f15178j = new ArrayList(5);
+        this.f15179k = null;
+        this.f15182n = BitmapFactory.decodeResource(resources, R.drawable.scan_light);
     }
 
-    /* renamed from: a */
-    private void m26835a(Canvas canvas, Rect rect) {
-        this.f25873b.setColor(-1);
-        this.f25873b.setStrokeWidth(2.0f);
-        this.f25873b.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(rect, this.f25873b);
-        this.f25873b.setColor(Color.parseColor("#21b3e2"));
-        this.f25873b.setStyle(Paint.Style.FILL);
+    private void a(Canvas canvas, Rect rect) {
+        this.f15170b.setColor(-1);
+        this.f15170b.setStrokeWidth(2.0f);
+        this.f15170b.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(rect, this.f15170b);
+        this.f15170b.setColor(Color.parseColor("#21b3e2"));
+        this.f15170b.setStyle(Paint.Style.FILL);
         int i2 = rect.left;
-        canvas.drawRect(i2 - 10, rect.top, i2, r1 + 45, this.f25873b);
+        canvas.drawRect(i2 - 10, rect.top, i2, r1 + 45, this.f15170b);
         int i3 = rect.left;
-        canvas.drawRect(i3 - 10, r1 - 10, i3 + 45, rect.top, this.f25873b);
-        canvas.drawRect(rect.right, rect.top, r0 + 10, r1 + 45, this.f25873b);
+        canvas.drawRect(i3 - 10, r1 - 10, i3 + 45, rect.top, this.f15170b);
+        canvas.drawRect(rect.right, rect.top, r0 + 10, r1 + 45, this.f15170b);
         int i4 = rect.right;
-        canvas.drawRect(i4 - 45, r1 - 10, i4 + 10, rect.top, this.f25873b);
-        canvas.drawRect(r0 - 10, r1 - 45, rect.left, rect.bottom, this.f25873b);
+        canvas.drawRect(i4 - 45, r1 - 10, i4 + 10, rect.top, this.f15170b);
+        canvas.drawRect(r0 - 10, r1 - 45, rect.left, rect.bottom, this.f15170b);
         int i5 = rect.left;
-        canvas.drawRect(i5 - 10, rect.bottom, i5 + 45, r1 + 10, this.f25873b);
-        canvas.drawRect(rect.right, r1 - 45, r0 + 10, rect.bottom, this.f25873b);
+        canvas.drawRect(i5 - 10, rect.bottom, i5 + 45, r1 + 10, this.f15170b);
+        canvas.drawRect(rect.right, r1 - 45, r0 + 10, rect.bottom, this.f15170b);
         int i6 = rect.right;
-        canvas.drawRect(i6 - 45, rect.bottom, i6 + 10, r10 + 10, this.f25873b);
+        canvas.drawRect(i6 - 45, rect.bottom, i6 + 10, r10 + 10, this.f15170b);
     }
 
-    /* renamed from: b */
-    private void m26837b(Canvas canvas, Rect rect) {
-        if (this.f25883l == 0) {
-            this.f25883l = rect.top;
+    private void b(Canvas canvas, Rect rect) {
+        if (this.f15180l == 0) {
+            this.f15180l = rect.top;
         }
-        int i2 = this.f25883l;
+        int i2 = this.f15180l;
         if (i2 >= rect.bottom) {
-            this.f25883l = rect.top;
+            this.f15180l = rect.top;
         } else {
-            this.f25883l = i2 + 10;
+            this.f15180l = i2 + 10;
         }
         int i3 = rect.left;
-        int i4 = this.f25883l;
-        canvas.drawBitmap(this.f25885n, (Rect) null, new Rect(i3, i4, rect.right, i4 + 30), this.f25873b);
+        int i4 = this.f15180l;
+        canvas.drawBitmap(this.f15182n, (Rect) null, new Rect(i3, i4, rect.right, i4 + 30), this.f15170b);
     }
 
     @Override // android.view.View
     @SuppressLint({"DrawAllocation"})
     public void onDraw(Canvas canvas) {
-        C5929d c5929d = this.f25872a;
-        if (c5929d == null) {
+        d dVar = this.a;
+        if (dVar == null) {
             return;
         }
-        Rect m24904b = c5929d.m24904b();
-        Rect m24905c = this.f25872a.m24905c();
-        if (m24904b == null || m24905c == null) {
+        Rect rectB = dVar.b();
+        Rect rectC = this.a.c();
+        if (rectB == null || rectC == null) {
             return;
         }
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-        this.f25873b.setColor(this.f25874c != null ? this.f25876e : this.f25875d);
+        this.f15170b.setColor(this.f15171c != null ? this.f15173e : this.f15172d);
         float f2 = width;
-        canvas.drawRect(0.0f, 0.0f, f2, m24904b.top, this.f25873b);
-        canvas.drawRect(0.0f, m24904b.top, m24904b.left, m24904b.bottom + 1, this.f25873b);
-        canvas.drawRect(m24904b.right + 1, m24904b.top, f2, m24904b.bottom + 1, this.f25873b);
-        canvas.drawRect(0.0f, m24904b.bottom + 1, f2, height, this.f25873b);
-        if (this.f25874c != null) {
-            this.f25873b.setAlpha(f25869q);
-            canvas.drawBitmap(this.f25874c, (Rect) null, m24904b, this.f25873b);
+        canvas.drawRect(0.0f, 0.0f, f2, rectB.top, this.f15170b);
+        canvas.drawRect(0.0f, rectB.top, rectB.left, rectB.bottom + 1, this.f15170b);
+        canvas.drawRect(rectB.right + 1, rectB.top, f2, rectB.bottom + 1, this.f15170b);
+        canvas.drawRect(0.0f, rectB.bottom + 1, f2, height, this.f15170b);
+        if (this.f15171c != null) {
+            this.f15170b.setAlpha(q);
+            canvas.drawBitmap(this.f15171c, (Rect) null, rectB, this.f15170b);
             return;
         }
-        m26835a(canvas, m24904b);
-        m26836a(canvas, m24904b, width);
-        m26837b(canvas, m24904b);
-        float width2 = m24904b.width() / m24905c.width();
-        float height2 = m24904b.height() / m24905c.height();
-        List<C1109t> list = this.f25881j;
-        List<C1109t> list2 = this.f25882k;
-        int i2 = m24904b.left;
-        int i3 = m24904b.top;
+        a(canvas, rectB);
+        a(canvas, rectB, width);
+        b(canvas, rectB);
+        float fWidth = rectB.width() / rectC.width();
+        float fHeight = rectB.height() / rectC.height();
+        List<t> list = this.f15178j;
+        List<t> list2 = this.f15179k;
+        int i2 = rectB.left;
+        int i3 = rectB.top;
         if (list.isEmpty()) {
-            this.f25882k = null;
+            this.f15179k = null;
         } else {
-            this.f25881j = new ArrayList(5);
-            this.f25882k = list;
-            this.f25873b.setAlpha(f25869q);
-            this.f25873b.setColor(this.f25878g);
+            this.f15178j = new ArrayList(5);
+            this.f15179k = list;
+            this.f15170b.setAlpha(q);
+            this.f15170b.setColor(this.f15175g);
             synchronized (list) {
-                for (C1109t c1109t : list) {
-                    canvas.drawCircle(((int) (c1109t.m1922a() * width2)) + i2, ((int) (c1109t.m1923b() * height2)) + i3, 6.0f, this.f25873b);
+                for (t tVar : list) {
+                    canvas.drawCircle(((int) (tVar.a() * fWidth)) + i2, ((int) (tVar.b() * fHeight)) + i3, 6.0f, this.f15170b);
                 }
             }
         }
         if (list2 != null) {
-            this.f25873b.setAlpha(80);
-            this.f25873b.setColor(this.f25878g);
+            this.f15170b.setAlpha(80);
+            this.f15170b.setColor(this.f15175g);
             synchronized (list2) {
-                for (C1109t c1109t2 : list2) {
-                    canvas.drawCircle(((int) (c1109t2.m1922a() * width2)) + i2, ((int) (c1109t2.m1923b() * height2)) + i3, 3.0f, this.f25873b);
+                for (t tVar2 : list2) {
+                    canvas.drawCircle(((int) (tVar2.a() * fWidth)) + i2, ((int) (tVar2.b() * fHeight)) + i3, 3.0f, this.f15170b);
                 }
             }
         }
-        postInvalidateDelayed(f25868p, m24904b.left - 6, m24904b.top - 6, m24904b.right + 6, m24904b.bottom + 6);
+        postInvalidateDelayed(p, rectB.left - 6, rectB.top - 6, rectB.right + 6, rectB.bottom + 6);
     }
 
-    public void setCameraManager(C5929d c5929d) {
-        this.f25872a = c5929d;
+    public void setCameraManager(d dVar) {
+        this.a = dVar;
     }
 
-    /* renamed from: a */
-    private void m26836a(Canvas canvas, Rect rect, int i2) {
-        String string = getResources().getString(C2113R.string.viewfinderview_status_text1);
-        String string2 = getResources().getString(C2113R.string.viewfinderview_status_text2);
-        this.f25873b.setColor(this.f25879h);
-        this.f25873b.setTextSize(45);
-        canvas.drawText(string, (i2 - ((int) this.f25873b.measureText(string))) / 2, rect.top - 180, this.f25873b);
-        canvas.drawText(string2, (i2 - ((int) this.f25873b.measureText(string2))) / 2, (rect.top - 180) + 60, this.f25873b);
+    private void a(Canvas canvas, Rect rect, int i2) {
+        String string = getResources().getString(R.string.viewfinderview_status_text1);
+        String string2 = getResources().getString(R.string.viewfinderview_status_text2);
+        this.f15170b.setColor(this.f15176h);
+        this.f15170b.setTextSize(45);
+        canvas.drawText(string, (i2 - ((int) this.f15170b.measureText(string))) / 2, rect.top - 180, this.f15170b);
+        canvas.drawText(string2, (i2 - ((int) this.f15170b.measureText(string2))) / 2, (rect.top - 180) + 60, this.f15170b);
     }
 
-    /* renamed from: a */
-    public void m26838a() {
-        Bitmap bitmap = this.f25874c;
-        this.f25874c = null;
+    public void a() {
+        Bitmap bitmap = this.f15171c;
+        this.f15171c = null;
         if (bitmap != null) {
             bitmap.recycle();
         }
         invalidate();
     }
 
-    /* renamed from: a */
-    public void m26839a(Bitmap bitmap) {
-        this.f25874c = bitmap;
+    public void a(Bitmap bitmap) {
+        this.f15171c = bitmap;
         invalidate();
     }
 
-    /* renamed from: a */
-    public void m26840a(C1109t c1109t) {
-        List<C1109t> list = this.f25881j;
+    public void a(t tVar) {
+        List<t> list = this.f15178j;
         synchronized (list) {
-            list.add(c1109t);
+            list.add(tVar);
             int size = list.size();
             if (size > 20) {
                 list.subList(0, size - 10).clear();

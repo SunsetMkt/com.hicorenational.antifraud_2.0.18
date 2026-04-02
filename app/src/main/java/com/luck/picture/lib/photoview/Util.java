@@ -3,11 +3,11 @@ package com.luck.picture.lib.photoview;
 import android.widget.ImageView;
 import androidx.core.view.MotionEventCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class Util {
 
-    /* renamed from: com.luck.picture.lib.photoview.Util$1 */
-    static /* synthetic */ class C27031 {
+    /* JADX INFO: renamed from: com.luck.picture.lib.photoview.Util$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType = new int[ImageView.ScaleType.values().length];
 
         static {
@@ -42,7 +42,7 @@ class Util {
         if (scaleType == null) {
             return false;
         }
-        if (C27031.$SwitchMap$android$widget$ImageView$ScaleType[scaleType.ordinal()] != 1) {
+        if (AnonymousClass1.$SwitchMap$android$widget$ImageView$ScaleType[scaleType.ordinal()] != 1) {
             return true;
         }
         throw new IllegalStateException("Matrix scale type is not supported");

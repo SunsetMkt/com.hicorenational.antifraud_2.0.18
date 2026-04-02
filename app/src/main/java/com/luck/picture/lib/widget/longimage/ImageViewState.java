@@ -3,7 +3,7 @@ package com.luck.picture.lib.widget.longimage;
 import android.graphics.PointF;
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ImageViewState implements Serializable {
     private float centerX;
     private float centerY;

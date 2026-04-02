@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.arch.core.util.Function;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Transformations {
     private Transformations() {
     }
@@ -19,10 +19,10 @@ public class Transformations {
 
             @Override // androidx.lifecycle.Observer
             public void onChanged(X x) {
-                T value = MediatorLiveData.this.getValue();
+                T value = mediatorLiveData.getValue();
                 if (this.mFirstTime || ((value == 0 && x != null) || !(value == 0 || value.equals(x)))) {
                     this.mFirstTime = false;
-                    MediatorLiveData.this.setValue(x);
+                    mediatorLiveData.setValue(x);
                 }
             }
         });
@@ -36,7 +36,7 @@ public class Transformations {
         mediatorLiveData.addSource(liveData, new Observer<X>() { // from class: androidx.lifecycle.Transformations.1
             @Override // androidx.lifecycle.Observer
             public void onChanged(@Nullable X x) {
-                MediatorLiveData.this.setValue(function.apply(x));
+                mediatorLiveData.setValue(function.apply(x));
             }
         });
         return mediatorLiveData;
@@ -51,7 +51,7 @@ public class Transformations {
 
             @Override // androidx.lifecycle.Observer
             public void onChanged(@Nullable X x) {
-                LiveData<Y> liveData2 = (LiveData) Function.this.apply(x);
+                LiveData<Y> liveData2 = (LiveData) function.apply(x);
                 Object obj = this.mSource;
                 if (obj == liveData2) {
                     return;

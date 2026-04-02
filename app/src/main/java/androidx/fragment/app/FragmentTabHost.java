@@ -17,8 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListener {
     private boolean mAttached;
     private int mContainerId;
@@ -176,9 +176,9 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
     }
 
     private void initFragmentTabHost(Context context, AttributeSet attributeSet) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, new int[]{R.attr.inflatedId}, 0, 0);
-        this.mContainerId = obtainStyledAttributes.getResourceId(0, 0);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, new int[]{R.attr.inflatedId}, 0, 0);
+        this.mContainerId = typedArrayObtainStyledAttributes.getResourceId(0, 0);
+        typedArrayObtainStyledAttributes.recycle();
         super.setOnTabChangedListener(this);
     }
 
@@ -191,9 +191,9 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
             tabInfo.fragment = this.mFragmentManager.findFragmentByTag(tag);
             Fragment fragment = tabInfo.fragment;
             if (fragment != null && !fragment.isDetached()) {
-                FragmentTransaction beginTransaction = this.mFragmentManager.beginTransaction();
-                beginTransaction.detach(tabInfo.fragment);
-                beginTransaction.commit();
+                FragmentTransaction fragmentTransactionBeginTransaction = this.mFragmentManager.beginTransaction();
+                fragmentTransactionBeginTransaction.detach(tabInfo.fragment);
+                fragmentTransactionBeginTransaction.commit();
             }
         }
         this.mTabs.add(tabInfo);
@@ -206,7 +206,7 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
         super.onAttachedToWindow();
         String currentTabTag = getCurrentTabTag();
         int size = this.mTabs.size();
-        FragmentTransaction fragmentTransaction = null;
+        FragmentTransaction fragmentTransactionBeginTransaction = null;
         for (int i2 = 0; i2 < size; i2++) {
             TabInfo tabInfo = this.mTabs.get(i2);
             tabInfo.fragment = this.mFragmentManager.findFragmentByTag(tabInfo.tag);
@@ -215,17 +215,17 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
                 if (tabInfo.tag.equals(currentTabTag)) {
                     this.mLastTab = tabInfo;
                 } else {
-                    if (fragmentTransaction == null) {
-                        fragmentTransaction = this.mFragmentManager.beginTransaction();
+                    if (fragmentTransactionBeginTransaction == null) {
+                        fragmentTransactionBeginTransaction = this.mFragmentManager.beginTransaction();
                     }
-                    fragmentTransaction.detach(tabInfo.fragment);
+                    fragmentTransactionBeginTransaction.detach(tabInfo.fragment);
                 }
             }
         }
         this.mAttached = true;
-        FragmentTransaction doTabChanged = doTabChanged(currentTabTag, fragmentTransaction);
-        if (doTabChanged != null) {
-            doTabChanged.commit();
+        FragmentTransaction fragmentTransactionDoTabChanged = doTabChanged(currentTabTag, fragmentTransactionBeginTransaction);
+        if (fragmentTransactionDoTabChanged != null) {
+            fragmentTransactionDoTabChanged.commit();
             this.mFragmentManager.executePendingTransactions();
         }
     }
@@ -261,9 +261,9 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
     @Override // android.widget.TabHost.OnTabChangeListener
     @Deprecated
     public void onTabChanged(@Nullable String str) {
-        FragmentTransaction doTabChanged;
-        if (this.mAttached && (doTabChanged = doTabChanged(str, null)) != null) {
-            doTabChanged.commit();
+        FragmentTransaction fragmentTransactionDoTabChanged;
+        if (this.mAttached && (fragmentTransactionDoTabChanged = doTabChanged(str, null)) != null) {
+            fragmentTransactionDoTabChanged.commit();
         }
         TabHost.OnTabChangeListener onTabChangeListener = this.mOnTabChangeListener;
         if (onTabChangeListener != null) {

@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ActionActivity extends Activity {
     public static final String KEY_ACTION = "KEY_ACTION";
     public static final String KEY_FILE_CHOOSER_INTENT = "KEY_FILE_CHOOSER_INTENT";
@@ -66,16 +66,16 @@ public final class ActionActivity extends Activity {
             finish();
             return;
         }
-        boolean z = false;
+        boolean zShouldShowRequestPermissionRationale = false;
         if (mRationaleListener == null) {
             if (mPermissionListener != null) {
                 requestPermissions((String[]) permissions.toArray(new String[0]), 1);
             }
         } else {
             Iterator<String> it = permissions.iterator();
-            while (it.hasNext() && !(z = shouldShowRequestPermissionRationale(it.next()))) {
+            while (it.hasNext() && !(zShouldShowRequestPermissionRationale = shouldShowRequestPermissionRationale(it.next()))) {
             }
-            mRationaleListener.onRationaleResult(z, new Bundle());
+            mRationaleListener.onRationaleResult(zShouldShowRequestPermissionRationale, new Bundle());
             mRationaleListener = null;
             finish();
         }
@@ -86,17 +86,17 @@ public final class ActionActivity extends Activity {
             if (mChooserListener == null) {
                 finish();
             }
-            File createImageFile = AgentWebUtils.createImageFile(this);
-            if (createImageFile == null) {
+            File fileCreateImageFile = AgentWebUtils.createImageFile(this);
+            if (fileCreateImageFile == null) {
                 mChooserListener.onChoiceResult(REQUEST_CODE, 0, null);
                 mChooserListener = null;
                 finish();
             }
-            Intent intentCaptureCompat = AgentWebUtils.getIntentCaptureCompat(this, createImageFile);
+            Intent intentCaptureCompat = AgentWebUtils.getIntentCaptureCompat(this, fileCreateImageFile);
             this.mUri = (Uri) intentCaptureCompat.getParcelableExtra("output");
             startActivityForResult(intentCaptureCompat, REQUEST_CODE);
         } catch (Throwable th) {
-            LogUtils.m8081e(TAG, "找不到系统相机");
+            LogUtils.e(TAG, "\u627e\u4e0d\u5230\u7cfb\u7edf\u76f8\u673a");
             ChooserListener chooserListener = mChooserListener;
             if (chooserListener != null) {
                 chooserListener.onChoiceResult(REQUEST_CODE, 0, null);
@@ -121,7 +121,7 @@ public final class ActionActivity extends Activity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         } catch (Throwable th) {
-            LogUtils.m8083i(TAG, "找不到文件选择器");
+            LogUtils.i(TAG, "\u627e\u4e0d\u5230\u6587\u4ef6\u9009\u62e9\u5668");
             chooserActionCallback(-1, null);
             if (LogUtils.isDebug()) {
                 th.printStackTrace();
@@ -134,17 +134,17 @@ public final class ActionActivity extends Activity {
             if (mChooserListener == null) {
                 finish();
             }
-            File createVideoFile = AgentWebUtils.createVideoFile(this);
-            if (createVideoFile == null) {
+            File fileCreateVideoFile = AgentWebUtils.createVideoFile(this);
+            if (fileCreateVideoFile == null) {
                 mChooserListener.onChoiceResult(REQUEST_CODE, 0, null);
                 mChooserListener = null;
                 finish();
             }
-            Intent intentVideoCompat = AgentWebUtils.getIntentVideoCompat(this, createVideoFile);
+            Intent intentVideoCompat = AgentWebUtils.getIntentVideoCompat(this, fileCreateVideoFile);
             this.mUri = (Uri) intentVideoCompat.getParcelableExtra("output");
             startActivityForResult(intentVideoCompat, REQUEST_CODE);
         } catch (Throwable th) {
-            LogUtils.m8081e(TAG, "找不到系统相机");
+            LogUtils.e(TAG, "\u627e\u4e0d\u5230\u7cfb\u7edf\u76f8\u673a");
             ChooserListener chooserListener = mChooserListener;
             if (chooserListener != null) {
                 chooserListener.onChoiceResult(REQUEST_CODE, 0, null);
@@ -184,7 +184,7 @@ public final class ActionActivity extends Activity {
     protected void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
         if (bundle != null) {
-            LogUtils.m8083i(TAG, "savedInstanceState:" + bundle);
+            LogUtils.i(TAG, "savedInstanceState:" + bundle);
             return;
         }
         this.mAction = (Action) getIntent().getParcelableExtra(KEY_ACTION);

@@ -2,14 +2,12 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ManualListBean extends BaseBean {
     private String applytime;
     private int auditstatus;
     private String documentType;
-
-    /* renamed from: id */
-    private long f1602id;
+    private long id;
     private String idnumber;
     private String title;
     private String uasename;
@@ -27,7 +25,7 @@ public class ManualListBean extends BaseBean {
     }
 
     public long getId() {
-        return this.f1602id;
+        return this.id;
     }
 
     public String getIdnumber() {
@@ -55,7 +53,7 @@ public class ManualListBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.f1602id = j2;
+        this.id = j2;
     }
 
     public void setIdnumber(String str) {

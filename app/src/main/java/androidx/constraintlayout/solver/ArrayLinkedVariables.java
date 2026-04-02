@@ -1,10 +1,10 @@
 package androidx.constraintlayout.solver;
 
 import androidx.constraintlayout.solver.ArrayRow;
+import d.c.a.b.a.a;
 import java.util.Arrays;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
     private static final boolean DEBUG = false;
     private static final boolean FULL_NEW_CHECK = false;
@@ -44,7 +44,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
                 float[] fArr = this.mArrayValues;
                 int i3 = this.mHead;
                 fArr[i3] = f2;
-                this.mArrayIndices[i3] = solverVariable.f594id;
+                this.mArrayIndices[i3] = solverVariable.id;
                 this.mArrayNextIndices[i3] = -1;
                 solverVariable.usageInRowCount++;
                 solverVariable.addToRow(this.mRow);
@@ -66,7 +66,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             for (int i6 = 0; i2 != -1 && i6 < this.currentSize; i6++) {
                 int[] iArr2 = this.mArrayIndices;
                 int i7 = iArr2[i2];
-                int i8 = solverVariable.f594id;
+                int i8 = solverVariable.id;
                 if (i7 == i8) {
                     float f4 = this.mArrayValues[i2] + f2;
                     float f5 = epsilon;
@@ -98,50 +98,50 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
                 }
                 i2 = this.mArrayNextIndices[i2];
             }
-            int i9 = this.mLast;
-            int i10 = i9 + 1;
+            int length = this.mLast;
+            int i9 = length + 1;
             if (this.mDidFillOnce) {
                 int[] iArr4 = this.mArrayIndices;
-                if (iArr4[i9] != -1) {
-                    i9 = iArr4.length;
+                if (iArr4[length] != -1) {
+                    length = iArr4.length;
                 }
             } else {
-                i9 = i10;
+                length = i9;
             }
             int[] iArr5 = this.mArrayIndices;
-            if (i9 >= iArr5.length && this.currentSize < iArr5.length) {
-                int i11 = 0;
+            if (length >= iArr5.length && this.currentSize < iArr5.length) {
+                int i10 = 0;
                 while (true) {
                     int[] iArr6 = this.mArrayIndices;
-                    if (i11 >= iArr6.length) {
+                    if (i10 >= iArr6.length) {
                         break;
                     }
-                    if (iArr6[i11] == -1) {
-                        i9 = i11;
+                    if (iArr6[i10] == -1) {
+                        length = i10;
                         break;
                     }
-                    i11++;
+                    i10++;
                 }
             }
             int[] iArr7 = this.mArrayIndices;
-            if (i9 >= iArr7.length) {
-                i9 = iArr7.length;
+            if (length >= iArr7.length) {
+                length = iArr7.length;
                 this.ROW_SIZE *= 2;
                 this.mDidFillOnce = false;
-                this.mLast = i9 - 1;
+                this.mLast = length - 1;
                 this.mArrayValues = Arrays.copyOf(this.mArrayValues, this.ROW_SIZE);
                 this.mArrayIndices = Arrays.copyOf(this.mArrayIndices, this.ROW_SIZE);
                 this.mArrayNextIndices = Arrays.copyOf(this.mArrayNextIndices, this.ROW_SIZE);
             }
-            this.mArrayIndices[i9] = solverVariable.f594id;
-            this.mArrayValues[i9] = f2;
+            this.mArrayIndices[length] = solverVariable.id;
+            this.mArrayValues[length] = f2;
             if (i5 != -1) {
                 int[] iArr8 = this.mArrayNextIndices;
-                iArr8[i9] = iArr8[i5];
-                iArr8[i5] = i9;
+                iArr8[length] = iArr8[i5];
+                iArr8[i5] = length;
             } else {
-                this.mArrayNextIndices[i9] = this.mHead;
-                this.mHead = i9;
+                this.mArrayNextIndices[length] = this.mHead;
+                this.mHead = length;
             }
             solverVariable.usageInRowCount++;
             solverVariable.addToRow(this.mRow);
@@ -149,9 +149,9 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             if (!this.mDidFillOnce) {
                 this.mLast++;
             }
-            int i12 = this.mLast;
+            int i11 = this.mLast;
             int[] iArr9 = this.mArrayIndices;
-            if (i12 >= iArr9.length) {
+            if (i11 >= iArr9.length) {
                 this.mDidFillOnce = true;
                 this.mLast = iArr9.length - 1;
             }
@@ -181,7 +181,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             return false;
         }
         for (int i3 = 0; i2 != -1 && i3 < this.currentSize; i3++) {
-            if (this.mArrayIndices[i2] == solverVariable.f594id) {
+            if (this.mArrayIndices[i2] == solverVariable.id) {
                 return true;
             }
             i2 = this.mArrayNextIndices[i2];
@@ -196,7 +196,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         for (int i3 = 0; i3 < i2; i3++) {
             SolverVariable variable = getVariable(i3);
             if (variable != null) {
-                System.out.print(variable + " = " + getVariableValue(i3) + AbstractC1191a.f2568g);
+                System.out.print(variable + " = " + getVariableValue(i3) + a.f10074g);
             }
         }
         System.out.println(" }");
@@ -216,7 +216,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
     public final float get(SolverVariable solverVariable) {
         int i2 = this.mHead;
         for (int i3 = 0; i2 != -1 && i3 < this.currentSize; i3++) {
-            if (this.mArrayIndices[i2] == solverVariable.f594id) {
+            if (this.mArrayIndices[i2] == solverVariable.id) {
                 return this.mArrayValues[i2];
             }
             i2 = this.mArrayNextIndices[i2];
@@ -306,7 +306,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             return -1;
         }
         for (int i3 = 0; i2 != -1 && i3 < this.currentSize; i3++) {
-            if (this.mArrayIndices[i2] == solverVariable.f594id) {
+            if (this.mArrayIndices[i2] == solverVariable.id) {
                 return i2;
             }
             i2 = this.mArrayNextIndices[i2];
@@ -336,7 +336,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             float[] fArr = this.mArrayValues;
             int i3 = this.mHead;
             fArr[i3] = f2;
-            this.mArrayIndices[i3] = solverVariable.f594id;
+            this.mArrayIndices[i3] = solverVariable.id;
             this.mArrayNextIndices[i3] = -1;
             solverVariable.usageInRowCount++;
             solverVariable.addToRow(this.mRow);
@@ -358,7 +358,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         for (int i6 = 0; i2 != -1 && i6 < this.currentSize; i6++) {
             int[] iArr2 = this.mArrayIndices;
             int i7 = iArr2[i2];
-            int i8 = solverVariable.f594id;
+            int i8 = solverVariable.id;
             if (i7 == i8) {
                 this.mArrayValues[i2] = f2;
                 return;
@@ -368,50 +368,50 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             }
             i2 = this.mArrayNextIndices[i2];
         }
-        int i9 = this.mLast;
-        int i10 = i9 + 1;
+        int length = this.mLast;
+        int i9 = length + 1;
         if (this.mDidFillOnce) {
             int[] iArr3 = this.mArrayIndices;
-            if (iArr3[i9] != -1) {
-                i9 = iArr3.length;
+            if (iArr3[length] != -1) {
+                length = iArr3.length;
             }
         } else {
-            i9 = i10;
+            length = i9;
         }
         int[] iArr4 = this.mArrayIndices;
-        if (i9 >= iArr4.length && this.currentSize < iArr4.length) {
-            int i11 = 0;
+        if (length >= iArr4.length && this.currentSize < iArr4.length) {
+            int i10 = 0;
             while (true) {
                 int[] iArr5 = this.mArrayIndices;
-                if (i11 >= iArr5.length) {
+                if (i10 >= iArr5.length) {
                     break;
                 }
-                if (iArr5[i11] == -1) {
-                    i9 = i11;
+                if (iArr5[i10] == -1) {
+                    length = i10;
                     break;
                 }
-                i11++;
+                i10++;
             }
         }
         int[] iArr6 = this.mArrayIndices;
-        if (i9 >= iArr6.length) {
-            i9 = iArr6.length;
+        if (length >= iArr6.length) {
+            length = iArr6.length;
             this.ROW_SIZE *= 2;
             this.mDidFillOnce = false;
-            this.mLast = i9 - 1;
+            this.mLast = length - 1;
             this.mArrayValues = Arrays.copyOf(this.mArrayValues, this.ROW_SIZE);
             this.mArrayIndices = Arrays.copyOf(this.mArrayIndices, this.ROW_SIZE);
             this.mArrayNextIndices = Arrays.copyOf(this.mArrayNextIndices, this.ROW_SIZE);
         }
-        this.mArrayIndices[i9] = solverVariable.f594id;
-        this.mArrayValues[i9] = f2;
+        this.mArrayIndices[length] = solverVariable.id;
+        this.mArrayValues[length] = f2;
         if (i5 != -1) {
             int[] iArr7 = this.mArrayNextIndices;
-            iArr7[i9] = iArr7[i5];
-            iArr7[i5] = i9;
+            iArr7[length] = iArr7[i5];
+            iArr7[i5] = length;
         } else {
-            this.mArrayNextIndices[i9] = this.mHead;
-            this.mHead = i9;
+            this.mArrayNextIndices[length] = this.mHead;
+            this.mHead = length;
         }
         solverVariable.usageInRowCount++;
         solverVariable.addToRow(this.mRow);
@@ -422,9 +422,9 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         if (this.currentSize >= this.mArrayIndices.length) {
             this.mDidFillOnce = true;
         }
-        int i12 = this.mLast;
+        int i11 = this.mLast;
         int[] iArr8 = this.mArrayIndices;
-        if (i12 >= iArr8.length) {
+        if (i11 >= iArr8.length) {
             this.mDidFillOnce = true;
             this.mLast = iArr8.length - 1;
         }
@@ -442,7 +442,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         int i3 = 0;
         int i4 = -1;
         while (i2 != -1 && i3 < this.currentSize) {
-            if (this.mArrayIndices[i2] == solverVariable.f594id) {
+            if (this.mArrayIndices[i2] == solverVariable.id) {
                 if (i2 == this.mHead) {
                     this.mHead = this.mArrayNextIndices[i2];
                 } else {

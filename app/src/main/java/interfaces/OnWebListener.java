@@ -1,10 +1,10 @@
 package interfaces;
 
-import util.p396d2.C7269a;
+import util.o2.a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface OnWebListener {
-    void shouldIntercept(C7269a c7269a);
+    void shouldIntercept(a aVar);
 
     void webJsFinish();
 

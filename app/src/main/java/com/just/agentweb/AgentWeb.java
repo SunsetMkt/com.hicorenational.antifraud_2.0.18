@@ -18,7 +18,7 @@ import com.just.agentweb.DefaultWebClient;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AgentWeb {
     private static final int ACTIVITY_TAG = 0;
     private static final int FRAGMENT_TAG = 1;
@@ -209,12 +209,11 @@ public final class AgentWeb {
             return this.mAgentWeb;
         }
 
-        /* renamed from: go */
-        public AgentWeb m8080go(@Nullable String str) {
+        public AgentWeb go(@Nullable String str) {
             if (!this.isReady) {
                 ready();
             }
-            return this.mAgentWeb.m8079go(str);
+            return this.mAgentWeb.go(str);
         }
 
         public PreAgentWeb ready() {
@@ -243,26 +242,26 @@ public final class AgentWeb {
     }
 
     private void doSafeCheck() {
-        WebSecurityCheckLogic webSecurityCheckLogic = this.mWebSecurityCheckLogic;
-        if (webSecurityCheckLogic == null) {
-            webSecurityCheckLogic = WebSecurityLogicImpl.getInstance(this.mWebCreator.getWebViewType());
-            this.mWebSecurityCheckLogic = webSecurityCheckLogic;
+        WebSecurityCheckLogic webSecurityLogicImpl = this.mWebSecurityCheckLogic;
+        if (webSecurityLogicImpl == null) {
+            webSecurityLogicImpl = WebSecurityLogicImpl.getInstance(this.mWebCreator.getWebViewType());
+            this.mWebSecurityCheckLogic = webSecurityLogicImpl;
         }
-        this.mWebSecurityController.check(webSecurityCheckLogic);
+        this.mWebSecurityController.check(webSecurityLogicImpl);
     }
 
     private android.webkit.WebChromeClient getChromeClient() {
-        IndicatorController indicatorController = this.mIndicatorController;
-        if (indicatorController == null) {
-            indicatorController = IndicatorHandler.getInstance().inJectIndicator(this.mWebCreator.offer());
+        IndicatorController indicatorControllerInJectIndicator = this.mIndicatorController;
+        if (indicatorControllerInJectIndicator == null) {
+            indicatorControllerInJectIndicator = IndicatorHandler.getInstance().inJectIndicator(this.mWebCreator.offer());
         }
-        IndicatorController indicatorController2 = indicatorController;
+        IndicatorController indicatorController = indicatorControllerInJectIndicator;
         Activity activity = this.mActivity;
-        this.mIndicatorController = indicatorController2;
+        this.mIndicatorController = indicatorController;
         IVideo iVideo = getIVideo();
         this.mIVideo = iVideo;
-        DefaultChromeClient defaultChromeClient = new DefaultChromeClient(activity, indicatorController2, null, iVideo, this.mPermissionInterceptor, this.mWebCreator.getWebView());
-        LogUtils.m8083i(TAG, "WebChromeClient:" + this.mWebChromeClient);
+        DefaultChromeClient defaultChromeClient = new DefaultChromeClient(activity, indicatorController, null, iVideo, this.mPermissionInterceptor, this.mWebCreator.getWebView());
+        LogUtils.i(TAG, "WebChromeClient:" + this.mWebChromeClient);
         MiddlewareWebChromeBase middlewareWebChromeBase = this.mMiddlewareWebChromeBaseHeader;
         WebChromeClient webChromeClient = this.mWebChromeClient;
         if (webChromeClient != null) {
@@ -273,14 +272,14 @@ public final class AgentWeb {
             this.mTargetChromeClient = defaultChromeClient;
             return defaultChromeClient;
         }
-        MiddlewareWebChromeBase middlewareWebChromeBase2 = middlewareWebChromeBase;
+        MiddlewareWebChromeBase next = middlewareWebChromeBase;
         int i2 = 1;
-        while (middlewareWebChromeBase2.next() != null) {
-            middlewareWebChromeBase2 = middlewareWebChromeBase2.next();
+        while (next.next() != null) {
+            next = next.next();
             i2++;
         }
-        LogUtils.m8083i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
-        middlewareWebChromeBase2.setDelegate(defaultChromeClient);
+        LogUtils.i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
+        next.setDelegate(defaultChromeClient);
         this.mTargetChromeClient = middlewareWebChromeBase;
         return middlewareWebChromeBase;
     }
@@ -305,8 +304,8 @@ public final class AgentWeb {
     }
 
     private android.webkit.WebViewClient getWebViewClient() {
-        LogUtils.m8083i(TAG, "getDelegate:" + this.mMiddleWrareWebClientBaseHeader);
-        DefaultWebClient build = DefaultWebClient.createBuilder().setActivity(this.mActivity).setWebClientHelper(this.mWebClientHelper).setPermissionInterceptor(this.mPermissionInterceptor).setWebView(this.mWebCreator.getWebView()).setInterceptUnkownUrl(this.mIsInterceptUnkownUrl).setUrlHandleWays(this.mUrlHandleWays).build();
+        LogUtils.i(TAG, "getDelegate:" + this.mMiddleWrareWebClientBaseHeader);
+        DefaultWebClient defaultWebClientBuild = DefaultWebClient.createBuilder().setActivity(this.mActivity).setWebClientHelper(this.mWebClientHelper).setPermissionInterceptor(this.mPermissionInterceptor).setWebView(this.mWebCreator.getWebView()).setInterceptUnkownUrl(this.mIsInterceptUnkownUrl).setUrlHandleWays(this.mUrlHandleWays).build();
         MiddlewareWebClientBase middlewareWebClientBase = this.mMiddleWrareWebClientBaseHeader;
         WebViewClient webViewClient = this.mWebViewClient;
         if (webViewClient != null) {
@@ -314,22 +313,21 @@ public final class AgentWeb {
             middlewareWebClientBase = this.mWebViewClient;
         }
         if (middlewareWebClientBase == null) {
-            return build;
+            return defaultWebClientBuild;
         }
-        MiddlewareWebClientBase middlewareWebClientBase2 = middlewareWebClientBase;
+        MiddlewareWebClientBase next = middlewareWebClientBase;
         int i2 = 1;
-        while (middlewareWebClientBase2.next() != null) {
-            middlewareWebClientBase2 = middlewareWebClientBase2.next();
+        while (next.next() != null) {
+            next = next.next();
             i2++;
         }
-        LogUtils.m8083i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
-        middlewareWebClientBase2.setDelegate(build);
+        LogUtils.i(TAG, "MiddlewareWebClientBase middleware count:" + i2);
+        next.setDelegate(defaultWebClientBuild);
         return middlewareWebClientBase;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: go */
-    public AgentWeb m8079go(String str) {
+    public AgentWeb go(String str) {
         IndicatorController indicatorController;
         getUrlLoader().loadUrl(str);
         if (!TextUtils.isEmpty(str) && (indicatorController = getIndicatorController()) != null && indicatorController.offerIndicator() != null) {
@@ -346,23 +344,23 @@ public final class AgentWeb {
     /* JADX INFO: Access modifiers changed from: private */
     public AgentWeb ready() {
         AgentWebConfig.initCookiesManager(this.mActivity.getApplicationContext());
-        IAgentWebSettings iAgentWebSettings = this.mAgentWebSettings;
-        if (iAgentWebSettings == null) {
-            iAgentWebSettings = AbsAgentWebSettings.getInstance();
-            this.mAgentWebSettings = iAgentWebSettings;
+        IAgentWebSettings absAgentWebSettings = this.mAgentWebSettings;
+        if (absAgentWebSettings == null) {
+            absAgentWebSettings = AbsAgentWebSettings.getInstance();
+            this.mAgentWebSettings = absAgentWebSettings;
         }
-        boolean z = iAgentWebSettings instanceof AbsAgentWebSettings;
+        boolean z = absAgentWebSettings instanceof AbsAgentWebSettings;
         if (z) {
-            ((AbsAgentWebSettings) iAgentWebSettings).bindAgentWeb(this);
+            ((AbsAgentWebSettings) absAgentWebSettings).bindAgentWeb(this);
         }
         if (this.mWebListenerManager == null && z) {
-            this.mWebListenerManager = (WebListenerManager) iAgentWebSettings;
+            this.mWebListenerManager = (WebListenerManager) absAgentWebSettings;
         }
-        iAgentWebSettings.toSetting(this.mWebCreator.getWebView());
+        absAgentWebSettings.toSetting(this.mWebCreator.getWebView());
         if (this.mJsInterfaceHolder == null) {
             this.mJsInterfaceHolder = JsInterfaceHolderImpl.getJsInterfaceHolder(this.mWebCreator, this.mSecurityType);
         }
-        LogUtils.m8083i(TAG, "mJavaObjects:" + this.mJavaObjects.size());
+        LogUtils.i(TAG, "mJavaObjects:" + this.mJavaObjects.size());
         ArrayMap<String, Object> arrayMap = this.mJavaObjects;
         if (arrayMap != null && !arrayMap.isEmpty()) {
             this.mJsInterfaceHolder.addJavaObjects(this.mJavaObjects);
@@ -491,7 +489,7 @@ public final class AgentWeb {
         this.mAgentWebSettings = agentBuilder.mAgentWebSettings;
         if (agentBuilder.mJavaObject != null && !agentBuilder.mJavaObject.isEmpty()) {
             this.mJavaObjects.putAll((Map<? extends String, ? extends Object>) agentBuilder.mJavaObject);
-            LogUtils.m8083i(TAG, "mJavaObject size:" + this.mJavaObjects.size());
+            LogUtils.i(TAG, "mJavaObject size:" + this.mJavaObjects.size());
         }
         this.mPermissionInterceptor = agentBuilder.mPermissionInterceptor != null ? new PermissionInterceptorWrapper(agentBuilder.mPermissionInterceptor) : null;
         this.mSecurityType = agentBuilder.mSecurityType;

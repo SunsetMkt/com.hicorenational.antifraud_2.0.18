@@ -19,94 +19,77 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.luozm.captcha.AsyncTaskC2740a;
 import com.luozm.captcha.PictureVertifyView;
+import com.luozm.captcha.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Captcha extends LinearLayout {
+    public static final int s = -100;
+    public static final int t = 1;
+    public static final int u = 2;
+    private PictureVertifyView a;
 
-    /* renamed from: s */
-    public static final int f8414s = -100;
+    /* JADX INFO: renamed from: b */
+    private TextSeekbar f5306b;
 
-    /* renamed from: t */
-    public static final int f8415t = 1;
+    /* JADX INFO: renamed from: c */
+    private View f5307c;
 
-    /* renamed from: u */
-    public static final int f8416u = 2;
+    /* JADX INFO: renamed from: d */
+    private View f5308d;
 
-    /* renamed from: a */
-    private PictureVertifyView f8417a;
+    /* JADX INFO: renamed from: e */
+    private TextView f5309e;
 
-    /* renamed from: b */
-    private TextSeekbar f8418b;
+    /* JADX INFO: renamed from: f */
+    private TextView f5310f;
 
-    /* renamed from: c */
-    private View f8419c;
+    /* JADX INFO: renamed from: g */
+    private ImageView f5311g;
 
-    /* renamed from: d */
-    private View f8420d;
+    /* JADX INFO: renamed from: h */
+    private int f5312h;
 
-    /* renamed from: e */
-    private TextView f8421e;
+    /* JADX INFO: renamed from: i */
+    private int f5313i;
 
-    /* renamed from: f */
-    private TextView f8422f;
+    /* JADX INFO: renamed from: j */
+    private int f5314j;
 
-    /* renamed from: g */
-    private ImageView f8423g;
+    /* JADX INFO: renamed from: k */
+    private int f5315k;
 
-    /* renamed from: h */
-    private int f8424h;
+    /* JADX INFO: renamed from: l */
+    private int f5316l;
 
-    /* renamed from: i */
-    private int f8425i;
+    /* JADX INFO: renamed from: m */
+    private int f5317m;
 
-    /* renamed from: j */
-    private int f8426j;
+    /* JADX INFO: renamed from: n */
+    private int f5318n;
+    private boolean o;
+    private boolean p;
+    private f q;
+    private com.luozm.captcha.a r;
 
-    /* renamed from: k */
-    private int f8427k;
-
-    /* renamed from: l */
-    private int f8428l;
-
-    /* renamed from: m */
-    private int f8429m;
-
-    /* renamed from: n */
-    private int f8430n;
-
-    /* renamed from: o */
-    private boolean f8431o;
-
-    /* renamed from: p */
-    private boolean f8432p;
-
-    /* renamed from: q */
-    private InterfaceC2736f f8433q;
-
-    /* renamed from: r */
-    private AsyncTaskC2740a f8434r;
-
-    /* renamed from: com.luozm.captcha.Captcha$b */
-    class C2732b implements SeekBar.OnSeekBarChangeListener {
-        C2732b() {
+    class b implements SeekBar.OnSeekBarChangeListener {
+        b() {
         }
 
         @Override // android.widget.SeekBar.OnSeekBarChangeListener
         public void onProgressChanged(SeekBar seekBar, int i2, boolean z) {
-            if (Captcha.this.f8432p) {
-                Captcha.this.f8432p = false;
+            if (Captcha.this.p) {
+                Captcha.this.p = false;
                 if (i2 > 10) {
-                    Captcha.this.f8431o = false;
+                    Captcha.this.o = false;
                 } else {
-                    Captcha.this.f8431o = true;
-                    Captcha.this.f8420d.setVisibility(8);
-                    Captcha.this.f8417a.m8178a(0);
+                    Captcha.this.o = true;
+                    Captcha.this.f5308d.setVisibility(8);
+                    Captcha.this.a.a(0);
                 }
             }
-            if (Captcha.this.f8431o) {
-                Captcha.this.f8417a.m8185b(i2);
+            if (Captcha.this.o) {
+                Captcha.this.a.b(i2);
             } else {
                 seekBar.setProgress(0);
             }
@@ -114,31 +97,29 @@ public class Captcha extends LinearLayout {
 
         @Override // android.widget.SeekBar.OnSeekBarChangeListener
         public void onStartTrackingTouch(SeekBar seekBar) {
-            Captcha.this.f8432p = true;
+            Captcha.this.p = true;
         }
 
         @Override // android.widget.SeekBar.OnSeekBarChangeListener
         public void onStopTrackingTouch(SeekBar seekBar) {
-            if (Captcha.this.f8431o) {
-                Captcha.this.f8417a.m8183b();
+            if (Captcha.this.o) {
+                Captcha.this.a.b();
             }
         }
     }
 
-    /* renamed from: com.luozm.captcha.Captcha$c */
-    class ViewOnClickListenerC2733c implements View.OnClickListener {
-        ViewOnClickListenerC2733c() {
+    class c implements View.OnClickListener {
+        c() {
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            Captcha.this.m8147a(view);
+            Captcha.this.a(view);
         }
     }
 
-    /* renamed from: com.luozm.captcha.Captcha$d */
-    class C2734d implements Animator.AnimatorListener {
-        C2734d() {
+    class d implements Animator.AnimatorListener {
+        d() {
         }
 
         @Override // android.animation.Animator.AnimatorListener
@@ -147,8 +128,8 @@ public class Captcha extends LinearLayout {
 
         @Override // android.animation.Animator.AnimatorListener
         public void onAnimationEnd(Animator animator) {
-            if (Captcha.this.f8433q != null) {
-                Captcha.this.f8433q.mo8170a(-100);
+            if (Captcha.this.q != null) {
+                Captcha.this.q.a(-100);
             }
         }
 
@@ -161,52 +142,45 @@ public class Captcha extends LinearLayout {
         }
     }
 
-    /* renamed from: com.luozm.captcha.Captcha$e */
-    class C2735e implements AsyncTaskC2740a.a {
-        C2735e() {
+    class e implements a.InterfaceC0099a {
+        e() {
         }
 
-        @Override // com.luozm.captcha.AsyncTaskC2740a.a
-        /* renamed from: a */
-        public void mo8168a(Bitmap bitmap) {
+        @Override // com.luozm.captcha.a.InterfaceC0099a
+        public void a(Bitmap bitmap) {
             Captcha.this.setBitmap(bitmap);
         }
     }
 
-    /* renamed from: com.luozm.captcha.Captcha$f */
-    public interface InterfaceC2736f {
-        /* renamed from: a */
-        String mo8169a();
+    public interface f {
+        String a();
 
-        /* renamed from: a */
-        String mo8170a(int i2);
+        String a(int i2);
 
-        /* renamed from: a */
-        String mo8171a(long j2);
+        String a(long j2);
     }
 
-    /* renamed from: com.luozm.captcha.Captcha$g */
-    public @interface InterfaceC2737g {
+    public @interface g {
     }
 
     public Captcha(@NonNull Context context) {
         super(context);
-        this.f8424h = -1;
+        this.f5312h = -1;
     }
 
     public int getMaxFailedCount() {
-        return this.f8428l;
+        return this.f5316l;
     }
 
     public int getMode() {
-        return this.f8427k;
+        return this.f5315k;
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onDetachedFromWindow() {
-        AsyncTaskC2740a asyncTaskC2740a = this.f8434r;
-        if (asyncTaskC2740a != null && asyncTaskC2740a.getStatus().equals(AsyncTask.Status.RUNNING)) {
-            this.f8434r.cancel(true);
+        com.luozm.captcha.a aVar = this.r;
+        if (aVar != null && aVar.getStatus().equals(AsyncTask.Status.RUNNING)) {
+            this.r.cancel(true);
         }
         super.onDetachedFromWindow();
     }
@@ -216,172 +190,162 @@ public class Captcha extends LinearLayout {
     }
 
     public void setBlockSize(int i2) {
-        this.f8417a.m8187c(i2);
+        this.a.c(i2);
     }
 
-    public void setCaptchaListener(InterfaceC2736f interfaceC2736f) {
-        this.f8433q = interfaceC2736f;
+    public void setCaptchaListener(f fVar) {
+        this.q = fVar;
     }
 
-    public void setCaptchaStrategy(AbstractC2743d abstractC2743d) {
-        if (abstractC2743d != null) {
-            this.f8417a.m8181a(abstractC2743d);
+    public void setCaptchaStrategy(com.luozm.captcha.d dVar) {
+        if (dVar != null) {
+            this.a.a(dVar);
         }
     }
 
     public void setMaxFailedCount(int i2) {
-        this.f8428l = i2;
+        this.f5316l = i2;
     }
 
-    public void setMode(@InterfaceC2737g int i2) {
-        this.f8427k = i2;
-        this.f8417a.m8189d(i2);
-        if (this.f8427k == 2) {
-            this.f8418b.setVisibility(8);
-            this.f8417a.m8182a(true);
+    public void setMode(@g int i2) {
+        this.f5315k = i2;
+        this.a.d(i2);
+        if (this.f5315k == 2) {
+            this.f5306b.setVisibility(8);
+            this.a.a(true);
         } else {
-            this.f8418b.setVisibility(0);
-            this.f8418b.setEnabled(true);
+            this.f5306b.setVisibility(0);
+            this.f5306b.setEnabled(true);
         }
-        m8165b();
+        b();
     }
 
-    /* renamed from: c */
-    private void m8152c() {
-        View inflate = LayoutInflater.from(getContext()).inflate(C2739R.layout.container, (ViewGroup) this, true);
-        this.f8417a = (PictureVertifyView) inflate.findViewById(C2739R.id.vertifyView);
-        this.f8418b = (TextSeekbar) inflate.findViewById(C2739R.id.seekbar);
-        this.f8419c = inflate.findViewById(C2739R.id.accessRight);
-        this.f8420d = inflate.findViewById(C2739R.id.accessFailed);
-        this.f8421e = (TextView) inflate.findViewById(C2739R.id.accessText);
-        this.f8422f = (TextView) inflate.findViewById(C2739R.id.accessFailedText);
-        this.f8423g = (ImageView) inflate.findViewById(C2739R.id.refresh);
-        setMode(this.f8427k);
-        int i2 = this.f8424h;
+    private void c() {
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.container, (ViewGroup) this, true);
+        this.a = (PictureVertifyView) viewInflate.findViewById(R.id.vertifyView);
+        this.f5306b = (TextSeekbar) viewInflate.findViewById(R.id.seekbar);
+        this.f5307c = viewInflate.findViewById(R.id.accessRight);
+        this.f5308d = viewInflate.findViewById(R.id.accessFailed);
+        this.f5309e = (TextView) viewInflate.findViewById(R.id.accessText);
+        this.f5310f = (TextView) viewInflate.findViewById(R.id.accessFailedText);
+        this.f5311g = (ImageView) viewInflate.findViewById(R.id.refresh);
+        setMode(this.f5315k);
+        int i2 = this.f5312h;
         if (i2 != -1) {
-            this.f8417a.setImageResource(i2);
+            this.a.setImageResource(i2);
         }
-        setBlockSize(this.f8430n);
-        this.f8417a.m8180a(new C2731a());
-        m8163a(this.f8425i, this.f8426j);
-        this.f8418b.setOnSeekBarChangeListener(new C2732b());
-        this.f8423g.setOnClickListener(new ViewOnClickListenerC2733c());
+        setBlockSize(this.f5318n);
+        this.a.a(new a());
+        a(this.f5313i, this.f5314j);
+        this.f5306b.setOnSeekBarChangeListener(new b());
+        this.f5311g.setOnClickListener(new c());
     }
 
     public Captcha(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    /* renamed from: b */
-    public void m8165b() {
-        this.f8420d.setVisibility(8);
-        this.f8419c.setVisibility(8);
+    public void b() {
+        this.f5308d.setVisibility(8);
+        this.f5307c.setVisibility(8);
     }
 
     public void setBitmap(Bitmap bitmap) {
-        this.f8417a.setImageBitmap(bitmap);
-        m8164a(false);
+        this.a.setImageBitmap(bitmap);
+        a(false);
     }
 
     public Captcha(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i2) {
         super(context, attributeSet, i2);
-        this.f8424h = -1;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C2739R.styleable.Captcha);
-        this.f8424h = obtainStyledAttributes.getResourceId(C2739R.styleable.Captcha_src, C2739R.drawable.container_backgroud);
-        this.f8425i = obtainStyledAttributes.getResourceId(C2739R.styleable.Captcha_progressDrawable, C2739R.drawable.po_seekbar);
-        this.f8426j = obtainStyledAttributes.getResourceId(C2739R.styleable.Captcha_thumbDrawable, C2739R.drawable.iv_tc_thumb);
-        this.f8427k = obtainStyledAttributes.getInteger(C2739R.styleable.Captcha_mode, 1);
-        this.f8428l = obtainStyledAttributes.getInteger(C2739R.styleable.Captcha_max_fail_count, 3);
-        this.f8430n = obtainStyledAttributes.getDimensionPixelSize(C2739R.styleable.Captcha_blockSize, C2742c.m8192a(getContext(), 50.0f));
-        obtainStyledAttributes.recycle();
-        m8152c();
+        this.f5312h = -1;
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Captcha);
+        this.f5312h = typedArrayObtainStyledAttributes.getResourceId(R.styleable.Captcha_src, R.drawable.container_backgroud);
+        this.f5313i = typedArrayObtainStyledAttributes.getResourceId(R.styleable.Captcha_progressDrawable, R.drawable.po_seekbar);
+        this.f5314j = typedArrayObtainStyledAttributes.getResourceId(R.styleable.Captcha_thumbDrawable, R.drawable.iv_tc_thumb);
+        this.f5315k = typedArrayObtainStyledAttributes.getInteger(R.styleable.Captcha_mode, 1);
+        this.f5316l = typedArrayObtainStyledAttributes.getInteger(R.styleable.Captcha_max_fail_count, 3);
+        this.f5318n = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.Captcha_blockSize, com.luozm.captcha.c.a(getContext(), 50.0f));
+        typedArrayObtainStyledAttributes.recycle();
+        c();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m8147a(View view) {
-        view.animate().rotationBy(360.0f).setDuration(500L).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new C2734d());
+    public void a(View view) {
+        view.animate().rotationBy(360.0f).setDuration(500L).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new d());
     }
 
     public void setBitmap(String str) {
-        this.f8434r = new AsyncTaskC2740a(new C2735e());
-        this.f8434r.execute(str);
+        this.r = new com.luozm.captcha.a(new e());
+        this.r.execute(str);
     }
 
-    /* renamed from: com.luozm.captcha.Captcha$a */
-    class C2731a implements PictureVertifyView.InterfaceC2738a {
-        C2731a() {
+    class a implements PictureVertifyView.a {
+        a() {
         }
 
-        @Override // com.luozm.captcha.PictureVertifyView.InterfaceC2738a
-        /* renamed from: a */
-        public void mo8167a(long j2) {
-            if (Captcha.this.f8433q != null) {
-                String mo8171a = Captcha.this.f8433q.mo8171a(j2);
-                if (mo8171a != null) {
-                    Captcha.this.f8421e.setText(mo8171a);
+        @Override // com.luozm.captcha.PictureVertifyView.a
+        public void a(long j2) {
+            if (Captcha.this.q != null) {
+                String strA = Captcha.this.q.a(j2);
+                if (strA != null) {
+                    Captcha.this.f5309e.setText(strA);
                 } else {
-                    Captcha.this.f8421e.setText(String.format(Captcha.this.getResources().getString(C2739R.string.vertify_access), Long.valueOf(j2)));
+                    Captcha.this.f5309e.setText(String.format(Captcha.this.getResources().getString(R.string.vertify_access), Long.valueOf(j2)));
                 }
             }
-            Captcha.this.f8419c.setVisibility(0);
-            Captcha.this.f8420d.setVisibility(8);
+            Captcha.this.f5307c.setVisibility(0);
+            Captcha.this.f5308d.setVisibility(8);
         }
 
-        @Override // com.luozm.captcha.PictureVertifyView.InterfaceC2738a
-        /* renamed from: a */
-        public void mo8166a() {
-            Captcha.this.f8418b.setEnabled(false);
-            Captcha.this.f8417a.m8182a(false);
+        @Override // com.luozm.captcha.PictureVertifyView.a
+        public void a() {
+            Captcha.this.f5306b.setEnabled(false);
+            Captcha.this.a.a(false);
             Captcha captcha = Captcha.this;
-            captcha.f8429m = captcha.f8429m > Captcha.this.f8428l ? Captcha.this.f8428l : Captcha.this.f8429m + 1;
-            Captcha.this.f8420d.setVisibility(0);
-            Captcha.this.f8419c.setVisibility(8);
-            if (Captcha.this.f8433q != null) {
-                if (Captcha.this.f8429m == Captcha.this.f8428l) {
-                    String mo8169a = Captcha.this.f8433q.mo8169a();
-                    if (mo8169a != null) {
-                        Captcha.this.f8422f.setText(mo8169a);
+            captcha.f5317m = captcha.f5317m > Captcha.this.f5316l ? Captcha.this.f5316l : Captcha.this.f5317m + 1;
+            Captcha.this.f5308d.setVisibility(0);
+            Captcha.this.f5307c.setVisibility(8);
+            if (Captcha.this.q != null) {
+                if (Captcha.this.f5317m == Captcha.this.f5316l) {
+                    String strA = Captcha.this.q.a();
+                    if (strA != null) {
+                        Captcha.this.f5310f.setText(strA);
                         return;
                     } else {
-                        Captcha.this.f8422f.setText(String.format(Captcha.this.getResources().getString(C2739R.string.vertify_failed), Integer.valueOf(Captcha.this.f8428l - Captcha.this.f8429m)));
+                        Captcha.this.f5310f.setText(String.format(Captcha.this.getResources().getString(R.string.vertify_failed), Integer.valueOf(Captcha.this.f5316l - Captcha.this.f5317m)));
                         return;
                     }
                 }
-                String mo8170a = Captcha.this.f8433q.mo8170a(Captcha.this.f8429m);
-                if (mo8170a != null) {
-                    Captcha.this.f8422f.setText(mo8170a);
+                String strA2 = Captcha.this.q.a(Captcha.this.f5317m);
+                if (strA2 != null) {
+                    Captcha.this.f5310f.setText(strA2);
                 } else {
-                    Captcha.this.f8422f.setText(String.format(Captcha.this.getResources().getString(C2739R.string.vertify_failed), Integer.valueOf(Captcha.this.f8428l - Captcha.this.f8429m)));
+                    Captcha.this.f5310f.setText(String.format(Captcha.this.getResources().getString(R.string.vertify_failed), Integer.valueOf(Captcha.this.f5316l - Captcha.this.f5317m)));
                 }
             }
         }
     }
 
-    /* renamed from: a */
-    public void m8163a(@DrawableRes int i2, @DrawableRes int i3) {
-        this.f8418b.setProgressDrawable(getResources().getDrawable(i2));
-        this.f8418b.setThumb(getResources().getDrawable(i3));
-        this.f8418b.setThumbOffset(0);
+    public void a(@DrawableRes int i2, @DrawableRes int i3) {
+        this.f5306b.setProgressDrawable(getResources().getDrawable(i2));
+        this.f5306b.setThumb(getResources().getDrawable(i3));
+        this.f5306b.setThumbOffset(0);
     }
 
-    /* renamed from: a */
-    public void m8162a() {
-        m8147a(this.f8423g);
+    public void a() {
+        a(this.f5311g);
     }
 
-    /* renamed from: a */
-    public void m8164a(boolean z) {
-        m8165b();
-        this.f8417a.m8186c();
+    public void a(boolean z) {
+        b();
+        this.a.c();
         if (z) {
-            this.f8429m = 0;
+            this.f5317m = 0;
         }
-        if (this.f8427k == 1) {
-            this.f8418b.setEnabled(true);
-            this.f8418b.setProgress(0);
+        if (this.f5315k == 1) {
+            this.f5306b.setEnabled(true);
+            this.f5306b.setProgress(0);
         } else {
-            this.f8417a.m8182a(true);
+            this.a.a(true);
         }
     }
 }

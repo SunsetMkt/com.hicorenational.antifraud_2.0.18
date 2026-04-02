@@ -5,7 +5,7 @@ import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
 import com.alibaba.sdk.android.oss.callback.OSSRetryCallback;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PutObjectRequest extends OSSRequest {
     private String bucketName;
     private Map<String, String> callbackParam;

@@ -19,9 +19,9 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.graphics.drawable.WrappedDrawable;
 import java.lang.reflect.Field;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedAPI"})
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class DrawableUtils {
     private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
     private static final int[] EMPTY_STATE_SET = new int[0];
@@ -106,47 +106,43 @@ public class DrawableUtils {
         }
         if (sInsetsClazz != null) {
             try {
-                Drawable unwrap = DrawableCompat.unwrap(drawable);
-                Object invoke = unwrap.getClass().getMethod("getOpticalInsets", new Class[0]).invoke(unwrap, new Object[0]);
-                if (invoke != null) {
+                Drawable drawableUnwrap = DrawableCompat.unwrap(drawable);
+                Object objInvoke = drawableUnwrap.getClass().getMethod("getOpticalInsets", new Class[0]).invoke(drawableUnwrap, new Object[0]);
+                if (objInvoke != null) {
                     Rect rect2 = new Rect();
                     for (Field field : sInsetsClazz.getFields()) {
                         String name = field.getName();
-                        char c2 = 65535;
+                        byte b2 = -1;
                         switch (name.hashCode()) {
                             case -1383228885:
                                 if (name.equals("bottom")) {
-                                    c2 = 3;
-                                    break;
+                                    b2 = 3;
                                 }
                                 break;
                             case 115029:
                                 if (name.equals("top")) {
-                                    c2 = 1;
-                                    break;
+                                    b2 = 1;
                                 }
                                 break;
                             case 3317767:
                                 if (name.equals("left")) {
-                                    c2 = 0;
-                                    break;
+                                    b2 = 0;
                                 }
                                 break;
                             case 108511772:
                                 if (name.equals("right")) {
-                                    c2 = 2;
-                                    break;
+                                    b2 = 2;
                                 }
                                 break;
                         }
-                        if (c2 == 0) {
-                            rect2.left = field.getInt(invoke);
-                        } else if (c2 == 1) {
-                            rect2.top = field.getInt(invoke);
-                        } else if (c2 == 2) {
-                            rect2.right = field.getInt(invoke);
-                        } else if (c2 == 3) {
-                            rect2.bottom = field.getInt(invoke);
+                        if (b2 == 0) {
+                            rect2.left = field.getInt(objInvoke);
+                        } else if (b2 == 1) {
+                            rect2.top = field.getInt(objInvoke);
+                        } else if (b2 == 2) {
+                            rect2.right = field.getInt(objInvoke);
+                        } else if (b2 == 3) {
+                            rect2.bottom = field.getInt(objInvoke);
                         }
                     }
                     return rect2;

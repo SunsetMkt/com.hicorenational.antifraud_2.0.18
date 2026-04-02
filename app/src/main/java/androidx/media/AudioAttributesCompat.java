@@ -11,7 +11,7 @@ import androidx.versionedparcelable.VersionedParcelable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AudioAttributesCompat implements VersionedParcelable {
     static final String AUDIO_ATTRIBUTES_CONTENT_TYPE = "androidx.media.audio_attrs.CONTENT_TYPE";
     static final String AUDIO_ATTRIBUTES_FLAGS = "androidx.media.audio_attrs.FLAGS";
@@ -96,11 +96,11 @@ public class AudioAttributesCompat implements VersionedParcelable {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static AudioAttributesCompat fromBundle(Bundle bundle) {
-        AudioAttributesImpl fromBundle = Build.VERSION.SDK_INT >= 21 ? AudioAttributesImplApi21.fromBundle(bundle) : AudioAttributesImplBase.fromBundle(bundle);
-        if (fromBundle == null) {
+        AudioAttributesImpl audioAttributesImplFromBundle = Build.VERSION.SDK_INT >= 21 ? AudioAttributesImplApi21.fromBundle(bundle) : AudioAttributesImplBase.fromBundle(bundle);
+        if (audioAttributesImplFromBundle == null) {
             return null;
         }
-        return new AudioAttributesCompat(fromBundle);
+        return new AudioAttributesCompat(audioAttributesImplFromBundle);
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})

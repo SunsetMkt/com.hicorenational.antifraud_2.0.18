@@ -9,15 +9,18 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.view.GravityCompat;
-import com.google.android.material.C1921R;
+import com.google.android.material.R;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class ForegroundLinearLayout extends LinearLayoutCompat {
+
+    @Nullable
     private Drawable foreground;
     boolean foregroundBoundsChanged;
     private int foregroundGravity;
@@ -25,7 +28,7 @@ public class ForegroundLinearLayout extends LinearLayoutCompat {
     private final Rect overlayBounds;
     private final Rect selfBounds;
 
-    public ForegroundLinearLayout(Context context) {
+    public ForegroundLinearLayout(@NonNull Context context) {
         this(context, null);
     }
 
@@ -74,6 +77,7 @@ public class ForegroundLinearLayout extends LinearLayoutCompat {
     }
 
     @Override // android.view.View
+    @Nullable
     public Drawable getForeground() {
         return this.foreground;
     }
@@ -106,7 +110,7 @@ public class ForegroundLinearLayout extends LinearLayoutCompat {
     }
 
     @Override // android.view.View
-    public void setForeground(Drawable drawable) {
+    public void setForeground(@Nullable Drawable drawable) {
         Drawable drawable2 = this.foreground;
         if (drawable2 != drawable) {
             if (drawable2 != null) {
@@ -153,24 +157,24 @@ public class ForegroundLinearLayout extends LinearLayoutCompat {
         return super.verifyDrawable(drawable) || drawable == this.foreground;
     }
 
-    public ForegroundLinearLayout(Context context, AttributeSet attributeSet) {
+    public ForegroundLinearLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public ForegroundLinearLayout(Context context, AttributeSet attributeSet, int i2) {
+    public ForegroundLinearLayout(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
         this.selfBounds = new Rect();
         this.overlayBounds = new Rect();
         this.foregroundGravity = 119;
         this.mForegroundInPadding = true;
         this.foregroundBoundsChanged = false;
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.ForegroundLinearLayout, i2, 0, new int[0]);
-        this.foregroundGravity = obtainStyledAttributes.getInt(C1921R.styleable.ForegroundLinearLayout_android_foregroundGravity, this.foregroundGravity);
-        Drawable drawable = obtainStyledAttributes.getDrawable(C1921R.styleable.ForegroundLinearLayout_android_foreground);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.ForegroundLinearLayout, i2, 0, new int[0]);
+        this.foregroundGravity = typedArrayObtainStyledAttributes.getInt(R.styleable.ForegroundLinearLayout_android_foregroundGravity, this.foregroundGravity);
+        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R.styleable.ForegroundLinearLayout_android_foreground);
         if (drawable != null) {
             setForeground(drawable);
         }
-        this.mForegroundInPadding = obtainStyledAttributes.getBoolean(C1921R.styleable.ForegroundLinearLayout_foregroundInsidePadding, true);
-        obtainStyledAttributes.recycle();
+        this.mForegroundInPadding = typedArrayObtainStyledAttributes.getBoolean(R.styleable.ForegroundLinearLayout_foregroundInsidePadding, true);
+        typedArrayObtainStyledAttributes.recycle();
     }
 }

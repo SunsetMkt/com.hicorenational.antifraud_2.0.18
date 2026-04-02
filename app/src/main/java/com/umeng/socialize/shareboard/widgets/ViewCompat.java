@@ -6,7 +6,7 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class ViewCompat {
     private static final long FAKE_FRAME_TIME = 10;
     private static final ViewCompatImpl IMPL;
@@ -153,14 +153,14 @@ class ViewCompat {
 
         private static Object dispatchApplyWindowInsets(View view, Object obj) {
             WindowInsets windowInsets = (WindowInsets) obj;
-            WindowInsets dispatchApplyWindowInsets = view.dispatchApplyWindowInsets(windowInsets);
-            return dispatchApplyWindowInsets != windowInsets ? new WindowInsets(dispatchApplyWindowInsets) : obj;
+            WindowInsets windowInsetsDispatchApplyWindowInsets = view.dispatchApplyWindowInsets(windowInsets);
+            return windowInsetsDispatchApplyWindowInsets != windowInsets ? new WindowInsets(windowInsetsDispatchApplyWindowInsets) : obj;
         }
 
         private static Object onApplyWindowInsets(View view, Object obj) {
             WindowInsets windowInsets = (WindowInsets) obj;
-            WindowInsets onApplyWindowInsets = view.onApplyWindowInsets(windowInsets);
-            return onApplyWindowInsets != windowInsets ? new WindowInsets(onApplyWindowInsets) : obj;
+            WindowInsets windowInsetsOnApplyWindowInsets = view.onApplyWindowInsets(windowInsets);
+            return windowInsetsOnApplyWindowInsets != windowInsets ? new WindowInsets(windowInsetsOnApplyWindowInsets) : obj;
         }
     }
 

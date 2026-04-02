@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ScaleTypeTransform {
     private ScaleTypeTransform() {
     }
@@ -35,8 +35,8 @@ final class ScaleTypeTransform {
             width = height;
             height = i2;
         }
-        float max = Math.max(view.getWidth() / height, view.getHeight() / width);
-        return new Pair<>(Float.valueOf(width2 * max), Float.valueOf(height2 * max));
+        float fMax = Math.max(view.getWidth() / height, view.getHeight() / width);
+        return new Pair<>(Float.valueOf(width2 * fMax), Float.valueOf(height2 * fMax));
     }
 
     static Point getOriginOfCenteredView(@NonNull View view, @NonNull View view2) {

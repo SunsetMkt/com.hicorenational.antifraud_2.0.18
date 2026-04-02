@@ -2,10 +2,10 @@ package manager;
 
 import android.os.CountDownTimer;
 import android.widget.TextView;
-import com.heytap.mcssdk.constant.C2084a;
-import com.hicorenational.antifraud.C2113R;
+import com.heytap.mcssdk.constant.a;
+import com.hicorenational.antifraud.R;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CountdownTimerManager {
     private CountDownTimer mCountDownTimer;
 
@@ -47,14 +47,14 @@ public class CountdownTimerManager {
     public void startCountDownTimer(final TextView textView, final int i2) {
         try {
             endCountDownTimer();
-            this.mCountDownTimer = new CountDownTimer(C2084a.f6122d, 1000L) { // from class: manager.CountdownTimerManager.1
+            this.mCountDownTimer = new CountDownTimer(a.f3868d, 1000L) { // from class: manager.CountdownTimerManager.1
                 @Override // android.os.CountDownTimer
                 public void onFinish() {
                     try {
                         textView.setEnabled(true);
-                        textView.setText("获取验证码");
+                        textView.setText("\u83b7\u53d6\u9a8c\u8bc1\u7801");
                         if (i2 == -1) {
-                            textView.setTextColor(textView.getResources().getColor(C2113R.color.blue));
+                            textView.setTextColor(textView.getResources().getColor(R.color.blue));
                         } else {
                             textView.setTextColor(textView.getResources().getColor(i2));
                         }
@@ -66,13 +66,13 @@ public class CountdownTimerManager {
 
                 @Override // android.os.CountDownTimer
                 public void onTick(long j2) {
-                    if (j2 == C2084a.f6122d) {
+                    if (j2 == a.f3868d) {
                         j2 -= 100;
                     }
                     try {
                         textView.setEnabled(false);
-                        textView.setText("重新获取(" + (j2 / 1000) + "s)");
-                        textView.setTextColor(textView.getResources().getColor(C2113R.color.colorGray));
+                        textView.setText("\u91cd\u65b0\u83b7\u53d6(" + (j2 / 1000) + "s)");
+                        textView.setTextColor(textView.getResources().getColor(R.color.colorGray));
                     } catch (Exception e2) {
                         e2.printStackTrace();
                     }

@@ -1,11 +1,11 @@
 package androidx.core.text;
 
 import android.text.SpannableStringBuilder;
-import com.umeng.analytics.pro.C3393cw;
+import com.umeng.analytics.pro.cw;
+import i.z2.h0;
 import java.util.Locale;
-import p286h.p323z2.C5736h0;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class BidiFormatter {
     private static final int DEFAULT_FLAGS = 2;
     private static final int DIR_LTR = -1;
@@ -13,16 +13,16 @@ public final class BidiFormatter {
     private static final int DIR_UNKNOWN = 0;
     private static final String EMPTY_STRING = "";
     private static final int FLAG_STEREO_RESET = 2;
-    private static final char LRE = 8234;
-    private static final char PDF = 8236;
-    private static final char RLE = 8235;
+    private static final char LRE = '\u202a';
+    private static final char PDF = '\u202c';
+    private static final char RLE = '\u202b';
     private final TextDirectionHeuristicCompat mDefaultTextDirectionHeuristicCompat;
     private final int mFlags;
     private final boolean mIsRtlContext;
     static final TextDirectionHeuristicCompat DEFAULT_TEXT_DIRECTION_HEURISTIC = TextDirectionHeuristicsCompat.FIRSTSTRONG_LTR;
-    private static final char LRM = 8206;
+    private static final char LRM = '\u200e';
     private static final String LRM_STRING = Character.toString(LRM);
-    private static final char RLM = 8207;
+    private static final char RLM = '\u200f';
     private static final String RLM_STRING = Character.toString(RLM);
     static final BidiFormatter DEFAULT_LTR_INSTANCE = new BidiFormatter(false, 2, DEFAULT_TEXT_DIRECTION_HEURISTIC);
     static final BidiFormatter DEFAULT_RTL_INSTANCE = new BidiFormatter(true, 2, DEFAULT_TEXT_DIRECTION_HEURISTIC);
@@ -71,11 +71,11 @@ public final class BidiFormatter {
             } while (c2 != ';');
             this.charIndex = i2;
             this.lastChar = ';';
-            return C3393cw.f11871k;
+            return cw.f7203k;
         }
 
         private byte skipEntityForward() {
-            char charAt;
+            char cCharAt;
             do {
                 int i2 = this.charIndex;
                 if (i2 >= this.length) {
@@ -83,14 +83,14 @@ public final class BidiFormatter {
                 }
                 CharSequence charSequence = this.text;
                 this.charIndex = i2 + 1;
-                charAt = charSequence.charAt(i2);
-                this.lastChar = charAt;
-            } while (charAt != ';');
+                cCharAt = charSequence.charAt(i2);
+                this.lastChar = cCharAt;
+            } while (cCharAt != ';');
             return (byte) 12;
         }
 
         private byte skipTagBackward() {
-            char charAt;
+            char cCharAt;
             int i2 = this.charIndex;
             while (true) {
                 int i3 = this.charIndex;
@@ -116,26 +116,26 @@ public final class BidiFormatter {
                             CharSequence charSequence2 = this.text;
                             int i6 = i5 - 1;
                             this.charIndex = i6;
-                            charAt = charSequence2.charAt(i6);
-                            this.lastChar = charAt;
+                            cCharAt = charSequence2.charAt(i6);
+                            this.lastChar = cCharAt;
                         }
-                    } while (charAt != c3);
+                    } while (cCharAt != c3);
                 }
             }
             this.charIndex = i2;
-            this.lastChar = C5736h0.f20716e;
-            return C3393cw.f11871k;
+            this.lastChar = h0.f12425e;
+            return cw.f7203k;
         }
 
         private byte skipTagForward() {
-            char charAt;
+            char cCharAt;
             int i2 = this.charIndex;
             while (true) {
                 int i3 = this.charIndex;
                 if (i3 >= this.length) {
                     this.charIndex = i2;
-                    this.lastChar = C5736h0.f20715d;
-                    return C3393cw.f11871k;
+                    this.lastChar = h0.f12424d;
+                    return cw.f7203k;
                 }
                 CharSequence charSequence = this.text;
                 this.charIndex = i3 + 1;
@@ -151,10 +151,10 @@ public final class BidiFormatter {
                         if (i4 < this.length) {
                             CharSequence charSequence2 = this.text;
                             this.charIndex = i4 + 1;
-                            charAt = charSequence2.charAt(i4);
-                            this.lastChar = charAt;
+                            cCharAt = charSequence2.charAt(i4);
+                            this.lastChar = cCharAt;
                         }
-                    } while (charAt != c3);
+                    } while (cCharAt != c3);
                 }
             }
         }
@@ -162,9 +162,9 @@ public final class BidiFormatter {
         byte dirTypeBackward() {
             this.lastChar = this.text.charAt(this.charIndex - 1);
             if (Character.isLowSurrogate(this.lastChar)) {
-                int codePointBefore = Character.codePointBefore(this.text, this.charIndex);
-                this.charIndex -= Character.charCount(codePointBefore);
-                return Character.getDirectionality(codePointBefore);
+                int iCodePointBefore = Character.codePointBefore(this.text, this.charIndex);
+                this.charIndex -= Character.charCount(iCodePointBefore);
+                return Character.getDirectionality(iCodePointBefore);
             }
             this.charIndex--;
             byte cachedDirectionality = getCachedDirectionality(this.lastChar);
@@ -178,9 +178,9 @@ public final class BidiFormatter {
         byte dirTypeForward() {
             this.lastChar = this.text.charAt(this.charIndex);
             if (Character.isHighSurrogate(this.lastChar)) {
-                int codePointAt = Character.codePointAt(this.text, this.charIndex);
-                this.charIndex += Character.charCount(codePointAt);
-                return Character.getDirectionality(codePointAt);
+                int iCodePointAt = Character.codePointAt(this.text, this.charIndex);
+                this.charIndex += Character.charCount(iCodePointAt);
+                return Character.getDirectionality(iCodePointAt);
             }
             this.charIndex++;
             byte cachedDirectionality = getCachedDirectionality(this.lastChar);
@@ -197,14 +197,14 @@ public final class BidiFormatter {
             int i3 = 0;
             int i4 = 0;
             while (this.charIndex < this.length && i2 == 0) {
-                byte dirTypeForward = dirTypeForward();
-                if (dirTypeForward != 0) {
-                    if (dirTypeForward == 1 || dirTypeForward == 2) {
+                byte bDirTypeForward = dirTypeForward();
+                if (bDirTypeForward != 0) {
+                    if (bDirTypeForward == 1 || bDirTypeForward == 2) {
                         if (i4 == 0) {
                             return 1;
                         }
-                    } else if (dirTypeForward != 9) {
-                        switch (dirTypeForward) {
+                    } else if (bDirTypeForward != 9) {
+                        switch (bDirTypeForward) {
                             case 14:
                             case 15:
                                 i4++;
@@ -260,52 +260,48 @@ public final class BidiFormatter {
             int i2 = 0;
             int i3 = 0;
             while (this.charIndex > 0) {
-                byte dirTypeBackward = dirTypeBackward();
-                if (dirTypeBackward != 0) {
-                    if (dirTypeBackward == 1 || dirTypeBackward == 2) {
-                        if (i3 == 0) {
-                            return 1;
-                        }
-                        if (i2 == 0) {
-                            i2 = i3;
-                        }
-                    } else if (dirTypeBackward != 9) {
-                        switch (dirTypeBackward) {
-                            case 14:
-                            case 15:
-                                if (i2 == i3) {
-                                    return -1;
-                                }
-                                i3--;
-                                break;
-                            case 16:
-                            case 17:
-                                if (i2 == i3) {
-                                    return 1;
-                                }
-                                i3--;
-                                break;
-                            case 18:
-                                i3++;
-                                break;
-                            default:
-                                if (i2 != 0) {
-                                    break;
-                                } else {
-                                    i2 = i3;
-                                    break;
-                                }
-                        }
-                    } else {
-                        continue;
-                    }
-                } else {
+                byte bDirTypeBackward = dirTypeBackward();
+                if (bDirTypeBackward == 0) {
                     if (i3 == 0) {
                         return -1;
                     }
                     if (i2 == 0) {
                         i2 = i3;
                     }
+                } else if (bDirTypeBackward == 1 || bDirTypeBackward == 2) {
+                    if (i3 == 0) {
+                        return 1;
+                    }
+                    if (i2 == 0) {
+                        i2 = i3;
+                    }
+                } else if (bDirTypeBackward != 9) {
+                    switch (bDirTypeBackward) {
+                        case 14:
+                        case 15:
+                            if (i2 == i3) {
+                                return -1;
+                            }
+                            i3--;
+                            break;
+                        case 16:
+                        case 17:
+                            if (i2 == i3) {
+                                return 1;
+                            }
+                            i3--;
+                            break;
+                        case 18:
+                            i3++;
+                            break;
+                        default:
+                            if (i2 == 0) {
+                                i2 = i3;
+                            }
+                            break;
+                    }
+                } else {
+                    continue;
                 }
             }
             return 0;
@@ -335,13 +331,13 @@ public final class BidiFormatter {
     }
 
     private String markAfter(CharSequence charSequence, TextDirectionHeuristicCompat textDirectionHeuristicCompat) {
-        boolean isRtl = textDirectionHeuristicCompat.isRtl(charSequence, 0, charSequence.length());
-        return (this.mIsRtlContext || !(isRtl || getExitDir(charSequence) == 1)) ? this.mIsRtlContext ? (!isRtl || getExitDir(charSequence) == -1) ? RLM_STRING : "" : "" : LRM_STRING;
+        boolean zIsRtl = textDirectionHeuristicCompat.isRtl(charSequence, 0, charSequence.length());
+        return (this.mIsRtlContext || !(zIsRtl || getExitDir(charSequence) == 1)) ? this.mIsRtlContext ? (!zIsRtl || getExitDir(charSequence) == -1) ? RLM_STRING : "" : "" : LRM_STRING;
     }
 
     private String markBefore(CharSequence charSequence, TextDirectionHeuristicCompat textDirectionHeuristicCompat) {
-        boolean isRtl = textDirectionHeuristicCompat.isRtl(charSequence, 0, charSequence.length());
-        return (this.mIsRtlContext || !(isRtl || getEntryDir(charSequence) == 1)) ? this.mIsRtlContext ? (!isRtl || getEntryDir(charSequence) == -1) ? RLM_STRING : "" : "" : LRM_STRING;
+        boolean zIsRtl = textDirectionHeuristicCompat.isRtl(charSequence, 0, charSequence.length());
+        return (this.mIsRtlContext || !(zIsRtl || getEntryDir(charSequence) == 1)) ? this.mIsRtlContext ? (!zIsRtl || getEntryDir(charSequence) == -1) ? RLM_STRING : "" : "" : LRM_STRING;
     }
 
     public boolean getStereoReset() {
@@ -421,20 +417,20 @@ public final class BidiFormatter {
         if (charSequence == null) {
             return null;
         }
-        boolean isRtl = textDirectionHeuristicCompat.isRtl(charSequence, 0, charSequence.length());
+        boolean zIsRtl = textDirectionHeuristicCompat.isRtl(charSequence, 0, charSequence.length());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (getStereoReset() && z) {
-            spannableStringBuilder.append((CharSequence) markBefore(charSequence, isRtl ? TextDirectionHeuristicsCompat.RTL : TextDirectionHeuristicsCompat.LTR));
+            spannableStringBuilder.append((CharSequence) markBefore(charSequence, zIsRtl ? TextDirectionHeuristicsCompat.RTL : TextDirectionHeuristicsCompat.LTR));
         }
-        if (isRtl != this.mIsRtlContext) {
-            spannableStringBuilder.append(isRtl ? RLE : LRE);
+        if (zIsRtl != this.mIsRtlContext) {
+            spannableStringBuilder.append(zIsRtl ? RLE : LRE);
             spannableStringBuilder.append(charSequence);
             spannableStringBuilder.append(PDF);
         } else {
             spannableStringBuilder.append(charSequence);
         }
         if (z) {
-            spannableStringBuilder.append((CharSequence) markAfter(charSequence, isRtl ? TextDirectionHeuristicsCompat.RTL : TextDirectionHeuristicsCompat.LTR));
+            spannableStringBuilder.append((CharSequence) markAfter(charSequence, zIsRtl ? TextDirectionHeuristicsCompat.RTL : TextDirectionHeuristicsCompat.LTR));
         }
         return spannableStringBuilder;
     }

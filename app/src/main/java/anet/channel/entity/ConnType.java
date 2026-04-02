@@ -7,8 +7,8 @@ import anet.channel.util.HttpConstant;
 import java.util.HashMap;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ConnType {
     public static final String H2S = "h2s";
     public static final String HTTP2 = "http2";
@@ -31,7 +31,7 @@ public class ConnType {
     public static ConnType HTTPS = new ConnType(HttpConstant.HTTPS);
     private static Map<ConnProtocol, ConnType> connTypeMap = new HashMap();
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     @Deprecated
     public enum TypeLevel {
         SPDY,
@@ -138,7 +138,7 @@ public class ConnType {
     }
 
     public int getType() {
-        return (equals(HTTP) || equals(HTTPS)) ? C0783c.f844b : C0783c.f843a;
+        return (equals(HTTP) || equals(HTTPS)) ? c.f1446b : c.a;
     }
 
     @Deprecated

@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultWebCreator implements WebCreator {
     private static final String TAG = "DefaultWebCreator";
     private Activity mActivity;
@@ -47,27 +47,27 @@ public class DefaultWebCreator implements WebCreator {
     }
 
     private ViewGroup createLayout() {
-        View view;
+        WebView webViewWebLayout;
         BaseIndicatorView baseIndicatorView;
         Activity activity = this.mActivity;
         WebParentLayout webParentLayout = new WebParentLayout(activity);
-        webParentLayout.setId(C2605R.id.web_parent_layout_id);
+        webParentLayout.setId(R.id.web_parent_layout_id);
         webParentLayout.setBackgroundColor(-1);
         if (this.mIWebLayout == null) {
-            WebView createWebView = createWebView();
-            this.mWebView = createWebView;
-            view = createWebView;
+            WebView webViewCreateWebView = createWebView();
+            this.mWebView = webViewCreateWebView;
+            webViewWebLayout = webViewCreateWebView;
         } else {
-            view = webLayout();
+            webViewWebLayout = webLayout();
         }
-        webParentLayout.addView(view, new FrameLayout.LayoutParams(-1, -1));
+        webParentLayout.addView(webViewWebLayout, new FrameLayout.LayoutParams(-1, -1));
         webParentLayout.bindWebView(this.mWebView);
-        LogUtils.m8083i(TAG, "  instanceof  AgentWebView:" + (this.mWebView instanceof AgentWebView));
+        LogUtils.i(TAG, "  instanceof  AgentWebView:" + (this.mWebView instanceof AgentWebView));
         if (this.mWebView instanceof AgentWebView) {
             this.mWebViewType = 2;
         }
         ViewStub viewStub = new ViewStub(activity);
-        viewStub.setId(C2605R.id.mainframe_error_viewsub_id);
+        viewStub.setId(R.id.mainframe_error_viewsub_id);
         webParentLayout.addView(viewStub, new FrameLayout.LayoutParams(-1, -1));
         boolean z = this.mIsNeedDefaultProgress;
         if (z) {
@@ -111,7 +111,7 @@ public class DefaultWebCreator implements WebCreator {
         if (webView == null) {
             webView = createWebView();
             this.mIWebLayout.getLayout().addView(webView, -1, -1);
-            LogUtils.m8083i(TAG, "add webview");
+            LogUtils.i(TAG, "add webview");
         } else {
             this.mWebViewType = 3;
         }

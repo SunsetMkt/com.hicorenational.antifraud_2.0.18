@@ -3,7 +3,7 @@ package androidx.camera.core;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ReferenceCountedImageProxy extends ForwardingImageProxy {
 
     @GuardedBy("this")

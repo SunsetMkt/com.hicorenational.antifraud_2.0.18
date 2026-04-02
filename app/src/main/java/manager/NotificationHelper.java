@@ -12,15 +12,15 @@ import android.content.pm.ApplicationInfo;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import androidx.core.app.NotificationManagerCompat;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
-import p388ui.activity.MainActivity;
-import util.C7292k1;
+import d.c.a.b.a.a;
+import ui.activity.MainActivity;
+import util.p1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class NotificationHelper {
-    public static final String CHANEL_NAME = "国家反诈中心";
+    public static final String CHANEL_NAME = "\u56fd\u5bb6\u53cd\u8bc8\u4e2d\u5fc3";
     private static final String CHANNEL_ID = "appid";
     public static int NOTICE_ID = 1;
 
@@ -56,34 +56,34 @@ public class NotificationHelper {
             builder = new Notification.Builder(context);
         }
         Intent intent = new Intent(context, (Class<?>) MainActivity.class);
-        intent.putExtra(C7292k1.f25394d, "10010");
-        intent.putExtra(C7292k1.f25365Q, "https://www.baidu.com");
+        intent.putExtra(p1.f15012d, "10010");
+        intent.putExtra(p1.Q, "https://www.baidu.com");
         intent.setFlags(CommonNetImpl.FLAG_AUTH);
-        intent.addFlags(AbstractC1191a.f2487B1);
+        intent.addFlags(a.B1);
         intent.addFlags(CommonNetImpl.FLAG_SHARE);
-        Notification build = builder.setContentTitle("通知栏标题").setContentText("打击防范网络诈骗").setWhen(System.currentTimeMillis()).setSmallIcon(C2113R.mipmap.logo).setLargeIcon(BitmapFactory.decodeResource(context.getResources(), C2113R.mipmap.ic_launcher)).setTicker(CHANEL_NAME).setAutoCancel(false).setContentIntent(PendingIntent.getActivity(context, 0, intent, 0)).build();
-        notificationManager.notify(NOTICE_ID, build);
-        return build;
+        Notification notificationBuild = builder.setContentTitle("\u901a\u77e5\u680f\u6807\u9898").setContentText("\u6253\u51fb\u9632\u8303\u7f51\u7edc\u8bc8\u9a97").setWhen(System.currentTimeMillis()).setSmallIcon(R.mipmap.logo).setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher)).setTicker(CHANEL_NAME).setAutoCancel(false).setContentIntent(PendingIntent.getActivity(context, 0, intent, 0)).build();
+        notificationManager.notify(NOTICE_ID, notificationBuild);
+        return notificationBuild;
     }
 
     public static boolean isNotificationEnabled(Context context, String str, String str2) {
         if (!isNotificationEnabled(context)) {
             return false;
         }
-        NotificationManagerCompat from = NotificationManagerCompat.from(context);
+        NotificationManagerCompat notificationManagerCompatFrom = NotificationManagerCompat.from(context);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
-        boolean areNotificationsEnabled = from.areNotificationsEnabled();
+        boolean zAreNotificationsEnabled = notificationManagerCompatFrom.areNotificationsEnabled();
         if (notificationManager != null && Build.VERSION.SDK_INT >= 26) {
             NotificationChannel notificationChannel = notificationManager.getNotificationChannel(str);
             if (notificationChannel == null) {
                 notificationManager.createNotificationChannel(new NotificationChannel(str, str2, 4));
                 notificationChannel = notificationManager.getNotificationChannel(str);
             }
-            return areNotificationsEnabled && notificationChannel.getImportance() != 0;
+            return zAreNotificationsEnabled && notificationChannel.getImportance() != 0;
         }
         if (Build.BRAND.equalsIgnoreCase("vivo") || Build.BRAND.equalsIgnoreCase("oppo")) {
             return true;
         }
-        return areNotificationsEnabled;
+        return zAreNotificationsEnabled;
     }
 }

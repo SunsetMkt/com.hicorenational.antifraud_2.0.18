@@ -5,7 +5,7 @@ import com.huawei.hms.core.aidl.annotation.Packed;
 import com.huawei.hms.support.api.entity.auth.Scope;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DisconnectInfo implements IMessageEntity {
 
     @Packed

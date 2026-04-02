@@ -5,7 +5,7 @@ import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ConstraintReference implements Reference {
     private Object key;
     private ConstraintWidget mConstraintWidget;
@@ -44,71 +44,69 @@ public class ConstraintReference implements Reference {
     Dimension mHorizontalDimension = Dimension.Fixed(Dimension.WRAP_DIMENSION);
     Dimension mVerticalDimension = Dimension.Fixed(Dimension.WRAP_DIMENSION);
 
-    /* renamed from: androidx.constraintlayout.solver.state.ConstraintReference$1 */
-    static /* synthetic */ class C04541 {
-
-        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint */
-        static final /* synthetic */ int[] f595x7d4bfe12 = new int[State.Constraint.values().length];
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.ConstraintReference$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
+        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint = new int[State.Constraint.values().length];
 
         static {
             try {
-                f595x7d4bfe12[State.Constraint.LEFT_TO_LEFT.ordinal()] = 1;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.LEFT_TO_LEFT.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.LEFT_TO_RIGHT.ordinal()] = 2;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.LEFT_TO_RIGHT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.RIGHT_TO_LEFT.ordinal()] = 3;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.RIGHT_TO_LEFT.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.RIGHT_TO_RIGHT.ordinal()] = 4;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.RIGHT_TO_RIGHT.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.START_TO_START.ordinal()] = 5;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.START_TO_START.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.START_TO_END.ordinal()] = 6;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.START_TO_END.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.END_TO_START.ordinal()] = 7;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.END_TO_START.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.END_TO_END.ordinal()] = 8;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.END_TO_END.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.TOP_TO_TOP.ordinal()] = 9;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.TOP_TO_TOP.ordinal()] = 9;
             } catch (NoSuchFieldError unused9) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.TOP_TO_BOTTOM.ordinal()] = 10;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.TOP_TO_BOTTOM.ordinal()] = 10;
             } catch (NoSuchFieldError unused10) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.BOTTOM_TO_TOP.ordinal()] = 11;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.BOTTOM_TO_TOP.ordinal()] = 11;
             } catch (NoSuchFieldError unused11) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.BOTTOM_TO_BOTTOM.ordinal()] = 12;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.BOTTOM_TO_BOTTOM.ordinal()] = 12;
             } catch (NoSuchFieldError unused12) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.BASELINE_TO_BASELINE.ordinal()] = 13;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.BASELINE_TO_BASELINE.ordinal()] = 13;
             } catch (NoSuchFieldError unused13) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.CENTER_HORIZONTALLY.ordinal()] = 14;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.CENTER_HORIZONTALLY.ordinal()] = 14;
             } catch (NoSuchFieldError unused14) {
             }
             try {
-                f595x7d4bfe12[State.Constraint.CENTER_VERTICALLY.ordinal()] = 15;
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[State.Constraint.CENTER_VERTICALLY.ordinal()] = 15;
             } catch (NoSuchFieldError unused15) {
             }
         }
@@ -143,8 +141,8 @@ public class ConstraintReference implements Reference {
         ConstraintWidget target = getTarget(obj);
         if (target == null) {
         }
-        int i2 = C04541.f595x7d4bfe12[constraint.ordinal()];
-        switch (C04541.f595x7d4bfe12[constraint.ordinal()]) {
+        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[constraint.ordinal()];
+        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[constraint.ordinal()]) {
             case 1:
                 constraintWidget.getAnchor(ConstraintAnchor.Type.LEFT).connect(target.getAnchor(ConstraintAnchor.Type.LEFT), this.mMarginLeft, this.mMarginLeftGone, false);
                 break;
@@ -264,53 +262,34 @@ public class ConstraintReference implements Reference {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Code restructure failed: missing block: B:9:0x0016, code lost:
-    
-        return r2;
-     */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public androidx.constraintlayout.solver.state.ConstraintReference bias(float r3) {
-        /*
-            r2 = this;
-            androidx.constraintlayout.solver.state.State$Constraint r0 = r2.mLast
-            if (r0 != 0) goto L5
-            return r2
-        L5:
-            int[] r1 = androidx.constraintlayout.solver.state.ConstraintReference.C04541.f595x7d4bfe12
-            int r0 = r0.ordinal()
-            r0 = r1[r0]
-            switch(r0) {
-                case 1: goto L14;
-                case 2: goto L14;
-                case 3: goto L14;
-                case 4: goto L14;
-                case 5: goto L14;
-                case 6: goto L14;
-                case 7: goto L14;
-                case 8: goto L14;
-                case 9: goto L11;
-                case 10: goto L11;
-                case 11: goto L11;
-                case 12: goto L11;
-                case 13: goto L10;
-                case 14: goto L14;
-                case 15: goto L11;
-                default: goto L10;
-            }
-        L10:
-            goto L16
-        L11:
-            r2.mVerticalBias = r3
-            goto L16
-        L14:
-            r2.mHorizontalBias = r3
-        L16:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.solver.state.ConstraintReference.bias(float):androidx.constraintlayout.solver.state.ConstraintReference");
+    public ConstraintReference bias(float f2) {
+        State.Constraint constraint = this.mLast;
+        if (constraint == null) {
+            return this;
+        }
+        switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[constraint.ordinal()]) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 14:
+                this.mHorizontalBias = f2;
+                return this;
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 15:
+                this.mVerticalBias = f2;
+                return this;
+            case 13:
+            default:
+                return this;
+        }
     }
 
     public ConstraintReference bottom() {
@@ -356,7 +335,7 @@ public class ConstraintReference implements Reference {
     public ConstraintReference clear() {
         State.Constraint constraint = this.mLast;
         if (constraint != null) {
-            switch (C04541.f595x7d4bfe12[constraint.ordinal()]) {
+            switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[constraint.ordinal()]) {
                 case 1:
                 case 2:
                     this.mLeftToLeft = null;
@@ -547,7 +526,7 @@ public class ConstraintReference implements Reference {
     public ConstraintReference marginGone(int i2) {
         State.Constraint constraint = this.mLast;
         if (constraint != null) {
-            switch (C04541.f595x7d4bfe12[constraint.ordinal()]) {
+            switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[constraint.ordinal()]) {
                 case 1:
                 case 2:
                     this.mMarginLeftGone = i2;
@@ -722,7 +701,7 @@ public class ConstraintReference implements Reference {
     public ConstraintReference margin(int i2) {
         State.Constraint constraint = this.mLast;
         if (constraint != null) {
-            switch (C04541.f595x7d4bfe12[constraint.ordinal()]) {
+            switch (AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[constraint.ordinal()]) {
                 case 1:
                 case 2:
                     this.mMarginLeft = i2;

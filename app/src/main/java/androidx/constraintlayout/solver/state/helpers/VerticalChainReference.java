@@ -4,15 +4,15 @@ import androidx.constraintlayout.solver.state.ConstraintReference;
 import androidx.constraintlayout.solver.state.State;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class VerticalChainReference extends ChainReference {
     private Object mBottomToBottom;
     private Object mBottomToTop;
     private Object mTopToBottom;
     private Object mTopToTop;
 
-    /* renamed from: androidx.constraintlayout.solver.state.helpers.VerticalChainReference$1 */
-    static /* synthetic */ class C04581 {
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.helpers.VerticalChainReference$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Chain = new int[State.Chain.values().length];
 
         static {
@@ -45,26 +45,26 @@ public class VerticalChainReference extends ChainReference {
         ConstraintReference constraintReference = null;
         ConstraintReference constraintReference2 = null;
         while (it2.hasNext()) {
-            ConstraintReference constraints = this.mState.constraints(it2.next());
+            ConstraintReference constraintReferenceConstraints = this.mState.constraints(it2.next());
             if (constraintReference2 == null) {
                 Object obj = this.mTopToTop;
                 if (obj != null) {
-                    constraints.topToTop(obj);
+                    constraintReferenceConstraints.topToTop(obj);
                 } else {
                     Object obj2 = this.mTopToBottom;
                     if (obj2 != null) {
-                        constraints.topToBottom(obj2);
+                        constraintReferenceConstraints.topToBottom(obj2);
                     } else {
-                        constraints.topToTop(State.PARENT);
+                        constraintReferenceConstraints.topToTop(State.PARENT);
                     }
                 }
-                constraintReference2 = constraints;
+                constraintReference2 = constraintReferenceConstraints;
             }
             if (constraintReference != null) {
-                constraintReference.bottomToTop(constraints.getKey());
-                constraints.topToBottom(constraintReference.getKey());
+                constraintReference.bottomToTop(constraintReferenceConstraints.getKey());
+                constraintReferenceConstraints.topToBottom(constraintReference.getKey());
             }
-            constraintReference = constraints;
+            constraintReference = constraintReferenceConstraints;
         }
         if (constraintReference != null) {
             Object obj3 = this.mBottomToTop;
@@ -85,7 +85,7 @@ public class VerticalChainReference extends ChainReference {
                 constraintReference2.verticalBias(f2);
             }
         }
-        int i2 = C04581.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
+        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
         if (i2 == 1) {
             constraintReference2.setVerticalChainStyle(0);
         } else if (i2 == 2) {

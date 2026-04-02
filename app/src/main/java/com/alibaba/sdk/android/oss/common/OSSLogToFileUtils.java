@@ -11,7 +11,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
 import com.alibaba.sdk.android.oss.ClientConfiguration;
-import com.umeng.analytics.pro.C3355bl;
+import com.umeng.analytics.pro.bl;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSLogToFileUtils {
     private static final String LOG_DIR_NAME = "OSSLog";
     private static OSSLogToFileUtils instance;
@@ -32,6 +32,24 @@ public class OSSLogToFileUtils {
     private static SimpleDateFormat sLogSDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static long LOG_MAX_SIZE = 5242880;
 
+    /* JADX INFO: renamed from: com.alibaba.sdk.android.oss.common.OSSLogToFileUtils$1 */
+    static class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            File unused = OSSLogToFileUtils.sLogFile = OSSLogToFileUtils.instance.getLogFile();
+            if (OSSLogToFileUtils.sLogFile != null) {
+                OSSLog.logInfo("LogFilePath is: " + OSSLogToFileUtils.sLogFile.getPath(), false);
+                if (OSSLogToFileUtils.LOG_MAX_SIZE < OSSLogToFileUtils.getLogFileSize(OSSLogToFileUtils.sLogFile)) {
+                    OSSLog.logInfo("init reset log file", false);
+                    OSSLogToFileUtils.instance.resetLogFile();
+                }
+            }
+        }
+    }
+
     private static class WriteCall implements Runnable {
         private Object mStr;
 
@@ -40,7 +58,7 @@ public class OSSLogToFileUtils {
         }
 
         private PrintWriter printEx(PrintWriter printWriter) {
-            printWriter.println("crash_time：" + OSSLogToFileUtils.sLogSDF.format(new Date()));
+            printWriter.println("crash_time\uff1a" + OSSLogToFileUtils.sLogSDF.format(new Date()));
             ((Throwable) this.mStr).printStackTrace(printWriter);
             return printWriter;
         }
@@ -72,7 +90,6 @@ public class OSSLogToFileUtils {
     private OSSLogToFileUtils() {
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public String getFunctionInfo(StackTraceElement[] stackTraceElementArr) {
         if (stackTraceElementArr != null) {
             return null;
@@ -95,7 +112,6 @@ public class OSSLogToFileUtils {
         return getLogFileSize(sLogFile);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     public File getLogFile() {
         File file;
         File file2 = null;
@@ -138,21 +154,21 @@ public class OSSLogToFileUtils {
 
     private Uri getLogUri() {
         ContentResolver contentResolver = sContext.getContentResolver();
-        Uri queryLogUri = queryLogUri();
-        if (queryLogUri == null) {
+        Uri uriQueryLogUri = queryLogUri();
+        if (uriQueryLogUri == null) {
             ContentValues contentValues = new ContentValues();
             contentValues.put("_display_name", "logs.csv");
             contentValues.put("mime_type", "file/csv");
             contentValues.put("title", "logs.csv");
             contentValues.put("relative_path", "Documents/OSSLog");
-            queryLogUri = contentResolver.insert(MediaStore.Files.getContentUri("external"), contentValues);
+            uriQueryLogUri = contentResolver.insert(MediaStore.Files.getContentUri("external"), contentValues);
             try {
-                contentResolver.openFileDescriptor(queryLogUri, "w");
+                contentResolver.openFileDescriptor(uriQueryLogUri, "w");
             } catch (Exception unused) {
                 return null;
             }
         }
-        return queryLogUri;
+        return uriQueryLogUri;
     }
 
     public static void init(Context context, ClientConfiguration clientConfiguration) {
@@ -168,6 +184,9 @@ public class OSSLogToFileUtils {
         sContext = context.getApplicationContext();
         instance = getInstance();
         logService.addExecuteTask(new Runnable() { // from class: com.alibaba.sdk.android.oss.common.OSSLogToFileUtils.1
+            AnonymousClass1() {
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 File unused = OSSLogToFileUtils.sLogFile = OSSLogToFileUtils.instance.getLogFile();
@@ -185,36 +204,38 @@ public class OSSLogToFileUtils {
     private Uri queryLogUri() {
         ContentResolver contentResolver = sContext.getContentResolver();
         Uri contentUri = MediaStore.Files.getContentUri("external");
-        Cursor query = contentResolver.query(contentUri, new String[]{C3355bl.f11732d}, "relative_path like ? AND _display_name=?", new String[]{"Documents/OSSLog%", "logs.csv"}, null);
-        if (query == null || !query.moveToFirst()) {
+        Cursor cursorQuery = contentResolver.query(contentUri, new String[]{bl.f7101d}, "relative_path like ? AND _display_name=?", new String[]{"Documents/OSSLog%", "logs.csv"}, null);
+        if (cursorQuery == null || !cursorQuery.moveToFirst()) {
             return null;
         }
-        Uri withAppendedId = ContentUris.withAppendedId(contentUri, query.getLong(0));
-        query.close();
-        return withAppendedId;
+        Uri uriWithAppendedId = ContentUris.withAppendedId(contentUri, cursorQuery.getLong(0));
+        cursorQuery.close();
+        return uriWithAppendedId;
     }
 
     private long readSDCardSpace() {
-        long j2 = 0;
+        long availableBlocksLong = 0;
         if ("mounted".equals(Environment.getExternalStorageState())) {
             try {
-                j2 = (Build.VERSION.SDK_INT >= 18 ? new StatFs(Environment.getExternalStorageDirectory().getPath()).getAvailableBlocksLong() : r3.getAvailableBlocks()) * r3.getBlockSize();
+                StatFs statFs = new StatFs(Environment.getExternalStorageDirectory().getPath());
+                availableBlocksLong = (Build.VERSION.SDK_INT >= 18 ? statFs.getAvailableBlocksLong() : statFs.getAvailableBlocks()) * ((long) statFs.getBlockSize());
             } catch (Exception unused) {
             }
         }
-        OSSLog.logDebug("sd卡存储空间:" + String.valueOf(j2) + "kb", false);
-        return j2;
+        OSSLog.logDebug("sd\u5361\u5b58\u50a8\u7a7a\u95f4:" + String.valueOf(availableBlocksLong) + "kb", false);
+        return availableBlocksLong;
     }
 
     private long readSystemSpace() {
-        long j2;
+        long availableBlocksLong;
         try {
-            j2 = ((Build.VERSION.SDK_INT >= 18 ? new StatFs(Environment.getDataDirectory().getPath()).getAvailableBlocksLong() : r1.getAvailableBlocks()) * r1.getBlockSize()) / 1024;
+            StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
+            availableBlocksLong = ((Build.VERSION.SDK_INT >= 18 ? statFs.getAvailableBlocksLong() : statFs.getAvailableBlocks()) * ((long) statFs.getBlockSize())) / 1024;
         } catch (Exception unused) {
-            j2 = 0;
+            availableBlocksLong = 0;
         }
-        OSSLog.logDebug("内部存储空间:" + String.valueOf(j2) + "kb", false);
-        return j2;
+        OSSLog.logDebug("\u5185\u90e8\u5b58\u50a8\u7a7a\u95f4:" + String.valueOf(availableBlocksLong) + "kb", false);
+        return availableBlocksLong;
     }
 
     public static void reset() {

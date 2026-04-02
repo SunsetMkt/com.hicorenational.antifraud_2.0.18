@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.UseCase;
 import androidx.camera.core.impl.Config;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface UseCaseEventConfig {
     public static final Config.Option<UseCase.EventCallback> OPTION_USE_CASE_EVENT_CALLBACK = Config.Option.create("camerax.core.useCaseEventCallback", UseCase.EventCallback.class);
 

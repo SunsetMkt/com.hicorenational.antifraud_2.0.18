@@ -5,23 +5,23 @@ import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMQQMini extends BaseMediaObject {
 
-    /* renamed from: f */
-    private String f13672f;
+    /* JADX INFO: renamed from: f */
+    private String f8302f;
 
-    /* renamed from: g */
-    private String f13673g;
+    /* JADX INFO: renamed from: g */
+    private String f8303g;
 
-    /* renamed from: h */
-    private String f13674h;
+    /* JADX INFO: renamed from: h */
+    private String f8304h;
 
     public UMQQMini(String str) {
         super(str);
-        this.f13672f = "";
-        this.f13673g = "";
-        this.f13674h = "";
+        this.f8302f = "";
+        this.f8303g = "";
+        this.f8304h = "";
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
@@ -30,32 +30,32 @@ public class UMQQMini extends BaseMediaObject {
     }
 
     public String getMiniAppId() {
-        return this.f13672f;
+        return this.f8302f;
     }
 
     public String getPath() {
-        return this.f13673g;
+        return this.f8303g;
     }
 
     public String getType() {
-        return this.f13674h;
+        return this.f8304h;
     }
 
     public void setMiniAppId(String str) {
-        this.f13672f = str;
+        this.f8302f = str;
     }
 
     public void setPath(String str) {
-        this.f13673g = str;
+        this.f8303g = str;
     }
 
     public void setType(String str) {
-        this.f13674h = str;
+        this.f8304h = str;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f13636e;
+        UMImage uMImage = this.f8275e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -64,12 +64,12 @@ public class UMQQMini extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.UMediaObject
     public Map<String, Object> toUrlExtraParams() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f13633b);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.a);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f8272b);
         }
-        return hashMap;
+        return map;
     }
 }

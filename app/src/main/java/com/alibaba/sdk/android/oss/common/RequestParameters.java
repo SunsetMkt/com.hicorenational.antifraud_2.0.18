@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.common;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class RequestParameters {
     public static final String DELIMITER = "delimiter";
     public static final String ENCODING_TYPE = "encoding-type";

@@ -1,7 +1,7 @@
 package com.taobao.accs;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class ErrorCode {
     public static final int ACCS_DISABLEED = -17;
     public static final int APPKEY_NULL = -14;
@@ -32,7 +32,7 @@ public class ErrorCode {
     public static final int SUCCESS = 200;
     public static final int UNKNOWN_ERROR = -8;
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public enum INIT_ERROR {
         NO_NETWORK,
         APPKEY_NULL,

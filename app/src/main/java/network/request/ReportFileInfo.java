@@ -3,7 +3,7 @@ package network.request;
 import network.BaseBean;
 import network.ReportAppInfo;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportFileInfo extends BaseBean {
     private ReportAppInfo appReportDetail;
     private ReportCaseInfo caseinfo;

@@ -9,7 +9,7 @@ import androidx.annotation.RestrictTo;
 import java.util.Iterator;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurfaceOrientedMeteringPointFactory extends MeteringPointFactory {
     private final float mHeight;
     private final float mWidth;

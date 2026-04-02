@@ -6,13 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import com.google.android.material.expandable.ExpandableWidget;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@Deprecated
 public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View> {
     private static final int STATE_COLLAPSED = 2;
     private static final int STATE_EXPANDED = 1;
@@ -31,7 +33,8 @@ public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View
         return i2 == 0 || i2 == 2;
     }
 
-    public static <T extends ExpandableBehavior> T from(View view, Class<T> cls) {
+    @Nullable
+    public static <T extends ExpandableBehavior> T from(@NonNull View view, @NonNull Class<T> cls) {
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
             throw new IllegalArgumentException("The view is not a child of CoordinatorLayout");
@@ -45,7 +48,7 @@ public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View
 
     /* JADX WARN: Multi-variable type inference failed */
     @Nullable
-    protected ExpandableWidget findExpandableWidget(CoordinatorLayout coordinatorLayout, View view) {
+    protected ExpandableWidget findExpandableWidget(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view) {
         List<View> dependencies = coordinatorLayout.getDependencies(view);
         int size = dependencies.size();
         for (int i2 = 0; i2 < size; i2++) {
@@ -76,12 +79,12 @@ public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View
 
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     @CallSuper
-    public boolean onLayoutChild(CoordinatorLayout coordinatorLayout, final View view, int i2) {
-        final ExpandableWidget findExpandableWidget;
-        if (ViewCompat.isLaidOut(view) || (findExpandableWidget = findExpandableWidget(coordinatorLayout, view)) == null || !didStateChange(findExpandableWidget.isExpanded())) {
+    public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull final View view, int i2) {
+        final ExpandableWidget expandableWidgetFindExpandableWidget;
+        if (ViewCompat.isLaidOut(view) || (expandableWidgetFindExpandableWidget = findExpandableWidget(coordinatorLayout, view)) == null || !didStateChange(expandableWidgetFindExpandableWidget.isExpanded())) {
             return false;
         }
-        this.currentState = findExpandableWidget.isExpanded() ? 1 : 2;
+        this.currentState = expandableWidgetFindExpandableWidget.isExpanded() ? 1 : 2;
         final int i3 = this.currentState;
         view.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() { // from class: com.google.android.material.transformation.ExpandableBehavior.1
             /* JADX WARN: Multi-variable type inference failed */
@@ -90,7 +93,7 @@ public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View
                 view.getViewTreeObserver().removeOnPreDrawListener(this);
                 if (ExpandableBehavior.this.currentState == i3) {
                     ExpandableBehavior expandableBehavior = ExpandableBehavior.this;
-                    ExpandableWidget expandableWidget = findExpandableWidget;
+                    ExpandableWidget expandableWidget = expandableWidgetFindExpandableWidget;
                     expandableBehavior.onExpandedStateChange((View) expandableWidget, view, expandableWidget.isExpanded(), false);
                 }
                 return false;

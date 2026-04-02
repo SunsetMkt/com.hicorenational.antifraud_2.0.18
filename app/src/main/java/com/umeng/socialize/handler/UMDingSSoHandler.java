@@ -21,7 +21,7 @@ import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
 import java.lang.ref.WeakReference;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMDingSSoHandler extends UMSSOHandler {
     private PlatformConfig.APPIDPlatform config;
     private IDDShareApi iddShareApi;
@@ -29,6 +29,72 @@ public class UMDingSSoHandler extends UMSSOHandler {
     private Context mAppContext;
     protected String VERSION = "7.3.2";
     private String mFileProvider = "";
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMDingSSoHandler$1 */
+    class AnonymousClass1 implements Runnable {
+        final /* synthetic */ UMShareListener val$listener;
+
+        AnonymousClass1(UMShareListener uMShareListener) {
+            uMShareListener = uMShareListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            uMShareListener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.NotInstall.getMessage()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMDingSSoHandler$2 */
+    class AnonymousClass2 implements Runnable {
+        final /* synthetic */ UMShareListener val$listener;
+
+        AnonymousClass2(UMShareListener uMShareListener) {
+            uMShareListener = uMShareListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            uMShareListener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.ShareFailed + UmengText.SHARE.VERSION_NOT_SUPPORT));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMDingSSoHandler$3 */
+    class AnonymousClass3 implements Runnable {
+        final /* synthetic */ UMShareListener val$listener;
+
+        AnonymousClass3(UMShareListener uMShareListener) {
+            uMShareListener = uMShareListener;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            uMShareListener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.UnKnowCode.getMessage() + UmengText.SHARE.SHARE_CONTENT_FAIL));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMDingSSoHandler$4 */
+    class AnonymousClass4 implements IDDAPIEventHandler {
+        AnonymousClass4() {
+        }
+
+        @Override // com.android.dingtalk.share.ddsharemodule.IDDAPIEventHandler
+        public void onReq(BaseReq baseReq) {
+        }
+
+        @Override // com.android.dingtalk.share.ddsharemodule.IDDAPIEventHandler
+        public void onResp(BaseResp baseResp) {
+            int i2 = baseResp.mErrCode;
+            if (i2 == -2) {
+                UMDingSSoHandler.this.listener.onCancel(SHARE_MEDIA.DINGTALK);
+                return;
+            }
+            if (i2 == 0) {
+                UMDingSSoHandler.this.listener.onResult(SHARE_MEDIA.DINGTALK);
+                return;
+            }
+            UMDingSSoHandler.this.listener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.ShareFailed.getMessage() + baseResp.mErrStr));
+        }
+    }
 
     public boolean checkAndroidNotBelowN() {
         return Build.VERSION.SDK_INT >= 30;
@@ -40,6 +106,9 @@ public class UMDingSSoHandler extends UMSSOHandler {
 
     public IDDAPIEventHandler getIDDAPIEventHandler() {
         return new IDDAPIEventHandler() { // from class: com.umeng.socialize.handler.UMDingSSoHandler.4
+            AnonymousClass4() {
+            }
+
             @Override // com.android.dingtalk.share.ddsharemodule.IDDAPIEventHandler
             public void onReq(BaseReq baseReq) {
             }
@@ -89,7 +158,7 @@ public class UMDingSSoHandler extends UMSSOHandler {
         this.mAppContext = context.getApplicationContext();
         this.config = (PlatformConfig.APPIDPlatform) platform;
         if (TextUtils.isEmpty(this.config.getFileProvider())) {
-            SLog.m12716E(UmengText.DING.Ding_FILE_PROVIDER_ERROR);
+            SLog.E(UmengText.DING.Ding_FILE_PROVIDER_ERROR);
         } else {
             this.mFileProvider = this.config.getFileProvider();
         }
@@ -117,10 +186,16 @@ public class UMDingSSoHandler extends UMSSOHandler {
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
-    public boolean share(ShareContent shareContent, final UMShareListener uMShareListener) {
+    public boolean share(ShareContent shareContent, UMShareListener uMShareListener) {
         boolean z = !this.mFileProvider.equals("") && checkAndroidNotBelowN();
         if (!isInstall() && !isSupport()) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMDingSSoHandler.1
+                final /* synthetic */ UMShareListener val$listener;
+
+                AnonymousClass1(UMShareListener uMShareListener2) {
+                    uMShareListener = uMShareListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     uMShareListener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.NotInstall.getMessage()));
@@ -130,6 +205,12 @@ public class UMDingSSoHandler extends UMSSOHandler {
         }
         if (!isSupport()) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMDingSSoHandler.2
+                final /* synthetic */ UMShareListener val$listener;
+
+                AnonymousClass2(UMShareListener uMShareListener2) {
+                    uMShareListener = uMShareListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     uMShareListener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.ShareFailed + UmengText.SHARE.VERSION_NOT_SUPPORT));
@@ -137,12 +218,18 @@ public class UMDingSSoHandler extends UMSSOHandler {
             });
             return false;
         }
-        this.listener = uMShareListener;
+        this.listener = uMShareListener2;
         DDShareContent dDShareContent = new DDShareContent(shareContent);
         SendMessageToDD.Req req = new SendMessageToDD.Req();
         req.mMediaMessage = dDShareContent.getMessage(this.mAppContext, z, this.mFileProvider);
         if (!sendReq(req)) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMDingSSoHandler.3
+                final /* synthetic */ UMShareListener val$listener;
+
+                AnonymousClass3(UMShareListener uMShareListener2) {
+                    uMShareListener = uMShareListener2;
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     uMShareListener.onError(SHARE_MEDIA.DINGTALK, new Throwable(UmengErrorCode.UnKnowCode.getMessage() + UmengText.SHARE.SHARE_CONTENT_FAIL));

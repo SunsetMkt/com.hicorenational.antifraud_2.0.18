@@ -2,130 +2,98 @@ package okhttp3.internal.tls;
 
 import javax.security.auth.x500.X500Principal;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class DistinguishedNameParser {
     private int beg;
     private char[] chars;
     private int cur;
-
-    /* renamed from: dn */
-    private final String f21462dn;
+    private final String dn;
     private int end;
     private final int length;
     private int pos;
 
     DistinguishedNameParser(X500Principal x500Principal) {
-        this.f21462dn = x500Principal.getName("RFC2253");
-        this.length = this.f21462dn.length();
+        this.dn = x500Principal.getName("RFC2253");
+        this.length = this.dn.length();
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:24:0x00a7, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:16:0x0053, code lost:
     
-        return new java.lang.String(r1, r2, r8.cur - r2);
+        r1 = r8.chars;
+        r2 = r8.beg;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:17:0x005f, code lost:
+    
+        return new java.lang.String(r1, r2, r8.end - r2);
      */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private java.lang.String escapedAV() {
-        /*
-            r8 = this;
-            int r0 = r8.pos
-            r8.beg = r0
-            r8.end = r0
-        L6:
-            int r0 = r8.pos
-            int r1 = r8.length
-            if (r0 < r1) goto L19
-            java.lang.String r0 = new java.lang.String
-            char[] r1 = r8.chars
-            int r2 = r8.beg
-            int r3 = r8.end
-            int r3 = r3 - r2
-            r0.<init>(r1, r2, r3)
-            return r0
-        L19:
-            char[] r1 = r8.chars
-            char r2 = r1[r0]
-            r3 = 44
-            r4 = 43
-            r5 = 59
-            r6 = 32
-            if (r2 == r6) goto L60
-            if (r2 == r5) goto L53
-            r5 = 92
-            if (r2 == r5) goto L40
-            if (r2 == r4) goto L53
-            if (r2 == r3) goto L53
-            int r2 = r8.end
-            int r3 = r2 + 1
-            r8.end = r3
-            char r3 = r1[r0]
-            r1[r2] = r3
-            int r0 = r0 + 1
-            r8.pos = r0
-            goto L6
-        L40:
-            int r0 = r8.end
-            int r2 = r0 + 1
-            r8.end = r2
-            char r2 = r8.getEscaped()
-            r1[r0] = r2
-            int r0 = r8.pos
-            int r0 = r0 + 1
-            r8.pos = r0
-            goto L6
-        L53:
-            java.lang.String r0 = new java.lang.String
-            char[] r1 = r8.chars
-            int r2 = r8.beg
-            int r3 = r8.end
-            int r3 = r3 - r2
-            r0.<init>(r1, r2, r3)
-            return r0
-        L60:
-            int r2 = r8.end
-            r8.cur = r2
-            int r0 = r0 + 1
-            r8.pos = r0
-            int r0 = r2 + 1
-            r8.end = r0
-            r1[r2] = r6
-        L6e:
-            int r0 = r8.pos
-            int r1 = r8.length
-            if (r0 >= r1) goto L87
-            char[] r1 = r8.chars
-            char r2 = r1[r0]
-            if (r2 != r6) goto L87
-            int r2 = r8.end
-            int r7 = r2 + 1
-            r8.end = r7
-            r1[r2] = r6
-            int r0 = r0 + 1
-            r8.pos = r0
-            goto L6e
-        L87:
-            int r0 = r8.pos
-            int r1 = r8.length
-            if (r0 == r1) goto L9b
-            char[] r1 = r8.chars
-            char r2 = r1[r0]
-            if (r2 == r3) goto L9b
-            char r2 = r1[r0]
-            if (r2 == r4) goto L9b
-            char r0 = r1[r0]
-            if (r0 != r5) goto L6
-        L9b:
-            java.lang.String r0 = new java.lang.String
-            char[] r1 = r8.chars
-            int r2 = r8.beg
-            int r3 = r8.cur
-            int r3 = r3 - r2
-            r0.<init>(r1, r2, r3)
-            return r0
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.tls.DistinguishedNameParser.escapedAV():java.lang.String");
+    private String escapedAV() {
+        int i2 = this.pos;
+        this.beg = i2;
+        this.end = i2;
+        while (true) {
+            int i3 = this.pos;
+            if (i3 < this.length) {
+                char[] cArr = this.chars;
+                char c2 = cArr[i3];
+                if (c2 == ' ') {
+                    int i4 = this.end;
+                    this.cur = i4;
+                    this.pos = i3 + 1;
+                    this.end = i4 + 1;
+                    cArr[i4] = ' ';
+                    while (true) {
+                        int i5 = this.pos;
+                        if (i5 >= this.length) {
+                            break;
+                        }
+                        char[] cArr2 = this.chars;
+                        if (cArr2[i5] != ' ') {
+                            break;
+                        }
+                        int i6 = this.end;
+                        this.end = i6 + 1;
+                        cArr2[i6] = ' ';
+                        this.pos = i5 + 1;
+                    }
+                    int i7 = this.pos;
+                    if (i7 == this.length) {
+                        break;
+                    }
+                    char[] cArr3 = this.chars;
+                    if (cArr3[i7] == ',' || cArr3[i7] == '+' || cArr3[i7] == ';') {
+                        break;
+                    }
+                } else {
+                    if (c2 == ';') {
+                        break;
+                    }
+                    if (c2 == '\\') {
+                        int i8 = this.end;
+                        this.end = i8 + 1;
+                        cArr[i8] = getEscaped();
+                        this.pos++;
+                    } else {
+                        if (c2 == '+' || c2 == ',') {
+                            break;
+                        }
+                        int i9 = this.end;
+                        this.end = i9 + 1;
+                        cArr[i9] = cArr[i3];
+                        this.pos = i3 + 1;
+                    }
+                }
+            } else {
+                char[] cArr4 = this.chars;
+                int i10 = this.beg;
+                return new String(cArr4, i10, this.end - i10);
+            }
+        }
+        char[] cArr5 = this.chars;
+        int i11 = this.beg;
+        return new String(cArr5, i11, this.cur - i11);
     }
 
     private int getByte(int i2) {
@@ -133,7 +101,7 @@ final class DistinguishedNameParser {
         int i4;
         int i5 = i2 + 1;
         if (i5 >= this.length) {
-            throw new IllegalStateException("Malformed DN: " + this.f21462dn);
+            throw new IllegalStateException("Malformed DN: " + this.dn);
         }
         char c2 = this.chars[i2];
         if (c2 >= '0' && c2 <= '9') {
@@ -142,7 +110,7 @@ final class DistinguishedNameParser {
             i3 = c2 - 'W';
         } else {
             if (c2 < 'A' || c2 > 'F') {
-                throw new IllegalStateException("Malformed DN: " + this.f21462dn);
+                throw new IllegalStateException("Malformed DN: " + this.dn);
             }
             i3 = c2 - '7';
         }
@@ -153,7 +121,7 @@ final class DistinguishedNameParser {
             i4 = c3 - 'W';
         } else {
             if (c3 < 'A' || c3 > 'F') {
-                throw new IllegalStateException("Malformed DN: " + this.f21462dn);
+                throw new IllegalStateException("Malformed DN: " + this.dn);
             }
             i4 = c3 - '7';
         }
@@ -164,7 +132,7 @@ final class DistinguishedNameParser {
         this.pos++;
         int i2 = this.pos;
         if (i2 == this.length) {
-            throw new IllegalStateException("Unexpected end of DN: " + this.f21462dn);
+            throw new IllegalStateException("Unexpected end of DN: " + this.dn);
         }
         char c2 = this.chars[i2];
         if (c2 != ' ' && c2 != '%' && c2 != '\\' && c2 != '_' && c2 != '\"' && c2 != '#') {
@@ -183,6 +151,7 @@ final class DistinguishedNameParser {
                         default:
                             return getUTF8();
                     }
+                    break;
             }
         }
         return this.chars[this.pos];
@@ -226,10 +195,17 @@ final class DistinguishedNameParser {
         return (char) i3;
     }
 
+    /* JADX WARN: Code restructure failed: missing block: B:28:0x0061, code lost:
+    
+        r6.end = r6.pos;
+     */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     private String hexAV() {
         int i2 = this.pos;
         if (i2 + 4 >= this.length) {
-            throw new IllegalStateException("Unexpected end of DN: " + this.f21462dn);
+            throw new IllegalStateException("Unexpected end of DN: " + this.dn);
         }
         this.beg = i2;
         this.pos = i2 + 1;
@@ -259,12 +235,11 @@ final class DistinguishedNameParser {
                 this.pos++;
             }
         }
-        this.end = this.pos;
         int i5 = this.end;
         int i6 = this.beg;
         int i7 = i5 - i6;
         if (i7 < 5 || (i7 & 1) == 0) {
-            throw new IllegalStateException("Unexpected end of DN: " + this.f21462dn);
+            throw new IllegalStateException("Unexpected end of DN: " + this.dn);
         }
         byte[] bArr = new byte[i7 / 2];
         int i8 = i6 + 1;
@@ -302,7 +277,7 @@ final class DistinguishedNameParser {
         }
         int i5 = this.pos;
         if (i5 >= this.length) {
-            throw new IllegalStateException("Unexpected end of DN: " + this.f21462dn);
+            throw new IllegalStateException("Unexpected end of DN: " + this.dn);
         }
         this.end = i5;
         if (this.chars[i5] == ' ') {
@@ -320,7 +295,7 @@ final class DistinguishedNameParser {
             char[] cArr3 = this.chars;
             int i7 = this.pos;
             if (cArr3[i7] != '=' || i7 == this.length) {
-                throw new IllegalStateException("Unexpected end of DN: " + this.f21462dn);
+                throw new IllegalStateException("Unexpected end of DN: " + this.dn);
             }
         }
         this.pos++;
@@ -359,7 +334,7 @@ final class DistinguishedNameParser {
         while (true) {
             int i2 = this.pos;
             if (i2 == this.length) {
-                throw new IllegalStateException("Unexpected end of DN: " + this.f21462dn);
+                throw new IllegalStateException("Unexpected end of DN: " + this.dn);
             }
             char[] cArr = this.chars;
             if (cArr[i2] == '\"') {
@@ -390,9 +365,9 @@ final class DistinguishedNameParser {
         this.beg = 0;
         this.end = 0;
         this.cur = 0;
-        this.chars = this.f21462dn.toCharArray();
-        String nextAT = nextAT();
-        if (nextAT == null) {
+        this.chars = this.dn.toCharArray();
+        String strNextAT = nextAT();
+        if (strNextAT == null) {
             return null;
         }
         do {
@@ -401,9 +376,9 @@ final class DistinguishedNameParser {
                 return null;
             }
             char c2 = this.chars[i2];
-            String escapedAV = c2 != '\"' ? c2 != '#' ? (c2 == '+' || c2 == ',' || c2 == ';') ? "" : escapedAV() : hexAV() : quotedAV();
-            if (str.equalsIgnoreCase(nextAT)) {
-                return escapedAV;
+            String strEscapedAV = c2 != '\"' ? c2 != '#' ? (c2 == '+' || c2 == ',' || c2 == ';') ? "" : escapedAV() : hexAV() : quotedAV();
+            if (str.equalsIgnoreCase(strNextAT)) {
+                return strEscapedAV;
             }
             int i3 = this.pos;
             if (i3 >= this.length) {
@@ -411,11 +386,11 @@ final class DistinguishedNameParser {
             }
             char[] cArr = this.chars;
             if (cArr[i3] != ',' && cArr[i3] != ';' && cArr[i3] != '+') {
-                throw new IllegalStateException("Malformed DN: " + this.f21462dn);
+                throw new IllegalStateException("Malformed DN: " + this.dn);
             }
             this.pos++;
-            nextAT = nextAT();
-        } while (nextAT != null);
-        throw new IllegalStateException("Malformed DN: " + this.f21462dn);
+            strNextAT = nextAT();
+        } while (strNextAT != null);
+        throw new IllegalStateException("Malformed DN: " + this.dn);
     }
 }

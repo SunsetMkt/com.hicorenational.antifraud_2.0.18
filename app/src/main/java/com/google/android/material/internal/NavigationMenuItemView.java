@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
+import androidx.annotation.Dimension;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
 import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -26,10 +28,9 @@ import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.widget.TextViewCompat;
-import com.google.android.material.C1921R;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class NavigationMenuItemView extends ForegroundLinearLayout implements MenuView.ItemView {
     private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
     private final AccessibilityDelegateCompat accessibilityDelegate;
@@ -37,13 +38,13 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     boolean checkable;
     private Drawable emptyDrawable;
     private boolean hasIconTintList;
-    private final int iconSize;
+    private int iconSize;
     private ColorStateList iconTintList;
     private MenuItemImpl itemData;
     private boolean needsEmptyIcon;
     private final CheckedTextView textView;
 
-    public NavigationMenuItemView(Context context) {
+    public NavigationMenuItemView(@NonNull Context context) {
         this(context, null);
     }
 
@@ -68,9 +69,10 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         }
     }
 
+    @Nullable
     private StateListDrawable createDefaultBackground() {
         TypedValue typedValue = new TypedValue();
-        if (!getContext().getTheme().resolveAttribute(C0120R.attr.colorControlHighlight, typedValue, true)) {
+        if (!getContext().getTheme().resolveAttribute(androidx.appcompat.R.attr.colorControlHighlight, typedValue, true)) {
             return null;
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
@@ -79,10 +81,10 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         return stateListDrawable;
     }
 
-    private void setActionView(View view) {
+    private void setActionView(@Nullable View view) {
         if (view != null) {
             if (this.actionArea == null) {
-                this.actionArea = (FrameLayout) ((ViewStub) findViewById(C1921R.id.design_menu_item_action_area_stub)).inflate();
+                this.actionArea = (FrameLayout) ((ViewStub) findViewById(com.google.android.material.R.id.design_menu_item_action_area_stub)).inflate();
             }
             this.actionArea.removeAllViews();
             this.actionArea.addView(view);
@@ -99,8 +101,11 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
-    public void initialize(MenuItemImpl menuItemImpl, int i2) {
+    public void initialize(@NonNull MenuItemImpl menuItemImpl, int i2) {
         this.itemData = menuItemImpl;
+        if (menuItemImpl.getItemId() > 0) {
+            setId(menuItemImpl.getItemId());
+        }
         setVisibility(menuItemImpl.isVisible() ? 0 : 8);
         if (getBackground() == null) {
             ViewCompat.setBackground(this, createDefaultBackground());
@@ -118,12 +123,12 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
 
     @Override // android.view.ViewGroup, android.view.View
     protected int[] onCreateDrawableState(int i2) {
-        int[] onCreateDrawableState = super.onCreateDrawableState(i2 + 1);
+        int[] iArrOnCreateDrawableState = super.onCreateDrawableState(i2 + 1);
         MenuItemImpl menuItemImpl = this.itemData;
         if (menuItemImpl != null && menuItemImpl.isCheckable() && this.itemData.isChecked()) {
-            ViewGroup.mergeDrawableStates(onCreateDrawableState, CHECKED_STATE_SET);
+            ViewGroup.mergeDrawableStates(iArrOnCreateDrawableState, CHECKED_STATE_SET);
         }
-        return onCreateDrawableState;
+        return iArrOnCreateDrawableState;
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
@@ -159,7 +164,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     }
 
     @Override // androidx.appcompat.view.menu.MenuView.ItemView
-    public void setIcon(Drawable drawable) {
+    public void setIcon(@Nullable Drawable drawable) {
         if (drawable != null) {
             if (this.hasIconTintList) {
                 Drawable.ConstantState constantState = drawable.getConstantState();
@@ -173,7 +178,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
             drawable.setBounds(0, 0, i2, i2);
         } else if (this.needsEmptyIcon) {
             if (this.emptyDrawable == null) {
-                this.emptyDrawable = ResourcesCompat.getDrawable(getResources(), C1921R.drawable.navigation_empty_icon, getContext().getTheme());
+                this.emptyDrawable = ResourcesCompat.getDrawable(getResources(), com.google.android.material.R.drawable.navigation_empty_icon, getContext().getTheme());
                 Drawable drawable2 = this.emptyDrawable;
                 if (drawable2 != null) {
                     int i3 = this.iconSize;
@@ -189,6 +194,10 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         this.textView.setCompoundDrawablePadding(i2);
     }
 
+    public void setIconSize(@Dimension int i2) {
+        this.iconSize = i2;
+    }
+
     void setIconTintList(ColorStateList colorStateList) {
         this.iconTintList = colorStateList;
         this.hasIconTintList = this.iconTintList != null;
@@ -196,6 +205,10 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         if (menuItemImpl != null) {
             setIcon(menuItemImpl.getIcon());
         }
+    }
+
+    public void setMaxLines(int i2) {
+        this.textView.setMaxLines(i2);
     }
 
     public void setNeedsEmptyIcon(boolean z) {
@@ -224,23 +237,23 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         return true;
     }
 
-    public NavigationMenuItemView(Context context, AttributeSet attributeSet) {
+    public NavigationMenuItemView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public NavigationMenuItemView(Context context, AttributeSet attributeSet, int i2) {
+    public NavigationMenuItemView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
         this.accessibilityDelegate = new AccessibilityDelegateCompat() { // from class: com.google.android.material.internal.NavigationMenuItemView.1
             @Override // androidx.core.view.AccessibilityDelegateCompat
-            public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
                 super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
                 accessibilityNodeInfoCompat.setCheckable(NavigationMenuItemView.this.checkable);
             }
         };
         setOrientation(0);
-        LayoutInflater.from(context).inflate(C1921R.layout.design_navigation_menu_item, (ViewGroup) this, true);
-        this.iconSize = context.getResources().getDimensionPixelSize(C1921R.dimen.design_navigation_icon_size);
-        this.textView = (CheckedTextView) findViewById(C1921R.id.design_menu_item_text);
+        LayoutInflater.from(context).inflate(com.google.android.material.R.layout.design_navigation_menu_item, (ViewGroup) this, true);
+        setIconSize(context.getResources().getDimensionPixelSize(com.google.android.material.R.dimen.design_navigation_icon_size));
+        this.textView = (CheckedTextView) findViewById(com.google.android.material.R.id.design_menu_item_text);
         this.textView.setDuplicateParentStateEnabled(true);
         ViewCompat.setAccessibilityDelegate(this.textView, this.accessibilityDelegate);
     }

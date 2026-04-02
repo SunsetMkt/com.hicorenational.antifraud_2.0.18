@@ -8,18 +8,19 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.LruCache;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.C3042j;
 import com.taobao.accs.utl.UTMini;
-import com.umeng.analytics.pro.C3351bh;
+import com.taobao.accs.utl.j;
+import com.umeng.analytics.pro.bh;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.xiaomi.mipush.sdk.Constants;
+import java.util.ArrayList;
 import org.android.agoo.common.AgooConstants;
 import org.android.agoo.common.MsgDO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class MessageService {
     public static final String MSG_ACCS_NOTIFY_CLICK = "8";
     public static final String MSG_ACCS_NOTIFY_DISMISS = "9";
@@ -29,25 +30,21 @@ public class MessageService {
     public static final String MSG_DB_NOTIFY_DISMISS = "3";
     public static final String MSG_DB_NOTIFY_REACHED = "1";
     public static final String MSG_DB_READY_REPORT = "0";
+    private static Context a;
 
-    /* renamed from: a */
-    private static Context f21510a;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static LruCache<String, Integer> f12888c;
 
-    /* renamed from: c */
-    private static LruCache<String, Integer> f21511c;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private volatile SQLiteOpenHelper f12889b = null;
 
-    /* renamed from: b */
-    private volatile SQLiteOpenHelper f21512b = null;
-
-    /* compiled from: Taobao */
-    /* renamed from: org.android.agoo.message.MessageService$a */
-    private static class C6032a extends SQLiteOpenHelper {
-        public C6032a(Context context) {
+    /* JADX INFO: compiled from: Taobao */
+    private static class a extends SQLiteOpenHelper {
+        public a(Context context) {
             super(context, "message_accs_db", (SQLiteDatabase.CursorFactory) null, 3);
         }
 
-        /* renamed from: a */
-        private String m24970a() {
+        private String a() {
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append("create table accs_message");
             stringBuffer.append("(");
@@ -59,8 +56,7 @@ public class MessageService {
             return stringBuffer.toString();
         }
 
-        /* renamed from: b */
-        private String m24971b() {
+        private String b() {
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append("create table message");
             stringBuffer.append("(");
@@ -80,7 +76,7 @@ public class MessageService {
 
         @Override // android.database.sqlite.SQLiteOpenHelper
         public SQLiteDatabase getWritableDatabase() {
-            if (C3042j.m9246a(super.getWritableDatabase().getPath(), 102400)) {
+            if (j.a(super.getWritableDatabase().getPath(), 102400)) {
                 return super.getWritableDatabase();
             }
             return null;
@@ -90,12 +86,12 @@ public class MessageService {
         public void onCreate(SQLiteDatabase sQLiteDatabase) {
             if (sQLiteDatabase != null) {
                 try {
-                    sQLiteDatabase.execSQL(m24971b());
+                    sQLiteDatabase.execSQL(b());
                     sQLiteDatabase.execSQL("CREATE INDEX id_index ON message(id)");
                     sQLiteDatabase.execSQL("CREATE INDEX body_code_index ON message(body_code)");
-                    sQLiteDatabase.execSQL(m24970a());
+                    sQLiteDatabase.execSQL(a());
                 } catch (Throwable th) {
-                    ALog.m9181e("MessageService", "messagedbhelper create", th, new Object[0]);
+                    ALog.e("MessageService", "messagedbhelper create", th, new Object[0]);
                 }
             }
         }
@@ -107,21 +103,21 @@ public class MessageService {
                     sQLiteDatabase.execSQL("delete from message where create_time< date('now','-7 day') and state=1");
                 } catch (Throwable th) {
                     try {
-                        ALog.m9181e("MessageService", "messagedbhelper create", th, new Object[0]);
+                        ALog.e("MessageService", "messagedbhelper create", th, new Object[0]);
                         try {
                             sQLiteDatabase.execSQL("DROP TABLE IF EXISTS accs_message");
-                            sQLiteDatabase.execSQL(m24970a());
+                            sQLiteDatabase.execSQL(a());
                             return;
                         } catch (Throwable th2) {
-                            ALog.m9181e("MessageService", "MessageService onUpgrade is error", th2, new Object[0]);
+                            ALog.e("MessageService", "MessageService onUpgrade is error", th2, new Object[0]);
                             return;
                         }
                     } catch (Throwable th3) {
                         try {
                             sQLiteDatabase.execSQL("DROP TABLE IF EXISTS accs_message");
-                            sQLiteDatabase.execSQL(m24970a());
+                            sQLiteDatabase.execSQL(a());
                         } catch (Throwable th4) {
-                            ALog.m9181e("MessageService", "MessageService onUpgrade is error", th4, new Object[0]);
+                            ALog.e("MessageService", "MessageService onUpgrade is error", th4, new Object[0]);
                         }
                         throw th3;
                     }
@@ -129,144 +125,254 @@ public class MessageService {
             }
             try {
                 sQLiteDatabase.execSQL("DROP TABLE IF EXISTS accs_message");
-                sQLiteDatabase.execSQL(m24970a());
+                sQLiteDatabase.execSQL(a());
             } catch (Throwable th5) {
-                ALog.m9181e("MessageService", "MessageService onUpgrade is error", th5, new Object[0]);
+                ALog.e("MessageService", "MessageService onUpgrade is error", th5, new Object[0]);
             }
         }
     }
 
-    /* renamed from: a */
-    public void m24963a(Context context) {
-        f21511c = new LruCache<>(100);
-        f21510a = context;
-        this.f21512b = new C6032a(context);
+    public void a(Context context) {
+        f12888c = new LruCache<>(100);
+        a = context;
+        this.f12889b = new a(context);
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:68:0x0143 A[Catch: all -> 0x0186, TRY_LEAVE, TryCatch #4 {all -> 0x0186, blocks: (B:66:0x013b, B:68:0x0143), top: B:65:0x013b }] */
-    /* JADX WARN: Removed duplicated region for block: B:72:0x0164 A[Catch: all -> 0x0160, TRY_LEAVE, TryCatch #0 {all -> 0x0160, blocks: (B:80:0x015c, B:72:0x0164), top: B:79:0x015c }] */
-    /* JADX WARN: Removed duplicated region for block: B:79:0x015c A[EXC_TOP_SPLITTER, SYNTHETIC] */
-    /* renamed from: b */
+    /* JADX WARN: Removed duplicated region for block: B:63:0x0143 A[Catch: all -> 0x0186, TRY_LEAVE, TryCatch #4 {all -> 0x0186, blocks: (B:61:0x013b, B:63:0x0143), top: B:96:0x013b }] */
+    /* JADX WARN: Removed duplicated region for block: B:69:0x0164 A[Catch: all -> 0x0160, TRY_LEAVE, TryCatch #0 {all -> 0x0160, blocks: (B:65:0x015c, B:69:0x0164), top: B:88:0x015c }] */
+    /* JADX WARN: Removed duplicated region for block: B:88:0x015c A[EXC_TOP_SPLITTER, SYNTHETIC] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public java.util.ArrayList<org.android.agoo.common.MsgDO> m24969b() {
-        /*
-            Method dump skipped, instructions count: 436
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.m24969b():java.util.ArrayList");
+    public ArrayList<MsgDO> b() {
+        SQLiteDatabase readableDatabase;
+        ArrayList<MsgDO> arrayList;
+        Cursor cursorRawQuery;
+        int i2;
+        int i3;
+        try {
+            readableDatabase = this.f12889b.getReadableDatabase();
+        } catch (Throwable th) {
+            th = th;
+            readableDatabase = null;
+        }
+        if (readableDatabase == null) {
+            if (readableDatabase != null) {
+                try {
+                    readableDatabase.close();
+                } catch (Throwable th2) {
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                        ALog.e("MessageService", "getUnReportMsg close cursor or db, e: " + th2, new Object[0]);
+                    }
+                }
+            }
+            return null;
+        }
+        try {
+            arrayList = new ArrayList<>();
+        } catch (Throwable th3) {
+            th = th3;
+            arrayList = null;
+            cursorRawQuery = null;
+            try {
+                if (ALog.isPrintLog(ALog.Level.E)) {
+                }
+                if (cursorRawQuery != null) {
+                }
+                if (readableDatabase != null) {
+                }
+                return arrayList;
+            } finally {
+            }
+        }
+        try {
+            cursorRawQuery = readableDatabase.rawQuery("select * from accs_message where state = ? or state = ? or state = ?", new String[]{"0", "2", "3"});
+            if (cursorRawQuery != null) {
+                try {
+                    int columnIndex = cursorRawQuery.getColumnIndex("id");
+                    int columnIndex2 = cursorRawQuery.getColumnIndex("state");
+                    int columnIndex3 = cursorRawQuery.getColumnIndex("message");
+                    int columnIndex4 = cursorRawQuery.getColumnIndex("create_time");
+                    while (cursorRawQuery.moveToNext() && !TextUtils.isEmpty(cursorRawQuery.getString(columnIndex3))) {
+                        String string = cursorRawQuery.getString(columnIndex2);
+                        String string2 = cursorRawQuery.getString(columnIndex3);
+                        if (ALog.isPrintLog(ALog.Level.I)) {
+                            StringBuilder sb = new StringBuilder();
+                            i3 = columnIndex2;
+                            sb.append("state: ");
+                            sb.append(string);
+                            sb.append(" ,cursor.message:");
+                            sb.append(string2);
+                            sb.append(" ,cursor.id:");
+                            sb.append(cursorRawQuery.getString(columnIndex));
+                            sb.append(" ,cursor.time:");
+                            sb.append(cursorRawQuery.getString(columnIndex4));
+                            i2 = columnIndex;
+                            ALog.i("MessageService", sb.toString(), new Object[0]);
+                        } else {
+                            i2 = columnIndex;
+                            i3 = columnIndex2;
+                        }
+                        String str = TextUtils.equals("0", string) ? "4" : TextUtils.equals("2", string) ? "8" : TextUtils.equals("3", string) ? "9" : null;
+                        new MsgDO();
+                        if (!TextUtils.isEmpty(string2) && !TextUtils.isEmpty(str)) {
+                            MsgDO msgDOB = b(string2, str);
+                            msgDOB.messageSource = "cache";
+                            arrayList.add(msgDOB);
+                        }
+                        columnIndex2 = i3;
+                        columnIndex = i2;
+                    }
+                } catch (Throwable th4) {
+                    th = th4;
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                    }
+                    if (cursorRawQuery != null) {
+                    }
+                    if (readableDatabase != null) {
+                    }
+                }
+            }
+            if (cursorRawQuery != null) {
+                try {
+                    cursorRawQuery.close();
+                } catch (Throwable th5) {
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                        ALog.e("MessageService", "getUnReportMsg close cursor or db, e: " + th5, new Object[0]);
+                    }
+                }
+            }
+            if (readableDatabase != null) {
+                readableDatabase.close();
+            }
+        } catch (Throwable th6) {
+            th = th6;
+            cursorRawQuery = null;
+            if (ALog.isPrintLog(ALog.Level.E)) {
+                ALog.e("MessageService", "getUnReportMsg, e: " + th, new Object[0]);
+            }
+            if (cursorRawQuery != null) {
+                try {
+                    cursorRawQuery.close();
+                } catch (Throwable th7) {
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                        ALog.e("MessageService", "getUnReportMsg close cursor or db, e: " + th7, new Object[0]);
+                    }
+                }
+            }
+            if (readableDatabase != null) {
+                readableDatabase.close();
+            }
+            return arrayList;
+        }
+        return arrayList;
     }
 
-    /* renamed from: a */
-    public void m24964a(String str, String str2) {
+    public void a(String str, String str2) {
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.m9183i("MessageService", "updateAccsMessage sqlite3--->[" + str + ",state=" + str2 + "]", new Object[0]);
+            ALog.i("MessageService", "updateAccsMessage sqlite3--->[" + str + ",state=" + str2 + "]", new Object[0]);
         }
-        SQLiteDatabase sQLiteDatabase = null;
+        SQLiteDatabase writableDatabase = null;
         try {
         } catch (Throwable th) {
             try {
                 if (ALog.isPrintLog(ALog.Level.E)) {
-                    ALog.m9182e("MessageService", "updateAccsMessage error,e--->[" + th + "],ex=" + th.getStackTrace().toString(), new Object[0]);
+                    ALog.e("MessageService", "updateAccsMessage error,e--->[" + th + "],ex=" + th.getStackTrace().toString(), new Object[0]);
                 }
-                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "updateAccsMessageFailed", th.toString());
+                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(a), "updateAccsMessageFailed", th.toString());
                 if (0 == 0) {
                     return;
                 }
             } finally {
                 if (0 != 0) {
-                    sQLiteDatabase.close();
+                    writableDatabase.close();
                 }
             }
         }
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
-            sQLiteDatabase = this.f21512b.getWritableDatabase();
-            if (sQLiteDatabase == null) {
-                if (sQLiteDatabase != null) {
+            writableDatabase = this.f12889b.getWritableDatabase();
+            if (writableDatabase == null) {
+                if (writableDatabase != null) {
                     return;
                 } else {
                     return;
                 }
             }
             if (TextUtils.equals(str2, "1")) {
-                sQLiteDatabase.execSQL("UPDATE accs_message set state = ? where id = ? and state = ?", new Object[]{str2, str, "0"});
+                writableDatabase.execSQL("UPDATE accs_message set state = ? where id = ? and state = ?", new Object[]{str2, str, "0"});
             } else {
-                sQLiteDatabase.execSQL("UPDATE accs_message set state = ? where id = ?", new Object[]{str2, str});
+                writableDatabase.execSQL("UPDATE accs_message set state = ? where id = ?", new Object[]{str2, str});
             }
-            if (sQLiteDatabase == null) {
+            if (writableDatabase == null) {
                 return;
             }
-            sQLiteDatabase.close();
+            writableDatabase.close();
         }
     }
 
-    /* renamed from: a */
-    public void m24965a(String str, String str2, String str3) {
-        SQLiteDatabase sQLiteDatabase;
-        Cursor rawQuery;
+    public void a(String str, String str2, String str3) {
+        SQLiteDatabase writableDatabase;
+        Cursor cursorRawQuery;
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.m9183i("MessageService", "addAccsMessage sqlite3--->[" + str + ",message=" + str2 + ",state=" + str3 + "]", new Object[0]);
+            ALog.i("MessageService", "addAccsMessage sqlite3--->[" + str + ",message=" + str2 + ",state=" + str3 + "]", new Object[0]);
         }
         Cursor cursor = null;
         try {
         } catch (Throwable th) {
             th = th;
-            sQLiteDatabase = null;
+            writableDatabase = null;
         }
         if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
-            sQLiteDatabase = this.f21512b.getWritableDatabase();
-            if (sQLiteDatabase == null) {
-                if (sQLiteDatabase != null) {
-                    sQLiteDatabase.close();
+            writableDatabase = this.f12889b.getWritableDatabase();
+            if (writableDatabase == null) {
+                if (writableDatabase != null) {
+                    writableDatabase.close();
                     return;
                 }
                 return;
             }
             try {
-                rawQuery = sQLiteDatabase.rawQuery("select count(1) from accs_message where id = ?", new String[]{str});
+                cursorRawQuery = writableDatabase.rawQuery("select count(1) from accs_message where id = ?", new String[]{str});
             } catch (Throwable th2) {
                 th = th2;
                 try {
                     if (ALog.isPrintLog(ALog.Level.E)) {
-                        ALog.m9182e("MessageService", "addAccsMessage error,e--->[" + th + "],ex=" + m24958a(th), new Object[0]);
+                        ALog.e("MessageService", "addAccsMessage error,e--->[" + th + "],ex=" + a(th), new Object[0]);
                     }
-                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addAccsMessageFailed", th.toString());
-                    if (sQLiteDatabase == null) {
+                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(a), "addAccsMessageFailed", th.toString());
+                    if (writableDatabase == null) {
                         return;
                     }
                 } finally {
                     if (0 != 0) {
                         cursor.close();
                     }
-                    if (sQLiteDatabase != null) {
-                        sQLiteDatabase.close();
+                    if (writableDatabase != null) {
+                        writableDatabase.close();
                     }
                 }
             }
-            if (rawQuery != null && rawQuery.moveToFirst() && rawQuery.getInt(0) > 0) {
-                rawQuery.close();
-                if (rawQuery != null) {
-                    rawQuery.close();
+            if (cursorRawQuery != null && cursorRawQuery.moveToFirst() && cursorRawQuery.getInt(0) > 0) {
+                cursorRawQuery.close();
+                if (cursorRawQuery != null) {
+                    cursorRawQuery.close();
                 }
-                if (sQLiteDatabase != null) {
-                    sQLiteDatabase.close();
+                if (writableDatabase != null) {
+                    writableDatabase.close();
                     return;
                 }
                 return;
             }
-            sQLiteDatabase.execSQL("INSERT INTO accs_message VALUES(?,?,?,date('now'))", new Object[]{str, str3, str2});
-            if (rawQuery != null) {
-                rawQuery.close();
+            writableDatabase.execSQL("INSERT INTO accs_message VALUES(?,?,?,date('now'))", new Object[]{str, str3, str2});
+            if (cursorRawQuery != null) {
+                cursorRawQuery.close();
             }
-            if (sQLiteDatabase == null) {
+            if (writableDatabase == null) {
             }
         }
     }
 
-    /* renamed from: a */
-    private String m24958a(Throwable th) {
+    private String a(Throwable th) {
         StringBuffer stringBuffer = new StringBuffer();
         StackTraceElement[] stackTrace = th.getStackTrace();
         if (stackTrace != null && stackTrace.length > 0) {
@@ -278,20 +384,19 @@ public class MessageService {
         return stringBuffer.toString();
     }
 
-    /* renamed from: b */
-    private MsgDO m24961b(String str, String str2) {
+    private MsgDO b(String str, String str2) {
         int i2;
         int i3;
         String str3;
         boolean z;
         String str4 = SocializeProtocolConstants.PROTOCOL_KEY_EXTEND;
         if (ALog.isPrintLog(ALog.Level.I)) {
-            ALog.m9183i("MessageService", "msgRecevie,message--->[" + str + "],utdid=" + C3042j.m9247b(f21510a), new Object[0]);
+            ALog.i("MessageService", "msgRecevie,message--->[" + str + "],utdid=" + j.b(a), new Object[0]);
         }
         if (TextUtils.isEmpty(str)) {
-            UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", C3042j.m9247b(f21510a), "message==null");
+            UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", j.b(a), "message==null");
             if (ALog.isPrintLog(ALog.Level.I)) {
-                ALog.m9183i("MessageService", "handleMessage message==null,utdid=" + C3042j.m9247b(f21510a), new Object[0]);
+                ALog.i("MessageService", "handleMessage message==null,utdid=" + j.b(a), new Object[0]);
             }
             return null;
         }
@@ -303,7 +408,7 @@ public class MessageService {
             StringBuilder sb = new StringBuilder();
             StringBuilder sb2 = new StringBuilder();
             StringBuilder sb3 = new StringBuilder();
-            String str5 = null;
+            String string = null;
             int i4 = 0;
             while (i4 < length) {
                 JSONObject jSONObject = jSONArray.getJSONObject(i4);
@@ -312,14 +417,14 @@ public class MessageService {
                     str3 = str4;
                     i3 = i4;
                 } else {
-                    String string = jSONObject.getString(C3351bh.f11576aA);
-                    String string2 = jSONObject.getString(C3351bh.f11581aF);
-                    String string3 = jSONObject.getString("b");
+                    String string2 = jSONObject.getString(bh.aA);
+                    String string3 = jSONObject.getString(bh.aF);
+                    String string4 = jSONObject.getString("b");
                     int i5 = i4;
                     long j2 = jSONObject.getLong("f");
-                    sb.append(string2);
+                    sb.append(string3);
                     if (!jSONObject.isNull(str4)) {
-                        str5 = jSONObject.getString(str4);
+                        string = jSONObject.getString(str4);
                     }
                     int i6 = length - 1;
                     i2 = length;
@@ -327,44 +432,44 @@ public class MessageService {
                     if (i3 < i6) {
                         sb.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
                     }
-                    msgDO.msgIds = string2;
-                    msgDO.extData = str5;
+                    msgDO.msgIds = string3;
+                    msgDO.extData = string;
                     str3 = str4;
                     msgDO.messageSource = "accs";
                     msgDO.type = "cache";
-                    if (TextUtils.isEmpty(string3)) {
+                    if (TextUtils.isEmpty(string4)) {
                         msgDO.errorCode = "11";
-                    } else if (TextUtils.isEmpty(string)) {
+                    } else if (TextUtils.isEmpty(string2)) {
                         msgDO.errorCode = "12";
                     } else if (j2 == -1) {
                         msgDO.errorCode = "13";
-                    } else if (!m24960a(f21510a, string)) {
-                        ALog.m9180d("MessageService", "ondata checkpackage is del,pack=" + string, new Object[0]);
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", C3042j.m9247b(f21510a), "deletePack", string);
-                        sb3.append(string);
-                        sb2.append(string2);
-                        msgDO.removePacks = string;
+                    } else if (!a(a, string2)) {
+                        ALog.d("MessageService", "ondata checkpackage is del,pack=" + string2, new Object[0]);
+                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.dealMessage", j.b(a), "deletePack", string2);
+                        sb3.append(string2);
+                        sb2.append(string3);
+                        msgDO.removePacks = string2;
                         if (i3 < i6) {
                             sb3.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
                             sb2.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
                         }
                     } else {
-                        String string4 = m24957a(j2, msgDO).getString(AgooConstants.MESSAGE_ENCRYPTED);
-                        if (!f21510a.getPackageName().equals(string)) {
+                        String string5 = a(j2, msgDO).getString(AgooConstants.MESSAGE_ENCRYPTED);
+                        if (!a.getPackageName().equals(string2)) {
                             z = true;
-                        } else if (TextUtils.equals(Integer.toString(0), string4) || TextUtils.equals(Integer.toString(4), string4)) {
+                        } else if (TextUtils.equals(Integer.toString(0), string5) || TextUtils.equals(Integer.toString(4), string5)) {
                             z = false;
                         } else {
                             msgDO.errorCode = "15";
-                            ALog.m9182e("MessageService", "error encrypted: " + string4, new Object[0]);
+                            ALog.e("MessageService", "error encrypted: " + string5, new Object[0]);
                         }
                         msgDO.agooFlag = z;
                         if (!TextUtils.isEmpty(str2)) {
                             msgDO.msgStatus = str2;
-                            i4 = i3 + 1;
-                            length = i2;
-                            str4 = str3;
                         }
+                        i4 = i3 + 1;
+                        length = i2;
+                        str4 = str3;
                     }
                 }
                 i4 = i3 + 1;
@@ -373,52 +478,50 @@ public class MessageService {
             }
         } catch (Throwable th) {
             if (ALog.isPrintLog(ALog.Level.E)) {
-                ALog.m9182e("MessageService", "createMsg is error,e: " + th, new Object[0]);
+                ALog.e("MessageService", "createMsg is error,e: " + th, new Object[0]);
             }
         }
         return msgDO;
     }
 
-    /* renamed from: a */
-    public void m24966a(String str, String str2, String str3, int i2) {
-        m24959a(str, str2, str3, 1, -1L, -1, i2);
+    public void a(String str, String str2, String str3, int i2) {
+        a(str, str2, str3, 1, -1L, -1, i2);
     }
 
-    /* renamed from: a */
-    private void m24959a(String str, String str2, String str3, int i2, long j2, int i3, int i4) {
+    private void a(String str, String str2, String str3, int i2, long j2, int i3, int i4) {
         Throwable th;
         String str4;
-        int hashCode;
+        int iHashCode;
         String str5;
         StringBuilder sb = new StringBuilder();
         sb.append("add sqlite3--->[");
         sb.append(str);
         sb.append("]");
-        ALog.m9180d("MessageService", sb.toString(), new Object[0]);
+        ALog.d("MessageService", sb.toString(), new Object[0]);
         SQLiteDatabase sQLiteDatabase = null;
         try {
             str4 = "";
             if (TextUtils.isEmpty(str2)) {
-                hashCode = -1;
+                iHashCode = -1;
                 str5 = "";
             } else {
-                hashCode = str2.hashCode();
+                iHashCode = str2.hashCode();
                 str5 = str2;
             }
             if (!TextUtils.isEmpty(str3)) {
                 str4 = str3;
             }
-            if (f21511c.get(str) == null) {
-                f21511c.put(str, Integer.valueOf(hashCode));
+            if (f12888c.get(str) == null) {
+                f12888c.put(str, Integer.valueOf(iHashCode));
                 if (ALog.isPrintLog(ALog.Level.I)) {
-                    ALog.m9183i("MessageService", "addMessage,messageId=" + str + ", mCache size:" + f21511c.size(), new Object[0]);
+                    ALog.i("MessageService", "addMessage,messageId=" + str + ", mCache size:" + f12888c.size(), new Object[0]);
                 }
             }
         } catch (Throwable th2) {
             th = th2;
         }
         try {
-            SQLiteDatabase writableDatabase = this.f21512b.getWritableDatabase();
+            SQLiteDatabase writableDatabase = this.f12889b.getWritableDatabase();
             if (writableDatabase == null) {
                 if (writableDatabase != null) {
                     try {
@@ -426,287 +529,216 @@ public class MessageService {
                         return;
                     } catch (Throwable th3) {
                         if (ALog.isPrintLog(ALog.Level.E)) {
-                            ALog.m9182e("MessageService", "addMessage,db.close(),error,e--->[" + th3 + "]", new Object[0]);
+                            ALog.e("MessageService", "addMessage,db.close(),error,e--->[" + th3 + "]", new Object[0]);
                         }
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageDBcloseFailed", th3.toString());
+                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(a), "addMessageDBcloseFailed", th3.toString());
                         return;
                     }
                 }
                 return;
             }
-            writableDatabase.execSQL("INSERT INTO message VALUES(?,?,?,?,?,?,?,?,?,date('now'))", new Object[]{str, Integer.valueOf(i2), Integer.valueOf(hashCode), 0, Long.valueOf(j2), Integer.valueOf(i3), str4, str5, Integer.valueOf(i4)});
-            if (writableDatabase != null) {
-                try {
-                    writableDatabase.close();
-                } catch (Throwable th4) {
-                    th = th4;
-                    if (ALog.isPrintLog(ALog.Level.E)) {
-                        ALog.m9182e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
-                    }
-                    UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageDBcloseFailed", th.toString());
+            writableDatabase.execSQL("INSERT INTO message VALUES(?,?,?,?,?,?,?,?,?,date('now'))", new Object[]{str, Integer.valueOf(i2), Integer.valueOf(iHashCode), 0, Long.valueOf(j2), Integer.valueOf(i3), str4, str5, Integer.valueOf(i4)});
+            if (writableDatabase == null) {
+                return;
+            }
+            try {
+                writableDatabase.close();
+                return;
+            } catch (Throwable th4) {
+                th = th4;
+                if (ALog.isPrintLog(ALog.Level.E)) {
+                    ALog.e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
                 }
             }
         } catch (Throwable th5) {
             th = th5;
             try {
                 if (ALog.isPrintLog(ALog.Level.E)) {
-                    ALog.m9182e("MessageService", "addMessage error,e--->[" + th + "]", new Object[0]);
+                    ALog.e("MessageService", "addMessage error,e--->[" + th + "]", new Object[0]);
                 }
-                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageFailed", th.toString());
-                if (0 != 0) {
-                    try {
-                        sQLiteDatabase.close();
-                    } catch (Throwable th6) {
-                        th = th6;
-                        if (ALog.isPrintLog(ALog.Level.E)) {
-                            ALog.m9182e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
-                        }
-                        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", C3042j.m9247b(f21510a), "addMessageDBcloseFailed", th.toString());
+                UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(a), "addMessageFailed", th.toString());
+                if (0 == 0) {
+                    return;
+                }
+                try {
+                    sQLiteDatabase.close();
+                    return;
+                } catch (Throwable th6) {
+                    th = th6;
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                        ALog.e("MessageService", "addMessage,db.close(),error,e--->[" + th + "]", new Object[0]);
                     }
                 }
             } finally {
             }
         }
+        UTMini.getInstance().commitEvent(AgooConstants.AGOO_EVENT_ID, "accs.add_agoo_message", j.b(a), "addMessageDBcloseFailed", th.toString());
     }
 
-    /* renamed from: a */
-    public void m24962a() {
-        SQLiteDatabase sQLiteDatabase = null;
+    public void a() {
+        SQLiteDatabase writableDatabase = null;
         try {
-            sQLiteDatabase = this.f21512b.getWritableDatabase();
+            writableDatabase = this.f12889b.getWritableDatabase();
+            if (writableDatabase == null) {
+                if (writableDatabase != null) {
+                    try {
+                        writableDatabase.close();
+                        return;
+                    } catch (Throwable unused) {
+                        return;
+                    }
+                }
+                return;
+            }
+            writableDatabase.execSQL("delete from message where create_time< date('now','-7 day') and state=1");
+            writableDatabase.execSQL("delete from accs_message where create_time< date('now','-1 day') ");
+            if (writableDatabase == null) {
+                return;
+            }
         } catch (Throwable th) {
             try {
-                ALog.m9181e("MessageService", "deleteCacheMessage sql Throwable", th, new Object[0]);
+                ALog.e("MessageService", "deleteCacheMessage sql Throwable", th, new Object[0]);
                 if (0 == 0) {
                     return;
                 }
             } catch (Throwable th2) {
                 if (0 != 0) {
                     try {
-                        sQLiteDatabase.close();
-                    } catch (Throwable unused) {
+                        writableDatabase.close();
+                    } catch (Throwable unused2) {
                     }
                 }
                 throw th2;
             }
         }
-        if (sQLiteDatabase == null) {
-            if (sQLiteDatabase != null) {
-                try {
-                    sQLiteDatabase.close();
-                    return;
-                } catch (Throwable unused2) {
-                    return;
-                }
-            }
-            return;
-        }
-        sQLiteDatabase.execSQL("delete from message where create_time< date('now','-7 day') and state=1");
-        sQLiteDatabase.execSQL("delete from accs_message where create_time< date('now','-1 day') ");
-        if (sQLiteDatabase == null) {
-            return;
-        }
         try {
-            sQLiteDatabase.close();
+            writableDatabase.close();
         } catch (Throwable unused3) {
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:32:0x005c, code lost:
-    
-        if (r4 != null) goto L25;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:33:0x005e, code lost:
-    
-        r4.close();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:39:0x006b, code lost:
-    
-        if (r4 != null) goto L25;
-     */
-    /* renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public boolean m24967a(java.lang.String r8) {
-        /*
-            r7 = this;
-            r0 = 0
-            r1 = 0
-            android.util.LruCache<java.lang.String, java.lang.Integer> r2 = org.android.agoo.message.MessageService.f21511c     // Catch: java.lang.Throwable -> L64
-            java.lang.Object r2 = r2.get(r8)     // Catch: java.lang.Throwable -> L64
-            java.lang.Integer r2 = (java.lang.Integer) r2     // Catch: java.lang.Throwable -> L64
-            r3 = 1
-            if (r2 == 0) goto L2f
-            com.taobao.accs.utl.ALog$Level r2 = com.taobao.accs.utl.ALog.Level.E     // Catch: java.lang.Throwable -> L64
-            boolean r2 = com.taobao.accs.utl.ALog.isPrintLog(r2)     // Catch: java.lang.Throwable -> L64
-            if (r2 == 0) goto L2d
-            java.lang.String r2 = "MessageService"
-            java.lang.StringBuilder r4 = new java.lang.StringBuilder     // Catch: java.lang.Throwable -> L64
-            r4.<init>()     // Catch: java.lang.Throwable -> L64
-            java.lang.String r5 = "hasMessageDuplicate,msgid="
-            r4.append(r5)     // Catch: java.lang.Throwable -> L64
-            r4.append(r8)     // Catch: java.lang.Throwable -> L64
-            java.lang.String r4 = r4.toString()     // Catch: java.lang.Throwable -> L64
-            java.lang.Object[] r5 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> L64
-            com.taobao.accs.utl.ALog.m9182e(r2, r4, r5)     // Catch: java.lang.Throwable -> L64
-        L2d:
-            r2 = 1
-            goto L30
-        L2f:
-            r2 = 0
-        L30:
-            android.database.sqlite.SQLiteOpenHelper r4 = r7.f21512b     // Catch: java.lang.Throwable -> L62
-            android.database.sqlite.SQLiteDatabase r4 = r4.getReadableDatabase()     // Catch: java.lang.Throwable -> L62
-            if (r4 != 0) goto L3e
-            if (r4 == 0) goto L3d
-            r4.close()     // Catch: java.lang.Throwable -> L3d
-        L3d:
-            return r2
-        L3e:
-            java.lang.String r5 = "select count(1) from message where id = ?"
-            java.lang.String[] r6 = new java.lang.String[r3]     // Catch: java.lang.Throwable -> L66
-            r6[r1] = r8     // Catch: java.lang.Throwable -> L66
-            android.database.Cursor r0 = r4.rawQuery(r5, r6)     // Catch: java.lang.Throwable -> L66
-            if (r0 == 0) goto L57
-            boolean r8 = r0.moveToFirst()     // Catch: java.lang.Throwable -> L66
-            if (r8 == 0) goto L57
-            int r8 = r0.getInt(r1)     // Catch: java.lang.Throwable -> L66
-            if (r8 <= 0) goto L57
-            r2 = 1
-        L57:
-            if (r0 == 0) goto L5c
-            r0.close()     // Catch: java.lang.Throwable -> L6e
-        L5c:
-            if (r4 == 0) goto L6e
-        L5e:
-            r4.close()     // Catch: java.lang.Throwable -> L6e
-            goto L6e
-        L62:
-            r4 = r0
-            goto L66
-        L64:
-            r4 = r0
-            r2 = 0
-        L66:
-            if (r0 == 0) goto L6b
-            r0.close()     // Catch: java.lang.Throwable -> L6e
-        L6b:
-            if (r4 == 0) goto L6e
-            goto L5e
-        L6e:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.m24967a(java.lang.String):boolean");
+    public boolean a(String str) {
+        boolean z;
+        SQLiteDatabase readableDatabase;
+        Cursor cursorRawQuery = null;
+        try {
+            try {
+                if (f12888c.get(str) != null) {
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                        ALog.e("MessageService", "hasMessageDuplicate,msgid=" + str, new Object[0]);
+                    }
+                    z = true;
+                } else {
+                    z = false;
+                }
+                try {
+                    readableDatabase = this.f12889b.getReadableDatabase();
+                } catch (Throwable unused) {
+                    readableDatabase = null;
+                }
+            } catch (Throwable unused2) {
+                readableDatabase = null;
+                z = false;
+            }
+        } catch (Throwable unused3) {
+        }
+        if (readableDatabase == null) {
+            if (readableDatabase != null) {
+                try {
+                    readableDatabase.close();
+                } catch (Throwable unused4) {
+                }
+            }
+            return z;
+        }
+        try {
+            cursorRawQuery = readableDatabase.rawQuery("select count(1) from message where id = ?", new String[]{str});
+            if (cursorRawQuery != null && cursorRawQuery.moveToFirst()) {
+                if (cursorRawQuery.getInt(0) > 0) {
+                    z = true;
+                }
+            }
+            if (cursorRawQuery != null) {
+                cursorRawQuery.close();
+            }
+        } catch (Throwable unused5) {
+            if (cursorRawQuery != null) {
+                cursorRawQuery.close();
+            }
+            if (readableDatabase != null) {
+            }
+            return z;
+        }
+        if (readableDatabase != null) {
+            readableDatabase.close();
+        }
+        return z;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:33:0x0076, code lost:
-    
-        if (r4 != null) goto L27;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:34:0x0078, code lost:
-    
-        r4.close();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:40:0x0085, code lost:
-    
-        if (r4 != null) goto L27;
-     */
-    /* renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public boolean m24968a(java.lang.String r9, int r10) {
-        /*
-            r8 = this;
-            r0 = 0
-            r1 = 0
-            android.util.LruCache<java.lang.String, java.lang.Integer> r2 = org.android.agoo.message.MessageService.f21511c     // Catch: java.lang.Throwable -> L7e
-            java.lang.Object r2 = r2.get(r9)     // Catch: java.lang.Throwable -> L7e
-            java.lang.Integer r2 = (java.lang.Integer) r2     // Catch: java.lang.Throwable -> L7e
-            r3 = 1
-            if (r2 == 0) goto L35
-            int r2 = r2.intValue()     // Catch: java.lang.Throwable -> L7e
-            if (r10 != r2) goto L35
-            com.taobao.accs.utl.ALog$Level r2 = com.taobao.accs.utl.ALog.Level.E     // Catch: java.lang.Throwable -> L7e
-            boolean r2 = com.taobao.accs.utl.ALog.isPrintLog(r2)     // Catch: java.lang.Throwable -> L7e
-            if (r2 == 0) goto L33
-            java.lang.String r2 = "MessageService"
-            java.lang.StringBuilder r4 = new java.lang.StringBuilder     // Catch: java.lang.Throwable -> L7e
-            r4.<init>()     // Catch: java.lang.Throwable -> L7e
-            java.lang.String r5 = "hasMessageDuplicate,msgid="
-            r4.append(r5)     // Catch: java.lang.Throwable -> L7e
-            r4.append(r9)     // Catch: java.lang.Throwable -> L7e
-            java.lang.String r4 = r4.toString()     // Catch: java.lang.Throwable -> L7e
-            java.lang.Object[] r5 = new java.lang.Object[r1]     // Catch: java.lang.Throwable -> L7e
-            com.taobao.accs.utl.ALog.m9182e(r2, r4, r5)     // Catch: java.lang.Throwable -> L7e
-        L33:
-            r2 = 1
-            goto L36
-        L35:
-            r2 = 0
-        L36:
-            android.database.sqlite.SQLiteOpenHelper r4 = r8.f21512b     // Catch: java.lang.Throwable -> L7c
-            android.database.sqlite.SQLiteDatabase r4 = r4.getReadableDatabase()     // Catch: java.lang.Throwable -> L7c
-            if (r4 != 0) goto L44
-            if (r4 == 0) goto L43
-            r4.close()     // Catch: java.lang.Throwable -> L43
-        L43:
-            return r2
-        L44:
-            java.lang.String r5 = "select count(1) from message where id = ? and body_code=? create_time< date('now','-1 day')"
-            r6 = 2
-            java.lang.String[] r6 = new java.lang.String[r6]     // Catch: java.lang.Throwable -> L80
-            r6[r1] = r9     // Catch: java.lang.Throwable -> L80
-            java.lang.StringBuilder r9 = new java.lang.StringBuilder     // Catch: java.lang.Throwable -> L80
-            r9.<init>()     // Catch: java.lang.Throwable -> L80
-            java.lang.String r7 = ""
-            r9.append(r7)     // Catch: java.lang.Throwable -> L80
-            r9.append(r10)     // Catch: java.lang.Throwable -> L80
-            java.lang.String r9 = r9.toString()     // Catch: java.lang.Throwable -> L80
-            r6[r3] = r9     // Catch: java.lang.Throwable -> L80
-            android.database.Cursor r0 = r4.rawQuery(r5, r6)     // Catch: java.lang.Throwable -> L80
-            if (r0 == 0) goto L71
-            boolean r9 = r0.moveToFirst()     // Catch: java.lang.Throwable -> L80
-            if (r9 == 0) goto L71
-            int r9 = r0.getInt(r1)     // Catch: java.lang.Throwable -> L80
-            if (r9 <= 0) goto L71
-            r2 = 1
-        L71:
-            if (r0 == 0) goto L76
-            r0.close()     // Catch: java.lang.Throwable -> L88
-        L76:
-            if (r4 == 0) goto L88
-        L78:
-            r4.close()     // Catch: java.lang.Throwable -> L88
-            goto L88
-        L7c:
-            r4 = r0
-            goto L80
-        L7e:
-            r4 = r0
-            r2 = 0
-        L80:
-            if (r0 == 0) goto L85
-            r0.close()     // Catch: java.lang.Throwable -> L88
-        L85:
-            if (r4 == 0) goto L88
-            goto L78
-        L88:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.agoo.message.MessageService.m24968a(java.lang.String, int):boolean");
+    public boolean a(String str, int i2) {
+        SQLiteDatabase readableDatabase;
+        boolean z;
+        Cursor cursorRawQuery = null;
+        try {
+            try {
+                Integer num = f12888c.get(str);
+                if (num == null || i2 != num.intValue()) {
+                    z = false;
+                } else {
+                    if (ALog.isPrintLog(ALog.Level.E)) {
+                        ALog.e("MessageService", "hasMessageDuplicate,msgid=" + str, new Object[0]);
+                    }
+                    z = true;
+                }
+                try {
+                    readableDatabase = this.f12889b.getReadableDatabase();
+                } catch (Throwable unused) {
+                    readableDatabase = null;
+                }
+            } catch (Throwable unused2) {
+                readableDatabase = null;
+                z = false;
+            }
+        } catch (Throwable unused3) {
+        }
+        if (readableDatabase == null) {
+            if (readableDatabase != null) {
+                try {
+                    readableDatabase.close();
+                } catch (Throwable unused4) {
+                }
+            }
+            return z;
+        }
+        try {
+            cursorRawQuery = readableDatabase.rawQuery("select count(1) from message where id = ? and body_code=? create_time< date('now','-1 day')", new String[]{str, "" + i2});
+            if (cursorRawQuery != null && cursorRawQuery.moveToFirst()) {
+                if (cursorRawQuery.getInt(0) > 0) {
+                    z = true;
+                }
+            }
+            if (cursorRawQuery != null) {
+                cursorRawQuery.close();
+            }
+        } catch (Throwable unused5) {
+            if (cursorRawQuery != null) {
+                cursorRawQuery.close();
+            }
+            if (readableDatabase != null) {
+            }
+            return z;
+        }
+        if (readableDatabase != null) {
+            readableDatabase.close();
+        }
+        return z;
     }
 
-    /* renamed from: a */
-    public static final boolean m24960a(Context context, String str) {
+    public static final boolean a(Context context, String str) {
         return context.getPackageManager().getApplicationInfo(str, 0) != null;
     }
 
-    /* renamed from: a */
-    private static Bundle m24957a(long j2, MsgDO msgDO) {
+    private static Bundle a(long j2, MsgDO msgDO) {
         Bundle bundle = new Bundle();
         try {
             char[] charArray = Long.toBinaryString(j2).toCharArray();

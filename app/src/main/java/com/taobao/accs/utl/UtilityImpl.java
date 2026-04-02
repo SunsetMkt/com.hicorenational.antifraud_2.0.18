@@ -14,7 +14,6 @@ import android.os.Process;
 import android.text.TextUtils;
 import anet.channel.GlobalAppRuntimeInfo;
 import anet.channel.util.HMacUtil;
-import com.taobao.accs.client.C2978a;
 import com.taobao.accs.client.GlobalClientInfo;
 import com.taobao.accs.common.Constants;
 import com.taobao.accs.utl.ALog;
@@ -27,59 +26,52 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class UtilityImpl {
     public static final String NET_TYPE_2G = "2g";
     public static final String NET_TYPE_3G = "3g";
     public static final String NET_TYPE_4G = "4g";
     public static final String NET_TYPE_UNKNOWN = "unknown";
     public static final String NET_TYPE_WIFI = "wifi";
+    private static final byte[] a = new byte[0];
 
-    /* renamed from: a */
-    private static final byte[] f9701a = new byte[0];
-
-    /* renamed from: a */
-    public static String m9196a(Context context) {
+    public static String a(Context context) {
         String string = context.getSharedPreferences(Constants.SP_FILE_NAME, 4).getString(Constants.KEY_PROXY_HOST, null);
         if (!TextUtils.isEmpty(string)) {
             return string;
         }
-        String m9220f = m9220f();
-        if (TextUtils.isEmpty(m9220f)) {
+        String strF = f();
+        if (TextUtils.isEmpty(strF)) {
             return null;
         }
-        return m9220f;
+        return strF;
     }
 
-    /* renamed from: b */
-    public static int m9207b() {
+    public static int b() {
         return -1;
     }
 
-    /* renamed from: b */
-    public static int m9208b(Context context) {
+    public static int b(Context context) {
         int i2 = context.getSharedPreferences(Constants.SP_FILE_NAME, 4).getInt(Constants.KEY_PROXY_PORT, -1);
         if (i2 > 0) {
             return i2;
         }
-        if (m9196a(context) == null) {
+        if (a(context) == null) {
             return -1;
         }
         try {
-            return m9222g();
+            return g();
         } catch (NumberFormatException unused) {
             return -1;
         }
     }
 
-    /* renamed from: c */
-    public static boolean m9213c(Context context) {
+    public static boolean c(Context context) {
         String str;
         int i2;
-        synchronized (f9701a) {
+        synchronized (a) {
             SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP_FILE_NAME, 0);
             PackageInfo packageInfo = GlobalClientInfo.getInstance(context).getPackageInfo();
             int i3 = sharedPreferences.getInt(Constants.KEY_APP_VERSION_CODE, -1);
@@ -94,24 +86,21 @@ public class UtilityImpl {
             if (i3 == i2 && string.equals(str)) {
                 return false;
             }
-            m9234p(context);
-            ALog.m9183i("UtilityImpl", "appVersionChanged", "oldV", Integer.valueOf(i3), "nowV", Integer.valueOf(i2), "oldN", string, "nowN", str);
+            p(context);
+            ALog.i("UtilityImpl", "appVersionChanged", "oldV", Integer.valueOf(i3), "nowV", Integer.valueOf(i2), "oldN", string, "nowN", str);
             return true;
         }
     }
 
-    /* renamed from: c */
-    public static byte[] m9214c() {
+    public static byte[] c() {
         return null;
     }
 
-    /* renamed from: d */
-    public static String m9215d() {
-        return AbstractC1191a.f2571h;
+    public static String d() {
+        return d.c.a.b.a.a.f10075h;
     }
 
-    /* renamed from: d */
-    public static boolean m9217d(Context context) {
+    public static boolean d(Context context) throws Throwable {
         boolean z;
         if (context == null) {
             return false;
@@ -125,7 +114,7 @@ public class UtilityImpl {
             e = e2;
             context = null;
         }
-        synchronized (f9701a) {
+        synchronized (a) {
             try {
                 z = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).getBoolean(Constants.KEY_FOUCE_DISABLE, false);
                 return z;
@@ -136,7 +125,7 @@ public class UtilityImpl {
                     throw th;
                 } catch (Exception e3) {
                     e = e3;
-                    ALog.m9181e("UtilityImpl", "getFocusDisableStatus", e, new Object[0]);
+                    ALog.e("UtilityImpl", "getFocusDisableStatus", e, new Object[0]);
                     z = context;
                     return z;
                 }
@@ -145,10 +134,10 @@ public class UtilityImpl {
     }
 
     public static void disableService(Context context) {
-        ComponentName componentName = new ComponentName(context, C3042j.channelService);
+        ComponentName componentName = new ComponentName(context, j.channelService);
         PackageManager packageManager = context.getPackageManager();
         try {
-            ALog.m9180d("UtilityImpl", "disableService, cn=" + componentName.toString(), new Object[0]);
+            ALog.d("UtilityImpl", "disableService, cn=" + componentName.toString(), new Object[0]);
             if (packageManager.getServiceInfo(componentName, 128).enabled) {
                 packageManager.setComponentEnabledSetting(componentName, 2, 1);
                 killService(context);
@@ -157,89 +146,85 @@ public class UtilityImpl {
         }
     }
 
-    /* renamed from: e */
-    public static boolean m9219e(Context context) {
+    public static boolean e(Context context) {
         try {
         } catch (Exception e2) {
             e2.printStackTrace();
-            ALog.m9182e("UtilityImpl", C3042j.m9244a(e2), new Object[0]);
+            ALog.e("UtilityImpl", j.a(e2), new Object[0]);
         }
-        return context.getPackageManager().getServiceInfo(new ComponentName(context, C3042j.channelService), 128).enabled;
+        return context.getPackageManager().getServiceInfo(new ComponentName(context, j.channelService), 128).enabled;
     }
 
     public static void enableService(Context context) {
-        ComponentName componentName = new ComponentName(context, C3042j.channelService);
-        ALog.m9180d("UtilityImpl", "enableService", "comptName", componentName);
+        ComponentName componentName = new ComponentName(context, j.channelService);
+        ALog.d("UtilityImpl", "enableService", "comptName", componentName);
         try {
             context.getPackageManager().setComponentEnabledSetting(componentName, 1, 1);
         } catch (Exception e2) {
-            ALog.m9185w("UtilityImpl", "enableService", e2, new Object[0]);
+            ALog.w("UtilityImpl", "enableService", e2, new Object[0]);
         }
     }
 
-    /* renamed from: f */
-    public static boolean m9221f(Context context) {
+    public static boolean f(Context context) {
         context.getPackageName();
-        ComponentName componentName = new ComponentName(context, C2978a.m8977b());
+        ComponentName componentName = new ComponentName(context, com.taobao.accs.client.a.b());
         PackageManager packageManager = context.getPackageManager();
         if (!componentName.getPackageName().equals("!")) {
             return packageManager.getServiceInfo(componentName, 128).enabled;
         }
-        ALog.m9182e("UtilityImpl", "getAgooServiceEnabled,exception,comptName.getPackageName()=" + componentName.getPackageName(), new Object[0]);
+        ALog.e("UtilityImpl", "getAgooServiceEnabled,exception,comptName.getPackageName()=" + componentName.getPackageName(), new Object[0]);
         return false;
     }
 
     public static void focusDisableService(Context context) {
         try {
-            synchronized (f9701a) {
-                SharedPreferences.Editor edit = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).edit();
-                edit.putBoolean(Constants.KEY_FOUCE_DISABLE, true);
-                edit.apply();
+            synchronized (a) {
+                SharedPreferences.Editor editorEdit = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).edit();
+                editorEdit.putBoolean(Constants.KEY_FOUCE_DISABLE, true);
+                editorEdit.apply();
                 disableService(context);
             }
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "focusDisableService", th, new Object[0]);
+            ALog.e("UtilityImpl", "focusDisableService", th, new Object[0]);
         }
     }
 
     public static void focusEnableService(Context context) {
         try {
-            synchronized (f9701a) {
-                SharedPreferences.Editor edit = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).edit();
-                edit.putBoolean(Constants.KEY_FOUCE_DISABLE, false);
-                edit.apply();
+            synchronized (a) {
+                SharedPreferences.Editor editorEdit = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).edit();
+                editorEdit.putBoolean(Constants.KEY_FOUCE_DISABLE, false);
+                editorEdit.apply();
                 enableService(context);
             }
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "focusEnableService", th, new Object[0]);
+            ALog.e("UtilityImpl", "focusEnableService", th, new Object[0]);
         }
     }
 
-    /* renamed from: g */
-    public static String m9223g(Context context) {
-        NetworkInfo networkInfo;
+    public static String g(Context context) {
+        NetworkInfo activeNetworkInfo;
         try {
-            networkInfo = ((ConnectivityManager) context.getSystemService("connectivity")).getActiveNetworkInfo();
+            activeNetworkInfo = ((ConnectivityManager) context.getSystemService("connectivity")).getActiveNetworkInfo();
         } catch (Throwable unused) {
-            networkInfo = null;
+            activeNetworkInfo = null;
         }
-        if (networkInfo == null) {
+        if (activeNetworkInfo == null) {
             return "unknown";
         }
-        if (networkInfo.getType() == 1) {
+        if (activeNetworkInfo.getType() == 1) {
             return NET_TYPE_WIFI;
         }
-        String subtypeName = networkInfo.getSubtypeName();
-        return !TextUtils.isEmpty(subtypeName) ? subtypeName.replaceAll(AbstractC1191a.f2568g, "") : "";
+        String subtypeName = activeNetworkInfo.getSubtypeName();
+        return !TextUtils.isEmpty(subtypeName) ? subtypeName.replaceAll(d.c.a.b.a.a.f10074g, "") : "";
     }
 
-    /* renamed from: h */
-    public static String m9225h(Context context) {
+    public static String h(Context context) {
         NetworkInfo activeNetworkInfo;
         try {
             activeNetworkInfo = ((ConnectivityManager) context.getSystemService("connectivity")).getActiveNetworkInfo();
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "getNetworkTypeExt", th, new Object[0]);
+            ALog.e("UtilityImpl", "getNetworkTypeExt", th, new Object[0]);
             return null;
         }
         if (activeNetworkInfo == null) {
@@ -279,12 +264,11 @@ public class UtilityImpl {
                 }
                 return NET_TYPE_3G;
         }
-        ALog.m9181e("UtilityImpl", "getNetworkTypeExt", th, new Object[0]);
+        ALog.e("UtilityImpl", "getNetworkTypeExt", th, new Object[0]);
         return null;
     }
 
-    /* renamed from: i */
-    public static boolean m9227i(Context context) {
+    public static boolean i(Context context) {
         if (context != null) {
             try {
                 NetworkInfo activeNetworkInfo = GlobalClientInfo.getInstance(context).getConnectivityManager().getActiveNetworkInfo();
@@ -292,23 +276,21 @@ public class UtilityImpl {
                     return activeNetworkInfo.isConnected();
                 }
             } catch (Throwable th) {
-                ALog.m9181e("UtilityImpl", "isNetworkConnected", th, new Object[0]);
+                ALog.e("UtilityImpl", "isNetworkConnected", th, new Object[0]);
             }
         }
         return false;
     }
 
     public static boolean isMainProcess(Context context) {
-        return C3042j.m9245a(context);
+        return j.a(context);
     }
 
-    /* renamed from: j */
-    public static String m9228j(Context context) {
-        return C3042j.m9247b(context);
+    public static String j(Context context) {
+        return j.b(context);
     }
 
-    /* renamed from: k */
-    public static long m9229k(Context context) {
+    public static long k(Context context) {
         long j2;
         SharedPreferences sharedPreferences;
         try {
@@ -320,46 +302,44 @@ public class UtilityImpl {
             j2 = 0;
         }
         try {
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putLong(Constants.SP_KEY_SERVICE_START, 0L);
-            edit.putLong(Constants.SP_KEY_SERVICE_END, 0L);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+            editorEdit.putLong(Constants.SP_KEY_SERVICE_START, 0L);
+            editorEdit.putLong(Constants.SP_KEY_SERVICE_END, 0L);
+            editorEdit.apply();
         } catch (Throwable th2) {
             th = th2;
-            ALog.m9181e("UtilityImpl", "getServiceAliveTime:", th, new Object[0]);
-            return j2;
+            ALog.e("UtilityImpl", "getServiceAliveTime:", th, new Object[0]);
         }
         return j2;
     }
 
     public static void killService(Context context) {
         try {
-            int myUid = Process.myUid();
+            int iMyUid = Process.myUid();
             ActivityManager activityManager = (ActivityManager) context.getSystemService("activity");
             if (activityManager == null) {
                 return;
             }
             for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : activityManager.getRunningAppProcesses()) {
-                if (runningAppProcessInfo.uid == myUid) {
-                    if (!TextUtils.isEmpty(C2978a.f9403d) && C2978a.f9403d.equals(runningAppProcessInfo.processName)) {
-                        ALog.m9182e("UtilityImpl", "killService", "processName", runningAppProcessInfo.processName);
+                if (runningAppProcessInfo.uid == iMyUid) {
+                    if (!TextUtils.isEmpty(com.taobao.accs.client.a.f5731d) && com.taobao.accs.client.a.f5731d.equals(runningAppProcessInfo.processName)) {
+                        ALog.e("UtilityImpl", "killService", "processName", runningAppProcessInfo.processName);
                         Process.killProcess(runningAppProcessInfo.pid);
                         return;
                     } else if (runningAppProcessInfo.processName.endsWith(":channel")) {
-                        ALog.m9182e("UtilityImpl", "killService", "processName", runningAppProcessInfo.processName);
+                        ALog.e("UtilityImpl", "killService", "processName", runningAppProcessInfo.processName);
                         Process.killProcess(runningAppProcessInfo.pid);
                         return;
                     }
                 }
             }
-            ALog.m9182e("UtilityImpl", "kill nothing", new Object[0]);
+            ALog.e("UtilityImpl", "kill nothing", new Object[0]);
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "killService", th, new Object[0]);
+            ALog.e("UtilityImpl", "killService", th, new Object[0]);
         }
     }
 
-    /* renamed from: l */
-    public static String m9230l(Context context) {
+    public static String l(Context context) {
         try {
             return GlobalClientInfo.getInstance(context).getPackageInfo().versionName;
         } catch (Exception e2) {
@@ -368,48 +348,43 @@ public class UtilityImpl {
         }
     }
 
-    /* renamed from: m */
-    public static String m9231m(Context context) {
+    public static String m(Context context) {
         try {
             return context.getSharedPreferences(Constants.SP_COOKIE_FILE_NAME, 4).getString(Constants.SP_KEY_COOKIE_SEC, null);
         } catch (Exception e2) {
-            ALog.m9181e("UtilityImpl", "reStoreCookie fail", e2, new Object[0]);
+            ALog.e("UtilityImpl", "reStoreCookie fail", e2, new Object[0]);
             return null;
         }
     }
 
-    /* renamed from: n */
-    public static void m9232n(Context context) {
+    public static void n(Context context) {
         try {
-            GlobalClientInfo.f9388c = null;
-            SharedPreferences.Editor edit = context.getSharedPreferences(Constants.SP_COOKIE_FILE_NAME, 0).edit();
-            edit.clear();
-            edit.apply();
+            GlobalClientInfo.f5717c = null;
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(Constants.SP_COOKIE_FILE_NAME, 0).edit();
+            editorEdit.clear();
+            editorEdit.apply();
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "clearCookie fail", th, new Object[0]);
+            ALog.e("UtilityImpl", "clearCookie fail", th, new Object[0]);
         }
     }
 
-    /* renamed from: o */
-    public static String m9233o(Context context) {
-        return C3042j.m9248c(context);
+    public static String o(Context context) {
+        return j.c(context);
     }
 
-    /* renamed from: p */
-    private static void m9234p(Context context) {
+    private static void p(Context context) {
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).edit();
-            edit.putInt(Constants.KEY_APP_VERSION_CODE, GlobalClientInfo.getInstance(context).getPackageInfo().versionCode);
-            edit.putString(Constants.KEY_APP_VERSION_NAME, GlobalClientInfo.getInstance(context).getPackageInfo().versionName);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(Constants.SP_FILE_NAME, 0).edit();
+            editorEdit.putInt(Constants.KEY_APP_VERSION_CODE, GlobalClientInfo.getInstance(context).getPackageInfo().versionCode);
+            editorEdit.putString(Constants.KEY_APP_VERSION_NAME, GlobalClientInfo.getInstance(context).getPackageInfo().versionName);
+            editorEdit.apply();
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "saveAppVersion", th, new Object[0]);
+            ALog.e("UtilityImpl", "saveAppVersion", th, new Object[0]);
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    /* renamed from: b */
-    public static boolean m9211b(String str, Context context) {
+    public static boolean b(String str, Context context) {
         boolean z;
         try {
         } catch (Throwable th) {
@@ -417,9 +392,9 @@ public class UtilityImpl {
             str = null;
         }
         try {
-            synchronized (f9701a) {
+            synchronized (a) {
                 try {
-                    z = !context.getSharedPreferences(str, 0).getString(Constants.SP_KEY_NOTIFICATION_STATE, "").equals(C3042j.m9248c(context));
+                    z = !context.getSharedPreferences(str, 0).getString(Constants.SP_KEY_NOTIFICATION_STATE, "").equals(j.c(context));
                     return z;
                 } catch (Throwable th2) {
                     th = th2;
@@ -428,66 +403,63 @@ public class UtilityImpl {
                         throw th;
                     } catch (Throwable th3) {
                         th = th3;
-                        ALog.m9181e("UtilityImpl", "notificationStateChanged", th, new Object[0]);
+                        ALog.e("UtilityImpl", "notificationStateChanged", th, new Object[0]);
                         z = str;
                         return z;
                     }
                 }
             }
         } catch (Throwable th4) {
-            th = th4;
+            while (true) {
+                th = th4;
+            }
         }
     }
 
-    /* renamed from: d */
-    public static String m9216d(String str, Context context) {
+    public static String d(String str, Context context) {
         String string;
         try {
-            synchronized (f9701a) {
-                string = context.getSharedPreferences(str, 0).getString("utdid", C3042j.m9247b(context));
+            synchronized (a) {
+                string = context.getSharedPreferences(str, 0).getString("utdid", j.b(context));
             }
             return string;
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "getUtdid", th, new Object[0]);
+            ALog.e("UtilityImpl", "getUtdid", th, new Object[0]);
             return "";
         }
     }
 
-    /* renamed from: i */
-    public static String m9226i() {
+    public static String i() {
         Class<?>[] clsArr = {String.class};
         Object[] objArr = {"ro.build.version.emui"};
         try {
             Class<?> cls = Class.forName("android.os.SystemProperties");
             String str = (String) cls.getDeclaredMethod("get", clsArr).invoke(cls, objArr);
-            ALog.m9180d("UtilityImpl", "getEmuiVersion", "result", str);
+            ALog.d("UtilityImpl", "getEmuiVersion", "result", str);
             return !TextUtils.isEmpty(str) ? str : "";
         } catch (Exception e2) {
-            ALog.m9181e("UtilityImpl", "getEmuiVersion", e2, new Object[0]);
+            ALog.e("UtilityImpl", "getEmuiVersion", e2, new Object[0]);
             return "";
         }
     }
 
-    /* renamed from: a */
-    public static String m9195a(long j2) {
+    public static String a(long j2) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Long.valueOf(j2));
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "formatDay", th, new Object[0]);
+            ALog.e("UtilityImpl", "formatDay", th, new Object[0]);
             return "";
         }
     }
 
-    /* renamed from: f */
-    public static String m9220f() {
+    public static String f() {
         if (Build.VERSION.SDK_INT < 11) {
             return Proxy.getDefaultHost();
         }
         return System.getProperty("http.proxyHost");
     }
 
-    /* renamed from: g */
-    public static int m9222g() {
+    public static int g() {
         if (Build.VERSION.SDK_INT < 11) {
             return Proxy.getDefaultPort();
         }
@@ -498,90 +470,82 @@ public class UtilityImpl {
         }
     }
 
-    /* renamed from: e */
-    public static long m9218e() {
-        return C3042j.m9242a();
+    public static long e() {
+        return j.a();
     }
 
-    /* renamed from: a */
-    public static boolean m9203a() {
+    public static boolean a() {
         try {
             return !GlobalAppRuntimeInfo.isAppBackground();
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "isForeground error ", th, new Object[0]);
+            ALog.e("UtilityImpl", "isForeground error ", th, new Object[0]);
             return false;
         }
     }
 
-    /* renamed from: a */
-    public static String m9197a(String str, String str2, String str3) {
-        String str4 = null;
+    public static String a(String str, String str2, String str3) {
+        String strHmacSha1Hex = null;
         if (TextUtils.isEmpty(str)) {
-            ALog.m9182e("UtilityImpl", "getAppsign appkey null", new Object[0]);
+            ALog.e("UtilityImpl", "getAppsign appkey null", new Object[0]);
             return null;
         }
         try {
             if (!TextUtils.isEmpty(str2)) {
-                str4 = HMacUtil.hmacSha1Hex(str2.getBytes(), (str + str3).getBytes());
+                strHmacSha1Hex = HMacUtil.hmacSha1Hex(str2.getBytes(), (str + str3).getBytes());
             } else {
-                ALog.m9182e("UtilityImpl", "getAppsign secret null", new Object[0]);
+                ALog.e("UtilityImpl", "getAppsign secret null", new Object[0]);
             }
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "getAppsign", th, new Object[0]);
+            ALog.e("UtilityImpl", "getAppsign", th, new Object[0]);
         }
-        return str4;
+        return strHmacSha1Hex;
     }
 
-    /* renamed from: h */
-    public static String m9224h() {
-        String str = m9220f() + com.xiaomi.mipush.sdk.Constants.COLON_SEPARATOR + m9222g();
+    public static String h() {
+        String str = f() + com.xiaomi.mipush.sdk.Constants.COLON_SEPARATOR + g();
         if (ALog.isPrintLog(ALog.Level.D)) {
-            ALog.m9180d("UtilityImpl", "getProxy:" + str, new Object[0]);
+            ALog.d("UtilityImpl", "getProxy:" + str, new Object[0]);
         }
         return str;
     }
 
-    /* renamed from: b */
-    public static void m9210b(Context context, String str) {
+    public static void b(Context context, String str) {
         try {
             if (TextUtils.isEmpty(str)) {
                 return;
             }
-            GlobalClientInfo.f9388c = str;
-            SharedPreferences.Editor edit = context.getSharedPreferences(Constants.SP_COOKIE_FILE_NAME, 0).edit();
-            edit.putString(Constants.SP_KEY_COOKIE_SEC, str);
-            edit.apply();
+            GlobalClientInfo.f5717c = str;
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(Constants.SP_COOKIE_FILE_NAME, 0).edit();
+            editorEdit.putString(Constants.SP_KEY_COOKIE_SEC, str);
+            editorEdit.apply();
         } catch (Exception e2) {
-            ALog.m9181e("UtilityImpl", "storeCookie fail", e2, new Object[0]);
+            ALog.e("UtilityImpl", "storeCookie fail", e2, new Object[0]);
         }
     }
 
-    /* renamed from: c */
-    public static void m9212c(String str, Context context) {
+    public static void c(String str, Context context) {
         try {
-            synchronized (f9701a) {
-                SharedPreferences.Editor edit = context.getSharedPreferences(str, 0).edit();
-                edit.putString("utdid", C3042j.m9247b(context));
-                edit.apply();
+            synchronized (a) {
+                SharedPreferences.Editor editorEdit = context.getSharedPreferences(str, 0).edit();
+                editorEdit.putString("utdid", j.b(context));
+                editorEdit.apply();
             }
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "saveUtdid", th, new Object[0]);
+            ALog.e("UtilityImpl", "saveUtdid", th, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    public static boolean m9205a(Context context, String str) {
+    public static boolean a(Context context, String str) {
         try {
             context.getPackageManager().getPackageInfo(str, 0);
             return true;
         } catch (Throwable unused) {
-            ALog.m9182e("UtilityImpl", "package not exist", "pkg", str);
+            ALog.e("UtilityImpl", "package not exist", "pkg", str);
             return false;
         }
     }
 
-    /* renamed from: b */
-    public static String m9209b(String str) {
+    public static String b(String str) {
         try {
             return URLEncoder.encode(str, "utf-8");
         } catch (UnsupportedEncodingException unused) {
@@ -590,8 +554,7 @@ public class UtilityImpl {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    /* renamed from: a */
-    public static boolean m9206a(String str, Context context) {
+    public static boolean a(String str, Context context) {
         boolean z;
         try {
         } catch (Throwable th) {
@@ -599,9 +562,9 @@ public class UtilityImpl {
             str = null;
         }
         try {
-            synchronized (f9701a) {
+            synchronized (a) {
                 try {
-                    z = !context.getSharedPreferences(str, 0).getString("utdid", "").equals(C3042j.m9247b(context));
+                    z = !context.getSharedPreferences(str, 0).getString("utdid", "").equals(j.b(context));
                     return z;
                 } catch (Throwable th2) {
                     th = th2;
@@ -610,42 +573,41 @@ public class UtilityImpl {
                         throw th;
                     } catch (Throwable th3) {
                         th = th3;
-                        ALog.m9181e("UtilityImpl", "utdidChanged", th, new Object[0]);
+                        ALog.e("UtilityImpl", "utdidChanged", th, new Object[0]);
                         z = str;
                         return z;
                     }
                 }
             }
         } catch (Throwable th4) {
-            th = th4;
+            while (true) {
+                th = th4;
+            }
         }
     }
 
-    /* renamed from: a */
-    public static void m9201a(Context context, String str, long j2) {
+    public static void a(Context context, String str, long j2) {
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(Constants.SP_CHANNEL_FILE_NAME, 0).edit();
-            edit.putLong(str, j2);
-            edit.apply();
-            ALog.m9180d("UtilityImpl", "setServiceTime:" + j2, new Object[0]);
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(Constants.SP_CHANNEL_FILE_NAME, 0).edit();
+            editorEdit.putLong(str, j2);
+            editorEdit.apply();
+            ALog.d("UtilityImpl", "setServiceTime:" + j2, new Object[0]);
         } catch (Throwable th) {
-            ALog.m9181e("UtilityImpl", "setServiceTime:", th, new Object[0]);
+            ALog.e("UtilityImpl", "setServiceTime:", th, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    public static void m9202a(Context context, String str, String str2) {
+    public static void a(Context context, String str, String str2) {
         try {
-            SharedPreferences.Editor edit = context.getSharedPreferences(str, 4).edit();
-            edit.putString(Constants.SP_KEY_NOTIFICATION_STATE, str2);
-            edit.apply();
+            SharedPreferences.Editor editorEdit = context.getSharedPreferences(str, 4).edit();
+            editorEdit.putString(Constants.SP_KEY_NOTIFICATION_STATE, str2);
+            editorEdit.apply();
         } catch (Exception e2) {
-            ALog.m9181e("UtilityImpl", "saveNotificationState fail", e2, new Object[0]);
+            ALog.e("UtilityImpl", "saveNotificationState fail", e2, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    public static int m9193a(String str) {
+    public static int a(String str) {
         if (str == null) {
             return 0;
         }
@@ -657,44 +619,40 @@ public class UtilityImpl {
         }
     }
 
-    /* renamed from: a */
-    public static String m9198a(Throwable th) {
-        return C3042j.m9244a(th);
+    public static String a(Throwable th) {
+        return j.a(th);
     }
 
-    /* renamed from: a */
-    public static String m9194a(int i2) {
+    public static String a(int i2) {
         try {
             return String.valueOf(i2);
         } catch (Exception e2) {
-            ALog.m9181e("UtilityImpl", "int2String", e2, new Object[0]);
+            ALog.e("UtilityImpl", "int2String", e2, new Object[0]);
             return null;
         }
     }
 
-    /* renamed from: a */
-    public static final Map<String, String> m9200a(Map<String, List<String>> map) {
-        HashMap hashMap = new HashMap();
+    public static final Map<String, String> a(Map<String, List<String>> map) {
+        HashMap map2 = new HashMap();
         try {
             for (Map.Entry<String, List<String>> entry : map.entrySet()) {
                 String key = entry.getKey();
                 if (!TextUtils.isEmpty(key)) {
-                    String m9199a = m9199a(entry.getValue());
-                    if (!TextUtils.isEmpty(m9199a)) {
+                    String strA = a(entry.getValue());
+                    if (!TextUtils.isEmpty(strA)) {
                         if (!key.startsWith(com.xiaomi.mipush.sdk.Constants.COLON_SEPARATOR)) {
                             key = key.toLowerCase(Locale.US);
                         }
-                        hashMap.put(key, m9199a);
+                        map2.put(key, strA);
                     }
                 }
             }
         } catch (Throwable unused) {
         }
-        return hashMap;
+        return map2;
     }
 
-    /* renamed from: a */
-    public static final String m9199a(List<String> list) {
+    public static final String a(List<String> list) {
         StringBuffer stringBuffer = new StringBuffer();
         int size = list.size();
         for (int i2 = 0; i2 < size; i2++) {
@@ -706,8 +664,7 @@ public class UtilityImpl {
         return stringBuffer.toString();
     }
 
-    /* renamed from: a */
-    public static boolean m9204a(long j2, long j3) {
+    public static boolean a(long j2, long j3) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(j2));
         Calendar calendar2 = Calendar.getInstance();

@@ -3,7 +3,7 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CheckFraudBean extends BaseBean {
     private String bankName;
     private String content;

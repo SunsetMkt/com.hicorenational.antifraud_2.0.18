@@ -14,7 +14,7 @@ import androidx.camera.core.impl.OptionsBundle;
 import java.util.HashSet;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Camera2ImplConfig implements Config {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY})

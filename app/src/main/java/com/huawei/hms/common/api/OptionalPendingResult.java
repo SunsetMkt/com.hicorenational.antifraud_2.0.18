@@ -3,8 +3,8 @@ package com.huawei.hms.common.api;
 import com.huawei.hms.support.api.client.PendingResult;
 import com.huawei.hms.support.api.client.Result;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public abstract class OptionalPendingResult<R extends Result> extends PendingResult<R> {
     public abstract R get();
 

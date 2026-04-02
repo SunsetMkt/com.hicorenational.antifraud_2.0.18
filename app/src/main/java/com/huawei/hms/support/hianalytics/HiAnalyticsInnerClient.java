@@ -8,7 +8,7 @@ import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
 import com.huawei.hms.utils.Util;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HiAnalyticsInnerClient extends HiAnalyticsBase {
     public static void reportEntryClient(Context context, String str, String str2, String str3, String str4) {
         Map<String, String> mapForBi = HiAnalyticsBase.getMapForBi(context, str);

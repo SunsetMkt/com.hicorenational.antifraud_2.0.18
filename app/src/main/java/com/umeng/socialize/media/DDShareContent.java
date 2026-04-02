@@ -11,7 +11,7 @@ import com.android.dingtalk.share.ddsharemodule.message.DDWebpageMessage;
 import com.umeng.socialize.ShareContent;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DDShareContent extends SimpleShareContent {
     public DDShareContent(ShareContent shareContent) {
         super(shareContent);

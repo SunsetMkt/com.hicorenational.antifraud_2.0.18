@@ -3,13 +3,11 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CriminalBean extends BaseBean {
     private List<UploadFileBean> audios;
     private String caseInfoID;
-
-    /* renamed from: id */
-    private String f1591id;
+    private String id;
     private List<CallCriminalBean> mobiles;
     private List<UploadFileBean> printscreens;
     private List<SocialCriminalBean> socialAccounts;
@@ -23,7 +21,7 @@ public class CriminalBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1591id;
+        return this.id;
     }
 
     public List<CallCriminalBean> getMobiles() {
@@ -47,7 +45,7 @@ public class CriminalBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1591id = str;
+        this.id = str;
     }
 
     public void setMobiles(List<CallCriminalBean> list) {

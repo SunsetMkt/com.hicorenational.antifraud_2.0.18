@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import com.android.dingtalk.share.ddsharemodule.ShareConstant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class BaseReq {
     public String mTransaction;
 

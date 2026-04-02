@@ -2,7 +2,7 @@ package com.huawei.hms.api;
 
 import android.content.Intent;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UserRecoverableException extends Exception {
     private final Intent mIntent;
 

@@ -11,7 +11,7 @@ import androidx.camera.core.impl.SessionConfig;
 import androidx.camera.core.internal.TargetConfig;
 import androidx.camera.core.internal.UseCaseEventConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface UseCaseConfig<T extends UseCase> extends TargetConfig<T>, Config, UseCaseEventConfig {
     public static final Config.Option<SessionConfig> OPTION_DEFAULT_SESSION_CONFIG = Config.Option.create("camerax.core.useCase.defaultSessionConfig", SessionConfig.class);
     public static final Config.Option<CaptureConfig> OPTION_DEFAULT_CAPTURE_CONFIG = Config.Option.create("camerax.core.useCase.defaultCaptureConfig", CaptureConfig.class);

@@ -12,14 +12,12 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IOUtil {
+    private static final String a = "IOUtil";
 
-    /* renamed from: a */
-    private static final String f8265a = "IOUtil";
-
-    /* renamed from: b */
-    private static final int f8266b = 4096;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final int f5233b = 4096;
 
     public static void close(Cursor cursor) {
         if (cursor != null) {
@@ -59,12 +57,12 @@ public class IOUtil {
     public static long copy(InputStream inputStream, OutputStream outputStream, byte[] bArr) throws IOException {
         long j2 = 0;
         while (true) {
-            int read = inputStream.read(bArr);
-            if (-1 == read) {
+            int i2 = inputStream.read(bArr);
+            if (-1 == i2) {
                 return j2;
             }
-            outputStream.write(bArr, 0, read);
-            j2 += read;
+            outputStream.write(bArr, 0, i2);
+            j2 += (long) i2;
         }
     }
 

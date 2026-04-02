@@ -3,22 +3,21 @@ package com.luck.picture.lib.tools;
 import android.content.Context;
 import android.widget.Toast;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ToastUtils {
     private static final long TIME = 1500;
     private static long lastToastTime;
 
     public static boolean isShowToast() {
-        long currentTimeMillis = System.currentTimeMillis();
-        if (currentTimeMillis - lastToastTime < TIME) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (jCurrentTimeMillis - lastToastTime < TIME) {
             return true;
         }
-        lastToastTime = currentTimeMillis;
+        lastToastTime = jCurrentTimeMillis;
         return false;
     }
 
-    /* renamed from: s */
-    public static void m8140s(Context context, String str) {
+    public static void s(Context context, String str) {
         if (isShowToast()) {
             return;
         }

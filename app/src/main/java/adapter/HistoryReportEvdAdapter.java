@@ -8,76 +8,63 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.List;
 import network.HistoryListInfo;
-import p245d.C4440a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.RowsBean, BaseViewHolder> {
+    private List<HistoryListInfo.RowsBean> V;
+    private b W;
+    private boolean X;
 
-    /* renamed from: V */
-    private List<HistoryListInfo.RowsBean> f217V;
+    class a implements View.OnClickListener {
+        final /* synthetic */ int a;
 
-    /* renamed from: W */
-    private InterfaceC0065b f218W;
-
-    /* renamed from: X */
-    private boolean f219X;
-
-    /* renamed from: adapter.HistoryReportEvdAdapter$a */
-    class ViewOnClickListenerC0064a implements View.OnClickListener {
-
-        /* renamed from: a */
-        final /* synthetic */ int f220a;
-
-        ViewOnClickListenerC0064a(int i2) {
-            this.f220a = i2;
+        a(int i2) {
+            this.a = i2;
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            if (HistoryReportEvdAdapter.this.f218W != null) {
-                HistoryListInfo.RowsBean rowsBean = (HistoryListInfo.RowsBean) HistoryReportEvdAdapter.this.f217V.get(this.f220a);
-                HistoryReportEvdAdapter.this.f218W.onItemClickListener(rowsBean);
+            if (HistoryReportEvdAdapter.this.W != null) {
+                HistoryListInfo.RowsBean rowsBean = (HistoryListInfo.RowsBean) HistoryReportEvdAdapter.this.V.get(this.a);
+                HistoryReportEvdAdapter.this.W.onItemClickListener(rowsBean);
                 rowsBean.getInfo().setRedPoint(0);
-                HistoryReportEvdAdapter.this.notifyItemChanged(this.f220a);
+                HistoryReportEvdAdapter.this.notifyItemChanged(this.a);
             }
         }
     }
 
-    /* renamed from: adapter.HistoryReportEvdAdapter$b */
-    public interface InterfaceC0065b {
+    public interface b {
         void onItemClickListener(HistoryListInfo.RowsBean rowsBean);
     }
 
     public HistoryReportEvdAdapter(List<HistoryListInfo.RowsBean> list) {
-        super(C2113R.layout.item_history_report, list);
-        this.f219X = false;
-        this.f217V = list;
-        this.f219X = C4440a.m16409k();
+        super(R.layout.item_history_report, list);
+        this.X = false;
+        this.V = list;
+        this.X = e.a.k();
     }
 
-    public void setOnItemClickListener(InterfaceC0065b interfaceC0065b) {
-        this.f218W = interfaceC0065b;
+    public void setOnItemClickListener(b bVar) {
+        this.W = bVar;
     }
 
-    /* renamed from: a */
-    public void m244a(List<HistoryListInfo.RowsBean> list) {
-        this.f217V.clear();
-        this.f217V.addAll(list);
+    public void a(List<HistoryListInfo.RowsBean> list) {
+        this.V.clear();
+        this.V.addAll(list);
         notifyDataSetChanged();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.chad.library.adapter.base.BaseQuickAdapter
-    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
-    public void mo204a(BaseViewHolder baseViewHolder, HistoryListInfo.RowsBean rowsBean) {
-        TextView textView = (TextView) baseViewHolder.m5224c(C2113R.id.tv_self);
-        TextView textView2 = (TextView) baseViewHolder.m5224c(C2113R.id.tv_case_num);
-        ImageView imageView = (ImageView) baseViewHolder.m5224c(C2113R.id.iv_dk_tag);
-        TextView textView3 = (TextView) baseViewHolder.m5224c(C2113R.id.tv_reply);
-        TextView textView4 = (TextView) baseViewHolder.m5224c(C2113R.id.red_tip);
+    public void a(BaseViewHolder baseViewHolder, HistoryListInfo.RowsBean rowsBean) {
+        TextView textView = (TextView) baseViewHolder.c(R.id.tv_self);
+        TextView textView2 = (TextView) baseViewHolder.c(R.id.tv_case_num);
+        ImageView imageView = (ImageView) baseViewHolder.c(R.id.iv_dk_tag);
+        TextView textView3 = (TextView) baseViewHolder.c(R.id.tv_reply);
+        TextView textView4 = (TextView) baseViewHolder.c(R.id.red_tip);
         HistoryListInfo.RowsBean.DetailsBean info = rowsBean.getInfo();
         String evidenceCount = rowsBean.getEvidenceCount();
         info.getCaseNumber();
@@ -86,12 +73,12 @@ public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.Ro
         String submitTime = info.getSubmitTime();
         info.getRegion();
         if (TextUtils.isEmpty(caseCategoryText)) {
-            caseCategoryText = "其他诈骗";
+            caseCategoryText = "\u5176\u4ed6\u8bc8\u9a97";
         }
-        baseViewHolder.m5211a(C2113R.id.casecategory, (CharSequence) caseCategoryText);
-        baseViewHolder.m5211a(C2113R.id.report_size, (CharSequence) ("(" + evidenceCount + "项举报内容)"));
+        baseViewHolder.a(R.id.casecategory, (CharSequence) caseCategoryText);
+        baseViewHolder.a(R.id.report_size, (CharSequence) ("(" + evidenceCount + "\u9879\u4e3e\u62a5\u5185\u5bb9)"));
         TextUtils.isEmpty(caseDescription);
-        baseViewHolder.m5211a(C2113R.id.report_time, (CharSequence) submitTime);
+        baseViewHolder.a(R.id.report_time, (CharSequence) submitTime);
         textView.setVisibility(8);
         textView2.setVisibility(8);
         imageView.setVisibility(8);
@@ -100,18 +87,18 @@ public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.Ro
         } else {
             textView4.setVisibility(8);
         }
-        if (this.f219X) {
+        if (this.X) {
             if (info.getReplyStatus() == 1) {
-                textView3.setText("待受理");
+                textView3.setText("\u5f85\u53d7\u7406");
                 textView3.setTextColor(Color.parseColor("#999999"));
                 return;
             } else if (info.getReplyStatus() == 2) {
-                textView3.setText("已受理");
+                textView3.setText("\u5df2\u53d7\u7406");
                 textView3.setTextColor(Color.parseColor("#999999"));
                 return;
             } else {
                 if (info.getReplyStatus() == 3) {
-                    textView3.setText("已回复");
+                    textView3.setText("\u5df2\u56de\u590d");
                     textView3.setTextColor(Color.parseColor("#2CAF28"));
                     return;
                 }
@@ -122,9 +109,9 @@ public class HistoryReportEvdAdapter extends BaseQuickAdapter<HistoryListInfo.Ro
     }
 
     @Override // com.chad.library.adapter.base.BaseQuickAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
-    /* renamed from: a */
+    /* JADX INFO: renamed from: a */
     public void onBindViewHolder(BaseViewHolder baseViewHolder, @SuppressLint({"RecyclerView"}) int i2) {
-        super.onBindViewHolder((HistoryReportEvdAdapter) baseViewHolder, i2);
-        baseViewHolder.itemView.setOnClickListener(new ViewOnClickListenerC0064a(i2));
+        super.onBindViewHolder(baseViewHolder, i2);
+        baseViewHolder.itemView.setOnClickListener(new a(i2));
     }
 }

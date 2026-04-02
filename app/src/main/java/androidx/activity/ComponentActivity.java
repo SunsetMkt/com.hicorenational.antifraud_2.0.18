@@ -21,7 +21,7 @@ import androidx.savedstate.SavedStateRegistry;
 import androidx.savedstate.SavedStateRegistryController;
 import androidx.savedstate.SavedStateRegistryOwner;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ComponentActivity extends androidx.core.app.ComponentActivity implements LifecycleOwner, ViewModelStoreOwner, SavedStateRegistryOwner, OnBackPressedDispatcherOwner {
 
     @LayoutRes
@@ -30,6 +30,48 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     private final OnBackPressedDispatcher mOnBackPressedDispatcher;
     private final SavedStateRegistryController mSavedStateRegistryController;
     private ViewModelStore mViewModelStore;
+
+    /* JADX INFO: renamed from: androidx.activity.ComponentActivity$1 */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ComponentActivity.super.onBackPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.activity.ComponentActivity$2 */
+    class AnonymousClass2 implements LifecycleEventObserver {
+        AnonymousClass2() {
+        }
+
+        @Override // androidx.lifecycle.LifecycleEventObserver
+        public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event2) {
+            if (event2 == Lifecycle.Event.ON_STOP) {
+                Window window = ComponentActivity.this.getWindow();
+                View viewPeekDecorView = window != null ? window.peekDecorView() : null;
+                if (viewPeekDecorView != null) {
+                    viewPeekDecorView.cancelPendingInputEvents();
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.activity.ComponentActivity$3 */
+    class AnonymousClass3 implements LifecycleEventObserver {
+        AnonymousClass3() {
+        }
+
+        @Override // androidx.lifecycle.LifecycleEventObserver
+        public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event2) {
+            if (event2 != Lifecycle.Event.ON_DESTROY || ComponentActivity.this.isChangingConfigurations()) {
+                return;
+            }
+            ComponentActivity.this.getViewModelStore().clear();
+        }
+    }
 
     static final class NonConfigurationInstances {
         Object custom;
@@ -43,6 +85,9 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
         this.mLifecycleRegistry = new LifecycleRegistry(this);
         this.mSavedStateRegistryController = SavedStateRegistryController.create(this);
         this.mOnBackPressedDispatcher = new OnBackPressedDispatcher(new Runnable() { // from class: androidx.activity.ComponentActivity.1
+            AnonymousClass1() {
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 ComponentActivity.super.onBackPressed();
@@ -53,19 +98,25 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
         }
         if (Build.VERSION.SDK_INT >= 19) {
             getLifecycle().addObserver(new LifecycleEventObserver() { // from class: androidx.activity.ComponentActivity.2
+                AnonymousClass2() {
+                }
+
                 @Override // androidx.lifecycle.LifecycleEventObserver
                 public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event2) {
                     if (event2 == Lifecycle.Event.ON_STOP) {
                         Window window = ComponentActivity.this.getWindow();
-                        View peekDecorView = window != null ? window.peekDecorView() : null;
-                        if (peekDecorView != null) {
-                            peekDecorView.cancelPendingInputEvents();
+                        View viewPeekDecorView = window != null ? window.peekDecorView() : null;
+                        if (viewPeekDecorView != null) {
+                            viewPeekDecorView.cancelPendingInputEvents();
                         }
                     }
                 }
             });
         }
         getLifecycle().addObserver(new LifecycleEventObserver() { // from class: androidx.activity.ComponentActivity.3
+            AnonymousClass3() {
+            }
+
             @Override // androidx.lifecycle.LifecycleEventObserver
             public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event2) {
                 if (event2 != Lifecycle.Event.ON_DESTROY || ComponentActivity.this.isChangingConfigurations()) {
@@ -129,7 +180,8 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
 
     @Override // android.app.Activity
     @MainThread
-    public void onBackPressed() {
+    /* JADX INFO: renamed from: onBackPressed */
+    public void a() {
         this.mOnBackPressedDispatcher.onBackPressed();
     }
 
@@ -154,16 +206,16 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     @Nullable
     public final Object onRetainNonConfigurationInstance() {
         NonConfigurationInstances nonConfigurationInstances;
-        Object onRetainCustomNonConfigurationInstance = onRetainCustomNonConfigurationInstance();
+        Object objOnRetainCustomNonConfigurationInstance = onRetainCustomNonConfigurationInstance();
         ViewModelStore viewModelStore = this.mViewModelStore;
         if (viewModelStore == null && (nonConfigurationInstances = (NonConfigurationInstances) getLastNonConfigurationInstance()) != null) {
             viewModelStore = nonConfigurationInstances.viewModelStore;
         }
-        if (viewModelStore == null && onRetainCustomNonConfigurationInstance == null) {
+        if (viewModelStore == null && objOnRetainCustomNonConfigurationInstance == null) {
             return null;
         }
         NonConfigurationInstances nonConfigurationInstances2 = new NonConfigurationInstances();
-        nonConfigurationInstances2.custom = onRetainCustomNonConfigurationInstance;
+        nonConfigurationInstances2.custom = objOnRetainCustomNonConfigurationInstance;
         nonConfigurationInstances2.viewModelStore = viewModelStore;
         return nonConfigurationInstances2;
     }

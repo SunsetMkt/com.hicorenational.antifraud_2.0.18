@@ -4,14 +4,20 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.util.StateSet;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public final class StateListAnimator {
     private final ArrayList<Tuple> tuples = new ArrayList<>();
+
+    @Nullable
     private Tuple lastMatch = null;
+
+    @Nullable
     ValueAnimator runningAnimator = null;
     private final Animator.AnimatorListener animationListener = new AnimatorListenerAdapter() { // from class: com.google.android.material.internal.StateListAnimator.1
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
@@ -41,7 +47,7 @@ public final class StateListAnimator {
         }
     }
 
-    private void start(Tuple tuple) {
+    private void start(@NonNull Tuple tuple) {
         this.runningAnimator = tuple.animator;
         this.runningAnimator.start();
     }

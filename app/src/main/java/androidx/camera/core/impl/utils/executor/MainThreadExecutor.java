@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.concurrent.ScheduledExecutorService;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class MainThreadExecutor {
     private static volatile ScheduledExecutorService sInstance;
 

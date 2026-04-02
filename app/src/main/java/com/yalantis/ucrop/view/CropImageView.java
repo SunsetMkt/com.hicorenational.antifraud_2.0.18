@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.yalantis.ucrop.C4415R;
+import com.yalantis.ucrop.R;
 import com.yalantis.ucrop.callback.BitmapCropCallback;
 import com.yalantis.ucrop.callback.CropBoundsChangeListener;
 import com.yalantis.ucrop.model.CropParameters;
@@ -20,10 +20,11 @@ import com.yalantis.ucrop.task.BitmapCropTask;
 import com.yalantis.ucrop.util.CubicEasing;
 import com.yalantis.ucrop.util.RectUtils;
 import com.yalantis.ucrop.view.TransformImageView;
+import e.d;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CropImageView extends TransformImageView {
     public static final float DEFAULT_ASPECT_RATIO = 0.0f;
     public static final int DEFAULT_IMAGE_TO_CROP_BOUNDS_ANIM_DURATION = 500;
@@ -73,15 +74,15 @@ public class CropImageView extends TransformImageView {
             if (cropImageView == null) {
                 return;
             }
-            float min = Math.min(this.mDurationMs, System.currentTimeMillis() - this.mStartTime);
-            float easeOut = CubicEasing.easeOut(min, 0.0f, this.mCenterDiffX, this.mDurationMs);
-            float easeOut2 = CubicEasing.easeOut(min, 0.0f, this.mCenterDiffY, this.mDurationMs);
-            float easeInOut = CubicEasing.easeInOut(min, 0.0f, this.mDeltaScale, this.mDurationMs);
-            if (min < this.mDurationMs) {
+            float fMin = Math.min(this.mDurationMs, System.currentTimeMillis() - this.mStartTime);
+            float fEaseOut = CubicEasing.easeOut(fMin, 0.0f, this.mCenterDiffX, this.mDurationMs);
+            float fEaseOut2 = CubicEasing.easeOut(fMin, 0.0f, this.mCenterDiffY, this.mDurationMs);
+            float fEaseInOut = CubicEasing.easeInOut(fMin, 0.0f, this.mDeltaScale, this.mDurationMs);
+            if (fMin < this.mDurationMs) {
                 float[] fArr = cropImageView.mCurrentImageCenter;
-                cropImageView.postTranslate(easeOut - (fArr[0] - this.mOldX), easeOut2 - (fArr[1] - this.mOldY));
+                cropImageView.postTranslate(fEaseOut - (fArr[0] - this.mOldX), fEaseOut2 - (fArr[1] - this.mOldY));
                 if (!this.mWillBeImageInBoundsAfterTranslate) {
-                    cropImageView.zoomInImage(this.mOldScale + easeInOut, cropImageView.mCropRect.centerX(), cropImageView.mCropRect.centerY());
+                    cropImageView.zoomInImage(this.mOldScale + fEaseInOut, cropImageView.mCropRect.centerX(), cropImageView.mCropRect.centerY());
                 }
                 if (cropImageView.isImageWrapCropBounds()) {
                     return;
@@ -115,12 +116,12 @@ public class CropImageView extends TransformImageView {
             if (cropImageView == null) {
                 return;
             }
-            float min = Math.min(this.mDurationMs, System.currentTimeMillis() - this.mStartTime);
-            float easeInOut = CubicEasing.easeInOut(min, 0.0f, this.mDeltaScale, this.mDurationMs);
-            if (min >= this.mDurationMs) {
+            float fMin = Math.min(this.mDurationMs, System.currentTimeMillis() - this.mStartTime);
+            float fEaseInOut = CubicEasing.easeInOut(fMin, 0.0f, this.mDeltaScale, this.mDurationMs);
+            if (fMin >= this.mDurationMs) {
                 cropImageView.setImageToWrapCropBounds();
             } else {
-                cropImageView.zoomInImage(this.mOldScale + easeInOut, this.mDestX, this.mDestY);
+                cropImageView.zoomInImage(this.mOldScale + fEaseInOut, this.mDestX, this.mDestY);
                 cropImageView.post(this);
             }
         }
@@ -134,16 +135,16 @@ public class CropImageView extends TransformImageView {
         this.mTempMatrix.reset();
         this.mTempMatrix.setRotate(-getCurrentAngle());
         float[] fArr = this.mCurrentImageCorners;
-        float[] copyOf = Arrays.copyOf(fArr, fArr.length);
+        float[] fArrCopyOf = Arrays.copyOf(fArr, fArr.length);
         float[] cornersFromRect = RectUtils.getCornersFromRect(this.mCropRect);
-        this.mTempMatrix.mapPoints(copyOf);
+        this.mTempMatrix.mapPoints(fArrCopyOf);
         this.mTempMatrix.mapPoints(cornersFromRect);
-        RectF trapToRect = RectUtils.trapToRect(copyOf);
-        RectF trapToRect2 = RectUtils.trapToRect(cornersFromRect);
-        float f2 = trapToRect.left - trapToRect2.left;
-        float f3 = trapToRect.top - trapToRect2.top;
-        float f4 = trapToRect.right - trapToRect2.right;
-        float f5 = trapToRect.bottom - trapToRect2.bottom;
+        RectF rectFTrapToRect = RectUtils.trapToRect(fArrCopyOf);
+        RectF rectFTrapToRect2 = RectUtils.trapToRect(cornersFromRect);
+        float f2 = rectFTrapToRect.left - rectFTrapToRect2.left;
+        float f3 = rectFTrapToRect.top - rectFTrapToRect2.top;
+        float f4 = rectFTrapToRect.right - rectFTrapToRect2.right;
+        float f5 = rectFTrapToRect.bottom - rectFTrapToRect2.bottom;
         float[] fArr2 = new float[4];
         if (f2 <= 0.0f) {
             f2 = 0.0f;
@@ -175,14 +176,14 @@ public class CropImageView extends TransformImageView {
     }
 
     private void setupInitialImagePosition(float f2, float f3) {
-        float width = this.mCropRect.width();
-        float height = this.mCropRect.height();
-        float max = Math.max(this.mCropRect.width() / f2, this.mCropRect.height() / f3);
+        float fWidth = this.mCropRect.width();
+        float fHeight = this.mCropRect.height();
+        float fMax = Math.max(this.mCropRect.width() / f2, this.mCropRect.height() / f3);
         RectF rectF = this.mCropRect;
-        float f4 = ((width - (f2 * max)) / 2.0f) + rectF.left;
-        float f5 = ((height - (f3 * max)) / 2.0f) + rectF.top;
+        float f4 = ((fWidth - (f2 * fMax)) / 2.0f) + rectF.left;
+        float f5 = ((fHeight - (f3 * fMax)) / 2.0f) + rectF.top;
         this.mCurrentImageMatrix.reset();
-        this.mCurrentImageMatrix.postScale(max, max);
+        this.mCurrentImageMatrix.postScale(fMax, fMax);
         this.mCurrentImageMatrix.postTranslate(f4, f5);
         setImageMatrix(this.mCurrentImageMatrix);
     }
@@ -270,12 +271,12 @@ public class CropImageView extends TransformImageView {
     }
 
     protected void processStyledAttributes(@NonNull TypedArray typedArray) {
-        float abs = Math.abs(typedArray.getFloat(C4415R.styleable.ucrop_UCropView_ucrop_aspect_ratio_x, 0.0f));
-        float abs2 = Math.abs(typedArray.getFloat(C4415R.styleable.ucrop_UCropView_ucrop_aspect_ratio_y, 0.0f));
-        if (abs == 0.0f || abs2 == 0.0f) {
+        float fAbs = Math.abs(typedArray.getFloat(R.styleable.ucrop_UCropView_ucrop_aspect_ratio_x, 0.0f));
+        float fAbs2 = Math.abs(typedArray.getFloat(R.styleable.ucrop_UCropView_ucrop_aspect_ratio_y, 0.0f));
+        if (fAbs == 0.0f || fAbs2 == 0.0f) {
             this.mTargetAspectRatio = 0.0f;
         } else {
-            this.mTargetAspectRatio = abs / abs2;
+            this.mTargetAspectRatio = fAbs / fAbs2;
         }
     }
 
@@ -294,7 +295,7 @@ public class CropImageView extends TransformImageView {
         setImageToWrapCropBounds(true);
     }
 
-    public void setImageToWrapCropBoundsAnimDuration(@IntRange(from = 100) long j2) {
+    public void setImageToWrapCropBoundsAnimDuration(@IntRange(from = d.z) long j2) {
         if (j2 <= 0) {
             throw new IllegalArgumentException("Animation duration cannot be negative value.");
         }
@@ -354,16 +355,16 @@ public class CropImageView extends TransformImageView {
     protected boolean isImageWrapCropBounds(float[] fArr) {
         this.mTempMatrix.reset();
         this.mTempMatrix.setRotate(-getCurrentAngle());
-        float[] copyOf = Arrays.copyOf(fArr, fArr.length);
-        this.mTempMatrix.mapPoints(copyOf);
+        float[] fArrCopyOf = Arrays.copyOf(fArr, fArr.length);
+        this.mTempMatrix.mapPoints(fArrCopyOf);
         float[] cornersFromRect = RectUtils.getCornersFromRect(this.mCropRect);
         this.mTempMatrix.mapPoints(cornersFromRect);
-        return RectUtils.trapToRect(copyOf).contains(RectUtils.trapToRect(cornersFromRect));
+        return RectUtils.trapToRect(fArrCopyOf).contains(RectUtils.trapToRect(cornersFromRect));
     }
 
     public void setImageToWrapCropBounds(boolean z) {
         float f2;
-        float max;
+        float fMax;
         float f3;
         if (!this.mBitmapLaidOut || isImageWrapCropBounds()) {
             return;
@@ -372,40 +373,40 @@ public class CropImageView extends TransformImageView {
         float f4 = fArr[0];
         float f5 = fArr[1];
         float currentScale = getCurrentScale();
-        float centerX = this.mCropRect.centerX() - f4;
-        float centerY = this.mCropRect.centerY() - f5;
+        float fCenterX = this.mCropRect.centerX() - f4;
+        float fCenterY = this.mCropRect.centerY() - f5;
         this.mTempMatrix.reset();
-        this.mTempMatrix.setTranslate(centerX, centerY);
+        this.mTempMatrix.setTranslate(fCenterX, fCenterY);
         float[] fArr2 = this.mCurrentImageCorners;
-        float[] copyOf = Arrays.copyOf(fArr2, fArr2.length);
-        this.mTempMatrix.mapPoints(copyOf);
-        boolean isImageWrapCropBounds = isImageWrapCropBounds(copyOf);
-        if (isImageWrapCropBounds) {
-            float[] calculateImageIndents = calculateImageIndents();
-            float f6 = -(calculateImageIndents[0] + calculateImageIndents[2]);
-            f3 = -(calculateImageIndents[1] + calculateImageIndents[3]);
+        float[] fArrCopyOf = Arrays.copyOf(fArr2, fArr2.length);
+        this.mTempMatrix.mapPoints(fArrCopyOf);
+        boolean zIsImageWrapCropBounds = isImageWrapCropBounds(fArrCopyOf);
+        if (zIsImageWrapCropBounds) {
+            float[] fArrCalculateImageIndents = calculateImageIndents();
+            float f6 = -(fArrCalculateImageIndents[0] + fArrCalculateImageIndents[2]);
+            f3 = -(fArrCalculateImageIndents[1] + fArrCalculateImageIndents[3]);
             f2 = f6;
-            max = 0.0f;
+            fMax = 0.0f;
         } else {
             RectF rectF = new RectF(this.mCropRect);
             this.mTempMatrix.reset();
             this.mTempMatrix.setRotate(getCurrentAngle());
             this.mTempMatrix.mapRect(rectF);
             float[] rectSidesFromCorners = RectUtils.getRectSidesFromCorners(this.mCurrentImageCorners);
-            f2 = centerX;
-            max = (Math.max(rectF.width() / rectSidesFromCorners[0], rectF.height() / rectSidesFromCorners[1]) * currentScale) - currentScale;
-            f3 = centerY;
+            f2 = fCenterX;
+            fMax = (Math.max(rectF.width() / rectSidesFromCorners[0], rectF.height() / rectSidesFromCorners[1]) * currentScale) - currentScale;
+            f3 = fCenterY;
         }
         if (z) {
-            WrapCropBoundsRunnable wrapCropBoundsRunnable = new WrapCropBoundsRunnable(this, this.mImageToWrapCropBoundsAnimDuration, f4, f5, f2, f3, currentScale, max, isImageWrapCropBounds);
+            WrapCropBoundsRunnable wrapCropBoundsRunnable = new WrapCropBoundsRunnable(this, this.mImageToWrapCropBoundsAnimDuration, f4, f5, f2, f3, currentScale, fMax, zIsImageWrapCropBounds);
             this.mWrapCropBoundsRunnable = wrapCropBoundsRunnable;
             post(wrapCropBoundsRunnable);
         } else {
             postTranslate(f2, f3);
-            if (isImageWrapCropBounds) {
+            if (zIsImageWrapCropBounds) {
                 return;
             }
-            zoomInImage(currentScale + max, this.mCropRect.centerX(), this.mCropRect.centerY());
+            zoomInImage(currentScale + fMax, this.mCropRect.centerX(), this.mCropRect.centerY());
         }
     }
 

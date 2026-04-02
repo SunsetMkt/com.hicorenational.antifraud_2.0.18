@@ -1,13 +1,13 @@
 package anet.channel.statist;
 
 import anet.channel.status.NetworkStatusHelper;
-import anet.channel.strategy.C0842l;
 import anet.channel.strategy.ConnProtocol;
-import anet.channel.util.C0857c;
+import anet.channel.strategy.l;
+import anet.channel.util.c;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "horseRace")
-/* loaded from: classes.dex */
 public class HorseRaceStat extends StatObject {
 
     @Dimension
@@ -19,9 +19,8 @@ public class HorseRaceStat extends StatObject {
     @Dimension
     public volatile String host;
 
-    /* renamed from: ip */
     @Dimension
-    public volatile String f999ip;
+    public volatile String ip;
 
     @Dimension
     public volatile int ipStackType;
@@ -65,13 +64,13 @@ public class HorseRaceStat extends StatObject {
     @Dimension
     public volatile String bssid = NetworkStatusHelper.getWifiBSSID();
 
-    public HorseRaceStat(String str, C0842l.e eVar) {
+    public HorseRaceStat(String str, l.e eVar) {
         this.host = str;
-        this.f999ip = eVar.f1139a;
-        C0842l.a aVar = eVar.f1140b;
-        this.port = aVar.f1109a;
+        this.ip = eVar.a;
+        l.a aVar = eVar.f1632b;
+        this.port = aVar.a;
         this.protocol = ConnProtocol.valueOf(aVar).name;
-        this.path = eVar.f1141c;
-        this.ipStackType = C0857c.m727c();
+        this.path = eVar.f1633c;
+        this.ipStackType = c.c();
     }
 }

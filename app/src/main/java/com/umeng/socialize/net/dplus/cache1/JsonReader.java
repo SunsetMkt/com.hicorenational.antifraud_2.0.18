@@ -4,7 +4,7 @@ import com.umeng.socialize.utils.SLog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class JsonReader extends IReader<JSONObject> {
     public JsonReader(String str) {
         super(str);

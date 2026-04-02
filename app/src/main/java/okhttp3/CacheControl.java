@@ -2,8 +2,9 @@ package okhttp3;
 
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
+import okhttp3.internal.http.HttpHeaders;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class CacheControl {
 
     @Nullable
@@ -159,17 +160,95 @@ public final class CacheControl {
         return sb.toString();
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:10:0x0041  */
+    /* JADX WARN: Removed duplicated region for block: B:15:0x0041  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static okhttp3.CacheControl parse(okhttp3.Headers r22) {
-        /*
-            Method dump skipped, instructions count: 340
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.CacheControl.parse(okhttp3.Headers):okhttp3.CacheControl");
+    public static CacheControl parse(Headers headers) {
+        int i2;
+        int iSkipUntil;
+        String strTrim;
+        Headers headers2 = headers;
+        int size = headers.size();
+        int i3 = 0;
+        boolean z = true;
+        String str = null;
+        boolean z2 = false;
+        boolean z3 = false;
+        int seconds = -1;
+        int seconds2 = -1;
+        boolean z4 = false;
+        boolean z5 = false;
+        boolean z6 = false;
+        int seconds3 = -1;
+        int seconds4 = -1;
+        boolean z7 = false;
+        boolean z8 = false;
+        boolean z9 = false;
+        while (i3 < size) {
+            String strName = headers2.name(i3);
+            String strValue = headers2.value(i3);
+            if (strName.equalsIgnoreCase("Cache-Control")) {
+                if (str == null) {
+                    str = strValue;
+                }
+                for (i2 = 0; i2 < strValue.length(); i2 = iSkipUntil) {
+                    int iSkipUntil2 = HttpHeaders.skipUntil(strValue, i2, "=,;");
+                    String strTrim2 = strValue.substring(i2, iSkipUntil2).trim();
+                    if (iSkipUntil2 == strValue.length() || strValue.charAt(iSkipUntil2) == ',' || strValue.charAt(iSkipUntil2) == ';') {
+                        iSkipUntil = iSkipUntil2 + 1;
+                        strTrim = null;
+                    } else {
+                        int iSkipWhitespace = HttpHeaders.skipWhitespace(strValue, iSkipUntil2 + 1);
+                        if (iSkipWhitespace >= strValue.length() || strValue.charAt(iSkipWhitespace) != '\"') {
+                            iSkipUntil = HttpHeaders.skipUntil(strValue, iSkipWhitespace, ",;");
+                            strTrim = strValue.substring(iSkipWhitespace, iSkipUntil).trim();
+                        } else {
+                            int i4 = iSkipWhitespace + 1;
+                            int iSkipUntil3 = HttpHeaders.skipUntil(strValue, i4, "\"");
+                            strTrim = strValue.substring(i4, iSkipUntil3);
+                            iSkipUntil = iSkipUntil3 + 1;
+                        }
+                    }
+                    if ("no-cache".equalsIgnoreCase(strTrim2)) {
+                        z2 = true;
+                    } else if ("no-store".equalsIgnoreCase(strTrim2)) {
+                        z3 = true;
+                    } else if ("max-age".equalsIgnoreCase(strTrim2)) {
+                        seconds = HttpHeaders.parseSeconds(strTrim, -1);
+                    } else if ("s-maxage".equalsIgnoreCase(strTrim2)) {
+                        seconds2 = HttpHeaders.parseSeconds(strTrim, -1);
+                    } else if ("private".equalsIgnoreCase(strTrim2)) {
+                        z4 = true;
+                    } else if ("public".equalsIgnoreCase(strTrim2)) {
+                        z5 = true;
+                    } else if ("must-revalidate".equalsIgnoreCase(strTrim2)) {
+                        z6 = true;
+                    } else if ("max-stale".equalsIgnoreCase(strTrim2)) {
+                        seconds3 = HttpHeaders.parseSeconds(strTrim, Integer.MAX_VALUE);
+                    } else if ("min-fresh".equalsIgnoreCase(strTrim2)) {
+                        seconds4 = HttpHeaders.parseSeconds(strTrim, -1);
+                    } else if ("only-if-cached".equalsIgnoreCase(strTrim2)) {
+                        z7 = true;
+                    } else if ("no-transform".equalsIgnoreCase(strTrim2)) {
+                        z8 = true;
+                    } else if ("immutable".equalsIgnoreCase(strTrim2)) {
+                        z9 = true;
+                    }
+                }
+                i3++;
+                headers2 = headers;
+            } else if (!strName.equalsIgnoreCase("Pragma")) {
+                i3++;
+                headers2 = headers;
+            }
+            z = false;
+            while (i2 < strValue.length()) {
+            }
+            i3++;
+            headers2 = headers;
+        }
+        return new CacheControl(z2, z3, seconds, seconds2, z4, z5, z6, seconds3, seconds4, z7, z8, z9, !z ? null : str);
     }
 
     public boolean immutable() {
@@ -225,9 +304,9 @@ public final class CacheControl {
         if (str != null) {
             return str;
         }
-        String headerValue = headerValue();
-        this.headerValue = headerValue;
-        return headerValue;
+        String strHeaderValue = headerValue();
+        this.headerValue = strHeaderValue;
+        return strHeaderValue;
     }
 
     CacheControl(Builder builder) {

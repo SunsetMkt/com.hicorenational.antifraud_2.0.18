@@ -4,57 +4,69 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import com.tencent.bugly.crashreport.biz.C3111b;
-import com.tencent.bugly.crashreport.common.info.C3113a;
-import com.tencent.bugly.crashreport.common.info.C3114b;
-import com.tencent.bugly.crashreport.common.strategy.C3116a;
-import com.tencent.bugly.proguard.C3148ak;
-import com.tencent.bugly.proguard.C3151an;
-import com.tencent.bugly.proguard.C3154aq;
+import com.tencent.bugly.proguard.ak;
+import com.tencent.bugly.proguard.an;
+import com.tencent.bugly.proguard.aq;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class BuglyBroadcastReceiver extends BroadcastReceiver {
 
-    /* renamed from: d */
-    private static BuglyBroadcastReceiver f10259d;
+    /* JADX INFO: renamed from: d */
+    private static BuglyBroadcastReceiver f6211d;
 
-    /* renamed from: b */
-    private Context f10261b;
+    /* JADX INFO: renamed from: b */
+    private Context f6212b;
 
-    /* renamed from: c */
-    private String f10262c;
+    /* JADX INFO: renamed from: c */
+    private String f6213c;
 
-    /* renamed from: e */
-    private boolean f10263e = true;
+    /* JADX INFO: renamed from: e */
+    private boolean f6214e = true;
+    private IntentFilter a = new IntentFilter();
 
-    /* renamed from: a */
-    private IntentFilter f10260a = new IntentFilter();
+    /* JADX INFO: renamed from: com.tencent.bugly.crashreport.crash.BuglyBroadcastReceiver$1 */
+    /* JADX INFO: compiled from: BUGLY */
+    class AnonymousClass1 implements Runnable {
+        final /* synthetic */ BuglyBroadcastReceiver a;
+
+        AnonymousClass1(BuglyBroadcastReceiver buglyBroadcastReceiver) {
+            buglyBroadcastReceiver = buglyBroadcastReceiver;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                an.a(BuglyBroadcastReceiver.f6211d.getClass(), "Register broadcast receiver of Bugly.", new Object[0]);
+                synchronized (buglyBroadcastReceiver) {
+                    BuglyBroadcastReceiver.this.f6212b.registerReceiver(BuglyBroadcastReceiver.f6211d, BuglyBroadcastReceiver.this.a);
+                }
+            } catch (Throwable th) {
+                th.printStackTrace();
+            }
+        }
+    }
 
     public static synchronized BuglyBroadcastReceiver getInstance() {
-        BuglyBroadcastReceiver buglyBroadcastReceiver;
-        synchronized (BuglyBroadcastReceiver.class) {
-            if (f10259d == null) {
-                f10259d = new BuglyBroadcastReceiver();
-            }
-            buglyBroadcastReceiver = f10259d;
+        if (f6211d == null) {
+            f6211d = new BuglyBroadcastReceiver();
         }
-        return buglyBroadcastReceiver;
+        return f6211d;
     }
 
     public synchronized void addFilter(String str) {
-        if (!this.f10260a.hasAction(str)) {
-            this.f10260a.addAction(str);
+        if (!this.a.hasAction(str)) {
+            this.a.addAction(str);
         }
-        C3151an.m9921c("add action %s", str);
+        an.c("add action %s", str);
     }
 
     @Override // android.content.BroadcastReceiver
     public final void onReceive(Context context, Intent intent) {
         try {
-            m9649a(context, intent);
+            a(context, intent);
         } catch (Throwable th) {
-            if (C3151an.m9916a(th)) {
+            if (an.a(th)) {
                 return;
             }
             th.printStackTrace();
@@ -62,14 +74,20 @@ public class BuglyBroadcastReceiver extends BroadcastReceiver {
     }
 
     public synchronized void register(Context context) {
-        this.f10261b = context;
-        C3154aq.m9969a(new Runnable() { // from class: com.tencent.bugly.crashreport.crash.BuglyBroadcastReceiver.1
+        this.f6212b = context;
+        aq.a(new Runnable() { // from class: com.tencent.bugly.crashreport.crash.BuglyBroadcastReceiver.1
+            final /* synthetic */ BuglyBroadcastReceiver a;
+
+            AnonymousClass1(BuglyBroadcastReceiver this) {
+                buglyBroadcastReceiver = this;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 try {
-                    C3151an.m9914a(BuglyBroadcastReceiver.f10259d.getClass(), "Register broadcast receiver of Bugly.", new Object[0]);
-                    synchronized (this) {
-                        BuglyBroadcastReceiver.this.f10261b.registerReceiver(BuglyBroadcastReceiver.f10259d, BuglyBroadcastReceiver.this.f10260a);
+                    an.a(BuglyBroadcastReceiver.f6211d.getClass(), "Register broadcast receiver of Bugly.", new Object[0]);
+                    synchronized (buglyBroadcastReceiver) {
+                        BuglyBroadcastReceiver.this.f6212b.registerReceiver(BuglyBroadcastReceiver.f6211d, BuglyBroadcastReceiver.this.a);
                     }
                 } catch (Throwable th) {
                     th.printStackTrace();
@@ -80,54 +98,53 @@ public class BuglyBroadcastReceiver extends BroadcastReceiver {
 
     public synchronized void unregister(Context context) {
         try {
-            C3151an.m9914a(getClass(), "Unregister broadcast receiver of Bugly.", new Object[0]);
+            an.a(getClass(), "Unregister broadcast receiver of Bugly.", new Object[0]);
             context.unregisterReceiver(this);
-            this.f10261b = context;
+            this.f6212b = context;
         } catch (Throwable th) {
-            if (!C3151an.m9916a(th)) {
+            if (!an.a(th)) {
                 th.printStackTrace();
             }
         }
     }
 
-    /* renamed from: a */
-    protected final synchronized boolean m9649a(Context context, Intent intent) {
+    protected final synchronized boolean a(Context context, Intent intent) {
         if (context != null && intent != null) {
             if (intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE")) {
-                if (this.f10263e) {
-                    this.f10263e = false;
+                if (this.f6214e) {
+                    this.f6214e = false;
                     return true;
                 }
-                String m9606f = C3114b.m9606f(this.f10261b);
-                C3151an.m9921c("is Connect BC " + m9606f, new Object[0]);
-                C3151an.m9915a("network %s changed to %s", "" + this.f10262c, "" + m9606f);
-                if (m9606f == null) {
-                    this.f10262c = null;
+                String strF = com.tencent.bugly.crashreport.common.info.b.f(this.f6212b);
+                an.c("is Connect BC " + strF, new Object[0]);
+                an.a("network %s changed to %s", "" + this.f6213c, "" + strF);
+                if (strF == null) {
+                    this.f6213c = null;
                     return true;
                 }
-                String str = this.f10262c;
-                this.f10262c = m9606f;
-                long currentTimeMillis = System.currentTimeMillis();
-                C3116a m9635a = C3116a.m9635a();
-                C3148ak m9863a = C3148ak.m9863a();
-                C3113a m9531a = C3113a.m9531a(context);
-                if (m9635a != null && m9863a != null && m9531a != null) {
-                    if (!m9606f.equals(str)) {
-                        if (currentTimeMillis - m9863a.m9882a(C3127c.f10360a) > 30000) {
-                            C3151an.m9915a("try to upload crash on network changed.", new Object[0]);
-                            C3127c m9705a = C3127c.m9705a();
-                            if (m9705a != null) {
-                                m9705a.m9710a(0L);
+                String str = this.f6213c;
+                this.f6213c = strF;
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                com.tencent.bugly.crashreport.common.strategy.a aVarA = com.tencent.bugly.crashreport.common.strategy.a.a();
+                ak akVarA = ak.a();
+                com.tencent.bugly.crashreport.common.info.a aVarA2 = com.tencent.bugly.crashreport.common.info.a.a(context);
+                if (aVarA != null && akVarA != null && aVarA2 != null) {
+                    if (!strF.equals(str)) {
+                        if (jCurrentTimeMillis - akVarA.a(c.a) > 30000) {
+                            an.a("try to upload crash on network changed.", new Object[0]);
+                            c cVarA = c.a();
+                            if (cVarA != null) {
+                                cVarA.a(0L);
                             }
                         }
-                        if (currentTimeMillis - m9863a.m9882a(1001) > 30000) {
-                            C3151an.m9915a("try to upload userinfo on network changed.", new Object[0]);
-                            C3111b.f10113b.m9486b();
+                        if (jCurrentTimeMillis - akVarA.a(1001) > 30000) {
+                            an.a("try to upload userinfo on network changed.", new Object[0]);
+                            com.tencent.bugly.crashreport.biz.b.f6156b.b();
                         }
                     }
                     return true;
                 }
-                C3151an.m9922d("not inited BC not work", new Object[0]);
+                an.d("not inited BC not work", new Object[0]);
                 return true;
             }
         }

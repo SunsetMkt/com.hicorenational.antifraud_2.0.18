@@ -2,25 +2,21 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UserInfoBean extends BaseBean {
     private String addr;
     private int auditStatus;
     private String authFailReason;
     private boolean authenticated;
     private String email;
-
-    /* renamed from: id */
-    private String f1636id;
+    private String id;
     private String idNumber;
     private String mobileNumber;
     private String name;
     private int perfectProgress;
     private String position;
     private String professionName;
-
-    /* renamed from: qq */
-    private String f1637qq;
+    private String qq;
     private String region;
     private String regionCode;
     private String registerRegion;
@@ -49,7 +45,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1636id;
+        return this.id;
     }
 
     public String getIdNumber() {
@@ -73,7 +69,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public String getQq() {
-        return this.f1637qq;
+        return this.qq;
     }
 
     public String getRegion() {
@@ -129,7 +125,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1636id = str;
+        this.id = str;
     }
 
     public void setIdNumber(String str) {
@@ -153,7 +149,7 @@ public class UserInfoBean extends BaseBean {
     }
 
     public void setQq(String str) {
-        this.f1637qq = str;
+        this.qq = str;
     }
 
     public void setRegion(String str) {

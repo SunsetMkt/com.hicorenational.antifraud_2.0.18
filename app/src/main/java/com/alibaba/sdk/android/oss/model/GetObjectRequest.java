@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.model;
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GetObjectRequest extends OSSRequest {
     private String bucketName;
     private String objectKey;

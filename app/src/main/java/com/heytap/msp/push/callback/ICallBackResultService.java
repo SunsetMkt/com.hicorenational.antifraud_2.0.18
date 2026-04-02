@@ -1,6 +1,6 @@
 package com.heytap.msp.push.callback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ICallBackResultService {
     void onError(int i2, String str, String str2, String str3);
 

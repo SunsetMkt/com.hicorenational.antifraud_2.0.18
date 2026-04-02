@@ -1,6 +1,6 @@
 package cn.cloudwalk.callback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface LivessCallBack {
     @Deprecated
     void detectFinished();

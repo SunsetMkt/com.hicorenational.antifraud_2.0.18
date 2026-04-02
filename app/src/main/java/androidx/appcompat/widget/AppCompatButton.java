@@ -14,13 +14,13 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.AutoSizeableTextView;
 import androidx.core.widget.TextViewCompat;
 import androidx.core.widget.TintableCompoundDrawablesView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatButton extends Button implements TintableBackgroundView, AutoSizeableTextView, TintableCompoundDrawablesView {
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
     private final AppCompatTextHelper mTextHelper;
@@ -295,7 +295,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     public AppCompatButton(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0120R.attr.buttonStyle);
+        this(context, attributeSet, R.attr.buttonStyle);
     }
 
     public AppCompatButton(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {

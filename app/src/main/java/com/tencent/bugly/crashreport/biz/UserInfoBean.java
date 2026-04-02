@@ -2,91 +2,79 @@ package com.tencent.bugly.crashreport.biz;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.tencent.bugly.proguard.C3154aq;
+import com.tencent.bugly.proguard.aq;
 import java.util.Map;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class UserInfoBean implements Parcelable {
     public static final Parcelable.Creator<UserInfoBean> CREATOR = new Parcelable.Creator<UserInfoBean>() { // from class: com.tencent.bugly.crashreport.biz.UserInfoBean.1
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public UserInfoBean createFromParcel(Parcel parcel) {
             return new UserInfoBean(parcel);
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public UserInfoBean[] newArray(int i2) {
             return new UserInfoBean[i2];
         }
     };
+    public long a;
 
-    /* renamed from: a */
-    public long f10080a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public int f6136b;
 
-    /* renamed from: b */
-    public int f10081b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    public String f6137c;
 
-    /* renamed from: c */
-    public String f10082c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    public String f6138d;
 
-    /* renamed from: d */
-    public String f10083d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    public long f6139e;
 
-    /* renamed from: e */
-    public long f10084e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    public long f6140f;
 
-    /* renamed from: f */
-    public long f10085f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    public long f6141g;
 
-    /* renamed from: g */
-    public long f10086g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    public long f6142h;
 
-    /* renamed from: h */
-    public long f10087h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    public long f6143i;
 
-    /* renamed from: i */
-    public long f10088i;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    public String f6144j;
 
-    /* renamed from: j */
-    public String f10089j;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    public long f6145k;
 
-    /* renamed from: k */
-    public long f10090k;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    public boolean f6146l;
 
-    /* renamed from: l */
-    public boolean f10091l;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    public String f6147m;
 
-    /* renamed from: m */
-    public String f10092m;
-
-    /* renamed from: n */
-    public String f10093n;
-
-    /* renamed from: o */
-    public int f10094o;
-
-    /* renamed from: p */
-    public int f10095p;
-
-    /* renamed from: q */
-    public int f10096q;
-
-    /* renamed from: r */
-    public Map<String, String> f10097r;
-
-    /* renamed from: s */
-    public Map<String, String> f10098s;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    public String f6148n;
+    public int o;
+    public int p;
+    public int q;
+    public Map<String, String> r;
+    public Map<String, String> s;
 
     public UserInfoBean() {
-        this.f10090k = 0L;
-        this.f10091l = false;
-        this.f10092m = "unknown";
-        this.f10095p = -1;
-        this.f10096q = -1;
-        this.f10097r = null;
-        this.f10098s = null;
+        this.f6145k = 0L;
+        this.f6146l = false;
+        this.f6147m = "unknown";
+        this.p = -1;
+        this.q = -1;
+        this.r = null;
+        this.s = null;
     }
 
     @Override // android.os.Parcelable
@@ -96,51 +84,51 @@ public class UserInfoBean implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeInt(this.f10081b);
-        parcel.writeString(this.f10082c);
-        parcel.writeString(this.f10083d);
-        parcel.writeLong(this.f10084e);
-        parcel.writeLong(this.f10085f);
-        parcel.writeLong(this.f10086g);
-        parcel.writeLong(this.f10087h);
-        parcel.writeLong(this.f10088i);
-        parcel.writeString(this.f10089j);
-        parcel.writeLong(this.f10090k);
-        parcel.writeByte(this.f10091l ? (byte) 1 : (byte) 0);
-        parcel.writeString(this.f10092m);
-        parcel.writeInt(this.f10095p);
-        parcel.writeInt(this.f10096q);
-        C3154aq.m9984b(parcel, this.f10097r);
-        C3154aq.m9984b(parcel, this.f10098s);
-        parcel.writeString(this.f10093n);
-        parcel.writeInt(this.f10094o);
+        parcel.writeInt(this.f6136b);
+        parcel.writeString(this.f6137c);
+        parcel.writeString(this.f6138d);
+        parcel.writeLong(this.f6139e);
+        parcel.writeLong(this.f6140f);
+        parcel.writeLong(this.f6141g);
+        parcel.writeLong(this.f6142h);
+        parcel.writeLong(this.f6143i);
+        parcel.writeString(this.f6144j);
+        parcel.writeLong(this.f6145k);
+        parcel.writeByte(this.f6146l ? (byte) 1 : (byte) 0);
+        parcel.writeString(this.f6147m);
+        parcel.writeInt(this.p);
+        parcel.writeInt(this.q);
+        aq.b(parcel, this.r);
+        aq.b(parcel, this.s);
+        parcel.writeString(this.f6148n);
+        parcel.writeInt(this.o);
     }
 
     public UserInfoBean(Parcel parcel) {
-        this.f10090k = 0L;
-        this.f10091l = false;
-        this.f10092m = "unknown";
-        this.f10095p = -1;
-        this.f10096q = -1;
-        this.f10097r = null;
-        this.f10098s = null;
-        this.f10081b = parcel.readInt();
-        this.f10082c = parcel.readString();
-        this.f10083d = parcel.readString();
-        this.f10084e = parcel.readLong();
-        this.f10085f = parcel.readLong();
-        this.f10086g = parcel.readLong();
-        this.f10087h = parcel.readLong();
-        this.f10088i = parcel.readLong();
-        this.f10089j = parcel.readString();
-        this.f10090k = parcel.readLong();
-        this.f10091l = parcel.readByte() == 1;
-        this.f10092m = parcel.readString();
-        this.f10095p = parcel.readInt();
-        this.f10096q = parcel.readInt();
-        this.f10097r = C3154aq.m9982b(parcel);
-        this.f10098s = C3154aq.m9982b(parcel);
-        this.f10093n = parcel.readString();
-        this.f10094o = parcel.readInt();
+        this.f6145k = 0L;
+        this.f6146l = false;
+        this.f6147m = "unknown";
+        this.p = -1;
+        this.q = -1;
+        this.r = null;
+        this.s = null;
+        this.f6136b = parcel.readInt();
+        this.f6137c = parcel.readString();
+        this.f6138d = parcel.readString();
+        this.f6139e = parcel.readLong();
+        this.f6140f = parcel.readLong();
+        this.f6141g = parcel.readLong();
+        this.f6142h = parcel.readLong();
+        this.f6143i = parcel.readLong();
+        this.f6144j = parcel.readString();
+        this.f6145k = parcel.readLong();
+        this.f6146l = parcel.readByte() == 1;
+        this.f6147m = parcel.readString();
+        this.p = parcel.readInt();
+        this.q = parcel.readInt();
+        this.r = aq.b(parcel);
+        this.s = aq.b(parcel);
+        this.f6148n = parcel.readString();
+        this.o = parcel.readInt();
     }
 }

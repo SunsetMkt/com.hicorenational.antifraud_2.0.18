@@ -12,7 +12,7 @@ import okhttp3.Protocol;
 import org.conscrypt.Conscrypt;
 import org.conscrypt.OpenSSLProvider;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ConscryptPlatform extends Platform {
     private ConscryptPlatform() {
     }
@@ -74,9 +74,9 @@ public class ConscryptPlatform extends Platform {
             return super.trustManager(sSLSocketFactory);
         }
         try {
-            Object readFieldOrNull = Platform.readFieldOrNull(sSLSocketFactory, Object.class, "sslParameters");
-            if (readFieldOrNull != null) {
-                return (X509TrustManager) Platform.readFieldOrNull(readFieldOrNull, X509TrustManager.class, "x509TrustManager");
+            Object fieldOrNull = Platform.readFieldOrNull(sSLSocketFactory, Object.class, "sslParameters");
+            if (fieldOrNull != null) {
+                return (X509TrustManager) Platform.readFieldOrNull(fieldOrNull, X509TrustManager.class, "x509TrustManager");
             }
             return null;
         } catch (Exception e2) {

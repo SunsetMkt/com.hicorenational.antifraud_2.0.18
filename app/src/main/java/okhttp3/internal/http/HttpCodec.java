@@ -6,7 +6,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.Sink;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface HttpCodec {
     public static final int DISCARD_STREAM_TIMEOUT_MILLIS = 100;
 

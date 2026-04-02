@@ -58,7 +58,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AgentWebUtils {
     private static final String TAG = "AgentWebUtils";
     private static Handler mHandler;
@@ -75,30 +75,93 @@ public class AgentWebUtils {
         return (connectivityManager == null || (activeNetworkInfo = connectivityManager.getActiveNetworkInfo()) == null || !activeNetworkInfo.isConnected()) ? false : true;
     }
 
-    public static int checkNetworkType(Context context) {
-        NetworkInfo activeNetworkInfo = ((ConnectivityManager) context.getSystemService("connectivity")).getActiveNetworkInfo();
-        if (activeNetworkInfo == null) {
-            return 0;
-        }
-        int type = activeNetworkInfo.getType();
-        if (type != 0) {
-            return (type == 1 || type == 6 || type == 9) ? 1 : 0;
-        }
-        int subtype = activeNetworkInfo.getSubtype();
-        switch (subtype) {
-            case 1:
-            case 2:
-                break;
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-                break;
-            default:
-                switch (subtype) {
-                }
-        }
-        return 0;
+    /*  JADX ERROR: UnsupportedOperationException in pass: RegionMakerVisitor
+        java.lang.UnsupportedOperationException
+        	at java.base/java.util.Collections$UnmodifiableCollection.add(Collections.java:1091)
+        	at jadx.core.dex.visitors.regions.maker.SwitchRegionMaker$1.leaveRegion(SwitchRegionMaker.java:390)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:70)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.lambda$traverseInternal$0(DepthRegionTraversal.java:68)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:68)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverse(DepthRegionTraversal.java:23)
+        	at jadx.core.dex.visitors.regions.maker.SwitchRegionMaker.insertBreaksForCase(SwitchRegionMaker.java:370)
+        	at jadx.core.dex.visitors.regions.maker.SwitchRegionMaker.insertBreaks(SwitchRegionMaker.java:85)
+        	at jadx.core.dex.visitors.regions.PostProcessRegions.leaveRegion(PostProcessRegions.java:33)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:70)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.lambda$traverseInternal$0(DepthRegionTraversal.java:68)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:68)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.lambda$traverseInternal$0(DepthRegionTraversal.java:68)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1116)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:68)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.lambda$traverseInternal$0(DepthRegionTraversal.java:68)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:68)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.lambda$traverseInternal$0(DepthRegionTraversal.java:68)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1116)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:68)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.lambda$traverseInternal$0(DepthRegionTraversal.java:68)
+        	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:68)
+        	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverse(DepthRegionTraversal.java:19)
+        	at jadx.core.dex.visitors.regions.PostProcessRegions.process(PostProcessRegions.java:23)
+        	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:31)
+        */
+    public static int checkNetworkType(android.content.Context r3) {
+        /*
+            java.lang.String r0 = "connectivity"
+            java.lang.Object r3 = r3.getSystemService(r0)
+            android.net.ConnectivityManager r3 = (android.net.ConnectivityManager) r3
+            android.net.NetworkInfo r3 = r3.getActiveNetworkInfo()
+            r0 = 0
+            if (r3 != 0) goto L10
+            return r0
+        L10:
+            int r1 = r3.getType()
+            if (r1 == 0) goto L22
+            r3 = 1
+            if (r1 == r3) goto L21
+            r2 = 6
+            if (r1 == r2) goto L21
+            r2 = 9
+            if (r1 == r2) goto L21
+            return r0
+        L21:
+            return r3
+        L22:
+            int r3 = r3.getSubtype()
+            switch(r3) {
+                case 1: goto L31;
+                case 2: goto L31;
+                case 3: goto L2f;
+                case 4: goto L2f;
+                case 5: goto L2f;
+                case 6: goto L2f;
+                default: goto L29;
+            }
+        L29:
+            switch(r3) {
+                case 12: goto L2f;
+                case 13: goto L2d;
+                case 14: goto L2d;
+                case 15: goto L2d;
+                default: goto L2c;
+            }
+        L2c:
+            return r0
+        L2d:
+            r3 = 2
+            return r3
+        L2f:
+            r3 = 3
+            return r3
+        L31:
+            r3 = 4
+            return r3
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.just.agentweb.AgentWebUtils.checkNetworkType(android.content.Context):int");
     }
 
     public static boolean checkWifi(Context context) {
@@ -123,7 +186,7 @@ public class AgentWebUtils {
     }
 
     static int clearCacheFolder(File file, int i2) {
-        int i3;
+        int iClearCacheFolder;
         if (file != null) {
             String str = "dir:" + file.getAbsolutePath();
         }
@@ -131,28 +194,28 @@ public class AgentWebUtils {
             return 0;
         }
         try {
-            i3 = 0;
+            iClearCacheFolder = 0;
             for (File file2 : file.listFiles()) {
                 try {
                     if (file2.isDirectory()) {
-                        i3 += clearCacheFolder(file2, i2);
+                        iClearCacheFolder += clearCacheFolder(file2, i2);
                     }
-                    if (file2.lastModified() < new Date().getTime() - (i2 * 86400000)) {
+                    if (file2.lastModified() < new Date().getTime() - (((long) i2) * 86400000)) {
                         String str2 = "file name:" + file2.getName();
                         if (file2.delete()) {
-                            i3++;
+                            iClearCacheFolder++;
                         }
                     }
                 } catch (Exception e2) {
                     e = e2;
                     String.format("Failed to clean the cache, result %s", e.getMessage());
-                    return i3;
+                    return iClearCacheFolder;
                 }
             }
-            return i3;
+            return iClearCacheFolder;
         } catch (Exception e3) {
             e = e3;
-            i3 = 0;
+            iClearCacheFolder = 0;
         }
     }
 
@@ -259,9 +322,9 @@ public class AgentWebUtils {
                 file.mkdirs();
             }
         } catch (Throwable unused) {
-            LogUtils.m8083i(TAG, "create dir exception");
+            LogUtils.i(TAG, "create dir exception");
         }
-        LogUtils.m8083i(TAG, "path:" + file.getAbsolutePath() + "  path:" + file.getPath());
+        LogUtils.i(TAG, "path:" + file.getAbsolutePath() + "  path:" + file.getPath());
         String absolutePath = file.getAbsolutePath();
         AgentWebConfig.AGENTWEB_FILE_PATH = absolutePath;
         return absolutePath;
@@ -292,7 +355,7 @@ public class AgentWebUtils {
             if (Build.VERSION.SDK_INT >= 18) {
                 return statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
             }
-            return statFs.getAvailableBlocks() * statFs.getBlockSize();
+            return ((long) statFs.getAvailableBlocks()) * ((long) statFs.getBlockSize());
         } catch (RuntimeException unused) {
             return 0L;
         }
@@ -304,34 +367,34 @@ public class AgentWebUtils {
         return action;
     }
 
-    static String getDataColumn(Context context, Uri uri, String str, String[] strArr) {
-        Cursor cursor;
+    static String getDataColumn(Context context, Uri uri, String str, String[] strArr) throws Throwable {
+        Cursor cursorQuery;
         try {
-            cursor = context.getContentResolver().query(uri, new String[]{"_data"}, str, strArr, null);
-            if (cursor != null) {
+            cursorQuery = context.getContentResolver().query(uri, new String[]{"_data"}, str, strArr, null);
+            if (cursorQuery != null) {
                 try {
-                    if (cursor.moveToFirst()) {
-                        String string = cursor.getString(cursor.getColumnIndexOrThrow("_data"));
-                        if (cursor != null) {
-                            cursor.close();
+                    if (cursorQuery.moveToFirst()) {
+                        String string = cursorQuery.getString(cursorQuery.getColumnIndexOrThrow("_data"));
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
                         }
                         return string;
                     }
                 } catch (Throwable th) {
                     th = th;
-                    if (cursor != null) {
-                        cursor.close();
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
                     }
                     throw th;
                 }
             }
-            if (cursor != null) {
-                cursor.close();
+            if (cursorQuery != null) {
+                cursorQuery.close();
             }
             return null;
         } catch (Throwable th2) {
             th = th2;
-            cursor = null;
+            cursorQuery = null;
         }
     }
 
@@ -360,7 +423,7 @@ public class AgentWebUtils {
     static String getFileAbsolutePath(Activity activity, Uri uri) {
         Uri uri2 = null;
         if (activity != null && uri != null) {
-            LogUtils.m8083i(TAG, "getAuthority:" + uri.getAuthority() + "  getHost:" + uri.getHost() + "   getPath:" + uri.getPath() + "  getScheme:" + uri.getScheme() + "  query:" + uri.getQuery());
+            LogUtils.i(TAG, "getAuthority:" + uri.getAuthority() + "  getHost:" + uri.getHost() + "   getPath:" + uri.getPath() + "  getScheme:" + uri.getScheme() + "  query:" + uri.getQuery());
             if (Build.VERSION.SDK_INT < 19 || !DocumentsContract.isDocumentUri(activity, uri)) {
                 if (uri.getAuthority().equalsIgnoreCase(activity.getPackageName() + ".AgentWebFileProvider")) {
                     String path = uri.getPath();
@@ -373,17 +436,17 @@ public class AgentWebUtils {
                     return uri.getPath();
                 }
             } else if (isExternalStorageDocument(uri)) {
-                String[] split = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
-                if ("primary".equalsIgnoreCase(split[0])) {
-                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                String[] strArrSplit = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
+                if ("primary".equalsIgnoreCase(strArrSplit[0])) {
+                    return Environment.getExternalStorageDirectory() + "/" + strArrSplit[1];
                 }
             } else {
                 if (isDownloadsDocument(uri)) {
                     return getDataColumn(activity, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), null, null);
                 }
                 if (isMediaDocument(uri)) {
-                    String[] split2 = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
-                    String str = split2[0];
+                    String[] strArrSplit2 = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
+                    String str = strArrSplit2[0];
                     if ("image".equals(str)) {
                         uri2 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                     } else if ("video".equals(str)) {
@@ -391,7 +454,7 @@ public class AgentWebUtils {
                     } else if ("audio".equals(str)) {
                         uri2 = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                     }
-                    return getDataColumn(activity, uri2, "_id=?", new String[]{split2[1]});
+                    return getDataColumn(activity, uri2, "_id=?", new String[]{strArrSplit2[1]});
                 }
             }
         }
@@ -427,27 +490,27 @@ public class AgentWebUtils {
     }
 
     private static String getRealPathBelowVersion(Context context, Uri uri) {
-        String str;
-        LogUtils.m8083i(TAG, "method -> getRealPathBelowVersion " + uri + "   path:" + uri.getPath() + "    getAuthority:" + uri.getAuthority());
+        String string;
+        LogUtils.i(TAG, "method -> getRealPathBelowVersion " + uri + "   path:" + uri.getPath() + "    getAuthority:" + uri.getAuthority());
         String[] strArr = {"_data"};
-        Cursor loadInBackground = new CursorLoader(context, uri, strArr, null, null, null).loadInBackground();
-        if (loadInBackground != null) {
-            loadInBackground.moveToFirst();
-            str = loadInBackground.getString(loadInBackground.getColumnIndex(strArr[0]));
-            loadInBackground.close();
+        Cursor cursorLoadInBackground = new CursorLoader(context, uri, strArr, null, null, null).loadInBackground();
+        if (cursorLoadInBackground != null) {
+            cursorLoadInBackground.moveToFirst();
+            string = cursorLoadInBackground.getString(cursorLoadInBackground.getColumnIndex(strArr[0]));
+            cursorLoadInBackground.close();
         } else {
-            str = null;
+            string = null;
         }
-        return str == null ? uri.getPath() : str;
+        return string == null ? uri.getPath() : string;
     }
 
     @Deprecated
     static void getUIControllerAndShowMessage(Activity activity, String str, String str2) {
-        AbsAgentWebUIController provide;
-        if (activity == null || activity.isFinishing() || (provide = ((WebParentLayout) activity.findViewById(C2605R.id.web_parent_layout_id)).provide()) == null) {
+        AbsAgentWebUIController absAgentWebUIControllerProvide;
+        if (activity == null || activity.isFinishing() || (absAgentWebUIControllerProvide = ((WebParentLayout) activity.findViewById(R.id.web_parent_layout_id)).provide()) == null) {
             return;
         }
-        provide.onShowMessage(str, str2);
+        absAgentWebUIControllerProvide.onShowMessage(str, str2);
     }
 
     static Uri getUriFromFile(Context context, File file) {
@@ -464,10 +527,10 @@ public class AgentWebUtils {
         }
         ViewGroup viewGroup = (ViewGroup) webView.getParent();
         while (viewGroup != null) {
-            LogUtils.m8083i(TAG, "ViewGroup:" + viewGroup);
-            if (viewGroup.getId() == C2605R.id.web_parent_layout_id) {
+            LogUtils.i(TAG, "ViewGroup:" + viewGroup);
+            if (viewGroup.getId() == R.id.web_parent_layout_id) {
                 WebParentLayout webParentLayout = (WebParentLayout) viewGroup;
-                LogUtils.m8083i(TAG, "found WebParentLayout");
+                LogUtils.i(TAG, "found WebParentLayout");
                 return webParentLayout;
             }
             ViewParent parent = viewGroup.getParent();
@@ -543,7 +606,7 @@ public class AgentWebUtils {
     }
 
     static boolean isOverriedMethod(Object obj, String str, String str2, Class... clsArr) {
-        LogUtils.m8083i(TAG, "  methodName:" + str + "   method:" + str2);
+        LogUtils.i(TAG, "  methodName:" + str + "   method:" + str2);
         boolean z = false;
         if (obj == null) {
             return false;
@@ -555,7 +618,7 @@ public class AgentWebUtils {
                 e2.printStackTrace();
             }
         }
-        LogUtils.m8083i(TAG, "isOverriedMethod:" + z);
+        LogUtils.i(TAG, "isOverriedMethod:" + z);
         return z;
     }
 
@@ -623,51 +686,51 @@ public class AgentWebUtils {
 
     static boolean showFileChooserCompat(Activity activity, WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams, PermissionInterceptor permissionInterceptor, ValueCallback valueCallback2, String str, Handler.Callback callback) {
         try {
-            Object invoke = Class.forName("com.just.agentweb.filechooser.FileChooser").getDeclaredMethod("newBuilder", Activity.class, WebView.class).invoke(null, activity, webView);
-            Class<?> cls = invoke.getClass();
+            Object objInvoke = Class.forName("com.just.agentweb.filechooser.FileChooser").getDeclaredMethod("newBuilder", Activity.class, WebView.class).invoke(null, activity, webView);
+            Class<?> cls = objInvoke.getClass();
             if (valueCallback != null) {
                 Method declaredMethod = cls.getDeclaredMethod("setUriValueCallbacks", ValueCallback.class);
                 declaredMethod.setAccessible(true);
-                declaredMethod.invoke(invoke, valueCallback);
+                declaredMethod.invoke(objInvoke, valueCallback);
             }
             if (fileChooserParams != null) {
                 Method declaredMethod2 = cls.getDeclaredMethod("setFileChooserParams", WebChromeClient.FileChooserParams.class);
                 declaredMethod2.setAccessible(true);
-                declaredMethod2.invoke(invoke, fileChooserParams);
+                declaredMethod2.invoke(objInvoke, fileChooserParams);
             }
             if (valueCallback2 != null) {
                 Method declaredMethod3 = cls.getDeclaredMethod("setUriValueCallback", ValueCallback.class);
                 declaredMethod3.setAccessible(true);
-                declaredMethod3.invoke(invoke, valueCallback2);
+                declaredMethod3.invoke(objInvoke, valueCallback2);
             }
             if (!TextUtils.isEmpty(str)) {
                 Method declaredMethod4 = cls.getDeclaredMethod("setAcceptType", String.class);
                 declaredMethod4.setAccessible(true);
-                declaredMethod4.invoke(invoke, str);
+                declaredMethod4.invoke(objInvoke, str);
             }
             if (callback != null) {
                 Method declaredMethod5 = cls.getDeclaredMethod("setJsChannelCallback", Handler.Callback.class);
                 declaredMethod5.setAccessible(true);
-                declaredMethod5.invoke(invoke, callback);
+                declaredMethod5.invoke(objInvoke, callback);
             }
             Method declaredMethod6 = cls.getDeclaredMethod("setPermissionInterceptor", PermissionInterceptor.class);
             declaredMethod6.setAccessible(true);
-            declaredMethod6.invoke(invoke, permissionInterceptor);
+            declaredMethod6.invoke(objInvoke, permissionInterceptor);
             Method declaredMethod7 = cls.getDeclaredMethod("build", new Class[0]);
             declaredMethod7.setAccessible(true);
-            Object invoke2 = declaredMethod7.invoke(invoke, new Object[0]);
-            Method declaredMethod8 = invoke2.getClass().getDeclaredMethod("openFileChooser", new Class[0]);
+            Object objInvoke2 = declaredMethod7.invoke(objInvoke, new Object[0]);
+            Method declaredMethod8 = objInvoke2.getClass().getDeclaredMethod("openFileChooser", new Class[0]);
             declaredMethod8.setAccessible(true);
-            declaredMethod8.invoke(invoke2, new Object[0]);
+            declaredMethod8.invoke(objInvoke2, new Object[0]);
         } catch (Throwable th) {
             if (LogUtils.isDebug()) {
                 th.printStackTrace();
             }
             if (th instanceof ClassNotFoundException) {
-                LogUtils.m8081e(TAG, "Please check whether compile'com.just.agentweb:filechooser:x.x.x' dependency was added.");
+                LogUtils.e(TAG, "Please check whether compile'com.just.agentweb:filechooser:x.x.x' dependency was added.");
             }
             if (valueCallback != null) {
-                LogUtils.m8083i(TAG, "onReceiveValue empty");
+                LogUtils.i(TAG, "onReceiveValue empty");
                 return false;
             }
             if (valueCallback2 != null) {
@@ -719,8 +782,8 @@ public class AgentWebUtils {
             if (ContextCompat.checkSelfPermission(context, str) == -1) {
                 return false;
             }
-            String permissionToOp = AppOpsManagerCompat.permissionToOp(str);
-            if (!TextUtils.isEmpty(permissionToOp) && AppOpsManagerCompat.noteProxyOp(context, permissionToOp, context.getPackageName()) != 0) {
+            String strPermissionToOp = AppOpsManagerCompat.permissionToOp(str);
+            if (!TextUtils.isEmpty(strPermissionToOp) && AppOpsManagerCompat.noteProxyOp(context, strPermissionToOp, context.getPackageName()) != 0) {
                 return false;
             }
         }

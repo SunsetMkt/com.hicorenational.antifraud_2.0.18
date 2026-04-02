@@ -2,11 +2,9 @@ package com.huawei.secure.android.common.util;
 
 import android.util.Base64;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SafeBase64 {
-
-    /* renamed from: a */
-    private static final String f8275a = "SafeBase64";
+    private static final String a = "SafeBase64";
 
     private SafeBase64() {
     }

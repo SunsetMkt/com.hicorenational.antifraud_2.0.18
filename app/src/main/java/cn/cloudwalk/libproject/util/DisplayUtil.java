@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Point;
 import android.util.DisplayMetrics;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DisplayUtil {
     public static int dip2px(Context context, float f2) {
         return (int) ((f2 * context.getResources().getDisplayMetrics().density) + 0.5f);

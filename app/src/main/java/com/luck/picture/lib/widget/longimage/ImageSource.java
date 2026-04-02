@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ImageSource {
     static final String ASSET_SCHEME = "file:///android_asset/";
     static final String FILE_SCHEME = "file:///";
@@ -146,10 +146,10 @@ public final class ImageSource {
     }
 
     private ImageSource(Uri uri) {
-        String uri2 = uri.toString();
-        if (uri2.startsWith(FILE_SCHEME) && !new File(uri2.substring(7)).exists()) {
+        String string = uri.toString();
+        if (string.startsWith(FILE_SCHEME) && !new File(string.substring(7)).exists()) {
             try {
-                uri = Uri.parse(URLDecoder.decode(uri2, "UTF-8"));
+                uri = Uri.parse(URLDecoder.decode(string, "UTF-8"));
             } catch (UnsupportedEncodingException unused) {
             }
         }

@@ -10,46 +10,43 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ErrorDialogFragments {
+    public static int a;
 
-    /* renamed from: a */
-    public static int f21625a;
-
-    /* renamed from: b */
-    public static Class<?> f21626b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public static Class<?> f12966b;
 
     @TargetApi(11)
     public static class Honeycomb extends DialogFragment implements DialogInterface.OnClickListener {
         @Override // android.content.DialogInterface.OnClickListener
         public void onClick(DialogInterface dialogInterface, int i2) {
-            ErrorDialogFragments.m25056a(dialogInterface, i2, getActivity(), getArguments());
+            ErrorDialogFragments.a(dialogInterface, i2, getActivity(), getArguments());
         }
 
         @Override // android.app.DialogFragment
         public Dialog onCreateDialog(Bundle bundle) {
-            return ErrorDialogFragments.m25055a(getActivity(), getArguments(), this);
+            return ErrorDialogFragments.a(getActivity(), getArguments(), this);
         }
     }
 
     public static class Support extends androidx.fragment.app.DialogFragment implements DialogInterface.OnClickListener {
         @Override // android.content.DialogInterface.OnClickListener
         public void onClick(DialogInterface dialogInterface, int i2) {
-            ErrorDialogFragments.m25056a(dialogInterface, i2, getActivity(), getArguments());
+            ErrorDialogFragments.a(dialogInterface, i2, getActivity(), getArguments());
         }
 
         @Override // androidx.fragment.app.DialogFragment
         public Dialog onCreateDialog(Bundle bundle) {
-            return ErrorDialogFragments.m25055a(getActivity(), getArguments(), this);
+            return ErrorDialogFragments.a(getActivity(), getArguments(), this);
         }
     }
 
-    /* renamed from: a */
-    public static Dialog m25055a(Context context, Bundle bundle, DialogInterface.OnClickListener onClickListener) {
+    public static Dialog a(Context context, Bundle bundle, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(bundle.getString(ErrorDialogManager.f21630d));
-        builder.setMessage(bundle.getString(ErrorDialogManager.f21631e));
-        int i2 = f21625a;
+        builder.setTitle(bundle.getString(ErrorDialogManager.f12969d));
+        builder.setMessage(bundle.getString(ErrorDialogManager.f12970e));
+        int i2 = a;
         if (i2 != 0) {
             builder.setIcon(i2);
         }
@@ -57,17 +54,16 @@ public class ErrorDialogFragments {
         return builder.create();
     }
 
-    /* renamed from: a */
-    public static void m25056a(DialogInterface dialogInterface, int i2, Activity activity, Bundle bundle) {
-        Class<?> cls = f21626b;
+    public static void a(DialogInterface dialogInterface, int i2, Activity activity, Bundle bundle) {
+        Class<?> cls = f12966b;
         if (cls != null) {
             try {
-                ErrorDialogManager.f21627a.f21662a.m25087b().m24999c(cls.newInstance());
+                ErrorDialogManager.a.a.b().c(cls.newInstance());
             } catch (Exception e2) {
                 throw new RuntimeException("Event cannot be constructed", e2);
             }
         }
-        if (!bundle.getBoolean(ErrorDialogManager.f21632f, false) || activity == null) {
+        if (!bundle.getBoolean(ErrorDialogManager.f12971f, false) || activity == null) {
             return;
         }
         activity.finish();

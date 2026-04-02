@@ -16,8 +16,8 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.ReportFragment;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class ComponentActivity extends Activity implements LifecycleOwner, KeyEventDispatcher.Component {
     private SimpleArrayMap<Class<? extends ExtraData>, ExtraData> mExtraDataMap = new SimpleArrayMap<>();
     private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
@@ -70,11 +70,10 @@ public class ComponentActivity extends Activity implements LifecycleOwner, KeyEv
         super.onSaveInstanceState(bundle);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
     public void putExtraData(ExtraData extraData) {
-        this.mExtraDataMap.put(extraData.getClass(), extraData);
+        this.mExtraDataMap.put((Class<? extends ExtraData>) extraData.getClass(), extraData);
     }
 
     @Override // androidx.core.view.KeyEventDispatcher.Component

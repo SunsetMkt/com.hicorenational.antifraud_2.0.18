@@ -3,15 +3,16 @@ plugins {
 }
 
 android {
+	namespace "com.hicorenational.antifraud"
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId 'com.hicorenational.antifraud'
         minSdkVersion 21
+        //noinspection ExpiringTargetSdkVersion,ExpiredTargetSdkVersion
         targetSdkVersion 30
-        versionCode 174
-        versionName "2.0.18"
+        versionCode 189
+        versionName "2.0.23"
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,5 +40,5 @@ android {
 }
 
 dependencies {
-    // some dependencies
+    // TODO: dependencies
 }

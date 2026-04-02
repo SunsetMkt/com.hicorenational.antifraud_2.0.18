@@ -8,8 +8,8 @@ import androidx.annotation.RestrictTo;
 import androidx.camera.camera2.impl.Camera2ImplConfig;
 import androidx.camera.core.ExtendableBuilder;
 
+/* JADX INFO: loaded from: classes.dex */
 @ExperimentalCamera2Interop
-/* loaded from: classes.dex */
 public final class Camera2Interop {
 
     public static final class Extender<T> {

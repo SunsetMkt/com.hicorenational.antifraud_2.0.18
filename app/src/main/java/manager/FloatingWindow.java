@@ -9,11 +9,11 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
-import p388ui.Hicore;
-import p388ui.activity.BaseProgressUploadActivity;
-import util.C7264c1;
+import ui.Hicore;
+import ui.activity.BaseProgressUploadActivity;
+import util.g1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FloatingWindow implements IFloatingWindow {
     public static ArrayList<String> phoneWindow = new ArrayList<>();
     private View mContentView;
@@ -60,7 +60,7 @@ public class FloatingWindow implements IFloatingWindow {
         layoutParams.gravity = 48;
         layoutParams.height = -2;
         layoutParams.x = 0;
-        layoutParams.y = C7264c1.m26285a(Hicore.getApp(), 35.0f);
+        layoutParams.y = g1.a(Hicore.getApp(), 35.0f);
         layoutParams.format = 1;
         layoutParams.flags = 7143848;
         return layoutParams;
@@ -108,7 +108,7 @@ public class FloatingWindow implements IFloatingWindow {
         layoutParams.gravity = 48;
         layoutParams.height = -2;
         layoutParams.x = 0;
-        layoutParams.y = C7264c1.m26285a(Hicore.getApp(), 35.0f);
+        layoutParams.y = g1.a(Hicore.getApp(), 35.0f);
         layoutParams.format = 1;
         layoutParams.flags = 7143848;
         return layoutParams;
@@ -125,7 +125,7 @@ public class FloatingWindow implements IFloatingWindow {
         layoutParams.gravity = 48;
         layoutParams.height = -2;
         layoutParams.x = 0;
-        layoutParams.y = C7264c1.m26285a(Hicore.getApp(), 35.0f);
+        layoutParams.y = g1.a(Hicore.getApp(), 35.0f);
         layoutParams.format = 1;
         layoutParams.flags = 7143848;
         return layoutParams;

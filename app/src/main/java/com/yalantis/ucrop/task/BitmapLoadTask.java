@@ -29,9 +29,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.URL;
-import util.permissionutil.C7308a;
+import util.permissionutil.a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
     private static final String TAG = "BitmapWorkerTask";
     private final BitmapLoadCallback mBitmapLoadCallback;
@@ -50,36 +50,36 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
         this.mBitmapLoadCallback = bitmapLoadCallback;
     }
 
-    private void copyFile(@NonNull Uri uri, @Nullable Uri uri2) throws NullPointerException, IOException {
-        InputStream inputStream;
+    private void copyFile(@NonNull Uri uri, @Nullable Uri uri2) throws Throwable {
+        InputStream inputStreamOpenInputStream;
         if (uri2 == null) {
             throw new NullPointerException("Output Uri is null - cannot copy image");
         }
         FileOutputStream fileOutputStream = null;
         try {
-            inputStream = getContext().getContentResolver().openInputStream(uri);
+            inputStreamOpenInputStream = getContext().getContentResolver().openInputStream(uri);
             try {
                 FileOutputStream fileOutputStream2 = new FileOutputStream(new File(uri2.getPath()));
                 try {
-                    if (inputStream == null) {
+                    if (inputStreamOpenInputStream == null) {
                         throw new NullPointerException("InputStream for given input Uri is null");
                     }
                     byte[] bArr = new byte[1024];
                     while (true) {
-                        int read = inputStream.read(bArr);
-                        if (read <= 0) {
+                        int i2 = inputStreamOpenInputStream.read(bArr);
+                        if (i2 <= 0) {
                             BitmapLoadUtils.close(fileOutputStream2);
-                            BitmapLoadUtils.close(inputStream);
+                            BitmapLoadUtils.close(inputStreamOpenInputStream);
                             this.mInputUri = this.mOutputUri;
                             return;
                         }
-                        fileOutputStream2.write(bArr, 0, read);
+                        fileOutputStream2.write(bArr, 0, i2);
                     }
                 } catch (Throwable th) {
                     th = th;
                     fileOutputStream = fileOutputStream2;
                     BitmapLoadUtils.close(fileOutputStream);
-                    BitmapLoadUtils.close(inputStream);
+                    BitmapLoadUtils.close(inputStreamOpenInputStream);
                     this.mInputUri = this.mOutputUri;
                     throw th;
                 }
@@ -88,7 +88,7 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
             }
         } catch (Throwable th3) {
             th = th3;
-            inputStream = null;
+            inputStreamOpenInputStream = null;
         }
     }
 
@@ -106,13 +106,14 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
     /* JADX WARN: Type inference failed for: r6v7 */
     /* JADX WARN: Type inference failed for: r6v8, types: [java.io.Closeable] */
     /* JADX WARN: Type inference failed for: r6v9 */
-    private void downloadFile(@NonNull Uri uri, @Nullable Uri uri2) throws NullPointerException, IOException {
+    private void downloadFile(@NonNull Uri uri, @Nullable Uri uri2) throws Throwable {
         BufferedInputStream bufferedInputStream;
         byte[] bArr;
+        BufferedOutputStream bufferedOutputStream;
         if (uri2 == 0) {
             throw new NullPointerException("Output Uri is null - cannot download image");
         }
-        BufferedOutputStream bufferedOutputStream = null;
+        BufferedOutputStream bufferedOutputStream2 = null;
         try {
             try {
                 URL url = new URL(uri.toString());
@@ -138,43 +139,39 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
             }
             if (uri2 != 0) {
                 try {
-                    BufferedOutputStream bufferedOutputStream2 = new BufferedOutputStream(uri2);
-                    while (true) {
-                        try {
-                            int read = bufferedInputStream.read(bArr);
-                            if (read <= -1) {
-                                break;
-                            } else {
-                                bufferedOutputStream2.write(bArr, 0, read);
-                            }
-                        } catch (Exception e4) {
-                            e = e4;
-                            bufferedOutputStream = bufferedOutputStream2;
-                            e.printStackTrace();
-                            uri2 = uri2;
-                            this.mInputUri = this.mOutputUri;
-                            BitmapLoadUtils.close(bufferedOutputStream);
-                            BitmapLoadUtils.close(bufferedInputStream);
-                            BitmapLoadUtils.close(uri2);
-                        } catch (Throwable th3) {
-                            th = th3;
-                            bufferedOutputStream = bufferedOutputStream2;
-                            this.mInputUri = this.mOutputUri;
-                            BitmapLoadUtils.close(bufferedOutputStream);
-                            BitmapLoadUtils.close(bufferedInputStream);
-                            BitmapLoadUtils.close(uri2);
-                            throw th;
-                        }
-                    }
-                    bufferedOutputStream2.flush();
-                    bufferedOutputStream = bufferedOutputStream2;
-                    uri2 = uri2;
-                } catch (Exception e5) {
-                    e = e5;
+                    bufferedOutputStream = new BufferedOutputStream(uri2);
+                } catch (Exception e4) {
+                    e = e4;
                 }
+                while (true) {
+                    try {
+                        int i2 = bufferedInputStream.read(bArr);
+                        if (i2 <= -1) {
+                            break;
+                        } else {
+                            bufferedOutputStream.write(bArr, 0, i2);
+                        }
+                    } catch (Exception e5) {
+                        e = e5;
+                        bufferedOutputStream2 = bufferedOutputStream;
+                        e.printStackTrace();
+                        uri2 = uri2;
+                    } catch (Throwable th3) {
+                        th = th3;
+                        bufferedOutputStream2 = bufferedOutputStream;
+                        this.mInputUri = this.mOutputUri;
+                        BitmapLoadUtils.close(bufferedOutputStream2);
+                        BitmapLoadUtils.close(bufferedInputStream);
+                        BitmapLoadUtils.close(uri2);
+                        throw th;
+                    }
+                }
+                bufferedOutputStream.flush();
+                bufferedOutputStream2 = bufferedOutputStream;
+                uri2 = uri2;
             }
             this.mInputUri = this.mOutputUri;
-            BitmapLoadUtils.close(bufferedOutputStream);
+            BitmapLoadUtils.close(bufferedOutputStream2);
             BitmapLoadUtils.close(bufferedInputStream);
             BitmapLoadUtils.close(uri2);
         } catch (Throwable th4) {
@@ -187,13 +184,13 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
     }
 
     private String getFilePath() {
-        if (ContextCompat.checkSelfPermission(getContext(), C7308a.f25547z) == 0) {
+        if (ContextCompat.checkSelfPermission(getContext(), a.z) == 0) {
             return FileUtils.getPath(getContext(), this.mInputUri);
         }
         return null;
     }
 
-    private void processInputUri() throws NullPointerException, IOException {
+    private void processInputUri() throws IOException, NullPointerException {
         String scheme = this.mInputUri.getScheme();
         String str = "Uri scheme: " + scheme;
         if (HttpConstant.HTTP.equals(scheme) || HttpConstant.HTTPS.equals(scheme)) {
@@ -234,11 +231,11 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
         try {
             processInputUri();
             try {
-                ParcelFileDescriptor openFileDescriptor = getContext().getContentResolver().openFileDescriptor(this.mInputUri, "r");
-                if (openFileDescriptor == null) {
+                ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = getContext().getContentResolver().openFileDescriptor(this.mInputUri, "r");
+                if (parcelFileDescriptorOpenFileDescriptor == null) {
                     return new BitmapWorkerResult(new NullPointerException("ParcelFileDescriptor was null for given Uri: [" + this.mInputUri + "]"));
                 }
-                FileDescriptor fileDescriptor = openFileDescriptor.getFileDescriptor();
+                FileDescriptor fileDescriptor = parcelFileDescriptorOpenFileDescriptor.getFileDescriptor();
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
@@ -248,33 +245,33 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
                 options.inSampleSize = BitmapLoadUtils.calculateInSampleSize(options, this.mRequiredWidth, this.mRequiredHeight);
                 boolean z = false;
                 options.inJustDecodeBounds = false;
-                Bitmap bitmap = null;
+                Bitmap bitmapDecodeFileDescriptor = null;
                 while (!z) {
                     try {
-                        bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
+                        bitmapDecodeFileDescriptor = BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
                         z = true;
                     } catch (OutOfMemoryError unused) {
                         options.inSampleSize *= 2;
                     }
                 }
-                if (bitmap == null) {
+                if (bitmapDecodeFileDescriptor == null) {
                     return new BitmapWorkerResult(new IllegalArgumentException("Bitmap could not be decoded from the Uri: [" + this.mInputUri + "]"));
                 }
                 if (Build.VERSION.SDK_INT >= 16) {
-                    BitmapLoadUtils.close(openFileDescriptor);
+                    BitmapLoadUtils.close(parcelFileDescriptorOpenFileDescriptor);
                 }
                 int exifOrientation = BitmapLoadUtils.getExifOrientation(getContext(), this.mInputUri);
-                int exifToDegrees = BitmapLoadUtils.exifToDegrees(exifOrientation);
-                int exifToTranslation = BitmapLoadUtils.exifToTranslation(exifOrientation);
-                ExifInfo exifInfo = new ExifInfo(exifOrientation, exifToDegrees, exifToTranslation);
+                int iExifToDegrees = BitmapLoadUtils.exifToDegrees(exifOrientation);
+                int iExifToTranslation = BitmapLoadUtils.exifToTranslation(exifOrientation);
+                ExifInfo exifInfo = new ExifInfo(exifOrientation, iExifToDegrees, iExifToTranslation);
                 Matrix matrix = new Matrix();
-                if (exifToDegrees != 0) {
-                    matrix.preRotate(exifToDegrees);
+                if (iExifToDegrees != 0) {
+                    matrix.preRotate(iExifToDegrees);
                 }
-                if (exifToTranslation != 1) {
-                    matrix.postScale(exifToTranslation, 1.0f);
+                if (iExifToTranslation != 1) {
+                    matrix.postScale(iExifToTranslation, 1.0f);
                 }
-                return !matrix.isIdentity() ? new BitmapWorkerResult(BitmapLoadUtils.transformBitmap(bitmap, matrix), exifInfo) : new BitmapWorkerResult(bitmap, exifInfo);
+                return !matrix.isIdentity() ? new BitmapWorkerResult(BitmapLoadUtils.transformBitmap(bitmapDecodeFileDescriptor, matrix), exifInfo) : new BitmapWorkerResult(bitmapDecodeFileDescriptor, exifInfo);
             } catch (FileNotFoundException e2) {
                 return new BitmapWorkerResult(e2);
             }
@@ -291,15 +288,15 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapWorkerResult> {
             this.mBitmapLoadCallback.onFailure(exc);
             return;
         }
-        String uri = this.mInputUri.toString();
+        String string = this.mInputUri.toString();
         BitmapLoadCallback bitmapLoadCallback = this.mBitmapLoadCallback;
         Bitmap bitmap = bitmapWorkerResult.mBitmapResult;
         ExifInfo exifInfo = bitmapWorkerResult.mExifInfo;
-        if (!MimeType.isContent(uri)) {
-            uri = this.mInputUri.getPath();
+        if (!MimeType.isContent(string)) {
+            string = this.mInputUri.getPath();
         }
-        Uri uri2 = this.mOutputUri;
-        bitmapLoadCallback.onBitmapLoaded(bitmap, exifInfo, uri, uri2 == null ? null : uri2.getPath());
+        Uri uri = this.mOutputUri;
+        bitmapLoadCallback.onBitmapLoaded(bitmap, exifInfo, string, uri == null ? null : uri.getPath());
     }
 
     public static class BitmapWorkerResult {

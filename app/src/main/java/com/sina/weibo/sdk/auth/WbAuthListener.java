@@ -2,7 +2,7 @@ package com.sina.weibo.sdk.auth;
 
 import com.sina.weibo.sdk.common.UiError;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface WbAuthListener {
     void onCancel();
 

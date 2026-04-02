@@ -2,7 +2,7 @@ package com.just.agentweb;
 
 import android.webkit.ValueCallback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface JsAccessEntrace extends QuickCallJs {
     void callJs(String str);
 

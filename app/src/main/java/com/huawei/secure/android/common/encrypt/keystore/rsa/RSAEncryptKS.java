@@ -4,7 +4,7 @@ import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.text.TextUtils;
 import android.util.Base64;
-import com.huawei.secure.android.common.encrypt.utils.C2551b;
+import com.huawei.secure.android.common.encrypt.utils.b;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -28,103 +28,98 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.OAEPParameterSpec;
 import javax.crypto.spec.PSource;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class RSAEncryptKS {
+    private static final String a = "RSAEncryptKS";
 
-    /* renamed from: a */
-    private static final String f8072a = "RSAEncryptKS";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5086b = "AndroidKeyStore";
 
-    /* renamed from: b */
-    private static final String f8073b = "AndroidKeyStore";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f5087c = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
 
-    /* renamed from: c */
-    private static final String f8074c = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final String f5088d = "";
 
-    /* renamed from: d */
-    private static final String f8075d = "";
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static final int f5089e = 2048;
 
-    /* renamed from: e */
-    private static final int f8076e = 2048;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static final int f5090f = 3072;
 
-    /* renamed from: f */
-    private static final int f8077f = 3072;
-
-    /* renamed from: a */
-    private static byte[] m7862a(String str, byte[] bArr, boolean z) {
+    private static byte[] a(String str, byte[] bArr, boolean z) {
         byte[] bArr2 = new byte[0];
         if (TextUtils.isEmpty(str) || bArr == null) {
-            C2551b.m7898b(f8072a, "alias or content is null");
+            b.b(a, "alias or content is null");
             return bArr2;
         }
-        if (!m7861a()) {
-            C2551b.m7898b(f8072a, "sdk version is too low");
+        if (!a()) {
+            b.b(a, "sdk version is too low");
             return bArr2;
         }
-        PublicKey m7863b = m7863b(str, z);
-        if (m7863b == null) {
-            C2551b.m7898b(f8072a, "Public key is null");
+        PublicKey publicKeyB = b(str, z);
+        if (publicKeyB == null) {
+            b.b(a, "Public key is null");
             return bArr2;
         }
         try {
-            Cipher cipher = Cipher.getInstance(f8074c);
-            cipher.init(1, m7863b, new OAEPParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-1"), PSource.PSpecified.DEFAULT));
+            Cipher cipher = Cipher.getInstance(f5087c);
+            cipher.init(1, publicKeyB, new OAEPParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-1"), PSource.PSpecified.DEFAULT));
             return cipher.doFinal(bArr);
         } catch (InvalidAlgorithmParameterException e2) {
-            C2551b.m7898b(f8072a, "InvalidAlgorithmParameterException: " + e2.getMessage());
+            b.b(a, "InvalidAlgorithmParameterException: " + e2.getMessage());
             return bArr2;
         } catch (InvalidKeyException e3) {
-            C2551b.m7898b(f8072a, "InvalidKeyException: " + e3.getMessage());
+            b.b(a, "InvalidKeyException: " + e3.getMessage());
             return bArr2;
         } catch (NoSuchAlgorithmException e4) {
-            C2551b.m7898b(f8072a, "NoSuchAlgorithmException: " + e4.getMessage());
+            b.b(a, "NoSuchAlgorithmException: " + e4.getMessage());
             return bArr2;
         } catch (BadPaddingException e5) {
-            C2551b.m7898b(f8072a, "BadPaddingException: " + e5.getMessage());
+            b.b(a, "BadPaddingException: " + e5.getMessage());
             return bArr2;
         } catch (IllegalBlockSizeException e6) {
-            C2551b.m7898b(f8072a, "IllegalBlockSizeException: " + e6.getMessage());
+            b.b(a, "IllegalBlockSizeException: " + e6.getMessage());
             return bArr2;
         } catch (NoSuchPaddingException e7) {
-            C2551b.m7898b(f8072a, "NoSuchPaddingException: " + e7.getMessage());
+            b.b(a, "NoSuchPaddingException: " + e7.getMessage());
             return bArr2;
         } catch (Exception e8) {
-            C2551b.m7898b(f8072a, "Exception: " + e8.getMessage());
+            b.b(a, "Exception: " + e8.getMessage());
             return bArr2;
         }
     }
 
-    /* renamed from: b */
-    private static PublicKey m7863b(String str, boolean z) {
-        if (!m7864b(str)) {
-            m7859a(str, z);
+    private static PublicKey b(String str, boolean z) {
+        if (!b(str)) {
+            a(str, z);
         }
-        Certificate m7865c = m7865c(str);
-        if (m7865c != null) {
-            return m7865c.getPublicKey();
+        Certificate certificateC = c(str);
+        if (certificateC != null) {
+            return certificateC.getPublicKey();
         }
         return null;
     }
 
-    /* renamed from: c */
-    private static Certificate m7865c(String str) {
+    private static Certificate c(String str) {
         try {
-            KeyStore keyStore = KeyStore.getInstance(f8073b);
+            KeyStore keyStore = KeyStore.getInstance(f5086b);
             keyStore.load(null);
             return keyStore.getCertificate(str);
         } catch (IOException e2) {
-            C2551b.m7898b(f8072a, "IOException: " + e2.getMessage());
+            b.b(a, "IOException: " + e2.getMessage());
             return null;
         } catch (KeyStoreException e3) {
-            C2551b.m7898b(f8072a, "KeyStoreException: " + e3.getMessage());
+            b.b(a, "KeyStoreException: " + e3.getMessage());
             return null;
         } catch (NoSuchAlgorithmException e4) {
-            C2551b.m7898b(f8072a, "NoSuchAlgorithmException: " + e4.getMessage());
+            b.b(a, "NoSuchAlgorithmException: " + e4.getMessage());
             return null;
         } catch (CertificateException e5) {
-            C2551b.m7898b(f8072a, "CertificateException: " + e5.getMessage());
+            b.b(a, "CertificateException: " + e5.getMessage());
             return null;
         } catch (Exception e6) {
-            C2551b.m7898b(f8072a, "Exception: " + e6.getMessage());
+            b.b(a, "Exception: " + e6.getMessage());
             return null;
         }
     }
@@ -134,10 +129,10 @@ public abstract class RSAEncryptKS {
         try {
             return new String(decrpyt(str, Base64.decode(str2, 0)), "UTF-8");
         } catch (UnsupportedEncodingException e2) {
-            C2551b.m7898b(f8072a, "UnsupportedEncodingException: " + e2.getMessage());
+            b.b(a, "UnsupportedEncodingException: " + e2.getMessage());
             return "";
         } catch (Exception e3) {
-            C2551b.m7898b(f8072a, "Exception: " + e3.getMessage());
+            b.b(a, "Exception: " + e3.getMessage());
             return "";
         }
     }
@@ -146,10 +141,10 @@ public abstract class RSAEncryptKS {
         try {
             return new String(decrpytNew(str, Base64.decode(str2, 0)), "UTF-8");
         } catch (UnsupportedEncodingException e2) {
-            C2551b.m7898b(f8072a, "UnsupportedEncodingException: " + e2.getMessage());
+            b.b(a, "UnsupportedEncodingException: " + e2.getMessage());
             return "";
         } catch (Exception e3) {
-            C2551b.m7898b(f8072a, "Exception: " + e3.getMessage());
+            b.b(a, "Exception: " + e3.getMessage());
             return "";
         }
     }
@@ -162,7 +157,7 @@ public abstract class RSAEncryptKS {
         try {
             return Base64.encodeToString(encrypt(str, str2.getBytes("UTF-8")), 0);
         } catch (UnsupportedEncodingException e2) {
-            C2551b.m7898b(f8072a, "UnsupportedEncodingException: " + e2.getMessage());
+            b.b(a, "UnsupportedEncodingException: " + e2.getMessage());
             return "";
         }
     }
@@ -174,7 +169,7 @@ public abstract class RSAEncryptKS {
         try {
             return Base64.encodeToString(encryptNew(str, str2.getBytes("UTF-8")), 0);
         } catch (UnsupportedEncodingException e2) {
-            C2551b.m7898b(f8072a, "UnsupportedEncodingException: " + e2.getMessage());
+            b.b(a, "UnsupportedEncodingException: " + e2.getMessage());
             return "";
         }
     }
@@ -183,43 +178,43 @@ public abstract class RSAEncryptKS {
     public static byte[] decrpyt(String str, byte[] bArr) {
         byte[] bArr2 = new byte[0];
         if (!TextUtils.isEmpty(str) && bArr != null) {
-            if (!m7861a()) {
-                C2551b.m7898b(f8072a, "sdk version is too low");
+            if (!a()) {
+                b.b(a, "sdk version is too low");
                 return bArr2;
             }
-            PrivateKey m7860a = m7860a(str);
-            if (m7860a == null) {
-                C2551b.m7898b(f8072a, "Private key is null");
+            PrivateKey privateKeyA = a(str);
+            if (privateKeyA == null) {
+                b.b(a, "Private key is null");
                 return bArr2;
             }
             try {
-                Cipher cipher = Cipher.getInstance(f8074c);
-                cipher.init(2, m7860a, new OAEPParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-1"), PSource.PSpecified.DEFAULT));
+                Cipher cipher = Cipher.getInstance(f5087c);
+                cipher.init(2, privateKeyA, new OAEPParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-1"), PSource.PSpecified.DEFAULT));
                 return cipher.doFinal(bArr);
             } catch (InvalidAlgorithmParameterException e2) {
-                C2551b.m7898b(f8072a, "InvalidAlgorithmParameterException: " + e2.getMessage());
+                b.b(a, "InvalidAlgorithmParameterException: " + e2.getMessage());
                 return bArr2;
             } catch (InvalidKeyException e3) {
-                C2551b.m7898b(f8072a, "InvalidKeyException: " + e3.getMessage());
+                b.b(a, "InvalidKeyException: " + e3.getMessage());
                 return bArr2;
             } catch (NoSuchAlgorithmException e4) {
-                C2551b.m7898b(f8072a, "NoSuchAlgorithmException: " + e4.getMessage());
+                b.b(a, "NoSuchAlgorithmException: " + e4.getMessage());
                 return bArr2;
             } catch (BadPaddingException e5) {
-                C2551b.m7898b(f8072a, "BadPaddingException: " + e5.getMessage());
+                b.b(a, "BadPaddingException: " + e5.getMessage());
                 return bArr2;
             } catch (IllegalBlockSizeException e6) {
-                C2551b.m7898b(f8072a, "IllegalBlockSizeException: " + e6.getMessage());
+                b.b(a, "IllegalBlockSizeException: " + e6.getMessage());
                 return bArr2;
             } catch (NoSuchPaddingException e7) {
-                C2551b.m7898b(f8072a, "NoSuchPaddingException: " + e7.getMessage());
+                b.b(a, "NoSuchPaddingException: " + e7.getMessage());
                 return bArr2;
             } catch (Exception e8) {
-                C2551b.m7898b(f8072a, "Exception: " + e8.getMessage());
+                b.b(a, "Exception: " + e8.getMessage());
                 return bArr2;
             }
         }
-        C2551b.m7898b(f8072a, "alias or encrypted content is null");
+        b.b(a, "alias or encrypted content is null");
         return bArr2;
     }
 
@@ -229,106 +224,100 @@ public abstract class RSAEncryptKS {
 
     @Deprecated
     public static byte[] encrypt(String str, byte[] bArr) {
-        return m7862a(str, bArr, false);
+        return a(str, bArr, false);
     }
 
     public static byte[] encryptNew(String str, byte[] bArr) {
-        return m7862a(str, bArr, true);
+        return a(str, bArr, true);
     }
 
-    /* renamed from: b */
-    private static boolean m7864b(String str) {
+    private static boolean b(String str) {
         try {
-            KeyStore keyStore = KeyStore.getInstance(f8073b);
+            KeyStore keyStore = KeyStore.getInstance(f5086b);
             keyStore.load(null);
             return keyStore.getKey(str, null) != null;
         } catch (IOException e2) {
-            C2551b.m7898b(f8072a, "IOException: " + e2.getMessage());
+            b.b(a, "IOException: " + e2.getMessage());
             return false;
         } catch (KeyStoreException e3) {
-            C2551b.m7898b(f8072a, "KeyStoreException: " + e3.getMessage());
+            b.b(a, "KeyStoreException: " + e3.getMessage());
             return false;
         } catch (NoSuchAlgorithmException e4) {
-            C2551b.m7898b(f8072a, "NoSuchAlgorithmException: " + e4.getMessage());
+            b.b(a, "NoSuchAlgorithmException: " + e4.getMessage());
             return false;
         } catch (UnrecoverableKeyException e5) {
-            C2551b.m7898b(f8072a, "UnrecoverableKeyException: " + e5.getMessage());
+            b.b(a, "UnrecoverableKeyException: " + e5.getMessage());
             return false;
         } catch (CertificateException e6) {
-            C2551b.m7898b(f8072a, "CertificateException: " + e6.getMessage());
+            b.b(a, "CertificateException: " + e6.getMessage());
             return false;
         } catch (Exception e7) {
-            C2551b.m7898b(f8072a, "Exception: " + e7.getMessage());
+            b.b(a, "Exception: " + e7.getMessage());
             return false;
         }
     }
 
-    /* renamed from: a */
-    private static synchronized KeyPair m7859a(String str, boolean z) {
-        synchronized (RSAEncryptKS.class) {
-            KeyPair keyPair = null;
-            if (m7864b(str)) {
-                C2551b.m7898b(f8072a, "Key pair exits");
-                return null;
-            }
-            C2551b.m7899c(f8072a, "generate key pair.");
+    private static synchronized KeyPair a(String str, boolean z) {
+        KeyPair keyPairGenerateKeyPair = null;
+        if (b(str)) {
+            b.b(a, "Key pair exits");
+            return null;
+        }
+        b.c(a, "generate key pair.");
+        try {
             try {
                 try {
-                    try {
-                        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA", f8073b);
-                        if (!z) {
-                            keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 2).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setKeySize(2048).build());
-                        } else {
-                            keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 2).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setKeySize(f8077f).build());
-                        }
-                        keyPair = keyPairGenerator.generateKeyPair();
-                    } catch (NoSuchProviderException e2) {
-                        C2551b.m7898b(f8072a, "NoSuchProviderException: " + e2.getMessage());
-                    } catch (Exception e3) {
-                        C2551b.m7898b(f8072a, "Exception: " + e3.getMessage());
+                    KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA", f5086b);
+                    if (!z) {
+                        keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 2).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setKeySize(2048).build());
+                    } else {
+                        keyPairGenerator.initialize(new KeyGenParameterSpec.Builder(str, 2).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setKeySize(f5090f).build());
                     }
-                } catch (InvalidAlgorithmParameterException e4) {
-                    C2551b.m7898b(f8072a, "InvalidAlgorithmParameterException: " + e4.getMessage());
+                    keyPairGenerateKeyPair = keyPairGenerator.generateKeyPair();
+                } catch (NoSuchProviderException e2) {
+                    b.b(a, "NoSuchProviderException: " + e2.getMessage());
+                } catch (Exception e3) {
+                    b.b(a, "Exception: " + e3.getMessage());
                 }
-            } catch (NoSuchAlgorithmException e5) {
-                C2551b.m7898b(f8072a, "NoSuchAlgorithmException: " + e5.getMessage());
+            } catch (InvalidAlgorithmParameterException e4) {
+                b.b(a, "InvalidAlgorithmParameterException: " + e4.getMessage());
             }
-            return keyPair;
+        } catch (NoSuchAlgorithmException e5) {
+            b.b(a, "NoSuchAlgorithmException: " + e5.getMessage());
         }
+        return keyPairGenerateKeyPair;
     }
 
-    /* renamed from: a */
-    private static PrivateKey m7860a(String str) {
-        if (!m7864b(str)) {
+    private static PrivateKey a(String str) {
+        if (!b(str)) {
             return null;
         }
         try {
-            KeyStore keyStore = KeyStore.getInstance(f8073b);
+            KeyStore keyStore = KeyStore.getInstance(f5086b);
             keyStore.load(null);
             return (PrivateKey) keyStore.getKey(str, null);
         } catch (IOException e2) {
-            C2551b.m7898b(f8072a, "IOException: " + e2.getMessage());
+            b.b(a, "IOException: " + e2.getMessage());
             return null;
         } catch (KeyStoreException e3) {
-            C2551b.m7898b(f8072a, "KeyStoreException: " + e3.getMessage());
+            b.b(a, "KeyStoreException: " + e3.getMessage());
             return null;
         } catch (NoSuchAlgorithmException e4) {
-            C2551b.m7898b(f8072a, "NoSuchAlgorithmException: " + e4.getMessage());
+            b.b(a, "NoSuchAlgorithmException: " + e4.getMessage());
             return null;
         } catch (UnrecoverableKeyException e5) {
-            C2551b.m7898b(f8072a, "UnrecoverableKeyException: " + e5.getMessage());
+            b.b(a, "UnrecoverableKeyException: " + e5.getMessage());
             return null;
         } catch (CertificateException e6) {
-            C2551b.m7898b(f8072a, "CertificateException: " + e6.getMessage());
+            b.b(a, "CertificateException: " + e6.getMessage());
             return null;
         } catch (Exception e7) {
-            C2551b.m7898b(f8072a, "Exception: " + e7.getMessage());
+            b.b(a, "Exception: " + e7.getMessage());
             return null;
         }
     }
 
-    /* renamed from: a */
-    private static boolean m7861a() {
+    private static boolean a() {
         return Build.VERSION.SDK_INT >= 23;
     }
 }

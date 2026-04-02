@@ -1,11 +1,11 @@
 package com.tencent.bugly.beta.tinker;
 
-import com.heytap.mcssdk.constant.C2084a;
+import com.heytap.mcssdk.constant.a;
 import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerReport {
     public static final int KEY_APPLIED = 5;
     public static final int KEY_APPLIED_DEXOPT_EXIST = 122;
@@ -97,7 +97,7 @@ public class TinkerReport {
     private static final String TAG = "Tinker.TinkerReport";
     private static Reporter reporter;
 
-    /* compiled from: BUGLY */
+    /* JADX INFO: compiled from: BUGLY */
     public interface Reporter {
         void onReport(int i2);
 
@@ -122,7 +122,7 @@ public class TinkerReport {
             TinkerLog.e(TAG, "hp_report report apply cost failed, invalid cost", new Object[0]);
             return;
         }
-        if (j2 <= C2084a.f6136r) {
+        if (j2 <= a.r) {
             if (z) {
                 reporter.onReport(200);
                 return;
@@ -131,7 +131,7 @@ public class TinkerReport {
                 return;
             }
         }
-        if (j2 <= C2084a.f6135q) {
+        if (j2 <= a.q) {
             if (z) {
                 reporter.onReport(201);
                 return;
@@ -149,7 +149,7 @@ public class TinkerReport {
                 return;
             }
         }
-        if (j2 <= C2084a.f6122d) {
+        if (j2 <= a.f3868d) {
             if (z) {
                 reporter.onReport(203);
                 return;
@@ -278,118 +278,47 @@ public class TinkerReport {
         reporter2.onReport(7);
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:16:0x00c7  */
-    /* JADX WARN: Removed duplicated region for block: B:18:? A[RETURN, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:26:0x00c7  */
+    /* JADX WARN: Removed duplicated region for block: B:28:? A[RETURN, SYNTHETIC] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static void onLoadException(java.lang.Throwable r5, int r6) {
-        /*
-            com.tencent.bugly.beta.tinker.TinkerReport$Reporter r0 = com.tencent.bugly.beta.tinker.TinkerReport.reporter
-            if (r0 != 0) goto L5
-            return
-        L5:
-            r1 = -4
-            r2 = 1
-            r3 = 0
-            if (r6 == r1) goto Lbf
-            r1 = -3
-            java.lang.String r4 = "Tinker.TinkerReport"
-            if (r6 == r1) goto L6f
-            r1 = -2
-            if (r6 == r1) goto L1e
-            r1 = -1
-            if (r6 == r1) goto L17
-            goto Lc4
-        L17:
-            r6 = 250(0xfa, float:3.5E-43)
-            r0.onReport(r6)
-            goto Lc4
-        L1e:
-            java.lang.String r6 = r5.getMessage()
-            java.lang.String r0 = "checkDexInstall failed"
-            boolean r6 = r6.contains(r0)
-            if (r6 == 0) goto L4d
-            com.tencent.bugly.beta.tinker.TinkerReport$Reporter r6 = com.tencent.bugly.beta.tinker.TinkerReport.reporter
-            r0 = 253(0xfd, float:3.55E-43)
-            r6.onReport(r0)
-            java.lang.StringBuilder r6 = new java.lang.StringBuilder
-            r6.<init>()
-            java.lang.String r0 = "tinker dex check fail:"
-            r6.append(r0)
-            java.lang.String r0 = r5.getMessage()
-            r6.append(r0)
-            java.lang.String r6 = r6.toString()
-            java.lang.Object[] r0 = new java.lang.Object[r3]
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r6, r0)
-            goto Lc5
-        L4d:
-            com.tencent.bugly.beta.tinker.TinkerReport$Reporter r6 = com.tencent.bugly.beta.tinker.TinkerReport.reporter
-            r0 = 252(0xfc, float:3.53E-43)
-            r6.onReport(r0)
-            java.lang.StringBuilder r6 = new java.lang.StringBuilder
-            r6.<init>()
-            java.lang.String r0 = "tinker dex reflect fail:"
-            r6.append(r0)
-            java.lang.String r0 = r5.getMessage()
-            r6.append(r0)
-            java.lang.String r6 = r6.toString()
-            java.lang.Object[] r0 = new java.lang.Object[r3]
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r6, r0)
-            goto Lc4
-        L6f:
-            java.lang.String r6 = r5.getMessage()
-            java.lang.String r0 = "checkResInstall failed"
-            boolean r6 = r6.contains(r0)
-            if (r6 == 0) goto L9d
-            com.tencent.bugly.beta.tinker.TinkerReport$Reporter r6 = com.tencent.bugly.beta.tinker.TinkerReport.reporter
-            r0 = 255(0xff, float:3.57E-43)
-            r6.onReport(r0)
-            java.lang.StringBuilder r6 = new java.lang.StringBuilder
-            r6.<init>()
-            java.lang.String r0 = "tinker res check fail:"
-            r6.append(r0)
-            java.lang.String r0 = r5.getMessage()
-            r6.append(r0)
-            java.lang.String r6 = r6.toString()
-            java.lang.Object[] r0 = new java.lang.Object[r3]
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r6, r0)
-            goto Lc5
-        L9d:
-            com.tencent.bugly.beta.tinker.TinkerReport$Reporter r6 = com.tencent.bugly.beta.tinker.TinkerReport.reporter
-            r0 = 254(0xfe, float:3.56E-43)
-            r6.onReport(r0)
-            java.lang.StringBuilder r6 = new java.lang.StringBuilder
-            r6.<init>()
-            java.lang.String r0 = "tinker res reflect fail:"
-            r6.append(r0)
-            java.lang.String r0 = r5.getMessage()
-            r6.append(r0)
-            java.lang.String r6 = r6.toString()
-            java.lang.Object[] r0 = new java.lang.Object[r3]
-            com.tencent.tinker.lib.util.TinkerLog.e(r4, r6, r0)
-            goto Lc4
-        Lbf:
-            r6 = 251(0xfb, float:3.52E-43)
-            r0.onReport(r6)
-        Lc4:
-            r2 = 0
-        Lc5:
-            if (r2 != 0) goto Le1
-            com.tencent.bugly.beta.tinker.TinkerReport$Reporter r6 = com.tencent.bugly.beta.tinker.TinkerReport.reporter
-            java.lang.StringBuilder r0 = new java.lang.StringBuilder
-            r0.<init>()
-            java.lang.String r1 = "Tinker Exception:load tinker occur exception "
-            r0.append(r1)
-            java.lang.String r5 = com.tencent.bugly.beta.tinker.TinkerUtils.getExceptionCauseString(r5)
-            r0.append(r5)
-            java.lang.String r5 = r0.toString()
-            r6.onReport(r5)
-        Le1:
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.tencent.bugly.beta.tinker.TinkerReport.onLoadException(java.lang.Throwable, int):void");
+    public static void onLoadException(Throwable th, int i2) {
+        Reporter reporter2 = reporter;
+        if (reporter2 == null) {
+            return;
+        }
+        boolean z = true;
+        if (i2 != -4) {
+            if (i2 != -3) {
+                if (i2 != -2) {
+                    if (i2 == -1) {
+                        reporter2.onReport(250);
+                    }
+                } else if (th.getMessage().contains("checkDexInstall failed")) {
+                    reporter.onReport(KEY_LOADED_EXCEPTION_DEX_CHECK);
+                    TinkerLog.e(TAG, "tinker dex check fail:" + th.getMessage(), new Object[0]);
+                } else {
+                    reporter.onReport(KEY_LOADED_EXCEPTION_DEX);
+                    TinkerLog.e(TAG, "tinker dex reflect fail:" + th.getMessage(), new Object[0]);
+                }
+            } else if (th.getMessage().contains("checkResInstall failed")) {
+                reporter.onReport(255);
+                TinkerLog.e(TAG, "tinker res check fail:" + th.getMessage(), new Object[0]);
+            } else {
+                reporter.onReport(KEY_LOADED_EXCEPTION_RESOURCE);
+                TinkerLog.e(TAG, "tinker res reflect fail:" + th.getMessage(), new Object[0]);
+            }
+            if (z) {
+                reporter.onReport("Tinker Exception:load tinker occur exception " + TinkerUtils.getExceptionCauseString(th));
+                return;
+            }
+            return;
+        }
+        reporter2.onReport(KEY_LOADED_UNCAUGHT_EXCEPTION);
+        z = false;
+        if (z) {
+        }
     }
 
     public static void onLoadFileMisMatch(int i2) {
@@ -519,7 +448,7 @@ public class TinkerReport {
         }
         if (j2 <= 3000) {
             reporter.onReport(402);
-        } else if (j2 <= C2084a.f6136r) {
+        } else if (j2 <= a.r) {
             reporter.onReport(403);
         } else {
             reporter.onReport(KEY_LOADED_SUCC_COST_OTHER);
@@ -587,6 +516,7 @@ public class TinkerReport {
                         reporter2.onReport(71);
                         break;
                 }
+                break;
         }
     }
 

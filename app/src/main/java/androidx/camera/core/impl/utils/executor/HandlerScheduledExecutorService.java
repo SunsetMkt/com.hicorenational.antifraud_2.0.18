@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
+import d.b.b.a.a.a;
 import java.util.List;
 import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.Callable;
@@ -18,9 +19,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class HandlerScheduledExecutorService extends AbstractExecutorService implements ScheduledExecutorService {
     private static ThreadLocal<ScheduledExecutorService> sThreadLocalInstance = new ThreadLocal<ScheduledExecutorService>() { // from class: androidx.camera.core.impl.utils.executor.HandlerScheduledExecutorService.1
         @Override // java.lang.ThreadLocal
@@ -38,7 +38,7 @@ final class HandlerScheduledExecutorService extends AbstractExecutorService impl
 
     private static class HandlerScheduledFuture<V> implements RunnableScheduledFuture<V> {
         final AtomicReference<CallbackToFutureAdapter.Completer<V>> mCompleter = new AtomicReference<>(null);
-        private final InterfaceFutureC0952a<V> mDelegate;
+        private final a<V> mDelegate;
         private final long mRunAtMillis;
         private final Callable<V> mTask;
 
@@ -52,7 +52,7 @@ final class HandlerScheduledExecutorService extends AbstractExecutorService impl
                         @Override // java.lang.Runnable
                         public void run() {
                             if (HandlerScheduledFuture.this.mCompleter.getAndSet(null) != null) {
-                                C03731 c03731 = C03731.this;
+                                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
                                 handler.removeCallbacks(HandlerScheduledFuture.this);
                             }
                         }
@@ -129,11 +129,11 @@ final class HandlerScheduledExecutorService extends AbstractExecutorService impl
         if (scheduledExecutorService != null) {
             return scheduledExecutorService;
         }
-        Looper myLooper = Looper.myLooper();
-        if (myLooper == null) {
+        Looper looperMyLooper = Looper.myLooper();
+        if (looperMyLooper == null) {
             throw new IllegalStateException("Current thread has no looper!");
         }
-        HandlerScheduledExecutorService handlerScheduledExecutorService = new HandlerScheduledExecutorService(new Handler(myLooper));
+        HandlerScheduledExecutorService handlerScheduledExecutorService = new HandlerScheduledExecutorService(new Handler(looperMyLooper));
         sThreadLocalInstance.set(handlerScheduledExecutorService);
         return handlerScheduledExecutorService;
     }
@@ -197,8 +197,8 @@ final class HandlerScheduledExecutorService extends AbstractExecutorService impl
     @Override // java.util.concurrent.ScheduledExecutorService
     @NonNull
     public <V> ScheduledFuture<V> schedule(@NonNull Callable<V> callable, long j2, @NonNull TimeUnit timeUnit) {
-        long uptimeMillis = SystemClock.uptimeMillis() + TimeUnit.MILLISECONDS.convert(j2, timeUnit);
-        HandlerScheduledFuture handlerScheduledFuture = new HandlerScheduledFuture(this.mHandler, uptimeMillis, callable);
-        return this.mHandler.postAtTime(handlerScheduledFuture, uptimeMillis) ? handlerScheduledFuture : Futures.immediateFailedScheduledFuture(createPostFailedException());
+        long jUptimeMillis = SystemClock.uptimeMillis() + TimeUnit.MILLISECONDS.convert(j2, timeUnit);
+        HandlerScheduledFuture handlerScheduledFuture = new HandlerScheduledFuture(this.mHandler, jUptimeMillis, callable);
+        return this.mHandler.postAtTime(handlerScheduledFuture, jUptimeMillis) ? handlerScheduledFuture : Futures.immediateFailedScheduledFuture(createPostFailedException());
     }
 }

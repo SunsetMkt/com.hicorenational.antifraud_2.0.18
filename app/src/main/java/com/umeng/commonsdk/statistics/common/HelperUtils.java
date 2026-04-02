@@ -2,6 +2,7 @@ package com.umeng.commonsdk.statistics.common;
 
 import android.text.TextUtils;
 import androidx.core.view.InputDeviceCompat;
+import i.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,9 +15,8 @@ import java.io.StringWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import p286h.C5230f1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HelperUtils {
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private static final String TAG = "helper";
@@ -30,9 +30,9 @@ public class HelperUtils {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.reset();
             messageDigest.update(bytes);
-            byte[] digest = messageDigest.digest();
+            byte[] bArrDigest = messageDigest.digest();
             StringBuffer stringBuffer = new StringBuffer();
-            for (byte b2 : digest) {
+            for (byte b2 : bArrDigest) {
                 stringBuffer.append(String.format("%02X", Byte.valueOf(b2)));
             }
             return stringBuffer.toString();
@@ -61,12 +61,12 @@ public class HelperUtils {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             FileInputStream fileInputStream = new FileInputStream(file);
             while (true) {
-                int read = fileInputStream.read(bArr, 0, 1024);
-                if (read == -1) {
+                int i2 = fileInputStream.read(bArr, 0, 1024);
+                if (i2 == -1) {
                     fileInputStream.close();
                     return String.format("%1$032x", new BigInteger(1, messageDigest.digest()));
                 }
-                messageDigest.update(bArr, 0, read);
+                messageDigest.update(bArr, 0, i2);
             }
         } catch (Exception unused) {
             return null;
@@ -77,14 +77,14 @@ public class HelperUtils {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(str.getBytes());
-            byte[] digest = messageDigest.digest();
+            byte[] bArrDigest = messageDigest.digest();
             StringBuffer stringBuffer = new StringBuffer();
-            for (byte b2 : digest) {
-                stringBuffer.append(Integer.toHexString((b2 & C5230f1.f20085c) | InputDeviceCompat.SOURCE_ANY).substring(6));
+            for (byte b2 : bArrDigest) {
+                stringBuffer.append(Integer.toHexString((b2 & f1.f12066c) | InputDeviceCompat.SOURCE_ANY).substring(6));
             }
             return stringBuffer.toString();
         } catch (NoSuchAlgorithmException e2) {
-            MLog.m11751i(TAG, "getMD5 error", e2);
+            MLog.i(TAG, "getMD5 error", e2);
             return "";
         }
     }
@@ -93,14 +93,14 @@ public class HelperUtils {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(str.getBytes());
-            byte[] digest = messageDigest.digest();
+            byte[] bArrDigest = messageDigest.digest();
             StringBuffer stringBuffer = new StringBuffer();
-            for (byte b2 : digest) {
-                stringBuffer.append(Integer.toHexString(b2 & C5230f1.f20085c));
+            for (byte b2 : bArrDigest) {
+                stringBuffer.append(Integer.toHexString(b2 & f1.f12066c));
             }
             return stringBuffer.toString();
         } catch (Throwable th) {
-            MLog.m11751i(TAG, "getMD5 error", th);
+            MLog.i(TAG, "getMD5 error", th);
             return "";
         }
     }
@@ -120,23 +120,23 @@ public class HelperUtils {
                 safeClose(fileInputStream);
                 return str;
             } catch (Throwable unused) {
-                safeClose(fileInputStream);
-                return null;
             }
         } catch (Throwable unused2) {
             fileInputStream = null;
         }
+        safeClose(fileInputStream);
+        return null;
     }
 
     public static byte[] readStreamToByteArray(InputStream inputStream) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] bArr = new byte[1024];
         while (true) {
-            int read = inputStream.read(bArr);
-            if (-1 == read) {
+            int i2 = inputStream.read(bArr);
+            if (-1 == i2) {
                 return byteArrayOutputStream.toByteArray();
             }
-            byteArrayOutputStream.write(bArr, 0, read);
+            byteArrayOutputStream.write(bArr, 0, i2);
         }
     }
 
@@ -145,11 +145,11 @@ public class HelperUtils {
         char[] cArr = new char[1024];
         StringWriter stringWriter = new StringWriter();
         while (true) {
-            int read = inputStreamReader.read(cArr);
-            if (-1 == read) {
+            int i2 = inputStreamReader.read(cArr);
+            if (-1 == i2) {
                 return stringWriter.toString();
             }
-            stringWriter.write(cArr, 0, read);
+            stringWriter.write(cArr, 0, i2);
         }
     }
 
@@ -163,23 +163,23 @@ public class HelperUtils {
     }
 
     public static String subStr(String str, int i2) {
-        String str2 = "";
+        String strSubstring = "";
         try {
             if (!TextUtils.isEmpty(str)) {
-                str2 = str.substring(0, str.length() < i2 ? str.length() : i2);
-                int length = str2.getBytes("UTF-8").length;
+                strSubstring = str.substring(0, str.length() < i2 ? str.length() : i2);
+                int length = strSubstring.getBytes("UTF-8").length;
                 int i3 = i2;
                 while (length > i2) {
                     i3--;
-                    str2 = str.substring(0, i3 > str.length() ? str.length() : i3);
-                    length = str2.getBytes("UTF-8").length;
+                    strSubstring = str.substring(0, i3 > str.length() ? str.length() : i3);
+                    length = strSubstring.getBytes("UTF-8").length;
                 }
-                return str2;
+                return strSubstring;
             }
         } catch (Exception e2) {
-            MLog.m11748e(e2);
+            MLog.e(e2);
         }
-        return str2;
+        return strSubstring;
     }
 
     public static void writeFile(File file, byte[] bArr) throws IOException {

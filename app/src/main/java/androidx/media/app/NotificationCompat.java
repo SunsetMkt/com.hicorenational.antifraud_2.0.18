@@ -15,14 +15,14 @@ import androidx.annotation.RestrictTo;
 import androidx.core.app.BundleCompat;
 import androidx.core.app.NotificationBuilderWithBuilderAccessor;
 import androidx.core.app.NotificationCompat;
-import androidx.media.C0610R;
+import androidx.media.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NotificationCompat {
 
     public static class DecoratedMediaCustomViewStyle extends MediaStyle {
         private void setBackgroundColor(RemoteViews remoteViews) {
-            remoteViews.setInt(C0610R.id.status_bar_latest_event_content, "setBackgroundColor", this.mBuilder.getColor() != 0 ? this.mBuilder.getColor() : this.mBuilder.mContext.getResources().getColor(C0610R.color.notification_material_background_media_default_color));
+            remoteViews.setInt(R.id.status_bar_latest_event_content, "setBackgroundColor", this.mBuilder.getColor() != 0 ? this.mBuilder.getColor() : this.mBuilder.mContext.getResources().getColor(R.color.notification_material_background_media_default_color));
         }
 
         @Override // androidx.media.app.NotificationCompat.MediaStyle, androidx.core.app.NotificationCompat.Style
@@ -37,12 +37,12 @@ public class NotificationCompat {
 
         @Override // androidx.media.app.NotificationCompat.MediaStyle
         int getBigContentViewLayoutResource(int i2) {
-            return i2 <= 3 ? C0610R.layout.notification_template_big_media_narrow_custom : C0610R.layout.notification_template_big_media_custom;
+            return i2 <= 3 ? R.layout.notification_template_big_media_narrow_custom : R.layout.notification_template_big_media_custom;
         }
 
         @Override // androidx.media.app.NotificationCompat.MediaStyle
         int getContentViewLayoutResource() {
-            return this.mBuilder.getContentView() != null ? C0610R.layout.notification_template_media_custom : super.getContentViewLayoutResource();
+            return this.mBuilder.getContentView() != null ? R.layout.notification_template_media_custom : super.getContentViewLayoutResource();
         }
 
         @Override // androidx.media.app.NotificationCompat.MediaStyle, androidx.core.app.NotificationCompat.Style
@@ -55,12 +55,12 @@ public class NotificationCompat {
             if (bigContentView == null) {
                 return null;
             }
-            RemoteViews generateBigContentView = generateBigContentView();
-            buildIntoRemoteViews(generateBigContentView, bigContentView);
+            RemoteViews remoteViewsGenerateBigContentView = generateBigContentView();
+            buildIntoRemoteViews(remoteViewsGenerateBigContentView, bigContentView);
             if (Build.VERSION.SDK_INT >= 21) {
-                setBackgroundColor(generateBigContentView);
+                setBackgroundColor(remoteViewsGenerateBigContentView);
             }
-            return generateBigContentView;
+            return remoteViewsGenerateBigContentView;
         }
 
         @Override // androidx.media.app.NotificationCompat.MediaStyle, androidx.core.app.NotificationCompat.Style
@@ -76,18 +76,18 @@ public class NotificationCompat {
                     z = false;
                 }
                 if (z) {
-                    RemoteViews generateContentView = generateContentView();
+                    RemoteViews remoteViewsGenerateContentView = generateContentView();
                     if (z2) {
-                        buildIntoRemoteViews(generateContentView, this.mBuilder.getContentView());
+                        buildIntoRemoteViews(remoteViewsGenerateContentView, this.mBuilder.getContentView());
                     }
-                    setBackgroundColor(generateContentView);
-                    return generateContentView;
+                    setBackgroundColor(remoteViewsGenerateContentView);
+                    return remoteViewsGenerateContentView;
                 }
             } else {
-                RemoteViews generateContentView2 = generateContentView();
+                RemoteViews remoteViewsGenerateContentView2 = generateContentView();
                 if (z2) {
-                    buildIntoRemoteViews(generateContentView2, this.mBuilder.getContentView());
-                    return generateContentView2;
+                    buildIntoRemoteViews(remoteViewsGenerateContentView2, this.mBuilder.getContentView());
+                    return remoteViewsGenerateContentView2;
                 }
             }
             return null;
@@ -103,12 +103,12 @@ public class NotificationCompat {
             if (headsUpContentView == null) {
                 return null;
             }
-            RemoteViews generateBigContentView = generateBigContentView();
-            buildIntoRemoteViews(generateBigContentView, headsUpContentView);
+            RemoteViews remoteViewsGenerateBigContentView = generateBigContentView();
+            buildIntoRemoteViews(remoteViewsGenerateBigContentView, headsUpContentView);
             if (Build.VERSION.SDK_INT >= 21) {
-                setBackgroundColor(generateBigContentView);
+                setBackgroundColor(remoteViewsGenerateBigContentView);
             }
-            return generateBigContentView;
+            return remoteViewsGenerateBigContentView;
         }
     }
 
@@ -128,13 +128,13 @@ public class NotificationCompat {
 
         private RemoteViews generateMediaActionButton(NotificationCompat.Action action) {
             boolean z = action.getActionIntent() == null;
-            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), C0610R.layout.notification_media_action);
-            remoteViews.setImageViewResource(C0610R.id.action0, action.getIcon());
+            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), R.layout.notification_media_action);
+            remoteViews.setImageViewResource(R.id.action0, action.getIcon());
             if (!z) {
-                remoteViews.setOnClickPendingIntent(C0610R.id.action0, action.getActionIntent());
+                remoteViews.setOnClickPendingIntent(R.id.action0, action.getActionIntent());
             }
             if (Build.VERSION.SDK_INT >= 15) {
-                remoteViews.setContentDescription(C0610R.id.action0, action.getTitle());
+                remoteViews.setContentDescription(R.id.action0, action.getTitle());
             }
             return remoteViews;
         }
@@ -155,12 +155,12 @@ public class NotificationCompat {
             if (binder == null) {
                 return null;
             }
-            Parcel obtain = Parcel.obtain();
-            obtain.writeStrongBinder(binder);
-            obtain.setDataPosition(0);
-            MediaSessionCompat.Token createFromParcel = MediaSessionCompat.Token.CREATOR.createFromParcel(obtain);
-            obtain.recycle();
-            return createFromParcel;
+            Parcel parcelObtain = Parcel.obtain();
+            parcelObtain.writeStrongBinder(binder);
+            parcelObtain.setDataPosition(0);
+            MediaSessionCompat.Token tokenCreateFromParcel = MediaSessionCompat.Token.CREATOR.createFromParcel(parcelObtain);
+            parcelObtain.recycle();
+            return tokenCreateFromParcel;
         }
 
         @Override // androidx.core.app.NotificationCompat.Style
@@ -187,56 +187,56 @@ public class NotificationCompat {
         }
 
         RemoteViews generateBigContentView() {
-            int min = Math.min(this.mBuilder.mActions.size(), 5);
-            RemoteViews applyStandardTemplate = applyStandardTemplate(false, getBigContentViewLayoutResource(min), false);
-            applyStandardTemplate.removeAllViews(C0610R.id.media_actions);
-            if (min > 0) {
-                for (int i2 = 0; i2 < min; i2++) {
-                    applyStandardTemplate.addView(C0610R.id.media_actions, generateMediaActionButton(this.mBuilder.mActions.get(i2)));
+            int iMin = Math.min(this.mBuilder.mActions.size(), 5);
+            RemoteViews remoteViewsApplyStandardTemplate = applyStandardTemplate(false, getBigContentViewLayoutResource(iMin), false);
+            remoteViewsApplyStandardTemplate.removeAllViews(R.id.media_actions);
+            if (iMin > 0) {
+                for (int i2 = 0; i2 < iMin; i2++) {
+                    remoteViewsApplyStandardTemplate.addView(R.id.media_actions, generateMediaActionButton(this.mBuilder.mActions.get(i2)));
                 }
             }
             if (this.mShowCancelButton) {
-                applyStandardTemplate.setViewVisibility(C0610R.id.cancel_action, 0);
-                applyStandardTemplate.setInt(C0610R.id.cancel_action, "setAlpha", this.mBuilder.mContext.getResources().getInteger(C0610R.integer.cancel_button_image_alpha));
-                applyStandardTemplate.setOnClickPendingIntent(C0610R.id.cancel_action, this.mCancelButtonIntent);
+                remoteViewsApplyStandardTemplate.setViewVisibility(R.id.cancel_action, 0);
+                remoteViewsApplyStandardTemplate.setInt(R.id.cancel_action, "setAlpha", this.mBuilder.mContext.getResources().getInteger(R.integer.cancel_button_image_alpha));
+                remoteViewsApplyStandardTemplate.setOnClickPendingIntent(R.id.cancel_action, this.mCancelButtonIntent);
             } else {
-                applyStandardTemplate.setViewVisibility(C0610R.id.cancel_action, 8);
+                remoteViewsApplyStandardTemplate.setViewVisibility(R.id.cancel_action, 8);
             }
-            return applyStandardTemplate;
+            return remoteViewsApplyStandardTemplate;
         }
 
         RemoteViews generateContentView() {
-            RemoteViews applyStandardTemplate = applyStandardTemplate(false, getContentViewLayoutResource(), true);
+            RemoteViews remoteViewsApplyStandardTemplate = applyStandardTemplate(false, getContentViewLayoutResource(), true);
             int size = this.mBuilder.mActions.size();
             int[] iArr = this.mActionsToShowInCompact;
-            int min = iArr == null ? 0 : Math.min(iArr.length, 3);
-            applyStandardTemplate.removeAllViews(C0610R.id.media_actions);
-            if (min > 0) {
-                for (int i2 = 0; i2 < min; i2++) {
+            int iMin = iArr == null ? 0 : Math.min(iArr.length, 3);
+            remoteViewsApplyStandardTemplate.removeAllViews(R.id.media_actions);
+            if (iMin > 0) {
+                for (int i2 = 0; i2 < iMin; i2++) {
                     if (i2 >= size) {
                         throw new IllegalArgumentException(String.format("setShowActionsInCompactView: action %d out of bounds (max %d)", Integer.valueOf(i2), Integer.valueOf(size - 1)));
                     }
-                    applyStandardTemplate.addView(C0610R.id.media_actions, generateMediaActionButton(this.mBuilder.mActions.get(this.mActionsToShowInCompact[i2])));
+                    remoteViewsApplyStandardTemplate.addView(R.id.media_actions, generateMediaActionButton(this.mBuilder.mActions.get(this.mActionsToShowInCompact[i2])));
                 }
             }
             if (this.mShowCancelButton) {
-                applyStandardTemplate.setViewVisibility(C0610R.id.end_padder, 8);
-                applyStandardTemplate.setViewVisibility(C0610R.id.cancel_action, 0);
-                applyStandardTemplate.setOnClickPendingIntent(C0610R.id.cancel_action, this.mCancelButtonIntent);
-                applyStandardTemplate.setInt(C0610R.id.cancel_action, "setAlpha", this.mBuilder.mContext.getResources().getInteger(C0610R.integer.cancel_button_image_alpha));
+                remoteViewsApplyStandardTemplate.setViewVisibility(R.id.end_padder, 8);
+                remoteViewsApplyStandardTemplate.setViewVisibility(R.id.cancel_action, 0);
+                remoteViewsApplyStandardTemplate.setOnClickPendingIntent(R.id.cancel_action, this.mCancelButtonIntent);
+                remoteViewsApplyStandardTemplate.setInt(R.id.cancel_action, "setAlpha", this.mBuilder.mContext.getResources().getInteger(R.integer.cancel_button_image_alpha));
             } else {
-                applyStandardTemplate.setViewVisibility(C0610R.id.end_padder, 0);
-                applyStandardTemplate.setViewVisibility(C0610R.id.cancel_action, 8);
+                remoteViewsApplyStandardTemplate.setViewVisibility(R.id.end_padder, 0);
+                remoteViewsApplyStandardTemplate.setViewVisibility(R.id.cancel_action, 8);
             }
-            return applyStandardTemplate;
+            return remoteViewsApplyStandardTemplate;
         }
 
         int getBigContentViewLayoutResource(int i2) {
-            return i2 <= 3 ? C0610R.layout.notification_template_big_media_narrow : C0610R.layout.notification_template_big_media;
+            return i2 <= 3 ? R.layout.notification_template_big_media_narrow : R.layout.notification_template_big_media;
         }
 
         int getContentViewLayoutResource() {
-            return C0610R.layout.notification_template_media;
+            return R.layout.notification_template_media;
         }
 
         @Override // androidx.core.app.NotificationCompat.Style

@@ -2,9 +2,9 @@ package com.umeng.socialize.utils;
 
 import android.content.Context;
 import android.os.Build;
-import util.permissionutil.C7308a;
+import util.permissionutil.a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DeviceConfig {
     public static boolean checkPermission(Context context, String str) {
         return DeviceConfigInternal.checkPermission(context, str);
@@ -44,7 +44,7 @@ public class DeviceConfig {
 
     public static boolean hasFineLocationPermissionInQ(Context context) {
         if (Build.VERSION.SDK_INT > 28) {
-            return checkPermission(context, C7308a.f25528g);
+            return checkPermission(context, a.f15030g);
         }
         return true;
     }

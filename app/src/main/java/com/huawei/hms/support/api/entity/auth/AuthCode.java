@@ -1,6 +1,6 @@
 package com.huawei.hms.support.api.entity.auth;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface AuthCode {
 
     public interface ErrorCode {
@@ -13,9 +13,7 @@ public interface AuthCode {
     public interface StatusCode {
         public static final int AUTH_INFO_NOT_EXIST = 6002;
         public static final int CERT_FINGERPRINT_ERROR = 6003;
-
-        /* renamed from: OK */
-        public static final int f7843OK = 0;
+        public static final int OK = 0;
         public static final int PERMISSION_EXPIRED = 6006;
         public static final int PERMISSION_NOT_AUTHORIZED = 6005;
         public static final int PERMISSION_NOT_EXIST = 6004;

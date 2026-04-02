@@ -6,48 +6,45 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IAIDLCallback extends IInterface {
     public static final String DESCRIPTOR = "com.huawei.hms.core.aidl.IAIDLCallback";
 
     public static abstract class Stub extends Binder implements IAIDLCallback {
         static final int TRANSACTION_call = 1;
 
-        /* renamed from: com.huawei.hms.core.aidl.IAIDLCallback$Stub$a */
-        private static class C2341a implements IAIDLCallback {
+        private static class a implements IAIDLCallback {
 
-            /* renamed from: b */
-            public static IAIDLCallback f7313b;
+            /* JADX INFO: renamed from: b, reason: collision with root package name */
+            public static IAIDLCallback f4583b;
+            private IBinder a;
 
-            /* renamed from: a */
-            private IBinder f7314a;
-
-            C2341a(IBinder iBinder) {
-                this.f7314a = iBinder;
+            a(IBinder iBinder) {
+                this.a = iBinder;
             }
 
             @Override // android.os.IInterface
             public IBinder asBinder() {
-                return this.f7314a;
+                return this.a;
             }
 
             @Override // com.huawei.hms.core.aidl.IAIDLCallback
             public void call(DataBuffer dataBuffer) throws RemoteException {
-                Parcel obtain = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(IAIDLCallback.DESCRIPTOR);
+                    parcelObtain.writeInterfaceToken(IAIDLCallback.DESCRIPTOR);
                     if (dataBuffer != null) {
-                        obtain.writeInt(1);
-                        dataBuffer.writeToParcel(obtain, 0);
+                        parcelObtain.writeInt(1);
+                        dataBuffer.writeToParcel(parcelObtain, 0);
                     } else {
-                        obtain.writeInt(0);
+                        parcelObtain.writeInt(0);
                     }
-                    if (this.f7314a.transact(1, obtain, null, 1) || Stub.getDefaultImpl() == null) {
+                    if (this.a.transact(1, parcelObtain, null, 1) || Stub.getDefaultImpl() == null) {
                         return;
                     }
                     Stub.getDefaultImpl().call(dataBuffer);
                 } finally {
-                    obtain.recycle();
+                    parcelObtain.recycle();
                 }
             }
         }
@@ -60,22 +57,22 @@ public interface IAIDLCallback extends IInterface {
             if (iBinder == null) {
                 return null;
             }
-            IInterface queryLocalInterface = iBinder.queryLocalInterface(IAIDLCallback.DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IAIDLCallback)) ? new C2341a(iBinder) : (IAIDLCallback) queryLocalInterface;
+            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(IAIDLCallback.DESCRIPTOR);
+            return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof IAIDLCallback)) ? new a(iBinder) : (IAIDLCallback) iInterfaceQueryLocalInterface;
         }
 
         public static IAIDLCallback getDefaultImpl() {
-            return C2341a.f7313b;
+            return a.f4583b;
         }
 
         public static boolean setDefaultImpl(IAIDLCallback iAIDLCallback) {
-            if (C2341a.f7313b != null) {
+            if (a.f4583b != null) {
                 throw new IllegalStateException("setDefaultImpl() called twice");
             }
             if (iAIDLCallback == null) {
                 return false;
             }
-            C2341a.f7313b = iAIDLCallback;
+            a.f4583b = iAIDLCallback;
             return true;
         }
 

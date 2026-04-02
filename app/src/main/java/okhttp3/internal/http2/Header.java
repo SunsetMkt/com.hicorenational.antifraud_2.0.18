@@ -5,7 +5,7 @@ import com.xiaomi.mipush.sdk.Constants;
 import okhttp3.internal.Util;
 import okio.ByteString;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Header {
     final int hpackSize;
     public final ByteString name;

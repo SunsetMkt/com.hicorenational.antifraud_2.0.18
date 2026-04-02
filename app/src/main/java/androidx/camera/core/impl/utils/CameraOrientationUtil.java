@@ -2,7 +2,7 @@ package androidx.camera.core.impl.utils;
 
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraOrientationUtil {
     private static final boolean DEBUG = false;
     private static final String TAG = "CameraOrientationUtil";

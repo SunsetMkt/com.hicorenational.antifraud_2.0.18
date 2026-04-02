@@ -5,7 +5,7 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IPushCallback extends IInterface {
 
     public static class Default implements IPushCallback {
@@ -42,24 +42,24 @@ public interface IPushCallback extends IInterface {
 
             @Override // com.hihonor.push.framework.aidl.IPushCallback
             public void onResult(DataBuffer dataBuffer) {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
+                Parcel parcelObtain2 = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(Stub.DESCRIPTOR);
+                    parcelObtain.writeInterfaceToken(Stub.DESCRIPTOR);
                     if (dataBuffer != null) {
-                        obtain.writeInt(1);
-                        dataBuffer.writeToParcel(obtain, 0);
+                        parcelObtain.writeInt(1);
+                        dataBuffer.writeToParcel(parcelObtain, 0);
                     } else {
-                        obtain.writeInt(0);
+                        parcelObtain.writeInt(0);
                     }
-                    if (this.mRemote.transact(1, obtain, obtain2, 0) || Stub.getDefaultImpl() == null) {
-                        obtain2.readException();
+                    if (this.mRemote.transact(1, parcelObtain, parcelObtain2, 0) || Stub.getDefaultImpl() == null) {
+                        parcelObtain2.readException();
                     } else {
                         Stub.getDefaultImpl().onResult(dataBuffer);
                     }
                 } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
+                    parcelObtain2.recycle();
+                    parcelObtain.recycle();
                 }
             }
         }
@@ -72,8 +72,8 @@ public interface IPushCallback extends IInterface {
             if (iBinder == null) {
                 return null;
             }
-            IInterface queryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IPushCallback)) ? new Proxy(iBinder) : (IPushCallback) queryLocalInterface;
+            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
+            return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof IPushCallback)) ? new Proxy(iBinder) : (IPushCallback) iInterfaceQueryLocalInterface;
         }
 
         public static IPushCallback getDefaultImpl() {

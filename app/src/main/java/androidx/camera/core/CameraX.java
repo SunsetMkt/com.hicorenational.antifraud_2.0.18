@@ -43,11 +43,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
+/* JADX INFO: loaded from: classes.dex */
 @MainThread
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public final class CameraX {
     private static final String TAG = "CameraX";
     private static final long WAIT_INITIALIZED_TIMEOUT = 3;
@@ -67,11 +66,11 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static InterfaceFutureC0952a<Void> sInitializeFuture = Futures.immediateFailedFuture(new IllegalStateException("CameraX is not initialized."));
+    private static d.b.b.a.a.a<Void> sInitializeFuture = Futures.immediateFailedFuture(new IllegalStateException("CameraX is not initialized."));
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static InterfaceFutureC0952a<Void> sShutdownFuture = Futures.immediateFuture(null);
+    private static d.b.b.a.a.a<Void> sShutdownFuture = Futures.immediateFuture(null);
     final CameraRepository mCameraRepository = new CameraRepository();
     private final Object mInitializeLock = new Object();
     private final UseCaseGroupRepository mUseCaseGroupRepository = new UseCaseGroupRepository();
@@ -80,10 +79,45 @@ public final class CameraX {
     private InternalInitState mInitState = InternalInitState.UNINITIALIZED;
 
     @GuardedBy("mInitializeLock")
-    private InterfaceFutureC0952a<Void> mShutdownInternalFuture = Futures.immediateFuture(null);
+    private d.b.b.a.a.a<Void> mShutdownInternalFuture = Futures.immediateFuture(null);
 
-    /* renamed from: androidx.camera.core.CameraX$3 */
-    static /* synthetic */ class C02923 {
+    /* JADX INFO: renamed from: androidx.camera.core.CameraX$1 */
+    static class AnonymousClass1 implements FutureCallback<Void> {
+        final /* synthetic */ CameraX val$cameraX;
+
+        AnonymousClass1(CameraX cameraX) {
+            cameraX = cameraX;
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.FutureCallback
+        public void onFailure(Throwable th) {
+            synchronized (CameraX.sInitializeLock) {
+                if (CameraX.sInstance == cameraX) {
+                    CameraX.shutdown();
+                }
+            }
+            completer.setException(th);
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.FutureCallback
+        public void onSuccess(@Nullable Void r2) {
+            completer.set(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.CameraX$2 */
+    class AnonymousClass2 implements UseCaseGroupRepository.UseCaseGroupSetup {
+        AnonymousClass2() {
+        }
+
+        @Override // androidx.camera.core.UseCaseGroupRepository.UseCaseGroupSetup
+        public void setup(UseCaseGroup useCaseGroup) {
+            useCaseGroup.setListener(CameraX.this.mCameraRepository);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.CameraX$3 */
+    static /* synthetic */ class AnonymousClass3 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$CameraX$InternalInitState = new int[InternalInitState.values().length];
 
         static {
@@ -118,22 +152,24 @@ public final class CameraX {
         this.mCameraExecutor = executor;
     }
 
-    /* renamed from: a */
-    static /* synthetic */ CameraX m321a(CameraX cameraX, Void r1) {
+    static /* synthetic */ CameraX a(CameraX cameraX, Void r1) {
         return cameraX;
     }
 
-    /* renamed from: a */
-    static /* synthetic */ Object m323a(final CameraX cameraX, final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    static /* synthetic */ Object a(final CameraX cameraX, final Context context, final CameraXConfig cameraXConfig, CallbackToFutureAdapter.Completer completer) throws Exception {
         synchronized (sInitializeLock) {
             Futures.addCallback(FutureChain.from(sShutdownFuture).transformAsync(new AsyncFunction() { // from class: androidx.camera.core.h
                 @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
-                public final InterfaceFutureC0952a apply(Object obj) {
-                    InterfaceFutureC0952a initInternal;
-                    initInternal = CameraX.this.initInternal(context, cameraXConfig);
-                    return initInternal;
+                public final d.b.b.a.a.a apply(Object obj) {
+                    return this.a.initInternal(context, cameraXConfig);
                 }
             }, CameraXExecutors.directExecutor()), new FutureCallback<Void>() { // from class: androidx.camera.core.CameraX.1
+                final /* synthetic */ CameraX val$cameraX;
+
+                AnonymousClass1(final CameraX cameraX2) {
+                    cameraX = cameraX2;
+                }
+
                 @Override // androidx.camera.core.impl.utils.futures.FutureCallback
                 public void onFailure(Throwable th) {
                     synchronized (CameraX.sInitializeLock) {
@@ -141,12 +177,12 @@ public final class CameraX {
                             CameraX.shutdown();
                         }
                     }
-                    CallbackToFutureAdapter.Completer.this.setException(th);
+                    completer.setException(th);
                 }
 
                 @Override // androidx.camera.core.impl.utils.futures.FutureCallback
                 public void onSuccess(@Nullable Void r2) {
-                    CallbackToFutureAdapter.Completer.this.set(null);
+                    completer.set(null);
                 }
             }, CameraXExecutors.directExecutor());
         }
@@ -159,13 +195,12 @@ public final class CameraX {
         useCase.attachCameraControl(str, camera.getCameraControlInternal());
     }
 
-    /* renamed from: b */
-    static /* synthetic */ Object m325b(final CameraX cameraX, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    static /* synthetic */ Object b(final CameraX cameraX, final CallbackToFutureAdapter.Completer completer) throws Exception {
         synchronized (sInitializeLock) {
             sInitializeFuture.addListener(new Runnable() { // from class: androidx.camera.core.e
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Futures.propagate(CameraX.this.shutdownInternal(), completer);
+                    Futures.propagate(this.a.shutdownInternal(), completer);
                 }
             }, CameraXExecutors.directExecutor());
         }
@@ -176,10 +211,10 @@ public final class CameraX {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static Camera bindToLifecycle(@NonNull LifecycleOwner lifecycleOwner, @NonNull CameraSelector cameraSelector, @NonNull UseCase... useCaseArr) {
         Threads.checkMainThread();
-        CameraX checkInitialized = checkInitialized();
-        UseCaseGroupLifecycleController orCreateUseCaseGroup = checkInitialized.getOrCreateUseCaseGroup(lifecycleOwner);
+        CameraX cameraXCheckInitialized = checkInitialized();
+        UseCaseGroupLifecycleController orCreateUseCaseGroup = cameraXCheckInitialized.getOrCreateUseCaseGroup(lifecycleOwner);
         UseCaseGroup useCaseGroup = orCreateUseCaseGroup.getUseCaseGroup();
-        Collection<UseCaseGroupLifecycleController> useCaseGroups = checkInitialized.mUseCaseGroupRepository.getUseCaseGroups();
+        Collection<UseCaseGroupLifecycleController> useCaseGroups = cameraXCheckInitialized.mUseCaseGroupRepository.getUseCaseGroups();
         for (UseCase useCase : useCaseArr) {
             Iterator<UseCaseGroupLifecycleController> it = useCaseGroups.iterator();
             while (it.hasNext()) {
@@ -189,18 +224,18 @@ public final class CameraX {
                 }
             }
         }
-        CameraSelector.Builder fromSelector = CameraSelector.Builder.fromSelector(cameraSelector);
+        CameraSelector.Builder builderFromSelector = CameraSelector.Builder.fromSelector(cameraSelector);
         for (UseCase useCase2 : useCaseArr) {
             CameraSelector cameraSelector2 = useCase2.getUseCaseConfig().getCameraSelector(null);
             if (cameraSelector2 != null) {
                 Iterator<CameraIdFilter> it2 = cameraSelector2.getCameraFilterSet().iterator();
                 while (it2.hasNext()) {
-                    fromSelector.appendFilter(it2.next());
+                    builderFromSelector.appendFilter(it2.next());
                 }
             }
         }
-        String cameraWithCameraSelector = getCameraWithCameraSelector(fromSelector.build());
-        CameraInternal camera = checkInitialized.getCameraRepository().getCamera(cameraWithCameraSelector);
+        String cameraWithCameraSelector = getCameraWithCameraSelector(builderFromSelector.build());
+        CameraInternal camera = cameraXCheckInitialized.getCameraRepository().getCamera(cameraWithCameraSelector);
         for (UseCase useCase3 : useCaseArr) {
             useCase3.onBind(camera);
         }
@@ -218,42 +253,42 @@ public final class CameraX {
 
     private static void calculateSuggestedResolutions(@NonNull LifecycleOwner lifecycleOwner, @NonNull String str, @NonNull UseCase... useCaseArr) {
         UseCaseGroup useCaseGroup = checkInitialized().getOrCreateUseCaseGroup(lifecycleOwner).getUseCaseGroup();
-        HashMap hashMap = new HashMap();
-        HashMap hashMap2 = new HashMap();
+        HashMap map = new HashMap();
+        HashMap map2 = new HashMap();
         for (UseCase useCase : useCaseGroup.getUseCases()) {
             for (String str2 : useCase.getAttachedCameraIds()) {
-                List list = (List) hashMap.get(str2);
-                if (list == null) {
-                    list = new ArrayList();
-                    hashMap.put(str2, list);
+                List arrayList = (List) map.get(str2);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    map.put(str2, arrayList);
                 }
-                list.add(useCase);
+                arrayList.add(useCase);
             }
         }
         for (UseCase useCase2 : useCaseArr) {
-            List list2 = (List) hashMap2.get(str);
-            if (list2 == null) {
-                list2 = new ArrayList();
-                hashMap2.put(str, list2);
+            List arrayList2 = (List) map2.get(str);
+            if (arrayList2 == null) {
+                arrayList2 = new ArrayList();
+                map2.put(str, arrayList2);
             }
-            list2.add(useCase2);
+            arrayList2.add(useCase2);
         }
-        for (String str3 : hashMap2.keySet()) {
-            Map<UseCase, Size> suggestedResolutions = getSurfaceManager().getSuggestedResolutions(str3, (List) hashMap.get(str3), (List) hashMap2.get(str3));
-            for (UseCase useCase3 : (List) hashMap2.get(str3)) {
+        for (String str3 : map2.keySet()) {
+            Map<UseCase, Size> suggestedResolutions = getSurfaceManager().getSuggestedResolutions(str3, (List) map.get(str3), (List) map2.get(str3));
+            for (UseCase useCase3 : (List) map2.get(str3)) {
                 Size size = suggestedResolutions.get(useCase3);
-                HashMap hashMap3 = new HashMap();
-                hashMap3.put(str3, size);
-                useCase3.updateSuggestedResolution(hashMap3);
+                HashMap map3 = new HashMap();
+                map3.put(str3, size);
+                useCase3.updateSuggestedResolution(map3);
             }
         }
     }
 
     @NonNull
     private static CameraX checkInitialized() {
-        CameraX waitInitialized = waitInitialized();
-        Preconditions.checkState(waitInitialized.isInitializedInternal(), "Must call CameraX.initialize() first");
-        return waitInitialized;
+        CameraX cameraXWaitInitialized = waitInitialized();
+        Preconditions.checkState(cameraXWaitInitialized.isInitializedInternal(), "Must call CameraX.initialize() first");
+        return cameraXWaitInitialized;
     }
 
     private static void detach(String str, List<UseCase> list) {
@@ -364,8 +399,8 @@ public final class CameraX {
     }
 
     @NonNull
-    private static InterfaceFutureC0952a<CameraX> getInstance() {
-        InterfaceFutureC0952a<CameraX> instanceLocked;
+    private static d.b.b.a.a.a<CameraX> getInstance() {
+        d.b.b.a.a.a<CameraX> instanceLocked;
         synchronized (sInitializeLock) {
             instanceLocked = getInstanceLocked();
         }
@@ -374,7 +409,7 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static InterfaceFutureC0952a<CameraX> getInstanceLocked() {
+    private static d.b.b.a.a.a<CameraX> getInstanceLocked() {
         if (!sTargetInitialized) {
             return Futures.immediateFailedFuture(new IllegalStateException("Must call CameraX.initialize() first"));
         }
@@ -382,8 +417,8 @@ public final class CameraX {
         return Futures.transform(sInitializeFuture, new Function() { // from class: androidx.camera.core.f
             @Override // androidx.arch.core.util.Function
             public final Object apply(Object obj) {
-                CameraX cameraX2 = CameraX.this;
-                CameraX.m321a(cameraX2, (Void) obj);
+                CameraX cameraX2 = this.a;
+                CameraX.a(cameraX2, (Void) obj);
                 return cameraX2;
             }
         }, CameraXExecutors.directExecutor());
@@ -392,8 +427,8 @@ public final class CameraX {
     /* JADX WARN: Multi-variable type inference failed */
     @NonNull
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static InterfaceFutureC0952a<CameraX> getOrCreateInstance(@NonNull Context context) {
-        InterfaceFutureC0952a<CameraX> instanceLocked;
+    public static d.b.b.a.a.a<CameraX> getOrCreateInstance(@NonNull Context context) {
+        d.b.b.a.a.a<CameraX> instanceLocked;
         Preconditions.checkNotNull(context, "Context must not be null.");
         synchronized (sInitializeLock) {
             instanceLocked = getInstanceLocked();
@@ -414,7 +449,7 @@ public final class CameraX {
                     provider = (CameraXConfig.Provider) application;
                 } else {
                     try {
-                        provider = (CameraXConfig.Provider) Class.forName(application.getResources().getString(C0320R.string.androidx_camera_default_config_provider)).getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+                        provider = (CameraXConfig.Provider) Class.forName(application.getResources().getString(R.string.androidx_camera_default_config_provider)).getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
                     } catch (Resources.NotFoundException | ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException unused2) {
                     }
                 }
@@ -430,6 +465,9 @@ public final class CameraX {
 
     private UseCaseGroupLifecycleController getOrCreateUseCaseGroup(LifecycleOwner lifecycleOwner) {
         return this.mUseCaseGroupRepository.getOrCreateUseCaseGroup(lifecycleOwner, new UseCaseGroupRepository.UseCaseGroupSetup() { // from class: androidx.camera.core.CameraX.2
+            AnonymousClass2() {
+            }
+
             @Override // androidx.camera.core.UseCaseGroupRepository.UseCaseGroupSetup
             public void setup(UseCaseGroup useCaseGroup) {
                 useCaseGroup.setListener(CameraX.this.mCameraRepository);
@@ -454,16 +492,15 @@ public final class CameraX {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public InterfaceFutureC0952a<Void> initInternal(final Context context, final CameraXConfig cameraXConfig) {
-        InterfaceFutureC0952a<Void> future;
+    public d.b.b.a.a.a<Void> initInternal(final Context context, final CameraXConfig cameraXConfig) {
+        d.b.b.a.a.a<Void> future;
         synchronized (this.mInitializeLock) {
             Preconditions.checkState(this.mInitState == InternalInitState.UNINITIALIZED, "CameraX.initInternal() should only be called once per instance");
             this.mInitState = InternalInitState.INITIALIZING;
             future = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.b
                 @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                 public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                    return CameraX.this.m326a(context, cameraXConfig, completer);
+                    return this.a.a(context, cameraXConfig, completer);
                 }
             });
         }
@@ -471,17 +508,17 @@ public final class CameraX {
     }
 
     @NonNull
-    public static InterfaceFutureC0952a<Void> initialize(@NonNull Context context, @NonNull CameraXConfig cameraXConfig) {
-        InterfaceFutureC0952a<Void> initializeLocked;
+    public static d.b.b.a.a.a<Void> initialize(@NonNull Context context, @NonNull CameraXConfig cameraXConfig) {
+        d.b.b.a.a.a<Void> aVarInitializeLocked;
         synchronized (sInitializeLock) {
-            initializeLocked = initializeLocked(context, cameraXConfig);
+            aVarInitializeLocked = initializeLocked(context, cameraXConfig);
         }
-        return initializeLocked;
+        return aVarInitializeLocked;
     }
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static InterfaceFutureC0952a<Void> initializeLocked(@NonNull final Context context, @NonNull final CameraXConfig cameraXConfig) {
+    private static d.b.b.a.a.a<Void> initializeLocked(@NonNull final Context context, @NonNull final CameraXConfig cameraXConfig) {
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(cameraXConfig);
         Preconditions.checkState(!sTargetInitialized, "Must call CameraX.shutdown() first.");
@@ -495,7 +532,7 @@ public final class CameraX {
         sInitializeFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.d
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return CameraX.m323a(CameraX.this, context, cameraXConfig, completer);
+                return CameraX.a(this.a, context, cameraXConfig, completer);
             }
         });
         return sInitializeFuture;
@@ -530,18 +567,18 @@ public final class CameraX {
     }
 
     @NonNull
-    public static InterfaceFutureC0952a<Void> shutdown() {
-        InterfaceFutureC0952a<Void> shutdownLocked;
+    public static d.b.b.a.a.a<Void> shutdown() {
+        d.b.b.a.a.a<Void> aVarShutdownLocked;
         synchronized (sInitializeLock) {
-            shutdownLocked = shutdownLocked();
+            aVarShutdownLocked = shutdownLocked();
         }
-        return shutdownLocked;
+        return aVarShutdownLocked;
     }
 
     @NonNull
-    private InterfaceFutureC0952a<Void> shutdownInternal() {
+    private d.b.b.a.a.a<Void> shutdownInternal() {
         synchronized (this.mInitializeLock) {
-            int i2 = C02923.$SwitchMap$androidx$camera$core$CameraX$InternalInitState[this.mInitState.ordinal()];
+            int i2 = AnonymousClass3.$SwitchMap$androidx$camera$core$CameraX$InternalInitState[this.mInitState.ordinal()];
             if (i2 == 1) {
                 this.mInitState = InternalInitState.SHUTDOWN;
                 return Futures.immediateFuture(null);
@@ -554,7 +591,7 @@ public final class CameraX {
                 this.mShutdownInternalFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.i
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                        return CameraX.this.m328b(completer);
+                        return this.a.b(completer);
                     }
                 });
             }
@@ -564,7 +601,7 @@ public final class CameraX {
 
     @NonNull
     @GuardedBy("sInitializeLock")
-    private static InterfaceFutureC0952a<Void> shutdownLocked() {
+    private static d.b.b.a.a.a<Void> shutdownLocked() {
         if (!sTargetInitialized) {
             return sShutdownFuture;
         }
@@ -574,7 +611,7 @@ public final class CameraX {
         sShutdownFuture = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.a
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return CameraX.m325b(CameraX.this, completer);
+                return CameraX.b(this.a, completer);
             }
         });
         return sShutdownFuture;
@@ -584,24 +621,24 @@ public final class CameraX {
     public static void unbind(@NonNull UseCase... useCaseArr) {
         Threads.checkMainThread();
         Collection<UseCaseGroupLifecycleController> useCaseGroups = checkInitialized().mUseCaseGroupRepository.getUseCaseGroups();
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (UseCase useCase : useCaseArr) {
             Iterator<UseCaseGroupLifecycleController> it = useCaseGroups.iterator();
             while (it.hasNext()) {
                 if (it.next().getUseCaseGroup().removeUseCase(useCase)) {
                     for (String str : useCase.getAttachedCameraIds()) {
-                        List list = (List) hashMap.get(str);
-                        if (list == null) {
-                            list = new ArrayList();
-                            hashMap.put(str, list);
+                        List arrayList = (List) map.get(str);
+                        if (arrayList == null) {
+                            arrayList = new ArrayList();
+                            map.put(str, arrayList);
                         }
-                        list.add(useCase);
+                        arrayList.add(useCase);
                     }
                 }
             }
         }
-        for (String str2 : hashMap.keySet()) {
-            detach(str2, (List) hashMap.get(str2));
+        for (String str2 : map.keySet()) {
+            detach(str2, (List) map.get(str2));
         }
         for (UseCase useCase2 : useCaseArr) {
             useCase2.clear();
@@ -633,8 +670,7 @@ public final class CameraX {
         }
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m329b(Context context, CameraXConfig cameraXConfig, CallbackToFutureAdapter.Completer completer) {
+    public /* synthetic */ void b(Context context, CameraXConfig cameraXConfig, CallbackToFutureAdapter.Completer completer) {
         try {
             this.mContext = context.getApplicationContext();
             CameraFactory.Provider cameraFactoryProvider = cameraXConfig.getCameraFactoryProvider(null);
@@ -684,19 +720,17 @@ public final class CameraX {
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m326a(final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(final Context context, final CameraXConfig cameraXConfig, final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mCameraExecutor.execute(new Runnable() { // from class: androidx.camera.core.c
             @Override // java.lang.Runnable
             public final void run() {
-                CameraX.this.m329b(context, cameraXConfig, completer);
+                this.a.b(context, cameraXConfig, completer);
             }
         });
         return "CameraX initInternal";
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m327a(CallbackToFutureAdapter.Completer completer) {
+    public /* synthetic */ void a(CallbackToFutureAdapter.Completer completer) {
         Executor executor = this.mCameraExecutor;
         if (executor instanceof CameraExecutor) {
             ((CameraExecutor) executor).deinit();
@@ -704,12 +738,11 @@ public final class CameraX {
         completer.set(null);
     }
 
-    /* renamed from: b */
-    public /* synthetic */ Object m328b(final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object b(final CallbackToFutureAdapter.Completer completer) throws Exception {
         this.mCameraRepository.deinit().addListener(new Runnable() { // from class: androidx.camera.core.g
             @Override // java.lang.Runnable
             public final void run() {
-                CameraX.this.m327a(completer);
+                this.a.a(completer);
             }
         }, this.mCameraExecutor);
         return "CameraX shutdownInternal";

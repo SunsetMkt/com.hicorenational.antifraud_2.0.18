@@ -3,7 +3,7 @@ package com.umeng.commonsdk.framework;
 import android.content.Context;
 import java.util.HashMap;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMModuleRegister {
     public static final String ANALYTICS = "analytics";
     public static final String APPSTATUS = "appstatus";
@@ -59,11 +59,11 @@ public class UMModuleRegister {
         if (mModuleMap == null) {
             mModuleMap = new HashMap<>();
         }
-        String eventType2ModuleName = eventType2ModuleName(i2);
-        if (mModuleMap.containsKey(eventType2ModuleName)) {
+        String strEventType2ModuleName = eventType2ModuleName(i2);
+        if (mModuleMap.containsKey(strEventType2ModuleName)) {
             return true;
         }
-        mModuleMap.put(eventType2ModuleName, uMLogDataProtocol);
+        mModuleMap.put(strEventType2ModuleName, uMLogDataProtocol);
         return true;
     }
 }

@@ -5,24 +5,23 @@ import android.os.Parcelable;
 import com.huawei.hms.common.internal.Objects;
 import com.huawei.hms.core.aidl.IMessageEntity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Scope implements IMessageEntity, Parcelable {
-    public static final Parcelable.Creator<Scope> CREATOR = new C2518a();
+    public static final Parcelable.Creator<Scope> CREATOR = new a();
     private String mScopeUri;
 
-    /* renamed from: com.huawei.hms.support.api.entity.auth.Scope$a */
-    class C2518a implements Parcelable.Creator<Scope> {
-        C2518a() {
+    class a implements Parcelable.Creator<Scope> {
+        a() {
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public Scope createFromParcel(Parcel parcel) {
             return new Scope(parcel);
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public Scope[] newArray(int i2) {
             return new Scope[i2];
         }

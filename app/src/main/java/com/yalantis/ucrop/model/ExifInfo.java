@@ -1,6 +1,6 @@
 package com.yalantis.ucrop.model;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ExifInfo {
     private int mExifDegrees;
     private int mExifOrientation;

@@ -60,13 +60,12 @@ import java.util.List;
 import java.util.Objects;
 import okio.BufferedSource;
 import okio.Okio;
-import util.permissionutil.C7308a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureExternalPreviewActivity extends PictureBaseActivity implements View.OnClickListener {
 
-    /* renamed from: adapter, reason: collision with root package name */
-    private SimpleFragmentAdapter f25895adapter;
+    /* JADX INFO: renamed from: adapter, reason: collision with root package name */
+    private SimpleFragmentAdapter f5271adapter;
     private String downloadPath;
     private ImageButton ibDelete;
     private ImageButton ibLeftBack;
@@ -78,8 +77,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     private List<LocalMedia> images = new ArrayList();
     private int position = 0;
 
-    /* renamed from: a */
-    static /* synthetic */ void m8096a() {
+    static /* synthetic */ void a() {
     }
 
     private Uri createOutImageUri() {
@@ -105,18 +103,18 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     /* JADX INFO: Access modifiers changed from: private */
     public void exitAnimation() {
         int i2;
-        int i3 = C2639R.anim.picture_anim_fade_in;
+        int i3 = R.anim.picture_anim_fade_in;
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.config.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i2 = pictureWindowAnimationStyle.activityPreviewExitAnimation) == 0) {
-            i2 = C2639R.anim.picture_anim_exit;
+            i2 = R.anim.picture_anim_exit;
         }
         overridePendingTransition(i3, i2);
     }
 
     private void initViewPageAdapterData() {
-        this.tvTitle.setText(getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
-        this.f25895adapter = new SimpleFragmentAdapter();
-        this.viewPager.setAdapter(this.f25895adapter);
+        this.tvTitle.setText(getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
+        this.f5271adapter = new SimpleFragmentAdapter();
+        this.viewPager.setAdapter(this.f5271adapter);
         this.viewPager.setCurrentItem(this.position);
         this.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.1
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -129,7 +127,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
 
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
             public void onPageSelected(int i2) {
-                PictureExternalPreviewActivity.this.tvTitle.setText(PictureExternalPreviewActivity.this.getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(i2 + 1), Integer.valueOf(PictureExternalPreviewActivity.this.images.size())}));
+                PictureExternalPreviewActivity.this.tvTitle.setText(PictureExternalPreviewActivity.this.getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(i2 + 1), Integer.valueOf(PictureExternalPreviewActivity.this.images.size())}));
                 PictureExternalPreviewActivity.this.position = i2;
             }
         });
@@ -139,7 +137,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     public void onSuccessful(String str) {
         dismissDialog();
         if (TextUtils.isEmpty(str)) {
-            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_error));
+            ToastUtils.s(getContext(), getString(R.string.picture_save_error));
             return;
         }
         try {
@@ -149,11 +147,11 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                 new PictureMediaScannerConnection(getContext(), file.getAbsolutePath(), new PictureMediaScannerConnection.ScanListener() { // from class: com.luck.picture.lib.j
                     @Override // com.luck.picture.lib.PictureMediaScannerConnection.ScanListener
                     public final void onScanFinish() {
-                        PictureExternalPreviewActivity.m8096a();
+                        PictureExternalPreviewActivity.a();
                     }
                 });
             }
-            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_success) + "\n" + str);
+            ToastUtils.s(getContext(), getString(R.string.picture_save_success) + "\n" + str);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -187,38 +185,38 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         contentValues.put("datetaken", ValueOf.toString(Long.valueOf(System.currentTimeMillis())));
         contentValues.put("mime_type", this.mMimeType);
         contentValues.put("relative_path", PictureMimeType.DCIM);
-        final Uri insert = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-        if (insert == null) {
-            ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_error));
+        final Uri uriInsert = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+        if (uriInsert == null) {
+            ToastUtils.s(getContext(), getString(R.string.picture_save_error));
         } else {
             PictureThreadUtils.executeByCached(new PictureThreadUtils.SimpleTask<String>() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.3
                 @Override // com.luck.picture.lib.thread.PictureThreadUtils.Task
                 public String doInBackground() {
-                    BufferedSource bufferedSource = null;
+                    BufferedSource bufferedSourceBuffer = null;
                     try {
                         try {
-                            bufferedSource = Okio.buffer(Okio.source((InputStream) Objects.requireNonNull(PictureExternalPreviewActivity.this.getContentResolver().openInputStream(uri))));
+                            bufferedSourceBuffer = Okio.buffer(Okio.source((InputStream) Objects.requireNonNull(PictureExternalPreviewActivity.this.getContentResolver().openInputStream(uri))));
+                            if (PictureFileUtils.bufferCopy(bufferedSourceBuffer, PictureExternalPreviewActivity.this.getContentResolver().openOutputStream(uriInsert))) {
+                                String path = PictureFileUtils.getPath(PictureExternalPreviewActivity.this.getContext(), uriInsert);
+                                if (bufferedSourceBuffer != null && bufferedSourceBuffer.isOpen()) {
+                                    PictureFileUtils.close(bufferedSourceBuffer);
+                                }
+                                return path;
+                            }
+                            if (bufferedSourceBuffer == null || !bufferedSourceBuffer.isOpen()) {
+                                return "";
+                            }
                         } catch (Exception e2) {
                             e2.printStackTrace();
-                            if (bufferedSource == null || !bufferedSource.isOpen()) {
+                            if (bufferedSourceBuffer == null || !bufferedSourceBuffer.isOpen()) {
                                 return "";
                             }
                         }
-                        if (PictureFileUtils.bufferCopy(bufferedSource, PictureExternalPreviewActivity.this.getContentResolver().openOutputStream(insert))) {
-                            String path = PictureFileUtils.getPath(PictureExternalPreviewActivity.this.getContext(), insert);
-                            if (bufferedSource != null && bufferedSource.isOpen()) {
-                                PictureFileUtils.close(bufferedSource);
-                            }
-                            return path;
-                        }
-                        if (bufferedSource == null || !bufferedSource.isOpen()) {
-                            return "";
-                        }
-                        PictureFileUtils.close(bufferedSource);
+                        PictureFileUtils.close(bufferedSourceBuffer);
                         return "";
                     } catch (Throwable th) {
-                        if (bufferedSource != null && bufferedSource.isOpen()) {
-                            PictureFileUtils.close(bufferedSource);
+                        if (bufferedSourceBuffer != null && bufferedSourceBuffer.isOpen()) {
+                            PictureFileUtils.close(bufferedSourceBuffer);
                         }
                         throw th;
                     }
@@ -238,41 +236,39 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         if (isFinishing() || TextUtils.isEmpty(this.downloadPath)) {
             return;
         }
-        final PictureCustomDialog pictureCustomDialog = new PictureCustomDialog(getContext(), C2639R.layout.picture_wind_base_dialog);
-        Button button = (Button) pictureCustomDialog.findViewById(C2639R.id.btn_cancel);
-        Button button2 = (Button) pictureCustomDialog.findViewById(C2639R.id.btn_commit);
-        TextView textView = (TextView) pictureCustomDialog.findViewById(C2639R.id.tv_title);
-        TextView textView2 = (TextView) pictureCustomDialog.findViewById(C2639R.id.tv_content);
-        textView.setText(getString(C2639R.string.picture_prompt));
-        textView2.setText(getString(C2639R.string.picture_prompt_content));
+        final PictureCustomDialog pictureCustomDialog = new PictureCustomDialog(getContext(), R.layout.picture_wind_base_dialog);
+        Button button = (Button) pictureCustomDialog.findViewById(R.id.btn_cancel);
+        Button button2 = (Button) pictureCustomDialog.findViewById(R.id.btn_commit);
+        TextView textView = (TextView) pictureCustomDialog.findViewById(R.id.tv_title);
+        TextView textView2 = (TextView) pictureCustomDialog.findViewById(R.id.tv_content);
+        textView.setText(getString(R.string.picture_prompt));
+        textView2.setText(getString(R.string.picture_prompt_content));
         button.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.k
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PictureExternalPreviewActivity.this.m8097a(pictureCustomDialog, view);
+                this.a.a(pictureCustomDialog, view);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.l
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PictureExternalPreviewActivity.this.m8098b(pictureCustomDialog, view);
+                this.a.b(pictureCustomDialog, view);
             }
         });
         pictureCustomDialog.show();
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8097a(PictureCustomDialog pictureCustomDialog, View view) {
+    public /* synthetic */ void a(PictureCustomDialog pictureCustomDialog, View view) {
         if (isFinishing()) {
             return;
         }
         pictureCustomDialog.dismiss();
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m8098b(PictureCustomDialog pictureCustomDialog, View view) {
-        boolean isHttp = PictureMimeType.isHttp(this.downloadPath);
+    public /* synthetic */ void b(PictureCustomDialog pictureCustomDialog, View view) {
+        boolean zIsHttp = PictureMimeType.isHttp(this.downloadPath);
         showPleaseDialog();
-        if (isHttp) {
+        if (zIsHttp) {
             PictureThreadUtils.executeByCached(new PictureThreadUtils.SimpleTask<String>() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.2
                 @Override // com.luck.picture.lib.thread.PictureThreadUtils.Task
                 public String doInBackground() {
@@ -294,7 +290,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     savePictureAlbum();
                 }
             } catch (Exception e2) {
-                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_save_error) + "\n" + e2.getMessage());
+                ToastUtils.s(getContext(), getString(R.string.picture_save_error) + "\n" + e2.getMessage());
                 dismissDialog();
                 e2.printStackTrace();
             }
@@ -307,14 +303,14 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public int getResourceId() {
-        return C2639R.layout.picture_activity_external_preview;
+        return R.layout.picture_activity_external_preview;
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity
     public void initPictureSelectorStyle() {
         PictureParameterStyle pictureParameterStyle = this.config.style;
         if (pictureParameterStyle == null) {
-            int typeValueColor = AttrsUtils.getTypeValueColor(getContext(), C2639R.attr.picture_ac_preview_title_bg);
+            int typeValueColor = AttrsUtils.getTypeValueColor(getContext(), R.attr.picture_ac_preview_title_bg);
             if (typeValueColor != 0) {
                 this.titleViewBg.setBackgroundColor(typeValueColor);
                 return;
@@ -348,11 +344,11 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     protected void initWidgets() {
         super.initWidgets();
         this.isAndroidQ = SdkVersionUtils.checkedAndroid_Q();
-        this.titleViewBg = findViewById(C2639R.id.titleViewBg);
-        this.tvTitle = (TextView) findViewById(C2639R.id.picture_title);
-        this.ibLeftBack = (ImageButton) findViewById(C2639R.id.left_back);
-        this.ibDelete = (ImageButton) findViewById(C2639R.id.ib_delete);
-        this.viewPager = (PreviewViewPager) findViewById(C2639R.id.preview_pager);
+        this.titleViewBg = findViewById(R.id.titleViewBg);
+        this.tvTitle = (TextView) findViewById(R.id.picture_title);
+        this.ibLeftBack = (ImageButton) findViewById(R.id.left_back);
+        this.ibDelete = (ImageButton) findViewById(R.id.ib_delete);
+        this.viewPager = (PreviewViewPager) findViewById(R.id.preview_pager);
         this.position = getIntent().getIntExtra("position", 0);
         this.images = (List) getIntent().getSerializableExtra(PictureConfig.EXTRA_PREVIEW_SELECT_LIST);
         this.ibLeftBack.setOnClickListener(this);
@@ -368,9 +364,9 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
-    /* renamed from: onBackPressed */
-    public void m8092a() {
-        super.m8092a();
+    /* JADX INFO: renamed from: onBackPressed */
+    public void a() {
+        super.a();
         finish();
         exitAnimation();
     }
@@ -379,33 +375,33 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     public void onClick(View view) {
         List<LocalMedia> list;
         int id = view.getId();
-        if (id == C2639R.id.left_back) {
+        if (id == R.id.left_back) {
             finish();
             exitAnimation();
             return;
         }
-        if (id != C2639R.id.ib_delete || (list = this.images) == null || list.size() <= 0) {
+        if (id != R.id.ib_delete || (list = this.images) == null || list.size() <= 0) {
             return;
         }
         int currentItem = this.viewPager.getCurrentItem();
         this.images.remove(currentItem);
-        this.f25895adapter.removeCacheView(currentItem);
+        this.f5271adapter.removeCacheView(currentItem);
         Bundle bundle = new Bundle();
         bundle.putInt("position", currentItem);
         BroadcastManager.getInstance(getContext()).action(BroadcastAction.ACTION_DELETE_PREVIEW_POSITION).extras(bundle).broadcast();
         if (this.images.size() == 0) {
-            m8092a();
+            a();
             return;
         }
-        this.tvTitle.setText(getString(C2639R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
+        this.tvTitle.setText(getString(R.string.picture_preview_image_num, new Object[]{Integer.valueOf(this.position + 1), Integer.valueOf(this.images.size())}));
         this.position = currentItem;
-        this.f25895adapter.notifyDataSetChanged();
+        this.f5271adapter.notifyDataSetChanged();
     }
 
     @Override // com.luck.picture.lib.PictureBaseActivity, androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, android.app.Activity
     protected void onDestroy() {
         super.onDestroy();
-        SimpleFragmentAdapter simpleFragmentAdapter = this.f25895adapter;
+        SimpleFragmentAdapter simpleFragmentAdapter = this.f5271adapter;
         if (simpleFragmentAdapter != null) {
             simpleFragmentAdapter.clear();
         }
@@ -427,12 +423,16 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             if (i3 == 0) {
                 showDownLoadDialog();
             } else {
-                ToastUtils.m8140s(getContext(), getString(C2639R.string.picture_jurisdiction));
+                ToastUtils.s(getContext(), getString(R.string.picture_jurisdiction));
             }
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r1v0 */
+    /* JADX WARN: Type inference failed for: r1v1, types: [java.io.Closeable] */
+    /* JADX WARN: Type inference failed for: r1v2 */
+    /* JADX WARN: Type inference failed for: r1v3 */
     /* JADX WARN: Type inference failed for: r3v1 */
     /* JADX WARN: Type inference failed for: r3v14 */
     /* JADX WARN: Type inference failed for: r3v17 */
@@ -451,19 +451,20 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     /* JADX WARN: Type inference failed for: r7v5 */
     /* JADX WARN: Type inference failed for: r7v7 */
     /* JADX WARN: Type inference failed for: r7v8, types: [java.io.Closeable] */
-    public String showLoadingImage(String str) {
+    public String showLoadingImage(String str) throws Throwable {
         OutputStream outputStream;
         Closeable closeable;
         Object obj;
-        Uri uri;
-        ?? r3;
-        String str2;
-        Closeable closeable2 = null;
+        Uri uriFromFile;
+        ?? Buffer;
+        String absolutePath;
+        ?? r1 = 0;
+        r1 = 0;
         try {
             try {
                 try {
                     if (this.isAndroidQ) {
-                        uri = createOutImageUri();
+                        uriFromFile = createOutImageUri();
                     } else {
                         String lastImgSuffix = PictureMimeType.getLastImgSuffix(this.mMimeType);
                         String externalStorageState = Environment.getExternalStorageState();
@@ -473,46 +474,46 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                                 externalStoragePublicDirectory.mkdirs();
                             }
                             if (externalStorageState.equals("mounted")) {
-                                str2 = externalStoragePublicDirectory.getAbsolutePath() + File.separator + AgentWebPermissions.ACTION_CAMERA + File.separator;
+                                absolutePath = externalStoragePublicDirectory.getAbsolutePath() + File.separator + AgentWebPermissions.ACTION_CAMERA + File.separator;
                             } else {
-                                str2 = externalStoragePublicDirectory.getAbsolutePath();
+                                absolutePath = externalStoragePublicDirectory.getAbsolutePath();
                             }
-                            File file = new File(str2);
+                            File file = new File(absolutePath);
                             if (!file.exists()) {
                                 file.mkdirs();
                             }
-                            uri = Uri.fromFile(new File(file, DateUtils.getCreateFileName("IMG_") + lastImgSuffix));
+                            uriFromFile = Uri.fromFile(new File(file, DateUtils.getCreateFileName("IMG_") + lastImgSuffix));
                         } else {
-                            uri = null;
+                            uriFromFile = null;
                         }
                     }
-                    if (uri != null) {
+                    if (uriFromFile != null) {
                         try {
-                            outputStream = (OutputStream) Objects.requireNonNull(getContentResolver().openOutputStream(uri));
+                            outputStream = (OutputStream) Objects.requireNonNull(getContentResolver().openOutputStream(uriFromFile));
                             try {
                                 str = new URL(str).openStream();
                                 try {
-                                    r3 = Okio.buffer(Okio.source((InputStream) str));
+                                    Buffer = Okio.buffer(Okio.source((InputStream) str));
                                 } catch (Exception unused) {
-                                    r3 = 0;
+                                    Buffer = 0;
                                     str = str;
                                 } catch (Throwable th) {
                                     th = th;
                                     closeable = null;
-                                    closeable2 = str;
+                                    r1 = str;
                                     th = th;
-                                    PictureFileUtils.close(closeable2);
+                                    PictureFileUtils.close(r1);
                                     PictureFileUtils.close(outputStream);
                                     PictureFileUtils.close(closeable);
                                     throw th;
                                 }
                             } catch (Exception unused2) {
                                 str = 0;
-                                r3 = 0;
+                                Buffer = 0;
                             } catch (Throwable th2) {
                                 th = th2;
                                 closeable = null;
-                                PictureFileUtils.close(closeable2);
+                                PictureFileUtils.close(r1);
                                 PictureFileUtils.close(outputStream);
                                 PictureFileUtils.close(closeable);
                                 throw th;
@@ -520,39 +521,35 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                         } catch (Exception unused3) {
                             obj = null;
                             outputStream = null;
-                            r3 = outputStream;
+                            Buffer = outputStream;
                             str = obj;
-                            if (uri != null) {
-                                getContentResolver().delete(uri, null, null);
+                            if (uriFromFile != null) {
+                                getContentResolver().delete(uriFromFile, null, null);
                             }
                             PictureFileUtils.close(str);
                             PictureFileUtils.close(outputStream);
-                            PictureFileUtils.close(r3);
+                            PictureFileUtils.close(Buffer);
                             return null;
                         }
                         try {
-                            if (PictureFileUtils.bufferCopy((BufferedSource) r3, outputStream)) {
-                                String path = PictureFileUtils.getPath(this, uri);
+                            if (PictureFileUtils.bufferCopy((BufferedSource) Buffer, outputStream)) {
+                                String path = PictureFileUtils.getPath(this, uriFromFile);
                                 PictureFileUtils.close(str);
                                 PictureFileUtils.close(outputStream);
-                                PictureFileUtils.close(r3);
+                                PictureFileUtils.close(Buffer);
                                 return path;
                             }
                         } catch (Exception unused4) {
-                            r3 = r3;
+                            Buffer = Buffer;
                             str = str;
-                            if (uri != null && this.isAndroidQ) {
-                                getContentResolver().delete(uri, null, null);
+                            if (uriFromFile != null && this.isAndroidQ) {
+                                getContentResolver().delete(uriFromFile, null, null);
                             }
-                            PictureFileUtils.close(str);
-                            PictureFileUtils.close(outputStream);
-                            PictureFileUtils.close(r3);
-                            return null;
                         }
                     } else {
                         str = 0;
                         outputStream = null;
-                        r3 = 0;
+                        Buffer = 0;
                     }
                 } catch (Throwable th3) {
                     th = th3;
@@ -561,12 +558,12 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                 }
             } catch (Exception unused5) {
                 obj = null;
-                uri = null;
+                uriFromFile = null;
                 outputStream = null;
             }
             PictureFileUtils.close(str);
             PictureFileUtils.close(outputStream);
-            PictureFileUtils.close(r3);
+            PictureFileUtils.close(Buffer);
             return null;
         } catch (Throwable th4) {
             th = th4;
@@ -589,17 +586,15 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             }
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m8101a(View view, float f2, float f3) {
+        public /* synthetic */ void a(View view, float f2, float f3) {
             PictureExternalPreviewActivity.this.finish();
             PictureExternalPreviewActivity.this.exitAnimation();
         }
 
-        /* renamed from: b */
-        public /* synthetic */ boolean m8103b(String str, LocalMedia localMedia, View view) {
+        public /* synthetic */ boolean b(String str, LocalMedia localMedia, View view) {
             PictureExternalPreviewActivity pictureExternalPreviewActivity = PictureExternalPreviewActivity.this;
             if (pictureExternalPreviewActivity.config.isNotPreviewDownload) {
-                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), C7308a.f25521A)) {
+                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), util.permissionutil.a.A)) {
                     PictureExternalPreviewActivity.this.downloadPath = str;
                     String imageMimeType = PictureMimeType.isHttp(str) ? PictureMimeType.getImageMimeType(localMedia.getPath()) : localMedia.getMimeType();
                     PictureExternalPreviewActivity pictureExternalPreviewActivity2 = PictureExternalPreviewActivity.this;
@@ -609,7 +604,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     pictureExternalPreviewActivity2.mMimeType = imageMimeType;
                     PictureExternalPreviewActivity.this.showDownLoadDialog();
                 } else {
-                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{C7308a.f25521A}, 1);
+                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{util.permissionutil.a.A}, 1);
                 }
             }
             return true;
@@ -640,34 +635,34 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         public Object instantiateItem(final ViewGroup viewGroup, int i2) {
             ImageEngine imageEngine;
             ImageEngine imageEngine2;
-            View view = this.mCacheView.get(i2);
-            if (view == null) {
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(C2639R.layout.picture_image_preview, viewGroup, false);
-                this.mCacheView.put(i2, view);
+            View viewInflate = this.mCacheView.get(i2);
+            if (viewInflate == null) {
+                viewInflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.picture_image_preview, viewGroup, false);
+                this.mCacheView.put(i2, viewInflate);
             }
-            PhotoView photoView = (PhotoView) view.findViewById(C2639R.id.preview_image);
-            SubsamplingScaleImageView subsamplingScaleImageView = (SubsamplingScaleImageView) view.findViewById(C2639R.id.longImg);
-            ImageView imageView = (ImageView) view.findViewById(C2639R.id.iv_play);
+            PhotoView photoView = (PhotoView) viewInflate.findViewById(R.id.preview_image);
+            SubsamplingScaleImageView subsamplingScaleImageView = (SubsamplingScaleImageView) viewInflate.findViewById(R.id.longImg);
+            ImageView imageView = (ImageView) viewInflate.findViewById(R.id.iv_play);
             final LocalMedia localMedia = (LocalMedia) PictureExternalPreviewActivity.this.images.get(i2);
             if (localMedia != null) {
                 final String compressPath = (!localMedia.isCut() || localMedia.isCompressed()) ? (localMedia.isCompressed() || (localMedia.isCut() && localMedia.isCompressed())) ? localMedia.getCompressPath() : !TextUtils.isEmpty(localMedia.getAndroidQToPath()) ? localMedia.getAndroidQToPath() : localMedia.getPath() : localMedia.getCutPath();
-                boolean isHttp = PictureMimeType.isHttp(compressPath);
-                String imageMimeType = isHttp ? PictureMimeType.getImageMimeType(localMedia.getPath()) : localMedia.getMimeType();
-                boolean eqVideo = PictureMimeType.eqVideo(imageMimeType);
+                boolean zIsHttp = PictureMimeType.isHttp(compressPath);
+                String imageMimeType = zIsHttp ? PictureMimeType.getImageMimeType(localMedia.getPath()) : localMedia.getMimeType();
+                boolean zEqVideo = PictureMimeType.eqVideo(imageMimeType);
                 int i3 = 8;
-                imageView.setVisibility(eqVideo ? 0 : 8);
-                boolean isGif = PictureMimeType.isGif(imageMimeType);
-                boolean isLongImg = MediaUtils.isLongImg(localMedia);
-                photoView.setVisibility((!isLongImg || isGif) ? 0 : 8);
-                if (isLongImg && !isGif) {
+                imageView.setVisibility(zEqVideo ? 0 : 8);
+                boolean zIsGif = PictureMimeType.isGif(imageMimeType);
+                boolean zIsLongImg = MediaUtils.isLongImg(localMedia);
+                photoView.setVisibility((!zIsLongImg || zIsGif) ? 0 : 8);
+                if (zIsLongImg && !zIsGif) {
                     i3 = 0;
                 }
                 subsamplingScaleImageView.setVisibility(i3);
-                if (!isGif || localMedia.isCompressed()) {
+                if (!zIsGif || localMedia.isCompressed()) {
                     PictureExternalPreviewActivity pictureExternalPreviewActivity = PictureExternalPreviewActivity.this;
                     if (pictureExternalPreviewActivity.config != null && (imageEngine = PictureSelectionConfig.imageEngine) != null) {
-                        if (isHttp) {
-                            imageEngine.loadImage(view.getContext(), compressPath, photoView, subsamplingScaleImageView, new OnImageCompleteCallback() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.SimpleFragmentAdapter.1
+                        if (zIsHttp) {
+                            imageEngine.loadImage(viewInflate.getContext(), compressPath, photoView, subsamplingScaleImageView, new OnImageCompleteCallback() { // from class: com.luck.picture.lib.PictureExternalPreviewActivity.SimpleFragmentAdapter.1
                                 @Override // com.luck.picture.lib.listener.OnImageCompleteCallback
                                 public void onHideLoading() {
                                     PictureExternalPreviewActivity.this.dismissDialog();
@@ -678,10 +673,10 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                                     PictureExternalPreviewActivity.this.showPleaseDialog();
                                 }
                             });
-                        } else if (isLongImg) {
+                        } else if (zIsLongImg) {
                             pictureExternalPreviewActivity.displayLongPic(pictureExternalPreviewActivity.isAndroidQ ? Uri.parse(compressPath) : Uri.fromFile(new File(compressPath)), subsamplingScaleImageView);
                         } else {
-                            imageEngine.loadImage(view.getContext(), compressPath, photoView);
+                            imageEngine.loadImage(viewInflate.getContext(), compressPath, photoView);
                         }
                     }
                 } else {
@@ -692,41 +687,41 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                 }
                 photoView.setOnViewTapListener(new OnViewTapListener() { // from class: com.luck.picture.lib.e
                     @Override // com.luck.picture.lib.photoview.OnViewTapListener
-                    public final void onViewTap(View view2, float f2, float f3) {
-                        PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8101a(view2, f2, f3);
+                    public final void onViewTap(View view, float f2, float f3) {
+                        this.a.a(view, f2, f3);
                     }
                 });
                 subsamplingScaleImageView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.h
                     @Override // android.view.View.OnClickListener
-                    public final void onClick(View view2) {
-                        PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8100a(view2);
+                    public final void onClick(View view) {
+                        this.a.a(view);
                     }
                 });
-                if (!eqVideo) {
+                if (!zEqVideo) {
                     subsamplingScaleImageView.setOnLongClickListener(new View.OnLongClickListener() { // from class: com.luck.picture.lib.f
                         @Override // android.view.View.OnLongClickListener
-                        public final boolean onLongClick(View view2) {
-                            return PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8102a(compressPath, localMedia, view2);
+                        public final boolean onLongClick(View view) {
+                            return this.a.a(compressPath, localMedia, view);
                         }
                     });
                 }
-                if (!eqVideo) {
+                if (!zEqVideo) {
                     photoView.setOnLongClickListener(new View.OnLongClickListener() { // from class: com.luck.picture.lib.g
                         @Override // android.view.View.OnLongClickListener
-                        public final boolean onLongClick(View view2) {
-                            return PictureExternalPreviewActivity.SimpleFragmentAdapter.this.m8103b(compressPath, localMedia, view2);
+                        public final boolean onLongClick(View view) {
+                            return this.a.b(compressPath, localMedia, view);
                         }
                     });
                 }
                 imageView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.i
                     @Override // android.view.View.OnClickListener
-                    public final void onClick(View view2) {
-                        PictureExternalPreviewActivity.SimpleFragmentAdapter.m8099a(LocalMedia.this, compressPath, viewGroup, view2);
+                    public final void onClick(View view) {
+                        PictureExternalPreviewActivity.SimpleFragmentAdapter.a(localMedia, compressPath, viewGroup, view);
                     }
                 });
             }
-            viewGroup.addView(view, 0);
-            return view;
+            viewGroup.addView(viewInflate, 0);
+            return viewInflate;
         }
 
         @Override // androidx.viewpager.widget.PagerAdapter
@@ -742,17 +737,15 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             this.mCacheView.removeAt(i2);
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m8100a(View view) {
+        public /* synthetic */ void a(View view) {
             PictureExternalPreviewActivity.this.finish();
             PictureExternalPreviewActivity.this.exitAnimation();
         }
 
-        /* renamed from: a */
-        public /* synthetic */ boolean m8102a(String str, LocalMedia localMedia, View view) {
+        public /* synthetic */ boolean a(String str, LocalMedia localMedia, View view) {
             PictureExternalPreviewActivity pictureExternalPreviewActivity = PictureExternalPreviewActivity.this;
             if (pictureExternalPreviewActivity.config.isNotPreviewDownload) {
-                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), C7308a.f25521A)) {
+                if (PermissionChecker.checkSelfPermission(pictureExternalPreviewActivity.getContext(), util.permissionutil.a.A)) {
                     PictureExternalPreviewActivity.this.downloadPath = str;
                     String imageMimeType = PictureMimeType.isHttp(str) ? PictureMimeType.getImageMimeType(localMedia.getPath()) : localMedia.getMimeType();
                     PictureExternalPreviewActivity pictureExternalPreviewActivity2 = PictureExternalPreviewActivity.this;
@@ -762,14 +755,13 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
                     pictureExternalPreviewActivity2.mMimeType = imageMimeType;
                     PictureExternalPreviewActivity.this.showDownLoadDialog();
                 } else {
-                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{C7308a.f25521A}, 1);
+                    PermissionChecker.requestPermissions(PictureExternalPreviewActivity.this, new String[]{util.permissionutil.a.A}, 1);
                 }
             }
             return true;
         }
 
-        /* renamed from: a */
-        static /* synthetic */ void m8099a(LocalMedia localMedia, String str, ViewGroup viewGroup, View view) {
+        static /* synthetic */ void a(LocalMedia localMedia, String str, ViewGroup viewGroup, View view) {
             OnVideoSelectedPlayCallback onVideoSelectedPlayCallback = PictureSelectionConfig.customVideoPlayCallback;
             if (onVideoSelectedPlayCallback != null) {
                 onVideoSelectedPlayCallback.startPlayVideo(localMedia);

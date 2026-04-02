@@ -1,9 +1,9 @@
 package anet.channel.strategy;
 
-import anet.channel.strategy.C0842l;
+import anet.channel.strategy.l;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public interface IStrategyListener {
-    void onStrategyUpdated(C0842l.d dVar);
+    void onStrategyUpdated(l.d dVar);
 }

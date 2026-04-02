@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AssetsManager {
     public static boolean copyAsset(Context context, String str, String str2) {
         return copyAsset(context.getAssets(), new AssetFile(str), new File(str2));
@@ -41,21 +41,21 @@ public class AssetsManager {
 
     public static boolean copyAssetFile(AssetManager assetManager, String str, File file) {
         try {
-            InputStream open = assetManager.open(str);
-            if (file.exists() && open.available() == file.length()) {
-                open.close();
+            InputStream inputStreamOpen = assetManager.open(str);
+            if (file.exists() && inputStreamOpen.available() == file.length()) {
+                inputStreamOpen.close();
                 return true;
             }
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             byte[] bArr = new byte[1024];
             while (true) {
-                int read = open.read(bArr);
-                if (read == -1) {
+                int i2 = inputStreamOpen.read(bArr);
+                if (i2 == -1) {
                     fileOutputStream.close();
-                    open.close();
+                    inputStreamOpen.close();
                     return true;
                 }
-                fileOutputStream.write(bArr, 0, read);
+                fileOutputStream.write(bArr, 0, i2);
             }
         } catch (Exception e2) {
             e2.printStackTrace();

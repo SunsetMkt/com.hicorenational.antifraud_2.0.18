@@ -2,15 +2,13 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveyHistoryBean extends BaseBean {
     private int aliPayConversationCount;
     private int appCount;
     private int bankCardCount;
     private String createTime;
-
-    /* renamed from: id */
-    private String f1628id;
+    private String id;
     private int mobileCount;
     private int otherConversationCount;
     private int otherPaymentCount;
@@ -41,7 +39,7 @@ public class SurveyHistoryBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1628id;
+        return this.id;
     }
 
     public int getMobileCount() {
@@ -109,7 +107,7 @@ public class SurveyHistoryBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1628id = str;
+        this.id = str;
     }
 
     public void setMobileCount(int i2) {

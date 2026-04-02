@@ -12,44 +12,39 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class ErrorResultImpl<R extends Result> extends PendingResult<R> {
+    private R a = null;
 
-    /* renamed from: a */
-    private R f7824a = null;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private int f4918b;
 
-    /* renamed from: b */
-    private int f7825b;
+    class a implements Runnable {
+        final /* synthetic */ ResultCallback a;
 
-    /* renamed from: com.huawei.hms.support.api.ErrorResultImpl$a */
-    class RunnableC2508a implements Runnable {
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        final /* synthetic */ ErrorResultImpl f4919b;
 
-        /* renamed from: a */
-        final /* synthetic */ ResultCallback f7826a;
-
-        /* renamed from: b */
-        final /* synthetic */ ErrorResultImpl f7827b;
-
-        RunnableC2508a(ResultCallback resultCallback, ErrorResultImpl errorResultImpl) {
-            this.f7826a = resultCallback;
-            this.f7827b = errorResultImpl;
+        a(ResultCallback resultCallback, ErrorResultImpl errorResultImpl) {
+            this.a = resultCallback;
+            this.f4919b = errorResultImpl;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            ResultCallback resultCallback = this.f7826a;
+            ResultCallback resultCallback = this.a;
             ErrorResultImpl errorResultImpl = ErrorResultImpl.this;
-            resultCallback.onResult(errorResultImpl.m7661a(errorResultImpl.f7825b, this.f7827b));
+            resultCallback.onResult(errorResultImpl.a(errorResultImpl.f4918b, this.f4919b));
         }
     }
 
     public ErrorResultImpl(int i2) {
-        this.f7825b = i2;
+        this.f4918b = i2;
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
     public final R await() {
-        return await(0L, null);
+        return (R) await(0L, null);
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -67,7 +62,7 @@ public abstract class ErrorResultImpl<R extends Result> extends PendingResult<R>
         if (looper == null) {
             looper = Looper.myLooper();
         }
-        new Handler(looper).post(new RunnableC2508a(resultCallback, errorResultImpl));
+        new Handler(looper).post(new a(resultCallback, errorResultImpl));
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult
@@ -78,28 +73,27 @@ public abstract class ErrorResultImpl<R extends Result> extends PendingResult<R>
     @Override // com.huawei.hms.support.api.client.PendingResult
     public R await(long j2, TimeUnit timeUnit) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            return m7661a(this.f7825b, this);
+            return (R) a(this.f4918b, this);
         }
         throw new IllegalStateException("await must not be called on the UI thread");
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public R m7661a(int i2, ErrorResultImpl errorResultImpl) {
+    public R a(int i2, ErrorResultImpl errorResultImpl) {
         Type genericSuperclass = errorResultImpl.getClass().getGenericSuperclass();
         if (genericSuperclass == null) {
             return null;
         }
         try {
             R r = (R) GenericTypeReflector.getType(((ParameterizedType) genericSuperclass).getActualTypeArguments()[0]).newInstance();
-            this.f7824a = r;
+            this.a = r;
             r.setStatus(new Status(i2));
         } catch (IllegalAccessException unused) {
-            HMSLog.m7715e("ErrorResultImpl", "IllegalAccessException");
+            HMSLog.e("ErrorResultImpl", "IllegalAccessException");
         } catch (InstantiationException unused2) {
-            HMSLog.m7715e("ErrorResultImpl", "InstantiationException");
+            HMSLog.e("ErrorResultImpl", "InstantiationException");
         }
-        return this.f7824a;
+        return this.a;
     }
 
     @Override // com.huawei.hms.support.api.client.PendingResult

@@ -8,8 +8,8 @@ import android.view.ViewParent;
 import androidx.annotation.RestrictTo;
 import androidx.appcompat.view.menu.ShowableListMenu;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public abstract class ForwardingListener implements View.OnTouchListener, View.OnAttachStateChangeListener {
     private int mActivePointerId;
     private Runnable mDisallowIntercept;
@@ -71,84 +71,47 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         if (popup == null || !popup.isShowing() || (dropDownListView = (DropDownListView) popup.getListView()) == null || !dropDownListView.isShown()) {
             return false;
         }
-        MotionEvent obtainNoHistory = MotionEvent.obtainNoHistory(motionEvent);
-        toGlobalMotionEvent(view, obtainNoHistory);
-        toLocalMotionEvent(dropDownListView, obtainNoHistory);
-        boolean onForwardedEvent = dropDownListView.onForwardedEvent(obtainNoHistory, this.mActivePointerId);
-        obtainNoHistory.recycle();
+        MotionEvent motionEventObtainNoHistory = MotionEvent.obtainNoHistory(motionEvent);
+        toGlobalMotionEvent(view, motionEventObtainNoHistory);
+        toLocalMotionEvent(dropDownListView, motionEventObtainNoHistory);
+        boolean zOnForwardedEvent = dropDownListView.onForwardedEvent(motionEventObtainNoHistory, this.mActivePointerId);
+        motionEventObtainNoHistory.recycle();
         int actionMasked = motionEvent.getActionMasked();
-        return onForwardedEvent && (actionMasked != 1 && actionMasked != 3);
+        return zOnForwardedEvent && (actionMasked != 1 && actionMasked != 3);
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:12:0x0017, code lost:
-    
-        if (r1 != 3) goto L28;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:20:0x003d  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private boolean onTouchObserved(android.view.MotionEvent r6) {
-        /*
-            r5 = this;
-            android.view.View r0 = r5.mSrc
-            boolean r1 = r0.isEnabled()
-            r2 = 0
-            if (r1 != 0) goto La
-            return r2
-        La:
-            int r1 = r6.getActionMasked()
-            if (r1 == 0) goto L41
-            r3 = 1
-            if (r1 == r3) goto L3d
-            r4 = 2
-            if (r1 == r4) goto L1a
-            r6 = 3
-            if (r1 == r6) goto L3d
-            goto L6d
-        L1a:
-            int r1 = r5.mActivePointerId
-            int r1 = r6.findPointerIndex(r1)
-            if (r1 < 0) goto L6d
-            float r4 = r6.getX(r1)
-            float r6 = r6.getY(r1)
-            float r1 = r5.mScaledTouchSlop
-            boolean r6 = pointInView(r0, r4, r6, r1)
-            if (r6 != 0) goto L6d
-            r5.clearCallbacks()
-            android.view.ViewParent r6 = r0.getParent()
-            r6.requestDisallowInterceptTouchEvent(r3)
-            return r3
-        L3d:
-            r5.clearCallbacks()
-            goto L6d
-        L41:
-            int r6 = r6.getPointerId(r2)
-            r5.mActivePointerId = r6
-            java.lang.Runnable r6 = r5.mDisallowIntercept
-            if (r6 != 0) goto L52
-            androidx.appcompat.widget.ForwardingListener$DisallowIntercept r6 = new androidx.appcompat.widget.ForwardingListener$DisallowIntercept
-            r6.<init>()
-            r5.mDisallowIntercept = r6
-        L52:
-            java.lang.Runnable r6 = r5.mDisallowIntercept
-            int r1 = r5.mTapTimeout
-            long r3 = (long) r1
-            r0.postDelayed(r6, r3)
-            java.lang.Runnable r6 = r5.mTriggerLongPress
-            if (r6 != 0) goto L65
-            androidx.appcompat.widget.ForwardingListener$TriggerLongPress r6 = new androidx.appcompat.widget.ForwardingListener$TriggerLongPress
-            r6.<init>()
-            r5.mTriggerLongPress = r6
-        L65:
-            java.lang.Runnable r6 = r5.mTriggerLongPress
-            int r1 = r5.mLongPressTimeout
-            long r3 = (long) r1
-            r0.postDelayed(r6, r3)
-        L6d:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.ForwardingListener.onTouchObserved(android.view.MotionEvent):boolean");
+    private boolean onTouchObserved(MotionEvent motionEvent) {
+        View view = this.mSrc;
+        if (!view.isEnabled()) {
+            return false;
+        }
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            this.mActivePointerId = motionEvent.getPointerId(0);
+            if (this.mDisallowIntercept == null) {
+                this.mDisallowIntercept = new DisallowIntercept();
+            }
+            view.postDelayed(this.mDisallowIntercept, this.mTapTimeout);
+            if (this.mTriggerLongPress == null) {
+                this.mTriggerLongPress = new TriggerLongPress();
+            }
+            view.postDelayed(this.mTriggerLongPress, this.mLongPressTimeout);
+        } else if (actionMasked == 1) {
+            clearCallbacks();
+        } else if (actionMasked == 2) {
+            int iFindPointerIndex = motionEvent.findPointerIndex(this.mActivePointerId);
+            if (iFindPointerIndex >= 0 && !pointInView(view, motionEvent.getX(iFindPointerIndex), motionEvent.getY(iFindPointerIndex), this.mScaledTouchSlop)) {
+                clearCallbacks();
+                view.getParent().requestDisallowInterceptTouchEvent(true);
+                return true;
+            }
+        } else if (actionMasked == 3) {
+        }
+        return false;
     }
 
     private static boolean pointInView(View view, float f2, float f3, float f4) {
@@ -193,10 +156,10 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         View view = this.mSrc;
         if (view.isEnabled() && !view.isLongClickable() && onForwardingStarted()) {
             view.getParent().requestDisallowInterceptTouchEvent(true);
-            long uptimeMillis = SystemClock.uptimeMillis();
-            MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-            view.onTouchEvent(obtain);
-            obtain.recycle();
+            long jUptimeMillis = SystemClock.uptimeMillis();
+            MotionEvent motionEventObtain = MotionEvent.obtain(jUptimeMillis, jUptimeMillis, 3, 0.0f, 0.0f, 0);
+            view.onTouchEvent(motionEventObtain);
+            motionEventObtain.recycle();
             this.mForwarding = true;
         }
     }
@@ -210,10 +173,10 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         } else {
             z = onTouchObserved(motionEvent) && onForwardingStarted();
             if (z) {
-                long uptimeMillis = SystemClock.uptimeMillis();
-                MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-                this.mSrc.onTouchEvent(obtain);
-                obtain.recycle();
+                long jUptimeMillis = SystemClock.uptimeMillis();
+                MotionEvent motionEventObtain = MotionEvent.obtain(jUptimeMillis, jUptimeMillis, 3, 0.0f, 0.0f, 0);
+                this.mSrc.onTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
             }
         }
         this.mForwarding = z;

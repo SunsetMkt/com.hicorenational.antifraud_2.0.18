@@ -2,13 +2,13 @@ package androidx.lifecycle;
 
 import androidx.lifecycle.Lifecycle;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class FullLifecycleObserverAdapter implements LifecycleEventObserver {
     private final FullLifecycleObserver mFullLifecycleObserver;
     private final LifecycleEventObserver mLifecycleEventObserver;
 
-    /* renamed from: androidx.lifecycle.FullLifecycleObserverAdapter$1 */
-    static /* synthetic */ class C05681 {
+    /* JADX INFO: renamed from: androidx.lifecycle.FullLifecycleObserverAdapter$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$Event = new int[Lifecycle.Event.values().length];
 
         static {
@@ -50,7 +50,7 @@ class FullLifecycleObserverAdapter implements LifecycleEventObserver {
 
     @Override // androidx.lifecycle.LifecycleEventObserver
     public void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle.Event event2) {
-        switch (C05681.$SwitchMap$androidx$lifecycle$Lifecycle$Event[event2.ordinal()]) {
+        switch (AnonymousClass1.$SwitchMap$androidx$lifecycle$Lifecycle$Event[event2.ordinal()]) {
             case 1:
                 this.mFullLifecycleObserver.onCreate(lifecycleOwner);
                 break;

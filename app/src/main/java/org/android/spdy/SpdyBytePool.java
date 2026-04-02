@@ -3,7 +3,7 @@ package org.android.spdy;
 import java.util.Random;
 import java.util.TreeSet;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SpdyBytePool {
     private static volatile SpdyBytePool gInstance;
     private static Object lock = new Object();
@@ -29,20 +29,20 @@ public class SpdyBytePool {
     }
 
     SpdyByteArray getSpdyByteArray(int i2) {
-        SpdyByteArray ceiling;
+        SpdyByteArray spdyByteArrayCeiling;
         synchronized (lock) {
             this.std.length = i2;
-            ceiling = this.pool.ceiling(this.std);
-            if (ceiling == null) {
-                ceiling = new SpdyByteArray(i2);
+            spdyByteArrayCeiling = this.pool.ceiling(this.std);
+            if (spdyByteArrayCeiling == null) {
+                spdyByteArrayCeiling = new SpdyByteArray(i2);
             } else {
-                this.pool.remove(ceiling);
-                this.reused += i2;
+                this.pool.remove(spdyByteArrayCeiling);
+                this.reused += (long) i2;
             }
         }
-        spduLog.Logi("libeasy", "getSpdyByteArray: " + ceiling);
+        spduLog.Logi("libeasy", "getSpdyByteArray: " + spdyByteArrayCeiling);
         spduLog.Logi("libeasy", "reused: " + this.reused);
-        return ceiling;
+        return spdyByteArrayCeiling;
     }
 
     void recycle(SpdyByteArray spdyByteArray) {

@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NestedScrollingParentHelper {
     private int mNestedScrollAxesNonTouch;
     private int mNestedScrollAxesTouch;

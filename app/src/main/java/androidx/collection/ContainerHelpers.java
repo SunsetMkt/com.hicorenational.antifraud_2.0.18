@@ -1,6 +1,6 @@
 package androidx.collection;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ContainerHelpers {
     static final int[] EMPTY_INTS = new int[0];
     static final long[] EMPTY_LONGS = new long[0];

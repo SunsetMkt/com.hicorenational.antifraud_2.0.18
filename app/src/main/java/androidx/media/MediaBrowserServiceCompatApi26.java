@@ -12,8 +12,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(26)
-/* loaded from: classes.dex */
 class MediaBrowserServiceCompatApi26 {
     private static final String TAG = "MBSCompatApi26";
     static Field sResultFlags;

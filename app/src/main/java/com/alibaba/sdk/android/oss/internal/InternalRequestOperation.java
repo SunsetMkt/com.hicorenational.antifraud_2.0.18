@@ -92,7 +92,7 @@ import com.alibaba.sdk.android.oss.model.UploadPartRequest;
 import com.alibaba.sdk.android.oss.model.UploadPartResult;
 import com.alibaba.sdk.android.oss.network.ExecutionContext;
 import com.alibaba.sdk.android.oss.network.OSSRequestTask;
-import com.heytap.mcssdk.constant.C2084a;
+import com.heytap.mcssdk.constant.a;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -111,7 +111,7 @@ import javax.net.ssl.SSLSession;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InternalRequestOperation {
     private static final int LIST_PART_MAX_RETURNS = 1000;
     private static final int MAX_PART_NUMBER = 10000;
@@ -128,8 +128,8 @@ public class InternalRequestOperation {
     private OkHttpClient innerClient;
     private int maxRetryCount;
 
-    /* renamed from: service, reason: collision with root package name */
-    private URI f25890service;
+    /* JADX INFO: renamed from: service, reason: collision with root package name */
+    private URI f2621service;
 
     public InternalRequestOperation(Context context, final URI uri, OSSCredentialProvider oSSCredentialProvider, ClientConfiguration clientConfiguration) {
         this.maxRetryCount = 2;
@@ -137,7 +137,7 @@ public class InternalRequestOperation {
         this.endpoint = uri;
         this.credentialProvider = oSSCredentialProvider;
         this.conf = clientConfiguration;
-        OkHttpClient.Builder hostnameVerifier = new OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).cache(null).hostnameVerifier(new HostnameVerifier() { // from class: com.alibaba.sdk.android.oss.internal.InternalRequestOperation.2
+        OkHttpClient.Builder builderHostnameVerifier = new OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).cache(null).hostnameVerifier(new HostnameVerifier() { // from class: com.alibaba.sdk.android.oss.internal.InternalRequestOperation.2
             @Override // javax.net.ssl.HostnameVerifier
             public boolean verify(String str, SSLSession sSLSession) {
                 return HttpsURLConnection.getDefaultHostnameVerifier().verify(uri.getHost(), sSLSession);
@@ -146,25 +146,25 @@ public class InternalRequestOperation {
         if (clientConfiguration != null) {
             Dispatcher dispatcher = new Dispatcher();
             dispatcher.setMaxRequests(clientConfiguration.getMaxConcurrentRequest());
-            hostnameVerifier.connectTimeout(clientConfiguration.getConnectionTimeout(), TimeUnit.MILLISECONDS).readTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).writeTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).dispatcher(dispatcher);
+            builderHostnameVerifier.connectTimeout(clientConfiguration.getConnectionTimeout(), TimeUnit.MILLISECONDS).readTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).writeTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).dispatcher(dispatcher);
             if (clientConfiguration.getProxyHost() != null && clientConfiguration.getProxyPort() != 0) {
-                hostnameVerifier.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(clientConfiguration.getProxyHost(), clientConfiguration.getProxyPort())));
+                builderHostnameVerifier.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(clientConfiguration.getProxyHost(), clientConfiguration.getProxyPort())));
             }
             this.maxRetryCount = clientConfiguration.getMaxErrorRetry();
         }
-        this.innerClient = hostnameVerifier.build();
+        this.innerClient = builderHostnameVerifier.build();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public long calcObjectCRCFromParts(List<PartETag> list) {
-        long j2 = 0;
+        long jCombine = 0;
         for (PartETag partETag : list) {
             if (partETag.getCRC64() == 0 || partETag.getPartSize() <= 0) {
                 return 0L;
             }
-            j2 = CRC64.combine(j2, partETag.getCRC64(), partETag.getPartSize());
+            jCombine = CRC64.combine(jCombine, partETag.getCRC64(), partETag.getPartSize());
         }
-        return j2;
+        return jCombine;
     }
 
     private void canonicalizeRequestMessage(RequestMessage requestMessage, OSSRequest oSSRequest) {
@@ -181,18 +181,18 @@ public class InternalRequestOperation {
         requestMessage.setCustomPathPrefixEnable(this.conf.isCustomPathPrefixEnable());
         requestMessage.setIpWithHeader(this.conf.getIpWithHeader());
         requestMessage.getHeaders().put(HttpHeaders.USER_AGENT, VersionInfoUtils.getUserAgent(this.conf.getCustomUserMark()));
-        boolean z = false;
+        boolean zIsCheckCRC64 = false;
         if (requestMessage.getHeaders().containsKey(HttpHeaders.RANGE) || requestMessage.getParameters().containsKey(RequestParameters.X_OSS_PROCESS)) {
             requestMessage.setCheckCRC64(false);
         }
         requestMessage.setIsInCustomCnameExcludeList(OSSUtils.isInCustomCnameExcludeList(this.endpoint.getHost(), this.conf.getCustomCnameExcludeList()));
         if (oSSRequest.getCRC64() == OSSRequest.CRC64Config.NULL) {
-            z = this.conf.isCheckCRC64();
+            zIsCheckCRC64 = this.conf.isCheckCRC64();
         } else if (oSSRequest.getCRC64() == OSSRequest.CRC64Config.YES) {
-            z = true;
+            zIsCheckCRC64 = true;
         }
-        requestMessage.setCheckCRC64(z);
-        oSSRequest.setCRC64(z ? OSSRequest.CRC64Config.YES : OSSRequest.CRC64Config.NO);
+        requestMessage.setCheckCRC64(zIsCheckCRC64);
+        oSSRequest.setCRC64(zIsCheckCRC64 ? OSSRequest.CRC64Config.YES : OSSRequest.CRC64Config.NO);
     }
 
     private <Request extends OSSRequest, Result extends OSSResult> void checkCRC64(Request request, Result result) throws ClientException {
@@ -275,8 +275,8 @@ public class InternalRequestOperation {
         return OSSAsyncTask.wrapRequestTask(executorService.submit(new OSSRequestTask(requestMessage, new ResponseParsers.AppendObjectResponseParser(), executionContext, this.maxRetryCount)), executionContext);
     }
 
-    public TriggerCallbackResult asyncTriggerCallback(TriggerCallbackRequest triggerCallbackRequest) throws ClientException, ServiceException {
-        return triggerCallback(triggerCallbackRequest, null).getResult();
+    public TriggerCallbackResult asyncTriggerCallback(TriggerCallbackRequest triggerCallbackRequest) throws ServiceException, ClientException {
+        return (TriggerCallbackResult) triggerCallback(triggerCallbackRequest, null).getResult();
     }
 
     public OSSAsyncTask<CompleteMultipartUploadResult> completeMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest, final OSSCompletedCallback<CompleteMultipartUploadRequest, CompleteMultipartUploadResult> oSSCompletedCallback) {
@@ -342,12 +342,12 @@ public class InternalRequestOperation {
             requestMessage.getHeaders().put(OSSHeaders.OSS_CANNED_ACL, createBucketRequest.getBucketACL().toString());
         }
         try {
-            HashMap hashMap = new HashMap();
+            HashMap map = new HashMap();
             if (createBucketRequest.getLocationConstraint() != null) {
-                hashMap.put(CreateBucketRequest.TAB_LOCATIONCONSTRAINT, createBucketRequest.getLocationConstraint());
+                map.put(CreateBucketRequest.TAB_LOCATIONCONSTRAINT, createBucketRequest.getLocationConstraint());
             }
-            hashMap.put(CreateBucketRequest.TAB_STORAGECLASS, createBucketRequest.getBucketStorageClass().toString());
-            requestMessage.createBucketRequestBodyMarshall(hashMap);
+            map.put(CreateBucketRequest.TAB_STORAGECLASS, createBucketRequest.getBucketStorageClass().toString());
+            requestMessage.createBucketRequestBodyMarshall(map);
             canonicalizeRequestMessage(requestMessage, createBucketRequest);
             ExecutionContext executionContext = new ExecutionContext(getInnerClient(), createBucketRequest, this.applicationContext);
             if (oSSCompletedCallback != null) {
@@ -418,10 +418,10 @@ public class InternalRequestOperation {
         requestMessage.setBucketName(deleteMultipleObjectRequest.getBucketName());
         requestMessage.setParameters(linkedHashMap);
         try {
-            byte[] deleteMultipleObjectRequestBodyMarshall = requestMessage.deleteMultipleObjectRequestBodyMarshall(deleteMultipleObjectRequest.getObjectKeys(), deleteMultipleObjectRequest.getQuiet().booleanValue());
-            if (deleteMultipleObjectRequestBodyMarshall != null && deleteMultipleObjectRequestBodyMarshall.length > 0) {
-                requestMessage.getHeaders().put(HttpHeaders.CONTENT_MD5, BinaryUtil.calculateBase64Md5(deleteMultipleObjectRequestBodyMarshall));
-                requestMessage.getHeaders().put("Content-Length", String.valueOf(deleteMultipleObjectRequestBodyMarshall.length));
+            byte[] bArrDeleteMultipleObjectRequestBodyMarshall = requestMessage.deleteMultipleObjectRequestBodyMarshall(deleteMultipleObjectRequest.getObjectKeys(), deleteMultipleObjectRequest.getQuiet().booleanValue());
+            if (bArrDeleteMultipleObjectRequestBodyMarshall != null && bArrDeleteMultipleObjectRequestBodyMarshall.length > 0) {
+                requestMessage.getHeaders().put(HttpHeaders.CONTENT_MD5, BinaryUtil.calculateBase64Md5(bArrDeleteMultipleObjectRequestBodyMarshall));
+                requestMessage.getHeaders().put("Content-Length", String.valueOf(bArrDeleteMultipleObjectRequestBodyMarshall.length));
             }
             canonicalizeRequestMessage(requestMessage, deleteMultipleObjectRequest);
             ExecutionContext executionContext = new ExecutionContext(getInnerClient(), deleteMultipleObjectRequest, this.applicationContext);
@@ -666,7 +666,7 @@ public class InternalRequestOperation {
         RequestMessage requestMessage = new RequestMessage();
         requestMessage.setIsAuthorizationRequired(listBucketsRequest.isAuthorizationRequired());
         requestMessage.setMethod(HttpMethod.GET);
-        requestMessage.setService(this.f25890service);
+        requestMessage.setService(this.f2621service);
         requestMessage.setEndpoint(this.endpoint);
         canonicalizeRequestMessage(requestMessage, listBucketsRequest);
         OSSUtils.populateListBucketRequestParameters(listBucketsRequest, requestMessage.getParameters());
@@ -725,7 +725,7 @@ public class InternalRequestOperation {
         }
         Integer partNumberMarker = listPartsRequest.getPartNumberMarker();
         if (partNumberMarker != null) {
-            if (!OSSUtils.checkParamRange(partNumberMarker.intValue(), 0L, false, C2084a.f6135q, true)) {
+            if (!OSSUtils.checkParamRange(partNumberMarker.intValue(), 0L, false, a.q, true)) {
                 throw new IllegalArgumentException("PartNumberMarkerOutOfRange: 10000");
             }
             requestMessage.getParameters().put(RequestParameters.PART_NUMBER_MARKER, partNumberMarker.toString());
@@ -900,47 +900,47 @@ public class InternalRequestOperation {
         this.credentialProvider = oSSCredentialProvider;
     }
 
-    public AppendObjectResult syncAppendObject(AppendObjectRequest appendObjectRequest) throws ClientException, ServiceException {
-        AppendObjectResult result = appendObject(appendObjectRequest, null).getResult();
+    public AppendObjectResult syncAppendObject(AppendObjectRequest appendObjectRequest) throws ServiceException, ClientException {
+        AppendObjectResult appendObjectResult = (AppendObjectResult) appendObject(appendObjectRequest, null).getResult();
         boolean z = appendObjectRequest.getCRC64() == OSSRequest.CRC64Config.YES;
         if (appendObjectRequest.getInitCRC64() != null && z) {
-            result.setClientCRC(Long.valueOf(CRC64.combine(appendObjectRequest.getInitCRC64().longValue(), result.getClientCRC().longValue(), result.getNextPosition() - appendObjectRequest.getPosition())));
+            appendObjectResult.setClientCRC(Long.valueOf(CRC64.combine(appendObjectRequest.getInitCRC64().longValue(), appendObjectResult.getClientCRC().longValue(), appendObjectResult.getNextPosition() - appendObjectRequest.getPosition())));
         }
-        checkCRC64(appendObjectRequest, result);
-        return result;
+        checkCRC64(appendObjectRequest, appendObjectResult);
+        return appendObjectResult;
     }
 
-    public CompleteMultipartUploadResult syncCompleteMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest) throws ClientException, ServiceException {
-        CompleteMultipartUploadResult result = completeMultipartUpload(completeMultipartUploadRequest, null).getResult();
-        if (result.getServerCRC() != null) {
-            result.setClientCRC(Long.valueOf(calcObjectCRCFromParts(completeMultipartUploadRequest.getPartETags())));
+    public CompleteMultipartUploadResult syncCompleteMultipartUpload(CompleteMultipartUploadRequest completeMultipartUploadRequest) throws ServiceException, ClientException {
+        CompleteMultipartUploadResult completeMultipartUploadResult = (CompleteMultipartUploadResult) completeMultipartUpload(completeMultipartUploadRequest, null).getResult();
+        if (completeMultipartUploadResult.getServerCRC() != null) {
+            completeMultipartUploadResult.setClientCRC(Long.valueOf(calcObjectCRCFromParts(completeMultipartUploadRequest.getPartETags())));
         }
-        checkCRC64(completeMultipartUploadRequest, result);
-        return result;
+        checkCRC64(completeMultipartUploadRequest, completeMultipartUploadResult);
+        return completeMultipartUploadResult;
     }
 
-    public GetSymlinkResult syncGetSymlink(GetSymlinkRequest getSymlinkRequest) throws ClientException, ServiceException {
-        return getSymlink(getSymlinkRequest, null).getResult();
+    public GetSymlinkResult syncGetSymlink(GetSymlinkRequest getSymlinkRequest) throws ServiceException, ClientException {
+        return (GetSymlinkResult) getSymlink(getSymlinkRequest, null).getResult();
     }
 
-    public PutObjectResult syncPutObject(PutObjectRequest putObjectRequest) throws ClientException, ServiceException {
-        PutObjectResult result = putObject(putObjectRequest, null).getResult();
-        checkCRC64(putObjectRequest, result);
-        return result;
+    public PutObjectResult syncPutObject(PutObjectRequest putObjectRequest) throws ServiceException, ClientException {
+        PutObjectResult putObjectResult = (PutObjectResult) putObject(putObjectRequest, null).getResult();
+        checkCRC64(putObjectRequest, putObjectResult);
+        return putObjectResult;
     }
 
-    public PutSymlinkResult syncPutSymlink(PutSymlinkRequest putSymlinkRequest) throws ClientException, ServiceException {
-        return putSymlink(putSymlinkRequest, null).getResult();
+    public PutSymlinkResult syncPutSymlink(PutSymlinkRequest putSymlinkRequest) throws ServiceException, ClientException {
+        return (PutSymlinkResult) putSymlink(putSymlinkRequest, null).getResult();
     }
 
-    public RestoreObjectResult syncRestoreObject(RestoreObjectRequest restoreObjectRequest) throws ClientException, ServiceException {
-        return restoreObject(restoreObjectRequest, null).getResult();
+    public RestoreObjectResult syncRestoreObject(RestoreObjectRequest restoreObjectRequest) throws ServiceException, ClientException {
+        return (RestoreObjectResult) restoreObject(restoreObjectRequest, null).getResult();
     }
 
-    public UploadPartResult syncUploadPart(UploadPartRequest uploadPartRequest) throws ClientException, ServiceException {
-        UploadPartResult result = uploadPart(uploadPartRequest, null).getResult();
-        checkCRC64(uploadPartRequest, result);
-        return result;
+    public UploadPartResult syncUploadPart(UploadPartRequest uploadPartRequest) throws ServiceException, ClientException {
+        UploadPartResult uploadPartResult = (UploadPartResult) uploadPart(uploadPartRequest, null).getResult();
+        checkCRC64(uploadPartRequest, uploadPartResult);
+        return uploadPartResult;
     }
 
     public OSSAsyncTask<TriggerCallbackResult> triggerCallback(TriggerCallbackRequest triggerCallbackRequest, OSSCompletedCallback<TriggerCallbackRequest, TriggerCallbackResult> oSSCompletedCallback) {
@@ -952,9 +952,9 @@ public class InternalRequestOperation {
         requestMessage.setBucketName(triggerCallbackRequest.getBucketName());
         requestMessage.setObjectKey(triggerCallbackRequest.getObjectKey());
         requestMessage.setParameters(linkedHashMap);
-        String buildTriggerCallbackBody = OSSUtils.buildTriggerCallbackBody(triggerCallbackRequest.getCallbackParam(), triggerCallbackRequest.getCallbackVars());
-        requestMessage.setStringBody(buildTriggerCallbackBody);
-        requestMessage.getHeaders().put(HttpHeaders.CONTENT_MD5, BinaryUtil.calculateBase64Md5(buildTriggerCallbackBody.getBytes()));
+        String strBuildTriggerCallbackBody = OSSUtils.buildTriggerCallbackBody(triggerCallbackRequest.getCallbackParam(), triggerCallbackRequest.getCallbackVars());
+        requestMessage.setStringBody(strBuildTriggerCallbackBody);
+        requestMessage.getHeaders().put(HttpHeaders.CONTENT_MD5, BinaryUtil.calculateBase64Md5(strBuildTriggerCallbackBody.getBytes()));
         canonicalizeRequestMessage(requestMessage, triggerCallbackRequest);
         ExecutionContext executionContext = new ExecutionContext(getInnerClient(), triggerCallbackRequest, this.applicationContext);
         if (oSSCompletedCallback != null) {
@@ -1012,27 +1012,27 @@ public class InternalRequestOperation {
     public InternalRequestOperation(Context context, OSSCredentialProvider oSSCredentialProvider, ClientConfiguration clientConfiguration) {
         this.maxRetryCount = 2;
         try {
-            this.f25890service = new URI("http://oss.aliyuncs.com");
+            this.f2621service = new URI("http://oss.aliyuncs.com");
             this.endpoint = new URI("http://127.0.0.1");
             this.applicationContext = context;
             this.credentialProvider = oSSCredentialProvider;
             this.conf = clientConfiguration;
-            OkHttpClient.Builder hostnameVerifier = new OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).cache(null).hostnameVerifier(new HostnameVerifier() { // from class: com.alibaba.sdk.android.oss.internal.InternalRequestOperation.3
+            OkHttpClient.Builder builderHostnameVerifier = new OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).cache(null).hostnameVerifier(new HostnameVerifier() { // from class: com.alibaba.sdk.android.oss.internal.InternalRequestOperation.3
                 @Override // javax.net.ssl.HostnameVerifier
                 public boolean verify(String str, SSLSession sSLSession) {
-                    return HttpsURLConnection.getDefaultHostnameVerifier().verify(InternalRequestOperation.this.f25890service.getHost(), sSLSession);
+                    return HttpsURLConnection.getDefaultHostnameVerifier().verify(InternalRequestOperation.this.f2621service.getHost(), sSLSession);
                 }
             });
             if (clientConfiguration != null) {
                 Dispatcher dispatcher = new Dispatcher();
                 dispatcher.setMaxRequests(clientConfiguration.getMaxConcurrentRequest());
-                hostnameVerifier.connectTimeout(clientConfiguration.getConnectionTimeout(), TimeUnit.MILLISECONDS).readTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).writeTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).dispatcher(dispatcher);
+                builderHostnameVerifier.connectTimeout(clientConfiguration.getConnectionTimeout(), TimeUnit.MILLISECONDS).readTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).writeTimeout(clientConfiguration.getSocketTimeout(), TimeUnit.MILLISECONDS).dispatcher(dispatcher);
                 if (clientConfiguration.getProxyHost() != null && clientConfiguration.getProxyPort() != 0) {
-                    hostnameVerifier.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(clientConfiguration.getProxyHost(), clientConfiguration.getProxyPort())));
+                    builderHostnameVerifier.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(clientConfiguration.getProxyHost(), clientConfiguration.getProxyPort())));
                 }
                 this.maxRetryCount = clientConfiguration.getMaxErrorRetry();
             }
-            this.innerClient = hostnameVerifier.build();
+            this.innerClient = builderHostnameVerifier.build();
         } catch (Exception unused) {
             throw new IllegalArgumentException("Endpoint must be a string like 'http://oss-cn-****.aliyuncs.com',or your cname like 'http://image.cnamedomain.com'!");
         }

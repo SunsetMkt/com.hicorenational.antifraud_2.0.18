@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class CameraExecutor implements Executor {
     private static final int DEFAULT_CORE_THREADS = 1;
     private static final int DEFAULT_MAX_THREADS = 1;
@@ -66,14 +66,14 @@ class CameraExecutor implements Executor {
             }
             threadPoolExecutor = this.mThreadPoolExecutor;
         }
-        int i2 = 0;
+        int size = 0;
         try {
-            i2 = cameraFactory.getAvailableCameraIds().size();
+            size = cameraFactory.getAvailableCameraIds().size();
         } catch (CameraInfoUnavailableException e2) {
             e2.printStackTrace();
         }
-        int max = Math.max(1, i2);
-        threadPoolExecutor.setMaximumPoolSize(max);
-        threadPoolExecutor.setCorePoolSize(max);
+        int iMax = Math.max(1, size);
+        threadPoolExecutor.setMaximumPoolSize(iMax);
+        threadPoolExecutor.setCorePoolSize(iMax);
     }
 }

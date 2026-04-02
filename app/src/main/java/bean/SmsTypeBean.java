@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SmsTypeBean extends BaseBean {
     private int smsType;
     private String smsTypeText;

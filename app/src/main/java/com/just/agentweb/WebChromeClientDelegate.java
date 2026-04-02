@@ -15,7 +15,7 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import androidx.annotation.RequiresApi;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebChromeClientDelegate extends android.webkit.WebChromeClient {
     private android.webkit.WebChromeClient mDelegate;
 

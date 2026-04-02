@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.KeyEvent;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IBridgeActivityDelegate {
     int getRequestCode();
 

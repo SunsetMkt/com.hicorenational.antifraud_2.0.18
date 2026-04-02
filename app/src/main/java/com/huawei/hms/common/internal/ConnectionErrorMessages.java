@@ -7,10 +7,9 @@ import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.ResourceLoaderUtil;
 import com.huawei.hms.utils.Util;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ConnectionErrorMessages {
-    /* renamed from: a */
-    private static boolean m6738a(Context context) {
+    private static boolean a(Context context) {
         return context != null && Util.isAvailableLibExist(context) && AvailableUtil.isInstallerLibExist(context);
     }
 
@@ -21,7 +20,7 @@ public class ConnectionErrorMessages {
         if (ResourceLoaderUtil.getmContext() == null) {
             ResourceLoaderUtil.setmContext(activity.getApplicationContext());
         }
-        return i2 != 1 ? i2 != 2 ? ResourceLoaderUtil.getString("hms_confirm") : m6738a(activity) ? ResourceLoaderUtil.getString("hms_update") : ResourceLoaderUtil.getString("hms_confirm") : m6738a(activity) ? ResourceLoaderUtil.getString("hms_install") : ResourceLoaderUtil.getString("hms_confirm");
+        return i2 != 1 ? i2 != 2 ? ResourceLoaderUtil.getString("hms_confirm") : a(activity) ? ResourceLoaderUtil.getString("hms_update") : ResourceLoaderUtil.getString("hms_confirm") : a(activity) ? ResourceLoaderUtil.getString("hms_install") : ResourceLoaderUtil.getString("hms_confirm");
     }
 
     public static String getErrorMessage(Activity activity, int i2) {
@@ -32,7 +31,7 @@ public class ConnectionErrorMessages {
             ResourceLoaderUtil.setmContext(activity.getApplicationContext());
         }
         if (i2 == 1 || i2 == 2) {
-            return m6738a(activity) ? ResourceLoaderUtil.getString("hms_update_title") : activity.getString(ResourceLoaderUtil.getStringId("hms_apk_not_installed_hints"), new Object[]{Util.getAppName(activity, activity.getPackageName())});
+            return a(activity) ? ResourceLoaderUtil.getString("hms_update_title") : activity.getString(ResourceLoaderUtil.getStringId("hms_apk_not_installed_hints"), new Object[]{Util.getAppName(activity, activity.getPackageName())});
         }
         return null;
     }
@@ -45,13 +44,13 @@ public class ConnectionErrorMessages {
             ResourceLoaderUtil.setmContext(activity.getApplicationContext());
         }
         if (i2 == 1) {
-            if (m6738a(activity)) {
+            if (a(activity)) {
                 return ResourceLoaderUtil.getString("hms_install_message");
             }
             return null;
         }
         if (i2 == 2) {
-            if (m6738a(activity)) {
+            if (a(activity)) {
                 return ResourceLoaderUtil.getString("hms_update_message");
             }
             return null;
@@ -60,10 +59,10 @@ public class ConnectionErrorMessages {
             return ResourceLoaderUtil.getString("hms_bindfaildlg_message");
         }
         if (i2 == 9) {
-            HMSLog.m7715e("HuaweiApiAvailability", "Huawei Mobile Services is invalid. Cannot recover.");
+            HMSLog.e("HuaweiApiAvailability", "Huawei Mobile Services is invalid. Cannot recover.");
             return null;
         }
-        HMSLog.m7715e("HuaweiApiAvailability", "Unexpected error code " + i2);
+        HMSLog.e("HuaweiApiAvailability", "Unexpected error code " + i2);
         return null;
     }
 }

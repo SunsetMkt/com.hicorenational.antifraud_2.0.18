@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ListMultipartUploadsResult extends OSSResult {
     private String bucketName;
     private String delimiter;
@@ -76,68 +76,68 @@ public class ListMultipartUploadsResult extends OSSResult {
 
     public ListMultipartUploadsResult parseData(ResponseMessage responseMessage) throws Exception {
         ArrayList arrayList = new ArrayList();
-        XmlPullParser newPullParser = Xml.newPullParser();
-        newPullParser.setInput(responseMessage.getContent(), "utf-8");
-        int eventType = newPullParser.getEventType();
+        XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
+        xmlPullParserNewPullParser.setInput(responseMessage.getContent(), "utf-8");
+        int eventType = xmlPullParserNewPullParser.getEventType();
         MultipartUpload multipartUpload = null;
         boolean z = false;
         while (eventType != 1) {
             if (eventType == 2) {
-                String name = newPullParser.getName();
+                String name = xmlPullParserNewPullParser.getName();
                 if ("Bucket".equals(name)) {
-                    setBucketName(newPullParser.nextText());
+                    setBucketName(xmlPullParserNewPullParser.nextText());
                 } else if ("Delimiter".equals(name)) {
-                    setDelimiter(newPullParser.nextText());
+                    setDelimiter(xmlPullParserNewPullParser.nextText());
                 } else if ("Prefix".equals(name)) {
                     if (z) {
-                        String nextText = newPullParser.nextText();
-                        if (!OSSUtils.isEmptyString(nextText)) {
-                            addCommonPrefix(nextText);
+                        String strNextText = xmlPullParserNewPullParser.nextText();
+                        if (!OSSUtils.isEmptyString(strNextText)) {
+                            addCommonPrefix(strNextText);
                         }
                     } else {
-                        setPrefix(newPullParser.nextText());
+                        setPrefix(xmlPullParserNewPullParser.nextText());
                     }
                 } else if ("MaxUploads".equals(name)) {
-                    String nextText2 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText2)) {
-                        setMaxUploads(Integer.valueOf(nextText2).intValue());
+                    String strNextText2 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText2)) {
+                        setMaxUploads(Integer.valueOf(strNextText2).intValue());
                     }
                 } else if ("IsTruncated".equals(name)) {
-                    String nextText3 = newPullParser.nextText();
-                    if (!OSSUtils.isEmptyString(nextText3)) {
-                        setTruncated(Boolean.valueOf(nextText3).booleanValue());
+                    String strNextText3 = xmlPullParserNewPullParser.nextText();
+                    if (!OSSUtils.isEmptyString(strNextText3)) {
+                        setTruncated(Boolean.valueOf(strNextText3).booleanValue());
                     }
                 } else if ("KeyMarker".equals(name)) {
-                    setKeyMarker(newPullParser.nextText());
+                    setKeyMarker(xmlPullParserNewPullParser.nextText());
                 } else if ("UploadIdMarker".equals(name)) {
-                    setUploadIdMarker(newPullParser.nextText());
+                    setUploadIdMarker(xmlPullParserNewPullParser.nextText());
                 } else if ("NextKeyMarker".equals(name)) {
-                    setNextKeyMarker(newPullParser.nextText());
+                    setNextKeyMarker(xmlPullParserNewPullParser.nextText());
                 } else if ("NextUploadIdMarker".equals(name)) {
-                    setNextUploadIdMarker(newPullParser.nextText());
+                    setNextUploadIdMarker(xmlPullParserNewPullParser.nextText());
                 } else if ("Upload".equals(name)) {
                     multipartUpload = new MultipartUpload();
                 } else if ("Key".equals(name)) {
-                    multipartUpload.setKey(newPullParser.nextText());
+                    multipartUpload.setKey(xmlPullParserNewPullParser.nextText());
                 } else if ("UploadId".equals(name)) {
-                    multipartUpload.setUploadId(newPullParser.nextText());
+                    multipartUpload.setUploadId(xmlPullParserNewPullParser.nextText());
                 } else if ("Initiated".equals(name)) {
-                    multipartUpload.setInitiated(DateUtil.parseIso8601Date(newPullParser.nextText()));
+                    multipartUpload.setInitiated(DateUtil.parseIso8601Date(xmlPullParserNewPullParser.nextText()));
                 } else if (CreateBucketRequest.TAB_STORAGECLASS.equals(name)) {
-                    multipartUpload.setStorageClass(newPullParser.nextText());
+                    multipartUpload.setStorageClass(xmlPullParserNewPullParser.nextText());
                 } else if ("CommonPrefixes".equals(name)) {
                     z = true;
                 }
             } else if (eventType == 3) {
-                if ("Upload".equals(newPullParser.getName())) {
+                if ("Upload".equals(xmlPullParserNewPullParser.getName())) {
                     arrayList.add(multipartUpload);
-                } else if ("CommonPrefixes".equals(newPullParser.getName())) {
+                } else if ("CommonPrefixes".equals(xmlPullParserNewPullParser.getName())) {
                     z = false;
                 }
             }
-            eventType = newPullParser.next();
+            eventType = xmlPullParserNewPullParser.next();
             if (eventType == 4) {
-                eventType = newPullParser.next();
+                eventType = xmlPullParserNewPullParser.next();
             }
         }
         if (arrayList.size() > 0) {

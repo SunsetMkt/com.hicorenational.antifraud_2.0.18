@@ -1,11 +1,19 @@
 package com.google.android.material.shape;
 
-import com.google.android.material.internal.Experimental;
+import androidx.annotation.NonNull;
 
-@Experimental("The shapes API is currently experimental and subject to change")
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class EdgeTreatment {
-    public void getEdgePath(float f2, float f3, ShapePath shapePath) {
+    boolean forceIntersection() {
+        return false;
+    }
+
+    @Deprecated
+    public void getEdgePath(float f2, float f3, @NonNull ShapePath shapePath) {
+        getEdgePath(f2, f2 / 2.0f, f3, shapePath);
+    }
+
+    public void getEdgePath(float f2, float f3, float f4, @NonNull ShapePath shapePath) {
         shapePath.lineTo(f2, 0.0f);
     }
 }

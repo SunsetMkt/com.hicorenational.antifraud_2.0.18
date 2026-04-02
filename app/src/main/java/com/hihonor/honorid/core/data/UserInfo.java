@@ -3,21 +3,22 @@ package com.hihonor.honorid.core.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import com.hihonor.honorid.p162d.p163a.C2167d;
-import com.hihonor.honorid.p165f.C2172b;
-import com.hihonor.honorid.p165f.C2173c;
+import com.hihonor.honorid.d.a.d;
+import com.hihonor.honorid.f.b;
+import com.hihonor.honorid.f.c;
+import java.io.IOException;
 import java.io.Serializable;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UserInfo implements Parcelable, Serializable {
     public static final String ADDRESS = "address";
     public static final String AGE = "age";
     public static final String BIRTHDATE = "birthDate";
     public static final String CITY = "city";
     public static final String CLOUDACCOUNT = "cloudAccount";
-    public static final Parcelable.Creator<UserInfo> CREATOR = new C2161a();
+    public static final Parcelable.Creator<UserInfo> CREATOR = new a();
     public static final String CTFCODE = "ctfCode";
     public static final String CTFTYPE = "ctfType";
     public static final String CTFVERIFYFLAG = "ctfVerifyFlag";
@@ -49,164 +50,115 @@ public class UserInfo implements Parcelable, Serializable {
     public static final String USERSTATE = "userState";
     public static final String USERVALID_STATUS = "userValidStatus";
     public static final String USER_STATUS_FLAGS = "userStatusFlags";
+    private String A;
+    private String B;
+    private String C;
+    private String D;
+    private String E;
+    private String F;
+    private String G;
+    private String H;
+    private String I;
+    private String J;
+    private String K;
+    private String a;
 
-    /* renamed from: A */
-    private String f6601A;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f4174b;
 
-    /* renamed from: B */
-    private String f6602B;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4175c;
 
-    /* renamed from: C */
-    private String f6603C;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String f4176d;
 
-    /* renamed from: D */
-    private String f6604D;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f4177e;
 
-    /* renamed from: E */
-    private String f6605E;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private String f4178f;
 
-    /* renamed from: F */
-    private String f6606F;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private String f4179g;
 
-    /* renamed from: G */
-    private String f6607G;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f4180h;
 
-    /* renamed from: H */
-    private String f6608H;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private String f4181i;
 
-    /* renamed from: I */
-    private String f6609I;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private String f4182j;
 
-    /* renamed from: J */
-    private String f6610J;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private String f4183k;
 
-    /* renamed from: K */
-    private String f6611K;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private String f4184l;
 
-    /* renamed from: a */
-    private String f6612a;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private String f4185m;
 
-    /* renamed from: b */
-    private String f6613b;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private String f4186n;
+    private String o;
+    private String p;
+    private String q;
+    private String r;
+    private String s;
+    private String t;
+    private String u;
+    private String v;
+    private String w;
+    private String x;
+    private String y;
+    private String z;
 
-    /* renamed from: c */
-    private String f6614c;
-
-    /* renamed from: d */
-    private String f6615d;
-
-    /* renamed from: e */
-    private String f6616e;
-
-    /* renamed from: f */
-    private String f6617f;
-
-    /* renamed from: g */
-    private String f6618g;
-
-    /* renamed from: h */
-    private String f6619h;
-
-    /* renamed from: i */
-    private String f6620i;
-
-    /* renamed from: j */
-    private String f6621j;
-
-    /* renamed from: k */
-    private String f6622k;
-
-    /* renamed from: l */
-    private String f6623l;
-
-    /* renamed from: m */
-    private String f6624m;
-
-    /* renamed from: n */
-    private String f6625n;
-
-    /* renamed from: o */
-    private String f6626o;
-
-    /* renamed from: p */
-    private String f6627p;
-
-    /* renamed from: q */
-    private String f6628q;
-
-    /* renamed from: r */
-    private String f6629r;
-
-    /* renamed from: s */
-    private String f6630s;
-
-    /* renamed from: t */
-    private String f6631t;
-
-    /* renamed from: u */
-    private String f6632u;
-
-    /* renamed from: v */
-    private String f6633v;
-
-    /* renamed from: w */
-    private String f6634w;
-
-    /* renamed from: x */
-    private String f6635x;
-
-    /* renamed from: y */
-    private String f6636y;
-
-    /* renamed from: z */
-    private String f6637z;
-
-    /* renamed from: com.hihonor.honorid.core.data.UserInfo$a */
-    class C2161a implements Parcelable.Creator<UserInfo> {
-        C2161a() {
+    class a implements Parcelable.Creator<UserInfo> {
+        a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public UserInfo createFromParcel(Parcel parcel) {
             UserInfo userInfo = new UserInfo();
-            userInfo.f6620i = parcel.readString();
-            userInfo.f6619h = parcel.readString();
-            userInfo.f6625n = parcel.readString();
-            userInfo.f6628q = parcel.readString();
-            userInfo.f6615d = parcel.readString();
-            userInfo.f6618g = parcel.readString();
-            userInfo.f6622k = parcel.readString();
-            userInfo.f6614c = parcel.readString();
-            userInfo.f6616e = parcel.readString();
-            userInfo.f6623l = parcel.readString();
-            userInfo.f6612a = parcel.readString();
-            userInfo.f6613b = parcel.readString();
-            userInfo.f6621j = parcel.readString();
-            userInfo.f6627p = parcel.readString();
-            userInfo.f6626o = parcel.readString();
-            userInfo.f6624m = parcel.readString();
-            userInfo.f6629r = parcel.readString();
-            userInfo.f6617f = parcel.readString();
-            userInfo.f6630s = parcel.readString();
-            userInfo.f6631t = parcel.readString();
-            userInfo.f6632u = parcel.readString();
-            userInfo.f6633v = parcel.readString();
-            userInfo.f6634w = parcel.readString();
-            userInfo.f6635x = parcel.readString();
-            userInfo.f6636y = parcel.readString();
-            userInfo.f6637z = parcel.readString();
-            userInfo.f6601A = parcel.readString();
-            userInfo.f6602B = parcel.readString();
-            userInfo.f6604D = parcel.readString();
-            userInfo.f6603C = parcel.readString();
-            userInfo.f6605E = parcel.readString();
-            userInfo.f6606F = parcel.readString();
-            userInfo.f6609I = parcel.readString();
-            userInfo.f6607G = parcel.readString();
-            userInfo.f6608H = parcel.readString();
-            userInfo.f6610J = parcel.readString();
-            userInfo.f6611K = parcel.readString();
+            userInfo.f4181i = parcel.readString();
+            userInfo.f4180h = parcel.readString();
+            userInfo.f4186n = parcel.readString();
+            userInfo.q = parcel.readString();
+            userInfo.f4176d = parcel.readString();
+            userInfo.f4179g = parcel.readString();
+            userInfo.f4183k = parcel.readString();
+            userInfo.f4175c = parcel.readString();
+            userInfo.f4177e = parcel.readString();
+            userInfo.f4184l = parcel.readString();
+            userInfo.a = parcel.readString();
+            userInfo.f4174b = parcel.readString();
+            userInfo.f4182j = parcel.readString();
+            userInfo.p = parcel.readString();
+            userInfo.o = parcel.readString();
+            userInfo.f4185m = parcel.readString();
+            userInfo.r = parcel.readString();
+            userInfo.f4178f = parcel.readString();
+            userInfo.s = parcel.readString();
+            userInfo.t = parcel.readString();
+            userInfo.u = parcel.readString();
+            userInfo.v = parcel.readString();
+            userInfo.w = parcel.readString();
+            userInfo.x = parcel.readString();
+            userInfo.y = parcel.readString();
+            userInfo.z = parcel.readString();
+            userInfo.A = parcel.readString();
+            userInfo.B = parcel.readString();
+            userInfo.D = parcel.readString();
+            userInfo.C = parcel.readString();
+            userInfo.E = parcel.readString();
+            userInfo.F = parcel.readString();
+            userInfo.I = parcel.readString();
+            userInfo.G = parcel.readString();
+            userInfo.H = parcel.readString();
+            userInfo.J = parcel.readString();
+            userInfo.K = parcel.readString();
             return userInfo;
         }
 
@@ -221,45 +173,45 @@ public class UserInfo implements Parcelable, Serializable {
         if (xmlPullParser == null || userInfo == null || str == null) {
             return;
         }
-        m6250a(xmlPullParser, userInfo, str);
-        m6252b(xmlPullParser, userInfo, str);
-        m6254c(xmlPullParser, userInfo, str);
+        a(xmlPullParser, userInfo, str);
+        b(xmlPullParser, userInfo, str);
+        c(xmlPullParser, userInfo, str);
     }
 
-    public static void setUserInfoIntag(XmlSerializer xmlSerializer, UserInfo userInfo) {
+    public static void setUserInfoIntag(XmlSerializer xmlSerializer, UserInfo userInfo) throws IOException {
         if (xmlSerializer == null || userInfo == null) {
             return;
         }
-        C2173c.m6330a(xmlSerializer, "uniquelyNickname", userInfo.getUniqueNickName());
-        C2173c.m6330a(xmlSerializer, "nickName", userInfo.getNickName());
-        C2173c.m6330a(xmlSerializer, LANGUAGECODE, userInfo.getLanguageCode());
-        C2173c.m6330a(xmlSerializer, FIRSTNAME, userInfo.getFirstName());
-        C2173c.m6330a(xmlSerializer, LASTNAME, userInfo.getLastName());
-        C2173c.m6330a(xmlSerializer, USERSTATE, userInfo.getUserState());
-        C2173c.m6330a(xmlSerializer, GENDER, userInfo.getGender());
-        C2173c.m6330a(xmlSerializer, "birthDate", userInfo.getBirthDate());
-        C2173c.m6330a(xmlSerializer, ADDRESS, userInfo.getAddress());
-        C2173c.m6330a(xmlSerializer, OCCUPATION, userInfo.getOccupation());
-        C2173c.m6330a(xmlSerializer, HEADPICTUREURL, userInfo.getHeadPictureUrl());
-        C2173c.m6330a(xmlSerializer, NATIONALCODE, userInfo.getNationalCode());
-        C2173c.m6330a(xmlSerializer, PROVINCE, userInfo.getProvince());
-        C2173c.m6330a(xmlSerializer, CITY, userInfo.getCity());
-        C2173c.m6330a(xmlSerializer, PASSWORDPROMPT, userInfo.getPasswordPrompt());
-        C2173c.m6330a(xmlSerializer, PASSWORDANWSER, userInfo.getPasswordAnwser());
-        C2173c.m6330a(xmlSerializer, CLOUDACCOUNT, userInfo.getCloudAccount());
-        C2173c.m6330a(xmlSerializer, SERVICEFLAG, userInfo.getServiceFlag());
-        C2173c.m6330a(xmlSerializer, USERVALID_STATUS, userInfo.getUserValidStatus());
-        C2173c.m6330a(xmlSerializer, INVITER, userInfo.getInviter());
-        C2173c.m6330a(xmlSerializer, INVITER_USERID, userInfo.getInviterUserId());
-        C2173c.m6330a(xmlSerializer, "updateTime", userInfo.getUpdateTime());
-        C2173c.m6330a(xmlSerializer, "loginUserName", userInfo.getLoginUserName());
-        C2173c.m6330a(xmlSerializer, LOGIN_USER_NAME_FLAG, userInfo.getLoginUserNameFlag());
-        C2173c.m6330a(xmlSerializer, USERSIGN, userInfo.getUserSign());
-        C2173c.m6330a(xmlSerializer, CTFCODE, userInfo.getCtfCode());
-        C2173c.m6330a(xmlSerializer, CTFTYPE, userInfo.getCtfType());
-        C2173c.m6330a(xmlSerializer, CTFVERIFYFLAG, userInfo.getCtfVerifyFlag());
-        C2173c.m6330a(xmlSerializer, "srvNationalCode", userInfo.getServiceCountryCode());
-        C2173c.m6330a(xmlSerializer, "age", userInfo.getAge());
+        c.a(xmlSerializer, "uniquelyNickname", userInfo.getUniqueNickName());
+        c.a(xmlSerializer, "nickName", userInfo.getNickName());
+        c.a(xmlSerializer, LANGUAGECODE, userInfo.getLanguageCode());
+        c.a(xmlSerializer, FIRSTNAME, userInfo.getFirstName());
+        c.a(xmlSerializer, LASTNAME, userInfo.getLastName());
+        c.a(xmlSerializer, USERSTATE, userInfo.getUserState());
+        c.a(xmlSerializer, GENDER, userInfo.getGender());
+        c.a(xmlSerializer, "birthDate", userInfo.getBirthDate());
+        c.a(xmlSerializer, ADDRESS, userInfo.getAddress());
+        c.a(xmlSerializer, OCCUPATION, userInfo.getOccupation());
+        c.a(xmlSerializer, HEADPICTUREURL, userInfo.getHeadPictureUrl());
+        c.a(xmlSerializer, NATIONALCODE, userInfo.getNationalCode());
+        c.a(xmlSerializer, PROVINCE, userInfo.getProvince());
+        c.a(xmlSerializer, CITY, userInfo.getCity());
+        c.a(xmlSerializer, PASSWORDPROMPT, userInfo.getPasswordPrompt());
+        c.a(xmlSerializer, PASSWORDANWSER, userInfo.getPasswordAnwser());
+        c.a(xmlSerializer, CLOUDACCOUNT, userInfo.getCloudAccount());
+        c.a(xmlSerializer, SERVICEFLAG, userInfo.getServiceFlag());
+        c.a(xmlSerializer, USERVALID_STATUS, userInfo.getUserValidStatus());
+        c.a(xmlSerializer, INVITER, userInfo.getInviter());
+        c.a(xmlSerializer, INVITER_USERID, userInfo.getInviterUserId());
+        c.a(xmlSerializer, "updateTime", userInfo.getUpdateTime());
+        c.a(xmlSerializer, "loginUserName", userInfo.getLoginUserName());
+        c.a(xmlSerializer, LOGIN_USER_NAME_FLAG, userInfo.getLoginUserNameFlag());
+        c.a(xmlSerializer, USERSIGN, userInfo.getUserSign());
+        c.a(xmlSerializer, CTFCODE, userInfo.getCtfCode());
+        c.a(xmlSerializer, CTFTYPE, userInfo.getCtfType());
+        c.a(xmlSerializer, CTFVERIFYFLAG, userInfo.getCtfVerifyFlag());
+        c.a(xmlSerializer, "srvNationalCode", userInfo.getServiceCountryCode());
+        c.a(xmlSerializer, "age", userInfo.getAge());
     }
 
     @Override // android.os.Parcelable
@@ -268,155 +220,155 @@ public class UserInfo implements Parcelable, Serializable {
     }
 
     public String getAddress() {
-        return this.f6620i;
+        return this.f4181i;
     }
 
     public String getAge() {
-        return this.f6611K;
+        return this.K;
     }
 
     public String getBirthDate() {
-        return this.f6619h;
+        return this.f4180h;
     }
 
     public String getCity() {
-        return this.f6625n;
+        return this.f4186n;
     }
 
     public String getCloudAccount() {
-        return this.f6628q;
+        return this.q;
     }
 
     public String getCtfCode() {
-        return this.f6609I;
+        return this.I;
     }
 
     public String getCtfType() {
-        return this.f6607G;
+        return this.G;
     }
 
     public String getCtfVerifyFlag() {
-        return this.f6608H;
+        return this.H;
     }
 
     public String getFirstName() {
-        return this.f6615d;
+        return this.f4176d;
     }
 
     public String getGender() {
-        return this.f6618g;
+        return this.f4179g;
     }
 
     public String getGuardianAccount() {
-        return this.f6606F;
+        return this.F;
     }
 
     public String getGuardianUserId() {
-        return this.f6605E;
+        return this.E;
     }
 
     public String getHeadPictureUrl() {
-        return this.f6622k;
+        return this.f4183k;
     }
 
     public String getInviter() {
-        return this.f6632u;
+        return this.u;
     }
 
     public String getInviterUserId() {
-        return this.f6631t;
+        return this.t;
     }
 
     public String getLanguageCode() {
-        return this.f6614c;
+        return this.f4175c;
     }
 
     public String getLastName() {
-        return this.f6616e;
+        return this.f4177e;
     }
 
     public String getLoginNotice() {
-        return this.f6604D;
+        return this.D;
     }
 
     public String getLoginUserName() {
-        return this.f6634w;
+        return this.w;
     }
 
     public String getLoginUserNameFlag() {
-        return this.f6635x;
+        return this.x;
     }
 
     public String getNationalCode() {
-        return this.f6623l;
+        return this.f4184l;
     }
 
     public String getNickName() {
-        return this.f6612a;
+        return this.a;
     }
 
     public String getOccupation() {
-        return this.f6621j;
+        return this.f4182j;
     }
 
     public String getPasswordAnwser() {
-        return this.f6627p;
+        return this.p;
     }
 
     public String getPasswordPrompt() {
-        return this.f6626o;
+        return this.o;
     }
 
     public String getProvince() {
-        return this.f6624m;
+        return this.f4185m;
     }
 
     public String getResetPasswdMode() {
-        return this.f6602B;
+        return this.B;
     }
 
     public String getServiceCountryCode() {
-        return this.f6610J;
+        return this.J;
     }
 
     public String getServiceFlag() {
-        return this.f6629r;
+        return this.r;
     }
 
     public String getUniqueNickName() {
-        return this.f6613b;
+        return this.f4174b;
     }
 
     public String getUpdateTime() {
-        return this.f6633v;
+        return this.v;
     }
 
     public String getUserSign() {
-        return this.f6603C;
+        return this.C;
     }
 
     public String getUserState() {
-        return this.f6617f;
+        return this.f4178f;
     }
 
     public int getUserType() {
-        return (TextUtils.isEmpty(this.f6605E) || TextUtils.isEmpty(this.f6606F)) ? 0 : 1;
+        return (TextUtils.isEmpty(this.E) || TextUtils.isEmpty(this.F)) ? 0 : 1;
     }
 
     public String getUserValidStatus() {
-        return this.f6630s;
+        return this.s;
     }
 
     public String gettwoStepTime() {
-        return this.f6601A;
+        return this.A;
     }
 
     public String gettwoStepVerify() {
-        return this.f6637z;
+        return this.z;
     }
 
     public String getuserStatusFlags() {
-        return this.f6636y;
+        return this.y;
     }
 
     public boolean isObjectEquals(Object obj) {
@@ -427,204 +379,203 @@ public class UserInfo implements Parcelable, Serializable {
             return true;
         }
         UserInfo userInfo = (UserInfo) obj;
-        return C2172b.m6329a(getNickName(), userInfo.getNickName()) && C2172b.m6329a(getLoginUserName(), userInfo.getLoginUserName()) && C2172b.m6329a(getLoginUserNameFlag(), userInfo.getLoginUserNameFlag()) && C2172b.m6329a(getGender(), userInfo.getGender()) && C2172b.m6329a(getBirthDate(), userInfo.getBirthDate()) && C2172b.m6329a(getNationalCode(), userInfo.getNationalCode());
+        return b.a(getNickName(), userInfo.getNickName()) && b.a(getLoginUserName(), userInfo.getLoginUserName()) && b.a(getLoginUserNameFlag(), userInfo.getLoginUserNameFlag()) && b.a(getGender(), userInfo.getGender()) && b.a(getBirthDate(), userInfo.getBirthDate()) && b.a(getNationalCode(), userInfo.getNationalCode());
     }
 
     public void setAddress(String str) {
-        this.f6620i = str;
+        this.f4181i = str;
     }
 
     public void setAge(String str) {
-        this.f6611K = str;
+        this.K = str;
     }
 
     public void setBirthDate(String str) {
-        this.f6619h = str;
+        this.f4180h = str;
     }
 
     public void setCity(String str) {
-        this.f6625n = str;
+        this.f4186n = str;
     }
 
     public void setCloudAccount(String str) {
-        this.f6628q = str;
+        this.q = str;
     }
 
     public void setCtfCode(String str) {
-        this.f6609I = str;
+        this.I = str;
     }
 
     public void setCtfType(String str) {
-        this.f6607G = str;
+        this.G = str;
     }
 
     public void setCtfVerifyFlag(String str) {
-        this.f6608H = str;
+        this.H = str;
     }
 
     public void setFirstName(String str) {
-        this.f6615d = str;
+        this.f4176d = str;
     }
 
     public void setGender(String str) {
-        this.f6618g = str;
+        this.f4179g = str;
     }
 
     public void setGuardianAccount(String str) {
-        this.f6606F = str;
+        this.F = str;
     }
 
     public void setGuardianUserId(String str) {
-        this.f6605E = str;
+        this.E = str;
     }
 
     public void setHeadPictureUrl(String str) {
-        this.f6622k = str;
+        this.f4183k = str;
     }
 
     public void setInviter(String str) {
-        this.f6632u = str;
+        this.u = str;
     }
 
     public void setInviterUserId(String str) {
-        this.f6631t = str;
+        this.t = str;
     }
 
     public void setLanguageCode(String str) {
-        this.f6614c = str;
+        this.f4175c = str;
     }
 
     public void setLastName(String str) {
-        this.f6616e = str;
+        this.f4177e = str;
     }
 
     public void setLoginNotice(String str) {
-        this.f6604D = str;
+        this.D = str;
     }
 
     public void setLoginUserName(String str) {
-        this.f6634w = str;
+        this.w = str;
     }
 
     public void setLoginUserNameFlag(String str) {
-        this.f6635x = str;
+        this.x = str;
     }
 
     public void setNationalCode(String str) {
-        this.f6623l = str;
+        this.f4184l = str;
     }
 
     public void setNickName(String str) {
-        this.f6612a = str;
+        this.a = str;
     }
 
     public void setOccupation(String str) {
-        this.f6621j = str;
+        this.f4182j = str;
     }
 
     public void setPasswordAnwser(String str) {
-        this.f6627p = str;
+        this.p = str;
     }
 
     public void setPasswordPrompt(String str) {
-        this.f6626o = str;
+        this.o = str;
     }
 
     public void setProvince(String str) {
-        this.f6624m = str;
+        this.f4185m = str;
     }
 
     public void setResetPasswdMode(String str) {
-        this.f6602B = str;
+        this.B = str;
     }
 
     public void setServiceCountryCode(String str) {
-        this.f6610J = str;
+        this.J = str;
     }
 
     public void setServiceFlag(String str) {
-        this.f6629r = str;
+        this.r = str;
     }
 
     public void setUniqueNickName(String str) {
-        this.f6613b = str;
+        this.f4174b = str;
     }
 
     public void setUpdateTime(String str) {
-        this.f6633v = str;
+        this.v = str;
     }
 
     public void setUserSign(String str) {
-        this.f6603C = str;
+        this.C = str;
     }
 
     public void setUserState(String str) {
-        this.f6617f = str;
+        this.f4178f = str;
     }
 
     public void setUserValidStatus(String str) {
-        this.f6630s = str;
+        this.s = str;
     }
 
     public void settwoStepTime(String str) {
-        this.f6601A = str;
+        this.A = str;
     }
 
     public void settwoStepVerify(String str) {
-        this.f6637z = str;
+        this.z = str;
     }
 
     public void setuserStatusFlags(String str) {
-        this.f6636y = str;
+        this.y = str;
     }
 
     public String toString() {
-        return "UserInfo [mNickName=" + C2167d.m6309a(this.f6612a) + ", mUniqueNickName=" + C2167d.m6309a(this.f6613b) + ", mLanguageCode=" + this.f6614c + ", mFirstName=" + C2167d.m6309a(this.f6615d) + ", mLastName=" + C2167d.m6309a(this.f6616e) + ", mUserState=" + this.f6617f + ", mGender=" + this.f6618g + ", mBirthDate=" + this.f6619h + ", mAddress=" + C2167d.m6309a(this.f6620i) + ", mOccupation=" + this.f6621j + ", mHeadPictureUrl=" + this.f6622k + ", mNationalCode=" + this.f6623l + ", mProvince=" + this.f6624m + ", mCity=" + this.f6625n + ", mPasswordPrompt=" + C2167d.m6309a(this.f6626o) + ", mscrtdanws=" + this.f6627p + ", mCloudAccount=" + this.f6628q + ", mServiceFlag=" + this.f6629r + ", mUserValidStatus=" + this.f6630s + ", mInviterUserId=" + C2167d.m6309a(this.f6631t) + ", mInviter=" + C2167d.m6309a(this.f6632u) + ", mUpdateTime=" + this.f6633v + ", mLoginUserName=" + C2167d.m6309a(this.f6634w) + ", mLoginUserNameFlag=" + this.f6635x + ", muserStatusFlags=" + this.f6636y + ", mtwoStepVerify=" + this.f6637z + ", mtwoStepTime=" + this.f6601A + ", mResetPasswdMode=" + this.f6602B + ", mUserSign=" + this.f6603C + ", mLoginNotice=" + this.f6604D + ", mGuardianUserId=" + C2167d.m6309a(this.f6605E) + ", mGuardianAccount=" + C2167d.m6309a(this.f6606F) + ", mCtfType=" + this.f6607G + ", mCtfVerifyFlag=" + this.f6608H + ", mCtfCode=" + this.f6609I + ", mServiceCountryCode=" + this.f6610J + "]";
+        return "UserInfo [mNickName=" + d.a(this.a) + ", mUniqueNickName=" + d.a(this.f4174b) + ", mLanguageCode=" + this.f4175c + ", mFirstName=" + d.a(this.f4176d) + ", mLastName=" + d.a(this.f4177e) + ", mUserState=" + this.f4178f + ", mGender=" + this.f4179g + ", mBirthDate=" + this.f4180h + ", mAddress=" + d.a(this.f4181i) + ", mOccupation=" + this.f4182j + ", mHeadPictureUrl=" + this.f4183k + ", mNationalCode=" + this.f4184l + ", mProvince=" + this.f4185m + ", mCity=" + this.f4186n + ", mPasswordPrompt=" + d.a(this.o) + ", mscrtdanws=" + this.p + ", mCloudAccount=" + this.q + ", mServiceFlag=" + this.r + ", mUserValidStatus=" + this.s + ", mInviterUserId=" + d.a(this.t) + ", mInviter=" + d.a(this.u) + ", mUpdateTime=" + this.v + ", mLoginUserName=" + d.a(this.w) + ", mLoginUserNameFlag=" + this.x + ", muserStatusFlags=" + this.y + ", mtwoStepVerify=" + this.z + ", mtwoStepTime=" + this.A + ", mResetPasswdMode=" + this.B + ", mUserSign=" + this.C + ", mLoginNotice=" + this.D + ", mGuardianUserId=" + d.a(this.E) + ", mGuardianAccount=" + d.a(this.F) + ", mCtfType=" + this.G + ", mCtfVerifyFlag=" + this.H + ", mCtfCode=" + this.I + ", mServiceCountryCode=" + this.J + "]";
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6620i);
-        parcel.writeString(this.f6619h);
-        parcel.writeString(this.f6625n);
-        parcel.writeString(this.f6628q);
-        parcel.writeString(this.f6615d);
-        parcel.writeString(this.f6618g);
-        parcel.writeString(this.f6622k);
-        parcel.writeString(this.f6614c);
-        parcel.writeString(this.f6616e);
-        parcel.writeString(this.f6623l);
-        parcel.writeString(this.f6612a);
-        parcel.writeString(this.f6613b);
-        parcel.writeString(this.f6621j);
-        parcel.writeString(this.f6627p);
-        parcel.writeString(this.f6626o);
-        parcel.writeString(this.f6624m);
-        parcel.writeString(this.f6629r);
-        parcel.writeString(this.f6617f);
-        parcel.writeString(this.f6630s);
-        parcel.writeString(this.f6631t);
-        parcel.writeString(this.f6632u);
-        parcel.writeString(this.f6633v);
-        parcel.writeString(this.f6634w);
-        parcel.writeString(this.f6635x);
-        parcel.writeString(this.f6636y);
-        parcel.writeString(this.f6637z);
-        parcel.writeString(this.f6601A);
-        parcel.writeString(this.f6602B);
-        parcel.writeString(this.f6604D);
-        parcel.writeString(this.f6603C);
-        parcel.writeString(this.f6605E);
-        parcel.writeString(this.f6606F);
-        parcel.writeString(this.f6609I);
-        parcel.writeString(this.f6608H);
-        parcel.writeString(this.f6607G);
-        parcel.writeString(this.f6610J);
-        parcel.writeString(this.f6611K);
+        parcel.writeString(this.f4181i);
+        parcel.writeString(this.f4180h);
+        parcel.writeString(this.f4186n);
+        parcel.writeString(this.q);
+        parcel.writeString(this.f4176d);
+        parcel.writeString(this.f4179g);
+        parcel.writeString(this.f4183k);
+        parcel.writeString(this.f4175c);
+        parcel.writeString(this.f4177e);
+        parcel.writeString(this.f4184l);
+        parcel.writeString(this.a);
+        parcel.writeString(this.f4174b);
+        parcel.writeString(this.f4182j);
+        parcel.writeString(this.p);
+        parcel.writeString(this.o);
+        parcel.writeString(this.f4185m);
+        parcel.writeString(this.r);
+        parcel.writeString(this.f4178f);
+        parcel.writeString(this.s);
+        parcel.writeString(this.t);
+        parcel.writeString(this.u);
+        parcel.writeString(this.v);
+        parcel.writeString(this.w);
+        parcel.writeString(this.x);
+        parcel.writeString(this.y);
+        parcel.writeString(this.z);
+        parcel.writeString(this.A);
+        parcel.writeString(this.B);
+        parcel.writeString(this.D);
+        parcel.writeString(this.C);
+        parcel.writeString(this.E);
+        parcel.writeString(this.F);
+        parcel.writeString(this.I);
+        parcel.writeString(this.H);
+        parcel.writeString(this.G);
+        parcel.writeString(this.J);
+        parcel.writeString(this.K);
     }
 
-    /* renamed from: a */
-    private static void m6250a(XmlPullParser xmlPullParser, UserInfo userInfo, String str) {
+    private static void a(XmlPullParser xmlPullParser, UserInfo userInfo, String str) {
         if ("nickName".equals(str)) {
             userInfo.setNickName(xmlPullParser.nextText());
             return;
@@ -678,8 +629,7 @@ public class UserInfo implements Parcelable, Serializable {
         }
     }
 
-    /* renamed from: b */
-    private static void m6252b(XmlPullParser xmlPullParser, UserInfo userInfo, String str) {
+    private static void b(XmlPullParser xmlPullParser, UserInfo userInfo, String str) {
         if (GENDER.equals(str)) {
             userInfo.setGender(xmlPullParser.nextText());
             return;
@@ -725,8 +675,7 @@ public class UserInfo implements Parcelable, Serializable {
         }
     }
 
-    /* renamed from: c */
-    private static void m6254c(XmlPullParser xmlPullParser, UserInfo userInfo, String str) {
+    private static void c(XmlPullParser xmlPullParser, UserInfo userInfo, String str) {
         if (INVITER.equals(str)) {
             userInfo.setInviter(xmlPullParser.nextText());
             return;

@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class SharedElementCallback {
     private static final String BUNDLE_SNAPSHOT_BITMAP = "sharedElement:snapshot:bitmap";
     private static final String BUNDLE_SNAPSHOT_IMAGE_MATRIX = "sharedElement:snapshot:imageMatrix";
@@ -33,14 +33,14 @@ public abstract class SharedElementCallback {
         if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
             return null;
         }
-        float min = Math.min(1.0f, 1048576.0f / (intrinsicWidth * intrinsicHeight));
-        if ((drawable instanceof BitmapDrawable) && min == 1.0f) {
+        float fMin = Math.min(1.0f, 1048576.0f / (intrinsicWidth * intrinsicHeight));
+        if ((drawable instanceof BitmapDrawable) && fMin == 1.0f) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
-        int i2 = (int) (intrinsicWidth * min);
-        int i3 = (int) (intrinsicHeight * min);
-        Bitmap createBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        int i2 = (int) (intrinsicWidth * fMin);
+        int i3 = (int) (intrinsicHeight * fMin);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         Rect bounds = drawable.getBounds();
         int i4 = bounds.left;
         int i5 = bounds.top;
@@ -49,18 +49,18 @@ public abstract class SharedElementCallback {
         drawable.setBounds(0, 0, i2, i3);
         drawable.draw(canvas);
         drawable.setBounds(i4, i5, i6, i7);
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public Parcelable onCaptureSharedElementSnapshot(View view, Matrix matrix, RectF rectF) {
-        Bitmap createDrawableBitmap;
+        Bitmap bitmapCreateDrawableBitmap;
         if (view instanceof ImageView) {
             ImageView imageView = (ImageView) view;
             Drawable drawable = imageView.getDrawable();
             Drawable background = imageView.getBackground();
-            if (drawable != null && background == null && (createDrawableBitmap = createDrawableBitmap(drawable)) != null) {
+            if (drawable != null && background == null && (bitmapCreateDrawableBitmap = createDrawableBitmap(drawable)) != null) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(BUNDLE_SNAPSHOT_BITMAP, createDrawableBitmap);
+                bundle.putParcelable(BUNDLE_SNAPSHOT_BITMAP, bitmapCreateDrawableBitmap);
                 bundle.putString(BUNDLE_SNAPSHOT_IMAGE_SCALETYPE, imageView.getScaleType().toString());
                 if (imageView.getScaleType() == ImageView.ScaleType.MATRIX) {
                     float[] fArr = new float[9];
@@ -70,25 +70,25 @@ public abstract class SharedElementCallback {
                 return bundle;
             }
         }
-        int round = Math.round(rectF.width());
-        int round2 = Math.round(rectF.height());
-        if (round <= 0 || round2 <= 0) {
+        int iRound = Math.round(rectF.width());
+        int iRound2 = Math.round(rectF.height());
+        if (iRound <= 0 || iRound2 <= 0) {
             return null;
         }
-        float min = Math.min(1.0f, 1048576.0f / (round * round2));
-        int i2 = (int) (round * min);
-        int i3 = (int) (round2 * min);
+        float fMin = Math.min(1.0f, 1048576.0f / (iRound * iRound2));
+        int i2 = (int) (iRound * fMin);
+        int i3 = (int) (iRound2 * fMin);
         if (this.mTempMatrix == null) {
             this.mTempMatrix = new Matrix();
         }
         this.mTempMatrix.set(matrix);
         this.mTempMatrix.postTranslate(-rectF.left, -rectF.top);
-        this.mTempMatrix.postScale(min, min);
-        Bitmap createBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        this.mTempMatrix.postScale(fMin, fMin);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.concat(this.mTempMatrix);
         view.draw(canvas);
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public View onCreateSnapshotView(Context context, Parcelable parcelable) {

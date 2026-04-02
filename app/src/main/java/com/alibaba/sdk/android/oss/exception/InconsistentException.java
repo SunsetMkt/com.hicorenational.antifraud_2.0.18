@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.exception;
 
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InconsistentException extends IOException {
     private Long clientChecksum;
     private String requestId;

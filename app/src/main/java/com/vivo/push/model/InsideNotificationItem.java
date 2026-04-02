@@ -1,6 +1,6 @@
 package com.vivo.push.model;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class InsideNotificationItem extends UPSNotificationMessage {
     private int mAppType;
     private int mDisplayStyle;

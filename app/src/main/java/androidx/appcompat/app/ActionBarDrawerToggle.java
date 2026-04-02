@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
     private final Delegate mActivityImpl;
     private final int mCloseDrawerContentDescRes;
@@ -68,9 +68,9 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
             if (Build.VERSION.SDK_INT < 18) {
                 return ActionBarDrawerToggleHoneycomb.getThemeUpIndicator(this.mActivity);
             }
-            TypedArray obtainStyledAttributes = getActionBarThemedContext().obtainStyledAttributes(null, new int[]{R.attr.homeAsUpIndicator}, R.attr.actionBarStyle, 0);
-            Drawable drawable = obtainStyledAttributes.getDrawable(0);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = getActionBarThemedContext().obtainStyledAttributes(null, new int[]{R.attr.homeAsUpIndicator}, R.attr.actionBarStyle, 0);
+            Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(0);
+            typedArrayObtainStyledAttributes.recycle();
             return drawable;
         }
 

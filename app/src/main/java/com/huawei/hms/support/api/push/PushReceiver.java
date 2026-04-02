@@ -8,11 +8,10 @@ import android.text.TextUtils;
 import androidx.core.app.NotificationCompat;
 import com.huawei.hms.aaid.constant.ErrorEnum;
 import com.huawei.hms.adapter.internal.CommonCode;
-import com.huawei.hms.push.AbstractC2481a;
-import com.huawei.hms.push.AbstractC2484d;
-import com.huawei.hms.push.C2497q;
-import com.huawei.hms.push.C2498r;
 import com.huawei.hms.push.constant.RemoteMessageConst;
+import com.huawei.hms.push.d;
+import com.huawei.hms.push.q;
+import com.huawei.hms.push.r;
 import com.huawei.hms.push.utils.JsonUtil;
 import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.ResourceLoaderUtil;
@@ -20,119 +19,112 @@ import java.util.concurrent.RejectedExecutionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PushReceiver extends BroadcastReceiver {
 
-    /* renamed from: com.huawei.hms.support.api.push.PushReceiver$b */
-    private static class RunnableC2520b implements Runnable {
+    private static class b implements Runnable {
+        private Context a;
 
-        /* renamed from: a */
-        private Context f7853a;
-
-        /* renamed from: b */
-        private Intent f7854b;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private Intent f4933b;
 
         @Override // java.lang.Runnable
         public void run() {
             Intent intent = new Intent("com.huawei.push.action.MESSAGING_EVENT");
-            intent.setPackage(this.f7854b.getPackage());
+            intent.setPackage(this.f4933b.getPackage());
             try {
-                JSONObject m7686b = PushReceiver.m7686b(this.f7854b);
-                String string = JsonUtil.getString(m7686b, "moduleName", "");
-                int i2 = JsonUtil.getInt(m7686b, "msgType", 0);
-                int i3 = JsonUtil.getInt(m7686b, NotificationCompat.CATEGORY_STATUS, 0);
-                if (ErrorEnum.SUCCESS.getInternalCode() != i3) {
-                    i3 = ErrorEnum.ERROR_APP_SERVER_NOT_ONLINE.getInternalCode();
+                JSONObject jSONObjectB = PushReceiver.b(this.f4933b);
+                String string = JsonUtil.getString(jSONObjectB, "moduleName", "");
+                int i2 = JsonUtil.getInt(jSONObjectB, "msgType", 0);
+                int internalCode = JsonUtil.getInt(jSONObjectB, NotificationCompat.CATEGORY_STATUS, 0);
+                if (ErrorEnum.SUCCESS.getInternalCode() != internalCode) {
+                    internalCode = ErrorEnum.ERROR_APP_SERVER_NOT_ONLINE.getInternalCode();
                 }
                 Bundle bundle = new Bundle();
                 if ("Push".equals(string) && i2 == 1) {
                     bundle.putString("message_type", "delivery");
-                    bundle.putString("message_id", JsonUtil.getString(m7686b, RemoteMessageConst.MSGID, ""));
-                    bundle.putInt("error", i3);
-                    bundle.putString(CommonCode.MapKey.TRANSACTION_ID, JsonUtil.getString(m7686b, "transactionId", ""));
+                    bundle.putString("message_id", JsonUtil.getString(jSONObjectB, RemoteMessageConst.MSGID, ""));
+                    bundle.putInt("error", internalCode);
+                    bundle.putString(CommonCode.MapKey.TRANSACTION_ID, JsonUtil.getString(jSONObjectB, "transactionId", ""));
                 } else {
-                    if (this.f7854b.getExtras() != null) {
-                        bundle.putAll(this.f7854b.getExtras());
+                    if (this.f4933b.getExtras() != null) {
+                        bundle.putAll(this.f4933b.getExtras());
                     }
                     bundle.putString("message_type", "received_message");
-                    bundle.putString("message_id", this.f7854b.getStringExtra("msgIdStr"));
-                    bundle.putByteArray(RemoteMessageConst.MSGBODY, this.f7854b.getByteArrayExtra("msg_data"));
-                    bundle.putString(RemoteMessageConst.DEVICE_TOKEN, AbstractC2481a.m7538a(this.f7854b.getByteArrayExtra(RemoteMessageConst.DEVICE_TOKEN)));
+                    bundle.putString("message_id", this.f4933b.getStringExtra("msgIdStr"));
+                    bundle.putByteArray(RemoteMessageConst.MSGBODY, this.f4933b.getByteArrayExtra("msg_data"));
+                    bundle.putString(RemoteMessageConst.DEVICE_TOKEN, com.huawei.hms.push.a.a(this.f4933b.getByteArrayExtra(RemoteMessageConst.DEVICE_TOKEN)));
                     bundle.putInt(RemoteMessageConst.INPUT_TYPE, 1);
-                    bundle.putString("message_proxy_type", this.f7854b.getStringExtra("message_proxy_type"));
+                    bundle.putString("message_proxy_type", this.f4933b.getStringExtra("message_proxy_type"));
                 }
-                if (new C2498r().m7633a(this.f7853a, bundle, intent)) {
-                    HMSLog.m7717i("PushReceiver", "receive " + this.f7854b.getAction() + " and start service success");
+                if (new r().a(this.a, bundle, intent)) {
+                    HMSLog.i("PushReceiver", "receive " + this.f4933b.getAction() + " and start service success");
                     return;
                 }
-                HMSLog.m7715e("PushReceiver", "receive " + this.f7854b.getAction() + " and start service failed");
+                HMSLog.e("PushReceiver", "receive " + this.f4933b.getAction() + " and start service failed");
             } catch (RuntimeException unused) {
-                HMSLog.m7715e("PushReceiver", "handle push message occur exception.");
+                HMSLog.e("PushReceiver", "handle push message occur exception.");
             }
         }
 
-        private RunnableC2520b(Context context, Intent intent) {
-            this.f7853a = context;
-            this.f7854b = intent;
+        private b(Context context, Intent intent) {
+            this.a = context;
+            this.f4933b = intent;
         }
     }
 
-    /* renamed from: com.huawei.hms.support.api.push.PushReceiver$c */
-    private static class RunnableC2521c implements Runnable {
+    private static class c implements Runnable {
+        private Context a;
 
-        /* renamed from: a */
-        private Context f7855a;
-
-        /* renamed from: b */
-        private Intent f7856b;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private Intent f4934b;
 
         @Override // java.lang.Runnable
         public void run() {
             try {
-                byte[] byteArrayExtra = this.f7856b.getByteArrayExtra(RemoteMessageConst.DEVICE_TOKEN);
+                byte[] byteArrayExtra = this.f4934b.getByteArrayExtra(RemoteMessageConst.DEVICE_TOKEN);
                 if (byteArrayExtra != null && byteArrayExtra.length != 0) {
-                    HMSLog.m7717i("PushReceiver", "receive a push token: " + this.f7855a.getPackageName());
+                    HMSLog.i("PushReceiver", "receive a push token: " + this.a.getPackageName());
                     Intent intent = new Intent("com.huawei.push.action.MESSAGING_EVENT");
-                    intent.setPackage(this.f7856b.getPackage());
+                    intent.setPackage(this.f4934b.getPackage());
                     Bundle bundle = new Bundle();
                     bundle.putString("message_type", "new_token");
-                    bundle.putString(RemoteMessageConst.DEVICE_TOKEN, AbstractC2481a.m7538a(byteArrayExtra));
-                    bundle.putString(CommonCode.MapKey.TRANSACTION_ID, this.f7856b.getStringExtra(CommonCode.MapKey.TRANSACTION_ID));
-                    bundle.putString("subjectId", this.f7856b.getStringExtra("subjectId"));
-                    bundle.putInt("error", this.f7856b.getIntExtra("error", ErrorEnum.SUCCESS.getInternalCode()));
-                    bundle.putString("belongId", this.f7856b.getStringExtra("belongId"));
-                    if (new C2498r().m7633a(this.f7855a, bundle, intent)) {
+                    bundle.putString(RemoteMessageConst.DEVICE_TOKEN, com.huawei.hms.push.a.a(byteArrayExtra));
+                    bundle.putString(CommonCode.MapKey.TRANSACTION_ID, this.f4934b.getStringExtra(CommonCode.MapKey.TRANSACTION_ID));
+                    bundle.putString("subjectId", this.f4934b.getStringExtra("subjectId"));
+                    bundle.putInt("error", this.f4934b.getIntExtra("error", ErrorEnum.SUCCESS.getInternalCode()));
+                    bundle.putString("belongId", this.f4934b.getStringExtra("belongId"));
+                    if (new r().a(this.a, bundle, intent)) {
                         return;
                     }
-                    HMSLog.m7715e("PushReceiver", "receive " + this.f7856b.getAction() + " and start service failed");
+                    HMSLog.e("PushReceiver", "receive " + this.f4934b.getAction() + " and start service failed");
                     return;
                 }
-                HMSLog.m7717i("PushReceiver", "get a deviceToken, but it is null or empty");
+                HMSLog.i("PushReceiver", "get a deviceToken, but it is null or empty");
             } catch (RejectedExecutionException unused) {
-                HMSLog.m7715e("PushReceiver", "execute task error");
+                HMSLog.e("PushReceiver", "execute task error");
             } catch (Exception unused2) {
-                HMSLog.m7715e("PushReceiver", "handle push token error");
+                HMSLog.e("PushReceiver", "handle push token error");
             }
         }
 
-        private RunnableC2521c(Context context, Intent intent) {
-            this.f7855a = context;
-            this.f7856b = intent;
+        private c(Context context, Intent intent) {
+            this.a = context;
+            this.f4934b = intent;
         }
     }
 
-    /* renamed from: b */
-    private void m7688b(Context context, Intent intent) {
+    private void b(Context context, Intent intent) {
         try {
             if (intent.hasExtra(RemoteMessageConst.DEVICE_TOKEN)) {
-                C2497q.m7629a().execute(new RunnableC2521c(context, intent));
+                q.a().execute(new c(context, intent));
             } else {
-                HMSLog.m7717i("PushReceiver", "This message dose not sent by hwpush.");
+                HMSLog.i("PushReceiver", "This message dose not sent by hwpush.");
             }
         } catch (RuntimeException unused) {
-            HMSLog.m7715e("PushReceiver", "handlePushMessageEvent execute task runtime exception.");
+            HMSLog.e("PushReceiver", "handlePushMessageEvent execute task runtime exception.");
         } catch (Exception unused2) {
-            HMSLog.m7715e("PushReceiver", "handlePushTokenEvent execute task error");
+            HMSLog.e("PushReceiver", "handlePushTokenEvent execute task error");
         }
     }
 
@@ -141,7 +133,7 @@ public final class PushReceiver extends BroadcastReceiver {
         if (intent == null || context == null) {
             return;
         }
-        HMSLog.m7717i("PushReceiver", "push receive broadcast message, Intent:" + intent.getAction() + " pkgName:" + context.getPackageName());
+        HMSLog.i("PushReceiver", "push receive broadcast message, Intent:" + intent.getAction() + " pkgName:" + context.getPackageName());
         try {
             intent.getStringExtra("TestIntent");
             String action = intent.getAction();
@@ -149,58 +141,54 @@ public final class PushReceiver extends BroadcastReceiver {
                 ResourceLoaderUtil.setmContext(context.getApplicationContext());
             }
             if ("com.huawei.android.push.intent.REGISTRATION".equals(action)) {
-                m7688b(context, intent);
+                b(context, intent);
             } else if ("com.huawei.android.push.intent.RECEIVE".equals(action)) {
-                m7685a(context, intent);
+                a(context, intent);
             } else {
-                HMSLog.m7717i("PushReceiver", "message can't be recognised.");
+                HMSLog.i("PushReceiver", "message can't be recognised.");
             }
         } catch (Exception unused) {
-            HMSLog.m7715e("PushReceiver", "intent has some error");
+            HMSLog.e("PushReceiver", "intent has some error");
         }
     }
 
-    /* renamed from: a */
-    private void m7685a(Context context, Intent intent) {
+    private void a(Context context, Intent intent) {
         try {
             if (intent.hasExtra("msg_data")) {
-                C2497q.m7629a().execute(new RunnableC2520b(context, intent));
+                q.a().execute(new b(context, intent));
             } else {
-                HMSLog.m7717i("PushReceiver", "This push message dose not sent by hwpush.");
+                HMSLog.i("PushReceiver", "This push message dose not sent by hwpush.");
             }
         } catch (RuntimeException unused) {
-            HMSLog.m7715e("PushReceiver", "handlePushMessageEvent execute task runtime exception.");
+            HMSLog.e("PushReceiver", "handlePushMessageEvent execute task runtime exception.");
         } catch (Exception unused2) {
-            HMSLog.m7715e("PushReceiver", "handlePushMessageEvent execute task error");
+            HMSLog.e("PushReceiver", "handlePushMessageEvent execute task error");
         }
     }
 
-    /* renamed from: b */
-    private static JSONObject m7687b(JSONObject jSONObject) {
+    private static JSONObject b(JSONObject jSONObject) {
         if (jSONObject != null) {
             return jSONObject.optJSONObject(RemoteMessageConst.MessageBody.PS_CONTENT);
         }
         return null;
     }
 
-    /* renamed from: a */
-    private static JSONObject m7684a(byte[] bArr) {
+    private static JSONObject a(byte[] bArr) {
         try {
-            return new JSONObject(AbstractC2481a.m7538a(bArr));
+            return new JSONObject(com.huawei.hms.push.a.a(bArr));
         } catch (JSONException unused) {
-            HMSLog.m7718w("PushReceiver", "JSONException:parse message body failed.");
+            HMSLog.w("PushReceiver", "JSONException:parse message body failed.");
             return null;
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public static JSONObject m7686b(Intent intent) throws RuntimeException {
-        JSONObject m7684a = m7684a(intent.getByteArrayExtra("msg_data"));
-        JSONObject m7683a = m7683a(m7684a);
-        String string = JsonUtil.getString(m7683a, "data", null);
-        if (AbstractC2484d.m7545a(m7683a, m7687b(m7683a), string)) {
-            return m7684a;
+    public static JSONObject b(Intent intent) throws RuntimeException {
+        JSONObject jSONObjectA = a(intent.getByteArrayExtra("msg_data"));
+        JSONObject jSONObjectA2 = a(jSONObjectA);
+        String string = JsonUtil.getString(jSONObjectA2, "data", null);
+        if (d.a(jSONObjectA2, b(jSONObjectA2), string)) {
+            return jSONObjectA;
         }
         if (TextUtils.isEmpty(string)) {
             return null;
@@ -212,8 +200,7 @@ public final class PushReceiver extends BroadcastReceiver {
         }
     }
 
-    /* renamed from: a */
-    private static JSONObject m7683a(JSONObject jSONObject) {
+    private static JSONObject a(JSONObject jSONObject) {
         if (jSONObject != null) {
             return jSONObject.optJSONObject(RemoteMessageConst.MessageBody.MSG_CONTENT);
         }

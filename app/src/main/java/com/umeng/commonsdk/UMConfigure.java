@@ -6,48 +6,41 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.Toast;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.analytics.pro.C3336at;
-import com.umeng.analytics.pro.C3338av;
-import com.umeng.analytics.pro.C3351bh;
-import com.umeng.analytics.pro.C3355bl;
-import com.umeng.analytics.pro.C3411l;
-import com.umeng.analytics.vshelper.C3437b;
+import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.av;
+import com.umeng.analytics.pro.bh;
+import com.umeng.analytics.pro.bl;
+import com.umeng.analytics.pro.l;
 import com.umeng.analytics.vshelper.PageNameMonitor;
 import com.umeng.ccg.ActionInfo;
-import com.umeng.ccg.C3439b;
 import com.umeng.ccg.CcgAgent;
+import com.umeng.ccg.b;
 import com.umeng.commonsdk.config.FieldManager;
 import com.umeng.commonsdk.debug.UMLog;
 import com.umeng.commonsdk.debug.UMLogCommon;
 import com.umeng.commonsdk.debug.UMRTLog;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.framework.UMWorkDispatch;
-import com.umeng.commonsdk.internal.C3470a;
-import com.umeng.commonsdk.internal.C3471b;
-import com.umeng.commonsdk.internal.C3472c;
 import com.umeng.commonsdk.listener.OnGetOaidListener;
 import com.umeng.commonsdk.service.UMGlobalContext;
-import com.umeng.commonsdk.stateless.C3489a;
 import com.umeng.commonsdk.statistics.AnalyticsConstants;
-import com.umeng.commonsdk.statistics.C3493a;
-import com.umeng.commonsdk.statistics.C3494b;
 import com.umeng.commonsdk.statistics.SdkVersion;
 import com.umeng.commonsdk.statistics.TagHelper;
 import com.umeng.commonsdk.statistics.UMServerURL;
 import com.umeng.commonsdk.statistics.common.DeviceConfig;
 import com.umeng.commonsdk.statistics.common.MLog;
-import com.umeng.commonsdk.utils.C3530c;
-import com.umeng.commonsdk.utils.C3531d;
 import com.umeng.commonsdk.utils.UMUtils;
+import com.umeng.commonsdk.utils.c;
+import com.umeng.commonsdk.utils.d;
+import d.c.a.b.a.a;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import org.json.JSONObject;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMConfigure {
     public static final int DEVICE_TYPE_BOX = 2;
     public static final int DEVICE_TYPE_PHONE = 1;
@@ -84,88 +77,80 @@ public class UMConfigure {
     private static boolean shouldCollectAid = true;
     private static volatile boolean shouldOutputRT = false;
     public static MobclickAgent.PageMode AUTO_ACTIVITY_PAGE_COLLECTION = MobclickAgent.PageMode.AUTO;
-    private static final String[] BUSINESS_TYPE = {"apm", "push", "share", "ulink", "uverify", "usms", "urec", "abtest", "game", C3351bh.f11613al};
+    private static final String[] BUSINESS_TYPE = {"apm", "push", "share", "ulink", "uverify", "usms", "urec", "abtest", "game", bh.al};
     private static boolean isFinish = false;
     private static Object lockObject = new Object();
 
-    /* renamed from: com.umeng.commonsdk.UMConfigure$1 */
-    static class C34451 extends Thread {
+    /* JADX INFO: renamed from: com.umeng.commonsdk.UMConfigure$1 */
+    static class AnonymousClass1 extends Thread {
+        final /* synthetic */ Context a;
 
-        /* renamed from: a */
-        final /* synthetic */ Context f12402a;
-
-        C34451(Context context) {
-            r1 = context;
+        AnonymousClass1(Context context) {
+            context = context;
         }
 
         @Override // java.lang.Thread, java.lang.Runnable
         public void run() {
             try {
                 Looper.prepare();
-                Toast.makeText(r1, "SDK 初始化失败，请检查是否集成umeng-asms-1.2.X.aar库。", 1).show();
+                Toast.makeText(context, "SDK \u521d\u59cb\u5316\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u662f\u5426\u96c6\u6210umeng-asms-1.2.X.aar\u5e93\u3002", 1).show();
                 Looper.loop();
             } catch (Throwable unused) {
             }
         }
     }
 
-    /* renamed from: com.umeng.commonsdk.UMConfigure$2 */
-    static class C34462 extends Thread {
+    /* JADX INFO: renamed from: com.umeng.commonsdk.UMConfigure$2 */
+    static class AnonymousClass2 extends Thread {
+        final /* synthetic */ Context a;
 
-        /* renamed from: a */
-        final /* synthetic */ Context f12403a;
-
-        C34462(Context context) {
-            r1 = context;
+        AnonymousClass2(Context context) {
+            context = context;
         }
 
         @Override // java.lang.Thread, java.lang.Runnable
         public void run() {
             try {
                 Looper.prepare();
-                Toast.makeText(r1, UMLogCommon.SC_10015, 1).show();
+                Toast.makeText(context, UMLogCommon.SC_10015, 1).show();
                 Looper.loop();
             } catch (Throwable unused) {
             }
         }
     }
 
-    /* renamed from: com.umeng.commonsdk.UMConfigure$3 */
-    static class C34473 extends Thread {
+    /* JADX INFO: renamed from: com.umeng.commonsdk.UMConfigure$3 */
+    static class AnonymousClass3 extends Thread {
+        final /* synthetic */ Context a;
 
-        /* renamed from: a */
-        final /* synthetic */ Context f12404a;
-
-        C34473(Context context) {
-            r1 = context;
+        AnonymousClass3(Context context) {
+            context = context;
         }
 
         @Override // java.lang.Thread, java.lang.Runnable
         public void run() {
             try {
                 Looper.prepare();
-                Toast.makeText(r1, UMLogCommon.SC_10015, 1).show();
+                Toast.makeText(context, UMLogCommon.SC_10015, 1).show();
                 Looper.loop();
             } catch (Throwable unused) {
             }
         }
     }
 
-    /* renamed from: com.umeng.commonsdk.UMConfigure$4 */
-    static class RunnableC34484 implements Runnable {
+    /* JADX INFO: renamed from: com.umeng.commonsdk.UMConfigure$4 */
+    static class AnonymousClass4 implements Runnable {
+        final /* synthetic */ Context a;
 
-        /* renamed from: a */
-        final /* synthetic */ Context f12405a;
-
-        RunnableC34484(Context context) {
-            r1 = context;
+        AnonymousClass4(Context context) {
+            context = context;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            String m10871a = C3338av.m10871a(r1);
+            String strA = av.a(context);
             if (UMConfigure.mOnGetOaidListener != null) {
-                UMConfigure.mOnGetOaidListener.onGetOaid(m10871a);
+                UMConfigure.mOnGetOaidListener.onGetOaid(strA);
             }
         }
     }
@@ -199,12 +184,12 @@ public class UMConfigure {
             if (str.trim().getBytes().length > 64) {
                 return;
             }
-            int ordinal = bs_type.ordinal();
-            String str2 = ordinal < BUSINESS_TYPE.length ? BUSINESS_TYPE[ordinal] : "";
+            int iOrdinal = bs_type.ordinal();
+            String str2 = iOrdinal < BUSINESS_TYPE.length ? BUSINESS_TYPE[iOrdinal] : "";
             if (TextUtils.isEmpty(str2)) {
                 return;
             }
-            TagHelper.deleteModuleTag(str2 + AbstractC1191a.f2606s1 + str);
+            TagHelper.deleteModuleTag(str2 + a.s1 + str);
         } catch (Throwable unused) {
         }
     }
@@ -219,7 +204,7 @@ public class UMConfigure {
     }
 
     public static void enableAzxSwitch(boolean z) {
-        C3439b.m11457a(z);
+        b.a(z);
     }
 
     private static Class<?> getClass(String str) {
@@ -235,38 +220,38 @@ public class UMConfigure {
     }
 
     private static Object getDecInstanceObject(Class<?> cls) {
-        Constructor<?> constructor;
+        Constructor<?> declaredConstructor;
         if (cls == null) {
             return null;
         }
         try {
-            constructor = cls.getDeclaredConstructor(new Class[0]);
+            declaredConstructor = cls.getDeclaredConstructor(new Class[0]);
         } catch (NoSuchMethodException unused) {
-            constructor = null;
+            declaredConstructor = null;
         }
-        if (constructor == null) {
+        if (declaredConstructor == null) {
             return null;
         }
-        constructor.setAccessible(true);
+        declaredConstructor.setAccessible(true);
         try {
-            return constructor.newInstance(new Object[0]);
+            return declaredConstructor.newInstance(new Object[0]);
         } catch (IllegalAccessException | IllegalArgumentException | InstantiationException | InvocationTargetException unused2) {
             return null;
         }
     }
 
     private static Method getDecMethod(Class<?> cls, String str, Class<?>[] clsArr) {
-        Method method = null;
+        Method declaredMethod = null;
         if (cls != null) {
             try {
-                method = cls.getDeclaredMethod(str, clsArr);
+                declaredMethod = cls.getDeclaredMethod(str, clsArr);
             } catch (NoSuchMethodException unused) {
             }
-            if (method != null) {
-                method.setAccessible(true);
+            if (declaredMethod != null) {
+                declaredMethod.setAccessible(true);
             }
         }
-        return method;
+        return declaredMethod;
     }
 
     public static boolean getInitStatus() {
@@ -293,19 +278,17 @@ public class UMConfigure {
         Context applicationContext = context.getApplicationContext();
         mOnGetOaidListener = onGetOaidListener;
         new Thread(new Runnable() { // from class: com.umeng.commonsdk.UMConfigure.4
+            final /* synthetic */ Context a;
 
-            /* renamed from: a */
-            final /* synthetic */ Context f12405a;
-
-            RunnableC34484(Context applicationContext2) {
-                r1 = applicationContext2;
+            AnonymousClass4(Context applicationContext2) {
+                context = applicationContext2;
             }
 
             @Override // java.lang.Runnable
             public void run() {
-                String m10871a = C3338av.m10871a(r1);
+                String strA = av.a(context);
                 if (UMConfigure.mOnGetOaidListener != null) {
-                    UMConfigure.mOnGetOaidListener.onGetOaid(m10871a);
+                    UMConfigure.mOnGetOaidListener.onGetOaid(strA);
                 }
             }
         }).start();
@@ -360,7 +343,7 @@ public class UMConfigure {
     }
 
     private static Boolean isInForeground() {
-        return Boolean.valueOf(C3437b.m11456d());
+        return Boolean.valueOf(com.umeng.analytics.vshelper.b.d());
     }
 
     private static boolean isPreInit() {
@@ -372,9 +355,9 @@ public class UMConfigure {
     }
 
     private static boolean isSilentMode() {
-        boolean m12099a = C3530c.m12099a();
-        UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> isSilentMode() return: " + m12099a);
-        return m12099a;
+        boolean zA = c.a();
+        UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> isSilentMode() return: " + zA);
+        return zA;
     }
 
     private static boolean needCheckPolicyResult(Context context) {
@@ -382,7 +365,7 @@ public class UMConfigure {
         StringBuilder sb = new StringBuilder();
         sb.append(filesDir.getAbsolutePath());
         sb.append(File.separator);
-        sb.append(C3355bl.f11741m);
+        sb.append(bl.f7110m);
         return !new File(sb.toString()).exists();
     }
 
@@ -391,7 +374,7 @@ public class UMConfigure {
         StringBuilder sb = new StringBuilder();
         sb.append(filesDir.getAbsolutePath());
         sb.append(File.separator);
-        sb.append(C3355bl.f11740l);
+        sb.append(bl.f7109l);
         return !new File(sb.toString()).exists();
     }
 
@@ -426,16 +409,16 @@ public class UMConfigure {
         sAppkey = str;
         sChannel = str2;
         UMGlobalContext.getInstance(applicationContext);
-        C3411l.m11269a(applicationContext);
+        l.a(applicationContext);
         if (!needSendZcfgEnv(applicationContext)) {
-            FieldManager.m11529a().m11531a(applicationContext);
+            FieldManager.a().a(applicationContext);
         }
         synchronized (PreInitLock) {
             preInitComplete = true;
         }
-        boolean m12099a = C3530c.m12099a();
-        if (debugLog && m12099a) {
-            UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> 当前处于静默模式!");
+        boolean zA = c.a();
+        if (debugLog && zA) {
+            UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> \u5f53\u524d\u5904\u4e8e\u9759\u9ed8\u6a21\u5f0f!");
         }
     }
 
@@ -448,7 +431,7 @@ public class UMConfigure {
     }
 
     public static void resetStorePrefix(String str) {
-        C3336at.m10865b().m10867a(str);
+        at.b().a(str);
     }
 
     private static void setCheckDevice(boolean z) {
@@ -464,7 +447,7 @@ public class UMConfigure {
     }
 
     public static void setEncryptEnabled(boolean z) {
-        C3494b.m11728a(z);
+        com.umeng.commonsdk.statistics.b.a(z);
     }
 
     private static void setFile(Class<?> cls, String str, String str2) {
@@ -477,7 +460,7 @@ public class UMConfigure {
     }
 
     private static void setLatencyWindow(long j2) {
-        C3493a.f12714c = ((int) j2) * 1000;
+        com.umeng.commonsdk.statistics.a.f7662c = ((int) j2) * 1000;
     }
 
     public static void setLogEnabled(boolean z) {
@@ -507,12 +490,12 @@ public class UMConfigure {
             if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2) || str.trim().getBytes().length > 64 || str2.trim().getBytes().length > 128) {
                 return;
             }
-            int ordinal = bs_type.ordinal();
-            String str3 = ordinal < BUSINESS_TYPE.length ? BUSINESS_TYPE[ordinal] : "";
+            int iOrdinal = bs_type.ordinal();
+            String str3 = iOrdinal < BUSINESS_TYPE.length ? BUSINESS_TYPE[iOrdinal] : "";
             if (TextUtils.isEmpty(str3)) {
                 return;
             }
-            TagHelper.setModuleTag(str3 + AbstractC1191a.f2606s1 + str, str2);
+            TagHelper.setModuleTag(str3 + a.s1 + str, str2);
         } catch (Throwable unused) {
         }
     }
@@ -524,39 +507,39 @@ public class UMConfigure {
     private static void setWraperType(String str, String str2) {
         if (!TextUtils.isEmpty(str)) {
             if (str.equals(WRAPER_TYPE_NATIVE)) {
-                C3489a.f12681a = WRAPER_TYPE_NATIVE;
-                C3493a.f12712a = WRAPER_TYPE_NATIVE;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_NATIVE;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_NATIVE;
             } else if (str.equals(WRAPER_TYPE_COCOS2DX_X)) {
-                C3489a.f12681a = WRAPER_TYPE_COCOS2DX_X;
-                C3493a.f12712a = WRAPER_TYPE_COCOS2DX_X;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_COCOS2DX_X;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_COCOS2DX_X;
             } else if (str.equals(WRAPER_TYPE_COCOS2DX_XLUA)) {
-                C3489a.f12681a = WRAPER_TYPE_COCOS2DX_XLUA;
-                C3493a.f12712a = WRAPER_TYPE_COCOS2DX_XLUA;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_COCOS2DX_XLUA;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_COCOS2DX_XLUA;
             } else if (str.equals(WRAPER_TYPE_UNITY)) {
-                C3489a.f12681a = WRAPER_TYPE_UNITY;
-                C3493a.f12712a = WRAPER_TYPE_UNITY;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_UNITY;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_UNITY;
             } else if (str.equals(WRAPER_TYPE_REACTNATIVE)) {
-                C3489a.f12681a = WRAPER_TYPE_REACTNATIVE;
-                C3493a.f12712a = WRAPER_TYPE_REACTNATIVE;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_REACTNATIVE;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_REACTNATIVE;
             } else if (str.equals(WRAPER_TYPE_PHONEGAP)) {
-                C3489a.f12681a = WRAPER_TYPE_PHONEGAP;
-                C3493a.f12712a = WRAPER_TYPE_PHONEGAP;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_PHONEGAP;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_PHONEGAP;
             } else if (str.equals(WRAPER_TYPE_WEEX)) {
-                C3489a.f12681a = WRAPER_TYPE_WEEX;
-                C3493a.f12712a = WRAPER_TYPE_WEEX;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_WEEX;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_WEEX;
             } else if (str.equals(WRAPER_TYPE_HYBRID)) {
-                C3489a.f12681a = WRAPER_TYPE_HYBRID;
-                C3493a.f12712a = WRAPER_TYPE_HYBRID;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_HYBRID;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_HYBRID;
             } else if (str.equals(WRAPER_TYPE_FLUTTER)) {
-                C3489a.f12681a = WRAPER_TYPE_FLUTTER;
-                C3493a.f12712a = WRAPER_TYPE_FLUTTER;
+                com.umeng.commonsdk.stateless.a.a = WRAPER_TYPE_FLUTTER;
+                com.umeng.commonsdk.statistics.a.a = WRAPER_TYPE_FLUTTER;
             }
         }
         if (TextUtils.isEmpty(str2)) {
             return;
         }
-        C3489a.f12682b = str2;
-        C3493a.f12713b = str2;
+        com.umeng.commonsdk.stateless.a.f7637b = str2;
+        com.umeng.commonsdk.statistics.a.f7661b = str2;
     }
 
     public static boolean shouldCollectAid() {
@@ -568,7 +551,7 @@ public class UMConfigure {
     }
 
     public static void submitPolicyGrantResult(Context context, boolean z) {
-        UMWorkDispatch.sendEvent(context, C3470a.f12576B, C3471b.m11589a(context).m11590a(), null);
+        UMWorkDispatch.sendEvent(context, com.umeng.commonsdk.internal.a.B, com.umeng.commonsdk.internal.b.a(context).a(), null);
         synchronized (lock) {
             policyGrantInvokedFlag = 1;
             if (z) {
@@ -577,19 +560,19 @@ public class UMConfigure {
                 policyGrantResult = 2;
             }
         }
-        UMWorkDispatch.sendEvent(context, C3470a.f12612z, C3471b.m11589a(context).m11590a(), Integer.valueOf(policyGrantResult));
+        UMWorkDispatch.sendEvent(context, com.umeng.commonsdk.internal.a.z, com.umeng.commonsdk.internal.b.a(context).a(), Integer.valueOf(policyGrantResult));
     }
 
     public static void init(Context context, String str, String str2, int i2, String str3) {
         Method declaredMethod;
-        Object invoke;
+        Object objInvoke;
         Method declaredMethod2;
         Class<?> cls;
         Method declaredMethod3;
         Method declaredMethod4;
         Method declaredMethod5;
         Method declaredMethod6;
-        Object invoke2;
+        Object objInvoke2;
         Method declaredMethod7;
         Class<?> cls2;
         Method declaredMethod8;
@@ -619,32 +602,30 @@ public class UMConfigure {
         }
         Context applicationContext = context.getApplicationContext();
         UMGlobalContext.getInstance(applicationContext);
-        if (C3530c.m12099a()) {
+        if (c.a()) {
             if (!isPreInit()) {
                 preInitInternal(applicationContext, str, str2);
                 if (!isPreInit()) {
                     return;
                 }
             }
-            UMWorkDispatch.sendEvent(applicationContext, C3470a.f12578D, C3471b.m11589a(applicationContext).m11590a(), null);
+            UMWorkDispatch.sendEvent(applicationContext, com.umeng.commonsdk.internal.a.D, com.umeng.commonsdk.internal.b.a(applicationContext).a(), null);
             return;
         }
         try {
             if (getClass("com.umeng.umzid.ZIDManager") == null) {
                 new Thread() { // from class: com.umeng.commonsdk.UMConfigure.1
+                    final /* synthetic */ Context a;
 
-                    /* renamed from: a */
-                    final /* synthetic */ Context f12402a;
-
-                    C34451(Context applicationContext2) {
-                        r1 = applicationContext2;
+                    AnonymousClass1(Context applicationContext2) {
+                        context = applicationContext2;
                     }
 
                     @Override // java.lang.Thread, java.lang.Runnable
                     public void run() {
                         try {
                             Looper.prepare();
-                            Toast.makeText(r1, "SDK 初始化失败，请检查是否集成umeng-asms-1.2.X.aar库。", 1).show();
+                            Toast.makeText(context, "SDK \u521d\u59cb\u5316\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u662f\u5426\u96c6\u6210umeng-asms-1.2.X.aar\u5e93\u3002", 1).show();
                             Looper.loop();
                         } catch (Throwable unused) {
                         }
@@ -658,19 +639,17 @@ public class UMConfigure {
             Class<?> cls3 = getClass("com.umeng.message.PushAgent");
             if (cls3 != null && !checkShareSdk(cls3) && shouldCheckShareSdk) {
                 new Thread() { // from class: com.umeng.commonsdk.UMConfigure.2
+                    final /* synthetic */ Context a;
 
-                    /* renamed from: a */
-                    final /* synthetic */ Context f12403a;
-
-                    C34462(Context applicationContext2) {
-                        r1 = applicationContext2;
+                    AnonymousClass2(Context applicationContext2) {
+                        context = applicationContext2;
                     }
 
                     @Override // java.lang.Thread, java.lang.Runnable
                     public void run() {
                         try {
                             Looper.prepare();
-                            Toast.makeText(r1, UMLogCommon.SC_10015, 1).show();
+                            Toast.makeText(context, UMLogCommon.SC_10015, 1).show();
                             Looper.loop();
                         } catch (Throwable unused2) {
                         }
@@ -683,19 +662,17 @@ public class UMConfigure {
             Class<?> cls4 = getClass("com.umeng.socialize.UMShareAPI");
             if (cls4 != null && !checkShareSdk(cls4) && shouldCheckShareSdk) {
                 new Thread() { // from class: com.umeng.commonsdk.UMConfigure.3
+                    final /* synthetic */ Context a;
 
-                    /* renamed from: a */
-                    final /* synthetic */ Context f12404a;
-
-                    C34473(Context applicationContext2) {
-                        r1 = applicationContext2;
+                    AnonymousClass3(Context applicationContext2) {
+                        context = applicationContext2;
                     }
 
                     @Override // java.lang.Thread, java.lang.Runnable
                     public void run() {
                         try {
                             Looper.prepare();
-                            Toast.makeText(r1, UMLogCommon.SC_10015, 1).show();
+                            Toast.makeText(context, UMLogCommon.SC_10015, 1).show();
                             Looper.loop();
                         } catch (Throwable unused3) {
                         }
@@ -739,11 +716,11 @@ public class UMConfigure {
                 if (declaredMethod10 != null) {
                     declaredMethod10.setAccessible(true);
                     declaredMethod10.invoke(cls5, applicationContext2);
-                    if (FieldManager.allow(C3531d.f12958F)) {
-                        UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> FirstResumeTrigger enabled.");
-                        C3411l.m11269a(applicationContext2).m11289b(applicationContext2);
+                    if (FieldManager.allow(d.F)) {
+                        UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> FirstResumeTrigger enabled.");
+                        l.a(applicationContext2).b(applicationContext2);
                     } else {
-                        UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>> FirstResumeTrigger disabled.");
+                        UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>> FirstResumeTrigger disabled.");
                     }
                     if (debugLog) {
                         UMLog.mutlInfo(UMLogCommon.SC_10003, 2, "");
@@ -754,7 +731,7 @@ public class UMConfigure {
                     declaredMethod9.invoke(cls5, applicationContext2);
                 }
             }
-            if (C3494b.f12715a.indexOf("e") >= 0 && (cls2 = Class.forName("com.umeng.analytics.MobclickAgent")) != null && (declaredMethod8 = cls2.getDeclaredMethod("disableExceptionCatch", new Class[0])) != null) {
+            if (com.umeng.commonsdk.statistics.b.a.indexOf("e") >= 0 && (cls2 = Class.forName("com.umeng.analytics.MobclickAgent")) != null && (declaredMethod8 = cls2.getDeclaredMethod("disableExceptionCatch", new Class[0])) != null) {
                 declaredMethod8.setAccessible(true);
                 declaredMethod8.invoke(cls2, new Object[0]);
             }
@@ -770,11 +747,11 @@ public class UMConfigure {
         }
         try {
             Class<?> cls7 = Class.forName("com.umeng.message.MessageSharedPrefs");
-            if (cls7 != null && (declaredMethod6 = cls7.getDeclaredMethod("getInstance", Context.class)) != null && (invoke2 = declaredMethod6.invoke(cls7, applicationContext2)) != null) {
+            if (cls7 != null && (declaredMethod6 = cls7.getDeclaredMethod("getInstance", Context.class)) != null && (objInvoke2 = declaredMethod6.invoke(cls7, applicationContext2)) != null) {
                 Method declaredMethod11 = cls7.getDeclaredMethod("setMessageAppKey", String.class);
                 if (declaredMethod11 != null) {
                     declaredMethod11.setAccessible(true);
-                    declaredMethod11.invoke(invoke2, sAppkey);
+                    declaredMethod11.invoke(objInvoke2, sAppkey);
                     if (debugLog) {
                         UMLog.mutlInfo(UMLogCommon.SC_10004, 2, "");
                     }
@@ -782,7 +759,7 @@ public class UMConfigure {
                 Method declaredMethod12 = cls7.getDeclaredMethod(KEY_METHOD_NAME_PUSH_SETCHANNEL, String.class);
                 if (declaredMethod12 != null) {
                     declaredMethod12.setAccessible(true);
-                    declaredMethod12.invoke(invoke2, sChannel);
+                    declaredMethod12.invoke(objInvoke2, sChannel);
                     if (debugLog) {
                         UMLog.mutlInfo(UMLogCommon.SC_10005, 2, "");
                     }
@@ -796,7 +773,7 @@ public class UMConfigure {
                     Method declaredMethod13 = cls7.getDeclaredMethod("setMessageAppSecret", String.class);
                     if (declaredMethod13 != null) {
                         declaredMethod13.setAccessible(true);
-                        declaredMethod13.invoke(invoke2, str3);
+                        declaredMethod13.invoke(objInvoke2, str3);
                         if (debugLog) {
                             UMLog.mutlInfo(UMLogCommon.SC_10009, 2, "");
                         }
@@ -850,7 +827,7 @@ public class UMConfigure {
             Method declaredMethod15 = Class.forName("com.umeng.vt.facade.EventFacade").getDeclaredMethod("init", Application.class, String.class, String.class, Integer.TYPE, String.class);
             if (declaredMethod15 != null) {
                 declaredMethod15.invoke(null, applicationContext2, sAppkey, sChannel, Integer.valueOf(i2), str3);
-                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>>初始化 EventFacade 成功.");
+                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>>\u521d\u59cb\u5316 EventFacade \u6210\u529f.");
             }
         } catch (Throwable unused10) {
         }
@@ -858,7 +835,7 @@ public class UMConfigure {
             Method declaredMethod16 = Class.forName("com.umeng.vt.common.VTTracker").getDeclaredMethod("init", Application.class, String.class);
             if (declaredMethod16 != null) {
                 declaredMethod16.invoke(null, applicationContext2, sAppkey);
-                UMRTLog.m11556i(UMRTLog.RTLOG_TAG, "--->>>初始化 VTTracker 成功.");
+                UMRTLog.i(UMRTLog.RTLOG_TAG, "--->>>\u521d\u59cb\u5316 VTTracker \u6210\u529f.");
             }
         } catch (Throwable unused11) {
         }
@@ -871,24 +848,24 @@ public class UMConfigure {
                 int i4 = policyGrantResult;
                 try {
                     JSONObject jSONObject = new JSONObject();
-                    jSONObject.put(C3470a.f12584J, preInitInvokedFlag);
-                    jSONObject.put(C3470a.f12585K, policyGrantInvokedFlag);
+                    jSONObject.put(com.umeng.commonsdk.internal.a.J, preInitInvokedFlag);
+                    jSONObject.put(com.umeng.commonsdk.internal.a.K, policyGrantInvokedFlag);
                     jSONObject.put("policyGrantResult", policyGrantResult);
-                    UMWorkDispatch.sendEvent(applicationContext2, C3470a.f12575A, C3471b.m11589a(applicationContext2).m11590a(), jSONObject);
+                    UMWorkDispatch.sendEvent(applicationContext2, com.umeng.commonsdk.internal.a.A, com.umeng.commonsdk.internal.b.a(applicationContext2).a(), jSONObject);
                 } catch (Throwable unused12) {
                 }
             }
         }
         if (needSendZcfgEnv(applicationContext2)) {
-            UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> 走零号报文发送逻辑");
-            UMWorkDispatch.sendEvent(applicationContext2, C3470a.f12602p, C3471b.m11589a(applicationContext2).m11590a(), null);
+            UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> \u8d70\u96f6\u53f7\u62a5\u6587\u53d1\u9001\u903b\u8f91");
+            UMWorkDispatch.sendEvent(applicationContext2, com.umeng.commonsdk.internal.a.p, com.umeng.commonsdk.internal.b.a(applicationContext2).a(), null);
         } else if (UMUtils.isMainProgress(applicationContext2)) {
-            UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> 走正常逻辑.");
-            if (FieldManager.m11530b()) {
-                UMWorkDispatch.sendEvent(applicationContext2, C3470a.f12611y, C3471b.m11589a(applicationContext2).m11590a(), null);
+            UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> \u8d70\u6b63\u5e38\u903b\u8f91.");
+            if (FieldManager.b()) {
+                UMWorkDispatch.sendEvent(applicationContext2, com.umeng.commonsdk.internal.a.y, com.umeng.commonsdk.internal.b.a(applicationContext2).a(), null);
             }
-            if (FieldManager.allow(C3531d.f12959G)) {
-                C3472c.m11595a(applicationContext2, false);
+            if (FieldManager.allow(d.G)) {
+                com.umeng.commonsdk.internal.c.a(applicationContext2, false);
             }
         }
         if (isDebugLog()) {
@@ -897,13 +874,13 @@ public class UMConfigure {
         try {
             Context applicationContext2 = context.getApplicationContext();
             Class<?> cls10 = Class.forName("com.umeng.cconfig.UMRemoteConfig");
-            if (cls10 != null && (declaredMethod = cls10.getDeclaredMethod("getInstance", new Class[0])) != null && (invoke = declaredMethod.invoke(cls10, new Object[0])) != null && (declaredMethod2 = cls10.getDeclaredMethod("init", Context.class)) != null) {
+            if (cls10 != null && (declaredMethod = cls10.getDeclaredMethod("getInstance", new Class[0])) != null && (objInvoke = declaredMethod.invoke(cls10, new Object[0])) != null && (declaredMethod2 = cls10.getDeclaredMethod("init", Context.class)) != null) {
                 declaredMethod2.setAccessible(true);
-                declaredMethod2.invoke(invoke, applicationContext2);
+                declaredMethod2.invoke(objInvoke, applicationContext2);
             }
         } catch (Exception unused13) {
         }
-        UMWorkDispatch.sendEvent(context, C3470a.f12580F, C3471b.m11589a(context).m11590a(), null);
+        UMWorkDispatch.sendEvent(context, com.umeng.commonsdk.internal.a.F, com.umeng.commonsdk.internal.b.a(context).a(), null);
         if (isInit) {
             return;
         }

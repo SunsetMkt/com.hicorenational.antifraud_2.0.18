@@ -7,145 +7,133 @@ import android.widget.TextView;
 import bean.UploadStateInfo;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import com.luck.picture.lib.entity.LocalMedia;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-import p388ui.Hicore;
+import ui.Hicore;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AudioProgressBlueAdapter extends BaseQuickAdapter<LocalMedia, BaseViewHolder> {
-
-    /* renamed from: V */
-    List<UploadStateInfo> f170V;
-
-    /* renamed from: W */
-    SimpleDateFormat f171W;
-
-    /* renamed from: X */
-    private boolean f172X;
+    List<UploadStateInfo> V;
+    SimpleDateFormat W;
+    private boolean X;
 
     public AudioProgressBlueAdapter(int i2, List<LocalMedia> list) {
         super(i2, list);
-        this.f172X = false;
+        this.X = false;
     }
 
-    /* renamed from: G */
-    private SimpleDateFormat m208G() {
-        if (this.f171W == null) {
-            this.f171W = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA);
+    private SimpleDateFormat G() {
+        if (this.W == null) {
+            this.W = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA);
         }
-        return this.f171W;
+        return this.W;
     }
 
-    /* renamed from: k */
-    public void m212k(boolean z) {
-        this.f172X = z;
+    public void k(boolean z) {
+        this.X = z;
         notifyDataSetChanged();
     }
 
     @Override // com.chad.library.adapter.base.BaseQuickAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
-    /* renamed from: a */
+    /* JADX INFO: renamed from: a */
     public void onBindViewHolder(BaseViewHolder baseViewHolder, int i2) {
-        super.onBindViewHolder((AudioProgressBlueAdapter) baseViewHolder, i2);
-        UploadStateInfo uploadStateInfo = this.f170V.get(i2);
-        ImageView imageView = (ImageView) baseViewHolder.m5224c(C2113R.id.img_defraud_play);
-        TextView textView = (TextView) baseViewHolder.m5224c(C2113R.id.tv_size_time);
-        ImageView imageView2 = (ImageView) baseViewHolder.m5224c(C2113R.id.iv_fail);
-        ImageView imageView3 = (ImageView) baseViewHolder.m5224c(C2113R.id.iv_clear);
-        if (this.f172X) {
+        super.onBindViewHolder(baseViewHolder, i2);
+        UploadStateInfo uploadStateInfo = this.V.get(i2);
+        ImageView imageView = (ImageView) baseViewHolder.c(R.id.img_defraud_play);
+        TextView textView = (TextView) baseViewHolder.c(R.id.tv_size_time);
+        ImageView imageView2 = (ImageView) baseViewHolder.c(R.id.iv_fail);
+        ImageView imageView3 = (ImageView) baseViewHolder.c(R.id.iv_clear);
+        if (this.X) {
             imageView3.setVisibility(8);
         }
         if (uploadStateInfo.isPlayState()) {
             ((AnimationDrawable) imageView.getBackground()).start();
         } else {
             imageView.setBackground(null);
-            imageView.setBackground(this.f5580x.getResources().getDrawable(C2113R.drawable.anim_defraud_play_blue));
+            imageView.setBackground(this.x.getResources().getDrawable(R.drawable.anim_defraud_play_blue));
         }
-        m210a(imageView2, textView, (TextView) baseViewHolder.m5224c(C2113R.id.tv_upload_state), uploadStateInfo);
-        baseViewHolder.m5211a(C2113R.id.tv_size_time, (CharSequence) ((uploadStateInfo.getProgress() / 1024) + "KB | " + (uploadStateInfo.getTotal() / 1024) + "KB"));
+        a(imageView2, textView, (TextView) baseViewHolder.c(R.id.tv_upload_state), uploadStateInfo);
+        baseViewHolder.a(R.id.tv_size_time, (CharSequence) ((uploadStateInfo.getProgress() / 1024) + "KB | " + (uploadStateInfo.getTotal() / 1024) + "KB"));
     }
 
     public AudioProgressBlueAdapter(int i2, List<LocalMedia> list, List<UploadStateInfo> list2) {
         super(i2, list);
-        this.f172X = false;
-        this.f170V = list2;
+        this.X = false;
+        this.V = list2;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.chad.library.adapter.base.BaseQuickAdapter
-    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
-    public void mo204a(BaseViewHolder baseViewHolder, LocalMedia localMedia) {
+    public void a(BaseViewHolder baseViewHolder, LocalMedia localMedia) {
         String fileName = localMedia.getFileName();
         if (TextUtils.isEmpty(fileName)) {
             fileName = "";
         }
-        baseViewHolder.m5211a(C2113R.id.tv_audio_name, (CharSequence) fileName).m5194a(C2113R.id.iv_fail).m5194a(C2113R.id.iv_clear).m5194a(C2113R.id.img_defraud_play);
+        baseViewHolder.a(R.id.tv_audio_name, (CharSequence) fileName).a(R.id.iv_fail).a(R.id.iv_clear).a(R.id.img_defraud_play);
     }
 
-    /* renamed from: a */
-    private void m210a(ImageView imageView, TextView textView, TextView textView2, UploadStateInfo uploadStateInfo) {
+    private void a(ImageView imageView, TextView textView, TextView textView2, UploadStateInfo uploadStateInfo) {
         int uploadState = uploadStateInfo.getUploadState();
         if (uploadState == 0) {
-            textView2.setText("等待上传");
-            textView2.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorGray));
+            textView2.setText("\u7b49\u5f85\u4e0a\u4f20");
+            textView2.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorGray));
             imageView.setVisibility(8);
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorGray));
-            textView.setText(m209a(uploadStateInfo.getProgress()) + "KB/" + m209a(uploadStateInfo.getFileSize()) + "KB");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorGray));
+            textView.setText(a(uploadStateInfo.getProgress()) + "KB/" + a(uploadStateInfo.getFileSize()) + "KB");
             return;
         }
         if (uploadState == 1) {
-            textView2.setText("上传中");
-            textView2.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.black_dark));
+            textView2.setText("\u4e0a\u4f20\u4e2d");
+            textView2.setTextColor(Hicore.getApp().getResources().getColor(R.color.black_dark));
             imageView.setVisibility(8);
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorGray));
-            textView.setText(m209a(uploadStateInfo.getProgress()) + "KB/" + m209a(uploadStateInfo.getFileSize()) + "KB");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorGray));
+            textView.setText(a(uploadStateInfo.getProgress()) + "KB/" + a(uploadStateInfo.getFileSize()) + "KB");
             return;
         }
         if (uploadState == 2) {
-            textView2.setText("上传完成");
-            textView2.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.blue));
+            textView2.setText("\u4e0a\u4f20\u5b8c\u6210");
+            textView2.setTextColor(Hicore.getApp().getResources().getColor(R.color.blue));
             imageView.setVisibility(8);
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorGray));
-            textView.setText(m209a(uploadStateInfo.getFileSize()) + "KB/" + m209a(uploadStateInfo.getFileSize()) + "KB");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorGray));
+            textView.setText(a(uploadStateInfo.getFileSize()) + "KB/" + a(uploadStateInfo.getFileSize()) + "KB");
             return;
         }
         if (uploadState != 3) {
             return;
         }
-        textView2.setText("上传失败");
-        textView2.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorRed));
-        textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color._FF4002));
-        textView.setText(m209a(uploadStateInfo.getProgress()) + "KB/" + m209a(uploadStateInfo.getFileSize()) + "KB");
+        textView2.setText("\u4e0a\u4f20\u5931\u8d25");
+        textView2.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorRed));
+        textView.setTextColor(Hicore.getApp().getResources().getColor(R.color._FF4002));
+        textView.setText(a(uploadStateInfo.getProgress()) + "KB/" + a(uploadStateInfo.getFileSize()) + "KB");
         imageView.setVisibility(0);
     }
 
-    /* renamed from: a */
-    private long m209a(long j2) {
+    private long a(long j2) {
         return j2 / 1024;
     }
 
-    /* renamed from: a */
-    private void m211a(TextView textView, UploadStateInfo uploadStateInfo) {
+    private void a(TextView textView, UploadStateInfo uploadStateInfo) {
         int uploadState = uploadStateInfo.getUploadState();
         if (uploadState == 0) {
-            textView.setText("等待上传");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorGray));
+            textView.setText("\u7b49\u5f85\u4e0a\u4f20");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorGray));
             return;
         }
         if (uploadState == 1) {
-            textView.setText("上传中");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.black_dark));
+            textView.setText("\u4e0a\u4f20\u4e2d");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.black_dark));
         } else if (uploadState == 2) {
-            textView.setText("上传完成");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.blue));
+            textView.setText("\u4e0a\u4f20\u5b8c\u6210");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.blue));
         } else {
             if (uploadState != 3) {
                 return;
             }
-            textView.setText("上传失败");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorRed));
+            textView.setText("\u4e0a\u4f20\u5931\u8d25");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorRed));
         }
     }
 }

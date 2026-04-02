@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class TextUtilsCompat {
     private static final String ARAB_SCRIPT_SUBTAG = "Arab";
     private static final String HEBR_SCRIPT_SUBTAG = "Hebr";
@@ -27,8 +27,8 @@ public final class TextUtilsCompat {
         if (locale == null || locale.equals(ROOT)) {
             return 0;
         }
-        String maximizeAndGetScript = ICUCompat.maximizeAndGetScript(locale);
-        return maximizeAndGetScript == null ? getLayoutDirectionFromFirstChar(locale) : (maximizeAndGetScript.equalsIgnoreCase(ARAB_SCRIPT_SUBTAG) || maximizeAndGetScript.equalsIgnoreCase(HEBR_SCRIPT_SUBTAG)) ? 1 : 0;
+        String strMaximizeAndGetScript = ICUCompat.maximizeAndGetScript(locale);
+        return strMaximizeAndGetScript == null ? getLayoutDirectionFromFirstChar(locale) : (strMaximizeAndGetScript.equalsIgnoreCase(ARAB_SCRIPT_SUBTAG) || strMaximizeAndGetScript.equalsIgnoreCase(HEBR_SCRIPT_SUBTAG)) ? 1 : 0;
     }
 
     @NonNull
@@ -38,17 +38,17 @@ public final class TextUtilsCompat {
         }
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; i2 < str.length(); i2++) {
-            char charAt = str.charAt(i2);
-            if (charAt == '\"') {
+            char cCharAt = str.charAt(i2);
+            if (cCharAt == '\"') {
                 sb.append("&quot;");
-            } else if (charAt == '<') {
+            } else if (cCharAt == '<') {
                 sb.append("&lt;");
-            } else if (charAt == '>') {
+            } else if (cCharAt == '>') {
                 sb.append("&gt;");
-            } else if (charAt == '&') {
+            } else if (cCharAt == '&') {
                 sb.append("&amp;");
-            } else if (charAt != '\'') {
-                sb.append(charAt);
+            } else if (cCharAt != '\'') {
+                sb.append(cCharAt);
             } else {
                 sb.append("&#39;");
             }

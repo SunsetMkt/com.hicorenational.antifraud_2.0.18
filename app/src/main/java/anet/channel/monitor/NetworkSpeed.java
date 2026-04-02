@@ -1,21 +1,19 @@
 package anet.channel.monitor;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public enum NetworkSpeed {
-    Slow("弱网络", 1),
-    Fast("强网络", 5);
+    Slow("\u5f31\u7f51\u7edc", 1),
+    Fast("\u5f3a\u7f51\u7edc", 5);
 
+    private final String a;
 
-    /* renamed from: a */
-    private final String f876a;
-
-    /* renamed from: b */
-    private final int f877b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final int f1467b;
 
     NetworkSpeed(String str, int i2) {
-        this.f876a = str;
-        this.f877b = i2;
+        this.a = str;
+        this.f1467b = i2;
     }
 
     public static NetworkSpeed valueOfCode(int i2) {
@@ -23,10 +21,10 @@ public enum NetworkSpeed {
     }
 
     public int getCode() {
-        return this.f877b;
+        return this.f1467b;
     }
 
     public String getDesc() {
-        return this.f876a;
+        return this.a;
     }
 }

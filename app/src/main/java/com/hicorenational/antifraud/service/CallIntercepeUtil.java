@@ -11,20 +11,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import bean.CallWarnBean;
 import bean.WhiteTelBean;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import manager.AccountManager;
 import manager.FloatingWindow;
 import manager.IFloatingWindow;
-import p388ui.callview.CallWarnCallView;
-import p388ui.presenter.WarnPresenter;
-import p388ui.presenter.WelocmPresenter;
-import util.C7301n1;
-import util.C7325u1;
+import ui.callview.CallWarnCallView;
+import ui.presenter.WarnPresenter;
+import ui.presenter.WelocmPresenter;
+import util.c2;
+import util.s1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CallIntercepeUtil implements CallWarnCallView {
     private boolean calling;
     private String inPhoneNum;
@@ -34,7 +34,7 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private int mWhiteResult = 0;
     private IFloatingWindow mWindowCall;
     private IFloatingWindow mWindowWhite;
-    private C2116a myPhoneStateListener;
+    private a myPhoneStateListener;
     private boolean phoneIsWorn;
     private TelephonyManager telephonyManager;
     private TextView tvNumTag;
@@ -43,22 +43,21 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private TextView tvWarnType;
     private WarnPresenter warnPresenter;
 
-    /* renamed from: com.hicorenational.antifraud.service.CallIntercepeUtil$a */
-    class C2116a extends PhoneStateListener {
-        C2116a() {
+    class a extends PhoneStateListener {
+        a() {
         }
 
         @Override // android.telephony.PhoneStateListener
         public void onCallStateChanged(int i2, String str) {
             super.onCallStateChanged(i2, str);
-            C7301n1.m26454a("hsc", "onReceive   state---------------   " + i2 + " / " + str);
+            s1.a("hsc", "onReceive   state---------------   " + i2 + " / " + str);
             CallIntercepeUtil.this.mIsBound = false;
             CallIntercepeUtil.this.phoneIsWorn = false;
             CallIntercepeUtil.this.inPhoneNum = str;
             if (i2 != 0) {
                 if (i2 == 1 && !CallIntercepeUtil.this.calling) {
                     CallIntercepeUtil.this.judgeWhiteTel();
-                    if (CallIntercepeUtil.this.mWhiteResult == 2 && !TextUtils.isEmpty(str) && C7325u1.m26623a(C7325u1.f25633F, false)) {
+                    if (CallIntercepeUtil.this.mWhiteResult == 2 && !TextUtils.isEmpty(str) && c2.a(c2.F, false)) {
                         CallIntercepeUtil.this.warnPresenter.requestOKHttp(CallIntercepeUtil.this.inPhoneNum);
                     }
                     CallIntercepeUtil.this.calling = true;
@@ -87,14 +86,14 @@ public class CallIntercepeUtil implements CallWarnCallView {
             this.phoneIsWorn = true;
             this.tvNumTag.setText("");
             this.tvWarnType.setText(callWarnBean.getTabText());
-            this.tvRecordTip.setText("建议拒接或接听后点击录音并举报");
+            this.tvRecordTip.setText("\u5efa\u8bae\u62d2\u63a5\u6216\u63a5\u542c\u540e\u70b9\u51fb\u5f55\u97f3\u5e76\u4e3e\u62a5");
             return;
         }
         if (callWarnBean.getSource() == 1) {
             this.phoneIsWorn = true;
-            this.tvNumTag.setText("已被" + callWarnBean.getCount() + "人标记为");
+            this.tvNumTag.setText("\u5df2\u88ab" + callWarnBean.getCount() + "\u4eba\u6807\u8bb0\u4e3a");
             this.tvWarnType.setText(callWarnBean.getTabText());
-            this.tvRecordTip.setText("建议拒接或接听后点击录音并标注");
+            this.tvRecordTip.setText("\u5efa\u8bae\u62d2\u63a5\u6216\u63a5\u542c\u540e\u70b9\u51fb\u5f55\u97f3\u5e76\u6807\u6ce8");
             return;
         }
         if (callWarnBean.getSource() != 2) {
@@ -102,9 +101,9 @@ public class CallIntercepeUtil implements CallWarnCallView {
             return;
         }
         this.phoneIsWorn = true;
-        this.tvNumTag.setText("已被" + callWarnBean.getCount() + "人举报为");
+        this.tvNumTag.setText("\u5df2\u88ab" + callWarnBean.getCount() + "\u4eba\u4e3e\u62a5\u4e3a");
         this.tvWarnType.setText(callWarnBean.getTabText());
-        this.tvRecordTip.setText("建议拒接或接听后点击录音并举报");
+        this.tvRecordTip.setText("\u5efa\u8bae\u62d2\u63a5\u6216\u63a5\u542c\u540e\u70b9\u51fb\u5f55\u97f3\u5e76\u4e3e\u62a5");
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -115,10 +114,10 @@ public class CallIntercepeUtil implements CallWarnCallView {
             for (WhiteTelBean whiteTelBean : WelocmPresenter.whiteTelList) {
                 Iterator<String> it = whiteTelBean.getList().iterator();
                 while (it.hasNext()) {
-                    String trim = Pattern.compile("[^(0-9)]").matcher(it.next()).replaceAll("").trim();
-                    if (TextUtils.equals(trim, this.inPhoneNum)) {
+                    String strTrim = Pattern.compile("[^(0-9)]").matcher(it.next()).replaceAll("").trim();
+                    if (TextUtils.equals(strTrim, this.inPhoneNum)) {
                         this.mWhiteResult = 1;
-                        this.mWindowWhite = showWhiteListWindow(trim, whiteTelBean.getAreaName());
+                        this.mWindowWhite = showWhiteListWindow(strTrim, whiteTelBean.getAreaName());
                         return;
                     }
                 }
@@ -130,29 +129,29 @@ public class CallIntercepeUtil implements CallWarnCallView {
     private IFloatingWindow showCallWindow() {
         final FloatingWindow floatingWindow = new FloatingWindow(this.mContext);
         floatingWindow.setParams(floatingWindow.getCallWarnLayoutParams());
-        View inflate = LayoutInflater.from(this.mContext).inflate(C2113R.layout.layout_call_intercepter, (ViewGroup) null);
-        this.mClose = (ImageView) inflate.findViewById(C2113R.id.iv_closee);
-        this.tvPhone = (TextView) inflate.findViewById(C2113R.id.tv_dialog_phone);
-        this.tvNumTag = (TextView) inflate.findViewById(C2113R.id.tv_num_tag);
-        this.tvWarnType = (TextView) inflate.findViewById(C2113R.id.tv_warn_type);
-        this.tvRecordTip = (TextView) inflate.findViewById(C2113R.id.tv_record_tip);
+        View viewInflate = LayoutInflater.from(this.mContext).inflate(R.layout.layout_call_intercepter, (ViewGroup) null);
+        this.mClose = (ImageView) viewInflate.findViewById(R.id.iv_closee);
+        this.tvPhone = (TextView) viewInflate.findViewById(R.id.tv_dialog_phone);
+        this.tvNumTag = (TextView) viewInflate.findViewById(R.id.tv_num_tag);
+        this.tvWarnType = (TextView) viewInflate.findViewById(R.id.tv_warn_type);
+        this.tvRecordTip = (TextView) viewInflate.findViewById(R.id.tv_record_tip);
         this.mClose.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.b
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                IFloatingWindow.this.dismiss();
+                floatingWindow.dismiss();
             }
         });
-        floatingWindow.setContentView(inflate);
+        floatingWindow.setContentView(viewInflate);
         return floatingWindow;
     }
 
     private IFloatingWindow showWhiteListWindow(String str, String str2) {
         final FloatingWindow floatingWindow = new FloatingWindow(this.mContext);
         floatingWindow.setParams(floatingWindow.getCallWarnLayoutParams());
-        View inflate = LayoutInflater.from(this.mContext).inflate(C2113R.layout.layout_white_list, (ViewGroup) null);
-        ImageView imageView = (ImageView) inflate.findViewById(C2113R.id.iv_closee);
-        TextView textView = (TextView) inflate.findViewById(C2113R.id.tv_dialog_phone);
-        TextView textView2 = (TextView) inflate.findViewById(C2113R.id.tv_dialog_describe);
+        View viewInflate = LayoutInflater.from(this.mContext).inflate(R.layout.layout_white_list, (ViewGroup) null);
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.iv_closee);
+        TextView textView = (TextView) viewInflate.findViewById(R.id.tv_dialog_phone);
+        TextView textView2 = (TextView) viewInflate.findViewById(R.id.tv_dialog_describe);
         if (floatingWindow.getAllWindow() != null) {
             textView.setText(str);
             textView2.setText(str2);
@@ -160,10 +159,10 @@ public class CallIntercepeUtil implements CallWarnCallView {
         imageView.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.a
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                IFloatingWindow.this.dismiss();
+                floatingWindow.dismiss();
             }
         });
-        floatingWindow.setContentView(inflate);
+        floatingWindow.setContentView(viewInflate);
         floatingWindow.show();
         return floatingWindow;
     }
@@ -172,12 +171,12 @@ public class CallIntercepeUtil implements CallWarnCallView {
         this.mContext = context;
         this.mWhiteResult = 0;
         this.telephonyManager = (TelephonyManager) this.mContext.getSystemService("phone");
-        this.myPhoneStateListener = new C2116a();
+        this.myPhoneStateListener = new a();
         this.telephonyManager.listen(this.myPhoneStateListener, 32);
         this.warnPresenter = new WarnPresenter(this.mContext, this);
     }
 
-    @Override // p388ui.callview.CallWarnCallView
+    @Override // ui.callview.CallWarnCallView
     public void onSuccRequest(CallWarnBean callWarnBean) {
         IFloatingWindow iFloatingWindow = this.mWindowWhite;
         if ((iFloatingWindow != null && iFloatingWindow.isShowing()) || callWarnBean == null || this.mIsBound) {

@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.ColorInt;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureCropParameterStyle implements Parcelable {
     public static final Parcelable.Creator<PictureCropParameterStyle> CREATOR = new Parcelable.Creator<PictureCropParameterStyle>() { // from class: com.luck.picture.lib.style.PictureCropParameterStyle.1
         /* JADX WARN: Can't rename method to resolve collision */

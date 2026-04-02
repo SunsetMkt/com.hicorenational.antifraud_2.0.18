@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SpdyErrorException extends RuntimeException {
     private static final long serialVersionUID = 4422888579699220045L;
     private int error;

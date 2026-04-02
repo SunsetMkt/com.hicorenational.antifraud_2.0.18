@@ -29,6 +29,7 @@ import androidx.core.view.ViewCompat;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import com.xiaomi.mipush.sdk.Constants;
+import i.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,16 +41,15 @@ import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ImgUtil {
     public static final int COLOR_FormatI420 = 1;
     public static final int COLOR_FormatNV21 = 2;
     private static final String TAG = LogUtils.makeLogTag("ImgUtil");
 
     public static Bitmap addRects(Rect[] rectArr, Bitmap bitmap) {
-        Bitmap bitmap2;
+        Bitmap bitmapCreateBitmap;
         try {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
@@ -58,9 +58,9 @@ public class ImgUtil {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(9.0f);
             paint.setAlpha(180);
-            bitmap2 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+            bitmapCreateBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
             try {
-                Canvas canvas = new Canvas(bitmap2);
+                Canvas canvas = new Canvas(bitmapCreateBitmap);
                 canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
                 for (Rect rect : rectArr) {
                     canvas.drawRect(rect, paint);
@@ -68,13 +68,12 @@ public class ImgUtil {
             } catch (Error e2) {
                 e = e2;
                 e.printStackTrace();
-                return bitmap2;
             }
         } catch (Error e3) {
             e = e3;
-            bitmap2 = null;
+            bitmapCreateBitmap = null;
         }
-        return bitmap2;
+        return bitmapCreateBitmap;
     }
 
     public static byte[] bitmapToByte(Bitmap bitmap, Bitmap.CompressFormat compressFormat, int i2) {
@@ -101,9 +100,9 @@ public class ImgUtil {
         int[] iArr = new int[i4];
         for (int i5 = 0; i5 < i4; i5++) {
             int i6 = i5 * 3;
-            int i7 = bArr[i6] & C5230f1.f20085c;
-            int i8 = bArr[i6 + 1] & C5230f1.f20085c;
-            int i9 = bArr[i6 + 2] & C5230f1.f20085c;
+            int i7 = bArr[i6] & f1.f12066c;
+            int i8 = bArr[i6 + 1] & f1.f12066c;
+            int i9 = bArr[i6 + 2] & f1.f12066c;
             if (i7 < 0) {
                 i7 = 0;
             } else if (i7 > 255) {
@@ -121,15 +120,15 @@ public class ImgUtil {
             }
             iArr[i5] = (i9 << 16) + ViewCompat.MEASURED_STATE_MASK + (i8 << 8) + i7;
         }
-        Bitmap createBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-        createBitmap.setPixels(iArr, 0, i2, 0, 0, i2, i3);
-        return createBitmap;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
+        bitmapCreateBitmap.setPixels(iArr, 0, i2, 0, 0, i2, i3);
+        return bitmapCreateBitmap;
     }
 
     public static String byteToHexString(byte[] bArr) {
         StringBuffer stringBuffer = new StringBuffer();
         for (byte b2 : bArr) {
-            String hexString = Integer.toHexString(b2 & C5230f1.f20085c);
+            String hexString = Integer.toHexString(b2 & f1.f12066c);
             if (hexString.length() == 1) {
                 hexString = '0' + hexString;
             }
@@ -145,17 +144,19 @@ public class ImgUtil {
         return null;
     }
 
+    /* JADX WARN: Path cross not found for [B:12:0x0025, B:18:0x002f], limit reached: 16 */
+    /* JADX WARN: Path cross not found for [B:12:0x0025, B:9:0x0020], limit reached: 16 */
+    /* JADX WARN: Path cross not found for [B:18:0x002f, B:12:0x0025], limit reached: 16 */
+    /* JADX WARN: Removed duplicated region for block: B:14:0x0029  */
+    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:18:0x002f -> B:12:0x0025). Please report as a decompilation issue!!! */
     /*  JADX ERROR: JadxOverflowException in pass: RegionMakerVisitor
         jadx.core.utils.exceptions.JadxOverflowException: Regions count limit reached
         	at jadx.core.utils.ErrorsCounter.addError(ErrorsCounter.java:59)
         	at jadx.core.utils.ErrorsCounter.error(ErrorsCounter.java:31)
         	at jadx.core.dex.attributes.nodes.NotificationAttrNode.addError(NotificationAttrNode.java:19)
         */
-    /* JADX WARN: Removed duplicated region for block: B:11:0x0029  */
-    /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:8:0x002f -> B:9:0x0025). Please report as a decompilation issue!!! */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
     public static int calculateInSampleSize(android.graphics.BitmapFactory.Options r5, int r6, int r7) {
         /*
@@ -217,37 +218,37 @@ public class ImgUtil {
         }
         options.inSampleSize = i4;
         options.inJustDecodeBounds = false;
-        int ceil = (int) Math.ceil(options.outHeight / i3);
-        int ceil2 = (int) Math.ceil(options.outWidth / i2);
-        if (ceil > 1 || ceil2 > 1) {
-            if (ceil > ceil2) {
-                options.inSampleSize = ceil;
+        int iCeil = (int) Math.ceil(options.outHeight / i3);
+        int iCeil2 = (int) Math.ceil(options.outWidth / i2);
+        if (iCeil > 1 || iCeil2 > 1) {
+            if (iCeil > iCeil2) {
+                options.inSampleSize = iCeil;
             } else {
-                options.inSampleSize = ceil2;
+                options.inSampleSize = iCeil2;
             }
         }
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(str, options);
     }
 
-    public static Bitmap createImageThumbnail(Context context, String str, int i2) throws IOException {
+    public static Bitmap createImageThumbnail(Context context, String str, int i2) throws Throwable {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
         Bitmap bitmapByPath = getBitmapByPath(str, options);
         if (bitmapByPath == null) {
             return null;
         }
-        int[] scaleImageSize = scaleImageSize(new int[]{bitmapByPath.getWidth(), bitmapByPath.getHeight()}, i2);
-        return scaleImageSize[0] > i2 ? zoomBitmap(bitmapByPath, scaleImageSize[0], scaleImageSize[1]) : bitmapByPath;
+        int[] iArrScaleImageSize = scaleImageSize(new int[]{bitmapByPath.getWidth(), bitmapByPath.getHeight()}, i2);
+        return iArrScaleImageSize[0] > i2 ? zoomBitmap(bitmapByPath, iArrScaleImageSize[0], iArrScaleImageSize[1]) : bitmapByPath;
     }
 
     public static Bitmap decodeSampledBitmapFromPath(String str, int i2, int i3, Bitmap.Config config) {
-        Bitmap bitmap;
+        Bitmap bitmapDecodeFile;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(str, options);
-        int calculateInSampleSize = calculateInSampleSize(options, i2, i3);
-        options.inSampleSize = calculateInSampleSize;
+        int iCalculateInSampleSize = calculateInSampleSize(options, i2, i3);
+        options.inSampleSize = iCalculateInSampleSize;
         try {
             options.inJustDecodeBounds = false;
             if (config == null) {
@@ -257,19 +258,19 @@ public class ImgUtil {
             return BitmapFactory.decodeFile(str, options);
         } catch (OutOfMemoryError e2) {
             try {
-                options.inSampleSize = calculateInSampleSize + 2;
+                options.inSampleSize = iCalculateInSampleSize + 2;
                 options.inJustDecodeBounds = false;
                 if (config == null) {
                     config = Bitmap.Config.RGB_565;
                 }
                 options.inPreferredConfig = config;
-                bitmap = BitmapFactory.decodeFile(str, options);
+                bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
             } catch (OutOfMemoryError e3) {
                 e3.printStackTrace();
-                bitmap = null;
+                bitmapDecodeFile = null;
             }
             e2.printStackTrace();
-            return bitmap;
+            return bitmapDecodeFile;
         }
     }
 
@@ -286,9 +287,9 @@ public class ImgUtil {
         return ((BitmapDrawable) drawable).getBitmap();
     }
 
-    public static Bitmap getBitmapByFile(File file) {
+    public static Bitmap getBitmapByFile(File file) throws Throwable {
         FileInputStream fileInputStream;
-        Bitmap bitmap = null;
+        Bitmap bitmapDecodeStream = null;
         try {
             try {
                 fileInputStream = new FileInputStream(file);
@@ -308,23 +309,19 @@ public class ImgUtil {
                 throw th;
             }
             try {
-                bitmap = BitmapFactory.decodeStream(fileInputStream);
+                bitmapDecodeStream = BitmapFactory.decodeStream(fileInputStream);
             } catch (FileNotFoundException e4) {
                 e = e4;
                 e.printStackTrace();
-                fileInputStream.close();
-                return bitmap;
             } catch (OutOfMemoryError e5) {
                 e = e5;
                 e.printStackTrace();
-                fileInputStream.close();
-                return bitmap;
             }
             try {
                 fileInputStream.close();
             } catch (Exception unused2) {
             }
-            return bitmap;
+            return bitmapDecodeStream;
         } catch (Throwable th2) {
             th = th2;
             fileInputStream.close();
@@ -343,34 +340,34 @@ public class ImgUtil {
         return null;
     }
 
-    public static String getDataColumn(Context context, Uri uri, String str, String[] strArr) {
-        Cursor cursor;
+    public static String getDataColumn(Context context, Uri uri, String str, String[] strArr) throws Throwable {
+        Cursor cursorQuery;
         try {
-            cursor = context.getContentResolver().query(uri, new String[]{"_data"}, str, strArr, null);
-            if (cursor != null) {
+            cursorQuery = context.getContentResolver().query(uri, new String[]{"_data"}, str, strArr, null);
+            if (cursorQuery != null) {
                 try {
-                    if (cursor.moveToFirst()) {
-                        String string = cursor.getString(cursor.getColumnIndexOrThrow("_data"));
-                        if (cursor != null) {
-                            cursor.close();
+                    if (cursorQuery.moveToFirst()) {
+                        String string = cursorQuery.getString(cursorQuery.getColumnIndexOrThrow("_data"));
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
                         }
                         return string;
                     }
                 } catch (Throwable th) {
                     th = th;
-                    if (cursor != null) {
-                        cursor.close();
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
                     }
                     throw th;
                 }
             }
-            if (cursor != null) {
-                cursor.close();
+            if (cursorQuery != null) {
+                cursorQuery.close();
             }
             return null;
         } catch (Throwable th2) {
             th = th2;
-            cursor = null;
+            cursorQuery = null;
         }
     }
 
@@ -398,17 +395,17 @@ public class ImgUtil {
         Uri uri2 = null;
         if ((Build.VERSION.SDK_INT >= 19) && DocumentsContract.isDocumentUri(context, uri)) {
             if (isExternalStorageDocument(uri)) {
-                String[] split = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
-                if ("primary".equalsIgnoreCase(split[0])) {
-                    return Util.getPackageFileBaseDir(context) + "/" + split[1];
+                String[] strArrSplit = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
+                if ("primary".equalsIgnoreCase(strArrSplit[0])) {
+                    return Util.getPackageFileBaseDir(context) + "/" + strArrSplit[1];
                 }
             } else {
                 if (isDownloadsDocument(uri)) {
                     return getDataColumn(context, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), null, null);
                 }
                 if (isMediaDocument(uri)) {
-                    String[] split2 = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
-                    String str = split2[0];
+                    String[] strArrSplit2 = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
+                    String str = strArrSplit2[0];
                     if ("image".equals(str)) {
                         uri2 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                     } else if ("video".equals(str)) {
@@ -416,7 +413,7 @@ public class ImgUtil {
                     } else if ("audio".equals(str)) {
                         uri2 = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                     }
-                    return getDataColumn(context, uri2, "_id=?", new String[]{split2[1]});
+                    return getDataColumn(context, uri2, "_id=?", new String[]{strArrSplit2[1]});
                 }
             }
         } else {
@@ -434,13 +431,13 @@ public class ImgUtil {
         if (uri == null) {
             return null;
         }
-        Cursor query = context.getContentResolver().query(uri, new String[]{"_data"}, null, null, null);
-        if (query == null) {
+        Cursor cursorQuery = context.getContentResolver().query(uri, new String[]{"_data"}, null, null, null);
+        if (cursorQuery == null) {
             return uri.getPath();
         }
-        int columnIndexOrThrow = query.getColumnIndexOrThrow("_data");
-        query.moveToFirst();
-        return query.getString(columnIndexOrThrow);
+        int columnIndexOrThrow = cursorQuery.getColumnIndexOrThrow("_data");
+        cursorQuery.moveToFirst();
+        return cursorQuery.getString(columnIndexOrThrow);
     }
 
     public static String getSmartFilePath(Context context, Uri uri) {
@@ -528,7 +525,7 @@ public class ImgUtil {
             i2 -= 6;
             bitmap.compress(Bitmap.CompressFormat.JPEG, i2, byteArrayOutputStream);
         }
-        LogUtils.LOGE(TAG, "jpg保存质量:" + i2 + "图片大小:" + bitmap.getWidth() + ";" + bitmap.getHeight());
+        LogUtils.LOGE(TAG, "jpg\u4fdd\u5b58\u8d28\u91cf:" + i2 + "\u56fe\u7247\u5927\u5c0f:" + bitmap.getWidth() + ";" + bitmap.getHeight());
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(str);
             fileOutputStream.write(byteArrayOutputStream.toByteArray());
@@ -540,75 +537,47 @@ public class ImgUtil {
         return new File(str);
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:12:0x0077  */
-    /* JADX WARN: Removed duplicated region for block: B:15:? A[RETURN, SYNTHETIC] */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public static final java.lang.String saveImageToGallery(android.content.Context r7, android.graphics.Bitmap r8, java.lang.String r9, java.lang.String r10) {
-        /*
-            android.content.ContentResolver r7 = r7.getContentResolver()
-            android.content.ContentValues r0 = new android.content.ContentValues
-            r0.<init>()
-            java.lang.String r1 = "title"
-            r0.put(r1, r9)
-            java.lang.String r1 = "_display_name"
-            r0.put(r1, r9)
-            java.lang.String r9 = "description"
-            r0.put(r9, r10)
-            java.lang.String r9 = "mime_type"
-            java.lang.String r10 = "image/jpeg"
-            r0.put(r9, r10)
-            long r9 = java.lang.System.currentTimeMillis()
-            java.lang.Long r9 = java.lang.Long.valueOf(r9)
-            java.lang.String r10 = "date_added"
-            r0.put(r10, r9)
-            long r9 = java.lang.System.currentTimeMillis()
-            java.lang.Long r9 = java.lang.Long.valueOf(r9)
-            java.lang.String r10 = "datetaken"
-            r0.put(r10, r9)
-            r9 = 0
-            android.net.Uri r10 = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI     // Catch: java.lang.Exception -> L6e
-            android.net.Uri r10 = r7.insert(r10, r0)     // Catch: java.lang.Exception -> L6e
-            if (r8 == 0) goto L68
-            java.io.OutputStream r0 = r7.openOutputStream(r10)     // Catch: java.lang.Exception -> L6c
-            android.graphics.Bitmap$CompressFormat r1 = android.graphics.Bitmap.CompressFormat.JPEG     // Catch: java.lang.Throwable -> L63
-            r2 = 50
-            r8.compress(r1, r2, r0)     // Catch: java.lang.Throwable -> L63
-            r0.close()     // Catch: java.lang.Exception -> L6c
-            long r2 = android.content.ContentUris.parseId(r10)     // Catch: java.lang.Exception -> L6c
-            r8 = 1
-            android.graphics.Bitmap r1 = android.provider.MediaStore.Images.Thumbnails.getThumbnail(r7, r2, r8, r9)     // Catch: java.lang.Exception -> L6c
-            r4 = 1112014848(0x42480000, float:50.0)
-            r5 = 1112014848(0x42480000, float:50.0)
-            r6 = 3
-            r0 = r7
-            storeThumbnail(r0, r1, r2, r4, r5, r6)     // Catch: java.lang.Exception -> L6c
-            goto L75
-        L63:
-            r8 = move-exception
-            r0.close()     // Catch: java.lang.Exception -> L6c
-            throw r8     // Catch: java.lang.Exception -> L6c
-        L68:
-            r7.delete(r10, r9, r9)     // Catch: java.lang.Exception -> L6c
-            goto L74
-        L6c:
-            goto L6f
-        L6e:
-            r10 = r9
-        L6f:
-            if (r10 == 0) goto L75
-            r7.delete(r10, r9, r9)
-        L74:
-            r10 = r9
-        L75:
-            if (r10 == 0) goto L7b
-            java.lang.String r9 = r10.toString()
-        L7b:
-            return r9
-        */
-        throw new UnsupportedOperationException("Method not decompiled: cn.cloudwalk.libproject.util.ImgUtil.saveImageToGallery(android.content.Context, android.graphics.Bitmap, java.lang.String, java.lang.String):java.lang.String");
+    public static final String saveImageToGallery(Context context, Bitmap bitmap, String str, String str2) {
+        Uri uriInsert;
+        ContentResolver contentResolver = context.getContentResolver();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("title", str);
+        contentValues.put("_display_name", str);
+        contentValues.put("description", str2);
+        contentValues.put("mime_type", "image/jpeg");
+        contentValues.put("date_added", Long.valueOf(System.currentTimeMillis()));
+        contentValues.put("datetaken", Long.valueOf(System.currentTimeMillis()));
+        try {
+            uriInsert = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            try {
+            } catch (Exception unused) {
+                if (uriInsert != null) {
+                    contentResolver.delete(uriInsert, null, null);
+                    uriInsert = null;
+                }
+            }
+        } catch (Exception unused2) {
+            uriInsert = null;
+        }
+        if (bitmap != null) {
+            OutputStream outputStreamOpenOutputStream = contentResolver.openOutputStream(uriInsert);
+            try {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStreamOpenOutputStream);
+                outputStreamOpenOutputStream.close();
+                long id = ContentUris.parseId(uriInsert);
+                storeThumbnail(contentResolver, MediaStore.Images.Thumbnails.getThumbnail(contentResolver, id, 1, null), id, 50.0f, 50.0f, 3);
+            } catch (Throwable th) {
+                outputStreamOpenOutputStream.close();
+                throw th;
+            }
+        } else {
+            contentResolver.delete(uriInsert, null, null);
+            uriInsert = null;
+        }
+        if (uriInsert != null) {
+            return uriInsert.toString();
+        }
+        return null;
     }
 
     public static void saveJPGE_After(Bitmap bitmap, String str, int i2) {
@@ -665,8 +634,8 @@ public class ImgUtil {
         if (iArr[0] <= i2 && iArr[1] <= i2) {
             return iArr;
         }
-        double max = i2 / Math.max(iArr[0], iArr[1]);
-        return new int[]{(int) (iArr[0] * max), (int) (iArr[1] * max)};
+        double dMax = ((double) i2) / ((double) Math.max(iArr[0], iArr[1]));
+        return new int[]{(int) (((double) iArr[0]) * dMax), (int) (((double) iArr[1]) * dMax)};
     }
 
     private static void scanPhoto(Context context, String str) {
@@ -679,12 +648,12 @@ public class ImgUtil {
         if (Build.VERSION.SDK_INT >= 19) {
             Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setType("image/*");
-            activity.startActivityForResult(Intent.createChooser(intent, "选择图片"), i2);
+            activity.startActivityForResult(Intent.createChooser(intent, "\u9009\u62e9\u56fe\u7247"), i2);
         } else {
             Intent intent2 = new Intent();
             intent2.setAction("android.intent.action.GET_CONTENT");
             intent2.setType("image/*");
-            activity.startActivityForResult(Intent.createChooser(intent2, "选择图片"), i2);
+            activity.startActivityForResult(Intent.createChooser(intent2, "\u9009\u62e9\u56fe\u7247"), i2);
         }
     }
 
@@ -692,72 +661,143 @@ public class ImgUtil {
         try {
             Matrix matrix = new Matrix();
             matrix.setScale(f2 / bitmap.getWidth(), f3 / bitmap.getHeight());
-            Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
             ContentValues contentValues = new ContentValues(4);
             contentValues.put("kind", Integer.valueOf(i2));
             contentValues.put("image_id", Integer.valueOf((int) j2));
-            contentValues.put(SocializeProtocolConstants.HEIGHT, Integer.valueOf(createBitmap.getHeight()));
-            contentValues.put(SocializeProtocolConstants.WIDTH, Integer.valueOf(createBitmap.getWidth()));
-            OutputStream openOutputStream = contentResolver.openOutputStream(contentResolver.insert(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, contentValues));
-            createBitmap.compress(Bitmap.CompressFormat.JPEG, 100, openOutputStream);
-            openOutputStream.close();
-            return createBitmap;
+            contentValues.put(SocializeProtocolConstants.HEIGHT, Integer.valueOf(bitmapCreateBitmap.getHeight()));
+            contentValues.put(SocializeProtocolConstants.WIDTH, Integer.valueOf(bitmapCreateBitmap.getWidth()));
+            OutputStream outputStreamOpenOutputStream = contentResolver.openOutputStream(contentResolver.insert(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, contentValues));
+            bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStreamOpenOutputStream);
+            outputStreamOpenOutputStream.close();
+            return bitmapCreateBitmap;
         } catch (Error | Exception unused) {
             return null;
         }
     }
 
     public static Bitmap toGrayscale(Bitmap bitmap) {
-        Bitmap bitmap2 = null;
+        Bitmap bitmapCreateBitmap = null;
         try {
-            bitmap2 = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.RGB_565);
-            Canvas canvas = new Canvas(bitmap2);
+            bitmapCreateBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.RGB_565);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
             Paint paint = new Paint();
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(0.0f);
             paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
-            return bitmap2;
+            return bitmapCreateBitmap;
         } catch (Error e2) {
             e2.printStackTrace();
-            return bitmap2;
+            return bitmapCreateBitmap;
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:39:0x00ad, code lost:
-    
-        if (r1 < 100.0d) goto L63;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:40:0x0116, code lost:
-    
-        r1 = 100.0d;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:45:0x00c3, code lost:
-    
-        if (r1 < 100.0d) goto L63;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:59:0x00f6, code lost:
-    
-        if (r1 < 100.0d) goto L63;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:61:0x0114, code lost:
-    
-        if (r1 < 100.0d) goto L63;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:63:0x0116 A[PHI: r5 r6
+  0x0116: PHI (r5v6 int) = (r5v4 int), (r5v5 int), (r5v11 int), (r5v12 int) binds: [B:62:0x0114, B:59:0x00f6, B:44:0x00c3, B:38:0x00ad] A[DONT_GENERATE, DONT_INLINE]
+  0x0116: PHI (r6v4 int) = (r6v2 int), (r6v3 int), (r6v6 int), (r6v7 int) binds: [B:62:0x0114, B:59:0x00f6, B:44:0x00c3, B:38:0x00ad] A[DONT_GENERATE, DONT_INLINE]] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static java.io.File weixinCompress(java.io.File r22, java.lang.String r23) {
-        /*
-            Method dump skipped, instructions count: 294
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: cn.cloudwalk.libproject.util.ImgUtil.weixinCompress(java.io.File, java.lang.String):java.io.File");
+    public static File weixinCompress(File file, String str) {
+        int i2;
+        int i3;
+        double dPow;
+        int i4;
+        int i5;
+        double dPow2;
+        String absolutePath = file.getAbsolutePath();
+        int imageSpinAngle = getImageSpinAngle(absolutePath);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        options.inSampleSize = 1;
+        BitmapFactory.decodeFile(absolutePath, options);
+        int i6 = options.outWidth;
+        int i7 = options.outHeight;
+        if (i6 % 2 == 1) {
+            i6++;
+        }
+        if (i7 % 2 == 1) {
+            i7++;
+        }
+        int i8 = i6 > i7 ? i7 : i6;
+        int i9 = i6 > i7 ? i6 : i7;
+        double d2 = i9;
+        double d3 = ((double) i8) / d2;
+        if (d3 > 1.0d || d3 <= 0.5625d) {
+            if (d3 > 0.5625d || d3 <= 0.5d) {
+                double d4 = 1280.0d / d3;
+                int iCeil = (int) Math.ceil(d2 / d4);
+                i2 = i8 / iCeil;
+                i3 = i9 / iCeil;
+                dPow = 500.0d * (((double) (i2 * i3)) / (d4 * 1280.0d));
+                if (dPow < 100.0d) {
+                    dPow = 100.0d;
+                }
+                i4 = i3;
+                i5 = i2;
+                dPow2 = dPow;
+            } else {
+                if (i9 < 1280 && file.length() / 1024 < 200) {
+                    return file;
+                }
+                int i10 = i9 / 1280;
+                if (i10 == 0) {
+                    i10 = 1;
+                }
+                i2 = i8 / i10;
+                i3 = i9 / i10;
+                dPow = (((double) (i2 * i3)) / 3686400.0d) * 400.0d;
+                if (dPow < 100.0d) {
+                }
+                i4 = i3;
+                i5 = i2;
+                dPow2 = dPow;
+            }
+        } else if (i9 >= 1664) {
+            if (i9 >= 1664 && i9 < 4990) {
+                i2 = i8 / 2;
+                i3 = i9 / 2;
+                dPow = (((double) (i2 * i3)) / Math.pow(2495.0d, 2.0d)) * 300.0d;
+                if (dPow < 60.0d) {
+                    dPow = 60.0d;
+                }
+            } else if (i9 < 4990 || i9 >= 10240) {
+                int i11 = i9 / 1280;
+                if (i11 == 0) {
+                    i11 = 1;
+                }
+                i2 = i8 / i11;
+                i3 = i9 / i11;
+                dPow = (((double) (i2 * i3)) / Math.pow(2560.0d, 2.0d)) * 300.0d;
+                if (dPow < 100.0d) {
+                }
+            } else {
+                i2 = i8 / 4;
+                i3 = i9 / 4;
+                dPow = (((double) (i2 * i3)) / Math.pow(2560.0d, 2.0d)) * 300.0d;
+                if (dPow < 100.0d) {
+                }
+            }
+            i4 = i3;
+            i5 = i2;
+            dPow2 = dPow;
+        } else {
+            if (file.length() / 1024 < 150) {
+                return file;
+            }
+            dPow2 = (((double) (i8 * i9)) / Math.pow(1664.0d, 2.0d)) * 150.0d;
+            if (dPow2 < 60.0d) {
+                dPow2 = 60.0d;
+            }
+            i5 = i6;
+            i4 = i7;
+        }
+        return compress(absolutePath, str, i5, i4, imageSpinAngle, (long) dPow2);
     }
 
     public static Bitmap zoomBitmap(Bitmap bitmap, int i2, int i3) {
-        Bitmap bitmap2 = null;
+        Bitmap bitmapCreateBitmap = null;
         if (bitmap == null) {
             return null;
         }
@@ -775,12 +815,12 @@ public class ImgUtil {
             } else {
                 matrix.postScale(f2, f2);
             }
-            bitmap2 = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+            bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
             bitmap.recycle();
-            return bitmap2;
+            return bitmapCreateBitmap;
         } catch (Error e2) {
             e2.printStackTrace();
-            return bitmap2;
+            return bitmapCreateBitmap;
         }
     }
 
@@ -789,17 +829,20 @@ public class ImgUtil {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r0v0 */
+    /* JADX WARN: Type inference failed for: r0v1, types: [java.io.FileInputStream] */
+    /* JADX WARN: Type inference failed for: r0v2 */
     /* JADX WARN: Type inference failed for: r2v0, types: [java.lang.String] */
     /* JADX WARN: Type inference failed for: r2v10 */
     /* JADX WARN: Type inference failed for: r2v3 */
     /* JADX WARN: Type inference failed for: r2v6, types: [java.io.FileInputStream] */
     /* JADX WARN: Type inference failed for: r2v8 */
     /* JADX WARN: Type inference failed for: r2v9 */
-    public static Bitmap getBitmapByPath(String str, BitmapFactory.Options options) {
+    public static Bitmap getBitmapByPath(String str, BitmapFactory.Options options) throws Throwable {
         FileInputStream fileInputStream;
-        FileInputStream fileInputStream2 = null;
-        r0 = null;
-        Bitmap bitmap = null;
+        ?? r0 = 0;
+        bitmapDecodeStream = null;
+        Bitmap bitmapDecodeStream = null;
         try {
             try {
                 fileInputStream = new FileInputStream(new File((String) str));
@@ -812,46 +855,42 @@ public class ImgUtil {
             } catch (Throwable th) {
                 th = th;
                 try {
-                    fileInputStream2.close();
+                    r0.close();
                 } catch (Exception unused) {
                 }
                 throw th;
             }
             try {
-                bitmap = BitmapFactory.decodeStream(fileInputStream, null, options);
+                bitmapDecodeStream = BitmapFactory.decodeStream(fileInputStream, null, options);
                 str = fileInputStream;
             } catch (FileNotFoundException e4) {
                 e = e4;
                 e.printStackTrace();
                 str = fileInputStream;
-                str.close();
-                return bitmap;
             } catch (OutOfMemoryError e5) {
                 e = e5;
                 e.printStackTrace();
                 str = fileInputStream;
-                str.close();
-                return bitmap;
             }
             try {
                 str.close();
             } catch (Exception unused2) {
             }
-            return bitmap;
+            return bitmapDecodeStream;
         } catch (Throwable th2) {
             th = th2;
-            fileInputStream2 = str;
-            fileInputStream2.close();
+            r0 = str;
+            r0.close();
             throw th;
         }
     }
 
     private static File compress(String str, String str2, int i2, int i3, int i4, long j2) {
-        Bitmap compress = compress(str, i2, i3);
+        Bitmap bitmapCompress = compress(str, i2, i3);
         if (i4 > 0) {
-            compress = rotatingImage(i4, compress);
+            bitmapCompress = rotatingImage(i4, bitmapCompress);
         }
-        return saveImage(str2, compress, j2);
+        return saveImage(str2, bitmapCompress, j2);
     }
 
     public static void saveImageToGallery(Context context, Bitmap bitmap, String str) {

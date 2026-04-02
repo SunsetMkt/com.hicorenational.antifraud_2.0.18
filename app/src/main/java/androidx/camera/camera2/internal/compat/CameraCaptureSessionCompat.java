@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 public final class CameraCaptureSessionCompat {
     private static final CameraCaptureSessionCompatImpl IMPL = chooseImplementation();
 

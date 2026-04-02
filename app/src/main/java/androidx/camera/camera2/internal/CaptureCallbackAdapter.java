@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.impl.CameraCaptureCallback;
 import androidx.camera.core.impl.CameraCaptureFailure;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class CaptureCallbackAdapter extends CameraCaptureSession.CaptureCallback {
     private final CameraCaptureCallback mCameraCaptureCallback;
 

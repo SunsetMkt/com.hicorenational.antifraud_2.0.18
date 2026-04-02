@@ -6,53 +6,53 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMVideo extends BaseMediaObject {
 
-    /* renamed from: f */
-    private String f13675f;
+    /* JADX INFO: renamed from: f */
+    private String f8305f;
 
-    /* renamed from: g */
-    private String f13676g;
+    /* JADX INFO: renamed from: g */
+    private String f8306g;
 
-    /* renamed from: h */
-    private String f13677h;
+    /* JADX INFO: renamed from: h */
+    private String f8307h;
 
-    /* renamed from: i */
-    private String f13678i;
+    /* JADX INFO: renamed from: i */
+    private String f8308i;
 
-    /* renamed from: j */
-    private int f13679j;
+    /* JADX INFO: renamed from: j */
+    private int f8309j;
 
-    /* renamed from: k */
-    private File f13680k;
+    /* JADX INFO: renamed from: k */
+    private File f8310k;
 
     public UMVideo(String str) {
         super(str);
     }
 
     public int getDuration() {
-        return this.f13679j;
+        return this.f8309j;
     }
 
     public String getH5Url() {
-        return this.f13678i;
+        return this.f8308i;
     }
 
     public String getHighBandDataUrl() {
-        return this.f13677h;
+        return this.f8307h;
     }
 
     public File getLocalVideoFile() {
-        return this.f13680k;
+        return this.f8310k;
     }
 
     public String getLowBandDataUrl() {
-        return this.f13676g;
+        return this.f8306g;
     }
 
     public String getLowBandUrl() {
-        return this.f13675f;
+        return this.f8305f;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
@@ -61,28 +61,28 @@ public class UMVideo extends BaseMediaObject {
     }
 
     public void setDuration(int i2) {
-        this.f13679j = i2;
+        this.f8309j = i2;
     }
 
     public void setH5Url(String str) {
-        this.f13678i = str;
+        this.f8308i = str;
     }
 
     public void setHighBandDataUrl(String str) {
-        this.f13677h = str;
+        this.f8307h = str;
     }
 
     public void setLowBandDataUrl(String str) {
-        this.f13676g = str;
+        this.f8306g = str;
     }
 
     public void setLowBandUrl(String str) {
-        this.f13675f = str;
+        this.f8305f = str;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f13636e;
+        UMImage uMImage = this.f8275e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -91,20 +91,20 @@ public class UMVideo extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public String toString() {
-        return "UMVedio [media_url=" + this.f13632a + ", qzone_title=" + this.f13633b + ", qzone_thumb=media_url=" + this.f13632a + ", qzone_title=" + this.f13633b + ", qzone_thumb=]";
+        return "UMVedio [media_url=" + this.a + ", qzone_title=" + this.f8272b + ", qzone_thumb=media_url=" + this.a + ", qzone_title=" + this.f8272b + ", qzone_thumb=]";
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public final Map<String, Object> toUrlExtraParams() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.a);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
         }
-        return hashMap;
+        return map;
     }
 
     public UMVideo(File file) {
-        this.f13680k = file;
+        this.f8310k = file;
     }
 }

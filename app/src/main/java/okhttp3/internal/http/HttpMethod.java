@@ -2,7 +2,7 @@ package okhttp3.internal.http;
 
 import anet.channel.request.Request;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class HttpMethod {
     private HttpMethod() {
     }

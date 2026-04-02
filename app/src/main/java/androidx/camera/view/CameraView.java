@@ -33,13 +33,12 @@ import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.lifecycle.LifecycleOwner;
-import com.luck.picture.lib.C2639R;
+import com.luck.picture.lib.R;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
-import util.permissionutil.C7308a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraView extends FrameLayout {
     static final boolean DEBUG = false;
     private static final String EXTRA_CAMERA_DIRECTION = "camera_direction";
@@ -70,6 +69,40 @@ public final class CameraView extends FrameLayout {
     private MotionEvent mUpEvent;
     private WeakReference<PreviewView> mWeakReferencePreviewView;
 
+    /* JADX INFO: renamed from: androidx.camera.view.CameraView$1 */
+    class AnonymousClass1 implements DisplayManager.DisplayListener {
+        AnonymousClass1() {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayAdded(int i2) {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayChanged(int i2) {
+            CameraView.this.mCameraModule.invalidateView();
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayRemoved(int i2) {
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.view.CameraView$2 */
+    class AnonymousClass2 implements FutureCallback<FocusMeteringResult> {
+        AnonymousClass2() {
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.FutureCallback
+        public void onFailure(Throwable th) {
+            throw new RuntimeException(th);
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.FutureCallback
+        public void onSuccess(@Nullable FocusMeteringResult focusMeteringResult) {
+        }
+    }
+
     public enum CaptureMode {
         IMAGE(0),
         VIDEO(1),
@@ -97,7 +130,7 @@ public final class CameraView extends FrameLayout {
 
     private class PinchToZoomGestureDetector extends ScaleGestureDetector implements ScaleGestureDetector.OnScaleGestureListener {
         PinchToZoomGestureDetector(CameraView cameraView, Context context) {
-            this(context, new C0420S());
+            this(context, new S());
         }
 
         @Override // android.view.ScaleGestureDetector.OnScaleGestureListener
@@ -118,17 +151,16 @@ public final class CameraView extends FrameLayout {
         public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
         }
 
-        PinchToZoomGestureDetector(Context context, C0420S c0420s) {
-            super(context, c0420s);
-            c0420s.setRealGestureDetector(this);
+        PinchToZoomGestureDetector(Context context, S s) {
+            super(context, s);
+            s.setRealGestureDetector(this);
         }
     }
 
-    /* renamed from: androidx.camera.view.CameraView$S */
-    static class C0420S extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    static class S extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         private ScaleGestureDetector.OnScaleGestureListener mListener;
 
-        C0420S() {
+        S() {
         }
 
         @Override // android.view.ScaleGestureDetector.SimpleOnScaleGestureListener, android.view.ScaleGestureDetector.OnScaleGestureListener
@@ -183,11 +215,11 @@ public final class CameraView extends FrameLayout {
         addView(this.mWeakReferencePreviewView.get(), 0);
         this.mCameraModule = new CameraXModule(this);
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = ((Context) weakReference.get()).obtainStyledAttributes(attributeSet, C2639R.styleable.CameraView);
-            setScaleType(ScaleType.fromId(obtainStyledAttributes.getInteger(C2639R.styleable.CameraView_scaleType, getScaleType().getId())));
-            setPinchToZoomEnabled(obtainStyledAttributes.getBoolean(C2639R.styleable.CameraView_pinchToZoomEnabled, isPinchToZoomEnabled()));
-            setCaptureMode(CaptureMode.fromId(obtainStyledAttributes.getInteger(C2639R.styleable.CameraView_captureMode, getCaptureMode().getId())));
-            int i2 = obtainStyledAttributes.getInt(C2639R.styleable.CameraView_lensFacing, 2);
+            TypedArray typedArrayObtainStyledAttributes = ((Context) weakReference.get()).obtainStyledAttributes(attributeSet, R.styleable.CameraView);
+            setScaleType(ScaleType.fromId(typedArrayObtainStyledAttributes.getInteger(R.styleable.CameraView_scaleType, getScaleType().getId())));
+            setPinchToZoomEnabled(typedArrayObtainStyledAttributes.getBoolean(R.styleable.CameraView_pinchToZoomEnabled, isPinchToZoomEnabled()));
+            setCaptureMode(CaptureMode.fromId(typedArrayObtainStyledAttributes.getInteger(R.styleable.CameraView_captureMode, getCaptureMode().getId())));
+            int i2 = typedArrayObtainStyledAttributes.getInt(R.styleable.CameraView_lensFacing, 2);
             if (i2 == 0) {
                 setCameraLensFacing(null);
             } else if (i2 == 1) {
@@ -195,7 +227,7 @@ public final class CameraView extends FrameLayout {
             } else if (i2 == 2) {
                 setCameraLensFacing(1);
             }
-            int i3 = obtainStyledAttributes.getInt(C2639R.styleable.CameraView_flash, 0);
+            int i3 = typedArrayObtainStyledAttributes.getInt(R.styleable.CameraView_flash, 0);
             if (i3 == 1) {
                 setFlash(0);
             } else if (i3 == 2) {
@@ -203,7 +235,7 @@ public final class CameraView extends FrameLayout {
             } else if (i3 == 4) {
                 setFlash(2);
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
         if (getBackground() == null) {
             setBackgroundColor(-15658735);
@@ -219,7 +251,7 @@ public final class CameraView extends FrameLayout {
         this.mCameraModule.setMaxVideoSize(j2);
     }
 
-    @RequiresPermission(C7308a.f25524c)
+    @RequiresPermission(util.permissionutil.a.f15026c)
     public void bindToLifecycle(@NonNull LifecycleOwner lifecycleOwner) {
         this.mCameraModule.bindToLifecycle(lifecycleOwner);
     }
@@ -276,7 +308,7 @@ public final class CameraView extends FrameLayout {
         return this.mCameraModule.getZoomRatio();
     }
 
-    @RequiresPermission(C7308a.f25524c)
+    @RequiresPermission(util.permissionutil.a.f15026c)
     public boolean hasCameraWithLensFacing(int i2) {
         return this.mCameraModule.hasCameraWithLensFacing(i2);
     }
@@ -398,11 +430,14 @@ public final class CameraView extends FrameLayout {
         float y = motionEvent2 != null ? motionEvent2.getY() : getY() + (getHeight() / 2.0f);
         this.mUpEvent = null;
         DisplayOrientedMeteringPointFactory displayOrientedMeteringPointFactory = new DisplayOrientedMeteringPointFactory(getDisplay(), new CameraSelector.Builder().requireLensFacing(this.mCameraModule.getLensFacing().intValue()).build(), getPreviewView().getWidth(), getPreviewView().getHeight());
-        MeteringPoint createPoint = displayOrientedMeteringPointFactory.createPoint(x, y, 0.16666667f);
-        MeteringPoint createPoint2 = displayOrientedMeteringPointFactory.createPoint(x, y, 0.25f);
+        MeteringPoint meteringPointCreatePoint = displayOrientedMeteringPointFactory.createPoint(x, y, 0.16666667f);
+        MeteringPoint meteringPointCreatePoint2 = displayOrientedMeteringPointFactory.createPoint(x, y, 0.25f);
         Camera camera = this.mCameraModule.getCamera();
         if (camera != null) {
-            Futures.addCallback(camera.getCameraControl().startFocusAndMetering(new FocusMeteringAction.Builder(createPoint, 1).addPoint(createPoint2, 2).build()), new FutureCallback<FocusMeteringResult>() { // from class: androidx.camera.view.CameraView.2
+            Futures.addCallback(camera.getCameraControl().startFocusAndMetering(new FocusMeteringAction.Builder(meteringPointCreatePoint, 1).addPoint(meteringPointCreatePoint2, 2).build()), new FutureCallback<FocusMeteringResult>() { // from class: androidx.camera.view.CameraView.2
+                AnonymousClass2() {
+                }
+
                 @Override // androidx.camera.core.impl.utils.futures.FutureCallback
                 public void onFailure(Throwable th) {
                     throw new RuntimeException(th);
@@ -467,7 +502,6 @@ public final class CameraView extends FrameLayout {
         this(context, attributeSet, 0);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // android.widget.FrameLayout, android.view.ViewGroup
     @NonNull
     public FrameLayout.LayoutParams generateDefaultLayoutParams() {
@@ -482,17 +516,20 @@ public final class CameraView extends FrameLayout {
         super(context, attributeSet, i2);
         this.mIsPinchToZoomEnabled = true;
         this.mDisplayListener = new DisplayManager.DisplayListener() { // from class: androidx.camera.view.CameraView.1
-            @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayAdded(int i3) {
+            AnonymousClass1() {
             }
 
             @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayChanged(int i3) {
+            public void onDisplayAdded(int i22) {
+            }
+
+            @Override // android.hardware.display.DisplayManager.DisplayListener
+            public void onDisplayChanged(int i22) {
                 CameraView.this.mCameraModule.invalidateView();
             }
 
             @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayRemoved(int i3) {
+            public void onDisplayRemoved(int i22) {
             }
         };
         this.mScaleType = ScaleType.CENTER_CROP;
@@ -504,17 +541,20 @@ public final class CameraView extends FrameLayout {
         super(context, attributeSet, i2, i3);
         this.mIsPinchToZoomEnabled = true;
         this.mDisplayListener = new DisplayManager.DisplayListener() { // from class: androidx.camera.view.CameraView.1
-            @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayAdded(int i32) {
+            AnonymousClass1() {
             }
 
             @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayChanged(int i32) {
+            public void onDisplayAdded(int i22) {
+            }
+
+            @Override // android.hardware.display.DisplayManager.DisplayListener
+            public void onDisplayChanged(int i22) {
                 CameraView.this.mCameraModule.invalidateView();
             }
 
             @Override // android.hardware.display.DisplayManager.DisplayListener
-            public void onDisplayRemoved(int i32) {
+            public void onDisplayRemoved(int i22) {
             }
         };
         this.mScaleType = ScaleType.CENTER_CROP;

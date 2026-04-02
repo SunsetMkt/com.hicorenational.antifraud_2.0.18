@@ -3,9 +3,9 @@ package com.taobao.accs;
 import androidx.annotation.Keep;
 import java.util.Map;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 @Keep
-/* loaded from: classes.dex */
 public interface IAppReceiver {
     @Keep
     Map<String, String> getAllServices();

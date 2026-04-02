@@ -20,7 +20,7 @@ import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class UMActionFrame extends LinearLayout {
     private ShareBoardConfig mConfig;
     private PopupWindow.OnDismissListener mDismissListener;
@@ -44,7 +44,7 @@ class UMActionFrame extends LinearLayout {
     }
 
     private View createShareboardLayout(List<SnsPlatform> list) {
-        final IndicatorView createIndicatorView;
+        final IndicatorView indicatorViewCreateIndicatorView;
         int i2;
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setBackgroundColor(this.mConfig.mShareboardBgColor);
@@ -58,18 +58,18 @@ class UMActionFrame extends LinearLayout {
         if (this.mConfig.mTitleVisibility) {
             linearLayout.addView(createShareTitle());
         }
-        int calculateMenuHeightInDp = this.mConfig.calculateMenuHeightInDp(list.size());
-        ViewPager createViewPagerInstance = createViewPagerInstance();
-        if (createViewPagerInstance != null) {
+        int iCalculateMenuHeightInDp = this.mConfig.calculateMenuHeightInDp(list.size());
+        ViewPager viewPagerCreateViewPagerInstance = createViewPagerInstance();
+        if (viewPagerCreateViewPagerInstance != null) {
             SocializeMenuPagerAdapter socializeMenuPagerAdapter = new SocializeMenuPagerAdapter(getContext(), this.mConfig);
             socializeMenuPagerAdapter.setData(list);
-            settingMenuLayout(createViewPagerInstance, calculateMenuHeightInDp);
-            linearLayout.addView(createViewPagerInstance);
-            createViewPagerInstance.setAdapter(socializeMenuPagerAdapter);
-            createIndicatorView = this.mConfig.mIndicatorVisibility ? createIndicatorView() : null;
-            if (createIndicatorView != null) {
-                createIndicatorView.setPageCount(socializeMenuPagerAdapter.getCount());
-                linearLayout.addView(createIndicatorView);
+            settingMenuLayout(viewPagerCreateViewPagerInstance, iCalculateMenuHeightInDp);
+            linearLayout.addView(viewPagerCreateViewPagerInstance);
+            viewPagerCreateViewPagerInstance.setAdapter(socializeMenuPagerAdapter);
+            indicatorViewCreateIndicatorView = this.mConfig.mIndicatorVisibility ? createIndicatorView() : null;
+            if (indicatorViewCreateIndicatorView != null) {
+                indicatorViewCreateIndicatorView.setPageCount(socializeMenuPagerAdapter.getCount());
+                linearLayout.addView(indicatorViewCreateIndicatorView);
             }
             ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() { // from class: com.umeng.socialize.shareboard.UMActionFrame.2
                 @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -82,33 +82,33 @@ class UMActionFrame extends LinearLayout {
 
                 @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
                 public void onPageSelected(int i3) {
-                    IndicatorView indicatorView = createIndicatorView;
+                    IndicatorView indicatorView = indicatorViewCreateIndicatorView;
                     if (indicatorView != null) {
                         indicatorView.setSelectedPosition(i3);
                     }
                 }
             };
             if (verifyMethodExists()) {
-                createViewPagerInstance.addOnPageChangeListener(onPageChangeListener);
+                viewPagerCreateViewPagerInstance.addOnPageChangeListener(onPageChangeListener);
             } else {
-                createViewPagerInstance.setOnPageChangeListener(onPageChangeListener);
+                viewPagerCreateViewPagerInstance.setOnPageChangeListener(onPageChangeListener);
             }
         } else {
-            SocializeViewPager createSocializeViewPagerInstance = createSocializeViewPagerInstance();
-            if (createSocializeViewPagerInstance == null) {
+            SocializeViewPager socializeViewPagerCreateSocializeViewPagerInstance = createSocializeViewPagerInstance();
+            if (socializeViewPagerCreateSocializeViewPagerInstance == null) {
                 return null;
             }
             SocializeMenuAdapter socializeMenuAdapter = new SocializeMenuAdapter(getContext(), this.mConfig);
             socializeMenuAdapter.setData(list);
-            settingMenuLayout(createSocializeViewPagerInstance, calculateMenuHeightInDp);
-            linearLayout.addView(createSocializeViewPagerInstance);
-            createSocializeViewPagerInstance.setAdapter(socializeMenuAdapter);
-            createIndicatorView = this.mConfig.mIndicatorVisibility ? createIndicatorView() : null;
-            if (createIndicatorView != null) {
-                createIndicatorView.setPageCount(socializeMenuAdapter.getCount());
-                linearLayout.addView(createIndicatorView);
+            settingMenuLayout(socializeViewPagerCreateSocializeViewPagerInstance, iCalculateMenuHeightInDp);
+            linearLayout.addView(socializeViewPagerCreateSocializeViewPagerInstance);
+            socializeViewPagerCreateSocializeViewPagerInstance.setAdapter(socializeMenuAdapter);
+            indicatorViewCreateIndicatorView = this.mConfig.mIndicatorVisibility ? createIndicatorView() : null;
+            if (indicatorViewCreateIndicatorView != null) {
+                indicatorViewCreateIndicatorView.setPageCount(socializeMenuAdapter.getCount());
+                linearLayout.addView(indicatorViewCreateIndicatorView);
             }
-            createSocializeViewPagerInstance.addOnPageChangeListener(new SocializeViewPager.OnPageChangeListener() { // from class: com.umeng.socialize.shareboard.UMActionFrame.3
+            socializeViewPagerCreateSocializeViewPagerInstance.addOnPageChangeListener(new SocializeViewPager.OnPageChangeListener() { // from class: com.umeng.socialize.shareboard.UMActionFrame.3
                 @Override // com.umeng.socialize.shareboard.widgets.SocializeViewPager.OnPageChangeListener
                 public void onPageScrollStateChanged(int i3) {
                 }
@@ -119,7 +119,7 @@ class UMActionFrame extends LinearLayout {
 
                 @Override // com.umeng.socialize.shareboard.widgets.SocializeViewPager.OnPageChangeListener
                 public void onPageSelected(int i3) {
-                    IndicatorView indicatorView = createIndicatorView;
+                    IndicatorView indicatorView = indicatorViewCreateIndicatorView;
                     if (indicatorView != null) {
                         indicatorView.setSelectedPosition(i3);
                     }
@@ -174,8 +174,8 @@ class UMActionFrame extends LinearLayout {
             setGravity(80);
         } else if (i2 == ShareBoardConfig.SHAREBOARD_POSITION_CENTER) {
             setGravity(17);
-            int dip2px = dip2px(36.0f);
-            setPadding(dip2px, 0, dip2px, 0);
+            int iDip2px = dip2px(36.0f);
+            setPadding(iDip2px, 0, iDip2px, 0);
         }
         setOnClickListener(new View.OnClickListener() { // from class: com.umeng.socialize.shareboard.UMActionFrame.1
             @Override // android.view.View.OnClickListener
@@ -185,23 +185,23 @@ class UMActionFrame extends LinearLayout {
                 }
             }
         });
-        View createShareboardLayout = createShareboardLayout(list);
-        if (createShareboardLayout == null) {
+        View viewCreateShareboardLayout = createShareboardLayout(list);
+        if (viewCreateShareboardLayout == null) {
             return;
         }
-        createShareboardLayout.setClickable(true);
-        addView(createShareboardLayout);
+        viewCreateShareboardLayout.setClickable(true);
+        addView(viewCreateShareboardLayout);
     }
 
     private void settingMenuLayout(View view, int i2) {
-        int dip2px = dip2px(20.0f);
+        int iDip2px = dip2px(20.0f);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, dip2px(i2));
-        layoutParams.topMargin = dip2px;
-        int dip2px2 = dip2px(10.0f);
-        layoutParams.rightMargin = dip2px2;
-        layoutParams.leftMargin = dip2px2;
+        layoutParams.topMargin = iDip2px;
+        int iDip2px2 = dip2px(10.0f);
+        layoutParams.rightMargin = iDip2px2;
+        layoutParams.leftMargin = iDip2px2;
         view.setLayoutParams(layoutParams);
-        view.setPadding(0, 0, 0, dip2px);
+        view.setPadding(0, 0, 0, iDip2px);
     }
 
     private boolean verifyMethodExists() {
@@ -240,10 +240,10 @@ class UMActionFrame extends LinearLayout {
     }
 
     public IndicatorView createIndicatorView() {
-        int dip2px = dip2px(20.0f);
+        int iDip2px = dip2px(20.0f);
         IndicatorView indicatorView = new IndicatorView(getContext());
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, -2);
-        layoutParams.bottomMargin = dip2px;
+        layoutParams.bottomMargin = iDip2px;
         indicatorView.setLayoutParams(layoutParams);
         ShareBoardConfig shareBoardConfig = this.mConfig;
         indicatorView.setIndicatorColor(shareBoardConfig.mIndicatorNormalColor, shareBoardConfig.mIndicatorSelectedColor);

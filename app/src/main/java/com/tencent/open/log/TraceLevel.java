@@ -1,7 +1,7 @@
 package com.tencent.open.log;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public interface TraceLevel {
     public static final int ABOVE_DEBUG = 60;
     public static final int ABOVE_INFO = 56;

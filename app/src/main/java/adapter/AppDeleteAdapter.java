@@ -7,63 +7,58 @@ import bean.AppInfoBean;
 import bean.UploadStateInfo;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.List;
-import p388ui.Hicore;
+import ui.Hicore;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppDeleteAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
-
-    /* renamed from: V */
-    List<UploadStateInfo> f168V;
+    List<UploadStateInfo> V;
 
     public AppDeleteAdapter(int i2, List<AppInfoBean> list, List<UploadStateInfo> list2) {
         super(i2, list);
-        this.f168V = list2;
+        this.V = list2;
     }
 
     @Override // com.chad.library.adapter.base.BaseQuickAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
-    /* renamed from: a */
+    /* JADX INFO: renamed from: a */
     public void onBindViewHolder(BaseViewHolder baseViewHolder, int i2) {
-        super.onBindViewHolder((AppDeleteAdapter) baseViewHolder, i2);
-        TextView textView = (TextView) baseViewHolder.m5224c(C2113R.id.tv_upload_state);
-        if (i2 < this.f168V.size()) {
-            m205a(textView, this.f168V.get(i2));
+        super.onBindViewHolder(baseViewHolder, i2);
+        TextView textView = (TextView) baseViewHolder.c(R.id.tv_upload_state);
+        if (i2 < this.V.size()) {
+            a(textView, this.V.get(i2));
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.chad.library.adapter.base.BaseQuickAdapter
-    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
-    public void mo204a(BaseViewHolder baseViewHolder, AppInfoBean appInfoBean) {
+    public void a(BaseViewHolder baseViewHolder, AppInfoBean appInfoBean) {
         Drawable appIcon = appInfoBean.getAppIcon();
         if (appIcon != null) {
-            baseViewHolder.m5202a(C2113R.id.app_icon, appIcon);
+            baseViewHolder.a(R.id.app_icon, appIcon);
         }
-        String formatFileSize = Formatter.formatFileSize(Hicore.getApp(), appInfoBean.getFileSize());
-        baseViewHolder.m5211a(C2113R.id.tv_app_name, (CharSequence) appInfoBean.getName()).m5211a(C2113R.id.tv_app_version, (CharSequence) ("版本:" + appInfoBean.getVersionCode() + "  |  " + formatFileSize)).m5194a(C2113R.id.iv_clear);
+        String fileSize = Formatter.formatFileSize(Hicore.getApp(), appInfoBean.getFileSize());
+        baseViewHolder.a(R.id.tv_app_name, (CharSequence) appInfoBean.getName()).a(R.id.tv_app_version, (CharSequence) ("\u7248\u672c:" + appInfoBean.getVersionCode() + "  |  " + fileSize)).a(R.id.iv_clear);
     }
 
-    /* renamed from: a */
-    private void m205a(TextView textView, UploadStateInfo uploadStateInfo) {
+    private void a(TextView textView, UploadStateInfo uploadStateInfo) {
         int uploadState = uploadStateInfo.getUploadState();
         if (uploadState == 0) {
-            textView.setText("等待上传");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorGray));
+            textView.setText("\u7b49\u5f85\u4e0a\u4f20");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorGray));
             return;
         }
         if (uploadState == 1) {
-            textView.setText("上传中");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.black_dark));
+            textView.setText("\u4e0a\u4f20\u4e2d");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.black_dark));
         } else if (uploadState == 2) {
-            textView.setText("上传完成");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.blue));
+            textView.setText("\u4e0a\u4f20\u5b8c\u6210");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.blue));
         } else {
             if (uploadState != 3) {
                 return;
             }
-            textView.setText("上传失败");
-            textView.setTextColor(Hicore.getApp().getResources().getColor(C2113R.color.colorRed));
+            textView.setText("\u4e0a\u4f20\u5931\u8d25");
+            textView.setTextColor(Hicore.getApp().getResources().getColor(R.color.colorRed));
         }
     }
 }

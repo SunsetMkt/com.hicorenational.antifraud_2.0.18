@@ -11,7 +11,7 @@ import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.IntentUtil;
 import java.lang.ref.WeakReference;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ResolutionDelegate implements IBridgeActivityDelegate {
     public static final String CALLBACK_METHOD = "CALLBACK_METHOD";
     private static final int REQUEST_CODE = 1002;
@@ -46,18 +46,18 @@ public class ResolutionDelegate implements IBridgeActivityDelegate {
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
         if (activity == null || activity.isFinishing()) {
-            HMSLog.m7715e(TAG, "activity is null or finishing");
+            HMSLog.e(TAG, "activity is null or finishing");
             return;
         }
         this.mThisWeakRef = new WeakReference<>(activity);
-        Bundle bundle = null;
+        Bundle extras = null;
         try {
-            bundle = activity.getIntent().getExtras();
+            extras = activity.getIntent().getExtras();
         } catch (Exception e2) {
-            HMSLog.m7715e(TAG, "getExtras exception:" + e2.getMessage());
+            HMSLog.e(TAG, "getExtras exception:" + e2.getMessage());
         }
-        if (bundle != null) {
-            activity.startActivityForResult(IntentUtil.modifyIntentBehaviorsSafe((Intent) bundle.getParcelable("resolution")), 1002);
+        if (extras != null) {
+            activity.startActivityForResult(IntentUtil.modifyIntentBehaviorsSafe((Intent) extras.getParcelable("resolution")), 1002);
         }
     }
 
@@ -72,9 +72,9 @@ public class ResolutionDelegate implements IBridgeActivityDelegate {
             return false;
         }
         BusResponseCallback responseCallback = getResponseCallback(CALLBACK_METHOD);
-        int isHuaweiMobileServicesAvailable = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(this.mThisWeakRef.get(), 30000000);
-        if (i3 == -1 && isHuaweiMobileServicesAvailable == 0) {
-            HMSLog.m7717i(TAG, "Make service available success.");
+        int iIsHuaweiMobileServicesAvailable = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(this.mThisWeakRef.get(), 30000000);
+        if (i3 == -1 && iIsHuaweiMobileServicesAvailable == 0) {
+            HMSLog.i(TAG, "Make service available success.");
         } else {
             responseCallback.innerError(this.mThisWeakRef.get(), i3, "Make service available failed.");
         }

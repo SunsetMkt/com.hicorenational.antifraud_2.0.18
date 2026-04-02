@@ -17,74 +17,57 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.lxj.xpopup.C2768b;
+import com.lxj.xpopup.f.b;
 import com.lxj.xpopup.impl.FullScreenPopupView;
-import com.lxj.xpopup.p184c.AbstractC2770b;
-import com.lxj.xpopup.p184c.C2769a;
-import com.lxj.xpopup.p184c.C2771c;
-import com.lxj.xpopup.p184c.C2772d;
-import com.lxj.xpopup.p184c.C2773e;
-import com.lxj.xpopup.p184c.C2774f;
-import com.lxj.xpopup.p184c.C2775g;
-import com.lxj.xpopup.p185d.EnumC2803c;
-import com.lxj.xpopup.p185d.EnumC2805e;
-import com.lxj.xpopup.p186e.InterfaceC2815i;
-import com.lxj.xpopup.p187f.C2818b;
-import com.lxj.xpopup.p187f.C2819c;
 import java.util.ArrayList;
 import java.util.Stack;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class BasePopupView extends FrameLayout {
+    private static Stack<BasePopupView> o = new Stack<>();
+    public com.lxj.xpopup.core.a a;
 
-    /* renamed from: o */
-    private static Stack<BasePopupView> f8616o = new Stack<>();
+    /* JADX INFO: renamed from: b */
+    protected com.lxj.xpopup.c.b f5424b;
 
-    /* renamed from: a */
-    public C2800a f8617a;
+    /* JADX INFO: renamed from: c */
+    protected com.lxj.xpopup.c.e f5425c;
 
-    /* renamed from: b */
-    protected AbstractC2770b f8618b;
+    /* JADX INFO: renamed from: d */
+    private int f5426d;
 
-    /* renamed from: c */
-    protected C2773e f8619c;
+    /* JADX INFO: renamed from: e */
+    public com.lxj.xpopup.d.e f5427e;
 
-    /* renamed from: d */
-    private int f8620d;
+    /* JADX INFO: renamed from: f */
+    private boolean f5428f;
 
-    /* renamed from: e */
-    public EnumC2805e f8621e;
+    /* JADX INFO: renamed from: g */
+    private int f5429g;
 
-    /* renamed from: f */
-    private boolean f8622f;
+    /* JADX INFO: renamed from: h */
+    private boolean f5430h;
 
-    /* renamed from: g */
-    private int f8623g;
+    /* JADX INFO: renamed from: i */
+    private Runnable f5431i;
 
-    /* renamed from: h */
-    private boolean f8624h;
+    /* JADX INFO: renamed from: j */
+    private i f5432j;
 
-    /* renamed from: i */
-    private Runnable f8625i;
+    /* JADX INFO: renamed from: k */
+    private Runnable f5433k;
 
-    /* renamed from: j */
-    private RunnableC2787i f8626j;
+    /* JADX INFO: renamed from: l */
+    Runnable f5434l;
 
-    /* renamed from: k */
-    private Runnable f8627k;
+    /* JADX INFO: renamed from: m */
+    private float f5435m;
 
-    /* renamed from: l */
-    Runnable f8628l;
+    /* JADX INFO: renamed from: n */
+    private float f5436n;
 
-    /* renamed from: m */
-    private float f8629m;
-
-    /* renamed from: n */
-    private float f8630n;
-
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$a */
-    class RunnableC2779a implements Runnable {
-        RunnableC2779a() {
+    class a implements Runnable {
+        a() {
         }
 
         @Override // java.lang.Runnable
@@ -94,50 +77,47 @@ public abstract class BasePopupView extends FrameLayout {
             if (rotation == 0) {
                 layoutParams.leftMargin = 0;
                 layoutParams.rightMargin = 0;
-                layoutParams.bottomMargin = C2819c.m8474d(BasePopupView.this.getContext()) ? C2819c.m8465b() : 0;
+                layoutParams.bottomMargin = com.lxj.xpopup.f.c.d(BasePopupView.this.getContext()) ? com.lxj.xpopup.f.c.b() : 0;
             } else if (rotation == 1) {
                 layoutParams.bottomMargin = 0;
-                layoutParams.rightMargin = C2819c.m8474d(BasePopupView.this.getContext()) ? C2819c.m8465b() : 0;
+                layoutParams.rightMargin = com.lxj.xpopup.f.c.d(BasePopupView.this.getContext()) ? com.lxj.xpopup.f.c.b() : 0;
                 layoutParams.leftMargin = 0;
             } else if (rotation == 3) {
                 layoutParams.bottomMargin = 0;
                 layoutParams.leftMargin = 0;
-                layoutParams.rightMargin = C2819c.m8474d(BasePopupView.this.getContext()) ? C2819c.m8465b() : 0;
+                layoutParams.rightMargin = com.lxj.xpopup.f.c.d(BasePopupView.this.getContext()) ? com.lxj.xpopup.f.c.b() : 0;
             }
             BasePopupView.this.setLayoutParams(layoutParams);
             BasePopupView.this.getPopupContentView().setAlpha(1.0f);
-            BasePopupView.this.m8373u();
-            BasePopupView.this.mo8383g();
-            BasePopupView.this.mo8381e();
+            BasePopupView.this.u();
+            BasePopupView.this.g();
+            BasePopupView.this.e();
             BasePopupView basePopupView = BasePopupView.this;
             if (basePopupView instanceof FullScreenPopupView) {
                 return;
             }
-            basePopupView.m8384h();
+            basePopupView.h();
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$b */
-    class C2780b implements C2818b.b {
-        C2780b() {
+    class b implements b.InterfaceC0103b {
+        b() {
         }
 
-        @Override // com.lxj.xpopup.p187f.C2818b.b
-        /* renamed from: a */
-        public void mo8395a(int i2) {
+        @Override // com.lxj.xpopup.f.b.InterfaceC0103b
+        public void a(int i2) {
             if (i2 == 0) {
-                C2819c.m8473c(BasePopupView.this);
-                BasePopupView.this.f8624h = false;
+                com.lxj.xpopup.f.c.c(BasePopupView.this);
+                BasePopupView.this.f5430h = false;
             } else {
-                C2819c.m8455a(i2, BasePopupView.this);
-                BasePopupView.this.f8624h = true;
+                com.lxj.xpopup.f.c.a(i2, BasePopupView.this);
+                BasePopupView.this.f5430h = true;
             }
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$c */
-    class RunnableC2781c implements Runnable {
-        RunnableC2781c() {
+    class c implements Runnable {
+        c() {
         }
 
         @Override // java.lang.Runnable
@@ -146,320 +126,303 @@ public abstract class BasePopupView extends FrameLayout {
                 ((ViewGroup) BasePopupView.this.getParent()).removeView(BasePopupView.this);
             }
             BasePopupView basePopupView = BasePopupView.this;
-            basePopupView.f8617a.f8702o.addView(basePopupView, new FrameLayout.LayoutParams(-1, -1));
+            basePopupView.a.o.addView(basePopupView, new FrameLayout.LayoutParams(-1, -1));
             ArrayList arrayList = new ArrayList();
-            C2819c.m8461a((ArrayList<EditText>) arrayList, (ViewGroup) BasePopupView.this.getPopupContentView());
+            com.lxj.xpopup.f.c.a((ArrayList<EditText>) arrayList, (ViewGroup) BasePopupView.this.getPopupContentView());
             if (arrayList.size() > 0) {
                 Window window = ((Activity) BasePopupView.this.getContext()).getWindow();
-                BasePopupView.this.f8623g = window.getAttributes().softInputMode;
-                if (BasePopupView.this.f8623g != 16) {
+                BasePopupView.this.f5429g = window.getAttributes().softInputMode;
+                if (BasePopupView.this.f5429g != 16) {
                     window.setSoftInputMode(16);
                 }
             }
-            BasePopupView.this.m8386j();
+            BasePopupView.this.j();
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$d */
-    class RunnableC2782d implements Runnable {
-        RunnableC2782d() {
+    class d implements Runnable {
+        d() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            InterfaceC2815i interfaceC2815i;
+            com.lxj.xpopup.e.i iVar;
             BasePopupView basePopupView = BasePopupView.this;
-            basePopupView.f8621e = EnumC2805e.Show;
-            basePopupView.m8391p();
+            basePopupView.f5427e = com.lxj.xpopup.d.e.Show;
+            basePopupView.p();
             BasePopupView basePopupView2 = BasePopupView.this;
             if (basePopupView2 instanceof FullScreenPopupView) {
-                basePopupView2.m8384h();
+                basePopupView2.h();
             }
-            C2800a c2800a = BasePopupView.this.f8617a;
-            if (c2800a != null && (interfaceC2815i = c2800a.f8701n) != null) {
-                interfaceC2815i.mo8434b();
+            com.lxj.xpopup.core.a aVar = BasePopupView.this.a;
+            if (aVar != null && (iVar = aVar.f5453n) != null) {
+                iVar.b();
             }
-            if (C2819c.m8448a((Activity) BasePopupView.this.getContext()) <= 0 || BasePopupView.this.f8624h) {
+            if (com.lxj.xpopup.f.c.a((Activity) BasePopupView.this.getContext()) <= 0 || BasePopupView.this.f5430h) {
                 return;
             }
-            C2819c.m8455a(C2819c.m8448a((Activity) BasePopupView.this.getContext()), BasePopupView.this);
+            com.lxj.xpopup.f.c.a(com.lxj.xpopup.f.c.a((Activity) BasePopupView.this.getContext()), BasePopupView.this);
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$e */
-    class RunnableC2783e implements Runnable {
-        RunnableC2783e() {
+    class e implements Runnable {
+        e() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            BasePopupView.this.mo8378b();
+            BasePopupView.this.b();
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$f */
-    class RunnableC2784f implements Runnable {
-        RunnableC2784f() {
+    class f implements Runnable {
+        f() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            InterfaceC2815i interfaceC2815i;
-            BasePopupView.this.mo8390o();
-            C2800a c2800a = BasePopupView.this.f8617a;
-            if (c2800a != null && (interfaceC2815i = c2800a.f8701n) != null) {
-                interfaceC2815i.onDismiss();
+            com.lxj.xpopup.e.i iVar;
+            BasePopupView.this.o();
+            com.lxj.xpopup.core.a aVar = BasePopupView.this.a;
+            if (aVar != null && (iVar = aVar.f5453n) != null) {
+                iVar.onDismiss();
             }
-            Runnable runnable = BasePopupView.this.f8628l;
+            Runnable runnable = BasePopupView.this.f5434l;
             if (runnable != null) {
                 runnable.run();
-                BasePopupView.this.f8628l = null;
+                BasePopupView.this.f5434l = null;
             }
-            BasePopupView.this.f8621e = EnumC2805e.Dismiss;
-            if (!BasePopupView.f8616o.isEmpty()) {
-                BasePopupView.f8616o.pop();
+            BasePopupView.this.f5427e = com.lxj.xpopup.d.e.Dismiss;
+            if (!BasePopupView.o.isEmpty()) {
+                BasePopupView.o.pop();
             }
-            C2800a c2800a2 = BasePopupView.this.f8617a;
-            if (c2800a2 != null && c2800a2.f8710w) {
-                if (BasePopupView.f8616o.isEmpty()) {
-                    View findViewById = ((Activity) BasePopupView.this.getContext()).findViewById(R.id.content);
-                    findViewById.setFocusable(true);
-                    findViewById.setFocusableInTouchMode(true);
+            com.lxj.xpopup.core.a aVar2 = BasePopupView.this.a;
+            if (aVar2 != null && aVar2.w) {
+                if (BasePopupView.o.isEmpty()) {
+                    View viewFindViewById = ((Activity) BasePopupView.this.getContext()).findViewById(R.id.content);
+                    viewFindViewById.setFocusable(true);
+                    viewFindViewById.setFocusableInTouchMode(true);
                 } else {
-                    ((BasePopupView) BasePopupView.f8616o.get(BasePopupView.f8616o.size() - 1)).m8384h();
+                    ((BasePopupView) BasePopupView.o.get(BasePopupView.o.size() - 1)).h();
                 }
             }
             BasePopupView basePopupView = BasePopupView.this;
-            ViewGroup viewGroup = basePopupView.f8617a.f8702o;
+            ViewGroup viewGroup = basePopupView.a.o;
             if (viewGroup != null) {
                 viewGroup.removeView(basePopupView);
                 BasePopupView basePopupView2 = BasePopupView.this;
-                C2818b.m8444a(basePopupView2.f8617a.f8702o, basePopupView2);
+                com.lxj.xpopup.f.b.a(basePopupView2.a.o, basePopupView2);
             }
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$g */
-    static /* synthetic */ class C2785g {
-
-        /* renamed from: a */
-        static final /* synthetic */ int[] f8637a = new int[EnumC2803c.values().length];
+    static /* synthetic */ class g {
+        static final /* synthetic */ int[] a = new int[com.lxj.xpopup.d.c.values().length];
 
         static {
             try {
-                f8637a[EnumC2803c.ScaleAlphaFromCenter.ordinal()] = 1;
+                a[com.lxj.xpopup.d.c.ScaleAlphaFromCenter.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f8637a[EnumC2803c.ScaleAlphaFromLeftTop.ordinal()] = 2;
+                a[com.lxj.xpopup.d.c.ScaleAlphaFromLeftTop.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f8637a[EnumC2803c.ScaleAlphaFromRightTop.ordinal()] = 3;
+                a[com.lxj.xpopup.d.c.ScaleAlphaFromRightTop.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                f8637a[EnumC2803c.ScaleAlphaFromLeftBottom.ordinal()] = 4;
+                a[com.lxj.xpopup.d.c.ScaleAlphaFromLeftBottom.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                f8637a[EnumC2803c.ScaleAlphaFromRightBottom.ordinal()] = 5;
+                a[com.lxj.xpopup.d.c.ScaleAlphaFromRightBottom.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                f8637a[EnumC2803c.TranslateAlphaFromLeft.ordinal()] = 6;
+                a[com.lxj.xpopup.d.c.TranslateAlphaFromLeft.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                f8637a[EnumC2803c.TranslateAlphaFromTop.ordinal()] = 7;
+                a[com.lxj.xpopup.d.c.TranslateAlphaFromTop.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                f8637a[EnumC2803c.TranslateAlphaFromRight.ordinal()] = 8;
+                a[com.lxj.xpopup.d.c.TranslateAlphaFromRight.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
-                f8637a[EnumC2803c.TranslateAlphaFromBottom.ordinal()] = 9;
+                a[com.lxj.xpopup.d.c.TranslateAlphaFromBottom.ordinal()] = 9;
             } catch (NoSuchFieldError unused9) {
             }
             try {
-                f8637a[EnumC2803c.TranslateFromLeft.ordinal()] = 10;
+                a[com.lxj.xpopup.d.c.TranslateFromLeft.ordinal()] = 10;
             } catch (NoSuchFieldError unused10) {
             }
             try {
-                f8637a[EnumC2803c.TranslateFromTop.ordinal()] = 11;
+                a[com.lxj.xpopup.d.c.TranslateFromTop.ordinal()] = 11;
             } catch (NoSuchFieldError unused11) {
             }
             try {
-                f8637a[EnumC2803c.TranslateFromRight.ordinal()] = 12;
+                a[com.lxj.xpopup.d.c.TranslateFromRight.ordinal()] = 12;
             } catch (NoSuchFieldError unused12) {
             }
             try {
-                f8637a[EnumC2803c.TranslateFromBottom.ordinal()] = 13;
+                a[com.lxj.xpopup.d.c.TranslateFromBottom.ordinal()] = 13;
             } catch (NoSuchFieldError unused13) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromLeft.ordinal()] = 14;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromLeft.ordinal()] = 14;
             } catch (NoSuchFieldError unused14) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromLeftTop.ordinal()] = 15;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromLeftTop.ordinal()] = 15;
             } catch (NoSuchFieldError unused15) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromTop.ordinal()] = 16;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromTop.ordinal()] = 16;
             } catch (NoSuchFieldError unused16) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromRightTop.ordinal()] = 17;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromRightTop.ordinal()] = 17;
             } catch (NoSuchFieldError unused17) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromRight.ordinal()] = 18;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromRight.ordinal()] = 18;
             } catch (NoSuchFieldError unused18) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromRightBottom.ordinal()] = 19;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromRightBottom.ordinal()] = 19;
             } catch (NoSuchFieldError unused19) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromBottom.ordinal()] = 20;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromBottom.ordinal()] = 20;
             } catch (NoSuchFieldError unused20) {
             }
             try {
-                f8637a[EnumC2803c.ScrollAlphaFromLeftBottom.ordinal()] = 21;
+                a[com.lxj.xpopup.d.c.ScrollAlphaFromLeftBottom.ordinal()] = 21;
             } catch (NoSuchFieldError unused21) {
             }
             try {
-                f8637a[EnumC2803c.NoAnimation.ordinal()] = 22;
+                a[com.lxj.xpopup.d.c.NoAnimation.ordinal()] = 22;
             } catch (NoSuchFieldError unused22) {
             }
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$h */
-    class ViewOnKeyListenerC2786h implements View.OnKeyListener {
-        ViewOnKeyListenerC2786h() {
+    class h implements View.OnKeyListener {
+        h() {
         }
 
         @Override // android.view.View.OnKeyListener
         public boolean onKey(View view, int i2, KeyEvent keyEvent) {
-            InterfaceC2815i interfaceC2815i;
+            com.lxj.xpopup.e.i iVar;
             if (i2 != 4 || keyEvent.getAction() != 1) {
                 return false;
             }
-            if (BasePopupView.this.f8617a.f8689b.booleanValue() && ((interfaceC2815i = BasePopupView.this.f8617a.f8701n) == null || !interfaceC2815i.mo8435c())) {
-                BasePopupView.this.m8379c();
+            if (BasePopupView.this.a.f5441b.booleanValue() && ((iVar = BasePopupView.this.a.f5453n) == null || !iVar.c())) {
+                BasePopupView.this.c();
             }
             return true;
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BasePopupView$i */
-    class RunnableC2787i implements Runnable {
+    class i implements Runnable {
+        View a;
 
-        /* renamed from: a */
-        View f8639a;
+        /* JADX INFO: renamed from: b */
+        boolean f5437b = false;
 
-        /* renamed from: b */
-        boolean f8640b = false;
-
-        public RunnableC2787i(View view) {
-            this.f8639a = view;
+        public i(View view) {
+            this.a = view;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            View view = this.f8639a;
-            if (view == null || this.f8640b) {
+            View view = this.a;
+            if (view == null || this.f5437b) {
                 return;
             }
-            this.f8640b = true;
-            C2818b.m8447b(view);
+            this.f5437b = true;
+            com.lxj.xpopup.f.b.b(view);
         }
     }
 
     public BasePopupView(@NonNull Context context) {
         super(context);
-        this.f8621e = EnumC2805e.Dismiss;
-        this.f8622f = false;
-        this.f8623g = -1;
-        this.f8624h = false;
-        this.f8625i = new RunnableC2782d();
-        this.f8627k = new RunnableC2784f();
-        this.f8620d = ViewConfiguration.get(context).getScaledTouchSlop();
-        this.f8619c = new C2773e(this);
-        View inflate = LayoutInflater.from(context).inflate(getPopupLayoutId(), (ViewGroup) this, false);
-        inflate.setAlpha(0.0f);
-        addView(inflate);
+        this.f5427e = com.lxj.xpopup.d.e.Dismiss;
+        this.f5428f = false;
+        this.f5429g = -1;
+        this.f5430h = false;
+        this.f5431i = new d();
+        this.f5433k = new f();
+        this.f5426d = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f5425c = new com.lxj.xpopup.c.e(this);
+        View viewInflate = LayoutInflater.from(context).inflate(getPopupLayoutId(), (ViewGroup) this, false);
+        viewInflate.setAlpha(0.0f);
+        addView(viewInflate);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: u */
-    public void m8373u() {
-        if (this.f8618b == null) {
-            AbstractC2770b abstractC2770b = this.f8617a.f8696i;
-            if (abstractC2770b != null) {
-                this.f8618b = abstractC2770b;
-                this.f8618b.f8569a = getPopupContentView();
+    public void u() {
+        if (this.f5424b == null) {
+            com.lxj.xpopup.c.b bVar = this.a.f5448i;
+            if (bVar != null) {
+                this.f5424b = bVar;
+                this.f5424b.a = getPopupContentView();
             } else {
-                this.f8618b = m8385i();
-                if (this.f8618b == null) {
-                    this.f8618b = getPopupAnimator();
+                this.f5424b = i();
+                if (this.f5424b == null) {
+                    this.f5424b = getPopupAnimator();
                 }
             }
-            this.f8619c.mo8349d();
-            AbstractC2770b abstractC2770b2 = this.f8618b;
-            if (abstractC2770b2 != null) {
-                abstractC2770b2.mo8349d();
+            this.f5425c.d();
+            com.lxj.xpopup.c.b bVar2 = this.f5424b;
+            if (bVar2 != null) {
+                bVar2.d();
             }
         }
     }
 
-    /* renamed from: d */
-    protected void m8380d() {
-        if (this.f8617a.f8700m.booleanValue()) {
-            C2818b.m8443a(this);
+    protected void d() {
+        if (this.a.f5452m.booleanValue()) {
+            com.lxj.xpopup.f.b.a(this);
         }
-        removeCallbacks(this.f8627k);
-        postDelayed(this.f8627k, getAnimationDuration());
+        removeCallbacks(this.f5433k);
+        postDelayed(this.f5433k, getAnimationDuration());
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
-    /* renamed from: e */
-    public void mo8381e() {
-        removeCallbacks(this.f8625i);
-        postDelayed(this.f8625i, getAnimationDuration());
+    public void e() {
+        removeCallbacks(this.f5431i);
+        postDelayed(this.f5431i, getAnimationDuration());
     }
 
-    /* renamed from: f */
-    public void mo8382f() {
-        if (this.f8617a.f8692e.booleanValue()) {
-            this.f8619c.mo8347a();
+    public void f() {
+        if (this.a.f5444e.booleanValue()) {
+            this.f5425c.a();
         }
-        AbstractC2770b abstractC2770b = this.f8618b;
-        if (abstractC2770b != null) {
-            abstractC2770b.mo8347a();
+        com.lxj.xpopup.c.b bVar = this.f5424b;
+        if (bVar != null) {
+            bVar.a();
         }
     }
 
-    /* renamed from: g */
-    public void mo8383g() {
-        if (this.f8617a.f8692e.booleanValue()) {
-            this.f8619c.f8586e = this.f8617a.f8695h == EnumC2803c.NoAnimation;
-            this.f8619c.mo8348b();
+    public void g() {
+        if (this.a.f5444e.booleanValue()) {
+            this.f5425c.f5411e = this.a.f5447h == com.lxj.xpopup.d.c.NoAnimation;
+            this.f5425c.b();
         }
-        AbstractC2770b abstractC2770b = this.f8618b;
-        if (abstractC2770b != null) {
-            abstractC2770b.mo8348b();
+        com.lxj.xpopup.c.b bVar = this.f5424b;
+        if (bVar != null) {
+            bVar.b();
         }
     }
 
     public int getAnimationDuration() {
-        if (this.f8617a.f8695h == EnumC2803c.NoAnimation) {
+        if (this.a.f5447h == com.lxj.xpopup.d.c.NoAnimation) {
             return 10;
         }
-        return C2768b.m8294a();
+        return com.lxj.xpopup.b.a();
     }
 
     protected int getImplLayoutId() {
@@ -467,14 +430,14 @@ public abstract class BasePopupView extends FrameLayout {
     }
 
     protected int getMaxHeight() {
-        return this.f8617a.f8699l;
+        return this.a.f5451l;
     }
 
     protected int getMaxWidth() {
         return 0;
     }
 
-    protected AbstractC2770b getPopupAnimator() {
+    protected com.lxj.xpopup.c.b getPopupAnimator() {
         return null;
     }
 
@@ -500,57 +463,55 @@ public abstract class BasePopupView extends FrameLayout {
         return getPopupContentView();
     }
 
-    /* renamed from: h */
-    public void m8384h() {
-        if (this.f8617a.f8710w) {
+    public void h() {
+        if (this.a.w) {
             setFocusableInTouchMode(true);
             requestFocus();
-            if (!f8616o.contains(this)) {
-                f8616o.push(this);
+            if (!o.contains(this)) {
+                o.push(this);
             }
         }
-        setOnKeyListener(new ViewOnKeyListenerC2786h());
-        if (!this.f8617a.f8711x) {
-            m8376a((View) this);
+        setOnKeyListener(new h());
+        if (!this.a.x) {
+            a((View) this);
         }
         ArrayList arrayList = new ArrayList();
-        C2819c.m8461a((ArrayList<EditText>) arrayList, (ViewGroup) getPopupContentView());
+        com.lxj.xpopup.f.c.a((ArrayList<EditText>) arrayList, (ViewGroup) getPopupContentView());
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             EditText editText = (EditText) arrayList.get(i2);
-            editText.setOnKeyListener(new ViewOnKeyListenerC2786h());
-            if (i2 == 0 && this.f8617a.f8711x) {
+            editText.setOnKeyListener(new h());
+            if (i2 == 0 && this.a.x) {
                 editText.setFocusable(true);
                 editText.setFocusableInTouchMode(true);
                 editText.requestFocus();
-                m8376a(editText);
+                a(editText);
             }
         }
     }
 
-    /* renamed from: i */
-    protected AbstractC2770b m8385i() {
-        EnumC2803c enumC2803c;
-        C2800a c2800a = this.f8617a;
-        if (c2800a == null || (enumC2803c = c2800a.f8695h) == null) {
+    protected com.lxj.xpopup.c.b i() {
+        com.lxj.xpopup.d.c cVar;
+        com.lxj.xpopup.core.a aVar = this.a;
+        if (aVar == null || (cVar = aVar.f5447h) == null) {
             return null;
         }
-        switch (C2785g.f8637a[enumC2803c.ordinal()]) {
+        switch (g.a[cVar.ordinal()]) {
             case 1:
             case 2:
             case 3:
             case 4:
             case 5:
-                return new C2771c(getPopupContentView(), this.f8617a.f8695h);
+                return new com.lxj.xpopup.c.c(getPopupContentView(), this.a.f5447h);
             case 6:
             case 7:
             case 8:
             case 9:
-                return new C2774f(getPopupContentView(), this.f8617a.f8695h);
+                return new com.lxj.xpopup.c.f(getPopupContentView(), this.a.f5447h);
             case 10:
             case 11:
             case 12:
             case 13:
-                return new C2775g(getPopupContentView(), this.f8617a.f8695h);
+                return new com.lxj.xpopup.c.g(getPopupContentView(), this.a.f5447h);
             case 14:
             case 15:
             case 16:
@@ -559,202 +520,186 @@ public abstract class BasePopupView extends FrameLayout {
             case 19:
             case 20:
             case 21:
-                return new C2772d(getPopupContentView(), this.f8617a.f8695h);
+                return new com.lxj.xpopup.c.d(getPopupContentView(), this.a.f5447h);
             case 22:
-                return new C2769a();
+                return new com.lxj.xpopup.c.a();
             default:
                 return null;
         }
     }
 
-    /* renamed from: j */
-    public void m8386j() {
-        EnumC2805e enumC2805e = this.f8621e;
-        EnumC2805e enumC2805e2 = EnumC2805e.Showing;
-        if (enumC2805e == enumC2805e2) {
+    public void j() {
+        com.lxj.xpopup.d.e eVar = this.f5427e;
+        com.lxj.xpopup.d.e eVar2 = com.lxj.xpopup.d.e.Showing;
+        if (eVar == eVar2) {
             return;
         }
-        this.f8621e = enumC2805e2;
-        if (!this.f8622f) {
-            mo8364k();
+        this.f5427e = eVar2;
+        if (!this.f5428f) {
+            k();
         }
         if (!(this instanceof FullScreenPopupView) && !(this instanceof ImageViewerPopupView)) {
-            C2819c.m8457a(getTargetSizeView(), (getMaxWidth() == 0 || getPopupWidth() <= getMaxWidth()) ? getPopupWidth() : getMaxWidth(), (getMaxHeight() == 0 || getPopupHeight() <= getMaxHeight()) ? getPopupHeight() : getMaxHeight());
+            com.lxj.xpopup.f.c.a(getTargetSizeView(), (getMaxWidth() == 0 || getPopupWidth() <= getMaxWidth()) ? getPopupWidth() : getMaxWidth(), (getMaxHeight() == 0 || getPopupHeight() <= getMaxHeight()) ? getPopupHeight() : getMaxHeight());
         }
-        if (!this.f8622f) {
-            this.f8622f = true;
-            mo8389n();
-            InterfaceC2815i interfaceC2815i = this.f8617a.f8701n;
-            if (interfaceC2815i != null) {
-                interfaceC2815i.mo8433a();
+        if (!this.f5428f) {
+            this.f5428f = true;
+            n();
+            com.lxj.xpopup.e.i iVar = this.a.f5453n;
+            if (iVar != null) {
+                iVar.a();
             }
         }
-        postDelayed(new RunnableC2779a(), 50L);
+        postDelayed(new a(), 50L);
     }
 
-    /* renamed from: k */
-    protected void mo8364k() {
+    protected void k() {
     }
 
-    /* renamed from: l */
-    public boolean m8387l() {
-        return this.f8621e == EnumC2805e.Dismiss;
+    public boolean l() {
+        return this.f5427e == com.lxj.xpopup.d.e.Dismiss;
     }
 
-    /* renamed from: m */
-    public boolean m8388m() {
-        return this.f8621e != EnumC2805e.Dismiss;
+    public boolean m() {
+        return this.f5427e != com.lxj.xpopup.d.e.Dismiss;
     }
 
-    /* renamed from: n */
-    protected void mo8389n() {
+    protected void n() {
     }
 
-    /* renamed from: o */
-    protected void mo8390o() {
+    protected void o() {
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        f8616o.clear();
-        removeCallbacks(this.f8625i);
-        removeCallbacks(this.f8627k);
-        C2818b.m8444a(this.f8617a.f8702o, this);
-        RunnableC2787i runnableC2787i = this.f8626j;
-        if (runnableC2787i != null) {
-            removeCallbacks(runnableC2787i);
+        o.clear();
+        removeCallbacks(this.f5431i);
+        removeCallbacks(this.f5433k);
+        com.lxj.xpopup.f.b.a(this.a.o, this);
+        i iVar = this.f5432j;
+        if (iVar != null) {
+            removeCallbacks(iVar);
         }
-        this.f8621e = EnumC2805e.Dismiss;
-        this.f8626j = null;
-        this.f8624h = false;
+        this.f5427e = com.lxj.xpopup.d.e.Dismiss;
+        this.f5432j = null;
+        this.f5430h = false;
     }
 
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
         Rect rect = new Rect();
         getPopupContentView().getGlobalVisibleRect(rect);
-        if (!C2819c.m8462a(motionEvent.getX(), motionEvent.getY(), rect)) {
+        if (!com.lxj.xpopup.f.c.a(motionEvent.getX(), motionEvent.getY(), rect)) {
             int action = motionEvent.getAction();
             if (action == 0) {
-                this.f8629m = motionEvent.getX();
-                this.f8630n = motionEvent.getY();
+                this.f5435m = motionEvent.getX();
+                this.f5436n = motionEvent.getY();
             } else if (action == 1) {
-                if (((float) Math.sqrt(Math.pow(motionEvent.getX() - this.f8629m, 2.0d) + Math.pow(motionEvent.getY() - this.f8630n, 2.0d))) < this.f8620d && this.f8617a.f8690c.booleanValue()) {
-                    mo8378b();
+                if (((float) Math.sqrt(Math.pow(motionEvent.getX() - this.f5435m, 2.0d) + Math.pow(motionEvent.getY() - this.f5436n, 2.0d))) < this.f5426d && this.a.f5442c.booleanValue()) {
+                    b();
                 }
-                this.f8629m = 0.0f;
-                this.f8630n = 0.0f;
+                this.f5435m = 0.0f;
+                this.f5436n = 0.0f;
             }
         }
         return true;
     }
 
-    /* renamed from: p */
-    protected void m8391p() {
+    protected void p() {
     }
 
-    /* renamed from: q */
-    protected void m8392q() {
+    protected void q() {
     }
 
-    /* renamed from: r */
-    public BasePopupView m8393r() {
+    public BasePopupView r() {
         if (getParent() != null) {
             return this;
         }
         Activity activity = (Activity) getContext();
-        this.f8617a.f8702o = (ViewGroup) activity.getWindow().getDecorView();
-        C2818b.m8442a(activity, this, new C2780b());
-        this.f8617a.f8702o.post(new RunnableC2781c());
+        this.a.o = (ViewGroup) activity.getWindow().getDecorView();
+        com.lxj.xpopup.f.b.a(activity, this, new b());
+        this.a.o.post(new c());
         return this;
     }
 
-    /* renamed from: s */
-    public void m8394s() {
-        if (m8388m()) {
-            mo8378b();
+    public void s() {
+        if (m()) {
+            b();
         } else {
-            m8393r();
+            r();
         }
     }
 
-    /* renamed from: b */
-    public void mo8378b() {
-        EnumC2805e enumC2805e = this.f8621e;
-        EnumC2805e enumC2805e2 = EnumC2805e.Dismissing;
-        if (enumC2805e == enumC2805e2) {
+    public void b() {
+        com.lxj.xpopup.d.e eVar = this.f5427e;
+        com.lxj.xpopup.d.e eVar2 = com.lxj.xpopup.d.e.Dismissing;
+        if (eVar == eVar2) {
             return;
         }
-        this.f8621e = enumC2805e2;
-        if (this.f8617a.f8700m.booleanValue()) {
-            C2818b.m8443a(this);
+        this.f5427e = eVar2;
+        if (this.a.f5452m.booleanValue()) {
+            com.lxj.xpopup.f.b.a(this);
         }
-        m8392q();
+        q();
         clearFocus();
-        mo8382f();
-        m8380d();
+        f();
+        d();
     }
 
-    /* renamed from: c */
-    protected void m8379c() {
-        if (C2818b.f8731a == 0) {
-            mo8378b();
+    protected void c() {
+        if (com.lxj.xpopup.f.b.a == 0) {
+            b();
         } else {
-            C2818b.m8443a(this);
+            com.lxj.xpopup.f.b.a(this);
         }
     }
 
-    /* renamed from: a */
-    protected void m8376a(View view) {
-        if (this.f8617a.f8700m.booleanValue()) {
-            RunnableC2787i runnableC2787i = this.f8626j;
-            if (runnableC2787i == null) {
-                this.f8626j = new RunnableC2787i(view);
+    protected void a(View view) {
+        if (this.a.f5452m.booleanValue()) {
+            i iVar = this.f5432j;
+            if (iVar == null) {
+                this.f5432j = new i(view);
             } else {
-                removeCallbacks(runnableC2787i);
+                removeCallbacks(iVar);
             }
-            postDelayed(this.f8626j, 10L);
+            postDelayed(this.f5432j, 10L);
         }
     }
 
-    /* renamed from: a */
-    public void m8374a(long j2) {
+    public void a(long j2) {
         if (j2 < 0) {
             j2 = 0;
         }
-        postDelayed(new RunnableC2783e(), j2);
+        postDelayed(new e(), j2);
     }
 
-    /* renamed from: a */
-    public void m8375a(long j2, Runnable runnable) {
-        this.f8628l = runnable;
-        m8374a(j2);
+    public void a(long j2, Runnable runnable) {
+        this.f5434l = runnable;
+        a(j2);
     }
 
-    /* renamed from: a */
-    public void m8377a(Runnable runnable) {
-        this.f8628l = runnable;
-        mo8378b();
+    public void a(Runnable runnable) {
+        this.f5434l = runnable;
+        b();
     }
 
     public BasePopupView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.f8621e = EnumC2805e.Dismiss;
-        this.f8622f = false;
-        this.f8623g = -1;
-        this.f8624h = false;
-        this.f8625i = new RunnableC2782d();
-        this.f8627k = new RunnableC2784f();
+        this.f5427e = com.lxj.xpopup.d.e.Dismiss;
+        this.f5428f = false;
+        this.f5429g = -1;
+        this.f5430h = false;
+        this.f5431i = new d();
+        this.f5433k = new f();
     }
 
     public BasePopupView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f8621e = EnumC2805e.Dismiss;
-        this.f8622f = false;
-        this.f8623g = -1;
-        this.f8624h = false;
-        this.f8625i = new RunnableC2782d();
-        this.f8627k = new RunnableC2784f();
+        this.f5427e = com.lxj.xpopup.d.e.Dismiss;
+        this.f5428f = false;
+        this.f5429g = -1;
+        this.f5430h = false;
+        this.f5431i = new d();
+        this.f5433k = new f();
     }
 }

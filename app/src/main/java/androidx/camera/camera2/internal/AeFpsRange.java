@@ -6,7 +6,7 @@ import android.util.Range;
 import androidx.annotation.NonNull;
 import androidx.camera.camera2.impl.Camera2ImplConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AeFpsRange {
     private Range<Integer> mAeTargetFpsRange;
 
@@ -20,15 +20,15 @@ final class AeFpsRange {
     }
 
     private static Range<Integer> getCorrectedFpsRange(@NonNull Range<Integer> range) {
-        int intValue = range.getUpper().intValue();
-        int intValue2 = range.getLower().intValue();
-        if (range.getUpper().intValue() >= 1000) {
-            intValue = range.getUpper().intValue() / 1000;
+        int iIntValue = ((Integer) range.getUpper()).intValue();
+        int iIntValue2 = ((Integer) range.getLower()).intValue();
+        if (((Integer) range.getUpper()).intValue() >= 1000) {
+            iIntValue = ((Integer) range.getUpper()).intValue() / 1000;
         }
-        if (range.getLower().intValue() >= 1000) {
-            intValue2 = range.getLower().intValue() / 1000;
+        if (((Integer) range.getLower()).intValue() >= 1000) {
+            iIntValue2 = ((Integer) range.getLower()).intValue() / 1000;
         }
-        return new Range<>(Integer.valueOf(intValue2), Integer.valueOf(intValue));
+        return new Range<>(Integer.valueOf(iIntValue2), Integer.valueOf(iIntValue));
     }
 
     private static Range<Integer> pickSuitableFpsRange(Range<Integer>[] rangeArr) {
@@ -36,7 +36,7 @@ final class AeFpsRange {
         if (rangeArr != null && rangeArr.length != 0) {
             for (Range<Integer> range2 : rangeArr) {
                 Range<Integer> correctedFpsRange = getCorrectedFpsRange(range2);
-                if (correctedFpsRange.getUpper().intValue() == 30 && (range == null || correctedFpsRange.getLower().intValue() < range.getLower().intValue())) {
+                if (((Integer) correctedFpsRange.getUpper()).intValue() == 30 && (range == null || ((Integer) correctedFpsRange.getLower()).intValue() < ((Integer) range.getLower()).intValue())) {
                     range = correctedFpsRange;
                 }
             }

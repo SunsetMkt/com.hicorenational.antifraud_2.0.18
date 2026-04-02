@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import okhttp3.RequestBody;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FileInfo extends BaseBean {
     private List<FileDetailsBean> fileDetails = new ArrayList();
     private List<RequestBody> files = new ArrayList();

@@ -9,8 +9,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import java.util.Objects;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 public final class InputConfigurationCompat {
     private final InputConfigurationCompatImpl mImpl;
 

@@ -2,7 +2,7 @@ package androidx.core.view;
 
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface NestedScrollingChild {
     boolean dispatchNestedFling(float f2, float f3, boolean z);
 

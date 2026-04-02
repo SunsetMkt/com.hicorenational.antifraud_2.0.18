@@ -11,153 +11,146 @@ import com.huawei.hms.framework.network.grs.GrsBaseInfo;
 import com.huawei.hms.framework.network.grs.GrsClient;
 import com.huawei.hms.framework.network.grs.IQueryUrlCallBack;
 import com.huawei.hms.hatool.HmsHiAnalyticsUtils;
-import com.huawei.hms.stats.C2507a;
 import com.huawei.hms.stats.HianalyticsExist;
 import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
 import com.huawei.hms.support.log.HMSLog;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HMSBIInitializer {
 
-    /* renamed from: d */
-    private static final Object f7936d = new Object();
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final Object f4984d = new Object();
 
-    /* renamed from: e */
-    private static HMSBIInitializer f7937e;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static HMSBIInitializer f4985e;
 
-    /* renamed from: f */
-    private static HiAnalyticsInstance f7938f;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static HiAnalyticsInstance f4986f;
+    private final Context a;
 
-    /* renamed from: a */
-    private final Context f7939a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private AtomicBoolean f4987b = new AtomicBoolean(false);
 
-    /* renamed from: b */
-    private AtomicBoolean f7940b = new AtomicBoolean(false);
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private boolean f4988c = HianalyticsExist.isHianalyticsExist();
 
-    /* renamed from: c */
-    private boolean f7941c = HianalyticsExist.isHianalyticsExist();
-
-    /* renamed from: com.huawei.hms.utils.HMSBIInitializer$a */
-    class C2540a implements IQueryUrlCallBack {
-        C2540a() {
+    class a implements IQueryUrlCallBack {
+        a() {
         }
 
         @Override // com.huawei.hms.framework.network.grs.IQueryUrlCallBack
         public void onCallBackFail(int i2) {
-            HMSLog.m7715e("HMSBIInitializer", "get grs failed, the errorcode is " + i2);
-            HMSBIInitializer.this.f7940b.set(false);
-            C2507a.m7656c().m7657a();
+            HMSLog.e("HMSBIInitializer", "get grs failed, the errorcode is " + i2);
+            HMSBIInitializer.this.f4987b.set(false);
+            com.huawei.hms.stats.a.c().a();
         }
 
         @Override // com.huawei.hms.framework.network.grs.IQueryUrlCallBack
         public void onCallBackSuccess(String str) {
             if (!TextUtils.isEmpty(str)) {
-                if (HMSBIInitializer.this.f7941c) {
-                    HMSBIInitializer.this.m7737a(str);
+                if (HMSBIInitializer.this.f4988c) {
+                    HMSBIInitializer.this.a(str);
                 } else {
-                    HmsHiAnalyticsUtils.init(HMSBIInitializer.this.f7939a, false, false, false, str, "com.huawei.hwid");
+                    HmsHiAnalyticsUtils.init(HMSBIInitializer.this.a, false, false, false, str, "com.huawei.hwid");
                 }
-                HMSLog.m7717i("HMSBIInitializer", "BI URL acquired successfully");
+                HMSLog.i("HMSBIInitializer", "BI URL acquired successfully");
             }
-            HMSBIInitializer.this.f7940b.set(false);
-            C2507a.m7656c().m7659b();
+            HMSBIInitializer.this.f4987b.set(false);
+            com.huawei.hms.stats.a.c().b();
         }
     }
 
-    /* renamed from: com.huawei.hms.utils.HMSBIInitializer$b */
-    private class AsyncTaskC2541b extends AsyncTask<String, Integer, Void> {
-        private AsyncTaskC2541b() {
+    private class b extends AsyncTask<String, Integer, Void> {
+        private b() {
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // android.os.AsyncTask
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public Void doInBackground(String... strArr) {
-            HMSBIInitializer.this.m7741b(strArr[0]);
+            HMSBIInitializer.this.b(strArr[0]);
             return null;
         }
 
-        /* synthetic */ AsyncTaskC2541b(HMSBIInitializer hMSBIInitializer, C2540a c2540a) {
+        /* synthetic */ b(HMSBIInitializer hMSBIInitializer, a aVar) {
             this();
         }
     }
 
     private HMSBIInitializer(Context context) {
-        this.f7939a = context;
+        this.a = context;
     }
 
     public static HMSBIInitializer getInstance(Context context) {
-        synchronized (f7936d) {
-            if (f7937e == null && context != null) {
+        synchronized (f4984d) {
+            if (f4985e == null && context != null) {
                 Context applicationContext = context.getApplicationContext();
                 if (applicationContext != null) {
-                    f7937e = new HMSBIInitializer(applicationContext);
+                    f4985e = new HMSBIInitializer(applicationContext);
                 } else {
-                    f7937e = new HMSBIInitializer(context);
+                    f4985e = new HMSBIInitializer(context);
                 }
             }
         }
-        return f7937e;
+        return f4985e;
     }
 
     public HiAnalyticsInstance getAnalyticsInstance() {
-        return f7938f;
+        return f4986f;
     }
 
     public void initBI() {
-        boolean initFlag = !this.f7941c ? HmsHiAnalyticsUtils.getInitFlag() : HiAnalyticsManager.getInitFlag(HiAnalyticsConstant.HA_SERVICE_TAG);
-        HMSLog.m7717i("HMSBIInitializer", "Builder->biInitFlag :" + initFlag);
-        if (initFlag || AnalyticsSwitchHolder.isAnalyticsDisabled(this.f7939a)) {
+        boolean initFlag = !this.f4988c ? HmsHiAnalyticsUtils.getInitFlag() : HiAnalyticsManager.getInitFlag(HiAnalyticsConstant.HA_SERVICE_TAG);
+        HMSLog.i("HMSBIInitializer", "Builder->biInitFlag :" + initFlag);
+        if (initFlag || AnalyticsSwitchHolder.isAnalyticsDisabled(this.a)) {
             return;
         }
-        HMSLog.m7717i("HMSBIInitializer", "Builder->biInitFlag : start initHaSDK");
+        HMSLog.i("HMSBIInitializer", "Builder->biInitFlag : start initHaSDK");
         initHaSDK();
     }
 
     protected void initHaSDK() {
-        if (this.f7940b.compareAndSet(false, true)) {
-            String issueCountryCode = GrsApp.getInstance().getIssueCountryCode(this.f7939a);
+        if (this.f4987b.compareAndSet(false, true)) {
+            String issueCountryCode = GrsApp.getInstance().getIssueCountryCode(this.a);
             if (!TextUtils.isEmpty(issueCountryCode)) {
                 issueCountryCode = issueCountryCode.toUpperCase(Locale.ENGLISH);
             }
             if (!"UNKNOWN".equalsIgnoreCase(issueCountryCode) && !TextUtils.isEmpty(issueCountryCode)) {
-                new AsyncTaskC2541b(this, null).execute(issueCountryCode);
+                new b(this, null).execute(issueCountryCode);
             } else {
-                HMSLog.m7715e("HMSBIInitializer", "Failed to get device issue country");
-                this.f7940b.set(false);
+                HMSLog.e("HMSBIInitializer", "Failed to get device issue country");
+                this.f4987b.set(false);
             }
         }
     }
 
     public boolean isInit() {
-        return !this.f7941c ? HmsHiAnalyticsUtils.getInitFlag() : HiAnalyticsManager.getInitFlag(HiAnalyticsConstant.HA_SERVICE_TAG);
+        return !this.f4988c ? HmsHiAnalyticsUtils.getInitFlag() : HiAnalyticsManager.getInitFlag(HiAnalyticsConstant.HA_SERVICE_TAG);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m7737a(String str) {
+    public void a(String str) {
         HiAnalyticsInstance instanceByTag = HiAnalyticsManager.getInstanceByTag(HiAnalyticsConstant.HA_SERVICE_TAG);
-        f7938f = instanceByTag;
+        f4986f = instanceByTag;
         if (instanceByTag != null) {
             instanceByTag.setAppid("com.huawei.hwid");
             return;
         }
-        HiAnalyticsConfig build = new HiAnalyticsConfig.Builder().setEnableImei(false).setEnableUDID(false).setEnableSN(false).setCollectURL(str).build();
-        HiAnalyticsInstance create = new HiAnalyticsInstance.Builder(this.f7939a).setOperConf(build).setMaintConf(new HiAnalyticsConfig.Builder().setEnableImei(false).setEnableUDID(false).setEnableSN(false).setCollectURL(str).build()).create(HiAnalyticsConstant.HA_SERVICE_TAG);
-        f7938f = create;
-        if (create != null) {
-            create.setAppid("com.huawei.hwid");
+        HiAnalyticsConfig hiAnalyticsConfigBuild = new HiAnalyticsConfig.Builder().setEnableImei(false).setEnableUDID(false).setEnableSN(false).setCollectURL(str).build();
+        HiAnalyticsInstance hiAnalyticsInstanceCreate = new HiAnalyticsInstance.Builder(this.a).setOperConf(hiAnalyticsConfigBuild).setMaintConf(new HiAnalyticsConfig.Builder().setEnableImei(false).setEnableUDID(false).setEnableSN(false).setCollectURL(str).build()).create(HiAnalyticsConstant.HA_SERVICE_TAG);
+        f4986f = hiAnalyticsInstanceCreate;
+        if (hiAnalyticsInstanceCreate != null) {
+            hiAnalyticsInstanceCreate.setAppid("com.huawei.hwid");
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public void m7741b(String str) {
-        HMSLog.m7717i("HMSBIInitializer", "Start to query GRS");
+    public void b(String str) {
+        HMSLog.i("HMSBIInitializer", "Start to query GRS");
         GrsBaseInfo grsBaseInfo = new GrsBaseInfo();
         grsBaseInfo.setIssueCountry(str);
-        new GrsClient(this.f7939a, grsBaseInfo).ayncGetGrsUrl("com.huawei.cloud.opensdkhianalytics", "ROOTV2", new C2540a());
+        new GrsClient(this.a, grsBaseInfo).ayncGetGrsUrl("com.huawei.cloud.opensdkhianalytics", "ROOTV2", new a());
     }
 }

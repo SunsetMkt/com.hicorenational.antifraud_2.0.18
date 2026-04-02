@@ -1,12 +1,11 @@
 package com.luck.picture.lib.tools;
 
-import p000a.p001a.p014u.C0052a;
+import b.a.u.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ValueOf {
     /* JADX WARN: Multi-variable type inference failed */
-    /* renamed from: to */
-    public static <T> T m8141to(Object obj, T t) {
+    public static <T> T to(Object obj, T t) {
         return obj == 0 ? t : obj;
     }
 
@@ -34,8 +33,8 @@ public class ValueOf {
             return i2;
         }
         try {
-            String trim = obj.toString().trim();
-            return trim.contains(".") ? Integer.valueOf(trim.substring(0, trim.lastIndexOf("."))).intValue() : Integer.valueOf(trim).intValue();
+            String strTrim = obj.toString().trim();
+            return strTrim.contains(".") ? Integer.valueOf(strTrim.substring(0, strTrim.lastIndexOf("."))).intValue() : Integer.valueOf(strTrim).intValue();
         } catch (Exception unused) {
             return i2;
         }
@@ -46,8 +45,8 @@ public class ValueOf {
             return j2;
         }
         try {
-            String trim = obj.toString().trim();
-            return trim.contains(".") ? Long.valueOf(trim.substring(0, trim.lastIndexOf("."))).longValue() : Long.valueOf(trim).longValue();
+            String strTrim = obj.toString().trim();
+            return strTrim.contains(".") ? Long.valueOf(strTrim.substring(0, strTrim.lastIndexOf("."))).longValue() : Long.valueOf(strTrim).longValue();
         } catch (Exception unused) {
             return j2;
         }
@@ -66,7 +65,7 @@ public class ValueOf {
             return false;
         }
         try {
-            return !C0052a.f159k.equals(obj.toString().trim().trim());
+            return !a.f1909k.equals(obj.toString().trim().trim());
         } catch (Exception unused) {
             return z;
         }

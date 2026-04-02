@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ResourcesFlusher {
     private static final String TAG = "ResourcesFlusher";
     private static Field sDrawableCacheField;

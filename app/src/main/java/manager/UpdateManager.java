@@ -8,16 +8,25 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import androidx.core.content.FileProvider;
+import com.heytap.mcssdk.constant.a;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import p388ui.C6813c;
-import p388ui.Hicore;
-import util.C7277f1;
-import util.C7304o1;
-import util.C7325u1;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+import okhttp3.internal.Util;
+import ui.Hicore;
+import ui.c;
+import util.c2;
+import util.j1;
+import util.t1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UpdateManager {
     private static final int COMPLETED = 2;
     private static final int ERROR = 4;
@@ -74,198 +83,239 @@ public class UpdateManager {
         private String mQuestType;
         private String mUrl;
 
-        /* JADX WARN: Can't wrap try/catch for region: R(17:35|(1:37)|38|(1:42)|43|(6:48|(1:50)|51|(2:67|68)|(2:60|61)|(3:55|56|57)(1:59))|74|75|76|77|(2:78|(1:1)(3:82|(3:86|87|88)|89))|93|(1:95)|97|(0)|(0)|(0)(0)) */
-        /* JADX WARN: Code restructure failed: missing block: B:100:0x0177, code lost:
-        
-            r2 = r0;
-            r0 = r4;
-            r4 = r2;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:102:0x01a7, code lost:
-        
-            r3.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:103:0x01b0, code lost:
-        
-            if (r14.this$0.mHandler != null) goto L101;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:104:0x01b2, code lost:
-        
-            r14.this$0.mHandler.sendEmptyMessage(4);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:106:0x01bb, code lost:
-        
-            if (r0 != null) goto L166;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:107:0x01ca, code lost:
-        
-            if (r2 != null) goto L154;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:108:0x01d9, code lost:
-        
-            if (r4 != null) goto L117;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:109:0x01db, code lost:
-        
-            r4.disconnect();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:110:?, code lost:
-        
-            return;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:112:0x01cc, code lost:
-        
-            r2.close();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:114:0x01d5, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:115:0x01d6, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:116:0x01d0, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:117:0x01d1, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:119:0x01bd, code lost:
-        
-            r0.close();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:121:0x01c6, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:122:0x01c7, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:123:0x01c1, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:124:0x01c2, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:125:0x01e4, code lost:
-        
-            r1 = th;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:126:0x01e5, code lost:
-        
-            if (r0 != null) goto L159;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:127:0x01f4, code lost:
-        
-            if (r2 != null) goto L168;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:128:0x0203, code lost:
-        
-            if (r4 == null) goto L185;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:130:0x0205, code lost:
-        
-            r4.disconnect();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:132:?, code lost:
-        
-            throw r1;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:133:0x0209, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:134:0x020a, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:135:0x020d, code lost:
-        
-            throw r1;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:136:?, code lost:
-        
-            throw r1;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:138:0x01f6, code lost:
-        
-            r2.close();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:140:0x01ff, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:141:0x0200, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:142:0x01fa, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:143:0x01fb, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:145:0x01e7, code lost:
-        
-            r0.close();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:147:0x01f0, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:148:0x01f1, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:149:0x01eb, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:150:0x01ec, code lost:
-        
-            r0.printStackTrace();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:151:0x016f, code lost:
-        
-            r1 = th;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:152:0x0170, code lost:
-        
-            r2 = r0;
-            r0 = r4;
-            r4 = r2;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:99:0x0176, code lost:
-        
-            r3 = e;
-         */
-        /* JADX WARN: Removed duplicated region for block: B:129:0x0205 A[EXC_TOP_SPLITTER, SYNTHETIC] */
-        /* JADX WARN: Removed duplicated region for block: B:136:? A[SYNTHETIC] */
-        /* JADX WARN: Removed duplicated region for block: B:137:0x01f6 A[EXC_TOP_SPLITTER, SYNTHETIC] */
-        /* JADX WARN: Removed duplicated region for block: B:144:0x01e7 A[EXC_TOP_SPLITTER, SYNTHETIC] */
-        /* JADX WARN: Removed duplicated region for block: B:55:0x016a A[Catch: Exception -> 0x01df, TRY_ENTER, TRY_LEAVE, TryCatch #13 {Exception -> 0x01df, blocks: (B:55:0x016a, B:109:0x01db), top: B:2:0x0002 }] */
-        /* JADX WARN: Removed duplicated region for block: B:59:? A[RETURN, SYNTHETIC] */
-        /* JADX WARN: Removed duplicated region for block: B:60:0x015b A[EXC_TOP_SPLITTER, SYNTHETIC] */
-        /* JADX WARN: Removed duplicated region for block: B:67:0x014c A[EXC_TOP_SPLITTER, SYNTHETIC] */
+        /* JADX WARN: Removed duplicated region for block: B:145:0x0205 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+        /* JADX WARN: Removed duplicated region for block: B:159:0x01e7 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+        /* JADX WARN: Removed duplicated region for block: B:168:0x01f6 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+        /* JADX WARN: Removed duplicated region for block: B:185:? A[SYNTHETIC] */
         @Override // java.lang.Thread, java.lang.Runnable
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public void run() {
-            /*
-                Method dump skipped, instructions count: 526
-                To view this dump change 'Code comments level' option to 'DEBUG'
-            */
-            throw new UnsupportedOperationException("Method not decompiled: manager.UpdateManager.DownloadThread.run():void");
+        public void run() throws Throwable {
+            InputStream inputStream;
+            HttpURLConnection httpURLConnection;
+            HttpURLConnection httpURLConnection2;
+            InputStream inputStream2;
+            RandomAccessFile randomAccessFile = null;
+            RandomAccessFile randomAccessFile2 = null;
+            inputStream = null;
+            InputStream inputStream3 = null;
+            randomAccessFile = null;
+            randomAccessFile = null;
+            randomAccessFile = null;
+            try {
+                try {
+                    httpURLConnection2 = (HttpURLConnection) new URL(this.mUrl).openConnection();
+                    try {
+                        if (TextUtils.isEmpty(this.mQuestType)) {
+                            this.mQuestType = "POST";
+                        }
+                        httpURLConnection2.setRequestMethod(this.mQuestType);
+                        if (TextUtils.equals("POST", this.mQuestType)) {
+                            httpURLConnection2.setDoOutput(true);
+                            httpURLConnection2.setDoInput(true);
+                            httpURLConnection2.setUseCaches(false);
+                            httpURLConnection2.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+                        }
+                        httpURLConnection2.setConnectTimeout(Util.checkDuration("timeout", a.r, TimeUnit.SECONDS));
+                        httpURLConnection2.connect();
+                        if (TextUtils.equals("POST", this.mQuestType) && !TextUtils.isEmpty(this.mParam)) {
+                            String str = this.mParam;
+                            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(httpURLConnection2.getOutputStream(), "UTF-8"));
+                            bufferedWriter.write(str);
+                            bufferedWriter.close();
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        httpURLConnection = httpURLConnection2;
+                        inputStream = null;
+                    } catch (Throwable th) {
+                        th = th;
+                        httpURLConnection = httpURLConnection2;
+                        inputStream = null;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    inputStream = null;
+                    httpURLConnection = null;
+                } catch (Throwable th2) {
+                    th = th2;
+                    inputStream = null;
+                    httpURLConnection = null;
+                }
+                if (httpURLConnection2.getResponseCode() != 200) {
+                    if (UpdateManager.this.mHandler != null) {
+                        UpdateManager.this.mHandler.sendEmptyMessage(4);
+                    }
+                    if (httpURLConnection2 != null) {
+                        try {
+                            httpURLConnection2.disconnect();
+                            return;
+                        } catch (Exception e4) {
+                            e4.printStackTrace();
+                            return;
+                        }
+                    }
+                    return;
+                }
+                int contentLength = httpURLConnection2.getContentLength();
+                if (contentLength <= 0) {
+                    if (UpdateManager.this.mHandler != null) {
+                        UpdateManager.this.mHandler.sendEmptyMessage(4);
+                    }
+                    if (httpURLConnection2 != null) {
+                        try {
+                            httpURLConnection2.disconnect();
+                            return;
+                        } catch (Exception e5) {
+                            e5.printStackTrace();
+                            return;
+                        }
+                    }
+                    return;
+                }
+                File file = new File(UpdateManager.this.mDownloadPath);
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
+                File file2 = new File(file, UpdateManager.UPDATE_FILE_NAME);
+                if (file2.exists() && file2.isFile()) {
+                    file2.delete();
+                }
+                if (httpURLConnection2.getResponseCode() == 200 || httpURLConnection2.getResponseCode() == 206) {
+                    RandomAccessFile randomAccessFile3 = new RandomAccessFile(file2, "rwd");
+                    try {
+                        randomAccessFile3.setLength(contentLength);
+                        inputStream3 = httpURLConnection2.getInputStream();
+                        byte[] bArr = new byte[10240];
+                        int i2 = 0;
+                        int i3 = 0;
+                        while (true) {
+                            int i4 = inputStream3.read(bArr);
+                            if (i4 == -1 || UpdateManager.this.stopTh) {
+                                break;
+                            }
+                            randomAccessFile3.write(bArr, 0, i4);
+                            i2 += i4;
+                            int i5 = (int) ((((double) i2) * 100.0d) / ((double) contentLength));
+                            if (UpdateManager.this.mHandler != null && i5 != i3) {
+                                Message message = new Message();
+                                message.obj = Integer.valueOf(i5);
+                                UpdateManager.this.mHandler.sendMessage(message);
+                                i3 = i5;
+                            }
+                        }
+                        if (UpdateManager.this.mHandler != null) {
+                            UpdateManager.this.mHandler.sendEmptyMessage(2);
+                        }
+                        inputStream2 = inputStream3;
+                        randomAccessFile2 = randomAccessFile3;
+                    } catch (Exception e6) {
+                        e = e6;
+                        inputStream = inputStream3;
+                        randomAccessFile = randomAccessFile3;
+                        httpURLConnection = httpURLConnection2;
+                        try {
+                            e.printStackTrace();
+                            if (UpdateManager.this.mHandler != null) {
+                                UpdateManager.this.mHandler.sendEmptyMessage(4);
+                            }
+                            if (randomAccessFile != null) {
+                                try {
+                                    randomAccessFile.close();
+                                } catch (IOException e7) {
+                                    e7.printStackTrace();
+                                } catch (Exception e8) {
+                                    e8.printStackTrace();
+                                }
+                            }
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (IOException e9) {
+                                    e9.printStackTrace();
+                                } catch (Exception e10) {
+                                    e10.printStackTrace();
+                                }
+                            }
+                            if (httpURLConnection == null) {
+                                return;
+                            } else {
+                                httpURLConnection.disconnect();
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                            if (randomAccessFile != null) {
+                                try {
+                                    randomAccessFile.close();
+                                } catch (IOException e11) {
+                                    e11.printStackTrace();
+                                } catch (Exception e12) {
+                                    e12.printStackTrace();
+                                }
+                            }
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (IOException e13) {
+                                    e13.printStackTrace();
+                                } catch (Exception e14) {
+                                    e14.printStackTrace();
+                                }
+                            }
+                            if (httpURLConnection != null) {
+                                throw th;
+                            }
+                            try {
+                                httpURLConnection.disconnect();
+                                throw th;
+                            } catch (Exception e15) {
+                                e15.printStackTrace();
+                                throw th;
+                            }
+                        }
+                    } catch (Throwable th4) {
+                        th = th4;
+                        inputStream = inputStream3;
+                        randomAccessFile = randomAccessFile3;
+                        httpURLConnection = httpURLConnection2;
+                        if (randomAccessFile != null) {
+                        }
+                        if (inputStream != null) {
+                        }
+                        if (httpURLConnection != null) {
+                        }
+                    }
+                } else {
+                    if (UpdateManager.this.mHandler != null) {
+                        UpdateManager.this.mHandler.sendEmptyMessage(4);
+                    }
+                    inputStream2 = null;
+                }
+                if (randomAccessFile2 != null) {
+                    try {
+                        randomAccessFile2.close();
+                    } catch (IOException e16) {
+                        e16.printStackTrace();
+                    } catch (Exception e17) {
+                        e17.printStackTrace();
+                    }
+                }
+                if (inputStream2 != null) {
+                    try {
+                        inputStream2.close();
+                    } catch (IOException e18) {
+                        e18.printStackTrace();
+                    } catch (Exception e19) {
+                        e19.printStackTrace();
+                    }
+                }
+                if (httpURLConnection2 != null) {
+                    httpURLConnection2.disconnect();
+                }
+            } catch (Exception e20) {
+                e20.printStackTrace();
+            }
         }
 
         private DownloadThread(String str) {
@@ -293,45 +343,48 @@ public class UpdateManager {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void completed(String str) {
+        Activity activityC;
         try {
-            Activity m25446c = C6813c.m25437i().m25446c();
+            activityC = c.i().c();
             try {
-                if (Build.VERSION.SDK_INT >= 26 && !Hicore.getApp().getPackageManager().canRequestPackageInstalls()) {
-                    m25446c.startActivityForResult(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + m25446c.getPackageName())), REQUESTCODE_INSTALL_PERMISS_CODE);
-                    return;
-                }
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
-            try {
-                Runtime.getRuntime().exec("chmod 777 " + str + File.separator + UPDATE_FILE_NAME);
-            } catch (IOException e3) {
-                e3.printStackTrace();
-            }
-            Intent intent = new Intent("android.intent.action.VIEW");
-            intent.addCategory("android.intent.category.DEFAULT");
-            intent.setFlags(CommonNetImpl.FLAG_AUTH);
-            File file = new File(str + File.separator + UPDATE_FILE_NAME);
-            if (this.mHandler != null) {
-                this.mHandler.sendEmptyMessage(5);
-            }
-            if (Build.VERSION.SDK_INT >= 24) {
-                Uri uriForFile = FileProvider.getUriForFile(Hicore.getApp(), Hicore.getApp().getPackageName() + ".fileprovider", file);
-                intent.addFlags(1);
-                intent.addFlags(2);
-                intent.setDataAndType(uriForFile, "application/vnd.android.package-archive");
-            } else {
-                intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            }
-            m25446c.startActivity(intent);
-        } catch (Exception e4) {
+        } catch (Exception e3) {
+            e3.printStackTrace();
+        }
+        if (Build.VERSION.SDK_INT >= 26 && !Hicore.getApp().getPackageManager().canRequestPackageInstalls()) {
+            activityC.startActivityForResult(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + activityC.getPackageName())), REQUESTCODE_INSTALL_PERMISS_CODE);
+            return;
+        }
+        try {
+            Runtime.getRuntime().exec("chmod 777 " + str + File.separator + UPDATE_FILE_NAME);
+        } catch (IOException e4) {
             e4.printStackTrace();
         }
-        C6813c.m25437i().m25448d();
+        Intent intent = new Intent("android.intent.action.VIEW");
+        intent.addCategory("android.intent.category.DEFAULT");
+        intent.setFlags(CommonNetImpl.FLAG_AUTH);
+        File file = new File(str + File.separator + UPDATE_FILE_NAME);
+        if (this.mHandler != null) {
+            this.mHandler.sendEmptyMessage(5);
+        }
+        if (Build.VERSION.SDK_INT >= 24) {
+            Uri uriForFile = FileProvider.getUriForFile(Hicore.getApp(), Hicore.getApp().getPackageName() + ".fileprovider", file);
+            intent.addFlags(1);
+            intent.addFlags(2);
+            intent.setDataAndType(uriForFile, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        }
+        activityC.startActivity(intent);
+        c.i().d();
+        e3.printStackTrace();
+        c.i().d();
     }
 
     private boolean doNormalSignCheck(File file) {
-        return C7325u1.m26625b(C7325u1.f25690p).equalsIgnoreCase(C7304o1.m26466a(file));
+        return c2.b(c2.p).equalsIgnoreCase(t1.a(file));
     }
 
     public static UpdateManager getInstance() {
@@ -426,6 +479,6 @@ public class UpdateManager {
     }
 
     private UpdateManager() {
-        this.mDownloadPath = C7277f1.m26345a() + UPDATE_FILE_PATH;
+        this.mDownloadPath = j1.a() + UPDATE_FILE_PATH;
     }
 }

@@ -3,7 +3,7 @@ package com.umeng.tunnel;
 import android.content.Context;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMChannelAgent {
     private static final String TAG = "UMChannelAgent";
     private static final String UMENG_VCHANNEL = "com.umeng.commonsdk.vchannel.Sender";

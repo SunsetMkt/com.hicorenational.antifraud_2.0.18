@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.RoundRectDrawableWithShadow;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class CardViewBaseImpl implements CardViewImpl {
     final RectF mCornerRect = new RectF();
 
@@ -60,25 +60,25 @@ class CardViewBaseImpl implements CardViewImpl {
             @Override // androidx.cardview.widget.RoundRectDrawableWithShadow.RoundRectHelper
             public void drawRoundRect(Canvas canvas, RectF rectF, float f2, Paint paint) {
                 float f3 = 2.0f * f2;
-                float width = (rectF.width() - f3) - 1.0f;
-                float height = (rectF.height() - f3) - 1.0f;
+                float fWidth = (rectF.width() - f3) - 1.0f;
+                float fHeight = (rectF.height() - f3) - 1.0f;
                 if (f2 >= 1.0f) {
                     float f4 = f2 + 0.5f;
                     float f5 = -f4;
                     CardViewBaseImpl.this.mCornerRect.set(f5, f5, f4, f4);
-                    int save = canvas.save();
+                    int iSave = canvas.save();
                     canvas.translate(rectF.left + f4, rectF.top + f4);
                     canvas.drawArc(CardViewBaseImpl.this.mCornerRect, 180.0f, 90.0f, true, paint);
-                    canvas.translate(width, 0.0f);
+                    canvas.translate(fWidth, 0.0f);
                     canvas.rotate(90.0f);
                     canvas.drawArc(CardViewBaseImpl.this.mCornerRect, 180.0f, 90.0f, true, paint);
-                    canvas.translate(height, 0.0f);
+                    canvas.translate(fHeight, 0.0f);
                     canvas.rotate(90.0f);
                     canvas.drawArc(CardViewBaseImpl.this.mCornerRect, 180.0f, 90.0f, true, paint);
-                    canvas.translate(width, 0.0f);
+                    canvas.translate(fWidth, 0.0f);
                     canvas.rotate(90.0f);
                     canvas.drawArc(CardViewBaseImpl.this.mCornerRect, 180.0f, 90.0f, true, paint);
-                    canvas.restoreToCount(save);
+                    canvas.restoreToCount(iSave);
                     float f6 = (rectF.left + f4) - 1.0f;
                     float f7 = rectF.top;
                     canvas.drawRect(f6, f7, (rectF.right - f4) + 1.0f, f7 + f4, paint);
@@ -93,9 +93,9 @@ class CardViewBaseImpl implements CardViewImpl {
 
     @Override // androidx.cardview.widget.CardViewImpl
     public void initialize(CardViewDelegate cardViewDelegate, Context context, ColorStateList colorStateList, float f2, float f3, float f4) {
-        RoundRectDrawableWithShadow createBackground = createBackground(context, colorStateList, f2, f3, f4);
-        createBackground.setAddPaddingForCorners(cardViewDelegate.getPreventCornerOverlap());
-        cardViewDelegate.setCardBackground(createBackground);
+        RoundRectDrawableWithShadow roundRectDrawableWithShadowCreateBackground = createBackground(context, colorStateList, f2, f3, f4);
+        roundRectDrawableWithShadowCreateBackground.setAddPaddingForCorners(cardViewDelegate.getPreventCornerOverlap());
+        cardViewDelegate.setCardBackground(roundRectDrawableWithShadowCreateBackground);
         updatePadding(cardViewDelegate);
     }
 

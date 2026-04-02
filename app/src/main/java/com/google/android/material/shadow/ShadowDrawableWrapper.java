@@ -10,11 +10,13 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.core.content.ContextCompat;
-import com.google.android.material.C1921R;
+import com.google.android.material.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@Deprecated
 public class ShadowDrawableWrapper extends DrawableWrapper {
     static final double COS_45 = Math.cos(Math.toRadians(45.0d));
     static final float SHADOW_BOTTOM_SCALE = 1.0f;
@@ -22,11 +24,17 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
     static final float SHADOW_MULTIPLIER = 1.5f;
     static final float SHADOW_TOP_SCALE = 0.25f;
     private boolean addPaddingForCorners;
+
+    @NonNull
     final RectF contentBounds;
     float cornerRadius;
+
+    @NonNull
     final Paint cornerShadowPaint;
     Path cornerShadowPath;
     private boolean dirty;
+
+    @NonNull
     final Paint edgeShadowPaint;
     float maxShadowSize;
     private boolean printedShadowClipWarning;
@@ -43,9 +51,9 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         this.dirty = true;
         this.addPaddingForCorners = true;
         this.printedShadowClipWarning = false;
-        this.shadowStartColor = ContextCompat.getColor(context, C1921R.color.design_fab_shadow_start_color);
-        this.shadowMiddleColor = ContextCompat.getColor(context, C1921R.color.design_fab_shadow_mid_color);
-        this.shadowEndColor = ContextCompat.getColor(context, C1921R.color.design_fab_shadow_end_color);
+        this.shadowStartColor = ContextCompat.getColor(context, R.color.design_fab_shadow_start_color);
+        this.shadowMiddleColor = ContextCompat.getColor(context, R.color.design_fab_shadow_mid_color);
+        this.shadowEndColor = ContextCompat.getColor(context, R.color.design_fab_shadow_end_color);
         this.cornerShadowPaint = new Paint(5);
         this.cornerShadowPaint.setStyle(Paint.Style.FILL);
         this.cornerRadius = Math.round(f2);
@@ -55,7 +63,7 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         setShadowSize(f3, f4);
     }
 
-    private void buildComponents(Rect rect) {
+    private void buildComponents(@NonNull Rect rect) {
         float f2 = this.rawMaxShadowSize;
         float f3 = SHADOW_MULTIPLIER * f2;
         this.contentBounds.set(rect.left + f2, rect.top + f3, rect.right - f2, rect.bottom - f3);
@@ -88,26 +96,26 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
             float f5 = this.cornerRadius / f4;
             this.cornerShadowPaint.setShader(new RadialGradient(0.0f, 0.0f, f4, new int[]{0, this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, f5, ((1.0f - f5) / 2.0f) + f5, 1.0f}, Shader.TileMode.CLAMP));
         }
-        this.edgeShadowPaint.setShader(new LinearGradient(0.0f, rectF.top, 0.0f, rectF2.top, new int[]{this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, SHADOW_HORIZ_SCALE, 1.0f}, Shader.TileMode.CLAMP));
+        this.edgeShadowPaint.setShader(new LinearGradient(0.0f, rectF.top, 0.0f, rectF2.top, new int[]{this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
         this.edgeShadowPaint.setAntiAlias(false);
     }
 
     public static float calculateHorizontalPadding(float f2, float f3, boolean z) {
-        return z ? (float) (f2 + ((1.0d - COS_45) * f3)) : f2;
+        return z ? (float) (((double) f2) + ((1.0d - COS_45) * ((double) f3))) : f2;
     }
 
     public static float calculateVerticalPadding(float f2, float f3, boolean z) {
-        return z ? (float) ((f2 * SHADOW_MULTIPLIER) + ((1.0d - COS_45) * f3)) : f2 * SHADOW_MULTIPLIER;
+        return z ? (float) (((double) (f2 * SHADOW_MULTIPLIER)) + ((1.0d - COS_45) * ((double) f3))) : f2 * SHADOW_MULTIPLIER;
     }
 
-    private void drawShadow(Canvas canvas) {
+    private void drawShadow(@NonNull Canvas canvas) {
         int i2;
         float f2;
         int i3;
         float f3;
         float f4;
         float f5;
-        int save = canvas.save();
+        int iSave = canvas.save();
         canvas.rotate(this.rotation, this.contentBounds.centerX(), this.contentBounds.centerY());
         float f6 = this.cornerRadius;
         float f7 = (-f6) - this.shadowSize;
@@ -115,79 +123,78 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         boolean z = this.contentBounds.width() - f8 > 0.0f;
         boolean z2 = this.contentBounds.height() - f8 > 0.0f;
         float f9 = this.rawShadowSize;
-        float f10 = f9 - (SHADOW_TOP_SCALE * f9);
-        float f11 = f6 / ((f9 - (SHADOW_HORIZ_SCALE * f9)) + f6);
-        float f12 = f6 / (f10 + f6);
-        float f13 = f6 / ((f9 - (f9 * 1.0f)) + f6);
-        int save2 = canvas.save();
+        float f10 = f6 / ((f9 - (0.5f * f9)) + f6);
+        float f11 = f6 / ((f9 - (SHADOW_TOP_SCALE * f9)) + f6);
+        float f12 = f6 / ((f9 - (f9 * 1.0f)) + f6);
+        int iSave2 = canvas.save();
         RectF rectF = this.contentBounds;
         canvas.translate(rectF.left + f6, rectF.top + f6);
-        canvas.scale(f11, f12);
+        canvas.scale(f10, f11);
         canvas.drawPath(this.cornerShadowPath, this.cornerShadowPaint);
         if (z) {
-            canvas.scale(1.0f / f11, 1.0f);
-            i2 = save2;
-            f2 = f13;
-            i3 = save;
-            f3 = f12;
+            canvas.scale(1.0f / f10, 1.0f);
+            i2 = iSave2;
+            f2 = f12;
+            i3 = iSave;
+            f3 = f11;
             canvas.drawRect(0.0f, f7, this.contentBounds.width() - f8, -this.cornerRadius, this.edgeShadowPaint);
         } else {
-            i2 = save2;
-            f2 = f13;
-            i3 = save;
-            f3 = f12;
+            i2 = iSave2;
+            f2 = f12;
+            i3 = iSave;
+            f3 = f11;
         }
         canvas.restoreToCount(i2);
-        int save3 = canvas.save();
+        int iSave3 = canvas.save();
         RectF rectF2 = this.contentBounds;
         canvas.translate(rectF2.right - f6, rectF2.bottom - f6);
-        float f14 = f2;
-        canvas.scale(f11, f14);
+        float f13 = f2;
+        canvas.scale(f10, f13);
         canvas.rotate(180.0f);
         canvas.drawPath(this.cornerShadowPath, this.cornerShadowPaint);
         if (z) {
-            canvas.scale(1.0f / f11, 1.0f);
+            canvas.scale(1.0f / f10, 1.0f);
             f4 = f3;
-            f5 = f14;
+            f5 = f13;
             canvas.drawRect(0.0f, f7, this.contentBounds.width() - f8, (-this.cornerRadius) + this.shadowSize, this.edgeShadowPaint);
         } else {
             f4 = f3;
-            f5 = f14;
+            f5 = f13;
         }
-        canvas.restoreToCount(save3);
-        int save4 = canvas.save();
+        canvas.restoreToCount(iSave3);
+        int iSave4 = canvas.save();
         RectF rectF3 = this.contentBounds;
         canvas.translate(rectF3.left + f6, rectF3.bottom - f6);
-        canvas.scale(f11, f5);
+        canvas.scale(f10, f5);
         canvas.rotate(270.0f);
         canvas.drawPath(this.cornerShadowPath, this.cornerShadowPaint);
         if (z2) {
             canvas.scale(1.0f / f5, 1.0f);
             canvas.drawRect(0.0f, f7, this.contentBounds.height() - f8, -this.cornerRadius, this.edgeShadowPaint);
         }
-        canvas.restoreToCount(save4);
-        int save5 = canvas.save();
+        canvas.restoreToCount(iSave4);
+        int iSave5 = canvas.save();
         RectF rectF4 = this.contentBounds;
         canvas.translate(rectF4.right - f6, rectF4.top + f6);
-        float f15 = f4;
-        canvas.scale(f11, f15);
+        float f14 = f4;
+        canvas.scale(f10, f14);
         canvas.rotate(90.0f);
         canvas.drawPath(this.cornerShadowPath, this.cornerShadowPaint);
         if (z2) {
-            canvas.scale(1.0f / f15, 1.0f);
+            canvas.scale(1.0f / f14, 1.0f);
             canvas.drawRect(0.0f, f7, this.contentBounds.height() - f8, -this.cornerRadius, this.edgeShadowPaint);
         }
-        canvas.restoreToCount(save5);
+        canvas.restoreToCount(iSave5);
         canvas.restoreToCount(i3);
     }
 
     private static int toEven(float f2) {
-        int round = Math.round(f2);
-        return round % 2 == 1 ? round - 1 : round;
+        int iRound = Math.round(f2);
+        return iRound % 2 == 1 ? iRound - 1 : iRound;
     }
 
     @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         if (this.dirty) {
             buildComponents(getBounds());
             this.dirty = false;
@@ -220,10 +227,10 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
     }
 
     @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-    public boolean getPadding(Rect rect) {
-        int ceil = (int) Math.ceil(calculateVerticalPadding(this.rawMaxShadowSize, this.cornerRadius, this.addPaddingForCorners));
-        int ceil2 = (int) Math.ceil(calculateHorizontalPadding(this.rawMaxShadowSize, this.cornerRadius, this.addPaddingForCorners));
-        rect.set(ceil2, ceil, ceil2, ceil);
+    public boolean getPadding(@NonNull Rect rect) {
+        int iCeil = (int) Math.ceil(calculateVerticalPadding(this.rawMaxShadowSize, this.cornerRadius, this.addPaddingForCorners));
+        int iCeil2 = (int) Math.ceil(calculateHorizontalPadding(this.rawMaxShadowSize, this.cornerRadius, this.addPaddingForCorners));
+        rect.set(iCeil2, iCeil, iCeil2, iCeil);
         return true;
     }
 
@@ -249,11 +256,11 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
     }
 
     public void setCornerRadius(float f2) {
-        float round = Math.round(f2);
-        if (this.cornerRadius == round) {
+        float fRound = Math.round(f2);
+        if (this.cornerRadius == fRound) {
             return;
         }
-        this.cornerRadius = round;
+        this.cornerRadius = fRound;
         this.dirty = true;
         invalidateSelf();
     }

@@ -20,7 +20,7 @@ import com.umeng.socialize.utils.UmengText;
 import java.util.Map;
 import java.util.Stack;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor {
     private Stack<StatHolder> mStatStack = new Stack<>();
 
@@ -65,15 +65,15 @@ public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor 
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
     public void onActivityResult(int i2, int i3, Intent intent) {
-        StatHolder pop;
+        StatHolder statHolderPop;
         if (i2 != getRequestCode()) {
             return;
         }
         if (i3 == 1000) {
-            if (this.mStatStack.isEmpty() || (pop = this.mStatStack.pop()) == null) {
+            if (this.mStatStack.isEmpty() || (statHolderPop = this.mStatStack.pop()) == null) {
                 return;
             }
-            pop.Listener.onCancel(getPlatform());
+            statHolderPop.Listener.onCancel(getPlatform());
             return;
         }
         if (intent == null || !intent.hasExtra(SocializeConstants.KEY_TEXT)) {
@@ -83,17 +83,17 @@ public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor 
         if (this.mStatStack.empty()) {
             return;
         }
-        final StatHolder pop2 = this.mStatStack.pop();
+        final StatHolder statHolderPop2 = this.mStatStack.pop();
         final Bundle extras = intent.getExtras();
         if (i3 == -1) {
             QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMAPIShareHandler.1
                 @Override // java.lang.Runnable
                 public void run() {
-                    UMAPIShareHandler.this.sendShareRequest(UMAPIShareHandler.this.getResult(pop2.Content, extras), pop2.Listener);
+                    UMAPIShareHandler.this.sendShareRequest(UMAPIShareHandler.this.getResult(statHolderPop2.Content, extras), statHolderPop2.Listener);
                 }
             }, true);
-        } else if (pop2.Listener != null) {
-            pop2.Listener.onCancel(getPlatform());
+        } else if (statHolderPop2.Listener != null) {
+            statHolderPop2.Listener.onCancel(getPlatform());
         }
     }
 
@@ -110,15 +110,15 @@ public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor 
         analyticsReqeust.setMedia(shareContent.mMedia);
         analyticsReqeust.setmUsid(uid);
         analyticsReqeust.setReqType(0);
-        final AnalyticsResponse doShareByRequest = RestAPI.doShareByRequest(analyticsReqeust);
-        if (doShareByRequest == null) {
+        final AnalyticsResponse analyticsResponseDoShareByRequest = RestAPI.doShareByRequest(analyticsReqeust);
+        if (analyticsResponseDoShareByRequest == null) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMAPIShareHandler.3
                 @Override // java.lang.Runnable
                 public void run() {
                     uMShareListener.onError(platform, new Throwable(UmengErrorCode.ShareFailed.getMessage() + "response is null"));
                 }
             });
-        } else if (doShareByRequest.isOk()) {
+        } else if (analyticsResponseDoShareByRequest.isOk()) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMAPIShareHandler.5
                 @Override // java.lang.Runnable
                 public void run() {
@@ -129,12 +129,12 @@ public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor 
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMAPIShareHandler.4
                 @Override // java.lang.Runnable
                 public void run() {
-                    if (doShareByRequest.mStCode == 5027) {
+                    if (analyticsResponseDoShareByRequest.mStCode == 5027) {
                         UMAPIShareHandler.this.deleteAuth();
                         UMAPIShareHandler.this.share(shareContent, uMShareListener);
                         return;
                     }
-                    uMShareListener.onError(platform, new Throwable(UmengErrorCode.ShareFailed.getMessage() + doShareByRequest.mMsg));
+                    uMShareListener.onError(platform, new Throwable(UmengErrorCode.ShareFailed.getMessage() + analyticsResponseDoShareByRequest.mMsg));
                 }
             });
         }
@@ -157,7 +157,7 @@ public abstract class UMAPIShareHandler extends UMSSOHandler implements IEditor 
                 QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMAPIShareHandler.2.1
                     @Override // java.lang.Runnable
                     public void run() {
-                        C36602 c36602 = C36602.this;
+                        AnonymousClass2 anonymousClass2 = AnonymousClass2.this;
                         UMAPIShareHandler.this.doShare(shareContent, uMShareListener);
                     }
                 }, true);

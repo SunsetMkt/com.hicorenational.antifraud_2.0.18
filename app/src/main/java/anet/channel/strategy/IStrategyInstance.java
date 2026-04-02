@@ -3,8 +3,8 @@ package anet.channel.strategy;
 import android.content.Context;
 import java.util.List;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public interface IStrategyInstance {
     void forceRefreshStrategy(String str);
 

@@ -4,7 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@Deprecated
 public class TransformationChildCard extends CircularRevealCardView {
     public TransformationChildCard(Context context) {
         this(context, null);

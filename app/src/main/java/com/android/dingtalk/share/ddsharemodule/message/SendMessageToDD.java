@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.android.dingtalk.share.ddsharemodule.ShareConstant;
 import com.android.dingtalk.share.ddsharemodule.message.DDMediaMessage;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SendMessageToDD {
 
     public static class Resp extends BaseResp {

@@ -1,5 +1,6 @@
 package androidx.appcompat.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -7,16 +8,22 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.LocaleList;
+import android.text.method.PasswordTransformationMethod;
+import android.util.AttributeSet;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
 import androidx.core.widget.AutoSizeableTextView;
+import androidx.core.widget.TextViewCompat;
 import java.lang.ref.WeakReference;
+import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class AppCompatTextHelper {
     private static final int MONOSPACE = 3;
     private static final int SANS = 1;
@@ -39,6 +46,32 @@ class AppCompatTextHelper {
     private final TextView mView;
     private int mStyle = 0;
     private int mFontWeight = -1;
+
+    /* JADX INFO: renamed from: androidx.appcompat.widget.AppCompatTextHelper$1 */
+    class AnonymousClass1 extends ResourcesCompat.FontCallback {
+        final /* synthetic */ int val$fontWeight;
+        final /* synthetic */ int val$style;
+        final /* synthetic */ WeakReference val$textViewWeak;
+
+        AnonymousClass1(int i2, int i3, WeakReference weakReference) {
+            i = i2;
+            i = i3;
+            weakReference = weakReference;
+        }
+
+        @Override // androidx.core.content.res.ResourcesCompat.FontCallback
+        public void onFontRetrievalFailed(int i2) {
+        }
+
+        @Override // androidx.core.content.res.ResourcesCompat.FontCallback
+        public void onFontRetrieved(@NonNull Typeface typeface) {
+            int i2;
+            if (Build.VERSION.SDK_INT >= 28 && (i2 = i) != -1) {
+                typeface = Typeface.create(typeface, i2, (i & 2) != 0);
+            }
+            AppCompatTextHelper.this.onAsyncTypefaceReceived(weakReference, typeface);
+        }
+    }
 
     AppCompatTextHelper(@NonNull TextView textView) {
         this.mView = textView;
@@ -134,17 +167,17 @@ class AppCompatTextHelper {
 
     private void updateTypefaceAndStyle(Context context, TintTypedArray tintTypedArray) {
         String string;
-        this.mStyle = tintTypedArray.getInt(C0120R.styleable.TextAppearance_android_textStyle, this.mStyle);
+        this.mStyle = tintTypedArray.getInt(R.styleable.TextAppearance_android_textStyle, this.mStyle);
         if (Build.VERSION.SDK_INT >= 28) {
-            this.mFontWeight = tintTypedArray.getInt(C0120R.styleable.TextAppearance_android_textFontWeight, -1);
+            this.mFontWeight = tintTypedArray.getInt(R.styleable.TextAppearance_android_textFontWeight, -1);
             if (this.mFontWeight != -1) {
                 this.mStyle = (this.mStyle & 2) | 0;
             }
         }
-        if (!tintTypedArray.hasValue(C0120R.styleable.TextAppearance_android_fontFamily) && !tintTypedArray.hasValue(C0120R.styleable.TextAppearance_fontFamily)) {
-            if (tintTypedArray.hasValue(C0120R.styleable.TextAppearance_android_typeface)) {
+        if (!tintTypedArray.hasValue(R.styleable.TextAppearance_android_fontFamily) && !tintTypedArray.hasValue(R.styleable.TextAppearance_fontFamily)) {
+            if (tintTypedArray.hasValue(R.styleable.TextAppearance_android_typeface)) {
                 this.mAsyncFontPending = false;
-                int i2 = tintTypedArray.getInt(C0120R.styleable.TextAppearance_android_typeface, 1);
+                int i2 = tintTypedArray.getInt(R.styleable.TextAppearance_android_typeface, 1);
                 if (i2 == 1) {
                     this.mFontTypeface = Typeface.SANS_SERIF;
                     return;
@@ -162,22 +195,31 @@ class AppCompatTextHelper {
             return;
         }
         this.mFontTypeface = null;
-        int i3 = tintTypedArray.hasValue(C0120R.styleable.TextAppearance_fontFamily) ? C0120R.styleable.TextAppearance_fontFamily : C0120R.styleable.TextAppearance_android_fontFamily;
-        final int i4 = this.mFontWeight;
-        final int i5 = this.mStyle;
+        int i3 = tintTypedArray.hasValue(R.styleable.TextAppearance_fontFamily) ? R.styleable.TextAppearance_fontFamily : R.styleable.TextAppearance_android_fontFamily;
+        int i4 = this.mFontWeight;
+        int i5 = this.mStyle;
         if (!context.isRestricted()) {
-            final WeakReference weakReference = new WeakReference(this.mView);
             try {
                 Typeface font = tintTypedArray.getFont(i3, this.mStyle, new ResourcesCompat.FontCallback() { // from class: androidx.appcompat.widget.AppCompatTextHelper.1
+                    final /* synthetic */ int val$fontWeight;
+                    final /* synthetic */ int val$style;
+                    final /* synthetic */ WeakReference val$textViewWeak;
+
+                    AnonymousClass1(int i42, int i52, WeakReference weakReference) {
+                        i = i42;
+                        i = i52;
+                        weakReference = weakReference;
+                    }
+
                     @Override // androidx.core.content.res.ResourcesCompat.FontCallback
-                    public void onFontRetrievalFailed(int i6) {
+                    public void onFontRetrievalFailed(int i22) {
                     }
 
                     @Override // androidx.core.content.res.ResourcesCompat.FontCallback
                     public void onFontRetrieved(@NonNull Typeface typeface) {
-                        int i6;
-                        if (Build.VERSION.SDK_INT >= 28 && (i6 = i4) != -1) {
-                            typeface = Typeface.create(typeface, i6, (i5 & 2) != 0);
+                        int i22;
+                        if (Build.VERSION.SDK_INT >= 28 && (i22 = i) != -1) {
+                            typeface = Typeface.create(typeface, i22, (i & 2) != 0);
                         }
                         AppCompatTextHelper.this.onAsyncTypefaceReceived(weakReference, typeface);
                     }
@@ -269,19 +311,199 @@ class AppCompatTextHelper {
         return this.mAutoSizeTextHelper.isAutoSizeEnabled();
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:157:0x012b  */
-    /* JADX WARN: Removed duplicated region for block: B:41:0x0124  */
-    @android.annotation.SuppressLint({"NewApi"})
+    /* JADX WARN: Removed duplicated region for block: B:213:0x0124  */
+    /* JADX WARN: Removed duplicated region for block: B:214:0x012b  */
+    /* JADX WARN: Removed duplicated region for block: B:220:0x013f  */
+    @SuppressLint({"NewApi"})
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    void loadFromAttributes(@androidx.annotation.Nullable android.util.AttributeSet r19, int r20) {
-        /*
-            Method dump skipped, instructions count: 838
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.AppCompatTextHelper.loadFromAttributes(android.util.AttributeSet, int):void");
+    void loadFromAttributes(@Nullable AttributeSet attributeSet, int i2) {
+        ColorStateList colorStateList;
+        String string;
+        boolean z;
+        boolean z2;
+        ColorStateList colorStateList2;
+        String string2;
+        ColorStateList colorStateList3;
+        boolean z3;
+        int i3;
+        Context context = this.mView.getContext();
+        AppCompatDrawableManager appCompatDrawableManager = AppCompatDrawableManager.get();
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.AppCompatTextHelper, i2, 0);
+        TextView textView = this.mView;
+        ViewCompat.saveAttributeDataForStyleable(textView, textView.getContext(), R.styleable.AppCompatTextHelper, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i2, 0);
+        int resourceId = tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_textAppearance, -1);
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.AppCompatTextHelper_android_drawableLeft)) {
+            this.mDrawableLeftTint = createTintInfo(context, appCompatDrawableManager, tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_drawableLeft, 0));
+        }
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.AppCompatTextHelper_android_drawableTop)) {
+            this.mDrawableTopTint = createTintInfo(context, appCompatDrawableManager, tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_drawableTop, 0));
+        }
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.AppCompatTextHelper_android_drawableRight)) {
+            this.mDrawableRightTint = createTintInfo(context, appCompatDrawableManager, tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_drawableRight, 0));
+        }
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.AppCompatTextHelper_android_drawableBottom)) {
+            this.mDrawableBottomTint = createTintInfo(context, appCompatDrawableManager, tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_drawableBottom, 0));
+        }
+        if (Build.VERSION.SDK_INT >= 17) {
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.AppCompatTextHelper_android_drawableStart)) {
+                this.mDrawableStartTint = createTintInfo(context, appCompatDrawableManager, tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_drawableStart, 0));
+            }
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.AppCompatTextHelper_android_drawableEnd)) {
+                this.mDrawableEndTint = createTintInfo(context, appCompatDrawableManager, tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.AppCompatTextHelper_android_drawableEnd, 0));
+            }
+        }
+        tintTypedArrayObtainStyledAttributes.recycle();
+        boolean z4 = this.mView.getTransformationMethod() instanceof PasswordTransformationMethod;
+        if (resourceId != -1) {
+            TintTypedArray tintTypedArrayObtainStyledAttributes2 = TintTypedArray.obtainStyledAttributes(context, resourceId, R.styleable.TextAppearance);
+            if (z4 || !tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_textAllCaps)) {
+                z = false;
+                z2 = false;
+            } else {
+                z2 = tintTypedArrayObtainStyledAttributes2.getBoolean(R.styleable.TextAppearance_textAllCaps, false);
+                z = true;
+            }
+            updateTypefaceAndStyle(context, tintTypedArrayObtainStyledAttributes2);
+            if (Build.VERSION.SDK_INT < 23) {
+                ColorStateList colorStateList4 = tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_android_textColor) ? tintTypedArrayObtainStyledAttributes2.getColorStateList(R.styleable.TextAppearance_android_textColor) : null;
+                colorStateList = tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_android_textColorHint) ? tintTypedArrayObtainStyledAttributes2.getColorStateList(R.styleable.TextAppearance_android_textColorHint) : null;
+                if (tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_android_textColorLink)) {
+                    ColorStateList colorStateList5 = colorStateList4;
+                    colorStateList3 = tintTypedArrayObtainStyledAttributes2.getColorStateList(R.styleable.TextAppearance_android_textColorLink);
+                    colorStateList2 = colorStateList5;
+                    string2 = !tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_textLocale) ? tintTypedArrayObtainStyledAttributes2.getString(R.styleable.TextAppearance_textLocale) : null;
+                    string = (Build.VERSION.SDK_INT >= 26 || !tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_fontVariationSettings)) ? null : tintTypedArrayObtainStyledAttributes2.getString(R.styleable.TextAppearance_fontVariationSettings);
+                    tintTypedArrayObtainStyledAttributes2.recycle();
+                } else {
+                    colorStateList2 = colorStateList4;
+                }
+            } else {
+                colorStateList = null;
+                colorStateList2 = null;
+            }
+            colorStateList3 = null;
+            if (!tintTypedArrayObtainStyledAttributes2.hasValue(R.styleable.TextAppearance_textLocale)) {
+            }
+            if (Build.VERSION.SDK_INT >= 26) {
+                tintTypedArrayObtainStyledAttributes2.recycle();
+            }
+        } else {
+            colorStateList = null;
+            string = null;
+            z = false;
+            z2 = false;
+            colorStateList2 = null;
+            string2 = null;
+            colorStateList3 = null;
+        }
+        TintTypedArray tintTypedArrayObtainStyledAttributes3 = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.TextAppearance, i2, 0);
+        if (z4 || !tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_textAllCaps)) {
+            z3 = z;
+        } else {
+            z2 = tintTypedArrayObtainStyledAttributes3.getBoolean(R.styleable.TextAppearance_textAllCaps, false);
+            z3 = true;
+        }
+        if (Build.VERSION.SDK_INT < 23) {
+            if (tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_android_textColor)) {
+                colorStateList2 = tintTypedArrayObtainStyledAttributes3.getColorStateList(R.styleable.TextAppearance_android_textColor);
+            }
+            if (tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_android_textColorHint)) {
+                colorStateList = tintTypedArrayObtainStyledAttributes3.getColorStateList(R.styleable.TextAppearance_android_textColorHint);
+            }
+            if (tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_android_textColorLink)) {
+                colorStateList3 = tintTypedArrayObtainStyledAttributes3.getColorStateList(R.styleable.TextAppearance_android_textColorLink);
+            }
+        }
+        if (tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_textLocale)) {
+            string2 = tintTypedArrayObtainStyledAttributes3.getString(R.styleable.TextAppearance_textLocale);
+        }
+        if (Build.VERSION.SDK_INT >= 26 && tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_fontVariationSettings)) {
+            string = tintTypedArrayObtainStyledAttributes3.getString(R.styleable.TextAppearance_fontVariationSettings);
+        }
+        if (Build.VERSION.SDK_INT >= 28 && tintTypedArrayObtainStyledAttributes3.hasValue(R.styleable.TextAppearance_android_textSize) && tintTypedArrayObtainStyledAttributes3.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, -1) == 0) {
+            this.mView.setTextSize(0, 0.0f);
+        }
+        updateTypefaceAndStyle(context, tintTypedArrayObtainStyledAttributes3);
+        tintTypedArrayObtainStyledAttributes3.recycle();
+        if (colorStateList2 != null) {
+            this.mView.setTextColor(colorStateList2);
+        }
+        if (colorStateList != null) {
+            this.mView.setHintTextColor(colorStateList);
+        }
+        if (colorStateList3 != null) {
+            this.mView.setLinkTextColor(colorStateList3);
+        }
+        if (!z4 && z3) {
+            setAllCaps(z2);
+        }
+        Typeface typeface = this.mFontTypeface;
+        if (typeface != null) {
+            if (this.mFontWeight == -1) {
+                this.mView.setTypeface(typeface, this.mStyle);
+            } else {
+                this.mView.setTypeface(typeface);
+            }
+        }
+        if (string != null) {
+            this.mView.setFontVariationSettings(string);
+        }
+        if (string2 != null) {
+            int i4 = Build.VERSION.SDK_INT;
+            if (i4 >= 24) {
+                this.mView.setTextLocales(LocaleList.forLanguageTags(string2));
+            } else if (i4 >= 21) {
+                this.mView.setTextLocale(Locale.forLanguageTag(string2.substring(0, string2.indexOf(44))));
+            }
+        }
+        this.mAutoSizeTextHelper.loadFromAttributes(attributeSet, i2);
+        if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE && this.mAutoSizeTextHelper.getAutoSizeTextType() != 0) {
+            int[] autoSizeTextAvailableSizes = this.mAutoSizeTextHelper.getAutoSizeTextAvailableSizes();
+            if (autoSizeTextAvailableSizes.length > 0) {
+                if (this.mView.getAutoSizeStepGranularity() != -1.0f) {
+                    this.mView.setAutoSizeTextTypeUniformWithConfiguration(this.mAutoSizeTextHelper.getAutoSizeMinTextSize(), this.mAutoSizeTextHelper.getAutoSizeMaxTextSize(), this.mAutoSizeTextHelper.getAutoSizeStepGranularity(), 0);
+                } else {
+                    this.mView.setAutoSizeTextTypeUniformWithPresetSizes(autoSizeTextAvailableSizes, 0);
+                }
+            }
+        }
+        TintTypedArray tintTypedArrayObtainStyledAttributes4 = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.AppCompatTextView);
+        int resourceId2 = tintTypedArrayObtainStyledAttributes4.getResourceId(R.styleable.AppCompatTextView_drawableLeftCompat, -1);
+        Drawable drawable = resourceId2 != -1 ? appCompatDrawableManager.getDrawable(context, resourceId2) : null;
+        int resourceId3 = tintTypedArrayObtainStyledAttributes4.getResourceId(R.styleable.AppCompatTextView_drawableTopCompat, -1);
+        Drawable drawable2 = resourceId3 != -1 ? appCompatDrawableManager.getDrawable(context, resourceId3) : null;
+        int resourceId4 = tintTypedArrayObtainStyledAttributes4.getResourceId(R.styleable.AppCompatTextView_drawableRightCompat, -1);
+        Drawable drawable3 = resourceId4 != -1 ? appCompatDrawableManager.getDrawable(context, resourceId4) : null;
+        int resourceId5 = tintTypedArrayObtainStyledAttributes4.getResourceId(R.styleable.AppCompatTextView_drawableBottomCompat, -1);
+        Drawable drawable4 = resourceId5 != -1 ? appCompatDrawableManager.getDrawable(context, resourceId5) : null;
+        int resourceId6 = tintTypedArrayObtainStyledAttributes4.getResourceId(R.styleable.AppCompatTextView_drawableStartCompat, -1);
+        Drawable drawable5 = resourceId6 != -1 ? appCompatDrawableManager.getDrawable(context, resourceId6) : null;
+        int resourceId7 = tintTypedArrayObtainStyledAttributes4.getResourceId(R.styleable.AppCompatTextView_drawableEndCompat, -1);
+        setCompoundDrawables(drawable, drawable2, drawable3, drawable4, drawable5, resourceId7 != -1 ? appCompatDrawableManager.getDrawable(context, resourceId7) : null);
+        if (tintTypedArrayObtainStyledAttributes4.hasValue(R.styleable.AppCompatTextView_drawableTint)) {
+            TextViewCompat.setCompoundDrawableTintList(this.mView, tintTypedArrayObtainStyledAttributes4.getColorStateList(R.styleable.AppCompatTextView_drawableTint));
+        }
+        if (tintTypedArrayObtainStyledAttributes4.hasValue(R.styleable.AppCompatTextView_drawableTintMode)) {
+            i3 = -1;
+            TextViewCompat.setCompoundDrawableTintMode(this.mView, DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes4.getInt(R.styleable.AppCompatTextView_drawableTintMode, -1), null));
+        } else {
+            i3 = -1;
+        }
+        int dimensionPixelSize = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(R.styleable.AppCompatTextView_firstBaselineToTopHeight, i3);
+        int dimensionPixelSize2 = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(R.styleable.AppCompatTextView_lastBaselineToBottomHeight, i3);
+        int dimensionPixelSize3 = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(R.styleable.AppCompatTextView_lineHeight, i3);
+        tintTypedArrayObtainStyledAttributes4.recycle();
+        if (dimensionPixelSize != i3) {
+            TextViewCompat.setFirstBaselineToTopHeight(this.mView, dimensionPixelSize);
+        }
+        if (dimensionPixelSize2 != i3) {
+            TextViewCompat.setLastBaselineToBottomHeight(this.mView, dimensionPixelSize2);
+        }
+        if (dimensionPixelSize3 != i3) {
+            TextViewCompat.setLineHeight(this.mView, dimensionPixelSize3);
+        }
     }
 
     void onAsyncTypefaceReceived(WeakReference<TextView> weakReference, Typeface typeface) {
@@ -309,21 +531,21 @@ class AppCompatTextHelper {
     void onSetTextAppearance(Context context, int i2) {
         String string;
         ColorStateList colorStateList;
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i2, C0120R.styleable.TextAppearance);
-        if (obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_textAllCaps)) {
-            setAllCaps(obtainStyledAttributes.getBoolean(C0120R.styleable.TextAppearance_textAllCaps, false));
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i2, R.styleable.TextAppearance);
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.TextAppearance_textAllCaps)) {
+            setAllCaps(tintTypedArrayObtainStyledAttributes.getBoolean(R.styleable.TextAppearance_textAllCaps, false));
         }
-        if (Build.VERSION.SDK_INT < 23 && obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_android_textColor) && (colorStateList = obtainStyledAttributes.getColorStateList(C0120R.styleable.TextAppearance_android_textColor)) != null) {
+        if (Build.VERSION.SDK_INT < 23 && tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.TextAppearance_android_textColor) && (colorStateList = tintTypedArrayObtainStyledAttributes.getColorStateList(R.styleable.TextAppearance_android_textColor)) != null) {
             this.mView.setTextColor(colorStateList);
         }
-        if (obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_android_textSize) && obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.TextAppearance_android_textSize, -1) == 0) {
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.TextAppearance_android_textSize) && tintTypedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, -1) == 0) {
             this.mView.setTextSize(0, 0.0f);
         }
-        updateTypefaceAndStyle(context, obtainStyledAttributes);
-        if (Build.VERSION.SDK_INT >= 26 && obtainStyledAttributes.hasValue(C0120R.styleable.TextAppearance_fontVariationSettings) && (string = obtainStyledAttributes.getString(C0120R.styleable.TextAppearance_fontVariationSettings)) != null) {
+        updateTypefaceAndStyle(context, tintTypedArrayObtainStyledAttributes);
+        if (Build.VERSION.SDK_INT >= 26 && tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.TextAppearance_fontVariationSettings) && (string = tintTypedArrayObtainStyledAttributes.getString(R.styleable.TextAppearance_fontVariationSettings)) != null) {
             this.mView.setFontVariationSettings(string);
         }
-        obtainStyledAttributes.recycle();
+        tintTypedArrayObtainStyledAttributes.recycle();
         Typeface typeface = this.mFontTypeface;
         if (typeface != null) {
             this.mView.setTypeface(typeface, this.mStyle);

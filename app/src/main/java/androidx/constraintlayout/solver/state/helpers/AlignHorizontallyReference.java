@@ -5,7 +5,7 @@ import androidx.constraintlayout.solver.state.HelperReference;
 import androidx.constraintlayout.solver.state.State;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AlignHorizontallyReference extends HelperReference {
     private float mBias;
     private Object mEndToEnd;
@@ -22,33 +22,33 @@ public class AlignHorizontallyReference extends HelperReference {
     public void apply() {
         Iterator<Object> it = this.mReferences.iterator();
         while (it.hasNext()) {
-            ConstraintReference constraints = this.mState.constraints(it.next());
-            constraints.clearHorizontal();
+            ConstraintReference constraintReferenceConstraints = this.mState.constraints(it.next());
+            constraintReferenceConstraints.clearHorizontal();
             Object obj = this.mStartToStart;
             if (obj != null) {
-                constraints.startToStart(obj);
+                constraintReferenceConstraints.startToStart(obj);
             } else {
                 Object obj2 = this.mStartToEnd;
                 if (obj2 != null) {
-                    constraints.startToEnd(obj2);
+                    constraintReferenceConstraints.startToEnd(obj2);
                 } else {
-                    constraints.startToStart(State.PARENT);
+                    constraintReferenceConstraints.startToStart(State.PARENT);
                 }
             }
             Object obj3 = this.mEndToStart;
             if (obj3 != null) {
-                constraints.endToStart(obj3);
+                constraintReferenceConstraints.endToStart(obj3);
             } else {
                 Object obj4 = this.mEndToEnd;
                 if (obj4 != null) {
-                    constraints.endToEnd(obj4);
+                    constraintReferenceConstraints.endToEnd(obj4);
                 } else {
-                    constraints.endToEnd(State.PARENT);
+                    constraintReferenceConstraints.endToEnd(State.PARENT);
                 }
             }
             float f2 = this.mBias;
             if (f2 != 0.5f) {
-                constraints.horizontalBias(f2);
+                constraintReferenceConstraints.horizontalBias(f2);
             }
         }
     }

@@ -2,7 +2,7 @@ package androidx.appcompat.view.menu;
 
 import androidx.appcompat.view.menu.MenuPresenter;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 interface MenuHelper {
     void dismiss();
 

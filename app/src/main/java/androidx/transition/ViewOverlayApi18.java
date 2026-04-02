@@ -6,8 +6,8 @@ import android.view.ViewOverlay;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(18)
-/* loaded from: classes.dex */
 class ViewOverlayApi18 implements ViewOverlayImpl {
     private final ViewOverlay mViewOverlay;
 
@@ -18,11 +18,6 @@ class ViewOverlayApi18 implements ViewOverlayImpl {
     @Override // androidx.transition.ViewOverlayImpl
     public void add(@NonNull Drawable drawable) {
         this.mViewOverlay.add(drawable);
-    }
-
-    @Override // androidx.transition.ViewOverlayImpl
-    public void clear() {
-        this.mViewOverlay.clear();
     }
 
     @Override // androidx.transition.ViewOverlayImpl

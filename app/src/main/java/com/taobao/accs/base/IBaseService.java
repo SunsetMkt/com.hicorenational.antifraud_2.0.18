@@ -3,8 +3,8 @@ package com.taobao.accs.base;
 import android.content.Intent;
 import android.os.IBinder;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IBaseService {
     IBinder onBind(Intent intent);
 

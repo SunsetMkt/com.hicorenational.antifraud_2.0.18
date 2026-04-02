@@ -3,8 +3,8 @@ package androidx.core.os;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public final class ParcelableCompat {
 
     static class ParcelableCompatCreatorHoneycombMR2<T> implements Parcelable.ClassLoaderCreator<T> {

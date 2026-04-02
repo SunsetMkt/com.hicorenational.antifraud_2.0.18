@@ -2,43 +2,41 @@ package com.tencent.bugly.beta.upgrade;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.tencent.bugly.beta.global.C3082e;
+import com.tencent.bugly.beta.global.e;
 import com.tencent.bugly.crashreport.common.strategy.StrategyBean;
-import com.tencent.bugly.proguard.AbstractC3188m;
-import com.tencent.bugly.proguard.C3145ah;
-import com.tencent.bugly.proguard.C3175bk;
+import com.tencent.bugly.proguard.ah;
+import com.tencent.bugly.proguard.bk;
+import com.tencent.bugly.proguard.m;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class BetaUploadStrategy implements Parcelable, Parcelable.Creator<BetaUploadStrategy> {
     public static final Parcelable.Creator<BetaUploadStrategy> CREATOR = new BetaUploadStrategy();
+    public bk a;
 
-    /* renamed from: a */
-    public C3175bk f9993a;
-
-    /* renamed from: b */
-    public long f9994b;
+    /* JADX INFO: renamed from: b */
+    public long f6074b;
 
     public BetaUploadStrategy() {
-        this.f9993a = new C3175bk();
-        C3175bk c3175bk = this.f9993a;
-        c3175bk.f10701b = true;
-        c3175bk.f10702c = true;
-        if (C3082e.f9867G.f9886S) {
-            String str = StrategyBean.f10225b;
-            c3175bk.f10703d = str;
-            c3175bk.f10704e = str;
+        this.a = new bk();
+        bk bkVar = this.a;
+        bkVar.f6490b = true;
+        bkVar.f6491c = true;
+        if (e.G.S) {
+            String str = StrategyBean.f6190b;
+            bkVar.f6492d = str;
+            bkVar.f6493e = str;
         } else {
-            c3175bk.f10703d = "http://android.bugly.qq.com/rqd/async";
-            c3175bk.f10704e = "http://android.bugly.qq.com/rqd/async";
+            bkVar.f6492d = "http://android.bugly.qq.com/rqd/async";
+            bkVar.f6493e = "http://android.bugly.qq.com/rqd/async";
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        this.f9993a.f10707h = currentTimeMillis;
-        this.f9994b = currentTimeMillis;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        this.a.f6496h = jCurrentTimeMillis;
+        this.f6074b = jCurrentTimeMillis;
     }
 
     @Override // android.os.Parcelable.Creator
-    /* renamed from: a, reason: merged with bridge method [inline-methods] */
+    /* JADX INFO: renamed from: a */
     public BetaUploadStrategy createFromParcel(Parcel parcel) {
         return new BetaUploadStrategy(parcel);
     }
@@ -50,18 +48,18 @@ public class BetaUploadStrategy implements Parcelable, Parcelable.Creator<BetaUp
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeByteArray(C3145ah.m9854a((AbstractC3188m) this.f9993a));
-        parcel.writeLong(this.f9994b);
+        parcel.writeByteArray(ah.a((m) this.a));
+        parcel.writeLong(this.f6074b);
     }
 
     @Override // android.os.Parcelable.Creator
-    /* renamed from: a, reason: merged with bridge method [inline-methods] */
+    /* JADX INFO: renamed from: a */
     public BetaUploadStrategy[] newArray(int i2) {
         return new BetaUploadStrategy[i2];
     }
 
     public BetaUploadStrategy(Parcel parcel) {
-        this.f9993a = (C3175bk) C3145ah.m9853a(parcel.createByteArray(), C3175bk.class);
-        this.f9994b = parcel.readLong();
+        this.a = (bk) ah.a(parcel.createByteArray(), bk.class);
+        this.f6074b = parcel.readLong();
     }
 }

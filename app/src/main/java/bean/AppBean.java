@@ -1,10 +1,10 @@
 package bean;
 
 import android.graphics.drawable.Drawable;
-import com.google.gson.C2051e;
+import com.google.gson.e;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppBean extends BaseBean {
     private String activityName;
     private String appMD5;
@@ -25,9 +25,9 @@ public class AppBean extends BaseBean {
     private String virusName;
 
     public static AppInfoBean AppBean2AppInfoBean(AppBean appBean, Drawable drawable, String str, String str2, boolean z, long j2) {
-        AppInfoBean parent2Child = parent2Child(appBean);
-        parent2Child.setAppIcon(drawable);
-        return parent2Child;
+        AppInfoBean appInfoBeanParent2Child = parent2Child(appBean);
+        appInfoBeanParent2Child.setAppIcon(drawable);
+        return appInfoBeanParent2Child;
     }
 
     public static AppBean AppInfoBean2AppBean(AppInfoBean appInfoBean) {
@@ -35,11 +35,11 @@ public class AppBean extends BaseBean {
     }
 
     public static AppBean child2Parent(AppInfoBean appInfoBean) {
-        return (AppBean) new C2051e().m5569a(new C2051e().m5572a(appInfoBean), AppBean.class);
+        return (AppBean) new e().a(new e().a(appInfoBean), AppBean.class);
     }
 
     public static AppInfoBean parent2Child(AppBean appBean) {
-        return (AppInfoBean) new C2051e().m5569a(new C2051e().m5572a(appBean), AppInfoBean.class);
+        return (AppInfoBean) new e().a(new e().a(appBean), AppInfoBean.class);
     }
 
     public String getActivityName() {

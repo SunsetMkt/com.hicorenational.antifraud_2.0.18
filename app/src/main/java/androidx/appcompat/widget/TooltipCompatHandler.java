@@ -9,8 +9,8 @@ import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewConfigurationCompat;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 class TooltipCompatHandler implements View.OnLongClickListener, View.OnHoverListener, View.OnAttachStateChangeListener {
     private static final long HOVER_HIDE_TIMEOUT_MS = 15000;
     private static final long HOVER_HIDE_TIMEOUT_SHORT_MS = 3000;
@@ -181,7 +181,7 @@ class TooltipCompatHandler implements View.OnLongClickListener, View.OnHoverList
                     j2 = HOVER_HIDE_TIMEOUT_MS;
                     longPressTimeout = ViewConfiguration.getLongPressTimeout();
                 }
-                j3 = j2 - longPressTimeout;
+                j3 = j2 - ((long) longPressTimeout);
             }
             this.mAnchor.removeCallbacks(this.mHideRunnable);
             this.mAnchor.postDelayed(this.mHideRunnable, j3);

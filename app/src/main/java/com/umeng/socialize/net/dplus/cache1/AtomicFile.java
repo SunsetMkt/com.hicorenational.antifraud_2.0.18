@@ -8,25 +8,22 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AtomicFile {
+    private final File a;
 
-    /* renamed from: a */
-    private final File f13720a;
-
-    /* renamed from: b */
-    private final File f13721b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final File f8334b;
 
     public AtomicFile(File file) {
-        this.f13720a = file;
-        this.f13721b = new File(file.getPath() + ".bak");
+        this.a = file;
+        this.f8334b = new File(file.getPath() + ".bak");
     }
 
-    /* renamed from: a */
-    private static void m12670a(File file, File file2) throws IOException {
+    private static void a(File file, File file2) throws Throwable {
         FileOutputStream fileOutputStream;
         FileInputStream fileInputStream;
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         try {
             fileInputStream = new FileInputStream(file);
             try {
@@ -43,15 +40,15 @@ public class AtomicFile {
         try {
             byte[] bArr = new byte[8192];
             while (true) {
-                int read = fileInputStream.read(bArr);
-                if (read <= 0) {
+                int i2 = fileInputStream.read(bArr);
+                if (i2 <= 0) {
                     fileInputStream.close();
                     fileOutputStream.close();
-                    String str = "comsum time:" + (System.currentTimeMillis() - currentTimeMillis);
+                    String str = "comsum time:" + (System.currentTimeMillis() - jCurrentTimeMillis);
                     return;
                 }
-                fileOutputStream.write(bArr, 0, read);
-                String str2 = read + "";
+                fileOutputStream.write(bArr, 0, i2);
+                String str2 = i2 + "";
             }
         } catch (Throwable th3) {
             th = th3;
@@ -66,17 +63,17 @@ public class AtomicFile {
     }
 
     public void delete() {
-        this.f13720a.delete();
-        this.f13721b.delete();
+        this.a.delete();
+        this.f8334b.delete();
     }
 
     public void failWrite(FileOutputStream fileOutputStream) {
         if (fileOutputStream != null) {
-            m12671a(fileOutputStream);
+            a(fileOutputStream);
             try {
                 fileOutputStream.close();
-                this.f13720a.delete();
-                this.f13721b.renameTo(this.f13720a);
+                this.a.delete();
+                this.f8334b.renameTo(this.a);
             } catch (IOException e2) {
                 SLog.error(UmengText.CACHE.CACHEFILE, e2);
             }
@@ -85,10 +82,10 @@ public class AtomicFile {
 
     public void finishWrite(FileOutputStream fileOutputStream) {
         if (fileOutputStream != null) {
-            m12671a(fileOutputStream);
+            a(fileOutputStream);
             try {
                 fileOutputStream.close();
-                this.f13721b.delete();
+                this.f8334b.delete();
             } catch (IOException e2) {
                 SLog.error(UmengText.CACHE.CACHEFILE, e2);
             }
@@ -96,58 +93,58 @@ public class AtomicFile {
     }
 
     public File getBaseFile() {
-        return this.f13720a;
+        return this.a;
     }
 
     public FileInputStream openRead() throws FileNotFoundException {
-        if (this.f13721b.exists()) {
-            this.f13720a.delete();
-            this.f13721b.renameTo(this.f13720a);
+        if (this.f8334b.exists()) {
+            this.a.delete();
+            this.f8334b.renameTo(this.a);
         }
-        return new FileInputStream(this.f13720a);
+        return new FileInputStream(this.a);
     }
 
     public byte[] readFully() throws IOException {
-        FileInputStream openRead = openRead();
+        FileInputStream fileInputStreamOpenRead = openRead();
         try {
-            byte[] bArr = new byte[openRead.available()];
+            byte[] bArr = new byte[fileInputStreamOpenRead.available()];
             int i2 = 0;
             while (true) {
-                int read = openRead.read(bArr, i2, bArr.length - i2);
-                if (read <= 0) {
+                int i3 = fileInputStreamOpenRead.read(bArr, i2, bArr.length - i2);
+                if (i3 <= 0) {
                     return bArr;
                 }
-                i2 += read;
-                int available = openRead.available();
-                if (available > bArr.length - i2) {
-                    byte[] bArr2 = new byte[available + i2];
+                i2 += i3;
+                int iAvailable = fileInputStreamOpenRead.available();
+                if (iAvailable > bArr.length - i2) {
+                    byte[] bArr2 = new byte[iAvailable + i2];
                     System.arraycopy(bArr, 0, bArr2, 0, i2);
                     bArr = bArr2;
                 }
             }
         } finally {
-            openRead.close();
+            fileInputStreamOpenRead.close();
         }
     }
 
-    public FileOutputStream startWrite(boolean z) throws IOException {
-        if (this.f13720a.exists()) {
-            if (this.f13721b.exists()) {
-                this.f13720a.delete();
-            } else if (this.f13720a.renameTo(this.f13721b)) {
-                m12670a(this.f13721b, this.f13720a);
+    public FileOutputStream startWrite(boolean z) throws Throwable {
+        if (this.a.exists()) {
+            if (this.f8334b.exists()) {
+                this.a.delete();
+            } else if (this.a.renameTo(this.f8334b)) {
+                a(this.f8334b, this.a);
             } else {
-                String str = "Couldn't rename file " + this.f13720a + " to backup file " + this.f13721b;
+                String str = "Couldn't rename file " + this.a + " to backup file " + this.f8334b;
             }
         }
         try {
-            return new FileOutputStream(this.f13720a, z);
+            return new FileOutputStream(this.a, z);
         } catch (FileNotFoundException e2) {
-            if (!this.f13720a.getParentFile().mkdirs()) {
+            if (!this.a.getParentFile().mkdirs()) {
                 SLog.error(UmengText.CACHE.CACHEFILE, e2);
             }
             try {
-                return new FileOutputStream(this.f13720a, z);
+                return new FileOutputStream(this.a, z);
             } catch (FileNotFoundException unused) {
                 SLog.error(UmengText.CACHE.CACHEFILE, e2);
                 return null;
@@ -155,8 +152,7 @@ public class AtomicFile {
         }
     }
 
-    /* renamed from: a */
-    static boolean m12671a(FileOutputStream fileOutputStream) {
+    static boolean a(FileOutputStream fileOutputStream) {
         if (fileOutputStream == null) {
             return true;
         }

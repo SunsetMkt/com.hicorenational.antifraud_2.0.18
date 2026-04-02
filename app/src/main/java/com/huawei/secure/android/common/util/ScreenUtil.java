@@ -7,28 +7,23 @@ import java.lang.reflect.Method;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ScreenUtil {
+    private static final String a = "ScreenUtil";
 
-    /* renamed from: a */
-    private static final String f8282a = "ScreenUtil";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final int f5242b = 524288;
 
-    /* renamed from: b */
-    private static final int f8283b = 524288;
+    private static class a implements PrivilegedAction {
+        Method a;
 
-    /* renamed from: com.huawei.secure.android.common.util.ScreenUtil$a */
-    private static class C2568a implements PrivilegedAction {
-
-        /* renamed from: a */
-        Method f8284a;
-
-        public C2568a(Method method) {
-            this.f8284a = method;
+        public a(Method method) {
+            this.a = method;
         }
 
         @Override // java.security.PrivilegedAction
         public Object run() {
-            Method method = this.f8284a;
+            Method method = this.a;
             if (method == null) {
                 return null;
             }
@@ -37,30 +32,28 @@ public class ScreenUtil {
         }
     }
 
-    /* renamed from: a */
-    private static void m8042a(Activity activity, int i2) {
+    private static void a(Activity activity, int i2) {
         if (activity == null || activity.isFinishing()) {
-            LogsUtil.m8021e("", "activity is null");
+            LogsUtil.e("", "activity is null");
         } else {
             activity.getWindow().addFlags(i2);
         }
     }
 
-    /* renamed from: b */
-    private static void m8043b(Activity activity, int i2) {
+    private static void b(Activity activity, int i2) {
         if (activity == null || activity.isFinishing()) {
-            LogsUtil.m8021e("", "activity is null");
+            LogsUtil.e("", "activity is null");
         } else {
             activity.getWindow().clearFlags(i2);
         }
     }
 
     public static void disableScreenshots(Activity activity) {
-        m8042a(activity, 8192);
+        a(activity, 8192);
     }
 
     public static void enableScreenshots(Activity activity) {
-        m8043b(activity, 8192);
+        b(activity, 8192);
     }
 
     public static void hideOverlayWindows(Activity activity) {
@@ -70,16 +63,16 @@ public class ScreenUtil {
         try {
             Window window = activity.getWindow();
             Method declaredMethod = Class.forName("android.view.Window").getDeclaredMethod("addPrivateFlags", Integer.TYPE);
-            AccessController.doPrivileged(new C2568a(declaredMethod));
+            AccessController.doPrivileged(new a(declaredMethod));
             declaredMethod.invoke(window, 524288);
         } catch (ClassNotFoundException unused) {
-            LogsUtil.m8021e(f8282a, "hideOverlayWindows ClassNotFoundException");
+            LogsUtil.e(a, "hideOverlayWindows ClassNotFoundException");
         } catch (IllegalAccessException unused2) {
-            LogsUtil.m8021e(f8282a, "hideOverlayWindows IllegalAccessException");
+            LogsUtil.e(a, "hideOverlayWindows IllegalAccessException");
         } catch (NoSuchMethodException unused3) {
-            LogsUtil.m8021e(f8282a, "hideOverlayWindows NoSuchMethodException");
+            LogsUtil.e(a, "hideOverlayWindows NoSuchMethodException");
         } catch (InvocationTargetException unused4) {
-            LogsUtil.m8021e(f8282a, "hideOverlayWindows InvocationTargetException");
+            LogsUtil.e(a, "hideOverlayWindows InvocationTargetException");
         }
     }
 }

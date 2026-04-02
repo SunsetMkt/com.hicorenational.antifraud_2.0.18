@@ -13,7 +13,7 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.OverScroller;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutChangeListener {
     private static float DEFAULT_MAX_SCALE = 3.0f;
     private static float DEFAULT_MID_SCALE = 1.75f;
@@ -103,8 +103,8 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         }
     };
 
-    /* renamed from: com.luck.picture.lib.photoview.PhotoViewAttacher$4 */
-    static /* synthetic */ class C27024 {
+    /* JADX INFO: renamed from: com.luck.picture.lib.photoview.PhotoViewAttacher$4, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass4 {
         static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType = new int[ImageView.ScaleType.values().length];
 
         static {
@@ -147,10 +147,10 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
 
         @Override // java.lang.Runnable
         public void run() {
-            float interpolate = interpolate();
+            float fInterpolate = interpolate();
             float f2 = this.mZoomStart;
-            PhotoViewAttacher.this.onGestureListener.onScale((f2 + ((this.mZoomEnd - f2) * interpolate)) / PhotoViewAttacher.this.getScale(), this.mFocalX, this.mFocalY);
-            if (interpolate < 1.0f) {
+            PhotoViewAttacher.this.onGestureListener.onScale((f2 + ((this.mZoomEnd - f2) * fInterpolate)) / PhotoViewAttacher.this.getScale(), this.mFocalX, this.mFocalY);
+            if (fInterpolate < 1.0f) {
                 Compat.postOnAnimation(PhotoViewAttacher.this.mImageView, this);
             }
         }
@@ -171,37 +171,37 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
 
         public void fling(int i2, int i3, int i4, int i5) {
             int i6;
+            int iRound;
             int i7;
-            int i8;
-            int i9;
+            int iRound2;
             RectF displayRect = PhotoViewAttacher.this.getDisplayRect();
             if (displayRect == null) {
                 return;
             }
-            int round = Math.round(-displayRect.left);
+            int iRound3 = Math.round(-displayRect.left);
             float f2 = i2;
             if (f2 < displayRect.width()) {
-                i7 = Math.round(displayRect.width() - f2);
+                iRound = Math.round(displayRect.width() - f2);
                 i6 = 0;
             } else {
-                i6 = round;
-                i7 = i6;
+                i6 = iRound3;
+                iRound = i6;
             }
-            int round2 = Math.round(-displayRect.top);
+            int iRound4 = Math.round(-displayRect.top);
             float f3 = i3;
             if (f3 < displayRect.height()) {
-                i9 = Math.round(displayRect.height() - f3);
-                i8 = 0;
+                iRound2 = Math.round(displayRect.height() - f3);
+                i7 = 0;
             } else {
-                i8 = round2;
-                i9 = i8;
+                i7 = iRound4;
+                iRound2 = i7;
             }
-            this.mCurrentX = round;
-            this.mCurrentY = round2;
-            if (round == i7 && round2 == i9) {
+            this.mCurrentX = iRound3;
+            this.mCurrentY = iRound4;
+            if (iRound3 == iRound && iRound4 == iRound2) {
                 return;
             }
-            this.mScroller.fling(round, round2, i4, i5, i6, i7, i8, i9, 0, 0);
+            this.mScroller.fling(iRound3, iRound4, i4, i5, i6, iRound, i7, iRound2, 0, 0);
         }
 
         @Override // java.lang.Runnable
@@ -288,12 +288,12 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
                     PhotoViewAttacher.this.mOutsidePhotoTapListener.onOutsidePhotoTap(PhotoViewAttacher.this.mImageView);
                     return false;
                 }
-                float width = (x - displayRect.left) / displayRect.width();
-                float height = (y - displayRect.top) / displayRect.height();
+                float fWidth = (x - displayRect.left) / displayRect.width();
+                float fHeight = (y - displayRect.top) / displayRect.height();
                 if (PhotoViewAttacher.this.mPhotoTapListener == null) {
                     return true;
                 }
-                PhotoViewAttacher.this.mPhotoTapListener.onPhotoTap(PhotoViewAttacher.this.mImageView, width, height);
+                PhotoViewAttacher.this.mPhotoTapListener.onPhotoTap(PhotoViewAttacher.this.mImageView, fWidth, fHeight);
                 return true;
             }
         });
@@ -325,18 +325,18 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         if (displayRect == null) {
             return false;
         }
-        float height = displayRect.height();
-        float width = displayRect.width();
+        float fHeight = displayRect.height();
+        float fWidth = displayRect.width();
         float imageViewHeight = getImageViewHeight(this.mImageView);
         float f8 = 0.0f;
-        if (height <= imageViewHeight) {
-            int i2 = C27024.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
+        if (fHeight <= imageViewHeight) {
+            int i2 = AnonymousClass4.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
             if (i2 != 2) {
                 if (i2 != 3) {
-                    f6 = (imageViewHeight - height) / 2.0f;
+                    f6 = (imageViewHeight - fHeight) / 2.0f;
                     f7 = displayRect.top;
                 } else {
-                    f6 = imageViewHeight - height;
+                    f6 = imageViewHeight - fHeight;
                     f7 = displayRect.top;
                 }
                 f5 = f6 - f7;
@@ -362,14 +362,14 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
             }
         }
         float imageViewWidth = getImageViewWidth(this.mImageView);
-        if (width <= imageViewWidth) {
-            int i3 = C27024.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
+        if (fWidth <= imageViewWidth) {
+            int i3 = AnonymousClass4.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
             if (i3 != 2) {
                 if (i3 != 3) {
-                    f3 = (imageViewWidth - width) / 2.0f;
+                    f3 = (imageViewWidth - fWidth) / 2.0f;
                     f4 = displayRect.left;
                 } else {
-                    f3 = imageViewWidth - width;
+                    f3 = imageViewWidth - fWidth;
                     f4 = displayRect.left;
                 }
                 f8 = f3 - f4;
@@ -450,20 +450,20 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         if (scaleType == ImageView.ScaleType.CENTER) {
             this.mBaseMatrix.postTranslate((imageViewWidth - f2) / 2.0f, (imageViewHeight - f4) / 2.0f);
         } else if (scaleType == ImageView.ScaleType.CENTER_CROP) {
-            float max = Math.max(f3, f5);
-            this.mBaseMatrix.postScale(max, max);
-            this.mBaseMatrix.postTranslate((imageViewWidth - (f2 * max)) / 2.0f, (imageViewHeight - (f4 * max)) / 2.0f);
+            float fMax = Math.max(f3, f5);
+            this.mBaseMatrix.postScale(fMax, fMax);
+            this.mBaseMatrix.postTranslate((imageViewWidth - (f2 * fMax)) / 2.0f, (imageViewHeight - (f4 * fMax)) / 2.0f);
         } else if (scaleType == ImageView.ScaleType.CENTER_INSIDE) {
-            float min = Math.min(1.0f, Math.min(f3, f5));
-            this.mBaseMatrix.postScale(min, min);
-            this.mBaseMatrix.postTranslate((imageViewWidth - (f2 * min)) / 2.0f, (imageViewHeight - (f4 * min)) / 2.0f);
+            float fMin = Math.min(1.0f, Math.min(f3, f5));
+            this.mBaseMatrix.postScale(fMin, fMin);
+            this.mBaseMatrix.postTranslate((imageViewWidth - (f2 * fMin)) / 2.0f, (imageViewHeight - (f4 * fMin)) / 2.0f);
         } else {
             RectF rectF = new RectF(0.0f, 0.0f, f2, f4);
             RectF rectF2 = new RectF(0.0f, 0.0f, imageViewWidth, imageViewHeight);
             if (((int) this.mBaseRotation) % 180 != 0) {
                 rectF = new RectF(0.0f, 0.0f, f4, f2);
             }
-            int i2 = C27024.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
+            int i2 = AnonymousClass4.$SwitchMap$android$widget$ImageView$ScaleType[this.mScaleType.ordinal()];
             if (i2 == 1) {
                 this.mBaseMatrix.setRectToRect(rectF, rectF2, Matrix.ScaleToFit.CENTER);
             } else if (i2 == 2) {
@@ -531,119 +531,67 @@ public class PhotoViewAttacher implements View.OnTouchListener, View.OnLayoutCha
         updateBaseMatrix(this.mImageView.getDrawable());
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:13:0x007f  */
-    /* JADX WARN: Removed duplicated region for block: B:36:0x00b2  */
+    /* JADX WARN: Removed duplicated region for block: B:30:0x007f  */
+    /* JADX WARN: Removed duplicated region for block: B:45:0x00b2  */
     @Override // android.view.View.OnTouchListener
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean onTouch(android.view.View r11, android.view.MotionEvent r12) {
-        /*
-            r10 = this;
-            boolean r0 = r10.mZoomEnabled
-            r1 = 0
-            r2 = 1
-            if (r0 == 0) goto Lbe
-            r0 = r11
-            android.widget.ImageView r0 = (android.widget.ImageView) r0
-            boolean r0 = com.luck.picture.lib.photoview.Util.hasDrawable(r0)
-            if (r0 == 0) goto Lbe
-            int r0 = r12.getAction()
-            if (r0 == 0) goto L6e
-            if (r0 == r2) goto L1b
-            r3 = 3
-            if (r0 == r3) goto L1b
-            goto L7a
-        L1b:
-            float r0 = r10.getScale()
-            float r3 = r10.mMinScale
-            int r0 = (r0 > r3 ? 1 : (r0 == r3 ? 0 : -1))
-            if (r0 >= 0) goto L44
-            android.graphics.RectF r0 = r10.getDisplayRect()
-            if (r0 == 0) goto L7a
-            com.luck.picture.lib.photoview.PhotoViewAttacher$AnimatedZoomRunnable r9 = new com.luck.picture.lib.photoview.PhotoViewAttacher$AnimatedZoomRunnable
-            float r5 = r10.getScale()
-            float r6 = r10.mMinScale
-            float r7 = r0.centerX()
-            float r8 = r0.centerY()
-            r3 = r9
-            r4 = r10
-            r3.<init>(r5, r6, r7, r8)
-            r11.post(r9)
-            goto L6c
-        L44:
-            float r0 = r10.getScale()
-            float r3 = r10.mMaxScale
-            int r0 = (r0 > r3 ? 1 : (r0 == r3 ? 0 : -1))
-            if (r0 <= 0) goto L7a
-            android.graphics.RectF r0 = r10.getDisplayRect()
-            if (r0 == 0) goto L7a
-            com.luck.picture.lib.photoview.PhotoViewAttacher$AnimatedZoomRunnable r9 = new com.luck.picture.lib.photoview.PhotoViewAttacher$AnimatedZoomRunnable
-            float r5 = r10.getScale()
-            float r6 = r10.mMaxScale
-            float r7 = r0.centerX()
-            float r8 = r0.centerY()
-            r3 = r9
-            r4 = r10
-            r3.<init>(r5, r6, r7, r8)
-            r11.post(r9)
-        L6c:
-            r11 = 1
-            goto L7b
-        L6e:
-            android.view.ViewParent r11 = r11.getParent()
-            if (r11 == 0) goto L77
-            r11.requestDisallowInterceptTouchEvent(r2)
-        L77:
-            r10.cancelFling()
-        L7a:
-            r11 = 0
-        L7b:
-            com.luck.picture.lib.photoview.CustomGestureDetector r0 = r10.mScaleDragDetector
-            if (r0 == 0) goto Lb2
-            boolean r11 = r0.isScaling()
-            com.luck.picture.lib.photoview.CustomGestureDetector r0 = r10.mScaleDragDetector
-            boolean r0 = r0.isDragging()
-            com.luck.picture.lib.photoview.CustomGestureDetector r3 = r10.mScaleDragDetector
-            boolean r3 = r3.onTouchEvent(r12)
-            if (r11 != 0) goto L9b
-            com.luck.picture.lib.photoview.CustomGestureDetector r11 = r10.mScaleDragDetector
-            boolean r11 = r11.isScaling()
-            if (r11 != 0) goto L9b
-            r11 = 1
-            goto L9c
-        L9b:
-            r11 = 0
-        L9c:
-            if (r0 != 0) goto La8
-            com.luck.picture.lib.photoview.CustomGestureDetector r0 = r10.mScaleDragDetector
-            boolean r0 = r0.isDragging()
-            if (r0 != 0) goto La8
-            r0 = 1
-            goto La9
-        La8:
-            r0 = 0
-        La9:
-            if (r11 == 0) goto Lae
-            if (r0 == 0) goto Lae
-            r1 = 1
-        Lae:
-            r10.mBlockParentIntercept = r1
-            r1 = r3
-            goto Lb3
-        Lb2:
-            r1 = r11
-        Lb3:
-            android.view.GestureDetector r11 = r10.mGestureDetector
-            if (r11 == 0) goto Lbe
-            boolean r11 = r11.onTouchEvent(r12)
-            if (r11 == 0) goto Lbe
-            r1 = 1
-        Lbe:
-            return r1
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.photoview.PhotoViewAttacher.onTouch(android.view.View, android.view.MotionEvent):boolean");
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        boolean z;
+        CustomGestureDetector customGestureDetector;
+        boolean z2;
+        GestureDetector gestureDetector;
+        RectF displayRect;
+        boolean z3 = false;
+        if (!this.mZoomEnabled || !Util.hasDrawable((ImageView) view)) {
+            return false;
+        }
+        int action = motionEvent.getAction();
+        if (action != 0) {
+            if (action == 1 || action == 3) {
+                if (getScale() < this.mMinScale) {
+                    RectF displayRect2 = getDisplayRect();
+                    if (displayRect2 != null) {
+                        view.post(new AnimatedZoomRunnable(getScale(), this.mMinScale, displayRect2.centerX(), displayRect2.centerY()));
+                        z = true;
+                    }
+                } else if (getScale() > this.mMaxScale && (displayRect = getDisplayRect()) != null) {
+                    view.post(new AnimatedZoomRunnable(getScale(), this.mMaxScale, displayRect.centerX(), displayRect.centerY()));
+                    z = true;
+                }
+            }
+            customGestureDetector = this.mScaleDragDetector;
+            if (customGestureDetector == null) {
+                boolean zIsScaling = customGestureDetector.isScaling();
+                boolean zIsDragging = this.mScaleDragDetector.isDragging();
+                boolean zOnTouchEvent = this.mScaleDragDetector.onTouchEvent(motionEvent);
+                boolean z4 = (zIsScaling || this.mScaleDragDetector.isScaling()) ? false : true;
+                boolean z5 = (zIsDragging || this.mScaleDragDetector.isDragging()) ? false : true;
+                if (z4 && z5) {
+                    z3 = true;
+                }
+                this.mBlockParentIntercept = z3;
+                z2 = zOnTouchEvent;
+            } else {
+                z2 = z;
+            }
+            gestureDetector = this.mGestureDetector;
+            if (gestureDetector == null && gestureDetector.onTouchEvent(motionEvent)) {
+                return true;
+            }
+        }
+        ViewParent parent = view.getParent();
+        if (parent != null) {
+            parent.requestDisallowInterceptTouchEvent(true);
+        }
+        cancelFling();
+        z = false;
+        customGestureDetector = this.mScaleDragDetector;
+        if (customGestureDetector == null) {
+        }
+        gestureDetector = this.mGestureDetector;
+        return gestureDetector == null ? z2 : z2;
     }
 
     public void setAllowParentInterceptOnEdge(boolean z) {

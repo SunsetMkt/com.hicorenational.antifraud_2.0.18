@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CompleteMultipartUploadRequest extends OSSRequest {
     private String bucketName;
     private Map<String, String> callbackParam;

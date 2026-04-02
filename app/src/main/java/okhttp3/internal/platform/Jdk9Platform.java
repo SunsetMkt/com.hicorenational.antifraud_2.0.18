@@ -11,7 +11,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.Protocol;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class Jdk9Platform extends Platform {
     final Method getProtocolMethod;
     final Method setProtocolMethod;
@@ -33,8 +33,8 @@ final class Jdk9Platform extends Platform {
     public void configureTlsExtensions(SSLSocket sSLSocket, String str, List<Protocol> list) {
         try {
             SSLParameters sSLParameters = sSLSocket.getSSLParameters();
-            List<String> alpnProtocolNames = Platform.alpnProtocolNames(list);
-            this.setProtocolMethod.invoke(sSLParameters, alpnProtocolNames.toArray(new String[alpnProtocolNames.size()]));
+            List<String> listAlpnProtocolNames = Platform.alpnProtocolNames(list);
+            this.setProtocolMethod.invoke(sSLParameters, listAlpnProtocolNames.toArray(new String[listAlpnProtocolNames.size()]));
             sSLSocket.setSSLParameters(sSLParameters);
         } catch (IllegalAccessException | InvocationTargetException e2) {
             throw Util.assertionError("unable to set ssl parameters", e2);

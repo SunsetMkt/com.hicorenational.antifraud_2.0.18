@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.TileList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class MessageThreadUtil<T> implements ThreadUtil<T> {
 
-    /* renamed from: androidx.recyclerview.widget.MessageThreadUtil$1 */
-    class C06441 implements ThreadUtil.MainThreadCallback<T> {
+    /* JADX INFO: renamed from: androidx.recyclerview.widget.MessageThreadUtil$1, reason: invalid class name */
+    class AnonymousClass1 implements ThreadUtil.MainThreadCallback<T> {
         static final int ADD_TILE = 2;
         static final int REMOVE_TILE = 3;
         static final int UPDATE_ITEM_COUNT = 1;
@@ -22,24 +22,24 @@ class MessageThreadUtil<T> implements ThreadUtil<T> {
         private Runnable mMainThreadRunnable = new Runnable() { // from class: androidx.recyclerview.widget.MessageThreadUtil.1.1
             @Override // java.lang.Runnable
             public void run() {
-                SyncQueueItem next = C06441.this.mQueue.next();
+                SyncQueueItem next = AnonymousClass1.this.mQueue.next();
                 while (next != null) {
                     int i2 = next.what;
                     if (i2 == 1) {
-                        C06441.this.val$callback.updateItemCount(next.arg1, next.arg2);
+                        AnonymousClass1.this.val$callback.updateItemCount(next.arg1, next.arg2);
                     } else if (i2 == 2) {
-                        C06441.this.val$callback.addTile(next.arg1, (TileList.Tile) next.data);
+                        AnonymousClass1.this.val$callback.addTile(next.arg1, (TileList.Tile) next.data);
                     } else if (i2 != 3) {
                         String str = "Unsupported message, what=" + next.what;
                     } else {
-                        C06441.this.val$callback.removeTile(next.arg1, next.arg2);
+                        AnonymousClass1.this.val$callback.removeTile(next.arg1, next.arg2);
                     }
-                    next = C06441.this.mQueue.next();
+                    next = AnonymousClass1.this.mQueue.next();
                 }
             }
         };
 
-        C06441(ThreadUtil.MainThreadCallback mainThreadCallback) {
+        AnonymousClass1(ThreadUtil.MainThreadCallback mainThreadCallback) {
             this.val$callback = mainThreadCallback;
         }
 
@@ -64,8 +64,8 @@ class MessageThreadUtil<T> implements ThreadUtil<T> {
         }
     }
 
-    /* renamed from: androidx.recyclerview.widget.MessageThreadUtil$2 */
-    class C06452 implements ThreadUtil.BackgroundCallback<T> {
+    /* JADX INFO: renamed from: androidx.recyclerview.widget.MessageThreadUtil$2, reason: invalid class name */
+    class AnonymousClass2 implements ThreadUtil.BackgroundCallback<T> {
         static final int LOAD_TILE = 3;
         static final int RECYCLE_TILE = 4;
         static final int REFRESH = 1;
@@ -78,31 +78,31 @@ class MessageThreadUtil<T> implements ThreadUtil<T> {
             @Override // java.lang.Runnable
             public void run() {
                 while (true) {
-                    SyncQueueItem next = C06452.this.mQueue.next();
+                    SyncQueueItem next = AnonymousClass2.this.mQueue.next();
                     if (next == null) {
-                        C06452.this.mBackgroundRunning.set(false);
+                        AnonymousClass2.this.mBackgroundRunning.set(false);
                         return;
                     }
                     int i2 = next.what;
                     if (i2 == 1) {
-                        C06452.this.mQueue.removeMessages(1);
-                        C06452.this.val$callback.refresh(next.arg1);
+                        AnonymousClass2.this.mQueue.removeMessages(1);
+                        AnonymousClass2.this.val$callback.refresh(next.arg1);
                     } else if (i2 == 2) {
-                        C06452.this.mQueue.removeMessages(2);
-                        C06452.this.mQueue.removeMessages(3);
-                        C06452.this.val$callback.updateRange(next.arg1, next.arg2, next.arg3, next.arg4, next.arg5);
+                        AnonymousClass2.this.mQueue.removeMessages(2);
+                        AnonymousClass2.this.mQueue.removeMessages(3);
+                        AnonymousClass2.this.val$callback.updateRange(next.arg1, next.arg2, next.arg3, next.arg4, next.arg5);
                     } else if (i2 == 3) {
-                        C06452.this.val$callback.loadTile(next.arg1, next.arg2);
+                        AnonymousClass2.this.val$callback.loadTile(next.arg1, next.arg2);
                     } else if (i2 != 4) {
                         String str = "Unsupported message, what=" + next.what;
                     } else {
-                        C06452.this.val$callback.recycleTile((TileList.Tile) next.data);
+                        AnonymousClass2.this.val$callback.recycleTile((TileList.Tile) next.data);
                     }
                 }
             }
         };
 
-        C06452(ThreadUtil.BackgroundCallback backgroundCallback) {
+        AnonymousClass2(ThreadUtil.BackgroundCallback backgroundCallback) {
             this.val$callback = backgroundCallback;
         }
 
@@ -203,12 +203,12 @@ class MessageThreadUtil<T> implements ThreadUtil<T> {
 
     @Override // androidx.recyclerview.widget.ThreadUtil
     public ThreadUtil.BackgroundCallback<T> getBackgroundProxy(ThreadUtil.BackgroundCallback<T> backgroundCallback) {
-        return new C06452(backgroundCallback);
+        return new AnonymousClass2(backgroundCallback);
     }
 
     @Override // androidx.recyclerview.widget.ThreadUtil
     public ThreadUtil.MainThreadCallback<T> getMainThreadProxy(ThreadUtil.MainThreadCallback<T> mainThreadCallback) {
-        return new C06441(mainThreadCallback);
+        return new AnonymousClass1(mainThreadCallback);
     }
 
     static class SyncQueueItem {

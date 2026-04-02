@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HmacSHA1Signature {
     private static final String ALGORITHM = "HmacSHA1";
     private static final String DEFAULT_ENCODING = "UTF-8";
@@ -45,9 +45,9 @@ public class HmacSHA1Signature {
         OSSLog.logDebug(getVersion(), false);
         try {
             OSSLog.logDebug("sign start");
-            byte[] sign = sign(str.getBytes("UTF-8"), str2.getBytes("UTF-8"));
+            byte[] bArrSign = sign(str.getBytes("UTF-8"), str2.getBytes("UTF-8"));
             OSSLog.logDebug("base64 start");
-            return BinaryUtil.toBase64String(sign);
+            return BinaryUtil.toBase64String(bArrSign);
         } catch (UnsupportedEncodingException unused) {
             throw new RuntimeException("Unsupported algorithm: UTF-8");
         }

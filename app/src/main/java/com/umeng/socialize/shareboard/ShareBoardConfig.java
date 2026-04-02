@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.widget.PopupWindow;
 import com.umeng.socialize.utils.ShareBoardlistener;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ShareBoardConfig {
     public static int BG_SHAPE_CIRCULAR = 1;
     public static int BG_SHAPE_NONE = 0;
@@ -58,17 +58,17 @@ public class ShareBoardConfig {
     }
 
     private void setDefaultValue() {
-        int parseColor = Color.parseColor("#575A5C");
+        int color = Color.parseColor("#575A5C");
         setShareboardBackgroundColor(Color.parseColor("#E9EFF2"));
         setShareboardPostion(SHAREBOARD_POSITION_BOTTOM);
-        setTitleText("选择要分享到的平台");
-        setTitleTextColor(parseColor);
+        setTitleText("\u9009\u62e9\u8981\u5206\u4eab\u5230\u7684\u5e73\u53f0");
+        setTitleTextColor(color);
         setMenuItemBackgroundShape(BG_SHAPE_ROUNDED_SQUARE, 5);
         setMenuItemBackgroundColor(Color.parseColor("#ffffff"), Color.parseColor("#22000000"));
         setMenuItemIconPressedColor(Color.parseColor("#22000000"));
-        setMenuItemTextColor(parseColor);
-        setCancelButtonText("取消分享");
-        setCancelButtonTextColor(parseColor);
+        setMenuItemTextColor(color);
+        setCancelButtonText("\u53d6\u6d88\u5206\u4eab");
+        setCancelButtonTextColor(color);
         setCancelButtonBackground(Color.parseColor("#ffffff"), Color.parseColor("#22000000"));
         setIndicatorColor(Color.parseColor("#C2C9CC"), Color.parseColor("#0086DC"));
     }

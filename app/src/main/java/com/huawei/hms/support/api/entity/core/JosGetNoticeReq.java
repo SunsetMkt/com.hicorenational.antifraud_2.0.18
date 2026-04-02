@@ -2,7 +2,7 @@ package com.huawei.hms.support.api.entity.core;
 
 import com.huawei.hms.core.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JosGetNoticeReq extends JosBaseReq {
     public static final int NOTICE_TYPE_CONN = 0;
     public static final int NOTICE_TYPE_SIGN = 1;

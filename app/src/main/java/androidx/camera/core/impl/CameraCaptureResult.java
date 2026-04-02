@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.camera.core.impl.CameraCaptureMetaData;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CameraCaptureResult {
 
     public static final class EmptyCameraCaptureResult implements CameraCaptureResult {

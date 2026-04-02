@@ -15,46 +15,45 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpDispatcher {
+    private CopyOnWriteArraySet<IDispatchEventListener> a;
 
-    /* renamed from: a */
-    private CopyOnWriteArraySet<IDispatchEventListener> f1079a;
+    /* JADX INFO: renamed from: b */
+    private anet.channel.strategy.dispatch.a f1588b;
 
-    /* renamed from: b */
-    private C0830a f1080b;
+    /* JADX INFO: renamed from: c */
+    private volatile boolean f1589c;
 
-    /* renamed from: c */
-    private volatile boolean f1081c;
+    /* JADX INFO: renamed from: d */
+    private Set<String> f1590d;
 
-    /* renamed from: d */
-    private Set<String> f1082d;
+    /* JADX INFO: renamed from: e */
+    private Set<String> f1591e;
 
-    /* renamed from: e */
-    private Set<String> f1083e;
+    /* JADX INFO: renamed from: f */
+    private AtomicBoolean f1592f;
 
-    /* renamed from: f */
-    private AtomicBoolean f1084f;
-
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public interface IDispatchEventListener {
         void onEvent(DispatchEvent dispatchEvent);
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.strategy.dispatch.HttpDispatcher$a */
-    private static class C0829a {
+    /* JADX INFO: compiled from: Taobao */
+    private static class a {
+        static HttpDispatcher a = new HttpDispatcher();
 
-        /* renamed from: a */
-        static HttpDispatcher f1085a = new HttpDispatcher();
-
-        private C0829a() {
+        private a() {
         }
     }
 
+    /* synthetic */ HttpDispatcher(e eVar) {
+        this();
+    }
+
     public static HttpDispatcher getInstance() {
-        return C0829a.f1085a;
+        return a.a;
     }
 
     public static void setInitHosts(List<String> list) {
@@ -63,9 +62,8 @@ public class HttpDispatcher {
         }
     }
 
-    /* renamed from: a */
-    void m671a(DispatchEvent dispatchEvent) {
-        Iterator<IDispatchEventListener> it = this.f1079a.iterator();
+    void a(DispatchEvent dispatchEvent) {
+        Iterator<IDispatchEventListener> it = this.a.iterator();
         while (it.hasNext()) {
             try {
                 it.next().onEvent(dispatchEvent);
@@ -76,77 +74,76 @@ public class HttpDispatcher {
 
     public synchronized void addHosts(List<String> list) {
         if (list != null) {
-            this.f1083e.addAll(list);
-            this.f1082d.clear();
+            this.f1591e.addAll(list);
+            this.f1590d.clear();
         }
     }
 
     public void addListener(IDispatchEventListener iDispatchEventListener) {
-        this.f1079a.add(iDispatchEventListener);
+        this.a.add(iDispatchEventListener);
     }
 
     public synchronized Set<String> getInitHosts() {
-        m670a();
-        return new HashSet(this.f1083e);
+        a();
+        return new HashSet(this.f1591e);
     }
 
     public boolean isInitHostsChanged(String str) {
         if (TextUtils.isEmpty(str)) {
             return false;
         }
-        boolean contains = this.f1082d.contains(str);
-        if (!contains) {
-            this.f1082d.add(str);
+        boolean zContains = this.f1590d.contains(str);
+        if (!zContains) {
+            this.f1590d.add(str);
         }
-        return !contains;
+        return !zContains;
     }
 
     public void removeListener(IDispatchEventListener iDispatchEventListener) {
-        this.f1079a.remove(iDispatchEventListener);
+        this.a.remove(iDispatchEventListener);
     }
 
     public void sendAmdcRequest(Set<String> set, int i2) {
-        if (!this.f1081c || set == null || set.isEmpty()) {
-            ALog.m715e("awcn.HttpDispatcher", "invalid parameter", null, new Object[0]);
+        if (!this.f1589c || set == null || set.isEmpty()) {
+            ALog.e("awcn.HttpDispatcher", "invalid parameter", null, new Object[0]);
             return;
         }
         if (ALog.isPrintLog(2)) {
-            ALog.m716i("awcn.HttpDispatcher", "sendAmdcRequest", null, DispatchConstants.HOSTS, set.toString());
+            ALog.i("awcn.HttpDispatcher", "sendAmdcRequest", null, DispatchConstants.HOSTS, set.toString());
         }
-        HashMap hashMap = new HashMap();
-        hashMap.put(DispatchConstants.HOSTS, set);
-        hashMap.put(DispatchConstants.CONFIG_VERSION, String.valueOf(i2));
-        this.f1080b.m674a(hashMap);
+        HashMap map = new HashMap();
+        map.put(DispatchConstants.HOSTS, set);
+        map.put(DispatchConstants.CONFIG_VERSION, String.valueOf(i2));
+        this.f1588b.a(map);
     }
 
     public void setEnable(boolean z) {
-        this.f1081c = z;
+        this.f1589c = z;
     }
 
     public void switchENV() {
-        this.f1082d.clear();
-        this.f1083e.clear();
-        this.f1084f.set(false);
+        this.f1590d.clear();
+        this.f1591e.clear();
+        this.f1592f.set(false);
     }
 
     private HttpDispatcher() {
-        this.f1079a = new CopyOnWriteArraySet<>();
-        this.f1080b = new C0830a();
-        this.f1081c = true;
-        this.f1082d = Collections.newSetFromMap(new ConcurrentHashMap());
-        this.f1083e = new TreeSet();
-        this.f1084f = new AtomicBoolean();
-        m670a();
+        this.a = new CopyOnWriteArraySet<>();
+        this.f1588b = new anet.channel.strategy.dispatch.a();
+        this.f1589c = true;
+        this.f1590d = Collections.newSetFromMap(new ConcurrentHashMap());
+        this.f1591e = new TreeSet();
+        this.f1592f = new AtomicBoolean();
+        a();
     }
 
-    /* renamed from: a */
-    private void m670a() {
-        if (this.f1084f.get() || GlobalAppRuntimeInfo.getContext() == null || !this.f1084f.compareAndSet(false, true)) {
+    private void a() {
+        if (this.f1592f.get() || GlobalAppRuntimeInfo.getContext() == null || !this.f1592f.compareAndSet(false, true)) {
             return;
         }
-        this.f1083e.add(DispatchConstants.getAmdcServerDomain());
+        this.f1591e.add(DispatchConstants.getAmdcServerDomain());
         if (GlobalAppRuntimeInfo.isTargetProcess()) {
-            this.f1083e.addAll(Arrays.asList(DispatchConstants.initHostArray));
+            this.f1591e.addAll(Arrays.asList(DispatchConstants.initHostArray));
         }
     }
 }

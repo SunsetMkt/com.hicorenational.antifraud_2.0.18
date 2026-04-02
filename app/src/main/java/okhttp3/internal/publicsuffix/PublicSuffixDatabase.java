@@ -1,5 +1,6 @@
 package okhttp3.internal.publicsuffix;
 
+import i.f1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
@@ -11,9 +12,8 @@ import okhttp3.internal.platform.Platform;
 import okio.BufferedSource;
 import okio.GzipSource;
 import okio.Okio;
-import p286h.C5230f1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class PublicSuffixDatabase {
     private static final byte EXCEPTION_MARKER = 33;
     public static final String PUBLIC_SUFFIX_RESOURCE = "publicsuffixes.gz";
@@ -56,9 +56,9 @@ public final class PublicSuffixDatabase {
                     z = false;
                     i4 = 46;
                 } else {
-                    i4 = bArr2[i11][i12] & C5230f1.f20085c;
+                    i4 = bArr2[i11][i12] & f1.f12066c;
                 }
-                i5 = i4 - (bArr[i8 + i13] & C5230f1.f20085c);
+                i5 = i4 - (bArr[i8 + i13] & f1.f12066c);
                 if (i5 == 0) {
                     i13++;
                     i12++;
@@ -102,9 +102,9 @@ public final class PublicSuffixDatabase {
     }
 
     private String[] findMatchingRule(String[] strArr) {
-        String str;
-        String str2;
-        String str3;
+        String strBinarySearchBytes;
+        String strBinarySearchBytes2;
+        String strBinarySearchBytes3;
         if (this.listRead.get() || !this.listRead.compareAndSet(false, true)) {
             try {
                 this.readCompleteLatch.await();
@@ -126,11 +126,11 @@ public final class PublicSuffixDatabase {
         int i3 = 0;
         while (true) {
             if (i3 >= bArr.length) {
-                str = null;
+                strBinarySearchBytes = null;
                 break;
             }
-            str = binarySearchBytes(this.publicSuffixListBytes, bArr, i3);
-            if (str != null) {
+            strBinarySearchBytes = binarySearchBytes(this.publicSuffixListBytes, bArr, i3);
+            if (strBinarySearchBytes != null) {
                 break;
             }
             i3++;
@@ -139,31 +139,35 @@ public final class PublicSuffixDatabase {
             byte[][] bArr2 = (byte[][]) bArr.clone();
             for (int i4 = 0; i4 < bArr2.length - 1; i4++) {
                 bArr2[i4] = WILDCARD_LABEL;
-                str2 = binarySearchBytes(this.publicSuffixListBytes, bArr2, i4);
-                if (str2 != null) {
+                strBinarySearchBytes2 = binarySearchBytes(this.publicSuffixListBytes, bArr2, i4);
+                if (strBinarySearchBytes2 != null) {
                     break;
                 }
             }
+            strBinarySearchBytes2 = null;
+        } else {
+            strBinarySearchBytes2 = null;
         }
-        str2 = null;
-        if (str2 != null) {
+        if (strBinarySearchBytes2 != null) {
             for (int i5 = 0; i5 < bArr.length - 1; i5++) {
-                str3 = binarySearchBytes(this.publicSuffixExceptionListBytes, bArr, i5);
-                if (str3 != null) {
+                strBinarySearchBytes3 = binarySearchBytes(this.publicSuffixExceptionListBytes, bArr, i5);
+                if (strBinarySearchBytes3 != null) {
                     break;
                 }
             }
+            strBinarySearchBytes3 = null;
+        } else {
+            strBinarySearchBytes3 = null;
         }
-        str3 = null;
-        if (str3 != null) {
-            return ("!" + str3).split("\\.");
+        if (strBinarySearchBytes3 != null) {
+            return ("!" + strBinarySearchBytes3).split("\\.");
         }
-        if (str == null && str2 == null) {
+        if (strBinarySearchBytes == null && strBinarySearchBytes2 == null) {
             return PREVAILING_RULE;
         }
-        String[] split = str != null ? str.split("\\.") : EMPTY_RULE;
-        String[] split2 = str2 != null ? str2.split("\\.") : EMPTY_RULE;
-        return split.length > split2.length ? split : split2;
+        String[] strArrSplit = strBinarySearchBytes != null ? strBinarySearchBytes.split("\\.") : EMPTY_RULE;
+        String[] strArrSplit2 = strBinarySearchBytes2 != null ? strBinarySearchBytes2.split("\\.") : EMPTY_RULE;
+        return strArrSplit.length > strArrSplit2.length ? strArrSplit : strArrSplit2;
     }
 
     public static PublicSuffixDatabase get() {
@@ -175,19 +179,19 @@ public final class PublicSuffixDatabase {
         if (resourceAsStream == null) {
             return;
         }
-        BufferedSource buffer = Okio.buffer(new GzipSource(Okio.source(resourceAsStream)));
+        BufferedSource bufferedSourceBuffer = Okio.buffer(new GzipSource(Okio.source(resourceAsStream)));
         try {
-            byte[] bArr = new byte[buffer.readInt()];
-            buffer.readFully(bArr);
-            byte[] bArr2 = new byte[buffer.readInt()];
-            buffer.readFully(bArr2);
+            byte[] bArr = new byte[bufferedSourceBuffer.readInt()];
+            bufferedSourceBuffer.readFully(bArr);
+            byte[] bArr2 = new byte[bufferedSourceBuffer.readInt()];
+            bufferedSourceBuffer.readFully(bArr2);
             synchronized (this) {
                 this.publicSuffixListBytes = bArr;
                 this.publicSuffixExceptionListBytes = bArr2;
             }
             this.readCompleteLatch.countDown();
         } finally {
-            Util.closeQuietly(buffer);
+            Util.closeQuietly(bufferedSourceBuffer);
         }
     }
 
@@ -226,22 +230,22 @@ public final class PublicSuffixDatabase {
         if (str == null) {
             throw new NullPointerException("domain == null");
         }
-        String[] split = IDN.toUnicode(str).split("\\.");
-        String[] findMatchingRule = findMatchingRule(split);
-        if (split.length == findMatchingRule.length && findMatchingRule[0].charAt(0) != '!') {
+        String[] strArrSplit = IDN.toUnicode(str).split("\\.");
+        String[] strArrFindMatchingRule = findMatchingRule(strArrSplit);
+        if (strArrSplit.length == strArrFindMatchingRule.length && strArrFindMatchingRule[0].charAt(0) != '!') {
             return null;
         }
-        if (findMatchingRule[0].charAt(0) == '!') {
-            length = split.length;
-            length2 = findMatchingRule.length;
+        if (strArrFindMatchingRule[0].charAt(0) == '!') {
+            length = strArrSplit.length;
+            length2 = strArrFindMatchingRule.length;
         } else {
-            length = split.length;
-            length2 = findMatchingRule.length + 1;
+            length = strArrSplit.length;
+            length2 = strArrFindMatchingRule.length + 1;
         }
         StringBuilder sb = new StringBuilder();
-        String[] split2 = str.split("\\.");
-        for (int i2 = length - length2; i2 < split2.length; i2++) {
-            sb.append(split2[i2]);
+        String[] strArrSplit2 = str.split("\\.");
+        for (int i2 = length - length2; i2 < strArrSplit2.length; i2++) {
+            sb.append(strArrSplit2[i2]);
             sb.append('.');
         }
         sb.deleteCharAt(sb.length() - 1);

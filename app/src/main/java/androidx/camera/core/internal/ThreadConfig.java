@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.impl.Config;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ThreadConfig {
     public static final Config.Option<Executor> OPTION_BACKGROUND_EXECUTOR = Config.Option.create("camerax.core.thread.backgroundExecutor", Executor.class);
 

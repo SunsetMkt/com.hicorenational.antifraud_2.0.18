@@ -3,7 +3,7 @@ package com.umeng.socialize.shareboard.widgets;
 import android.os.Build;
 import android.view.VelocityTracker;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class VelocityTrackerCompat {
     private static final VelocityTrackerVersionImpl IMPL;
 

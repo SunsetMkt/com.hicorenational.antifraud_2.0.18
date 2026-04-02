@@ -1,6 +1,6 @@
 package okhttp3.internal;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class NamedRunnable implements Runnable {
     protected final String name;
 

@@ -3,7 +3,7 @@ package com.huawei.hmf.tasks;
 import android.app.Activity;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class Task<TResult> {
     public Task<TResult> addOnCanceledListener(Activity activity, OnCanceledListener onCanceledListener) {
         throw new UnsupportedOperationException("addOnCanceledListener is not implemented.");

@@ -2,9 +2,9 @@ package anet.channel.statist;
 
 import anet.channel.status.NetworkStatusHelper;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "nettype")
-/* loaded from: classes.dex */
 public class NetTypeStat extends StatObject {
 
     @Dimension

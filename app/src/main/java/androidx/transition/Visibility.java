@@ -2,6 +2,7 @@ package androidx.transition;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
@@ -17,7 +18,7 @@ import androidx.transition.Transition;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class Visibility extends Transition {
     public static final int MODE_IN = 1;
     public static final int MODE_OUT = 2;
@@ -122,8 +123,9 @@ public abstract class Visibility extends Transition {
         }
     }
 
+    @SuppressLint({"UniqueConstants"})
     @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public @interface Mode {
     }
 
@@ -278,19 +280,118 @@ public abstract class Visibility extends Transition {
         return null;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:22:0x0087 A[ADDED_TO_REGION] */
-    /* JADX WARN: Removed duplicated region for block: B:29:0x00ce  */
-    /* JADX WARN: Removed duplicated region for block: B:34:0x00ee A[RETURN] */
+    /* JADX WARN: Removed duplicated region for block: B:44:0x0082  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public android.animation.Animator onDisappear(android.view.ViewGroup r7, androidx.transition.TransitionValues r8, int r9, androidx.transition.TransitionValues r10, int r11) {
-        /*
-            Method dump skipped, instructions count: 239
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.transition.Visibility.onDisappear(android.view.ViewGroup, androidx.transition.TransitionValues, int, androidx.transition.TransitionValues, int):android.animation.Animator");
+    public Animator onDisappear(final ViewGroup viewGroup, TransitionValues transitionValues, int i2, TransitionValues transitionValues2, int i3) {
+        View view;
+        boolean z;
+        boolean z2;
+        if ((this.mMode & 2) != 2 || transitionValues == null) {
+            return null;
+        }
+        final View view2 = transitionValues.view;
+        View view3 = transitionValues2 != null ? transitionValues2.view : null;
+        final View viewCopyViewImage = (View) view2.getTag(R.id.save_overlay_view);
+        if (viewCopyViewImage != null) {
+            view = null;
+            z2 = true;
+        } else {
+            if (view3 == null || view3.getParent() == null) {
+                if (view3 != null) {
+                    view = null;
+                    viewCopyViewImage = view3;
+                    z = false;
+                }
+                viewCopyViewImage = null;
+                view = null;
+                z = true;
+            } else {
+                if (i3 == 4 || view2 == view3) {
+                    viewCopyViewImage = null;
+                    view = view3;
+                    z = false;
+                }
+                viewCopyViewImage = null;
+                view = null;
+                z = true;
+            }
+            if (z) {
+                if (view2.getParent() != null) {
+                    if (view2.getParent() instanceof View) {
+                        View view4 = (View) view2.getParent();
+                        if (getVisibilityChangeInfo(getTransitionValues(view4, true), getMatchedTransitionValues(view4, true)).mVisibilityChange) {
+                            int id = view4.getId();
+                            if (view4.getParent() == null && id != -1 && viewGroup.findViewById(id) != null && this.mCanRemoveViews) {
+                                viewCopyViewImage = view2;
+                            }
+                        } else {
+                            viewCopyViewImage = TransitionUtils.copyViewImage(viewGroup, view2, view4);
+                        }
+                    }
+                }
+            }
+            z2 = false;
+        }
+        if (viewCopyViewImage == null) {
+            if (view == null) {
+                return null;
+            }
+            int visibility = view.getVisibility();
+            ViewUtils.setTransitionVisibility(view, 0);
+            Animator animatorOnDisappear = onDisappear(viewGroup, view, transitionValues, transitionValues2);
+            if (animatorOnDisappear != null) {
+                DisappearListener disappearListener = new DisappearListener(view, i3, true);
+                animatorOnDisappear.addListener(disappearListener);
+                AnimatorUtils.addPauseListener(animatorOnDisappear, disappearListener);
+                addListener(disappearListener);
+            } else {
+                ViewUtils.setTransitionVisibility(view, visibility);
+            }
+            return animatorOnDisappear;
+        }
+        if (!z2) {
+            int[] iArr = (int[]) transitionValues.values.get(PROPNAME_SCREEN_LOCATION);
+            int i4 = iArr[0];
+            int i5 = iArr[1];
+            int[] iArr2 = new int[2];
+            viewGroup.getLocationOnScreen(iArr2);
+            viewCopyViewImage.offsetLeftAndRight((i4 - iArr2[0]) - viewCopyViewImage.getLeft());
+            viewCopyViewImage.offsetTopAndBottom((i5 - iArr2[1]) - viewCopyViewImage.getTop());
+            ViewGroupUtils.getOverlay(viewGroup).add(viewCopyViewImage);
+        }
+        Animator animatorOnDisappear2 = onDisappear(viewGroup, viewCopyViewImage, transitionValues, transitionValues2);
+        if (!z2) {
+            if (animatorOnDisappear2 == null) {
+                ViewGroupUtils.getOverlay(viewGroup).remove(viewCopyViewImage);
+            } else {
+                view2.setTag(R.id.save_overlay_view, viewCopyViewImage);
+                addListener(new TransitionListenerAdapter() { // from class: androidx.transition.Visibility.1
+                    @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+                    public void onTransitionEnd(@NonNull Transition transition) {
+                        view2.setTag(R.id.save_overlay_view, null);
+                        ViewGroupUtils.getOverlay(viewGroup).remove(viewCopyViewImage);
+                        transition.removeListener(this);
+                    }
+
+                    @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+                    public void onTransitionPause(@NonNull Transition transition) {
+                        ViewGroupUtils.getOverlay(viewGroup).remove(viewCopyViewImage);
+                    }
+
+                    @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+                    public void onTransitionResume(@NonNull Transition transition) {
+                        if (viewCopyViewImage.getParent() == null) {
+                            ViewGroupUtils.getOverlay(viewGroup).add(viewCopyViewImage);
+                        } else {
+                            Visibility.this.cancel();
+                        }
+                    }
+                });
+            }
+        }
+        return animatorOnDisappear2;
     }
 
     public void setMode(int i2) {
@@ -300,12 +401,13 @@ public abstract class Visibility extends Transition {
         this.mMode = i2;
     }
 
+    @SuppressLint({"RestrictedApi"})
     public Visibility(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.mMode = 3;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.VISIBILITY_TRANSITION);
-        int namedInt = TypedArrayUtils.getNamedInt(obtainStyledAttributes, (XmlResourceParser) attributeSet, "transitionVisibilityMode", 0, 0);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.VISIBILITY_TRANSITION);
+        int namedInt = TypedArrayUtils.getNamedInt(typedArrayObtainStyledAttributes, (XmlResourceParser) attributeSet, "transitionVisibilityMode", 0, 0);
+        typedArrayObtainStyledAttributes.recycle();
         if (namedInt != 0) {
             setMode(namedInt);
         }

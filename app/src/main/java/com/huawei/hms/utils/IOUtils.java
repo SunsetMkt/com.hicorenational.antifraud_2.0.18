@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class IOUtils {
     private IOUtils() {
     }
@@ -44,12 +44,12 @@ public final class IOUtils {
                 bArr = new byte[4096];
             }
             while (true) {
-                int read = inputStream.read(bArr);
-                if (-1 == read) {
+                int i2 = inputStream.read(bArr);
+                if (-1 == i2) {
                     break;
                 }
-                outputStream.write(bArr, 0, read);
-                j2 += read;
+                outputStream.write(bArr, 0, i2);
+                j2 += (long) i2;
             }
         }
         return j2;
@@ -68,7 +68,7 @@ public final class IOUtils {
             try {
                 closeable.close();
             } catch (IOException unused) {
-                HMSLog.m7715e("IOUtils", "An exception occurred while closing the 'Closeable' object.");
+                HMSLog.e("IOUtils", "An exception occurred while closing the 'Closeable' object.");
             }
         }
     }

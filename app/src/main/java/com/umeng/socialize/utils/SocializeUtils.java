@@ -15,7 +15,7 @@ import android.view.WindowManager;
 import androidx.core.content.FileProvider;
 import com.huawei.hms.framework.common.ContainerUtils;
 import com.tencent.bugly.beta.tinker.TinkerReport;
-import com.umeng.analytics.pro.C3393cw;
+import com.umeng.analytics.pro.cw;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.common.SocializeConstants;
@@ -39,7 +39,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeUtils {
     protected static final String TAG = "SocializeUtils";
     private static final char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
@@ -53,13 +53,13 @@ public class SocializeUtils {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[1024];
             while (true) {
-                int read = fileInputStream.read(bArr);
-                if (read == -1) {
+                int i2 = fileInputStream.read(bArr);
+                if (i2 == -1) {
                     fileInputStream.close();
                     byteArrayOutputStream.close();
                     return byteArrayOutputStream.toByteArray();
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
+                byteArrayOutputStream.write(bArr, 0, i2);
             }
         } catch (FileNotFoundException e2) {
             SLog.error(e2);
@@ -78,24 +78,24 @@ public class SocializeUtils {
         if (bundle == null || bundle.isEmpty()) {
             return null;
         }
-        Set<String> keySet = bundle.keySet();
-        HashMap hashMap = new HashMap();
-        for (String str : keySet) {
+        Set<String> setKeySet = bundle.keySet();
+        HashMap map = new HashMap();
+        for (String str : setKeySet) {
             if (str.equals("com.sina.weibo.intent.extra.USER_ICON")) {
-                hashMap.put("icon_url", bundle.getString(str));
+                map.put("icon_url", bundle.getString(str));
             }
-            hashMap.put(str, bundle.getString(str));
+            map.put(str, bundle.getString(str));
         }
-        return hashMap;
+        return map;
     }
 
     public static int countContentLength(String str) {
-        String trim = str.trim();
+        String strTrim = str.trim();
         int i2 = 0;
-        while (getDoubleBytePattern().matcher(trim).find()) {
+        while (getDoubleBytePattern().matcher(strTrim).find()) {
             i2++;
         }
-        int length = trim.length() - i2;
+        int length = strTrim.length() - i2;
         return i2 + (length % 2 != 0 ? (length + 1) / 2 : length / 2);
     }
 
@@ -103,8 +103,8 @@ public class SocializeUtils {
         Bundle bundle = new Bundle();
         if (str != null) {
             for (String str2 : str.split("&")) {
-                String[] split = str2.split(ContainerUtils.KEY_VALUE_DELIMITER);
-                bundle.putString(URLDecoder.decode(split[0]), URLDecoder.decode(split[1]));
+                String[] strArrSplit = str2.split(ContainerUtils.KEY_VALUE_DELIMITER);
+                bundle.putString(URLDecoder.decode(strArrSplit[0]), URLDecoder.decode(strArrSplit[1]));
             }
         }
         return bundle;
@@ -155,9 +155,9 @@ public class SocializeUtils {
     public static Uri insertImage(Context context, String str) {
         if (!TextUtils.isEmpty(str) && new File(str).exists()) {
             try {
-                String insertImage = MediaStore.Images.Media.insertImage(context.getContentResolver(), str, "umeng_social_shareimg", (String) null);
-                if (!TextUtils.isEmpty(insertImage)) {
-                    return Uri.parse(insertImage);
+                String strInsertImage = MediaStore.Images.Media.insertImage(context.getContentResolver(), str, "umeng_social_shareimg", (String) null);
+                if (!TextUtils.isEmpty(strInsertImage)) {
+                    return Uri.parse(strInsertImage);
                 }
             } catch (Throwable th) {
                 SLog.error(th);
@@ -220,18 +220,18 @@ public class SocializeUtils {
     }
 
     public static Map<String, String> jsonToMap(String str) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         try {
             JSONObject jSONObject = new JSONObject(str);
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
-                hashMap.put(next, jSONObject.get(next) + "");
+            Iterator<String> itKeys = jSONObject.keys();
+            while (itKeys.hasNext()) {
+                String next = itKeys.next();
+                map.put(next, jSONObject.get(next) + "");
             }
         } catch (Exception e2) {
             SLog.error(e2);
         }
-        return hashMap;
+        return map;
     }
 
     public static Bundle mapToBundle(Map<String, String> map) {
@@ -246,15 +246,15 @@ public class SocializeUtils {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(bArr);
-            byte[] digest = messageDigest.digest();
+            byte[] bArrDigest = messageDigest.digest();
             char[] cArr = new char[32];
             int i2 = 0;
             for (int i3 = 0; i3 < 16; i3++) {
-                byte b2 = digest[i3];
+                byte b2 = bArrDigest[i3];
                 int i4 = i2 + 1;
                 cArr[i2] = hexDigits[(b2 >>> 4) & 15];
                 i2 = i4 + 1;
-                cArr[i4] = hexDigits[b2 & C3393cw.f11873m];
+                cArr[i4] = hexDigits[b2 & cw.f7205m];
             }
             return new String(cArr);
         } catch (Exception e2) {
@@ -274,9 +274,9 @@ public class SocializeUtils {
     public static Bundle parseUrl(String str) {
         try {
             URL url = new URL(str);
-            Bundle decodeUrl = decodeUrl(url.getQuery());
-            decodeUrl.putAll(decodeUrl(url.getRef()));
-            return decodeUrl;
+            Bundle bundleDecodeUrl = decodeUrl(url.getQuery());
+            bundleDecodeUrl.putAll(decodeUrl(url.getRef()));
+            return bundleDecodeUrl;
         } catch (MalformedURLException unused) {
             return new Bundle();
         }

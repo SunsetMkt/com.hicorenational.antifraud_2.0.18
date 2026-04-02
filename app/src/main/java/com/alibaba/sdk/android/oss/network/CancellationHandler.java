@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.network;
 
 import okhttp3.Call;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CancellationHandler {
     private volatile Call call;
     private volatile boolean isCancelled;

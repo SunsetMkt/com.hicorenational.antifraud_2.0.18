@@ -7,7 +7,6 @@ import java.io.BufferedOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +19,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class MultiDexExtractor implements Closeable {
     private static final int BUFFER_SIZE = 16384;
     private static final String DEX_PREFIX = "classes";
@@ -86,17 +85,17 @@ final class MultiDexExtractor implements Closeable {
     }
 
     private void clearDexDir() {
-        File[] listFiles = this.dexDir.listFiles(new FileFilter() { // from class: androidx.multidex.MultiDexExtractor.1
+        File[] fileArrListFiles = this.dexDir.listFiles(new FileFilter() { // from class: androidx.multidex.MultiDexExtractor.1
             @Override // java.io.FileFilter
             public boolean accept(File file) {
                 return !file.getName().equals(MultiDexExtractor.LOCK_FILENAME);
             }
         });
-        if (listFiles == null) {
+        if (fileArrListFiles == null) {
             String str = "Failed to list secondary dex dir content (" + this.dexDir.getPath() + ").";
             return;
         }
-        for (File file : listFiles) {
+        for (File file : fileArrListFiles) {
             String str2 = "Trying to delete old file " + file.getPath() + " of size " + file.length();
             if (file.delete()) {
                 String str3 = "Deleted old file " + file.getPath();
@@ -113,37 +112,37 @@ final class MultiDexExtractor implements Closeable {
         }
     }
 
-    private static void extract(ZipFile zipFile, ZipEntry zipEntry, File file, String str) throws IOException, FileNotFoundException {
+    private static void extract(ZipFile zipFile, ZipEntry zipEntry, File file, String str) throws IOException {
         InputStream inputStream = zipFile.getInputStream(zipEntry);
-        File createTempFile = File.createTempFile("tmp-" + str, EXTRACTED_SUFFIX, file.getParentFile());
-        String str2 = "Extracting " + createTempFile.getPath();
+        File fileCreateTempFile = File.createTempFile("tmp-" + str, EXTRACTED_SUFFIX, file.getParentFile());
+        String str2 = "Extracting " + fileCreateTempFile.getPath();
         try {
-            ZipOutputStream zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(createTempFile)));
+            ZipOutputStream zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(fileCreateTempFile)));
             try {
                 ZipEntry zipEntry2 = new ZipEntry("classes.dex");
                 zipEntry2.setTime(zipEntry.getTime());
                 zipOutputStream.putNextEntry(zipEntry2);
                 byte[] bArr = new byte[16384];
-                for (int read = inputStream.read(bArr); read != -1; read = inputStream.read(bArr)) {
-                    zipOutputStream.write(bArr, 0, read);
+                for (int i2 = inputStream.read(bArr); i2 != -1; i2 = inputStream.read(bArr)) {
+                    zipOutputStream.write(bArr, 0, i2);
                 }
                 zipOutputStream.closeEntry();
                 zipOutputStream.close();
-                if (!createTempFile.setReadOnly()) {
-                    throw new IOException("Failed to mark readonly \"" + createTempFile.getAbsolutePath() + "\" (tmp of \"" + file.getAbsolutePath() + "\")");
+                if (!fileCreateTempFile.setReadOnly()) {
+                    throw new IOException("Failed to mark readonly \"" + fileCreateTempFile.getAbsolutePath() + "\" (tmp of \"" + file.getAbsolutePath() + "\")");
                 }
                 String str3 = "Renaming to " + file.getPath();
-                if (createTempFile.renameTo(file)) {
+                if (fileCreateTempFile.renameTo(file)) {
                     return;
                 }
-                throw new IOException("Failed to rename \"" + createTempFile.getAbsolutePath() + "\" to \"" + file.getAbsolutePath() + "\"");
+                throw new IOException("Failed to rename \"" + fileCreateTempFile.getAbsolutePath() + "\" to \"" + file.getAbsolutePath() + "\"");
             } catch (Throwable th) {
                 zipOutputStream.close();
                 throw th;
             }
         } finally {
             closeQuietly(inputStream);
-            createTempFile.delete();
+            fileCreateTempFile.delete();
         }
     }
 
@@ -152,8 +151,8 @@ final class MultiDexExtractor implements Closeable {
     }
 
     private static long getTimeStamp(File file) {
-        long lastModified = file.lastModified();
-        return lastModified == -1 ? lastModified - 1 : lastModified;
+        long jLastModified = file.lastModified();
+        return jLastModified == -1 ? jLastModified - 1 : jLastModified;
     }
 
     private static long getZipCrc(File file) throws IOException {
@@ -185,8 +184,8 @@ final class MultiDexExtractor implements Closeable {
             extractedDex.crc = getZipCrc(extractedDex);
             long j2 = multiDexPreferences.getLong(str + KEY_DEX_CRC + i3, -1L);
             long j3 = multiDexPreferences.getLong(str + KEY_DEX_TIME + i3, -1L);
-            long lastModified = extractedDex.lastModified();
-            if (j3 == lastModified) {
+            long jLastModified = extractedDex.lastModified();
+            if (j3 == jLastModified) {
                 String str3 = str2;
                 SharedPreferences sharedPreferences = multiDexPreferences;
                 if (j2 == extractedDex.crc) {
@@ -196,7 +195,7 @@ final class MultiDexExtractor implements Closeable {
                     str2 = str3;
                 }
             }
-            throw new IOException("Invalid extracted dex: " + extractedDex + " (key \"" + str + "\"), expected modification time: " + j3 + ", modification time: " + lastModified + ", expected crc: " + j2 + ", file crc: " + extractedDex.crc);
+            throw new IOException("Invalid extracted dex: " + extractedDex + " (key \"" + str + "\"), expected modification time: " + j3 + ", modification time: " + jLastModified + ", expected crc: " + j2 + ", file crc: " + extractedDex.crc);
         }
         return arrayList;
     }
@@ -258,17 +257,17 @@ final class MultiDexExtractor implements Closeable {
     }
 
     private static void putStoredApkInfo(Context context, String str, long j2, long j3, List<ExtractedDex> list) {
-        SharedPreferences.Editor edit = getMultiDexPreferences(context).edit();
-        edit.putLong(str + KEY_TIME_STAMP, j2);
-        edit.putLong(str + KEY_CRC, j3);
-        edit.putInt(str + KEY_DEX_NUMBER, list.size() + 1);
+        SharedPreferences.Editor editorEdit = getMultiDexPreferences(context).edit();
+        editorEdit.putLong(str + KEY_TIME_STAMP, j2);
+        editorEdit.putLong(str + KEY_CRC, j3);
+        editorEdit.putInt(str + KEY_DEX_NUMBER, list.size() + 1);
         int i2 = 2;
         for (ExtractedDex extractedDex : list) {
-            edit.putLong(str + KEY_DEX_CRC + i2, extractedDex.crc);
-            edit.putLong(str + KEY_DEX_TIME + i2, extractedDex.lastModified());
+            editorEdit.putLong(str + KEY_DEX_CRC + i2, extractedDex.crc);
+            editorEdit.putLong(str + KEY_DEX_TIME + i2, extractedDex.lastModified());
             i2++;
         }
-        edit.commit();
+        editorEdit.commit();
     }
 
     @Override // java.io.Closeable, java.lang.AutoCloseable
@@ -279,23 +278,23 @@ final class MultiDexExtractor implements Closeable {
     }
 
     List<? extends File> load(Context context, String str, boolean z) throws IOException {
-        List<ExtractedDex> performExtractions;
+        List<ExtractedDex> listPerformExtractions;
         String str2 = "MultiDexExtractor.load(" + this.sourceApk.getPath() + ", " + z + ", " + str + ")";
         if (!this.cacheLock.isValid()) {
             throw new IllegalStateException("MultiDexExtractor was closed");
         }
         if (z || isModified(context, this.sourceApk, this.sourceCrc, str)) {
-            performExtractions = performExtractions();
-            putStoredApkInfo(context, str, getTimeStamp(this.sourceApk), this.sourceCrc, performExtractions);
+            listPerformExtractions = performExtractions();
+            putStoredApkInfo(context, str, getTimeStamp(this.sourceApk), this.sourceCrc, listPerformExtractions);
         } else {
             try {
-                performExtractions = loadExistingExtractions(context, str);
+                listPerformExtractions = loadExistingExtractions(context, str);
             } catch (IOException unused) {
-                performExtractions = performExtractions();
-                putStoredApkInfo(context, str, getTimeStamp(this.sourceApk), this.sourceCrc, performExtractions);
+                listPerformExtractions = performExtractions();
+                putStoredApkInfo(context, str, getTimeStamp(this.sourceApk), this.sourceCrc, listPerformExtractions);
             }
         }
-        String str3 = "load found " + performExtractions.size() + " secondary dex files";
-        return performExtractions;
+        String str3 = "load found " + listPerformExtractions.size() + " secondary dex files";
+        return listPerformExtractions;
     }
 }

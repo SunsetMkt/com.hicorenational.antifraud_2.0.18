@@ -3,7 +3,7 @@ package com.huawei.hms.core.aidl;
 import com.huawei.hms.core.aidl.annotation.Packed;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RequestHeader implements IMessageEntity {
 
     @Packed

@@ -3,8 +3,8 @@ package androidx.media;
 import androidx.annotation.RestrictTo;
 import androidx.versionedparcelable.VersionedParcel;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY})
-/* loaded from: classes.dex */
 public final class AudioAttributesCompatParcelizer {
     public static AudioAttributesCompat read(VersionedParcel versionedParcel) {
         AudioAttributesCompat audioAttributesCompat = new AudioAttributesCompat();

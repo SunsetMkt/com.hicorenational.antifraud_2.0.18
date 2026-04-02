@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ChangeClipBounds extends Transition {
     private static final String PROPNAME_BOUNDS = "android:clipBounds:bounds";
     private static final String PROPNAME_CLIP = "android:clipBounds:clip";
@@ -46,7 +46,7 @@ public class ChangeClipBounds extends Transition {
 
     @Override // androidx.transition.Transition
     public Animator createAnimator(@NonNull ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        ObjectAnimator objectAnimator = null;
+        ObjectAnimator objectAnimatorOfObject = null;
         if (transitionValues != null && transitionValues2 != null && transitionValues.values.containsKey(PROPNAME_CLIP) && transitionValues2.values.containsKey(PROPNAME_CLIP)) {
             Rect rect = (Rect) transitionValues.values.get(PROPNAME_CLIP);
             Rect rect2 = (Rect) transitionValues2.values.get(PROPNAME_CLIP);
@@ -63,10 +63,10 @@ public class ChangeClipBounds extends Transition {
                 return null;
             }
             ViewCompat.setClipBounds(transitionValues2.view, rect);
-            objectAnimator = ObjectAnimator.ofObject(transitionValues2.view, (Property<View, V>) ViewUtils.CLIP_BOUNDS, (TypeEvaluator) new RectEvaluator(new Rect()), (Object[]) new Rect[]{rect, rect2});
+            objectAnimatorOfObject = ObjectAnimator.ofObject(transitionValues2.view, (Property<View, V>) ViewUtils.CLIP_BOUNDS, (TypeEvaluator) new RectEvaluator(new Rect()), (Object[]) new Rect[]{rect, rect2});
             if (z) {
                 final View view = transitionValues2.view;
-                objectAnimator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeClipBounds.1
+                objectAnimatorOfObject.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeClipBounds.1
                     @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                     public void onAnimationEnd(Animator animator) {
                         ViewCompat.setClipBounds(view, null);
@@ -74,7 +74,7 @@ public class ChangeClipBounds extends Transition {
                 });
             }
         }
-        return objectAnimator;
+        return objectAnimatorOfObject;
     }
 
     @Override // androidx.transition.Transition

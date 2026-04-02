@@ -2,7 +2,7 @@ package androidx.core.view;
 
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface NestedScrollingChild2 extends NestedScrollingChild {
     boolean dispatchNestedPreScroll(int i2, int i3, @Nullable int[] iArr, @Nullable int[] iArr2, int i4);
 

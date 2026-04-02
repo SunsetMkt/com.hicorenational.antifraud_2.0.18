@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SpdyProtocol {
     public static final int ACCS = 130;
     public static final int ACCS_0RTT = 4226;

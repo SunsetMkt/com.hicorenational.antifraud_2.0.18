@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ThreadPoolExcutorEnhance extends ThreadPoolExecutor {
     public ThreadPoolExcutorEnhance(int i2, int i3, long j2, TimeUnit timeUnit, BlockingQueue<Runnable> blockingQueue, ThreadFactory threadFactory) {
         super(i2, i3, j2, timeUnit, blockingQueue, threadFactory);
@@ -17,14 +17,14 @@ public class ThreadPoolExcutorEnhance extends ThreadPoolExecutor {
     protected void beforeExecute(Thread thread, Runnable runnable) {
         if (runnable instanceof RunnableEnhance) {
             String parentName = ((RunnableEnhance) runnable).getParentName();
-            int lastIndexOf = parentName.lastIndexOf(" -->");
-            if (lastIndexOf != -1) {
-                parentName = StringUtils.substring(parentName, lastIndexOf + 4);
+            int iLastIndexOf = parentName.lastIndexOf(" -->");
+            if (iLastIndexOf != -1) {
+                parentName = StringUtils.substring(parentName, iLastIndexOf + 4);
             }
             String name = thread.getName();
-            int lastIndexOf2 = name.lastIndexOf(" -->");
-            if (lastIndexOf2 != -1) {
-                name = StringUtils.substring(name, lastIndexOf2 + 4);
+            int iLastIndexOf2 = name.lastIndexOf(" -->");
+            if (iLastIndexOf2 != -1) {
+                name = StringUtils.substring(name, iLastIndexOf2 + 4);
             }
             thread.setName(parentName + " -->" + name);
         }

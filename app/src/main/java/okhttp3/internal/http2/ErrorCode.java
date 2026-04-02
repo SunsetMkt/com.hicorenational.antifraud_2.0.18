@@ -1,6 +1,6 @@
 package okhttp3.internal.http2;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public enum ErrorCode {
     NO_ERROR(0),
     PROTOCOL_ERROR(1),

@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.ActionMenuView;
@@ -19,8 +19,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.ForwardingListener;
 import androidx.appcompat.widget.TooltipCompat;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class ActionMenuItemView extends AppCompatTextView implements MenuView.ItemView, View.OnClickListener, ActionMenuView.ActionMenuChildView {
     private static final int MAX_ICON_SIZE = 32;
     private static final String TAG = "ActionMenuItemView";
@@ -145,19 +145,19 @@ public class ActionMenuItemView extends AppCompatTextView implements MenuView.It
     @Override // androidx.appcompat.widget.AppCompatTextView, android.widget.TextView, android.view.View
     protected void onMeasure(int i2, int i3) {
         int i4;
-        boolean hasText = hasText();
-        if (hasText && (i4 = this.mSavedPaddingLeft) >= 0) {
+        boolean zHasText = hasText();
+        if (zHasText && (i4 = this.mSavedPaddingLeft) >= 0) {
             super.setPadding(i4, getPaddingTop(), getPaddingRight(), getPaddingBottom());
         }
         super.onMeasure(i2, i3);
         int mode = View.MeasureSpec.getMode(i2);
         int size = View.MeasureSpec.getSize(i2);
         int measuredWidth = getMeasuredWidth();
-        int min = mode == Integer.MIN_VALUE ? Math.min(size, this.mMinWidth) : this.mMinWidth;
-        if (mode != 1073741824 && this.mMinWidth > 0 && measuredWidth < min) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), i3);
+        int iMin = mode == Integer.MIN_VALUE ? Math.min(size, this.mMinWidth) : this.mMinWidth;
+        if (mode != 1073741824 && this.mMinWidth > 0 && measuredWidth < iMin) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), i3);
         }
-        if (hasText || this.mIcon == null) {
+        if (zHasText || this.mIcon == null) {
             return;
         }
         super.setPadding((getMeasuredWidth() - this.mIcon.getBounds().width()) / 2, getPaddingTop(), getPaddingRight(), getPaddingBottom());
@@ -259,9 +259,9 @@ public class ActionMenuItemView extends AppCompatTextView implements MenuView.It
         super(context, attributeSet, i2);
         Resources resources = context.getResources();
         this.mAllowTextWithIcon = shouldAllowTextWithIcon();
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0120R.styleable.ActionMenuItemView, i2, 0);
-        this.mMinWidth = obtainStyledAttributes.getDimensionPixelSize(C0120R.styleable.ActionMenuItemView_android_minWidth, 0);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ActionMenuItemView, i2, 0);
+        this.mMinWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ActionMenuItemView_android_minWidth, 0);
+        typedArrayObtainStyledAttributes.recycle();
         this.mMaxIconSize = (int) ((resources.getDisplayMetrics().density * 32.0f) + 0.5f);
         setOnClickListener(this);
         this.mSavedPaddingLeft = -1;

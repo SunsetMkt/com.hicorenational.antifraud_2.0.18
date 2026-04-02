@@ -6,7 +6,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NetworkProgressHelper {
     public static ProgressTouchableRequestBody addProgressRequestBody(InputStream inputStream, long j2, String str, ExecutionContext executionContext) {
         return new ProgressTouchableRequestBody(inputStream, j2, str, executionContext);
@@ -16,8 +16,8 @@ public class NetworkProgressHelper {
         return okHttpClient.newBuilder().addNetworkInterceptor(new Interceptor() { // from class: com.alibaba.sdk.android.oss.network.NetworkProgressHelper.1
             @Override // okhttp3.Interceptor
             public Response intercept(Interceptor.Chain chain) throws IOException {
-                Response proceed = chain.proceed(chain.request());
-                return proceed.newBuilder().body(new ProgressTouchableResponseBody(proceed.body(), ExecutionContext.this)).build();
+                Response responseProceed = chain.proceed(chain.request());
+                return responseProceed.newBuilder().body(new ProgressTouchableResponseBody(responseProceed.body(), executionContext)).build();
             }
         }).build();
     }

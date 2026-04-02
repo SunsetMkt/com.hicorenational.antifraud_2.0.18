@@ -10,7 +10,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ComposeTool {
     public static ComposeDirection direction = ComposeDirection.CUSTOM;
     public static int textColor = ViewCompat.MEASURED_STATE_MASK;
@@ -38,15 +38,15 @@ public class ComposeTool {
         int height = bitmap.getHeight();
         int width2 = bitmap2.getWidth();
         int height2 = bitmap2.getHeight();
-        Bitmap createBitmap = Bitmap.createBitmap(z ? Math.max(width, width2) : width2 + width + i2, z ? height2 + height + i2 : Math.max(height, height2), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(z ? Math.max(width, width2) : width2 + width + i2, z ? height2 + height + i2 : Math.max(height, height2), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         if (z) {
             canvas.drawBitmap(bitmap2, 0.0f, height + i2, (Paint) null);
         } else {
             canvas.drawBitmap(bitmap2, width + i2, 0.0f, (Paint) null);
         }
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public static Bitmap createTextImage(String str, Bitmap bitmap, int i2, int i3) {
@@ -64,15 +64,15 @@ public class ComposeTool {
         textPaint.setTypeface(typeface);
         StaticLayout staticLayout = new StaticLayout(str, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         textPaint.getTextBounds(str, 0, str.length(), new Rect());
-        Bitmap copy = bitmap.copy(config, true);
-        Bitmap createBitmap = Bitmap.createBitmap(width + (i2 * 2), height + staticLayout.getHeight() + (i3 * 4), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCopy = bitmap.copy(config, true);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(width + (i2 * 2), height + staticLayout.getHeight() + (i3 * 4), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.drawColor(backgroundColor);
         float f2 = i2;
-        canvas.drawBitmap(copy, f2, staticLayout.getHeight() + (i3 * 3), (Paint) null);
+        canvas.drawBitmap(bitmapCopy, f2, staticLayout.getHeight() + (i3 * 3), (Paint) null);
         canvas.translate(f2, i3);
         staticLayout.draw(canvas);
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public static Bitmap createWaterMask(Bitmap bitmap, Bitmap bitmap2, int i2, int i3) {
@@ -84,8 +84,8 @@ public class ComposeTool {
         int width2 = bitmap2.getWidth();
         int i4 = (width / 2) - (width2 / 2);
         int height2 = (height / 2) - (bitmap2.getHeight() / 2);
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         if (direction == ComposeDirection.CUSTOM) {
             canvas.drawBitmap(bitmap2, i2, i3, (Paint) null);
@@ -106,6 +106,6 @@ public class ComposeTool {
         } else if (direction == ComposeDirection.RIGHTDOWN) {
             canvas.drawBitmap(bitmap2, width - width2, height - r4, (Paint) null);
         }
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 }

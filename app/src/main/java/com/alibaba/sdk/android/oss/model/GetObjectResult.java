@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.model;
 import com.alibaba.sdk.android.oss.internal.CheckCRC64DownloadInputStream;
 import java.io.InputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GetObjectResult extends OSSResult {
     private long contentLength;
     private ObjectMetadata metadata = new ObjectMetadata();

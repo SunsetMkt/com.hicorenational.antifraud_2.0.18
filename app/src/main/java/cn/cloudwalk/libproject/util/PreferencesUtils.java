@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PreferencesUtils {
     public static boolean getBoolean(Context context, String str, boolean z) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(str, z);
@@ -27,39 +27,39 @@ public class PreferencesUtils {
     }
 
     public static boolean putBoolean(Context context, String str, boolean z) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.putBoolean(str, z);
-        return edit.commit();
+        SharedPreferences.Editor editorEdit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editorEdit.putBoolean(str, z);
+        return editorEdit.commit();
     }
 
     public static boolean putFloat(Context context, String str, float f2) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.putFloat(str, f2);
-        return edit.commit();
+        SharedPreferences.Editor editorEdit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editorEdit.putFloat(str, f2);
+        return editorEdit.commit();
     }
 
     public static boolean putInt(Context context, String str, int i2) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.putInt(str, i2);
-        return edit.commit();
+        SharedPreferences.Editor editorEdit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editorEdit.putInt(str, i2);
+        return editorEdit.commit();
     }
 
     public static boolean putLong(Context context, String str, long j2) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.putLong(str, j2);
-        return edit.commit();
+        SharedPreferences.Editor editorEdit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editorEdit.putLong(str, j2);
+        return editorEdit.commit();
     }
 
     public static boolean putString(Context context, String str, String str2) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.putString(str, str2);
-        return edit.commit();
+        SharedPreferences.Editor editorEdit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editorEdit.putString(str, str2);
+        return editorEdit.commit();
     }
 
     public static boolean removeSharedPreferenceByKey(Context context, String str) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        edit.remove(str);
-        return edit.commit();
+        SharedPreferences.Editor editorEdit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editorEdit.remove(str);
+        return editorEdit.commit();
     }
 
     public static long getLong(Context context, String str, long j2) {

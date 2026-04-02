@@ -1,7 +1,7 @@
 package org.android.agoo.common;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public interface AgooConstants {
     public static final String ACK_BODY_NULL = "11";
     public static final String ACK_FLAG_NULL = "13";

@@ -3,7 +3,7 @@ package com.huawei.hms.support.api.entity.push;
 import com.huawei.hms.core.aidl.IMessageEntity;
 import com.huawei.hms.core.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ProfileReq implements IMessageEntity {
 
     @Packed

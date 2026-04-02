@@ -4,7 +4,7 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
     private boolean includeEdge;
     private int spacing;

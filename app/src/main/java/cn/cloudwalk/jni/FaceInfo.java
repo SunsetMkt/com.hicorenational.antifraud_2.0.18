@@ -1,6 +1,6 @@
 package cn.cloudwalk.jni;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FaceInfo {
     public byte[] alignedData;
     public int alignedH;
@@ -55,15 +55,11 @@ public class FaceInfo {
     float sunglassProb;
     public float timeStamp;
     public int width;
-
-    /* renamed from: x */
-    public int f2709x;
-
-    /* renamed from: y */
-    public int f2710y;
+    public int x;
+    public int y;
     public float yaw;
 
     public String toString() {
-        return "FaceInfo{detected=" + this.detected + ", faceId=" + this.faceId + ", x=" + this.f2709x + ", y=" + this.f2710y + ", width=" + this.width + ", height=" + this.height + ", keyptScore=" + this.keyptScore + ", alignedW=" + this.alignedW + ", alignedH=" + this.alignedH + ", nChannels=" + this.nChannels + ", qualityScore=" + this.qualityScore + ", clarity=" + this.clarity + ", brightness=" + this.brightness + ", qualityYaw=" + this.qualityYaw + ", qualityPitch=" + this.qualityPitch + ", qualityRoll=" + this.qualityRoll + ", skinScore=" + this.skinScore + ", mouthOpening=" + this.mouthOpening + ", leftEyeOpening=" + this.leftEyeOpening + ", rightEyeOpening=" + this.rightEyeOpening + ", blackframeglassProb=" + this.blackframeglassProb + ", sunglassProb=" + this.sunglassProb + ", proceduremask=" + this.proceduremask + ", occlusion=" + this.occlusion + ", errcode=" + this.errcode + ", headPitch=" + this.headPitch + ", headYaw=" + this.headYaw + ", mouthAct=" + this.mouthAct + ", eyeAct=" + this.eyeAct + ", attack=" + this.attack + ", timeStamp=" + this.timeStamp + ", pitch=" + this.pitch + ", yaw=" + this.yaw + ", roll=" + this.roll + ", rectx=" + this.rectx + ", recty=" + this.recty + ", rectwidth=" + this.rectwidth + ", rectheight=" + this.rectheight + ", nkeypt=" + this.nkeypt + ", opType=" + this.opType + ", reportImageW=" + this.reportImageW + ", reportImageH=" + this.reportImageH + ", reportImageChannel=" + this.reportImageChannel + ", reportTimeStamp=" + this.reportTimeStamp + ", srcImageW=" + this.srcImageW + ", srcImageH=" + this.srcImageH + '}';
+        return "FaceInfo{detected=" + this.detected + ", faceId=" + this.faceId + ", x=" + this.x + ", y=" + this.y + ", width=" + this.width + ", height=" + this.height + ", keyptScore=" + this.keyptScore + ", alignedW=" + this.alignedW + ", alignedH=" + this.alignedH + ", nChannels=" + this.nChannels + ", qualityScore=" + this.qualityScore + ", clarity=" + this.clarity + ", brightness=" + this.brightness + ", qualityYaw=" + this.qualityYaw + ", qualityPitch=" + this.qualityPitch + ", qualityRoll=" + this.qualityRoll + ", skinScore=" + this.skinScore + ", mouthOpening=" + this.mouthOpening + ", leftEyeOpening=" + this.leftEyeOpening + ", rightEyeOpening=" + this.rightEyeOpening + ", blackframeglassProb=" + this.blackframeglassProb + ", sunglassProb=" + this.sunglassProb + ", proceduremask=" + this.proceduremask + ", occlusion=" + this.occlusion + ", errcode=" + this.errcode + ", headPitch=" + this.headPitch + ", headYaw=" + this.headYaw + ", mouthAct=" + this.mouthAct + ", eyeAct=" + this.eyeAct + ", attack=" + this.attack + ", timeStamp=" + this.timeStamp + ", pitch=" + this.pitch + ", yaw=" + this.yaw + ", roll=" + this.roll + ", rectx=" + this.rectx + ", recty=" + this.recty + ", rectwidth=" + this.rectwidth + ", rectheight=" + this.rectheight + ", nkeypt=" + this.nkeypt + ", opType=" + this.opType + ", reportImageW=" + this.reportImageW + ", reportImageH=" + this.reportImageH + ", reportImageChannel=" + this.reportImageChannel + ", reportTimeStamp=" + this.reportTimeStamp + ", srcImageW=" + this.srcImageW + ", srcImageH=" + this.srcImageH + '}';
     }
 }

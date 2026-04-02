@@ -3,8 +3,8 @@ package com.tencent.connect.common;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.io.File;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public class Constants {
     public static final int ACTIVITY_CANCEL = 0;
     public static final int ACTIVITY_OK = -1;
@@ -66,39 +66,39 @@ public class Constants {
     public static final String KEY_STAY = "stay_back_stack";
     public static final String LOGIN_INFO = "login_info";
     public static final String MOBILEQQ_PACKAGE_NAME = "com.tencent.mobileqq";
-    public static final String MSG_CONNECTTIMEOUT_ERROR = "网络连接超时!";
-    public static final String MSG_IMAGE_ERROR = "图片读取失败，请检查该图片是否有效";
-    public static final String MSG_IO_ERROR = "网络连接异常，请检查后重试!";
-    public static final String MSG_JSON_ERROR = "服务器返回数据格式有误!";
-    public static final String MSG_LOCATION_TIMEOUT_ERROR = "定位超时，请稍后再试或检查网络状况！";
-    public static final String MSG_LOCATION_VERIFY_ERROR = "定位失败，验证定位码错误！";
-    public static final String MSG_LOGIN_NEEDED = "请先使用手Q登录";
-    public static final String MSG_NOT_CALL_ON_MAIN_THREAD = "没有在主线程调用！";
-    public static final String MSG_NO_SDCARD = "检测不到SD卡，无法发送语音！";
-    public static final String MSG_OPEN_BROWSER_ERROR = "打开浏览器失败!";
-    public static final String MSG_PARAM_APPSHARE_TOO_LOW = "手Q版本过低，应用分享只支持手Q5.0及其以上版本";
-    public static final String MSG_PARAM_ERROR = "传入参数有误!";
-    public static final String MSG_PARAM_IMAGE_ERROR = "纯图分享，imageUrl 不能为空";
-    public static final String MSG_PARAM_IMAGE_URL_FORMAT_ERROR = "非法的图片地址!";
-    public static final String MSG_PARAM_IMAGE_URL_MUST_BE_LOCAL = "手Q版本过低，纯图分享不支持网路图片";
-    public static final String MSG_PARAM_NULL_ERROR = "传入参数不可以为空";
-    public static final String MSG_PARAM_QQ_VERSION_ERROR = "低版本手Q不支持该项功能!";
-    public static final String MSG_PARAM_TARGETURL_ERROR = "targetUrl有误";
-    public static final String MSG_PARAM_TARGETURL_NULL_ERROR = "targetUrl为必填项，请补充后分享";
-    public static final String MSG_PARAM_TITLE_NULL_ERROR = "title不能为空!";
-    public static final String MSG_PARAM_VERSION_TOO_LOW = "手Q版本过低，请下载安装最新版手Q";
-    public static final String MSG_PERMISSION_NOT_GRANTED = "用户未授权，暂时无法使用QQ登录及分享等功能";
-    public static final String MSG_PERSISTENCE_FAIL = "持久化失败!";
-    public static final String MSG_PROXY_LOGIN_QQ_VERSION_LOWER = "手Q版本太低，不支持委托登录!";
-    public static final String MSG_PUBLISH_VIDEO_ERROR = "请选择有效的视频文件";
-    public static final String MSG_SHARE_GETIMG_ERROR = "获取分享图片失败!";
-    public static final String MSG_SHARE_IMAGE_TOO_LARGE_ERROR = "图片太大，请压缩到5M内再分享!";
-    public static final String MSG_SHARE_NOSD_ERROR = "分享图片失败，检测不到SD卡!";
-    public static final String MSG_SHARE_TO_QQ_ERROR = "分享的手机QQ失败!";
-    public static final String MSG_SHARE_TYPE_ERROR = "请选择支持的分享类型";
-    public static final String MSG_SOCKETTIMEOUT_ERROR = "网络连接超时!";
-    public static final String MSG_UNKNOWN_ERROR = "未知错误!";
-    public static final String MSG_URL_ERROR = "访问url有误!";
+    public static final String MSG_CONNECTTIMEOUT_ERROR = "\u7f51\u7edc\u8fde\u63a5\u8d85\u65f6!";
+    public static final String MSG_IMAGE_ERROR = "\u56fe\u7247\u8bfb\u53d6\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u8be5\u56fe\u7247\u662f\u5426\u6709\u6548";
+    public static final String MSG_IO_ERROR = "\u7f51\u7edc\u8fde\u63a5\u5f02\u5e38\uff0c\u8bf7\u68c0\u67e5\u540e\u91cd\u8bd5!";
+    public static final String MSG_JSON_ERROR = "\u670d\u52a1\u5668\u8fd4\u56de\u6570\u636e\u683c\u5f0f\u6709\u8bef!";
+    public static final String MSG_LOCATION_TIMEOUT_ERROR = "\u5b9a\u4f4d\u8d85\u65f6\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5\u6216\u68c0\u67e5\u7f51\u7edc\u72b6\u51b5\uff01";
+    public static final String MSG_LOCATION_VERIFY_ERROR = "\u5b9a\u4f4d\u5931\u8d25\uff0c\u9a8c\u8bc1\u5b9a\u4f4d\u7801\u9519\u8bef\uff01";
+    public static final String MSG_LOGIN_NEEDED = "\u8bf7\u5148\u4f7f\u7528\u624bQ\u767b\u5f55";
+    public static final String MSG_NOT_CALL_ON_MAIN_THREAD = "\u6ca1\u6709\u5728\u4e3b\u7ebf\u7a0b\u8c03\u7528\uff01";
+    public static final String MSG_NO_SDCARD = "\u68c0\u6d4b\u4e0d\u5230SD\u5361\uff0c\u65e0\u6cd5\u53d1\u9001\u8bed\u97f3\uff01";
+    public static final String MSG_OPEN_BROWSER_ERROR = "\u6253\u5f00\u6d4f\u89c8\u5668\u5931\u8d25!";
+    public static final String MSG_PARAM_APPSHARE_TOO_LOW = "\u624bQ\u7248\u672c\u8fc7\u4f4e\uff0c\u5e94\u7528\u5206\u4eab\u53ea\u652f\u6301\u624bQ5.0\u53ca\u5176\u4ee5\u4e0a\u7248\u672c";
+    public static final String MSG_PARAM_ERROR = "\u4f20\u5165\u53c2\u6570\u6709\u8bef!";
+    public static final String MSG_PARAM_IMAGE_ERROR = "\u7eaf\u56fe\u5206\u4eab\uff0cimageUrl \u4e0d\u80fd\u4e3a\u7a7a";
+    public static final String MSG_PARAM_IMAGE_URL_FORMAT_ERROR = "\u975e\u6cd5\u7684\u56fe\u7247\u5730\u5740!";
+    public static final String MSG_PARAM_IMAGE_URL_MUST_BE_LOCAL = "\u624bQ\u7248\u672c\u8fc7\u4f4e\uff0c\u7eaf\u56fe\u5206\u4eab\u4e0d\u652f\u6301\u7f51\u8def\u56fe\u7247";
+    public static final String MSG_PARAM_NULL_ERROR = "\u4f20\u5165\u53c2\u6570\u4e0d\u53ef\u4ee5\u4e3a\u7a7a";
+    public static final String MSG_PARAM_QQ_VERSION_ERROR = "\u4f4e\u7248\u672c\u624bQ\u4e0d\u652f\u6301\u8be5\u9879\u529f\u80fd!";
+    public static final String MSG_PARAM_TARGETURL_ERROR = "targetUrl\u6709\u8bef";
+    public static final String MSG_PARAM_TARGETURL_NULL_ERROR = "targetUrl\u4e3a\u5fc5\u586b\u9879\uff0c\u8bf7\u8865\u5145\u540e\u5206\u4eab";
+    public static final String MSG_PARAM_TITLE_NULL_ERROR = "title\u4e0d\u80fd\u4e3a\u7a7a!";
+    public static final String MSG_PARAM_VERSION_TOO_LOW = "\u624bQ\u7248\u672c\u8fc7\u4f4e\uff0c\u8bf7\u4e0b\u8f7d\u5b89\u88c5\u6700\u65b0\u7248\u624bQ";
+    public static final String MSG_PERMISSION_NOT_GRANTED = "\u7528\u6237\u672a\u6388\u6743\uff0c\u6682\u65f6\u65e0\u6cd5\u4f7f\u7528QQ\u767b\u5f55\u53ca\u5206\u4eab\u7b49\u529f\u80fd";
+    public static final String MSG_PERSISTENCE_FAIL = "\u6301\u4e45\u5316\u5931\u8d25!";
+    public static final String MSG_PROXY_LOGIN_QQ_VERSION_LOWER = "\u624bQ\u7248\u672c\u592a\u4f4e\uff0c\u4e0d\u652f\u6301\u59d4\u6258\u767b\u5f55!";
+    public static final String MSG_PUBLISH_VIDEO_ERROR = "\u8bf7\u9009\u62e9\u6709\u6548\u7684\u89c6\u9891\u6587\u4ef6";
+    public static final String MSG_SHARE_GETIMG_ERROR = "\u83b7\u53d6\u5206\u4eab\u56fe\u7247\u5931\u8d25!";
+    public static final String MSG_SHARE_IMAGE_TOO_LARGE_ERROR = "\u56fe\u7247\u592a\u5927\uff0c\u8bf7\u538b\u7f29\u52305M\u5185\u518d\u5206\u4eab!";
+    public static final String MSG_SHARE_NOSD_ERROR = "\u5206\u4eab\u56fe\u7247\u5931\u8d25\uff0c\u68c0\u6d4b\u4e0d\u5230SD\u5361!";
+    public static final String MSG_SHARE_TO_QQ_ERROR = "\u5206\u4eab\u7684\u624b\u673aQQ\u5931\u8d25!";
+    public static final String MSG_SHARE_TYPE_ERROR = "\u8bf7\u9009\u62e9\u652f\u6301\u7684\u5206\u4eab\u7c7b\u578b";
+    public static final String MSG_SOCKETTIMEOUT_ERROR = "\u7f51\u7edc\u8fde\u63a5\u8d85\u65f6!";
+    public static final String MSG_UNKNOWN_ERROR = "\u672a\u77e5\u9519\u8bef!";
+    public static final String MSG_URL_ERROR = "\u8bbf\u95eeurl\u6709\u8bef!";
     public static final String NONCE = "nonce";
     public static final String OPENID = "openid";
     public static final String PACKAGE_ID = "package_id";
@@ -162,9 +162,7 @@ public class Constants {
     public static final String SOURCE_QZONE = "qzone";
     public static final String SPECIFY_UIN = "specify_uin";
     public static final String STR_EMPTY = "";
-
-    /* renamed from: TS */
-    public static final String f11019TS = "ts";
+    public static final String TS = "ts";
     public static final int UI_ACTIVITY = 1;
     public static final int UI_CHECK_TOKEN = 3;
     public static final int UI_DIALOG = 2;
@@ -238,7 +236,7 @@ public class Constants {
     public static String VALUE_GUILD_CREATE = "create";
     public static String VALUE_GUILD_JOIN = "join";
 
-    /* compiled from: ProGuard */
+    /* JADX INFO: compiled from: ProGuard */
     public static class JumpUrlConstants {
         public static final int MAX_APP_NAME_LENGTH = 20;
         public static final String SRC_TYPE_APP = "app";

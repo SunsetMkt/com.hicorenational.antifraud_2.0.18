@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MessageCodec {
     private static final String BUNDLE_NEXT = "_next_item_";
     private static final String BUNDLE_VALUE = "_value_";
@@ -25,8 +25,8 @@ public class MessageCodec {
 
     public static Bundle formMessageEntity(IMessageEntity iMessageEntity, Bundle bundle) {
         if (iMessageEntity != null && bundle != null) {
-            for (Class<?> cls = iMessageEntity.getClass(); cls != null; cls = cls.getSuperclass()) {
-                for (Field field : cls.getDeclaredFields()) {
+            for (Class<?> superclass = iMessageEntity.getClass(); superclass != null; superclass = superclass.getSuperclass()) {
+                for (Field field : superclass.getDeclaredFields()) {
                     if (field.isAnnotationPresent(Packed.class)) {
                         try {
                             formMessageField(iMessageEntity, field, bundle);
@@ -41,10 +41,10 @@ public class MessageCodec {
     }
 
     private static void formMessageField(IMessageEntity iMessageEntity, Field field, Bundle bundle) {
-        boolean isAccessible = field.isAccessible();
+        boolean zIsAccessible = field.isAccessible();
         field.setAccessible(true);
         put(field.getName(), field.get(iMessageEntity), bundle);
-        field.setAccessible(isAccessible);
+        field.setAccessible(zIsAccessible);
     }
 
     private static Object newInstance(Field field, Bundle bundle) {
@@ -68,17 +68,17 @@ public class MessageCodec {
         return obj;
     }
 
-    private static List<Object> parseGenericType(Type type, Bundle bundle) {
+    private static List<Object> parseGenericType(Type type, Bundle bundle) throws InstantiationException {
         ArrayList arrayList = new ArrayList();
         while (true) {
             bundle = bundle.getBundle(BUNDLE_NEXT);
             if (bundle == null) {
                 return arrayList;
             }
-            Object obj = bundle.get(BUNDLE_VALUE);
-            if (!obj.getClass().isPrimitive() && !(obj instanceof Serializable)) {
-                if (obj instanceof Bundle) {
-                    Bundle bundle2 = (Bundle) obj;
+            Object messageEntity = bundle.get(BUNDLE_VALUE);
+            if (!messageEntity.getClass().isPrimitive() && !(messageEntity instanceof Serializable)) {
+                if (messageEntity instanceof Bundle) {
+                    Bundle bundle2 = (Bundle) messageEntity;
                     int i2 = bundle2.getInt(PACKED_TYPE, -1);
                     if (i2 == 1) {
                         throw new InstantiationException("Nested List can not be supported");
@@ -86,20 +86,20 @@ public class MessageCodec {
                     if (i2 != 0) {
                         throw new InstantiationException("Unknown type can not be supported");
                     }
-                    obj = parseMessageEntity(bundle2, (IMessageEntity) ((Class) ((ParameterizedType) type).getActualTypeArguments()[0]).newInstance());
+                    messageEntity = parseMessageEntity(bundle2, (IMessageEntity) ((Class) ((ParameterizedType) type).getActualTypeArguments()[0]).newInstance());
                 } else {
                     continue;
                 }
             }
-            arrayList.add(obj);
+            arrayList.add(messageEntity);
         }
     }
 
     public static IMessageEntity parseMessageEntity(Bundle bundle, IMessageEntity iMessageEntity) {
         if (bundle != null && iMessageEntity != null) {
             bundle.setClassLoader(iMessageEntity.getClass().getClassLoader());
-            for (Class<?> cls = iMessageEntity.getClass(); cls != null; cls = cls.getSuperclass()) {
-                for (Field field : cls.getDeclaredFields()) {
+            for (Class<?> superclass = iMessageEntity.getClass(); superclass != null; superclass = superclass.getSuperclass()) {
+                for (Field field : superclass.getDeclaredFields()) {
                     if (field.isAnnotationPresent(Packed.class)) {
                         try {
                             parseMessageField(iMessageEntity, field, bundle);
@@ -113,13 +113,13 @@ public class MessageCodec {
         return iMessageEntity;
     }
 
-    private static void parseMessageField(IMessageEntity iMessageEntity, Field field, Bundle bundle) {
-        Object newInstance = newInstance(field, bundle);
-        if (newInstance != null) {
-            boolean isAccessible = field.isAccessible();
+    private static void parseMessageField(IMessageEntity iMessageEntity, Field field, Bundle bundle) throws IllegalAccessException {
+        Object objNewInstance = newInstance(field, bundle);
+        if (objNewInstance != null) {
+            boolean zIsAccessible = field.isAccessible();
             field.setAccessible(true);
-            field.set(iMessageEntity, newInstance);
-            field.setAccessible(isAccessible);
+            field.set(iMessageEntity, objNewInstance);
+            field.setAccessible(zIsAccessible);
         }
     }
 
@@ -148,9 +148,9 @@ public class MessageCodec {
             return;
         }
         if (obj instanceof IMessageEntity) {
-            Bundle formMessageEntity = formMessageEntity((IMessageEntity) obj, new Bundle());
-            formMessageEntity.putInt(PACKED_TYPE, 0);
-            bundle.putBundle(str, formMessageEntity);
+            Bundle bundleFormMessageEntity = formMessageEntity((IMessageEntity) obj, new Bundle());
+            bundleFormMessageEntity.putInt(PACKED_TYPE, 0);
+            bundle.putBundle(str, bundleFormMessageEntity);
         } else {
             String str2 = "cannot support type, " + str;
         }
@@ -189,14 +189,14 @@ public class MessageCodec {
     }
 
     private static void putList(String str, List list, Bundle bundle) {
-        Bundle bundle2 = null;
+        Bundle bundlePutNext = null;
         for (Object obj : list) {
-            if (bundle2 == null) {
-                bundle2 = new Bundle();
-                bundle.putBundle(str, bundle2);
-                bundle2.putInt(PACKED_TYPE, 1);
+            if (bundlePutNext == null) {
+                bundlePutNext = new Bundle();
+                bundle.putBundle(str, bundlePutNext);
+                bundlePutNext.putInt(PACKED_TYPE, 1);
             }
-            bundle2 = putNext(BUNDLE_VALUE, bundle2, obj);
+            bundlePutNext = putNext(BUNDLE_VALUE, bundlePutNext, obj);
         }
     }
 

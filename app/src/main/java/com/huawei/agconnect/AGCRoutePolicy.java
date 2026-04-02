@@ -2,7 +2,7 @@ package com.huawei.agconnect;
 
 import java.util.Arrays;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AGCRoutePolicy {
     private final int route;
     public static final AGCRoutePolicy UNKNOWN = new AGCRoutePolicy(0);

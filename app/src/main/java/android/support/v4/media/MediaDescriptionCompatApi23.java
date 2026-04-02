@@ -4,8 +4,8 @@ import android.media.MediaDescription;
 import android.net.Uri;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-/* loaded from: classes.dex */
 class MediaDescriptionCompatApi23 {
 
     static class Builder {

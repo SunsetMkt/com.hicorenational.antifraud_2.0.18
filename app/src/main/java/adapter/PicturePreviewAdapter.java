@@ -9,101 +9,93 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import bean.UploadFileBean;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import com.luck.picture.lib.entity.LocalMedia;
 import java.util.ArrayList;
 import java.util.List;
-import p357j.C5845d;
-import p388ui.activity.PreviewPictureActivity;
+import ui.activity.PreviewPictureActivity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PicturePreviewAdapter extends RecyclerView.Adapter<ListiewHolder> {
+    private Context a;
 
-    /* renamed from: a */
-    private Context f236a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private List<UploadFileBean> f1139b;
 
-    /* renamed from: b */
-    private List<UploadFileBean> f237b;
-
-    /* renamed from: c */
-    private ArrayList<LocalMedia> f238c = new ArrayList<>();
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private ArrayList<LocalMedia> f1140c = new ArrayList<>();
 
     public class ListiewHolder extends RecyclerView.ViewHolder {
-
-        /* renamed from: a */
-        public ImageView f239a;
+        public ImageView a;
 
         public ListiewHolder(View view) {
             super(view);
-            this.f239a = (ImageView) view.findViewById(C2113R.id.picture_select);
+            this.a = (ImageView) view.findViewById(R.id.picture_select);
         }
     }
 
     public PicturePreviewAdapter(Context context, List<UploadFileBean> list) {
-        this.f237b = new ArrayList();
-        this.f236a = context;
-        if (this.f237b != null) {
-            this.f237b = list;
-            m254a();
+        this.f1139b = new ArrayList();
+        this.a = context;
+        if (this.f1139b != null) {
+            this.f1139b = list;
+            a();
         }
     }
 
-    /* renamed from: a */
-    private void m254a() {
-        for (int i2 = 0; i2 < this.f237b.size(); i2++) {
+    private void a() {
+        for (int i2 = 0; i2 < this.f1139b.size(); i2++) {
             LocalMedia localMedia = new LocalMedia();
-            String fileUrl = this.f237b.get(i2).getFileUrl();
+            String fileUrl = this.f1139b.get(i2).getFileUrl();
             if (TextUtils.isEmpty(fileUrl)) {
-                localMedia.setPath(this.f237b.get(i2).getFilePath());
+                localMedia.setPath(this.f1139b.get(i2).getFilePath());
             } else {
                 localMedia.setPath(fileUrl);
             }
-            localMedia.setFileName(this.f237b.get(i2).getFileName());
-            this.f238c.add(localMedia);
+            localMedia.setFileName(this.f1139b.get(i2).getFileName());
+            this.f1140c.add(localMedia);
         }
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
-        return this.f237b.size();
+        return this.f1139b.size();
     }
 
     public void setData(List<UploadFileBean> list) {
-        this.f237b = list;
-        m254a();
+        this.f1139b = list;
+        a();
         notifyDataSetChanged();
     }
 
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public ListiewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return new ListiewHolder(LayoutInflater.from(this.f236a).inflate(C2113R.layout.item_picture, viewGroup, false));
+        return new ListiewHolder(LayoutInflater.from(this.a).inflate(R.layout.item_picture, viewGroup, false));
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* renamed from: a, reason: merged with bridge method [inline-methods] */
+    /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
     public void onBindViewHolder(ListiewHolder listiewHolder, final int i2) {
         UploadFileBean uploadFileBean;
-        if (this.f237b.size() > 0 && (uploadFileBean = this.f237b.get(i2)) != null) {
+        if (this.f1139b.size() > 0 && (uploadFileBean = this.f1139b.get(i2)) != null) {
             if (!TextUtils.isEmpty(uploadFileBean.getFileUrl())) {
-                C5845d.m24603a(this.f236a, uploadFileBean.getFileUrl(), listiewHolder.f239a, 4);
+                k.d.a(this.a, uploadFileBean.getFileUrl(), listiewHolder.a, 4);
             } else if (!TextUtils.isEmpty(uploadFileBean.getFilePath())) {
-                C5845d.m24603a(this.f236a, uploadFileBean.getFilePath(), listiewHolder.f239a, 4);
+                k.d.a(this.a, uploadFileBean.getFilePath(), listiewHolder.a, 4);
             }
         }
-        listiewHolder.f239a.setOnClickListener(new View.OnClickListener() { // from class: adapter.d
+        listiewHolder.a.setOnClickListener(new View.OnClickListener() { // from class: adapter.d
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                PicturePreviewAdapter.this.m255a(i2, view);
+                this.a.a(i2, view);
             }
         });
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m255a(int i2, View view) {
-        Intent intent = new Intent(this.f236a, (Class<?>) PreviewPictureActivity.class);
-        intent.putParcelableArrayListExtra(PreviewPictureActivity.f22711f, this.f238c);
-        intent.putExtra(PreviewPictureActivity.f22712g, i2);
-        this.f236a.startActivity(intent);
+    public /* synthetic */ void a(int i2, View view) {
+        Intent intent = new Intent(this.a, (Class<?>) PreviewPictureActivity.class);
+        intent.putParcelableArrayListExtra(PreviewPictureActivity.f13585f, this.f1140c);
+        intent.putExtra(PreviewPictureActivity.f13586g, i2);
+        this.a.startActivity(intent);
     }
 }

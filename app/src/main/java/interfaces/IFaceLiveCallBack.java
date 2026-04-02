@@ -1,6 +1,6 @@
 package interfaces;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IFaceLiveCallBack {
     void onLivenessFail(int i2);
 

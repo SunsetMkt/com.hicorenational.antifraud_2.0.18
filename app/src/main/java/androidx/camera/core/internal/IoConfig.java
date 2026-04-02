@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.impl.Config;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IoConfig {
     public static final Config.Option<Executor> OPTION_IO_EXECUTOR = Config.Option.create("camerax.core.io.ioExecutor", Executor.class);
 

@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeSpUtils {
     public static int getInt(Context context, String str, int i2) {
         return getSharedPreferences(context).getInt(str, i2);
@@ -21,13 +21,11 @@ public class SocializeSpUtils {
     }
 
     public static synchronized String getShareBoardConfig(Context context) {
-        synchronized (SocializeSpUtils.class) {
-            SharedPreferences sharedPreferences = getSharedPreferences(context);
-            if (sharedPreferences == null) {
-                return null;
-            }
-            return sharedPreferences.getString("shareboardconfig", null);
+        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        if (sharedPreferences == null) {
+            return null;
         }
+        return sharedPreferences.getString("shareboardconfig", null);
     }
 
     private static SharedPreferences getSharedPreferences(Context context) {
@@ -81,13 +79,11 @@ public class SocializeSpUtils {
     }
 
     public static synchronized boolean putShareBoardConfig(Context context, String str) {
-        synchronized (SocializeSpUtils.class) {
-            SharedPreferences sharedPreferences = getSharedPreferences(context);
-            if (sharedPreferences == null) {
-                return false;
-            }
-            return sharedPreferences.edit().putString("shareboardconfig", str).commit();
+        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        if (sharedPreferences == null) {
+            return false;
         }
+        return sharedPreferences.edit().putString("shareboardconfig", str).commit();
     }
 
     public static void putString(Context context, String str, String str2) {

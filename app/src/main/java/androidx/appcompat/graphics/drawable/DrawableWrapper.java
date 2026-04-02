@@ -10,8 +10,8 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.RestrictTo;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class DrawableWrapper extends Drawable implements Drawable.Callback {
     private Drawable mDrawable;
 

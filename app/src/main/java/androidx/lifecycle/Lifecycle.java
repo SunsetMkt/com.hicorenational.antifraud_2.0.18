@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 import java.util.concurrent.atomic.AtomicReference;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class Lifecycle {
 
     @NonNull

@@ -2,7 +2,7 @@ package bean;
 
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CallCriminalBean implements Serializable {
     private String account;
     private String crime_time;

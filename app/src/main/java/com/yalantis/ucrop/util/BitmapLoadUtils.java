@@ -18,7 +18,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BitmapLoadUtils {
     private static final String TAG = "BitmapLoadUtils";
 
@@ -43,18 +43,18 @@ public class BitmapLoadUtils {
         if (windowManager != null) {
             windowManager.getDefaultDisplay().getSize(point);
         }
-        int sqrt = (int) Math.sqrt(Math.pow(point.x, 2.0d) + Math.pow(point.y, 2.0d));
+        int iSqrt = (int) Math.sqrt(Math.pow(point.x, 2.0d) + Math.pow(point.y, 2.0d));
         Canvas canvas = new Canvas();
-        int min = Math.min(canvas.getMaximumBitmapWidth(), canvas.getMaximumBitmapHeight());
-        if (min > 0) {
-            sqrt = Math.min(sqrt, min);
+        int iMin = Math.min(canvas.getMaximumBitmapWidth(), canvas.getMaximumBitmapHeight());
+        if (iMin > 0) {
+            iSqrt = Math.min(iSqrt, iMin);
         }
         int maxTextureSize = EglUtils.getMaxTextureSize();
         if (maxTextureSize > 0) {
-            sqrt = Math.min(sqrt, maxTextureSize);
+            iSqrt = Math.min(iSqrt, maxTextureSize);
         }
-        String str = "maxBitmapSize: " + sqrt;
-        return sqrt;
+        String str = "maxBitmapSize: " + iSqrt;
+        return iSqrt;
     }
 
     public static void close(@Nullable Closeable closeable) {
@@ -92,25 +92,25 @@ public class BitmapLoadUtils {
     }
 
     public static int getExifOrientation(@NonNull Context context, @NonNull Uri uri) {
-        int i2 = 0;
+        int orientation = 0;
         try {
-            InputStream openInputStream = context.getContentResolver().openInputStream(uri);
-            if (openInputStream == null) {
+            InputStream inputStreamOpenInputStream = context.getContentResolver().openInputStream(uri);
+            if (inputStreamOpenInputStream == null) {
                 return 0;
             }
-            i2 = new ImageHeaderParser(openInputStream).getOrientation();
-            close(openInputStream);
-            return i2;
+            orientation = new ImageHeaderParser(inputStreamOpenInputStream).getOrientation();
+            close(inputStreamOpenInputStream);
+            return orientation;
         } catch (IOException unused) {
             String str = "getExifOrientation: " + uri.toString();
-            return i2;
+            return orientation;
         }
     }
 
     public static Bitmap transformBitmap(@NonNull Bitmap bitmap, @NonNull Matrix matrix) {
         try {
-            Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-            return !bitmap.sameAs(createBitmap) ? createBitmap : bitmap;
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            return !bitmap.sameAs(bitmapCreateBitmap) ? bitmapCreateBitmap : bitmap;
         } catch (OutOfMemoryError unused) {
             return bitmap;
         }

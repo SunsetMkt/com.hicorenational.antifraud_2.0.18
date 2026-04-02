@@ -4,7 +4,7 @@ import androidx.constraintlayout.solver.state.State;
 import androidx.constraintlayout.solver.widgets.HelperWidget;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HelperReference {
     private HelperWidget mHelperWidget;
     protected ArrayList<Object> mReferences = new ArrayList<>();

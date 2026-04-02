@@ -1,6 +1,6 @@
 package com.umeng.socialize.utils;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DefaultClass {
     public static byte[] getBytes() {
         return new byte[1];

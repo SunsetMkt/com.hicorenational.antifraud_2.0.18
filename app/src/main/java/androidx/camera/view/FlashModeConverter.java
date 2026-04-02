@@ -3,7 +3,7 @@ package androidx.camera.view;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class FlashModeConverter {
     private FlashModeConverter() {
     }
@@ -26,26 +26,26 @@ final class FlashModeConverter {
         if (str == null) {
             throw new NullPointerException("name cannot be null");
         }
-        char c2 = 65535;
-        int hashCode = str.hashCode();
-        if (hashCode != 2527) {
-            if (hashCode != 78159) {
-                if (hashCode == 2020783 && str.equals("AUTO")) {
-                    c2 = 0;
+        byte b2 = -1;
+        int iHashCode = str.hashCode();
+        if (iHashCode != 2527) {
+            if (iHashCode != 78159) {
+                if (iHashCode == 2020783 && str.equals("AUTO")) {
+                    b2 = 0;
                 }
             } else if (str.equals("OFF")) {
-                c2 = 2;
+                b2 = 2;
             }
         } else if (str.equals("ON")) {
-            c2 = 1;
+            b2 = 1;
         }
-        if (c2 == 0) {
+        if (b2 == 0) {
             return 0;
         }
-        if (c2 == 1) {
+        if (b2 == 1) {
             return 1;
         }
-        if (c2 == 2) {
+        if (b2 == 2) {
             return 2;
         }
         throw new IllegalArgumentException("Unknown flash mode name " + str);

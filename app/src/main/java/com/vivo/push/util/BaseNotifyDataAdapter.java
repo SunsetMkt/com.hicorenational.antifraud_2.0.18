@@ -3,7 +3,7 @@ package com.vivo.push.util;
 import android.content.Context;
 import com.vivo.push.model.InsideNotificationItem;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface BaseNotifyDataAdapter {
     int getDefaultNotifyIcon();
 

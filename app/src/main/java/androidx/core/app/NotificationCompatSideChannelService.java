@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v4.app.INotificationSideChannel;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class NotificationCompatSideChannelService extends Service {
 
     private class NotificationSideChannelStub extends INotificationSideChannel.Stub {
@@ -19,33 +19,33 @@ public abstract class NotificationCompatSideChannelService extends Service {
         @Override // android.support.v4.app.INotificationSideChannel
         public void cancel(String str, int i2, String str2) throws RemoteException {
             NotificationCompatSideChannelService.this.checkPermission(Binder.getCallingUid(), str);
-            long clearCallingIdentity = Binder.clearCallingIdentity();
+            long jClearCallingIdentity = Binder.clearCallingIdentity();
             try {
                 NotificationCompatSideChannelService.this.cancel(str, i2, str2);
             } finally {
-                Binder.restoreCallingIdentity(clearCallingIdentity);
+                Binder.restoreCallingIdentity(jClearCallingIdentity);
             }
         }
 
         @Override // android.support.v4.app.INotificationSideChannel
         public void cancelAll(String str) {
             NotificationCompatSideChannelService.this.checkPermission(Binder.getCallingUid(), str);
-            long clearCallingIdentity = Binder.clearCallingIdentity();
+            long jClearCallingIdentity = Binder.clearCallingIdentity();
             try {
                 NotificationCompatSideChannelService.this.cancelAll(str);
             } finally {
-                Binder.restoreCallingIdentity(clearCallingIdentity);
+                Binder.restoreCallingIdentity(jClearCallingIdentity);
             }
         }
 
         @Override // android.support.v4.app.INotificationSideChannel
         public void notify(String str, int i2, String str2, Notification notification) throws RemoteException {
             NotificationCompatSideChannelService.this.checkPermission(Binder.getCallingUid(), str);
-            long clearCallingIdentity = Binder.clearCallingIdentity();
+            long jClearCallingIdentity = Binder.clearCallingIdentity();
             try {
                 NotificationCompatSideChannelService.this.notify(str, i2, str2, notification);
             } finally {
-                Binder.restoreCallingIdentity(clearCallingIdentity);
+                Binder.restoreCallingIdentity(jClearCallingIdentity);
             }
         }
     }

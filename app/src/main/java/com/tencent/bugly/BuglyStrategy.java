@@ -1,66 +1,56 @@
 package com.tencent.bugly;
 
-import com.tencent.bugly.crashreport.common.info.C3113a;
 import java.util.Map;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class BuglyStrategy {
 
-    /* renamed from: c */
-    private String f9811c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f5978c;
 
-    /* renamed from: d */
-    private String f9812d;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String f5979d;
 
-    /* renamed from: e */
-    private String f9813e;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f5980e;
 
-    /* renamed from: f */
-    private long f9814f;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private long f5981f;
 
-    /* renamed from: g */
-    private String f9815g;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private String f5982g;
 
-    /* renamed from: h */
-    private String f9816h;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f5983h;
+    private a q;
 
-    /* renamed from: q */
-    private C3070a f9825q;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private boolean f5984i = true;
 
-    /* renamed from: i */
-    private boolean f9817i = true;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private boolean f5985j = true;
 
-    /* renamed from: j */
-    private boolean f9818j = true;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private boolean f5986k = true;
 
-    /* renamed from: k */
-    private boolean f9819k = true;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private Class<?> f5987l = null;
 
-    /* renamed from: l */
-    private Class<?> f9820l = null;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private boolean f5988m = true;
 
-    /* renamed from: m */
-    private boolean f9821m = true;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private boolean f5989n = true;
+    private boolean o = true;
+    private boolean p = false;
+    protected int a = 31;
 
-    /* renamed from: n */
-    private boolean f9822n = true;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    protected boolean f5977b = false;
 
-    /* renamed from: o */
-    private boolean f9823o = true;
-
-    /* renamed from: p */
-    private boolean f9824p = false;
-
-    /* renamed from: a */
-    protected int f9809a = 31;
-
-    /* renamed from: b */
-    protected boolean f9810b = false;
-
-    /* compiled from: BUGLY */
-    /* renamed from: com.tencent.bugly.BuglyStrategy$a */
-    public static class C3070a {
+    /* JADX INFO: compiled from: BUGLY */
+    public static class a {
         public static final int CRASHTYPE_ANR = 4;
         public static final int CRASHTYPE_BLOCK = 7;
         public static final int CRASHTYPE_COCOS2DX_JS = 5;
@@ -82,152 +72,152 @@ public class BuglyStrategy {
     }
 
     public synchronized String getAppChannel() {
-        return this.f9812d == null ? C3113a.m9532b().f10211s : this.f9812d;
+        return this.f5979d == null ? com.tencent.bugly.crashreport.common.info.a.b().s : this.f5979d;
     }
 
     public synchronized String getAppPackageName() {
-        return this.f9813e == null ? C3113a.m9532b().f10196d : this.f9813e;
+        return this.f5980e == null ? com.tencent.bugly.crashreport.common.info.a.b().f6175d : this.f5980e;
     }
 
     public synchronized long getAppReportDelay() {
-        return this.f9814f;
+        return this.f5981f;
     }
 
     public synchronized String getAppVersion() {
-        return this.f9811c == null ? C3113a.m9532b().f10208p : this.f9811c;
+        return this.f5978c == null ? com.tencent.bugly.crashreport.common.info.a.b().p : this.f5978c;
     }
 
     public synchronized int getCallBackType() {
-        return this.f9809a;
+        return this.a;
     }
 
     public synchronized boolean getCloseErrorCallback() {
-        return this.f9810b;
+        return this.f5977b;
     }
 
-    public synchronized C3070a getCrashHandleCallback() {
-        return this.f9825q;
+    public synchronized a getCrashHandleCallback() {
+        return this.q;
     }
 
     public synchronized String getDeviceID() {
-        return this.f9816h;
+        return this.f5983h;
     }
 
     public synchronized String getLibBuglySOFilePath() {
-        return this.f9815g;
+        return this.f5982g;
     }
 
     public synchronized Class<?> getUserInfoActivity() {
-        return this.f9820l;
+        return this.f5987l;
     }
 
     public synchronized boolean isBuglyLogUpload() {
-        return this.f9821m;
+        return this.f5988m;
     }
 
     public synchronized boolean isEnableANRCrashMonitor() {
-        return this.f9818j;
+        return this.f5985j;
     }
 
     public synchronized boolean isEnableNativeCrashMonitor() {
-        return this.f9817i;
+        return this.f5984i;
     }
 
     public synchronized boolean isEnableUserInfo() {
-        return this.f9819k;
+        return this.f5986k;
     }
 
     public boolean isReplaceOldChannel() {
-        return this.f9822n;
+        return this.f5989n;
     }
 
     public synchronized boolean isUploadProcess() {
-        return this.f9823o;
+        return this.o;
     }
 
     public synchronized boolean recordUserInfoOnceADay() {
-        return this.f9824p;
+        return this.p;
     }
 
     public synchronized BuglyStrategy setAppChannel(String str) {
-        this.f9812d = str;
+        this.f5979d = str;
         return this;
     }
 
     public synchronized BuglyStrategy setAppPackageName(String str) {
-        this.f9813e = str;
+        this.f5980e = str;
         return this;
     }
 
     public synchronized BuglyStrategy setAppReportDelay(long j2) {
-        this.f9814f = j2;
+        this.f5981f = j2;
         return this;
     }
 
     public synchronized BuglyStrategy setAppVersion(String str) {
-        this.f9811c = str;
+        this.f5978c = str;
         return this;
     }
 
     public synchronized BuglyStrategy setBuglyLogUpload(boolean z) {
-        this.f9821m = z;
+        this.f5988m = z;
         return this;
     }
 
     public synchronized void setCallBackType(int i2) {
-        this.f9809a = i2;
+        this.a = i2;
     }
 
     public synchronized void setCloseErrorCallback(boolean z) {
-        this.f9810b = z;
+        this.f5977b = z;
     }
 
-    public synchronized BuglyStrategy setCrashHandleCallback(C3070a c3070a) {
-        this.f9825q = c3070a;
+    public synchronized BuglyStrategy setCrashHandleCallback(a aVar) {
+        this.q = aVar;
         return this;
     }
 
     public synchronized BuglyStrategy setDeviceID(String str) {
-        this.f9816h = str;
+        this.f5983h = str;
         return this;
     }
 
     public synchronized BuglyStrategy setEnableANRCrashMonitor(boolean z) {
-        this.f9818j = z;
+        this.f5985j = z;
         return this;
     }
 
     public synchronized BuglyStrategy setEnableNativeCrashMonitor(boolean z) {
-        this.f9817i = z;
+        this.f5984i = z;
         return this;
     }
 
     public synchronized BuglyStrategy setEnableUserInfo(boolean z) {
-        this.f9819k = z;
+        this.f5986k = z;
         return this;
     }
 
     public synchronized BuglyStrategy setLibBuglySOFilePath(String str) {
-        this.f9815g = str;
+        this.f5982g = str;
         return this;
     }
 
     public synchronized BuglyStrategy setRecordUserInfoOnceADay(boolean z) {
-        this.f9824p = z;
+        this.p = z;
         return this;
     }
 
     public void setReplaceOldChannel(boolean z) {
-        this.f9822n = z;
+        this.f5989n = z;
     }
 
     public synchronized BuglyStrategy setUploadProcess(boolean z) {
-        this.f9823o = z;
+        this.o = z;
         return this;
     }
 
     public synchronized BuglyStrategy setUserInfoActivity(Class<?> cls) {
-        this.f9820l = cls;
+        this.f5987l = cls;
         return this;
     }
 }

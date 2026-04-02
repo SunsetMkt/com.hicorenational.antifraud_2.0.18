@@ -2,130 +2,143 @@ package com.tencent.bugly.crashreport.crash.jni;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import com.heytap.mcssdk.constant.C2084a;
-import com.tencent.bugly.crashreport.InterfaceC3108a;
-import com.tencent.bugly.crashreport.common.info.C3113a;
-import com.tencent.bugly.crashreport.common.info.C3114b;
-import com.tencent.bugly.crashreport.common.strategy.C3116a;
 import com.tencent.bugly.crashreport.common.strategy.StrategyBean;
-import com.tencent.bugly.crashreport.crash.C3126b;
-import com.tencent.bugly.crashreport.crash.C3127c;
 import com.tencent.bugly.crashreport.crash.CrashDetailBean;
-import com.tencent.bugly.proguard.C3150am;
-import com.tencent.bugly.proguard.C3151an;
-import com.tencent.bugly.proguard.C3153ap;
-import com.tencent.bugly.proguard.C3154aq;
+import com.tencent.bugly.crashreport.crash.c;
+import com.tencent.bugly.proguard.am;
+import com.tencent.bugly.proguard.an;
+import com.tencent.bugly.proguard.ap;
+import com.tencent.bugly.proguard.aq;
 import com.xiaomi.mipush.sdk.Constants;
+import e.d;
 import java.io.File;
-import p000a.p001a.p014u.C0052a;
-import p245d.C4443d;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
-public class NativeCrashHandler implements InterfaceC3108a {
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
+public class NativeCrashHandler implements com.tencent.bugly.crashreport.a {
+    private static NativeCrashHandler a = null;
 
-    /* renamed from: a */
-    private static NativeCrashHandler f10436a = null;
+    /* JADX INFO: renamed from: l */
+    private static boolean f6316l = false;
 
-    /* renamed from: l */
-    private static boolean f10437l = false;
+    /* JADX INFO: renamed from: m */
+    private static boolean f6317m = false;
+    private static boolean o = true;
 
-    /* renamed from: m */
-    private static boolean f10438m = false;
+    /* JADX INFO: renamed from: b */
+    private final Context f6318b;
 
-    /* renamed from: o */
-    private static boolean f10439o = true;
+    /* JADX INFO: renamed from: c */
+    private final com.tencent.bugly.crashreport.common.info.a f6319c;
 
-    /* renamed from: b */
-    private final Context f10440b;
+    /* JADX INFO: renamed from: d */
+    private final am f6320d;
 
-    /* renamed from: c */
-    private final C3113a f10441c;
+    /* JADX INFO: renamed from: e */
+    private NativeExceptionHandler f6321e;
 
-    /* renamed from: d */
-    private final C3150am f10442d;
+    /* JADX INFO: renamed from: f */
+    private String f6322f;
 
-    /* renamed from: e */
-    private NativeExceptionHandler f10443e;
+    /* JADX INFO: renamed from: g */
+    private final boolean f6323g;
 
-    /* renamed from: f */
-    private String f10444f;
+    /* JADX INFO: renamed from: h */
+    private boolean f6324h = false;
 
-    /* renamed from: g */
-    private final boolean f10445g;
+    /* JADX INFO: renamed from: i */
+    private boolean f6325i = false;
 
-    /* renamed from: h */
-    private boolean f10446h = false;
+    /* JADX INFO: renamed from: j */
+    private boolean f6326j = false;
 
-    /* renamed from: i */
-    private boolean f10447i = false;
+    /* JADX INFO: renamed from: k */
+    private boolean f6327k = false;
 
-    /* renamed from: j */
-    private boolean f10448j = false;
+    /* JADX INFO: renamed from: n */
+    private com.tencent.bugly.crashreport.crash.b f6328n;
 
-    /* renamed from: k */
-    private boolean f10449k = false;
+    /* JADX INFO: renamed from: com.tencent.bugly.crashreport.crash.jni.NativeCrashHandler$1 */
+    /* JADX INFO: compiled from: BUGLY */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
 
-    /* renamed from: n */
-    private C3126b f10450n;
+        @Override // java.lang.Runnable
+        public void run() throws Throwable {
+            if (!aq.a(NativeCrashHandler.this.f6318b, "native_record_lock", com.heytap.mcssdk.constant.a.q)) {
+                an.a("[Native] Failed to lock file for handling native crash record.", new Object[0]);
+                return;
+            }
+            if (!NativeCrashHandler.o) {
+                NativeCrashHandler.this.a(999, b.a.u.a.f1909k);
+            }
+            CrashDetailBean crashDetailBeanA = b.a(NativeCrashHandler.this.f6318b, NativeCrashHandler.this.f6322f, NativeCrashHandler.this.f6321e);
+            if (crashDetailBeanA != null) {
+                an.a("[Native] Get crash from native record.", new Object[0]);
+                if (!NativeCrashHandler.this.f6328n.a(crashDetailBeanA)) {
+                    NativeCrashHandler.this.f6328n.a(crashDetailBeanA, 3000L, false);
+                }
+                b.a(false, NativeCrashHandler.this.f6322f);
+            }
+            NativeCrashHandler.this.b();
+            aq.c(NativeCrashHandler.this.f6318b, "native_record_lock");
+        }
+    }
 
     @SuppressLint({"SdCardPath"})
-    protected NativeCrashHandler(Context context, C3113a c3113a, C3126b c3126b, C3116a c3116a, C3150am c3150am, boolean z, String str) {
-        this.f10440b = C3154aq.m9946a(context);
+    protected NativeCrashHandler(Context context, com.tencent.bugly.crashreport.common.info.a aVar, com.tencent.bugly.crashreport.crash.b bVar, com.tencent.bugly.crashreport.common.strategy.a aVar2, am amVar, boolean z, String str) {
+        this.f6318b = aq.a(context);
         try {
-            if (C3154aq.m9970a(str)) {
+            if (aq.a(str)) {
                 str = context.getDir("bugly", 0).getAbsolutePath();
             }
         } catch (Throwable unused) {
-            str = "/data/data/" + C3113a.m9531a(context).f10196d + "/app_bugly";
+            str = "/data/data/" + com.tencent.bugly.crashreport.common.info.a.a(context).f6175d + "/app_bugly";
         }
-        this.f10450n = c3126b;
-        this.f10444f = str;
-        this.f10441c = c3113a;
-        this.f10442d = c3150am;
-        this.f10445g = z;
-        this.f10443e = new C3134a(context, c3113a, c3126b, C3116a.m9635a());
+        this.f6328n = bVar;
+        this.f6322f = str;
+        this.f6319c = aVar;
+        this.f6320d = amVar;
+        this.f6323g = z;
+        this.f6321e = new a(context, aVar, bVar, com.tencent.bugly.crashreport.common.strategy.a.a());
     }
 
-    public static synchronized NativeCrashHandler getInstance(Context context, C3113a c3113a, C3126b c3126b, C3116a c3116a, C3150am c3150am, boolean z, String str) {
-        NativeCrashHandler nativeCrashHandler;
-        synchronized (NativeCrashHandler.class) {
-            if (f10436a == null) {
-                f10436a = new NativeCrashHandler(context, c3113a, c3126b, c3116a, c3150am, z, str);
-            }
-            nativeCrashHandler = f10436a;
+    public static synchronized NativeCrashHandler getInstance(Context context, com.tencent.bugly.crashreport.common.info.a aVar, com.tencent.bugly.crashreport.crash.b bVar, com.tencent.bugly.crashreport.common.strategy.a aVar2, am amVar, boolean z, String str) {
+        if (a == null) {
+            a = new NativeCrashHandler(context, aVar, bVar, aVar2, amVar, z, str);
         }
-        return nativeCrashHandler;
+        return a;
     }
 
     public static boolean isShouldHandleInJava() {
-        return f10439o;
+        return o;
     }
 
     public static void setShouldHandleInJava(boolean z) {
-        f10439o = z;
-        NativeCrashHandler nativeCrashHandler = f10436a;
+        o = z;
+        NativeCrashHandler nativeCrashHandler = a;
         if (nativeCrashHandler != null) {
-            nativeCrashHandler.m9767a(999, "" + z);
+            nativeCrashHandler.a(999, "" + z);
         }
     }
 
-    @Override // com.tencent.bugly.crashreport.InterfaceC3108a
+    @Override // com.tencent.bugly.crashreport.a
     public boolean appendLogToNative(String str, String str2, String str3) {
-        if ((this.f10446h || this.f10447i) && f10437l && str != null && str2 != null && str3 != null) {
+        if ((this.f6324h || this.f6325i) && f6316l && str != null && str2 != null && str3 != null) {
             try {
-                if (this.f10447i) {
+                if (this.f6325i) {
                     return appendNativeLog(str, str2, str3);
                 }
-                Boolean bool = (Boolean) C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "appendNativeLog", null, new Class[]{String.class, String.class, String.class}, new Object[]{str, str2, str3});
+                Boolean bool = (Boolean) aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "appendNativeLog", null, new Class[]{String.class, String.class, String.class}, new Object[]{str, str2, str3});
                 if (bool != null) {
                     return bool.booleanValue();
                 }
                 return false;
             } catch (UnsatisfiedLinkError unused) {
-                f10437l = false;
+                f6316l = false;
             } catch (Throwable th) {
-                if (!C3151an.m9916a(th)) {
+                if (!an.a(th)) {
                     th.printStackTrace();
                 }
                 return false;
@@ -139,50 +152,53 @@ public class NativeCrashHandler implements InterfaceC3108a {
     protected native boolean appendWholeNativeLog(String str);
 
     public void checkUploadRecordCrash() {
-        this.f10442d.m9908a(new Runnable() { // from class: com.tencent.bugly.crashreport.crash.jni.NativeCrashHandler.1
+        this.f6320d.a(new Runnable() { // from class: com.tencent.bugly.crashreport.crash.jni.NativeCrashHandler.1
+            AnonymousClass1() {
+            }
+
             @Override // java.lang.Runnable
-            public void run() {
-                if (!C3154aq.m9967a(NativeCrashHandler.this.f10440b, "native_record_lock", C2084a.f6135q)) {
-                    C3151an.m9915a("[Native] Failed to lock file for handling native crash record.", new Object[0]);
+            public void run() throws Throwable {
+                if (!aq.a(NativeCrashHandler.this.f6318b, "native_record_lock", com.heytap.mcssdk.constant.a.q)) {
+                    an.a("[Native] Failed to lock file for handling native crash record.", new Object[0]);
                     return;
                 }
-                if (!NativeCrashHandler.f10439o) {
-                    NativeCrashHandler.this.m9767a(999, C0052a.f159k);
+                if (!NativeCrashHandler.o) {
+                    NativeCrashHandler.this.a(999, b.a.u.a.f1909k);
                 }
-                CrashDetailBean m9779a = C3135b.m9779a(NativeCrashHandler.this.f10440b, NativeCrashHandler.this.f10444f, NativeCrashHandler.this.f10443e);
-                if (m9779a != null) {
-                    C3151an.m9915a("[Native] Get crash from native record.", new Object[0]);
-                    if (!NativeCrashHandler.this.f10450n.m9694a(m9779a)) {
-                        NativeCrashHandler.this.f10450n.m9691a(m9779a, 3000L, false);
+                CrashDetailBean crashDetailBeanA = b.a(NativeCrashHandler.this.f6318b, NativeCrashHandler.this.f6322f, NativeCrashHandler.this.f6321e);
+                if (crashDetailBeanA != null) {
+                    an.a("[Native] Get crash from native record.", new Object[0]);
+                    if (!NativeCrashHandler.this.f6328n.a(crashDetailBeanA)) {
+                        NativeCrashHandler.this.f6328n.a(crashDetailBeanA, 3000L, false);
                     }
-                    C3135b.m9785a(false, NativeCrashHandler.this.f10444f);
+                    b.a(false, NativeCrashHandler.this.f6322f);
                 }
-                NativeCrashHandler.this.m9777b();
-                C3154aq.m9994c(NativeCrashHandler.this.f10440b, "native_record_lock");
+                NativeCrashHandler.this.b();
+                aq.c(NativeCrashHandler.this.f6318b, "native_record_lock");
             }
         });
     }
 
     public boolean filterSigabrtSysLog() {
-        return m9767a(C4443d.f16957h, C0052a.f158j);
+        return a(d.f10172h, b.a.u.a.f1908j);
     }
 
     public synchronized String getDumpFilePath() {
-        return this.f10444f;
+        return this.f6322f;
     }
 
-    @Override // com.tencent.bugly.crashreport.InterfaceC3108a
+    @Override // com.tencent.bugly.crashreport.a
     public String getLogFromNative() {
-        if ((!this.f10446h && !this.f10447i) || !f10437l) {
+        if ((!this.f6324h && !this.f6325i) || !f6316l) {
             return null;
         }
         try {
-            return this.f10447i ? getNativeLog() : (String) C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "getNativeLog", null, null, null);
+            return this.f6325i ? getNativeLog() : (String) aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "getNativeLog", null, null, null);
         } catch (UnsatisfiedLinkError unused) {
-            f10437l = false;
+            f6316l = false;
             return null;
         } catch (Throwable th) {
-            if (!C3151an.m9916a(th)) {
+            if (!an.a(th)) {
                 th.printStackTrace();
             }
             return null;
@@ -190,7 +206,7 @@ public class NativeCrashHandler implements InterfaceC3108a {
     }
 
     public NativeExceptionHandler getNativeExceptionHandler() {
-        return this.f10443e;
+        return this.f6321e;
     }
 
     protected native String getNativeKeyValueList();
@@ -198,37 +214,46 @@ public class NativeCrashHandler implements InterfaceC3108a {
     protected native String getNativeLog();
 
     public synchronized boolean isUserOpened() {
-        return this.f10449k;
+        return this.f6327k;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:37:0x002c  */
+    /* JADX WARN: Removed duplicated region for block: B:40:0x0031 A[Catch: all -> 0x0043, TRY_LEAVE, TryCatch #0 {, blocks: (B:29:0x0005, B:31:0x000b, B:32:0x001a, B:34:0x0026, B:38:0x002d, B:40:0x0031), top: B:46:0x0005 }] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public synchronized void onStrategyChanged(StrategyBean strategyBean) {
+        boolean z;
         if (strategyBean != null) {
-            if (strategyBean.f10230g != this.f10448j) {
-                C3151an.m9922d("server native changed to %b", Boolean.valueOf(strategyBean.f10230g));
+            if (strategyBean.f6195g != this.f6326j) {
+                an.d("server native changed to %b", Boolean.valueOf(strategyBean.f6195g));
             }
-        }
-        boolean z = C3116a.m9635a().m9644c().f10230g && this.f10449k;
-        if (z != this.f10448j) {
-            C3151an.m9915a("native changed to %b", Boolean.valueOf(z));
-            m9778b(z);
+            z = !com.tencent.bugly.crashreport.common.strategy.a.a().c().f6195g && this.f6327k;
+            if (z != this.f6326j) {
+                an.a("native changed to %b", Boolean.valueOf(z));
+                b(z);
+            }
+        } else if (com.tencent.bugly.crashreport.common.strategy.a.a().c().f6195g) {
+            if (z != this.f6326j) {
+            }
         }
     }
 
     public boolean putKeyValueToNative(String str, String str2) {
-        if ((this.f10446h || this.f10447i) && f10437l && str != null && str2 != null) {
+        if ((this.f6324h || this.f6325i) && f6316l && str != null && str2 != null) {
             try {
-                if (this.f10447i) {
+                if (this.f6325i) {
                     return putNativeKeyValue(str, str2);
                 }
-                Boolean bool = (Boolean) C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "putNativeKeyValue", null, new Class[]{String.class, String.class}, new Object[]{str, str2});
+                Boolean bool = (Boolean) aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "putNativeKeyValue", null, new Class[]{String.class, String.class}, new Object[]{str, str2});
                 if (bool != null) {
                     return bool.booleanValue();
                 }
                 return false;
             } catch (UnsatisfiedLinkError unused) {
-                f10437l = false;
+                f6316l = false;
             } catch (Throwable th) {
-                if (!C3151an.m9916a(th)) {
+                if (!an.a(th)) {
                     th.printStackTrace();
                 }
                 return false;
@@ -242,39 +267,39 @@ public class NativeCrashHandler implements InterfaceC3108a {
     protected native String regist(String str, boolean z, int i2);
 
     public void removeEmptyNativeRecordFiles() {
-        C3135b.m9790d(this.f10444f);
+        b.d(this.f6322f);
     }
 
     protected native String removeNativeKeyValue(String str);
 
     public synchronized void setDumpFilePath(String str) {
-        this.f10444f = str;
+        this.f6322f = str;
     }
 
     public boolean setNativeAppChannel(String str) {
-        return m9767a(12, str);
+        return a(12, str);
     }
 
     public boolean setNativeAppPackage(String str) {
-        return m9767a(13, str);
+        return a(13, str);
     }
 
     public boolean setNativeAppVersion(String str) {
-        return m9767a(10, str);
+        return a(10, str);
     }
 
     protected native void setNativeInfo(int i2, String str);
 
-    @Override // com.tencent.bugly.crashreport.InterfaceC3108a
+    @Override // com.tencent.bugly.crashreport.a
     public boolean setNativeIsAppForeground(boolean z) {
-        return m9767a(14, z ? C0052a.f158j : C0052a.f159k);
+        return a(14, z ? b.a.u.a.f1908j : b.a.u.a.f1909k);
     }
 
     public boolean setNativeLaunchTime(long j2) {
         try {
-            return m9767a(15, String.valueOf(j2));
+            return a(15, String.valueOf(j2));
         } catch (NumberFormatException e2) {
-            if (C3151an.m9916a(e2)) {
+            if (an.a(e2)) {
                 return false;
             }
             e2.printStackTrace();
@@ -283,242 +308,232 @@ public class NativeCrashHandler implements InterfaceC3108a {
     }
 
     public boolean setNativeUserId(String str) {
-        return m9767a(11, str);
+        return a(11, str);
     }
 
     public synchronized void setUserOpened(boolean z) {
-        m9772c(z);
-        boolean isUserOpened = isUserOpened();
-        C3116a m9635a = C3116a.m9635a();
-        if (m9635a != null) {
-            isUserOpened = isUserOpened && m9635a.m9644c().f10230g;
+        c(z);
+        boolean zIsUserOpened = isUserOpened();
+        com.tencent.bugly.crashreport.common.strategy.a aVarA = com.tencent.bugly.crashreport.common.strategy.a.a();
+        if (aVarA != null) {
+            zIsUserOpened = zIsUserOpened && aVarA.c().f6195g;
         }
-        if (isUserOpened != this.f10448j) {
-            C3151an.m9915a("native changed to %b", Boolean.valueOf(isUserOpened));
-            m9778b(isUserOpened);
+        if (zIsUserOpened != this.f6326j) {
+            an.a("native changed to %b", Boolean.valueOf(zIsUserOpened));
+            b(zIsUserOpened);
         }
     }
 
     public synchronized void startNativeMonitor() {
         String str;
-        if (!this.f10447i && !this.f10446h) {
+        if (!this.f6325i && !this.f6324h) {
             String str2 = "Bugly";
-            boolean z = !C3154aq.m9970a(this.f10441c.f10212t);
-            if (C3127c.f10361b) {
+            boolean z = !aq.a(this.f6319c.t);
+            if (c.f6264b) {
                 if (z) {
-                    str = this.f10441c.f10212t;
+                    str = this.f6319c.t;
                 } else {
                     str = "Bugly-rqd";
                 }
-                this.f10447i = m9769a(str, z);
-                if (!this.f10447i && !z) {
-                    this.f10446h = m9769a("NativeRQD", false);
+                this.f6325i = a(str, z);
+                if (!this.f6325i && !z) {
+                    this.f6324h = a("NativeRQD", false);
                 }
             } else {
-                String str3 = this.f10441c.f10212t;
+                String str3 = this.f6319c.t;
                 if (z) {
                     str2 = str3;
                 } else {
-                    this.f10441c.getClass();
+                    this.f6319c.getClass();
                 }
-                this.f10447i = m9769a(str2, z);
+                this.f6325i = a(str2, z);
             }
-            if (this.f10447i || this.f10446h) {
-                m9776a(this.f10445g);
-                if (f10437l) {
-                    setNativeAppVersion(this.f10441c.f10208p);
-                    setNativeAppChannel(this.f10441c.f10211s);
-                    setNativeAppPackage(this.f10441c.f10196d);
-                    setNativeUserId(this.f10441c.m9573g());
-                    setNativeIsAppForeground(this.f10441c.m9559a());
-                    setNativeLaunchTime(this.f10441c.f10160a);
+            if (this.f6325i || this.f6324h) {
+                a(this.f6323g);
+                if (f6316l) {
+                    setNativeAppVersion(this.f6319c.p);
+                    setNativeAppChannel(this.f6319c.s);
+                    setNativeAppPackage(this.f6319c.f6175d);
+                    setNativeUserId(this.f6319c.g());
+                    setNativeIsAppForeground(this.f6319c.a());
+                    setNativeLaunchTime(this.f6319c.a);
                 }
                 return;
             }
             return;
         }
-        m9776a(this.f10445g);
+        a(this.f6323g);
     }
 
     protected native void testCrash();
 
     public void testNativeCrash() {
-        if (this.f10447i) {
+        if (this.f6325i) {
             testCrash();
         } else {
-            C3151an.m9922d("[Native] Bugly SO file has not been load.", new Object[0]);
+            an.d("[Native] Bugly SO file has not been load.", new Object[0]);
         }
     }
 
     protected native String unregist();
 
-    /* renamed from: b */
-    protected void m9777b() {
-        long m9978b = C3154aq.m9978b() - C3127c.f10366g;
-        long m9978b2 = C3154aq.m9978b() + 86400000;
-        File file = new File(this.f10444f);
+    protected void b() {
+        long jB = aq.b() - c.f6269g;
+        long jB2 = aq.b() + 86400000;
+        File file = new File(this.f6322f);
         if (file.exists() && file.isDirectory()) {
             try {
-                File[] listFiles = file.listFiles();
-                if (listFiles != null && listFiles.length != 0) {
+                File[] fileArrListFiles = file.listFiles();
+                if (fileArrListFiles != null && fileArrListFiles.length != 0) {
                     int i2 = 0;
                     int i3 = 0;
-                    for (File file2 : listFiles) {
-                        long lastModified = file2.lastModified();
-                        if (lastModified < m9978b || lastModified >= m9978b2) {
-                            C3151an.m9915a("[Native] Delete record file: %s", file2.getAbsolutePath());
+                    for (File file2 : fileArrListFiles) {
+                        long jLastModified = file2.lastModified();
+                        if (jLastModified < jB || jLastModified >= jB2) {
+                            an.a("[Native] Delete record file: %s", file2.getAbsolutePath());
                             i2++;
                             if (file2.delete()) {
                                 i3++;
                             }
                         }
                     }
-                    C3151an.m9921c("[Native] Number of record files overdue: %d, has deleted: %d", Integer.valueOf(i2), Integer.valueOf(i3));
+                    an.c("[Native] Number of record files overdue: %d, has deleted: %d", Integer.valueOf(i2), Integer.valueOf(i3));
                 }
             } catch (Throwable th) {
-                C3151an.m9916a(th);
+                an.a(th);
             }
         }
     }
 
-    /* renamed from: a */
-    private static void m9766a(String str) {
-        C3151an.m9921c("[Native] Check extra jni for Bugly NDK v%s", str);
-        String replace = "2.1.1".replace(".", "");
-        String replace2 = "2.3.0".replace(".", "");
-        String replace3 = str.replace(".", "");
-        if (replace3.length() == 2) {
-            replace3 = replace3 + "0";
-        } else if (replace3.length() == 1) {
-            replace3 = replace3 + "00";
+    private static void a(String str) {
+        an.c("[Native] Check extra jni for Bugly NDK v%s", str);
+        String strReplace = "2.1.1".replace(".", "");
+        String strReplace2 = "2.3.0".replace(".", "");
+        String strReplace3 = str.replace(".", "");
+        if (strReplace3.length() == 2) {
+            strReplace3 = strReplace3 + "0";
+        } else if (strReplace3.length() == 1) {
+            strReplace3 = strReplace3 + "00";
         }
         try {
-            if (Integer.parseInt(replace3) >= Integer.parseInt(replace)) {
-                f10437l = true;
+            if (Integer.parseInt(strReplace3) >= Integer.parseInt(strReplace)) {
+                f6316l = true;
             }
-            if (Integer.parseInt(replace3) >= Integer.parseInt(replace2)) {
-                f10438m = true;
+            if (Integer.parseInt(strReplace3) >= Integer.parseInt(strReplace2)) {
+                f6317m = true;
             }
         } catch (Throwable unused) {
         }
-        if (f10438m) {
-            C3151an.m9915a("[Native] Info setting jni can be accessed.", new Object[0]);
+        if (f6317m) {
+            an.a("[Native] Info setting jni can be accessed.", new Object[0]);
         } else {
-            C3151an.m9922d("[Native] Info setting jni can not be accessed.", new Object[0]);
+            an.d("[Native] Info setting jni can not be accessed.", new Object[0]);
         }
-        if (f10437l) {
-            C3151an.m9915a("[Native] Extra jni can be accessed.", new Object[0]);
+        if (f6316l) {
+            an.a("[Native] Extra jni can be accessed.", new Object[0]);
         } else {
-            C3151an.m9922d("[Native] Extra jni can not be accessed.", new Object[0]);
+            an.d("[Native] Extra jni can not be accessed.", new Object[0]);
         }
     }
 
-    /* renamed from: c */
-    private synchronized void m9772c(boolean z) {
-        if (this.f10449k != z) {
-            C3151an.m9915a("user change native %b", Boolean.valueOf(z));
-            this.f10449k = z;
+    private synchronized void c(boolean z) {
+        if (this.f6327k != z) {
+            an.a("user change native %b", Boolean.valueOf(z));
+            this.f6327k = z;
         }
     }
 
     public static synchronized NativeCrashHandler getInstance() {
-        NativeCrashHandler nativeCrashHandler;
-        synchronized (NativeCrashHandler.class) {
-            nativeCrashHandler = f10436a;
-        }
-        return nativeCrashHandler;
+        return a;
     }
 
     public void testNativeCrash(boolean z, boolean z2, boolean z3) {
-        m9767a(16, "" + z);
-        m9767a(17, "" + z2);
-        m9767a(18, "" + z3);
+        a(16, "" + z);
+        a(17, "" + z2);
+        a(18, "" + z3);
         testNativeCrash();
     }
 
-    /* renamed from: b */
-    protected synchronized void m9778b(boolean z) {
+    protected synchronized void b(boolean z) {
         if (z) {
             startNativeMonitor();
         } else {
-            m9775a();
+            a();
         }
     }
 
-    /* renamed from: a */
-    protected synchronized void m9776a(boolean z) {
-        if (this.f10448j) {
-            C3151an.m9922d("[Native] Native crash report has already registered.", new Object[0]);
+    protected synchronized void a(boolean z) {
+        if (this.f6326j) {
+            an.d("[Native] Native crash report has already registered.", new Object[0]);
             return;
         }
-        if (this.f10447i) {
+        if (this.f6325i) {
             try {
-                String regist = regist(this.f10444f, z, 1);
-                if (regist != null) {
-                    C3151an.m9915a("[Native] Native Crash Report enable.", new Object[0]);
-                    m9766a(regist);
-                    this.f10441c.f10213u = regist;
-                    String concat = Constants.ACCEPT_TIME_SEPARATOR_SERVER.concat(this.f10441c.f10213u);
-                    if (!C3127c.f10361b && !this.f10441c.f10202j.contains(concat)) {
-                        this.f10441c.f10202j = this.f10441c.f10202j.concat(Constants.ACCEPT_TIME_SEPARATOR_SERVER).concat(this.f10441c.f10213u);
+                String strRegist = regist(this.f6322f, z, 1);
+                if (strRegist != null) {
+                    an.a("[Native] Native Crash Report enable.", new Object[0]);
+                    a(strRegist);
+                    this.f6319c.u = strRegist;
+                    String strConcat = Constants.ACCEPT_TIME_SEPARATOR_SERVER.concat(this.f6319c.u);
+                    if (!c.f6264b && !this.f6319c.f6181j.contains(strConcat)) {
+                        this.f6319c.f6181j = this.f6319c.f6181j.concat(Constants.ACCEPT_TIME_SEPARATOR_SERVER).concat(this.f6319c.u);
                     }
-                    C3151an.m9915a("comInfo.sdkVersion %s", this.f10441c.f10202j);
-                    C3153ap.m9933a(f10437l);
-                    this.f10448j = true;
+                    an.a("comInfo.sdkVersion %s", this.f6319c.f6181j);
+                    ap.a(f6316l);
+                    this.f6326j = true;
                     return;
                 }
             } catch (Throwable unused) {
-                C3151an.m9921c("[Native] Failed to load Bugly SO file.", new Object[0]);
+                an.c("[Native] Failed to load Bugly SO file.", new Object[0]);
             }
-        } else if (this.f10446h) {
+        } else if (this.f6324h) {
             try {
                 Class[] clsArr = {String.class, String.class, Integer.TYPE, Integer.TYPE};
                 Object[] objArr = new Object[4];
-                objArr[0] = this.f10444f;
-                objArr[1] = C3114b.m9596a(this.f10440b, false);
+                objArr[0] = this.f6322f;
+                objArr[1] = com.tencent.bugly.crashreport.common.info.b.a(this.f6318b, false);
                 objArr[2] = Integer.valueOf(z ? 1 : 5);
                 objArr[3] = 1;
-                String str = (String) C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "registNativeExceptionHandler2", null, clsArr, objArr);
+                String str = (String) aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "registNativeExceptionHandler2", null, clsArr, objArr);
                 if (str == null) {
-                    str = (String) C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "registNativeExceptionHandler", null, new Class[]{String.class, String.class, Integer.TYPE}, new Object[]{this.f10444f, C3114b.m9596a(this.f10440b, false), Integer.valueOf(C3113a.m9532b().m9545K())});
+                    str = (String) aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "registNativeExceptionHandler", null, new Class[]{String.class, String.class, Integer.TYPE}, new Object[]{this.f6322f, com.tencent.bugly.crashreport.common.info.b.a(this.f6318b, false), Integer.valueOf(com.tencent.bugly.crashreport.common.info.a.b().K())});
                 }
                 if (str != null) {
-                    this.f10448j = true;
-                    this.f10441c.f10213u = str;
-                    Boolean bool = (Boolean) C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "checkExtraJni", null, new Class[]{String.class}, new Object[]{str});
+                    this.f6326j = true;
+                    this.f6319c.u = str;
+                    Boolean bool = (Boolean) aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "checkExtraJni", null, new Class[]{String.class}, new Object[]{str});
                     if (bool != null) {
-                        f10437l = bool.booleanValue();
-                        C3153ap.m9933a(f10437l);
+                        f6316l = bool.booleanValue();
+                        ap.a(f6316l);
                     }
-                    C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "enableHandler", null, new Class[]{Boolean.TYPE}, new Object[]{true});
-                    C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "setLogMode", null, new Class[]{Integer.TYPE}, new Object[]{Integer.valueOf(z ? 1 : 5)});
+                    aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "enableHandler", null, new Class[]{Boolean.TYPE}, new Object[]{true});
+                    aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "setLogMode", null, new Class[]{Integer.TYPE}, new Object[]{Integer.valueOf(z ? 1 : 5)});
                     return;
                 }
             } catch (Throwable unused2) {
             }
         }
-        this.f10447i = false;
-        this.f10446h = false;
+        this.f6325i = false;
+        this.f6324h = false;
     }
 
-    /* renamed from: a */
-    private boolean m9769a(String str, boolean z) {
+    private boolean a(String str, boolean z) {
         boolean z2;
         try {
-            C3151an.m9915a("[Native] Trying to load so: %s", str);
+            an.a("[Native] Trying to load so: %s", str);
             if (z) {
                 System.load(str);
             } else {
                 System.loadLibrary(str);
             }
             try {
-                C3151an.m9915a("[Native] Successfully loaded SO: %s", str);
+                an.a("[Native] Successfully loaded SO: %s", str);
                 return true;
             } catch (Throwable th) {
                 th = th;
                 z2 = true;
-                C3151an.m9922d(th.getMessage(), new Object[0]);
-                C3151an.m9922d("[Native] Failed to load so: %s", str);
+                an.d(th.getMessage(), new Object[0]);
+                an.d("[Native] Failed to load so: %s", str);
                 return z2;
             }
         } catch (Throwable th2) {
@@ -527,43 +542,42 @@ public class NativeCrashHandler implements InterfaceC3108a {
         }
     }
 
-    /* renamed from: a */
-    protected synchronized void m9775a() {
-        if (!this.f10448j) {
-            C3151an.m9922d("[Native] Native crash report has already unregistered.", new Object[0]);
+    protected synchronized void a() {
+        if (!this.f6326j) {
+            an.d("[Native] Native crash report has already unregistered.", new Object[0]);
             return;
         }
         try {
-            if (unregist() != null) {
-                C3151an.m9915a("[Native] Successfully closed native crash report.", new Object[0]);
-                this.f10448j = false;
-                return;
-            }
         } catch (Throwable unused) {
-            C3151an.m9921c("[Native] Failed to close native crash report.", new Object[0]);
+            an.c("[Native] Failed to close native crash report.", new Object[0]);
+        }
+        if (unregist() != null) {
+            an.a("[Native] Successfully closed native crash report.", new Object[0]);
+            this.f6326j = false;
+            return;
         }
         try {
-            C3154aq.m9950a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "enableHandler", null, new Class[]{Boolean.TYPE}, new Object[]{false});
-            this.f10448j = false;
-            C3151an.m9915a("[Native] Successfully closed native crash report.", new Object[0]);
+            aq.a("com.tencent.feedback.eup.jni.NativeExceptionUpload", "enableHandler", null, new Class[]{Boolean.TYPE}, new Object[]{false});
+            this.f6326j = false;
+            an.a("[Native] Successfully closed native crash report.", new Object[0]);
+            return;
         } catch (Throwable unused2) {
-            C3151an.m9921c("[Native] Failed to close native crash report.", new Object[0]);
-            this.f10447i = false;
-            this.f10446h = false;
+            an.c("[Native] Failed to close native crash report.", new Object[0]);
+            this.f6325i = false;
+            this.f6324h = false;
+            return;
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public boolean m9767a(int i2, String str) {
-        if (this.f10447i && f10438m) {
+    public boolean a(int i2, String str) {
+        if (this.f6325i && f6317m) {
             try {
                 setNativeInfo(i2, str);
                 return true;
             } catch (UnsatisfiedLinkError unused) {
-                f10438m = false;
+                f6317m = false;
             } catch (Throwable th) {
-                if (!C3151an.m9916a(th)) {
+                if (!an.a(th)) {
                     th.printStackTrace();
                 }
                 return false;

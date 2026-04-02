@@ -6,7 +6,7 @@ import com.umeng.commonsdk.framework.UMModuleRegister;
 import com.umeng.commonsdk.statistics.internal.StatTracer;
 import com.umeng.commonsdk.statistics.noise.Defcon;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportPolicy {
     public static final int BATCH_AT_LAUNCH = 1;
     static final int BATCH_AT_TERMINATE = 2;

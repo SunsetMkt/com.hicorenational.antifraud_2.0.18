@@ -4,8 +4,8 @@ import android.content.Context;
 import com.huawei.agconnect.config.impl.Utils;
 import java.io.InputStream;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public abstract class LazyInputStream {
     private final Context mContext;
     private InputStream mInput;

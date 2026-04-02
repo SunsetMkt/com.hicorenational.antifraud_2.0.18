@@ -8,10 +8,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/* JADX INFO: loaded from: classes.dex */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @ListenerClass(method = {@ListenerMethod(name = "onCheckedChanged", parameters = {"android.widget.CompoundButton", "boolean"})}, setter = "setOnCheckedChangeListener", targetType = "android.widget.CompoundButton", type = "android.widget.CompoundButton.OnCheckedChangeListener")
-/* loaded from: classes.dex */
 public @interface OnCheckedChanged {
     @IdRes
     int[] value() default {-1};

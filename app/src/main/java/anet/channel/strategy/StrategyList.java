@@ -1,7 +1,6 @@
 package anet.channel.strategy;
 
-import anet.channel.strategy.C0842l;
-import anet.channel.strategy.utils.C0848c;
+import anet.channel.strategy.l;
 import anet.channel.strategy.utils.SerialLruCache;
 import anet.channel.util.ALog;
 import com.taobao.accs.common.Constants;
@@ -16,194 +15,188 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 class StrategyList implements Serializable {
+    private List<IPConnStrategy> a;
 
-    /* renamed from: a */
-    private List<IPConnStrategy> f1057a;
+    /* JADX INFO: renamed from: b */
+    private Map<Integer, ConnHistoryItem> f1574b;
 
-    /* renamed from: b */
-    private Map<Integer, ConnHistoryItem> f1058b;
+    /* JADX INFO: renamed from: c */
+    private boolean f1575c;
 
-    /* renamed from: c */
-    private boolean f1059c;
+    /* JADX INFO: renamed from: d */
+    private transient Comparator<IPConnStrategy> f1576d;
 
-    /* renamed from: d */
-    private transient Comparator<IPConnStrategy> f1060d;
-
-    /* JADX INFO: Access modifiers changed from: private */
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     interface Predicate<T> {
         boolean apply(T t);
     }
 
     public StrategyList() {
-        this.f1057a = new ArrayList();
-        this.f1058b = new SerialLruCache(40);
-        this.f1059c = false;
-        this.f1060d = null;
+        this.a = new ArrayList();
+        this.f1574b = new SerialLruCache(40);
+        this.f1575c = false;
+        this.f1576d = null;
     }
 
     public void checkInit() {
-        if (this.f1057a == null) {
-            this.f1057a = new ArrayList();
+        if (this.a == null) {
+            this.a = new ArrayList();
         }
-        if (this.f1058b == null) {
-            this.f1058b = new SerialLruCache(40);
+        if (this.f1574b == null) {
+            this.f1574b = new SerialLruCache(40);
         }
-        Iterator<Map.Entry<Integer, ConnHistoryItem>> it = this.f1058b.entrySet().iterator();
+        Iterator<Map.Entry<Integer, ConnHistoryItem>> it = this.f1574b.entrySet().iterator();
         while (it.hasNext()) {
-            if (it.next().getValue().m630d()) {
+            if (it.next().getValue().d()) {
                 it.remove();
             }
         }
-        for (IPConnStrategy iPConnStrategy : this.f1057a) {
-            if (!this.f1058b.containsKey(Integer.valueOf(iPConnStrategy.getUniqueId()))) {
-                this.f1058b.put(Integer.valueOf(iPConnStrategy.getUniqueId()), new ConnHistoryItem());
+        for (IPConnStrategy iPConnStrategy : this.a) {
+            if (!this.f1574b.containsKey(Integer.valueOf(iPConnStrategy.getUniqueId()))) {
+                this.f1574b.put(Integer.valueOf(iPConnStrategy.getUniqueId()), new ConnHistoryItem());
             }
         }
-        Collections.sort(this.f1057a, m650a());
+        Collections.sort(this.a, a());
     }
 
     public List<IConnStrategy> getStrategyList() {
-        if (this.f1057a.isEmpty()) {
+        if (this.a.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
         LinkedList linkedList = null;
-        for (IPConnStrategy iPConnStrategy : this.f1057a) {
-            ConnHistoryItem connHistoryItem = this.f1058b.get(Integer.valueOf(iPConnStrategy.getUniqueId()));
-            if (connHistoryItem == null || !connHistoryItem.m629c()) {
+        for (IPConnStrategy iPConnStrategy : this.a) {
+            ConnHistoryItem connHistoryItem = this.f1574b.get(Integer.valueOf(iPConnStrategy.getUniqueId()));
+            if (connHistoryItem == null || !connHistoryItem.c()) {
                 if (linkedList == null) {
                     linkedList = new LinkedList();
                 }
                 linkedList.add(iPConnStrategy);
             } else {
-                ALog.m716i("awcn.StrategyList", "strategy ban!", null, Constants.KEY_STRATEGY, iPConnStrategy);
+                ALog.i("awcn.StrategyList", "strategy ban!", null, Constants.KEY_STRATEGY, iPConnStrategy);
             }
         }
         return linkedList == null ? Collections.EMPTY_LIST : linkedList;
     }
 
     public void notifyConnEvent(IConnStrategy iConnStrategy, ConnEvent connEvent) {
-        if (!(iConnStrategy instanceof IPConnStrategy) || this.f1057a.indexOf(iConnStrategy) == -1) {
+        if (!(iConnStrategy instanceof IPConnStrategy) || this.a.indexOf(iConnStrategy) == -1) {
             return;
         }
-        this.f1058b.get(Integer.valueOf(((IPConnStrategy) iConnStrategy).getUniqueId())).m627a(connEvent.isSuccess);
-        Collections.sort(this.f1057a, this.f1060d);
+        this.f1574b.get(Integer.valueOf(((IPConnStrategy) iConnStrategy).getUniqueId())).a(connEvent.isSuccess);
+        Collections.sort(this.a, this.f1576d);
     }
 
     public boolean shouldRefresh() {
         boolean z = true;
         boolean z2 = true;
-        for (IPConnStrategy iPConnStrategy : this.f1057a) {
-            if (!this.f1058b.get(Integer.valueOf(iPConnStrategy.getUniqueId())).m628b()) {
-                if (iPConnStrategy.f1036a == 0) {
+        for (IPConnStrategy iPConnStrategy : this.a) {
+            if (!this.f1574b.get(Integer.valueOf(iPConnStrategy.getUniqueId())).b()) {
+                if (iPConnStrategy.a == 0) {
                     z = false;
                 }
                 z2 = false;
             }
         }
-        return (this.f1059c && z) || z2;
+        return (this.f1575c && z) || z2;
     }
 
     public String toString() {
-        return new ArrayList(this.f1057a).toString();
+        return new ArrayList(this.a).toString();
     }
 
-    public void update(C0842l.b bVar) {
-        Iterator<IPConnStrategy> it = this.f1057a.iterator();
+    public void update(l.b bVar) {
+        Iterator<IPConnStrategy> it = this.a.iterator();
         while (it.hasNext()) {
-            it.next().f1038c = true;
+            it.next().f1559c = true;
         }
         int i2 = 0;
-        for (int i3 = 0; i3 < bVar.f1124h.length; i3++) {
+        for (int i3 = 0; i3 < bVar.f1619h.length; i3++) {
             int i4 = 0;
             while (true) {
-                String[] strArr = bVar.f1122f;
+                String[] strArr = bVar.f1617f;
                 if (i4 >= strArr.length) {
                     break;
                 }
-                m652a(strArr[i4], 1, bVar.f1124h[i3]);
+                a(strArr[i4], 1, bVar.f1619h[i3]);
                 i4++;
             }
-            if (bVar.f1123g != null) {
-                this.f1059c = true;
+            if (bVar.f1618g != null) {
+                this.f1575c = true;
                 int i5 = 0;
                 while (true) {
-                    String[] strArr2 = bVar.f1123g;
+                    String[] strArr2 = bVar.f1618g;
                     if (i5 < strArr2.length) {
-                        m652a(strArr2[i5], 0, bVar.f1124h[i3]);
+                        a(strArr2[i5], 0, bVar.f1619h[i3]);
                         i5++;
                     }
                 }
             } else {
-                this.f1059c = false;
+                this.f1575c = false;
             }
         }
-        if (bVar.f1125i != null) {
+        if (bVar.f1620i != null) {
             while (true) {
-                C0842l.e[] eVarArr = bVar.f1125i;
+                l.e[] eVarArr = bVar.f1620i;
                 if (i2 >= eVarArr.length) {
                     break;
                 }
-                C0842l.e eVar = eVarArr[i2];
-                String str = eVar.f1139a;
-                m652a(str, C0848c.m709c(str) ? -1 : 1, eVar.f1140b);
+                l.e eVar = eVarArr[i2];
+                String str = eVar.a;
+                a(str, anet.channel.strategy.utils.c.c(str) ? -1 : 1, eVar.f1632b);
                 i2++;
             }
         }
-        ListIterator<IPConnStrategy> listIterator = this.f1057a.listIterator();
+        ListIterator<IPConnStrategy> listIterator = this.a.listIterator();
         while (listIterator.hasNext()) {
-            if (listIterator.next().f1038c) {
+            if (listIterator.next().f1559c) {
                 listIterator.remove();
             }
         }
-        Collections.sort(this.f1057a, m650a());
+        Collections.sort(this.a, a());
     }
 
-    /* renamed from: a */
-    private void m652a(String str, int i2, C0842l.a aVar) {
-        int m649a = m649a(this.f1057a, new C0840j(this, aVar, str, ConnProtocol.valueOf(aVar)));
-        if (m649a != -1) {
-            IPConnStrategy iPConnStrategy = this.f1057a.get(m649a);
-            iPConnStrategy.cto = aVar.f1111c;
-            iPConnStrategy.rto = aVar.f1112d;
-            iPConnStrategy.heartbeat = aVar.f1114f;
-            iPConnStrategy.f1036a = i2;
-            iPConnStrategy.f1037b = 0;
-            iPConnStrategy.f1038c = false;
+    private void a(String str, int i2, l.a aVar) {
+        int iA = a(this.a, new j(this, aVar, str, ConnProtocol.valueOf(aVar)));
+        if (iA != -1) {
+            IPConnStrategy iPConnStrategy = this.a.get(iA);
+            iPConnStrategy.cto = aVar.f1607c;
+            iPConnStrategy.rto = aVar.f1608d;
+            iPConnStrategy.heartbeat = aVar.f1610f;
+            iPConnStrategy.a = i2;
+            iPConnStrategy.f1558b = 0;
+            iPConnStrategy.f1559c = false;
             return;
         }
-        IPConnStrategy m632a = IPConnStrategy.m632a(str, aVar);
-        if (m632a != null) {
-            m632a.f1036a = i2;
-            m632a.f1037b = 0;
-            if (!this.f1058b.containsKey(Integer.valueOf(m632a.getUniqueId()))) {
-                this.f1058b.put(Integer.valueOf(m632a.getUniqueId()), new ConnHistoryItem());
+        IPConnStrategy iPConnStrategyA = IPConnStrategy.a(str, aVar);
+        if (iPConnStrategyA != null) {
+            iPConnStrategyA.a = i2;
+            iPConnStrategyA.f1558b = 0;
+            if (!this.f1574b.containsKey(Integer.valueOf(iPConnStrategyA.getUniqueId()))) {
+                this.f1574b.put(Integer.valueOf(iPConnStrategyA.getUniqueId()), new ConnHistoryItem());
             }
-            this.f1057a.add(m632a);
+            this.a.add(iPConnStrategyA);
         }
     }
 
     StrategyList(List<IPConnStrategy> list) {
-        this.f1057a = new ArrayList();
-        this.f1058b = new SerialLruCache(40);
-        this.f1059c = false;
-        this.f1060d = null;
-        this.f1057a = list;
+        this.a = new ArrayList();
+        this.f1574b = new SerialLruCache(40);
+        this.f1575c = false;
+        this.f1576d = null;
+        this.a = list;
     }
 
-    /* renamed from: a */
-    private Comparator m650a() {
-        if (this.f1060d == null) {
-            this.f1060d = new C0841k(this);
+    private Comparator a() {
+        if (this.f1576d == null) {
+            this.f1576d = new k(this);
         }
-        return this.f1060d;
+        return this.f1576d;
     }
 
-    /* renamed from: a */
-    private static <T> int m649a(Collection<T> collection, Predicate<T> predicate) {
+    private static <T> int a(Collection<T> collection, Predicate<T> predicate) {
         if (collection == null) {
             return -1;
         }

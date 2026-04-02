@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebArticleBean extends BaseBean {
     private String author;
     private String content;
@@ -10,9 +10,7 @@ public class WebArticleBean extends BaseBean {
     private String createTime;
     private String description;
     private String icon;
-
-    /* renamed from: id */
-    private String f1638id;
+    private String id;
     private int isTop;
     private Object keyWord;
     private Object mediaPlayTime;
@@ -44,7 +42,7 @@ public class WebArticleBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1638id;
+        return this.id;
     }
 
     public int getIsTop() {
@@ -92,7 +90,7 @@ public class WebArticleBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1638id = str;
+        this.id = str;
     }
 
     public void setIsTop(int i2) {

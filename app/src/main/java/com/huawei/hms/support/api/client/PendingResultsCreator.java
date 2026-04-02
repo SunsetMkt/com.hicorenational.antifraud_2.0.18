@@ -3,7 +3,7 @@ package com.huawei.hms.support.api.client;
 import com.huawei.hms.common.api.OptionalPendingResult;
 import com.huawei.hms.common.api.internal.OptionalPendingResultImpl;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PendingResultsCreator {
 
     public static class DiscardedPendingResult<R extends Result> extends EmptyPendingResult {

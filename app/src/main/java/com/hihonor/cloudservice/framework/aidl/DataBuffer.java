@@ -4,31 +4,28 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DataBuffer implements Parcelable {
-    public static final Parcelable.Creator<DataBuffer> CREATOR = new C2127a();
+    public static final Parcelable.Creator<DataBuffer> CREATOR = new a();
+    public final int a;
 
-    /* renamed from: a */
-    public final int f6368a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public final String f4013b;
 
-    /* renamed from: b */
-    public final String f6369b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    public Bundle f4014c;
 
-    /* renamed from: c */
-    public Bundle f6370c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    public Bundle f4015d;
 
-    /* renamed from: d */
-    public Bundle f6371d;
-
-    /* renamed from: com.hihonor.cloudservice.framework.aidl.DataBuffer$a */
-    class C2127a implements Parcelable.Creator<DataBuffer> {
-        C2127a() {
+    class a implements Parcelable.Creator<DataBuffer> {
+        a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public DataBuffer createFromParcel(Parcel parcel) {
-            return new DataBuffer(parcel, (C2127a) null);
+            return new DataBuffer(parcel, (a) null);
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
@@ -38,13 +35,12 @@ public class DataBuffer implements Parcelable {
         }
     }
 
-    /* synthetic */ DataBuffer(Parcel parcel, C2127a c2127a) {
+    /* synthetic */ DataBuffer(Parcel parcel, a aVar) {
         this(parcel);
     }
 
-    /* renamed from: a */
-    public DataBuffer m5977a(Bundle bundle) {
-        this.f6371d = bundle;
+    public DataBuffer a(Bundle bundle) {
+        this.f4015d = bundle;
         return this;
     }
 
@@ -55,30 +51,29 @@ public class DataBuffer implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeInt(this.f6368a);
-        parcel.writeString(this.f6369b);
-        parcel.writeBundle(this.f6370c);
-        parcel.writeBundle(this.f6371d);
+        parcel.writeInt(this.a);
+        parcel.writeString(this.f4013b);
+        parcel.writeBundle(this.f4014c);
+        parcel.writeBundle(this.f4015d);
     }
 
     private DataBuffer(Parcel parcel) {
-        this.f6370c = null;
-        this.f6371d = null;
-        this.f6368a = parcel.readInt();
-        this.f6369b = parcel.readString();
-        this.f6370c = parcel.readBundle(m5976a((Class<?>) Bundle.class));
-        this.f6371d = parcel.readBundle(m5976a((Class<?>) Bundle.class));
+        this.f4014c = null;
+        this.f4015d = null;
+        this.a = parcel.readInt();
+        this.f4013b = parcel.readString();
+        this.f4014c = parcel.readBundle(a((Class<?>) Bundle.class));
+        this.f4015d = parcel.readBundle(a((Class<?>) Bundle.class));
     }
 
-    /* renamed from: a */
-    private static ClassLoader m5976a(Class<?> cls) {
+    private static ClassLoader a(Class<?> cls) {
         return cls == null ? ClassLoader.getSystemClassLoader() : cls.getClassLoader();
     }
 
     public DataBuffer(String str, int i2) {
-        this.f6370c = null;
-        this.f6371d = null;
-        this.f6369b = str;
-        this.f6368a = i2;
+        this.f4014c = null;
+        this.f4015d = null;
+        this.f4013b = str;
+        this.a = i2;
     }
 }

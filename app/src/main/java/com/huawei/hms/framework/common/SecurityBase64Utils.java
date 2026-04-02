@@ -3,7 +3,7 @@ package com.huawei.hms.framework.common;
 import android.util.Base64;
 import com.huawei.secure.android.common.util.SafeBase64;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SecurityBase64Utils {
     private static final String SAFE_BASE64_PATH = "com.huawei.secure.android.common.util.SafeBase64";
     private static volatile boolean isAegisBase64LibraryLoaded = false;

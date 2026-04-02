@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.model;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSRequest {
     private boolean isAuthorizationRequired = true;
     private Enum CRC64 = CRC64Config.NULL;

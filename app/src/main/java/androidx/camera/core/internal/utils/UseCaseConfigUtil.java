@@ -7,7 +7,7 @@ import androidx.camera.core.impl.ImageOutputConfig;
 import androidx.camera.core.impl.UseCaseConfig;
 import androidx.camera.core.impl.utils.CameraOrientationUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class UseCaseConfigUtil {
     private UseCaseConfigUtil() {
     }

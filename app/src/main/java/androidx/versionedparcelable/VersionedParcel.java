@@ -30,8 +30,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public abstract class VersionedParcel {
     private static final int EX_BAD_PARCELABLE = -2;
     private static final int EX_ILLEGAL_ARGUMENT = -3;
@@ -149,47 +149,47 @@ public abstract class VersionedParcel {
         if (method != null) {
             return method;
         }
-        Class findParcelClass = findParcelClass(cls);
+        Class clsFindParcelClass = findParcelClass(cls);
         System.currentTimeMillis();
-        Method declaredMethod = findParcelClass.getDeclaredMethod("write", cls, VersionedParcel.class);
+        Method declaredMethod = clsFindParcelClass.getDeclaredMethod("write", cls, VersionedParcel.class);
         this.mWriteCache.put(cls.getName(), declaredMethod);
         return declaredMethod;
     }
 
     private <T, S extends Collection<T>> S readCollection(S s) {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        if (readInt != 0) {
-            int readInt2 = readInt();
-            if (readInt < 0) {
+        if (i2 != 0) {
+            int i3 = readInt();
+            if (i2 < 0) {
                 return null;
             }
-            if (readInt2 == 1) {
-                while (readInt > 0) {
+            if (i3 == 1) {
+                while (i2 > 0) {
                     s.add(readVersionedParcelable());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 2) {
-                while (readInt > 0) {
+            } else if (i3 == 2) {
+                while (i2 > 0) {
                     s.add(readParcelable());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 3) {
-                while (readInt > 0) {
+            } else if (i3 == 3) {
+                while (i2 > 0) {
                     s.add(readSerializable());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 4) {
-                while (readInt > 0) {
+            } else if (i3 == 4) {
+                while (i2 > 0) {
                     s.add(readString());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 5) {
-                while (readInt > 0) {
+            } else if (i3 == 5) {
+                while (i2 > 0) {
                     s.add(readStrongBinder());
-                    readInt--;
+                    i2--;
                 }
             }
         }
@@ -256,13 +256,13 @@ public abstract class VersionedParcel {
         if (!readField(i2)) {
             return cArr;
         }
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i3 = readInt();
+        if (i3 < 0) {
             return null;
         }
-        char[] cArr2 = new char[readInt];
-        for (int i3 = 0; i3 < readInt; i3++) {
-            cArr2[i3] = (char) readInt();
+        char[] cArr2 = new char[i3];
+        for (int i4 = 0; i4 < i3; i4++) {
+            cArr2[i4] = (char) readInt();
         }
         return cArr2;
     }
@@ -284,8 +284,8 @@ public abstract class VersionedParcel {
     }
 
     public Exception readException(Exception exc, int i2) {
-        int readExceptionCode;
-        return (readField(i2) && (readExceptionCode = readExceptionCode()) != 0) ? readException(readExceptionCode, readString()) : exc;
+        int exceptionCode;
+        return (readField(i2) && (exceptionCode = readExceptionCode()) != 0) ? readException(exceptionCode, readString()) : exc;
     }
 
     protected abstract boolean readField(int i2);
@@ -346,20 +346,20 @@ public abstract class VersionedParcel {
         if (!readField(i2)) {
             return map;
         }
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i3 = readInt();
+        if (i3 < 0) {
             return null;
         }
         ArrayMap arrayMap = new ArrayMap();
-        if (readInt == 0) {
+        if (i3 == 0) {
             return arrayMap;
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         readCollection(arrayList);
         readCollection(arrayList2);
-        for (int i3 = 0; i3 < readInt; i3++) {
-            arrayMap.put(arrayList.get(i3), arrayList2.get(i3));
+        for (int i4 = 0; i4 < i3; i4++) {
+            arrayMap.put(arrayList.get(i4), arrayList2.get(i4));
         }
         return arrayMap;
     }
@@ -371,22 +371,22 @@ public abstract class VersionedParcel {
     }
 
     protected Serializable readSerializable() {
-        String readString = readString();
-        if (readString == null) {
+        String string = readString();
+        if (string == null) {
             return null;
         }
         try {
             return (Serializable) new ObjectInputStream(new ByteArrayInputStream(readByteArray())) { // from class: androidx.versionedparcelable.VersionedParcel.1
                 @Override // java.io.ObjectInputStream
-                protected Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws IOException, ClassNotFoundException {
-                    Class<?> cls = Class.forName(objectStreamClass.getName(), false, C07271.class.getClassLoader());
+                protected Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws ClassNotFoundException, IOException {
+                    Class<?> cls = Class.forName(objectStreamClass.getName(), false, AnonymousClass1.class.getClassLoader());
                     return cls != null ? cls : super.resolveClass(objectStreamClass);
                 }
             }.readObject();
         } catch (IOException e2) {
-            throw new RuntimeException("VersionedParcelable encountered IOException reading a Serializable object (name = " + readString + ")", e2);
+            throw new RuntimeException("VersionedParcelable encountered IOException reading a Serializable object (name = " + string + ")", e2);
         } catch (ClassNotFoundException e3) {
-            throw new RuntimeException("VersionedParcelable encountered ClassNotFoundException reading a Serializable object (name = " + readString + ")", e3);
+            throw new RuntimeException("VersionedParcelable encountered ClassNotFoundException reading a Serializable object (name = " + string + ")", e3);
         }
     }
 
@@ -420,12 +420,12 @@ public abstract class VersionedParcel {
         if (!readField(i2)) {
             return sparseBooleanArray;
         }
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i3 = readInt();
+        if (i3 < 0) {
             return null;
         }
-        SparseBooleanArray sparseBooleanArray2 = new SparseBooleanArray(readInt);
-        for (int i3 = 0; i3 < readInt; i3++) {
+        SparseBooleanArray sparseBooleanArray2 = new SparseBooleanArray(i3);
+        for (int i4 = 0; i4 < i3; i4++) {
             sparseBooleanArray2.put(readInt(), readBoolean());
         }
         return sparseBooleanArray2;
@@ -793,40 +793,40 @@ public abstract class VersionedParcel {
     }
 
     protected <T> T[] readArray(T[] tArr) {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        ArrayList arrayList = new ArrayList(readInt);
-        if (readInt != 0) {
-            int readInt2 = readInt();
-            if (readInt < 0) {
+        ArrayList arrayList = new ArrayList(i2);
+        if (i2 != 0) {
+            int i3 = readInt();
+            if (i2 < 0) {
                 return null;
             }
-            if (readInt2 == 1) {
-                while (readInt > 0) {
+            if (i3 == 1) {
+                while (i2 > 0) {
                     arrayList.add(readVersionedParcelable());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 2) {
-                while (readInt > 0) {
+            } else if (i3 == 2) {
+                while (i2 > 0) {
                     arrayList.add(readParcelable());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 3) {
-                while (readInt > 0) {
+            } else if (i3 == 3) {
+                while (i2 > 0) {
                     arrayList.add(readSerializable());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 4) {
-                while (readInt > 0) {
+            } else if (i3 == 4) {
+                while (i2 > 0) {
                     arrayList.add(readString());
-                    readInt--;
+                    i2--;
                 }
-            } else if (readInt2 == 5) {
-                while (readInt > 0) {
+            } else if (i3 == 5) {
+                while (i2 > 0) {
                     arrayList.add(readStrongBinder());
-                    readInt--;
+                    i2--;
                 }
             }
         }
@@ -834,71 +834,71 @@ public abstract class VersionedParcel {
     }
 
     protected boolean[] readBooleanArray() {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        boolean[] zArr = new boolean[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            zArr[i2] = readInt() != 0;
+        boolean[] zArr = new boolean[i2];
+        for (int i3 = 0; i3 < i2; i3++) {
+            zArr[i3] = readInt() != 0;
         }
         return zArr;
     }
 
     protected double[] readDoubleArray() {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        double[] dArr = new double[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            dArr[i2] = readDouble();
+        double[] dArr = new double[i2];
+        for (int i3 = 0; i3 < i2; i3++) {
+            dArr[i3] = readDouble();
         }
         return dArr;
     }
 
     protected float[] readFloatArray() {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        float[] fArr = new float[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            fArr[i2] = readFloat();
+        float[] fArr = new float[i2];
+        for (int i3 = 0; i3 < i2; i3++) {
+            fArr[i3] = readFloat();
         }
         return fArr;
     }
 
     protected int[] readIntArray() {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        int[] iArr = new int[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            iArr[i2] = readInt();
+        int[] iArr = new int[i2];
+        for (int i3 = 0; i3 < i2; i3++) {
+            iArr[i3] = readInt();
         }
         return iArr;
     }
 
     protected long[] readLongArray() {
-        int readInt = readInt();
-        if (readInt < 0) {
+        int i2 = readInt();
+        if (i2 < 0) {
             return null;
         }
-        long[] jArr = new long[readInt];
-        for (int i2 = 0; i2 < readInt; i2++) {
-            jArr[i2] = readLong();
+        long[] jArr = new long[i2];
+        for (int i3 = 0; i3 < i2; i3++) {
+            jArr[i3] = readLong();
         }
         return jArr;
     }
 
     protected <T extends VersionedParcelable> T readVersionedParcelable() {
-        String readString = readString();
-        if (readString == null) {
+        String string = readString();
+        if (string == null) {
             return null;
         }
-        return (T) readFromParcel(readString, createSubParcel());
+        return (T) readFromParcel(string, createSubParcel());
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -1015,9 +1015,9 @@ public abstract class VersionedParcel {
             return;
         }
         writeVersionedParcelableCreator(versionedParcelable);
-        VersionedParcel createSubParcel = createSubParcel();
-        writeToParcel(versionedParcelable, createSubParcel);
-        createSubParcel.closeField();
+        VersionedParcel versionedParcelCreateSubParcel = createSubParcel();
+        writeToParcel(versionedParcelable, versionedParcelCreateSubParcel);
+        versionedParcelCreateSubParcel.closeField();
     }
 
     private Exception readException(int i2, String str) {

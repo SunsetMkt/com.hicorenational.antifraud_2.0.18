@@ -12,7 +12,7 @@ import androidx.constraintlayout.solver.widgets.Optimizer;
 import androidx.constraintlayout.solver.widgets.VirtualLayout;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BasicMeasure {
     public static final int AT_MOST = Integer.MIN_VALUE;
     private static final boolean DEBUG = false;
@@ -84,11 +84,11 @@ public class BasicMeasure {
         HorizontalWidgetRun horizontalWidgetRun;
         VerticalWidgetRun verticalWidgetRun;
         int size = constraintWidgetContainer.mChildren.size();
-        boolean optimizeFor = constraintWidgetContainer.optimizeFor(64);
+        boolean zOptimizeFor = constraintWidgetContainer.optimizeFor(64);
         Measurer measurer = constraintWidgetContainer.getMeasurer();
         for (int i2 = 0; i2 < size; i2++) {
             ConstraintWidget constraintWidget = constraintWidgetContainer.mChildren.get(i2);
-            if (!(constraintWidget instanceof Guideline) && !(constraintWidget instanceof Barrier) && !constraintWidget.isInVirtualLayout() && (!optimizeFor || (horizontalWidgetRun = constraintWidget.horizontalRun) == null || (verticalWidgetRun = constraintWidget.verticalRun) == null || !horizontalWidgetRun.dimension.resolved || !verticalWidgetRun.dimension.resolved)) {
+            if (!(constraintWidget instanceof Guideline) && !(constraintWidget instanceof Barrier) && !constraintWidget.isInVirtualLayout() && (!zOptimizeFor || (horizontalWidgetRun = constraintWidget.horizontalRun) == null || (verticalWidgetRun = constraintWidget.verticalRun) == null || !horizontalWidgetRun.dimension.resolved || !verticalWidgetRun.dimension.resolved)) {
                 ConstraintWidget.DimensionBehaviour dimensionBehaviour = constraintWidget.getDimensionBehaviour(0);
                 ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = constraintWidget.getDimensionBehaviour(1);
                 ConstraintWidget.DimensionBehaviour dimensionBehaviour3 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
@@ -132,78 +132,78 @@ public class BasicMeasure {
     }
 
     public long solverMeasure(ConstraintWidgetContainer constraintWidgetContainer, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10) {
-        boolean z;
+        boolean zDirectMeasureWithOrientation;
         int i11;
         int i12;
         int i13;
         int i14;
+        boolean zMeasure;
+        boolean z;
         boolean z2;
-        boolean z3;
-        boolean z4;
         int i15;
         Measurer measurer;
         int i16;
         int i17;
         int i18;
-        boolean z5;
+        boolean z3;
         Metrics metrics;
         Measurer measurer2 = constraintWidgetContainer.getMeasurer();
         int size = constraintWidgetContainer.mChildren.size();
         int width = constraintWidgetContainer.getWidth();
         int height = constraintWidgetContainer.getHeight();
-        boolean enabled = Optimizer.enabled(i2, 128);
-        boolean z6 = enabled || Optimizer.enabled(i2, 64);
-        if (z6) {
+        boolean zEnabled = Optimizer.enabled(i2, 128);
+        boolean z4 = zEnabled || Optimizer.enabled(i2, 64);
+        if (z4) {
             for (int i19 = 0; i19 < size; i19++) {
                 ConstraintWidget constraintWidget = constraintWidgetContainer.mChildren.get(i19);
-                boolean z7 = (constraintWidget.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) && (constraintWidget.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) && constraintWidget.getDimensionRatio() > 0.0f;
-                if ((constraintWidget.isInHorizontalChain() && z7) || ((constraintWidget.isInVerticalChain() && z7) || (constraintWidget instanceof VirtualLayout) || constraintWidget.isInHorizontalChain() || constraintWidget.isInVerticalChain())) {
-                    z6 = false;
+                boolean z5 = (constraintWidget.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) && (constraintWidget.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) && constraintWidget.getDimensionRatio() > 0.0f;
+                if ((constraintWidget.isInHorizontalChain() && z5) || ((constraintWidget.isInVerticalChain() && z5) || (constraintWidget instanceof VirtualLayout) || constraintWidget.isInHorizontalChain() || constraintWidget.isInVerticalChain())) {
+                    z4 = false;
                     break;
                 }
             }
         }
-        if (z6 && (metrics = LinearSystem.sMetrics) != null) {
+        if (z4 && (metrics = LinearSystem.sMetrics) != null) {
             metrics.measures++;
         }
-        boolean z8 = z6 & ((i5 == 1073741824 && i7 == 1073741824) || enabled);
-        if (z8) {
-            int min = Math.min(constraintWidgetContainer.getMaxWidth(), i6);
-            int min2 = Math.min(constraintWidgetContainer.getMaxHeight(), i8);
-            if (i5 == 1073741824 && constraintWidgetContainer.getWidth() != min) {
-                constraintWidgetContainer.setWidth(min);
+        boolean z6 = z4 & ((i5 == 1073741824 && i7 == 1073741824) || zEnabled);
+        if (z6) {
+            int iMin = Math.min(constraintWidgetContainer.getMaxWidth(), i6);
+            int iMin2 = Math.min(constraintWidgetContainer.getMaxHeight(), i8);
+            if (i5 == 1073741824 && constraintWidgetContainer.getWidth() != iMin) {
+                constraintWidgetContainer.setWidth(iMin);
                 constraintWidgetContainer.invalidateGraph();
             }
-            if (i7 == 1073741824 && constraintWidgetContainer.getHeight() != min2) {
-                constraintWidgetContainer.setHeight(min2);
+            if (i7 == 1073741824 && constraintWidgetContainer.getHeight() != iMin2) {
+                constraintWidgetContainer.setHeight(iMin2);
                 constraintWidgetContainer.invalidateGraph();
             }
             if (i5 == 1073741824 && i7 == 1073741824) {
-                z = constraintWidgetContainer.directMeasure(enabled);
+                zDirectMeasureWithOrientation = constraintWidgetContainer.directMeasure(zEnabled);
                 i11 = 2;
             } else {
-                boolean directMeasureSetup = constraintWidgetContainer.directMeasureSetup(enabled);
+                boolean zDirectMeasureSetup = constraintWidgetContainer.directMeasureSetup(zEnabled);
                 if (i5 == 1073741824) {
-                    directMeasureSetup &= constraintWidgetContainer.directMeasureWithOrientation(enabled, 0);
+                    zDirectMeasureSetup &= constraintWidgetContainer.directMeasureWithOrientation(zEnabled, 0);
                     i11 = 1;
                 } else {
                     i11 = 0;
                 }
                 if (i7 == 1073741824) {
-                    z = constraintWidgetContainer.directMeasureWithOrientation(enabled, 1) & directMeasureSetup;
+                    zDirectMeasureWithOrientation = constraintWidgetContainer.directMeasureWithOrientation(zEnabled, 1) & zDirectMeasureSetup;
                     i11++;
                 } else {
-                    z = directMeasureSetup;
+                    zDirectMeasureWithOrientation = zDirectMeasureSetup;
                 }
             }
-            if (z) {
+            if (zDirectMeasureWithOrientation) {
                 constraintWidgetContainer.updateFromRuns(i5 == 1073741824, i7 == 1073741824);
             }
         } else {
-            z = false;
+            zDirectMeasureWithOrientation = false;
             i11 = 0;
         }
-        if (z && i11 == 2) {
+        if (zDirectMeasureWithOrientation && i11 == 2) {
             return 0L;
         }
         int optimizationLevel = constraintWidgetContainer.getOptimizationLevel();
@@ -216,12 +216,12 @@ public class BasicMeasure {
             solveLinearSystem(constraintWidgetContainer, "First pass", width, height);
         }
         if (size2 > 0) {
-            boolean z9 = constraintWidgetContainer.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
-            boolean z10 = constraintWidgetContainer.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
-            int max = Math.max(constraintWidgetContainer.getWidth(), this.constraintWidgetContainer.getMinWidth());
-            int max2 = Math.max(constraintWidgetContainer.getHeight(), this.constraintWidgetContainer.getMinHeight());
+            boolean z7 = constraintWidgetContainer.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
+            boolean z8 = constraintWidgetContainer.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
+            int iMax = Math.max(constraintWidgetContainer.getWidth(), this.constraintWidgetContainer.getMinWidth());
+            int iMax2 = Math.max(constraintWidgetContainer.getHeight(), this.constraintWidgetContainer.getMinHeight());
             int i20 = 0;
-            boolean z11 = false;
+            boolean zNeedSolverPass = false;
             while (i20 < size2) {
                 ConstraintWidget constraintWidget2 = this.mVariableDimensionsWidgets.get(i20);
                 if (constraintWidget2 instanceof VirtualLayout) {
@@ -229,7 +229,7 @@ public class BasicMeasure {
                     i16 = optimizationLevel;
                     int height2 = constraintWidget2.getHeight();
                     i17 = width;
-                    boolean measure = measure(measurer2, constraintWidget2, Measure.TRY_GIVEN_DIMENSIONS) | z11;
+                    boolean zMeasure2 = measure(measurer2, constraintWidget2, Measure.TRY_GIVEN_DIMENSIONS) | zNeedSolverPass;
                     Metrics metrics2 = constraintWidgetContainer.mMetrics;
                     i18 = height;
                     if (metrics2 != null) {
@@ -239,21 +239,21 @@ public class BasicMeasure {
                     int height3 = constraintWidget2.getHeight();
                     if (width3 != width2) {
                         constraintWidget2.setWidth(width3);
-                        if (z9 && constraintWidget2.getRight() > max) {
-                            max = Math.max(max, constraintWidget2.getRight() + constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getMargin());
+                        if (z7 && constraintWidget2.getRight() > iMax) {
+                            iMax = Math.max(iMax, constraintWidget2.getRight() + constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getMargin());
                         }
-                        z5 = true;
+                        z3 = true;
                     } else {
-                        z5 = measure;
+                        z3 = zMeasure2;
                     }
                     if (height3 != height2) {
                         constraintWidget2.setHeight(height3);
-                        if (z10 && constraintWidget2.getBottom() > max2) {
-                            max2 = Math.max(max2, constraintWidget2.getBottom() + constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getMargin());
+                        if (z8 && constraintWidget2.getBottom() > iMax2) {
+                            iMax2 = Math.max(iMax2, constraintWidget2.getBottom() + constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getMargin());
                         }
-                        z5 = true;
+                        z3 = true;
                     }
-                    z11 = ((VirtualLayout) constraintWidget2).needSolverPass() | z5;
+                    zNeedSolverPass = ((VirtualLayout) constraintWidget2).needSolverPass() | z3;
                 } else {
                     i16 = optimizationLevel;
                     i17 = width;
@@ -273,15 +273,15 @@ public class BasicMeasure {
                 if (i24 >= i25) {
                     i13 = i22;
                     i14 = i23;
-                    z2 = z11;
+                    zMeasure = zNeedSolverPass;
                     break;
                 }
-                z2 = z11;
+                zMeasure = zNeedSolverPass;
                 int i26 = 0;
                 while (i26 < size2) {
                     ConstraintWidget constraintWidget3 = this.mVariableDimensionsWidgets.get(i26);
-                    if (((constraintWidget3 instanceof Helper) && !(constraintWidget3 instanceof VirtualLayout)) || (constraintWidget3 instanceof Guideline) || constraintWidget3.getVisibility() == 8 || ((z8 && constraintWidget3.horizontalRun.dimension.resolved && constraintWidget3.verticalRun.dimension.resolved) || (constraintWidget3 instanceof VirtualLayout))) {
-                        z4 = z8;
+                    if (((constraintWidget3 instanceof Helper) && !(constraintWidget3 instanceof VirtualLayout)) || (constraintWidget3 instanceof Guideline) || constraintWidget3.getVisibility() == 8 || ((z6 && constraintWidget3.horizontalRun.dimension.resolved && constraintWidget3.verticalRun.dimension.resolved) || (constraintWidget3 instanceof VirtualLayout))) {
+                        z2 = z6;
                         i15 = size2;
                         measurer = measurer2;
                     } else {
@@ -289,11 +289,11 @@ public class BasicMeasure {
                         int height4 = constraintWidget3.getHeight();
                         int baselineDistance = constraintWidget3.getBaselineDistance();
                         int i27 = Measure.TRY_GIVEN_DIMENSIONS;
-                        z4 = z8;
+                        z2 = z6;
                         if (i24 == 1) {
                             i27 = Measure.USE_GIVEN_DIMENSIONS;
                         }
-                        z2 |= measure(measurer2, constraintWidget3, i27);
+                        zMeasure |= measure(measurer2, constraintWidget3, i27);
                         Metrics metrics3 = constraintWidgetContainer.mMetrics;
                         i15 = size2;
                         measurer = measurer2;
@@ -304,31 +304,31 @@ public class BasicMeasure {
                         int height5 = constraintWidget3.getHeight();
                         if (width5 != width4) {
                             constraintWidget3.setWidth(width5);
-                            if (z9 && constraintWidget3.getRight() > max) {
-                                max = Math.max(max, constraintWidget3.getRight() + constraintWidget3.getAnchor(ConstraintAnchor.Type.RIGHT).getMargin());
+                            if (z7 && constraintWidget3.getRight() > iMax) {
+                                iMax = Math.max(iMax, constraintWidget3.getRight() + constraintWidget3.getAnchor(ConstraintAnchor.Type.RIGHT).getMargin());
                             }
-                            z2 = true;
+                            zMeasure = true;
                         }
                         if (height5 != height4) {
                             constraintWidget3.setHeight(height5);
-                            if (z10 && constraintWidget3.getBottom() > max2) {
-                                max2 = Math.max(max2, constraintWidget3.getBottom() + constraintWidget3.getAnchor(ConstraintAnchor.Type.BOTTOM).getMargin());
+                            if (z8 && constraintWidget3.getBottom() > iMax2) {
+                                iMax2 = Math.max(iMax2, constraintWidget3.getBottom() + constraintWidget3.getAnchor(ConstraintAnchor.Type.BOTTOM).getMargin());
                             }
-                            z2 = true;
+                            zMeasure = true;
                         }
                         if (constraintWidget3.hasBaseline() && baselineDistance != constraintWidget3.getBaselineDistance()) {
-                            z2 = true;
+                            zMeasure = true;
                         }
                     }
                     i26++;
                     size2 = i15;
                     measurer2 = measurer;
-                    z8 = z4;
+                    z6 = z2;
                 }
-                boolean z12 = z8;
+                boolean z9 = z6;
                 int i28 = size2;
                 Measurer measurer3 = measurer2;
-                if (!z2) {
+                if (!zMeasure) {
                     i13 = i22;
                     i14 = i23;
                     break;
@@ -336,24 +336,24 @@ public class BasicMeasure {
                 solveLinearSystem(constraintWidgetContainer, "intermediate pass", i22, i23);
                 i24++;
                 measurer2 = measurer3;
-                z8 = z12;
+                z6 = z9;
                 i25 = 2;
-                z11 = false;
+                zNeedSolverPass = false;
                 size2 = i28;
             }
-            if (z2) {
+            if (zMeasure) {
                 solveLinearSystem(constraintWidgetContainer, "2nd pass", i13, i14);
-                if (constraintWidgetContainer.getWidth() < max) {
-                    constraintWidgetContainer.setWidth(max);
-                    z3 = true;
+                if (constraintWidgetContainer.getWidth() < iMax) {
+                    constraintWidgetContainer.setWidth(iMax);
+                    z = true;
                 } else {
-                    z3 = false;
+                    z = false;
                 }
-                if (constraintWidgetContainer.getHeight() < max2) {
-                    constraintWidgetContainer.setHeight(max2);
-                    z3 = true;
+                if (constraintWidgetContainer.getHeight() < iMax2) {
+                    constraintWidgetContainer.setHeight(iMax2);
+                    z = true;
                 }
-                if (z3) {
+                if (z) {
                     solveLinearSystem(constraintWidgetContainer, "3rd pass", i13, i14);
                 }
             }

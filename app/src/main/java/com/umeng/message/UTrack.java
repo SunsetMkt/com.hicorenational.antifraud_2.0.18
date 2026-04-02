@@ -4,9 +4,9 @@ import android.app.Notification;
 import android.content.Context;
 import com.umeng.message.api.UPushAliasCallback;
 import com.umeng.message.entity.UMessage;
-import com.umeng.message.proguard.C3605y;
+import com.umeng.message.proguard.y;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class UTrack {
 
     @Deprecated
@@ -46,6 +46,6 @@ public abstract class UTrack {
     public abstract void trackMsgShow(UMessage uMessage, Notification notification);
 
     public static UTrack getInstance() {
-        return C3605y.m12463a();
+        return y.a();
     }
 }

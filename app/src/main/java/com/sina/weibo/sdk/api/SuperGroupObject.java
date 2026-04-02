@@ -3,7 +3,7 @@ package com.sina.weibo.sdk.api;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SuperGroupObject extends MediaObject {
     public static final Parcelable.Creator<SuperGroupObject> CREATOR = new Parcelable.Creator<SuperGroupObject>() { // from class: com.sina.weibo.sdk.api.SuperGroupObject.1
         /* JADX WARN: Can't rename method to resolve collision */

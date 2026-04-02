@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.luck.picture.lib.C2639R;
+import com.luck.picture.lib.R;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.engine.ImageEngine;
@@ -14,7 +14,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureWeChatPreviewGalleryAdapter extends RecyclerView.Adapter<ViewHolder> {
     private PictureSelectionConfig config;
     private List<LocalMedia> list;
@@ -31,9 +31,9 @@ public class PictureWeChatPreviewGalleryAdapter extends RecyclerView.Adapter<Vie
 
         public ViewHolder(View view) {
             super(view);
-            this.ivImage = (ImageView) view.findViewById(C2639R.id.ivImage);
-            this.ivPlay = (ImageView) view.findViewById(C2639R.id.ivPlay);
-            this.viewBorder = view.findViewById(C2639R.id.viewBorder);
+            this.ivImage = (ImageView) view.findViewById(R.id.ivImage);
+            this.ivPlay = (ImageView) view.findViewById(R.id.ivPlay);
+            this.viewBorder = view.findViewById(R.id.viewBorder);
         }
     }
 
@@ -41,8 +41,7 @@ public class PictureWeChatPreviewGalleryAdapter extends RecyclerView.Adapter<Vie
         this.config = pictureSelectionConfig;
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m8123a(@NonNull ViewHolder viewHolder, int i2, View view) {
+    public /* synthetic */ void a(@NonNull ViewHolder viewHolder, int i2, View view) {
         if (this.listener == null || viewHolder.getAdapterPosition() < 0) {
             return;
         }
@@ -114,7 +113,7 @@ public class PictureWeChatPreviewGalleryAdapter extends RecyclerView.Adapter<Vie
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() { // from class: com.luck.picture.lib.adapter.h
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    PictureWeChatPreviewGalleryAdapter.this.m8123a(viewHolder, i2, view);
+                    this.a.a(viewHolder, i2, view);
                 }
             });
         }
@@ -123,6 +122,6 @@ public class PictureWeChatPreviewGalleryAdapter extends RecyclerView.Adapter<Vie
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i2) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(C2639R.layout.picture_wechat_preview_gallery, viewGroup, false));
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.picture_wechat_preview_gallery, viewGroup, false));
     }
 }

@@ -4,7 +4,7 @@ import java.net.Proxy;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class RequestLine {
     private RequestLine() {
     }
@@ -27,11 +27,11 @@ public final class RequestLine {
     }
 
     public static String requestPath(HttpUrl httpUrl) {
-        String encodedPath = httpUrl.encodedPath();
-        String encodedQuery = httpUrl.encodedQuery();
-        if (encodedQuery == null) {
-            return encodedPath;
+        String strEncodedPath = httpUrl.encodedPath();
+        String strEncodedQuery = httpUrl.encodedQuery();
+        if (strEncodedQuery == null) {
+            return strEncodedPath;
         }
-        return encodedPath + '?' + encodedQuery;
+        return strEncodedPath + '?' + strEncodedQuery;
     }
 }

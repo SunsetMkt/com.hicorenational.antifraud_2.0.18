@@ -3,10 +3,10 @@ package com.luck.picture.lib.config;
 import android.content.Context;
 import android.text.TextUtils;
 import anet.channel.util.HttpConstant;
-import com.luck.picture.lib.C2639R;
+import com.luck.picture.lib.R;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class PictureMimeType {
     public static final String DCIM = "DCIM/Camera";
     public static final String JPEG = ".jpg";
@@ -56,11 +56,11 @@ public final class PictureMimeType {
 
     public static String getLastImgSuffix(String str) {
         try {
-            int lastIndexOf = str.lastIndexOf("/") + 1;
-            if (lastIndexOf <= 0) {
+            int iLastIndexOf = str.lastIndexOf("/") + 1;
+            if (iLastIndexOf <= 0) {
                 return PNG;
             }
-            return "." + str.substring(lastIndexOf);
+            return "." + str.substring(iLastIndexOf);
         } catch (Exception e2) {
             e2.printStackTrace();
             return PNG;
@@ -174,9 +174,8 @@ public final class PictureMimeType {
         return MIME_TYPE_WEBP;
     }
 
-    /* renamed from: s */
-    public static String m8138s(Context context, String str) {
+    public static String s(Context context, String str) {
         Context applicationContext = context.getApplicationContext();
-        return eqVideo(str) ? applicationContext.getString(C2639R.string.picture_video_error) : eqAudio(str) ? applicationContext.getString(C2639R.string.picture_audio_error) : applicationContext.getString(C2639R.string.picture_error);
+        return eqVideo(str) ? applicationContext.getString(R.string.picture_video_error) : eqAudio(str) ? applicationContext.getString(R.string.picture_audio_error) : applicationContext.getString(R.string.picture_error);
     }
 }

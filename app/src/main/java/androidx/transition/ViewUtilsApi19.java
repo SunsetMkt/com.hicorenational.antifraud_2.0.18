@@ -1,45 +1,16 @@
 package androidx.transition;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(19)
-/* loaded from: classes.dex */
 class ViewUtilsApi19 extends ViewUtilsBase {
-    private static final String TAG = "ViewUtilsApi19";
-    private static Method sGetTransitionAlphaMethod;
-    private static boolean sGetTransitionAlphaMethodFetched;
-    private static Method sSetTransitionAlphaMethod;
-    private static boolean sSetTransitionAlphaMethodFetched;
+    private static boolean sTryHiddenTransitionAlpha = true;
 
     ViewUtilsApi19() {
-    }
-
-    private void fetchGetTransitionAlphaMethod() {
-        if (sGetTransitionAlphaMethodFetched) {
-            return;
-        }
-        try {
-            sGetTransitionAlphaMethod = View.class.getDeclaredMethod("getTransitionAlpha", new Class[0]);
-            sGetTransitionAlphaMethod.setAccessible(true);
-        } catch (NoSuchMethodException unused) {
-        }
-        sGetTransitionAlphaMethodFetched = true;
-    }
-
-    private void fetchSetTransitionAlphaMethod() {
-        if (sSetTransitionAlphaMethodFetched) {
-            return;
-        }
-        try {
-            sSetTransitionAlphaMethod = View.class.getDeclaredMethod("setTransitionAlpha", Float.TYPE);
-            sSetTransitionAlphaMethod.setAccessible(true);
-        } catch (NoSuchMethodException unused) {
-        }
-        sSetTransitionAlphaMethodFetched = true;
     }
 
     @Override // androidx.transition.ViewUtilsBase
@@ -47,18 +18,16 @@ class ViewUtilsApi19 extends ViewUtilsBase {
     }
 
     @Override // androidx.transition.ViewUtilsBase
+    @SuppressLint({"NewApi"})
     public float getTransitionAlpha(@NonNull View view) {
-        fetchGetTransitionAlphaMethod();
-        Method method = sGetTransitionAlphaMethod;
-        if (method != null) {
+        if (sTryHiddenTransitionAlpha) {
             try {
-                return ((Float) method.invoke(view, new Object[0])).floatValue();
-            } catch (IllegalAccessException unused) {
-            } catch (InvocationTargetException e2) {
-                throw new RuntimeException(e2.getCause());
+                return view.getTransitionAlpha();
+            } catch (NoSuchMethodError unused) {
+                sTryHiddenTransitionAlpha = false;
             }
         }
-        return super.getTransitionAlpha(view);
+        return view.getAlpha();
     }
 
     @Override // androidx.transition.ViewUtilsBase
@@ -66,18 +35,16 @@ class ViewUtilsApi19 extends ViewUtilsBase {
     }
 
     @Override // androidx.transition.ViewUtilsBase
+    @SuppressLint({"NewApi"})
     public void setTransitionAlpha(@NonNull View view, float f2) {
-        fetchSetTransitionAlphaMethod();
-        Method method = sSetTransitionAlphaMethod;
-        if (method == null) {
-            view.setAlpha(f2);
-            return;
+        if (sTryHiddenTransitionAlpha) {
+            try {
+                view.setTransitionAlpha(f2);
+                return;
+            } catch (NoSuchMethodError unused) {
+                sTryHiddenTransitionAlpha = false;
+            }
         }
-        try {
-            method.invoke(view, Float.valueOf(f2));
-        } catch (IllegalAccessException unused) {
-        } catch (InvocationTargetException e2) {
-            throw new RuntimeException(e2.getCause());
-        }
+        view.setAlpha(f2);
     }
 }

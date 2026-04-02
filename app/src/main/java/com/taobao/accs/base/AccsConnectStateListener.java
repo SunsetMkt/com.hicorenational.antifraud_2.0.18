@@ -3,9 +3,9 @@ package com.taobao.accs.base;
 import androidx.annotation.Keep;
 import com.taobao.accs.base.TaoBaseService;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 @Keep
-/* loaded from: classes.dex */
 public interface AccsConnectStateListener {
     @Keep
     void onConnected(TaoBaseService.ConnectInfo connectInfo);

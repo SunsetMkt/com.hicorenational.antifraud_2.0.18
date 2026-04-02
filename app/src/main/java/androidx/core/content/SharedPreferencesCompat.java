@@ -3,8 +3,8 @@ package androidx.core.content;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public final class SharedPreferencesCompat {
 
     @Deprecated

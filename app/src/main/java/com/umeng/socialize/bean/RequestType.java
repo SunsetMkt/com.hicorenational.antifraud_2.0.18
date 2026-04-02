@@ -1,6 +1,6 @@
 package com.umeng.socialize.bean;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public enum RequestType {
     SOCIAL { // from class: com.umeng.socialize.bean.RequestType.1
         @Override // java.lang.Enum

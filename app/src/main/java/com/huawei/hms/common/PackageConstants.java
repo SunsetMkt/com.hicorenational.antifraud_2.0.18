@@ -1,6 +1,6 @@
 package com.huawei.hms.common;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PackageConstants {
     public static final String APPID_HMS = "C10132067";
     public static final String APPID_HMS_TV = "C100636709";

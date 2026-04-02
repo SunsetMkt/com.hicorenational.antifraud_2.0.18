@@ -8,24 +8,26 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
+import com.just.agentweb.DefaultWebClient;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.BaseApi;
 import com.tencent.connect.common.Constants;
 import com.tencent.connect.common.UIListenerManager;
-import com.tencent.connect.p207a.C3203a;
+import com.tencent.open.TDialog;
+import com.tencent.open.b.e;
 import com.tencent.open.log.SLog;
-import com.tencent.open.p212b.C3263e;
-import com.tencent.open.utils.C3285c;
-import com.tencent.open.utils.C3289g;
-import com.tencent.open.utils.C3293k;
-import com.tencent.open.utils.C3295m;
-import com.tencent.open.utils.InterfaceC3286d;
+import com.tencent.open.utils.c;
+import com.tencent.open.utils.d;
+import com.tencent.open.utils.g;
+import com.tencent.open.utils.k;
+import com.tencent.open.utils.m;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.UiError;
+import java.io.File;
 import java.util.ArrayList;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public class QQShare extends BaseApi {
     public static final int QQ_SHARE_SUMMARY_MAX_LENGTH = 512;
     public static final int QQ_SHARE_TITLE_MAX_LENGTH = 128;
@@ -60,9 +62,8 @@ public class QQShare extends BaseApi {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: d */
-    public void m10332d(Activity activity, Bundle bundle, IUiListener iUiListener) {
-        SLog.m10502i("openSDK_LOG.QQShare", "doShareToQQ() -- start");
+    public void d(Activity activity, Bundle bundle, IUiListener iUiListener) {
+        SLog.i("openSDK_LOG.QQShare", "doShareToQQ() -- start");
         StringBuffer stringBuffer = new StringBuffer("mqqapi://share/to_fri?src_type=app&version=1&file_type=news");
         String string = bundle.getString("imageUrl");
         String string2 = bundle.getString("title");
@@ -76,220 +77,335 @@ public class QQShare extends BaseApi {
         String string9 = bundle.getString(SHARE_TO_QQ_MINI_PROGRAM_TYPE);
         int i3 = bundle.getInt("cflag", 0);
         String string10 = bundle.getString("share_qq_ext_str");
-        String m10669a = C3295m.m10669a(activity);
-        if (m10669a == null) {
-            m10669a = bundle.getString("appName");
+        String strA = m.a(activity);
+        if (strA == null) {
+            strA = bundle.getString("appName");
         }
-        String str = m10669a;
+        String str = strA;
         String string11 = bundle.getString("imageLocalUrl");
         ArrayList<String> stringArrayList = bundle.getStringArrayList("imageLocalUrlArray");
-        String appId = this.f11013c.getAppId();
-        String openIdWithCache = this.f11013c.getOpenIdWithCache();
-        SLog.m10502i("openSDK_LOG.QQShare", "doShareToQQ -- openid: " + openIdWithCache + ",appName=" + str);
+        String appId = this.f6711c.getAppId();
+        String openIdWithCache = this.f6711c.getOpenIdWithCache();
+        SLog.i("openSDK_LOG.QQShare", "doShareToQQ -- openid: " + openIdWithCache + ",appName=" + str);
         if (stringArrayList != null && stringArrayList.size() >= 2) {
             String str2 = stringArrayList.get(0);
             if (str2 == null) {
                 str2 = "";
             }
-            stringBuffer.append("&file_data=" + Base64.encodeToString(C3295m.m10711j(str2), 2));
+            stringBuffer.append("&file_data=" + Base64.encodeToString(m.j(str2), 2));
             String str3 = stringArrayList.get(1);
-            if (i2 == 7 && !TextUtils.isEmpty(str3) && C3293k.m10645c(activity, "8.3.3") < 0) {
+            if (i2 == 7 && !TextUtils.isEmpty(str3) && k.c(activity, "8.3.3") < 0) {
                 str3 = null;
-                SLog.m10500e("openSDK_LOG.QQShare", "doShareToQQ() share to mini program set file uri empty");
+                SLog.e("openSDK_LOG.QQShare", "doShareToQQ() share to mini program set file uri empty");
             }
-            Uri m10662a = C3295m.m10662a(activity, appId, str3);
-            if (m10662a != null) {
+            Uri uriA = m.a(activity, appId, str3);
+            if (uriA != null) {
                 stringBuffer.append("&file_uri=");
-                stringBuffer.append(Base64.encodeToString(C3295m.m10711j(m10662a.toString()), 2));
+                stringBuffer.append(Base64.encodeToString(m.j(uriA.toString()), 2));
             }
         } else if (!TextUtils.isEmpty(string11)) {
-            stringBuffer.append("&file_data=" + Base64.encodeToString(C3295m.m10711j(string11), 2));
+            stringBuffer.append("&file_data=" + Base64.encodeToString(m.j(string11), 2));
         }
         if (!TextUtils.isEmpty(string)) {
-            stringBuffer.append("&image_url=" + Base64.encodeToString(C3295m.m10711j(string), 2));
+            stringBuffer.append("&image_url=" + Base64.encodeToString(m.j(string), 2));
         }
         if (!TextUtils.isEmpty(string2)) {
-            stringBuffer.append("&title=" + Base64.encodeToString(C3295m.m10711j(string2), 2));
+            stringBuffer.append("&title=" + Base64.encodeToString(m.j(string2), 2));
         }
         if (!TextUtils.isEmpty(string3)) {
-            stringBuffer.append("&description=" + Base64.encodeToString(C3295m.m10711j(string3), 2));
+            stringBuffer.append("&description=" + Base64.encodeToString(m.j(string3), 2));
         }
         if (!TextUtils.isEmpty(appId)) {
             stringBuffer.append("&share_id=" + appId);
         }
         if (!TextUtils.isEmpty(string4)) {
-            stringBuffer.append("&url=" + Base64.encodeToString(C3295m.m10711j(string4), 2));
+            stringBuffer.append("&url=" + Base64.encodeToString(m.j(string4), 2));
         }
         if (!TextUtils.isEmpty(str)) {
             if (str.length() > 20) {
                 str = str.substring(0, 20) + "...";
             }
-            stringBuffer.append("&app_name=" + Base64.encodeToString(C3295m.m10711j(str), 2));
+            stringBuffer.append("&app_name=" + Base64.encodeToString(m.j(str), 2));
         }
         if (!TextUtils.isEmpty(openIdWithCache)) {
-            stringBuffer.append("&open_id=" + Base64.encodeToString(C3295m.m10711j(openIdWithCache), 2));
+            stringBuffer.append("&open_id=" + Base64.encodeToString(m.j(openIdWithCache), 2));
         }
         if (!TextUtils.isEmpty(string5)) {
-            stringBuffer.append("&audioUrl=" + Base64.encodeToString(C3295m.m10711j(string5), 2));
+            stringBuffer.append("&audioUrl=" + Base64.encodeToString(m.j(string5), 2));
         }
-        stringBuffer.append("&req_type=" + Base64.encodeToString(C3295m.m10711j(String.valueOf(i2)), 2));
+        stringBuffer.append("&req_type=" + Base64.encodeToString(m.j(String.valueOf(i2)), 2));
         if (!TextUtils.isEmpty(string7)) {
-            stringBuffer.append("&mini_program_appid=" + Base64.encodeToString(C3295m.m10711j(String.valueOf(string7)), 2));
+            stringBuffer.append("&mini_program_appid=" + Base64.encodeToString(m.j(String.valueOf(string7)), 2));
         }
         if (!TextUtils.isEmpty(string8)) {
-            stringBuffer.append("&mini_program_path=" + Base64.encodeToString(C3295m.m10711j(String.valueOf(string8)), 2));
+            stringBuffer.append("&mini_program_path=" + Base64.encodeToString(m.j(String.valueOf(string8)), 2));
         }
         if (!TextUtils.isEmpty(string9)) {
-            stringBuffer.append("&mini_program_type=" + Base64.encodeToString(C3295m.m10711j(String.valueOf(string9)), 2));
+            stringBuffer.append("&mini_program_type=" + Base64.encodeToString(m.j(String.valueOf(string9)), 2));
         }
         if (!TextUtils.isEmpty(string6)) {
-            stringBuffer.append("&share_to_qq_ark_info=" + Base64.encodeToString(C3295m.m10711j(string6), 2));
+            stringBuffer.append("&share_to_qq_ark_info=" + Base64.encodeToString(m.j(string6), 2));
         }
         if (!TextUtils.isEmpty(string10)) {
-            stringBuffer.append("&share_qq_ext_str=" + Base64.encodeToString(C3295m.m10711j(string10), 2));
+            stringBuffer.append("&share_qq_ext_str=" + Base64.encodeToString(m.j(string10), 2));
         }
-        stringBuffer.append("&cflag=" + Base64.encodeToString(C3295m.m10711j(String.valueOf(i3)), 2));
-        stringBuffer.append("&third_sd=" + Base64.encodeToString(C3295m.m10711j(String.valueOf(C3295m.m10693c())), 2));
-        SLog.m10506v("openSDK_LOG.QQShare", "doShareToQQ -- url: " + stringBuffer.toString());
-        C3203a.m10154a(C3289g.m10603a(), this.f11013c, "requireApi", "shareToNativeQQ");
+        stringBuffer.append("&cflag=" + Base64.encodeToString(m.j(String.valueOf(i3)), 2));
+        stringBuffer.append("&third_sd=" + Base64.encodeToString(m.j(String.valueOf(m.c())), 2));
+        SLog.v("openSDK_LOG.QQShare", "doShareToQQ -- url: " + stringBuffer.toString());
+        com.tencent.connect.a.a.a(g.a(), this.f6711c, "requireApi", "shareToNativeQQ");
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.setData(Uri.parse(stringBuffer.toString()));
-        intent.putExtra(Constants.KEY_PASS_REPORT_VIA_PARAM, C3295m.m10667a(this.f11013c.getOpenId(), i3 == 1 ? "11" : "10", "3", Constants.VIA_SHARE_TO_QQ, this.f11013c.getAppId(), this.mViaShareQQType, "", "", "0", "1", "0"));
+        intent.putExtra(Constants.KEY_PASS_REPORT_VIA_PARAM, m.a(this.f6711c.getOpenId(), i3 == 1 ? "11" : "10", "3", Constants.VIA_SHARE_TO_QQ, this.f6711c.getAppId(), this.mViaShareQQType, "", "", "0", "1", "0"));
         intent.putExtra(Constants.PARAM_PKG_NAME, activity.getPackageName());
-        if (C3295m.m10703f(activity, "4.6.0")) {
-            SLog.m10502i("openSDK_LOG.QQShare", "doShareToQQ, qqver below 4.6.");
+        if (m.f(activity, "4.6.0")) {
+            SLog.i("openSDK_LOG.QQShare", "doShareToQQ, qqver below 4.6.");
             UIListenerManager.getInstance().setListenerWithRequestcode(Constants.REQUEST_OLD_SHARE, iUiListener);
-            m10311a(activity, intent, Constants.REQUEST_OLD_SHARE);
+            a(activity, intent, Constants.REQUEST_OLD_SHARE);
         } else {
-            SLog.m10502i("openSDK_LOG.QQShare", "doShareToQQ, qqver greater than 4.6.");
+            SLog.i("openSDK_LOG.QQShare", "doShareToQQ, qqver greater than 4.6.");
             if (UIListenerManager.getInstance().setListnerWithAction("shareToQQ", iUiListener) != null) {
-                SLog.m10502i("openSDK_LOG.QQShare", "doShareToQQ, last listener is not null, cancel it.");
+                SLog.i("openSDK_LOG.QQShare", "doShareToQQ, last listener is not null, cancel it.");
             }
-            m10310a(activity, 10103, intent, true);
+            a(activity, 10103, intent, true);
         }
-        SLog.m10502i("openSDK_LOG.QQShare", "doShareToQQ() --end");
+        SLog.i("openSDK_LOG.QQShare", "doShareToQQ() --end");
     }
 
     @Override // com.tencent.connect.common.BaseApi
     public void releaseResource() {
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:46:0x01d7  */
-    /* JADX WARN: Removed duplicated region for block: B:93:0x02ce  */
-    /* JADX WARN: Removed duplicated region for block: B:96:0x02d5  */
-    /* JADX WARN: Removed duplicated region for block: B:99:0x02de A[EXC_TOP_SPLITTER, SYNTHETIC] */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public void shareToQQ(android.app.Activity r22, android.os.Bundle r23, com.tencent.tauth.IUiListener r24) {
-        /*
-            Method dump skipped, instructions count: 786
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.tencent.connect.share.QQShare.shareToQQ(android.app.Activity, android.os.Bundle, com.tencent.tauth.IUiListener):void");
+    public void shareToQQ(Activity activity, Bundle bundle, IUiListener iUiListener) {
+        int i2;
+        Bundle bundle2;
+        String str;
+        SLog.i("openSDK_LOG.QQShare", "shareToQQ() -- start.");
+        if (com.tencent.connect.a.a("openSDK_LOG.QQShare", iUiListener)) {
+            return;
+        }
+        String string = bundle.getString("imageUrl");
+        String string2 = bundle.getString("title");
+        String string3 = bundle.getString("summary");
+        String string4 = bundle.getString("targetUrl");
+        String string5 = bundle.getString("imageLocalUrl");
+        String string6 = bundle.getString(SHARE_TO_QQ_MINI_PROGRAM_APPID);
+        String string7 = bundle.getString(SHARE_TO_QQ_MINI_PROGRAM_PATH);
+        int i3 = bundle.getInt("req_type", 1);
+        SLog.i("openSDK_LOG.QQShare", "shareToQQ -- type: " + i3);
+        if (i3 == 1) {
+            this.mViaShareQQType = "1";
+        } else if (i3 == 2) {
+            this.mViaShareQQType = "3";
+        } else if (i3 == 5) {
+            this.mViaShareQQType = "2";
+        } else if (i3 == 7) {
+            this.mViaShareQQType = "9";
+        }
+        if (!m.a() && m.f(activity, "4.5.0")) {
+            iUiListener.onError(new UiError(-6, Constants.MSG_SHARE_NOSD_ERROR, null));
+            SLog.e("openSDK_LOG.QQShare", "shareToQQ sdcard is null--end");
+            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "shareToQQ sdcard is null");
+            return;
+        }
+        if (i3 == 5) {
+            if (m.f(activity, "4.3.0")) {
+                iUiListener.onError(new UiError(-6, Constants.MSG_PARAM_QQ_VERSION_ERROR, null));
+                SLog.e("openSDK_LOG.QQShare", "shareToQQ, version below 4.3 is not support.");
+                e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "shareToQQ, version below 4.3 is not support.");
+                return;
+            } else if (!m.i(string5)) {
+                iUiListener.onError(new UiError(-6, Constants.MSG_PARAM_IMAGE_URL_FORMAT_ERROR, null));
+                SLog.e("openSDK_LOG.QQShare", "shareToQQ -- error: \u975e\u6cd5\u7684\u56fe\u7247\u5730\u5740!");
+                e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_PARAM_IMAGE_URL_FORMAT_ERROR);
+                return;
+            }
+        }
+        if (i3 != 5) {
+            i2 = 7;
+            if (i3 != 7) {
+                if (TextUtils.isEmpty(string4) || !(string4.startsWith(DefaultWebClient.HTTP_SCHEME) || string4.startsWith(DefaultWebClient.HTTPS_SCHEME))) {
+                    iUiListener.onError(new UiError(-6, Constants.MSG_PARAM_ERROR, null));
+                    SLog.e("openSDK_LOG.QQShare", "shareToQQ, targetUrl is empty or illegal..");
+                    e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "shareToQQ, targetUrl is empty or illegal..");
+                    return;
+                } else {
+                    if (TextUtils.isEmpty(string2)) {
+                        iUiListener.onError(new UiError(-6, Constants.MSG_PARAM_TITLE_NULL_ERROR, null));
+                        SLog.e("openSDK_LOG.QQShare", "shareToQQ, title is empty.");
+                        e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "shareToQQ, title is empty.");
+                        return;
+                    }
+                    i2 = 7;
+                }
+            }
+        } else {
+            i2 = 7;
+        }
+        if (i3 == i2) {
+            if (TextUtils.isEmpty(string6) || TextUtils.isEmpty(string7) || TextUtils.isEmpty(string4) || TextUtils.isEmpty(this.f6711c.getAppId())) {
+                iUiListener.onError(new UiError(-5, Constants.MSG_PARAM_ERROR, "appid || path || url empty."));
+                return;
+            }
+            if (!(k.c(activity, "8.0.8") >= 0 || k.d(activity, "3.1") >= 0)) {
+                iUiListener.onError(new UiError(-5, Constants.MSG_PARAM_QQ_VERSION_ERROR, "\u7248\u672c\u8fc7\u4f4e\uff0c\u4e0d\u652f\u6301\u5206\u4eab\u5c0f\u7a0b\u5e8f"));
+                return;
+            } else if (TextUtils.isEmpty(string2) || TextUtils.isEmpty(string3)) {
+                iUiListener.onError(new UiError(-5, Constants.MSG_PARAM_ERROR, "title || summary empty."));
+                return;
+            }
+        }
+        if (!TextUtils.isEmpty(string) && !string.startsWith(DefaultWebClient.HTTP_SCHEME) && !string.startsWith(DefaultWebClient.HTTPS_SCHEME) && !new File(string).exists()) {
+            iUiListener.onError(new UiError(-6, Constants.MSG_PARAM_IMAGE_URL_FORMAT_ERROR, null));
+            SLog.e("openSDK_LOG.QQShare", "shareToQQ, image url is emprty or illegal.");
+            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, this.f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, "shareToQQ, image url is emprty or illegal.");
+            return;
+        }
+        if (TextUtils.isEmpty(string2) || string2.length() <= 128) {
+            bundle2 = bundle;
+            str = null;
+        } else {
+            str = null;
+            bundle2 = bundle;
+            bundle2.putString("title", m.a(string2, 128, (String) null, (String) null));
+        }
+        if (!TextUtils.isEmpty(string3) && string3.length() > 512) {
+            bundle2.putString("summary", m.a(string3, 512, str, str));
+        }
+        if (m.a(activity, bundle2.getInt("cflag", 0) == 1)) {
+            SLog.i("openSDK_LOG.QQShare", "shareToQQ, support share");
+            b(activity, bundle, iUiListener);
+        } else {
+            try {
+                SLog.w("openSDK_LOG.QQShare", "shareToQQ, don't support share, will show download dialog");
+                new TDialog(activity, "", a(""), null, this.f6711c).show();
+            } catch (RuntimeException e2) {
+                SLog.e("openSDK_LOG.QQShare", " shareToQQ, TDialog.show not in main thread", e2);
+                iUiListener.onError(new UiError(-6, Constants.MSG_NOT_CALL_ON_MAIN_THREAD, null));
+            }
+        }
+        SLog.i("openSDK_LOG.QQShare", "shareToQQ() -- end.");
     }
 
-    /* renamed from: b */
-    private void m10329b(final Activity activity, final Bundle bundle, final IUiListener iUiListener) {
-        SLog.m10502i("openSDK_LOG.QQShare", "shareToMobileQQ() -- start.");
+    private void b(final Activity activity, final Bundle bundle, final IUiListener iUiListener) {
+        SLog.i("openSDK_LOG.QQShare", "shareToMobileQQ() -- start.");
         String string = bundle.getString("imageUrl");
         final String string2 = bundle.getString("title");
         final String string3 = bundle.getString("summary");
-        SLog.m10506v("openSDK_LOG.QQShare", "shareToMobileQQ -- imageUrl: " + string);
+        SLog.v("openSDK_LOG.QQShare", "shareToMobileQQ -- imageUrl: " + string);
         if (TextUtils.isEmpty(string)) {
             if (bundle.getInt("req_type", 1) == 5) {
-                m10331c(activity, bundle, iUiListener);
+                c(activity, bundle, iUiListener);
             } else {
-                m10332d(activity, bundle, iUiListener);
+                d(activity, bundle, iUiListener);
             }
-        } else if (!C3295m.m10708h(string)) {
+        } else if (!m.h(string)) {
             bundle.putString("imageUrl", null);
-            if (C3295m.m10703f(activity, "4.3.0")) {
-                SLog.m10498d("openSDK_LOG.QQShare", "shareToMobileQQ -- QQ Version is < 4.3.0 ");
-                m10332d(activity, bundle, iUiListener);
+            if (m.f(activity, "4.3.0")) {
+                SLog.d("openSDK_LOG.QQShare", "shareToMobileQQ -- QQ Version is < 4.3.0 ");
+                d(activity, bundle, iUiListener);
             } else {
-                SLog.m10498d("openSDK_LOG.QQShare", "shareToMobileQQ -- QQ Version is > 4.3.0:isAppSpecificDir=" + C3295m.m10714m(string) + ",hasSDPermission:" + C3295m.m10693c());
-                C3229a.m10342a(activity, string, new InterfaceC3286d() { // from class: com.tencent.connect.share.QQShare.2
-                    @Override // com.tencent.open.utils.InterfaceC3286d
-                    /* renamed from: a */
-                    public void mo10333a(int i2, String str) {
+                SLog.d("openSDK_LOG.QQShare", "shareToMobileQQ -- QQ Version is > 4.3.0:isAppSpecificDir=" + m.m(string) + ",hasSDPermission:" + m.c());
+                a.a(activity, string, new d() { // from class: com.tencent.connect.share.QQShare.2
+                    @Override // com.tencent.open.utils.d
+                    public void a(int i2, String str) {
                         if (i2 == 0) {
                             bundle.putString("imageLocalUrl", str);
                         } else if (TextUtils.isEmpty(string2) && TextUtils.isEmpty(string3)) {
                             IUiListener iUiListener2 = iUiListener;
                             if (iUiListener2 != null) {
                                 iUiListener2.onError(new UiError(-6, Constants.MSG_SHARE_GETIMG_ERROR, null));
-                                SLog.m10500e("openSDK_LOG.QQShare", "shareToMobileQQ -- error: 获取分享图片失败!");
+                                SLog.e("openSDK_LOG.QQShare", "shareToMobileQQ -- error: \u83b7\u53d6\u5206\u4eab\u56fe\u7247\u5931\u8d25!");
                             }
-                            C3263e.m10457a().m10458a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, ((BaseApi) QQShare.this).f11013c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_SHARE_GETIMG_ERROR);
+                            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, ((BaseApi) QQShare.this).f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_SHARE_GETIMG_ERROR);
                             return;
                         }
-                        QQShare.this.m10332d(activity, bundle, iUiListener);
+                        QQShare.this.d(activity, bundle, iUiListener);
                     }
 
-                    @Override // com.tencent.open.utils.InterfaceC3286d
-                    /* renamed from: a */
-                    public void mo10334a(int i2, ArrayList<String> arrayList) {
+                    @Override // com.tencent.open.utils.d
+                    public void a(int i2, ArrayList<String> arrayList) {
                         if (i2 == 0) {
                             bundle.putStringArrayList("imageLocalUrlArray", arrayList);
                         } else if (TextUtils.isEmpty(string2) && TextUtils.isEmpty(string3)) {
                             IUiListener iUiListener2 = iUiListener;
                             if (iUiListener2 != null) {
                                 iUiListener2.onError(new UiError(-6, Constants.MSG_SHARE_GETIMG_ERROR, null));
-                                SLog.m10500e("openSDK_LOG.QQShare", "shareToMobileQQ -- error: 获取分享图片失败!");
+                                SLog.e("openSDK_LOG.QQShare", "shareToMobileQQ -- error: \u83b7\u53d6\u5206\u4eab\u56fe\u7247\u5931\u8d25!");
                             }
-                            C3263e.m10457a().m10458a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, ((BaseApi) QQShare.this).f11013c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_SHARE_GETIMG_ERROR);
+                            e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, ((BaseApi) QQShare.this).f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_SHARE_GETIMG_ERROR);
                             return;
                         }
-                        QQShare.this.m10332d(activity, bundle, iUiListener);
+                        QQShare.this.d(activity, bundle, iUiListener);
                     }
                 });
             }
-        } else if (C3295m.m10703f(activity, "4.3.0")) {
-            new C3285c(activity).m10591a(string, new InterfaceC3286d() { // from class: com.tencent.connect.share.QQShare.1
-                @Override // com.tencent.open.utils.InterfaceC3286d
-                /* renamed from: a */
-                public void mo10333a(int i2, String str) {
+        } else if (m.f(activity, "4.3.0")) {
+            new c(activity).a(string, new d() { // from class: com.tencent.connect.share.QQShare.1
+                @Override // com.tencent.open.utils.d
+                public void a(int i2, String str) {
                     if (i2 == 0) {
                         bundle.putString("imageLocalUrl", str);
                     } else if (TextUtils.isEmpty(string2) && TextUtils.isEmpty(string3)) {
                         IUiListener iUiListener2 = iUiListener;
                         if (iUiListener2 != null) {
                             iUiListener2.onError(new UiError(-6, Constants.MSG_SHARE_GETIMG_ERROR, null));
-                            SLog.m10500e("openSDK_LOG.QQShare", "shareToMobileQQ -- error: 获取分享图片失败!");
+                            SLog.e("openSDK_LOG.QQShare", "shareToMobileQQ -- error: \u83b7\u53d6\u5206\u4eab\u56fe\u7247\u5931\u8d25!");
                         }
-                        C3263e.m10457a().m10458a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, ((BaseApi) QQShare.this).f11013c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_SHARE_GETIMG_ERROR);
+                        e.a().a(1, "SHARE_CHECK_SDK", Constants.DEFAULT_UIN, ((BaseApi) QQShare.this).f6711c.getAppId(), String.valueOf(0), Long.valueOf(SystemClock.elapsedRealtime()), 0, 1, Constants.MSG_SHARE_GETIMG_ERROR);
                         return;
                     }
-                    QQShare.this.m10332d(activity, bundle, iUiListener);
+                    QQShare.this.d(activity, bundle, iUiListener);
                 }
 
-                @Override // com.tencent.open.utils.InterfaceC3286d
-                /* renamed from: a */
-                public void mo10334a(int i2, ArrayList<String> arrayList) {
+                @Override // com.tencent.open.utils.d
+                public void a(int i2, ArrayList<String> arrayList) {
                 }
             });
         } else {
-            m10332d(activity, bundle, iUiListener);
+            d(activity, bundle, iUiListener);
         }
-        SLog.m10502i("openSDK_LOG.QQShare", "shareToMobileQQ() -- end");
+        SLog.i("openSDK_LOG.QQShare", "shareToMobileQQ() -- end");
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:16:0x00d1, code lost:
-    
-        if (r2 != false) goto L21;
-     */
-    /* renamed from: c */
+    /* JADX WARN: Removed duplicated region for block: B:20:0x00d4  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private void m10331c(android.app.Activity r9, android.os.Bundle r10, com.tencent.tauth.IUiListener r11) {
-        /*
-            Method dump skipped, instructions count: 272
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.tencent.connect.share.QQShare.m10331c(android.app.Activity, android.os.Bundle, com.tencent.tauth.IUiListener):void");
+    private void c(Activity activity, Bundle bundle, IUiListener iUiListener) {
+        String str;
+        String string = bundle.getString("imageLocalUrl");
+        String str2 = null;
+        if (new File(string).length() >= 5242880) {
+            if (iUiListener != null) {
+                iUiListener.onError(new UiError(-16, Constants.MSG_SHARE_IMAGE_TOO_LARGE_ERROR, null));
+            }
+            SLog.e("openSDK_LOG.QQShare", "doShareImageToQQ -- error: \u56fe\u7247\u592a\u5927\uff0c\u8bf7\u538b\u7f29\u52305M\u5185\u518d\u5206\u4eab!");
+            return;
+        }
+        File fileA = g.a("Images");
+        if (fileA != null) {
+            str2 = fileA.getAbsolutePath() + File.separator + Constants.QQ_SHARE_TEMP_DIR;
+        } else {
+            SLog.i("openSDK_LOG.QQShare", "doShareImageToQQ() getExternalFilesDir return null");
+        }
+        File file = new File(string);
+        String absolutePath = file.getAbsolutePath();
+        String name = file.getName();
+        boolean zM = m.m(absolutePath);
+        SLog.i("openSDK_LOG.QQShare", "doShareImageToQQ() check file: isAppSpecificDir=" + zM + ",hasSDPermission=" + m.c() + ",fileDir=" + absolutePath);
+        ArrayList<String> arrayList = new ArrayList<>(2);
+        if (!zM && !TextUtils.isEmpty(str2)) {
+            str = str2 + File.separator + name;
+            boolean zA = m.a((Context) activity, absolutePath, str);
+            SLog.i("openSDK_LOG.QQShare", "doShareImageToQQ() sd permission not denied. copy to app specific:" + str + ",isSuccess=" + zA);
+            if (!zA) {
+                str = absolutePath;
+            }
+        }
+        arrayList.add(absolutePath);
+        arrayList.add(str);
+        SLog.i("openSDK_LOG.QQShare", "doShareImageToQQ() destFilePaths=[" + arrayList.get(0) + com.xiaomi.mipush.sdk.Constants.ACCEPT_TIME_SEPARATOR_SP + arrayList.get(1) + "]");
+        bundle.putStringArrayList("imageLocalUrlArray", arrayList);
+        d(activity, bundle, iUiListener);
     }
 }

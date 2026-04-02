@@ -11,7 +11,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ImageOutputConfig {
     public static final int INVALID_ROTATION = -1;
     public static final Rational DEFAULT_ASPECT_RATIO_LANDSCAPE = new Rational(4, 3);

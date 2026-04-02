@@ -1,29 +1,26 @@
 package org.tensorflow.lite;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class TensorFlowLite {
+    private static final String a = "tensorflowlite_jni";
 
-    /* renamed from: a */
-    private static final String f21682a = "tensorflowlite_jni";
-
-    /* renamed from: b */
-    private static final String f21683b = "tensorflowlite_flex_jni";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f13010b = "tensorflowlite_flex_jni";
 
     static {
-        m25136a();
+        a();
     }
 
     private TensorFlowLite() {
     }
 
-    /* renamed from: a */
-    static boolean m25136a() {
+    static boolean a() {
         try {
-            System.loadLibrary(f21682a);
+            System.loadLibrary(a);
             return true;
         } catch (UnsatisfiedLinkError e2) {
             try {
-                System.loadLibrary(f21683b);
+                System.loadLibrary(f13010b);
                 return true;
             } catch (UnsatisfiedLinkError unused) {
                 System.err.println("TensorFlowLite: failed to load native library: " + e2.getMessage());
@@ -33,8 +30,7 @@ public final class TensorFlowLite {
     }
 
     @Deprecated
-    /* renamed from: b */
-    public static String m25137b() {
+    public static String b() {
         return schemaVersion();
     }
 

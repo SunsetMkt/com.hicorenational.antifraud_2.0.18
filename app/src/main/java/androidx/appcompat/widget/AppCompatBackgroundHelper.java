@@ -8,10 +8,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class AppCompatBackgroundHelper {
     private TintInfo mBackgroundTint;
     private TintInfo mInternalBackgroundTint;
@@ -89,25 +89,25 @@ class AppCompatBackgroundHelper {
     }
 
     void loadFromAttributes(@Nullable AttributeSet attributeSet, int i2) {
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, C0120R.styleable.ViewBackgroundHelper, i2, 0);
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, R.styleable.ViewBackgroundHelper, i2, 0);
         View view = this.mView;
-        ViewCompat.saveAttributeDataForStyleable(view, view.getContext(), C0120R.styleable.ViewBackgroundHelper, attributeSet, obtainStyledAttributes.getWrappedTypeArray(), i2, 0);
+        ViewCompat.saveAttributeDataForStyleable(view, view.getContext(), R.styleable.ViewBackgroundHelper, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i2, 0);
         try {
-            if (obtainStyledAttributes.hasValue(C0120R.styleable.ViewBackgroundHelper_android_background)) {
-                this.mBackgroundResId = obtainStyledAttributes.getResourceId(C0120R.styleable.ViewBackgroundHelper_android_background, -1);
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.ViewBackgroundHelper_android_background)) {
+                this.mBackgroundResId = tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.ViewBackgroundHelper_android_background, -1);
                 ColorStateList tintList = this.mDrawableManager.getTintList(this.mView.getContext(), this.mBackgroundResId);
                 if (tintList != null) {
                     setInternalBackgroundTint(tintList);
                 }
             }
-            if (obtainStyledAttributes.hasValue(C0120R.styleable.ViewBackgroundHelper_backgroundTint)) {
-                ViewCompat.setBackgroundTintList(this.mView, obtainStyledAttributes.getColorStateList(C0120R.styleable.ViewBackgroundHelper_backgroundTint));
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.ViewBackgroundHelper_backgroundTint)) {
+                ViewCompat.setBackgroundTintList(this.mView, tintTypedArrayObtainStyledAttributes.getColorStateList(R.styleable.ViewBackgroundHelper_backgroundTint));
             }
-            if (obtainStyledAttributes.hasValue(C0120R.styleable.ViewBackgroundHelper_backgroundTintMode)) {
-                ViewCompat.setBackgroundTintMode(this.mView, DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(C0120R.styleable.ViewBackgroundHelper_backgroundTintMode, -1), null));
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.ViewBackgroundHelper_backgroundTintMode)) {
+                ViewCompat.setBackgroundTintMode(this.mView, DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes.getInt(R.styleable.ViewBackgroundHelper_backgroundTintMode, -1), null));
             }
         } finally {
-            obtainStyledAttributes.recycle();
+            tintTypedArrayObtainStyledAttributes.recycle();
         }
     }
 

@@ -5,7 +5,7 @@ import android.os.Looper;
 import android.webkit.WebView;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UrlLoaderImpl implements IUrlLoader {
     public static final String TAG = "UrlLoaderImpl";
     private Handler mHandler;
@@ -49,9 +49,9 @@ public class UrlLoaderImpl implements IUrlLoader {
         if (httpHeaders != null) {
             return httpHeaders;
         }
-        HttpHeaders create = HttpHeaders.create();
-        this.mHttpHeaders = create;
-        return create;
+        HttpHeaders httpHeadersCreate = HttpHeaders.create();
+        this.mHttpHeaders = httpHeadersCreate;
+        return httpHeadersCreate;
     }
 
     @Override // com.just.agentweb.IUrlLoader
@@ -139,7 +139,7 @@ public class UrlLoaderImpl implements IUrlLoader {
                 }
             });
         }
-        LogUtils.m8083i(TAG, "loadUrl:" + str + " headers:" + map);
+        LogUtils.i(TAG, "loadUrl:" + str + " headers:" + map);
         if (map == null || map.isEmpty()) {
             this.mWebView.loadUrl(str);
         } else {

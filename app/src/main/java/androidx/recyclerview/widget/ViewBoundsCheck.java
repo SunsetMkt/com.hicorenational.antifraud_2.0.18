@@ -4,15 +4,13 @@ import android.view.View;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ViewBoundsCheck {
     static final int CVE_PVE_POS = 12;
     static final int CVE_PVS_POS = 8;
     static final int CVS_PVE_POS = 4;
     static final int CVS_PVS_POS = 0;
-
-    /* renamed from: EQ */
-    static final int f626EQ = 2;
+    static final int EQ = 2;
     static final int FLAG_CVE_EQ_PVE = 8192;
     static final int FLAG_CVE_EQ_PVS = 512;
     static final int FLAG_CVE_GT_PVE = 4096;
@@ -25,12 +23,8 @@ class ViewBoundsCheck {
     static final int FLAG_CVS_GT_PVS = 1;
     static final int FLAG_CVS_LT_PVE = 64;
     static final int FLAG_CVS_LT_PVS = 4;
-
-    /* renamed from: GT */
-    static final int f627GT = 1;
-
-    /* renamed from: LT */
-    static final int f628LT = 4;
+    static final int GT = 1;
+    static final int LT = 4;
     static final int MASK = 7;
     BoundFlags mBoundFlags = new BoundFlags();
     final Callback mCallback;
@@ -83,22 +77,14 @@ class ViewBoundsCheck {
             this.mChildStart = i4;
             this.mChildEnd = i5;
         }
-
-        void setFlags(int i2, int i3) {
-            this.mBoundFlags = (i2 & i3) | (this.mBoundFlags & (~i3));
-        }
     }
 
     interface Callback {
         View getChildAt(int i2);
 
-        int getChildCount();
-
         int getChildEnd(View view);
 
         int getChildStart(View view);
-
-        View getParent();
 
         int getParentEnd();
 

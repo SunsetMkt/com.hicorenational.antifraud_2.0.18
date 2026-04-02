@@ -2,8 +2,8 @@ package anet.channel.security;
 
 import android.content.Context;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public interface ISecurity {
     public static final String CIPHER_ALGORITHM_AES128 = "ASE128";
     public static final String SIGN_ALGORITHM_HMAC_SHA1 = "HMAC_SHA1";

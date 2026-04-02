@@ -6,8 +6,8 @@ import androidx.annotation.RequiresApi;
 import java.util.Iterator;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(22)
-/* loaded from: classes.dex */
 class PlaybackStateCompatApi22 {
     private PlaybackStateCompatApi22() {
     }

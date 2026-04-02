@@ -17,11 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.TextViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatEditText extends EditText implements TintableBackgroundView {
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
     private final AppCompatTextClassifierHelper mTextClassifierHelper;
@@ -141,7 +141,7 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
     }
 
     public AppCompatEditText(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0120R.attr.editTextStyle);
+        this(context, attributeSet, R.attr.editTextStyle);
     }
 
     @Override // android.widget.EditText, android.widget.TextView

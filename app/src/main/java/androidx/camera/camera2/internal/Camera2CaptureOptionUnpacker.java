@@ -8,7 +8,7 @@ import androidx.camera.core.impl.Config;
 import androidx.camera.core.impl.OptionsBundle;
 import androidx.camera.core.impl.UseCaseConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class Camera2CaptureOptionUnpacker implements CaptureConfig.OptionUnpacker {
     static final Camera2CaptureOptionUnpacker INSTANCE = new Camera2CaptureOptionUnpacker();
 
@@ -18,14 +18,14 @@ class Camera2CaptureOptionUnpacker implements CaptureConfig.OptionUnpacker {
     @Override // androidx.camera.core.impl.CaptureConfig.OptionUnpacker
     public void unpack(@NonNull UseCaseConfig<?> useCaseConfig, @NonNull CaptureConfig.Builder builder) {
         CaptureConfig defaultCaptureConfig = useCaseConfig.getDefaultCaptureConfig(null);
-        Config emptyBundle = OptionsBundle.emptyBundle();
+        Config configEmptyBundle = OptionsBundle.emptyBundle();
         int templateType = CaptureConfig.defaultEmptyCaptureConfig().getTemplateType();
         if (defaultCaptureConfig != null) {
             templateType = defaultCaptureConfig.getTemplateType();
             builder.addAllCameraCaptureCallbacks(defaultCaptureConfig.getCameraCaptureCallbacks());
-            emptyBundle = defaultCaptureConfig.getImplementationOptions();
+            configEmptyBundle = defaultCaptureConfig.getImplementationOptions();
         }
-        builder.setImplementationOptions(emptyBundle);
+        builder.setImplementationOptions(configEmptyBundle);
         Camera2ImplConfig camera2ImplConfig = new Camera2ImplConfig(useCaseConfig);
         builder.setTemplateType(camera2ImplConfig.getCaptureRequestTemplate(templateType));
         builder.addCameraCaptureCallback(CaptureCallbackContainer.create(camera2ImplConfig.getSessionCaptureCallback(Camera2CaptureCallbacks.createNoOpCallback())));

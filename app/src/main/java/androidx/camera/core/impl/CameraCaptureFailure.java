@@ -2,7 +2,7 @@ package androidx.camera.core.impl;
 
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraCaptureFailure {
     private final Reason mReason;
 

@@ -77,7 +77,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_fraud_check"
         android:background="@drawable/card_corner_white_bg"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_75"
         android:layout_marginTop="@dimen/qb_px_10"
@@ -116,10 +115,108 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <ImageView
+            android:id="@+id/iv_fraud"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="5dp"
             android:src="@drawable/iv_virus_check"
+            android:scaleType="fitCenter"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_card_check"
+        android:background="@drawable/card_corner_white_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_75"
+        android:layout_marginTop="@dimen/qb_px_10"
+        android:paddingStart="@dimen/dp_15"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_virus_check">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="#1c283f"
+            android:id="@+id/tv_idcard_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一证通查"
+            app:layout_constraintBottom_toTopOf="@+id/tv_idcard_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+        <TextView
+            android:textSize="11sp"
+            android:textColor="#666666"
+            android:id="@+id/tv_idcard_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查名下电话卡和互联和账号"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_idcard_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_idcard_title"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/iv_scaov_bg"
+            android:scaleType="centerCrop"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_idcard"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/iv_virus_check"
+            android:scaleType="fitCenter"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ai_check"
+        android:background="@drawable/card_corner_white_bg"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_75"
+        android:layout_marginTop="@dimen/qb_px_10"
+        android:paddingStart="@dimen/dp_15"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_card_check">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="#1c283f"
+            android:id="@+id/ai_check_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI内容鉴定"
+            app:layout_constraintBottom_toTopOf="@+id/ai_check_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+        <TextView
+            android:textSize="11sp"
+            android:textColor="#666666"
+            android:id="@+id/ai_check_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一键识别AI生成，守护信息真实"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/ai_check_title"
+            app:layout_constraintTop_toBottomOf="@+id/ai_check_title"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/iv_scaov_bg"
+            android:scaleType="centerCrop"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/ai_check_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_ai_check"
             android:scaleType="fitCenter"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

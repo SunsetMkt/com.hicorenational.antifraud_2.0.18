@@ -27,8 +27,8 @@ import java.util.Formatter;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerUtils {
     public static final int ERROR_PATCH_CONDITION_NOT_SATISFIED = -24;
     public static final int ERROR_PATCH_CRASH_LIMIT = -23;
@@ -40,10 +40,10 @@ public class TinkerUtils {
     private static final String TAG = "Tinker.TinkerUtils";
     private static boolean background = false;
 
-    /* compiled from: BUGLY */
+    /* JADX INFO: compiled from: BUGLY */
     public static class ScreenState {
 
-        /* compiled from: BUGLY */
+        /* JADX INFO: compiled from: BUGLY */
         interface IOnScreenOff {
             void onScreenOff();
         }
@@ -78,8 +78,8 @@ public class TinkerUtils {
             formatter.format("%02x", Byte.valueOf(b2));
         }
         formatter.close();
-        String stringBuffer2 = stringBuffer.toString();
-        return z ? stringBuffer2.toUpperCase() : stringBuffer2.toLowerCase();
+        String string = stringBuffer.toString();
+        return z ? string.toUpperCase() : string.toLowerCase();
     }
 
     public static int checkForPatchRecover(long j2, int i2) {
@@ -94,27 +94,24 @@ public class TinkerUtils {
 
     @Deprecated
     public static boolean checkRomSpaceEnough(long j2) {
-        long j3;
-        long j4;
+        long availableBlocks;
+        long blockSize;
         StatFs statFs;
         try {
             statFs = new StatFs(Environment.getDataDirectory().getPath());
-            j3 = statFs.getAvailableBlocks() * statFs.getBlockSize();
+            availableBlocks = ((long) statFs.getAvailableBlocks()) * ((long) statFs.getBlockSize());
         } catch (Exception unused) {
-            j3 = 0;
+            availableBlocks = 0;
         }
         try {
-            j4 = statFs.getBlockSize() * statFs.getBlockCount();
+            blockSize = ((long) statFs.getBlockSize()) * ((long) statFs.getBlockCount());
         } catch (Exception unused2) {
-            j4 = 0;
-            return j4 == 0 ? false : false;
+            blockSize = 0;
         }
-        if (j4 == 0 && j3 > j2) {
-            return true;
-        }
+        return blockSize != 0 && availableBlocks > j2;
     }
 
-    public static boolean copy(File file, File file2) throws IOException {
+    public static boolean copy(File file, File file2) throws Throwable {
         BufferedOutputStream bufferedOutputStream;
         BufferedInputStream bufferedInputStream;
         BufferedOutputStream bufferedOutputStream2;
@@ -143,11 +140,11 @@ public class TinkerUtils {
         try {
             byte[] bArr = new byte[5120];
             while (true) {
-                int read = bufferedInputStream.read(bArr);
-                if (read == -1) {
+                int i2 = bufferedInputStream.read(bArr);
+                if (i2 == -1) {
                     break;
                 }
-                bufferedOutputStream2.write(bArr, 0, read);
+                bufferedOutputStream2.write(bArr, 0, i2);
             }
             bufferedOutputStream2.flush();
             try {
@@ -253,11 +250,11 @@ public class TinkerUtils {
             byte[] bArr = new byte[512];
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             while (true) {
-                int read = inputStream.read(bArr);
-                if (read == -1) {
+                int i2 = inputStream.read(bArr);
+                if (i2 == -1) {
                     return byteArrayOutputStream.toByteArray();
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
+                byteArrayOutputStream.write(bArr, 0, i2);
             }
         } catch (Exception e2) {
             e2.printStackTrace();
@@ -298,7 +295,7 @@ public class TinkerUtils {
                 z = false;
                 break;
             }
-            if (charArray[i2] > 127) {
+            if (charArray[i2] > '\u007f') {
                 charArray[i2] = 0;
                 z = true;
                 break;

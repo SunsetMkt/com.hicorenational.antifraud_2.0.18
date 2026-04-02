@@ -1,0 +1,66 @@
+package ui.activity;
+
+import android.view.View;
+import android.widget.TextView;
+import androidx.annotation.CallSuper;
+import androidx.annotation.UiThread;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.hicorenational.antifraud.R;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+/* JADX INFO: loaded from: classes2.dex */
+public class IDVarfyAceptListActivity_ViewBinding implements Unbinder {
+    private IDVarfyAceptListActivity a;
+
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private View f13420b;
+
+    class a extends DebouncingOnClickListener {
+        final /* synthetic */ IDVarfyAceptListActivity a;
+
+        a(IDVarfyAceptListActivity iDVarfyAceptListActivity) {
+            this.a = iDVarfyAceptListActivity;
+        }
+
+        @Override // butterknife.internal.DebouncingOnClickListener
+        public void doClick(View view) {
+            this.a.onViewClicked(view);
+        }
+    }
+
+    @UiThread
+    public IDVarfyAceptListActivity_ViewBinding(IDVarfyAceptListActivity iDVarfyAceptListActivity) {
+        this(iDVarfyAceptListActivity, iDVarfyAceptListActivity.getWindow().getDecorView());
+    }
+
+    @Override // butterknife.Unbinder
+    @CallSuper
+    public void unbind() {
+        IDVarfyAceptListActivity iDVarfyAceptListActivity = this.a;
+        if (iDVarfyAceptListActivity == null) {
+            throw new IllegalStateException("Bindings already cleared.");
+        }
+        this.a = null;
+        iDVarfyAceptListActivity.mTvTitle = null;
+        iDVarfyAceptListActivity.mLlNodata = null;
+        iDVarfyAceptListActivity.mRecyclerview = null;
+        iDVarfyAceptListActivity.mRefreshLayout = null;
+        this.f13420b.setOnClickListener(null);
+        this.f13420b = null;
+    }
+
+    @UiThread
+    public IDVarfyAceptListActivity_ViewBinding(IDVarfyAceptListActivity iDVarfyAceptListActivity, View view) {
+        this.a = iDVarfyAceptListActivity;
+        iDVarfyAceptListActivity.mTvTitle = (TextView) Utils.findRequiredViewAsType(view, R.id.tv_title, "field 'mTvTitle'", TextView.class);
+        iDVarfyAceptListActivity.mLlNodata = Utils.findRequiredView(view, R.id.ll_nodata, "field 'mLlNodata'");
+        iDVarfyAceptListActivity.mRecyclerview = (RecyclerView) Utils.findRequiredViewAsType(view, R.id.recyclerview, "field 'mRecyclerview'", RecyclerView.class);
+        iDVarfyAceptListActivity.mRefreshLayout = (SmartRefreshLayout) Utils.findRequiredViewAsType(view, R.id.sm_refresh, "field 'mRefreshLayout'", SmartRefreshLayout.class);
+        View viewFindRequiredView = Utils.findRequiredView(view, R.id.iv_back, "method 'onViewClicked'");
+        this.f13420b = viewFindRequiredView;
+        viewFindRequiredView.setOnClickListener(new a(iDVarfyAceptListActivity));
+    }
+}

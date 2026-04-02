@@ -1,6 +1,6 @@
 package com.heytap.msp.push.mode;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ErrorCode {
     public static final int APP_CALL_LIMITED = 13;
     public static final int ERROR = -2;

@@ -1,11 +1,9 @@
 package com.huawei.hms.support.api.entity.core;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CommonCode {
     public static final int ERROR = 1;
-
-    /* renamed from: OK */
-    public static final int f7844OK = 0;
+    public static final int OK = 0;
     public static final int UNBIND_SERVICE = 11;
 
     public interface ErrorCode {

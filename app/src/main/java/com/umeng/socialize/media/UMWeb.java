@@ -5,7 +5,7 @@ import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMWeb extends BaseMediaObject {
     public UMWeb(String str) {
         super(str);
@@ -18,7 +18,7 @@ public class UMWeb extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f13636e;
+        UMImage uMImage = this.f8275e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -27,23 +27,23 @@ public class UMWeb extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.BaseMediaObject
     public String toString() {
-        return "UMWEB [media_url=" + this.f13632a + ", title=" + this.f13633b + "media_url=" + this.f13632a + ", des=" + this.f13635d + ", qzone_thumb=]";
+        return "UMWEB [media_url=" + this.a + ", title=" + this.f8272b + "media_url=" + this.a + ", des=" + this.f8274d + ", qzone_thumb=]";
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public Map<String, Object> toUrlExtraParams() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.a);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
         }
-        return hashMap;
+        return map;
     }
 
     public UMWeb(String str, String str2, String str3, UMImage uMImage) {
-        this.f13632a = str;
+        this.a = str;
         setThumb(uMImage);
-        this.f13635d = str3;
+        this.f8274d = str3;
         setTitle(str2);
     }
 }

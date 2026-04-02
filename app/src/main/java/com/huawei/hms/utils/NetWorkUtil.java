@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class NetWorkUtil {
 
     public static final class NetType {
@@ -21,8 +21,7 @@ public abstract class NetWorkUtil {
         public static final int WAP = -3;
     }
 
-    /* renamed from: a */
-    private static NetworkInfo m7792a(Context context) {
+    private static NetworkInfo a(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
         if (connectivityManager != null) {
             return connectivityManager.getActiveNetworkInfo();
@@ -34,11 +33,10 @@ public abstract class NetWorkUtil {
         if (context == null) {
             return 0;
         }
-        return m7791a(m7792a(context));
+        return a(a(context));
     }
 
-    /* renamed from: a */
-    private static int m7791a(NetworkInfo networkInfo) {
+    private static int a(NetworkInfo networkInfo) {
         if (networkInfo != null && networkInfo.isConnected()) {
             if (networkInfo.getType() == 1) {
                 return 1;

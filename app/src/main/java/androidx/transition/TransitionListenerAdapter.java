@@ -3,7 +3,7 @@ package androidx.transition;
 import androidx.annotation.NonNull;
 import androidx.transition.Transition;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TransitionListenerAdapter implements Transition.TransitionListener {
     @Override // androidx.transition.Transition.TransitionListener
     public void onTransitionCancel(@NonNull Transition transition) {

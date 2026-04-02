@@ -1,6 +1,6 @@
 package com.huawei.hms.support.api.entity.core;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CoreNaming {
     public static final String CHECKCONNECT = "core.checkconnect";
     public static final String CONNECT = "core.connect";

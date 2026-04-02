@@ -1,19 +1,33 @@
 package com.huawei.hmf.tasks;
 
-import com.huawei.hmf.tasks.p170a.C2279i;
+import com.huawei.hmf.tasks.a.i;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TaskCompletionSource<TResult> {
-    private final C2279i<TResult> task = new C2279i<>();
+    private final i<TResult> task = new i<>();
+
+    /* JADX INFO: renamed from: com.huawei.hmf.tasks.TaskCompletionSource$1 */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TaskCompletionSource.this.task.a();
+        }
+    }
 
     public TaskCompletionSource() {
     }
 
     public TaskCompletionSource(CancellationToken cancellationToken) {
         cancellationToken.register(new Runnable() { // from class: com.huawei.hmf.tasks.TaskCompletionSource.1
+            AnonymousClass1() {
+            }
+
             @Override // java.lang.Runnable
             public void run() {
-                TaskCompletionSource.this.task.m6489a();
+                TaskCompletionSource.this.task.a();
             }
         });
     }
@@ -23,10 +37,10 @@ public class TaskCompletionSource<TResult> {
     }
 
     public void setException(Exception exc) {
-        this.task.m6487a(exc);
+        this.task.a(exc);
     }
 
     public void setResult(TResult tresult) {
-        this.task.m6488a((C2279i<TResult>) tresult);
+        this.task.a(tresult);
     }
 }

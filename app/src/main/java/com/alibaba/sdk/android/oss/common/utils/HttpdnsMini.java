@@ -1,13 +1,24 @@
 package com.alibaba.sdk.android.oss.common.utils;
 
 import com.alibaba.sdk.android.oss.common.OSSLog;
+import com.huawei.hms.push.constant.RemoteMessageConst;
+import com.just.agentweb.DefaultWebClient;
+import com.taobao.accs.common.Constants;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpdnsMini {
     private static final String ACCOUNT_ID = "181345";
     private static final int EMPTY_RESULT_HOST_TTL = 30;
@@ -22,9 +33,7 @@ public class HttpdnsMini {
 
     class HostObject {
         private String hostName;
-
-        /* renamed from: ip */
-        private String f4018ip;
+        private String ip;
         private long queryTime;
         private long ttl;
 
@@ -36,7 +45,7 @@ public class HttpdnsMini {
         }
 
         public String getIp() {
-            return this.f4018ip;
+            return this.ip;
         }
 
         public long getQueryTime() {
@@ -60,7 +69,7 @@ public class HttpdnsMini {
         }
 
         public void setIp(String str) {
-            this.f4018ip = str;
+            this.ip = str;
         }
 
         public void setQueryTime(long j2) {
@@ -72,7 +81,7 @@ public class HttpdnsMini {
         }
 
         public String toString() {
-            return "[hostName=" + getHostName() + ", ip=" + this.f4018ip + ", ttl=" + getTtl() + ", queryTime=" + this.queryTime + "]";
+            return "[hostName=" + getHostName() + ", ip=" + this.ip + ", ttl=" + getTtl() + ", queryTime=" + this.queryTime + "]";
         }
     }
 
@@ -84,20 +93,118 @@ public class HttpdnsMini {
             this.hostName = str;
         }
 
-        /* JADX WARN: Removed duplicated region for block: B:12:0x015f  */
-        /* JADX WARN: Removed duplicated region for block: B:15:0x0167 A[RETURN] */
-        /* JADX WARN: Removed duplicated region for block: B:56:0x016b A[EXC_TOP_SPLITTER, SYNTHETIC] */
+        /* JADX WARN: Removed duplicated region for block: B:51:0x0160  */
+        /* JADX WARN: Removed duplicated region for block: B:53:0x0168 A[RETURN] */
+        /* JADX WARN: Removed duplicated region for block: B:69:0x016c A[EXC_TOP_SPLITTER, SYNTHETIC] */
         @Override // java.util.concurrent.Callable
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public java.lang.String call() {
-            /*
-                Method dump skipped, instructions count: 372
-                To view this dump change 'Code comments level' option to 'DEBUG'
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.alibaba.sdk.android.oss.common.utils.HttpdnsMini.QueryHostTask.call():java.lang.String");
+        public String call() throws Throwable {
+            Throwable th;
+            InputStream inputStream;
+            Exception e2;
+            HttpURLConnection httpURLConnection;
+            BufferedReader bufferedReader;
+            StringBuilder sb;
+            String str = DefaultWebClient.HTTPS_SCHEME + HttpdnsMini.SERVER_IP + "/" + HttpdnsMini.ACCOUNT_ID + "/d?host=" + this.hostName;
+            OSSLog.logDebug("[httpdnsmini] - buildUrl: " + str);
+            try {
+                try {
+                    httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
+                    httpURLConnection.setConnectTimeout(10000);
+                    httpURLConnection.setReadTimeout(10000);
+                } catch (Exception e3) {
+                    e2 = e3;
+                    inputStream = null;
+                } catch (Throwable th2) {
+                    th = th2;
+                    inputStream = null;
+                    if (inputStream != null) {
+                    }
+                    throw th;
+                }
+            } catch (IOException e4) {
+                e4.printStackTrace();
+            }
+            if (httpURLConnection.getResponseCode() != 200) {
+                OSSLog.logError("[httpdnsmini] - responseCodeNot 200, but: " + httpURLConnection.getResponseCode());
+                inputStream = null;
+            } else {
+                inputStream = httpURLConnection.getInputStream();
+                try {
+                    try {
+                        bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                        sb = new StringBuilder();
+                    } catch (Throwable th3) {
+                        th = th3;
+                        if (inputStream != null) {
+                            try {
+                                inputStream.close();
+                            } catch (IOException e5) {
+                                e5.printStackTrace();
+                            }
+                        }
+                        throw th;
+                    }
+                } catch (Exception e6) {
+                    e2 = e6;
+                    if (OSSLog.isEnableLog()) {
+                        e2.printStackTrace();
+                        OSSLog.logThrowable2Local(e2);
+                    }
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                    if (this.hasRetryed) {
+                    }
+                }
+                while (true) {
+                    String line = bufferedReader.readLine();
+                    if (line == null) {
+                        break;
+                    }
+                    sb.append(line);
+                    if (this.hasRetryed) {
+                        return null;
+                    }
+                    this.hasRetryed = true;
+                    return call();
+                }
+                JSONObject jSONObject = new JSONObject(sb.toString());
+                String string = jSONObject.getString(Constants.KEY_HOST);
+                long j2 = jSONObject.getLong(RemoteMessageConst.TTL);
+                JSONArray jSONArray = jSONObject.getJSONArray("ips");
+                OSSLog.logDebug("[httpdnsmini] - ips:" + jSONArray.toString());
+                if (string != null && jSONArray != null && jSONArray.length() > 0) {
+                    if (j2 == 0) {
+                        j2 = 30;
+                    }
+                    HostObject hostObject = HttpdnsMini.this.new HostObject();
+                    String string2 = jSONArray == null ? null : jSONArray.getString(0);
+                    hostObject.setHostName(string);
+                    hostObject.setTtl(j2);
+                    hostObject.setIp(string2);
+                    hostObject.setQueryTime(System.currentTimeMillis() / 1000);
+                    OSSLog.logDebug("[httpdnsmini] - resolve result:" + hostObject.toString());
+                    if (HttpdnsMini.this.hostManager.size() < 100) {
+                        HttpdnsMini.this.hostManager.put(this.hostName, hostObject);
+                    }
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (IOException e7) {
+                            e7.printStackTrace();
+                        }
+                    }
+                    return string2;
+                }
+            }
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (this.hasRetryed) {
+            }
         }
     }
 

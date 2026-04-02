@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
@@ -23,12 +24,8 @@ import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.view.ViewCompat;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ChangeBounds extends Transition {
-    private static final Property<View, PointF> BOTTOM_RIGHT_ONLY_PROPERTY;
-    private static final Property<ViewBounds, PointF> BOTTOM_RIGHT_PROPERTY;
-    private static final Property<View, PointF> TOP_LEFT_ONLY_PROPERTY;
-    private static final Property<ViewBounds, PointF> TOP_LEFT_PROPERTY;
     private boolean mReparent;
     private boolean mResizeClip;
     private int[] mTempLocation;
@@ -40,6 +37,11 @@ public class ChangeBounds extends Transition {
     private static final String[] sTransitionProperties = {PROPNAME_BOUNDS, PROPNAME_CLIP, PROPNAME_PARENT, PROPNAME_WINDOW_X, PROPNAME_WINDOW_Y};
     private static final Property<Drawable, PointF> DRAWABLE_ORIGIN_PROPERTY = new Property<Drawable, PointF>(PointF.class, "boundsOrigin") { // from class: androidx.transition.ChangeBounds.1
         private Rect mBounds = new Rect();
+
+        AnonymousClass1(Class cls, String str) {
+            super(cls, str);
+            this.mBounds = new Rect();
+        }
 
         @Override // android.util.Property
         public PointF get(Drawable drawable) {
@@ -55,7 +57,41 @@ public class ChangeBounds extends Transition {
             drawable.setBounds(this.mBounds);
         }
     };
-    private static final Property<View, PointF> POSITION_PROPERTY = new Property<View, PointF>(PointF.class, "position") { // from class: androidx.transition.ChangeBounds.6
+    private static final Property<ViewBounds, PointF> TOP_LEFT_PROPERTY = new Property<ViewBounds, PointF>(PointF.class, "topLeft") { // from class: androidx.transition.ChangeBounds.2
+        AnonymousClass2(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(ViewBounds viewBounds) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(ViewBounds viewBounds, PointF pointF) {
+            viewBounds.setTopLeft(pointF);
+        }
+    };
+    private static final Property<ViewBounds, PointF> BOTTOM_RIGHT_PROPERTY = new Property<ViewBounds, PointF>(PointF.class, "bottomRight") { // from class: androidx.transition.ChangeBounds.3
+        AnonymousClass3(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(ViewBounds viewBounds) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(ViewBounds viewBounds, PointF pointF) {
+            viewBounds.setBottomRight(pointF);
+        }
+    };
+    private static final Property<View, PointF> BOTTOM_RIGHT_ONLY_PROPERTY = new Property<View, PointF>(PointF.class, "bottomRight") { // from class: androidx.transition.ChangeBounds.4
+        AnonymousClass4(Class cls, String str) {
+            super(cls, str);
+        }
+
         @Override // android.util.Property
         public PointF get(View view) {
             return null;
@@ -63,12 +99,253 @@ public class ChangeBounds extends Transition {
 
         @Override // android.util.Property
         public void set(View view, PointF pointF) {
-            int round = Math.round(pointF.x);
-            int round2 = Math.round(pointF.y);
-            ViewUtils.setLeftTopRightBottom(view, round, round2, view.getWidth() + round, view.getHeight() + round2);
+            ViewUtils.setLeftTopRightBottom(view, view.getLeft(), view.getTop(), Math.round(pointF.x), Math.round(pointF.y));
+        }
+    };
+    private static final Property<View, PointF> TOP_LEFT_ONLY_PROPERTY = new Property<View, PointF>(PointF.class, "topLeft") { // from class: androidx.transition.ChangeBounds.5
+        AnonymousClass5(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(View view, PointF pointF) {
+            ViewUtils.setLeftTopRightBottom(view, Math.round(pointF.x), Math.round(pointF.y), view.getRight(), view.getBottom());
+        }
+    };
+    private static final Property<View, PointF> POSITION_PROPERTY = new Property<View, PointF>(PointF.class, "position") { // from class: androidx.transition.ChangeBounds.6
+        AnonymousClass6(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(View view, PointF pointF) {
+            int iRound = Math.round(pointF.x);
+            int iRound2 = Math.round(pointF.y);
+            ViewUtils.setLeftTopRightBottom(view, iRound, iRound2, view.getWidth() + iRound, view.getHeight() + iRound2);
         }
     };
     private static RectEvaluator sRectEvaluator = new RectEvaluator();
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$1 */
+    static class AnonymousClass1 extends Property<Drawable, PointF> {
+        private Rect mBounds = new Rect();
+
+        AnonymousClass1(Class cls, String str) {
+            super(cls, str);
+            this.mBounds = new Rect();
+        }
+
+        @Override // android.util.Property
+        public PointF get(Drawable drawable) {
+            drawable.copyBounds(this.mBounds);
+            Rect rect = this.mBounds;
+            return new PointF(rect.left, rect.top);
+        }
+
+        @Override // android.util.Property
+        public void set(Drawable drawable, PointF pointF) {
+            drawable.copyBounds(this.mBounds);
+            this.mBounds.offsetTo(Math.round(pointF.x), Math.round(pointF.y));
+            drawable.setBounds(this.mBounds);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$10 */
+    class AnonymousClass10 extends AnimatorListenerAdapter {
+        final /* synthetic */ BitmapDrawable val$drawable;
+        final /* synthetic */ ViewGroup val$sceneRoot;
+        final /* synthetic */ float val$transitionAlpha;
+        final /* synthetic */ View val$view;
+
+        AnonymousClass10(ViewGroup viewGroup, BitmapDrawable bitmapDrawable, View view, float f2) {
+            viewGroup = viewGroup;
+            bitmapDrawable = bitmapDrawable;
+            view = view;
+            f = f2;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            ViewUtils.getOverlay(viewGroup).remove(bitmapDrawable);
+            ViewUtils.setTransitionAlpha(view, f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$2 */
+    static class AnonymousClass2 extends Property<ViewBounds, PointF> {
+        AnonymousClass2(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(ViewBounds viewBounds) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(ViewBounds viewBounds, PointF pointF) {
+            viewBounds.setTopLeft(pointF);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$3 */
+    static class AnonymousClass3 extends Property<ViewBounds, PointF> {
+        AnonymousClass3(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(ViewBounds viewBounds) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(ViewBounds viewBounds, PointF pointF) {
+            viewBounds.setBottomRight(pointF);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$4 */
+    static class AnonymousClass4 extends Property<View, PointF> {
+        AnonymousClass4(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(View view, PointF pointF) {
+            ViewUtils.setLeftTopRightBottom(view, view.getLeft(), view.getTop(), Math.round(pointF.x), Math.round(pointF.y));
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$5 */
+    static class AnonymousClass5 extends Property<View, PointF> {
+        AnonymousClass5(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(View view, PointF pointF) {
+            ViewUtils.setLeftTopRightBottom(view, Math.round(pointF.x), Math.round(pointF.y), view.getRight(), view.getBottom());
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$6 */
+    static class AnonymousClass6 extends Property<View, PointF> {
+        AnonymousClass6(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public PointF get(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public void set(View view, PointF pointF) {
+            int iRound = Math.round(pointF.x);
+            int iRound2 = Math.round(pointF.y);
+            ViewUtils.setLeftTopRightBottom(view, iRound, iRound2, view.getWidth() + iRound, view.getHeight() + iRound2);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$7 */
+    class AnonymousClass7 extends AnimatorListenerAdapter {
+        private ViewBounds mViewBounds;
+        final /* synthetic */ ViewBounds val$viewBounds;
+
+        AnonymousClass7(ViewBounds viewBounds) {
+            viewBounds = viewBounds;
+            this.mViewBounds = viewBounds;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$8 */
+    class AnonymousClass8 extends AnimatorListenerAdapter {
+        private boolean mIsCanceled;
+        final /* synthetic */ int val$endBottom;
+        final /* synthetic */ int val$endLeft;
+        final /* synthetic */ int val$endRight;
+        final /* synthetic */ int val$endTop;
+        final /* synthetic */ Rect val$finalClip;
+        final /* synthetic */ View val$view;
+
+        AnonymousClass8(View view, Rect rect, int i2, int i3, int i4, int i5) {
+            view = view;
+            rect = rect;
+            i = i2;
+            i = i3;
+            i = i4;
+            i = i5;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            this.mIsCanceled = true;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            if (this.mIsCanceled) {
+                return;
+            }
+            ViewCompat.setClipBounds(view, rect);
+            ViewUtils.setLeftTopRightBottom(view, i, i, i, i);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$9 */
+    class AnonymousClass9 extends TransitionListenerAdapter {
+        boolean mCanceled = false;
+        final /* synthetic */ ViewGroup val$parent;
+
+        AnonymousClass9(ViewGroup viewGroup) {
+            viewGroup = viewGroup;
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionCancel(@NonNull Transition transition) {
+            ViewGroupUtils.suppressLayout(viewGroup, false);
+            this.mCanceled = true;
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            if (!this.mCanceled) {
+                ViewGroupUtils.suppressLayout(viewGroup, false);
+            }
+            transition.removeListener(this);
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionPause(@NonNull Transition transition) {
+            ViewGroupUtils.suppressLayout(viewGroup, false);
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionResume(@NonNull Transition transition) {
+            ViewGroupUtils.suppressLayout(viewGroup, true);
+        }
+    }
 
     private static class ViewBounds {
         private int mBottom;
@@ -106,55 +383,6 @@ public class ChangeBounds extends Transition {
                 setLeftTopRightBottom();
             }
         }
-    }
-
-    static {
-        String str = "topLeft";
-        TOP_LEFT_PROPERTY = new Property<ViewBounds, PointF>(PointF.class, str) { // from class: androidx.transition.ChangeBounds.2
-            @Override // android.util.Property
-            public PointF get(ViewBounds viewBounds) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(ViewBounds viewBounds, PointF pointF) {
-                viewBounds.setTopLeft(pointF);
-            }
-        };
-        String str2 = "bottomRight";
-        BOTTOM_RIGHT_PROPERTY = new Property<ViewBounds, PointF>(PointF.class, str2) { // from class: androidx.transition.ChangeBounds.3
-            @Override // android.util.Property
-            public PointF get(ViewBounds viewBounds) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(ViewBounds viewBounds, PointF pointF) {
-                viewBounds.setBottomRight(pointF);
-            }
-        };
-        BOTTOM_RIGHT_ONLY_PROPERTY = new Property<View, PointF>(PointF.class, str2) { // from class: androidx.transition.ChangeBounds.4
-            @Override // android.util.Property
-            public PointF get(View view) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(View view, PointF pointF) {
-                ViewUtils.setLeftTopRightBottom(view, view.getLeft(), view.getTop(), Math.round(pointF.x), Math.round(pointF.y));
-            }
-        };
-        TOP_LEFT_ONLY_PROPERTY = new Property<View, PointF>(PointF.class, str) { // from class: androidx.transition.ChangeBounds.5
-            @Override // android.util.Property
-            public PointF get(View view) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(View view, PointF pointF) {
-                ViewUtils.setLeftTopRightBottom(view, Math.round(pointF.x), Math.round(pointF.y), view.getRight(), view.getBottom());
-            }
-        };
     }
 
     public ChangeBounds() {
@@ -207,13 +435,13 @@ public class ChangeBounds extends Transition {
 
     @Override // androidx.transition.Transition
     @Nullable
-    public Animator createAnimator(@NonNull final ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
+    public Animator createAnimator(@NonNull ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
         int i2;
-        final View view;
+        View view;
         int i3;
         Rect rect;
-        ObjectAnimator objectAnimator;
-        Animator mergeAnimators;
+        ObjectAnimator objectAnimatorOfObject;
+        Animator animatorMergeAnimators;
         if (transitionValues == null || transitionValues2 == null) {
             return null;
         }
@@ -224,50 +452,62 @@ public class ChangeBounds extends Transition {
         if (viewGroup2 == null || viewGroup3 == null) {
             return null;
         }
-        final View view2 = transitionValues2.view;
+        View view2 = transitionValues2.view;
         if (!parentMatches(viewGroup2, viewGroup3)) {
-            int intValue = ((Integer) transitionValues.values.get(PROPNAME_WINDOW_X)).intValue();
-            int intValue2 = ((Integer) transitionValues.values.get(PROPNAME_WINDOW_Y)).intValue();
-            int intValue3 = ((Integer) transitionValues2.values.get(PROPNAME_WINDOW_X)).intValue();
-            int intValue4 = ((Integer) transitionValues2.values.get(PROPNAME_WINDOW_Y)).intValue();
-            if (intValue == intValue3 && intValue2 == intValue4) {
+            int iIntValue = ((Integer) transitionValues.values.get(PROPNAME_WINDOW_X)).intValue();
+            int iIntValue2 = ((Integer) transitionValues.values.get(PROPNAME_WINDOW_Y)).intValue();
+            int iIntValue3 = ((Integer) transitionValues2.values.get(PROPNAME_WINDOW_X)).intValue();
+            int iIntValue4 = ((Integer) transitionValues2.values.get(PROPNAME_WINDOW_Y)).intValue();
+            if (iIntValue == iIntValue3 && iIntValue2 == iIntValue4) {
                 return null;
             }
             viewGroup.getLocationInWindow(this.mTempLocation);
-            Bitmap createBitmap = Bitmap.createBitmap(view2.getWidth(), view2.getHeight(), Bitmap.Config.ARGB_8888);
-            view2.draw(new Canvas(createBitmap));
-            final BitmapDrawable bitmapDrawable = new BitmapDrawable(createBitmap);
-            final float transitionAlpha = ViewUtils.getTransitionAlpha(view2);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view2.getWidth(), view2.getHeight(), Bitmap.Config.ARGB_8888);
+            view2.draw(new Canvas(bitmapCreateBitmap));
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
+            float transitionAlpha = ViewUtils.getTransitionAlpha(view2);
             ViewUtils.setTransitionAlpha(view2, 0.0f);
             ViewUtils.getOverlay(viewGroup).add(bitmapDrawable);
             PathMotion pathMotion = getPathMotion();
             int[] iArr = this.mTempLocation;
-            ObjectAnimator ofPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(bitmapDrawable, PropertyValuesHolderUtils.ofPointF(DRAWABLE_ORIGIN_PROPERTY, pathMotion.getPath(intValue - iArr[0], intValue2 - iArr[1], intValue3 - iArr[0], intValue4 - iArr[1])));
-            ofPropertyValuesHolder.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.10
+            ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(bitmapDrawable, PropertyValuesHolderUtils.ofPointF(DRAWABLE_ORIGIN_PROPERTY, pathMotion.getPath(iIntValue - iArr[0], iIntValue2 - iArr[1], iIntValue3 - iArr[0], iIntValue4 - iArr[1])));
+            objectAnimatorOfPropertyValuesHolder.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.10
+                final /* synthetic */ BitmapDrawable val$drawable;
+                final /* synthetic */ ViewGroup val$sceneRoot;
+                final /* synthetic */ float val$transitionAlpha;
+                final /* synthetic */ View val$view;
+
+                AnonymousClass10(ViewGroup viewGroup4, BitmapDrawable bitmapDrawable2, View view22, float transitionAlpha2) {
+                    viewGroup = viewGroup4;
+                    bitmapDrawable = bitmapDrawable2;
+                    view = view22;
+                    f = transitionAlpha2;
+                }
+
                 @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                 public void onAnimationEnd(Animator animator) {
                     ViewUtils.getOverlay(viewGroup).remove(bitmapDrawable);
-                    ViewUtils.setTransitionAlpha(view2, transitionAlpha);
+                    ViewUtils.setTransitionAlpha(view, f);
                 }
             });
-            return ofPropertyValuesHolder;
+            return objectAnimatorOfPropertyValuesHolder;
         }
         Rect rect2 = (Rect) transitionValues.values.get(PROPNAME_BOUNDS);
         Rect rect3 = (Rect) transitionValues2.values.get(PROPNAME_BOUNDS);
         int i4 = rect2.left;
-        final int i5 = rect3.left;
+        int i5 = rect3.left;
         int i6 = rect2.top;
-        final int i7 = rect3.top;
+        int i7 = rect3.top;
         int i8 = rect2.right;
-        final int i9 = rect3.right;
+        int i9 = rect3.right;
         int i10 = rect2.bottom;
-        final int i11 = rect3.bottom;
+        int i11 = rect3.bottom;
         int i12 = i8 - i4;
         int i13 = i10 - i6;
         int i14 = i9 - i5;
         int i15 = i11 - i7;
         Rect rect4 = (Rect) transitionValues.values.get(PROPNAME_CLIP);
-        final Rect rect5 = (Rect) transitionValues2.values.get(PROPNAME_CLIP);
+        Rect rect5 = (Rect) transitionValues2.values.get(PROPNAME_CLIP);
         if ((i12 == 0 || i13 == 0) && (i14 == 0 || i15 == 0)) {
             i2 = 0;
         } else {
@@ -283,9 +523,9 @@ public class ChangeBounds extends Transition {
             return null;
         }
         if (this.mResizeClip) {
-            view = view2;
+            view = view22;
             ViewUtils.setLeftTopRightBottom(view, i4, i6, Math.max(i12, i14) + i4, Math.max(i13, i15) + i6);
-            ObjectAnimator ofPointF = (i4 == i5 && i6 == i7) ? null : ObjectAnimatorUtils.ofPointF(view, POSITION_PROPERTY, getPathMotion().getPath(i4, i6, i5, i7));
+            ObjectAnimator objectAnimatorOfPointF = (i4 == i5 && i6 == i7) ? null : ObjectAnimatorUtils.ofPointF(view, POSITION_PROPERTY, getPathMotion().getPath(i4, i6, i5, i7));
             if (rect4 == null) {
                 i3 = 0;
                 rect = new Rect(0, 0, i12, i13);
@@ -295,16 +535,31 @@ public class ChangeBounds extends Transition {
             }
             Rect rect6 = rect5 == null ? new Rect(i3, i3, i14, i15) : rect5;
             if (rect.equals(rect6)) {
-                objectAnimator = null;
+                objectAnimatorOfObject = null;
             } else {
                 ViewCompat.setClipBounds(view, rect);
                 RectEvaluator rectEvaluator = sRectEvaluator;
                 Object[] objArr = new Object[2];
                 objArr[i3] = rect;
                 objArr[1] = rect6;
-                objectAnimator = ObjectAnimator.ofObject(view, "clipBounds", rectEvaluator, objArr);
-                objectAnimator.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.8
+                objectAnimatorOfObject = ObjectAnimator.ofObject(view, "clipBounds", rectEvaluator, objArr);
+                objectAnimatorOfObject.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.8
                     private boolean mIsCanceled;
+                    final /* synthetic */ int val$endBottom;
+                    final /* synthetic */ int val$endLeft;
+                    final /* synthetic */ int val$endRight;
+                    final /* synthetic */ int val$endTop;
+                    final /* synthetic */ Rect val$finalClip;
+                    final /* synthetic */ View val$view;
+
+                    AnonymousClass8(View view3, Rect rect52, int i52, int i72, int i92, int i112) {
+                        view = view3;
+                        rect = rect52;
+                        i = i52;
+                        i = i72;
+                        i = i92;
+                        i = i112;
+                    }
 
                     @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                     public void onAnimationCancel(Animator animator) {
@@ -316,67 +571,74 @@ public class ChangeBounds extends Transition {
                         if (this.mIsCanceled) {
                             return;
                         }
-                        ViewCompat.setClipBounds(view, rect5);
-                        ViewUtils.setLeftTopRightBottom(view, i5, i7, i9, i11);
+                        ViewCompat.setClipBounds(view, rect);
+                        ViewUtils.setLeftTopRightBottom(view, i, i, i, i);
                     }
                 });
             }
-            mergeAnimators = TransitionUtils.mergeAnimators(ofPointF, objectAnimator);
+            animatorMergeAnimators = TransitionUtils.mergeAnimators(objectAnimatorOfPointF, objectAnimatorOfObject);
         } else {
-            view = view2;
-            ViewUtils.setLeftTopRightBottom(view, i4, i6, i8, i10);
+            view3 = view22;
+            ViewUtils.setLeftTopRightBottom(view3, i4, i6, i8, i10);
             if (i2 != 2) {
-                mergeAnimators = (i4 == i5 && i6 == i7) ? ObjectAnimatorUtils.ofPointF(view, BOTTOM_RIGHT_ONLY_PROPERTY, getPathMotion().getPath(i8, i10, i9, i11)) : ObjectAnimatorUtils.ofPointF(view, TOP_LEFT_ONLY_PROPERTY, getPathMotion().getPath(i4, i6, i5, i7));
+                animatorMergeAnimators = (i4 == i52 && i6 == i72) ? ObjectAnimatorUtils.ofPointF(view3, BOTTOM_RIGHT_ONLY_PROPERTY, getPathMotion().getPath(i8, i10, i92, i112)) : ObjectAnimatorUtils.ofPointF(view3, TOP_LEFT_ONLY_PROPERTY, getPathMotion().getPath(i4, i6, i52, i72));
             } else if (i12 == i14 && i13 == i15) {
-                mergeAnimators = ObjectAnimatorUtils.ofPointF(view, POSITION_PROPERTY, getPathMotion().getPath(i4, i6, i5, i7));
+                animatorMergeAnimators = ObjectAnimatorUtils.ofPointF(view3, POSITION_PROPERTY, getPathMotion().getPath(i4, i6, i52, i72));
             } else {
-                final ViewBounds viewBounds = new ViewBounds(view);
-                ObjectAnimator ofPointF2 = ObjectAnimatorUtils.ofPointF(viewBounds, TOP_LEFT_PROPERTY, getPathMotion().getPath(i4, i6, i5, i7));
-                ObjectAnimator ofPointF3 = ObjectAnimatorUtils.ofPointF(viewBounds, BOTTOM_RIGHT_PROPERTY, getPathMotion().getPath(i8, i10, i9, i11));
+                ViewBounds viewBounds = new ViewBounds(view3);
+                ObjectAnimator objectAnimatorOfPointF2 = ObjectAnimatorUtils.ofPointF(viewBounds, TOP_LEFT_PROPERTY, getPathMotion().getPath(i4, i6, i52, i72));
+                ObjectAnimator objectAnimatorOfPointF3 = ObjectAnimatorUtils.ofPointF(viewBounds, BOTTOM_RIGHT_PROPERTY, getPathMotion().getPath(i8, i10, i92, i112));
                 AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(ofPointF2, ofPointF3);
+                animatorSet.playTogether(objectAnimatorOfPointF2, objectAnimatorOfPointF3);
                 animatorSet.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.7
                     private ViewBounds mViewBounds;
+                    final /* synthetic */ ViewBounds val$viewBounds;
 
-                    {
+                    AnonymousClass7(ViewBounds viewBounds2) {
+                        viewBounds = viewBounds2;
                         this.mViewBounds = viewBounds;
                     }
                 });
-                mergeAnimators = animatorSet;
+                animatorMergeAnimators = animatorSet;
             }
         }
-        if (view.getParent() instanceof ViewGroup) {
-            final ViewGroup viewGroup4 = (ViewGroup) view.getParent();
+        if (view3.getParent() instanceof ViewGroup) {
+            ViewGroup viewGroup4 = (ViewGroup) view3.getParent();
             ViewGroupUtils.suppressLayout(viewGroup4, true);
             addListener(new TransitionListenerAdapter() { // from class: androidx.transition.ChangeBounds.9
                 boolean mCanceled = false;
+                final /* synthetic */ ViewGroup val$parent;
+
+                AnonymousClass9(ViewGroup viewGroup42) {
+                    viewGroup = viewGroup42;
+                }
 
                 @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
                 public void onTransitionCancel(@NonNull Transition transition) {
-                    ViewGroupUtils.suppressLayout(viewGroup4, false);
+                    ViewGroupUtils.suppressLayout(viewGroup, false);
                     this.mCanceled = true;
                 }
 
                 @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
                 public void onTransitionEnd(@NonNull Transition transition) {
                     if (!this.mCanceled) {
-                        ViewGroupUtils.suppressLayout(viewGroup4, false);
+                        ViewGroupUtils.suppressLayout(viewGroup, false);
                     }
                     transition.removeListener(this);
                 }
 
                 @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
                 public void onTransitionPause(@NonNull Transition transition) {
-                    ViewGroupUtils.suppressLayout(viewGroup4, false);
+                    ViewGroupUtils.suppressLayout(viewGroup, false);
                 }
 
                 @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
                 public void onTransitionResume(@NonNull Transition transition) {
-                    ViewGroupUtils.suppressLayout(viewGroup4, true);
+                    ViewGroupUtils.suppressLayout(viewGroup, true);
                 }
             });
         }
-        return mergeAnimators;
+        return animatorMergeAnimators;
     }
 
     public boolean getResizeClip() {
@@ -393,14 +655,15 @@ public class ChangeBounds extends Transition {
         this.mResizeClip = z;
     }
 
+    @SuppressLint({"RestrictedApi"})
     public ChangeBounds(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.mTempLocation = new int[2];
         this.mResizeClip = false;
         this.mReparent = false;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.CHANGE_BOUNDS);
-        boolean namedBoolean = TypedArrayUtils.getNamedBoolean(obtainStyledAttributes, (XmlResourceParser) attributeSet, "resizeClip", 0, false);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.CHANGE_BOUNDS);
+        boolean namedBoolean = TypedArrayUtils.getNamedBoolean(typedArrayObtainStyledAttributes, (XmlResourceParser) attributeSet, "resizeClip", 0, false);
+        typedArrayObtainStyledAttributes.recycle();
         setResizeClip(namedBoolean);
     }
 }

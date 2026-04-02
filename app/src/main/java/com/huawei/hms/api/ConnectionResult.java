@@ -8,13 +8,13 @@ import android.os.Parcelable;
 import anet.channel.util.HttpConstant;
 import com.huawei.hms.common.internal.Objects;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ConnectionResult implements Parcelable {
     public static final int API_UNAVAILABLE = 1000;
     public static final int BINDFAIL_RESOLUTION_BACKGROUND = 7;
     public static final int BINDFAIL_RESOLUTION_REQUIRED = 6;
     public static final int CANCELED = 13;
-    public static final Parcelable.Creator<ConnectionResult> CREATOR = new C2301a();
+    public static final Parcelable.Creator<ConnectionResult> CREATOR = new a();
     public static final int DEVELOPER_ERROR = 10;
     public static final int DRIVE_EXTERNAL_STORAGE_REQUIRED = 9002;
     public static final int INTERNAL_ERROR = 8;
@@ -40,25 +40,24 @@ public final class ConnectionResult implements Parcelable {
     private String connectionErrorMessage;
     private PendingIntent pendingIntent;
 
-    /* renamed from: com.huawei.hms.api.ConnectionResult$a */
-    class C2301a implements Parcelable.Creator<ConnectionResult> {
-        C2301a() {
+    class a implements Parcelable.Creator<ConnectionResult> {
+        a() {
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a */
         public ConnectionResult createFromParcel(Parcel parcel) {
-            return new ConnectionResult(parcel, (C2301a) null);
+            return new ConnectionResult(parcel, (a) null);
         }
 
         @Override // android.os.Parcelable.Creator
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a */
         public ConnectionResult[] newArray(int i2) {
             return new ConnectionResult[i2];
         }
     }
 
-    /* synthetic */ ConnectionResult(Parcel parcel, C2301a c2301a) {
+    /* synthetic */ ConnectionResult(Parcel parcel, a aVar) {
         this(parcel);
     }
 

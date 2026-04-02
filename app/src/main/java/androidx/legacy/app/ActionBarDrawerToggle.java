@@ -25,8 +25,8 @@ import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import java.lang.reflect.Method;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
     private static final int ID_HOME = 16908332;
     private static final String TAG = "ActionBarDrawerToggle";
@@ -71,11 +71,11 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
                 this.mSetHomeAsUpIndicator = ActionBar.class.getDeclaredMethod("setHomeAsUpIndicator", Drawable.class);
                 this.mSetHomeActionContentDescription = ActionBar.class.getDeclaredMethod("setHomeActionContentDescription", Integer.TYPE);
             } catch (NoSuchMethodException unused) {
-                View findViewById = activity.findViewById(16908332);
-                if (findViewById == null) {
+                View viewFindViewById = activity.findViewById(16908332);
+                if (viewFindViewById == null) {
                     return;
                 }
-                ViewGroup viewGroup = (ViewGroup) findViewById.getParent();
+                ViewGroup viewGroup = (ViewGroup) viewFindViewById.getParent();
                 if (viewGroup.getChildCount() != 2) {
                     return;
                 }
@@ -106,10 +106,10 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
             canvas.save();
             boolean z = ViewCompat.getLayoutDirection(ActionBarDrawerToggle.this.mActivity.getWindow().getDecorView()) == 1;
             int i2 = z ? -1 : 1;
-            float width = this.mTmpRect.width();
-            canvas.translate((-this.mOffset) * width * this.mPosition * i2, 0.0f);
+            float fWidth = this.mTmpRect.width();
+            canvas.translate((-this.mOffset) * fWidth * this.mPosition * i2, 0.0f);
             if (z && !this.mHasMirroring) {
-                canvas.translate(width, 0.0f);
+                canvas.translate(fWidth, 0.0f);
                 canvas.scale(-1.0f, 1.0f);
             }
             super.draw(canvas);
@@ -145,15 +145,15 @@ public class ActionBarDrawerToggle implements DrawerLayout.DrawerListener {
             return delegate.getThemeUpIndicator();
         }
         if (Build.VERSION.SDK_INT < 18) {
-            TypedArray obtainStyledAttributes = this.mActivity.obtainStyledAttributes(THEME_ATTRS);
-            Drawable drawable = obtainStyledAttributes.getDrawable(0);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = this.mActivity.obtainStyledAttributes(THEME_ATTRS);
+            Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(0);
+            typedArrayObtainStyledAttributes.recycle();
             return drawable;
         }
         ActionBar actionBar = this.mActivity.getActionBar();
-        TypedArray obtainStyledAttributes2 = (actionBar != null ? actionBar.getThemedContext() : this.mActivity).obtainStyledAttributes(null, THEME_ATTRS, R.attr.actionBarStyle, 0);
-        Drawable drawable2 = obtainStyledAttributes2.getDrawable(0);
-        obtainStyledAttributes2.recycle();
+        TypedArray typedArrayObtainStyledAttributes2 = (actionBar != null ? actionBar.getThemedContext() : this.mActivity).obtainStyledAttributes(null, THEME_ATTRS, R.attr.actionBarStyle, 0);
+        Drawable drawable2 = typedArrayObtainStyledAttributes2.getDrawable(0);
+        typedArrayObtainStyledAttributes2.recycle();
         return drawable2;
     }
 

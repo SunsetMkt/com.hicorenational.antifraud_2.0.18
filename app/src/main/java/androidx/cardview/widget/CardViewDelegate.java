@@ -3,7 +3,7 @@ package androidx.cardview.widget;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 interface CardViewDelegate {
     Drawable getCardBackground();
 

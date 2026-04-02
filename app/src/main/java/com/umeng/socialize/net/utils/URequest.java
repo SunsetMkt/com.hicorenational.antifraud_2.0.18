@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class URequest {
     protected static String APPLICATION = "application/x-www-form-urlencoded";
     protected static String GET = "GET";
@@ -110,14 +110,14 @@ public abstract class URequest {
         if (!str.endsWith("?")) {
             str = str + "?";
         }
-        String buildGetParams = buildGetParams(map);
-        SLog.debug(UmengText.NET.assertURL(str, buildGetParams));
+        String strBuildGetParams = buildGetParams(map);
+        SLog.debug(UmengText.NET.assertURL(str, strBuildGetParams));
         try {
-            buildGetParams = getEcryptString(buildGetParams);
+            strBuildGetParams = getEcryptString(strBuildGetParams);
         } catch (Exception e2) {
             SLog.error(UmengText.NET.PARSEERROR, e2);
         }
-        return str + buildGetParams;
+        return str + strBuildGetParams;
     }
 
     public abstract Map<String, Object> buildParams();

@@ -13,25 +13,24 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable {
 
     @Nullable
     private AsyncFunction<? super I, ? extends O> mFunction;
 
     @Nullable
-    private InterfaceFutureC0952a<? extends I> mInputFuture;
+    private d.b.b.a.a.a<? extends I> mInputFuture;
     private final BlockingQueue<Boolean> mMayInterruptIfRunningChannel = new LinkedBlockingQueue(1);
     private final CountDownLatch mOutputCreated = new CountDownLatch(1);
 
     @Nullable
-    volatile InterfaceFutureC0952a<? extends O> mOutputFuture;
+    volatile d.b.b.a.a.a<? extends O> mOutputFuture;
 
-    ChainingListenableFuture(@NonNull AsyncFunction<? super I, ? extends O> asyncFunction, @NonNull InterfaceFutureC0952a<? extends I> interfaceFutureC0952a) {
+    ChainingListenableFuture(@NonNull AsyncFunction<? super I, ? extends O> asyncFunction, @NonNull d.b.b.a.a.a<? extends I> aVar) {
         this.mFunction = (AsyncFunction) Preconditions.checkNotNull(asyncFunction);
-        this.mInputFuture = (InterfaceFutureC0952a) Preconditions.checkNotNull(interfaceFutureC0952a);
+        this.mInputFuture = (d.b.b.a.a.a) Preconditions.checkNotNull(aVar);
     }
 
     private <E> void putUninterruptibly(@NonNull BlockingQueue<E> blockingQueue, @NonNull E e2) {
@@ -55,11 +54,11 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
     }
 
     private <E> E takeUninterruptibly(@NonNull BlockingQueue<E> blockingQueue) {
-        E take;
+        E eTake;
         boolean z = false;
         while (true) {
             try {
-                take = blockingQueue.take();
+                eTake = blockingQueue.take();
                 break;
             } catch (InterruptedException unused) {
                 z = true;
@@ -73,7 +72,7 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
         if (z) {
             Thread.currentThread().interrupt();
         }
-        return take;
+        return eTake;
     }
 
     @Override // androidx.camera.core.impl.utils.futures.FutureChain, java.util.concurrent.Future
@@ -89,16 +88,16 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
 
     @Override // androidx.camera.core.impl.utils.futures.FutureChain, java.util.concurrent.Future
     @Nullable
-    public O get() throws InterruptedException, ExecutionException {
+    public O get() throws ExecutionException, InterruptedException {
         if (!isDone()) {
-            InterfaceFutureC0952a<? extends I> interfaceFutureC0952a = this.mInputFuture;
-            if (interfaceFutureC0952a != null) {
-                interfaceFutureC0952a.get();
+            d.b.b.a.a.a<? extends I> aVar = this.mInputFuture;
+            if (aVar != null) {
+                aVar.get();
             }
             this.mOutputCreated.await();
-            InterfaceFutureC0952a<? extends O> interfaceFutureC0952a2 = this.mOutputFuture;
-            if (interfaceFutureC0952a2 != null) {
-                interfaceFutureC0952a2.get();
+            d.b.b.a.a.a<? extends O> aVar2 = this.mOutputFuture;
+            if (aVar2 != null) {
+                aVar2.get();
             }
         }
         return (O) super.get();
@@ -106,7 +105,7 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
 
     @Override // java.lang.Runnable
     public void run() {
-        final InterfaceFutureC0952a<? extends O> apply;
+        final d.b.b.a.a.a<? extends O> aVarApply;
         try {
         } catch (Exception e2) {
             setException(e2);
@@ -114,8 +113,8 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
         try {
             try {
                 try {
-                    apply = this.mFunction.apply(Futures.getUninterruptibly(this.mInputFuture));
-                    this.mOutputFuture = apply;
+                    aVarApply = this.mFunction.apply(Futures.getUninterruptibly(this.mInputFuture));
+                    this.mOutputFuture = aVarApply;
                 } catch (Error e3) {
                     setException(e3);
                 } catch (UndeclaredThrowableException e4) {
@@ -127,12 +126,12 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
                 setException(e5.getCause());
             }
             if (!isCancelled()) {
-                apply.addListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.ChainingListenableFuture.1
+                aVarApply.addListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.ChainingListenableFuture.1
                     @Override // java.lang.Runnable
                     public void run() {
                         try {
                             try {
-                                ChainingListenableFuture.this.set(Futures.getUninterruptibly(apply));
+                                ChainingListenableFuture.this.set(Futures.getUninterruptibly(aVarApply));
                             } catch (CancellationException unused2) {
                                 ChainingListenableFuture.this.cancel(false);
                                 ChainingListenableFuture.this.mOutputFuture = null;
@@ -152,7 +151,7 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
                 this.mOutputCreated.countDown();
                 return;
             }
-            apply.cancel(((Boolean) takeUninterruptibly(this.mMayInterruptIfRunningChannel)).booleanValue());
+            aVarApply.cancel(((Boolean) takeUninterruptibly(this.mMayInterruptIfRunningChannel)).booleanValue());
             this.mOutputFuture = null;
             this.mFunction = null;
             this.mInputFuture = null;
@@ -173,25 +172,25 @@ class ChainingListenableFuture<I, O> extends FutureChain<O> implements Runnable 
 
     @Override // androidx.camera.core.impl.utils.futures.FutureChain, java.util.concurrent.Future
     @Nullable
-    public O get(long j2, @NonNull TimeUnit timeUnit) throws TimeoutException, ExecutionException, InterruptedException {
+    public O get(long j2, @NonNull TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         if (!isDone()) {
             TimeUnit timeUnit2 = TimeUnit.NANOSECONDS;
             if (timeUnit != timeUnit2) {
                 j2 = timeUnit2.convert(j2, timeUnit);
                 timeUnit = TimeUnit.NANOSECONDS;
             }
-            InterfaceFutureC0952a<? extends I> interfaceFutureC0952a = this.mInputFuture;
-            if (interfaceFutureC0952a != null) {
-                long nanoTime = System.nanoTime();
-                interfaceFutureC0952a.get(j2, timeUnit);
-                j2 -= Math.max(0L, System.nanoTime() - nanoTime);
+            d.b.b.a.a.a<? extends I> aVar = this.mInputFuture;
+            if (aVar != null) {
+                long jNanoTime = System.nanoTime();
+                aVar.get(j2, timeUnit);
+                j2 -= Math.max(0L, System.nanoTime() - jNanoTime);
             }
-            long nanoTime2 = System.nanoTime();
+            long jNanoTime2 = System.nanoTime();
             if (this.mOutputCreated.await(j2, timeUnit)) {
-                j2 -= Math.max(0L, System.nanoTime() - nanoTime2);
-                InterfaceFutureC0952a<? extends O> interfaceFutureC0952a2 = this.mOutputFuture;
-                if (interfaceFutureC0952a2 != null) {
-                    interfaceFutureC0952a2.get(j2, timeUnit);
+                j2 -= Math.max(0L, System.nanoTime() - jNanoTime2);
+                d.b.b.a.a.a<? extends O> aVar2 = this.mOutputFuture;
+                if (aVar2 != null) {
+                    aVar2.get(j2, timeUnit);
                 }
             } else {
                 throw new TimeoutException();

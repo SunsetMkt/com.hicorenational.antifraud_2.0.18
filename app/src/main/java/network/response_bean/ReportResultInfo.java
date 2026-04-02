@@ -3,7 +3,7 @@ package network.response_bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportResultInfo extends BaseBean {
     private int code;
     private List<DataBean> data;
@@ -11,9 +11,7 @@ public class ReportResultInfo extends BaseBean {
 
     public static class DataBean {
         private String create_time;
-
-        /* renamed from: id */
-        private int f21459id;
+        private int id;
         private String imei;
         private String phone;
         private Object report_content;
@@ -31,7 +29,7 @@ public class ReportResultInfo extends BaseBean {
         }
 
         public int getId() {
-            return this.f21459id;
+            return this.id;
         }
 
         public String getImei() {
@@ -83,7 +81,7 @@ public class ReportResultInfo extends BaseBean {
         }
 
         public void setId(int i2) {
-            this.f21459id = i2;
+            this.id = i2;
         }
 
         public void setImei(String str) {

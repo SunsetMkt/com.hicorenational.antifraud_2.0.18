@@ -3,7 +3,7 @@ package com.huawei.agconnect;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class JsonProcessingFactory {
     private static final Map<String, JsonProcessor> PROCESSOR_MAP = new HashMap();
 

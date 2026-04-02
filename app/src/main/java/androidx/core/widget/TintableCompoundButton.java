@@ -4,7 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface TintableCompoundButton {
     @Nullable
     ColorStateList getSupportButtonTintList();

@@ -2,7 +2,7 @@ package androidx.transition;
 
 import android.view.View;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class VisibilityPropagation extends TransitionPropagation {
     private static final String PROPNAME_VISIBILITY = "android:visibilityPropagation:visibility";
     private static final String PROPNAME_VIEW_CENTER = "android:visibilityPropagation:center";
@@ -19,11 +19,11 @@ public abstract class VisibilityPropagation extends TransitionPropagation {
     @Override // androidx.transition.TransitionPropagation
     public void captureValues(TransitionValues transitionValues) {
         View view = transitionValues.view;
-        Integer num = (Integer) transitionValues.values.get("android:visibility:visibility");
-        if (num == null) {
-            num = Integer.valueOf(view.getVisibility());
+        Integer numValueOf = (Integer) transitionValues.values.get("android:visibility:visibility");
+        if (numValueOf == null) {
+            numValueOf = Integer.valueOf(view.getVisibility());
         }
-        transitionValues.values.put(PROPNAME_VISIBILITY, num);
+        transitionValues.values.put(PROPNAME_VISIBILITY, numValueOf);
         int[] iArr = new int[2];
         view.getLocationOnScreen(iArr);
         iArr[0] = iArr[0] + Math.round(view.getTranslationX());

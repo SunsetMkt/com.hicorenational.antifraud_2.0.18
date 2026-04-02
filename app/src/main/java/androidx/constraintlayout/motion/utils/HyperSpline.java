@@ -2,7 +2,7 @@ package androidx.constraintlayout.motion.utils;
 
 import java.lang.reflect.Array;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HyperSpline {
     double[][] mCtl;
     Cubic[][] mCurve;
@@ -14,32 +14,24 @@ public class HyperSpline {
     public static class Cubic {
         public static final double HALF = 0.5d;
         public static final double THIRD = 0.3333333333333333d;
-
-        /* renamed from: mA */
-        double f580mA;
-
-        /* renamed from: mB */
-        double f581mB;
-
-        /* renamed from: mC */
-        double f582mC;
-
-        /* renamed from: mD */
-        double f583mD;
+        double mA;
+        double mB;
+        double mC;
+        double mD;
 
         public Cubic(double d2, double d3, double d4, double d5) {
-            this.f580mA = d2;
-            this.f581mB = d3;
-            this.f582mC = d4;
-            this.f583mD = d5;
+            this.mA = d2;
+            this.mB = d3;
+            this.mC = d4;
+            this.mD = d5;
         }
 
         public double eval(double d2) {
-            return (((((this.f583mD * d2) + this.f582mC) * d2) + this.f581mB) * d2) + this.f580mA;
+            return (((((this.mD * d2) + this.mC) * d2) + this.mB) * d2) + this.mA;
         }
 
         public double vel(double d2) {
-            return (((this.f583mD * 0.3333333333333333d * d2) + (this.f582mC * 0.5d)) * d2) + this.f581mB;
+            return (((this.mD * 0.3333333333333333d * d2) + (this.mC * 0.5d)) * d2) + this.mB;
         }
     }
 
@@ -88,35 +80,35 @@ public class HyperSpline {
         double[] dArr = new double[cubicArr.length];
         double d2 = 0.0d;
         double d3 = 0.0d;
-        double d4 = 0.0d;
+        double dSqrt = 0.0d;
         while (true) {
             i2 = 0;
             if (d3 >= 1.0d) {
                 break;
             }
-            double d5 = 0.0d;
+            double d4 = 0.0d;
             while (i2 < cubicArr.length) {
-                double d6 = dArr[i2];
-                double eval = cubicArr[i2].eval(d3);
-                dArr[i2] = eval;
-                double d7 = d6 - eval;
-                d5 += d7 * d7;
+                double d5 = dArr[i2];
+                double dEval = cubicArr[i2].eval(d3);
+                dArr[i2] = dEval;
+                double d6 = d5 - dEval;
+                d4 += d6 * d6;
                 i2++;
             }
             if (d3 > 0.0d) {
-                d4 += Math.sqrt(d5);
+                dSqrt += Math.sqrt(d4);
             }
             d3 += 0.1d;
         }
         while (i2 < cubicArr.length) {
-            double d8 = dArr[i2];
-            double eval2 = cubicArr[i2].eval(1.0d);
-            dArr[i2] = eval2;
-            double d9 = d8 - eval2;
-            d2 += d9 * d9;
+            double d7 = dArr[i2];
+            double dEval2 = cubicArr[i2].eval(1.0d);
+            dArr[i2] = dEval2;
+            double d8 = d7 - dEval2;
+            d2 += d8 * d8;
             i2++;
         }
-        return d4 + Math.sqrt(d2);
+        return dSqrt + Math.sqrt(d2);
     }
 
     public void getPos(double d2, double[] dArr) {
@@ -182,9 +174,9 @@ public class HyperSpline {
             }
             double d2 = this.mTotalLength;
             double[] dArr3 = this.mCurveLength;
-            double approxLength = approxLength(cubicArr2);
-            dArr3[i6] = approxLength;
-            this.mTotalLength = d2 + approxLength;
+            double dApproxLength = approxLength(cubicArr2);
+            dArr3[i6] = dApproxLength;
+            this.mTotalLength = d2 + dApproxLength;
         }
     }
 

@@ -2,14 +2,12 @@ package com.huawei.secure.android.common.util;
 
 import android.text.TextUtils;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SafeStringBuilder {
+    private static final String a = "SafeStringBuilder";
 
-    /* renamed from: a */
-    private static final String f8280a = "SafeStringBuilder";
-
-    /* renamed from: b */
-    private static final String f8281b = "";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5241b = "";
 
     public static String substring(StringBuilder sb, int i2) {
         if (!TextUtils.isEmpty(sb) && sb.length() >= i2 && i2 >= 0) {

@@ -2,14 +2,12 @@ package bean.module;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HomeToolBean extends BaseBean {
     public static final int NEED_VERIFIED = 1;
     private String content;
     private boolean hasRedDot;
-
-    /* renamed from: id */
-    private String f1639id;
+    private String id;
     private String image;
     private int isNeedVerified;
     private int localIcon;
@@ -20,7 +18,7 @@ public class HomeToolBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1639id;
+        return this.id;
     }
 
     public String getImage() {
@@ -52,7 +50,7 @@ public class HomeToolBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1639id = str;
+        this.id = str;
     }
 
     public void setImage(String str) {

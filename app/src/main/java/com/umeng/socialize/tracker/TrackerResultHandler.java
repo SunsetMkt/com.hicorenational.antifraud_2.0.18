@@ -1,6 +1,6 @@
 package com.umeng.socialize.tracker;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface TrackerResultHandler {
     void codeGenerateFailed(Throwable th);
 

@@ -1,6 +1,6 @@
 package com.luck.picture.lib;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class BuildConfig {
 
     @Deprecated

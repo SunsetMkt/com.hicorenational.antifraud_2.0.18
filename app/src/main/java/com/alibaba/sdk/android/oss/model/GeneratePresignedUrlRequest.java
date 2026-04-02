@@ -4,7 +4,7 @@ import com.alibaba.sdk.android.oss.common.HttpMethod;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GeneratePresignedUrlRequest {
     private String bucketName;
     private String contentMD5;

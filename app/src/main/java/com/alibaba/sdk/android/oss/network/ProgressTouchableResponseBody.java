@@ -11,7 +11,7 @@ import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ProgressTouchableResponseBody<T extends OSSRequest> extends ResponseBody {
     private BufferedSource mBufferedSource;
     private OSSProgressCallback mProgressListener;
@@ -48,12 +48,12 @@ public class ProgressTouchableResponseBody<T extends OSSRequest> extends Respons
 
             @Override // okio.ForwardingSource, okio.Source
             public long read(Buffer buffer, long j2) throws IOException {
-                long read = super.read(buffer, j2);
-                this.totalBytesRead += read != -1 ? read : 0L;
-                if (ProgressTouchableResponseBody.this.mProgressListener != null && read != -1 && this.totalBytesRead != 0) {
+                long j3 = super.read(buffer, j2);
+                this.totalBytesRead += j3 != -1 ? j3 : 0L;
+                if (ProgressTouchableResponseBody.this.mProgressListener != null && j3 != -1 && this.totalBytesRead != 0) {
                     ProgressTouchableResponseBody.this.mProgressListener.onProgress(ProgressTouchableResponseBody.this.request, this.totalBytesRead, ProgressTouchableResponseBody.this.mResponseBody.contentLength());
                 }
-                return read;
+                return j3;
             }
         };
     }

@@ -3,7 +3,7 @@ package bean;
 import network.BaseBean;
 import network.HistoryDetailInfo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DetailBean extends BaseBean {
     public static final int APP = 3;
     public static final int IMG = 4;
@@ -24,9 +24,7 @@ public class DetailBean extends BaseBean {
     private String fileName;
     private String number;
     private String occurTime;
-
-    /* renamed from: os */
-    public int f1596os;
+    public int os;
     private int type;
     private String version;
 
@@ -71,7 +69,7 @@ public class DetailBean extends BaseBean {
     }
 
     public int getOs() {
-        return this.f1596os;
+        return this.os;
     }
 
     public int getType() {
@@ -123,7 +121,7 @@ public class DetailBean extends BaseBean {
     }
 
     public void setOs(int i2) {
-        this.f1596os = i2;
+        this.os = i2;
     }
 
     public void setType(int i2) {

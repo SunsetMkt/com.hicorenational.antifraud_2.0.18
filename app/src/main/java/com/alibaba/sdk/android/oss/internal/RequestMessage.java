@@ -3,6 +3,7 @@ package com.alibaba.sdk.android.oss.internal;
 import android.net.Uri;
 import android.text.TextUtils;
 import anet.channel.util.HttpConstant;
+import b.a.u.a;
 import com.alibaba.sdk.android.oss.common.HttpMethod;
 import com.alibaba.sdk.android.oss.common.OSSLog;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
@@ -21,9 +22,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import p000a.p001a.p014u.C0052a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RequestMessage extends HttpMessage {
     private String bucketName;
     private boolean checkCRC64;
@@ -33,8 +33,8 @@ public class RequestMessage extends HttpMessage {
     private HttpMethod method;
     private String objectKey;
 
-    /* renamed from: service, reason: collision with root package name */
-    private URI f25891service;
+    /* JADX INFO: renamed from: service */
+    private URI f2622service;
     private byte[] uploadData;
     private String uploadFilePath;
     private Uri uploadUri;
@@ -50,6 +50,10 @@ public class RequestMessage extends HttpMessage {
         super.addHeader(str, str2);
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:94:0x012c  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public String buildCanonicalURL() throws Exception {
         boolean z = false;
         OSSUtils.assertTrue(this.endpoint != null, "Endpoint haven't been set!");
@@ -57,88 +61,88 @@ public class RequestMessage extends HttpMessage {
         String host = this.endpoint.getHost();
         String path = this.endpoint.getPath();
         int port = this.endpoint.getPort();
-        String str = null;
-        String valueOf = port != -1 ? String.valueOf(port) : null;
+        String ipByHostAsync = null;
+        String strValueOf = port != -1 ? String.valueOf(port) : null;
         if (TextUtils.isEmpty(host)) {
             OSSLog.logDebug("endpoint url : " + this.endpoint.toString());
         }
         OSSLog.logDebug(" scheme : " + scheme);
         OSSLog.logDebug(" originHost : " + host);
-        OSSLog.logDebug(" port : " + valueOf);
-        String str2 = scheme + HttpConstant.SCHEME_SPLIT + host;
-        if (!TextUtils.isEmpty(valueOf)) {
-            str2 = str2 + Constants.COLON_SEPARATOR + valueOf;
+        OSSLog.logDebug(" port : " + strValueOf);
+        String str = scheme + HttpConstant.SCHEME_SPLIT + host;
+        if (!TextUtils.isEmpty(strValueOf)) {
+            str = str + Constants.COLON_SEPARATOR + strValueOf;
         }
         if (!TextUtils.isEmpty(this.bucketName)) {
             if (OSSUtils.isOssOriginHost(host)) {
-                String str3 = this.bucketName + "." + host;
+                String str2 = this.bucketName + "." + host;
                 if (isHttpDnsEnable()) {
-                    str = HttpdnsMini.getInstance().getIpByHostAsync(str3);
+                    ipByHostAsync = HttpdnsMini.getInstance().getIpByHostAsync(str2);
                 } else {
                     OSSLog.logDebug("[buildCannonicalURL], disable httpdns");
                 }
-                addHeader("Host", str3);
-                str2 = TextUtils.isEmpty(str) ? scheme + HttpConstant.SCHEME_SPLIT + str3 : scheme + HttpConstant.SCHEME_SPLIT + str;
+                addHeader("Host", str2);
+                str = TextUtils.isEmpty(ipByHostAsync) ? scheme + HttpConstant.SCHEME_SPLIT + str2 : scheme + HttpConstant.SCHEME_SPLIT + ipByHostAsync;
             } else if (this.isInCustomCnameExcludeList) {
-                if (!this.pathStyleAccessEnable) {
-                    str2 = scheme + HttpConstant.SCHEME_SPLIT + this.bucketName + "." + host;
+                if (this.pathStyleAccessEnable) {
+                    z = true;
+                } else {
+                    str = scheme + HttpConstant.SCHEME_SPLIT + this.bucketName + "." + host;
                 }
-                z = true;
             } else if (OSSUtils.isValidateIP(host)) {
                 if (!OSSUtils.isEmptyString(this.ipWithHeader)) {
                     addHeader("Host", getIpWithHeader());
                 }
-                z = true;
             }
         }
         if (this.customPathPrefixEnable && path != null) {
-            str2 = str2 + path;
+            str = str + path;
         }
         if (z) {
-            str2 = str2 + "/" + this.bucketName;
+            str = str + "/" + this.bucketName;
         }
         if (!TextUtils.isEmpty(this.objectKey)) {
-            str2 = str2 + "/" + HttpUtil.urlEncode(this.objectKey, "utf-8");
+            str = str + "/" + HttpUtil.urlEncode(this.objectKey, "utf-8");
         }
-        String paramToQueryString = OSSUtils.paramToQueryString(this.parameters, "utf-8");
+        String strParamToQueryString = OSSUtils.paramToQueryString(this.parameters, "utf-8");
         StringBuilder sb = new StringBuilder();
         sb.append("request---------------------\n");
-        sb.append("request url=" + str2 + "\n");
-        sb.append("request params=" + paramToQueryString + "\n");
-        for (String str4 : getHeaders().keySet()) {
-            sb.append("requestHeader [" + str4 + "]: ");
+        sb.append("request url=" + str + "\n");
+        sb.append("request params=" + strParamToQueryString + "\n");
+        for (String str3 : getHeaders().keySet()) {
+            sb.append("requestHeader [" + str3 + "]: ");
             StringBuilder sb2 = new StringBuilder();
-            sb2.append((String) getHeaders().get(str4));
+            sb2.append((String) getHeaders().get(str3));
             sb2.append("\n");
             sb.append(sb2.toString());
         }
         OSSLog.logDebug(sb.toString());
-        if (OSSUtils.isEmptyString(paramToQueryString)) {
-            return str2;
+        if (OSSUtils.isEmptyString(strParamToQueryString)) {
+            return str;
         }
-        return str2 + "?" + paramToQueryString;
+        return str + "?" + strParamToQueryString;
     }
 
     public String buildOSSServiceURL() {
-        OSSUtils.assertTrue(this.f25891service != null, "Service haven't been set!");
-        String host = this.f25891service.getHost();
-        String scheme = this.f25891service.getScheme();
-        String str = null;
+        OSSUtils.assertTrue(this.f2622service != null, "Service haven't been set!");
+        String host = this.f2622service.getHost();
+        String scheme = this.f2622service.getScheme();
+        String ipByHostAsync = null;
         if (isHttpDnsEnable() && scheme.equalsIgnoreCase(HttpConstant.HTTP)) {
-            str = HttpdnsMini.getInstance().getIpByHostAsync(host);
+            ipByHostAsync = HttpdnsMini.getInstance().getIpByHostAsync(host);
         } else {
             OSSLog.logDebug("[buildOSSServiceURL], disable httpdns or http is not need httpdns");
         }
-        if (str == null) {
-            str = host;
+        if (ipByHostAsync == null) {
+            ipByHostAsync = host;
         }
         getHeaders().put("Host", host);
-        String str2 = scheme + HttpConstant.SCHEME_SPLIT + str;
-        String paramToQueryString = OSSUtils.paramToQueryString(this.parameters, "utf-8");
-        if (OSSUtils.isEmptyString(paramToQueryString)) {
-            return str2;
+        String str = scheme + HttpConstant.SCHEME_SPLIT + ipByHostAsync;
+        String strParamToQueryString = OSSUtils.paramToQueryString(this.parameters, "utf-8");
+        if (OSSUtils.isEmptyString(strParamToQueryString)) {
+            return str;
         }
-        return str2 + "?" + paramToQueryString;
+        return str + "?" + strParamToQueryString;
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.HttpMessage
@@ -228,7 +232,7 @@ public class RequestMessage extends HttpMessage {
     }
 
     public URI getService() {
-        return this.f25891service;
+        return this.f2622service;
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.HttpMessage
@@ -275,39 +279,37 @@ public class RequestMessage extends HttpMessage {
     public void putBucketLifecycleRequestBodyMarshall(ArrayList<BucketLifecycleRule> arrayList) throws UnsupportedEncodingException {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("<LifecycleConfiguration>");
-        Iterator<BucketLifecycleRule> it = arrayList.iterator();
-        while (it.hasNext()) {
-            BucketLifecycleRule next = it.next();
+        for (BucketLifecycleRule bucketLifecycleRule : arrayList) {
             stringBuffer.append("<Rule>");
-            if (next.getIdentifier() != null) {
-                stringBuffer.append("<ID>" + next.getIdentifier() + "</ID>");
+            if (bucketLifecycleRule.getIdentifier() != null) {
+                stringBuffer.append("<ID>" + bucketLifecycleRule.getIdentifier() + "</ID>");
             }
-            if (next.getPrefix() != null) {
-                stringBuffer.append("<Prefix>" + next.getPrefix() + "</Prefix>");
+            if (bucketLifecycleRule.getPrefix() != null) {
+                stringBuffer.append("<Prefix>" + bucketLifecycleRule.getPrefix() + "</Prefix>");
             }
             StringBuilder sb = new StringBuilder();
             sb.append("<Status>");
-            sb.append(next.getStatus() ? "Enabled" : "Disabled");
+            sb.append(bucketLifecycleRule.getStatus() ? "Enabled" : "Disabled");
             sb.append("</Status>");
             stringBuffer.append(sb.toString());
-            if (next.getDays() != null) {
-                stringBuffer.append("<Days>" + next.getDays() + "</Days>");
-            } else if (next.getExpireDate() != null) {
-                stringBuffer.append("<Date>" + next.getExpireDate() + "</Date>");
+            if (bucketLifecycleRule.getDays() != null) {
+                stringBuffer.append("<Days>" + bucketLifecycleRule.getDays() + "</Days>");
+            } else if (bucketLifecycleRule.getExpireDate() != null) {
+                stringBuffer.append("<Date>" + bucketLifecycleRule.getExpireDate() + "</Date>");
             }
-            if (next.getMultipartDays() != null) {
-                stringBuffer.append("<AbortMultipartUpload><Days>" + next.getMultipartDays() + "</Days></AbortMultipartUpload>");
-            } else if (next.getMultipartExpireDate() != null) {
-                stringBuffer.append("<AbortMultipartUpload><Date>" + next.getMultipartDays() + "</Date></AbortMultipartUpload>");
+            if (bucketLifecycleRule.getMultipartDays() != null) {
+                stringBuffer.append("<AbortMultipartUpload><Days>" + bucketLifecycleRule.getMultipartDays() + "</Days></AbortMultipartUpload>");
+            } else if (bucketLifecycleRule.getMultipartExpireDate() != null) {
+                stringBuffer.append("<AbortMultipartUpload><Date>" + bucketLifecycleRule.getMultipartDays() + "</Date></AbortMultipartUpload>");
             }
-            if (next.getIADays() != null) {
-                stringBuffer.append("<Transition><Days>" + next.getIADays() + "</Days><StorageClass>IA</StorageClass></Transition>");
-            } else if (next.getIAExpireDate() != null) {
-                stringBuffer.append("<Transition><Date>" + next.getIAExpireDate() + "</Date><StorageClass>IA</StorageClass></Transition>");
-            } else if (next.getArchiveDays() != null) {
-                stringBuffer.append("<Transition><Days>" + next.getArchiveDays() + "</Days><StorageClass>Archive</StorageClass></Transition>");
-            } else if (next.getArchiveExpireDate() != null) {
-                stringBuffer.append("<Transition><Date>" + next.getArchiveExpireDate() + "</Date><StorageClass>Archive</StorageClass></Transition>");
+            if (bucketLifecycleRule.getIADays() != null) {
+                stringBuffer.append("<Transition><Days>" + bucketLifecycleRule.getIADays() + "</Days><StorageClass>IA</StorageClass></Transition>");
+            } else if (bucketLifecycleRule.getIAExpireDate() != null) {
+                stringBuffer.append("<Transition><Date>" + bucketLifecycleRule.getIAExpireDate() + "</Date><StorageClass>IA</StorageClass></Transition>");
+            } else if (bucketLifecycleRule.getArchiveDays() != null) {
+                stringBuffer.append("<Transition><Days>" + bucketLifecycleRule.getArchiveDays() + "</Days><StorageClass>Archive</StorageClass></Transition>");
+            } else if (bucketLifecycleRule.getArchiveExpireDate() != null) {
+                stringBuffer.append("<Transition><Date>" + bucketLifecycleRule.getArchiveExpireDate() + "</Date><StorageClass>Archive</StorageClass></Transition>");
             }
             stringBuffer.append("</Rule>");
         }
@@ -340,7 +342,7 @@ public class RequestMessage extends HttpMessage {
         stringBuffer.append("<RefererConfiguration>");
         StringBuilder sb = new StringBuilder();
         sb.append("<AllowEmptyReferer>");
-        sb.append(z ? C0052a.f158j : C0052a.f159k);
+        sb.append(z ? a.f1908j : a.f1909k);
         sb.append("</AllowEmptyReferer>");
         stringBuffer.append(sb.toString());
         if (arrayList != null && arrayList.size() > 0) {
@@ -426,7 +428,7 @@ public class RequestMessage extends HttpMessage {
     }
 
     public void setService(URI uri) {
-        this.f25891service = uri;
+        this.f2622service = uri;
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.HttpMessage

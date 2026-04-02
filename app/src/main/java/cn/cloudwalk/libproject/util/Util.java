@@ -3,7 +3,8 @@ package cn.cloudwalk.libproject.util;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import com.umeng.analytics.pro.C3393cw;
+import com.google.android.material.timepicker.TimeModel;
+import com.umeng.analytics.pro.cw;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Util {
     public static final String AppName = "FaceRecog";
     public static boolean DEBUG = true;
@@ -27,14 +28,14 @@ public class Util {
             byte[] bytes = str.getBytes();
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(bytes);
-            byte[] digest = messageDigest.digest();
-            char[] cArr2 = new char[digest.length * 2];
+            byte[] bArrDigest = messageDigest.digest();
+            char[] cArr2 = new char[bArrDigest.length * 2];
             int i2 = 0;
-            for (byte b2 : digest) {
+            for (byte b2 : bArrDigest) {
                 int i3 = i2 + 1;
                 cArr2[i2] = cArr[(b2 >>> 4) & 15];
                 i2 = i3 + 1;
-                cArr2[i3] = cArr[b2 & C3393cw.f11873m];
+                cArr2[i3] = cArr[b2 & cw.f7205m];
             }
             return new String(cArr2);
         } catch (Exception e2) {
@@ -45,31 +46,31 @@ public class Util {
 
     public static String bytes2kb(long j2) {
         BigDecimal bigDecimal = new BigDecimal(j2);
-        float floatValue = bigDecimal.divide(new BigDecimal(1048576), 2, 0).floatValue();
-        if (floatValue > 1.0f) {
-            return floatValue + "MB";
+        float fFloatValue = bigDecimal.divide(new BigDecimal(1048576), 2, 0).floatValue();
+        if (fFloatValue > 1.0f) {
+            return fFloatValue + "MB";
         }
         return bigDecimal.divide(new BigDecimal(1024), 2, 0).floatValue() + "KB";
     }
 
     public static String getBeBetweenTime(long j2) {
-        long currentTimeMillis = (System.currentTimeMillis() - j2) / 1000;
-        int i2 = (int) (currentTimeMillis % 60);
-        long j3 = currentTimeMillis / 60;
-        return (j3 / 60) + Constants.COLON_SEPARATOR + String.format("%02d", Integer.valueOf((int) (j3 % 60))) + Constants.COLON_SEPARATOR + String.format("%02d", Integer.valueOf(i2));
+        long jCurrentTimeMillis = (System.currentTimeMillis() - j2) / 1000;
+        int i2 = (int) (jCurrentTimeMillis % 60);
+        long j3 = jCurrentTimeMillis / 60;
+        return (j3 / 60) + Constants.COLON_SEPARATOR + String.format(TimeModel.ZERO_LEADING_NUMBER_FORMAT, Integer.valueOf((int) (j3 % 60))) + Constants.COLON_SEPARATOR + String.format(TimeModel.ZERO_LEADING_NUMBER_FORMAT, Integer.valueOf(i2));
     }
 
     public static byte[] getBytesFromStream(InputStream inputStream) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] bArr = new byte[1024];
         while (true) {
-            int read = inputStream.read(bArr, 0, 1024);
-            if (read == -1) {
+            int i2 = inputStream.read(bArr, 0, 1024);
+            if (i2 == -1) {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 byteArrayOutputStream.close();
                 return byteArray;
             }
-            byteArrayOutputStream.write(bArr, 0, read);
+            byteArrayOutputStream.write(bArr, 0, i2);
             byteArrayOutputStream.flush();
         }
     }
@@ -118,14 +119,14 @@ public class Util {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] bArr = new byte[1024];
         while (true) {
-            int read = inputStream.read(bArr);
-            if (read == -1) {
+            int i2 = inputStream.read(bArr);
+            if (i2 == -1) {
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 byteArrayOutputStream.close();
                 inputStream.close();
                 return byteArray;
             }
-            byteArrayOutputStream.write(bArr, 0, read);
+            byteArrayOutputStream.write(bArr, 0, i2);
         }
     }
 }

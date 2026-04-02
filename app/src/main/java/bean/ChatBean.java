@@ -2,16 +2,14 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ChatBean extends BaseBean {
     public static final int CHAT_TYPE_ALIPAY = 3;
     public static final int CHAT_TYPE_OTHER = 0;
     public static final int CHAT_TYPE_QQ = 2;
     public static final int CHAT_TYPE_WCHAT = 1;
     private Long caseInfoID;
-
-    /* renamed from: id */
-    private Long f1586id;
+    private Long id;
     private String suspectAccount;
     private String suspectAccountBindEMail;
     private String suspectAccountBindMobile;
@@ -34,7 +32,7 @@ public class ChatBean extends BaseBean {
     }
 
     public Long getId() {
-        return this.f1586id;
+        return this.id;
     }
 
     public String getSuspectAccount() {
@@ -106,7 +104,7 @@ public class ChatBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.f1586id = l2;
+        this.id = l2;
     }
 
     public void setSuspectAccount(String str) {

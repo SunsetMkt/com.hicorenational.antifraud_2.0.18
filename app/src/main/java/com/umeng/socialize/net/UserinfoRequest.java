@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UserinfoRequest extends URequest {
     private static final String REQUEST_USERINFO = "https://api.weibo.com/2/users/show.json";
 
@@ -20,9 +20,9 @@ public class UserinfoRequest extends URequest {
 
     @Override // com.umeng.socialize.net.utils.URequest
     public Map<String, Object> buildParams() {
-        HashMap hashMap = new HashMap();
-        hashMap.putAll(this.mParams);
-        return hashMap;
+        HashMap map = new HashMap();
+        map.putAll(this.mParams);
+        return map;
     }
 
     @Override // com.umeng.socialize.net.utils.URequest

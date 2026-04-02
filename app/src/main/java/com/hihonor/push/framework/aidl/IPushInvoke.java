@@ -6,7 +6,7 @@ import android.os.IInterface;
 import android.os.Parcel;
 import com.hihonor.push.framework.aidl.IPushCallback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IPushInvoke extends IInterface {
 
     public static class Default implements IPushInvoke {
@@ -39,25 +39,25 @@ public interface IPushInvoke extends IInterface {
 
             @Override // com.hihonor.push.framework.aidl.IPushInvoke
             public void call(DataBuffer dataBuffer, IPushCallback iPushCallback) {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
+                Parcel parcelObtain2 = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(Stub.DESCRIPTOR);
+                    parcelObtain.writeInterfaceToken(Stub.DESCRIPTOR);
                     if (dataBuffer != null) {
-                        obtain.writeInt(1);
-                        dataBuffer.writeToParcel(obtain, 0);
+                        parcelObtain.writeInt(1);
+                        dataBuffer.writeToParcel(parcelObtain, 0);
                     } else {
-                        obtain.writeInt(0);
+                        parcelObtain.writeInt(0);
                     }
-                    obtain.writeStrongBinder(iPushCallback != null ? iPushCallback.asBinder() : null);
-                    if (this.mRemote.transact(1, obtain, obtain2, 0) || Stub.getDefaultImpl() == null) {
-                        obtain2.readException();
+                    parcelObtain.writeStrongBinder(iPushCallback != null ? iPushCallback.asBinder() : null);
+                    if (this.mRemote.transact(1, parcelObtain, parcelObtain2, 0) || Stub.getDefaultImpl() == null) {
+                        parcelObtain2.readException();
                     } else {
                         Stub.getDefaultImpl().call(dataBuffer, iPushCallback);
                     }
                 } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
+                    parcelObtain2.recycle();
+                    parcelObtain.recycle();
                 }
             }
 
@@ -74,8 +74,8 @@ public interface IPushInvoke extends IInterface {
             if (iBinder == null) {
                 return null;
             }
-            IInterface queryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IPushInvoke)) ? new Proxy(iBinder) : (IPushInvoke) queryLocalInterface;
+            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
+            return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof IPushInvoke)) ? new Proxy(iBinder) : (IPushInvoke) iInterfaceQueryLocalInterface;
         }
 
         public static IPushInvoke getDefaultImpl() {

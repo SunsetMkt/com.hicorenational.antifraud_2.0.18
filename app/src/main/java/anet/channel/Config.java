@@ -2,108 +2,103 @@ package anet.channel;
 
 import android.text.TextUtils;
 import anet.channel.entity.ENV;
-import anet.channel.security.C0807c;
 import anet.channel.security.ISecurity;
 import anet.channel.util.ALog;
 import anet.channel.util.StringUtils;
-import com.umeng.analytics.pro.C3336at;
+import com.umeng.analytics.pro.at;
 import java.util.HashMap;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public final class Config {
 
-    /* renamed from: b */
-    private String f661b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f1325b;
 
-    /* renamed from: c */
-    private String f662c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f1326c;
 
-    /* renamed from: d */
-    private ENV f663d = ENV.ONLINE;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private ENV f1327d = ENV.ONLINE;
 
-    /* renamed from: e */
-    private ISecurity f664e;
-
-    /* renamed from: a */
-    private static Map<String, Config> f660a = new HashMap();
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private ISecurity f1328e;
+    private static Map<String, Config> a = new HashMap();
     public static final Config DEFAULT_CONFIG = new Builder().setTag("[default]").setAppkey("[default]").setEnv(ENV.ONLINE).build();
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class Builder {
+        private String a;
 
-        /* renamed from: a */
-        private String f665a;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private String f1329b;
 
-        /* renamed from: b */
-        private String f666b;
+        /* JADX INFO: renamed from: c, reason: collision with root package name */
+        private ENV f1330c = ENV.ONLINE;
 
-        /* renamed from: c */
-        private ENV f667c = ENV.ONLINE;
+        /* JADX INFO: renamed from: d, reason: collision with root package name */
+        private String f1331d;
 
-        /* renamed from: d */
-        private String f668d;
-
-        /* renamed from: e */
-        private String f669e;
+        /* JADX INFO: renamed from: e, reason: collision with root package name */
+        private String f1332e;
 
         public Config build() {
-            if (TextUtils.isEmpty(this.f666b)) {
+            if (TextUtils.isEmpty(this.f1329b)) {
                 throw new RuntimeException("appkey can not be null or empty!");
             }
-            synchronized (Config.f660a) {
-                for (Config config : Config.f660a.values()) {
-                    if (config.f663d == this.f667c && config.f662c.equals(this.f666b)) {
-                        ALog.m718w("awcn.Config", "duplicated config exist!", null, "appkey", this.f666b, C3336at.f11487a, this.f667c);
-                        if (!TextUtils.isEmpty(this.f665a)) {
-                            Config.f660a.put(this.f665a, config);
+            synchronized (Config.a) {
+                for (Config config : Config.a.values()) {
+                    if (config.f1327d == this.f1330c && config.f1326c.equals(this.f1329b)) {
+                        ALog.w("awcn.Config", "duplicated config exist!", null, "appkey", this.f1329b, at.a, this.f1330c);
+                        if (!TextUtils.isEmpty(this.a)) {
+                            Config.a.put(this.a, config);
                         }
                         return config;
                     }
                 }
                 Config config2 = new Config();
-                config2.f662c = this.f666b;
-                config2.f663d = this.f667c;
-                if (TextUtils.isEmpty(this.f665a)) {
-                    config2.f661b = StringUtils.concatString(this.f666b, "$", this.f667c.toString());
+                config2.f1326c = this.f1329b;
+                config2.f1327d = this.f1330c;
+                if (TextUtils.isEmpty(this.a)) {
+                    config2.f1325b = StringUtils.concatString(this.f1329b, "$", this.f1330c.toString());
                 } else {
-                    config2.f661b = this.f665a;
+                    config2.f1325b = this.a;
                 }
-                if (TextUtils.isEmpty(this.f669e)) {
-                    config2.f664e = C0807c.m581a().createSecurity(this.f668d);
+                if (TextUtils.isEmpty(this.f1332e)) {
+                    config2.f1328e = anet.channel.security.c.a().createSecurity(this.f1331d);
                 } else {
-                    config2.f664e = C0807c.m581a().createNonSecurity(this.f669e);
+                    config2.f1328e = anet.channel.security.c.a().createNonSecurity(this.f1332e);
                 }
-                synchronized (Config.f660a) {
-                    Config.f660a.put(config2.f661b, config2);
+                synchronized (Config.a) {
+                    Config.a.put(config2.f1325b, config2);
                 }
                 return config2;
             }
         }
 
         public Builder setAppSecret(String str) {
-            this.f669e = str;
+            this.f1332e = str;
             return this;
         }
 
         public Builder setAppkey(String str) {
-            this.f666b = str;
+            this.f1329b = str;
             return this;
         }
 
         public Builder setAuthCode(String str) {
-            this.f668d = str;
+            this.f1331d = str;
             return this;
         }
 
         public Builder setEnv(ENV env) {
-            this.f667c = env;
+            this.f1330c = env;
             return this;
         }
 
         public Builder setTag(String str) {
-            this.f665a = str;
+            this.a = str;
             return this;
         }
     }
@@ -112,9 +107,9 @@ public final class Config {
     }
 
     public static Config getConfig(String str, ENV env) {
-        synchronized (f660a) {
-            for (Config config : f660a.values()) {
-                if (config.f663d == env && config.f662c.equals(str)) {
+        synchronized (a) {
+            for (Config config : a.values()) {
+                if (config.f1327d == env && config.f1326c.equals(str)) {
                     return config;
                 }
             }
@@ -124,29 +119,29 @@ public final class Config {
 
     public static Config getConfigByTag(String str) {
         Config config;
-        synchronized (f660a) {
-            config = f660a.get(str);
+        synchronized (a) {
+            config = a.get(str);
         }
         return config;
     }
 
     public String getAppkey() {
-        return this.f662c;
+        return this.f1326c;
     }
 
     public ENV getEnv() {
-        return this.f663d;
+        return this.f1327d;
     }
 
     public ISecurity getSecurity() {
-        return this.f664e;
+        return this.f1328e;
     }
 
     public String getTag() {
-        return this.f661b;
+        return this.f1325b;
     }
 
     public String toString() {
-        return this.f661b;
+        return this.f1325b;
     }
 }

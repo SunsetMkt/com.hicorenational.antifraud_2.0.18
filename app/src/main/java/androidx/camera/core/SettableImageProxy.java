@@ -2,7 +2,7 @@ package androidx.camera.core;
 
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class SettableImageProxy extends ForwardingImageProxy {
     private final ImageInfo mImageInfo;
 

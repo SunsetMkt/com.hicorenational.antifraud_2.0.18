@@ -9,11 +9,10 @@ import android.os.Bundle;
 import anet.channel.AwcnConfig;
 import anet.channel.GlobalAppRuntimeInfo;
 import anet.channel.thread.ThreadPoolExecutorFactory;
-import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class AppLifecycle {
     private static final String TAG = "awcn.AppLifeCycle";
     private static CopyOnWriteArraySet<AppLifecycleListener> listeners = new CopyOnWriteArraySet<>();
@@ -66,14 +65,14 @@ public class AppLifecycle {
 
         @Override // android.content.ComponentCallbacks2
         public void onTrimMemory(int i2) {
-            ALog.m716i(AppLifecycle.TAG, "onTrimMemory", null, "level", Integer.valueOf(i2));
+            ALog.i(AppLifecycle.TAG, "onTrimMemory", null, "level", Integer.valueOf(i2));
             if (i2 == 20) {
                 AppLifecycle.onBackground();
             }
         }
     };
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public interface AppLifecycleListener {
         void background();
 
@@ -92,13 +91,11 @@ public class AppLifecycle {
     }
 
     private static void notifyListener(final boolean z) {
-        ALog.m716i(TAG, "notifyListener", null, "foreground", Boolean.valueOf(z));
+        ALog.i(TAG, "notifyListener", null, "foreground", Boolean.valueOf(z));
         ThreadPoolExecutorFactory.submitScheduledTask(new Runnable() { // from class: anet.channel.util.AppLifecycle.1
             @Override // java.lang.Runnable
             public void run() {
-                Iterator it = AppLifecycle.listeners.iterator();
-                while (it.hasNext()) {
-                    AppLifecycleListener appLifecycleListener = (AppLifecycleListener) it.next();
+                for (AppLifecycleListener appLifecycleListener : AppLifecycle.listeners) {
                     try {
                         if (z) {
                             appLifecycleListener.forground();
@@ -106,7 +103,7 @@ public class AppLifecycle {
                             appLifecycleListener.background();
                         }
                     } catch (Exception e2) {
-                        ALog.m714e(AppLifecycle.TAG, "notifyListener exception.", null, e2, new Object[0]);
+                        ALog.e(AppLifecycle.TAG, "notifyListener exception.", null, e2, new Object[0]);
                     }
                 }
             }

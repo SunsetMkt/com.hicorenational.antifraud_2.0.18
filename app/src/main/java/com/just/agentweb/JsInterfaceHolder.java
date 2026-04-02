@@ -2,7 +2,7 @@ package com.just.agentweb;
 
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface JsInterfaceHolder {
     JsInterfaceHolder addJavaObject(String str, Object obj);
 

@@ -4,7 +4,7 @@ import androidx.exifinterface.media.ExifInterface;
 import java.util.Arrays;
 import java.util.HashSet;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SolverVariable {
     private static final boolean INTERNAL_DEBUG = false;
     static final int MAX_STRENGTH = 9;
@@ -26,9 +26,7 @@ public class SolverVariable {
     public float computedValue;
     int definitionId;
     float[] goalStrengthVector;
-
-    /* renamed from: id */
-    public int f594id;
+    public int id;
     public boolean inGoal;
     HashSet<ArrayRow> inRows;
     public boolean isFinalValue;
@@ -43,8 +41,8 @@ public class SolverVariable {
     float synonymDelta;
     public int usageInRowCount;
 
-    /* renamed from: androidx.constraintlayout.solver.SolverVariable$1 */
-    static /* synthetic */ class C04531 {
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.SolverVariable$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type = new int[Type.values().length];
 
         static {
@@ -80,7 +78,7 @@ public class SolverVariable {
     }
 
     public SolverVariable(String str, Type type) {
-        this.f594id = -1;
+        this.id = -1;
         this.definitionId = -1;
         this.strength = 0;
         this.isFinalValue = false;
@@ -101,7 +99,7 @@ public class SolverVariable {
         if (str != null) {
             return str + uniqueErrorId;
         }
-        int i2 = C04531.$SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[type.ordinal()];
+        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[type.ordinal()];
         if (i2 == 1) {
             StringBuilder sb = new StringBuilder();
             sb.append("U");
@@ -204,7 +202,7 @@ public class SolverVariable {
         this.mName = null;
         this.mType = Type.UNKNOWN;
         this.strength = 0;
-        this.f594id = -1;
+        this.id = -1;
         this.definitionId = -1;
         this.computedValue = 0.0f;
         this.isFinalValue = false;
@@ -241,7 +239,7 @@ public class SolverVariable {
 
     public void setSynonym(LinearSystem linearSystem, SolverVariable solverVariable, float f2) {
         this.isSynonym = true;
-        this.synonym = solverVariable.f594id;
+        this.synonym = solverVariable.id;
         this.synonymDelta = f2;
         int i2 = this.mClientEquationsCount;
         this.definitionId = -1;
@@ -286,7 +284,7 @@ public class SolverVariable {
         if (this.mName != null) {
             return "" + this.mName;
         }
-        return "" + this.f594id;
+        return "" + this.id;
     }
 
     public final void updateReferencesWithNewDefinition(LinearSystem linearSystem, ArrayRow arrayRow) {
@@ -298,7 +296,7 @@ public class SolverVariable {
     }
 
     public SolverVariable(Type type, String str) {
-        this.f594id = -1;
+        this.id = -1;
         this.definitionId = -1;
         this.strength = 0;
         this.isFinalValue = false;

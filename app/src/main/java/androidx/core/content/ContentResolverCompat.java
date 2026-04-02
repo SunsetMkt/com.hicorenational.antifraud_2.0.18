@@ -7,12 +7,12 @@ import android.os.Build;
 import android.os.OperationCanceledException;
 import androidx.core.os.CancellationSignal;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ContentResolverCompat {
     private ContentResolverCompat() {
     }
 
-    public static Cursor query(ContentResolver contentResolver, Uri uri, String[] strArr, String str, String[] strArr2, String str2, CancellationSignal cancellationSignal) {
+    public static Cursor query(ContentResolver contentResolver, Uri uri, String[] strArr, String str, String[] strArr2, String str2, CancellationSignal cancellationSignal) throws Exception {
         Object cancellationSignalObject;
         if (Build.VERSION.SDK_INT < 16) {
             if (cancellationSignal != null) {

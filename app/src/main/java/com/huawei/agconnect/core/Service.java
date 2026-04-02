@@ -5,113 +5,109 @@ import com.huawei.agconnect.annotation.SharedInstance;
 import com.huawei.agconnect.annotation.Singleton;
 import java.lang.reflect.Modifier;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Service {
+    private final Class<?> a;
 
-    /* renamed from: a */
-    private final Class<?> f6913a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final Class<?> f4335b;
 
-    /* renamed from: b */
-    private final Class<?> f6914b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private final Object f4336c;
 
-    /* renamed from: c */
-    private final Object f6915c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private boolean f4337d;
 
-    /* renamed from: d */
-    private boolean f6916d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private boolean f4338e;
 
-    /* renamed from: e */
-    private boolean f6917e;
-
-    /* renamed from: f */
-    private boolean f6918f;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private boolean f4339f;
 
     public static class Builder {
+        Class<?> a;
 
-        /* renamed from: a */
-        Class<?> f6919a;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        Class<?> f4340b;
 
-        /* renamed from: b */
-        Class<?> f6920b;
+        /* JADX INFO: renamed from: c, reason: collision with root package name */
+        Object f4341c;
 
-        /* renamed from: c */
-        Object f6921c;
+        /* JADX INFO: renamed from: d, reason: collision with root package name */
+        private boolean f4342d;
 
-        /* renamed from: d */
-        private boolean f6922d;
+        /* JADX INFO: renamed from: e, reason: collision with root package name */
+        private boolean f4343e;
 
-        /* renamed from: e */
-        private boolean f6923e;
-
-        /* renamed from: f */
-        private boolean f6924f;
+        /* JADX INFO: renamed from: f, reason: collision with root package name */
+        private boolean f4344f;
 
         public Service build() {
-            Class<?> cls = this.f6919a;
+            Class<?> cls = this.a;
             if (cls == null) {
                 throw new IllegalArgumentException("the interface parameter cannot be NULL");
             }
-            Class<?> cls2 = this.f6920b;
+            Class<?> cls2 = this.f4340b;
             if (cls2 == null) {
-                Object obj = this.f6921c;
+                Object obj = this.f4341c;
                 if (obj == null) {
                     throw new IllegalArgumentException("the clazz or object parameter must set one");
                 }
                 Service service2 = new Service(cls, obj);
-                service2.f6916d = this.f6922d;
+                service2.f4337d = this.f4342d;
                 return service2;
             }
-            if (cls2.isInterface() || !Modifier.isPublic(this.f6920b.getModifiers())) {
+            if (cls2.isInterface() || !Modifier.isPublic(this.f4340b.getModifiers())) {
                 throw new IllegalArgumentException("the clazz parameter cant be interface type or not public");
             }
-            Service service3 = new Service((Class) this.f6919a, (Class) this.f6920b);
-            service3.f6916d = this.f6922d;
-            service3.f6917e = this.f6923e;
-            service3.f6918f = this.f6924f;
+            Service service3 = new Service((Class) this.a, (Class) this.f4340b);
+            service3.f4337d = this.f4342d;
+            service3.f4338e = this.f4343e;
+            service3.f4339f = this.f4344f;
             return service3;
         }
 
         public Builder isAutoCreated(boolean z) {
-            this.f6924f = z;
+            this.f4344f = z;
             return this;
         }
 
         public Builder isSharedInstance(boolean z) {
-            this.f6923e = z;
+            this.f4343e = z;
             return this;
         }
 
         public Builder isSingleton(boolean z) {
-            this.f6922d = z;
+            this.f4342d = z;
             return this;
         }
 
         public Builder setClass(Class<?> cls) {
-            this.f6920b = cls;
+            this.f4340b = cls;
             return this;
         }
 
         public Builder setInterface(Class<?> cls) {
-            this.f6919a = cls;
+            this.a = cls;
             return this;
         }
 
         public Builder setObject(Object obj) {
-            this.f6921c = obj;
+            this.f4341c = obj;
             return this;
         }
     }
 
     private Service(Class<?> cls, Class<?> cls2) {
-        this.f6913a = cls;
-        this.f6914b = cls2;
-        this.f6915c = null;
+        this.a = cls;
+        this.f4335b = cls2;
+        this.f4336c = null;
     }
 
     private Service(Class<?> cls, Object obj) {
-        this.f6913a = cls;
-        this.f6914b = null;
-        this.f6915c = obj;
+        this.a = cls;
+        this.f4335b = null;
+        this.f4336c = obj;
     }
 
     public static Builder builder(Class<?> cls) {
@@ -127,26 +123,26 @@ public class Service {
     }
 
     public Object getInstance() {
-        return this.f6915c;
+        return this.f4336c;
     }
 
     public Class<?> getInterface() {
-        return this.f6913a;
+        return this.a;
     }
 
     public Class<?> getType() {
-        return this.f6914b;
+        return this.f4335b;
     }
 
     public boolean isAutoCreated() {
-        return this.f6918f;
+        return this.f4339f;
     }
 
     public boolean isSharedInstance() {
-        return this.f6917e;
+        return this.f4338e;
     }
 
     public boolean isSingleton() {
-        return this.f6916d;
+        return this.f4337d;
     }
 }

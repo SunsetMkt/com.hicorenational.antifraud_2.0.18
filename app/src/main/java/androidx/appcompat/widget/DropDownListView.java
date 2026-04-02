@@ -12,14 +12,14 @@ import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.widget.ListViewAutoScrollHelper;
 import java.lang.reflect.Field;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class DropDownListView extends ListView {
     public static final int INVALID_POSITION = -1;
     public static final int NO_POSITION = -1;
@@ -111,7 +111,7 @@ class DropDownListView extends ListView {
     }
 
     DropDownListView(@NonNull Context context, boolean z) {
-        super(context, null, C0120R.attr.dropDownListViewStyle);
+        super(context, null, R.attr.dropDownListViewStyle);
         this.mSelectorRect = new Rect();
         this.mSelectionLeftPadding = 0;
         this.mSelectionTopPadding = 0;
@@ -184,10 +184,10 @@ class DropDownListView extends ListView {
         positionSelectorCompat(i2, view);
         if (z) {
             Rect rect = this.mSelectorRect;
-            float exactCenterX = rect.exactCenterX();
-            float exactCenterY = rect.exactCenterY();
+            float fExactCenterX = rect.exactCenterX();
+            float fExactCenterY = rect.exactCenterY();
             selector.setVisible(getVisibility() == 0, false);
-            DrawableCompat.setHotspot(selector, exactCenterX, exactCenterY);
+            DrawableCompat.setHotspot(selector, fExactCenterX, fExactCenterY);
         }
     }
 
@@ -283,26 +283,26 @@ class DropDownListView extends ListView {
     }
 
     public int lookForSelectablePosition(int i2, boolean z) {
-        int min;
+        int iMin;
         ListAdapter adapter2 = getAdapter();
         if (adapter2 != null && !isInTouchMode()) {
             int count = adapter2.getCount();
             if (!getAdapter().areAllItemsEnabled()) {
                 if (z) {
-                    min = Math.max(0, i2);
-                    while (min < count && !adapter2.isEnabled(min)) {
-                        min++;
+                    iMin = Math.max(0, i2);
+                    while (iMin < count && !adapter2.isEnabled(iMin)) {
+                        iMin++;
                     }
                 } else {
-                    min = Math.min(i2, count - 1);
-                    while (min >= 0 && !adapter2.isEnabled(min)) {
-                        min--;
+                    iMin = Math.min(i2, count - 1);
+                    while (iMin >= 0 && !adapter2.isEnabled(iMin)) {
+                        iMin--;
                     }
                 }
-                if (min < 0 || min >= count) {
+                if (iMin < 0 || iMin >= count) {
                     return -1;
                 }
-                return min;
+                return iMin;
             }
             if (i2 >= 0 && i2 < count) {
                 return i2;
@@ -325,39 +325,39 @@ class DropDownListView extends ListView {
             dividerHeight = 0;
         }
         int count = adapter2.getCount();
-        int i8 = i7;
+        int measuredHeight = i7;
         View view = null;
+        int i8 = 0;
         int i9 = 0;
         int i10 = 0;
-        int i11 = 0;
-        while (i9 < count) {
-            int itemViewType = adapter2.getItemViewType(i9);
-            if (itemViewType != i10) {
+        while (i8 < count) {
+            int itemViewType = adapter2.getItemViewType(i8);
+            if (itemViewType != i9) {
                 view = null;
-                i10 = itemViewType;
+                i9 = itemViewType;
             }
-            view = adapter2.getView(i9, view, this);
+            view = adapter2.getView(i8, view, this);
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (layoutParams == null) {
                 layoutParams = generateDefaultLayoutParams();
                 view.setLayoutParams(layoutParams);
             }
-            int i12 = layoutParams.height;
-            view.measure(i2, i12 > 0 ? View.MeasureSpec.makeMeasureSpec(i12, 1073741824) : View.MeasureSpec.makeMeasureSpec(0, 0));
+            int i11 = layoutParams.height;
+            view.measure(i2, i11 > 0 ? View.MeasureSpec.makeMeasureSpec(i11, 1073741824) : View.MeasureSpec.makeMeasureSpec(0, 0));
             view.forceLayout();
-            if (i9 > 0) {
-                i8 += dividerHeight;
+            if (i8 > 0) {
+                measuredHeight += dividerHeight;
             }
-            i8 += view.getMeasuredHeight();
-            if (i8 >= i5) {
-                return (i6 < 0 || i9 <= i6 || i11 <= 0 || i8 == i5) ? i5 : i11;
+            measuredHeight += view.getMeasuredHeight();
+            if (measuredHeight >= i5) {
+                return (i6 < 0 || i8 <= i6 || i10 <= 0 || measuredHeight == i5) ? i5 : i10;
             }
-            if (i6 >= 0 && i9 >= i6) {
-                i11 = i8;
+            if (i6 >= 0 && i8 >= i6) {
+                i10 = measuredHeight;
             }
-            i9++;
+            i8++;
         }
-        return i8;
+        return measuredHeight;
     }
 
     @Override // android.widget.ListView, android.widget.AbsListView, android.widget.AdapterView, android.view.ViewGroup, android.view.View
@@ -366,91 +366,70 @@ class DropDownListView extends ListView {
         super.onDetachedFromWindow();
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:6:0x000c, code lost:
-    
-        if (r0 != 3) goto L8;
-     */
-    /* JADX WARN: Removed duplicated region for block: B:11:0x004f  */
-    /* JADX WARN: Removed duplicated region for block: B:17:0x0065  */
-    /* JADX WARN: Removed duplicated region for block: B:9:0x0048 A[ADDED_TO_REGION] */
+    /* JADX WARN: Removed duplicated region for block: B:23:0x004a  */
+    /* JADX WARN: Removed duplicated region for block: B:25:0x004f  */
+    /* JADX WARN: Removed duplicated region for block: B:29:0x0065  */
+    /* JADX WARN: Removed duplicated region for block: B:9:0x0011  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean onForwardedEvent(android.view.MotionEvent r8, int r9) {
-        /*
-            r7 = this;
-            int r0 = r8.getActionMasked()
-            r1 = 0
-            r2 = 1
-            if (r0 == r2) goto L16
-            r3 = 2
-            if (r0 == r3) goto L14
-            r9 = 3
-            if (r0 == r9) goto L11
-        Le:
-            r9 = 0
-            r3 = 1
-            goto L46
-        L11:
-            r9 = 0
-            r3 = 0
-            goto L46
-        L14:
-            r3 = 1
-            goto L17
-        L16:
-            r3 = 0
-        L17:
-            int r9 = r8.findPointerIndex(r9)
-            if (r9 >= 0) goto L1e
-            goto L11
-        L1e:
-            float r4 = r8.getX(r9)
-            int r4 = (int) r4
-            float r9 = r8.getY(r9)
-            int r9 = (int) r9
-            int r5 = r7.pointToPosition(r4, r9)
-            r6 = -1
-            if (r5 != r6) goto L31
-            r9 = 1
-            goto L46
-        L31:
-            int r3 = r7.getFirstVisiblePosition()
-            int r3 = r5 - r3
-            android.view.View r3 = r7.getChildAt(r3)
-            float r4 = (float) r4
-            float r9 = (float) r9
-            r7.setPressedItem(r3, r5, r4, r9)
-            if (r0 != r2) goto Le
-            r7.clickPressedItem(r3, r5)
-            goto Le
-        L46:
-            if (r3 == 0) goto L4a
-            if (r9 == 0) goto L4d
-        L4a:
-            r7.clearPressedItem()
-        L4d:
-            if (r3 == 0) goto L65
-            androidx.core.widget.ListViewAutoScrollHelper r9 = r7.mScrollHelper
-            if (r9 != 0) goto L5a
-            androidx.core.widget.ListViewAutoScrollHelper r9 = new androidx.core.widget.ListViewAutoScrollHelper
-            r9.<init>(r7)
-            r7.mScrollHelper = r9
-        L5a:
-            androidx.core.widget.ListViewAutoScrollHelper r9 = r7.mScrollHelper
-            r9.setEnabled(r2)
-            androidx.core.widget.ListViewAutoScrollHelper r9 = r7.mScrollHelper
-            r9.onTouch(r7, r8)
-            goto L6c
-        L65:
-            androidx.core.widget.ListViewAutoScrollHelper r8 = r7.mScrollHelper
-            if (r8 == 0) goto L6c
-            r8.setEnabled(r1)
-        L6c:
-            return r3
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.DropDownListView.onForwardedEvent(android.view.MotionEvent, int):boolean");
+    public boolean onForwardedEvent(MotionEvent motionEvent, int i2) {
+        boolean z;
+        boolean z2;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 1) {
+            z = false;
+        } else {
+            if (actionMasked != 2) {
+                if (actionMasked != 3) {
+                    z2 = false;
+                    z = true;
+                } else {
+                    z2 = false;
+                    z = false;
+                }
+                if (z || z2) {
+                    clearPressedItem();
+                }
+                if (z) {
+                    ListViewAutoScrollHelper listViewAutoScrollHelper = this.mScrollHelper;
+                    if (listViewAutoScrollHelper != null) {
+                        listViewAutoScrollHelper.setEnabled(false);
+                    }
+                } else {
+                    if (this.mScrollHelper == null) {
+                        this.mScrollHelper = new ListViewAutoScrollHelper(this);
+                    }
+                    this.mScrollHelper.setEnabled(true);
+                    this.mScrollHelper.onTouch(this, motionEvent);
+                }
+                return z;
+            }
+            z = true;
+        }
+        int iFindPointerIndex = motionEvent.findPointerIndex(i2);
+        if (iFindPointerIndex >= 0) {
+            int x = (int) motionEvent.getX(iFindPointerIndex);
+            int y = (int) motionEvent.getY(iFindPointerIndex);
+            int iPointToPosition = pointToPosition(x, y);
+            if (iPointToPosition == -1) {
+                z2 = true;
+            } else {
+                View childAt = getChildAt(iPointToPosition - getFirstVisiblePosition());
+                setPressedItem(childAt, iPointToPosition, x, y);
+                if (actionMasked == 1) {
+                    clickPressedItem(childAt, iPointToPosition);
+                }
+                z2 = false;
+                z = true;
+            }
+        }
+        if (z) {
+            clearPressedItem();
+        }
+        if (z) {
+        }
+        return z;
     }
 
     @Override // android.view.View
@@ -463,20 +442,20 @@ class DropDownListView extends ListView {
             this.mResolveHoverRunnable = new ResolveHoverRunnable();
             this.mResolveHoverRunnable.post();
         }
-        boolean onHoverEvent = super.onHoverEvent(motionEvent);
+        boolean zOnHoverEvent = super.onHoverEvent(motionEvent);
         if (actionMasked == 9 || actionMasked == 7) {
-            int pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (pointToPosition != -1 && pointToPosition != getSelectedItemPosition()) {
-                View childAt = getChildAt(pointToPosition - getFirstVisiblePosition());
+            int iPointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (iPointToPosition != -1 && iPointToPosition != getSelectedItemPosition()) {
+                View childAt = getChildAt(iPointToPosition - getFirstVisiblePosition());
                 if (childAt.isEnabled()) {
-                    setSelectionFromTop(pointToPosition, childAt.getTop() - getTop());
+                    setSelectionFromTop(iPointToPosition, childAt.getTop() - getTop());
                 }
                 updateSelectorStateCompat();
             }
         } else {
             setSelection(-1);
         }
-        return onHoverEvent;
+        return zOnHoverEvent;
     }
 
     @Override // android.widget.AbsListView, android.view.View

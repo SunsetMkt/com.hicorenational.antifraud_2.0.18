@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Contants {
     public static final String ACTION_BROADCAST_LIVE = "action.broadcast.live";
     public static final String ACTION_BROADCAST_SERVER_LIVE = "action.broadcast.server";

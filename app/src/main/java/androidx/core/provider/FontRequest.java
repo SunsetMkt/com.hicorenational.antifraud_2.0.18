@@ -9,7 +9,7 @@ import androidx.core.util.Preconditions;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class FontRequest {
     private final List<List<byte[]>> mCertificates;
     private final int mCertificatesArray;

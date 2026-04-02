@@ -1,7 +1,7 @@
 package com.taobao.agoo;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class IRegister extends ICallback {
     @Override // com.taobao.agoo.ICallback
     public abstract void onFailure(String str, String str2);

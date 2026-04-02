@@ -38,7 +38,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class TextViewCompat {
     public static final int AUTO_SIZE_TEXT_TYPE_NONE = 0;
     public static final int AUTO_SIZE_TEXT_TYPE_UNIFORM = 1;
@@ -364,10 +364,8 @@ public final class TextViewCompat {
                 break;
             default:
                 if (!z) {
-                    break;
-                } else {
-                    break;
                 }
+                break;
         }
         return TextDirectionHeuristics.LTR;
     }
@@ -389,14 +387,14 @@ public final class TextViewCompat {
     }
 
     private static Field retrieveField(String str) {
-        Field field = null;
+        Field declaredField = null;
         try {
-            field = TextView.class.getDeclaredField(str);
-            field.setAccessible(true);
-            return field;
+            declaredField = TextView.class.getDeclaredField(str);
+            declaredField.setAccessible(true);
+            return declaredField;
         } catch (NoSuchFieldException unused) {
             String str2 = "Could not retrieve " + str + " field.";
-            return field;
+            return declaredField;
         }
     }
 

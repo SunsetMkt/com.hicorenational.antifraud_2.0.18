@@ -4,7 +4,7 @@ import android.os.Parcelable;
 import com.huawei.hms.core.aidl.IMessageEntity;
 import com.huawei.hms.core.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class CoreBaseRequest implements IMessageEntity {
 
     @Packed

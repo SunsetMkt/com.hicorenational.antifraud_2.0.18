@@ -9,7 +9,7 @@ import okio.ForwardingSink;
 import okio.Okio;
 import okio.Sink;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class FileRequestBody<T> extends RequestBody {
     private BufferedSink bufferedSink;
     private RetrofitCallback<T> callback;

@@ -4,7 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import okhttp3.Route;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class RouteDatabase {
     private final Set<Route> failedRoutes = new LinkedHashSet();
 

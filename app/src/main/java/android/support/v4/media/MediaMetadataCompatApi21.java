@@ -7,8 +7,8 @@ import android.os.Parcel;
 import androidx.annotation.RequiresApi;
 import java.util.Set;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class MediaMetadataCompatApi21 {
 
     public static class Builder {

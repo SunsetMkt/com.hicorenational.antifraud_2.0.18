@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SnapCardSuspectBean extends BaseBean {
     private String address;
     private String addressDetail;

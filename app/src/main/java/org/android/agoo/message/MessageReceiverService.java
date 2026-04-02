@@ -10,12 +10,10 @@ import org.android.agoo.common.AgooConstants;
 import org.android.agoo.control.BaseIntentService;
 import org.android.agoo.service.SendMessage;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class MessageReceiverService extends Service {
-
-    /* renamed from: a */
-    SendMessage.Stub f21509a = new SendMessage.Stub() { // from class: org.android.agoo.message.MessageReceiverService.1
+    SendMessage.Stub a = new SendMessage.Stub() { // from class: org.android.agoo.message.MessageReceiverService.1
         @Override // org.android.agoo.service.SendMessage
         public int doSend(Intent intent) throws RemoteException {
             Context applicationContext = MessageReceiverService.this.getApplicationContext();
@@ -29,8 +27,8 @@ public abstract class MessageReceiverService extends Service {
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        ALog.m9180d("MessageReceiverService", "Message receiver aidl was binded {}", intent.getAction());
-        return AgooConstants.BINDER_MSGRECEIVER_ACTION.equals(intent.getAction()) ? this.f21509a : this.f21509a;
+        ALog.d("MessageReceiverService", "Message receiver aidl was binded {}", intent.getAction());
+        return AgooConstants.BINDER_MSGRECEIVER_ACTION.equals(intent.getAction()) ? this.a : this.a;
     }
 
     @Override // android.app.Service

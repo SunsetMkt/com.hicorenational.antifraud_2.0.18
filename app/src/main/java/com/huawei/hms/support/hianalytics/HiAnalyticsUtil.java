@@ -12,75 +12,72 @@ import com.huawei.hms.utils.Util;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HiAnalyticsUtil {
+    private static final Object a = new Object();
 
-    /* renamed from: a */
-    private static final Object f7859a = new Object();
+    /* JADX INFO: renamed from: b */
+    private static HiAnalyticsUtil f4935b;
 
-    /* renamed from: b */
-    private static HiAnalyticsUtil f7860b;
+    /* JADX INFO: renamed from: c */
+    private static HiAnalyticsUtils f4936c;
 
-    /* renamed from: c */
-    private static HiAnalyticsUtils f7861c;
-
-    /* renamed from: a */
-    private String m7694a(Context context, String str) {
+    private String a(Context context, String str) {
         return "01|" + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + context.getPackageName() + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + Util.getAppId(context) + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + 61100302 + HiAnalyticsConstant.REPORT_VAL_SEPARATOR + str;
     }
 
     public static HiAnalyticsUtil getInstance() {
         HiAnalyticsUtil hiAnalyticsUtil;
-        synchronized (f7859a) {
-            if (f7860b == null) {
-                f7860b = new HiAnalyticsUtil();
-                f7861c = HiAnalyticsUtils.getInstance();
+        synchronized (a) {
+            if (f4935b == null) {
+                f4935b = new HiAnalyticsUtil();
+                f4936c = HiAnalyticsUtils.getInstance();
             }
-            hiAnalyticsUtil = f7860b;
+            hiAnalyticsUtil = f4935b;
         }
         return hiAnalyticsUtil;
     }
 
     public static Map<String, String> getMapFromForegroundResponseHeader(ResponseHeader responseHeader) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (responseHeader == null) {
-            return hashMap;
+            return map;
         }
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, responseHeader.getTransactionId());
-        hashMap.put("appid", responseHeader.getActualAppID());
-        hashMap.put("service", responseHeader.getSrvName());
-        hashMap.put("apiName", responseHeader.getApiName());
-        hashMap.put("package", responseHeader.getPkgName());
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(responseHeader.getStatusCode()));
-        hashMap.put("result", String.valueOf(responseHeader.getErrorCode()));
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_ERRORREASON, responseHeader.getErrorReason());
-        hashMap.put("callTime", String.valueOf(System.currentTimeMillis()));
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
-        return hashMap;
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, responseHeader.getTransactionId());
+        map.put("appid", responseHeader.getActualAppID());
+        map.put("service", responseHeader.getSrvName());
+        map.put("apiName", responseHeader.getApiName());
+        map.put("package", responseHeader.getPkgName());
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(responseHeader.getStatusCode()));
+        map.put("result", String.valueOf(responseHeader.getErrorCode()));
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_ERRORREASON, responseHeader.getErrorReason());
+        map.put("callTime", String.valueOf(System.currentTimeMillis()));
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
+        return map;
     }
 
     public static Map<String, String> getMapFromRequestHeader(ResponseHeader responseHeader) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (responseHeader == null) {
-            return hashMap;
+            return map;
         }
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, responseHeader.getTransactionId());
-        hashMap.put("appid", responseHeader.getActualAppID());
-        hashMap.put("service", responseHeader.getSrvName());
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, responseHeader.getTransactionId());
+        map.put("appid", responseHeader.getActualAppID());
+        map.put("service", responseHeader.getSrvName());
         String apiName = responseHeader.getApiName();
         if (!TextUtils.isEmpty(apiName)) {
-            String[] split = apiName.split("\\.");
-            if (split.length >= 2) {
-                hashMap.put("apiName", split[1]);
+            String[] strArrSplit = apiName.split("\\.");
+            if (strArrSplit.length >= 2) {
+                map.put("apiName", strArrSplit[1]);
             }
         }
-        hashMap.put("package", responseHeader.getPkgName());
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(responseHeader.getStatusCode()));
-        hashMap.put("result", String.valueOf(responseHeader.getErrorCode()));
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_ERRORREASON, responseHeader.getErrorReason());
-        hashMap.put("callTime", String.valueOf(System.currentTimeMillis()));
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
-        return hashMap;
+        map.put("package", responseHeader.getPkgName());
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_RESULT, String.valueOf(responseHeader.getStatusCode()));
+        map.put("result", String.valueOf(responseHeader.getErrorCode()));
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_ERRORREASON, responseHeader.getErrorReason());
+        map.put("callTime", String.valueOf(System.currentTimeMillis()));
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
+        return map;
     }
 
     public static String versionCodeToName(String str) {
@@ -89,38 +86,38 @@ public class HiAnalyticsUtil {
 
     @Deprecated
     public Map<String, String> getMapForBi(Context context, String str) {
-        HashMap hashMap = new HashMap();
-        String[] split = str.split("\\.");
-        if (split.length >= 2) {
-            String str2 = split[0];
-            String str3 = split[1];
+        HashMap map = new HashMap();
+        String[] strArrSplit = str.split("\\.");
+        if (strArrSplit.length >= 2) {
+            String str2 = strArrSplit[0];
+            String str3 = strArrSplit[1];
             String appId = Util.getAppId(context);
-            hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, TransactionIdCreater.getId(appId, str));
-            hashMap.put("appid", appId);
-            hashMap.put("service", str2);
-            hashMap.put("apiName", str3);
+            map.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, TransactionIdCreater.getId(appId, str));
+            map.put("appid", appId);
+            map.put("service", str2);
+            map.put("apiName", str3);
             if (context != null) {
-                hashMap.put("package", context.getPackageName());
+                map.put("package", context.getPackageName());
             }
-            hashMap.put("version", "6.11.0.302");
-            hashMap.put("callTime", String.valueOf(System.currentTimeMillis()));
+            map.put("version", "6.11.0.302");
+            map.put("callTime", String.valueOf(System.currentTimeMillis()));
         }
-        return hashMap;
+        return map;
     }
 
     public Map<String, String> getMapFromForegroundRequestHeader(RequestHeader requestHeader) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (requestHeader == null) {
-            return hashMap;
+            return map;
         }
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, requestHeader.getTransactionId());
-        hashMap.put("appid", requestHeader.getActualAppID());
-        hashMap.put("service", requestHeader.getSrvName());
-        hashMap.put("apiName", requestHeader.getApiName());
-        hashMap.put("package", requestHeader.getPkgName());
-        hashMap.put("callTime", String.valueOf(System.currentTimeMillis()));
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
-        return hashMap;
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, requestHeader.getTransactionId());
+        map.put("appid", requestHeader.getActualAppID());
+        map.put("service", requestHeader.getSrvName());
+        map.put("apiName", requestHeader.getApiName());
+        map.put("package", requestHeader.getPkgName());
+        map.put("callTime", String.valueOf(System.currentTimeMillis()));
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
+        return map;
     }
 
     @Deprecated
@@ -128,54 +125,54 @@ public class HiAnalyticsUtil {
         if (SystemUtils.isChinaROM()) {
             return false;
         }
-        HMSLog.m7717i("HiAnalyticsUtil", "not ChinaROM ");
+        HMSLog.i("HiAnalyticsUtil", "not ChinaROM ");
         return true;
     }
 
     public void onBuoyEvent(Context context, String str, String str2) {
-        f7861c.onBuoyEvent(context, str, str2);
+        f4936c.onBuoyEvent(context, str, str2);
     }
 
     public void onEvent(Context context, String str, Map<String, String> map) {
-        f7861c.onEvent(context, str, map);
+        f4936c.onEvent(context, str, map);
     }
 
     public void onEvent2(Context context, String str, String str2) {
-        f7861c.onEvent2(context, str, str2);
+        f4936c.onEvent2(context, str, str2);
     }
 
     public void onNewEvent(Context context, String str, Map map) {
-        f7861c.onNewEvent(context, str, map);
+        f4936c.onNewEvent(context, str, map);
     }
 
     public void onEvent(Context context, String str, String str2) {
         if (context != null) {
-            onEvent2(context, str, m7694a(context, str2));
+            onEvent2(context, str, a(context, str2));
         }
     }
 
     public boolean hasError(Context context) {
-        return f7861c.hasError(context);
+        return f4936c.hasError(context);
     }
 
     public Map<String, String> getMapFromRequestHeader(RequestHeader requestHeader) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (requestHeader == null) {
-            return hashMap;
+            return map;
         }
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, requestHeader.getTransactionId());
-        hashMap.put("appid", requestHeader.getActualAppID());
-        hashMap.put("service", requestHeader.getSrvName());
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_TRANSID, requestHeader.getTransactionId());
+        map.put("appid", requestHeader.getActualAppID());
+        map.put("service", requestHeader.getSrvName());
         String apiName = requestHeader.getApiName();
         if (!TextUtils.isEmpty(apiName)) {
-            String[] split = apiName.split("\\.");
-            if (split.length >= 2) {
-                hashMap.put("apiName", split[1]);
+            String[] strArrSplit = apiName.split("\\.");
+            if (strArrSplit.length >= 2) {
+                map.put("apiName", strArrSplit[1]);
             }
         }
-        hashMap.put("package", requestHeader.getPkgName());
-        hashMap.put("callTime", String.valueOf(System.currentTimeMillis()));
-        hashMap.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
-        return hashMap;
+        map.put("package", requestHeader.getPkgName());
+        map.put("callTime", String.valueOf(System.currentTimeMillis()));
+        map.put(HiAnalyticsConstant.HaKey.BI_KEY_BASE_VERSION, "6.11.0.302");
+        return map;
     }
 }

@@ -1,6 +1,6 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class APICode {
     public static final int CODE_ERROR = 999;
     public static final int CODE_EXIT = 401;

@@ -1,7 +1,7 @@
 package com.huawei.secure.android.common.ssl;
 
 import android.os.Build;
-import com.huawei.secure.android.common.ssl.util.C2563e;
+import com.huawei.secure.android.common.ssl.util.e;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,32 +10,30 @@ import java.util.Locale;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class SSLUtil {
+    private static final String a = "SSLUtil";
 
-    /* renamed from: a */
-    private static final String f8136a = "SSLUtil";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final String f5135b = "TLSv1.3";
 
-    /* renamed from: b */
-    private static final String f8137b = "TLSv1.3";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f5136c = "TLSv1.2";
 
-    /* renamed from: c */
-    private static final String f8138c = "TLSv1.2";
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final String f5137d = "TLS";
 
-    /* renamed from: d */
-    private static final String f8139d = "TLS";
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static final String f5138e = "TLSv1";
 
-    /* renamed from: e */
-    private static final String f8140e = "TLSv1";
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static final String[] f5139f = {"TLS_DHE_DSS_WITH_AES_128_CBC_SHA", "TLS_DHE_RSA_WITH_AES_128_CBC_SHA", "TLS_DHE_DSS_WITH_AES_256_CBC_SHA", "TLS_DHE_RSA_WITH_AES_256_CBC_SHA", "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA", "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA", "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"};
 
-    /* renamed from: f */
-    private static final String[] f8141f = {"TLS_DHE_DSS_WITH_AES_128_CBC_SHA", "TLS_DHE_RSA_WITH_AES_128_CBC_SHA", "TLS_DHE_DSS_WITH_AES_256_CBC_SHA", "TLS_DHE_RSA_WITH_AES_256_CBC_SHA", "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA", "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA", "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA"};
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private static final String[] f5140g = {"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256", "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_DHE_DSS_WITH_AES_128_GCM_SHA256", "TLS_DHE_DSS_WITH_AES_256_GCM_SHA384"};
 
-    /* renamed from: g */
-    private static final String[] f8142g = {"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256", "TLS_DHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_DHE_DSS_WITH_AES_128_GCM_SHA256", "TLS_DHE_DSS_WITH_AES_256_GCM_SHA384"};
-
-    /* renamed from: h */
-    private static final String[] f8143h = {"TLS_RSA", "CBC", "TEA", "SHA0", "MD2", "MD4", "RIPEMD", "NULL", "RC4", "DES", "DESX", "DES40", "RC2", "MD5", "ANON", "TLS_EMPTY_RENEGOTIATION_INFO_SCSV"};
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private static final String[] f5141h = {"TLS_RSA", "CBC", "TEA", "SHA0", "MD2", "MD4", "RIPEMD", "NULL", "RC4", "DES", "DESX", "DES40", "RC2", "MD5", "ANON", "TLS_EMPTY_RENEGOTIATION_INFO_SCSV"};
 
     public static String[] getEnabledCipherSuites(SSLSocket sSLSocket) {
         return sSLSocket.getEnabledCipherSuites();
@@ -47,10 +45,10 @@ public abstract class SSLUtil {
 
     public static void printTLSAndCipher(SSLSocket sSLSocket) {
         for (String str : sSLSocket.getEnabledProtocols()) {
-            C2563e.m7987c(f8136a, "new enable protocols is : " + str);
+            e.c(a, "new enable protocols is : " + str);
         }
         for (String str2 : sSLSocket.getEnabledCipherSuites()) {
-            C2563e.m7987c(f8136a, "new cipher suites is : " + str2);
+            e.c(a, "new cipher suites is : " + str2);
         }
     }
 
@@ -58,7 +56,7 @@ public abstract class SSLUtil {
         if (sSLSocket == null) {
             return false;
         }
-        return setBlackListCipherSuites(sSLSocket, f8143h);
+        return setBlackListCipherSuites(sSLSocket, f5141h);
     }
 
     public static void setEnableSafeCipherSuites(SSLSocket sSLSocket) {
@@ -73,19 +71,19 @@ public abstract class SSLUtil {
             return;
         }
         if (Build.VERSION.SDK_INT >= 29) {
-            sSLSocket.setEnabledProtocols(new String[]{f8137b, f8138c});
+            sSLSocket.setEnabledProtocols(new String[]{f5135b, f5136c});
         }
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 16 && i2 < 29) {
-            sSLSocket.setEnabledProtocols(new String[]{f8138c});
+            sSLSocket.setEnabledProtocols(new String[]{f5136c});
         } else if (Build.VERSION.SDK_INT < 16) {
-            sSLSocket.setEnabledProtocols(new String[]{f8140e});
+            sSLSocket.setEnabledProtocols(new String[]{f5138e});
         }
     }
 
     public static SSLContext setSSLContext() throws NoSuchAlgorithmException {
         int i2 = Build.VERSION.SDK_INT;
-        return i2 >= 29 ? SSLContext.getInstance(f8137b) : i2 >= 16 ? SSLContext.getInstance(f8138c) : SSLContext.getInstance(f8139d);
+        return i2 >= 29 ? SSLContext.getInstance(f5135b) : i2 >= 16 ? SSLContext.getInstance(f5136c) : SSLContext.getInstance(f5137d);
     }
 
     public static void setSSLSocketOptions(SSLSocket sSLSocket) {
@@ -100,7 +98,7 @@ public abstract class SSLUtil {
         if (sSLSocket == null) {
             return false;
         }
-        return Build.VERSION.SDK_INT > 19 ? setWhiteListCipherSuites(sSLSocket, f8142g) : setWhiteListCipherSuites(sSLSocket, f8141f);
+        return Build.VERSION.SDK_INT > 19 ? setWhiteListCipherSuites(sSLSocket, f5140g) : setWhiteListCipherSuites(sSLSocket, f5139f);
     }
 
     public static boolean setBlackListCipherSuites(SSLSocket sSLSocket, String[] strArr) {
@@ -148,9 +146,9 @@ public abstract class SSLUtil {
         }
         String[] enabledCipherSuites = sSLSocket.getEnabledCipherSuites();
         ArrayList arrayList = new ArrayList();
-        List asList = Arrays.asList(strArr);
+        List listAsList = Arrays.asList(strArr);
         for (String str : enabledCipherSuites) {
-            if (asList.contains(str.toUpperCase(Locale.ENGLISH))) {
+            if (listAsList.contains(str.toUpperCase(Locale.ENGLISH))) {
                 arrayList.add(str);
             }
         }
@@ -167,7 +165,7 @@ public abstract class SSLUtil {
                 sSLSocket.setEnabledProtocols(strArr);
                 return true;
             } catch (Exception e2) {
-                C2563e.m7986b(f8136a, "setEnabledProtocols: exception : " + e2.getMessage());
+                e.b(a, "setEnabledProtocols: exception : " + e2.getMessage());
             }
         }
         return false;

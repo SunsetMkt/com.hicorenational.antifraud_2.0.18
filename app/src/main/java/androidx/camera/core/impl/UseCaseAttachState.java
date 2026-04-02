@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class UseCaseAttachState {
     private static final String TAG = "UseCaseAttachState";
     private final Map<UseCase, UseCaseAttachInfo> mAttachedUseCasesToInfoMap = new HashMap();

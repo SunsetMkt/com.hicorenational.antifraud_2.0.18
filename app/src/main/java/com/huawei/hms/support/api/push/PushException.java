@@ -1,6 +1,6 @@
 package com.huawei.hms.support.api.push;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PushException extends RuntimeException {
     public static final String EXCEPTION_SEND_FAILED = "send message failed";
 

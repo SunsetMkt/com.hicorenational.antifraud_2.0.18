@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import com.huawei.hms.utils.ResourceLoaderUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class EnableServiceActivity extends Activity {
     @Override // android.app.Activity
     protected void onCreate(Bundle bundle) {

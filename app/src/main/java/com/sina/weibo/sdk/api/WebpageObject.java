@@ -3,7 +3,7 @@ package com.sina.weibo.sdk.api;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class WebpageObject extends MediaObject {
     public static final Parcelable.Creator<WebpageObject> CREATOR = new Parcelable.Creator<WebpageObject>() { // from class: com.sina.weibo.sdk.api.WebpageObject.1
         /* JADX WARN: Can't rename method to resolve collision */

@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class Engine {
     private static final int DEFAULT_QUALITY = 80;
     private int compressQuality;
@@ -47,27 +47,27 @@ class Engine {
             i3++;
         }
         this.srcHeight = i3;
-        int max = Math.max(this.srcWidth, this.srcHeight);
-        float min = Math.min(this.srcWidth, this.srcHeight) / max;
-        if (min > 1.0f || min <= 0.5625d) {
-            double d2 = min;
+        int iMax = Math.max(this.srcWidth, this.srcHeight);
+        float fMin = Math.min(this.srcWidth, this.srcHeight) / iMax;
+        if (fMin > 1.0f || fMin <= 0.5625d) {
+            double d2 = fMin;
             if (d2 > 0.5625d || d2 <= 0.5d) {
-                return (int) Math.ceil(max / (1280.0d / d2));
+                return (int) Math.ceil(((double) iMax) / (1280.0d / d2));
             }
-            int i4 = max / 1280;
+            int i4 = iMax / 1280;
             if (i4 == 0) {
                 return 1;
             }
             return i4;
         }
-        if (max < 1664) {
+        if (iMax < 1664) {
             return 1;
         }
-        if (max < 4990) {
+        if (iMax < 4990) {
             return 2;
         }
-        if (max <= 4990 || max >= 10240) {
-            return max / 1280;
+        if (iMax <= 4990 || iMax >= 10240) {
+            return iMax / 1280;
         }
         return 4;
     }
@@ -82,19 +82,19 @@ class Engine {
         int orientation;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = computeSize();
-        Bitmap decodeStream = BitmapFactory.decodeStream(this.srcImg.open(), null, options);
+        Bitmap bitmapDecodeStream = BitmapFactory.decodeStream(this.srcImg.open(), null, options);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         if (this.srcImg.getMedia() != null && Checker.SINGLE.isJPG(this.srcImg.getMedia().getMimeType()) && (orientation = this.srcImg.getMedia().getOrientation()) > 0) {
-            decodeStream = rotatingImage(decodeStream, orientation);
+            bitmapDecodeStream = rotatingImage(bitmapDecodeStream, orientation);
         }
-        if (decodeStream != null) {
+        if (bitmapDecodeStream != null) {
             int i2 = this.compressQuality;
             if (i2 <= 0 || i2 > 100) {
                 i2 = 80;
             }
             this.compressQuality = i2;
-            decodeStream.compress(this.focusAlpha ? Bitmap.CompressFormat.PNG : Bitmap.CompressFormat.JPEG, this.compressQuality, byteArrayOutputStream);
-            decodeStream.recycle();
+            bitmapDecodeStream.compress(this.focusAlpha ? Bitmap.CompressFormat.PNG : Bitmap.CompressFormat.JPEG, this.compressQuality, byteArrayOutputStream);
+            bitmapDecodeStream.recycle();
         }
         FileOutputStream fileOutputStream = new FileOutputStream(this.tagImg);
         fileOutputStream.write(byteArrayOutputStream.toByteArray());

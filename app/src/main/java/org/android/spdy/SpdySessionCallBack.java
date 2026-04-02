@@ -3,7 +3,7 @@ package org.android.spdy;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class SpdySessionCallBack implements Intenalcb {
     SpdySessionCallBack() {
     }
@@ -67,28 +67,28 @@ final class SpdySessionCallBack implements Intenalcb {
     public void spdyDataChunkRecvCB(SpdySession spdySession, boolean z, long j2, SpdyByteArray spdyByteArray, int i2) {
         Spdycb spdycb;
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdyDataChunkRecvCB] - " + spdySession);
-        long begin = NetTimeGaurd.begin();
+        long jBegin = NetTimeGaurd.begin();
         SpdyStreamContext spdyStream = spdySession.getSpdyStream(i2);
         if (spdyStream == null || (spdycb = spdyStream.callBack) == null) {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdyDataChunkRecvCB] - no sessionCallBack.");
         } else {
             spdycb.spdyDataChunkRecvCB(spdySession, z, j2, spdyByteArray, spdyStream.streamContext);
         }
-        NetTimeGaurd.end("spdyDataChunkRecvCB", 3, begin);
+        NetTimeGaurd.end("spdyDataChunkRecvCB", 3, jBegin);
     }
 
     @Override // org.android.spdy.Intenalcb
     public void spdyDataRecvCallback(SpdySession spdySession, boolean z, long j2, int i2, int i3) {
         Spdycb spdycb;
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdyDataRecvCallback] - " + spdySession);
-        long begin = NetTimeGaurd.begin();
+        long jBegin = NetTimeGaurd.begin();
         SpdyStreamContext spdyStream = spdySession.getSpdyStream(i3);
         if (spdyStream == null || (spdycb = spdyStream.callBack) == null) {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdyDataRecvCallback] - no sessionCallBack.");
         } else {
             spdycb.spdyDataRecvCallback(spdySession, z, j2, i2, spdyStream.streamContext);
         }
-        NetTimeGaurd.end("spdyDataRecvCallback", 3, begin);
+        NetTimeGaurd.end("spdyDataRecvCallback", 3, jBegin);
     }
 
     @Override // org.android.spdy.Intenalcb
@@ -108,14 +108,14 @@ final class SpdySessionCallBack implements Intenalcb {
         Spdycb spdycb;
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdyOnStreamResponse] - " + spdySession);
         NetTimeGaurd.start(3);
-        long begin = NetTimeGaurd.begin();
+        long jBegin = NetTimeGaurd.begin();
         SpdyStreamContext spdyStream = spdySession.getSpdyStream(i2);
         if (spdyStream == null || (spdycb = spdyStream.callBack) == null) {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdyOnStreamResponse] - no sessionCallBack.");
         } else {
             spdycb.spdyOnStreamResponse(spdySession, j2, map, spdyStream.streamContext);
         }
-        NetTimeGaurd.end("spdyOnStreamResponse", 3, begin);
+        NetTimeGaurd.end("spdyOnStreamResponse", 3, jBegin);
     }
 
     @Override // org.android.spdy.Intenalcb
@@ -123,9 +123,9 @@ final class SpdySessionCallBack implements Intenalcb {
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdyPingRecvCallback] - " + spdySession);
         NetTimeGaurd.start(1);
         if (spdySession.sessionCallBack != null) {
-            long begin = NetTimeGaurd.begin();
+            long jBegin = NetTimeGaurd.begin();
             spdySession.sessionCallBack.spdyPingRecvCallback(spdySession, j2, obj);
-            NetTimeGaurd.end("spdyPingRecvCallback", 1, begin);
+            NetTimeGaurd.end("spdyPingRecvCallback", 1, jBegin);
         } else {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdyPingRecvCallback] - no sessionCallBack.");
         }
@@ -136,14 +136,14 @@ final class SpdySessionCallBack implements Intenalcb {
     public void spdyRequestRecvCallback(SpdySession spdySession, long j2, int i2) {
         Spdycb spdycb;
         spduLog.Logd("tnet-jni", "[SpdySessionCallBack.spdyOnStreamResponse] - " + spdySession);
-        long begin = NetTimeGaurd.begin();
+        long jBegin = NetTimeGaurd.begin();
         SpdyStreamContext spdyStream = spdySession.getSpdyStream(i2);
         if (spdyStream == null || (spdycb = spdyStream.callBack) == null) {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdyRequestRecvCallback] - no sessionCallBack.");
         } else {
             spdycb.spdyRequestRecvCallback(spdySession, j2, spdyStream.streamContext);
         }
-        NetTimeGaurd.end("spdyPingRecvCallback", 3, begin);
+        NetTimeGaurd.end("spdyPingRecvCallback", 3, jBegin);
     }
 
     @Override // org.android.spdy.Intenalcb
@@ -162,9 +162,9 @@ final class SpdySessionCallBack implements Intenalcb {
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdySessionConnectCB] - " + spdySession);
         NetTimeGaurd.start(0);
         if (spdySession.sessionCallBack != null) {
-            long begin = NetTimeGaurd.begin();
+            long jBegin = NetTimeGaurd.begin();
             spdySession.sessionCallBack.spdySessionConnectCB(spdySession, superviseConnectInfo);
-            NetTimeGaurd.end("spdySessionConnectCB", 0, begin);
+            NetTimeGaurd.end("spdySessionConnectCB", 0, jBegin);
         } else {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdySessionConnectCB] - no sessionCallBack.");
         }
@@ -176,10 +176,10 @@ final class SpdySessionCallBack implements Intenalcb {
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdySessionFailedError] - " + spdySession);
         NetTimeGaurd.start(2);
         if (spdySession.sessionCallBack != null) {
-            long begin = NetTimeGaurd.begin();
+            long jBegin = NetTimeGaurd.begin();
             spdySession.sessionCallBack.spdySessionFailedError(spdySession, i2, obj);
             spdySession.clearAllStreamCb();
-            NetTimeGaurd.end("spdySessionFailedError", 2, begin);
+            NetTimeGaurd.end("spdySessionFailedError", 2, jBegin);
         } else {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdySessionFailedError] - no sessionCallBack.");
         }
@@ -194,9 +194,9 @@ final class SpdySessionCallBack implements Intenalcb {
         if (sessionCb == null || !(sessionCb instanceof SessionExtraCb)) {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdySessionOnWritable] - no sessionCallBack.");
         } else {
-            long begin = NetTimeGaurd.begin();
+            long jBegin = NetTimeGaurd.begin();
             ((SessionExtraCb) spdySession.sessionCallBack).spdySessionOnWritable(spdySession, obj, i2);
-            NetTimeGaurd.end("spdySessionOnWritable", 2, begin);
+            NetTimeGaurd.end("spdySessionOnWritable", 2, jBegin);
         }
         NetTimeGaurd.finish(2);
     }
@@ -204,7 +204,7 @@ final class SpdySessionCallBack implements Intenalcb {
     @Override // org.android.spdy.Intenalcb
     public void spdyStreamCloseCallback(SpdySession spdySession, long j2, int i2, int i3, SuperviseData superviseData) {
         spduLog.Logi("tnet-jni", "[SpdySessionCallBack.spdyStreamCloseCallback] - " + spdySession);
-        long begin = NetTimeGaurd.begin();
+        long jBegin = NetTimeGaurd.begin();
         SpdyStreamContext spdyStream = spdySession.getSpdyStream(i3);
         if (spdyStream == null || spdyStream.callBack == null) {
             spduLog.Loge("tnet-jni", "[SpdySessionCallBack.spdyStreamCloseCallback] - no sessionCallBack.");
@@ -213,7 +213,7 @@ final class SpdySessionCallBack implements Intenalcb {
             spdyStream.callBack.spdyStreamCloseCallback(spdySession, j2, i2, spdyStream.streamContext, superviseData);
             spdySession.removeSpdyStream(i3);
         }
-        NetTimeGaurd.end("spdyStreamCloseCallback", 3, begin);
+        NetTimeGaurd.end("spdyStreamCloseCallback", 3, jBegin);
         NetTimeGaurd.finish(3);
     }
 }

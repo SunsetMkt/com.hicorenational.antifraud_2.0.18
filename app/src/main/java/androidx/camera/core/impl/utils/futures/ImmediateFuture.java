@@ -8,10 +8,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
-abstract class ImmediateFuture<V> implements InterfaceFutureC0952a<V> {
+/* JADX INFO: loaded from: classes.dex */
+abstract class ImmediateFuture<V> implements d.b.b.a.a.a<V> {
     private static final String TAG = "ImmediateFuture";
 
     static class ImmediateFailedFuture<V> extends ImmediateFuture<V> {
@@ -75,11 +74,11 @@ abstract class ImmediateFuture<V> implements InterfaceFutureC0952a<V> {
     ImmediateFuture() {
     }
 
-    public static <V> InterfaceFutureC0952a<V> nullFuture() {
+    public static <V> d.b.b.a.a.a<V> nullFuture() {
         return ImmediateSuccessfulFuture.NULL_FUTURE;
     }
 
-    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
+    @Override // d.b.b.a.a.a
     public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
         Preconditions.checkNotNull(runnable);
         Preconditions.checkNotNull(executor);

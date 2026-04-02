@@ -2,15 +2,15 @@ package com.umeng.socialize.net.dplus;
 
 import android.content.Context;
 import android.util.Base64;
-import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.bh;
 import com.umeng.commonsdk.debug.UMRTLog;
 import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import com.umeng.commonsdk.framework.UMWorkDispatch;
+import com.umeng.socialize.a.h;
 import com.umeng.socialize.common.SocializeConstants;
-import com.umeng.socialize.net.dplus.p220db.DBConfig;
-import com.umeng.socialize.net.dplus.p220db.DBManager;
-import com.umeng.socialize.p215a.C3622h;
+import com.umeng.socialize.net.dplus.db.DBConfig;
+import com.umeng.socialize.net.dplus.db.DBManager;
 import com.umeng.socialize.utils.ContextUtil;
 import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
@@ -20,25 +20,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CommonNetImpl implements UMLogDataProtocol {
     public static final String AID = "aid";
-
-    /* renamed from: AM */
-    public static final String f13711AM = "am";
-
-    /* renamed from: AS */
-    public static final String f13712AS = "as";
-
-    /* renamed from: AT */
-    public static final String f13713AT = "at";
+    public static final String AM = "am";
+    public static final String AS = "as";
+    public static final String AT = "at";
     public static final String AUTH = "auth";
     public static final String A_B = "a_b";
     public static final String CANCEL = "cancel";
     public static final String CONTENT = "content";
-
-    /* renamed from: CT */
-    public static final String f13714CT = "ct";
+    public static final String CT = "ct";
     public static final String DAU = "dau";
     public static final String DURL = "durl";
     public static final String E_M = "e_m";
@@ -58,9 +50,7 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public static final String M_U = "m_u";
     public static final String NAME = "name";
     public static final String PCV = "s_pcv";
-
-    /* renamed from: PF */
-    public static final String f13715PF = "pf";
+    public static final String PF = "pf";
     public static final String PIC = "pic";
     public static final String PICURL = "picurl";
     public static final String POSITION = "position";
@@ -71,9 +61,7 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public static final String SEX = "sex";
     public static final String SHARE = "share";
     public static final String SHARETYPE = "s_t";
-
-    /* renamed from: SM */
-    public static final String f13716SM = "sm";
+    public static final String SM = "sm";
     public static final String STATS = "stats";
     public static final String STATS_TAG = "stats";
     public static final String STYPE = "stype";
@@ -89,18 +77,12 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public static final String S_S_S = "s_s_s";
     public static final String TAG = "tag";
     public static final String TITLE = "title";
-
-    /* renamed from: TS */
-    public static final String f13717TS = "ts";
+    public static final String TS = "ts";
     public static final String UID = "uid";
     public static final String UMID = "umid";
-
-    /* renamed from: UN */
-    public static final String f13718UN = "un";
+    public static final String UN = "un";
     public static final String UNIONID = "unionid";
-
-    /* renamed from: UP */
-    public static final String f13719UP = "up";
+    public static final String UP = "up";
     public static final String URL = "url";
     public static final String USERINFO = "userinfo";
     public static final String U_C = "u_c";
@@ -162,29 +144,29 @@ public class CommonNetImpl implements UMLogDataProtocol {
             JSONObject jSONObject = (JSONObject) obj;
             switch (i2) {
                 case SocializeConstants.DAU_EVENT /* 24577 */:
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: DAU_EVENT");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: DAU_EVENT");
                     DBManager.get(this.mConetxt).insertDau(jSONObject);
                     break;
                 case SocializeConstants.SHARE_EVENT /* 24578 */:
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: SHARE_EVENT");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: SHARE_EVENT");
                     DBManager.get(this.mConetxt).insertS_E(jSONObject);
                     break;
                 case SocializeConstants.AUTH_EVENT /* 24579 */:
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: AUTH_EVENT");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: AUTH_EVENT");
                     DBManager.get(this.mConetxt).insertAuth(jSONObject);
                     break;
                 case SocializeConstants.GET_EVENT /* 24580 */:
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: GET_EVENT");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: GET_EVENT");
                     DBManager.get(this.mConetxt).insertUserInfo(jSONObject);
                     break;
                 case SocializeConstants.SAVE_STATS_EVENT /* 24581 */:
                 case SocializeConstants.SEND_DAU_STATS_EVENT /* 24583 */:
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: SAVE_STATS_EVENT");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: SAVE_STATS_EVENT");
                     DBManager.get(this.mConetxt).insertStats(jSONObject);
                     break;
                 case SocializeConstants.CHECK_STATS_EVENT /* 24582 */:
                 default:
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: default case.");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: default case.");
                     DBManager.get(this.mConetxt).insertStats(jSONObject);
                     break;
             }
@@ -223,53 +205,53 @@ public class CommonNetImpl implements UMLogDataProtocol {
         JSONArray jSONArray2;
         JSONArray jSONArray3;
         JSONArray jSONArray4;
-        String optString;
-        double checkFile = checkFile();
-        if (checkFile >= 5242880.0d) {
+        String strOptString;
+        double dCheckFile = checkFile();
+        if (dCheckFile >= 5242880.0d) {
             DBManager.get(ContextUtil.getContext()).deleteTable("stats");
             return null;
         }
-        boolean z = 1048576.0d <= checkFile + 24576.0d;
+        boolean z = 1048576.0d <= dCheckFile + 24576.0d;
         JSONObject jSONObject = new JSONObject();
         try {
             new JSONObject();
             JSONObject jSONObject2 = new JSONObject();
-            JSONArray select = DBManager.get(context).select("s_e", this.shareList, 1047552.0d, z);
-            double length = select.toString().getBytes().length + 1024.0d;
-            JSONArray select2 = DBManager.get(context).select("auth", this.authList, 1048576.0d - length, z);
-            double length2 = length + select2.toString().getBytes().length;
-            JSONArray select3 = DBManager.get(context).select("userinfo", this.infoList, 1048576.0d - length2, z);
-            double length3 = length2 + select3.toString().getBytes().length;
-            JSONArray jSONArray5 = select3;
-            JSONArray select4 = DBManager.get(context).select("dau", this.dauList, 1048576.0d - length3, z);
-            JSONArray select5 = DBManager.get(context).select("stats", this.statsList, 1048576.0d - (length3 + select4.toString().getBytes().length), z);
-            int length4 = select5.toString().getBytes().length;
+            JSONArray jSONArraySelect = DBManager.get(context).select("s_e", this.shareList, 1047552.0d, z);
+            double length = ((double) jSONArraySelect.toString().getBytes().length) + 1024.0d;
+            JSONArray jSONArraySelect2 = DBManager.get(context).select("auth", this.authList, 1048576.0d - length, z);
+            double length2 = length + ((double) jSONArraySelect2.toString().getBytes().length);
+            JSONArray jSONArraySelect3 = DBManager.get(context).select("userinfo", this.infoList, 1048576.0d - length2, z);
+            double length3 = length2 + ((double) jSONArraySelect3.toString().getBytes().length);
+            JSONArray jSONArray5 = jSONArraySelect3;
+            JSONArray jSONArraySelect4 = DBManager.get(context).select("dau", this.dauList, 1048576.0d - length3, z);
+            JSONArray jSONArraySelect5 = DBManager.get(context).select("stats", this.statsList, 1048576.0d - (length3 + ((double) jSONArraySelect4.toString().getBytes().length)), z);
+            int length4 = jSONArraySelect5.toString().getBytes().length;
             checkFile();
-            if (select4.length() != 0) {
-                jSONArray = select4;
+            if (jSONArraySelect4.length() != 0) {
+                jSONArray = jSONArraySelect4;
                 jSONObject2.put("dau", jSONArray);
             } else {
-                jSONArray = select4;
+                jSONArray = jSONArraySelect4;
             }
-            if (select.length() != 0) {
-                jSONArray2 = select;
+            if (jSONArraySelect.length() != 0) {
+                jSONArray2 = jSONArraySelect;
                 jSONObject2.put("s_e", jSONArray2);
             } else {
-                jSONArray2 = select;
+                jSONArray2 = jSONArraySelect;
             }
-            if (select2.length() != 0) {
-                jSONArray3 = select2;
+            if (jSONArraySelect2.length() != 0) {
+                jSONArray3 = jSONArraySelect2;
                 jSONObject2.put("auth", jSONArray3);
             } else {
-                jSONArray3 = select2;
+                jSONArray3 = jSONArraySelect2;
             }
             if (jSONArray5.length() != 0) {
                 int i3 = 0;
                 while (i3 < jSONArray5.length()) {
                     JSONArray jSONArray6 = jSONArray5;
-                    JSONObject optJSONObject = jSONArray6.optJSONObject(i3);
-                    if (optJSONObject != null && (optString = optJSONObject.optString("pn", null)) != null) {
-                        optJSONObject.put("pn", new String(Base64.decode(optString, 0)));
+                    JSONObject jSONObjectOptJSONObject = jSONArray6.optJSONObject(i3);
+                    if (jSONObjectOptJSONObject != null && (strOptString = jSONObjectOptJSONObject.optString("pn", null)) != null) {
+                        jSONObjectOptJSONObject.put("pn", new String(Base64.decode(strOptString, 0)));
                     }
                     i3++;
                     jSONArray5 = jSONArray6;
@@ -279,12 +261,12 @@ public class CommonNetImpl implements UMLogDataProtocol {
             } else {
                 jSONArray4 = jSONArray5;
             }
-            if (select5.length() != 0) {
-                jSONObject2.put("stats", select5);
+            if (jSONArraySelect5.length() != 0) {
+                jSONObject2.put("stats", jSONArraySelect5);
             }
             jSONObject.put("share", jSONObject2);
             if (jSONArray2.length() == 0 && jSONArray3.length() == 0 && jSONArray4.length() == 0 && jSONArray.length() == 0) {
-                if (select5.length() == 0) {
+                if (jSONArraySelect5.length() == 0) {
                     jSONObject = null;
                 }
             }
@@ -310,43 +292,42 @@ public class CommonNetImpl implements UMLogDataProtocol {
     public void workEvent(Object obj, int i2) {
         switch (i2) {
             case SocializeConstants.REGIST_TO_WORK_QUEUE /* 24592 */:
-                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: REGIST_TO_WORK_QUEUE");
+                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: REGIST_TO_WORK_QUEUE");
                 break;
             case SocializeConstants.BUILD_ENVELOPE /* 24593 */:
-                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: BUILD_ENVELOPE");
-                JSONObject constructHeader = constructHeader();
-                if (constructHeader != null) {
-                    JSONObject readData = readData(this.mConetxt, i2);
-                    if (readData != null) {
-                        JSONObject buildEnvelopeWithExtHeader = UMEnvelopeBuild.buildEnvelopeWithExtHeader(this.mConetxt, constructHeader, readData, "umpx_share", C3351bh.f11580aE, "7.3.2");
-                        if (buildEnvelopeWithExtHeader != null) {
-                            if (buildEnvelopeWithExtHeader.has("exception")) {
-                                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: 构建信封失败!");
-                                if (readData.optInt("exception") != 101) {
+                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: BUILD_ENVELOPE");
+                JSONObject jSONObjectConstructHeader = constructHeader();
+                if (jSONObjectConstructHeader != null) {
+                    JSONObject data = readData(this.mConetxt, i2);
+                    if (data != null) {
+                        JSONObject jSONObjectBuildEnvelopeWithExtHeader = UMEnvelopeBuild.buildEnvelopeWithExtHeader(this.mConetxt, jSONObjectConstructHeader, data, "umpx_share", bh.aE, "7.3.2");
+                        if (jSONObjectBuildEnvelopeWithExtHeader != null) {
+                            if (jSONObjectBuildEnvelopeWithExtHeader.has("exception")) {
+                                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: \u6784\u5efa\u4fe1\u5c01\u5931\u8d25!");
+                                if (data.optInt("exception") != 101) {
                                     deleteData(this.mConetxt);
                                 }
                             } else {
-                                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: 构建信封成功，删除本地数据!");
+                                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: \u6784\u5efa\u4fe1\u5c01\u6210\u529f\uff0c\u5220\u9664\u672c\u5730\u6570\u636e!");
                                 deleteData(this.mConetxt);
                             }
                         }
                     } else {
-                        SLog.m12716E(UmengText.NET.BODYNULL);
+                        SLog.E(UmengText.NET.BODYNULL);
                     }
                     clearAllList();
-                    break;
                 }
                 break;
             case SocializeConstants.AZX_TRIGGER /* 24594 */:
-                UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TRIGGER");
+                UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TRIGGER");
                 try {
-                    C3622h.m12538a();
-                    break;
+                    h.a();
                 } catch (Throwable th) {
-                    UMRTLog.m11555e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TASK invoke exception!");
+                    UMRTLog.e(UMRTLog.RTLOG_TAG, "--->>> Share: AZX_TASK invoke exception!");
                     th.printStackTrace();
                     return;
                 }
+                break;
             default:
                 saveFile(obj, i2);
                 break;

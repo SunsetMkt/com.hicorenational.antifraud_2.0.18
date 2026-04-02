@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ProcessingImageReader implements ImageReaderProxy {
     private static final String TAG = "ProcessingImageReader";
 
@@ -105,21 +105,21 @@ class ProcessingImageReader implements ImageReaderProxy {
     @Override // androidx.camera.core.impl.ImageReaderProxy
     @Nullable
     public ImageProxy acquireLatestImage() {
-        ImageProxy acquireLatestImage;
+        ImageProxy imageProxyAcquireLatestImage;
         synchronized (this.mLock) {
-            acquireLatestImage = this.mOutputImageReader.acquireLatestImage();
+            imageProxyAcquireLatestImage = this.mOutputImageReader.acquireLatestImage();
         }
-        return acquireLatestImage;
+        return imageProxyAcquireLatestImage;
     }
 
     @Override // androidx.camera.core.impl.ImageReaderProxy
     @Nullable
     public ImageProxy acquireNextImage() {
-        ImageProxy acquireNextImage;
+        ImageProxy imageProxyAcquireNextImage;
         synchronized (this.mLock) {
-            acquireNextImage = this.mOutputImageReader.acquireNextImage();
+            imageProxyAcquireNextImage = this.mOutputImageReader.acquireNextImage();
         }
-        return acquireNextImage;
+        return imageProxyAcquireNextImage;
     }
 
     @Override // androidx.camera.core.impl.ImageReaderProxy
@@ -196,14 +196,14 @@ class ProcessingImageReader implements ImageReaderProxy {
                 return;
             }
             try {
-                ImageProxy acquireNextImage = imageReaderProxy.acquireNextImage();
-                if (acquireNextImage != null) {
-                    Integer num = (Integer) acquireNextImage.getImageInfo().getTag();
+                ImageProxy imageProxyAcquireNextImage = imageReaderProxy.acquireNextImage();
+                if (imageProxyAcquireNextImage != null) {
+                    Integer num = (Integer) imageProxyAcquireNextImage.getImageInfo().getTag();
                     if (this.mCaptureIdList.contains(num)) {
-                        this.mSettableImageProxyBundle.addImageProxy(acquireNextImage);
+                        this.mSettableImageProxyBundle.addImageProxy(imageProxyAcquireNextImage);
                     } else {
                         String str = "ImageProxyBundle does not contain this id: " + num;
-                        acquireNextImage.close();
+                        imageProxyAcquireNextImage.close();
                     }
                 }
             } catch (IllegalStateException unused) {

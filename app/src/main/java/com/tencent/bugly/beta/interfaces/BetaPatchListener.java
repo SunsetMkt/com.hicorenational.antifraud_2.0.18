@@ -1,7 +1,7 @@
 package com.tencent.bugly.beta.interfaces;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public interface BetaPatchListener {
     void onApplyFailure(String str);
 

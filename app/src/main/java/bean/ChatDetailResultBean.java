@@ -2,19 +2,17 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ChatDetailResultBean extends BaseBean {
     private Long conversationID;
-
-    /* renamed from: id */
-    private Long f1588id;
+    private Long id;
 
     public Long getConversationID() {
         return this.conversationID;
     }
 
     public Long getId() {
-        return this.f1588id;
+        return this.id;
     }
 
     public void setConversationID(Long l2) {
@@ -22,6 +20,6 @@ public class ChatDetailResultBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.f1588id = l2;
+        this.id = l2;
     }
 }

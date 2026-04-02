@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 public final class SessionConfigurationCompat {
     public static final int SESSION_HIGH_SPEED = 1;
     public static final int SESSION_REGULAR = 0;
@@ -97,11 +97,11 @@ public final class SessionConfigurationCompat {
         }
 
         public int hashCode() {
-            int hashCode = this.mOutputConfigurations.hashCode() ^ 31;
-            int i2 = (hashCode << 5) - hashCode;
+            int iHashCode = this.mOutputConfigurations.hashCode() ^ 31;
+            int i2 = (iHashCode << 5) - iHashCode;
             InputConfigurationCompat inputConfigurationCompat = this.mInputConfig;
-            int hashCode2 = (inputConfigurationCompat == null ? 0 : inputConfigurationCompat.hashCode()) ^ i2;
-            return this.mSessionType ^ ((hashCode2 << 5) - hashCode2);
+            int iHashCode2 = (inputConfigurationCompat == null ? 0 : inputConfigurationCompat.hashCode()) ^ i2;
+            return this.mSessionType ^ ((iHashCode2 << 5) - iHashCode2);
         }
 
         @Override // androidx.camera.camera2.internal.compat.params.SessionConfigurationCompat.SessionConfigurationCompatImpl

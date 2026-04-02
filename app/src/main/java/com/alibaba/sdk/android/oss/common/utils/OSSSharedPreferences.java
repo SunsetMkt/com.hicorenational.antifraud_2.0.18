@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.common.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSSharedPreferences {
     private static OSSSharedPreferences sInstance;
     private SharedPreferences mSp;
@@ -32,14 +32,14 @@ public class OSSSharedPreferences {
     }
 
     public void removeKey(String str) {
-        SharedPreferences.Editor edit = this.mSp.edit();
-        edit.remove(str);
-        edit.commit();
+        SharedPreferences.Editor editorEdit = this.mSp.edit();
+        editorEdit.remove(str);
+        editorEdit.commit();
     }
 
     public void setStringValue(String str, String str2) {
-        SharedPreferences.Editor edit = this.mSp.edit();
-        edit.putString(str, str2);
-        edit.commit();
+        SharedPreferences.Editor editorEdit = this.mSp.edit();
+        editorEdit.putString(str, str2);
+        editorEdit.commit();
     }
 }

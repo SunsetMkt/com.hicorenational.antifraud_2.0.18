@@ -1,39 +1,37 @@
 package com.huawei.hms.push.ups.entity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CodeResult {
+    private int a;
 
-    /* renamed from: a */
-    private int f7808a;
-
-    /* renamed from: b */
-    private String f7809b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f4909b;
 
     public CodeResult() {
     }
 
     public String getReason() {
-        return this.f7809b;
+        return this.f4909b;
     }
 
     public int getReturnCode() {
-        return this.f7808a;
+        return this.a;
     }
 
     public void setReason(String str) {
-        this.f7809b = str;
+        this.f4909b = str;
     }
 
     public void setReturnCode(int i2) {
-        this.f7808a = i2;
+        this.a = i2;
     }
 
     public CodeResult(int i2) {
-        this.f7808a = i2;
+        this.a = i2;
     }
 
     public CodeResult(int i2, String str) {
-        this.f7808a = i2;
-        this.f7809b = str;
+        this.a = i2;
+        this.f4909b = str;
     }
 }

@@ -2,11 +2,9 @@ package com.huawei.secure.android.common.util;
 
 import android.webkit.URLUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UrlUtil {
-
-    /* renamed from: a */
-    static final String f8288a = "file:///android_res/";
+    static final String a = "file:///android_res/";
 
     public static boolean isAboutUrl(String str) {
         return URLUtil.isAboutUrl(str);
@@ -45,7 +43,7 @@ public class UrlUtil {
     }
 
     public static boolean isResourceUrl(String str) {
-        return str != null && str.startsWith(f8288a);
+        return str != null && str.startsWith(a);
     }
 
     public static boolean isValidUrl(String str) {

@@ -6,7 +6,7 @@ import com.umeng.socialize.interfaces.CompressListener;
 import com.umeng.socialize.uploadlog.UMLog;
 import com.umeng.socialize.utils.ContextUtil;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class UMShareConfig {
     public static final int AUTH_TYPE_SSO = 1;
     public static final int AUTH_TYPE_WEBVIEW = 2;
@@ -43,9 +43,9 @@ public final class UMShareConfig {
     public final String getAppName() {
         Context context;
         if (TextUtils.isEmpty(this.platformName) && (context = ContextUtil.getContext()) != null) {
-            CharSequence loadLabel = context.getApplicationInfo().loadLabel(context.getPackageManager());
-            if (!TextUtils.isEmpty(loadLabel)) {
-                this.platformName = loadLabel.toString();
+            CharSequence charSequenceLoadLabel = context.getApplicationInfo().loadLabel(context.getPackageManager());
+            if (!TextUtils.isEmpty(charSequenceLoadLabel)) {
+                this.platformName = charSequenceLoadLabel.toString();
             }
         }
         return this.platformName;

@@ -15,9 +15,9 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import cn.cloudwalk.libproject.C1241R;
+import cn.cloudwalk.libproject.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CircleImageView extends ImageView {
     private static final int COLORDRAWABLE_DIMENSION = 2;
     private static final int DEFAULT_BORDER_COLOR = -16777216;
@@ -60,11 +60,11 @@ public class CircleImageView extends ImageView {
             return ((BitmapDrawable) drawable).getBitmap();
         }
         try {
-            Bitmap createBitmap = drawable instanceof ColorDrawable ? Bitmap.createBitmap(2, 2, BITMAP_CONFIG) : Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG);
-            Canvas canvas = new Canvas(createBitmap);
+            Bitmap bitmapCreateBitmap = drawable instanceof ColorDrawable ? Bitmap.createBitmap(2, 2, BITMAP_CONFIG) : Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
             drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
             drawable.draw(canvas);
-            return createBitmap;
+            return bitmapCreateBitmap;
         } catch (OutOfMemoryError unused) {
             return null;
         }
@@ -109,22 +109,22 @@ public class CircleImageView extends ImageView {
     }
 
     private void updateShaderMatrix() {
-        float width;
-        float f2;
+        float fWidth;
+        float fWidth2;
         this.mShaderMatrix.set(null);
-        float f3 = 0.0f;
+        float fHeight = 0.0f;
         if (this.mBitmapWidth * this.mDrawableRect.height() > this.mDrawableRect.width() * this.mBitmapHeight) {
-            width = this.mDrawableRect.height() / this.mBitmapHeight;
-            f2 = (this.mDrawableRect.width() - (this.mBitmapWidth * width)) * 0.5f;
+            fWidth = this.mDrawableRect.height() / this.mBitmapHeight;
+            fWidth2 = (this.mDrawableRect.width() - (this.mBitmapWidth * fWidth)) * 0.5f;
         } else {
-            width = this.mDrawableRect.width() / this.mBitmapWidth;
-            f3 = (this.mDrawableRect.height() - (this.mBitmapHeight * width)) * 0.5f;
-            f2 = 0.0f;
+            fWidth = this.mDrawableRect.width() / this.mBitmapWidth;
+            fHeight = (this.mDrawableRect.height() - (this.mBitmapHeight * fWidth)) * 0.5f;
+            fWidth2 = 0.0f;
         }
-        this.mShaderMatrix.setScale(width, width);
+        this.mShaderMatrix.setScale(fWidth, fWidth);
         Matrix matrix = this.mShaderMatrix;
         int i2 = this.mBorderWidth;
-        matrix.postTranslate(((int) (f2 + 0.5f)) + i2, ((int) (f3 + 0.5f)) + i2);
+        matrix.postTranslate(((int) (fWidth2 + 0.5f)) + i2, ((int) (fHeight + 0.5f)) + i2);
         this.mBitmapShader.setLocalMatrix(this.mShaderMatrix);
     }
 
@@ -230,10 +230,10 @@ public class CircleImageView extends ImageView {
         this.mBorderPaint = new Paint();
         this.mBorderColor = -16777216;
         this.mBorderWidth = 0;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C1241R.styleable.CircleImageView, i2, 0);
-        this.mBorderWidth = obtainStyledAttributes.getDimensionPixelSize(C1241R.styleable.CircleImageView_border_width, 0);
-        this.mBorderColor = obtainStyledAttributes.getColor(C1241R.styleable.CircleImageView_border_color, -16777216);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.CircleImageView, i2, 0);
+        this.mBorderWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.CircleImageView_border_width, 0);
+        this.mBorderColor = typedArrayObtainStyledAttributes.getColor(R.styleable.CircleImageView_border_color, -16777216);
+        typedArrayObtainStyledAttributes.recycle();
         init();
     }
 }

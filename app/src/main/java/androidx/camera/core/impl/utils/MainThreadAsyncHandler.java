@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.core.os.HandlerCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MainThreadAsyncHandler {
     private static volatile Handler sHandler;
 

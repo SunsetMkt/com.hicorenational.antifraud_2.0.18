@@ -6,7 +6,7 @@ import android.view.Window;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class WindowCompat {
     public static final int FEATURE_ACTION_BAR = 8;
     public static final int FEATURE_ACTION_BAR_OVERLAY = 9;

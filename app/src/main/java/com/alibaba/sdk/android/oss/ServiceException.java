@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss;
 
 import com.alibaba.sdk.android.oss.common.OSSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ServiceException extends Exception {
     private static final long serialVersionUID = 430933593095358673L;
     private String errorCode;

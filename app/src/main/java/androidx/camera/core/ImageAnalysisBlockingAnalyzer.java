@@ -6,21 +6,21 @@ import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImageAnalysisBlockingAnalyzer extends ImageAnalysisAbstractAnalyzer {
     ImageAnalysisBlockingAnalyzer() {
     }
 
     @Override // androidx.camera.core.impl.ImageReaderProxy.OnImageAvailableListener
     public void onImageAvailable(@NonNull ImageReaderProxy imageReaderProxy) {
-        final ImageProxy acquireNextImage = imageReaderProxy.acquireNextImage();
-        if (acquireNextImage == null) {
+        final ImageProxy imageProxyAcquireNextImage = imageReaderProxy.acquireNextImage();
+        if (imageProxyAcquireNextImage == null) {
             return;
         }
-        Futures.addCallback(analyzeImage(acquireNextImage), new FutureCallback<Void>() { // from class: androidx.camera.core.ImageAnalysisBlockingAnalyzer.1
+        Futures.addCallback(analyzeImage(imageProxyAcquireNextImage), new FutureCallback<Void>() { // from class: androidx.camera.core.ImageAnalysisBlockingAnalyzer.1
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onFailure(Throwable th) {
-                acquireNextImage.close();
+                imageProxyAcquireNextImage.close();
             }
 
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback

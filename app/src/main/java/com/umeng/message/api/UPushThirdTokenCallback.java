@@ -1,6 +1,6 @@
 package com.umeng.message.api;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface UPushThirdTokenCallback {
     public static final String TYPE_FCM = "fcm";
     public static final String TYPE_HONOR = "honor";

@@ -2,7 +2,7 @@ package com.umeng.message;
 
 import com.umeng.message.api.UPushRegisterCallback;
 
+/* JADX INFO: loaded from: classes2.dex */
 @Deprecated
-/* loaded from: classes2.dex */
 public interface IUmengRegisterCallback extends UPushRegisterCallback {
 }

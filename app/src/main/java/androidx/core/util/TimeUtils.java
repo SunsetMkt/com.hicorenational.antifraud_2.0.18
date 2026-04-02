@@ -1,11 +1,11 @@
 package androidx.core.util;
 
 import androidx.annotation.RestrictTo;
+import e.d;
 import java.io.PrintWriter;
-import p245d.C4443d;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public final class TimeUtils {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -66,34 +66,34 @@ public final class TimeUtils {
             j3 = -j3;
         }
         int i9 = (int) (j3 % 1000);
-        int floor = (int) Math.floor(j3 / 1000);
-        if (floor > 86400) {
-            i3 = floor / 86400;
-            floor -= 86400 * i3;
+        int iFloor = (int) Math.floor(j3 / 1000);
+        if (iFloor > 86400) {
+            i3 = iFloor / 86400;
+            iFloor -= 86400 * i3;
         } else {
             i3 = 0;
         }
-        if (floor > SECONDS_PER_HOUR) {
-            i4 = floor / SECONDS_PER_HOUR;
-            floor -= i4 * SECONDS_PER_HOUR;
+        if (iFloor > SECONDS_PER_HOUR) {
+            i4 = iFloor / SECONDS_PER_HOUR;
+            iFloor -= i4 * SECONDS_PER_HOUR;
         } else {
             i4 = 0;
         }
-        if (floor > 60) {
-            int i10 = floor / 60;
-            i5 = floor - (i10 * 60);
+        if (iFloor > 60) {
+            int i10 = iFloor / 60;
+            i5 = iFloor - (i10 * 60);
             i6 = i10;
         } else {
-            i5 = floor;
+            i5 = iFloor;
             i6 = 0;
         }
         if (i2 != 0) {
-            int accumField = accumField(i3, 1, false, 0);
-            int accumField2 = accumField + accumField(i4, 1, accumField > 0, 2);
-            int accumField3 = accumField2 + accumField(i6, 1, accumField2 > 0, 2);
-            int accumField4 = accumField3 + accumField(i5, 1, accumField3 > 0, 2);
+            int iAccumField = accumField(i3, 1, false, 0);
+            int iAccumField2 = iAccumField + accumField(i4, 1, iAccumField > 0, 2);
+            int iAccumField3 = iAccumField2 + accumField(i6, 1, iAccumField2 > 0, 2);
+            int iAccumField4 = iAccumField3 + accumField(i5, 1, iAccumField3 > 0, 2);
             i7 = 0;
-            for (int accumField5 = accumField4 + accumField(i9, 2, true, accumField4 > 0 ? 3 : 0) + 1; accumField5 < i2; accumField5++) {
+            for (int iAccumField5 = iAccumField4 + accumField(i9, 2, true, iAccumField4 > 0 ? 3 : 0) + 1; iAccumField5 < i2; iAccumField5++) {
                 cArr[i7] = ' ';
                 i7++;
             }
@@ -103,13 +103,13 @@ public final class TimeUtils {
         cArr[i7] = c2;
         int i11 = i7 + 1;
         boolean z = i2 != 0;
-        int printField = printField(cArr, i3, 'd', i11, false, 0);
-        int printField2 = printField(cArr, i4, 'h', printField, printField != i11, z ? 2 : 0);
-        int printField3 = printField(cArr, i6, 'm', printField2, printField2 != i11, z ? 2 : 0);
-        int printField4 = printField(cArr, i5, 's', printField3, printField3 != i11, z ? 2 : 0);
-        int printField5 = printField(cArr, i9, 'm', printField4, true, (!z || printField4 == i11) ? 0 : 3);
-        cArr[printField5] = 's';
-        return printField5 + 1;
+        int iPrintField = printField(cArr, i3, 'd', i11, false, 0);
+        int iPrintField2 = printField(cArr, i4, 'h', iPrintField, iPrintField != i11, z ? 2 : 0);
+        int iPrintField3 = printField(cArr, i6, 'm', iPrintField2, iPrintField2 != i11, z ? 2 : 0);
+        int iPrintField4 = printField(cArr, i5, 's', iPrintField3, iPrintField3 != i11, z ? 2 : 0);
+        int iPrintField5 = printField(cArr, i9, 'm', iPrintField4, true, (!z || iPrintField4 == i11) ? 0 : 3);
+        cArr[iPrintField5] = 's';
+        return iPrintField5 + 1;
     }
 
     private static int printField(char[] cArr, int i2, char c2, int i3, boolean z, int i4) {
@@ -152,7 +152,7 @@ public final class TimeUtils {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static void formatDuration(long j2, long j3, PrintWriter printWriter) {
         if (j2 == 0) {
-            printWriter.print(C4443d.f16920D);
+            printWriter.print(d.F);
         } else {
             formatDuration(j2 - j3, printWriter, 0);
         }

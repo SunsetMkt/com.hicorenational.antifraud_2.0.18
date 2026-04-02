@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Constraints extends ViewGroup {
     public static final String TAG = "Constraints";
     ConstraintSet myConstraintSet;
@@ -32,7 +32,6 @@ public class Constraints extends ViewGroup {
     protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // android.view.ViewGroup
     public LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams(-2, -2);
@@ -124,40 +123,40 @@ public class Constraints extends ViewGroup {
             this.translationX = 0.0f;
             this.translationY = 0.0f;
             this.translationZ = 0.0f;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintSet);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ConstraintSet);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.ConstraintSet_android_alpha) {
-                    this.alpha = obtainStyledAttributes.getFloat(index, this.alpha);
-                } else if (index == C0471R.styleable.ConstraintSet_android_elevation) {
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.ConstraintSet_android_alpha) {
+                    this.alpha = typedArrayObtainStyledAttributes.getFloat(index, this.alpha);
+                } else if (index == R.styleable.ConstraintSet_android_elevation) {
                     if (Build.VERSION.SDK_INT >= 21) {
-                        this.elevation = obtainStyledAttributes.getFloat(index, this.elevation);
+                        this.elevation = typedArrayObtainStyledAttributes.getFloat(index, this.elevation);
                         this.applyElevation = true;
                     }
-                } else if (index == C0471R.styleable.ConstraintSet_android_rotationX) {
-                    this.rotationX = obtainStyledAttributes.getFloat(index, this.rotationX);
-                } else if (index == C0471R.styleable.ConstraintSet_android_rotationY) {
-                    this.rotationY = obtainStyledAttributes.getFloat(index, this.rotationY);
-                } else if (index == C0471R.styleable.ConstraintSet_android_rotation) {
-                    this.rotation = obtainStyledAttributes.getFloat(index, this.rotation);
-                } else if (index == C0471R.styleable.ConstraintSet_android_scaleX) {
-                    this.scaleX = obtainStyledAttributes.getFloat(index, this.scaleX);
-                } else if (index == C0471R.styleable.ConstraintSet_android_scaleY) {
-                    this.scaleY = obtainStyledAttributes.getFloat(index, this.scaleY);
-                } else if (index == C0471R.styleable.ConstraintSet_android_transformPivotX) {
-                    this.transformPivotX = obtainStyledAttributes.getFloat(index, this.transformPivotX);
-                } else if (index == C0471R.styleable.ConstraintSet_android_transformPivotY) {
-                    this.transformPivotY = obtainStyledAttributes.getFloat(index, this.transformPivotY);
-                } else if (index == C0471R.styleable.ConstraintSet_android_translationX) {
-                    this.translationX = obtainStyledAttributes.getFloat(index, this.translationX);
-                } else if (index == C0471R.styleable.ConstraintSet_android_translationY) {
-                    this.translationY = obtainStyledAttributes.getFloat(index, this.translationY);
-                } else if (index == C0471R.styleable.ConstraintSet_android_translationZ && Build.VERSION.SDK_INT >= 21) {
-                    this.translationZ = obtainStyledAttributes.getFloat(index, this.translationZ);
+                } else if (index == R.styleable.ConstraintSet_android_rotationX) {
+                    this.rotationX = typedArrayObtainStyledAttributes.getFloat(index, this.rotationX);
+                } else if (index == R.styleable.ConstraintSet_android_rotationY) {
+                    this.rotationY = typedArrayObtainStyledAttributes.getFloat(index, this.rotationY);
+                } else if (index == R.styleable.ConstraintSet_android_rotation) {
+                    this.rotation = typedArrayObtainStyledAttributes.getFloat(index, this.rotation);
+                } else if (index == R.styleable.ConstraintSet_android_scaleX) {
+                    this.scaleX = typedArrayObtainStyledAttributes.getFloat(index, this.scaleX);
+                } else if (index == R.styleable.ConstraintSet_android_scaleY) {
+                    this.scaleY = typedArrayObtainStyledAttributes.getFloat(index, this.scaleY);
+                } else if (index == R.styleable.ConstraintSet_android_transformPivotX) {
+                    this.transformPivotX = typedArrayObtainStyledAttributes.getFloat(index, this.transformPivotX);
+                } else if (index == R.styleable.ConstraintSet_android_transformPivotY) {
+                    this.transformPivotY = typedArrayObtainStyledAttributes.getFloat(index, this.transformPivotY);
+                } else if (index == R.styleable.ConstraintSet_android_translationX) {
+                    this.translationX = typedArrayObtainStyledAttributes.getFloat(index, this.translationX);
+                } else if (index == R.styleable.ConstraintSet_android_translationY) {
+                    this.translationY = typedArrayObtainStyledAttributes.getFloat(index, this.translationY);
+                } else if (index == R.styleable.ConstraintSet_android_translationZ && Build.VERSION.SDK_INT >= 21) {
+                    this.translationZ = typedArrayObtainStyledAttributes.getFloat(index, this.translationZ);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 }

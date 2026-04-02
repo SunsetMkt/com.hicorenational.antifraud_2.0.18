@@ -2,7 +2,7 @@ package org.android.spdy;
 
 import java.util.Arrays;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SpdyByteArray implements Comparable<SpdyByteArray> {
     private byte[] byteArray;
     int dataLength;

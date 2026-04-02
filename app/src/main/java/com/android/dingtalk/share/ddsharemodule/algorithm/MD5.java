@@ -1,13 +1,13 @@
 package com.android.dingtalk.share.ddsharemodule.algorithm;
 
-import com.umeng.analytics.pro.C3393cw;
+import com.umeng.analytics.pro.cw;
+import i.f1;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MD5 {
     public static final String getMD5(FileInputStream fileInputStream, int i2, int i3, int i4) {
         if (fileInputStream != null && i2 > 0 && i3 >= 0 && i4 > 0) {
@@ -21,21 +21,21 @@ public class MD5 {
                 byte[] bArr = new byte[i2];
                 int i5 = 0;
                 while (true) {
-                    int read = fileInputStream.read(bArr);
-                    if (read == -1 || i5 >= i4) {
+                    int i6 = fileInputStream.read(bArr);
+                    if (i6 == -1 || i5 >= i4) {
                         break;
                     }
-                    int i6 = i5 + read;
-                    if (i6 <= i4) {
-                        messageDigest.update(bArr, 0, read);
-                        i5 = i6;
+                    int i7 = i5 + i6;
+                    if (i7 <= i4) {
+                        messageDigest.update(bArr, 0, i6);
+                        i5 = i7;
                     } else {
                         messageDigest.update(bArr, 0, i4 - i5);
                         i5 = i4;
                     }
                 }
                 for (byte b2 : messageDigest.digest()) {
-                    sb.append(Integer.toString((b2 & C5230f1.f20085c) + 256, 16).substring(1));
+                    sb.append(Integer.toString((b2 & f1.f12066c) + 256, 16).substring(1));
                 }
                 return sb.toString();
             } catch (Exception unused) {
@@ -49,14 +49,14 @@ public class MD5 {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(bArr);
-            byte[] digest = messageDigest.digest();
-            char[] cArr2 = new char[digest.length * 2];
+            byte[] bArrDigest = messageDigest.digest();
+            char[] cArr2 = new char[bArrDigest.length * 2];
             int i2 = 0;
-            for (byte b2 : digest) {
+            for (byte b2 : bArrDigest) {
                 int i3 = i2 + 1;
                 cArr2[i2] = cArr[(b2 >>> 4) & 15];
                 i2 = i3 + 1;
-                cArr2[i3] = cArr[b2 & C3393cw.f11873m];
+                cArr2[i3] = cArr[b2 & cw.f7205m];
             }
             return new String(cArr2);
         } catch (Exception unused) {
@@ -82,14 +82,14 @@ public class MD5 {
                 StringBuilder sb = new StringBuilder(32);
                 byte[] bArr = new byte[i2];
                 while (true) {
-                    int read = fileInputStream.read(bArr);
-                    if (read == -1) {
+                    int i4 = fileInputStream.read(bArr);
+                    if (i4 == -1) {
                         break;
                     }
-                    messageDigest.update(bArr, 0, read);
+                    messageDigest.update(bArr, 0, i4);
                 }
                 for (byte b2 : messageDigest.digest()) {
-                    sb.append(Integer.toString((b2 & C5230f1.f20085c) + 256, 16).substring(1));
+                    sb.append(Integer.toString((b2 & f1.f12066c) + 256, 16).substring(1));
                 }
                 return sb.toString();
             } catch (Exception unused) {
@@ -113,13 +113,13 @@ public class MD5 {
         return getMD5(file, 102400);
     }
 
-    public static String getMD5(File file, int i2) {
+    public static String getMD5(File file, int i2) throws Throwable {
         FileInputStream fileInputStream;
-        long j2;
+        long length;
         if (file != null && i2 > 0 && file.exists()) {
             try {
                 fileInputStream = new FileInputStream(file);
-                j2 = i2;
+                length = i2;
             } catch (Exception unused) {
                 fileInputStream = null;
             } catch (Throwable th) {
@@ -127,10 +127,10 @@ public class MD5 {
                 fileInputStream = null;
             }
             try {
-                if (j2 > file.length()) {
-                    j2 = file.length();
+                if (length > file.length()) {
+                    length = file.length();
                 }
-                String md5 = getMD5(fileInputStream, (int) j2);
+                String md5 = getMD5(fileInputStream, (int) length);
                 fileInputStream.close();
                 try {
                     fileInputStream.close();
@@ -170,7 +170,7 @@ public class MD5 {
         return null;
     }
 
-    public static String getMD5(File file, int i2, int i3) {
+    public static String getMD5(File file, int i2, int i3) throws Throwable {
         FileInputStream fileInputStream;
         FileInputStream fileInputStream2 = null;
         if (file != null && file.exists() && i2 >= 0 && i3 > 0) {

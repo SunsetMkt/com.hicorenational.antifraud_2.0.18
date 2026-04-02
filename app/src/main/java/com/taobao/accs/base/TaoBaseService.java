@@ -11,14 +11,14 @@ import android.os.Messenger;
 import com.huawei.hms.support.api.entity.core.CommonCode;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.C3033a;
-import com.taobao.accs.utl.C3052t;
-import com.taobao.accs.utl.C3054v;
+import com.taobao.accs.utl.a;
+import com.taobao.accs.utl.t;
+import com.taobao.accs.utl.v;
 import java.io.Serializable;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class TaoBaseService extends Service implements AccsDataListener {
     private static final String TAG = "TaoBaseService";
     private static boolean isBinded = false;
@@ -26,17 +26,17 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             if (message != null) {
-                ALog.m9183i(TaoBaseService.TAG, "handleMessage on receive msg", "msg", message.toString());
+                ALog.i(TaoBaseService.TAG, "handleMessage on receive msg", "msg", message.toString());
                 Intent intent = (Intent) message.getData().getParcelable(CommonCode.Resolution.HAS_RESOLUTION_FROM_APK);
                 if (intent != null) {
-                    ALog.m9183i(TaoBaseService.TAG, "handleMessage get intent success", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent.toString());
+                    ALog.i(TaoBaseService.TAG, "handleMessage get intent success", CommonCode.Resolution.HAS_RESOLUTION_FROM_APK, intent.toString());
                     TaoBaseService.this.onStartCommand(intent, 0, 0);
                 }
             }
         }
     });
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public enum ExtHeaderType {
         TYPE_BUSINESS,
         TYPE_SID,
@@ -80,7 +80,7 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
         }
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class ExtraInfo implements Serializable {
         public static final String EXT_HEADER = "ext_header";
         public int connType;
@@ -96,7 +96,7 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        if (C3052t.m9277b() && C3054v.m9284a(this) && !isBinded) {
+        if (t.b() && v.a(this) && !isBinded) {
             isBinded = true;
             getApplicationContext().bindService(new Intent(this, getClass()), new ServiceConnection() { // from class: com.taobao.accs.base.TaoBaseService.2
                 @Override // android.content.ServiceConnection
@@ -135,13 +135,13 @@ public abstract class TaoBaseService extends Service implements AccsDataListener
             @Override // java.lang.Runnable
             public void run() {
                 TaoBaseService taoBaseService = TaoBaseService.this;
-                C3033a.m9235a(taoBaseService, intent, taoBaseService);
+                a.a(taoBaseService, intent, taoBaseService);
             }
         });
         return 2;
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class ConnectInfo implements Serializable {
         private static final long serialVersionUID = 8974674111758240362L;
         public boolean connected;

@@ -3,7 +3,7 @@ package com.android.dingtalk.share.ddsharemodule.message;
 import android.os.Bundle;
 import com.android.dingtalk.share.ddsharemodule.ShareConstant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DDZhiFuBaoMessage extends BaseMediaObject {
     private static final int MAX_WEBPAGE_URL_LENGTH = 10240;
     private static final String TAG = "DDZhiFuBaoMessage";

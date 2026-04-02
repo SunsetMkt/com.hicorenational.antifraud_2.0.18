@@ -8,22 +8,29 @@ import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AsyncListDiffer<T> {
     private static final Executor sMainThreadExecutor = new MainThreadExecutor();
     final AsyncDifferConfig<T> mConfig;
 
     @Nullable
     private List<T> mList;
-    final Executor mMainThreadExecutor;
+    private final List<ListListener<T>> mListeners;
+    Executor mMainThreadExecutor;
     int mMaxScheduledGeneration;
 
     @NonNull
     private List<T> mReadOnlyList;
     private final ListUpdateCallback mUpdateCallback;
+
+    public interface ListListener<T> {
+        void onCurrentListChanged(@NonNull List<T> list, @NonNull List<T> list2);
+    }
 
     private static class MainThreadExecutor implements Executor {
         final Handler mHandler = new Handler(Looper.getMainLooper());
@@ -41,36 +48,66 @@ public class AsyncListDiffer<T> {
         this(new AdapterListUpdateCallback(adapter2), new AsyncDifferConfig.Builder(itemCallback).build());
     }
 
+    private void onCurrentListChanged(@NonNull List<T> list, @Nullable Runnable runnable) {
+        Iterator<ListListener<T>> it = this.mListeners.iterator();
+        while (it.hasNext()) {
+            it.next().onCurrentListChanged(list, this.mReadOnlyList);
+        }
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void addListListener(@NonNull ListListener<T> listListener) {
+        this.mListeners.add(listListener);
+    }
+
     @NonNull
     public List<T> getCurrentList() {
         return this.mReadOnlyList;
     }
 
-    void latchList(@NonNull List<T> list, @NonNull DiffUtil.DiffResult diffResult) {
+    void latchList(@NonNull List<T> list, @NonNull DiffUtil.DiffResult diffResult, @Nullable Runnable runnable) {
+        List<T> list2 = this.mReadOnlyList;
         this.mList = list;
         this.mReadOnlyList = Collections.unmodifiableList(list);
         diffResult.dispatchUpdatesTo(this.mUpdateCallback);
+        onCurrentListChanged(list2, runnable);
     }
 
-    public void submitList(@Nullable final List<T> list) {
+    public void removeListListener(@NonNull ListListener<T> listListener) {
+        this.mListeners.remove(listListener);
+    }
+
+    public void submitList(@Nullable List<T> list) {
+        submitList(list, null);
+    }
+
+    public void submitList(@Nullable final List<T> list, @Nullable final Runnable runnable) {
         final int i2 = this.mMaxScheduledGeneration + 1;
         this.mMaxScheduledGeneration = i2;
         final List<T> list2 = this.mList;
         if (list == list2) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
             return;
         }
+        List<T> list3 = this.mReadOnlyList;
         if (list == null) {
             int size = list2.size();
             this.mList = null;
             this.mReadOnlyList = Collections.emptyList();
             this.mUpdateCallback.onRemoved(0, size);
+            onCurrentListChanged(list3, runnable);
             return;
         }
         if (list2 != null) {
             this.mConfig.getBackgroundThreadExecutor().execute(new Runnable() { // from class: androidx.recyclerview.widget.AsyncListDiffer.1
                 @Override // java.lang.Runnable
                 public void run() {
-                    final DiffUtil.DiffResult calculateDiff = DiffUtil.calculateDiff(new DiffUtil.Callback() { // from class: androidx.recyclerview.widget.AsyncListDiffer.1.1
+                    final DiffUtil.DiffResult diffResultCalculateDiff = DiffUtil.calculateDiff(new DiffUtil.Callback() { // from class: androidx.recyclerview.widget.AsyncListDiffer.1.1
                         /* JADX WARN: Multi-variable type inference failed */
                         @Override // androidx.recyclerview.widget.DiffUtil.Callback
                         public boolean areContentsTheSame(int i3, int i4) {
@@ -118,10 +155,10 @@ public class AsyncListDiffer<T> {
                     AsyncListDiffer.this.mMainThreadExecutor.execute(new Runnable() { // from class: androidx.recyclerview.widget.AsyncListDiffer.1.2
                         @Override // java.lang.Runnable
                         public void run() {
-                            RunnableC06201 runnableC06201 = RunnableC06201.this;
+                            AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
                             AsyncListDiffer asyncListDiffer = AsyncListDiffer.this;
                             if (asyncListDiffer.mMaxScheduledGeneration == i2) {
-                                asyncListDiffer.latchList(list, calculateDiff);
+                                asyncListDiffer.latchList(list, diffResultCalculateDiff, runnable);
                             }
                         }
                     });
@@ -132,9 +169,11 @@ public class AsyncListDiffer<T> {
         this.mList = list;
         this.mReadOnlyList = Collections.unmodifiableList(list);
         this.mUpdateCallback.onInserted(0, list.size());
+        onCurrentListChanged(list3, runnable);
     }
 
     public AsyncListDiffer(@NonNull ListUpdateCallback listUpdateCallback, @NonNull AsyncDifferConfig<T> asyncDifferConfig) {
+        this.mListeners = new CopyOnWriteArrayList();
         this.mReadOnlyList = Collections.emptyList();
         this.mUpdateCallback = listUpdateCallback;
         this.mConfig = asyncDifferConfig;

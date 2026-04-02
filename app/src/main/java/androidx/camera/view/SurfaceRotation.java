@@ -2,7 +2,7 @@ package androidx.camera.view;
 
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class SurfaceRotation {
     private SurfaceRotation() {
     }

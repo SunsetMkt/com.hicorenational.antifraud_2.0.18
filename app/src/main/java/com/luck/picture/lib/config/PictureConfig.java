@@ -1,7 +1,10 @@
 package com.luck.picture.lib.config;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class PictureConfig {
+    public static final int AI_REQUEST_AUDIO = 1023;
+    public static final int AI_REQUEST_IMAGE = 1021;
+    public static final int AI_REQUEST_VIDEO = 1022;
     public static final int APPLY_AUDIO_PERMISSIONS_CODE = 3;
     public static final int APPLY_CAMERA_PERMISSIONS_CODE = 2;
     public static final int APPLY_CAMERA_STORAGE_PERMISSIONS_CODE = 5;

@@ -4,7 +4,7 @@ import android.webkit.WebView;
 import androidx.collection.ArrayMap;
 import com.just.agentweb.AgentWeb;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface WebSecurityCheckLogic {
     void dealHoneyComb(WebView webView);
 

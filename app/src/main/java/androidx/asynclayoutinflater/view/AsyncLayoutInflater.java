@@ -14,7 +14,7 @@ import androidx.annotation.UiThread;
 import androidx.core.util.Pools;
 import java.util.concurrent.ArrayBlockingQueue;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AsyncLayoutInflater {
     private static final String TAG = "AsyncLayoutInflater";
     LayoutInflater mInflater;
@@ -47,14 +47,14 @@ public final class AsyncLayoutInflater {
 
         @Override // android.view.LayoutInflater
         protected View onCreateView(String str, AttributeSet attributeSet) throws ClassNotFoundException {
-            View createView;
+            View viewCreateView;
             for (String str2 : sClassPrefixList) {
                 try {
-                    createView = createView(str, str2, attributeSet);
+                    viewCreateView = createView(str, str2, attributeSet);
                 } catch (ClassNotFoundException unused) {
                 }
-                if (createView != null) {
-                    return createView;
+                if (viewCreateView != null) {
+                    return viewCreateView;
                 }
             }
             return super.onCreateView(str, attributeSet);
@@ -97,8 +97,8 @@ public final class AsyncLayoutInflater {
         }
 
         public InflateRequest obtainRequest() {
-            InflateRequest acquire = this.mRequestPool.acquire();
-            return acquire == null ? new InflateRequest() : acquire;
+            InflateRequest inflateRequestAcquire = this.mRequestPool.acquire();
+            return inflateRequestAcquire == null ? new InflateRequest() : inflateRequestAcquire;
         }
 
         public void releaseRequest(InflateRequest inflateRequest) {
@@ -119,12 +119,12 @@ public final class AsyncLayoutInflater {
 
         public void runInner() {
             try {
-                InflateRequest take = this.mQueue.take();
+                InflateRequest inflateRequestTake = this.mQueue.take();
                 try {
-                    take.view = take.inflater.mInflater.inflate(take.resid, take.parent, false);
+                    inflateRequestTake.view = inflateRequestTake.inflater.mInflater.inflate(inflateRequestTake.resid, inflateRequestTake.parent, false);
                 } catch (RuntimeException unused) {
                 }
-                Message.obtain(take.inflater.mHandler, 0, take).sendToTarget();
+                Message.obtain(inflateRequestTake.inflater.mHandler, 0, inflateRequestTake).sendToTarget();
             } catch (InterruptedException unused2) {
             }
         }
@@ -143,11 +143,11 @@ public final class AsyncLayoutInflater {
         if (onInflateFinishedListener == null) {
             throw new NullPointerException("callback argument may not be null!");
         }
-        InflateRequest obtainRequest = this.mInflateThread.obtainRequest();
-        obtainRequest.inflater = this;
-        obtainRequest.resid = i2;
-        obtainRequest.parent = viewGroup;
-        obtainRequest.callback = onInflateFinishedListener;
-        this.mInflateThread.enqueue(obtainRequest);
+        InflateRequest inflateRequestObtainRequest = this.mInflateThread.obtainRequest();
+        inflateRequestObtainRequest.inflater = this;
+        inflateRequestObtainRequest.resid = i2;
+        inflateRequestObtainRequest.parent = viewGroup;
+        inflateRequestObtainRequest.callback = onInflateFinishedListener;
+        this.mInflateThread.enqueue(inflateRequestObtainRequest);
     }
 }

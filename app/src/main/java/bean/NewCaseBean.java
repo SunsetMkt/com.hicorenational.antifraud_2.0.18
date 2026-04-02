@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NewCaseBean extends BaseBean {
     private String author;
     private int classify;
@@ -14,9 +14,7 @@ public class NewCaseBean extends BaseBean {
     private String createTime;
     private String description;
     private String icon;
-
-    /* renamed from: id */
-    private String f1603id;
+    private String id;
     private int isTop;
     private int itemType;
     private String keyWord;
@@ -69,7 +67,7 @@ public class NewCaseBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1603id;
+        return this.id;
     }
 
     public int getIsTop() {
@@ -153,7 +151,7 @@ public class NewCaseBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1603id = str;
+        this.id = str;
     }
 
     public void setIsTop(int i2) {

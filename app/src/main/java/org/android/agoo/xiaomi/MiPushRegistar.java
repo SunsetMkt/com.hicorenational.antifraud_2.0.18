@@ -7,7 +7,7 @@ import com.taobao.accs.utl.UtilityImpl;
 import com.taobao.agoo.BaseNotifyClickActivity;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MiPushRegistar {
     public static final String BLACKSHARK = "blackshark";
     public static final String REDMI = "Redmi";
@@ -24,7 +24,7 @@ public class MiPushRegistar {
         try {
             return MiPushClient.getRegId(context);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "getToken failed:", th, new Object[0]);
+            ALog.e(TAG, "getToken failed:", th, new Object[0]);
             return null;
         }
     }
@@ -36,28 +36,28 @@ public class MiPushRegistar {
     public static void register(Context context, String str, String str2, boolean z) {
         try {
             if (!UtilityImpl.isMainProcess(context)) {
-                ALog.m9183i(TAG, "not in main process, skipped.", new Object[0]);
+                ALog.i(TAG, "not in main process, skipped.", new Object[0]);
                 return;
             }
             if (!z && !checkDevice()) {
-                ALog.m9183i(TAG, "device check, skipped.", new Object[0]);
+                ALog.i(TAG, "device check, skipped.", new Object[0]);
                 return;
             }
-            ALog.m9183i(TAG, "ver:", "2.1.0");
-            ALog.m9183i(TAG, "register begin", new Object[0]);
+            ALog.i(TAG, "ver:", "2.1.0");
+            ALog.i(TAG, "register begin", new Object[0]);
             BaseNotifyClickActivity.addNotifyListener(new MiMsgParseImpl());
             MiPushClient.registerPush(context, str, str2);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "register failed:", th, new Object[0]);
+            ALog.e(TAG, "register failed:", th, new Object[0]);
         }
     }
 
     public static void unregister(Context context) {
         try {
-            ALog.m9183i(TAG, MiPushClient.COMMAND_UNREGISTER, new Object[0]);
+            ALog.i(TAG, MiPushClient.COMMAND_UNREGISTER, new Object[0]);
             MiPushClient.unregisterPush(context);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "unregister failed:", th, new Object[0]);
+            ALog.e(TAG, "unregister failed:", th, new Object[0]);
         }
     }
 }

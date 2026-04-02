@@ -12,7 +12,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebViewClientDelegate extends android.webkit.WebViewClient {
     private static final String TAG = WebViewClientDelegate.class.getSimpleName();
     private android.webkit.WebViewClient mDelegate;

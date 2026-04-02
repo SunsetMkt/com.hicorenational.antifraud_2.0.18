@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.common;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSLog {
     private static final String TAG = "OSS-Android-SDK";
     private static boolean enableLog = false;

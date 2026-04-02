@@ -2,16 +2,14 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TransferBean extends BaseBean {
     private String amount;
     private Long caseInfoID;
     private Long conversationID;
     private Integer conversationType;
     private String conversationTypeText;
-
-    /* renamed from: id */
-    private Long f1633id;
+    private Long id;
     private boolean isSave;
 
     public String getAmount() {
@@ -35,7 +33,7 @@ public class TransferBean extends BaseBean {
     }
 
     public Long getId() {
-        return this.f1633id;
+        return this.id;
     }
 
     public boolean isSave() {
@@ -63,7 +61,7 @@ public class TransferBean extends BaseBean {
     }
 
     public void setId(Long l2) {
-        this.f1633id = l2;
+        this.id = l2;
     }
 
     public void setSave(boolean z) {

@@ -1,6 +1,6 @@
 package com.huawei.hms.framework.common;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RunnableEnhance implements Runnable {
     static final String TRANCELOGO = " -->";
     private String parentName = Thread.currentThread().getName();

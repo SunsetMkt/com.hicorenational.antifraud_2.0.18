@@ -4,7 +4,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ImagesObservable {
     private static ImagesObservable sObserver;
     private List<LocalMedia> previewList;

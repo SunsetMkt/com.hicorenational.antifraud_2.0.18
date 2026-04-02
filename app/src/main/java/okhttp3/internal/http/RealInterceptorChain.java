@@ -13,7 +13,7 @@ import okhttp3.internal.Util;
 import okhttp3.internal.connection.RealConnection;
 import okhttp3.internal.connection.StreamAllocation;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class RealInterceptorChain implements Interceptor.Chain {
     private final Call call;
     private int calls;
@@ -117,15 +117,15 @@ public final class RealInterceptorChain implements Interceptor.Chain {
         }
         RealInterceptorChain realInterceptorChain = new RealInterceptorChain(this.interceptors, streamAllocation, httpCodec, realConnection, this.index + 1, request, this.call, this.eventListener, this.connectTimeout, this.readTimeout, this.writeTimeout);
         Interceptor interceptor = this.interceptors.get(this.index);
-        Response intercept = interceptor.intercept(realInterceptorChain);
+        Response responseIntercept = interceptor.intercept(realInterceptorChain);
         if (httpCodec != null && this.index + 1 < this.interceptors.size() && realInterceptorChain.calls != 1) {
             throw new IllegalStateException("network interceptor " + interceptor + " must call proceed() exactly once");
         }
-        if (intercept == null) {
+        if (responseIntercept == null) {
             throw new NullPointerException("interceptor " + interceptor + " returned null");
         }
-        if (intercept.body() != null) {
-            return intercept;
+        if (responseIntercept.body() != null) {
+            return responseIntercept;
         }
         throw new IllegalStateException("interceptor " + interceptor + " returned a response with no body");
     }

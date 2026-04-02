@@ -3,12 +3,10 @@ package anet.channel.strategy;
 import android.text.TextUtils;
 import anet.channel.GlobalAppRuntimeInfo;
 import anet.channel.entity.ConnType;
-import anet.channel.p021e.C0774a;
 import anet.channel.status.NetworkStatusHelper;
-import anet.channel.strategy.C0842l;
 import anet.channel.strategy.dispatch.AmdcRuntimeInfo;
 import anet.channel.strategy.dispatch.HttpDispatcher;
-import anet.channel.strategy.utils.C0848c;
+import anet.channel.strategy.l;
 import anet.channel.strategy.utils.SerialLruCache;
 import anet.channel.util.ALog;
 import anet.channel.util.AppLifecycle;
@@ -23,46 +21,43 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 class StrategyTable implements Serializable {
 
-    /* renamed from: e */
-    protected static Comparator<StrategyCollection> f1061e = new C0845o();
+    /* JADX INFO: renamed from: e */
+    protected static Comparator<StrategyCollection> f1577e = new o();
+    protected String a;
 
-    /* renamed from: a */
-    protected String f1062a;
+    /* JADX INFO: renamed from: b */
+    protected volatile String f1578b;
 
-    /* renamed from: b */
-    protected volatile String f1063b;
+    /* JADX INFO: renamed from: c */
+    Map<String, Long> f1579c;
 
-    /* renamed from: c */
-    Map<String, Long> f1064c;
+    /* JADX INFO: renamed from: d */
+    protected transient boolean f1580d = false;
 
-    /* renamed from: d */
-    protected transient boolean f1065d = false;
+    /* JADX INFO: renamed from: f */
+    private HostLruCache f1581f;
 
-    /* renamed from: f */
-    private HostLruCache f1066f;
+    /* JADX INFO: renamed from: g */
+    private volatile transient int f1582g;
 
-    /* renamed from: g */
-    private volatile transient int f1067g;
-
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     private static class HostLruCache extends SerialLruCache<String, StrategyCollection> {
         public HostLruCache(int i2) {
             super(i2);
         }
 
-        /* JADX INFO: Access modifiers changed from: protected */
         @Override // anet.channel.strategy.utils.SerialLruCache
         public boolean entryRemoved(Map.Entry<String, StrategyCollection> entry) {
-            if (!entry.getValue().f1043d) {
+            if (!entry.getValue().f1562d) {
                 return true;
             }
             Iterator<Map.Entry<String, StrategyCollection>> it = entrySet().iterator();
             while (it.hasNext()) {
-                if (!it.next().getValue().f1043d) {
+                if (!it.next().getValue().f1562d) {
                     it.remove();
                     return false;
                 }
@@ -72,28 +67,26 @@ class StrategyTable implements Serializable {
     }
 
     protected StrategyTable(String str) {
-        this.f1062a = str;
-        m658a();
+        this.a = str;
+        a();
     }
 
-    /* renamed from: b */
-    private void m655b() {
-        if (HttpDispatcher.getInstance().isInitHostsChanged(this.f1062a)) {
+    private void b() {
+        if (HttpDispatcher.getInstance().isInitHostsChanged(this.a)) {
             for (String str : HttpDispatcher.getInstance().getInitHosts()) {
-                this.f1066f.put(str, new StrategyCollection(str));
+                this.f1581f.put(str, new StrategyCollection(str));
             }
         }
     }
 
-    /* renamed from: c */
-    private void m657c() {
+    private void c() {
         try {
-            if (HttpDispatcher.getInstance().isInitHostsChanged(this.f1062a)) {
+            if (HttpDispatcher.getInstance().isInitHostsChanged(this.a)) {
                 TreeSet treeSet = null;
-                synchronized (this.f1066f) {
+                synchronized (this.f1581f) {
                     for (String str : HttpDispatcher.getInstance().getInitHosts()) {
-                        if (!this.f1066f.containsKey(str)) {
-                            this.f1066f.put(str, new StrategyCollection(str));
+                        if (!this.f1581f.containsKey(str)) {
+                            this.f1581f.put(str, new StrategyCollection(str));
                             if (treeSet == null) {
                                 treeSet = new TreeSet();
                             }
@@ -102,28 +95,27 @@ class StrategyTable implements Serializable {
                     }
                 }
                 if (treeSet != null) {
-                    m654a(treeSet);
+                    a(treeSet);
                 }
             }
         } catch (Exception e2) {
-            ALog.m714e("awcn.StrategyTable", "checkInitHost failed", this.f1062a, e2, new Object[0]);
+            ALog.e("awcn.StrategyTable", "checkInitHost failed", this.a, e2, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    protected void m658a() {
-        if (this.f1066f == null) {
-            this.f1066f = new HostLruCache(256);
-            m655b();
+    protected void a() {
+        if (this.f1581f == null) {
+            this.f1581f = new HostLruCache(256);
+            b();
         }
-        Iterator<StrategyCollection> it = this.f1066f.values().iterator();
+        Iterator<StrategyCollection> it = this.f1581f.values().iterator();
         while (it.hasNext()) {
             it.next().checkInit();
         }
-        ALog.m716i("awcn.StrategyTable", "strategy map", null, "size", Integer.valueOf(this.f1066f.size()));
-        this.f1067g = GlobalAppRuntimeInfo.isTargetProcess() ? 0 : -1;
-        if (this.f1064c == null) {
-            this.f1064c = new ConcurrentHashMap();
+        ALog.i("awcn.StrategyTable", "strategy map", null, "size", Integer.valueOf(this.f1581f.size()));
+        this.f1582g = GlobalAppRuntimeInfo.isTargetProcess() ? 0 : -1;
+        if (this.f1579c == null) {
+            this.f1579c = new ConcurrentHashMap();
         }
     }
 
@@ -132,189 +124,180 @@ class StrategyTable implements Serializable {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        synchronized (this.f1066f) {
-            strategyCollection = this.f1066f.get(str);
+        synchronized (this.f1581f) {
+            strategyCollection = this.f1581f.get(str);
         }
         if (strategyCollection != null && strategyCollection.isExpired() && AmdcRuntimeInfo.getAmdcLimitLevel() == 0) {
-            m653a(str);
+            a(str);
         }
         if (strategyCollection != null) {
-            return strategyCollection.f1042c;
+            return strategyCollection.f1561c;
         }
         return null;
     }
 
     public List<IConnStrategy> queryByHost(String str) {
         StrategyCollection strategyCollection;
-        if (TextUtils.isEmpty(str) || !C0848c.m709c(str)) {
+        if (TextUtils.isEmpty(str) || !anet.channel.strategy.utils.c.c(str)) {
             return Collections.EMPTY_LIST;
         }
-        m657c();
-        synchronized (this.f1066f) {
-            strategyCollection = this.f1066f.get(str);
+        c();
+        synchronized (this.f1581f) {
+            strategyCollection = this.f1581f.get(str);
             if (strategyCollection == null) {
                 strategyCollection = new StrategyCollection(str);
-                this.f1066f.put(str, strategyCollection);
+                this.f1581f.put(str, strategyCollection);
             }
         }
-        if (strategyCollection.f1041b == 0 || (strategyCollection.isExpired() && AmdcRuntimeInfo.getAmdcLimitLevel() == 0)) {
-            m653a(str);
+        if (strategyCollection.f1560b == 0 || (strategyCollection.isExpired() && AmdcRuntimeInfo.getAmdcLimitLevel() == 0)) {
+            a(str);
         }
         return strategyCollection.queryStrategyList();
     }
 
-    public void update(C0842l.d dVar) {
-        C0842l.b[] bVarArr;
-        ALog.m716i("awcn.StrategyTable", "update strategyTable with httpDns response", this.f1062a, new Object[0]);
+    public void update(l.d dVar) {
+        ALog.i("awcn.StrategyTable", "update strategyTable with httpDns response", this.a, new Object[0]);
         try {
-            this.f1063b = dVar.f1131a;
-            this.f1067g = dVar.f1136f;
-            bVarArr = dVar.f1132b;
-        } catch (Throwable th) {
-            ALog.m714e("awcn.StrategyTable", "fail to update strategyTable", this.f1062a, th, new Object[0]);
-        }
-        if (bVarArr == null) {
-            return;
-        }
-        synchronized (this.f1066f) {
-            for (C0842l.b bVar : bVarArr) {
-                if (bVar != null && bVar.f1117a != null) {
-                    if (bVar.f1126j) {
-                        this.f1066f.remove(bVar.f1117a);
-                    } else {
-                        StrategyCollection strategyCollection = this.f1066f.get(bVar.f1117a);
-                        if (strategyCollection == null) {
-                            strategyCollection = new StrategyCollection(bVar.f1117a);
-                            this.f1066f.put(bVar.f1117a, strategyCollection);
+            this.f1578b = dVar.a;
+            this.f1582g = dVar.f1629f;
+            l.b[] bVarArr = dVar.f1625b;
+            if (bVarArr == null) {
+                return;
+            }
+            synchronized (this.f1581f) {
+                for (l.b bVar : bVarArr) {
+                    if (bVar != null && bVar.a != null) {
+                        if (bVar.f1621j) {
+                            this.f1581f.remove(bVar.a);
+                        } else {
+                            StrategyCollection strategyCollection = this.f1581f.get(bVar.a);
+                            if (strategyCollection == null) {
+                                strategyCollection = new StrategyCollection(bVar.a);
+                                this.f1581f.put(bVar.a, strategyCollection);
+                            }
+                            strategyCollection.update(bVar);
                         }
-                        strategyCollection.update(bVar);
                     }
                 }
             }
+        } catch (Throwable th) {
+            ALog.e("awcn.StrategyTable", "fail to update strategyTable", this.a, th, new Object[0]);
         }
-        this.f1065d = true;
+        this.f1580d = true;
         if (ALog.isPrintLog(1)) {
             StringBuilder sb = new StringBuilder("uniqueId : ");
-            sb.append(this.f1062a);
+            sb.append(this.a);
             sb.append("\n-------------------------domains:------------------------------------");
-            ALog.m713d("awcn.StrategyTable", sb.toString(), null, new Object[0]);
-            synchronized (this.f1066f) {
-                for (Map.Entry<String, StrategyCollection> entry : this.f1066f.entrySet()) {
+            ALog.d("awcn.StrategyTable", sb.toString(), null, new Object[0]);
+            synchronized (this.f1581f) {
+                for (Map.Entry<String, StrategyCollection> entry : this.f1581f.entrySet()) {
                     sb.setLength(0);
                     sb.append(entry.getKey());
                     sb.append(" = ");
                     sb.append(entry.getValue().toString());
-                    ALog.m713d("awcn.StrategyTable", sb.toString(), null, new Object[0]);
+                    ALog.d("awcn.StrategyTable", sb.toString(), null, new Object[0]);
                 }
             }
         }
     }
 
-    /* renamed from: b */
-    private void m656b(Set<String> set) {
-        TreeSet treeSet = new TreeSet(f1061e);
-        synchronized (this.f1066f) {
-            treeSet.addAll(this.f1066f.values());
+    private void b(Set<String> set) {
+        TreeSet<StrategyCollection> treeSet = new TreeSet(f1577e);
+        synchronized (this.f1581f) {
+            treeSet.addAll(this.f1581f.values());
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        Iterator it = treeSet.iterator();
-        while (it.hasNext()) {
-            StrategyCollection strategyCollection = (StrategyCollection) it.next();
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        for (StrategyCollection strategyCollection : treeSet) {
             if (!strategyCollection.isExpired() || set.size() >= 40) {
                 return;
             }
-            strategyCollection.f1041b = 30000 + currentTimeMillis;
-            set.add(strategyCollection.f1040a);
+            strategyCollection.f1560b = 30000 + jCurrentTimeMillis;
+            set.add(strategyCollection.a);
         }
     }
 
-    /* renamed from: a */
-    private void m653a(String str) {
+    private void a(String str) {
         TreeSet treeSet = new TreeSet();
         treeSet.add(str);
-        m654a(treeSet);
+        a(treeSet);
     }
 
-    /* renamed from: a */
-    protected void m660a(String str, boolean z) {
+    protected void a(String str, boolean z) {
         StrategyCollection strategyCollection;
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        synchronized (this.f1066f) {
-            strategyCollection = this.f1066f.get(str);
+        synchronized (this.f1581f) {
+            strategyCollection = this.f1581f.get(str);
             if (strategyCollection == null) {
                 strategyCollection = new StrategyCollection(str);
-                this.f1066f.put(str, strategyCollection);
+                this.f1581f.put(str, strategyCollection);
             }
         }
-        if (z || strategyCollection.f1041b == 0 || (strategyCollection.isExpired() && AmdcRuntimeInfo.getAmdcLimitLevel() == 0)) {
-            m653a(str);
+        if (z || strategyCollection.f1560b == 0 || (strategyCollection.isExpired() && AmdcRuntimeInfo.getAmdcLimitLevel() == 0)) {
+            a(str);
         }
     }
 
-    /* renamed from: a */
-    private void m654a(Set<String> set) {
+    private void a(Set<String> set) {
         if (set == null || set.isEmpty()) {
             return;
         }
         if ((GlobalAppRuntimeInfo.isAppBackground() && AppLifecycle.lastEnterBackgroundTime > 0) || !NetworkStatusHelper.isConnected()) {
-            ALog.m716i("awcn.StrategyTable", "app in background or no network", this.f1062a, new Object[0]);
+            ALog.i("awcn.StrategyTable", "app in background or no network", this.a, new Object[0]);
             return;
         }
         int amdcLimitLevel = AmdcRuntimeInfo.getAmdcLimitLevel();
         if (amdcLimitLevel == 3) {
             return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        synchronized (this.f1066f) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        synchronized (this.f1581f) {
             Iterator<String> it = set.iterator();
             while (it.hasNext()) {
-                StrategyCollection strategyCollection = this.f1066f.get(it.next());
+                StrategyCollection strategyCollection = this.f1581f.get(it.next());
                 if (strategyCollection != null) {
-                    strategyCollection.f1041b = 30000 + currentTimeMillis;
+                    strategyCollection.f1560b = 30000 + jCurrentTimeMillis;
                 }
             }
         }
         if (amdcLimitLevel == 0) {
-            m656b(set);
+            b(set);
         }
-        HttpDispatcher.getInstance().sendAmdcRequest(set, this.f1067g);
+        HttpDispatcher.getInstance().sendAmdcRequest(set, this.f1582g);
     }
 
-    /* renamed from: a */
-    void m659a(String str, IConnStrategy iConnStrategy, ConnEvent connEvent) {
+    void a(String str, IConnStrategy iConnStrategy, ConnEvent connEvent) {
         StrategyCollection strategyCollection;
         if (ALog.isPrintLog(1)) {
-            ALog.m713d("awcn.StrategyTable", "[notifyConnEvent]", null, "Host", str, "IConnStrategy", iConnStrategy, "ConnEvent", connEvent);
+            ALog.d("awcn.StrategyTable", "[notifyConnEvent]", null, "Host", str, "IConnStrategy", iConnStrategy, "ConnEvent", connEvent);
         }
         String str2 = iConnStrategy.getProtocol().protocol;
         if (ConnType.HTTP3.equals(str2) || ConnType.HTTP3_PLAIN.equals(str2)) {
-            C0774a.m495a(connEvent.isSuccess);
-            ALog.m715e("awcn.StrategyTable", "enable http3", null, "uniqueId", this.f1062a, "enable", Boolean.valueOf(connEvent.isSuccess));
+            anet.channel.e.a.a(connEvent.isSuccess);
+            ALog.e("awcn.StrategyTable", "enable http3", null, "uniqueId", this.a, "enable", Boolean.valueOf(connEvent.isSuccess));
         }
-        if (!connEvent.isSuccess && C0848c.m708b(iConnStrategy.getIp())) {
-            this.f1064c.put(str, Long.valueOf(System.currentTimeMillis()));
-            ALog.m715e("awcn.StrategyTable", "disable ipv6", null, "uniqueId", this.f1062a, Constants.KEY_HOST, str);
+        if (!connEvent.isSuccess && anet.channel.strategy.utils.c.b(iConnStrategy.getIp())) {
+            this.f1579c.put(str, Long.valueOf(System.currentTimeMillis()));
+            ALog.e("awcn.StrategyTable", "disable ipv6", null, "uniqueId", this.a, Constants.KEY_HOST, str);
         }
-        synchronized (this.f1066f) {
-            strategyCollection = this.f1066f.get(str);
+        synchronized (this.f1581f) {
+            strategyCollection = this.f1581f.get(str);
         }
         if (strategyCollection != null) {
             strategyCollection.notifyConnEvent(iConnStrategy, connEvent);
         }
     }
 
-    /* renamed from: a */
-    boolean m661a(String str, long j2) {
-        Long l2 = this.f1064c.get(str);
+    boolean a(String str, long j2) {
+        Long l2 = this.f1579c.get(str);
         if (l2 == null) {
             return false;
         }
         if (l2.longValue() + j2 >= System.currentTimeMillis()) {
             return true;
         }
-        this.f1064c.remove(str);
+        this.f1579c.remove(str);
         return false;
     }
 }

@@ -3,7 +3,7 @@ package bean;
 import java.util.Map;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SurveyH5Bean extends BaseBean {
     public static final String ACTION = "action";
     public static final String AUDIO = "audio";
@@ -12,6 +12,7 @@ public class SurveyH5Bean extends BaseBean {
     public static final String EVENT = "event";
     public static final int EVENT_BASEINFO = 4;
     public static final int EVENT_CHANGEBARTOPSTYLE = 2;
+    public static final int EVENT_DOWNLOAD_PDF = 24;
     public static final int EVENT_EXIT = 7;
     public static final int EVENT_EXIT_POLIC = 9;
     public static final int EVENT_GETSCAN = 3;
@@ -20,11 +21,16 @@ public class SurveyH5Bean extends BaseBean {
     public static final int EVENT_POLIC_PHONE = 13;
     public static final int EVENT_POLIC_TOKEN = 8;
     public static final int EVENT_POLIC_TOKEN2 = 12;
+    public static final int EVENT_PUBAT_ARTICLE = 20;
+    public static final int EVENT_REPORT_ARTICLE = 19;
     public static final int EVENT_SELECT_SIZE = 10;
     public static final int EVENT_SHARE = 11;
     public static final int EVENT_SHARE_ARTICLE = 17;
+    public static final int EVENT_SIGN_FULL = 21;
+    public static final int EVENT_SIGN_FULL_NO = 22;
     public static final int EVENT_SWIPBACK = 6;
     public static final int EVENT_TOVERIFIED = 5;
+    public static final int EVENT_UPLOAD_FILE = 23;
     public static final int EVENT_wWEB_JSFINISH = 15;
     public static final String POST = "post";
     public static final String RESPONSE = "\"response\"";

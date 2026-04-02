@@ -8,21 +8,21 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import java.lang.reflect.Field;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ViewUtils {
     static final Property<View, Rect> CLIP_BOUNDS;
     private static final ViewUtilsBase IMPL;
     private static final String TAG = "ViewUtils";
     static final Property<View, Float> TRANSITION_ALPHA;
-    private static final int VISIBILITY_MASK = 12;
-    private static Field sViewFlagsField;
-    private static boolean sViewFlagsFieldFetched;
 
     static {
         int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 22) {
+        if (i2 >= 29) {
+            IMPL = new ViewUtilsApi29();
+        } else if (i2 >= 23) {
+            IMPL = new ViewUtilsApi23();
+        } else if (i2 >= 22) {
             IMPL = new ViewUtilsApi22();
         } else if (i2 >= 21) {
             IMPL = new ViewUtilsApi21();
@@ -62,18 +62,6 @@ class ViewUtils {
         IMPL.clearNonTransitionAlpha(view);
     }
 
-    private static void fetchViewFlagsField() {
-        if (sViewFlagsFieldFetched) {
-            return;
-        }
-        try {
-            sViewFlagsField = View.class.getDeclaredField("mViewFlags");
-            sViewFlagsField.setAccessible(true);
-        } catch (NoSuchFieldException unused) {
-        }
-        sViewFlagsFieldFetched = true;
-    }
-
     static ViewOverlayImpl getOverlay(@NonNull View view) {
         return Build.VERSION.SDK_INT >= 18 ? new ViewOverlayApi18(view) : ViewOverlayApi14.createFrom(view);
     }
@@ -103,14 +91,7 @@ class ViewUtils {
     }
 
     static void setTransitionVisibility(@NonNull View view, int i2) {
-        fetchViewFlagsField();
-        Field field = sViewFlagsField;
-        if (field != null) {
-            try {
-                sViewFlagsField.setInt(view, i2 | (field.getInt(view) & (-13)));
-            } catch (IllegalAccessException unused) {
-            }
-        }
+        IMPL.setTransitionVisibility(view, i2);
     }
 
     static void transformMatrixToGlobal(@NonNull View view, @NonNull Matrix matrix) {

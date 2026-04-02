@@ -14,8 +14,8 @@ import androidx.camera.core.impl.utils.MainThreadAsyncHandler;
 import androidx.core.util.Preconditions;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-/* loaded from: classes.dex */
 class CameraDeviceCompatApi23Impl extends CameraDeviceCompatBaseImpl {
     CameraDeviceCompatApi23Impl() {
     }
@@ -24,17 +24,17 @@ class CameraDeviceCompatApi23Impl extends CameraDeviceCompatBaseImpl {
     public void createCaptureSession(@NonNull CameraDevice cameraDevice, @NonNull SessionConfigurationCompat sessionConfigurationCompat) throws CameraAccessException {
         CameraDeviceCompatBaseImpl.checkPreconditions(cameraDevice, sessionConfigurationCompat);
         CameraCaptureSessionCompat.StateCallbackExecutorWrapper stateCallbackExecutorWrapper = new CameraCaptureSessionCompat.StateCallbackExecutorWrapper(sessionConfigurationCompat.getExecutor(), sessionConfigurationCompat.getStateCallback());
-        List<Surface> unpackSurfaces = CameraDeviceCompatBaseImpl.unpackSurfaces(sessionConfigurationCompat.getOutputConfigurations());
+        List<Surface> listUnpackSurfaces = CameraDeviceCompatBaseImpl.unpackSurfaces(sessionConfigurationCompat.getOutputConfigurations());
         Handler mainThreadAsyncHandler = MainThreadAsyncHandler.getInstance();
         InputConfigurationCompat inputConfiguration = sessionConfigurationCompat.getInputConfiguration();
         if (inputConfiguration != null) {
             InputConfiguration inputConfiguration2 = (InputConfiguration) inputConfiguration.unwrap();
             Preconditions.checkNotNull(inputConfiguration2);
-            cameraDevice.createReprocessableCaptureSession(inputConfiguration2, unpackSurfaces, stateCallbackExecutorWrapper, mainThreadAsyncHandler);
+            cameraDevice.createReprocessableCaptureSession(inputConfiguration2, listUnpackSurfaces, stateCallbackExecutorWrapper, mainThreadAsyncHandler);
         } else if (sessionConfigurationCompat.getSessionType() == 1) {
-            cameraDevice.createConstrainedHighSpeedCaptureSession(unpackSurfaces, stateCallbackExecutorWrapper, mainThreadAsyncHandler);
+            cameraDevice.createConstrainedHighSpeedCaptureSession(listUnpackSurfaces, stateCallbackExecutorWrapper, mainThreadAsyncHandler);
         } else {
-            createBaseCaptureSession(cameraDevice, unpackSurfaces, stateCallbackExecutorWrapper, mainThreadAsyncHandler);
+            createBaseCaptureSession(cameraDevice, listUnpackSurfaces, stateCallbackExecutorWrapper, mainThreadAsyncHandler);
         }
     }
 }

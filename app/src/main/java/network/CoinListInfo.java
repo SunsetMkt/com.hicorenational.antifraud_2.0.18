@@ -2,7 +2,7 @@ package network;
 
 import java.util.ArrayList;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CoinListInfo extends BaseBean {
     private int availableIntegral;
     private int historyIntegral;

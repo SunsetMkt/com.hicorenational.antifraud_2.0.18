@@ -18,7 +18,6 @@ import androidx.annotation.RestrictTo;
 import androidx.annotation.UiThread;
 import androidx.arch.core.util.Function;
 import androidx.camera.core.ForwardingImageProxy;
-import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageSaver;
 import androidx.camera.core.UseCase;
 import androidx.camera.core.impl.CameraCaptureCallback;
@@ -77,9 +76,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ImageCapture extends UseCase {
     public static final int CAPTURE_MODE_MAXIMIZE_QUALITY = 0;
     public static final int CAPTURE_MODE_MINIMIZE_LATENCY = 1;
@@ -121,18 +119,74 @@ public final class ImageCapture extends UseCase {
     @NonNull
     final TakePictureLock mTakePictureLock;
 
-    /* renamed from: androidx.camera.core.ImageCapture$4 */
-    class C02994 implements FutureCallback<Void> {
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$1 */
+    class AnonymousClass1 implements ThreadFactory {
+        private final AtomicInteger mId = new AtomicInteger(0);
+
+        AnonymousClass1() {
+        }
+
+        @Override // java.util.concurrent.ThreadFactory
+        public Thread newThread(@NonNull Runnable runnable) {
+            return new Thread(runnable, "CameraX-image_capture_" + this.mId.getAndIncrement());
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$2 */
+    class AnonymousClass2 implements ImageSaver.OnImageSavedCallback {
+        final /* synthetic */ OnImageSavedCallback val$imageSavedCallback;
+
+        AnonymousClass2(OnImageSavedCallback onImageSavedCallback) {
+            onImageSavedCallback = onImageSavedCallback;
+        }
+
+        @Override // androidx.camera.core.ImageSaver.OnImageSavedCallback
+        public void onError(ImageSaver.SaveError saveError, String str, @Nullable Throwable th) {
+            onImageSavedCallback.onError(new ImageCaptureException(AnonymousClass9.$SwitchMap$androidx$camera$core$ImageSaver$SaveError[saveError.ordinal()] != 1 ? 0 : 1, str, th));
+        }
+
+        @Override // androidx.camera.core.ImageSaver.OnImageSavedCallback
+        public void onImageSaved(@NonNull OutputFileResults outputFileResults) {
+            onImageSavedCallback.onImageSaved(outputFileResults);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$3 */
+    class AnonymousClass3 extends OnImageCapturedCallback {
+        final /* synthetic */ Executor val$executor;
+        final /* synthetic */ OnImageSavedCallback val$imageSavedCallback;
+        final /* synthetic */ ImageSaver.OnImageSavedCallback val$imageSavedCallbackWrapper;
+        final /* synthetic */ OutputFileOptions val$outputFileOptions;
+
+        AnonymousClass3(OutputFileOptions outputFileOptions, Executor executor, ImageSaver.OnImageSavedCallback onImageSavedCallback, OnImageSavedCallback onImageSavedCallback2) {
+            outputFileOptions = outputFileOptions;
+            executor = executor;
+            onImageSavedCallback = onImageSavedCallback;
+            onImageSavedCallback = onImageSavedCallback2;
+        }
+
+        @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+        public void onCaptureSuccess(@NonNull ImageProxy imageProxy) {
+            ImageCapture.this.mIoExecutor.execute(new ImageSaver(imageProxy, outputFileOptions, imageProxy.getImageInfo().getRotationDegrees(), executor, onImageSavedCallback));
+        }
+
+        @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+        public void onError(@NonNull ImageCaptureException imageCaptureException) {
+            onImageSavedCallback.onError(imageCaptureException);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$4 */
+    class AnonymousClass4 implements FutureCallback<Void> {
         final /* synthetic */ ImageCaptureRequest val$imageCaptureRequest;
         final /* synthetic */ TakePictureState val$state;
 
-        C02994(TakePictureState takePictureState, ImageCaptureRequest imageCaptureRequest) {
+        AnonymousClass4(TakePictureState takePictureState, ImageCaptureRequest imageCaptureRequest) {
             this.val$state = takePictureState;
             this.val$imageCaptureRequest = imageCaptureRequest;
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m345a(ImageCaptureRequest imageCaptureRequest, Throwable th) {
+        public /* synthetic */ void a(ImageCaptureRequest imageCaptureRequest, Throwable th) {
             imageCaptureRequest.notifyCallbackError(ImageCapture.getError(th), th != null ? th.getMessage() : "Unknown error", th);
             ImageCapture.this.mTakePictureLock.unlockTakePicture(imageCaptureRequest);
         }
@@ -140,12 +194,12 @@ public final class ImageCapture extends UseCase {
         @Override // androidx.camera.core.impl.utils.futures.FutureCallback
         public void onFailure(final Throwable th) {
             ImageCapture.this.postTakePicture(this.val$state);
-            ScheduledExecutorService mainThreadExecutor = CameraXExecutors.mainThreadExecutor();
+            ScheduledExecutorService scheduledExecutorServiceMainThreadExecutor = CameraXExecutors.mainThreadExecutor();
             final ImageCaptureRequest imageCaptureRequest = this.val$imageCaptureRequest;
-            mainThreadExecutor.execute(new Runnable() { // from class: androidx.camera.core.o
+            scheduledExecutorServiceMainThreadExecutor.execute(new Runnable() { // from class: androidx.camera.core.o
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ImageCapture.C02994.this.m345a(imageCaptureRequest, th);
+                    this.a.a(imageCaptureRequest, th);
                 }
             });
         }
@@ -156,19 +210,19 @@ public final class ImageCapture extends UseCase {
         }
     }
 
-    /* renamed from: androidx.camera.core.ImageCapture$5 */
-    class C03005 implements ForwardingImageProxy.OnImageCloseListener {
-        C03005() {
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$5 */
+    class AnonymousClass5 implements ForwardingImageProxy.OnImageCloseListener {
+        AnonymousClass5() {
         }
 
         @Override // androidx.camera.core.ForwardingImageProxy.OnImageCloseListener
-        /* renamed from: onImageClose, reason: merged with bridge method [inline-methods] */
-        public void m346a(final ImageProxy imageProxy) {
+        /* JADX INFO: renamed from: onImageClose */
+        public void a(final ImageProxy imageProxy) {
             if (Looper.getMainLooper() != Looper.myLooper()) {
                 CameraXExecutors.mainThreadExecutor().execute(new Runnable() { // from class: androidx.camera.core.p
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ImageCapture.C03005.this.m346a(imageProxy);
+                        this.a.a(imageProxy);
                     }
                 });
             } else {
@@ -177,8 +231,54 @@ public final class ImageCapture extends UseCase {
         }
     }
 
-    /* renamed from: androidx.camera.core.ImageCapture$9 */
-    static /* synthetic */ class C03049 {
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$6 */
+    class AnonymousClass6 implements CaptureCallbackChecker.CaptureResultChecker<CameraCaptureResult> {
+        AnonymousClass6() {
+        }
+
+        @Override // androidx.camera.core.ImageCapture.CaptureCallbackChecker.CaptureResultChecker
+        public CameraCaptureResult check(@NonNull CameraCaptureResult cameraCaptureResult) {
+            return cameraCaptureResult;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$7 */
+    class AnonymousClass7 implements CaptureCallbackChecker.CaptureResultChecker<Boolean> {
+        AnonymousClass7() {
+        }
+
+        @Override // androidx.camera.core.ImageCapture.CaptureCallbackChecker.CaptureResultChecker
+        public Boolean check(@NonNull CameraCaptureResult cameraCaptureResult) {
+            return ImageCapture.this.is3AConverged(cameraCaptureResult) ? true : null;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$8 */
+    class AnonymousClass8 extends CameraCaptureCallback {
+        final /* synthetic */ CallbackToFutureAdapter.Completer val$completer;
+
+        AnonymousClass8(CallbackToFutureAdapter.Completer completer) {
+            completer = completer;
+        }
+
+        @Override // androidx.camera.core.impl.CameraCaptureCallback
+        public void onCaptureCancelled() {
+            completer.setException(new CameraClosedException("Capture request is cancelled because camera is closed"));
+        }
+
+        @Override // androidx.camera.core.impl.CameraCaptureCallback
+        public void onCaptureCompleted(@NonNull CameraCaptureResult cameraCaptureResult) {
+            completer.set(null);
+        }
+
+        @Override // androidx.camera.core.impl.CameraCaptureCallback
+        public void onCaptureFailed(@NonNull CameraCaptureFailure cameraCaptureFailure) {
+            completer.setException(new CaptureFailedException("Capture request failed with reason " + cameraCaptureFailure.getReason()));
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$9 */
+    static /* synthetic */ class AnonymousClass9 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$ImageSaver$SaveError = new int[ImageSaver.SaveError.values().length];
 
         static {
@@ -282,7 +382,6 @@ public final class ImageCapture extends UseCase {
             throw new IllegalArgumentException("Cannot use both setTargetResolution and setTargetAspectRatio on the same config.");
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -290,7 +389,6 @@ public final class ImageCapture extends UseCase {
             return new ImageCaptureConfig(OptionsBundle.from(this.mMutableConfig));
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -299,7 +397,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -308,7 +405,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -317,7 +413,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -326,7 +421,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -335,7 +429,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.internal.IoConfig.Builder
         @NonNull
         public Builder setIoExecutor(@NonNull Executor executor) {
@@ -343,7 +436,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -352,7 +444,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -361,7 +452,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -370,7 +460,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -379,7 +468,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetAspectRatio(int i2) {
@@ -387,7 +475,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -415,7 +502,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetResolution(@NonNull Size size) {
@@ -426,7 +512,6 @@ public final class ImageCapture extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetRotation(int i2) {
@@ -447,6 +532,37 @@ public final class ImageCapture extends UseCase {
         private static final long NO_TIMEOUT = 0;
         private final Set<CaptureResultListener> mCaptureResultListeners = new HashSet();
 
+        /* JADX INFO: renamed from: androidx.camera.core.ImageCapture$CaptureCallbackChecker$1 */
+        class AnonymousClass1 implements CaptureResultListener {
+            final /* synthetic */ CaptureResultChecker val$checker;
+            final /* synthetic */ CallbackToFutureAdapter.Completer val$completer;
+            final /* synthetic */ Object val$defValue;
+            final /* synthetic */ long val$startTimeInMs;
+            final /* synthetic */ long val$timeoutInMs;
+
+            AnonymousClass1(CaptureResultChecker captureResultChecker, CallbackToFutureAdapter.Completer completer, long j2, long j3, Object obj) {
+                captureResultChecker = captureResultChecker;
+                completer = completer;
+                j = j2;
+                j = j3;
+                obj = obj;
+            }
+
+            @Override // androidx.camera.core.ImageCapture.CaptureCallbackChecker.CaptureResultListener
+            public boolean onCaptureResult(@NonNull CameraCaptureResult cameraCaptureResult) {
+                Object objCheck = captureResultChecker.check(cameraCaptureResult);
+                if (objCheck != null) {
+                    completer.set(objCheck);
+                    return true;
+                }
+                if (j <= 0 || SystemClock.elapsedRealtime() - j <= j) {
+                    return false;
+                }
+                completer.set(obj);
+                return true;
+            }
+        }
+
         public interface CaptureResultChecker<T> {
             @Nullable
             T check(@NonNull CameraCaptureResult cameraCaptureResult);
@@ -462,9 +578,7 @@ public final class ImageCapture extends UseCase {
         private void deliverCaptureResultToListeners(@NonNull CameraCaptureResult cameraCaptureResult) {
             synchronized (this.mCaptureResultListeners) {
                 HashSet hashSet = null;
-                Iterator it = new HashSet(this.mCaptureResultListeners).iterator();
-                while (it.hasNext()) {
-                    CaptureResultListener captureResultListener = (CaptureResultListener) it.next();
+                for (CaptureResultListener captureResultListener : new HashSet(this.mCaptureResultListeners)) {
                     if (captureResultListener.onCaptureResult(cameraCaptureResult)) {
                         if (hashSet == null) {
                             hashSet = new HashSet();
@@ -478,17 +592,30 @@ public final class ImageCapture extends UseCase {
             }
         }
 
-        /* renamed from: a */
-        public /* synthetic */ Object m347a(final CaptureResultChecker captureResultChecker, final long j2, final long j3, final Object obj, final CallbackToFutureAdapter.Completer completer) throws Exception {
+        public /* synthetic */ Object a(CaptureResultChecker captureResultChecker, long j2, long j3, Object obj, CallbackToFutureAdapter.Completer completer) throws Exception {
             addListener(new CaptureResultListener() { // from class: androidx.camera.core.ImageCapture.CaptureCallbackChecker.1
+                final /* synthetic */ CaptureResultChecker val$checker;
+                final /* synthetic */ CallbackToFutureAdapter.Completer val$completer;
+                final /* synthetic */ Object val$defValue;
+                final /* synthetic */ long val$startTimeInMs;
+                final /* synthetic */ long val$timeoutInMs;
+
+                AnonymousClass1(CaptureResultChecker captureResultChecker2, CallbackToFutureAdapter.Completer completer2, long j22, long j32, Object obj2) {
+                    captureResultChecker = captureResultChecker2;
+                    completer = completer2;
+                    j = j22;
+                    j = j32;
+                    obj = obj2;
+                }
+
                 @Override // androidx.camera.core.ImageCapture.CaptureCallbackChecker.CaptureResultListener
                 public boolean onCaptureResult(@NonNull CameraCaptureResult cameraCaptureResult) {
-                    Object check = captureResultChecker.check(cameraCaptureResult);
-                    if (check != null) {
-                        completer.set(check);
+                    Object objCheck = captureResultChecker.check(cameraCaptureResult);
+                    if (objCheck != null) {
+                        completer.set(objCheck);
                         return true;
                     }
-                    if (j2 <= 0 || SystemClock.elapsedRealtime() - j2 <= j3) {
+                    if (j <= 0 || SystemClock.elapsedRealtime() - j <= j) {
                         return false;
                     }
                     completer.set(obj);
@@ -504,7 +631,7 @@ public final class ImageCapture extends UseCase {
             }
         }
 
-        <T> InterfaceFutureC0952a<T> checkCaptureResult(CaptureResultChecker<T> captureResultChecker) {
+        <T> d.b.b.a.a.a<T> checkCaptureResult(CaptureResultChecker<T> captureResultChecker) {
             return checkCaptureResult(captureResultChecker, 0L, null);
         }
 
@@ -513,13 +640,13 @@ public final class ImageCapture extends UseCase {
             deliverCaptureResultToListeners(cameraCaptureResult);
         }
 
-        <T> InterfaceFutureC0952a<T> checkCaptureResult(final CaptureResultChecker<T> captureResultChecker, final long j2, final T t) {
+        <T> d.b.b.a.a.a<T> checkCaptureResult(final CaptureResultChecker<T> captureResultChecker, final long j2, final T t) {
             if (j2 >= 0) {
-                final long elapsedRealtime = j2 != 0 ? SystemClock.elapsedRealtime() : 0L;
+                final long jElapsedRealtime = j2 != 0 ? SystemClock.elapsedRealtime() : 0L;
                 return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.s
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                        return ImageCapture.CaptureCallbackChecker.this.m347a(captureResultChecker, elapsedRealtime, j2, t, completer);
+                        return this.a.a(captureResultChecker, jElapsedRealtime, j2, t, completer);
                     }
                 });
             }
@@ -776,39 +903,39 @@ public final class ImageCapture extends UseCase {
         }
 
         @Override // androidx.camera.core.ForwardingImageProxy.OnImageCloseListener
-        /* renamed from: onImageClose */
-        public void m346a(ImageProxy imageProxy) {
+        /* JADX INFO: renamed from: onImageClose */
+        public void a(ImageProxy imageProxy) {
             synchronized (this.mLock) {
                 this.mOutstandingImages--;
-                ScheduledExecutorService mainThreadExecutor = CameraXExecutors.mainThreadExecutor();
+                ScheduledExecutorService scheduledExecutorServiceMainThreadExecutor = CameraXExecutors.mainThreadExecutor();
                 ImageCapture imageCapture = this.mImageCapture;
                 imageCapture.getClass();
-                mainThreadExecutor.execute(new RunnableC0408t0(imageCapture));
+                scheduledExecutorServiceMainThreadExecutor.execute(new t0(imageCapture));
             }
         }
 
         @Nullable
         ImageProxy tryAcquireImage(ImageReaderProxy imageReaderProxy, ImageCaptureRequest imageCaptureRequest) {
             SingleCloseImageProxy singleCloseImageProxy;
-            ImageProxy acquireLatestImage;
+            ImageProxy imageProxyAcquireLatestImage;
             synchronized (this.mLock) {
                 if (this.mCurrentRequest != imageCaptureRequest) {
                     return null;
                 }
                 try {
-                    acquireLatestImage = imageReaderProxy.acquireLatestImage();
+                    imageProxyAcquireLatestImage = imageReaderProxy.acquireLatestImage();
                 } catch (IllegalStateException unused) {
                 }
-                if (acquireLatestImage != null) {
-                    singleCloseImageProxy = new SingleCloseImageProxy(acquireLatestImage);
+                if (imageProxyAcquireLatestImage != null) {
+                    singleCloseImageProxy = new SingleCloseImageProxy(imageProxyAcquireLatestImage);
                     try {
                         singleCloseImageProxy.addOnImageCloseListener(this);
                         this.mOutstandingImages++;
                     } catch (IllegalStateException unused2) {
                     }
-                    return singleCloseImageProxy;
+                } else {
+                    singleCloseImageProxy = null;
                 }
-                singleCloseImageProxy = null;
                 return singleCloseImageProxy;
             }
         }
@@ -819,10 +946,10 @@ public final class ImageCapture extends UseCase {
                     return false;
                 }
                 this.mCurrentRequest = null;
-                ScheduledExecutorService mainThreadExecutor = CameraXExecutors.mainThreadExecutor();
+                ScheduledExecutorService scheduledExecutorServiceMainThreadExecutor = CameraXExecutors.mainThreadExecutor();
                 ImageCapture imageCapture = this.mImageCapture;
                 imageCapture.getClass();
-                mainThreadExecutor.execute(new RunnableC0408t0(imageCapture));
+                scheduledExecutorServiceMainThreadExecutor.execute(new t0(imageCapture));
                 return true;
             }
         }
@@ -845,6 +972,9 @@ public final class ImageCapture extends UseCase {
         this.mExecutor = Executors.newFixedThreadPool(1, new ThreadFactory() { // from class: androidx.camera.core.ImageCapture.1
             private final AtomicInteger mId = new AtomicInteger(0);
 
+            AnonymousClass1() {
+            }
+
             @Override // java.util.concurrent.ThreadFactory
             public Thread newThread(@NonNull Runnable runnable) {
                 return new Thread(runnable, "CameraX-image_capture_" + this.mId.getAndIncrement());
@@ -854,10 +984,10 @@ public final class ImageCapture extends UseCase {
         this.mClosingListener = new ImageReaderProxy.OnImageAvailableListener() { // from class: androidx.camera.core.m
             @Override // androidx.camera.core.impl.ImageReaderProxy.OnImageAvailableListener
             public final void onImageAvailable(ImageReaderProxy imageReaderProxy) {
-                ImageCapture.m335a(imageReaderProxy);
+                ImageCapture.a(imageReaderProxy);
             }
         };
-        this.mOnImageCloseListener = new C03005();
+        this.mOnImageCloseListener = new AnonymousClass5();
         this.mConfig = (ImageCaptureConfig) getUseCaseConfig();
         this.mCaptureMode = this.mConfig.getCaptureMode();
         this.mFlashMode = this.mConfig.getFlashMode();
@@ -884,24 +1014,21 @@ public final class ImageCapture extends UseCase {
         this.mCaptureConfig = CaptureConfig.Builder.createFrom(this.mConfig).build();
     }
 
-    /* renamed from: a */
-    static /* synthetic */ Void m333a(Boolean bool) {
+    static /* synthetic */ Void a(Boolean bool) {
         return null;
     }
 
-    /* renamed from: a */
-    static /* synthetic */ Void m334a(List list) {
+    static /* synthetic */ Void a(List list) {
         return null;
     }
 
-    /* renamed from: a */
-    static /* synthetic */ void m335a(ImageReaderProxy imageReaderProxy) {
+    static /* synthetic */ void a(ImageReaderProxy imageReaderProxy) {
         try {
-            ImageProxy acquireLatestImage = imageReaderProxy.acquireLatestImage();
+            ImageProxy imageProxyAcquireLatestImage = imageReaderProxy.acquireLatestImage();
             try {
-                String str = "Discarding ImageProxy which was inadvertently acquired: " + acquireLatestImage;
-                if (acquireLatestImage != null) {
-                    acquireLatestImage.close();
+                String str = "Discarding ImageProxy which was inadvertently acquired: " + imageProxyAcquireLatestImage;
+                if (imageProxyAcquireLatestImage != null) {
+                    imageProxyAcquireLatestImage.close();
                 }
             } finally {
             }
@@ -935,9 +1062,11 @@ public final class ImageCapture extends UseCase {
         return th instanceof CaptureFailedException ? 2 : 0;
     }
 
-    private InterfaceFutureC0952a<CameraCaptureResult> getPreCaptureStateIfNeeded() {
+    private d.b.b.a.a.a<CameraCaptureResult> getPreCaptureStateIfNeeded() {
         return (this.mEnableCheck3AConverged || getFlashMode() == 0) ? this.mSessionCallbackChecker.checkCaptureResult(new CaptureCallbackChecker.CaptureResultChecker<CameraCaptureResult>() { // from class: androidx.camera.core.ImageCapture.6
-            /* JADX WARN: Can't rename method to resolve collision */
+            AnonymousClass6() {
+            }
+
             @Override // androidx.camera.core.ImageCapture.CaptureCallbackChecker.CaptureResultChecker
             public CameraCaptureResult check(@NonNull CameraCaptureResult cameraCaptureResult) {
                 return cameraCaptureResult;
@@ -945,16 +1074,16 @@ public final class ImageCapture extends UseCase {
         }) : Futures.immediateFuture(null);
     }
 
-    private InterfaceFutureC0952a<Void> preTakePicture(final TakePictureState takePictureState) {
+    private d.b.b.a.a.a<Void> preTakePicture(final TakePictureState takePictureState) {
         return FutureChain.from(getPreCaptureStateIfNeeded()).transformAsync(new AsyncFunction() { // from class: androidx.camera.core.a0
             @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
-            public final InterfaceFutureC0952a apply(Object obj) {
-                return ImageCapture.this.m338a(takePictureState, (CameraCaptureResult) obj);
+            public final d.b.b.a.a.a apply(Object obj) {
+                return this.a.a(takePictureState, (CameraCaptureResult) obj);
             }
         }, this.mExecutor).transform(new Function() { // from class: androidx.camera.core.r
             @Override // androidx.arch.core.util.Function
             public final Object apply(Object obj) {
-                return ImageCapture.m333a((Boolean) obj);
+                return ImageCapture.a((Boolean) obj);
             }
         }, this.mExecutor);
     }
@@ -978,16 +1107,16 @@ public final class ImageCapture extends UseCase {
         this.mImageReader.setOnImageAvailableListener(new ImageReaderProxy.OnImageAvailableListener() { // from class: androidx.camera.core.y
             @Override // androidx.camera.core.impl.ImageReaderProxy.OnImageAvailableListener
             public final void onImageAvailable(ImageReaderProxy imageReaderProxy) {
-                ImageCapture.this.m340a(imageCaptureRequest, imageReaderProxy);
+                this.a.a(imageCaptureRequest, imageReaderProxy);
             }
         }, CameraXExecutors.mainThreadExecutor());
         TakePictureState takePictureState = new TakePictureState();
         FutureChain.from(preTakePicture(takePictureState)).transformAsync(new AsyncFunction() { // from class: androidx.camera.core.u
             @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
-            public final InterfaceFutureC0952a apply(Object obj) {
-                return ImageCapture.this.m337a(imageCaptureRequest, (Void) obj);
+            public final d.b.b.a.a.a apply(Object obj) {
+                return this.a.a(imageCaptureRequest, (Void) obj);
             }
-        }, this.mExecutor).addCallback(new C02994(takePictureState, imageCaptureRequest), this.mExecutor);
+        }, this.mExecutor).addCallback(new AnonymousClass4(takePictureState, imageCaptureRequest), this.mExecutor);
         return true;
     }
 
@@ -996,9 +1125,8 @@ public final class ImageCapture extends UseCase {
         getCurrentCameraControl().triggerAf();
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* renamed from: cancelAfAeTrigger, reason: merged with bridge method [inline-methods] */
-    public void m342a(TakePictureState takePictureState) {
+    /* JADX INFO: renamed from: cancelAfAeTrigger */
+    public void a(TakePictureState takePictureState) {
         if (takePictureState.mIsAfTriggered || takePictureState.mIsAePrecaptureTriggered) {
             getCurrentCameraControl().cancelAfAeTrigger(takePictureState.mIsAfTriggered, takePictureState.mIsAePrecaptureTriggered);
             takePictureState.mIsAfTriggered = false;
@@ -1006,9 +1134,11 @@ public final class ImageCapture extends UseCase {
         }
     }
 
-    InterfaceFutureC0952a<Boolean> check3AConverged(TakePictureState takePictureState) {
+    d.b.b.a.a.a<Boolean> check3AConverged(TakePictureState takePictureState) {
         return (this.mEnableCheck3AConverged || takePictureState.mIsFlashTriggered) ? is3AConverged(takePictureState.mPreCaptureState) ? Futures.immediateFuture(true) : this.mSessionCallbackChecker.checkCaptureResult(new CaptureCallbackChecker.CaptureResultChecker<Boolean>() { // from class: androidx.camera.core.ImageCapture.7
-            /* JADX WARN: Can't rename method to resolve collision */
+            AnonymousClass7() {
+            }
+
             @Override // androidx.camera.core.ImageCapture.CaptureCallbackChecker.CaptureResultChecker
             public Boolean check(@NonNull CameraCaptureResult cameraCaptureResult) {
                 return ImageCapture.this.is3AConverged(cameraCaptureResult) ? true : null;
@@ -1036,8 +1166,8 @@ public final class ImageCapture extends UseCase {
 
     SessionConfig.Builder createPipeline(@NonNull final String str, @NonNull final ImageCaptureConfig imageCaptureConfig, @NonNull final Size size) {
         Threads.checkMainThread();
-        SessionConfig.Builder createFrom = SessionConfig.Builder.createFrom(imageCaptureConfig);
-        createFrom.addRepeatingCameraCaptureCallback(this.mSessionCallbackChecker);
+        SessionConfig.Builder builderCreateFrom = SessionConfig.Builder.createFrom(imageCaptureConfig);
+        builderCreateFrom.addRepeatingCameraCaptureCallback(this.mSessionCallbackChecker);
         final HandlerThread handlerThread = new HandlerThread("OnImageAvailableHandlerThread");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
@@ -1060,17 +1190,17 @@ public final class ImageCapture extends UseCase {
         this.mDeferrableSurface.getTerminationFuture().addListener(new Runnable() { // from class: androidx.camera.core.t
             @Override // java.lang.Runnable
             public final void run() {
-                ImageCapture.m336a(ImageReaderProxy.this, handlerThread);
+                ImageCapture.a(imageReaderProxy, handlerThread);
             }
         }, CameraXExecutors.mainThreadExecutor());
-        createFrom.addNonRepeatingSurface(this.mDeferrableSurface);
-        createFrom.addErrorListener(new SessionConfig.ErrorListener() { // from class: androidx.camera.core.b0
+        builderCreateFrom.addNonRepeatingSurface(this.mDeferrableSurface);
+        builderCreateFrom.addErrorListener(new SessionConfig.ErrorListener() { // from class: androidx.camera.core.b0
             @Override // androidx.camera.core.impl.SessionConfig.ErrorListener
             public final void onError(SessionConfig sessionConfig, SessionConfig.SessionError sessionError) {
-                ImageCapture.this.m343a(str, imageCaptureConfig, size, sessionConfig, sessionError);
+                this.a.a(str, imageCaptureConfig, size, sessionConfig, sessionError);
             }
         });
-        return createFrom;
+        return builderCreateFrom;
     }
 
     public int getCaptureMode() {
@@ -1119,17 +1249,17 @@ public final class ImageCapture extends UseCase {
 
     @UiThread
     void issueImageCaptureRequests() {
-        ImageCaptureRequest poll = this.mPendingImageCaptureRequests.poll();
-        if (poll == null) {
+        ImageCaptureRequest imageCaptureRequestPoll = this.mPendingImageCaptureRequests.poll();
+        if (imageCaptureRequestPoll == null) {
             return;
         }
-        if (!takePictureInternal(poll)) {
-            this.mPendingImageCaptureRequests.offerFirst(poll);
+        if (!takePictureInternal(imageCaptureRequestPoll)) {
+            this.mPendingImageCaptureRequests.offerFirst(imageCaptureRequestPoll);
         }
         String str = "Size of image capture request queue: " + this.mPendingImageCaptureRequests.size();
     }
 
-    InterfaceFutureC0952a<Void> issueTakePicture(@NonNull ImageCaptureRequest imageCaptureRequest) {
+    d.b.b.a.a.a<Void> issueTakePicture(@NonNull ImageCaptureRequest imageCaptureRequest) {
         CaptureBundle captureBundle;
         ArrayList arrayList = new ArrayList();
         final ArrayList arrayList2 = new ArrayList();
@@ -1161,7 +1291,7 @@ public final class ImageCapture extends UseCase {
             arrayList.add(CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.q
                 @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                 public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                    return ImageCapture.this.m339a(builder, arrayList2, captureStage, completer);
+                    return this.a.a(builder, arrayList2, captureStage, completer);
                 }
             }));
         }
@@ -1169,7 +1299,7 @@ public final class ImageCapture extends UseCase {
         return Futures.transform(Futures.allAsList(arrayList), new Function() { // from class: androidx.camera.core.z
             @Override // androidx.arch.core.util.Function
             public final Object apply(Object obj) {
-                return ImageCapture.m334a((List) obj);
+                return ImageCapture.a((List) obj);
             }
         }, CameraXExecutors.directExecutor());
     }
@@ -1207,19 +1337,19 @@ public final class ImageCapture extends UseCase {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.core.c0
             @Override // java.lang.Runnable
             public final void run() {
-                ImageCapture.this.m342a(takePictureState);
+                this.a.a(takePictureState);
             }
         });
     }
 
     public void setCropAspectRatio(@NonNull Rational rational) {
         ImageCaptureConfig imageCaptureConfig = (ImageCaptureConfig) getUseCaseConfig();
-        Builder fromConfig = Builder.fromConfig(imageCaptureConfig);
+        Builder builderFromConfig = Builder.fromConfig(imageCaptureConfig);
         if (rational.equals(imageCaptureConfig.getTargetAspectRatioCustom(null))) {
             return;
         }
-        fromConfig.setTargetAspectRatioCustom(rational);
-        updateUseCaseConfig(fromConfig.getUseCaseConfig());
+        builderFromConfig.setTargetAspectRatioCustom(rational);
+        updateUseCaseConfig(builderFromConfig.getUseCaseConfig());
         this.mConfig = (ImageCaptureConfig) getUseCaseConfig();
     }
 
@@ -1232,22 +1362,22 @@ public final class ImageCapture extends UseCase {
 
     public void setTargetRotation(int i2) {
         ImageCaptureConfig imageCaptureConfig = (ImageCaptureConfig) getUseCaseConfig();
-        Builder fromConfig = Builder.fromConfig(imageCaptureConfig);
+        Builder builderFromConfig = Builder.fromConfig(imageCaptureConfig);
         int targetRotation = imageCaptureConfig.getTargetRotation(-1);
         if (targetRotation == -1 || targetRotation != i2) {
-            UseCaseConfigUtil.updateTargetRotationAndRelatedConfigs(fromConfig, i2);
-            updateUseCaseConfig(fromConfig.getUseCaseConfig());
+            UseCaseConfigUtil.updateTargetRotationAndRelatedConfigs(builderFromConfig, i2);
+            updateUseCaseConfig(builderFromConfig.getUseCaseConfig());
             this.mConfig = (ImageCaptureConfig) getUseCaseConfig();
         }
     }
 
-    /* renamed from: takePicture, reason: merged with bridge method [inline-methods] */
-    public void m344a(@NonNull final Executor executor, @NonNull final OnImageCapturedCallback onImageCapturedCallback) {
+    /* JADX INFO: renamed from: takePicture */
+    public void a(@NonNull final Executor executor, @NonNull final OnImageCapturedCallback onImageCapturedCallback) {
         if (Looper.getMainLooper() != Looper.myLooper()) {
             CameraXExecutors.mainThreadExecutor().execute(new Runnable() { // from class: androidx.camera.core.n
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ImageCapture.this.m344a(executor, onImageCapturedCallback);
+                    this.a.a(executor, onImageCapturedCallback);
                 }
             });
         } else {
@@ -1271,49 +1401,48 @@ public final class ImageCapture extends UseCase {
         }
     }
 
-    /* renamed from: takePicture, reason: merged with bridge method [inline-methods] */
-    public void m341a(@NonNull final OutputFileOptions outputFileOptions, @NonNull final Executor executor, @NonNull final OnImageSavedCallback onImageSavedCallback) {
+    /* JADX INFO: renamed from: takePicture */
+    public void a(@NonNull final OutputFileOptions outputFileOptions, @NonNull final Executor executor, @NonNull final OnImageSavedCallback onImageSavedCallback) {
         if (Looper.getMainLooper() != Looper.myLooper()) {
             CameraXExecutors.mainThreadExecutor().execute(new Runnable() { // from class: androidx.camera.core.v
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ImageCapture.this.m341a(outputFileOptions, executor, onImageSavedCallback);
+                    this.a.a(outputFileOptions, executor, onImageSavedCallback);
                 }
             });
-            return;
+        } else {
+            sendImageCaptureRequest(CameraXExecutors.mainThreadExecutor(), new OnImageCapturedCallback() { // from class: androidx.camera.core.ImageCapture.3
+                final /* synthetic */ Executor val$executor;
+                final /* synthetic */ OnImageSavedCallback val$imageSavedCallback;
+                final /* synthetic */ ImageSaver.OnImageSavedCallback val$imageSavedCallbackWrapper;
+                final /* synthetic */ OutputFileOptions val$outputFileOptions;
+
+                AnonymousClass3(final OutputFileOptions outputFileOptions2, final Executor executor2, ImageSaver.OnImageSavedCallback onImageSavedCallback2, final OnImageSavedCallback onImageSavedCallback3) {
+                    outputFileOptions = outputFileOptions2;
+                    executor = executor2;
+                    onImageSavedCallback = onImageSavedCallback2;
+                    onImageSavedCallback = onImageSavedCallback3;
+                }
+
+                @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+                public void onCaptureSuccess(@NonNull ImageProxy imageProxy) {
+                    ImageCapture.this.mIoExecutor.execute(new ImageSaver(imageProxy, outputFileOptions, imageProxy.getImageInfo().getRotationDegrees(), executor, onImageSavedCallback));
+                }
+
+                @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
+                public void onError(@NonNull ImageCaptureException imageCaptureException) {
+                    onImageSavedCallback.onError(imageCaptureException);
+                }
+            });
         }
-        final ImageSaver.OnImageSavedCallback onImageSavedCallback2 = new ImageSaver.OnImageSavedCallback() { // from class: androidx.camera.core.ImageCapture.2
-            @Override // androidx.camera.core.ImageSaver.OnImageSavedCallback
-            public void onError(ImageSaver.SaveError saveError, String str, @Nullable Throwable th) {
-                onImageSavedCallback.onError(new ImageCaptureException(C03049.$SwitchMap$androidx$camera$core$ImageSaver$SaveError[saveError.ordinal()] != 1 ? 0 : 1, str, th));
-            }
-
-            @Override // androidx.camera.core.ImageSaver.OnImageSavedCallback
-            public void onImageSaved(@NonNull OutputFileResults outputFileResults) {
-                onImageSavedCallback.onImageSaved(outputFileResults);
-            }
-        };
-        sendImageCaptureRequest(CameraXExecutors.mainThreadExecutor(), new OnImageCapturedCallback() { // from class: androidx.camera.core.ImageCapture.3
-            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
-            public void onCaptureSuccess(@NonNull ImageProxy imageProxy) {
-                ImageCapture.this.mIoExecutor.execute(new ImageSaver(imageProxy, outputFileOptions, imageProxy.getImageInfo().getRotationDegrees(), executor, onImageSavedCallback2));
-            }
-
-            @Override // androidx.camera.core.ImageCapture.OnImageCapturedCallback
-            public void onError(@NonNull ImageCaptureException imageCaptureException) {
-                onImageSavedCallback.onError(imageCaptureException);
-            }
-        });
     }
 
-    /* renamed from: a */
-    static /* synthetic */ void m336a(ImageReaderProxy imageReaderProxy, HandlerThread handlerThread) {
+    static /* synthetic */ void a(ImageReaderProxy imageReaderProxy, HandlerThread handlerThread) {
         imageReaderProxy.close();
         handlerThread.quitSafely();
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m343a(String str, ImageCaptureConfig imageCaptureConfig, Size size, SessionConfig sessionConfig, SessionConfig.SessionError sessionError) {
+    public /* synthetic */ void a(String str, ImageCaptureConfig imageCaptureConfig, Size size, SessionConfig sessionConfig, SessionConfig.SessionError sessionError) {
         clearPipeline();
         if (isCurrentlyBoundCamera(str)) {
             this.mSessionConfigBuilder = createPipeline(str, imageCaptureConfig, size);
@@ -1322,7 +1451,6 @@ public final class ImageCapture extends UseCase {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
     static final class ImageCaptureRequest {
 
         @NonNull
@@ -1341,8 +1469,7 @@ public final class ImageCapture extends UseCase {
             this.mCallback = onImageCapturedCallback;
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m349a(ImageProxy imageProxy) {
+        public /* synthetic */ void a(ImageProxy imageProxy) {
             Size size = new Size(imageProxy.getWidth(), imageProxy.getHeight());
             if (ImageUtil.isAspectRatioValid(size, this.mTargetRatio)) {
                 imageProxy.setCropRect(ImageUtil.computeCropRectFromAspectRatio(size, this.mTargetRatio));
@@ -1356,7 +1483,7 @@ public final class ImageCapture extends UseCase {
                     this.mListenerExecutor.execute(new Runnable() { // from class: androidx.camera.core.x
                         @Override // java.lang.Runnable
                         public final void run() {
-                            ImageCapture.ImageCaptureRequest.this.m349a(imageProxy);
+                            this.a.a(imageProxy);
                         }
                     });
                 } catch (RejectedExecutionException unused) {
@@ -1371,7 +1498,7 @@ public final class ImageCapture extends UseCase {
                     this.mListenerExecutor.execute(new Runnable() { // from class: androidx.camera.core.w
                         @Override // java.lang.Runnable
                         public final void run() {
-                            ImageCapture.ImageCaptureRequest.this.m348a(i2, str, th);
+                            this.a.a(i2, str, th);
                         }
                     });
                 } catch (RejectedExecutionException unused) {
@@ -1379,28 +1506,24 @@ public final class ImageCapture extends UseCase {
             }
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m348a(int i2, String str, Throwable th) {
+        public /* synthetic */ void a(int i2, String str, Throwable th) {
             this.mCallback.onError(new ImageCaptureException(i2, str, th));
         }
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m340a(ImageCaptureRequest imageCaptureRequest, ImageReaderProxy imageReaderProxy) {
-        ImageProxy tryAcquireImage = this.mTakePictureLock.tryAcquireImage(imageReaderProxy, imageCaptureRequest);
-        if (tryAcquireImage != null) {
-            imageCaptureRequest.dispatchImage(tryAcquireImage);
+    public /* synthetic */ void a(ImageCaptureRequest imageCaptureRequest, ImageReaderProxy imageReaderProxy) {
+        ImageProxy imageProxyTryAcquireImage = this.mTakePictureLock.tryAcquireImage(imageReaderProxy, imageCaptureRequest);
+        if (imageProxyTryAcquireImage != null) {
+            imageCaptureRequest.dispatchImage(imageProxyTryAcquireImage);
         }
         this.mTakePictureLock.unlockTakePicture(imageCaptureRequest);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ InterfaceFutureC0952a m337a(ImageCaptureRequest imageCaptureRequest, Void r2) throws Exception {
+    public /* synthetic */ d.b.b.a.a.a a(ImageCaptureRequest imageCaptureRequest, Void r2) throws Exception {
         return issueTakePicture(imageCaptureRequest);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ InterfaceFutureC0952a m338a(TakePictureState takePictureState, CameraCaptureResult cameraCaptureResult) throws Exception {
+    public /* synthetic */ d.b.b.a.a.a a(TakePictureState takePictureState, CameraCaptureResult cameraCaptureResult) throws Exception {
         takePictureState.mPreCaptureState = cameraCaptureResult;
         triggerAfIfNeeded(takePictureState);
         if (isFlashRequired(takePictureState)) {
@@ -1410,9 +1533,14 @@ public final class ImageCapture extends UseCase {
         return check3AConverged(takePictureState);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ Object m339a(CaptureConfig.Builder builder, List list, CaptureStage captureStage, final CallbackToFutureAdapter.Completer completer) throws Exception {
+    public /* synthetic */ Object a(CaptureConfig.Builder builder, List list, CaptureStage captureStage, CallbackToFutureAdapter.Completer completer) throws Exception {
         builder.addCameraCaptureCallback(new CameraCaptureCallback() { // from class: androidx.camera.core.ImageCapture.8
+            final /* synthetic */ CallbackToFutureAdapter.Completer val$completer;
+
+            AnonymousClass8(CallbackToFutureAdapter.Completer completer2) {
+                completer = completer2;
+            }
+
             @Override // androidx.camera.core.impl.CameraCaptureCallback
             public void onCaptureCancelled() {
                 completer.setException(new CameraClosedException("Capture request is cancelled because camera is closed"));

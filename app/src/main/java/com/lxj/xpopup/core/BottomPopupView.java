@@ -5,44 +5,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
-import com.lxj.xpopup.C2766R;
-import com.lxj.xpopup.p184c.AbstractC2770b;
-import com.lxj.xpopup.p185d.EnumC2805e;
-import com.lxj.xpopup.p187f.C2818b;
-import com.lxj.xpopup.p187f.C2819c;
+import com.lxj.xpopup.R;
+import com.lxj.xpopup.d.e;
+import com.lxj.xpopup.f.c;
 import com.lxj.xpopup.widget.SmartDragLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BottomPopupView extends BasePopupView {
+    protected SmartDragLayout p;
 
-    /* renamed from: p */
-    protected SmartDragLayout f8642p;
-
-    /* renamed from: com.lxj.xpopup.core.BottomPopupView$a */
-    class C2788a implements SmartDragLayout.InterfaceC2850d {
-        C2788a() {
+    class a implements SmartDragLayout.d {
+        a() {
         }
 
-        @Override // com.lxj.xpopup.widget.SmartDragLayout.InterfaceC2850d
-        /* renamed from: a */
-        public void mo8397a() {
-            BottomPopupView.super.mo8381e();
+        @Override // com.lxj.xpopup.widget.SmartDragLayout.d
+        public void a() {
+            BottomPopupView.super.e();
         }
 
-        @Override // com.lxj.xpopup.widget.SmartDragLayout.InterfaceC2850d
+        @Override // com.lxj.xpopup.widget.SmartDragLayout.d
         public void onClose() {
-            BottomPopupView.this.m8380d();
+            BottomPopupView.this.d();
         }
     }
 
-    /* renamed from: com.lxj.xpopup.core.BottomPopupView$b */
-    class ViewOnClickListenerC2789b implements View.OnClickListener {
-        ViewOnClickListenerC2789b() {
+    class b implements View.OnClickListener {
+        b() {
         }
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            BottomPopupView.this.mo8378b();
+            BottomPopupView.this.b();
         }
     }
 
@@ -51,59 +44,55 @@ public class BottomPopupView extends BasePopupView {
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    /* renamed from: b */
-    public void mo8378b() {
-        if (!this.f8617a.f8708u.booleanValue()) {
-            super.mo8378b();
+    public void b() {
+        if (!this.a.u.booleanValue()) {
+            super.b();
             return;
         }
-        EnumC2805e enumC2805e = this.f8621e;
-        EnumC2805e enumC2805e2 = EnumC2805e.Dismissing;
-        if (enumC2805e == enumC2805e2) {
+        e eVar = this.f5427e;
+        e eVar2 = e.Dismissing;
+        if (eVar == eVar2) {
             return;
         }
-        this.f8621e = enumC2805e2;
-        if (this.f8617a.f8700m.booleanValue()) {
-            C2818b.m8443a(this);
+        this.f5427e = eVar2;
+        if (this.a.f5452m.booleanValue()) {
+            com.lxj.xpopup.f.b.a(this);
         }
-        m8392q();
+        q();
         clearFocus();
-        this.f8642p.m8603a();
+        this.p.a();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.lxj.xpopup.core.BasePopupView
-    /* renamed from: e */
-    public void mo8381e() {
-        if (this.f8617a.f8708u.booleanValue()) {
+    public void e() {
+        if (this.a.u.booleanValue()) {
             return;
         }
-        super.mo8381e();
+        super.e();
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    /* renamed from: f */
-    public void mo8382f() {
-        if (this.f8617a.f8708u.booleanValue()) {
-            this.f8642p.m8603a();
+    public void f() {
+        if (this.a.u.booleanValue()) {
+            this.p.a();
         } else {
-            super.mo8382f();
+            super.f();
         }
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    /* renamed from: g */
-    public void mo8383g() {
-        if (this.f8617a.f8708u.booleanValue()) {
-            this.f8642p.m8606b();
+    public void g() {
+        if (this.a.u.booleanValue()) {
+            this.p.b();
         } else {
-            super.mo8383g();
+            super.g();
         }
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
     public int getAnimationDuration() {
-        if (this.f8617a.f8708u.booleanValue()) {
+        if (this.a.u.booleanValue()) {
             return 0;
         }
         return super.getAnimationDuration();
@@ -116,13 +105,13 @@ public class BottomPopupView extends BasePopupView {
 
     @Override // com.lxj.xpopup.core.BasePopupView
     protected int getMaxWidth() {
-        int i2 = this.f8617a.f8698k;
-        return i2 == 0 ? C2819c.m8472c(getContext()) : i2;
+        int i2 = this.a.f5450k;
+        return i2 == 0 ? c.c(getContext()) : i2;
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    protected AbstractC2770b getPopupAnimator() {
-        if (this.f8617a.f8708u.booleanValue()) {
+    protected com.lxj.xpopup.c.b getPopupAnimator() {
+        if (this.a.u.booleanValue()) {
             return null;
         }
         return super.getPopupAnimator();
@@ -130,7 +119,7 @@ public class BottomPopupView extends BasePopupView {
 
     @Override // com.lxj.xpopup.core.BasePopupView
     protected int getPopupLayoutId() {
-        return C2766R.layout._xpopup_bottom_popup_view;
+        return R.layout._xpopup_bottom_popup_view;
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
@@ -139,18 +128,17 @@ public class BottomPopupView extends BasePopupView {
     }
 
     @Override // com.lxj.xpopup.core.BasePopupView
-    /* renamed from: k */
-    protected void mo8364k() {
-        super.mo8364k();
-        this.f8642p = (SmartDragLayout) findViewById(C2766R.id.bottomPopupContainer);
-        this.f8642p.addView(LayoutInflater.from(getContext()).inflate(getImplLayoutId(), (ViewGroup) this.f8642p, false));
-        this.f8642p.m8607b(this.f8617a.f8708u.booleanValue());
-        this.f8642p.m8605a(this.f8617a.f8690c.booleanValue());
-        this.f8642p.m8608c(this.f8617a.f8692e.booleanValue());
-        getPopupImplView().setTranslationX(this.f8617a.f8706s);
-        getPopupImplView().setTranslationY(this.f8617a.f8707t);
-        C2819c.m8458a((ViewGroup) getPopupContentView(), getMaxWidth(), getMaxHeight());
-        this.f8642p.setOnCloseListener(new C2788a());
-        this.f8642p.setOnClickListener(new ViewOnClickListenerC2789b());
+    protected void k() {
+        super.k();
+        this.p = (SmartDragLayout) findViewById(R.id.bottomPopupContainer);
+        this.p.addView(LayoutInflater.from(getContext()).inflate(getImplLayoutId(), (ViewGroup) this.p, false));
+        this.p.b(this.a.u.booleanValue());
+        this.p.a(this.a.f5442c.booleanValue());
+        this.p.c(this.a.f5444e.booleanValue());
+        getPopupImplView().setTranslationX(this.a.s);
+        getPopupImplView().setTranslationY(this.a.t);
+        c.a((ViewGroup) getPopupContentView(), getMaxWidth(), getMaxHeight());
+        this.p.setOnCloseListener(new a());
+        this.p.setOnClickListener(new b());
     }
 }

@@ -9,7 +9,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Scene {
     private Context mContext;
     private Runnable mEnterAction;
@@ -23,16 +23,17 @@ public class Scene {
         this.mSceneRoot = viewGroup;
     }
 
-    static Scene getCurrentScene(View view) {
-        return (Scene) view.getTag(C0703R.id.transition_current_scene);
+    @Nullable
+    public static Scene getCurrentScene(@NonNull ViewGroup viewGroup) {
+        return (Scene) viewGroup.getTag(R.id.transition_current_scene);
     }
 
     @NonNull
     public static Scene getSceneForLayout(@NonNull ViewGroup viewGroup, @LayoutRes int i2, @NonNull Context context) {
-        SparseArray sparseArray = (SparseArray) viewGroup.getTag(C0703R.id.transition_scene_layoutid_cache);
+        SparseArray sparseArray = (SparseArray) viewGroup.getTag(R.id.transition_scene_layoutid_cache);
         if (sparseArray == null) {
             sparseArray = new SparseArray();
-            viewGroup.setTag(C0703R.id.transition_scene_layoutid_cache, sparseArray);
+            viewGroup.setTag(R.id.transition_scene_layoutid_cache, sparseArray);
         }
         Scene scene = (Scene) sparseArray.get(i2);
         if (scene != null) {
@@ -43,8 +44,8 @@ public class Scene {
         return scene2;
     }
 
-    static void setCurrentScene(View view, Scene scene) {
-        view.setTag(C0703R.id.transition_current_scene, scene);
+    static void setCurrentScene(@NonNull ViewGroup viewGroup, @Nullable Scene scene) {
+        viewGroup.setTag(R.id.transition_current_scene, scene);
     }
 
     public void enter() {

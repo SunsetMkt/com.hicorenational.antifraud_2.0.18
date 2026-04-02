@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PushEntity extends BaseBean {
     private BodyBean body;
     private String display_type;
@@ -76,15 +76,13 @@ public class PushEntity extends BaseBean {
     }
 
     public static class ExtraBean extends BaseBean {
-
-        /* renamed from: id */
-        String f1610id;
+        String id;
         String title;
         String type;
         String url;
 
         public String getId() {
-            return this.f1610id;
+            return this.id;
         }
 
         public String getTitle() {
@@ -100,7 +98,7 @@ public class PushEntity extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f1610id = str;
+            this.id = str;
         }
 
         public void setTitle(String str) {

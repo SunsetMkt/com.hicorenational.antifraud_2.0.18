@@ -6,12 +6,13 @@ import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
 import com.alibaba.sdk.android.oss.model.AbortMultipartUploadRequest;
 import com.alibaba.sdk.android.oss.model.CompleteMultipartUploadResult;
 import com.alibaba.sdk.android.oss.model.InitiateMultipartUploadRequest;
+import com.alibaba.sdk.android.oss.model.InitiateMultipartUploadResult;
 import com.alibaba.sdk.android.oss.model.MultipartUploadRequest;
 import com.alibaba.sdk.android.oss.network.ExecutionContext;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MultipartUploadTask extends BaseMultipartUploadTask<MultipartUploadRequest, CompleteMultipartUploadResult> implements Callable<CompleteMultipartUploadResult> {
     public MultipartUploadTask(InternalRequestOperation internalRequestOperation, MultipartUploadRequest multipartUploadRequest, OSSCompletedCallback<MultipartUploadRequest, CompleteMultipartUploadResult> oSSCompletedCallback, ExecutionContext executionContext) {
         super(internalRequestOperation, multipartUploadRequest, oSSCompletedCallback, executionContext);
@@ -25,7 +26,7 @@ public class MultipartUploadTask extends BaseMultipartUploadTask<MultipartUpload
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.BaseMultipartUploadTask
-    protected CompleteMultipartUploadResult doMultipartUpload() throws IOException, ServiceException, ClientException, InterruptedException {
+    protected CompleteMultipartUploadResult doMultipartUpload() throws ServiceException, ClientException, InterruptedException, IOException {
         checkCancel();
         int[] iArr = this.mPartAttr;
         int i2 = iArr[0];
@@ -36,12 +37,12 @@ public class MultipartUploadTask extends BaseMultipartUploadTask<MultipartUpload
             checkException();
             if (this.mPoolExecutor != null) {
                 if (i6 == i3 - 1) {
-                    i4 = (int) (this.mFileLength - i5);
+                    i4 = (int) (this.mFileLength - ((long) i5));
                 }
                 i5 += i4;
                 this.mPoolExecutor.execute(new Runnable() { // from class: com.alibaba.sdk.android.oss.internal.MultipartUploadTask.1
                     @Override // java.lang.Runnable
-                    public void run() {
+                    public void run() throws Throwable {
                         MultipartUploadTask.this.uploadPart(i6, i4, i3);
                     }
                 });
@@ -62,8 +63,8 @@ public class MultipartUploadTask extends BaseMultipartUploadTask<MultipartUpload
     }
 
     @Override // com.alibaba.sdk.android.oss.internal.BaseMultipartUploadTask
-    protected void initMultipartUploadId() throws ClientException, ServiceException {
-        this.mUploadId = this.mApiOperation.initMultipartUpload(new InitiateMultipartUploadRequest(this.mRequest.getBucketName(), this.mRequest.getObjectKey(), this.mRequest.getMetadata()), null).getResult().getUploadId();
+    protected void initMultipartUploadId() throws ServiceException, ClientException {
+        this.mUploadId = ((InitiateMultipartUploadResult) this.mApiOperation.initMultipartUpload(new InitiateMultipartUploadRequest(this.mRequest.getBucketName(), this.mRequest.getObjectKey(), this.mRequest.getMetadata()), null).getResult()).getUploadId();
         this.mRequest.setUploadId(this.mUploadId);
     }
 

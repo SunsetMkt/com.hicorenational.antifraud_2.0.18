@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PathUtils {
     private PathUtils() {
     }
@@ -22,18 +22,18 @@ public final class PathUtils {
     @NonNull
     @RequiresApi(26)
     public static Collection<PathSegment> flatten(@NonNull Path path, @FloatRange(from = 0.0d) float f2) {
-        float[] approximate = path.approximate(f2);
-        int length = approximate.length / 3;
+        float[] fArrApproximate = path.approximate(f2);
+        int length = fArrApproximate.length / 3;
         ArrayList arrayList = new ArrayList(length);
         for (int i2 = 1; i2 < length; i2++) {
             int i3 = i2 * 3;
             int i4 = (i2 - 1) * 3;
-            float f3 = approximate[i3];
-            float f4 = approximate[i3 + 1];
-            float f5 = approximate[i3 + 2];
-            float f6 = approximate[i4];
-            float f7 = approximate[i4 + 1];
-            float f8 = approximate[i4 + 2];
+            float f3 = fArrApproximate[i3];
+            float f4 = fArrApproximate[i3 + 1];
+            float f5 = fArrApproximate[i3 + 2];
+            float f6 = fArrApproximate[i4];
+            float f7 = fArrApproximate[i4 + 1];
+            float f8 = fArrApproximate[i4 + 2];
             if (f3 != f6 && (f4 != f7 || f5 != f8)) {
                 arrayList.add(new PathSegment(new PointF(f7, f8), f6, new PointF(f4, f5), f3));
             }

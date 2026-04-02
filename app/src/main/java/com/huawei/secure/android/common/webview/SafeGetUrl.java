@@ -1,40 +1,35 @@
 package com.huawei.secure.android.common.webview;
 
 import android.webkit.WebView;
-import com.huawei.secure.android.common.util.C2570b;
-import com.huawei.secure.android.common.util.C2571c;
+import com.huawei.secure.android.common.util.b;
+import com.huawei.secure.android.common.util.c;
 import java.util.concurrent.CountDownLatch;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SafeGetUrl {
 
-    /* renamed from: c */
-    private static final String f8302c = "SafeGetUrl";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f5254c = "SafeGetUrl";
 
-    /* renamed from: d */
-    private static final long f8303d = 200;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final long f5255d = 200;
+    private String a;
 
-    /* renamed from: a */
-    private String f8304a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private WebView f5256b;
 
-    /* renamed from: b */
-    private WebView f8305b;
+    class a implements Runnable {
+        final /* synthetic */ CountDownLatch a;
 
-    /* renamed from: com.huawei.secure.android.common.webview.SafeGetUrl$a */
-    class RunnableC2573a implements Runnable {
-
-        /* renamed from: a */
-        final /* synthetic */ CountDownLatch f8306a;
-
-        RunnableC2573a(CountDownLatch countDownLatch) {
-            this.f8306a = countDownLatch;
+        a(CountDownLatch countDownLatch) {
+            this.a = countDownLatch;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SafeGetUrl safeGetUrl = SafeGetUrl.this;
-            safeGetUrl.setUrl(safeGetUrl.f8305b.getUrl());
-            this.f8306a.countDown();
+            safeGetUrl.setUrl(safeGetUrl.f5256b.getUrl());
+            this.a.countDown();
         }
     }
 
@@ -42,35 +37,35 @@ public class SafeGetUrl {
     }
 
     public String getUrlMethod() {
-        if (this.f8305b == null) {
+        if (this.f5256b == null) {
             return "";
         }
-        if (C2570b.m8072a()) {
-            return this.f8305b.getUrl();
+        if (b.a()) {
+            return this.f5256b.getUrl();
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        C2571c.m8073a(new RunnableC2573a(countDownLatch));
+        c.a(new a(countDownLatch));
         try {
             countDownLatch.await();
         } catch (InterruptedException e2) {
             String str = "getUrlMethod: InterruptedException " + e2.getMessage();
         }
-        return this.f8304a;
+        return this.a;
     }
 
     public WebView getWebView() {
-        return this.f8305b;
+        return this.f5256b;
     }
 
     public void setUrl(String str) {
-        this.f8304a = str;
+        this.a = str;
     }
 
     public void setWebView(WebView webView) {
-        this.f8305b = webView;
+        this.f5256b = webView;
     }
 
     public SafeGetUrl(WebView webView) {
-        this.f8305b = webView;
+        this.f5256b = webView;
     }
 }

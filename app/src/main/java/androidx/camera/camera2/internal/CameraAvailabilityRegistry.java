@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class CameraAvailabilityRegistry {
     private static final boolean DEBUG = false;
     private static final String TAG = "AvailabilityRegistry";

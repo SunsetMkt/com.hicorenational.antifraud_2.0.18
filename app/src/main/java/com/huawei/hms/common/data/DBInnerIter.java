@@ -3,7 +3,7 @@ package com.huawei.hms.common.data;
 import com.huawei.hms.common.internal.Preconditions;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DBInnerIter<O> implements Iterator<O> {
     protected final DataBuffer<O> dataBuffer;
     protected int index = -1;

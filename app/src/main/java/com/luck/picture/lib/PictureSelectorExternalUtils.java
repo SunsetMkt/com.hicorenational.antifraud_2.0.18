@@ -8,47 +8,47 @@ import com.luck.picture.lib.tools.PictureFileUtils;
 import com.luck.picture.lib.tools.SdkVersionUtils;
 import java.io.InputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureSelectorExternalUtils {
-    public static ExifInterface getExifInterface(Context context, String str) {
-        InputStream inputStream;
+    public static ExifInterface getExifInterface(Context context, String str) throws Throwable {
+        InputStream inputStreamOpenInputStream;
         ExifInterface exifInterface;
-        InputStream inputStream2 = null;
+        InputStream inputStream = null;
         try {
             try {
                 if (SdkVersionUtils.checkedAndroid_Q() && PictureMimeType.isContent(str)) {
-                    inputStream = context.getContentResolver().openInputStream(Uri.parse(str));
-                    if (inputStream != null) {
+                    inputStreamOpenInputStream = context.getContentResolver().openInputStream(Uri.parse(str));
+                    if (inputStreamOpenInputStream != null) {
                         try {
-                            inputStream2 = inputStream;
-                            exifInterface = new ExifInterface(inputStream);
+                            inputStream = inputStreamOpenInputStream;
+                            exifInterface = new ExifInterface(inputStreamOpenInputStream);
                         } catch (Exception e2) {
                             e = e2;
                             e.printStackTrace();
-                            PictureFileUtils.close(inputStream);
+                            PictureFileUtils.close(inputStreamOpenInputStream);
                             return null;
                         }
                     } else {
-                        inputStream2 = inputStream;
+                        inputStream = inputStreamOpenInputStream;
                         exifInterface = null;
                     }
                 } else {
                     exifInterface = new ExifInterface(str);
                 }
-                PictureFileUtils.close(inputStream2);
+                PictureFileUtils.close(inputStream);
                 return exifInterface;
             } catch (Exception e3) {
                 e = e3;
-                inputStream = null;
+                inputStreamOpenInputStream = null;
             } catch (Throwable th) {
                 th = th;
-                PictureFileUtils.close(inputStream2);
+                PictureFileUtils.close(inputStream);
                 throw th;
             }
         } catch (Throwable th2) {
             th = th2;
-            inputStream2 = context;
-            PictureFileUtils.close(inputStream2);
+            inputStream = context;
+            PictureFileUtils.close(inputStream);
             throw th;
         }
     }

@@ -2,7 +2,7 @@ package androidx.camera.core;
 
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraInfoUnavailableException extends Exception {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public CameraInfoUnavailableException(String str, Throwable th) {

@@ -6,20 +6,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/* JADX INFO: loaded from: classes.dex */
 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.LOCAL_VARIABLE, ElementType.ANNOTATION_TYPE})
 @Documented
 @Retention(RetentionPolicy.CLASS)
-/* loaded from: classes.dex */
 public @interface Dimension {
-
-    /* renamed from: DP */
-    public static final int f357DP = 0;
-
-    /* renamed from: PX */
-    public static final int f358PX = 1;
-
-    /* renamed from: SP */
-    public static final int f359SP = 2;
+    public static final int DP = 0;
+    public static final int PX = 1;
+    public static final int SP = 2;
 
     int unit() default 1;
 }

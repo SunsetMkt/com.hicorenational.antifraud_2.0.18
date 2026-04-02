@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import androidx.annotation.NonNull;
-import androidx.core.C0475R;
+import androidx.core.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ViewGroupCompat {
     public static final int LAYOUT_MODE_CLIP_BOUNDS = 0;
     public static final int LAYOUT_MODE_OPTICAL_BOUNDS = 1;
@@ -37,7 +37,7 @@ public final class ViewGroupCompat {
         if (Build.VERSION.SDK_INT >= 21) {
             return viewGroup.isTransitionGroup();
         }
-        Boolean bool = (Boolean) viewGroup.getTag(C0475R.id.tag_transition_group);
+        Boolean bool = (Boolean) viewGroup.getTag(R.id.tag_transition_group);
         return ((bool == null || !bool.booleanValue()) && viewGroup.getBackground() == null && ViewCompat.getTransitionName(viewGroup) == null) ? false : true;
     }
 
@@ -61,7 +61,7 @@ public final class ViewGroupCompat {
         if (Build.VERSION.SDK_INT >= 21) {
             viewGroup.setTransitionGroup(z);
         } else {
-            viewGroup.setTag(C0475R.id.tag_transition_group, Boolean.valueOf(z));
+            viewGroup.setTag(R.id.tag_transition_group, Boolean.valueOf(z));
         }
     }
 }

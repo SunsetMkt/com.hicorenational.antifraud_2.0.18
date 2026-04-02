@@ -2,8 +2,8 @@ package anet.channel;
 
 import anet.channel.session.TnetSpdySession;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public interface DataFrameCb {
     void onDataReceive(TnetSpdySession tnetSpdySession, byte[] bArr, int i2, int i3);
 

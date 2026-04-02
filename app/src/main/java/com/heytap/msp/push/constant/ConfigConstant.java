@@ -1,6 +1,6 @@
 package com.heytap.msp.push.constant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ConfigConstant {
 
     public interface NotificationSort {

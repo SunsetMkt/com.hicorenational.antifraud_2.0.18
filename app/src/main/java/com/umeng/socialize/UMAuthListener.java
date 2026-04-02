@@ -3,7 +3,7 @@ package com.umeng.socialize;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface UMAuthListener {
     public static final int ACTION_AUTHORIZE = 0;
     public static final int ACTION_DELETE = 1;

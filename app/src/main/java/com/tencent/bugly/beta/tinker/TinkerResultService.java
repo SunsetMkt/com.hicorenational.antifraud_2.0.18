@@ -11,18 +11,48 @@ import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.lib.util.TinkerServiceInternals;
 import java.io.File;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerResultService extends DefaultTinkerResultService {
     private static final String TAG = "Tinker.TinkerResultService";
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: renamed from: com.tencent.bugly.beta.tinker.TinkerResultService$1 */
+    /* JADX INFO: compiled from: BUGLY */
+    class AnonymousClass1 implements Runnable {
+        final /* synthetic */ PatchResult val$result;
+
+        AnonymousClass1(PatchResult patchResult) {
+            patchResult = patchResult;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            if (patchResult.isSuccess) {
+                TinkerManager.getInstance().onApplySuccess(patchResult.toString());
+            } else {
+                TinkerManager.getInstance().onApplyFailure(patchResult.toString());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.tencent.bugly.beta.tinker.TinkerResultService$2 */
+    /* JADX INFO: compiled from: BUGLY */
+    class AnonymousClass2 implements TinkerUtils.ScreenState.IOnScreenOff {
+        AnonymousClass2() {
+        }
+
+        @Override // com.tencent.bugly.beta.tinker.TinkerUtils.ScreenState.IOnScreenOff
+        public void onScreenOff() {
+            TinkerResultService.this.restartProcess();
+        }
+    }
+
     public void restartProcess() {
         TinkerLog.i(TAG, "app is background now, i can kill quietly", new Object[0]);
         Process.killProcess(Process.myPid());
     }
 
-    public void onPatchResult(final PatchResult patchResult) {
+    public void onPatchResult(PatchResult patchResult) {
         TinkerManager.TinkerPatchResultListener tinkerPatchResultListener = TinkerManager.patchResultListener;
         if (tinkerPatchResultListener != null) {
             tinkerPatchResultListener.onPatchResult(patchResult);
@@ -34,6 +64,12 @@ public class TinkerResultService extends DefaultTinkerResultService {
         TinkerLog.i(TAG, "TinkerResultService receive result: %s", new Object[]{patchResult.toString()});
         TinkerServiceInternals.killTinkerPatchServiceProcess(getApplicationContext());
         new Handler(Looper.getMainLooper()).post(new Runnable() { // from class: com.tencent.bugly.beta.tinker.TinkerResultService.1
+            final /* synthetic */ PatchResult val$result;
+
+            AnonymousClass1(PatchResult patchResult2) {
+                patchResult = patchResult2;
+            }
+
             @Override // java.lang.Runnable
             public void run() {
                 if (patchResult.isSuccess) {
@@ -43,9 +79,9 @@ public class TinkerResultService extends DefaultTinkerResultService {
                 }
             }
         });
-        if (patchResult.isSuccess) {
-            deleteRawPatchFile(new File(patchResult.rawPatchFilePath));
-            if (!checkIfNeedKill(patchResult)) {
+        if (patchResult2.isSuccess) {
+            deleteRawPatchFile(new File(patchResult2.rawPatchFilePath));
+            if (!checkIfNeedKill(patchResult2)) {
                 TinkerLog.i(TAG, "I have already install the newly patch version!", new Object[0]);
                 return;
             }
@@ -56,6 +92,9 @@ public class TinkerResultService extends DefaultTinkerResultService {
                 } else {
                     TinkerLog.i(TAG, "tinker wait screen to restart process", new Object[0]);
                     new TinkerUtils.ScreenState(getApplicationContext(), new TinkerUtils.ScreenState.IOnScreenOff() { // from class: com.tencent.bugly.beta.tinker.TinkerResultService.2
+                        AnonymousClass2() {
+                        }
+
                         @Override // com.tencent.bugly.beta.tinker.TinkerUtils.ScreenState.IOnScreenOff
                         public void onScreenOff() {
                             TinkerResultService.this.restartProcess();

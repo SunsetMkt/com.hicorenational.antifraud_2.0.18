@@ -15,7 +15,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SoInstallMgrSdk {
     private static final String ARMEABI = "armeabi";
     private static final int EventID_SO_INIT = 21033;
@@ -25,11 +25,11 @@ public class SoInstallMgrSdk {
     static Context mContext;
 
     private static String _cpuType() {
-        String _getFieldReflectively = _getFieldReflectively(new Build(), "CPU_ABI");
-        if (_getFieldReflectively == null || _getFieldReflectively.length() == 0 || _getFieldReflectively.equals("Unknown")) {
-            _getFieldReflectively = ARMEABI;
+        String str_getFieldReflectively = _getFieldReflectively(new Build(), "CPU_ABI");
+        if (str_getFieldReflectively == null || str_getFieldReflectively.length() == 0 || str_getFieldReflectively.equals("Unknown")) {
+            str_getFieldReflectively = ARMEABI;
         }
-        return _getFieldReflectively.toLowerCase();
+        return str_getFieldReflectively.toLowerCase();
     }
 
     private static String _getFieldReflectively(Build build, String str) {
@@ -70,12 +70,12 @@ public class SoInstallMgrSdk {
         if (context == null) {
             return "";
         }
-        String str2 = "/data/data/" + context.getPackageName() + "/files";
+        String path = "/data/data/" + context.getPackageName() + "/files";
         File filesDir = context.getFilesDir();
         if (filesDir != null) {
-            str2 = filesDir.getPath();
+            path = filesDir.getPath();
         }
-        return str2 + "/lib" + str + "bk" + i2 + ".so";
+        return path + "/lib" + str + "bk" + i2 + ".so";
     }
 
     public static void init(Context context) {
@@ -97,9 +97,9 @@ public class SoInstallMgrSdk {
         }
     }
 
-    static boolean unZipSelectedFiles(String str, int i2, ClassLoader classLoader) throws ZipException, IOException {
+    static boolean unZipSelectedFiles(String str, int i2, ClassLoader classLoader) throws Throwable {
         Context context;
-        FileOutputStream fileOutputStream;
+        FileOutputStream fileOutputStreamOpenFileOutput;
         InputStream inputStream;
         String str2 = "lib/armeabi/lib" + str + ".so";
         try {
@@ -112,33 +112,33 @@ public class SoInstallMgrSdk {
         }
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         ZipFile zipFile = new ZipFile(applicationInfo != null ? applicationInfo.sourceDir : "");
-        Enumeration<? extends ZipEntry> entries = zipFile.entries();
-        while (entries.hasMoreElements()) {
-            ZipEntry nextElement = entries.nextElement();
-            String name = nextElement.getName();
+        Enumeration<? extends ZipEntry> enumerationEntries = zipFile.entries();
+        while (enumerationEntries.hasMoreElements()) {
+            ZipEntry zipEntryNextElement = enumerationEntries.nextElement();
+            String name = zipEntryNextElement.getName();
             if (!name.contains("..") && !name.contains("\\") && !name.contains("%")) {
-                if (nextElement.getName().startsWith(str2)) {
-                    FileChannel fileChannel = null;
+                if (zipEntryNextElement.getName().startsWith(str2)) {
+                    FileChannel channel = null;
                     try {
                         removeSoIfExit(str, i2);
-                        inputStream = zipFile.getInputStream(nextElement);
+                        inputStream = zipFile.getInputStream(zipEntryNextElement);
                         try {
-                            fileOutputStream = context.openFileOutput("lib" + str + "bk" + i2 + ".so", 0);
+                            fileOutputStreamOpenFileOutput = context.openFileOutput("lib" + str + "bk" + i2 + ".so", 0);
                         } catch (Throwable th) {
                             th = th;
-                            fileOutputStream = null;
+                            fileOutputStreamOpenFileOutput = null;
                         }
                         try {
-                            fileChannel = fileOutputStream.getChannel();
+                            channel = fileOutputStreamOpenFileOutput.getChannel();
                             byte[] bArr = new byte[1024];
                             int i3 = 0;
                             while (true) {
-                                int read = inputStream.read(bArr);
-                                if (read <= 0) {
+                                int i4 = inputStream.read(bArr);
+                                if (i4 <= 0) {
                                     break;
                                 }
-                                fileChannel.write(ByteBuffer.wrap(bArr, 0, read));
-                                i3 += read;
+                                channel.write(ByteBuffer.wrap(bArr, 0, i4));
+                                i3 += i4;
                             }
                             if (inputStream != null) {
                                 try {
@@ -147,16 +147,16 @@ public class SoInstallMgrSdk {
                                     e3.printStackTrace();
                                 }
                             }
-                            if (fileChannel != null) {
+                            if (channel != null) {
                                 try {
-                                    fileChannel.close();
+                                    channel.close();
                                 } catch (Exception e4) {
                                     e4.printStackTrace();
                                 }
                             }
-                            if (fileOutputStream != null) {
+                            if (fileOutputStreamOpenFileOutput != null) {
                                 try {
-                                    fileOutputStream.close();
+                                    fileOutputStreamOpenFileOutput.close();
                                 } catch (Exception e5) {
                                     e5.printStackTrace();
                                 }
@@ -175,16 +175,16 @@ public class SoInstallMgrSdk {
                                     e6.printStackTrace();
                                 }
                             }
-                            if (fileChannel != null) {
+                            if (channel != null) {
                                 try {
-                                    fileChannel.close();
+                                    channel.close();
                                 } catch (Exception e7) {
                                     e7.printStackTrace();
                                 }
                             }
-                            if (fileOutputStream != null) {
+                            if (fileOutputStreamOpenFileOutput != null) {
                                 try {
-                                    fileOutputStream.close();
+                                    fileOutputStreamOpenFileOutput.close();
                                 } catch (Exception e8) {
                                     e8.printStackTrace();
                                 }
@@ -194,7 +194,7 @@ public class SoInstallMgrSdk {
                         }
                     } catch (Throwable th3) {
                         th = th3;
-                        fileOutputStream = null;
+                        fileOutputStreamOpenFileOutput = null;
                         inputStream = null;
                     }
                 }
@@ -204,95 +204,57 @@ public class SoInstallMgrSdk {
         return false;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:10:0x003d A[EXC_TOP_SPLITTER, SYNTHETIC] */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public static boolean initSo(java.lang.String r7, int r8, java.lang.ClassLoader r9) {
-        /*
-            r0 = 1
-            r1 = 0
-            if (r9 != 0) goto L8
-            java.lang.System.loadLibrary(r7)     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            goto L3b
-        L8:
-            java.lang.Runtime r2 = java.lang.Runtime.getRuntime()     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            r3 = 2
-            java.lang.Class[] r4 = new java.lang.Class[r3]     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            java.lang.Class<java.lang.String> r5 = java.lang.String.class
-            r4[r1] = r5     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            java.lang.Class<java.lang.ClassLoader> r5 = java.lang.ClassLoader.class
-            r4[r0] = r5     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            java.lang.Class<java.lang.Runtime> r5 = java.lang.Runtime.class
-            java.lang.String r6 = "loadLibrary"
-            java.lang.reflect.Method r4 = r5.getDeclaredMethod(r6, r4)     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            r4.setAccessible(r0)     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            java.lang.Object[] r3 = new java.lang.Object[r3]     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            r3[r1] = r7     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            r3[r0] = r9     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            r4.invoke(r2, r3)     // Catch: java.lang.Error -> L2c java.lang.UnsatisfiedLinkError -> L31 java.lang.Exception -> L36
-            goto L3b
-        L2c:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L3a
-        L31:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L3a
-        L36:
-            r0 = move-exception
-            r0.printStackTrace()
-        L3a:
-            r0 = 0
-        L3b:
-            if (r0 != 0) goto L81
-            boolean r2 = isExist(r7, r8)     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            if (r2 == 0) goto L4d
-            boolean r2 = _loadUnzipSo(r7, r8, r9)     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            if (r2 == 0) goto L4a
-            return r2
-        L4a:
-            removeSoIfExit(r7, r8)     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-        L4d:
-            java.lang.String r2 = _cpuType()     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            java.lang.String r3 = "mips"
-            boolean r3 = r2.equalsIgnoreCase(r3)     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            if (r3 != 0) goto L81
-            java.lang.String r3 = "x86"
-            boolean r2 = r2.equalsIgnoreCase(r3)     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            if (r2 == 0) goto L62
-            goto L81
-        L62:
-            boolean r7 = unZipSelectedFiles(r7, r8, r9)     // Catch: java.io.IOException -> L68 java.util.zip.ZipException -> L6d java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            r1 = r7
-            goto L82
-        L68:
-            r7 = move-exception
-            r7.printStackTrace()     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            goto L81
-        L6d:
-            r7 = move-exception
-            r7.printStackTrace()     // Catch: java.lang.Error -> L72 java.lang.UnsatisfiedLinkError -> L77 java.lang.Exception -> L7c
-            goto L81
-        L72:
-            r7 = move-exception
-            r7.printStackTrace()
-            goto L82
-        L77:
-            r7 = move-exception
-            r7.printStackTrace()
-            goto L82
-        L7c:
-            r7 = move-exception
-            r7.printStackTrace()
-            goto L82
-        L81:
-            r1 = r0
-        L82:
-            return r1
-        */
-        throw new UnsupportedOperationException("Method not decompiled: org.android.spdy.SoInstallMgrSdk.initSo(java.lang.String, int, java.lang.ClassLoader):boolean");
+    public static boolean initSo(String str, int i2, ClassLoader classLoader) {
+        boolean z = true;
+        try {
+            if (classLoader == null) {
+                System.loadLibrary(str);
+            } else {
+                Runtime runtime = Runtime.getRuntime();
+                Method declaredMethod = Runtime.class.getDeclaredMethod("loadLibrary", String.class, ClassLoader.class);
+                declaredMethod.setAccessible(true);
+                declaredMethod.invoke(runtime, str, classLoader);
+            }
+        } catch (Exception e2) {
+            e2.printStackTrace();
+            z = false;
+        } catch (UnsatisfiedLinkError e3) {
+            e3.printStackTrace();
+            z = false;
+        } catch (Error e4) {
+            e4.printStackTrace();
+            z = false;
+        }
+        if (!z) {
+            try {
+                if (isExist(str, i2)) {
+                    boolean z_loadUnzipSo = _loadUnzipSo(str, i2, classLoader);
+                    if (z_loadUnzipSo) {
+                        return z_loadUnzipSo;
+                    }
+                    removeSoIfExit(str, i2);
+                }
+                String str_cpuType = _cpuType();
+                if (!str_cpuType.equalsIgnoreCase(MIPS) && !str_cpuType.equalsIgnoreCase(X86)) {
+                    try {
+                        return unZipSelectedFiles(str, i2, classLoader);
+                    } catch (ZipException e5) {
+                        e5.printStackTrace();
+                    } catch (IOException e6) {
+                        e6.printStackTrace();
+                    }
+                }
+            } catch (Error e7) {
+                e7.printStackTrace();
+                return false;
+            } catch (Exception e8) {
+                e8.printStackTrace();
+                return false;
+            } catch (UnsatisfiedLinkError e9) {
+                e9.printStackTrace();
+                return false;
+            }
+        }
+        return z;
     }
 }

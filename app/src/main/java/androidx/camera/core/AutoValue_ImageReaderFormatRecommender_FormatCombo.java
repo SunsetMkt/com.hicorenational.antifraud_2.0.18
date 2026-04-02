@@ -2,7 +2,7 @@ package androidx.camera.core;
 
 import androidx.camera.core.ImageReaderFormatRecommender;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_ImageReaderFormatRecommender_FormatCombo extends ImageReaderFormatRecommender.FormatCombo {
     private final int imageAnalysisFormat;
     private final int imageCaptureFormat;

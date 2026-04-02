@@ -1,6 +1,6 @@
 package bean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PcodeRegionBean {
     private String cityId;
     private String districtId;

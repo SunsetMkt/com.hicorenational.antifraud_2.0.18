@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class QQPreferences {
     private static final String ACCESS_TOKEN = "access_token";
     private static final String EXPIRES_IN = "expires_in";

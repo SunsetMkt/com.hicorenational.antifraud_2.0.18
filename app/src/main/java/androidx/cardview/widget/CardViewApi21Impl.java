@@ -6,8 +6,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class CardViewApi21Impl implements CardViewImpl {
     CardViewApi21Impl() {
     }
@@ -98,8 +98,8 @@ class CardViewApi21Impl implements CardViewImpl {
         }
         float maxElevation = getMaxElevation(cardViewDelegate);
         float radius = getRadius(cardViewDelegate);
-        int ceil = (int) Math.ceil(RoundRectDrawableWithShadow.calculateHorizontalPadding(maxElevation, radius, cardViewDelegate.getPreventCornerOverlap()));
-        int ceil2 = (int) Math.ceil(RoundRectDrawableWithShadow.calculateVerticalPadding(maxElevation, radius, cardViewDelegate.getPreventCornerOverlap()));
-        cardViewDelegate.setShadowPadding(ceil, ceil2, ceil, ceil2);
+        int iCeil = (int) Math.ceil(RoundRectDrawableWithShadow.calculateHorizontalPadding(maxElevation, radius, cardViewDelegate.getPreventCornerOverlap()));
+        int iCeil2 = (int) Math.ceil(RoundRectDrawableWithShadow.calculateVerticalPadding(maxElevation, radius, cardViewDelegate.getPreventCornerOverlap()));
+        cardViewDelegate.setShadowPadding(iCeil, iCeil2, iCeil, iCeil2);
     }
 }

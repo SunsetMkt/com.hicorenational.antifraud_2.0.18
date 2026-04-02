@@ -4,28 +4,25 @@ import android.content.Context;
 import android.net.http.SslError;
 import android.webkit.SslErrorHandler;
 import com.huawei.secure.android.common.ssl.WebViewSSLCheckThread;
-import com.huawei.secure.android.common.ssl.util.C2560b;
-import com.huawei.secure.android.common.ssl.util.C2563e;
-import com.huawei.secure.android.common.ssl.util.C2566h;
+import com.huawei.secure.android.common.ssl.util.e;
+import com.huawei.secure.android.common.ssl.util.h;
 import java.security.cert.X509Certificate;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebViewSSLCheck {
-
-    /* renamed from: a */
-    private static final String f8184a = "WebViewSSLCheck";
+    private static final String a = "WebViewSSLCheck";
 
     public static void checkServerCertificateNew(SslErrorHandler sslErrorHandler, SslError sslError, Context context) {
         checkServerCertificateNew(sslErrorHandler, sslError, null, context, null);
     }
 
     public static void checkServerCertificateNew(SslErrorHandler sslErrorHandler, SslError sslError, String str, Context context, WebViewSSLCheckThread.Callback callback) {
-        C2563e.m7987c(f8184a, " error type : " + sslError.getPrimaryError() + " , cn is : " + sslError.getCertificate().getIssuedTo().getCName());
-        X509Certificate m7956a = C2560b.m7956a(sslError.getCertificate());
-        X509Certificate m8001a = new C2566h(context).m8001a();
-        C2563e.m7984a(f8184a, "checkServerCertificateNew: error certificate is : " + m7956a);
-        if (C2560b.m7960a(m8001a, m7956a)) {
-            C2563e.m7987c(f8184a, "checkServerCertificateNew: proceed");
+        e.c(a, " error type : " + sslError.getPrimaryError() + " , cn is : " + sslError.getCertificate().getIssuedTo().getCName());
+        X509Certificate x509CertificateA = com.huawei.secure.android.common.ssl.util.b.a(sslError.getCertificate());
+        X509Certificate x509CertificateA2 = new h(context).a();
+        e.a(a, "checkServerCertificateNew: error certificate is : " + x509CertificateA);
+        if (com.huawei.secure.android.common.ssl.util.b.a(x509CertificateA2, x509CertificateA)) {
+            e.c(a, "checkServerCertificateNew: proceed");
             if (callback != null) {
                 callback.onProceed(context, str);
                 return;
@@ -34,7 +31,7 @@ public class WebViewSSLCheck {
                 return;
             }
         }
-        C2563e.m7986b(f8184a, "checkServerCertificateNew: cancel");
+        e.b(a, "checkServerCertificateNew: cancel");
         if (callback != null) {
             callback.onCancel(context, str);
         } else {
@@ -43,10 +40,10 @@ public class WebViewSSLCheck {
     }
 
     public static boolean checkServerCertificateNew(X509Certificate x509Certificate, SslError sslError) {
-        return C2560b.m7960a(x509Certificate, C2560b.m7956a(sslError.getCertificate()));
+        return com.huawei.secure.android.common.ssl.util.b.a(x509Certificate, com.huawei.secure.android.common.ssl.util.b.a(sslError.getCertificate()));
     }
 
     public static boolean checkServerCertificateNew(String str, SslError sslError) {
-        return checkServerCertificateNew(C2560b.m7957a(str), sslError);
+        return checkServerCertificateNew(com.huawei.secure.android.common.ssl.util.b.a(str), sslError);
     }
 }

@@ -2,15 +2,18 @@ package com.google.android.material.transformation;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.material.circularreveal.CircularRevealFrameLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@Deprecated
 public class TransformationChildLayout extends CircularRevealFrameLayout {
-    public TransformationChildLayout(Context context) {
+    public TransformationChildLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    public TransformationChildLayout(Context context, AttributeSet attributeSet) {
+    public TransformationChildLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 }

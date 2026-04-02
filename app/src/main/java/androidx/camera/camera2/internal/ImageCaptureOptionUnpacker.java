@@ -9,7 +9,7 @@ import androidx.camera.core.impl.DeviceProperties;
 import androidx.camera.core.impl.ImageCaptureConfig;
 import androidx.camera.core.impl.UseCaseConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImageCaptureOptionUnpacker extends Camera2CaptureOptionUnpacker {
     static final ImageCaptureOptionUnpacker INSTANCE = new ImageCaptureOptionUnpacker();
     private DeviceProperties mDeviceProperties = DeviceProperties.create();

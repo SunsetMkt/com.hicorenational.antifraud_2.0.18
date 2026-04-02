@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/* JADX INFO: loaded from: classes.dex */
 @TargetApi(21)
-/* loaded from: classes.dex */
 class AudioAttributesImplApi21 implements AudioAttributesImpl {
     private static final String TAG = "AudioAttributesCompat21";
     static Method sAudioAttributesToLegacyStreamType;

@@ -6,11 +6,11 @@ import com.umeng.commonsdk.framework.UMEnvelopeBuild;
 import com.umeng.commonsdk.statistics.common.MLog;
 import com.umeng.commonsdk.statistics.idtracking.Envelope;
 import com.umeng.commonsdk.statistics.idtracking.ImprintHandler;
-import com.umeng.commonsdk.statistics.internal.InterfaceC3516d;
+import com.umeng.commonsdk.statistics.internal.d;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes2.dex */
-public class ABTest implements InterfaceC3516d {
+/* JADX INFO: loaded from: classes2.dex */
+public class ABTest implements d {
     private static ABTest instance;
     private Context context;
     private boolean isInTest = false;
@@ -28,54 +28,50 @@ public class ABTest implements InterfaceC3516d {
     }
 
     public static synchronized ABTest getService(Context context) {
-        ABTest aBTest;
-        synchronized (ABTest.class) {
-            if (instance == null) {
-                instance = new ABTest(context, UMEnvelopeBuild.imprintProperty(context, "client_test", null), Integer.valueOf(UMEnvelopeBuild.imprintProperty(context, "test_report_interval", "0")).intValue());
-            }
-            aBTest = instance;
+        if (instance == null) {
+            instance = new ABTest(context, UMEnvelopeBuild.imprintProperty(context, "client_test", null), Integer.valueOf(UMEnvelopeBuild.imprintProperty(context, "test_report_interval", "0")).intValue());
         }
-        return aBTest;
+        return instance;
     }
 
     private void parseFIXED(String str) {
         if (str == null) {
             return;
         }
-        String[] split = str.split("\\|");
-        if (this.mProb13 > (split[2].equals("SIG13") ? Float.valueOf(split[3]).floatValue() : 0.0f)) {
+        String[] strArrSplit = str.split("\\|");
+        if (this.mProb13 > (strArrSplit[2].equals("SIG13") ? Float.valueOf(strArrSplit[3]).floatValue() : 0.0f)) {
             this.isInTest = false;
             return;
         }
-        int intValue = split[0].equals("FIXED") ? Integer.valueOf(split[1]).intValue() : -1;
+        int iIntValue = strArrSplit[0].equals("FIXED") ? Integer.valueOf(strArrSplit[1]).intValue() : -1;
         int[] iArr = null;
-        if (split[4].equals("RPT")) {
+        if (strArrSplit[4].equals("RPT")) {
             this.mPoli = "RPT";
-            String[] split2 = split[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-            iArr = new int[split2.length];
-            for (int i2 = 0; i2 < split2.length; i2++) {
-                iArr[i2] = Integer.valueOf(split2[i2]).intValue();
+            String[] strArrSplit2 = strArrSplit[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+            iArr = new int[strArrSplit2.length];
+            for (int i2 = 0; i2 < strArrSplit2.length; i2++) {
+                iArr[i2] = Integer.valueOf(strArrSplit2[i2]).intValue();
             }
-        } else if (split[4].equals("DOM")) {
+        } else if (strArrSplit[4].equals("DOM")) {
             this.mPoli = "DOM";
             this.isInTest = true;
             try {
-                String[] split3 = split[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-                iArr = new int[split3.length];
-                for (int i3 = 0; i3 < split3.length; i3++) {
-                    iArr[i3] = Integer.valueOf(split3[i3]).intValue();
+                String[] strArrSplit3 = strArrSplit[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+                iArr = new int[strArrSplit3.length];
+                for (int i3 = 0; i3 < strArrSplit3.length; i3++) {
+                    iArr[i3] = Integer.valueOf(strArrSplit3[i3]).intValue();
                 }
             } catch (Exception unused) {
             }
         }
-        if (intValue == -1) {
+        if (iIntValue == -1) {
             this.isInTest = false;
             return;
         }
         this.isInTest = true;
-        this.mGroup = intValue;
+        this.mGroup = iIntValue;
         if (iArr != null) {
-            this.mPolicy = iArr[intValue - 1];
+            this.mPolicy = iArr[iIntValue - 1];
         }
     }
 
@@ -84,37 +80,37 @@ public class ABTest implements InterfaceC3516d {
         if (str == null) {
             return;
         }
-        String[] split = str.split("\\|");
+        String[] strArrSplit = str.split("\\|");
         float f2 = 0.0f;
-        if (this.mProb13 > (split[2].equals("SIG13") ? Float.valueOf(split[3]).floatValue() : 0.0f)) {
+        if (this.mProb13 > (strArrSplit[2].equals("SIG13") ? Float.valueOf(strArrSplit[3]).floatValue() : 0.0f)) {
             this.isInTest = false;
             return;
         }
         int[] iArr = null;
-        if (split[0].equals("SIG7")) {
-            String[] split2 = split[1].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-            fArr = new float[split2.length];
-            for (int i2 = 0; i2 < split2.length; i2++) {
-                fArr[i2] = Float.valueOf(split2[i2]).floatValue();
+        if (strArrSplit[0].equals("SIG7")) {
+            String[] strArrSplit2 = strArrSplit[1].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+            fArr = new float[strArrSplit2.length];
+            for (int i2 = 0; i2 < strArrSplit2.length; i2++) {
+                fArr[i2] = Float.valueOf(strArrSplit2[i2]).floatValue();
             }
         } else {
             fArr = null;
         }
-        if (split[4].equals("RPT")) {
+        if (strArrSplit[4].equals("RPT")) {
             this.mPoli = "RPT";
-            String[] split3 = split[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-            iArr = new int[split3.length];
-            for (int i3 = 0; i3 < split3.length; i3++) {
-                iArr[i3] = Integer.valueOf(split3[i3]).intValue();
+            String[] strArrSplit3 = strArrSplit[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+            iArr = new int[strArrSplit3.length];
+            for (int i3 = 0; i3 < strArrSplit3.length; i3++) {
+                iArr[i3] = Integer.valueOf(strArrSplit3[i3]).intValue();
             }
-        } else if (split[4].equals("DOM")) {
+        } else if (strArrSplit[4].equals("DOM")) {
             this.isInTest = true;
             this.mPoli = "DOM";
             try {
-                String[] split4 = split[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
-                iArr = new int[split4.length];
-                for (int i4 = 0; i4 < split4.length; i4++) {
-                    iArr[i4] = Integer.valueOf(split4[i4]).intValue();
+                String[] strArrSplit4 = strArrSplit[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+                iArr = new int[strArrSplit4.length];
+                for (int i4 = 0; i4 < strArrSplit4.length; i4++) {
+                    iArr[i4] = Integer.valueOf(strArrSplit4[i4]).intValue();
                 }
             } catch (Exception unused) {
             }
@@ -155,17 +151,17 @@ public class ABTest implements InterfaceC3516d {
         if (TextUtils.isEmpty(str)) {
             return false;
         }
-        String[] split = str.split("\\|");
-        if (split.length != 6) {
+        String[] strArrSplit = str.split("\\|");
+        if (strArrSplit.length != 6) {
             return false;
         }
-        if (split[0].startsWith("SIG7") && split[1].split(Constants.ACCEPT_TIME_SEPARATOR_SP).length == split[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP).length) {
+        if (strArrSplit[0].startsWith("SIG7") && strArrSplit[1].split(Constants.ACCEPT_TIME_SEPARATOR_SP).length == strArrSplit[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP).length) {
             return true;
         }
-        if (split[0].startsWith("FIXED")) {
-            int length = split[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP).length;
-            int parseInt = Integer.parseInt(split[1]);
-            if (length >= parseInt && parseInt >= 1) {
+        if (strArrSplit[0].startsWith("FIXED")) {
+            int length = strArrSplit[5].split(Constants.ACCEPT_TIME_SEPARATOR_SP).length;
+            int i2 = Integer.parseInt(strArrSplit[1]);
+            if (length >= i2 && i2 >= 1) {
                 return true;
             }
         }
@@ -213,13 +209,13 @@ public class ABTest implements InterfaceC3516d {
             }
         } catch (Exception e2) {
             this.isInTest = false;
-            MLog.m11746e("v:" + str, e2);
+            MLog.e("v:" + str, e2);
         }
     }
 
-    @Override // com.umeng.commonsdk.statistics.internal.InterfaceC3516d
-    public void onImprintChanged(ImprintHandler.C3500a c3500a) {
-        onExperimentChanged(c3500a.m11842a("client_test", null), Integer.valueOf(c3500a.m11842a("test_report_interval", "0")).intValue());
+    @Override // com.umeng.commonsdk.statistics.internal.d
+    public void onImprintChanged(ImprintHandler.a aVar) {
+        onExperimentChanged(aVar.a("client_test", null), Integer.valueOf(aVar.a("test_report_interval", "0")).intValue());
     }
 
     public String toString() {

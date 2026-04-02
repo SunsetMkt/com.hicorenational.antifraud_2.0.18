@@ -37,7 +37,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MediaControllerCompat {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY})
@@ -381,9 +381,9 @@ public final class MediaControllerCompat {
         void postToHandler(int i2, Object obj, Bundle bundle) {
             MessageHandler messageHandler = this.mHandler;
             if (messageHandler != null) {
-                Message obtainMessage = messageHandler.obtainMessage(i2, obj);
-                obtainMessage.setData(bundle);
-                obtainMessage.sendToTarget();
+                Message messageObtainMessage = messageHandler.obtainMessage(i2, obj);
+                messageObtainMessage.setData(bundle);
+                messageObtainMessage.sendToTarget();
             }
         }
 
@@ -824,20 +824,20 @@ public final class MediaControllerCompat {
             throw new IllegalArgumentException("session must not be null");
         }
         this.mToken = mediaSessionCompat.getSessionToken();
-        MediaControllerImpl mediaControllerImpl = null;
+        MediaControllerImpl mediaControllerImplBase = null;
         if (Build.VERSION.SDK_INT >= 24) {
             mediaControllerImplApi21 = new MediaControllerImplApi24(context, this.mToken);
         } else if (Build.VERSION.SDK_INT >= 23) {
             mediaControllerImplApi21 = new MediaControllerImplApi23(context, this.mToken);
         } else {
             if (Build.VERSION.SDK_INT < 21) {
-                mediaControllerImpl = new MediaControllerImplBase(this.mToken);
-                this.mImpl = mediaControllerImpl;
+                mediaControllerImplBase = new MediaControllerImplBase(this.mToken);
+                this.mImpl = mediaControllerImplBase;
             }
             mediaControllerImplApi21 = new MediaControllerImplApi21(context, this.mToken);
         }
-        mediaControllerImpl = mediaControllerImplApi21;
-        this.mImpl = mediaControllerImpl;
+        mediaControllerImplBase = mediaControllerImplApi21;
+        this.mImpl = mediaControllerImplBase;
     }
 
     public static MediaControllerCompat getMediaController(@NonNull Activity activity) {
@@ -872,16 +872,16 @@ public final class MediaControllerCompat {
         if (str == null) {
             return;
         }
-        char c2 = 65535;
-        int hashCode = str.hashCode();
-        if (hashCode != -1348483723) {
-            if (hashCode == 503011406 && str.equals(MediaSessionCompat.ACTION_UNFOLLOW)) {
-                c2 = 1;
+        byte b2 = -1;
+        int iHashCode = str.hashCode();
+        if (iHashCode != -1348483723) {
+            if (iHashCode == 503011406 && str.equals(MediaSessionCompat.ACTION_UNFOLLOW)) {
+                b2 = 1;
             }
         } else if (str.equals(MediaSessionCompat.ACTION_FOLLOW)) {
-            c2 = 0;
+            b2 = 0;
         }
-        if (c2 == 0 || c2 == 1) {
+        if (b2 == 0 || b2 == 1) {
             if (bundle == null || !bundle.containsKey(MediaSessionCompat.ARGUMENT_MEDIA_ATTRIBUTE)) {
                 throw new IllegalArgumentException("An extra field android.support.v4.media.session.ARGUMENT_MEDIA_ATTRIBUTE is required for this action " + str + ".");
             }
@@ -1721,10 +1721,10 @@ public final class MediaControllerCompat {
             synchronized (this.mLock) {
                 if (this.mSessionToken.getExtraBinder() != null) {
                     try {
-                        ExtraCallback remove = this.mCallbackMap.remove(callback);
-                        if (remove != null) {
+                        ExtraCallback extraCallbackRemove = this.mCallbackMap.remove(callback);
+                        if (extraCallbackRemove != null) {
                             callback.mIControllerCallback = null;
-                            this.mSessionToken.getExtraBinder().unregisterCallbackListener(remove);
+                            this.mSessionToken.getExtraBinder().unregisterCallbackListener(extraCallbackRemove);
                         }
                     } catch (RemoteException unused) {
                     }

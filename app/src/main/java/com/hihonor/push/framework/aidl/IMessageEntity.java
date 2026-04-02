@@ -1,5 +1,5 @@
 package com.hihonor.push.framework.aidl;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface IMessageEntity {
 }

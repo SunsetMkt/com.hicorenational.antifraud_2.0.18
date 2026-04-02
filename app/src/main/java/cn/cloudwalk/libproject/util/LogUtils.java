@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.util;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LogUtils {
     private static final String LOG_PREFIX = "cw_";
     private static final int LOG_PREFIX_LENGTH = 3;

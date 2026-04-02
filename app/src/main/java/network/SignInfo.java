@@ -2,7 +2,7 @@ package network;
 
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SignInfo extends BaseBean {
     private int historySigninIntegral;
     private List<String> serialSignInDates;

@@ -2,16 +2,14 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RelationPlatBean extends BaseBean {
-
-    /* renamed from: ex */
-    private int f1615ex;
+    private int ex;
     private String platform;
     private String platformText;
 
     public int getEx() {
-        return this.f1615ex;
+        return this.ex;
     }
 
     public String getPlatform() {
@@ -23,7 +21,7 @@ public class RelationPlatBean extends BaseBean {
     }
 
     public void setEx(int i2) {
-        this.f1615ex = i2;
+        this.ex = i2;
     }
 
     public void setPlatform(String str) {

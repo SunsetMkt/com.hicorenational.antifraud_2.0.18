@@ -2,7 +2,7 @@ package com.umeng.socialize.shareboard.widgets;
 
 import android.view.MotionEvent;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class MotionEventCompat {
     static final int ACTION_MASK = 255;
     static final int ACTION_POINTER_DOWN = 5;

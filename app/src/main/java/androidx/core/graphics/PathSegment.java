@@ -4,7 +4,7 @@ import android.graphics.PointF;
 import androidx.annotation.NonNull;
 import androidx.core.util.Preconditions;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PathSegment {
     private final PointF mEnd;
     private final float mEndFraction;
@@ -48,11 +48,11 @@ public final class PathSegment {
     }
 
     public int hashCode() {
-        int hashCode = this.mStart.hashCode() * 31;
+        int iHashCode = this.mStart.hashCode() * 31;
         float f2 = this.mStartFraction;
-        int floatToIntBits = (((hashCode + (f2 != 0.0f ? Float.floatToIntBits(f2) : 0)) * 31) + this.mEnd.hashCode()) * 31;
+        int iFloatToIntBits = (((iHashCode + (f2 != 0.0f ? Float.floatToIntBits(f2) : 0)) * 31) + this.mEnd.hashCode()) * 31;
         float f3 = this.mEndFraction;
-        return floatToIntBits + (f3 != 0.0f ? Float.floatToIntBits(f3) : 0);
+        return iFloatToIntBits + (f3 != 0.0f ? Float.floatToIntBits(f3) : 0);
     }
 
     public String toString() {

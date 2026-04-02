@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
@@ -29,20 +30,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.core.C0475R;
+import androidx.core.R;
 import androidx.core.app.Person;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.text.BidiFormatter;
 import androidx.core.view.ViewCompat;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NotificationCompat {
     public static final int BADGE_ICON_LARGE = 2;
     public static final int BADGE_ICON_NONE = 0;
@@ -200,13 +202,11 @@ public class NotificationCompat {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList<RemoteInput> arrayList3 = this.mRemoteInputs;
                 if (arrayList3 != null) {
-                    Iterator<RemoteInput> it = arrayList3.iterator();
-                    while (it.hasNext()) {
-                        RemoteInput next = it.next();
-                        if (next.isDataOnly()) {
-                            arrayList.add(next);
+                    for (RemoteInput remoteInput : arrayList3) {
+                        if (remoteInput.isDataOnly()) {
+                            arrayList.add(remoteInput);
                         } else {
-                            arrayList2.add(next);
+                            arrayList2.add(remoteInput);
                         }
                     }
                 }
@@ -385,8 +385,8 @@ public class NotificationCompat {
                 return this;
             }
 
-            /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-            public WearableExtender m26845clone() {
+            /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
+            public WearableExtender m4clone() {
                 WearableExtender wearableExtender = new WearableExtender();
                 wearableExtender.mFlags = this.mFlags;
                 wearableExtender.mInProgressLabel = this.mInProgressLabel;
@@ -504,12 +504,12 @@ public class NotificationCompat {
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
         public void apply(NotificationBuilderWithBuilderAccessor notificationBuilderWithBuilderAccessor) {
             if (Build.VERSION.SDK_INT >= 16) {
-                Notification.BigPictureStyle bigPicture = new Notification.BigPictureStyle(notificationBuilderWithBuilderAccessor.getBuilder()).setBigContentTitle(this.mBigContentTitle).bigPicture(this.mPicture);
+                Notification.BigPictureStyle bigPictureStyleBigPicture = new Notification.BigPictureStyle(notificationBuilderWithBuilderAccessor.getBuilder()).setBigContentTitle(this.mBigContentTitle).bigPicture(this.mPicture);
                 if (this.mBigLargeIconSet) {
-                    bigPicture.bigLargeIcon(this.mBigLargeIcon);
+                    bigPictureStyleBigPicture.bigLargeIcon(this.mBigLargeIcon);
                 }
                 if (this.mSummaryTextSet) {
-                    bigPicture.setSummaryText(this.mSummaryText);
+                    bigPictureStyleBigPicture.setSummaryText(this.mSummaryText);
                 }
             }
         }
@@ -551,9 +551,9 @@ public class NotificationCompat {
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
         public void apply(NotificationBuilderWithBuilderAccessor notificationBuilderWithBuilderAccessor) {
             if (Build.VERSION.SDK_INT >= 16) {
-                Notification.BigTextStyle bigText = new Notification.BigTextStyle(notificationBuilderWithBuilderAccessor.getBuilder()).setBigContentTitle(this.mBigContentTitle).bigText(this.mBigText);
+                Notification.BigTextStyle bigTextStyleBigText = new Notification.BigTextStyle(notificationBuilderWithBuilderAccessor.getBuilder()).setBigContentTitle(this.mBigContentTitle).bigText(this.mBigText);
                 if (this.mSummaryTextSet) {
-                    bigText.setSummaryText(this.mSummaryText);
+                    bigTextStyleBigText.setSummaryText(this.mSummaryText);
                 }
             }
         }
@@ -835,13 +835,13 @@ public class NotificationCompat {
                 return bitmap;
             }
             Resources resources = this.mContext.getResources();
-            int dimensionPixelSize = resources.getDimensionPixelSize(C0475R.dimen.compat_notification_large_icon_max_width);
-            int dimensionPixelSize2 = resources.getDimensionPixelSize(C0475R.dimen.compat_notification_large_icon_max_height);
+            int dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.compat_notification_large_icon_max_width);
+            int dimensionPixelSize2 = resources.getDimensionPixelSize(R.dimen.compat_notification_large_icon_max_height);
             if (bitmap.getWidth() <= dimensionPixelSize && bitmap.getHeight() <= dimensionPixelSize2) {
                 return bitmap;
             }
-            double min = Math.min(dimensionPixelSize / Math.max(1, bitmap.getWidth()), dimensionPixelSize2 / Math.max(1, bitmap.getHeight()));
-            return Bitmap.createScaledBitmap(bitmap, (int) Math.ceil(bitmap.getWidth() * min), (int) Math.ceil(bitmap.getHeight() * min), true);
+            double dMin = Math.min(((double) dimensionPixelSize) / ((double) Math.max(1, bitmap.getWidth())), ((double) dimensionPixelSize2) / ((double) Math.max(1, bitmap.getHeight())));
+            return Bitmap.createScaledBitmap(bitmap, (int) Math.ceil(((double) bitmap.getWidth()) * dMin), (int) Math.ceil(((double) bitmap.getHeight()) * dMin), true);
         }
 
         private void setFlag(int i2, boolean z) {
@@ -1256,35 +1256,35 @@ public class NotificationCompat {
         private static final int MAX_ACTION_BUTTONS = 3;
 
         private RemoteViews createRemoteViews(RemoteViews remoteViews, boolean z) {
-            int min;
+            int iMin;
             boolean z2 = true;
-            RemoteViews applyStandardTemplate = applyStandardTemplate(true, C0475R.layout.notification_template_custom_big, false);
-            applyStandardTemplate.removeAllViews(C0475R.id.actions);
+            RemoteViews remoteViewsApplyStandardTemplate = applyStandardTemplate(true, R.layout.notification_template_custom_big, false);
+            remoteViewsApplyStandardTemplate.removeAllViews(R.id.actions);
             List<Action> nonContextualActions = getNonContextualActions(this.mBuilder.mActions);
-            if (!z || nonContextualActions == null || (min = Math.min(nonContextualActions.size(), 3)) <= 0) {
+            if (!z || nonContextualActions == null || (iMin = Math.min(nonContextualActions.size(), 3)) <= 0) {
                 z2 = false;
             } else {
-                for (int i2 = 0; i2 < min; i2++) {
-                    applyStandardTemplate.addView(C0475R.id.actions, generateActionButton(nonContextualActions.get(i2)));
+                for (int i2 = 0; i2 < iMin; i2++) {
+                    remoteViewsApplyStandardTemplate.addView(R.id.actions, generateActionButton(nonContextualActions.get(i2)));
                 }
             }
             int i3 = z2 ? 0 : 8;
-            applyStandardTemplate.setViewVisibility(C0475R.id.actions, i3);
-            applyStandardTemplate.setViewVisibility(C0475R.id.action_divider, i3);
-            buildIntoRemoteViews(applyStandardTemplate, remoteViews);
-            return applyStandardTemplate;
+            remoteViewsApplyStandardTemplate.setViewVisibility(R.id.actions, i3);
+            remoteViewsApplyStandardTemplate.setViewVisibility(R.id.action_divider, i3);
+            buildIntoRemoteViews(remoteViewsApplyStandardTemplate, remoteViews);
+            return remoteViewsApplyStandardTemplate;
         }
 
         private RemoteViews generateActionButton(Action action) {
             boolean z = action.actionIntent == null;
-            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), z ? C0475R.layout.notification_action_tombstone : C0475R.layout.notification_action);
-            remoteViews.setImageViewBitmap(C0475R.id.action_image, createColoredBitmap(action.getIconCompat(), this.mBuilder.mContext.getResources().getColor(C0475R.color.notification_action_color_filter)));
-            remoteViews.setTextViewText(C0475R.id.action_text, action.title);
+            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), z ? R.layout.notification_action_tombstone : R.layout.notification_action);
+            remoteViews.setImageViewBitmap(R.id.action_image, createColoredBitmap(action.getIconCompat(), this.mBuilder.mContext.getResources().getColor(R.color.notification_action_color_filter)));
+            remoteViews.setTextViewText(R.id.action_text, action.title);
             if (!z) {
-                remoteViews.setOnClickPendingIntent(C0475R.id.action_container, action.actionIntent);
+                remoteViews.setOnClickPendingIntent(R.id.action_container, action.actionIntent);
             }
             if (Build.VERSION.SDK_INT >= 15) {
-                remoteViews.setContentDescription(C0475R.id.action_container, action.title);
+                remoteViews.setContentDescription(R.id.action_container, action.title);
             }
             return remoteViews;
         }
@@ -1379,10 +1379,10 @@ public class NotificationCompat {
 
         private int calculateTopPadding() {
             Resources resources = this.mBuilder.mContext.getResources();
-            int dimensionPixelSize = resources.getDimensionPixelSize(C0475R.dimen.notification_top_pad);
-            int dimensionPixelSize2 = resources.getDimensionPixelSize(C0475R.dimen.notification_top_pad_large_text);
-            float constrain = (constrain(resources.getConfiguration().fontScale, 1.0f, 1.3f) - 1.0f) / 0.29999995f;
-            return Math.round(((1.0f - constrain) * dimensionPixelSize) + (constrain * dimensionPixelSize2));
+            int dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.notification_top_pad);
+            int dimensionPixelSize2 = resources.getDimensionPixelSize(R.dimen.notification_top_pad_large_text);
+            float fConstrain = (constrain(resources.getConfiguration().fontScale, 1.0f, 1.3f) - 1.0f) / 0.29999995f;
+            return Math.round(((1.0f - fConstrain) * dimensionPixelSize) + (fConstrain * dimensionPixelSize2));
         }
 
         private static float constrain(float f2, float f3, float f4) {
@@ -1390,26 +1390,26 @@ public class NotificationCompat {
         }
 
         private Bitmap createIconWithBackground(int i2, int i3, int i4, int i5) {
-            int i6 = C0475R.drawable.notification_icon_background;
+            int i6 = R.drawable.notification_icon_background;
             if (i5 == 0) {
                 i5 = 0;
             }
-            Bitmap createColoredBitmap = createColoredBitmap(i6, i5, i3);
-            Canvas canvas = new Canvas(createColoredBitmap);
-            Drawable mutate = this.mBuilder.mContext.getResources().getDrawable(i2).mutate();
-            mutate.setFilterBitmap(true);
+            Bitmap bitmapCreateColoredBitmap = createColoredBitmap(i6, i5, i3);
+            Canvas canvas = new Canvas(bitmapCreateColoredBitmap);
+            Drawable drawableMutate = this.mBuilder.mContext.getResources().getDrawable(i2).mutate();
+            drawableMutate.setFilterBitmap(true);
             int i7 = (i3 - i4) / 2;
             int i8 = i4 + i7;
-            mutate.setBounds(i7, i7, i8, i8);
-            mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_ATOP));
-            mutate.draw(canvas);
-            return createColoredBitmap;
+            drawableMutate.setBounds(i7, i7, i8, i8);
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_ATOP));
+            drawableMutate.draw(canvas);
+            return bitmapCreateColoredBitmap;
         }
 
         private void hideNormalContent(RemoteViews remoteViews) {
-            remoteViews.setViewVisibility(C0475R.id.title, 8);
-            remoteViews.setViewVisibility(C0475R.id.text2, 8);
-            remoteViews.setViewVisibility(C0475R.id.text, 8);
+            remoteViews.setViewVisibility(R.id.title, 8);
+            remoteViews.setViewVisibility(R.id.text2, 8);
+            remoteViews.setViewVisibility(R.id.text, 8);
         }
 
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -1420,25 +1420,146 @@ public class NotificationCompat {
         public void apply(NotificationBuilderWithBuilderAccessor notificationBuilderWithBuilderAccessor) {
         }
 
-        /* JADX WARN: Removed duplicated region for block: B:45:0x0183  */
-        /* JADX WARN: Removed duplicated region for block: B:47:0x0197  */
-        /* JADX WARN: Removed duplicated region for block: B:50:0x019d  */
-        /* JADX WARN: Removed duplicated region for block: B:54:0x01bf  */
-        /* JADX WARN: Removed duplicated region for block: B:67:0x0215  */
-        /* JADX WARN: Removed duplicated region for block: B:70:0x0221  */
-        /* JADX WARN: Removed duplicated region for block: B:74:0x0217  */
-        /* JADX WARN: Removed duplicated region for block: B:75:0x018f  */
-        @androidx.annotation.RestrictTo({androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+        /* JADX WARN: Removed duplicated region for block: B:67:0x0194  */
+        /* JADX WARN: Removed duplicated region for block: B:72:0x019d  */
+        /* JADX WARN: Removed duplicated region for block: B:76:0x01bf  */
+        /* JADX WARN: Removed duplicated region for block: B:89:0x0215  */
+        /* JADX WARN: Removed duplicated region for block: B:90:0x0217  */
+        /* JADX WARN: Removed duplicated region for block: B:94:0x0221  */
+        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public android.widget.RemoteViews applyStandardTemplate(boolean r13, int r14, boolean r15) {
-            /*
-                Method dump skipped, instructions count: 551
-                To view this dump change 'Code comments level' option to 'DEBUG'
-            */
-            throw new UnsupportedOperationException("Method not decompiled: androidx.core.app.NotificationCompat.Style.applyStandardTemplate(boolean, int, boolean):android.widget.RemoteViews");
+        public RemoteViews applyStandardTemplate(boolean z, int i2, boolean z2) {
+            boolean z3;
+            CharSequence charSequence;
+            boolean z4;
+            Resources resources = this.mBuilder.mContext.getResources();
+            RemoteViews remoteViews = new RemoteViews(this.mBuilder.mContext.getPackageName(), i2);
+            boolean z5 = this.mBuilder.getPriority() < -1;
+            int i3 = Build.VERSION.SDK_INT;
+            if (i3 >= 16 && i3 < 21) {
+                if (z5) {
+                    remoteViews.setInt(R.id.notification_background, "setBackgroundResource", R.drawable.notification_bg_low);
+                    remoteViews.setInt(R.id.icon, "setBackgroundResource", R.drawable.notification_template_icon_low_bg);
+                } else {
+                    remoteViews.setInt(R.id.notification_background, "setBackgroundResource", R.drawable.notification_bg);
+                    remoteViews.setInt(R.id.icon, "setBackgroundResource", R.drawable.notification_template_icon_bg);
+                }
+            }
+            Builder builder = this.mBuilder;
+            if (builder.mLargeIcon != null) {
+                if (Build.VERSION.SDK_INT >= 16) {
+                    remoteViews.setViewVisibility(R.id.icon, 0);
+                    remoteViews.setImageViewBitmap(R.id.icon, this.mBuilder.mLargeIcon);
+                } else {
+                    remoteViews.setViewVisibility(R.id.icon, 8);
+                }
+                if (z && this.mBuilder.mNotification.icon != 0) {
+                    int dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.notification_right_icon_size);
+                    int dimensionPixelSize2 = dimensionPixelSize - (resources.getDimensionPixelSize(R.dimen.notification_small_icon_background_padding) * 2);
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        Builder builder2 = this.mBuilder;
+                        remoteViews.setImageViewBitmap(R.id.right_icon, createIconWithBackground(builder2.mNotification.icon, dimensionPixelSize, dimensionPixelSize2, builder2.getColor()));
+                    } else {
+                        remoteViews.setImageViewBitmap(R.id.right_icon, createColoredBitmap(this.mBuilder.mNotification.icon, -1));
+                    }
+                    remoteViews.setViewVisibility(R.id.right_icon, 0);
+                }
+            } else if (z && builder.mNotification.icon != 0) {
+                remoteViews.setViewVisibility(R.id.icon, 0);
+                if (Build.VERSION.SDK_INT >= 21) {
+                    int dimensionPixelSize3 = resources.getDimensionPixelSize(R.dimen.notification_large_icon_width) - resources.getDimensionPixelSize(R.dimen.notification_big_circle_margin);
+                    int dimensionPixelSize4 = resources.getDimensionPixelSize(R.dimen.notification_small_icon_size_as_large);
+                    Builder builder3 = this.mBuilder;
+                    remoteViews.setImageViewBitmap(R.id.icon, createIconWithBackground(builder3.mNotification.icon, dimensionPixelSize3, dimensionPixelSize4, builder3.getColor()));
+                } else {
+                    remoteViews.setImageViewBitmap(R.id.icon, createColoredBitmap(this.mBuilder.mNotification.icon, -1));
+                }
+            }
+            CharSequence charSequence2 = this.mBuilder.mContentTitle;
+            if (charSequence2 != null) {
+                remoteViews.setTextViewText(R.id.title, charSequence2);
+            }
+            CharSequence charSequence3 = this.mBuilder.mContentText;
+            if (charSequence3 != null) {
+                remoteViews.setTextViewText(R.id.text, charSequence3);
+                z3 = true;
+            } else {
+                z3 = false;
+            }
+            boolean z6 = Build.VERSION.SDK_INT < 21 && this.mBuilder.mLargeIcon != null;
+            Builder builder4 = this.mBuilder;
+            CharSequence charSequence4 = builder4.mContentInfo;
+            if (charSequence4 != null) {
+                remoteViews.setTextViewText(R.id.info, charSequence4);
+                remoteViews.setViewVisibility(R.id.info, 0);
+            } else {
+                if (builder4.mNumber <= 0) {
+                    remoteViews.setViewVisibility(R.id.info, 8);
+                    charSequence = this.mBuilder.mSubText;
+                    if (charSequence != null || Build.VERSION.SDK_INT < 16) {
+                        z4 = false;
+                    } else {
+                        remoteViews.setTextViewText(R.id.text, charSequence);
+                        CharSequence charSequence5 = this.mBuilder.mContentText;
+                        if (charSequence5 != null) {
+                            remoteViews.setTextViewText(R.id.text2, charSequence5);
+                            remoteViews.setViewVisibility(R.id.text2, 0);
+                            z4 = true;
+                        } else {
+                            remoteViews.setViewVisibility(R.id.text2, 8);
+                            z4 = false;
+                        }
+                    }
+                    if (z4 && Build.VERSION.SDK_INT >= 16) {
+                        if (z2) {
+                            remoteViews.setTextViewTextSize(R.id.text, 0, resources.getDimensionPixelSize(R.dimen.notification_subtext_size));
+                        }
+                        remoteViews.setViewPadding(R.id.line1, 0, 0, 0, 0);
+                    }
+                    if (this.mBuilder.getWhenIfShowing() != 0) {
+                        if (!this.mBuilder.mUseChronometer || Build.VERSION.SDK_INT < 16) {
+                            remoteViews.setViewVisibility(R.id.time, 0);
+                            remoteViews.setLong(R.id.time, "setTime", this.mBuilder.getWhenIfShowing());
+                        } else {
+                            remoteViews.setViewVisibility(R.id.chronometer, 0);
+                            remoteViews.setLong(R.id.chronometer, "setBase", this.mBuilder.getWhenIfShowing() + (SystemClock.elapsedRealtime() - System.currentTimeMillis()));
+                            remoteViews.setBoolean(R.id.chronometer, "setStarted", true);
+                            boolean z7 = this.mBuilder.mChronometerCountDown;
+                            if (z7 && Build.VERSION.SDK_INT >= 24) {
+                                remoteViews.setChronometerCountDown(R.id.chronometer, z7);
+                            }
+                        }
+                        z6 = true;
+                    }
+                    remoteViews.setViewVisibility(R.id.right_side, !z6 ? 0 : 8);
+                    remoteViews.setViewVisibility(R.id.line3, z3 ? 0 : 8);
+                    return remoteViews;
+                }
+                if (this.mBuilder.mNumber > resources.getInteger(R.integer.status_bar_notification_info_maxnum)) {
+                    remoteViews.setTextViewText(R.id.info, resources.getString(R.string.status_bar_notification_info_overflow));
+                } else {
+                    remoteViews.setTextViewText(R.id.info, NumberFormat.getIntegerInstance().format(this.mBuilder.mNumber));
+                }
+                remoteViews.setViewVisibility(R.id.info, 0);
+            }
+            z3 = true;
+            z6 = true;
+            charSequence = this.mBuilder.mSubText;
+            if (charSequence != null) {
+                z4 = false;
+            }
+            if (z4) {
+                if (z2) {
+                }
+                remoteViews.setViewPadding(R.id.line1, 0, 0, 0, 0);
+            }
+            if (this.mBuilder.getWhenIfShowing() != 0) {
+            }
+            remoteViews.setViewVisibility(R.id.right_side, !z6 ? 0 : 8);
+            remoteViews.setViewVisibility(R.id.line3, z3 ? 0 : 8);
+            return remoteViews;
         }
 
         public Notification build() {
@@ -1452,11 +1573,11 @@ public class NotificationCompat {
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
         public void buildIntoRemoteViews(RemoteViews remoteViews, RemoteViews remoteViews2) {
             hideNormalContent(remoteViews);
-            remoteViews.removeAllViews(C0475R.id.notification_main_column);
-            remoteViews.addView(C0475R.id.notification_main_column, remoteViews2.clone());
-            remoteViews.setViewVisibility(C0475R.id.notification_main_column, 0);
+            remoteViews.removeAllViews(R.id.notification_main_column);
+            remoteViews.addView(R.id.notification_main_column, remoteViews2.clone());
+            remoteViews.setViewVisibility(R.id.notification_main_column, 0);
             if (Build.VERSION.SDK_INT >= 21) {
-                remoteViews.setViewPadding(C0475R.id.notification_main_column_container, 0, calculateTopPadding(), 0, 0);
+                remoteViews.setViewPadding(R.id.notification_main_column_container, 0, calculateTopPadding(), 0, 0);
             }
         }
 
@@ -1503,18 +1624,18 @@ public class NotificationCompat {
         }
 
         private Bitmap createColoredBitmap(IconCompat iconCompat, int i2, int i3) {
-            Drawable loadDrawable = iconCompat.loadDrawable(this.mBuilder.mContext);
-            int intrinsicWidth = i3 == 0 ? loadDrawable.getIntrinsicWidth() : i3;
+            Drawable drawableLoadDrawable = iconCompat.loadDrawable(this.mBuilder.mContext);
+            int intrinsicWidth = i3 == 0 ? drawableLoadDrawable.getIntrinsicWidth() : i3;
             if (i3 == 0) {
-                i3 = loadDrawable.getIntrinsicHeight();
+                i3 = drawableLoadDrawable.getIntrinsicHeight();
             }
-            Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, i3, Bitmap.Config.ARGB_8888);
-            loadDrawable.setBounds(0, 0, intrinsicWidth, i3);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, i3, Bitmap.Config.ARGB_8888);
+            drawableLoadDrawable.setBounds(0, 0, intrinsicWidth, i3);
             if (i2 != 0) {
-                loadDrawable.mutate().setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
+                drawableLoadDrawable.mutate().setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
             }
-            loadDrawable.draw(new Canvas(createBitmap));
-            return createBitmap;
+            drawableLoadDrawable.draw(new Canvas(bitmapCreateBitmap));
+            return bitmapCreateBitmap;
         }
     }
 
@@ -1666,14 +1787,12 @@ public class NotificationCompat {
             if (!this.mActions.isEmpty()) {
                 if (Build.VERSION.SDK_INT >= 16) {
                     ArrayList<? extends Parcelable> arrayList = new ArrayList<>(this.mActions.size());
-                    Iterator<Action> it = this.mActions.iterator();
-                    while (it.hasNext()) {
-                        Action next = it.next();
+                    for (Action action : this.mActions) {
                         int i2 = Build.VERSION.SDK_INT;
                         if (i2 >= 20) {
-                            arrayList.add(getActionFromActionCompat(next));
+                            arrayList.add(getActionFromActionCompat(action));
                         } else if (i2 >= 16) {
-                            arrayList.add(NotificationCompatJellybean.getBundleForAction(next));
+                            arrayList.add(NotificationCompatJellybean.getBundleForAction(action));
                         }
                     }
                     bundle.putParcelableArrayList(KEY_ACTIONS, arrayList);
@@ -1932,8 +2051,8 @@ public class NotificationCompat {
             return this;
         }
 
-        /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-        public WearableExtender m26846clone() {
+        /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
+        public WearableExtender m5clone() {
             WearableExtender wearableExtender = new WearableExtender();
             wearableExtender.mActions = new ArrayList<>(this.mActions);
             wearableExtender.mFlags = this.mFlags;
@@ -2034,14 +2153,14 @@ public class NotificationCompat {
         boolean z = Build.VERSION.SDK_INT >= 24 ? action.getExtras().getBoolean("android.support.allowGeneratedReplies") || action.getAllowGeneratedReplies() : action.getExtras().getBoolean("android.support.allowGeneratedReplies");
         boolean z2 = action.getExtras().getBoolean("android.support.action.showsUserInterface", true);
         int semanticAction = Build.VERSION.SDK_INT >= 28 ? action.getSemanticAction() : action.getExtras().getInt("android.support.action.semanticAction", 0);
-        boolean isContextual = Build.VERSION.SDK_INT >= 29 ? action.isContextual() : false;
+        boolean zIsContextual = Build.VERSION.SDK_INT >= 29 ? action.isContextual() : false;
         if (Build.VERSION.SDK_INT < 23) {
-            return new Action(action.icon, action.title, action.actionIntent, action.getExtras(), remoteInputArr, (RemoteInput[]) null, z, semanticAction, z2, isContextual);
+            return new Action(action.icon, action.title, action.actionIntent, action.getExtras(), remoteInputArr, (RemoteInput[]) null, z, semanticAction, z2, zIsContextual);
         }
         if (action.getIcon() != null || (i2 = action.icon) == 0) {
-            return new Action(action.getIcon() != null ? IconCompat.createFromIconOrNullIfZeroResId(action.getIcon()) : null, action.title, action.actionIntent, action.getExtras(), remoteInputArr, (RemoteInput[]) null, z, semanticAction, z2, isContextual);
+            return new Action(action.getIcon() != null ? IconCompat.createFromIconOrNullIfZeroResId(action.getIcon()) : null, action.title, action.actionIntent, action.getExtras(), remoteInputArr, (RemoteInput[]) null, z, semanticAction, z2, zIsContextual);
         }
-        return new Action(i2, action.title, action.actionIntent, action.getExtras(), remoteInputArr, (RemoteInput[]) null, z, semanticAction, z2, isContextual);
+        return new Action(i2, action.title, action.actionIntent, action.getExtras(), remoteInputArr, (RemoteInput[]) null, z, semanticAction, z2, zIsContextual);
     }
 
     public static int getActionCount(Notification notification) {
@@ -2560,17 +2679,17 @@ public class NotificationCompat {
             BidiFormatter bidiFormatter = BidiFormatter.getInstance();
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             boolean z = Build.VERSION.SDK_INT >= 21;
-            int i2 = z ? ViewCompat.MEASURED_STATE_MASK : -1;
+            int color = z ? ViewCompat.MEASURED_STATE_MASK : -1;
             CharSequence name = message.getPerson() == null ? "" : message.getPerson().getName();
             if (TextUtils.isEmpty(name)) {
                 name = this.mUser.getName();
                 if (z && this.mBuilder.getColor() != 0) {
-                    i2 = this.mBuilder.getColor();
+                    color = this.mBuilder.getColor();
                 }
             }
-            CharSequence unicodeWrap = bidiFormatter.unicodeWrap(name);
-            spannableStringBuilder.append(unicodeWrap);
-            spannableStringBuilder.setSpan(makeFontColorSpan(i2), spannableStringBuilder.length() - unicodeWrap.length(), spannableStringBuilder.length(), 33);
+            CharSequence charSequenceUnicodeWrap = bidiFormatter.unicodeWrap(name);
+            spannableStringBuilder.append(charSequenceUnicodeWrap);
+            spannableStringBuilder.setSpan(makeFontColorSpan(color), spannableStringBuilder.length() - charSequenceUnicodeWrap.length(), spannableStringBuilder.length(), 33);
             spannableStringBuilder.append((CharSequence) "  ").append(bidiFormatter.unicodeWrap(message.getText() != null ? message.getText() : ""));
             return spannableStringBuilder;
         }
@@ -2631,28 +2750,28 @@ public class NotificationCompat {
                 messagingStyle.setBuilder(notificationBuilderWithBuilderAccessor.getBuilder());
                 return;
             }
-            Message findLatestIncomingMessage = findLatestIncomingMessage();
+            Message messageFindLatestIncomingMessage = findLatestIncomingMessage();
             if (this.mConversationTitle != null && this.mIsGroupConversation.booleanValue()) {
                 notificationBuilderWithBuilderAccessor.getBuilder().setContentTitle(this.mConversationTitle);
-            } else if (findLatestIncomingMessage != null) {
+            } else if (messageFindLatestIncomingMessage != null) {
                 notificationBuilderWithBuilderAccessor.getBuilder().setContentTitle("");
-                if (findLatestIncomingMessage.getPerson() != null) {
-                    notificationBuilderWithBuilderAccessor.getBuilder().setContentTitle(findLatestIncomingMessage.getPerson().getName());
+                if (messageFindLatestIncomingMessage.getPerson() != null) {
+                    notificationBuilderWithBuilderAccessor.getBuilder().setContentTitle(messageFindLatestIncomingMessage.getPerson().getName());
                 }
             }
-            if (findLatestIncomingMessage != null) {
-                notificationBuilderWithBuilderAccessor.getBuilder().setContentText(this.mConversationTitle != null ? makeMessageLine(findLatestIncomingMessage) : findLatestIncomingMessage.getText());
+            if (messageFindLatestIncomingMessage != null) {
+                notificationBuilderWithBuilderAccessor.getBuilder().setContentText(this.mConversationTitle != null ? makeMessageLine(messageFindLatestIncomingMessage) : messageFindLatestIncomingMessage.getText());
             }
             if (Build.VERSION.SDK_INT >= 16) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 boolean z = this.mConversationTitle != null || hasMessagesWithoutSender();
                 for (int size = this.mMessages.size() - 1; size >= 0; size--) {
                     Message message3 = this.mMessages.get(size);
-                    CharSequence makeMessageLine = z ? makeMessageLine(message3) : message3.getText();
+                    CharSequence charSequenceMakeMessageLine = z ? makeMessageLine(message3) : message3.getText();
                     if (size != this.mMessages.size() - 1) {
                         spannableStringBuilder.insert(0, (CharSequence) "\n");
                     }
-                    spannableStringBuilder.insert(0, makeMessageLine);
+                    spannableStringBuilder.insert(0, charSequenceMakeMessageLine);
                 }
                 new Notification.BigTextStyle(notificationBuilderWithBuilderAccessor.getBuilder()).setBigContentTitle(null).bigText(spannableStringBuilder);
             }

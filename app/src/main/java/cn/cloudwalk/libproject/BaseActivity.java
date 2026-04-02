@@ -14,23 +14,23 @@ import cn.cloudwalk.libproject.util.LogUtils;
 import cn.cloudwalk.libproject.util.Util;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseActivity extends Activity {
     public void IntentPhoto(int i2) {
         if (Build.VERSION.SDK_INT >= 19) {
             Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setType("image/*");
-            startActivityForResult(Intent.createChooser(intent, "选择图片"), i2);
+            startActivityForResult(Intent.createChooser(intent, "\u9009\u62e9\u56fe\u7247"), i2);
         } else {
             Intent intent2 = new Intent();
             intent2.setAction("android.intent.action.GET_CONTENT");
             intent2.setType("image/*");
-            startActivityForResult(Intent.createChooser(intent2, "选择图片"), i2);
+            startActivityForResult(Intent.createChooser(intent2, "\u9009\u62e9\u56fe\u7247"), i2);
         }
     }
 
     public File intentCamera(int i2, Context context) {
-        Uri fromFile;
+        Uri uriFromFile;
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         File file = new File(Util.getDiskCacheDir(context), "cameraImg" + System.currentTimeMillis() + ".jpg");
         LogUtils.LOGE("--camera-dir", file.getAbsolutePath());
@@ -39,11 +39,11 @@ public class BaseActivity extends Activity {
             if (TextUtils.isEmpty(str)) {
                 str = "cn.cloudwalk.dev.mobilebank.fileprovider";
             }
-            fromFile = FileProvider.getUriForFile(context, str, file);
+            uriFromFile = FileProvider.getUriForFile(context, str, file);
         } else {
-            fromFile = Uri.fromFile(file);
+            uriFromFile = Uri.fromFile(file);
         }
-        intent.putExtra("output", fromFile);
+        intent.putExtra("output", uriFromFile);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, i2);
         return file;

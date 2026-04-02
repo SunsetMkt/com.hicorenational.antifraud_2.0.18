@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 import javax.annotation.Nullable;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Challenge {
     private final Charset charset;
     private final String realm;

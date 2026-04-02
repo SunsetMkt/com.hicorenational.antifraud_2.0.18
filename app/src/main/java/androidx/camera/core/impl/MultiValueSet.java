@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class MultiValueSet<C> {
     private Set<C> mSet = new HashSet();
 
@@ -17,8 +17,8 @@ public abstract class MultiValueSet<C> {
 
     @Override // 
     @NonNull
-    /* renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public abstract MultiValueSet<C> mo26841clone();
+    /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
+    public abstract MultiValueSet<C> mo0clone();
 
     @NonNull
     public List<C> getAllItems() {

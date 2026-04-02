@@ -16,7 +16,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebIndicator extends BaseIndicatorView implements BaseIndicatorSpec {
     public static final int DO_END_ANIMATION_DURATION = 600;
     public static final int FINISH = 2;
@@ -75,24 +75,24 @@ public class WebIndicator extends BaseIndicatorView implements BaseIndicatorSpec
         }
         this.mCurrentProgress = f3;
         if (z) {
-            ValueAnimator valueAnimator = null;
+            ValueAnimator valueAnimatorOfFloat = null;
             float f4 = this.mCurrentProgress;
             if (f4 < 95.0f) {
-                valueAnimator = ValueAnimator.ofFloat(f4, 95.0f);
-                valueAnimator.setDuration((long) (((1.0f - (this.mCurrentProgress / 100.0f)) - 0.05f) * this.mCurrentMaxDecelerateSpeedDuration));
-                valueAnimator.setInterpolator(new DecelerateInterpolator());
-                valueAnimator.addUpdateListener(this.mAnimatorUpdateListener);
+                valueAnimatorOfFloat = ValueAnimator.ofFloat(f4, 95.0f);
+                valueAnimatorOfFloat.setDuration((long) (((1.0f - (this.mCurrentProgress / 100.0f)) - 0.05f) * this.mCurrentMaxDecelerateSpeedDuration));
+                valueAnimatorOfFloat.setInterpolator(new DecelerateInterpolator());
+                valueAnimatorOfFloat.addUpdateListener(this.mAnimatorUpdateListener);
             }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "alpha", 1.0f, 0.0f);
-            ofFloat.setDuration(this.mCurrentDoEndAnimationDuration);
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(95.0f, 100.0f);
-            ofFloat2.setDuration(this.mCurrentDoEndAnimationDuration);
-            ofFloat2.addUpdateListener(this.mAnimatorUpdateListener);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "alpha", 1.0f, 0.0f);
+            objectAnimatorOfFloat.setDuration(this.mCurrentDoEndAnimationDuration);
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(95.0f, 100.0f);
+            valueAnimatorOfFloat2.setDuration(this.mCurrentDoEndAnimationDuration);
+            valueAnimatorOfFloat2.addUpdateListener(this.mAnimatorUpdateListener);
             AnimatorSet animatorSet2 = new AnimatorSet();
-            animatorSet2.playTogether(ofFloat, ofFloat2);
-            if (valueAnimator != null) {
+            animatorSet2.playTogether(objectAnimatorOfFloat, valueAnimatorOfFloat2);
+            if (valueAnimatorOfFloat != null) {
                 animatorSet = new AnimatorSet();
-                animatorSet.play(animatorSet2).after(valueAnimator);
+                animatorSet.play(animatorSet2).after(valueAnimatorOfFloat);
             } else {
                 animatorSet = animatorSet2;
             }
@@ -102,16 +102,16 @@ public class WebIndicator extends BaseIndicatorView implements BaseIndicatorSpec
         } else {
             AnimatorSet animatorSet3 = new AnimatorSet();
             float f5 = f2 * 0.6f;
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(this.mCurrentProgress, f5);
-            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f5, f2);
+            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(this.mCurrentProgress, f5);
+            ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(f5, f2);
             float f6 = (long) (((1.0f - (this.mCurrentProgress / 100.0f)) - 0.05f) * this.mCurrentMaxUniformSpeedDuration);
-            ofFloat3.setInterpolator(new LinearInterpolator());
-            ofFloat3.setDuration((long) (f6 * 0.4f));
-            ofFloat3.addUpdateListener(this.mAnimatorUpdateListener);
-            ofFloat4.setInterpolator(new LinearInterpolator());
-            ofFloat4.setDuration((long) (0.6f * f6));
-            ofFloat4.addUpdateListener(this.mAnimatorUpdateListener);
-            animatorSet3.play(ofFloat4).after(ofFloat3);
+            valueAnimatorOfFloat3.setInterpolator(new LinearInterpolator());
+            valueAnimatorOfFloat3.setDuration((long) (f6 * 0.4f));
+            valueAnimatorOfFloat3.addUpdateListener(this.mAnimatorUpdateListener);
+            valueAnimatorOfFloat4.setInterpolator(new LinearInterpolator());
+            valueAnimatorOfFloat4.setDuration((long) (0.6f * f6));
+            valueAnimatorOfFloat4.addUpdateListener(this.mAnimatorUpdateListener);
+            animatorSet3.play(valueAnimatorOfFloat4).after(valueAnimatorOfFloat3);
             animatorSet3.start();
             this.mAnimator = animatorSet3;
         }
@@ -174,12 +174,12 @@ public class WebIndicator extends BaseIndicatorView implements BaseIndicatorSpec
             this.mCurrentMaxUniformSpeedDuration = 8000;
             this.mCurrentDoEndAnimationDuration = 450;
         } else {
-            float floatValue = i7 / Float.valueOf(i6).floatValue();
-            this.mCurrentMaxUniformSpeedDuration = (int) (8000.0f * floatValue);
-            this.mCurrentMaxDecelerateSpeedDuration = (int) (450.0f * floatValue);
-            this.mCurrentDoEndAnimationDuration = (int) (floatValue * 600.0f);
+            float fFloatValue = i7 / Float.valueOf(i6).floatValue();
+            this.mCurrentMaxUniformSpeedDuration = (int) (8000.0f * fFloatValue);
+            this.mCurrentMaxDecelerateSpeedDuration = (int) (450.0f * fFloatValue);
+            this.mCurrentDoEndAnimationDuration = (int) (fFloatValue * 600.0f);
         }
-        LogUtils.m8083i("WebProgress", "CURRENT_MAX_UNIFORM_SPEED_DURATION" + this.mCurrentMaxUniformSpeedDuration);
+        LogUtils.i("WebProgress", "CURRENT_MAX_UNIFORM_SPEED_DURATION" + this.mCurrentMaxUniformSpeedDuration);
     }
 
     @Override // com.just.agentweb.BaseIndicatorView, com.just.agentweb.BaseIndicatorSpec

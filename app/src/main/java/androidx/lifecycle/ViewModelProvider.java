@@ -5,7 +5,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import java.lang.reflect.InvocationTargetException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ViewModelProvider {
     private static final String DEFAULT_KEY = "androidx.lifecycle.ViewModelProvider.DefaultKey";
     private final Factory mFactory;
@@ -99,6 +99,16 @@ public class ViewModelProvider {
         this.mViewModelStore = viewModelStore;
     }
 
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
     @NonNull
     @MainThread
     public <T extends ViewModel> T get(@NonNull String str, @NonNull Class<T> cls) {

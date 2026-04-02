@@ -10,11 +10,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ResContainer {
-
-    /* renamed from: R */
-    private static ResContainer f13600R = null;
+    private static ResContainer R = null;
     private static String mPackageName = "";
     private Context context;
     private Map<String, SocializeResource> mResources;
@@ -38,14 +36,10 @@ public final class ResContainer {
     }
 
     public static synchronized ResContainer get(Context context) {
-        ResContainer resContainer;
-        synchronized (ResContainer.class) {
-            if (f13600R == null) {
-                f13600R = new ResContainer(context);
-            }
-            resContainer = f13600R;
+        if (R == null) {
+            R = new ResContainer(context);
         }
-        return resContainer;
+        return R;
     }
 
     public static int getResourceId(Context context, String str, String str2) {
@@ -93,8 +87,7 @@ public final class ResContainer {
         return getResourceId(this.context, "drawable", str);
     }
 
-    /* renamed from: id */
-    public int m12637id(String str) {
+    public int id(String str) {
         return getResourceId(this.context, "id", str);
     }
 

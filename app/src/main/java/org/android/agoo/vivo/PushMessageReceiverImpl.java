@@ -7,7 +7,7 @@ import com.vivo.push.sdk.BasePushMessageReceiver;
 import com.vivo.push.sdk.OpenClientPushMessageReceiver;
 import org.android.agoo.control.NotifManager;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PushMessageReceiverImpl extends OpenClientPushMessageReceiver {
     public static final String VIVO_TOKEN = "VIVO_TOKEN";
 
@@ -17,12 +17,12 @@ public class PushMessageReceiverImpl extends OpenClientPushMessageReceiver {
             return;
         }
         try {
-            ALog.m9180d(BasePushMessageReceiver.TAG, "onReceiveRegId", "token", str);
+            ALog.d(BasePushMessageReceiver.TAG, "onReceiveRegId", "token", str);
             NotifManager notifManager = new NotifManager();
             notifManager.init(context.getApplicationContext());
             notifManager.reportThirdPushToken(str, VIVO_TOKEN, "2.0.0", true);
         } catch (Throwable th) {
-            ALog.m9181e(BasePushMessageReceiver.TAG, "report token failed:", th, new Object[0]);
+            ALog.e(BasePushMessageReceiver.TAG, "report token failed:", th, new Object[0]);
         }
     }
 }

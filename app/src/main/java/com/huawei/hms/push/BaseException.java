@@ -2,27 +2,25 @@ package com.huawei.hms.push;
 
 import com.huawei.hms.aaid.constant.ErrorEnum;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseException extends Exception {
+    private final int a;
 
-    /* renamed from: a */
-    private final int f7680a;
-
-    /* renamed from: b */
-    private final ErrorEnum f7681b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final ErrorEnum f4845b;
 
     public BaseException(int i2) {
-        ErrorEnum fromCode = ErrorEnum.fromCode(i2);
-        this.f7681b = fromCode;
-        this.f7680a = fromCode.getExternalCode();
+        ErrorEnum errorEnumFromCode = ErrorEnum.fromCode(i2);
+        this.f4845b = errorEnumFromCode;
+        this.a = errorEnumFromCode.getExternalCode();
     }
 
     public int getErrorCode() {
-        return this.f7680a;
+        return this.a;
     }
 
     @Override // java.lang.Throwable
     public String getMessage() {
-        return this.f7681b.getMessage();
+        return this.f4845b.getMessage();
     }
 }

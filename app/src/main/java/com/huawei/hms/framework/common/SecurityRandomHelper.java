@@ -3,7 +3,7 @@ package com.huawei.hms.framework.common;
 import android.annotation.SuppressLint;
 import com.huawei.secure.android.common.encrypt.utils.EncryptUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SecurityRandomHelper {
 
     @SuppressLint({"StaticFieldLeak"})

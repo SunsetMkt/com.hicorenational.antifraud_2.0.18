@@ -3,7 +3,7 @@ package com.vivo.push.util;
 import android.content.Context;
 import java.lang.reflect.Method;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ContextDelegate {
     private static final String TAG = "ContextDelegate";
     private static Context mContext = null;
@@ -12,11 +12,8 @@ public class ContextDelegate {
     private static boolean mDelegateEnable = false;
     private static Boolean mIsFbeProject;
 
-    /* renamed from: com.vivo.push.util.ContextDelegate$a */
-    private static class C3982a {
-
-        /* renamed from: a */
-        private static ContextDelegate f14210a = new ContextDelegate();
+    private static class a {
+        private static ContextDelegate a = new ContextDelegate();
     }
 
     private static Context createCredentialProtectedStorageContext(Context context) {
@@ -56,16 +53,16 @@ public class ContextDelegate {
     }
 
     public static ContextDelegate getInstance() {
-        return C3982a.f14210a;
+        return a.a;
     }
 
     public static boolean isFBEProject() {
         if (mIsFbeProject == null) {
             try {
-                mIsFbeProject = Boolean.valueOf("file".equals(C4003n.m13267a("ro.crypto.type", "unknow")));
-                C4010u.m13301b(TAG, "mIsFbeProject = " + mIsFbeProject.toString());
+                mIsFbeProject = Boolean.valueOf("file".equals(n.a("ro.crypto.type", "unknow")));
+                u.b(TAG, "mIsFbeProject = " + mIsFbeProject.toString());
             } catch (Exception e2) {
-                C4010u.m13292a(TAG, "mIsFbeProject = " + e2.getMessage());
+                u.a(TAG, "mIsFbeProject = " + e2.getMessage());
             }
         }
         Boolean bool = mIsFbeProject;

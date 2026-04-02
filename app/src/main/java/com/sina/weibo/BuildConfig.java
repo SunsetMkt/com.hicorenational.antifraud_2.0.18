@@ -1,6 +1,6 @@
 package com.sina.weibo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class BuildConfig {
     public static final String APPLICATION_ID = "com.sina.weibo";
     public static final String BUILD_TYPE = "release";

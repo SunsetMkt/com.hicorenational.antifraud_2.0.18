@@ -5,14 +5,14 @@ import com.umeng.socialize.net.utils.SocializeProtocolConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMMin extends BaseMediaObject {
 
-    /* renamed from: f */
-    private String f13670f;
+    /* JADX INFO: renamed from: f */
+    private String f8300f;
 
-    /* renamed from: g */
-    private String f13671g;
+    /* JADX INFO: renamed from: g */
+    private String f8301g;
 
     public UMMin(String str) {
         super(str);
@@ -24,24 +24,24 @@ public class UMMin extends BaseMediaObject {
     }
 
     public String getPath() {
-        return this.f13671g;
+        return this.f8301g;
     }
 
     public String getUserName() {
-        return this.f13670f;
+        return this.f8300f;
     }
 
     public void setPath(String str) {
-        this.f13671g = str;
+        this.f8301g = str;
     }
 
     public void setUserName(String str) {
-        this.f13670f = str;
+        this.f8300f = str;
     }
 
     @Override // com.umeng.socialize.media.UMediaObject
     public byte[] toByte() {
-        UMImage uMImage = this.f13636e;
+        UMImage uMImage = this.f8275e;
         if (uMImage != null) {
             return uMImage.toByte();
         }
@@ -50,12 +50,12 @@ public class UMMin extends BaseMediaObject {
 
     @Override // com.umeng.socialize.media.UMediaObject
     public Map<String, Object> toUrlExtraParams() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         if (isUrlMedia()) {
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.f13632a);
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
-            hashMap.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f13633b);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FURL, this.a);
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_FTYPE, getMediaType());
+            map.put(SocializeProtocolConstants.PROTOCOL_KEY_TITLE, this.f8272b);
         }
-        return hashMap;
+        return map;
     }
 }

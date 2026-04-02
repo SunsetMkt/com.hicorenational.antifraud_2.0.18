@@ -1,6 +1,6 @@
 package com.umeng.commonsdk.statistics;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMServerURL {
     public static String DEFAULT_URL = "https://ulogs.umeng.com";
     public static String OVERSEA_DEFAULT_URL = "https://alogus.umeng.com";

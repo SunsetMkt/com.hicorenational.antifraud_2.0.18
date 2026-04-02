@@ -3,8 +3,8 @@ package com.tencent.bugly.beta.tinker;
 import android.util.Log;
 import com.tencent.tinker.lib.util.TinkerLog;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerLogger implements TinkerLog.TinkerLogImp {
     public static final int LEVEL_DEBUG = 1;
     public static final int LEVEL_ERROR = 4;
@@ -24,24 +24,21 @@ public class TinkerLogger implements TinkerLog.TinkerLogImp {
         String str = "new log level: " + i2;
     }
 
-    /* renamed from: d */
-    public void m9345d(String str, String str2, Object... objArr) {
+    public void d(String str, String str2, Object... objArr) {
         if (level > 1 || objArr == null) {
             return;
         }
         String.format(str2, objArr);
     }
 
-    /* renamed from: e */
-    public void m9346e(String str, String str2, Object... objArr) {
+    public void e(String str, String str2, Object... objArr) {
         if (level > 4 || objArr == null) {
             return;
         }
         String.format(str2, objArr);
     }
 
-    /* renamed from: i */
-    public void m9347i(String str, String str2, Object... objArr) {
+    public void i(String str, String str2, Object... objArr) {
         if (level > 2 || objArr == null) {
             return;
         }
@@ -58,16 +55,14 @@ public class TinkerLogger implements TinkerLog.TinkerLogImp {
         String str3 = str2 + "  " + Log.getStackTraceString(th);
     }
 
-    /* renamed from: v */
-    public void m9348v(String str, String str2, Object... objArr) {
+    public void v(String str, String str2, Object... objArr) {
         if (level > 0 || objArr == null) {
             return;
         }
         String.format(str2, objArr);
     }
 
-    /* renamed from: w */
-    public void m9349w(String str, String str2, Object... objArr) {
+    public void w(String str, String str2, Object... objArr) {
         if (level > 3 || objArr == null) {
             return;
         }

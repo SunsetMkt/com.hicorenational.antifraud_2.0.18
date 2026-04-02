@@ -15,9 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class LiveDataObservable<T> implements Observable<T> {
     final MutableLiveData<Result<T>> mLiveData = new MutableLiveData<>();
 
@@ -41,12 +40,11 @@ public final class LiveDataObservable<T> implements Observable<T> {
         @Override // androidx.lifecycle.Observer
         public void onChanged(@NonNull final Result<T> result) {
             this.mExecutor.execute(new Runnable() { // from class: androidx.camera.core.impl.LiveDataObservable.LiveDataObserverAdapter.1
-                /* JADX WARN: Multi-variable type inference failed */
                 @Override // java.lang.Runnable
                 public void run() {
                     if (LiveDataObserverAdapter.this.mActive.get()) {
                         if (result.completedSuccessfully()) {
-                            LiveDataObserverAdapter.this.mObserver.onNewData(result.getValue());
+                            LiveDataObserverAdapter.this.mObserver.onNewData((T) result.getValue());
                         } else {
                             Preconditions.checkNotNull(result.getError());
                             LiveDataObserverAdapter.this.mObserver.onError(result.getError());
@@ -117,7 +115,7 @@ public final class LiveDataObservable<T> implements Observable<T> {
 
     @Override // androidx.camera.core.impl.Observable
     @NonNull
-    public InterfaceFutureC0952a<T> fetchData() {
+    public d.b.b.a.a.a<T> fetchData() {
         return CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<T>() { // from class: androidx.camera.core.impl.LiveDataObservable.1
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             @Nullable
@@ -157,13 +155,13 @@ public final class LiveDataObservable<T> implements Observable<T> {
     @Override // androidx.camera.core.impl.Observable
     public void removeObserver(@NonNull Observable.Observer<T> observer) {
         synchronized (this.mObservers) {
-            final LiveDataObserverAdapter<T> remove = this.mObservers.remove(observer);
-            if (remove != null) {
-                remove.disable();
+            final LiveDataObserverAdapter<T> liveDataObserverAdapterRemove = this.mObservers.remove(observer);
+            if (liveDataObserverAdapterRemove != null) {
+                liveDataObserverAdapterRemove.disable();
                 CameraXExecutors.mainThreadExecutor().execute(new Runnable() { // from class: androidx.camera.core.impl.LiveDataObservable.3
                     @Override // java.lang.Runnable
                     public void run() {
-                        LiveDataObservable.this.mLiveData.removeObserver(remove);
+                        LiveDataObservable.this.mLiveData.removeObserver(liveDataObserverAdapterRemove);
                     }
                 });
             }

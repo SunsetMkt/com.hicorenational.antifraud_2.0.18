@@ -3,7 +3,7 @@ package com.umeng.social.tool;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMImageMark extends UMWaterMark {
     private Bitmap mMarkBitmap;
 

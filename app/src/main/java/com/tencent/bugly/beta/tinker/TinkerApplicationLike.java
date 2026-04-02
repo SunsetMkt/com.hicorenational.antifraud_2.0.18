@@ -5,8 +5,8 @@ import android.content.Intent;
 import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.entry.DefaultApplicationLike;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerApplicationLike extends DefaultApplicationLike {
     public static final String TAG = "Tinker.TinkerApplicationLike";
     private static ApplicationLike tinkerPatchApplicationLike;

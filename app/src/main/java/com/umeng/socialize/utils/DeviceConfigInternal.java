@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DeviceConfigInternal {
     protected static final String LOG_TAG = "DeviceConfig";
     private static final String MOBILE_NETWORK = "2G/3G";

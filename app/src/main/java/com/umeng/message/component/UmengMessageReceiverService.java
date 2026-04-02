@@ -6,7 +6,7 @@ import android.os.IBinder;
 import com.umeng.message.common.UPLog;
 import org.android.agoo.message.MessageReceiverService;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class UmengMessageReceiverService extends MessageReceiverService {
     @Override // org.android.agoo.message.MessageReceiverService
     public final String getIntentServiceClassName(Context context) {
@@ -18,7 +18,7 @@ public final class UmengMessageReceiverService extends MessageReceiverService {
         try {
             return super.onBind(intent);
         } catch (Exception e2) {
-            UPLog.m12143e("MessageReceiverService", e2);
+            UPLog.e("MessageReceiverService", e2);
             return null;
         }
     }

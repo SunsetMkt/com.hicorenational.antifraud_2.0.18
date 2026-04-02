@@ -5,7 +5,6 @@ import android.os.Build;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLPeerUnverifiedException;
@@ -13,7 +12,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HttpDnsTLSSniSocketFactory extends SSLSocketFactory {
     private HttpsURLConnection conn;
     private final String TAG = HttpDnsTLSSniSocketFactory.class.getSimpleName();
@@ -29,12 +28,12 @@ public class HttpDnsTLSSniSocketFactory extends SSLSocketFactory {
     }
 
     @Override // javax.net.SocketFactory
-    public Socket createSocket(String str, int i2) throws IOException, UnknownHostException {
+    public Socket createSocket(String str, int i2) throws IOException {
         return null;
     }
 
     @Override // javax.net.SocketFactory
-    public Socket createSocket(String str, int i2, InetAddress inetAddress, int i3) throws IOException, UnknownHostException {
+    public Socket createSocket(String str, int i2, InetAddress inetAddress, int i3) throws IOException {
         return null;
     }
 

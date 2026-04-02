@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FragmentController {
     private final FragmentHostCallback<?> mHost;
 
@@ -204,11 +204,11 @@ public class FragmentController {
     @Nullable
     @Deprecated
     public List<Fragment> retainNonConfig() {
-        FragmentManagerNonConfig retainNonConfig = this.mHost.mFragmentManager.retainNonConfig();
-        if (retainNonConfig == null || retainNonConfig.getFragments() == null) {
+        FragmentManagerNonConfig fragmentManagerNonConfigRetainNonConfig = this.mHost.mFragmentManager.retainNonConfig();
+        if (fragmentManagerNonConfigRetainNonConfig == null || fragmentManagerNonConfigRetainNonConfig.getFragments() == null) {
             return null;
         }
-        return new ArrayList(retainNonConfig.getFragments());
+        return new ArrayList(fragmentManagerNonConfigRetainNonConfig.getFragments());
     }
 
     @Nullable

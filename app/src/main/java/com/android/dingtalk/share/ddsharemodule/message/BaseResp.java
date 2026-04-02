@@ -3,7 +3,7 @@ package com.android.dingtalk.share.ddsharemodule.message;
 import android.os.Bundle;
 import com.android.dingtalk.share.ddsharemodule.ShareConstant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class BaseResp {
     public int mErrCode;
     public String mErrStr;

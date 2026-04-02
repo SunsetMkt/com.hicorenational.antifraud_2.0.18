@@ -10,8 +10,8 @@ import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 import java.io.File;
 import java.util.Properties;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerPatchListener extends DefaultPatchListener {
     protected static final long NEW_PATCH_RESTRICTION_SPACE_SIZE_MIN = 62914560;
     private static final String TAG = "Tinker.TinkerPatchListener";
@@ -33,22 +33,22 @@ public class TinkerPatchListener extends DefaultPatchListener {
         }
         File file = new File(str);
         TinkerLog.i(TAG, "receive a patch file: %s, file size:%d", new Object[]{str, Long.valueOf(SharePatchFileUtil.getFileOrDirectorySize(file))});
-        int patchCheck = super.patchCheck(str, str2);
-        if (patchCheck == 0) {
-            patchCheck = TinkerUtils.checkForPatchRecover(NEW_PATCH_RESTRICTION_SPACE_SIZE_MIN, this.maxMemory);
+        int iPatchCheck = super.patchCheck(str, str2);
+        if (iPatchCheck == 0) {
+            iPatchCheck = TinkerUtils.checkForPatchRecover(NEW_PATCH_RESTRICTION_SPACE_SIZE_MIN, this.maxMemory);
         }
-        if (patchCheck == 0 && this.context.getSharedPreferences("tinker_share_config", 0).getInt(str2, 0) >= 3) {
-            patchCheck = -23;
+        if (iPatchCheck == 0 && this.context.getSharedPreferences("tinker_share_config", 0).getInt(str2, 0) >= 3) {
+            iPatchCheck = -23;
         }
-        if (patchCheck == 0) {
-            Properties fastGetPatchPackageMeta = ShareTinkerInternals.fastGetPatchPackageMeta(file);
-            if (fastGetPatchPackageMeta == null) {
-                patchCheck = -24;
+        if (iPatchCheck == 0) {
+            Properties propertiesFastGetPatchPackageMeta = ShareTinkerInternals.fastGetPatchPackageMeta(file);
+            if (propertiesFastGetPatchPackageMeta == null) {
+                iPatchCheck = -24;
             } else {
-                TinkerLog.i(TAG, "get platform:" + fastGetPatchPackageMeta.getProperty("platform"), new Object[0]);
+                TinkerLog.i(TAG, "get platform:" + propertiesFastGetPatchPackageMeta.getProperty("platform"), new Object[0]);
             }
         }
-        TinkerReport.onTryApply(patchCheck == 0);
-        return patchCheck;
+        TinkerReport.onTryApply(iPatchCheck == 0);
+        return iPatchCheck;
     }
 }

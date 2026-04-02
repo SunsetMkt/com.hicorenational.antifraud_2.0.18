@@ -16,17 +16,16 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.core.C0475R;
 import androidx.core.view.accessibility.AccessibilityViewCommand;
+import d.c.a.b.a.a;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AccessibilityNodeInfoCompat {
     public static final int ACTION_ACCESSIBILITY_FOCUS = 64;
     public static final String ACTION_ARGUMENT_COLUMN_INT = "android.view.accessibility.action.ARGUMENT_COLUMN_INT";
@@ -210,15 +209,14 @@ public class AccessibilityNodeInfoCompat {
             Class<? extends AccessibilityViewCommand.CommandArguments> cls = this.mViewCommandArgumentClass;
             if (cls != null) {
                 try {
-                    AccessibilityViewCommand.CommandArguments newInstance = cls.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+                    AccessibilityViewCommand.CommandArguments commandArgumentsNewInstance = cls.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
                     try {
-                        newInstance.setBundle(bundle);
-                        commandArguments = newInstance;
+                        commandArgumentsNewInstance.setBundle(bundle);
+                        commandArguments = commandArgumentsNewInstance;
                     } catch (Exception unused) {
-                        commandArguments = newInstance;
+                        commandArguments = commandArgumentsNewInstance;
                         Class<? extends AccessibilityViewCommand.CommandArguments> cls2 = this.mViewCommandArgumentClass;
-                        String str = "Failed to execute command with argument class ViewCommandArgument: " + (cls2 == null ? AbstractC1191a.f2571h : cls2.getName());
-                        return this.mCommand.perform(view, commandArguments);
+                        String str = "Failed to execute command with argument class ViewCommandArgument: " + (cls2 == null ? a.f10075h : cls2.getName());
                     }
                 } catch (Exception unused2) {
                 }
@@ -434,12 +432,12 @@ public class AccessibilityNodeInfoCompat {
             return spansFromViewTags;
         }
         SparseArray<WeakReference<ClickableSpan>> sparseArray = new SparseArray<>();
-        view.setTag(C0475R.id.tag_accessibility_clickable_spans, sparseArray);
+        view.setTag(androidx.core.R.id.tag_accessibility_clickable_spans, sparseArray);
         return sparseArray;
     }
 
     private SparseArray<WeakReference<ClickableSpan>> getSpansFromViewTags(View view) {
-        return (SparseArray) view.getTag(C0475R.id.tag_accessibility_clickable_spans);
+        return (SparseArray) view.getTag(androidx.core.R.id.tag_accessibility_clickable_spans);
     }
 
     private boolean hasSpans() {
@@ -520,12 +518,12 @@ public class AccessibilityNodeInfoCompat {
         if (clickableSpans == null || clickableSpans.length <= 0) {
             return;
         }
-        getExtras().putInt(SPANS_ACTION_ID_KEY, C0475R.id.accessibility_action_clickable_span);
+        getExtras().putInt(SPANS_ACTION_ID_KEY, androidx.core.R.id.accessibility_action_clickable_span);
         SparseArray<WeakReference<ClickableSpan>> orCreateSpansFromViewTags = getOrCreateSpansFromViewTags(view);
         for (int i3 = 0; clickableSpans != null && i3 < clickableSpans.length; i3++) {
-            int idForClickableSpan = idForClickableSpan(clickableSpans[i3], orCreateSpansFromViewTags);
-            orCreateSpansFromViewTags.put(idForClickableSpan, new WeakReference<>(clickableSpans[i3]));
-            addSpanLocationToExtras(clickableSpans[i3], (Spanned) charSequence, idForClickableSpan);
+            int iIdForClickableSpan = idForClickableSpan(clickableSpans[i3], orCreateSpansFromViewTags);
+            orCreateSpansFromViewTags.put(iIdForClickableSpan, new WeakReference<>(clickableSpans[i3]));
+            addSpanLocationToExtras(clickableSpans[i3], (Spanned) charSequence, iIdForClickableSpan);
         }
     }
 
@@ -557,10 +555,10 @@ public class AccessibilityNodeInfoCompat {
 
     public List<AccessibilityNodeInfoCompat> findAccessibilityNodeInfosByText(String str) {
         ArrayList arrayList = new ArrayList();
-        List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText = this.mInfo.findAccessibilityNodeInfosByText(str);
-        int size = findAccessibilityNodeInfosByText.size();
+        List<AccessibilityNodeInfo> listFindAccessibilityNodeInfosByText = this.mInfo.findAccessibilityNodeInfosByText(str);
+        int size = listFindAccessibilityNodeInfosByText.size();
         for (int i2 = 0; i2 < size; i2++) {
-            arrayList.add(wrap(findAccessibilityNodeInfosByText.get(i2)));
+            arrayList.add(wrap(listFindAccessibilityNodeInfosByText.get(i2)));
         }
         return arrayList;
     }
@@ -569,9 +567,9 @@ public class AccessibilityNodeInfoCompat {
         if (Build.VERSION.SDK_INT < 18) {
             return Collections.emptyList();
         }
-        List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId = this.mInfo.findAccessibilityNodeInfosByViewId(str);
+        List<AccessibilityNodeInfo> listFindAccessibilityNodeInfosByViewId = this.mInfo.findAccessibilityNodeInfosByViewId(str);
         ArrayList arrayList = new ArrayList();
-        Iterator<AccessibilityNodeInfo> it = findAccessibilityNodeInfosByViewId.iterator();
+        Iterator<AccessibilityNodeInfo> it = listFindAccessibilityNodeInfosByViewId.iterator();
         while (it.hasNext()) {
             arrayList.add(wrap(it.next()));
         }
@@ -767,13 +765,13 @@ public class AccessibilityNodeInfoCompat {
         if (!hasSpans()) {
             return this.mInfo.getText();
         }
-        List<Integer> extrasIntList = extrasIntList(SPANS_START_KEY);
-        List<Integer> extrasIntList2 = extrasIntList(SPANS_END_KEY);
-        List<Integer> extrasIntList3 = extrasIntList(SPANS_FLAGS_KEY);
-        List<Integer> extrasIntList4 = extrasIntList(SPANS_ID_KEY);
+        List<Integer> listExtrasIntList = extrasIntList(SPANS_START_KEY);
+        List<Integer> listExtrasIntList2 = extrasIntList(SPANS_END_KEY);
+        List<Integer> listExtrasIntList3 = extrasIntList(SPANS_FLAGS_KEY);
+        List<Integer> listExtrasIntList4 = extrasIntList(SPANS_ID_KEY);
         SpannableString spannableString = new SpannableString(TextUtils.substring(this.mInfo.getText(), 0, this.mInfo.getText().length()));
-        for (int i2 = 0; i2 < extrasIntList.size(); i2++) {
-            spannableString.setSpan(new AccessibilityClickableSpanCompat(extrasIntList4.get(i2).intValue(), this, getExtras().getInt(SPANS_ACTION_ID_KEY)), extrasIntList.get(i2).intValue(), extrasIntList2.get(i2).intValue(), extrasIntList3.get(i2).intValue());
+        for (int i2 = 0; i2 < listExtrasIntList.size(); i2++) {
+            spannableString.setSpan(new AccessibilityClickableSpanCompat(listExtrasIntList4.get(i2).intValue(), this, getExtras().getInt(SPANS_ACTION_ID_KEY)), listExtrasIntList.get(i2).intValue(), listExtrasIntList2.get(i2).intValue(), listExtrasIntList3.get(i2).intValue());
         }
         return spannableString;
     }
@@ -1346,9 +1344,9 @@ public class AccessibilityNodeInfoCompat {
         } else {
             int actions = getActions();
             while (actions != 0) {
-                int numberOfTrailingZeros = 1 << Integer.numberOfTrailingZeros(actions);
-                actions &= ~numberOfTrailingZeros;
-                sb.append(getActionSymbolicName(numberOfTrailingZeros));
+                int iNumberOfTrailingZeros = 1 << Integer.numberOfTrailingZeros(actions);
+                actions &= ~iNumberOfTrailingZeros;
+                sb.append(getActionSymbolicName(iNumberOfTrailingZeros));
                 if (actions != 0) {
                     sb.append(", ");
                 }

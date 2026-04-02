@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DeleteMultipleObjectRequest extends OSSRequest {
     private String bucketName;
     private boolean isQuiet;

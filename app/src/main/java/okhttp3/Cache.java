@@ -26,7 +26,7 @@ import okhttp3.internal.cache.InternalCache;
 import okhttp3.internal.http.HttpHeaders;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.http.StatusLine;
-import okhttp3.internal.p385io.FileSystem;
+import okhttp3.internal.io.FileSystem;
 import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSink;
@@ -38,7 +38,7 @@ import okio.Okio;
 import okio.Sink;
 import okio.Source;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Cache implements Closeable, Flushable {
     private static final int ENTRY_BODY = 1;
     private static final int ENTRY_COUNT = 2;
@@ -168,12 +168,12 @@ public final class Cache implements Closeable, Flushable {
 
     static int readInt(BufferedSource bufferedSource) throws IOException {
         try {
-            long readDecimalLong = bufferedSource.readDecimalLong();
-            String readUtf8LineStrict = bufferedSource.readUtf8LineStrict();
-            if (readDecimalLong >= 0 && readDecimalLong <= 2147483647L && readUtf8LineStrict.isEmpty()) {
-                return (int) readDecimalLong;
+            long decimalLong = bufferedSource.readDecimalLong();
+            String utf8LineStrict = bufferedSource.readUtf8LineStrict();
+            if (decimalLong >= 0 && decimalLong <= 2147483647L && utf8LineStrict.isEmpty()) {
+                return (int) decimalLong;
             }
-            throw new IOException("expected an int but was \"" + readDecimalLong + readUtf8LineStrict + "\"");
+            throw new IOException("expected an int but was \"" + decimalLong + utf8LineStrict + "\"");
         } catch (NumberFormatException e2) {
             throw new IOException(e2.getMessage());
         }
@@ -246,8 +246,8 @@ public final class Cache implements Closeable, Flushable {
 
     @Nullable
     CacheRequest put(Response response) {
-        DiskLruCache.Editor editor;
-        String method = response.request().method();
+        DiskLruCache.Editor editorEdit;
+        String strMethod = response.request().method();
         if (HttpMethod.invalidatesCache(response.request().method())) {
             try {
                 remove(response.request());
@@ -255,24 +255,24 @@ public final class Cache implements Closeable, Flushable {
             }
             return null;
         }
-        if (!method.equals("GET") || HttpHeaders.hasVaryAll(response)) {
+        if (!strMethod.equals("GET") || HttpHeaders.hasVaryAll(response)) {
             return null;
         }
         Entry entry = new Entry(response);
         try {
-            editor = this.cache.edit(key(response.request().url()));
-            if (editor == null) {
+            editorEdit = this.cache.edit(key(response.request().url()));
+            if (editorEdit == null) {
                 return null;
             }
             try {
-                entry.writeTo(editor);
-                return new CacheRequestImpl(editor);
+                entry.writeTo(editorEdit);
+                return new CacheRequestImpl(editorEdit);
             } catch (IOException unused2) {
-                abortQuietly(editor);
+                abortQuietly(editorEdit);
                 return null;
             }
         } catch (IOException unused3) {
-            editor = null;
+            editorEdit = null;
         }
     }
 
@@ -302,20 +302,20 @@ public final class Cache implements Closeable, Flushable {
     }
 
     void update(Response response, Response response2) {
-        DiskLruCache.Editor editor;
+        DiskLruCache.Editor editorEdit;
         Entry entry = new Entry(response2);
         try {
-            editor = ((CacheResponseBody) response.body()).snapshot.edit();
-            if (editor != null) {
+            editorEdit = ((CacheResponseBody) response.body()).snapshot.edit();
+            if (editorEdit != null) {
                 try {
-                    entry.writeTo(editor);
-                    editor.commit();
+                    entry.writeTo(editorEdit);
+                    editorEdit.commit();
                 } catch (IOException unused) {
-                    abortQuietly(editor);
+                    abortQuietly(editorEdit);
                 }
             }
         } catch (IOException unused2) {
-            editor = null;
+            editorEdit = null;
         }
     }
 
@@ -432,23 +432,23 @@ public final class Cache implements Closeable, Flushable {
 
         Entry(Source source) throws IOException {
             try {
-                BufferedSource buffer = Okio.buffer(source);
-                this.url = buffer.readUtf8LineStrict();
-                this.requestMethod = buffer.readUtf8LineStrict();
+                BufferedSource bufferedSourceBuffer = Okio.buffer(source);
+                this.url = bufferedSourceBuffer.readUtf8LineStrict();
+                this.requestMethod = bufferedSourceBuffer.readUtf8LineStrict();
                 Headers.Builder builder = new Headers.Builder();
-                int readInt = Cache.readInt(buffer);
-                for (int i2 = 0; i2 < readInt; i2++) {
-                    builder.addLenient(buffer.readUtf8LineStrict());
+                int i2 = Cache.readInt(bufferedSourceBuffer);
+                for (int i3 = 0; i3 < i2; i3++) {
+                    builder.addLenient(bufferedSourceBuffer.readUtf8LineStrict());
                 }
                 this.varyHeaders = builder.build();
-                StatusLine parse = StatusLine.parse(buffer.readUtf8LineStrict());
-                this.protocol = parse.protocol;
-                this.code = parse.code;
-                this.message = parse.message;
+                StatusLine statusLine = StatusLine.parse(bufferedSourceBuffer.readUtf8LineStrict());
+                this.protocol = statusLine.protocol;
+                this.code = statusLine.code;
+                this.message = statusLine.message;
                 Headers.Builder builder2 = new Headers.Builder();
-                int readInt2 = Cache.readInt(buffer);
-                for (int i3 = 0; i3 < readInt2; i3++) {
-                    builder2.addLenient(buffer.readUtf8LineStrict());
+                int i4 = Cache.readInt(bufferedSourceBuffer);
+                for (int i5 = 0; i5 < i4; i5++) {
+                    builder2.addLenient(bufferedSourceBuffer.readUtf8LineStrict());
                 }
                 String str = builder2.get(SENT_MILLIS);
                 String str2 = builder2.get(RECEIVED_MILLIS);
@@ -458,11 +458,11 @@ public final class Cache implements Closeable, Flushable {
                 this.receivedResponseMillis = str2 != null ? Long.parseLong(str2) : 0L;
                 this.responseHeaders = builder2.build();
                 if (isHttps()) {
-                    String readUtf8LineStrict = buffer.readUtf8LineStrict();
-                    if (readUtf8LineStrict.length() > 0) {
-                        throw new IOException("expected \"\" but was \"" + readUtf8LineStrict + "\"");
+                    String utf8LineStrict = bufferedSourceBuffer.readUtf8LineStrict();
+                    if (utf8LineStrict.length() > 0) {
+                        throw new IOException("expected \"\" but was \"" + utf8LineStrict + "\"");
                     }
-                    this.handshake = Handshake.get(!buffer.exhausted() ? TlsVersion.forJavaName(buffer.readUtf8LineStrict()) : TlsVersion.SSL_3_0, CipherSuite.forJavaName(buffer.readUtf8LineStrict()), readCertificateList(buffer), readCertificateList(buffer));
+                    this.handshake = Handshake.get(!bufferedSourceBuffer.exhausted() ? TlsVersion.forJavaName(bufferedSourceBuffer.readUtf8LineStrict()) : TlsVersion.SSL_3_0, CipherSuite.forJavaName(bufferedSourceBuffer.readUtf8LineStrict()), readCertificateList(bufferedSourceBuffer), readCertificateList(bufferedSourceBuffer));
                 } else {
                     this.handshake = null;
                 }
@@ -476,17 +476,17 @@ public final class Cache implements Closeable, Flushable {
         }
 
         private List<Certificate> readCertificateList(BufferedSource bufferedSource) throws IOException {
-            int readInt = Cache.readInt(bufferedSource);
-            if (readInt == -1) {
+            int i2 = Cache.readInt(bufferedSource);
+            if (i2 == -1) {
                 return Collections.emptyList();
             }
             try {
                 CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-                ArrayList arrayList = new ArrayList(readInt);
-                for (int i2 = 0; i2 < readInt; i2++) {
-                    String readUtf8LineStrict = bufferedSource.readUtf8LineStrict();
+                ArrayList arrayList = new ArrayList(i2);
+                for (int i3 = 0; i3 < i2; i3++) {
+                    String utf8LineStrict = bufferedSource.readUtf8LineStrict();
                     Buffer buffer = new Buffer();
-                    buffer.write(ByteString.decodeBase64(readUtf8LineStrict));
+                    buffer.write(ByteString.decodeBase64(utf8LineStrict));
                     arrayList.add(certificateFactory.generateCertificate(buffer.inputStream()));
                 }
                 return arrayList;
@@ -500,7 +500,7 @@ public final class Cache implements Closeable, Flushable {
                 bufferedSink.writeDecimalLong(list.size()).writeByte(10);
                 int size = list.size();
                 for (int i2 = 0; i2 < size; i2++) {
-                    bufferedSink.writeUtf8(ByteString.m24926of(list.get(i2).getEncoded()).base64()).writeByte(10);
+                    bufferedSink.writeUtf8(ByteString.of(list.get(i2).getEncoded()).base64()).writeByte(10);
                 }
             } catch (CertificateEncodingException e2) {
                 throw new IOException(e2.getMessage());
@@ -518,30 +518,30 @@ public final class Cache implements Closeable, Flushable {
         }
 
         public void writeTo(DiskLruCache.Editor editor) throws IOException {
-            BufferedSink buffer = Okio.buffer(editor.newSink(0));
-            buffer.writeUtf8(this.url).writeByte(10);
-            buffer.writeUtf8(this.requestMethod).writeByte(10);
-            buffer.writeDecimalLong(this.varyHeaders.size()).writeByte(10);
+            BufferedSink bufferedSinkBuffer = Okio.buffer(editor.newSink(0));
+            bufferedSinkBuffer.writeUtf8(this.url).writeByte(10);
+            bufferedSinkBuffer.writeUtf8(this.requestMethod).writeByte(10);
+            bufferedSinkBuffer.writeDecimalLong(this.varyHeaders.size()).writeByte(10);
             int size = this.varyHeaders.size();
             for (int i2 = 0; i2 < size; i2++) {
-                buffer.writeUtf8(this.varyHeaders.name(i2)).writeUtf8(": ").writeUtf8(this.varyHeaders.value(i2)).writeByte(10);
+                bufferedSinkBuffer.writeUtf8(this.varyHeaders.name(i2)).writeUtf8(": ").writeUtf8(this.varyHeaders.value(i2)).writeByte(10);
             }
-            buffer.writeUtf8(new StatusLine(this.protocol, this.code, this.message).toString()).writeByte(10);
-            buffer.writeDecimalLong(this.responseHeaders.size() + 2).writeByte(10);
+            bufferedSinkBuffer.writeUtf8(new StatusLine(this.protocol, this.code, this.message).toString()).writeByte(10);
+            bufferedSinkBuffer.writeDecimalLong(this.responseHeaders.size() + 2).writeByte(10);
             int size2 = this.responseHeaders.size();
             for (int i3 = 0; i3 < size2; i3++) {
-                buffer.writeUtf8(this.responseHeaders.name(i3)).writeUtf8(": ").writeUtf8(this.responseHeaders.value(i3)).writeByte(10);
+                bufferedSinkBuffer.writeUtf8(this.responseHeaders.name(i3)).writeUtf8(": ").writeUtf8(this.responseHeaders.value(i3)).writeByte(10);
             }
-            buffer.writeUtf8(SENT_MILLIS).writeUtf8(": ").writeDecimalLong(this.sentRequestMillis).writeByte(10);
-            buffer.writeUtf8(RECEIVED_MILLIS).writeUtf8(": ").writeDecimalLong(this.receivedResponseMillis).writeByte(10);
+            bufferedSinkBuffer.writeUtf8(SENT_MILLIS).writeUtf8(": ").writeDecimalLong(this.sentRequestMillis).writeByte(10);
+            bufferedSinkBuffer.writeUtf8(RECEIVED_MILLIS).writeUtf8(": ").writeDecimalLong(this.receivedResponseMillis).writeByte(10);
             if (isHttps()) {
-                buffer.writeByte(10);
-                buffer.writeUtf8(this.handshake.cipherSuite().javaName()).writeByte(10);
-                writeCertList(buffer, this.handshake.peerCertificates());
-                writeCertList(buffer, this.handshake.localCertificates());
-                buffer.writeUtf8(this.handshake.tlsVersion().javaName()).writeByte(10);
+                bufferedSinkBuffer.writeByte(10);
+                bufferedSinkBuffer.writeUtf8(this.handshake.cipherSuite().javaName()).writeByte(10);
+                writeCertList(bufferedSinkBuffer, this.handshake.peerCertificates());
+                writeCertList(bufferedSinkBuffer, this.handshake.localCertificates());
+                bufferedSinkBuffer.writeUtf8(this.handshake.tlsVersion().javaName()).writeByte(10);
             }
-            buffer.close();
+            bufferedSinkBuffer.close();
         }
 
         Entry(Response response) {

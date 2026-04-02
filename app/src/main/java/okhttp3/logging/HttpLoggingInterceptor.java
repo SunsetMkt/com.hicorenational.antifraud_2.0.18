@@ -1,7 +1,7 @@
 package okhttp3.logging;
 
+import i.q2.t.m0;
 import java.io.EOFException;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.concurrent.TimeUnit;
@@ -18,9 +18,8 @@ import okhttp3.internal.http.HttpHeaders;
 import okhttp3.internal.platform.Platform;
 import okio.Buffer;
 import okio.BufferedSource;
-import p286h.p309q2.p311t.C5556m0;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class HttpLoggingInterceptor implements Interceptor {
     private static final Charset UTF8 = Charset.forName("UTF-8");
     private volatile Level level;
@@ -61,8 +60,8 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 if (buffer2.exhausted()) {
                     return true;
                 }
-                int readUtf8CodePoint = buffer2.readUtf8CodePoint();
-                if (Character.isISOControl(readUtf8CodePoint) && !Character.isWhitespace(readUtf8CodePoint)) {
+                int utf8CodePoint = buffer2.readUtf8CodePoint();
+                if (Character.isISOControl(utf8CodePoint) && !Character.isWhitespace(utf8CodePoint)) {
                     return false;
                 }
             }
@@ -77,7 +76,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
     }
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor.Chain chain) throws IOException {
+    public Response intercept(Interceptor.Chain chain) throws Exception {
         boolean z;
         boolean z2;
         Level level = this.level;
@@ -87,34 +86,34 @@ public final class HttpLoggingInterceptor implements Interceptor {
         }
         boolean z3 = level == Level.BODY;
         boolean z4 = z3 || level == Level.HEADERS;
-        RequestBody body = request.body();
-        boolean z5 = body != null;
+        RequestBody requestBodyBody = request.body();
+        boolean z5 = requestBodyBody != null;
         Connection connection = chain.connection();
         String str = "--> " + request.method() + ' ' + request.url() + ' ' + (connection != null ? connection.protocol() : Protocol.HTTP_1_1);
         if (!z4 && z5) {
-            str = str + " (" + body.contentLength() + "-byte body)";
+            str = str + " (" + requestBodyBody.contentLength() + "-byte body)";
         }
         this.logger.log(str);
         if (z4) {
             if (z5) {
-                if (body.contentType() != null) {
-                    this.logger.log("Content-Type: " + body.contentType());
+                if (requestBodyBody.contentType() != null) {
+                    this.logger.log("Content-Type: " + requestBodyBody.contentType());
                 }
-                if (body.contentLength() != -1) {
-                    this.logger.log("Content-Length: " + body.contentLength());
+                if (requestBodyBody.contentLength() != -1) {
+                    this.logger.log("Content-Length: " + requestBodyBody.contentLength());
                 }
             }
             Headers headers = request.headers();
             int size = headers.size();
             int i2 = 0;
             while (i2 < size) {
-                String name = headers.name(i2);
+                String strName = headers.name(i2);
                 int i3 = size;
-                if ("Content-Type".equalsIgnoreCase(name) || "Content-Length".equalsIgnoreCase(name)) {
+                if ("Content-Type".equalsIgnoreCase(strName) || "Content-Length".equalsIgnoreCase(strName)) {
                     z2 = z4;
                 } else {
                     z2 = z4;
-                    this.logger.log(name + ": " + headers.value(i2));
+                    this.logger.log(strName + ": " + headers.value(i2));
                 }
                 i2++;
                 size = i3;
@@ -127,38 +126,38 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 this.logger.log("--> END " + request.method() + " (encoded body omitted)");
             } else {
                 Buffer buffer = new Buffer();
-                body.writeTo(buffer);
+                requestBodyBody.writeTo(buffer);
                 Charset charset = UTF8;
-                MediaType contentType = body.contentType();
-                if (contentType != null) {
-                    charset = contentType.charset(UTF8);
+                MediaType mediaTypeContentType = requestBodyBody.contentType();
+                if (mediaTypeContentType != null) {
+                    charset = mediaTypeContentType.charset(UTF8);
                 }
                 this.logger.log("");
                 if (isPlaintext(buffer)) {
                     this.logger.log(buffer.readString(charset));
-                    this.logger.log("--> END " + request.method() + " (" + body.contentLength() + "-byte body)");
+                    this.logger.log("--> END " + request.method() + " (" + requestBodyBody.contentLength() + "-byte body)");
                 } else {
-                    this.logger.log("--> END " + request.method() + " (binary " + body.contentLength() + "-byte body omitted)");
+                    this.logger.log("--> END " + request.method() + " (binary " + requestBodyBody.contentLength() + "-byte body omitted)");
                 }
             }
         } else {
             z = z4;
         }
-        long nanoTime = System.nanoTime();
+        long jNanoTime = System.nanoTime();
         try {
-            Response proceed = chain.proceed(request);
-            long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - nanoTime);
-            ResponseBody body2 = proceed.body();
-            long contentLength = body2.contentLength();
-            String str2 = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
+            Response responseProceed = chain.proceed(request);
+            long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - jNanoTime);
+            ResponseBody responseBodyBody = responseProceed.body();
+            long jContentLength = responseBodyBody.contentLength();
+            String str2 = jContentLength != -1 ? jContentLength + "-byte" : "unknown-length";
             Logger logger = this.logger;
             StringBuilder sb = new StringBuilder();
             sb.append("<-- ");
-            sb.append(proceed.code());
+            sb.append(responseProceed.code());
             sb.append(' ');
-            sb.append(proceed.message());
+            sb.append(responseProceed.message());
             sb.append(' ');
-            sb.append(proceed.request().url());
+            sb.append(responseProceed.request().url());
             sb.append(" (");
             sb.append(millis);
             sb.append("ms");
@@ -166,44 +165,44 @@ public final class HttpLoggingInterceptor implements Interceptor {
             sb.append(')');
             logger.log(sb.toString());
             if (z) {
-                Headers headers2 = proceed.headers();
+                Headers headers2 = responseProceed.headers();
                 int size2 = headers2.size();
                 for (int i4 = 0; i4 < size2; i4++) {
                     this.logger.log(headers2.name(i4) + ": " + headers2.value(i4));
                 }
-                if (!z3 || !HttpHeaders.hasBody(proceed)) {
+                if (!z3 || !HttpHeaders.hasBody(responseProceed)) {
                     this.logger.log("<-- END HTTP");
-                } else if (bodyEncoded(proceed.headers())) {
+                } else if (bodyEncoded(responseProceed.headers())) {
                     this.logger.log("<-- END HTTP (encoded body omitted)");
                 } else {
-                    BufferedSource source = body2.source();
-                    source.request(C5556m0.f20396b);
-                    Buffer buffer2 = source.buffer();
+                    BufferedSource bufferedSourceSource = responseBodyBody.source();
+                    bufferedSourceSource.request(m0.f12222b);
+                    Buffer buffer2 = bufferedSourceSource.buffer();
                     Charset charset2 = UTF8;
-                    MediaType contentType2 = body2.contentType();
-                    if (contentType2 != null) {
+                    MediaType mediaTypeContentType2 = responseBodyBody.contentType();
+                    if (mediaTypeContentType2 != null) {
                         try {
-                            charset2 = contentType2.charset(UTF8);
+                            charset2 = mediaTypeContentType2.charset(UTF8);
                         } catch (UnsupportedCharsetException unused) {
                             this.logger.log("");
                             this.logger.log("Couldn't decode the response body; charset is likely malformed.");
                             this.logger.log("<-- END HTTP");
-                            return proceed;
+                            return responseProceed;
                         }
                     }
                     if (!isPlaintext(buffer2)) {
                         this.logger.log("");
                         this.logger.log("<-- END HTTP (binary " + buffer2.size() + "-byte body omitted)");
-                        return proceed;
+                        return responseProceed;
                     }
-                    if (contentLength != 0) {
+                    if (jContentLength != 0) {
                         this.logger.log("");
                         this.logger.log(buffer2.clone().readString(charset2));
                     }
                     this.logger.log("<-- END HTTP (" + buffer2.size() + "-byte body)");
                 }
             }
-            return proceed;
+            return responseProceed;
         } catch (Exception e2) {
             this.logger.log("<-- HTTP FAILED: " + e2);
             throw e2;

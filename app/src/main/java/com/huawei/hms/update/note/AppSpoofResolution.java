@@ -7,48 +7,43 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import com.huawei.hms.activity.IBridgeActivityDelegate;
 import com.huawei.hms.adapter.sysobs.SystemManager;
-import com.huawei.hms.availableupdate.C2310a;
-import com.huawei.hms.p182ui.AbstractDialog;
-import com.huawei.hms.p182ui.AbstractPromptDialog;
 import com.huawei.hms.support.log.HMSLog;
+import com.huawei.hms.ui.AbstractDialog;
+import com.huawei.hms.ui.AbstractPromptDialog;
 import com.huawei.hms.utils.PackageManagerHelper;
 import com.huawei.hms.utils.ResourceLoaderUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppSpoofResolution implements IBridgeActivityDelegate {
+    private Activity a;
 
-    /* renamed from: a */
-    private Activity f7904a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private b f4964b;
 
-    /* renamed from: b */
-    private C2535b f7905b;
-
-    /* renamed from: com.huawei.hms.update.note.AppSpoofResolution$a */
-    class C2534a implements AbstractDialog.Callback {
-        C2534a() {
+    class a implements AbstractDialog.Callback {
+        a() {
         }
 
         @Override // com.huawei.hms.ui.AbstractDialog.Callback
         public void onCancel(AbstractDialog abstractDialog) {
-            C2310a.f7165c.m6654a(true);
-            AppSpoofResolution.this.f7905b = null;
-            AppSpoofResolution.this.m7721a();
+            com.huawei.hms.availableupdate.a.f4485c.a(true);
+            AppSpoofResolution.this.f4964b = null;
+            AppSpoofResolution.this.a();
         }
 
         @Override // com.huawei.hms.ui.AbstractDialog.Callback
         public void onDoWork(AbstractDialog abstractDialog) {
-            C2310a.f7165c.m6654a(true);
-            AppSpoofResolution.this.f7905b = null;
-            AppSpoofResolution.this.m7721a();
+            com.huawei.hms.availableupdate.a.f4485c.a(true);
+            AppSpoofResolution.this.f4964b = null;
+            AppSpoofResolution.this.a();
         }
     }
 
-    /* renamed from: com.huawei.hms.update.note.AppSpoofResolution$b */
-    private static class C2535b extends AbstractPromptDialog {
-        private C2535b() {
+    private static class b extends AbstractPromptDialog {
+        private b() {
         }
 
-        @Override // com.huawei.hms.p182ui.AbstractDialog
+        @Override // com.huawei.hms.ui.AbstractDialog
         public String onGetMessageString(Context context) {
             String applicationName = new PackageManagerHelper(context).getApplicationName("com.huawei.hwid");
             if (TextUtils.isEmpty(applicationName)) {
@@ -60,7 +55,7 @@ public class AppSpoofResolution implements IBridgeActivityDelegate {
             return ResourceLoaderUtil.getString("hms_is_spoof", applicationName);
         }
 
-        @Override // com.huawei.hms.p182ui.AbstractDialog
+        @Override // com.huawei.hms.ui.AbstractDialog
         public String onGetPositiveButtonString(Context context) {
             if (ResourceLoaderUtil.getmContext() == null) {
                 ResourceLoaderUtil.setmContext(context);
@@ -68,7 +63,7 @@ public class AppSpoofResolution implements IBridgeActivityDelegate {
             return ResourceLoaderUtil.getString("hms_confirm");
         }
 
-        @Override // com.huawei.hms.p182ui.AbstractPromptDialog, com.huawei.hms.p182ui.AbstractDialog
+        @Override // com.huawei.hms.ui.AbstractPromptDialog, com.huawei.hms.ui.AbstractDialog
         public String onGetTitleString(Context context) {
             if (ResourceLoaderUtil.getmContext() == null) {
                 ResourceLoaderUtil.setmContext(context);
@@ -76,29 +71,28 @@ public class AppSpoofResolution implements IBridgeActivityDelegate {
             return ResourceLoaderUtil.getString("hms_spoof_hints");
         }
 
-        /* synthetic */ C2535b(C2534a c2534a) {
+        /* synthetic */ b(a aVar) {
             this();
         }
     }
 
-    /* renamed from: b */
-    private void m7723b() {
+    private void b() {
         Activity activity = getActivity();
         if (activity == null || activity.isFinishing()) {
             return;
         }
-        C2535b c2535b = this.f7905b;
-        if (c2535b == null) {
-            this.f7905b = new C2535b(null);
+        b bVar = this.f4964b;
+        if (bVar == null) {
+            this.f4964b = new b(null);
         } else {
-            c2535b.dismiss();
+            bVar.dismiss();
         }
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution showPromptdlg to resolve conn error");
-        this.f7905b.show(activity, new C2534a());
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution showPromptdlg to resolve conn error");
+        this.f4964b.show(activity, new a());
     }
 
     protected Activity getActivity() {
-        return this.f7904a;
+        return this.a;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
@@ -108,27 +102,27 @@ public class AppSpoofResolution implements IBridgeActivityDelegate {
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityCreate(Activity activity) {
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution onBridgeActivityCreate");
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution onBridgeActivityCreate");
         if (activity == null || activity.isFinishing()) {
-            HMSLog.m7715e("AppSpoofResolution", "activity is null or finishing");
+            HMSLog.e("AppSpoofResolution", "activity is null or finishing");
             return;
         }
-        this.f7904a = activity;
-        C2310a c2310a = C2310a.f7165c;
-        c2310a.m6653a(activity);
-        c2310a.m6654a(false);
-        m7723b();
+        this.a = activity;
+        com.huawei.hms.availableupdate.a aVar = com.huawei.hms.availableupdate.a.f4485c;
+        aVar.a(activity);
+        aVar.a(false);
+        b();
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeActivityDestroy() {
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution onBridgeActivityDestroy");
-        C2310a c2310a = C2310a.f7165c;
-        if (c2310a.m6652a().compareAndSet(true, false)) {
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution onBridgeActivityDestroy");
+        com.huawei.hms.availableupdate.a aVar = com.huawei.hms.availableupdate.a.f4485c;
+        if (aVar.a().compareAndSet(true, false)) {
             SystemManager.getInstance().notifyNoticeResult(29);
         }
-        c2310a.m6655b(this.f7904a);
-        this.f7904a = null;
+        aVar.b(this.a);
+        this.a = null;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
@@ -136,33 +130,32 @@ public class AppSpoofResolution implements IBridgeActivityDelegate {
         if (i2 != getRequestCode()) {
             return false;
         }
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution onBridgeActivityResult");
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution onBridgeActivityResult");
         return true;
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onBridgeConfigurationChanged() {
-        if (this.f7905b == null) {
+        if (this.f4964b == null) {
             return;
         }
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution re show prompt dialog");
-        m7723b();
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution re show prompt dialog");
+        b();
     }
 
     @Override // com.huawei.hms.activity.IBridgeActivityDelegate
     public void onKeyUp(int i2, KeyEvent keyEvent) {
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution On key up when resolve spoof error");
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution On key up when resolve spoof error");
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m7721a() {
+    public void a() {
         Activity activity = getActivity();
         if (activity == null || activity.isFinishing()) {
             return;
         }
-        HMSLog.m7717i("AppSpoofResolution", "enter AppSpoofResolution finishBridgeActivity：");
-        if (C2310a.f7165c.m6652a().compareAndSet(true, false)) {
+        HMSLog.i("AppSpoofResolution", "enter AppSpoofResolution finishBridgeActivity\uff1a");
+        if (com.huawei.hms.availableupdate.a.f4485c.a().compareAndSet(true, false)) {
             SystemManager.getInstance().notifyNoticeResult(29);
         }
         activity.finish();

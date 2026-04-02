@@ -1,12 +1,16 @@
 package com.heytap.msp.push.encrypt;
 
-import com.heytap.mcssdk.p160k.C2107g;
+import com.heytap.mcssdk.k.g;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AESEncrypt {
     private static final String ALGORITHM = "AES";
     private static final String IV_CONNECT = "%IV1%";
@@ -14,36 +18,36 @@ public class AESEncrypt {
     public static final String SDK_APP_SECRET = "isvrbeT7qUywVEZ1Ia0/aUVA/TcFaeV0wC8qFLc8rg4=";
     private static final String TRANSFORMATION = "AES/CTR/NoPadding";
 
-    public static String decrypt(String str, String str2) {
-        String[] split = str2.split(IV_CONNECT);
-        byte[] m5923b = C2110a.m5923b(split[0]);
-        byte[] m5923b2 = C2110a.m5923b(split[1]);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(C2110a.m5923b(str), ALGORITHM);
+    public static String decrypt(String str, String str2) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException {
+        String[] strArrSplit = str2.split(IV_CONNECT);
+        byte[] bArrB = a.b(strArrSplit[0]);
+        byte[] bArrB2 = a.b(strArrSplit[1]);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(a.b(str), ALGORITHM);
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
-        cipher.init(2, secretKeySpec, new IvParameterSpec(m5923b2));
-        return new String(cipher.doFinal(m5923b));
+        cipher.init(2, secretKeySpec, new IvParameterSpec(bArrB2));
+        return new String(cipher.doFinal(bArrB));
     }
 
     public static String encrypt(String str) {
         try {
             return encrypt(SDK_APP_SECRET, str);
         } catch (Exception e2) {
-            C2107g.m5884b(e2.getLocalizedMessage());
+            g.b(e2.getLocalizedMessage());
             return "";
         }
     }
 
-    public static String encrypt(String str, String str2) {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(C2110a.m5923b(str), ALGORITHM);
+    public static String encrypt(String str, String str2) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(a.b(str), ALGORITHM);
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         cipher.init(1, secretKeySpec);
-        String m5926d = C2110a.m5926d(cipher.getIV());
-        return C2110a.m5926d(cipher.doFinal(str2.getBytes())) + IV_CONNECT + m5926d;
+        String strD = a.d(cipher.getIV());
+        return a.d(cipher.doFinal(str2.getBytes())) + IV_CONNECT + strD;
     }
 
-    public static String genKey() {
+    public static String genKey() throws NoSuchAlgorithmException {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM);
         keyGenerator.init(256);
-        return C2110a.m5926d(keyGenerator.generateKey().getEncoded());
+        return a.d(keyGenerator.generateKey().getEncoded());
     }
 }

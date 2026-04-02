@@ -1,6 +1,6 @@
 package androidx.camera.core.internal;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_ImmutableZoomState extends ImmutableZoomState {
     private final float linearZoom;
     private final float maxZoomRatio;

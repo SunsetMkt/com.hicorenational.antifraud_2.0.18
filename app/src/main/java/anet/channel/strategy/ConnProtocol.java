@@ -1,15 +1,14 @@
 package anet.channel.strategy;
 
 import android.text.TextUtils;
-import anet.channel.strategy.C0842l;
+import anet.channel.strategy.l;
 import anet.channel.util.HttpConstant;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ConnProtocol implements Serializable {
     private static final long serialVersionUID = -3523201990674557001L;
     final int isHttp;
@@ -38,19 +37,19 @@ public class ConnProtocol implements Serializable {
         if (TextUtils.isEmpty(str2)) {
             sb.append("_0rtt");
         } else {
-            sb.append(AbstractC1191a.f2606s1);
+            sb.append(d.c.a.b.a.a.s1);
             sb.append(str2);
         }
-        sb.append(AbstractC1191a.f2606s1);
+        sb.append(d.c.a.b.a.a.s1);
         sb.append(str3);
         return sb.toString();
     }
 
-    public static ConnProtocol valueOf(C0842l.a aVar) {
+    public static ConnProtocol valueOf(l.a aVar) {
         if (aVar == null) {
             return null;
         }
-        return valueOf(aVar.f1110b, aVar.f1115g, aVar.f1116h);
+        return valueOf(aVar.f1606b, aVar.f1611g, aVar.f1612h);
     }
 
     public boolean equals(Object obj) {
@@ -64,13 +63,13 @@ public class ConnProtocol implements Serializable {
     }
 
     public int hashCode() {
-        int hashCode = 527 + this.protocol.hashCode();
+        int iHashCode = 527 + this.protocol.hashCode();
         String str = this.rtt;
         if (str != null) {
-            hashCode = (hashCode * 31) + str.hashCode();
+            iHashCode = (iHashCode * 31) + str.hashCode();
         }
         String str2 = this.publicKey;
-        return str2 != null ? (hashCode * 31) + str2.hashCode() : hashCode;
+        return str2 != null ? (iHashCode * 31) + str2.hashCode() : iHashCode;
     }
 
     public String toString() {
@@ -86,13 +85,13 @@ public class ConnProtocol implements Serializable {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
-        String buildName = buildName(str, str2, str3);
+        String strBuildName = buildName(str, str2, str3);
         synchronized (protocolMap) {
-            if (protocolMap.containsKey(buildName)) {
-                return protocolMap.get(buildName);
+            if (protocolMap.containsKey(strBuildName)) {
+                return protocolMap.get(strBuildName);
             }
-            ConnProtocol connProtocol = new ConnProtocol(buildName, str, str2, str3);
-            protocolMap.put(buildName, connProtocol);
+            ConnProtocol connProtocol = new ConnProtocol(strBuildName, str, str2, str3);
+            protocolMap.put(strBuildName, connProtocol);
             return connProtocol;
         }
     }

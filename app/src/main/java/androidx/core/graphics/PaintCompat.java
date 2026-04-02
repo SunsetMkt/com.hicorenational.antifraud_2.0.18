@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class PaintCompat {
     private static final String EM_STRING = "m";
     private static final String TOFU_STRING = "\udfffd";
@@ -26,34 +26,34 @@ public final class PaintCompat {
         if (length == 1 && Character.isWhitespace(str.charAt(0))) {
             return true;
         }
-        float measureText = paint.measureText(TOFU_STRING);
-        float measureText2 = paint.measureText(EM_STRING);
-        float measureText3 = paint.measureText(str);
-        float f2 = 0.0f;
-        if (measureText3 == 0.0f) {
+        float fMeasureText = paint.measureText(TOFU_STRING);
+        float fMeasureText2 = paint.measureText(EM_STRING);
+        float fMeasureText3 = paint.measureText(str);
+        float fMeasureText4 = 0.0f;
+        if (fMeasureText3 == 0.0f) {
             return false;
         }
         if (str.codePointCount(0, str.length()) > 1) {
-            if (measureText3 > measureText2 * 2.0f) {
+            if (fMeasureText3 > fMeasureText2 * 2.0f) {
                 return false;
             }
             int i2 = 0;
             while (i2 < length) {
-                int charCount = Character.charCount(str.codePointAt(i2)) + i2;
-                f2 += paint.measureText(str, i2, charCount);
-                i2 = charCount;
+                int iCharCount = Character.charCount(str.codePointAt(i2)) + i2;
+                fMeasureText4 += paint.measureText(str, i2, iCharCount);
+                i2 = iCharCount;
             }
-            if (measureText3 >= f2) {
+            if (fMeasureText3 >= fMeasureText4) {
                 return false;
             }
         }
-        if (measureText3 != measureText) {
+        if (fMeasureText3 != fMeasureText) {
             return true;
         }
-        Pair<Rect, Rect> obtainEmptyRects = obtainEmptyRects();
-        paint.getTextBounds(TOFU_STRING, 0, 2, obtainEmptyRects.first);
-        paint.getTextBounds(str, 0, length, obtainEmptyRects.second);
-        return !obtainEmptyRects.first.equals(obtainEmptyRects.second);
+        Pair<Rect, Rect> pairObtainEmptyRects = obtainEmptyRects();
+        paint.getTextBounds(TOFU_STRING, 0, 2, pairObtainEmptyRects.first);
+        paint.getTextBounds(str, 0, length, pairObtainEmptyRects.second);
+        return !pairObtainEmptyRects.first.equals(pairObtainEmptyRects.second);
     }
 
     private static Pair<Rect, Rect> obtainEmptyRects() {
@@ -77,8 +77,8 @@ public final class PaintCompat {
             paint.setXfermode(null);
             return true;
         }
-        PorterDuff.Mode obtainPorterDuffFromCompat = BlendModeUtils.obtainPorterDuffFromCompat(blendModeCompat);
-        paint.setXfermode(obtainPorterDuffFromCompat != null ? new PorterDuffXfermode(obtainPorterDuffFromCompat) : null);
-        return obtainPorterDuffFromCompat != null;
+        PorterDuff.Mode modeObtainPorterDuffFromCompat = BlendModeUtils.obtainPorterDuffFromCompat(blendModeCompat);
+        paint.setXfermode(modeObtainPorterDuffFromCompat != null ? new PorterDuffXfermode(modeObtainPorterDuffFromCompat) : null);
+        return modeObtainPorterDuffFromCompat != null;
     }
 }

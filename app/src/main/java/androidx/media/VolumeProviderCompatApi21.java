@@ -3,8 +3,8 @@ package androidx.media;
 import android.media.VolumeProvider;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class VolumeProviderCompatApi21 {
 
     public interface Delegate {

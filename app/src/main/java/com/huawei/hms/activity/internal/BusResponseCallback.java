@@ -3,7 +3,7 @@ package com.huawei.hms.activity.internal;
 import android.app.Activity;
 import android.content.Intent;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface BusResponseCallback {
     BusResponseResult innerError(Activity activity, int i2, String str);
 

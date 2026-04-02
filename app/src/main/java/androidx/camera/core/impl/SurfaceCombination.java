@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class SurfaceCombination {
     private final List<SurfaceConfig> mSurfaceConfigList = new ArrayList();
 
@@ -59,10 +59,10 @@ public final class SurfaceCombination {
             return false;
         }
         for (int[] iArr : getElementsArrangements(this.mSurfaceConfigList.size())) {
-            boolean z = true;
-            for (int i2 = 0; i2 < this.mSurfaceConfigList.size() && (iArr[i2] >= list.size() || ((z = z & this.mSurfaceConfigList.get(i2).isSupported(list.get(iArr[i2]))))); i2++) {
+            boolean zIsSupported = true;
+            for (int i2 = 0; i2 < this.mSurfaceConfigList.size() && (iArr[i2] >= list.size() || ((zIsSupported = zIsSupported & this.mSurfaceConfigList.get(i2).isSupported(list.get(iArr[i2]))))); i2++) {
             }
-            if (z) {
+            if (zIsSupported) {
                 return true;
             }
         }

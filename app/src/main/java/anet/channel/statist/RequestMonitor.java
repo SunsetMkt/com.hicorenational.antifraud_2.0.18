@@ -1,8 +1,8 @@
 package anet.channel.statist;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "request_monitor")
-/* loaded from: classes.dex */
 public class RequestMonitor extends RequestStatistic {
     public RequestMonitor(RequestStatistic requestStatistic) {
         super(null, null);
@@ -10,7 +10,7 @@ public class RequestMonitor extends RequestStatistic {
             return;
         }
         this.host = requestStatistic.host;
-        this.f1002ip = requestStatistic.f1002ip;
+        this.ip = requestStatistic.ip;
         this.port = requestStatistic.port;
         this.isSSL = requestStatistic.isSSL;
         this.ipRefer = requestStatistic.ipRefer;

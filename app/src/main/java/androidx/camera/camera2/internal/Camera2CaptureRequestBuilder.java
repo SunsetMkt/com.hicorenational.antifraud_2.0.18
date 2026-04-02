@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class Camera2CaptureRequestBuilder {
     private static final String TAG = "CaptureRequestBuilder";
 
@@ -43,17 +43,17 @@ class Camera2CaptureRequestBuilder {
         if (configuredSurfaces.isEmpty()) {
             return null;
         }
-        CaptureRequest.Builder createCaptureRequest = cameraDevice.createCaptureRequest(captureConfig.getTemplateType());
-        applyImplementationOptionToCaptureBuilder(createCaptureRequest, captureConfig.getImplementationOptions());
+        CaptureRequest.Builder builderCreateCaptureRequest = cameraDevice.createCaptureRequest(captureConfig.getTemplateType());
+        applyImplementationOptionToCaptureBuilder(builderCreateCaptureRequest, captureConfig.getImplementationOptions());
         if (captureConfig.getImplementationOptions().containsOption(CaptureConfig.OPTION_ROTATION)) {
-            createCaptureRequest.set(CaptureRequest.JPEG_ORIENTATION, captureConfig.getImplementationOptions().retrieveOption(CaptureConfig.OPTION_ROTATION));
+            builderCreateCaptureRequest.set(CaptureRequest.JPEG_ORIENTATION, captureConfig.getImplementationOptions().retrieveOption(CaptureConfig.OPTION_ROTATION));
         }
         Iterator<Surface> it = configuredSurfaces.iterator();
         while (it.hasNext()) {
-            createCaptureRequest.addTarget(it.next());
+            builderCreateCaptureRequest.addTarget(it.next());
         }
-        createCaptureRequest.setTag(captureConfig.getTag());
-        return createCaptureRequest.build();
+        builderCreateCaptureRequest.setTag(captureConfig.getTag());
+        return builderCreateCaptureRequest.build();
     }
 
     @Nullable
@@ -61,9 +61,9 @@ class Camera2CaptureRequestBuilder {
         if (cameraDevice == null) {
             return null;
         }
-        CaptureRequest.Builder createCaptureRequest = cameraDevice.createCaptureRequest(captureConfig.getTemplateType());
-        applyImplementationOptionToCaptureBuilder(createCaptureRequest, captureConfig.getImplementationOptions());
-        return createCaptureRequest.build();
+        CaptureRequest.Builder builderCreateCaptureRequest = cameraDevice.createCaptureRequest(captureConfig.getTemplateType());
+        applyImplementationOptionToCaptureBuilder(builderCreateCaptureRequest, captureConfig.getImplementationOptions());
+        return builderCreateCaptureRequest.build();
     }
 
     @NonNull

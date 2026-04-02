@@ -2,22 +2,18 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PopupBtnBean extends BaseBean {
     private String color;
     private String createTime;
-
-    /* renamed from: id */
-    private long f1608id;
+    private long id;
     private int isClosePopup;
     private int openType;
     private long popupID;
     private int sort;
     private String text;
     private String title;
-
-    /* renamed from: to */
-    private String f1609to;
+    private String to;
     private String updateTime;
 
     public String getColor() {
@@ -29,7 +25,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public long getId() {
-        return this.f1608id;
+        return this.id;
     }
 
     public int getIsClosePopup() {
@@ -57,7 +53,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public String getTo() {
-        return this.f1609to;
+        return this.to;
     }
 
     public String getUpdateTime() {
@@ -73,7 +69,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.f1608id = j2;
+        this.id = j2;
     }
 
     public void setIsClosePopup(int i2) {
@@ -101,7 +97,7 @@ public class PopupBtnBean extends BaseBean {
     }
 
     public void setTo(String str) {
-        this.f1609to = str;
+        this.to = str;
     }
 
     public void setUpdateTime(String str) {

@@ -3,8 +3,8 @@ package com.taobao.accs;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class AccsException extends Exception {
     private int mErrorCode;
 

@@ -3,7 +3,7 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.Guideline;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class GuidelineReference extends WidgetRun {
     public GuidelineReference(ConstraintWidget constraintWidget) {
         super(constraintWidget);

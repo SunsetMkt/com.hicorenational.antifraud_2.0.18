@@ -1,6 +1,6 @@
 package okhttp3;
 
-import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.bh;
 import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.Socket;
@@ -30,12 +30,12 @@ import okhttp3.internal.cache.InternalCache;
 import okhttp3.internal.connection.RealConnection;
 import okhttp3.internal.connection.RouteDatabase;
 import okhttp3.internal.connection.StreamAllocation;
-import okhttp3.internal.p386ws.RealWebSocket;
 import okhttp3.internal.platform.Platform;
 import okhttp3.internal.tls.CertificateChainCleaner;
 import okhttp3.internal.tls.OkHostnameVerifier;
+import okhttp3.internal.ws.RealWebSocket;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory {
     final Authenticator authenticator;
 
@@ -77,8 +77,87 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
     static final List<Protocol> DEFAULT_PROTOCOLS = Util.immutableList(Protocol.HTTP_2, Protocol.HTTP_1_1);
     static final List<ConnectionSpec> DEFAULT_CONNECTION_SPECS = Util.immutableList(ConnectionSpec.MODERN_TLS, ConnectionSpec.CLEARTEXT);
 
+    /* JADX INFO: renamed from: okhttp3.OkHttpClient$1 */
+    class AnonymousClass1 extends Internal {
+        AnonymousClass1() {
+        }
+
+        @Override // okhttp3.internal.Internal
+        public void addLenient(Headers.Builder builder, String str) {
+            builder.addLenient(str);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public void apply(ConnectionSpec connectionSpec, SSLSocket sSLSocket, boolean z) {
+            connectionSpec.apply(sSLSocket, z);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public int code(Response.Builder builder) {
+            return builder.code;
+        }
+
+        @Override // okhttp3.internal.Internal
+        public boolean connectionBecameIdle(ConnectionPool connectionPool, RealConnection realConnection) {
+            return connectionPool.connectionBecameIdle(realConnection);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public Socket deduplicate(ConnectionPool connectionPool, Address address, StreamAllocation streamAllocation) {
+            return connectionPool.deduplicate(address, streamAllocation);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public boolean equalsNonHost(Address address, Address address2) {
+            return address.equalsNonHost(address2);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public RealConnection get(ConnectionPool connectionPool, Address address, StreamAllocation streamAllocation, Route route) {
+            return connectionPool.get(address, streamAllocation, route);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public boolean isInvalidHttpUrlHost(IllegalArgumentException illegalArgumentException) {
+            return illegalArgumentException.getMessage().startsWith("Invalid URL host");
+        }
+
+        @Override // okhttp3.internal.Internal
+        public Call newWebSocketCall(OkHttpClient okHttpClient, Request request) {
+            return RealCall.newRealCall(okHttpClient, request, true);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public void put(ConnectionPool connectionPool, RealConnection realConnection) {
+            connectionPool.put(realConnection);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public RouteDatabase routeDatabase(ConnectionPool connectionPool) {
+            return connectionPool.routeDatabase;
+        }
+
+        @Override // okhttp3.internal.Internal
+        public void setCache(Builder builder, InternalCache internalCache) {
+            builder.setInternalCache(internalCache);
+        }
+
+        @Override // okhttp3.internal.Internal
+        public StreamAllocation streamAllocation(Call call) {
+            return ((RealCall) call).streamAllocation();
+        }
+
+        @Override // okhttp3.internal.Internal
+        public void addLenient(Headers.Builder builder, String str, String str2) {
+            builder.addLenient(str, str2);
+        }
+    }
+
     static {
         Internal.instance = new Internal() { // from class: okhttp3.OkHttpClient.1
+            AnonymousClass1() {
+            }
+
             @Override // okhttp3.internal.Internal
             public void addLenient(Headers.Builder builder, String str) {
                 builder.addLenient(str);
@@ -308,9 +387,9 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
             }
         }
         if (builder.sslSocketFactory == null && z) {
-            X509TrustManager platformTrustManager = Util.platformTrustManager();
-            this.sslSocketFactory = newSslSocketFactory(platformTrustManager);
-            this.certificateChainCleaner = CertificateChainCleaner.get(platformTrustManager);
+            X509TrustManager x509TrustManagerPlatformTrustManager = Util.platformTrustManager();
+            this.sslSocketFactory = newSslSocketFactory(x509TrustManagerPlatformTrustManager);
+            this.certificateChainCleaner = CertificateChainCleaner.get(x509TrustManagerPlatformTrustManager);
         } else {
             this.sslSocketFactory = builder.sslSocketFactory;
             this.certificateChainCleaner = builder.certificateChainCleaner;
@@ -531,7 +610,7 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
         }
 
         public Builder pingInterval(long j2, TimeUnit timeUnit) {
-            this.pingInterval = Util.checkDuration(C3351bh.f11599aX, j2, timeUnit);
+            this.pingInterval = Util.checkDuration(bh.aX, j2, timeUnit);
             return this;
         }
 

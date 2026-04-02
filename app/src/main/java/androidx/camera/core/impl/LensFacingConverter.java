@@ -3,7 +3,7 @@ package androidx.camera.core.impl;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LensFacingConverter {
     private LensFacingConverter() {
     }
@@ -23,19 +23,19 @@ public class LensFacingConverter {
         if (str == null) {
             throw new NullPointerException("name cannot be null");
         }
-        char c2 = 65535;
-        int hashCode = str.hashCode();
-        if (hashCode != 2030823) {
-            if (hashCode == 67167753 && str.equals("FRONT")) {
-                c2 = 0;
+        byte b2 = -1;
+        int iHashCode = str.hashCode();
+        if (iHashCode != 2030823) {
+            if (iHashCode == 67167753 && str.equals("FRONT")) {
+                b2 = 0;
             }
         } else if (str.equals("BACK")) {
-            c2 = 1;
+            b2 = 1;
         }
-        if (c2 == 0) {
+        if (b2 == 0) {
             return 0;
         }
-        if (c2 == 1) {
+        if (b2 == 1) {
             return 1;
         }
         throw new IllegalArgumentException("Unknown len facing name " + str);

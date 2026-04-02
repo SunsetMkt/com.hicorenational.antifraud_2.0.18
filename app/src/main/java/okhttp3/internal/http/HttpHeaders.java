@@ -18,7 +18,7 @@ import okhttp3.HttpUrl;
 import okhttp3.Response;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class HttpHeaders {
     private static final Pattern PARAMETER = Pattern.compile(" +([^ \"=]*)=(:?\"([^\"]*)\"|([^ \"=]*)) *(:?,|$)");
     private static final String QUOTED_STRING = "\"([^\"]*)\"";
@@ -35,8 +35,8 @@ public final class HttpHeaders {
         if (response.request().method().equals(Request.Method.HEAD)) {
             return false;
         }
-        int code = response.code();
-        return (((code >= 100 && code < 200) || code == 204 || code == 304) && contentLength(response) == -1 && !"chunked".equalsIgnoreCase(response.header("Transfer-Encoding"))) ? false : true;
+        int iCode = response.code();
+        return (((iCode >= 100 && iCode < 200) || iCode == 204 || iCode == 304) && contentLength(response) == -1 && !"chunked".equalsIgnoreCase(response.header("Transfer-Encoding"))) ? false : true;
     }
 
     public static boolean hasVaryAll(Response response) {
@@ -46,27 +46,27 @@ public final class HttpHeaders {
     public static List<Challenge> parseChallenges(Headers headers, String str) {
         ArrayList arrayList = new ArrayList();
         for (String str2 : headers.values(str)) {
-            int indexOf = str2.indexOf(32);
-            if (indexOf != -1) {
-                String substring = str2.substring(0, indexOf);
+            int iIndexOf = str2.indexOf(32);
+            if (iIndexOf != -1) {
+                String strSubstring = str2.substring(0, iIndexOf);
                 Matcher matcher = PARAMETER.matcher(str2);
-                String str3 = null;
-                String str4 = null;
-                while (matcher.find(indexOf)) {
+                String strGroup = null;
+                String strGroup2 = null;
+                while (matcher.find(iIndexOf)) {
                     if (str2.regionMatches(true, matcher.start(1), "realm", 0, 5)) {
-                        str3 = matcher.group(3);
+                        strGroup = matcher.group(3);
                     } else if (str2.regionMatches(true, matcher.start(1), "charset", 0, 7)) {
-                        str4 = matcher.group(3);
+                        strGroup2 = matcher.group(3);
                     }
-                    if (str3 != null && str4 != null) {
+                    if (strGroup != null && strGroup2 != null) {
                         break;
                     }
-                    indexOf = matcher.end();
+                    iIndexOf = matcher.end();
                 }
-                if (str3 != null) {
-                    Challenge challenge = new Challenge(substring, str3);
-                    if (str4 != null) {
-                        if (str4.equalsIgnoreCase("UTF-8")) {
+                if (strGroup != null) {
+                    Challenge challenge = new Challenge(strSubstring, strGroup);
+                    if (strGroup2 != null) {
+                        if (strGroup2.equalsIgnoreCase("UTF-8")) {
                             challenge = challenge.withCharset(Util.UTF_8);
                         }
                     }
@@ -79,14 +79,14 @@ public final class HttpHeaders {
 
     public static int parseSeconds(String str, int i2) {
         try {
-            long parseLong = Long.parseLong(str);
-            if (parseLong > 2147483647L) {
+            long j2 = Long.parseLong(str);
+            if (j2 > 2147483647L) {
                 return Integer.MAX_VALUE;
             }
-            if (parseLong < 0) {
+            if (j2 < 0) {
                 return 0;
             }
-            return (int) parseLong;
+            return (int) j2;
         } catch (NumberFormatException unused) {
             return i2;
         }
@@ -96,11 +96,11 @@ public final class HttpHeaders {
         if (cookieJar == CookieJar.NO_COOKIES) {
             return;
         }
-        List<Cookie> parseAll = Cookie.parseAll(httpUrl, headers);
-        if (parseAll.isEmpty()) {
+        List<Cookie> all = Cookie.parseAll(httpUrl, headers);
+        if (all.isEmpty()) {
             return;
         }
-        cookieJar.saveFromResponse(httpUrl, parseAll);
+        cookieJar.saveFromResponse(httpUrl, all);
     }
 
     public static int skipUntil(String str, int i2, String str2) {
@@ -111,8 +111,8 @@ public final class HttpHeaders {
     }
 
     public static int skipWhitespace(String str, int i2) {
-        char charAt;
-        while (i2 < str.length() && ((charAt = str.charAt(i2)) == ' ' || charAt == '\t')) {
+        char cCharAt;
+        while (i2 < str.length() && ((cCharAt = str.charAt(i2)) == ' ' || cCharAt == '\t')) {
             i2++;
         }
         return i2;
@@ -155,34 +155,34 @@ public final class HttpHeaders {
     }
 
     public static Set<String> varyFields(Headers headers) {
-        Set<String> emptySet = Collections.emptySet();
+        Set<String> setEmptySet = Collections.emptySet();
         int size = headers.size();
-        Set<String> set = emptySet;
+        Set<String> treeSet = setEmptySet;
         for (int i2 = 0; i2 < size; i2++) {
             if ("Vary".equalsIgnoreCase(headers.name(i2))) {
-                String value = headers.value(i2);
-                if (set.isEmpty()) {
-                    set = new TreeSet<>((Comparator<? super String>) String.CASE_INSENSITIVE_ORDER);
+                String strValue = headers.value(i2);
+                if (treeSet.isEmpty()) {
+                    treeSet = new TreeSet<>((Comparator<? super String>) String.CASE_INSENSITIVE_ORDER);
                 }
-                for (String str : value.split(Constants.ACCEPT_TIME_SEPARATOR_SP)) {
-                    set.add(str.trim());
+                for (String str : strValue.split(Constants.ACCEPT_TIME_SEPARATOR_SP)) {
+                    treeSet.add(str.trim());
                 }
             }
         }
-        return set;
+        return treeSet;
     }
 
     public static Headers varyHeaders(Headers headers, Headers headers2) {
-        Set<String> varyFields = varyFields(headers2);
-        if (varyFields.isEmpty()) {
+        Set<String> setVaryFields = varyFields(headers2);
+        if (setVaryFields.isEmpty()) {
             return new Headers.Builder().build();
         }
         Headers.Builder builder = new Headers.Builder();
         int size = headers.size();
         for (int i2 = 0; i2 < size; i2++) {
-            String name = headers.name(i2);
-            if (varyFields.contains(name)) {
-                builder.add(name, headers.value(i2));
+            String strName = headers.name(i2);
+            if (setVaryFields.contains(strName)) {
+                builder.add(strName, headers.value(i2));
             }
         }
         return builder.build();

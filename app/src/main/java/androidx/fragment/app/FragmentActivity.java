@@ -34,7 +34,7 @@ import androidx.loader.app.LoaderManager;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FragmentActivity extends ComponentActivity implements ActivityCompat.OnRequestPermissionsResultCallback, ActivityCompat.RequestPermissionsRequestCodeValidator {
     static final String ALLOCATED_REQUEST_INDICIES_TAG = "android:support:request_indicies";
     static final String FRAGMENTS_TAG = "android:support:fragments";
@@ -190,19 +190,19 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
     }
 
     private static boolean markState(FragmentManager fragmentManager, Lifecycle.State state) {
-        boolean z = false;
+        boolean zMarkState = false;
         for (Fragment fragment : fragmentManager.getFragments()) {
             if (fragment != null) {
                 if (fragment.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
                     fragment.mLifecycleRegistry.setCurrentState(state);
-                    z = true;
+                    zMarkState = true;
                 }
                 if (fragment.getHost() != null) {
-                    z |= markState(fragment.getChildFragmentManager(), state);
+                    zMarkState |= markState(fragment.getChildFragmentManager(), state);
                 }
             }
         }
-        return z;
+        return zMarkState;
     }
 
     @Nullable
@@ -261,9 +261,9 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
         if (str == null) {
             return;
         }
-        Fragment findFragmentByWho = this.mFragments.findFragmentByWho(str);
-        if (findFragmentByWho != null) {
-            findFragmentByWho.onActivityResult(i2 & 65535, i3, intent);
+        Fragment fragmentFindFragmentByWho = this.mFragments.findFragmentByWho(str);
+        if (fragmentFindFragmentByWho != null) {
+            fragmentFindFragmentByWho.onActivityResult(i2 & 65535, i3, intent);
             return;
         }
         String str2 = "Activity result no fragment exists for who: " + str;
@@ -313,8 +313,8 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
     @Override // android.app.Activity, android.view.LayoutInflater.Factory2
     @Nullable
     public View onCreateView(@Nullable View view, @NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
-        View dispatchFragmentsOnCreateView = dispatchFragmentsOnCreateView(view, str, context, attributeSet);
-        return dispatchFragmentsOnCreateView == null ? super.onCreateView(view, str, context, attributeSet) : dispatchFragmentsOnCreateView;
+        View viewDispatchFragmentsOnCreateView = dispatchFragmentsOnCreateView(view, str, context, attributeSet);
+        return viewDispatchFragmentsOnCreateView == null ? super.onCreateView(view, str, context, attributeSet) : viewDispatchFragmentsOnCreateView;
     }
 
     @Override // android.app.Activity
@@ -407,9 +407,9 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
             if (str == null) {
                 return;
             }
-            Fragment findFragmentByWho = this.mFragments.findFragmentByWho(str);
-            if (findFragmentByWho != null) {
-                findFragmentByWho.onRequestPermissionsResult(i2 & 65535, strArr, iArr);
+            Fragment fragmentFindFragmentByWho = this.mFragments.findFragmentByWho(str);
+            if (fragmentFindFragmentByWho != null) {
+                fragmentFindFragmentByWho.onRequestPermissionsResult(i2 & 65535, strArr, iArr);
                 return;
             }
             String str2 = "Activity result no fragment exists for who: " + str;
@@ -434,9 +434,9 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
         super.onSaveInstanceState(bundle);
         markFragmentsCreated();
         this.mFragmentLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
-        Parcelable saveAllState = this.mFragments.saveAllState();
-        if (saveAllState != null) {
-            bundle.putParcelable(FRAGMENTS_TAG, saveAllState);
+        Parcelable parcelableSaveAllState = this.mFragments.saveAllState();
+        if (parcelableSaveAllState != null) {
+            bundle.putParcelable(FRAGMENTS_TAG, parcelableSaveAllState);
         }
         if (this.mPendingFragmentActivityResults.size() > 0) {
             bundle.putInt(NEXT_CANDIDATE_REQUEST_INDEX_TAG, this.mNextCandidateRequestIndex);
@@ -577,8 +577,8 @@ public class FragmentActivity extends ComponentActivity implements ActivityCompa
     @Override // android.app.Activity, android.view.LayoutInflater.Factory
     @Nullable
     public View onCreateView(@NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
-        View dispatchFragmentsOnCreateView = dispatchFragmentsOnCreateView(null, str, context, attributeSet);
-        return dispatchFragmentsOnCreateView == null ? super.onCreateView(str, context, attributeSet) : dispatchFragmentsOnCreateView;
+        View viewDispatchFragmentsOnCreateView = dispatchFragmentsOnCreateView(null, str, context, attributeSet);
+        return viewDispatchFragmentsOnCreateView == null ? super.onCreateView(str, context, attributeSet) : viewDispatchFragmentsOnCreateView;
     }
 
     @Override // android.app.Activity

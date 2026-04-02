@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.net;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ServerConfig {
     private String faceAppSecret;
     private String faceAppid;

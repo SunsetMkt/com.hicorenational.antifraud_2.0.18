@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class IntentCompat {
     public static final String CATEGORY_LEANBACK_LAUNCHER = "android.intent.category.LEANBACK_LAUNCHER";
     public static final String EXTRA_HTML_TEXT = "android.intent.extra.HTML_TEXT";

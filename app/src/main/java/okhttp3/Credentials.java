@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 import okhttp3.internal.Util;
 import okio.ByteString;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Credentials {
     private Credentials() {
     }

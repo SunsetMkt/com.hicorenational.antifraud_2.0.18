@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.net.ssl.SSLPeerUnverifiedException;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class BasicCertificateChainCleaner extends CertificateChainCleaner {
     private static final int MAX_SIGNERS = 9;
     private final TrustRootIndex trustRootIndex;
@@ -38,8 +38,8 @@ public final class BasicCertificateChainCleaner extends CertificateChainCleaner 
         boolean z = false;
         for (int i2 = 0; i2 < 9; i2++) {
             X509Certificate x509Certificate = (X509Certificate) arrayList.get(arrayList.size() - 1);
-            X509Certificate findByIssuerAndSignature = this.trustRootIndex.findByIssuerAndSignature(x509Certificate);
-            if (findByIssuerAndSignature == null) {
+            X509Certificate x509CertificateFindByIssuerAndSignature = this.trustRootIndex.findByIssuerAndSignature(x509Certificate);
+            if (x509CertificateFindByIssuerAndSignature == null) {
                 Iterator it = arrayDeque.iterator();
                 while (it.hasNext()) {
                     X509Certificate x509Certificate2 = (X509Certificate) it.next();
@@ -53,10 +53,10 @@ public final class BasicCertificateChainCleaner extends CertificateChainCleaner 
                 }
                 throw new SSLPeerUnverifiedException("Failed to find a trusted cert that signed " + x509Certificate);
             }
-            if (arrayList.size() > 1 || !x509Certificate.equals(findByIssuerAndSignature)) {
-                arrayList.add(findByIssuerAndSignature);
+            if (arrayList.size() > 1 || !x509Certificate.equals(x509CertificateFindByIssuerAndSignature)) {
+                arrayList.add(x509CertificateFindByIssuerAndSignature);
             }
-            if (verifySignature(findByIssuerAndSignature, findByIssuerAndSignature)) {
+            if (verifySignature(x509CertificateFindByIssuerAndSignature, x509CertificateFindByIssuerAndSignature)) {
                 return arrayList;
             }
             z = true;

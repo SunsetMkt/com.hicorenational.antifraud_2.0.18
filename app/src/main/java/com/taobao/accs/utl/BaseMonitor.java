@@ -2,8 +2,8 @@ package com.taobao.accs.utl;
 
 import anet.channel.statist.StatObject;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class BaseMonitor extends StatObject {
     public static final String ALARM_MSG_ROUTING_RATE = "ele_routing_rate";
     public static final String ALARM_POINT_AUTH = "auth";
@@ -32,16 +32,14 @@ public abstract class BaseMonitor extends StatObject {
     public static final String COUNT_SERVICE_ALIVE = "service_alive";
     public static final String COUNT_SESSION_ERROR = "session_error";
     public static final String MODULE = "accs";
-
-    /* renamed from: a */
-    private boolean f9700a = false;
+    private boolean a = false;
 
     @Override // anet.channel.statist.StatObject
     public boolean beforeCommit() {
-        if (this.f9700a) {
+        if (this.a) {
             return false;
         }
-        this.f9700a = true;
+        this.a = true;
         return true;
     }
 

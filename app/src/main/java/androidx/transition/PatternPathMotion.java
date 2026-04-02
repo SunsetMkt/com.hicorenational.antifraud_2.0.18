@@ -1,5 +1,6 @@
 package androidx.transition;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Matrix;
@@ -10,7 +11,7 @@ import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.graphics.PathParser;
 import org.xmlpull.v1.XmlPullParser;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PatternPathMotion extends PathMotion {
     private Path mOriginalPatternPath;
     private final Path mPatternPath = new Path();
@@ -29,10 +30,10 @@ public class PatternPathMotion extends PathMotion {
     public Path getPath(float f2, float f3, float f4, float f5) {
         float f6 = f4 - f2;
         float f7 = f5 - f3;
-        float distance = distance(f6, f7);
-        double atan2 = Math.atan2(f7, f6);
-        this.mTempMatrix.setScale(distance, distance);
-        this.mTempMatrix.postRotate((float) Math.toDegrees(atan2));
+        float fDistance = distance(f6, f7);
+        double dAtan2 = Math.atan2(f7, f6);
+        this.mTempMatrix.setScale(fDistance, fDistance);
+        this.mTempMatrix.postRotate((float) Math.toDegrees(dAtan2));
         this.mTempMatrix.postTranslate(f2, f3);
         Path path = new Path();
         this.mPatternPath.transform(this.mTempMatrix, path);
@@ -58,24 +59,25 @@ public class PatternPathMotion extends PathMotion {
         this.mTempMatrix.setTranslate(-f4, -f5);
         float f6 = f2 - f4;
         float f7 = f3 - f5;
-        float distance = 1.0f / distance(f6, f7);
-        this.mTempMatrix.postScale(distance, distance);
+        float fDistance = 1.0f / distance(f6, f7);
+        this.mTempMatrix.postScale(fDistance, fDistance);
         this.mTempMatrix.postRotate((float) Math.toDegrees(-Math.atan2(f7, f6)));
         path.transform(this.mTempMatrix, this.mPatternPath);
         this.mOriginalPatternPath = path;
     }
 
+    @SuppressLint({"RestrictedApi"})
     public PatternPathMotion(Context context, AttributeSet attributeSet) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.PATTERN_PATH_MOTION);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.PATTERN_PATH_MOTION);
         try {
-            String namedString = TypedArrayUtils.getNamedString(obtainStyledAttributes, (XmlPullParser) attributeSet, "patternPathData", 0);
+            String namedString = TypedArrayUtils.getNamedString(typedArrayObtainStyledAttributes, (XmlPullParser) attributeSet, "patternPathData", 0);
             if (namedString != null) {
                 setPatternPath(PathParser.createPathFromPathData(namedString));
                 return;
             }
             throw new RuntimeException("pathData must be supplied for patternPathMotion");
         } finally {
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 

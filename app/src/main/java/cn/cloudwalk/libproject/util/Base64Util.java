@@ -2,7 +2,7 @@ package cn.cloudwalk.libproject.util;
 
 import android.util.Base64;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Base64Util {
     private Base64Util() {
     }

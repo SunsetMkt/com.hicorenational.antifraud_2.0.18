@@ -1,34 +1,58 @@
 package androidx.transition;
 
+import android.annotation.SuppressLint;
 import android.graphics.Matrix;
 import android.view.View;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ViewUtilsBase {
+    private static final String TAG = "ViewUtilsBase";
+    private static final int VISIBILITY_MASK = 12;
+    private static boolean sSetFrameFetched;
+    private static Method sSetFrameMethod;
+    private static Field sViewFlagsField;
+    private static boolean sViewFlagsFieldFetched;
     private float[] mMatrixValues;
 
     ViewUtilsBase() {
     }
 
+    @SuppressLint({"PrivateApi"})
+    private void fetchSetFrame() {
+        if (sSetFrameFetched) {
+            return;
+        }
+        try {
+            sSetFrameMethod = View.class.getDeclaredMethod("setFrame", Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE);
+            sSetFrameMethod.setAccessible(true);
+        } catch (NoSuchMethodException unused) {
+        }
+        sSetFrameFetched = true;
+    }
+
     public void clearNonTransitionAlpha(@NonNull View view) {
         if (view.getVisibility() == 0) {
-            view.setTag(C0703R.id.save_non_transition_alpha, null);
+            view.setTag(R.id.save_non_transition_alpha, null);
         }
     }
 
     public float getTransitionAlpha(@NonNull View view) {
-        Float f2 = (Float) view.getTag(C0703R.id.save_non_transition_alpha);
+        Float f2 = (Float) view.getTag(R.id.save_non_transition_alpha);
         return f2 != null ? view.getAlpha() / f2.floatValue() : view.getAlpha();
     }
 
     public void saveNonTransitionAlpha(@NonNull View view) {
-        if (view.getTag(C0703R.id.save_non_transition_alpha) == null) {
-            view.setTag(C0703R.id.save_non_transition_alpha, Float.valueOf(view.getAlpha()));
+        if (view.getTag(R.id.save_non_transition_alpha) == null) {
+            view.setTag(R.id.save_non_transition_alpha, Float.valueOf(view.getAlpha()));
         }
     }
 
-    public void setAnimationMatrix(@NonNull View view, Matrix matrix) {
+    public void setAnimationMatrix(@NonNull View view, @Nullable Matrix matrix) {
         if (matrix == null || matrix.isIdentity()) {
             view.setPivotX(view.getWidth() / 2);
             view.setPivotY(view.getHeight() / 2);
@@ -46,10 +70,10 @@ class ViewUtilsBase {
         }
         matrix.getValues(fArr);
         float f2 = fArr[3];
-        float sqrt = ((float) Math.sqrt(1.0f - (f2 * f2))) * (fArr[0] < 0.0f ? -1 : 1);
-        float degrees = (float) Math.toDegrees(Math.atan2(f2, sqrt));
-        float f3 = fArr[0] / sqrt;
-        float f4 = fArr[4] / sqrt;
+        float fSqrt = ((float) Math.sqrt(1.0f - (f2 * f2))) * (fArr[0] < 0.0f ? -1 : 1);
+        float degrees = (float) Math.toDegrees(Math.atan2(f2, fSqrt));
+        float f3 = fArr[0] / fSqrt;
+        float f4 = fArr[4] / fSqrt;
         float f5 = fArr[2];
         float f6 = fArr[5];
         view.setPivotX(0.0f);
@@ -61,19 +85,43 @@ class ViewUtilsBase {
         view.setScaleY(f4);
     }
 
-    public void setLeftTopRightBottom(View view, int i2, int i3, int i4, int i5) {
-        view.setLeft(i2);
-        view.setTop(i3);
-        view.setRight(i4);
-        view.setBottom(i5);
+    public void setLeftTopRightBottom(@NonNull View view, int i2, int i3, int i4, int i5) {
+        fetchSetFrame();
+        Method method = sSetFrameMethod;
+        if (method != null) {
+            try {
+                method.invoke(view, Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4), Integer.valueOf(i5));
+            } catch (IllegalAccessException unused) {
+            } catch (InvocationTargetException e2) {
+                throw new RuntimeException(e2.getCause());
+            }
+        }
     }
 
     public void setTransitionAlpha(@NonNull View view, float f2) {
-        Float f3 = (Float) view.getTag(C0703R.id.save_non_transition_alpha);
+        Float f3 = (Float) view.getTag(R.id.save_non_transition_alpha);
         if (f3 != null) {
             view.setAlpha(f3.floatValue() * f2);
         } else {
             view.setAlpha(f2);
+        }
+    }
+
+    public void setTransitionVisibility(@NonNull View view, int i2) {
+        if (!sViewFlagsFieldFetched) {
+            try {
+                sViewFlagsField = View.class.getDeclaredField("mViewFlags");
+                sViewFlagsField.setAccessible(true);
+            } catch (NoSuchFieldException unused) {
+            }
+            sViewFlagsFieldFetched = true;
+        }
+        Field field = sViewFlagsField;
+        if (field != null) {
+            try {
+                sViewFlagsField.setInt(view, i2 | (field.getInt(view) & (-13)));
+            } catch (IllegalAccessException unused2) {
+            }
         }
     }
 
@@ -97,7 +145,7 @@ class ViewUtilsBase {
             transformMatrixToLocal((View) parent, matrix);
             matrix.postTranslate(r0.getScrollX(), r0.getScrollY());
         }
-        matrix.postTranslate(view.getLeft(), view.getTop());
+        matrix.postTranslate(-view.getLeft(), -view.getTop());
         Matrix matrix2 = view.getMatrix();
         if (matrix2.isIdentity()) {
             return;

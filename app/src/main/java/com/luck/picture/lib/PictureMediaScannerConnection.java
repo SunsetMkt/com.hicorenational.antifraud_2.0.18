@@ -5,7 +5,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.text.TextUtils;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureMediaScannerConnection implements MediaScannerConnection.MediaScannerConnectionClient {
     private ScanListener mListener;
     private MediaScannerConnection mMs;

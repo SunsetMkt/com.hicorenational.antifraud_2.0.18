@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class FocusMeteringAction {
     static final long DEFAULT_AUTOCANCEL_DURATION = 5000;
     static final int DEFAULT_METERING_MODE = 7;

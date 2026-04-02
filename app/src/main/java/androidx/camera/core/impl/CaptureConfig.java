@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CaptureConfig {
     public static final Config.Option<Integer> OPTION_ROTATION = Config.Option.create("camerax.core.captureConfig.rotation", Integer.TYPE);
     final List<CameraCaptureCallback> mCameraCaptureCallbacks;
@@ -120,15 +120,15 @@ public final class CaptureConfig {
 
         public void addImplementationOptions(@NonNull Config config) {
             for (Config.Option<?> option : config.listOptions()) {
-                Object retrieveOption = this.mImplementationOptions.retrieveOption(option, null);
-                Object retrieveOption2 = config.retrieveOption(option);
-                if (retrieveOption instanceof MultiValueSet) {
-                    ((MultiValueSet) retrieveOption).addAll(((MultiValueSet) retrieveOption2).getAllItems());
+                Object objRetrieveOption = this.mImplementationOptions.retrieveOption(option, null);
+                Object objRetrieveOption2 = config.retrieveOption(option);
+                if (objRetrieveOption instanceof MultiValueSet) {
+                    ((MultiValueSet) objRetrieveOption).addAll(((MultiValueSet) objRetrieveOption2).getAllItems());
                 } else {
-                    if (retrieveOption2 instanceof MultiValueSet) {
-                        retrieveOption2 = ((MultiValueSet) retrieveOption2).mo26841clone();
+                    if (objRetrieveOption2 instanceof MultiValueSet) {
+                        objRetrieveOption2 = ((MultiValueSet) objRetrieveOption2).mo0clone();
                     }
-                    this.mImplementationOptions.insertOption(option, retrieveOption2);
+                    this.mImplementationOptions.insertOption(option, objRetrieveOption2);
                 }
             }
         }

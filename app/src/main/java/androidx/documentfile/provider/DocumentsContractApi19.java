@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import com.taobao.accs.common.Constants;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(19)
-/* loaded from: classes.dex */
 class DocumentsContractApi19 {
     private static final int FLAG_VIRTUAL_DOCUMENT = 512;
     private static final String TAG = "DocumentFile";
@@ -27,15 +27,15 @@ class DocumentsContractApi19 {
             return false;
         }
         String rawType = getRawType(context, uri);
-        int queryForInt = queryForInt(context, uri, Constants.KEY_FLAGS, 0);
+        int iQueryForInt = queryForInt(context, uri, Constants.KEY_FLAGS, 0);
         if (TextUtils.isEmpty(rawType)) {
             return false;
         }
-        if ((queryForInt & 4) != 0) {
+        if ((iQueryForInt & 4) != 0) {
             return true;
         }
-        if (!"vnd.android.document/directory".equals(rawType) || (queryForInt & 8) == 0) {
-            return (TextUtils.isEmpty(rawType) || (queryForInt & 2) == 0) ? false : true;
+        if (!"vnd.android.document/directory".equals(rawType) || (iQueryForInt & 8) == 0) {
+            return (TextUtils.isEmpty(rawType) || (iQueryForInt & 2) == 0) ? false : true;
         }
         return true;
     }
@@ -52,15 +52,15 @@ class DocumentsContractApi19 {
     }
 
     public static boolean exists(Context context, Uri uri) {
-        Cursor cursor = null;
+        Cursor cursorQuery = null;
         try {
-            cursor = context.getContentResolver().query(uri, new String[]{"document_id"}, null, null, null);
-            return cursor.getCount() > 0;
+            cursorQuery = context.getContentResolver().query(uri, new String[]{"document_id"}, null, null, null);
+            return cursorQuery.getCount() > 0;
         } catch (Exception e2) {
             String str = "Failed query: " + e2;
             return false;
         } finally {
-            closeQuietly(cursor);
+            closeQuietly(cursorQuery);
         }
     }
 
@@ -113,29 +113,31 @@ class DocumentsContractApi19 {
     }
 
     private static long queryForLong(Context context, Uri uri, String str, long j2) {
-        Cursor cursor = null;
+        Cursor cursorQuery = null;
         try {
-            cursor = context.getContentResolver().query(uri, new String[]{str}, null, null, null);
-            return (!cursor.moveToFirst() || cursor.isNull(0)) ? j2 : cursor.getLong(0);
+            cursorQuery = context.getContentResolver().query(uri, new String[]{str}, null, null, null);
+            return (!cursorQuery.moveToFirst() || cursorQuery.isNull(0)) ? j2 : cursorQuery.getLong(0);
         } catch (Exception e2) {
             String str2 = "Failed query: " + e2;
             return j2;
         } finally {
-            closeQuietly(cursor);
+            closeQuietly(cursorQuery);
         }
+        closeQuietly(cursorQuery);
     }
 
     @Nullable
     private static String queryForString(Context context, Uri uri, String str, @Nullable String str2) {
-        Cursor cursor = null;
+        Cursor cursorQuery = null;
         try {
-            cursor = context.getContentResolver().query(uri, new String[]{str}, null, null, null);
-            return (!cursor.moveToFirst() || cursor.isNull(0)) ? str2 : cursor.getString(0);
+            cursorQuery = context.getContentResolver().query(uri, new String[]{str}, null, null, null);
+            return (!cursorQuery.moveToFirst() || cursorQuery.isNull(0)) ? str2 : cursorQuery.getString(0);
         } catch (Exception e2) {
             String str3 = "Failed query: " + e2;
             return str2;
         } finally {
-            closeQuietly(cursor);
+            closeQuietly(cursorQuery);
         }
+        closeQuietly(cursorQuery);
     }
 }

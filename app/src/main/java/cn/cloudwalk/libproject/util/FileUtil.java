@@ -14,21 +14,21 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FileUtil {
     public static final String DST_FOLDER_NAME = "FaceRecog";
     public static final String TAG = "FileUtil";
     public static String storagePath = "";
 
     public static void assetsDataToDest(Context context, String str, String str2) throws IOException {
-        InputStream open = context.getAssets().open(str);
+        InputStream inputStreamOpen = context.getAssets().open(str);
         FileOutputStream fileOutputStream = new FileOutputStream(str2);
         byte[] bArr = new byte[1024];
-        for (int read = open.read(bArr); read > 0; read = open.read(bArr)) {
-            fileOutputStream.write(bArr, 0, read);
+        for (int i2 = inputStreamOpen.read(bArr); i2 > 0; i2 = inputStreamOpen.read(bArr)) {
+            fileOutputStream.write(bArr, 0, i2);
         }
         fileOutputStream.flush();
-        open.close();
+        inputStreamOpen.close();
         fileOutputStream.close();
     }
 
@@ -42,16 +42,16 @@ public class FileUtil {
             byte[] bArr = new byte[1444];
             int i2 = 0;
             while (true) {
-                int read = fileInputStream.read(bArr);
-                if (read == -1) {
+                int i3 = fileInputStream.read(bArr);
+                if (i3 == -1) {
                     fileOutputStream.flush();
                     fileOutputStream.close();
                     fileInputStream.close();
                     return;
                 } else {
-                    i2 += read;
+                    i2 += i3;
                     System.out.println(i2);
-                    fileOutputStream.write(bArr, 0, read);
+                    fileOutputStream.write(bArr, 0, i3);
                 }
             }
         } catch (Exception e2) {
@@ -60,48 +60,48 @@ public class FileUtil {
     }
 
     public static void copyRawFileToSdcard(String str, AssetManager assetManager, String str2) {
-        InputStream inputStream;
+        InputStream inputStreamOpen;
         try {
-            inputStream = assetManager.open(str);
+            inputStreamOpen = assetManager.open(str);
         } catch (IOException e2) {
             LogUtils.LOGE("tag", e2.getMessage());
-            inputStream = null;
+            inputStreamOpen = null;
         }
-        if (inputStream != null) {
-            inputStreamToFile(inputStream, str2);
+        if (inputStreamOpen != null) {
+            inputStreamToFile(inputStreamOpen, str2);
         }
     }
 
     public static void createModelFile(String str, String str2, AssetManager assetManager) {
-        List<String> list;
+        List<String> listAsList;
         String str3 = str.endsWith("/") ? str + str2 : str + "/" + str2;
         if (new File(str3).exists()) {
             return;
         }
         mkDir(str);
         try {
-            list = Arrays.asList(assetManager.list(Constants.KEY_MODEL));
+            listAsList = Arrays.asList(assetManager.list(Constants.KEY_MODEL));
         } catch (IOException e2) {
             LogUtils.LOGE(TAG, e2.getMessage());
-            list = null;
+            listAsList = null;
         }
-        for (String str4 : list) {
+        for (String str4 : listAsList) {
             LogUtils.LOGE(TAG, str4);
             writeStringToFile(readRawFileToString(Constants.KEY_MODEL + File.separator + str4, assetManager), str3);
         }
     }
 
     public static void createModelFileAll(String str, AssetManager assetManager) {
-        List<String> list;
+        List<String> listAsList;
         String str2 = str.endsWith("/") ? str : str + "/";
         mkDir(str);
         try {
-            list = Arrays.asList(assetManager.list(Constants.KEY_MODEL));
+            listAsList = Arrays.asList(assetManager.list(Constants.KEY_MODEL));
         } catch (IOException e2) {
             LogUtils.LOGE(TAG, e2.getMessage());
-            list = null;
+            listAsList = null;
         }
-        for (String str3 : list) {
+        for (String str3 : listAsList) {
             LogUtils.LOGE(TAG, str3);
             if (!new File(str2 + str3).exists()) {
                 copyRawFileToSdcard(Constants.KEY_MODEL + File.separator + str3, assetManager, str2 + str3);
@@ -123,7 +123,7 @@ public class FileUtil {
     }
 
     public static byte[] file2byte(File file) throws IOException {
-        int read;
+        int i2;
         if (file == null) {
             return null;
         }
@@ -135,12 +135,12 @@ public class FileUtil {
             return null;
         }
         byte[] bArr = new byte[length];
-        int i2 = 0;
-        while (i2 < bArr.length && (read = fileInputStream.read(bArr, i2, bArr.length - i2)) >= 0) {
-            i2 += read;
+        int i3 = 0;
+        while (i3 < bArr.length && (i2 = fileInputStream.read(bArr, i3, bArr.length - i3)) >= 0) {
+            i3 += i2;
         }
         fileInputStream.close();
-        if (i2 >= bArr.length) {
+        if (i3 >= bArr.length) {
             return bArr;
         }
         System.out.println("file length is error");
@@ -148,8 +148,8 @@ public class FileUtil {
     }
 
     public static String getExtensionNameWithDot(String str) {
-        int lastIndexOf;
-        return (str == null || str.length() <= 0 || (lastIndexOf = str.lastIndexOf(46)) <= -1 || lastIndexOf >= str.length() + (-1)) ? str : str.substring(lastIndexOf);
+        int iLastIndexOf;
+        return (str == null || str.length() <= 0 || (iLastIndexOf = str.lastIndexOf(46)) <= -1 || iLastIndexOf >= str.length() + (-1)) ? str : str.substring(iLastIndexOf);
     }
 
     public static byte[] inputStreamToByteArray(InputStream inputStream) {
@@ -157,14 +157,15 @@ public class FileUtil {
         byte[] bArr = new byte[1024];
         while (true) {
             try {
-                int read = inputStream.read(bArr);
-                if (read == -1) {
+                int i2 = inputStream.read(bArr);
+                if (i2 == -1) {
                     break;
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
+                byteArrayOutputStream.write(bArr, 0, i2);
             } catch (IOException e2) {
                 e2.printStackTrace();
             }
+            return byteArrayOutputStream.toByteArray();
         }
         byteArrayOutputStream.close();
         inputStream.close();
@@ -176,8 +177,8 @@ public class FileUtil {
         byte[] bArr = new byte[1024];
         while (true) {
             try {
-                int read = inputStream.read(bArr);
-                if (read == -1) {
+                int i2 = inputStream.read(bArr);
+                if (i2 == -1) {
                     byteArrayOutputStream.close();
                     inputStream.close();
                     byte[] byteArray = byteArrayOutputStream.toByteArray();
@@ -186,7 +187,7 @@ public class FileUtil {
                     fileOutputStream.close();
                     return;
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
+                byteArrayOutputStream.write(bArr, 0, i2);
             } catch (IOException e2) {
                 e2.printStackTrace();
                 return;
@@ -199,14 +200,15 @@ public class FileUtil {
         byte[] bArr = new byte[1024];
         while (true) {
             try {
-                int read = inputStream.read(bArr);
-                if (read == -1) {
+                int i2 = inputStream.read(bArr);
+                if (i2 == -1) {
                     break;
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
+                byteArrayOutputStream.write(bArr, 0, i2);
             } catch (IOException e2) {
                 e2.printStackTrace();
             }
+            return byteArrayOutputStream.toString();
         }
         byteArrayOutputStream.close();
         inputStream.close();
@@ -214,11 +216,11 @@ public class FileUtil {
     }
 
     public static void mkDir(String str) {
-        String[] split = str.split("/");
+        String[] strArrSplit = str.split("/");
         String str2 = "";
-        for (int i2 = 1; i2 < split.length; i2++) {
-            str2 = str2 + "/" + split[i2];
-            File file = new File(split[0] + str2);
+        for (int i2 = 1; i2 < strArrSplit.length; i2++) {
+            str2 = str2 + "/" + strArrSplit[i2];
+            File file = new File(strArrSplit[0] + str2);
             if (!file.exists()) {
                 file.mkdir();
             }
@@ -234,29 +236,29 @@ public class FileUtil {
     }
 
     public static byte[] readRawFileToByteArray(String str, AssetManager assetManager) {
-        InputStream inputStream;
+        InputStream inputStreamOpen;
         try {
-            inputStream = assetManager.open(str);
+            inputStreamOpen = assetManager.open(str);
         } catch (IOException e2) {
             LogUtils.LOGE("tag", e2.getMessage());
-            inputStream = null;
+            inputStreamOpen = null;
         }
-        if (inputStream != null) {
-            return inputStreamToByteArray(inputStream);
+        if (inputStreamOpen != null) {
+            return inputStreamToByteArray(inputStreamOpen);
         }
         return null;
     }
 
     public static String readRawFileToString(String str, AssetManager assetManager) {
-        InputStream inputStream;
+        InputStream inputStreamOpen;
         try {
-            inputStream = assetManager.open(str);
+            inputStreamOpen = assetManager.open(str);
         } catch (IOException e2) {
             LogUtils.LOGE("tag", e2.getMessage());
-            inputStream = null;
+            inputStreamOpen = null;
         }
-        if (inputStream != null) {
-            return inputStreamToString(inputStream);
+        if (inputStreamOpen != null) {
+            return inputStreamToString(inputStreamOpen);
         }
         return null;
     }
@@ -279,11 +281,11 @@ public class FileUtil {
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     byte[] bArr = new byte[1024];
                     while (true) {
-                        int read = zipInputStream.read(bArr);
-                        if (read == -1) {
+                        int i2 = zipInputStream.read(bArr);
+                        if (i2 == -1) {
                             break;
                         }
-                        fileOutputStream.write(bArr, 0, read);
+                        fileOutputStream.write(bArr, 0, i2);
                         fileOutputStream.flush();
                     }
                     fileOutputStream.close();

@@ -1,28 +1,28 @@
 package com.huawei.agconnect;
 
 import android.content.Context;
-import com.huawei.agconnect.core.p169a.C2264b;
+import com.huawei.agconnect.core.a.b;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AGConnectInstance {
     public static AGConnectInstance buildInstance(AGConnectOptions aGConnectOptions) {
-        return C2264b.m6451a(aGConnectOptions);
+        return b.a(aGConnectOptions);
     }
 
     public static AGConnectInstance getInstance() {
-        return C2264b.m6450a();
+        return b.a();
     }
 
     public static AGConnectInstance getInstance(String str) {
-        return C2264b.m6453a(str);
+        return b.a(str);
     }
 
     public static void initialize(Context context) {
-        C2264b.m6454a(context);
+        b.a(context);
     }
 
     public static void initialize(Context context, AGConnectOptionsBuilder aGConnectOptionsBuilder) {
-        C2264b.m6456a(context, aGConnectOptionsBuilder);
+        b.a(context, aGConnectOptionsBuilder);
     }
 
     public abstract Context getContext();

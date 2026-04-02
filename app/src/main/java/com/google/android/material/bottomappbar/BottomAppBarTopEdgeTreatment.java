@@ -1,10 +1,13 @@
 package com.google.android.material.bottomappbar;
 
+import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 import com.google.android.material.shape.EdgeTreatment;
 import com.google.android.material.shape.ShapePath;
 
-/* loaded from: classes.dex */
-public class BottomAppBarTopEdgeTreatment extends EdgeTreatment {
+/* JADX INFO: loaded from: classes.dex */
+public class BottomAppBarTopEdgeTreatment extends EdgeTreatment implements Cloneable {
     private static final int ANGLE_LEFT = 180;
     private static final int ANGLE_UP = 270;
     private static final int ARC_HALF = 180;
@@ -18,10 +21,7 @@ public class BottomAppBarTopEdgeTreatment extends EdgeTreatment {
     public BottomAppBarTopEdgeTreatment(float f2, float f3, float f4) {
         this.fabMargin = f2;
         this.roundedCornerRadius = f3;
-        this.cradleVerticalOffset = f4;
-        if (f4 < 0.0f) {
-            throw new IllegalArgumentException("cradleVerticalOffset must be positive.");
-        }
+        setCradleVerticalOffset(f4);
         this.horizontalOffset = 0.0f;
     }
 
@@ -30,33 +30,32 @@ public class BottomAppBarTopEdgeTreatment extends EdgeTreatment {
     }
 
     @Override // com.google.android.material.shape.EdgeTreatment
-    public void getEdgePath(float f2, float f3, ShapePath shapePath) {
-        float f4 = this.fabDiameter;
-        if (f4 == 0.0f) {
+    public void getEdgePath(float f2, float f3, float f4, @NonNull ShapePath shapePath) {
+        float f5 = this.fabDiameter;
+        if (f5 == 0.0f) {
             shapePath.lineTo(f2, 0.0f);
             return;
         }
-        float f5 = ((this.fabMargin * 2.0f) + f4) / 2.0f;
-        float f6 = f3 * this.roundedCornerRadius;
-        float f7 = (f2 / 2.0f) + this.horizontalOffset;
-        float f8 = (this.cradleVerticalOffset * f3) + ((1.0f - f3) * f5);
-        if (f8 / f5 >= 1.0f) {
+        float f6 = ((this.fabMargin * 2.0f) + f5) / 2.0f;
+        float f7 = f4 * this.roundedCornerRadius;
+        float f8 = f3 + this.horizontalOffset;
+        float f9 = (this.cradleVerticalOffset * f4) + ((1.0f - f4) * f6);
+        if (f9 / f6 >= 1.0f) {
             shapePath.lineTo(f2, 0.0f);
             return;
         }
-        float f9 = f5 + f6;
-        float f10 = f8 + f6;
-        float sqrt = (float) Math.sqrt((f9 * f9) - (f10 * f10));
-        float f11 = f7 - sqrt;
-        float f12 = f7 + sqrt;
-        float degrees = (float) Math.toDegrees(Math.atan(sqrt / f10));
-        float f13 = 90.0f - degrees;
-        float f14 = f11 - f6;
-        shapePath.lineTo(f14, 0.0f);
-        float f15 = f6 * 2.0f;
-        shapePath.addArc(f14, 0.0f, f11 + f6, f15, 270.0f, degrees);
-        shapePath.addArc(f7 - f5, (-f5) - f8, f7 + f5, f5 - f8, 180.0f - f13, (f13 * 2.0f) - 180.0f);
-        shapePath.addArc(f12 - f6, 0.0f, f12 + f6, f15, 270.0f - degrees, degrees);
+        float f10 = f6 + f7;
+        float f11 = f9 + f7;
+        float fSqrt = (float) Math.sqrt((f10 * f10) - (f11 * f11));
+        float f12 = f8 - fSqrt;
+        float f13 = f8 + fSqrt;
+        float degrees = (float) Math.toDegrees(Math.atan(fSqrt / f11));
+        float f14 = 90.0f - degrees;
+        shapePath.lineTo(f12, 0.0f);
+        float f15 = f7 * 2.0f;
+        shapePath.addArc(f12 - f7, 0.0f, f12 + f7, f15, 270.0f, degrees);
+        shapePath.addArc(f8 - f6, (-f6) - f9, f8 + f6, f6 - f9, 180.0f - f14, (f14 * 2.0f) - 180.0f);
+        shapePath.addArc(f13 - f7, 0.0f, f13 + f7, f15, 270.0f - degrees, degrees);
         shapePath.lineTo(f2, 0.0f);
     }
 
@@ -68,15 +67,20 @@ public class BottomAppBarTopEdgeTreatment extends EdgeTreatment {
         return this.roundedCornerRadius;
     }
 
-    float getFabDiameter() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public float getFabDiameter() {
         return this.fabDiameter;
     }
 
-    float getHorizontalOffset() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public float getHorizontalOffset() {
         return this.horizontalOffset;
     }
 
-    void setCradleVerticalOffset(float f2) {
+    void setCradleVerticalOffset(@FloatRange(from = 0.0d) float f2) {
+        if (f2 < 0.0f) {
+            throw new IllegalArgumentException("cradleVerticalOffset must be positive.");
+        }
         this.cradleVerticalOffset = f2;
     }
 
@@ -88,7 +92,8 @@ public class BottomAppBarTopEdgeTreatment extends EdgeTreatment {
         this.roundedCornerRadius = f2;
     }
 
-    void setFabDiameter(float f2) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public void setFabDiameter(float f2) {
         this.fabDiameter = f2;
     }
 

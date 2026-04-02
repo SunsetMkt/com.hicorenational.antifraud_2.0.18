@@ -7,8 +7,8 @@ import android.service.media.MediaBrowserService;
 import androidx.annotation.RequiresApi;
 import androidx.media.MediaBrowserServiceCompatApi21;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-/* loaded from: classes.dex */
 class MediaBrowserServiceCompatApi23 {
 
     static class MediaBrowserServiceAdaptor extends MediaBrowserServiceCompatApi21.MediaBrowserServiceAdaptor {

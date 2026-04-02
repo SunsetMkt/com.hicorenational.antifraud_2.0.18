@@ -9,12 +9,11 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Process;
 import android.text.TextUtils;
-import com.umeng.analytics.pro.C3336at;
-import com.umeng.analytics.pro.C3351bh;
+import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.bh;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import com.umeng.commonsdk.internal.crash.UMCrashManager;
 import com.umeng.commonsdk.statistics.common.ULog;
-import com.umeng.commonsdk.statistics.internal.C3513a;
 import com.umeng.commonsdk.statistics.internal.PreferenceWrapper;
 import com.xiaomi.mipush.sdk.Constants;
 import java.io.BufferedReader;
@@ -30,12 +29,12 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMFrUtils {
     private static final String KEY_LAST_INSTANT_SUCC_BUILD_TIME = "last_instant_build_time";
     private static final String KEY_LAST_SUCC_BUILD_TIME = "last_successful_build_time";
     private static Object mEnvelopeBuildTimeLock = new Object();
-    private static String mDefaultEnvelopeDir = C3336at.m10865b().m10868b(C3336at.f11487a);
+    private static String mDefaultEnvelopeDir = at.b().b(at.a);
     private static String mDefaultEnvelopeDirPath = null;
     private static Object mEnvelopeFileLock = new Object();
     private static String sCurrentProcessName = "";
@@ -90,8 +89,8 @@ public class UMFrUtils {
             try {
                 String processName = Build.VERSION.SDK_INT >= 28 ? Application.getProcessName() : "";
                 if (TextUtils.isEmpty(processName)) {
-                    int myPid = Process.myPid();
-                    String processName2 = getProcessName(myPid);
+                    int iMyPid = Process.myPid();
+                    String processName2 = getProcessName(iMyPid);
                     if (TextUtils.isEmpty(processName2)) {
                         ActivityManager activityManager = (ActivityManager) context.getSystemService("activity");
                         if (activityManager != null && (runningAppProcesses = activityManager.getRunningAppProcesses()) != null && runningAppProcesses.size() > 0) {
@@ -101,7 +100,7 @@ public class UMFrUtils {
                                     break;
                                 }
                                 ActivityManager.RunningAppProcessInfo next = it.next();
-                                if (next.pid == myPid) {
+                                if (next.pid == iMyPid) {
                                     sCurrentProcessName = next.processName;
                                     break;
                                 }
@@ -125,20 +124,24 @@ public class UMFrUtils {
     }
 
     public static String getEnvelopeDirPath(Context context) {
+        String str;
+        File file;
         synchronized (mEnvelopeFileLock) {
             try {
                 if (mDefaultEnvelopeDirPath == null) {
                     mDefaultEnvelopeDirPath = context.getFilesDir().getAbsolutePath() + File.separator + "." + mDefaultEnvelopeDir;
                 }
-                File file = new File(mDefaultEnvelopeDirPath);
-                if (!file.exists() && !file.mkdir()) {
-                    ULog.m11768d("--->>> Create Envelope Directory failed!!!");
-                }
+                file = new File(mDefaultEnvelopeDirPath);
             } finally {
-                return mDefaultEnvelopeDirPath;
+            }
+            if (file.exists() || file.mkdir()) {
+                str = mDefaultEnvelopeDirPath;
+            } else {
+                ULog.d("--->>> Create Envelope Directory failed!!!");
+                str = mDefaultEnvelopeDirPath;
             }
         }
-        return mDefaultEnvelopeDirPath;
+        return str;
     }
 
     public static File getEnvelopeFile(Context context) {
@@ -147,20 +150,20 @@ public class UMFrUtils {
         }
         File file = new File(getEnvelopeDirPath(context));
         synchronized (mEnvelopeFileLock) {
-            File[] listFiles = file.listFiles();
-            if (listFiles != null && listFiles.length != 0) {
-                Arrays.sort(listFiles, new Comparator<File>() { // from class: com.umeng.commonsdk.framework.UMFrUtils.2
+            File[] fileArrListFiles = file.listFiles();
+            if (fileArrListFiles != null && fileArrListFiles.length != 0) {
+                Arrays.sort(fileArrListFiles, new Comparator<File>() { // from class: com.umeng.commonsdk.framework.UMFrUtils.2
                     @Override // java.util.Comparator
-                    /* renamed from: a, reason: merged with bridge method [inline-methods] */
+                    /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
                     public int compare(File file2, File file3) {
-                        long lastModified = file2.lastModified() - file3.lastModified();
-                        if (lastModified > 0) {
+                        long jLastModified = file2.lastModified() - file3.lastModified();
+                        if (jLastModified > 0) {
                             return 1;
                         }
-                        return lastModified == 0 ? 0 : -1;
+                        return jLastModified == 0 ? 0 : -1;
                     }
                 });
-                return listFiles[0];
+                return fileArrListFiles[0];
             }
             return null;
         }
@@ -186,10 +189,10 @@ public class UMFrUtils {
         try {
             String currentProcessName = getCurrentProcessName(context);
             if (!TextUtils.isEmpty(currentProcessName)) {
-                String m10868b = C3336at.m10865b().m10868b(C3336at.f11483B);
-                String replace = currentProcessName.replace(':', '_');
-                ULog.m11768d("--->>> getEnvelopeDir: use current process name as envelope directory.");
-                return m10868b + replace;
+                String strB = at.b().b(at.B);
+                String strReplace = currentProcessName.replace(':', '_');
+                ULog.d("--->>> getEnvelopeDir: use current process name as envelope directory.");
+                return strB + strReplace;
             }
         } catch (Throwable th) {
             UMCrashManager.reportCrash(context, th);
@@ -202,15 +205,15 @@ public class UMFrUtils {
         try {
             bufferedReader = new BufferedReader(new FileReader("/proc/" + i2 + "/cmdline"));
             try {
-                String readLine = bufferedReader.readLine();
-                if (!TextUtils.isEmpty(readLine)) {
-                    readLine = readLine.trim();
+                String line = bufferedReader.readLine();
+                if (!TextUtils.isEmpty(line)) {
+                    line = line.trim();
                 }
                 try {
                     bufferedReader.close();
                 } catch (Throwable unused) {
                 }
-                return readLine;
+                return line;
             } catch (Throwable unused2) {
                 if (bufferedReader != null) {
                     try {
@@ -226,35 +229,35 @@ public class UMFrUtils {
     }
 
     public static String getSubProcessName(Context context) {
-        String str;
-        str = "";
+        String strSubstring;
+        strSubstring = "";
         try {
             String currentProcessName = getCurrentProcessName(context);
-            int indexOf = currentProcessName.indexOf(Constants.COLON_SEPARATOR);
-            str = indexOf >= 0 ? currentProcessName.substring(indexOf + 1) : "";
-            if (indexOf < 0) {
+            int iIndexOf = currentProcessName.indexOf(Constants.COLON_SEPARATOR);
+            strSubstring = iIndexOf >= 0 ? currentProcessName.substring(iIndexOf + 1) : "";
+            if (iIndexOf < 0) {
                 String packageName = context.getPackageName();
                 if (currentProcessName.length() > packageName.length()) {
                     currentProcessName = currentProcessName.substring(packageName.length() + 1, currentProcessName.length());
                 }
             } else {
-                currentProcessName = str;
+                currentProcessName = strSubstring;
             }
             return currentProcessName;
         } catch (Throwable th) {
             UMCrashManager.reportCrash(context.getApplicationContext(), th);
-            return str;
+            return strSubstring;
         }
     }
 
     public static boolean hasEnvelopeFile(Context context, UMLogDataProtocol.UMBusinessType uMBusinessType) {
-        File[] listFiles;
-        String str = uMBusinessType == UMLogDataProtocol.UMBusinessType.U_INTERNAL ? C3351bh.f11581aF : "a";
+        File[] fileArrListFiles;
+        String str = uMBusinessType == UMLogDataProtocol.UMBusinessType.U_INTERNAL ? bh.aF : bh.ay;
         if (uMBusinessType == UMLogDataProtocol.UMBusinessType.U_ZeroEnv) {
-            str = C3351bh.f11582aG;
+            str = bh.aG;
         }
         if (uMBusinessType == UMLogDataProtocol.UMBusinessType.U_Silent) {
-            str = C3351bh.f11585aJ;
+            str = bh.aJ;
         }
         String envelopeDirPath = getEnvelopeDirPath(context);
         if (envelopeDirPath == null) {
@@ -263,12 +266,12 @@ public class UMFrUtils {
         File file = new File(envelopeDirPath);
         synchronized (mEnvelopeFileLock) {
             try {
-                listFiles = file.listFiles();
+                fileArrListFiles = file.listFiles();
             } catch (Throwable th) {
                 UMCrashManager.reportCrash(context, th);
             }
-            if (listFiles != null && listFiles.length != 0) {
-                for (File file2 : listFiles) {
+            if (fileArrListFiles != null && fileArrListFiles.length != 0) {
+                for (File file2 : fileArrListFiles) {
                     if (file2.getName().startsWith(str)) {
                         return true;
                     }
@@ -312,24 +315,24 @@ public class UMFrUtils {
     public static void removeRedundantEnvelopeFiles(Context context, int i2) {
         File file = new File(getEnvelopeDirPath(context));
         synchronized (mEnvelopeFileLock) {
-            File[] listFiles = file.listFiles();
-            if (listFiles != null && listFiles.length > i2) {
-                Arrays.sort(listFiles, new Comparator<File>() { // from class: com.umeng.commonsdk.framework.UMFrUtils.1
+            File[] fileArrListFiles = file.listFiles();
+            if (fileArrListFiles != null && fileArrListFiles.length > i2) {
+                Arrays.sort(fileArrListFiles, new Comparator<File>() { // from class: com.umeng.commonsdk.framework.UMFrUtils.1
                     @Override // java.util.Comparator
-                    /* renamed from: a, reason: merged with bridge method [inline-methods] */
+                    /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
                     public int compare(File file2, File file3) {
-                        long lastModified = file2.lastModified() - file3.lastModified();
-                        if (lastModified > 0) {
+                        long jLastModified = file2.lastModified() - file3.lastModified();
+                        if (jLastModified > 0) {
                             return 1;
                         }
-                        return lastModified == 0 ? 0 : -1;
+                        return jLastModified == 0 ? 0 : -1;
                     }
                 });
-                if (listFiles.length > i2) {
-                    for (int i3 = 0; i3 < listFiles.length - i2; i3++) {
+                if (fileArrListFiles.length > i2) {
+                    for (int i3 = 0; i3 < fileArrListFiles.length - i2; i3++) {
                         try {
-                            if (!listFiles[i3].delete()) {
-                                ULog.m11768d("--->>> remove [" + i3 + "] file fail.");
+                            if (!fileArrListFiles[i3].delete()) {
+                                ULog.d("--->>> remove [" + i3 + "] file fail.");
                             }
                         } catch (Throwable th) {
                             UMCrashManager.reportCrash(context, th);
@@ -353,12 +356,12 @@ public class UMFrUtils {
                     try {
                         fileOutputStream2.write(bArr);
                         fileOutputStream2.close();
-                        boolean m11881a = C3513a.m11877a(context).m11881a(str);
-                        boolean m11883b = C3513a.m11877a(context).m11883b(str);
-                        if (m11881a) {
+                        boolean zA = com.umeng.commonsdk.statistics.internal.a.a(context).a(str);
+                        boolean zB = com.umeng.commonsdk.statistics.internal.a.a(context).b(str);
+                        if (zA) {
                             updateLastSuccessfulBuildTime(context);
                         }
-                        if (m11883b) {
+                        if (zB) {
                             updateLastInstantBuildTime(context);
                         }
                         return 0;
@@ -410,8 +413,8 @@ public class UMFrUtils {
         }
         File file = new File(context.getFilesDir().getAbsolutePath() + "/." + legacyEnvelopeDir);
         if (file.exists()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles == null || listFiles.length == 0) {
+            File[] fileArrListFiles = file.listFiles();
+            if (fileArrListFiles == null || fileArrListFiles.length == 0) {
                 try {
                     if (file.isDirectory()) {
                         file.delete();
@@ -425,8 +428,8 @@ public class UMFrUtils {
             }
             try {
                 String envelopeDirPath = getEnvelopeDirPath(context);
-                for (int i2 = 0; i2 < listFiles.length; i2++) {
-                    listFiles[i2].renameTo(new File(envelopeDirPath + File.separator + listFiles[i2].getName()));
+                for (int i2 = 0; i2 < fileArrListFiles.length; i2++) {
+                    fileArrListFiles[i2].renameTo(new File(envelopeDirPath + File.separator + fileArrListFiles[i2].getName()));
                 }
                 if (file.isDirectory()) {
                     file.delete();
@@ -466,10 +469,10 @@ public class UMFrUtils {
                     throw th;
                 }
                 try {
-                    MappedByteBuffer load = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size()).load();
+                    MappedByteBuffer mappedByteBufferLoad = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size()).load();
                     bArr = new byte[(int) channel.size()];
-                    if (load.remaining() > 0) {
-                        load.get(bArr, 0, load.remaining());
+                    if (mappedByteBufferLoad.remaining() > 0) {
+                        mappedByteBufferLoad.get(bArr, 0, mappedByteBufferLoad.remaining());
                     }
                     try {
                         channel.close();

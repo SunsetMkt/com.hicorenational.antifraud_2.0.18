@@ -8,8 +8,8 @@ import androidx.annotation.RequiresApi;
 import androidx.camera.camera2.internal.compat.params.SessionConfigurationCompat;
 import androidx.core.util.Preconditions;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(28)
-/* loaded from: classes.dex */
 class CameraDeviceCompatApi28Impl extends CameraDeviceCompatApi24Impl {
     CameraDeviceCompatApi28Impl() {
     }

@@ -3,7 +3,7 @@ package cn.cloudwalk.libproject.dialog;
 import android.view.View;
 import android.view.ViewGroup;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseDialogOnClickHelper {
     private static BaseDialogOnClickHelper OnClickHelper;
 

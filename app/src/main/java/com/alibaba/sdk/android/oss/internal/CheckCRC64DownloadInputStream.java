@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.zip.CheckedInputStream;
 import java.util.zip.Checksum;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CheckCRC64DownloadInputStream extends CheckedInputStream {
     private long mClientCRC64;
     private String mRequestId;
@@ -22,7 +22,7 @@ public class CheckCRC64DownloadInputStream extends CheckedInputStream {
     }
 
     private void checkCRC64(int i2) throws IOException {
-        this.mTotalBytesRead += i2;
+        this.mTotalBytesRead += (long) i2;
         if (this.mTotalBytesRead >= this.mTotalLength) {
             this.mClientCRC64 = getChecksum().getValue();
             OSSUtils.checkChecksum(Long.valueOf(this.mClientCRC64), Long.valueOf(this.mServerCRC64), this.mRequestId);
@@ -35,15 +35,15 @@ public class CheckCRC64DownloadInputStream extends CheckedInputStream {
 
     @Override // java.util.zip.CheckedInputStream, java.io.FilterInputStream, java.io.InputStream
     public int read() throws IOException {
-        int read = super.read();
-        checkCRC64(read);
-        return read;
+        int i2 = super.read();
+        checkCRC64(i2);
+        return i2;
     }
 
     @Override // java.util.zip.CheckedInputStream, java.io.FilterInputStream, java.io.InputStream
     public int read(byte[] bArr, int i2, int i3) throws IOException {
-        int read = super.read(bArr, i2, i3);
-        checkCRC64(read);
-        return read;
+        int i4 = super.read(bArr, i2, i3);
+        checkCRC64(i4);
+        return i4;
     }
 }

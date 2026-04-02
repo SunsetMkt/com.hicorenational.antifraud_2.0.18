@@ -8,45 +8,43 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FlowLayout extends ViewGroup {
 
-    /* renamed from: f */
-    private static final String f16848f = "FlowLayout";
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static final String f9423f = "FlowLayout";
 
-    /* renamed from: g */
-    private static final int f16849g = -1;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private static final int f9424g = -1;
 
-    /* renamed from: h */
-    private static final int f16850h = 0;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private static final int f9425h = 0;
 
-    /* renamed from: i */
-    private static final int f16851i = 1;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private static final int f9426i = 1;
+    protected List<List<View>> a;
 
-    /* renamed from: a */
-    protected List<List<View>> f16852a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    protected List<Integer> f9427b;
 
-    /* renamed from: b */
-    protected List<Integer> f16853b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    protected List<Integer> f9428c;
 
-    /* renamed from: c */
-    protected List<Integer> f16854c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private int f9429d;
 
-    /* renamed from: d */
-    private int f16855d;
-
-    /* renamed from: e */
-    private List<View> f16856e;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private List<View> f9430e;
 
     public FlowLayout(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f16852a = new ArrayList();
-        this.f16853b = new ArrayList();
-        this.f16854c = new ArrayList();
-        this.f16856e = new ArrayList();
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C4434R.styleable.TagFlowLayout);
-        this.f16855d = obtainStyledAttributes.getInt(C4434R.styleable.TagFlowLayout_tag_gravity, -1);
-        obtainStyledAttributes.recycle();
+        this.a = new ArrayList();
+        this.f9427b = new ArrayList();
+        this.f9428c = new ArrayList();
+        this.f9430e = new ArrayList();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.TagFlowLayout);
+        this.f9429d = typedArrayObtainStyledAttributes.getInt(R.styleable.TagFlowLayout_tag_gravity, -1);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     @Override // android.view.ViewGroup
@@ -63,73 +61,73 @@ public class FlowLayout extends ViewGroup {
     protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
         int i6;
         int paddingLeft;
-        this.f16852a.clear();
-        this.f16853b.clear();
-        this.f16854c.clear();
-        this.f16856e.clear();
+        this.a.clear();
+        this.f9427b.clear();
+        this.f9428c.clear();
+        this.f9430e.clear();
         int width = getWidth();
         int childCount = getChildCount();
+        int iMax = 0;
         int i7 = 0;
-        int i8 = 0;
-        for (int i9 = 0; i9 < childCount; i9++) {
-            View childAt = getChildAt(i9);
+        for (int i8 = 0; i8 < childCount; i8++) {
+            View childAt = getChildAt(i8);
             if (childAt.getVisibility() != 8) {
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) childAt.getLayoutParams();
                 int measuredWidth = childAt.getMeasuredWidth();
                 int measuredHeight = childAt.getMeasuredHeight();
-                if (measuredWidth + i8 + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin > (width - getPaddingLeft()) - getPaddingRight()) {
-                    this.f16853b.add(Integer.valueOf(i7));
-                    this.f16852a.add(this.f16856e);
-                    this.f16854c.add(Integer.valueOf(i8));
-                    i7 = marginLayoutParams.topMargin + measuredHeight + marginLayoutParams.bottomMargin;
-                    this.f16856e = new ArrayList();
-                    i8 = 0;
+                if (measuredWidth + i7 + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin > (width - getPaddingLeft()) - getPaddingRight()) {
+                    this.f9427b.add(Integer.valueOf(iMax));
+                    this.a.add(this.f9430e);
+                    this.f9428c.add(Integer.valueOf(i7));
+                    iMax = marginLayoutParams.topMargin + measuredHeight + marginLayoutParams.bottomMargin;
+                    this.f9430e = new ArrayList();
+                    i7 = 0;
                 }
-                i8 += measuredWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
-                i7 = Math.max(i7, measuredHeight + marginLayoutParams.topMargin + marginLayoutParams.bottomMargin);
-                this.f16856e.add(childAt);
+                i7 += measuredWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
+                iMax = Math.max(iMax, measuredHeight + marginLayoutParams.topMargin + marginLayoutParams.bottomMargin);
+                this.f9430e.add(childAt);
             }
         }
-        this.f16853b.add(Integer.valueOf(i7));
-        this.f16854c.add(Integer.valueOf(i8));
-        this.f16852a.add(this.f16856e);
+        this.f9427b.add(Integer.valueOf(iMax));
+        this.f9428c.add(Integer.valueOf(i7));
+        this.a.add(this.f9430e);
         int paddingLeft2 = getPaddingLeft();
         int paddingTop = getPaddingTop();
-        int size = this.f16852a.size();
-        int i10 = paddingTop;
-        int i11 = paddingLeft2;
-        int i12 = 0;
-        while (i12 < size) {
-            this.f16856e = this.f16852a.get(i12);
-            int intValue = this.f16853b.get(i12).intValue();
-            int intValue2 = this.f16854c.get(i12).intValue();
-            int i13 = this.f16855d;
-            if (i13 != -1) {
-                if (i13 == 0) {
-                    i6 = (width - intValue2) / 2;
+        int size = this.a.size();
+        int i9 = paddingTop;
+        int paddingLeft3 = paddingLeft2;
+        int i10 = 0;
+        while (i10 < size) {
+            this.f9430e = this.a.get(i10);
+            int iIntValue = this.f9427b.get(i10).intValue();
+            int iIntValue2 = this.f9428c.get(i10).intValue();
+            int i11 = this.f9429d;
+            if (i11 != -1) {
+                if (i11 == 0) {
+                    i6 = (width - iIntValue2) / 2;
                     paddingLeft = getPaddingLeft();
-                } else if (i13 == 1) {
-                    i6 = width - intValue2;
+                } else if (i11 == 1) {
+                    i6 = width - iIntValue2;
                     paddingLeft = getPaddingLeft();
                 }
-                i11 = i6 + paddingLeft;
+                paddingLeft3 = i6 + paddingLeft;
             } else {
-                i11 = getPaddingLeft();
+                paddingLeft3 = getPaddingLeft();
             }
-            int i14 = i11;
-            for (int i15 = 0; i15 < this.f16856e.size(); i15++) {
-                View view = this.f16856e.get(i15);
+            int measuredWidth2 = paddingLeft3;
+            for (int i12 = 0; i12 < this.f9430e.size(); i12++) {
+                View view = this.f9430e.get(i12);
                 if (view.getVisibility() != 8) {
                     ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                    int i16 = marginLayoutParams2.leftMargin + i14;
-                    int i17 = marginLayoutParams2.topMargin + i10;
-                    view.layout(i16, i17, view.getMeasuredWidth() + i16, view.getMeasuredHeight() + i17);
-                    i14 += view.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
+                    int i13 = marginLayoutParams2.leftMargin + measuredWidth2;
+                    int i14 = marginLayoutParams2.topMargin + i9;
+                    view.layout(i13, i14, view.getMeasuredWidth() + i13, view.getMeasuredHeight() + i14);
+                    measuredWidth2 += view.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
                 }
             }
-            i10 += intValue;
-            i12++;
-            i11 = i14;
+            i9 += iIntValue;
+            i10++;
+            paddingLeft3 = measuredWidth2;
         }
     }
 
@@ -142,16 +140,16 @@ public class FlowLayout extends ViewGroup {
         int mode2 = View.MeasureSpec.getMode(i3);
         int childCount = getChildCount();
         int i5 = 0;
+        int iMax = 0;
         int i6 = 0;
         int i7 = 0;
         int i8 = 0;
-        int i9 = 0;
         while (i5 < childCount) {
             View childAt = getChildAt(i5);
             if (childAt.getVisibility() == 8) {
                 if (i5 == childCount - 1) {
-                    i6 = Math.max(i7, i6);
-                    i9 += i8;
+                    iMax = Math.max(i6, iMax);
+                    i8 += i7;
                 }
                 i4 = size2;
             } else {
@@ -160,29 +158,29 @@ public class FlowLayout extends ViewGroup {
                 i4 = size2;
                 int measuredWidth = childAt.getMeasuredWidth() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
                 int measuredHeight = childAt.getMeasuredHeight() + marginLayoutParams.topMargin + marginLayoutParams.bottomMargin;
-                int i10 = i7 + measuredWidth;
-                if (i10 > (size - getPaddingLeft()) - getPaddingRight()) {
-                    i6 = Math.max(i6, i7);
-                    i9 += i8;
+                int i9 = i6 + measuredWidth;
+                if (i9 > (size - getPaddingLeft()) - getPaddingRight()) {
+                    iMax = Math.max(iMax, i6);
+                    i8 += i7;
                 } else {
-                    measuredHeight = Math.max(i8, measuredHeight);
-                    measuredWidth = i10;
+                    measuredHeight = Math.max(i7, measuredHeight);
+                    measuredWidth = i9;
                 }
                 if (i5 == childCount - 1) {
-                    i6 = Math.max(measuredWidth, i6);
-                    i9 += measuredHeight;
+                    iMax = Math.max(measuredWidth, iMax);
+                    i8 += measuredHeight;
                 }
-                i8 = measuredHeight;
-                i7 = measuredWidth;
+                i7 = measuredHeight;
+                i6 = measuredWidth;
             }
             i5++;
             size2 = i4;
         }
-        int i11 = size2;
+        int i10 = size2;
         if (mode != 1073741824) {
-            size = getPaddingRight() + i6 + getPaddingLeft();
+            size = getPaddingRight() + iMax + getPaddingLeft();
         }
-        setMeasuredDimension(size, mode2 == 1073741824 ? i11 : i9 + getPaddingTop() + getPaddingBottom());
+        setMeasuredDimension(size, mode2 == 1073741824 ? i10 : i8 + getPaddingTop() + getPaddingBottom());
     }
 
     @Override // android.view.ViewGroup

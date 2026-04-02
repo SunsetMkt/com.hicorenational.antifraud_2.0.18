@@ -10,8 +10,8 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class FragmentTransitionCompat21 extends FragmentTransitionImpl {
     FragmentTransitionCompat21() {
     }
@@ -73,22 +73,22 @@ class FragmentTransitionCompat21 extends FragmentTransitionImpl {
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public Object mergeTransitionsInSequence(Object obj, Object obj2, Object obj3) {
-        Transition transition = (Transition) obj;
-        Transition transition2 = (Transition) obj2;
-        Transition transition3 = (Transition) obj3;
-        if (transition != null && transition2 != null) {
-            transition = new TransitionSet().addTransition(transition).addTransition(transition2).setOrdering(1);
-        } else if (transition == null) {
-            transition = transition2 != null ? transition2 : null;
+        Transition ordering = (Transition) obj;
+        Transition transition = (Transition) obj2;
+        Transition transition2 = (Transition) obj3;
+        if (ordering != null && transition != null) {
+            ordering = new TransitionSet().addTransition(ordering).addTransition(transition).setOrdering(1);
+        } else if (ordering == null) {
+            ordering = transition != null ? transition : null;
         }
-        if (transition3 == null) {
-            return transition;
+        if (transition2 == null) {
+            return ordering;
         }
         TransitionSet transitionSet = new TransitionSet();
-        if (transition != null) {
-            transitionSet.addTransition(transition);
+        if (ordering != null) {
+            transitionSet.addTransition(ordering);
         }
-        transitionSet.addTransition(transition3);
+        transitionSet.addTransition(transition2);
         return transitionSet;
     }
 

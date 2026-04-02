@@ -2,7 +2,7 @@ package network.gson;
 
 import java.io.Serializable;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ResponseData implements Serializable {
     private Object data;
     private String msg;

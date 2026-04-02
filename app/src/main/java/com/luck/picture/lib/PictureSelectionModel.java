@@ -24,7 +24,7 @@ import com.luck.picture.lib.tools.SdkVersionUtils;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureSelectionModel {
     private PictureSelectionConfig selectionConfig = PictureSelectionConfig.getCleanInstance();
     private PictureSelector selector;
@@ -145,9 +145,9 @@ public class PictureSelectionModel {
         }
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.selectionConfig.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i3 = pictureWindowAnimationStyle.activityEnterAnimation) == 0) {
-            i3 = C2639R.anim.picture_anim_enter;
+            i3 = R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i3, C2639R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i3, R.anim.picture_anim_fade_in);
     }
 
     public PictureSelectionModel freeStyleCropEnabled(boolean z) {
@@ -156,7 +156,7 @@ public class PictureSelectionModel {
     }
 
     @Deprecated
-    public PictureSelectionModel glideOverride(@IntRange(from = 100) int i2, @IntRange(from = 100) int i3) {
+    public PictureSelectionModel glideOverride(@IntRange(from = e.d.z) int i2, @IntRange(from = e.d.z) int i3) {
         PictureSelectionConfig pictureSelectionConfig = this.selectionConfig;
         pictureSelectionConfig.overrideWidth = i2;
         pictureSelectionConfig.overrideHeight = i3;
@@ -623,9 +623,9 @@ public class PictureSelectionModel {
         }
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.selectionConfig.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i2 = pictureWindowAnimationStyle.activityEnterAnimation) == 0) {
-            i2 = C2639R.anim.picture_anim_enter;
+            i2 = R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i2, C2639R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i2, R.anim.picture_anim_fade_in);
     }
 
     public void forResult(int i2, OnResultCallbackListener onResultCallbackListener) {
@@ -651,8 +651,8 @@ public class PictureSelectionModel {
         }
         PictureWindowAnimationStyle pictureWindowAnimationStyle = this.selectionConfig.windowAnimationStyle;
         if (pictureWindowAnimationStyle == null || (i3 = pictureWindowAnimationStyle.activityEnterAnimation) == 0) {
-            i3 = C2639R.anim.picture_anim_enter;
+            i3 = R.anim.picture_anim_enter;
         }
-        activity.overridePendingTransition(i3, C2639R.anim.picture_anim_fade_in);
+        activity.overridePendingTransition(i3, R.anim.picture_anim_fade_in);
     }
 }

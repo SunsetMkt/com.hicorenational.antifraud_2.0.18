@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import com.android.dingtalk.share.ddsharemodule.algorithm.MD5;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SignatureCheck {
     public static String getMD5Signature(Context context, String str) {
         Signature[] rawSignature = getRawSignature(context, str);

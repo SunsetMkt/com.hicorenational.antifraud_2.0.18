@@ -1,6 +1,6 @@
 package com.huawei.hms.support.log;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface LogLevel {
     public static final int DEBUG = 3;
     public static final int ERROR = 6;

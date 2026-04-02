@@ -3,19 +3,21 @@ package com.google.android.material.appbar;
 import android.view.View;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ViewOffsetHelper {
     private int layoutLeft;
     private int layoutTop;
     private int offsetLeft;
     private int offsetTop;
     private final View view;
+    private boolean verticalOffsetEnabled = true;
+    private boolean horizontalOffsetEnabled = true;
 
     public ViewOffsetHelper(View view) {
         this.view = view;
     }
 
-    private void updateOffsets() {
+    void applyOffsets() {
         View view = this.view;
         ViewCompat.offsetTopAndBottom(view, this.offsetTop - (view.getTop() - this.layoutTop));
         View view2 = this.view;
@@ -38,27 +40,42 @@ class ViewOffsetHelper {
         return this.offsetTop;
     }
 
-    public void onViewLayout() {
+    public boolean isHorizontalOffsetEnabled() {
+        return this.horizontalOffsetEnabled;
+    }
+
+    public boolean isVerticalOffsetEnabled() {
+        return this.verticalOffsetEnabled;
+    }
+
+    void onViewLayout() {
         this.layoutTop = this.view.getTop();
         this.layoutLeft = this.view.getLeft();
-        updateOffsets();
+    }
+
+    public void setHorizontalOffsetEnabled(boolean z) {
+        this.horizontalOffsetEnabled = z;
     }
 
     public boolean setLeftAndRightOffset(int i2) {
-        if (this.offsetLeft == i2) {
+        if (!this.horizontalOffsetEnabled || this.offsetLeft == i2) {
             return false;
         }
         this.offsetLeft = i2;
-        updateOffsets();
+        applyOffsets();
         return true;
     }
 
     public boolean setTopAndBottomOffset(int i2) {
-        if (this.offsetTop == i2) {
+        if (!this.verticalOffsetEnabled || this.offsetTop == i2) {
             return false;
         }
         this.offsetTop = i2;
-        updateOffsets();
+        applyOffsets();
         return true;
+    }
+
+    public void setVerticalOffsetEnabled(boolean z) {
+        this.verticalOffsetEnabled = z;
     }
 }

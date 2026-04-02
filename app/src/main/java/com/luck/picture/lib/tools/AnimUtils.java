@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AnimUtils {
     private static final int DURATION = 450;
 

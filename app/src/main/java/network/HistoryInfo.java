@@ -3,7 +3,7 @@ package network;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HistoryInfo extends BaseBean {
     private List<RowsBean> rows = new ArrayList();
     private int total;
@@ -16,9 +16,7 @@ public class HistoryInfo extends BaseBean {
         private String createTime;
         private String createUser;
         private DetailsBean details;
-
-        /* renamed from: id */
-        private String f21449id;
+        private String id;
         private boolean isDeleted;
         private int objectType;
         private String reporterID;
@@ -103,7 +101,7 @@ public class HistoryInfo extends BaseBean {
         }
 
         public String getId() {
-            return this.f21449id;
+            return this.id;
         }
 
         public int getObjectType() {
@@ -159,7 +157,7 @@ public class HistoryInfo extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f21449id = str;
+            this.id = str;
         }
 
         public void setIsDeleted(boolean z) {

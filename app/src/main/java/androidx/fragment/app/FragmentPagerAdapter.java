@@ -9,7 +9,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.PagerAdapter;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class FragmentPagerAdapter extends PagerAdapter {
     public static final int BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT = 1;
 
@@ -66,22 +66,22 @@ public abstract class FragmentPagerAdapter extends PagerAdapter {
             this.mCurTransaction = this.mFragmentManager.beginTransaction();
         }
         long itemId = getItemId(i2);
-        Fragment findFragmentByTag = this.mFragmentManager.findFragmentByTag(makeFragmentName(viewGroup.getId(), itemId));
-        if (findFragmentByTag != null) {
-            this.mCurTransaction.attach(findFragmentByTag);
+        Fragment fragmentFindFragmentByTag = this.mFragmentManager.findFragmentByTag(makeFragmentName(viewGroup.getId(), itemId));
+        if (fragmentFindFragmentByTag != null) {
+            this.mCurTransaction.attach(fragmentFindFragmentByTag);
         } else {
-            findFragmentByTag = getItem(i2);
-            this.mCurTransaction.add(viewGroup.getId(), findFragmentByTag, makeFragmentName(viewGroup.getId(), itemId));
+            fragmentFindFragmentByTag = getItem(i2);
+            this.mCurTransaction.add(viewGroup.getId(), fragmentFindFragmentByTag, makeFragmentName(viewGroup.getId(), itemId));
         }
-        if (findFragmentByTag != this.mCurrentPrimaryItem) {
-            findFragmentByTag.setMenuVisibility(false);
+        if (fragmentFindFragmentByTag != this.mCurrentPrimaryItem) {
+            fragmentFindFragmentByTag.setMenuVisibility(false);
             if (this.mBehavior == 1) {
-                this.mCurTransaction.setMaxLifecycle(findFragmentByTag, Lifecycle.State.STARTED);
+                this.mCurTransaction.setMaxLifecycle(fragmentFindFragmentByTag, Lifecycle.State.STARTED);
             } else {
-                findFragmentByTag.setUserVisibleHint(false);
+                fragmentFindFragmentByTag.setUserVisibleHint(false);
             }
         }
-        return findFragmentByTag;
+        return fragmentFindFragmentByTag;
     }
 
     @Override // androidx.viewpager.widget.PagerAdapter

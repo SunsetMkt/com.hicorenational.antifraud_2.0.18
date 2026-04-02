@@ -2,13 +2,13 @@ package com.yalantis.ucrop.immersion;
 
 import android.os.Build;
 import android.text.TextUtils;
+import d.c.a.b.a.a;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CropRomUtils {
     private static Integer romType;
 
@@ -16,21 +16,19 @@ public class CropRomUtils {
         public static final int ANDROID_NATIVE = 3;
         public static final int FLYME = 2;
         public static final int MIUI = 1;
-
-        /* renamed from: NA */
-        public static final int f16839NA = 4;
+        public static final int NA = 4;
 
         public AvailableRomType() {
         }
     }
 
     public static int getFlymeVersion() {
-        String substring;
+        String strSubstring;
         String str = Build.DISPLAY;
-        if (TextUtils.isEmpty(str) || !str.contains("Flyme") || (substring = str.replaceAll("Flyme", "").replaceAll("OS", "").replaceAll(AbstractC1191a.f2568g, "").substring(0, 1)) == null) {
+        if (TextUtils.isEmpty(str) || !str.contains("Flyme") || (strSubstring = str.replaceAll("Flyme", "").replaceAll("OS", "").replaceAll(a.f10074g, "").substring(0, 1)) == null) {
             return 0;
         }
-        return stringToInt(substring);
+        return stringToInt(strSubstring);
     }
 
     public static int getLightStatausBarAvailableRomType() {
@@ -54,7 +52,7 @@ public class CropRomUtils {
         return romType.intValue();
     }
 
-    public static int getMIUIVersionCode() {
+    public static int getMIUIVersionCode() throws Throwable {
         String systemProperty = getSystemProperty("ro.miui.ui.version.code");
         if (TextUtils.isEmpty(systemProperty)) {
             return 0;
@@ -66,7 +64,7 @@ public class CropRomUtils {
         }
     }
 
-    public static String getSystemProperty(String str) {
+    public static String getSystemProperty(String str) throws Throwable {
         BufferedReader bufferedReader;
         BufferedReader bufferedReader2 = null;
         try {
@@ -77,13 +75,13 @@ public class CropRomUtils {
             th = th;
         }
         try {
-            String readLine = bufferedReader.readLine();
+            String line = bufferedReader.readLine();
             bufferedReader.close();
             try {
                 bufferedReader.close();
             } catch (IOException unused2) {
             }
-            return readLine;
+            return line;
         } catch (IOException unused3) {
             if (bufferedReader != null) {
                 try {
@@ -113,7 +111,7 @@ public class CropRomUtils {
         return getFlymeVersion() >= 4;
     }
 
-    private static boolean isMIUIV6OrAbove() {
+    private static boolean isMIUIV6OrAbove() throws Throwable {
         String systemProperty = getSystemProperty("ro.miui.ui.version.code");
         if (TextUtils.isEmpty(systemProperty)) {
             return false;

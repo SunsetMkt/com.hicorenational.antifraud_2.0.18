@@ -2,9 +2,9 @@ package anet.channel.statist;
 
 import anet.channel.util.ErrorConstant;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "NetworkError")
-/* loaded from: classes.dex */
 public class ExceptionStatistic extends StatObject {
 
     @Dimension
@@ -22,9 +22,8 @@ public class ExceptionStatistic extends StatObject {
     @Dimension
     public String host;
 
-    /* renamed from: ip */
     @Dimension
-    public String f998ip;
+    public String ip;
 
     @Dimension
     public boolean isDNS;
@@ -69,7 +68,7 @@ public class ExceptionStatistic extends StatObject {
         this.exceptionStack = th != null ? th.toString() : "";
         if (requestStatistic != null) {
             this.host = requestStatistic.host;
-            this.f998ip = requestStatistic.f1002ip;
+            this.ip = requestStatistic.ip;
             this.port = requestStatistic.port;
             this.isSSL = requestStatistic.isSSL;
             this.isProxy = requestStatistic.isProxy;

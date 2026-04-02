@@ -5,8 +5,8 @@ import android.os.Parcel;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-/* loaded from: classes.dex */
 class MediaBrowserCompatApi23 {
 
     interface ItemCallback {
@@ -33,9 +33,9 @@ class MediaBrowserCompatApi23 {
                 this.mItemCallback.onItemLoaded(null);
                 return;
             }
-            Parcel obtain = Parcel.obtain();
-            mediaItem.writeToParcel(obtain, 0);
-            this.mItemCallback.onItemLoaded(obtain);
+            Parcel parcelObtain = Parcel.obtain();
+            mediaItem.writeToParcel(parcelObtain, 0);
+            this.mItemCallback.onItemLoaded(parcelObtain);
         }
     }
 

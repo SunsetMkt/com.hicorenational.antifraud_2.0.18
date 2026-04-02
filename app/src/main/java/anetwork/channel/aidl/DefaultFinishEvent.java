@@ -5,45 +5,40 @@ import android.os.Parcelable;
 import anet.channel.request.Request;
 import anet.channel.statist.RequestStatistic;
 import anet.channel.util.ErrorConstant;
-import p000a.p001a.C0004e;
-import p000a.p001a.p012s.C0035a;
+import b.a.e;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
-public class DefaultFinishEvent implements Parcelable, C0004e.a {
-    public static final Parcelable.Creator<DefaultFinishEvent> CREATOR = new C0873i();
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
+public class DefaultFinishEvent implements Parcelable, e.a {
+    public static final Parcelable.Creator<DefaultFinishEvent> CREATOR = new i();
+    Object a;
 
-    /* renamed from: a */
-    Object f1192a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    int f1661b;
 
-    /* renamed from: b */
-    int f1193b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    String f1662c;
 
-    /* renamed from: c */
-    String f1194c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    b.a.s.a f1663d;
 
-    /* renamed from: d */
-    C0035a f1195d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    public final RequestStatistic f1664e;
 
-    /* renamed from: e */
-    public final RequestStatistic f1196e;
-
-    /* renamed from: f */
-    public final Request f1197f;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    public final Request f1665f;
 
     public DefaultFinishEvent(int i2) {
         this(i2, null, null, null);
     }
 
-    /* renamed from: a */
-    public Object m742a() {
-        return this.f1192a;
+    public Object a() {
+        return this.a;
     }
 
-    @Override // p000a.p001a.C0004e.a
-    /* renamed from: d */
-    public String mo8d() {
-        return this.f1194c;
+    @Override // b.a.e.a
+    public String d() {
+        return this.f1662c;
     }
 
     @Override // android.os.Parcelable
@@ -51,29 +46,27 @@ public class DefaultFinishEvent implements Parcelable, C0004e.a {
         return 0;
     }
 
-    @Override // p000a.p001a.C0004e.a
-    /* renamed from: e */
-    public C0035a mo9e() {
-        return this.f1195d;
+    @Override // b.a.e.a
+    public b.a.s.a e() {
+        return this.f1663d;
     }
 
-    @Override // p000a.p001a.C0004e.a
-    /* renamed from: f */
-    public int mo10f() {
-        return this.f1193b;
+    @Override // b.a.e.a
+    public int f() {
+        return this.f1661b;
     }
 
     public String toString() {
-        return "DefaultFinishEvent [code=" + this.f1193b + ", desc=" + this.f1194c + ", context=" + this.f1192a + ", statisticData=" + this.f1195d + "]";
+        return "DefaultFinishEvent [code=" + this.f1661b + ", desc=" + this.f1662c + ", context=" + this.a + ", statisticData=" + this.f1663d + "]";
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeInt(this.f1193b);
-        parcel.writeString(this.f1194c);
-        C0035a c0035a = this.f1195d;
-        if (c0035a != null) {
-            parcel.writeSerializable(c0035a);
+        parcel.writeInt(this.f1661b);
+        parcel.writeString(this.f1662c);
+        b.a.s.a aVar = this.f1663d;
+        if (aVar != null) {
+            parcel.writeSerializable(aVar);
         }
     }
 
@@ -81,32 +74,30 @@ public class DefaultFinishEvent implements Parcelable, C0004e.a {
         this(i2, str, null, requestStatistic);
     }
 
-    /* renamed from: a */
-    public void m743a(Object obj) {
-        this.f1192a = obj;
+    public void a(Object obj) {
+        this.a = obj;
     }
 
     public DefaultFinishEvent(int i2, String str, Request request) {
-        this(i2, str, request, request != null ? request.f916a : null);
+        this(i2, str, request, request != null ? request.a : null);
     }
 
-    /* renamed from: a */
-    static DefaultFinishEvent m741a(Parcel parcel) {
+    static DefaultFinishEvent a(Parcel parcel) {
         DefaultFinishEvent defaultFinishEvent = new DefaultFinishEvent(0);
         try {
-            defaultFinishEvent.f1193b = parcel.readInt();
-            defaultFinishEvent.f1194c = parcel.readString();
-            defaultFinishEvent.f1195d = (C0035a) parcel.readSerializable();
+            defaultFinishEvent.f1661b = parcel.readInt();
+            defaultFinishEvent.f1662c = parcel.readString();
+            defaultFinishEvent.f1663d = (b.a.s.a) parcel.readSerializable();
         } catch (Throwable unused) {
         }
         return defaultFinishEvent;
     }
 
     private DefaultFinishEvent(int i2, String str, Request request, RequestStatistic requestStatistic) {
-        this.f1195d = new C0035a();
-        this.f1193b = i2;
-        this.f1194c = str == null ? ErrorConstant.getErrMsg(i2) : str;
-        this.f1197f = request;
-        this.f1196e = requestStatistic;
+        this.f1663d = new b.a.s.a();
+        this.f1661b = i2;
+        this.f1662c = str == null ? ErrorConstant.getErrMsg(i2) : str;
+        this.f1665f = request;
+        this.f1664e = requestStatistic;
     }
 }

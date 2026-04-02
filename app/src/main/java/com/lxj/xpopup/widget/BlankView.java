@@ -8,77 +8,74 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BlankView extends View {
+    private Paint a;
 
-    /* renamed from: a */
-    private Paint f8888a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private RectF f5512b;
 
-    /* renamed from: b */
-    private RectF f8889b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    public int f5513c;
 
-    /* renamed from: c */
-    public int f8890c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    public int f5514d;
 
-    /* renamed from: d */
-    public int f8891d;
-
-    /* renamed from: e */
-    public int f8892e;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    public int f5515e;
 
     public BlankView(Context context) {
         super(context);
-        this.f8888a = new Paint();
-        this.f8889b = null;
-        this.f8890c = 0;
-        this.f8891d = -1;
-        this.f8892e = Color.parseColor("#DDDDDD");
+        this.a = new Paint();
+        this.f5512b = null;
+        this.f5513c = 0;
+        this.f5514d = -1;
+        this.f5515e = Color.parseColor("#DDDDDD");
     }
 
-    /* renamed from: a */
-    private void m8586a() {
-        this.f8888a.setAntiAlias(true);
-        this.f8888a.setStrokeWidth(1.0f);
+    private void a() {
+        this.a.setAntiAlias(true);
+        this.a.setStrokeWidth(1.0f);
     }
 
     @Override // android.view.View
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.f8888a.setColor(this.f8891d);
-        RectF rectF = this.f8889b;
-        int i2 = this.f8890c;
-        canvas.drawRoundRect(rectF, i2, i2, this.f8888a);
-        this.f8888a.setStyle(Paint.Style.STROKE);
-        this.f8888a.setColor(this.f8892e);
-        RectF rectF2 = this.f8889b;
-        int i3 = this.f8890c;
-        canvas.drawRoundRect(rectF2, i3, i3, this.f8888a);
-        this.f8888a.setStyle(Paint.Style.FILL);
+        this.a.setColor(this.f5514d);
+        RectF rectF = this.f5512b;
+        int i2 = this.f5513c;
+        canvas.drawRoundRect(rectF, i2, i2, this.a);
+        this.a.setStyle(Paint.Style.STROKE);
+        this.a.setColor(this.f5515e);
+        RectF rectF2 = this.f5512b;
+        int i3 = this.f5513c;
+        canvas.drawRoundRect(rectF2, i3, i3, this.a);
+        this.a.setStyle(Paint.Style.FILL);
     }
 
     @Override // android.view.View
     protected void onSizeChanged(int i2, int i3, int i4, int i5) {
         super.onSizeChanged(i2, i3, i4, i5);
-        this.f8889b = new RectF(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        this.f5512b = new RectF(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public BlankView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.f8888a = new Paint();
-        this.f8889b = null;
-        this.f8890c = 0;
-        this.f8891d = -1;
-        this.f8892e = Color.parseColor("#DDDDDD");
-        m8586a();
+        this.a = new Paint();
+        this.f5512b = null;
+        this.f5513c = 0;
+        this.f5514d = -1;
+        this.f5515e = Color.parseColor("#DDDDDD");
+        a();
     }
 
     public BlankView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f8888a = new Paint();
-        this.f8889b = null;
-        this.f8890c = 0;
-        this.f8891d = -1;
-        this.f8892e = Color.parseColor("#DDDDDD");
-        m8586a();
+        this.a = new Paint();
+        this.f5512b = null;
+        this.f5513c = 0;
+        this.f5514d = -1;
+        this.f5515e = Color.parseColor("#DDDDDD");
+        a();
     }
 }

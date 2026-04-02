@@ -1,5 +1,5 @@
 package androidx.transition;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 interface WindowIdImpl {
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class FocusStrategy {
 
     public interface BoundsAdapter<T> {
@@ -77,8 +77,8 @@ class FocusStrategy {
     }
 
     private static boolean beamBeats(int i2, @NonNull Rect rect, @NonNull Rect rect2, @NonNull Rect rect3) {
-        boolean beamsOverlap = beamsOverlap(i2, rect, rect2);
-        if (beamsOverlap(i2, rect, rect3) || !beamsOverlap) {
+        boolean zBeamsOverlap = beamsOverlap(i2, rect, rect2);
+        if (beamsOverlap(i2, rect, rect3) || !zBeamsOverlap) {
             return false;
         }
         return !isToDirectionOf(i2, rect, rect3) || i2 == 17 || i2 == 66 || majorAxisDistance(i2, rect, rect2) < majorAxisDistanceToFarEdge(i2, rect, rect3);
@@ -146,9 +146,9 @@ class FocusStrategy {
 
     private static <T> T getNextFocusable(T t, ArrayList<T> arrayList, boolean z) {
         int size = arrayList.size();
-        int lastIndexOf = (t == null ? -1 : arrayList.lastIndexOf(t)) + 1;
-        if (lastIndexOf < size) {
-            return arrayList.get(lastIndexOf);
+        int iLastIndexOf = (t == null ? -1 : arrayList.lastIndexOf(t)) + 1;
+        if (iLastIndexOf < size) {
+            return arrayList.get(iLastIndexOf);
         }
         if (!z || size <= 0) {
             return null;
@@ -158,9 +158,9 @@ class FocusStrategy {
 
     private static <T> T getPreviousFocusable(T t, ArrayList<T> arrayList, boolean z) {
         int size = arrayList.size();
-        int indexOf = (t == null ? size : arrayList.indexOf(t)) - 1;
-        if (indexOf >= 0) {
-            return arrayList.get(indexOf);
+        int iIndexOf = (t == null ? size : arrayList.indexOf(t)) - 1;
+        if (iIndexOf >= 0) {
+            return arrayList.get(iIndexOf);
         }
         if (!z || size <= 0) {
             return null;

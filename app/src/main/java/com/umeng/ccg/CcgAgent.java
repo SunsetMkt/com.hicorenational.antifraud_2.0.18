@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CcgAgent {
     private static Object lock = new Object();
     private static ArrayList<ConfigListener> callbacks = new ArrayList<>();
@@ -17,23 +17,23 @@ public class CcgAgent {
     private static Map<String, ArrayList<String>> forbidSdkTable = new HashMap();
 
     static {
-        forbidSdkTable.put(C3438a.f12332e, new ArrayList<>());
-        forbidSdkTable.put(C3438a.f12331d, new ArrayList<>());
-        forbidSdkTable.put(C3438a.f12329b, new ArrayList<>());
-        forbidSdkTable.put(C3438a.f12330c, new ArrayList<>());
+        forbidSdkTable.put(a.f7441e, new ArrayList<>());
+        forbidSdkTable.put(a.f7440d, new ArrayList<>());
+        forbidSdkTable.put(a.f7438b, new ArrayList<>());
+        forbidSdkTable.put(a.f7439c, new ArrayList<>());
     }
 
     public static ActionInfo getActionInfo(String str) {
         if (!TextUtils.isEmpty(str)) {
             synchronized (actionInfoLock) {
-                r1 = actionInfoTable.containsKey(str) ? actionInfoTable.get(str) : null;
+                actionInfo = actionInfoTable.containsKey(str) ? actionInfoTable.get(str) : null;
             }
         }
-        return r1;
+        return actionInfo;
     }
 
     public static String[] getCollectItemList() {
-        return new String[]{C3438a.f12332e, C3438a.f12331d, C3438a.f12329b, C3438a.f12330c};
+        return new String[]{a.f7441e, a.f7440d, a.f7438b, a.f7439c};
     }
 
     public static ArrayList<String> getForbidSdkArray(String str) {
@@ -60,7 +60,7 @@ public class CcgAgent {
     }
 
     public static void init(Context context) {
-        C3441d.m11471a().m11492a(context);
+        d.a().a(context);
     }
 
     public static void notifyConfigReady(JSONObject jSONObject) {

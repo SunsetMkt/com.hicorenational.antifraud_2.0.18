@@ -1,9 +1,8 @@
 package com.huawei.secure.android.common.ssl;
 
 import android.content.Context;
-import com.huawei.secure.android.common.ssl.util.C2559a;
-import com.huawei.secure.android.common.ssl.util.C2563e;
 import com.huawei.secure.android.common.ssl.util.ContextUtil;
+import com.huawei.secure.android.common.ssl.util.e;
 import java.io.IOException;
 import java.net.Socket;
 import java.security.KeyManagementException;
@@ -19,257 +18,252 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.X509TrustManager;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SASFCompatiableSystemCA extends SSLSocketFactory {
 
-    /* renamed from: i */
-    private static final String f8114i = SASFCompatiableSystemCA.class.getSimpleName();
+    /* JADX INFO: renamed from: i */
+    private static final String f5116i = SASFCompatiableSystemCA.class.getSimpleName();
 
-    /* renamed from: j */
-    private static volatile SASFCompatiableSystemCA f8115j = null;
+    /* JADX INFO: renamed from: j */
+    private static volatile SASFCompatiableSystemCA f5117j = null;
+    private SSLContext a;
 
-    /* renamed from: a */
-    private SSLContext f8116a;
+    /* JADX INFO: renamed from: b */
+    private SSLSocket f5118b;
 
-    /* renamed from: b */
-    private SSLSocket f8117b;
+    /* JADX INFO: renamed from: c */
+    private Context f5119c;
 
-    /* renamed from: c */
-    private Context f8118c;
+    /* JADX INFO: renamed from: d */
+    private String[] f5120d;
 
-    /* renamed from: d */
-    private String[] f8119d;
+    /* JADX INFO: renamed from: e */
+    private X509TrustManager f5121e;
 
-    /* renamed from: e */
-    private X509TrustManager f8120e;
+    /* JADX INFO: renamed from: f */
+    private String[] f5122f;
 
-    /* renamed from: f */
-    private String[] f8121f;
+    /* JADX INFO: renamed from: g */
+    private String[] f5123g;
 
-    /* renamed from: g */
-    private String[] f8122g;
+    /* JADX INFO: renamed from: h */
+    private String[] f5124h;
 
-    /* renamed from: h */
-    private String[] f8123h;
-
-    private SASFCompatiableSystemCA(KeyStore keyStore) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException {
+    private SASFCompatiableSystemCA(KeyStore keyStore) throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyManagementException, KeyStoreException {
         super(keyStore);
-        this.f8117b = null;
+        this.f5118b = null;
     }
 
     @Deprecated
-    /* renamed from: a */
-    static void m7907a(X509TrustManager x509TrustManager) {
-        C2563e.m7987c(f8114i, "sasfc update socket factory trust manager");
-        long currentTimeMillis = System.currentTimeMillis();
+    static void a(X509TrustManager x509TrustManager) {
+        e.c(f5116i, "sasfc update socket factory trust manager");
+        long jCurrentTimeMillis = System.currentTimeMillis();
         try {
-            f8115j = new SASFCompatiableSystemCA(null, x509TrustManager);
+            f5117j = new SASFCompatiableSystemCA(null, x509TrustManager);
         } catch (KeyManagementException unused) {
-            C2563e.m7986b(f8114i, "KeyManagementException");
+            e.b(f5116i, "KeyManagementException");
         } catch (KeyStoreException unused2) {
-            C2563e.m7986b(f8114i, "KeyStoreException");
+            e.b(f5116i, "KeyStoreException");
         } catch (NoSuchAlgorithmException unused3) {
-            C2563e.m7986b(f8114i, "NoSuchAlgorithmException");
+            e.b(f5116i, "NoSuchAlgorithmException");
         } catch (UnrecoverableKeyException unused4) {
-            C2563e.m7986b(f8114i, "UnrecoverableKeyException");
+            e.b(f5116i, "UnrecoverableKeyException");
         }
-        C2563e.m7984a(f8114i, "sasf system ca update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        e.a(f5116i, "sasf system ca update: cost : " + (System.currentTimeMillis() - jCurrentTimeMillis) + " ms");
     }
 
     @Deprecated
-    public static SASFCompatiableSystemCA getInstance(KeyStore keyStore, Context context) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException, CertificateException, IOException, IllegalArgumentException {
+    public static SASFCompatiableSystemCA getInstance(KeyStore keyStore, Context context) throws NoSuchAlgorithmException, UnrecoverableKeyException, IOException, KeyManagementException, KeyStoreException, CertificateException, IllegalArgumentException {
         ContextUtil.setContext(context);
-        if (f8115j == null) {
+        if (f5117j == null) {
             synchronized (SecureApacheSSLSocketFactory.class) {
-                if (f8115j == null) {
-                    f8115j = new SASFCompatiableSystemCA(keyStore, context, (SecureRandom) null);
+                if (f5117j == null) {
+                    f5117j = new SASFCompatiableSystemCA(keyStore, context, (SecureRandom) null);
                 }
             }
         }
-        return f8115j;
+        return f5117j;
     }
 
     @Override // org.apache.http.conn.ssl.SSLSocketFactory, org.apache.http.conn.scheme.LayeredSocketFactory
     public Socket createSocket(Socket socket, String str, int i2, boolean z) throws IOException {
-        C2563e.m7987c(f8114i, "createSocket: socket host port autoClose");
-        Socket createSocket = this.f8116a.getSocketFactory().createSocket(socket, str, i2, z);
-        if (createSocket instanceof SSLSocket) {
-            m7906a(createSocket);
-            this.f8117b = (SSLSocket) createSocket;
-            this.f8119d = (String[]) this.f8117b.getEnabledCipherSuites().clone();
+        e.c(f5116i, "createSocket: socket host port autoClose");
+        Socket socketCreateSocket = this.a.getSocketFactory().createSocket(socket, str, i2, z);
+        if (socketCreateSocket instanceof SSLSocket) {
+            a(socketCreateSocket);
+            this.f5118b = (SSLSocket) socketCreateSocket;
+            this.f5120d = (String[]) this.f5118b.getEnabledCipherSuites().clone();
         }
-        return createSocket;
+        return socketCreateSocket;
     }
 
     public String[] getBlackCiphers() {
-        return this.f8121f;
+        return this.f5122f;
     }
 
     public X509Certificate[] getChain() {
-        X509TrustManager x509TrustManager = this.f8120e;
+        X509TrustManager x509TrustManager = this.f5121e;
         return x509TrustManager instanceof SecureX509TrustManager ? ((SecureX509TrustManager) x509TrustManager).getChain() : new X509Certificate[0];
     }
 
     public Context getContext() {
-        return this.f8118c;
+        return this.f5119c;
     }
 
     public String[] getProtocols() {
-        return this.f8123h;
+        return this.f5124h;
     }
 
     public SSLContext getSslContext() {
-        return this.f8116a;
+        return this.a;
     }
 
     public SSLSocket getSslSocket() {
-        return this.f8117b;
+        return this.f5118b;
     }
 
     public String[] getSupportedCipherSuites() {
-        String[] strArr = this.f8119d;
+        String[] strArr = this.f5120d;
         return strArr != null ? strArr : new String[0];
     }
 
     public String[] getWhiteCiphers() {
-        return this.f8122g;
+        return this.f5123g;
     }
 
     public X509TrustManager getX509TrustManager() {
-        return this.f8120e;
+        return this.f5121e;
     }
 
     public void setBlackCiphers(String[] strArr) {
-        this.f8121f = strArr;
+        this.f5122f = strArr;
     }
 
     public void setContext(Context context) {
-        this.f8118c = context.getApplicationContext();
+        this.f5119c = context.getApplicationContext();
     }
 
     public void setProtocols(String[] strArr) {
-        this.f8123h = strArr;
+        this.f5124h = strArr;
     }
 
     public void setSslContext(SSLContext sSLContext) {
-        this.f8116a = sSLContext;
+        this.a = sSLContext;
     }
 
     public void setSslSocket(SSLSocket sSLSocket) {
-        this.f8117b = sSLSocket;
+        this.f5118b = sSLSocket;
     }
 
     public void setWhiteCiphers(String[] strArr) {
-        this.f8122g = strArr;
+        this.f5123g = strArr;
     }
 
     public void setX509TrustManager(X509TrustManager x509TrustManager) {
-        this.f8120e = x509TrustManager;
+        this.f5121e = x509TrustManager;
     }
 
-    private SASFCompatiableSystemCA(KeyStore keyStore, Context context, SecureRandom secureRandom) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException, CertificateException, IOException, IllegalArgumentException {
+    private SASFCompatiableSystemCA(KeyStore keyStore, Context context, SecureRandom secureRandom) throws NoSuchAlgorithmException, UnrecoverableKeyException, IOException, KeyManagementException, KeyStoreException, CertificateException, IllegalArgumentException {
         super(keyStore);
-        this.f8117b = null;
+        this.f5118b = null;
         if (context == null) {
-            C2563e.m7986b(f8114i, "SecureSSLSocketFactory: context is null");
+            e.b(f5116i, "SecureSSLSocketFactory: context is null");
             return;
         }
         setContext(context);
         setSslContext(SSLUtil.setSSLContext());
-        this.f8120e = SSFSecureX509SingleInstance.getInstance(context);
-        this.f8116a.init(null, new X509TrustManager[]{this.f8120e}, secureRandom);
+        this.f5121e = SSFSecureX509SingleInstance.getInstance(context);
+        this.a.init(null, new X509TrustManager[]{this.f5121e}, secureRandom);
     }
 
     @Override // org.apache.http.conn.ssl.SSLSocketFactory, org.apache.http.conn.scheme.SocketFactory
     public Socket createSocket() throws IOException {
-        C2563e.m7987c(f8114i, "createSocket: ");
-        Socket createSocket = this.f8116a.getSocketFactory().createSocket();
-        if (createSocket instanceof SSLSocket) {
-            m7906a(createSocket);
-            this.f8117b = (SSLSocket) createSocket;
-            this.f8119d = (String[]) this.f8117b.getEnabledCipherSuites().clone();
+        e.c(f5116i, "createSocket: ");
+        Socket socketCreateSocket = this.a.getSocketFactory().createSocket();
+        if (socketCreateSocket instanceof SSLSocket) {
+            a(socketCreateSocket);
+            this.f5118b = (SSLSocket) socketCreateSocket;
+            this.f5120d = (String[]) this.f5118b.getEnabledCipherSuites().clone();
         }
-        return createSocket;
+        return socketCreateSocket;
     }
 
-    public static SASFCompatiableSystemCA getInstance(KeyStore keyStore, Context context, SecureRandom secureRandom) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException, CertificateException, IOException, IllegalArgumentException {
+    public static SASFCompatiableSystemCA getInstance(KeyStore keyStore, Context context, SecureRandom secureRandom) throws NoSuchAlgorithmException, UnrecoverableKeyException, IOException, KeyManagementException, KeyStoreException, CertificateException, IllegalArgumentException {
         ContextUtil.setContext(context);
-        if (f8115j == null) {
+        if (f5117j == null) {
             synchronized (SecureApacheSSLSocketFactory.class) {
-                if (f8115j == null) {
-                    f8115j = new SASFCompatiableSystemCA(keyStore, context, secureRandom);
+                if (f5117j == null) {
+                    f5117j = new SASFCompatiableSystemCA(keyStore, context, secureRandom);
                 }
             }
         }
-        return f8115j;
+        return f5117j;
     }
 
-    /* renamed from: a */
-    static void m7908a(X509TrustManager x509TrustManager, SecureRandom secureRandom) {
-        C2563e.m7987c(f8114i, "sasfc update socket factory trust manager");
-        long currentTimeMillis = System.currentTimeMillis();
+    static void a(X509TrustManager x509TrustManager, SecureRandom secureRandom) {
+        e.c(f5116i, "sasfc update socket factory trust manager");
+        long jCurrentTimeMillis = System.currentTimeMillis();
         try {
-            f8115j = new SASFCompatiableSystemCA((KeyStore) null, x509TrustManager, secureRandom);
+            f5117j = new SASFCompatiableSystemCA((KeyStore) null, x509TrustManager, secureRandom);
         } catch (KeyManagementException unused) {
-            C2563e.m7986b(f8114i, "KeyManagementException");
+            e.b(f5116i, "KeyManagementException");
         } catch (KeyStoreException unused2) {
-            C2563e.m7986b(f8114i, "KeyStoreException");
+            e.b(f5116i, "KeyStoreException");
         } catch (NoSuchAlgorithmException unused3) {
-            C2563e.m7986b(f8114i, "NoSuchAlgorithmException");
+            e.b(f5116i, "NoSuchAlgorithmException");
         } catch (UnrecoverableKeyException unused4) {
-            C2563e.m7986b(f8114i, "UnrecoverableKeyException");
+            e.b(f5116i, "UnrecoverableKeyException");
         }
-        C2563e.m7984a(f8114i, "sasf system ca update: cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+        e.a(f5116i, "sasf system ca update: cost : " + (System.currentTimeMillis() - jCurrentTimeMillis) + " ms");
     }
 
     @Deprecated
-    public SASFCompatiableSystemCA(KeyStore keyStore, X509TrustManager x509TrustManager) throws NoSuchAlgorithmException, KeyManagementException, IllegalArgumentException, UnrecoverableKeyException, KeyStoreException {
+    public SASFCompatiableSystemCA(KeyStore keyStore, X509TrustManager x509TrustManager) throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyManagementException, KeyStoreException, IllegalArgumentException {
         super(keyStore);
-        this.f8117b = null;
-        this.f8116a = SSLUtil.setSSLContext();
+        this.f5118b = null;
+        this.a = SSLUtil.setSSLContext();
         setX509TrustManager(x509TrustManager);
-        this.f8116a.init(null, new X509TrustManager[]{x509TrustManager}, null);
+        this.a.init(null, new X509TrustManager[]{x509TrustManager}, null);
     }
 
-    public SASFCompatiableSystemCA(KeyStore keyStore, X509TrustManager x509TrustManager, SecureRandom secureRandom) throws NoSuchAlgorithmException, KeyManagementException, IllegalArgumentException, UnrecoverableKeyException, KeyStoreException {
+    public SASFCompatiableSystemCA(KeyStore keyStore, X509TrustManager x509TrustManager, SecureRandom secureRandom) throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyManagementException, KeyStoreException, IllegalArgumentException {
         super(keyStore);
-        this.f8117b = null;
-        this.f8116a = SSLUtil.setSSLContext();
+        this.f5118b = null;
+        this.a = SSLUtil.setSSLContext();
         setX509TrustManager(x509TrustManager);
-        this.f8116a.init(null, new X509TrustManager[]{x509TrustManager}, secureRandom);
+        this.a.init(null, new X509TrustManager[]{x509TrustManager}, secureRandom);
     }
 
-    /* renamed from: a */
-    private void m7906a(Socket socket) {
+    private void a(Socket socket) {
         boolean z;
         boolean z2 = true;
-        if (C2559a.m7955a(this.f8123h)) {
+        if (com.huawei.secure.android.common.ssl.util.a.a(this.f5124h)) {
             z = false;
         } else {
-            C2563e.m7987c(f8114i, "set protocols");
-            SSLUtil.setEnabledProtocols((SSLSocket) socket, this.f8123h);
+            e.c(f5116i, "set protocols");
+            SSLUtil.setEnabledProtocols((SSLSocket) socket, this.f5124h);
             z = true;
         }
-        if (C2559a.m7955a(this.f8122g) && C2559a.m7955a(this.f8121f)) {
+        if (com.huawei.secure.android.common.ssl.util.a.a(this.f5123g) && com.huawei.secure.android.common.ssl.util.a.a(this.f5122f)) {
             z2 = false;
         } else {
-            C2563e.m7987c(f8114i, "set white cipher or black cipher");
+            e.c(f5116i, "set white cipher or black cipher");
             SSLSocket sSLSocket = (SSLSocket) socket;
             SSLUtil.setEnabledProtocols(sSLSocket);
-            if (!C2559a.m7955a(this.f8122g)) {
-                SSLUtil.setWhiteListCipherSuites(sSLSocket, this.f8122g);
+            if (!com.huawei.secure.android.common.ssl.util.a.a(this.f5123g)) {
+                SSLUtil.setWhiteListCipherSuites(sSLSocket, this.f5123g);
             } else {
-                SSLUtil.setBlackListCipherSuites(sSLSocket, this.f8121f);
+                SSLUtil.setBlackListCipherSuites(sSLSocket, this.f5122f);
             }
         }
         if (!z) {
-            C2563e.m7987c(f8114i, "set default protocols");
+            e.c(f5116i, "set default protocols");
             SSLUtil.setEnabledProtocols((SSLSocket) socket);
         }
         if (z2) {
             return;
         }
-        C2563e.m7987c(f8114i, "set default cipher suites");
+        e.c(f5116i, "set default cipher suites");
         SSLUtil.setEnableSafeCipherSuites((SSLSocket) socket);
     }
 }

@@ -1,6 +1,6 @@
 package com.huawei.hms.adapter.internal;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface AvailableCode {
     public static final int APP_IS_BACKGROUND_OR_LOCKED = 28;
     public static final int CANCELED = 13;

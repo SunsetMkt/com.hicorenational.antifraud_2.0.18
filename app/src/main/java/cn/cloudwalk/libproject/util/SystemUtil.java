@@ -5,7 +5,7 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SystemUtil {
     public static String getDeviceBrand() {
         return Build.BRAND;

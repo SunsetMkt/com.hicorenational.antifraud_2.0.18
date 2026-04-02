@@ -4,7 +4,7 @@ import android.graphics.Path;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PathParser {
     private static final String LOGTAG = "PathParser";
 
@@ -44,9 +44,9 @@ public class PathParser {
             throw new ArrayIndexOutOfBoundsException();
         }
         int i4 = i3 - i2;
-        int min = Math.min(i4, length - i2);
+        int iMin = Math.min(i4, length - i2);
         float[] fArr2 = new float[i4];
-        System.arraycopy(fArr, i2, fArr2, 0, min);
+        System.arraycopy(fArr, i2, fArr2, 0, iMin);
         return fArr2;
     }
 
@@ -58,13 +58,13 @@ public class PathParser {
         int i2 = 1;
         int i3 = 0;
         while (i2 < str.length()) {
-            int nextStart = nextStart(str, i2);
-            String trim = str.substring(i3, nextStart).trim();
-            if (trim.length() > 0) {
-                addNode(arrayList, trim.charAt(0), getFloats(trim));
+            int iNextStart = nextStart(str, i2);
+            String strTrim = str.substring(i3, iNextStart).trim();
+            if (strTrim.length() > 0) {
+                addNode(arrayList, strTrim.charAt(0), getFloats(strTrim));
             }
-            i3 = nextStart;
-            i2 = nextStart + 1;
+            i3 = iNextStart;
+            i2 = iNextStart + 1;
         }
         if (i2 - i3 == 1 && i3 < str.length()) {
             addNode(arrayList, str.charAt(i3), new float[0]);
@@ -74,12 +74,12 @@ public class PathParser {
 
     public static Path createPathFromPathData(String str) {
         Path path = new Path();
-        PathDataNode[] createNodesFromPathData = createNodesFromPathData(str);
-        if (createNodesFromPathData == null) {
+        PathDataNode[] pathDataNodeArrCreateNodesFromPathData = createNodesFromPathData(str);
+        if (pathDataNodeArrCreateNodesFromPathData == null) {
             return null;
         }
         try {
-            PathDataNode.nodesToPath(createNodesFromPathData, path);
+            PathDataNode.nodesToPath(pathDataNodeArrCreateNodesFromPathData, path);
             return path;
         } catch (RuntimeException e2) {
             throw new RuntimeException("Error in parsing " + str, e2);
@@ -98,72 +98,60 @@ public class PathParser {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Removed duplicated region for block: B:14:0x003a A[LOOP:0: B:2:0x0007->B:14:0x003a, LOOP_END] */
-    /* JADX WARN: Removed duplicated region for block: B:15:0x003d A[SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:21:0x0035  */
+    /* JADX WARN: Removed duplicated region for block: B:24:0x003a A[LOOP:0: B:3:0x0007->B:24:0x003a, LOOP_END] */
+    /* JADX WARN: Removed duplicated region for block: B:28:0x003d A[SYNTHETIC] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static void extract(java.lang.String r8, int r9, androidx.core.graphics.PathParser.ExtractFloatResult r10) {
-        /*
-            r0 = 0
-            r10.mEndWithNegOrDot = r0
-            r1 = r9
-            r2 = 0
-            r3 = 0
-            r4 = 0
-        L7:
-            int r5 = r8.length()
-            if (r1 >= r5) goto L3d
-            char r5 = r8.charAt(r1)
-            r6 = 32
-            r7 = 1
-            if (r5 == r6) goto L35
-            r6 = 69
-            if (r5 == r6) goto L33
-            r6 = 101(0x65, float:1.42E-43)
-            if (r5 == r6) goto L33
-            switch(r5) {
-                case 44: goto L35;
-                case 45: goto L2a;
-                case 46: goto L22;
-                default: goto L21;
+    private static void extract(String str, int i2, ExtractFloatResult extractFloatResult) {
+        extractFloatResult.mEndWithNegOrDot = false;
+        boolean z = false;
+        boolean z2 = false;
+        boolean z3 = false;
+        for (int i3 = i2; i3 < str.length(); i3++) {
+            char cCharAt = str.charAt(i3);
+            if (cCharAt == ' ') {
+                z = false;
+                z3 = true;
+                if (z3) {
+                }
+            } else {
+                if (cCharAt != 'E' && cCharAt != 'e') {
+                    switch (cCharAt) {
+                        case ',':
+                            break;
+                        case '-':
+                            if (i3 != i2 && !z) {
+                                extractFloatResult.mEndWithNegOrDot = true;
+                                z = false;
+                                z3 = true;
+                            }
+                            z = false;
+                            break;
+                        case '.':
+                            if (z2) {
+                                extractFloatResult.mEndWithNegOrDot = true;
+                                z = false;
+                                z3 = true;
+                            } else {
+                                z = false;
+                                z2 = true;
+                            }
+                            break;
+                        default:
+                            z = false;
+                            break;
+                    }
+                } else {
+                    z = true;
+                }
+                if (z3) {
+                }
             }
-        L21:
-            goto L31
-        L22:
-            if (r3 != 0) goto L27
-            r2 = 0
-            r3 = 1
-            goto L37
-        L27:
-            r10.mEndWithNegOrDot = r7
-            goto L35
-        L2a:
-            if (r1 == r9) goto L31
-            if (r2 != 0) goto L31
-            r10.mEndWithNegOrDot = r7
-            goto L35
-        L31:
-            r2 = 0
-            goto L37
-        L33:
-            r2 = 1
-            goto L37
-        L35:
-            r2 = 0
-            r4 = 1
-        L37:
-            if (r4 == 0) goto L3a
-            goto L3d
-        L3a:
-            int r1 = r1 + 1
-            goto L7
-        L3d:
-            r10.mEndPosition = r1
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.core.graphics.PathParser.extract(java.lang.String, int, androidx.core.graphics.PathParser$ExtractFloatResult):void");
+            extractFloatResult.mEndPosition = i3;
+        }
+        extractFloatResult.mEndPosition = i3;
     }
 
     private static float[] getFloats(String str) {
@@ -209,8 +197,8 @@ public class PathParser {
 
     private static int nextStart(String str, int i2) {
         while (i2 < str.length()) {
-            char charAt = str.charAt(i2);
-            if (((charAt - 'A') * (charAt - 'Z') <= 0 || (charAt - 'a') * (charAt - 'z') <= 0) && charAt != 'e' && charAt != 'E') {
+            char cCharAt = str.charAt(i2);
+            if (((cCharAt - 'A') * (cCharAt - 'Z') <= 0 || (cCharAt - 'a') * (cCharAt - 'z') <= 0) && cCharAt != 'e' && cCharAt != 'E') {
                 return i2;
             }
             i2++;
@@ -526,48 +514,49 @@ public class PathParser {
 
         private static void arcToBezier(Path path, double d2, double d3, double d4, double d5, double d6, double d7, double d8, double d9, double d10) {
             double d11 = d4;
-            int ceil = (int) Math.ceil(Math.abs((d10 * 4.0d) / 3.141592653589793d));
-            double cos = Math.cos(d8);
-            double sin = Math.sin(d8);
-            double cos2 = Math.cos(d9);
-            double sin2 = Math.sin(d9);
+            int iCeil = (int) Math.ceil(Math.abs((d10 * 4.0d) / 3.141592653589793d));
+            double dCos = Math.cos(d8);
+            double dSin = Math.sin(d8);
+            double dCos2 = Math.cos(d9);
+            double dSin2 = Math.sin(d9);
             double d12 = -d11;
-            double d13 = d12 * cos;
-            double d14 = d5 * sin;
-            double d15 = (d13 * sin2) - (d14 * cos2);
-            double d16 = d12 * sin;
-            double d17 = d5 * cos;
-            double d18 = (sin2 * d16) + (cos2 * d17);
-            double d19 = d10 / ceil;
+            double d13 = d12 * dCos;
+            double d14 = d5 * dSin;
+            double d15 = (d13 * dSin2) - (d14 * dCos2);
+            double d16 = d12 * dSin;
+            double d17 = d5 * dCos;
+            double d18 = (dSin2 * d16) + (dCos2 * d17);
+            double d19 = d10 / ((double) iCeil);
             double d20 = d6;
             double d21 = d7;
             double d22 = d18;
             double d23 = d15;
             int i2 = 0;
             double d24 = d9;
-            while (i2 < ceil) {
+            while (i2 < iCeil) {
                 double d25 = d24 + d19;
-                double sin3 = Math.sin(d25);
-                double cos3 = Math.cos(d25);
-                double d26 = (d2 + ((d11 * cos) * cos3)) - (d14 * sin3);
-                double d27 = d3 + (d11 * sin * cos3) + (d17 * sin3);
-                double d28 = (d13 * sin3) - (d14 * cos3);
-                double d29 = (sin3 * d16) + (cos3 * d17);
+                double dSin3 = Math.sin(d25);
+                double dCos3 = Math.cos(d25);
+                double d26 = (d2 + ((d11 * dCos) * dCos3)) - (d14 * dSin3);
+                double d27 = d3 + (d11 * dSin * dCos3) + (d17 * dSin3);
+                double d28 = (d13 * dSin3) - (d14 * dCos3);
+                double d29 = (dSin3 * d16) + (dCos3 * d17);
                 double d30 = d25 - d24;
-                double tan = Math.tan(d30 / 2.0d);
-                double sin4 = (Math.sin(d30) * (Math.sqrt(((tan * 3.0d) * tan) + 4.0d) - 1.0d)) / 3.0d;
+                double dTan = Math.tan(d30 / 2.0d);
+                double dSin4 = (Math.sin(d30) * (Math.sqrt(((dTan * 3.0d) * dTan) + 4.0d) - 1.0d)) / 3.0d;
+                int i3 = iCeil;
                 path.rLineTo(0.0f, 0.0f);
-                path.cubicTo((float) (d20 + (d23 * sin4)), (float) (d21 + (d22 * sin4)), (float) (d26 - (sin4 * d28)), (float) (d27 - (sin4 * d29)), (float) d26, (float) d27);
+                path.cubicTo((float) (d20 + (d23 * dSin4)), (float) (d21 + (d22 * dSin4)), (float) (d26 - (dSin4 * d28)), (float) (d27 - (dSin4 * d29)), (float) d26, (float) d27);
                 i2++;
                 d19 = d19;
-                ceil = ceil;
-                sin = sin;
+                iCeil = i3;
+                dSin = dSin;
                 d21 = d27;
                 d16 = d16;
                 d24 = d25;
                 d22 = d29;
                 d23 = d28;
-                cos = cos;
+                dCos = dCos;
                 d11 = d4;
                 d20 = d26;
             }
@@ -577,19 +566,19 @@ public class PathParser {
             double d2;
             double d3;
             double radians = Math.toRadians(f8);
-            double cos = Math.cos(radians);
-            double sin = Math.sin(radians);
+            double dCos = Math.cos(radians);
+            double dSin = Math.sin(radians);
             double d4 = f2;
-            double d5 = d4 * cos;
+            double d5 = d4 * dCos;
             double d6 = f3;
             double d7 = f6;
-            double d8 = (d5 + (d6 * sin)) / d7;
-            double d9 = ((-f2) * sin) + (d6 * cos);
+            double d8 = (d5 + (d6 * dSin)) / d7;
+            double d9 = (((double) (-f2)) * dSin) + (d6 * dCos);
             double d10 = f7;
             double d11 = d9 / d10;
             double d12 = f5;
-            double d13 = ((f4 * cos) + (d12 * sin)) / d7;
-            double d14 = (((-f4) * sin) + (d12 * cos)) / d10;
+            double d13 = ((((double) f4) * dCos) + (d12 * dSin)) / d7;
+            double d14 = ((((double) (-f4)) * dSin) + (d12 * dCos)) / d10;
             double d15 = d8 - d13;
             double d16 = d11 - d14;
             double d17 = (d8 + d13) / 2.0d;
@@ -601,13 +590,13 @@ public class PathParser {
             double d20 = (1.0d / d19) - 0.25d;
             if (d20 < 0.0d) {
                 String str = "Points are too far apart " + d19;
-                float sqrt = (float) (Math.sqrt(d19) / 1.99999d);
-                drawArc(path, f2, f3, f4, f5, f6 * sqrt, f7 * sqrt, f8, z, z2);
+                float fSqrt = (float) (Math.sqrt(d19) / 1.99999d);
+                drawArc(path, f2, f3, f4, f5, f6 * fSqrt, f7 * fSqrt, f8, z, z2);
                 return;
             }
-            double sqrt2 = Math.sqrt(d20);
-            double d21 = d15 * sqrt2;
-            double d22 = sqrt2 * d16;
+            double dSqrt = Math.sqrt(d20);
+            double d21 = d15 * dSqrt;
+            double d22 = dSqrt * d16;
             if (z == z2) {
                 d2 = d17 - d22;
                 d3 = d18 + d21;
@@ -615,14 +604,14 @@ public class PathParser {
                 d2 = d17 + d22;
                 d3 = d18 - d21;
             }
-            double atan2 = Math.atan2(d11 - d3, d8 - d2);
-            double atan22 = Math.atan2(d14 - d3, d13 - d2) - atan2;
-            if (z2 != (atan22 >= 0.0d)) {
-                atan22 = atan22 > 0.0d ? atan22 - 6.283185307179586d : atan22 + 6.283185307179586d;
+            double dAtan2 = Math.atan2(d11 - d3, d8 - d2);
+            double dAtan22 = Math.atan2(d14 - d3, d13 - d2) - dAtan2;
+            if (z2 != (dAtan22 >= 0.0d)) {
+                dAtan22 = dAtan22 > 0.0d ? dAtan22 - 6.283185307179586d : dAtan22 + 6.283185307179586d;
             }
             double d23 = d2 * d7;
             double d24 = d3 * d10;
-            arcToBezier(path, (d23 * cos) - (d24 * sin), (d23 * sin) + (d24 * cos), d7, d10, d4, d6, radians, atan2, atan22);
+            arcToBezier(path, (d23 * dCos) - (d24 * dSin), (d23 * dSin) + (d24 * dCos), d7, d10, d4, d6, radians, dAtan2, dAtan22);
         }
 
         public static void nodesToPath(PathDataNode[] pathDataNodeArr, Path path) {

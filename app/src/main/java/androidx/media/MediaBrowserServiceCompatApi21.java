@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class MediaBrowserServiceCompatApi21 {
 
     static class BrowserRoot {
@@ -38,11 +38,11 @@ class MediaBrowserServiceCompatApi21 {
         @Override // android.service.media.MediaBrowserService
         public MediaBrowserService.BrowserRoot onGetRoot(String str, int i2, Bundle bundle) {
             MediaSessionCompat.ensureClassLoader(bundle);
-            BrowserRoot onGetRoot = this.mServiceProxy.onGetRoot(str, i2, bundle == null ? null : new Bundle(bundle));
-            if (onGetRoot == null) {
+            BrowserRoot browserRootOnGetRoot = this.mServiceProxy.onGetRoot(str, i2, bundle == null ? null : new Bundle(bundle));
+            if (browserRootOnGetRoot == null) {
                 return null;
             }
-            return new MediaBrowserService.BrowserRoot(onGetRoot.mRootId, onGetRoot.mExtras);
+            return new MediaBrowserService.BrowserRoot(browserRootOnGetRoot.mRootId, browserRootOnGetRoot.mExtras);
         }
 
         @Override // android.service.media.MediaBrowserService

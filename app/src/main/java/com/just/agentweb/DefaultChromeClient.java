@@ -22,7 +22,7 @@ import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DefaultChromeClient extends MiddlewareWebChromeBase {
     public static final String ANDROID_WEBCHROMECLIENT_PATH = "android.webkit.WebChromeClient";
     public static final int FROM_CODE_INTENTION = 24;
@@ -53,9 +53,9 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
             @Override // com.just.agentweb.ActionActivity.PermissionListener
             public void onRequestPermissionsResult(@NonNull String[] strArr, @NonNull int[] iArr, Bundle bundle) {
                 if (bundle.getInt(ActionActivity.KEY_FROM_INTENTION) == 96) {
-                    boolean hasPermission = AgentWebUtils.hasPermission((Context) DefaultChromeClient.this.mActivityWeakReference.get(), strArr);
+                    boolean zHasPermission = AgentWebUtils.hasPermission((Context) DefaultChromeClient.this.mActivityWeakReference.get(), strArr);
                     if (DefaultChromeClient.this.mCallback != null) {
-                        if (hasPermission) {
+                        if (zHasPermission) {
                             DefaultChromeClient.this.mCallback.invoke(DefaultChromeClient.this.mOrigin, true, false);
                         } else {
                             DefaultChromeClient.this.mCallback.invoke(DefaultChromeClient.this.mOrigin, false, false);
@@ -63,7 +63,7 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
                         DefaultChromeClient.this.mCallback = null;
                         DefaultChromeClient.this.mOrigin = null;
                     }
-                    if (hasPermission || DefaultChromeClient.this.mAgentWebUIController.get() == null) {
+                    if (zHasPermission || DefaultChromeClient.this.mAgentWebUIController.get() == null) {
                         return;
                     }
                     ((AbsAgentWebUIController) DefaultChromeClient.this.mAgentWebUIController.get()).onPermissionsDeny(AgentWebPermissions.LOCATION, "Location", "Location");
@@ -102,21 +102,21 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
         }
         List<String> deniedPermissions = AgentWebUtils.getDeniedPermissions(activity, AgentWebPermissions.LOCATION);
         if (deniedPermissions.isEmpty()) {
-            LogUtils.m8083i(this.TAG, "onGeolocationPermissionsShowPromptInternal:true");
+            LogUtils.i(this.TAG, "onGeolocationPermissionsShowPromptInternal:true");
             callback.invoke(str, true, false);
             return;
         }
-        Action createPermissionsAction = Action.createPermissionsAction((String[]) deniedPermissions.toArray(new String[0]));
-        createPermissionsAction.setFromIntention(96);
+        Action actionCreatePermissionsAction = Action.createPermissionsAction((String[]) deniedPermissions.toArray(new String[0]));
+        actionCreatePermissionsAction.setFromIntention(96);
         ActionActivity.setPermissionListener(this.mPermissionListener);
         this.mCallback = callback;
         this.mOrigin = str;
-        ActionActivity.start(activity, createPermissionsAction);
+        ActionActivity.start(activity, actionCreatePermissionsAction);
     }
 
     @RequiresApi(api = 21)
     private boolean openFileChooserAboveL(WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        LogUtils.m8083i(this.TAG, "fileChooserParams:" + fileChooserParams.getAcceptTypes() + "  getTitle:" + ((Object) fileChooserParams.getTitle()) + " accept:" + Arrays.toString(fileChooserParams.getAcceptTypes()) + " length:" + fileChooserParams.getAcceptTypes().length + "  :" + fileChooserParams.isCaptureEnabled() + "  " + fileChooserParams.getFilenameHint() + "  intent:" + fileChooserParams.createIntent().toString() + "   mode:" + fileChooserParams.getMode());
+        LogUtils.i(this.TAG, "fileChooserParams:" + fileChooserParams.getAcceptTypes() + "  getTitle:" + ((Object) fileChooserParams.getTitle()) + " accept:" + Arrays.toString(fileChooserParams.getAcceptTypes()) + " length:" + fileChooserParams.getAcceptTypes().length + "  :" + fileChooserParams.isCaptureEnabled() + "  " + fileChooserParams.getFilenameHint() + "  intent:" + fileChooserParams.createIntent().toString() + "   mode:" + fileChooserParams.getMode());
         Activity activity = this.mActivityWeakReference.get();
         if (activity == null || activity.isFinishing()) {
             return false;
@@ -225,13 +225,13 @@ public class DefaultChromeClient extends MiddlewareWebChromeBase {
     @Override // com.just.agentweb.WebChromeClientDelegate, android.webkit.WebChromeClient
     @RequiresApi(api = 21)
     public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        LogUtils.m8083i(this.TAG, "openFileChooser>=5.0");
+        LogUtils.i(this.TAG, "openFileChooser>=5.0");
         return openFileChooserAboveL(webView, valueCallback, fileChooserParams);
     }
 
     @Override // com.just.agentweb.WebChromeClientDelegate
     public void openFileChooser(ValueCallback<Uri> valueCallback, String str, String str2) {
-        LogUtils.m8083i(this.TAG, "openFileChooser>=4.1");
+        LogUtils.i(this.TAG, "openFileChooser>=4.1");
         createAndOpenCommonFileChooser(valueCallback, str);
     }
 

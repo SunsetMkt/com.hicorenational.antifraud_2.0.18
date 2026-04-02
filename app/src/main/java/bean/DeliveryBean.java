@@ -3,14 +3,12 @@ package bean;
 import java.util.ArrayList;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DeliveryBean extends BaseBean {
     private String caseInfoID;
     private String deliveryGoods;
     private String deliveryTime;
-
-    /* renamed from: ex */
-    private int f1594ex;
+    private int ex;
     private ArrayList<UploadFileBean> mailingTelDetails;
     private String mailingTelInfoID;
     private String oddNumber;
@@ -53,7 +51,7 @@ public class DeliveryBean extends BaseBean {
     }
 
     public int getEx() {
-        return this.f1594ex;
+        return this.ex;
     }
 
     public ArrayList<UploadFileBean> getMailingTelDetails() {
@@ -101,7 +99,7 @@ public class DeliveryBean extends BaseBean {
     }
 
     public void setEx(int i2) {
-        this.f1594ex = i2;
+        this.ex = i2;
     }
 
     public void setMailingTelDetails(ArrayList<UploadFileBean> arrayList) {

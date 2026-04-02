@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.SystemClock;
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +17,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 class DrawableContainer extends Drawable implements Drawable.Callback {
     private static final boolean DEBUG = false;
     private static final boolean DEFAULT_DITHER = true;
@@ -201,9 +202,9 @@ class DrawableContainer extends Drawable implements Drawable.Callback {
             if (Build.VERSION.SDK_INT >= 23) {
                 drawable.setLayoutDirection(this.mLayoutDirection);
             }
-            Drawable mutate = drawable.mutate();
-            mutate.setCallback(this.mOwner);
-            return mutate;
+            Drawable drawableMutate = drawable.mutate();
+            drawableMutate.setCallback(this.mOwner);
+            return drawableMutate;
         }
 
         public final int addChild(Drawable drawable) {
@@ -322,22 +323,22 @@ class DrawableContainer extends Drawable implements Drawable.Callback {
         }
 
         public final Drawable getChild(int i2) {
-            int indexOfKey;
+            int iIndexOfKey;
             Drawable drawable = this.mDrawables[i2];
             if (drawable != null) {
                 return drawable;
             }
             SparseArray<Drawable.ConstantState> sparseArray = this.mDrawableFutures;
-            if (sparseArray == null || (indexOfKey = sparseArray.indexOfKey(i2)) < 0) {
+            if (sparseArray == null || (iIndexOfKey = sparseArray.indexOfKey(i2)) < 0) {
                 return null;
             }
-            Drawable prepareDrawable = prepareDrawable(this.mDrawableFutures.valueAt(indexOfKey).newDrawable(this.mSourceRes));
-            this.mDrawables[i2] = prepareDrawable;
-            this.mDrawableFutures.removeAt(indexOfKey);
+            Drawable drawablePrepareDrawable = prepareDrawable(this.mDrawableFutures.valueAt(iIndexOfKey).newDrawable(this.mSourceRes));
+            this.mDrawables[i2] = drawablePrepareDrawable;
+            this.mDrawableFutures.removeAt(iIndexOfKey);
             if (this.mDrawableFutures.size() == 0) {
                 this.mDrawableFutures = null;
             }
-            return prepareDrawable;
+            return drawablePrepareDrawable;
         }
 
         public final int getChildCount() {
@@ -521,10 +522,10 @@ class DrawableContainer extends Drawable implements Drawable.Callback {
         final void updateDensity(Resources resources) {
             if (resources != null) {
                 this.mSourceRes = resources;
-                int resolveDensity = DrawableContainer.resolveDensity(resources, this.mDensity);
+                int iResolveDensity = DrawableContainer.resolveDensity(resources, this.mDensity);
                 int i2 = this.mDensity;
-                this.mDensity = resolveDensity;
-                if (i2 != resolveDensity) {
+                this.mDensity = iResolveDensity;
+                if (i2 != iResolveDensity) {
                     this.mCheckedConstantSize = false;
                     this.mCheckedPadding = false;
                 }
@@ -588,92 +589,65 @@ class DrawableContainer extends Drawable implements Drawable.Callback {
         return i2;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:11:0x003f  */
-    /* JADX WARN: Removed duplicated region for block: B:18:0x006a A[ADDED_TO_REGION] */
-    /* JADX WARN: Removed duplicated region for block: B:23:? A[ADDED_TO_REGION, RETURN, SYNTHETIC] */
-    /* JADX WARN: Removed duplicated region for block: B:25:0x0065  */
+    /* JADX WARN: Removed duplicated region for block: B:14:0x003f  */
+    /* JADX WARN: Removed duplicated region for block: B:20:0x0065  */
+    /* JADX WARN: Removed duplicated region for block: B:23:0x006a A[ADDED_TO_REGION] */
+    /* JADX WARN: Removed duplicated region for block: B:26:? A[ADDED_TO_REGION, RETURN, SYNTHETIC] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    void animate(boolean r14) {
-        /*
-            r13 = this;
-            r0 = 1
-            r13.mHasAlpha = r0
-            long r1 = android.os.SystemClock.uptimeMillis()
-            android.graphics.drawable.Drawable r3 = r13.mCurrDrawable
-            r4 = 255(0xff, double:1.26E-321)
-            r6 = 0
-            r7 = 0
-            if (r3 == 0) goto L38
-            long r9 = r13.mEnterAnimationEnd
-            int r11 = (r9 > r7 ? 1 : (r9 == r7 ? 0 : -1))
-            if (r11 == 0) goto L3a
-            int r11 = (r9 > r1 ? 1 : (r9 == r1 ? 0 : -1))
-            if (r11 > 0) goto L22
-            int r9 = r13.mAlpha
-            r3.setAlpha(r9)
-            r13.mEnterAnimationEnd = r7
-            goto L3a
-        L22:
-            long r9 = r9 - r1
-            long r9 = r9 * r4
-            int r10 = (int) r9
-            androidx.appcompat.graphics.drawable.DrawableContainer$DrawableContainerState r9 = r13.mDrawableContainerState
-            int r9 = r9.mEnterFadeDuration
-            int r10 = r10 / r9
-            int r9 = 255 - r10
-            int r10 = r13.mAlpha
-            int r9 = r9 * r10
-            int r9 = r9 / 255
-            r3.setAlpha(r9)
-            r3 = 1
-            goto L3b
-        L38:
-            r13.mEnterAnimationEnd = r7
-        L3a:
-            r3 = 0
-        L3b:
-            android.graphics.drawable.Drawable r9 = r13.mLastDrawable
-            if (r9 == 0) goto L65
-            long r10 = r13.mExitAnimationEnd
-            int r12 = (r10 > r7 ? 1 : (r10 == r7 ? 0 : -1))
-            if (r12 == 0) goto L67
-            int r12 = (r10 > r1 ? 1 : (r10 == r1 ? 0 : -1))
-            if (r12 > 0) goto L52
-            r9.setVisible(r6, r6)
-            r0 = 0
-            r13.mLastDrawable = r0
-            r13.mExitAnimationEnd = r7
-            goto L67
-        L52:
-            long r10 = r10 - r1
-            long r10 = r10 * r4
-            int r3 = (int) r10
-            androidx.appcompat.graphics.drawable.DrawableContainer$DrawableContainerState r4 = r13.mDrawableContainerState
-            int r4 = r4.mExitFadeDuration
-            int r3 = r3 / r4
-            int r4 = r13.mAlpha
-            int r3 = r3 * r4
-            int r3 = r3 / 255
-            r9.setAlpha(r3)
-            goto L68
-        L65:
-            r13.mExitAnimationEnd = r7
-        L67:
-            r0 = r3
-        L68:
-            if (r14 == 0) goto L74
-            if (r0 == 0) goto L74
-            java.lang.Runnable r14 = r13.mAnimationRunnable
-            r3 = 16
-            long r1 = r1 + r3
-            r13.scheduleSelf(r14, r1)
-        L74:
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.graphics.drawable.DrawableContainer.animate(boolean):void");
+    void animate(boolean z) {
+        boolean z2;
+        Drawable drawable;
+        boolean z3 = true;
+        this.mHasAlpha = true;
+        long jUptimeMillis = SystemClock.uptimeMillis();
+        Drawable drawable2 = this.mCurrDrawable;
+        if (drawable2 != null) {
+            long j2 = this.mEnterAnimationEnd;
+            if (j2 != 0) {
+                if (j2 <= jUptimeMillis) {
+                    drawable2.setAlpha(this.mAlpha);
+                    this.mEnterAnimationEnd = 0L;
+                } else {
+                    drawable2.setAlpha(((255 - (((int) ((j2 - jUptimeMillis) * 255)) / this.mDrawableContainerState.mEnterFadeDuration)) * this.mAlpha) / 255);
+                    z2 = true;
+                }
+            }
+            drawable = this.mLastDrawable;
+            if (drawable == null) {
+                long j3 = this.mExitAnimationEnd;
+                if (j3 != 0) {
+                    if (j3 <= jUptimeMillis) {
+                        drawable.setVisible(false, false);
+                        this.mLastDrawable = null;
+                        this.mExitAnimationEnd = 0L;
+                    } else {
+                        drawable.setAlpha(((((int) ((j3 - jUptimeMillis) * 255)) / this.mDrawableContainerState.mExitFadeDuration) * this.mAlpha) / 255);
+                    }
+                }
+                if (z && z3) {
+                    scheduleSelf(this.mAnimationRunnable, jUptimeMillis + 16);
+                    return;
+                }
+                return;
+            }
+            this.mExitAnimationEnd = 0L;
+            z3 = z2;
+            if (z) {
+                return;
+            } else {
+                return;
+            }
+        }
+        this.mEnterAnimationEnd = 0L;
+        z2 = false;
+        drawable = this.mLastDrawable;
+        if (drawable == null) {
+        }
+        z3 = z2;
+        if (z) {
+        }
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -889,9 +863,9 @@ class DrawableContainer extends Drawable implements Drawable.Callback {
     @NonNull
     public Drawable mutate() {
         if (!this.mMutated && super.mutate() == this) {
-            DrawableContainerState cloneConstantState = cloneConstantState();
-            cloneConstantState.mutate();
-            setConstantState(cloneConstantState);
+            DrawableContainerState drawableContainerStateCloneConstantState = cloneConstantState();
+            drawableContainerStateCloneConstantState.mutate();
+            setConstantState(drawableContainerStateCloneConstantState);
             this.mMutated = true;
         }
         return this;
@@ -947,93 +921,69 @@ class DrawableContainer extends Drawable implements Drawable.Callback {
         getCallback().scheduleDrawable(this, runnable, j2);
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:30:0x006b  */
-    /* JADX WARN: Removed duplicated region for block: B:32:0x0073  */
+    /* JADX WARN: Removed duplicated region for block: B:26:0x0055  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    boolean selectDrawable(int r10) {
-        /*
-            r9 = this;
-            int r0 = r9.mCurIndex
-            r1 = 0
-            if (r10 != r0) goto L6
-            return r1
-        L6:
-            long r2 = android.os.SystemClock.uptimeMillis()
-            androidx.appcompat.graphics.drawable.DrawableContainer$DrawableContainerState r0 = r9.mDrawableContainerState
-            int r0 = r0.mExitFadeDuration
-            r4 = 0
-            r5 = 0
-            if (r0 <= 0) goto L2e
-            android.graphics.drawable.Drawable r0 = r9.mLastDrawable
-            if (r0 == 0) goto L1a
-            r0.setVisible(r1, r1)
-        L1a:
-            android.graphics.drawable.Drawable r0 = r9.mCurrDrawable
-            if (r0 == 0) goto L29
-            r9.mLastDrawable = r0
-            androidx.appcompat.graphics.drawable.DrawableContainer$DrawableContainerState r0 = r9.mDrawableContainerState
-            int r0 = r0.mExitFadeDuration
-            long r0 = (long) r0
-            long r0 = r0 + r2
-            r9.mExitAnimationEnd = r0
-            goto L35
-        L29:
-            r9.mLastDrawable = r4
-            r9.mExitAnimationEnd = r5
-            goto L35
-        L2e:
-            android.graphics.drawable.Drawable r0 = r9.mCurrDrawable
-            if (r0 == 0) goto L35
-            r0.setVisible(r1, r1)
-        L35:
-            if (r10 < 0) goto L55
-            androidx.appcompat.graphics.drawable.DrawableContainer$DrawableContainerState r0 = r9.mDrawableContainerState
-            int r1 = r0.mNumChildren
-            if (r10 >= r1) goto L55
-            android.graphics.drawable.Drawable r0 = r0.getChild(r10)
-            r9.mCurrDrawable = r0
-            r9.mCurIndex = r10
-            if (r0 == 0) goto L5a
-            androidx.appcompat.graphics.drawable.DrawableContainer$DrawableContainerState r10 = r9.mDrawableContainerState
-            int r10 = r10.mEnterFadeDuration
-            if (r10 <= 0) goto L51
-            long r7 = (long) r10
-            long r2 = r2 + r7
-            r9.mEnterAnimationEnd = r2
-        L51:
-            r9.initializeDrawableForDisplay(r0)
-            goto L5a
-        L55:
-            r9.mCurrDrawable = r4
-            r10 = -1
-            r9.mCurIndex = r10
-        L5a:
-            long r0 = r9.mEnterAnimationEnd
-            r10 = 1
-            int r2 = (r0 > r5 ? 1 : (r0 == r5 ? 0 : -1))
-            if (r2 != 0) goto L67
-            long r0 = r9.mExitAnimationEnd
-            int r2 = (r0 > r5 ? 1 : (r0 == r5 ? 0 : -1))
-            if (r2 == 0) goto L79
-        L67:
-            java.lang.Runnable r0 = r9.mAnimationRunnable
-            if (r0 != 0) goto L73
-            androidx.appcompat.graphics.drawable.DrawableContainer$1 r0 = new androidx.appcompat.graphics.drawable.DrawableContainer$1
-            r0.<init>()
-            r9.mAnimationRunnable = r0
-            goto L76
-        L73:
-            r9.unscheduleSelf(r0)
-        L76:
-            r9.animate(r10)
-        L79:
-            r9.invalidateSelf()
-            return r10
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.graphics.drawable.DrawableContainer.selectDrawable(int):boolean");
+    boolean selectDrawable(int i2) {
+        if (i2 == this.mCurIndex) {
+            return false;
+        }
+        long jUptimeMillis = SystemClock.uptimeMillis();
+        if (this.mDrawableContainerState.mExitFadeDuration > 0) {
+            Drawable drawable = this.mLastDrawable;
+            if (drawable != null) {
+                drawable.setVisible(false, false);
+            }
+            Drawable drawable2 = this.mCurrDrawable;
+            if (drawable2 != null) {
+                this.mLastDrawable = drawable2;
+                this.mExitAnimationEnd = ((long) this.mDrawableContainerState.mExitFadeDuration) + jUptimeMillis;
+            } else {
+                this.mLastDrawable = null;
+                this.mExitAnimationEnd = 0L;
+            }
+        } else {
+            Drawable drawable3 = this.mCurrDrawable;
+            if (drawable3 != null) {
+                drawable3.setVisible(false, false);
+            }
+        }
+        if (i2 >= 0) {
+            DrawableContainerState drawableContainerState = this.mDrawableContainerState;
+            if (i2 < drawableContainerState.mNumChildren) {
+                Drawable child = drawableContainerState.getChild(i2);
+                this.mCurrDrawable = child;
+                this.mCurIndex = i2;
+                if (child != null) {
+                    int i3 = this.mDrawableContainerState.mEnterFadeDuration;
+                    if (i3 > 0) {
+                        this.mEnterAnimationEnd = jUptimeMillis + ((long) i3);
+                    }
+                    initializeDrawableForDisplay(child);
+                }
+            } else {
+                this.mCurrDrawable = null;
+                this.mCurIndex = -1;
+            }
+        }
+        if (this.mEnterAnimationEnd != 0 || this.mExitAnimationEnd != 0) {
+            Runnable runnable = this.mAnimationRunnable;
+            if (runnable == null) {
+                this.mAnimationRunnable = new Runnable() { // from class: androidx.appcompat.graphics.drawable.DrawableContainer.1
+                    @Override // java.lang.Runnable
+                    public void run() {
+                        DrawableContainer.this.animate(true);
+                        DrawableContainer.this.invalidateSelf();
+                    }
+                };
+            } else {
+                unscheduleSelf(runnable);
+            }
+            animate(true);
+        }
+        invalidateSelf();
+        return true;
     }
 
     @Override // android.graphics.drawable.Drawable

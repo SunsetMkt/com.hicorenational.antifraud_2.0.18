@@ -20,7 +20,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 abstract class ModernAsyncTask<Params, Progress, Result> {
     private static final int CORE_POOL_SIZE = 5;
     private static final int KEEP_ALIVE = 1;
@@ -44,6 +44,16 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
     final AtomicBoolean mCancelled = new AtomicBoolean();
     final AtomicBoolean mTaskInvoked = new AtomicBoolean();
     private final WorkerRunnable<Params, Result> mWorker = new WorkerRunnable<Params, Result>() { // from class: androidx.loader.content.ModernAsyncTask.2
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
         @Override // java.util.concurrent.Callable
         public Result call() throws Exception {
             ModernAsyncTask.this.mTaskInvoked.set(true);
@@ -73,8 +83,8 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         }
     };
 
-    /* renamed from: androidx.loader.content.ModernAsyncTask$4 */
-    static /* synthetic */ class C05844 {
+    /* JADX INFO: renamed from: androidx.loader.content.ModernAsyncTask$4, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass4 {
         static final /* synthetic */ int[] $SwitchMap$androidx$loader$content$ModernAsyncTask$Status = new int[Status.values().length];
 
         static {
@@ -105,6 +115,16 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         }
 
         /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             AsyncTaskResult asyncTaskResult = (AsyncTaskResult) message.obj;
@@ -171,7 +191,7 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
             executor.execute(this.mFuture);
             return this;
         }
-        int i2 = C05844.$SwitchMap$androidx$loader$content$ModernAsyncTask$Status[this.mStatus.ordinal()];
+        int i2 = AnonymousClass4.$SwitchMap$androidx$loader$content$ModernAsyncTask$Status[this.mStatus.ordinal()];
         if (i2 == 1) {
             throw new IllegalStateException("Cannot execute task: the task is already running.");
         }
@@ -190,7 +210,7 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         this.mStatus = Status.FINISHED;
     }
 
-    public final Result get() throws InterruptedException, ExecutionException {
+    public final Result get() throws ExecutionException, InterruptedException {
         return this.mFuture.get();
     }
 
@@ -241,7 +261,7 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         sDefaultExecutor.execute(runnable);
     }
 
-    public final Result get(long j2, TimeUnit timeUnit) throws InterruptedException, ExecutionException, TimeoutException {
+    public final Result get(long j2, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         return this.mFuture.get(j2, timeUnit);
     }
 }

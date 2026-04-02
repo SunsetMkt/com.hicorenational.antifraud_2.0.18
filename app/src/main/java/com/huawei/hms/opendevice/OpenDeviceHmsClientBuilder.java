@@ -5,7 +5,7 @@ import com.huawei.hms.common.internal.AbstractClientBuilder;
 import com.huawei.hms.common.internal.BaseHmsClient;
 import com.huawei.hms.common.internal.ClientSettings;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OpenDeviceHmsClientBuilder extends AbstractClientBuilder<OpenDeviceHmsClient, OpenDeviceOptions> {
     @Override // com.huawei.hms.common.internal.AbstractClientBuilder
     public OpenDeviceHmsClient buildClient(Context context, ClientSettings clientSettings, BaseHmsClient.OnConnectionFailedListener onConnectionFailedListener, BaseHmsClient.ConnectionCallbacks connectionCallbacks) {

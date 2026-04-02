@@ -3,7 +3,7 @@ package com.huawei.hms.aaid.entity;
 import com.huawei.hms.core.aidl.annotation.Packed;
 import com.huawei.hms.support.api.client.Result;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TokenResult extends Result {
 
     @Packed

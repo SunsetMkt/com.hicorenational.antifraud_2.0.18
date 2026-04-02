@@ -9,20 +9,25 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.google.android.material.C1921R;
+import com.google.android.material.R;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class ScrimInsetsFrameLayout extends FrameLayout {
+    private boolean drawBottomInsetForeground;
+    private boolean drawTopInsetForeground;
+
+    @Nullable
     Drawable insetForeground;
     Rect insets;
     private Rect tempRect;
 
-    public ScrimInsetsFrameLayout(Context context) {
+    public ScrimInsetsFrameLayout(@NonNull Context context) {
         this(context, null);
     }
 
@@ -34,14 +39,18 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
         if (this.insets == null || this.insetForeground == null) {
             return;
         }
-        int save = canvas.save();
+        int iSave = canvas.save();
         canvas.translate(getScrollX(), getScrollY());
-        this.tempRect.set(0, 0, width, this.insets.top);
-        this.insetForeground.setBounds(this.tempRect);
-        this.insetForeground.draw(canvas);
-        this.tempRect.set(0, height - this.insets.bottom, width, height);
-        this.insetForeground.setBounds(this.tempRect);
-        this.insetForeground.draw(canvas);
+        if (this.drawTopInsetForeground) {
+            this.tempRect.set(0, 0, width, this.insets.top);
+            this.insetForeground.setBounds(this.tempRect);
+            this.insetForeground.draw(canvas);
+        }
+        if (this.drawBottomInsetForeground) {
+            this.tempRect.set(0, height - this.insets.bottom, width, height);
+            this.insetForeground.setBounds(this.tempRect);
+            this.insetForeground.draw(canvas);
+        }
         Rect rect = this.tempRect;
         Rect rect2 = this.insets;
         rect.set(0, rect2.top, rect2.left, height - rect2.bottom);
@@ -52,7 +61,7 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
         rect3.set(width - rect4.right, rect4.top, width, height - rect4.bottom);
         this.insetForeground.setBounds(this.tempRect);
         this.insetForeground.draw(canvas);
-        canvas.restoreToCount(save);
+        canvas.restoreToCount(iSave);
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -76,20 +85,34 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
     protected void onInsetsChanged(WindowInsetsCompat windowInsetsCompat) {
     }
 
-    public ScrimInsetsFrameLayout(Context context, AttributeSet attributeSet) {
+    public void setDrawBottomInsetForeground(boolean z) {
+        this.drawBottomInsetForeground = z;
+    }
+
+    public void setDrawTopInsetForeground(boolean z) {
+        this.drawTopInsetForeground = z;
+    }
+
+    public void setScrimInsetForeground(@Nullable Drawable drawable) {
+        this.insetForeground = drawable;
+    }
+
+    public ScrimInsetsFrameLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public ScrimInsetsFrameLayout(Context context, AttributeSet attributeSet, int i2) {
+    public ScrimInsetsFrameLayout(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
         this.tempRect = new Rect();
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.ScrimInsetsFrameLayout, i2, C1921R.style.Widget_Design_ScrimInsetsFrameLayout, new int[0]);
-        this.insetForeground = obtainStyledAttributes.getDrawable(C1921R.styleable.ScrimInsetsFrameLayout_insetForeground);
-        obtainStyledAttributes.recycle();
+        this.drawTopInsetForeground = true;
+        this.drawBottomInsetForeground = true;
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.ScrimInsetsFrameLayout, i2, R.style.Widget_Design_ScrimInsetsFrameLayout, new int[0]);
+        this.insetForeground = typedArrayObtainStyledAttributes.getDrawable(R.styleable.ScrimInsetsFrameLayout_insetForeground);
+        typedArrayObtainStyledAttributes.recycle();
         setWillNotDraw(true);
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() { // from class: com.google.android.material.internal.ScrimInsetsFrameLayout.1
             @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            public WindowInsetsCompat onApplyWindowInsets(View view, @NonNull WindowInsetsCompat windowInsetsCompat) {
                 ScrimInsetsFrameLayout scrimInsetsFrameLayout = ScrimInsetsFrameLayout.this;
                 if (scrimInsetsFrameLayout.insets == null) {
                     scrimInsetsFrameLayout.insets = new Rect();

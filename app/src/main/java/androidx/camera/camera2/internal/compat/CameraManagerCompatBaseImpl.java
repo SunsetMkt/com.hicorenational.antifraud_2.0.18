@@ -16,10 +16,10 @@ import androidx.core.util.Preconditions;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
-import util.permissionutil.C7308a;
+import util.permissionutil.a;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class CameraManagerCompatBaseImpl implements CameraManagerCompat.CameraManagerCompatImpl {
     final CameraManager mCameraManager;
     final Object mObject;
@@ -45,7 +45,7 @@ class CameraManagerCompatBaseImpl implements CameraManagerCompat.CameraManagerCo
     }
 
     @Override // androidx.camera.camera2.internal.compat.CameraManagerCompat.CameraManagerCompatImpl
-    @RequiresPermission(C7308a.f25524c)
+    @RequiresPermission(a.f15026c)
     public void openCamera(@NonNull String str, @NonNull Executor executor, @NonNull CameraDevice.StateCallback stateCallback) throws CameraAccessException {
         Preconditions.checkNotNull(executor);
         Preconditions.checkNotNull(stateCallback);
@@ -74,16 +74,16 @@ class CameraManagerCompatBaseImpl implements CameraManagerCompat.CameraManagerCo
 
     @Override // androidx.camera.camera2.internal.compat.CameraManagerCompat.CameraManagerCompatImpl
     public void unregisterAvailabilityCallback(@NonNull CameraManager.AvailabilityCallback availabilityCallback) {
-        CameraManagerCompat.AvailabilityCallbackExecutorWrapper availabilityCallbackExecutorWrapper;
+        CameraManagerCompat.AvailabilityCallbackExecutorWrapper availabilityCallbackExecutorWrapperRemove;
         if (availabilityCallback != null) {
             CameraManagerCompatParamsApi21 cameraManagerCompatParamsApi21 = (CameraManagerCompatParamsApi21) this.mObject;
             synchronized (cameraManagerCompatParamsApi21.mWrapperMap) {
-                availabilityCallbackExecutorWrapper = cameraManagerCompatParamsApi21.mWrapperMap.remove(availabilityCallback);
+                availabilityCallbackExecutorWrapperRemove = cameraManagerCompatParamsApi21.mWrapperMap.remove(availabilityCallback);
             }
         } else {
-            availabilityCallbackExecutorWrapper = null;
+            availabilityCallbackExecutorWrapperRemove = null;
         }
-        this.mCameraManager.unregisterAvailabilityCallback(availabilityCallbackExecutorWrapper);
+        this.mCameraManager.unregisterAvailabilityCallback(availabilityCallbackExecutorWrapperRemove);
     }
 
     CameraManagerCompatBaseImpl(@NonNull Context context) {

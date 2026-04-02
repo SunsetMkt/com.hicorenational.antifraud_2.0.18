@@ -1,6 +1,6 @@
 package com.heytap.msp.push.mode;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DataMessage extends BaseMode {
     private String mAppId;
     private String mAppPackage;

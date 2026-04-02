@@ -2,9 +2,9 @@ package androidx.core.util;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import d.c.a.b.a.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Pair<F, S> {
 
     @Nullable
@@ -19,8 +19,8 @@ public class Pair<F, S> {
     }
 
     @NonNull
-    public static <A, B> Pair<A, B> create(@Nullable A a2, @Nullable B b2) {
-        return new Pair<>(a2, b2);
+    public static <A, B> Pair<A, B> create(@Nullable A a, @Nullable B b2) {
+        return new Pair<>(a, b2);
     }
 
     public boolean equals(Object obj) {
@@ -33,13 +33,13 @@ public class Pair<F, S> {
 
     public int hashCode() {
         F f2 = this.first;
-        int hashCode = f2 == null ? 0 : f2.hashCode();
+        int iHashCode = f2 == null ? 0 : f2.hashCode();
         S s = this.second;
-        return hashCode ^ (s != null ? s.hashCode() : 0);
+        return iHashCode ^ (s != null ? s.hashCode() : 0);
     }
 
     @NonNull
     public String toString() {
-        return "Pair{" + String.valueOf(this.first) + AbstractC1191a.f2568g + String.valueOf(this.second) + "}";
+        return "Pair{" + String.valueOf(this.first) + a.f10074g + String.valueOf(this.second) + "}";
     }
 }

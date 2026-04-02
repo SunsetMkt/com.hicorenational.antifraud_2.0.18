@@ -1,12 +1,12 @@
 package anet.channel.bytes;
 
-import anet.channel.bytes.C0752a;
+import anet.channel.bytes.a;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ByteArray implements Comparable<ByteArray> {
     final byte[] buffer;
     int bufferLength;
@@ -42,16 +42,16 @@ public class ByteArray implements Comparable<ByteArray> {
     }
 
     public int readFrom(InputStream inputStream) throws IOException {
-        int read = inputStream.read(this.buffer, 0, this.bufferLength);
-        this.dataLength = read != -1 ? read : 0;
-        return read;
+        int i2 = inputStream.read(this.buffer, 0, this.bufferLength);
+        this.dataLength = i2 != -1 ? i2 : 0;
+        return i2;
     }
 
     public void recycle() {
         if (this.bufferLength == 0) {
             return;
         }
-        C0752a.a.f765a.m448a(this);
+        a.C0008a.a.a(this);
     }
 
     public void setDataLength(int i2) {

@@ -4,8 +4,8 @@ import anet.channel.statist.AlarmObject;
 import anet.channel.statist.CountObject;
 import anet.channel.statist.StatObject;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public interface IAppMonitor {
     void commitAlarm(AlarmObject alarmObject);
 

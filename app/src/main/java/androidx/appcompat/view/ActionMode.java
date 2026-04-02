@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class ActionMode {
     private Object mTag;
     private boolean mTitleOptionalHint;

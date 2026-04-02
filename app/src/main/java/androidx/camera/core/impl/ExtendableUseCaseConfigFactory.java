@@ -6,7 +6,7 @@ import androidx.camera.core.CameraInfo;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ExtendableUseCaseConfigFactory implements UseCaseConfigFactory {
     private final Map<Class<?>, ConfigProvider<?>> mDefaultProviders = new HashMap();
 

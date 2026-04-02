@@ -1,6 +1,6 @@
 package androidx.constraintlayout.solver;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GoalRow extends ArrayRow {
     public GoalRow(Cache cache) {
         super(cache);

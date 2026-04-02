@@ -1,15 +1,15 @@
 package network;
 
-import util.C7313q1;
+import util.w1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HelpUploadInfo extends BaseBean {
     private String fileID;
     private String fileName;
     private int fileStatus;
     private int heartTimes = -1;
-    private String networkG = C7313q1.m26529a();
-    private String networkType = C7313q1.m26533e();
+    private String networkG = w1.a();
+    private String networkType = w1.e();
     private int source;
     private String sourceID;
     private int status;

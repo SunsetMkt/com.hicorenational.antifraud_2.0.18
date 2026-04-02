@@ -1,8 +1,8 @@
 package com.alibaba.sdk.android.oss.common.auth;
 
-import p286h.p309q2.p311t.C5556m0;
+import i.q2.t.m0;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSStsTokenCredentialProvider implements OSSCredentialProvider {
     private String accessKeyId;
     private String secretKeyId;
@@ -20,7 +20,7 @@ public class OSSStsTokenCredentialProvider implements OSSCredentialProvider {
 
     @Override // com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider
     public OSSFederationToken getFederationToken() {
-        return new OSSFederationToken(this.accessKeyId, this.secretKeyId, this.securityToken, C5556m0.f20396b);
+        return new OSSFederationToken(this.accessKeyId, this.secretKeyId, this.securityToken, m0.f12222b);
     }
 
     public String getSecretKeyId() {

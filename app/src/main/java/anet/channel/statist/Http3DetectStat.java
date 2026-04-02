@@ -3,17 +3,16 @@ package anet.channel.statist;
 import anet.channel.status.NetworkStatusHelper;
 import anet.channel.strategy.IConnStrategy;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "http3_detect")
-/* loaded from: classes.dex */
 public class Http3DetectStat extends StatObject {
 
     @Dimension
     public String host;
 
-    /* renamed from: ip */
     @Dimension
-    public String f1000ip;
+    public String ip;
 
     @Dimension
     public volatile String netType;
@@ -27,7 +26,7 @@ public class Http3DetectStat extends StatObject {
     public Http3DetectStat(String str, IConnStrategy iConnStrategy) {
         this.host = str;
         if (iConnStrategy != null) {
-            this.f1000ip = iConnStrategy.getIp();
+            this.ip = iConnStrategy.getIp();
             this.protocol = iConnStrategy.getProtocol().protocol;
         }
         this.netType = NetworkStatusHelper.getNetworkSubType();

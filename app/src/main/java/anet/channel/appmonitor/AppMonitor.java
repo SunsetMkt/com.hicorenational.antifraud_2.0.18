@@ -4,27 +4,24 @@ import anet.channel.statist.AlarmObject;
 import anet.channel.statist.CountObject;
 import anet.channel.statist.StatObject;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class AppMonitor {
-    private static volatile IAppMonitor appMonitor = new C0745a(null);
+    private static volatile IAppMonitor appMonitor = new a(null);
     private static volatile IAppMonitor apmMonitor = null;
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.appmonitor.AppMonitor$a */
-    static class C0745a implements IAppMonitor {
+    /* JADX INFO: compiled from: Taobao */
+    static class a implements IAppMonitor {
+        IAppMonitor a;
 
-        /* renamed from: a */
-        IAppMonitor f747a;
-
-        C0745a(IAppMonitor iAppMonitor) {
-            this.f747a = null;
-            this.f747a = iAppMonitor;
+        a(IAppMonitor iAppMonitor) {
+            this.a = null;
+            this.a = iAppMonitor;
         }
 
         @Override // anet.channel.appmonitor.IAppMonitor
         public void commitAlarm(AlarmObject alarmObject) {
-            IAppMonitor iAppMonitor = this.f747a;
+            IAppMonitor iAppMonitor = this.a;
             if (iAppMonitor != null) {
                 iAppMonitor.commitAlarm(alarmObject);
             }
@@ -32,7 +29,7 @@ public class AppMonitor {
 
         @Override // anet.channel.appmonitor.IAppMonitor
         public void commitCount(CountObject countObject) {
-            IAppMonitor iAppMonitor = this.f747a;
+            IAppMonitor iAppMonitor = this.a;
             if (iAppMonitor != null) {
                 iAppMonitor.commitCount(countObject);
             }
@@ -43,7 +40,7 @@ public class AppMonitor {
             if (AppMonitor.apmMonitor != null) {
                 AppMonitor.apmMonitor.commitStat(statObject);
             }
-            IAppMonitor iAppMonitor = this.f747a;
+            IAppMonitor iAppMonitor = this.a;
             if (iAppMonitor != null) {
                 iAppMonitor.commitStat(statObject);
             }
@@ -69,6 +66,6 @@ public class AppMonitor {
     }
 
     public static void setInstance(IAppMonitor iAppMonitor) {
-        appMonitor = new C0745a(iAppMonitor);
+        appMonitor = new a(iAppMonitor);
     }
 }

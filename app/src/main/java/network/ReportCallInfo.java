@@ -1,6 +1,6 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ReportCallInfo extends BaseBean {
     private String number;
     private String occurTime;

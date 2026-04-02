@@ -5,8 +5,8 @@ import anet.channel.statist.RequestStatistic;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public interface RequestCb {
     void onDataReceive(ByteArray byteArray, boolean z);
 

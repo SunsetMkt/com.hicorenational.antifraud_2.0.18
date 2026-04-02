@@ -7,8 +7,8 @@ import android.view.ViewGroupOverlay;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(18)
-/* loaded from: classes.dex */
 class ViewGroupOverlayApi18 implements ViewGroupOverlayImpl {
     private final ViewGroupOverlay mViewGroupOverlay;
 
@@ -19,11 +19,6 @@ class ViewGroupOverlayApi18 implements ViewGroupOverlayImpl {
     @Override // androidx.transition.ViewOverlayImpl
     public void add(@NonNull Drawable drawable) {
         this.mViewGroupOverlay.add(drawable);
-    }
-
-    @Override // androidx.transition.ViewOverlayImpl
-    public void clear() {
-        this.mViewGroupOverlay.clear();
     }
 
     @Override // androidx.transition.ViewOverlayImpl

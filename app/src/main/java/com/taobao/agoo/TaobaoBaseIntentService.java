@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import org.android.agoo.control.BaseIntentService;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class TaobaoBaseIntentService extends BaseIntentService {
     @Override // org.android.agoo.control.BaseIntentService
     protected abstract void onError(Context context, String str);

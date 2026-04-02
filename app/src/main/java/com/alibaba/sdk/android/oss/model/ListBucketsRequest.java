@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.model;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ListBucketsRequest extends OSSRequest {
     private static final int MAX_RETURNED_KEYS_LIMIT = 1000;
     private String marker;

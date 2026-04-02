@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import anet.channel.strategy.dispatch.DispatchConstants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ScreenUtils {
     private ScreenUtils() {
         throw new UnsupportedOperationException("cannot be instantiated");
@@ -48,22 +48,22 @@ public class ScreenUtils {
     }
 
     public static Bitmap snapShotWithStatusBar(Activity activity) {
-        Bitmap bitmap = null;
+        Bitmap bitmapCreateBitmap = null;
         try {
             View decorView = activity.getWindow().getDecorView();
             decorView.setDrawingCacheEnabled(true);
             decorView.buildDrawingCache();
-            bitmap = Bitmap.createBitmap(decorView.getDrawingCache(), 0, 0, getScreenWidth(activity), getScreenHeight(activity));
+            bitmapCreateBitmap = Bitmap.createBitmap(decorView.getDrawingCache(), 0, 0, getScreenWidth(activity), getScreenHeight(activity));
             decorView.destroyDrawingCache();
-            return bitmap;
+            return bitmapCreateBitmap;
         } catch (Error e2) {
             e2.printStackTrace();
-            return bitmap;
+            return bitmapCreateBitmap;
         }
     }
 
     public static Bitmap snapShotWithoutStatusBar(Activity activity) {
-        Bitmap bitmap = null;
+        Bitmap bitmapCreateBitmap = null;
         try {
             View decorView = activity.getWindow().getDecorView();
             decorView.setDrawingCacheEnabled(true);
@@ -72,12 +72,12 @@ public class ScreenUtils {
             Rect rect = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
             int i2 = rect.top;
-            bitmap = Bitmap.createBitmap(drawingCache, 0, i2, getScreenWidth(activity), getScreenHeight(activity) - i2);
+            bitmapCreateBitmap = Bitmap.createBitmap(drawingCache, 0, i2, getScreenWidth(activity), getScreenHeight(activity) - i2);
             decorView.destroyDrawingCache();
-            return bitmap;
+            return bitmapCreateBitmap;
         } catch (Error e2) {
             e2.printStackTrace();
-            return bitmap;
+            return bitmapCreateBitmap;
         }
     }
 }

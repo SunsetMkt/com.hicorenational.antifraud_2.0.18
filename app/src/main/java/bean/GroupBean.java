@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class GroupBean extends BaseBean {
     private String createRegionApi;
     private String createRegionName;

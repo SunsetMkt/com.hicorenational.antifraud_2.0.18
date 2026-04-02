@@ -2,7 +2,7 @@ package com.huawei.hms.common.data;
 
 import com.huawei.hms.common.internal.Preconditions;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SingleRefDBInnerIter<T> extends DBInnerIter<T> {
     public SingleRefDBInnerIter(DataBuffer<T> dataBuffer) {
         super(dataBuffer);

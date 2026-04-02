@@ -11,7 +11,7 @@ import androidx.annotation.RestrictTo;
 import androidx.media.MediaSessionManagerImplApi28;
 import androidx.media.MediaSessionManagerImplBase;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MediaSessionManager {
     private static volatile MediaSessionManager sSessionManager;
     MediaSessionManagerImpl mImpl;

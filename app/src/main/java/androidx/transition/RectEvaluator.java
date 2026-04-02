@@ -3,7 +3,7 @@ package androidx.transition;
 import android.animation.TypeEvaluator;
 import android.graphics.Rect;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class RectEvaluator implements TypeEvaluator<Rect> {
     private Rect mRect;
 

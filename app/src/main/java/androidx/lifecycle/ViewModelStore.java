@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ViewModelStore {
     private final HashMap<String, ViewModel> mMap = new HashMap<>();
 
@@ -26,9 +26,9 @@ public class ViewModelStore {
     }
 
     final void put(String str, ViewModel viewModel) {
-        ViewModel put = this.mMap.put(str, viewModel);
-        if (put != null) {
-            put.onCleared();
+        ViewModel viewModelPut = this.mMap.put(str, viewModel);
+        if (viewModelPut != null) {
+            viewModelPut.onCleared();
         }
     }
 }

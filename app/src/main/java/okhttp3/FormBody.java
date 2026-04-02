@@ -9,7 +9,7 @@ import okhttp3.internal.Util;
 import okio.Buffer;
 import okio.BufferedSink;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class FormBody extends RequestBody {
     private static final MediaType CONTENT_TYPE = MediaType.get("application/x-www-form-urlencoded");
     private final List<String> encodedNames;

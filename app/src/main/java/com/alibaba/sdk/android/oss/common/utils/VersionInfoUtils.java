@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.common.utils;
 import android.os.Build;
 import com.alibaba.sdk.android.oss.common.OSSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class VersionInfoUtils {
     private static String userAgent;
 
@@ -15,9 +15,9 @@ public class VersionInfoUtils {
         sb.append("/");
         sb.append(HttpUtil.urlEncode(Build.MODEL, "utf-8") + ";" + HttpUtil.urlEncode(Build.ID, "utf-8"));
         sb.append(")");
-        String sb2 = sb.toString();
-        OSSLog.logDebug("user agent : " + sb2);
-        return OSSUtils.isEmptyString(sb2) ? System.getProperty("http.agent").replaceAll("[^\\p{ASCII}]", "?") : sb2;
+        String string = sb.toString();
+        OSSLog.logDebug("user agent : " + string);
+        return OSSUtils.isEmptyString(string) ? System.getProperty("http.agent").replaceAll("[^\\p{ASCII}]", "?") : string;
     }
 
     public static String getUserAgent(String str) {

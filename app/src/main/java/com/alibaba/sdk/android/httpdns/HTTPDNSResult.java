@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.httpdns;
 import java.util.Arrays;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HTTPDNSResult {
     Map<String, String> extra;
     String host;

@@ -6,7 +6,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ContentLoadingProgressBar extends ProgressBar {
     private static final int MIN_DELAY = 500;
     private static final int MIN_SHOW_TIME = 500;
@@ -30,14 +30,13 @@ public class ContentLoadingProgressBar extends ProgressBar {
         this.mDismissed = true;
         removeCallbacks(this.mDelayedShow);
         this.mPostedShow = false;
-        long currentTimeMillis = System.currentTimeMillis() - this.mStartTime;
-        if (currentTimeMillis < 500 && this.mStartTime != -1) {
-            if (!this.mPostedHide) {
-                postDelayed(this.mDelayedHide, 500 - currentTimeMillis);
-                this.mPostedHide = true;
-            }
+        long jCurrentTimeMillis = System.currentTimeMillis() - this.mStartTime;
+        if (jCurrentTimeMillis >= 500 || this.mStartTime == -1) {
+            setVisibility(8);
+        } else if (!this.mPostedHide) {
+            postDelayed(this.mDelayedHide, 500 - jCurrentTimeMillis);
+            this.mPostedHide = true;
         }
-        setVisibility(8);
     }
 
     @Override // android.widget.ProgressBar, android.view.View

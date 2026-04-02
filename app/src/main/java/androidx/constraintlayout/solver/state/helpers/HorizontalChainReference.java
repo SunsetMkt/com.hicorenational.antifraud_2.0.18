@@ -4,15 +4,15 @@ import androidx.constraintlayout.solver.state.ConstraintReference;
 import androidx.constraintlayout.solver.state.State;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HorizontalChainReference extends ChainReference {
     private Object mEndToEnd;
     private Object mEndToStart;
     private Object mStartToEnd;
     private Object mStartToStart;
 
-    /* renamed from: androidx.constraintlayout.solver.state.helpers.HorizontalChainReference$1 */
-    static /* synthetic */ class C04571 {
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.helpers.HorizontalChainReference$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Chain = new int[State.Chain.values().length];
 
         static {
@@ -45,26 +45,26 @@ public class HorizontalChainReference extends ChainReference {
         ConstraintReference constraintReference = null;
         ConstraintReference constraintReference2 = null;
         while (it2.hasNext()) {
-            ConstraintReference constraints = this.mState.constraints(it2.next());
+            ConstraintReference constraintReferenceConstraints = this.mState.constraints(it2.next());
             if (constraintReference2 == null) {
                 Object obj = this.mStartToStart;
                 if (obj != null) {
-                    constraints.startToStart(obj);
+                    constraintReferenceConstraints.startToStart(obj);
                 } else {
                     Object obj2 = this.mStartToEnd;
                     if (obj2 != null) {
-                        constraints.startToEnd(obj2);
+                        constraintReferenceConstraints.startToEnd(obj2);
                     } else {
-                        constraints.startToStart(State.PARENT);
+                        constraintReferenceConstraints.startToStart(State.PARENT);
                     }
                 }
-                constraintReference2 = constraints;
+                constraintReference2 = constraintReferenceConstraints;
             }
             if (constraintReference != null) {
-                constraintReference.endToStart(constraints.getKey());
-                constraints.startToEnd(constraintReference.getKey());
+                constraintReference.endToStart(constraintReferenceConstraints.getKey());
+                constraintReferenceConstraints.startToEnd(constraintReference.getKey());
             }
-            constraintReference = constraints;
+            constraintReference = constraintReferenceConstraints;
         }
         if (constraintReference != null) {
             Object obj3 = this.mEndToStart;
@@ -85,7 +85,7 @@ public class HorizontalChainReference extends ChainReference {
                 constraintReference2.horizontalBias(f2);
             }
         }
-        int i2 = C04571.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
+        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Chain[this.mStyle.ordinal()];
         if (i2 == 1) {
             constraintReference2.setHorizontalChainStyle(0);
         } else if (i2 == 2) {

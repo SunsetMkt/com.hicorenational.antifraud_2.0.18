@@ -2,13 +2,11 @@ package com.alibaba.sdk.android.oss.model;
 
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Owner implements Serializable {
     private static final long serialVersionUID = -1942759024112448066L;
     private String displayName;
-
-    /* renamed from: id */
-    private String f4020id;
+    private String id;
 
     public Owner() {
         this(null, null);
@@ -43,11 +41,11 @@ public class Owner implements Serializable {
     }
 
     public String getId() {
-        return this.f4020id;
+        return this.id;
     }
 
     public int hashCode() {
-        String str = this.f4020id;
+        String str = this.id;
         if (str != null) {
             return str.hashCode();
         }
@@ -59,7 +57,7 @@ public class Owner implements Serializable {
     }
 
     public void setId(String str) {
-        this.f4020id = str;
+        this.id = str;
     }
 
     public String toString() {
@@ -67,7 +65,7 @@ public class Owner implements Serializable {
     }
 
     public Owner(String str, String str2) {
-        this.f4020id = str;
+        this.id = str;
         this.displayName = str2;
     }
 }

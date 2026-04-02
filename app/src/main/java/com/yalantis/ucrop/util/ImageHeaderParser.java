@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class ImageHeaderParser {
     private static final int EXIF_MAGIC_NUMBER = 65496;
     private static final int EXIF_SEGMENT_TYPE = 225;
@@ -62,33 +62,31 @@ public class ImageHeaderParser {
     }
 
     private static class StreamReader implements Reader {
-
-        /* renamed from: is */
-        private final InputStream f16842is;
+        private final InputStream is;
 
         public StreamReader(InputStream inputStream) {
-            this.f16842is = inputStream;
+            this.is = inputStream;
         }
 
         @Override // com.yalantis.ucrop.util.ImageHeaderParser.Reader
         public int getUInt16() throws IOException {
-            return ((this.f16842is.read() << 8) & MotionEventCompat.ACTION_POINTER_INDEX_MASK) | (this.f16842is.read() & 255);
+            return ((this.is.read() << 8) & MotionEventCompat.ACTION_POINTER_INDEX_MASK) | (this.is.read() & 255);
         }
 
         @Override // com.yalantis.ucrop.util.ImageHeaderParser.Reader
         public short getUInt8() throws IOException {
-            return (short) (this.f16842is.read() & 255);
+            return (short) (this.is.read() & 255);
         }
 
         @Override // com.yalantis.ucrop.util.ImageHeaderParser.Reader
         public int read(byte[] bArr, int i2) throws IOException {
             int i3 = i2;
             while (i3 > 0) {
-                int read = this.f16842is.read(bArr, i2 - i3, i3);
-                if (read == -1) {
+                int i4 = this.is.read(bArr, i2 - i3, i3);
+                if (i4 == -1) {
                     break;
                 }
-                i3 -= read;
+                i3 -= i4;
             }
             return i2 - i3;
         }
@@ -100,14 +98,14 @@ public class ImageHeaderParser {
             }
             long j3 = j2;
             while (j3 > 0) {
-                long skip = this.f16842is.skip(j3);
-                if (skip <= 0) {
-                    if (this.f16842is.read() == -1) {
+                long jSkip = this.is.skip(j3);
+                if (jSkip <= 0) {
+                    if (this.is.read() == -1) {
                         break;
                     }
-                    skip = 1;
+                    jSkip = 1;
                 }
-                j3 -= skip;
+                j3 -= jSkip;
             }
             return j2 - j3;
         }
@@ -121,7 +119,7 @@ public class ImageHeaderParser {
         return i2 + 2 + (i3 * 12);
     }
 
-    public static void copyExif(ExifInterface exifInterface, int i2, int i3, String str) {
+    public static void copyExif(ExifInterface exifInterface, int i2, int i3, String str) throws Throwable {
         String[] strArr = {ExifInterface.TAG_F_NUMBER, ExifInterface.TAG_DATETIME, ExifInterface.TAG_DATETIME_DIGITIZED, ExifInterface.TAG_EXPOSURE_TIME, ExifInterface.TAG_FLASH, ExifInterface.TAG_FOCAL_LENGTH, ExifInterface.TAG_GPS_ALTITUDE, ExifInterface.TAG_GPS_ALTITUDE_REF, ExifInterface.TAG_GPS_DATESTAMP, ExifInterface.TAG_GPS_LATITUDE, ExifInterface.TAG_GPS_LATITUDE_REF, ExifInterface.TAG_GPS_LONGITUDE, ExifInterface.TAG_GPS_LONGITUDE_REF, ExifInterface.TAG_GPS_PROCESSING_METHOD, ExifInterface.TAG_GPS_TIMESTAMP, ExifInterface.TAG_PHOTOGRAPHIC_SENSITIVITY, ExifInterface.TAG_MAKE, ExifInterface.TAG_MODEL, ExifInterface.TAG_SUBSEC_TIME, ExifInterface.TAG_SUBSEC_TIME_DIGITIZED, ExifInterface.TAG_SUBSEC_TIME_ORIGINAL, ExifInterface.TAG_WHITE_BALANCE};
         try {
             ExifInterface exifInterface2 = new ExifInterface(str);
@@ -166,7 +164,7 @@ public class ImageHeaderParser {
         short uInt8;
         int uInt16;
         long j2;
-        long skip;
+        long jSkip;
         do {
             short uInt82 = this.reader.getUInt8();
             if (uInt82 != 255) {
@@ -188,17 +186,17 @@ public class ImageHeaderParser {
                 return uInt16;
             }
             j2 = uInt16;
-            skip = this.reader.skip(j2);
-        } while (skip == j2);
+            jSkip = this.reader.skip(j2);
+        } while (jSkip == j2);
         if (Log.isLoggable(TAG, 3)) {
-            String str2 = "Unable to skip enough data, type: " + ((int) uInt8) + ", wanted to skip: " + uInt16 + ", but actually skipped: " + skip;
+            String str2 = "Unable to skip enough data, type: " + ((int) uInt8) + ", wanted to skip: " + uInt16 + ", but actually skipped: " + jSkip;
         }
         return -1;
     }
 
     private int parseExifSegment(byte[] bArr, int i2) throws IOException {
-        int read = this.reader.read(bArr, i2);
-        if (read == i2) {
+        int i3 = this.reader.read(bArr, i2);
+        if (i3 == i2) {
             if (hasJpegExifPreamble(bArr, i2)) {
                 return parseExifSegment(new RandomAccessReader(bArr, i2));
             }
@@ -206,7 +204,7 @@ public class ImageHeaderParser {
             return -1;
         }
         if (Log.isLoggable(TAG, 3)) {
-            String str = "Unable to read exif segment data, length: " + i2 + ", actually read: " + read;
+            String str = "Unable to read exif segment data, length: " + i2 + ", actually read: " + i3;
         }
         return -1;
     }
@@ -214,9 +212,9 @@ public class ImageHeaderParser {
     public int getOrientation() throws IOException {
         int uInt16 = this.reader.getUInt16();
         if (handles(uInt16)) {
-            int moveToExifSegmentAndGetLength = moveToExifSegmentAndGetLength();
-            if (moveToExifSegmentAndGetLength != -1) {
-                return parseExifSegment(new byte[moveToExifSegmentAndGetLength], moveToExifSegmentAndGetLength);
+            int iMoveToExifSegmentAndGetLength = moveToExifSegmentAndGetLength();
+            if (iMoveToExifSegmentAndGetLength != -1) {
+                return parseExifSegment(new byte[iMoveToExifSegmentAndGetLength], iMoveToExifSegmentAndGetLength);
             }
             Log.isLoggable(TAG, 3);
             return -1;
@@ -244,12 +242,12 @@ public class ImageHeaderParser {
         int int32 = randomAccessReader.getInt32(10) + 6;
         short int162 = randomAccessReader.getInt16(int32);
         for (int i2 = 0; i2 < int162; i2++) {
-            int calcTagOffset = calcTagOffset(int32, i2);
-            short int163 = randomAccessReader.getInt16(calcTagOffset);
+            int iCalcTagOffset = calcTagOffset(int32, i2);
+            short int163 = randomAccessReader.getInt16(iCalcTagOffset);
             if (int163 == ORIENTATION_TAG_TYPE) {
-                short int164 = randomAccessReader.getInt16(calcTagOffset + 2);
+                short int164 = randomAccessReader.getInt16(iCalcTagOffset + 2);
                 if (int164 >= 1 && int164 <= 12) {
-                    int int322 = randomAccessReader.getInt32(calcTagOffset + 4);
+                    int int322 = randomAccessReader.getInt32(iCalcTagOffset + 4);
                     if (int322 < 0) {
                         Log.isLoggable(TAG, 3);
                     } else {
@@ -262,7 +260,7 @@ public class ImageHeaderParser {
                                 String str3 = "Got byte count > 4, not orientation, continuing, formatCode=" + ((int) int164);
                             }
                         } else {
-                            int i4 = calcTagOffset + 8;
+                            int i4 = iCalcTagOffset + 8;
                             if (i4 >= 0 && i4 <= randomAccessReader.length()) {
                                 if (i3 >= 0 && i3 + i4 <= randomAccessReader.length()) {
                                     return randomAccessReader.getInt16(i4);

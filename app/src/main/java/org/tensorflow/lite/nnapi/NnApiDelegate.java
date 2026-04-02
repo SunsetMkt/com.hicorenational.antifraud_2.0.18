@@ -1,28 +1,25 @@
 package org.tensorflow.lite.nnapi;
 
-import org.tensorflow.lite.InterfaceC6076b;
+import org.tensorflow.lite.b;
 
-/* loaded from: classes2.dex */
-public class NnApiDelegate implements InterfaceC6076b, AutoCloseable {
+/* JADX INFO: loaded from: classes2.dex */
+public class NnApiDelegate implements b, AutoCloseable {
 
-    /* renamed from: b */
-    private static final long f21693b = 0;
-
-    /* renamed from: a */
-    private long f21694a = createDelegate();
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final long f13016b = 0;
+    private long a = createDelegate();
 
     private static native long createDelegate();
 
-    @Override // org.tensorflow.lite.InterfaceC6076b
-    /* renamed from: c */
-    public long mo25139c() {
-        return this.f21694a;
+    @Override // org.tensorflow.lite.b
+    public long c() {
+        return this.a;
     }
 
     @Override // java.lang.AutoCloseable
     public void close() {
-        if (this.f21694a != 0) {
-            this.f21694a = 0L;
+        if (this.a != 0) {
+            this.a = 0L;
         }
     }
 }

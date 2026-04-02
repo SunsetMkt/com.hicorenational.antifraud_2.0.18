@@ -1,6 +1,6 @@
 package com.huawei.hms.push;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class SendException extends BaseException {
     public static final int ERROR_INVALID_PARAMETERS = 907122042;
     public static final int ERROR_NO_NETWORK = 907122031;

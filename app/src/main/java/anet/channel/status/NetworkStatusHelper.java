@@ -7,22 +7,22 @@ import android.text.TextUtils;
 import android.util.Pair;
 import anet.channel.thread.ThreadPoolExecutorFactory;
 import anet.channel.util.ALog;
-import anet.channel.util.C0861g;
 import anet.channel.util.StringUtils;
+import anet.channel.util.g;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class NetworkStatusHelper {
     private static final String TAG = "awcn.NetworkStatusHelper";
     static CopyOnWriteArraySet<INetworkStatusChangeListener> listeners = new CopyOnWriteArraySet<>();
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public interface INetworkStatusChangeListener {
         void onNetworkStatusChanged(NetworkStatus networkStatus);
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public enum NetworkStatus {
         NONE,
         NO,
@@ -50,45 +50,45 @@ public class NetworkStatusHelper {
     }
 
     public static String getApn() {
-        return C0821b.f1015e;
+        return b.f1546e;
     }
 
     public static String getCarrier() {
-        return C0821b.f1018h;
+        return b.f1549h;
     }
 
     public static String getDnsServerAddress() {
-        return !C0821b.f1022l.isEmpty() ? C0821b.f1022l.get(0).getHostAddress() : C0821b.m621f();
+        return !b.f1553l.isEmpty() ? b.f1553l.get(0).getHostAddress() : b.f();
     }
 
     public static String getNetworkSubType() {
-        return C0821b.f1014d;
+        return b.f1545d;
     }
 
     public static String getProxyType() {
-        NetworkStatus networkStatus = C0821b.f1013c;
-        return (networkStatus != NetworkStatus.WIFI || getWifiProxy() == null) ? (networkStatus.isMobile() && C0821b.f1015e.contains("wap")) ? "wap" : (!networkStatus.isMobile() || C0861g.m736a() == null) ? "" : "auth" : "proxy";
+        NetworkStatus networkStatus = b.f1544c;
+        return (networkStatus != NetworkStatus.WIFI || getWifiProxy() == null) ? (networkStatus.isMobile() && b.f1546e.contains("wap")) ? "wap" : (!networkStatus.isMobile() || g.a() == null) ? "" : "auth" : "proxy";
     }
 
     public static int getRestrictBackgroundStatus() {
-        return C0821b.m622g();
+        return b.g();
     }
 
     public static String getSimOp() {
-        return C0821b.f1019i;
+        return b.f1550i;
     }
 
     public static NetworkStatus getStatus() {
-        return C0821b.f1013c;
+        return b.f1544c;
     }
 
     public static String getUniqueId(NetworkStatus networkStatus) {
         if (networkStatus.isWifi()) {
-            String md5ToHex = StringUtils.md5ToHex(getWifiBSSID());
-            if (TextUtils.isEmpty(md5ToHex)) {
-                md5ToHex = "";
+            String strMd5ToHex = StringUtils.md5ToHex(getWifiBSSID());
+            if (TextUtils.isEmpty(strMd5ToHex)) {
+                strMd5ToHex = "";
             }
-            return "WIFI$" + md5ToHex;
+            return "WIFI$" + strMd5ToHex;
         }
         if (!networkStatus.isMobile()) {
             return "";
@@ -97,32 +97,32 @@ public class NetworkStatusHelper {
     }
 
     public static String getWifiBSSID() {
-        return C0821b.f1017g;
+        return b.f1548g;
     }
 
     public static Pair<String, Integer> getWifiProxy() {
-        if (C0821b.f1013c != NetworkStatus.WIFI) {
+        if (b.f1544c != NetworkStatus.WIFI) {
             return null;
         }
-        return C0821b.f1020j;
+        return b.f1551j;
     }
 
     public static String getWifiSSID() {
-        return C0821b.f1016f;
+        return b.f1547f;
     }
 
     public static boolean isConnected() {
         if (Build.VERSION.SDK_INT >= 24) {
-            if (C0821b.f1012b) {
+            if (b.f1543b) {
                 return true;
             }
-        } else if (C0821b.f1013c != NetworkStatus.NO) {
+        } else if (b.f1544c != NetworkStatus.NO) {
             return true;
         }
         try {
-            NetworkInfo m620e = C0821b.m620e();
-            if (m620e != null) {
-                if (m620e.isConnected()) {
+            NetworkInfo networkInfoE = b.e();
+            if (networkInfoE != null) {
+                if (networkInfoE.isConnected()) {
                     return true;
                 }
             }
@@ -132,24 +132,40 @@ public class NetworkStatusHelper {
         }
     }
 
+    /* JADX WARN: Failed to analyze thrown exceptions
+    java.util.ConcurrentModificationException
+    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1095)
+    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:1049)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:117)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:68)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:178)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:131)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:68)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:178)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:131)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:68)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:178)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:131)
+    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:68)
+     */
     public static boolean isProxy() {
-        NetworkStatus networkStatus = C0821b.f1013c;
-        String str = C0821b.f1015e;
+        NetworkStatus networkStatus = b.f1544c;
+        String str = b.f1546e;
         if (networkStatus == NetworkStatus.WIFI && getWifiProxy() != null) {
             return true;
         }
         if (networkStatus.isMobile()) {
-            return str.contains("wap") || C0861g.m736a() != null;
+            return str.contains("wap") || g.a() != null;
         }
         return false;
     }
 
     public static boolean isRoaming() {
-        return C0821b.f1021k;
+        return b.f1552k;
     }
 
     static void notifyStatusChanged(NetworkStatus networkStatus) {
-        ThreadPoolExecutorFactory.submitScheduledTask(new RunnableC0820a(networkStatus));
+        ThreadPoolExecutorFactory.submitScheduledTask(new a(networkStatus));
     }
 
     public static void printNetworkDetail() {
@@ -195,7 +211,7 @@ public class NetworkStatusHelper {
                 }
             }
             sb.append("*********************************************");
-            ALog.m716i(TAG, sb.toString(), null, new Object[0]);
+            ALog.i(TAG, sb.toString(), null, new Object[0]);
         } catch (Exception unused) {
         }
     }
@@ -205,17 +221,15 @@ public class NetworkStatusHelper {
     }
 
     public static synchronized void startListener(Context context) {
-        synchronized (NetworkStatusHelper.class) {
-            if (context == null) {
-                throw new NullPointerException("context is null");
-            }
-            C0821b.f1011a = context;
-            C0821b.m614a();
-            C0821b.m618c();
+        if (context == null) {
+            throw new NullPointerException("context is null");
         }
+        b.a = context;
+        b.a();
+        b.c();
     }
 
     public void stopListener(Context context) {
-        C0821b.m616b();
+        b.b();
     }
 }

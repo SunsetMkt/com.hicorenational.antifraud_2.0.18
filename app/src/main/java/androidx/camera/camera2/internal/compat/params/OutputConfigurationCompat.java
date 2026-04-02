@@ -10,8 +10,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 public final class OutputConfigurationCompat {
     public static final int SURFACE_GROUP_ID_NONE = -1;
     private final OutputConfigurationCompatImpl mImpl;
@@ -62,11 +62,11 @@ public final class OutputConfigurationCompat {
             return null;
         }
         int i2 = Build.VERSION.SDK_INT;
-        OutputConfigurationCompatImpl wrap = i2 >= 28 ? OutputConfigurationCompatApi28Impl.wrap((OutputConfiguration) obj) : i2 >= 26 ? OutputConfigurationCompatApi26Impl.wrap((OutputConfiguration) obj) : i2 >= 24 ? OutputConfigurationCompatApi24Impl.wrap((OutputConfiguration) obj) : null;
-        if (wrap == null) {
+        OutputConfigurationCompatImpl outputConfigurationCompatImplWrap = i2 >= 28 ? OutputConfigurationCompatApi28Impl.wrap((OutputConfiguration) obj) : i2 >= 26 ? OutputConfigurationCompatApi26Impl.wrap((OutputConfiguration) obj) : i2 >= 24 ? OutputConfigurationCompatApi24Impl.wrap((OutputConfiguration) obj) : null;
+        if (outputConfigurationCompatImplWrap == null) {
             return null;
         }
-        return new OutputConfigurationCompat(wrap);
+        return new OutputConfigurationCompat(outputConfigurationCompatImplWrap);
     }
 
     public void addSurface(@NonNull Surface surface) {

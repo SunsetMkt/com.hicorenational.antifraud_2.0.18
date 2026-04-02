@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class LocalBroadcastManager {
     private static final boolean DEBUG = false;
     static final int MSG_EXEC_PENDING_BROADCASTS = 1;
@@ -40,18 +40,18 @@ public final class LocalBroadcastManager {
         boolean dead;
         final IntentFilter filter;
 
-        /* renamed from: receiver, reason: collision with root package name */
-        final BroadcastReceiver f25889receiver;
+        /* JADX INFO: renamed from: receiver, reason: collision with root package name */
+        final BroadcastReceiver f1309receiver;
 
         ReceiverRecord(IntentFilter intentFilter, BroadcastReceiver broadcastReceiver) {
             this.filter = intentFilter;
-            this.f25889receiver = broadcastReceiver;
+            this.f1309receiver = broadcastReceiver;
         }
 
         public String toString() {
             StringBuilder sb = new StringBuilder(128);
             sb.append("Receiver{");
-            sb.append(this.f25889receiver);
+            sb.append(this.f1309receiver);
             sb.append(" filter=");
             sb.append(this.filter);
             if (this.dead) {
@@ -105,7 +105,7 @@ public final class LocalBroadcastManager {
                 for (int i2 = 0; i2 < size2; i2++) {
                     ReceiverRecord receiverRecord = broadcastRecord.receivers.get(i2);
                     if (!receiverRecord.dead) {
-                        receiverRecord.f25889receiver.onReceive(this.mAppContext, broadcastRecord.intent);
+                        receiverRecord.f1309receiver.onReceive(this.mAppContext, broadcastRecord.intent);
                     }
                 }
             }
@@ -141,13 +141,13 @@ public final class LocalBroadcastManager {
         String str2;
         synchronized (this.mReceivers) {
             String action = intent.getAction();
-            String resolveTypeIfNeeded = intent.resolveTypeIfNeeded(this.mAppContext.getContentResolver());
+            String strResolveTypeIfNeeded = intent.resolveTypeIfNeeded(this.mAppContext.getContentResolver());
             Uri data = intent.getData();
             String scheme = intent.getScheme();
             Set<String> categories = intent.getCategories();
             boolean z = (intent.getFlags() & 8) != 0;
             if (z) {
-                String str3 = "Resolving type " + resolveTypeIfNeeded + " scheme " + scheme + " of intent " + intent;
+                String str3 = "Resolving type " + strResolveTypeIfNeeded + " scheme " + scheme + " of intent " + intent;
             }
             ArrayList<ReceiverRecord> arrayList3 = this.mActions.get(intent.getAction());
             if (arrayList3 != null) {
@@ -165,18 +165,18 @@ public final class LocalBroadcastManager {
                         i2 = i3;
                         arrayList2 = arrayList3;
                         str = action;
-                        str2 = resolveTypeIfNeeded;
+                        str2 = strResolveTypeIfNeeded;
                         arrayList = arrayList4;
                     } else {
                         str = action;
                         arrayList = arrayList4;
                         i2 = i3;
                         arrayList2 = arrayList3;
-                        str2 = resolveTypeIfNeeded;
-                        int match = receiverRecord.filter.match(action, resolveTypeIfNeeded, scheme, data, categories, TAG);
-                        if (match >= 0) {
+                        str2 = strResolveTypeIfNeeded;
+                        int iMatch = receiverRecord.filter.match(action, strResolveTypeIfNeeded, scheme, data, categories, TAG);
+                        if (iMatch >= 0) {
                             if (z) {
-                                String str6 = "  Filter matched!  match=0x" + Integer.toHexString(match);
+                                String str6 = "  Filter matched!  match=0x" + Integer.toHexString(iMatch);
                             }
                             arrayList4 = arrayList == null ? new ArrayList() : arrayList;
                             arrayList4.add(receiverRecord);
@@ -184,16 +184,16 @@ public final class LocalBroadcastManager {
                             i3 = i2 + 1;
                             action = str;
                             arrayList3 = arrayList2;
-                            resolveTypeIfNeeded = str2;
+                            strResolveTypeIfNeeded = str2;
                         } else if (z) {
-                            String str7 = "  Filter did not match: " + (match != -4 ? match != -3 ? match != -2 ? match != -1 ? "unknown reason" : "type" : "data" : "action" : "category");
+                            String str7 = "  Filter did not match: " + (iMatch != -4 ? iMatch != -3 ? iMatch != -2 ? iMatch != -1 ? "unknown reason" : "type" : "data" : "action" : "category");
                         }
                     }
                     arrayList4 = arrayList;
                     i3 = i2 + 1;
                     action = str;
                     arrayList3 = arrayList2;
-                    resolveTypeIfNeeded = str2;
+                    strResolveTypeIfNeeded = str2;
                 }
                 ArrayList arrayList5 = arrayList4;
                 if (arrayList5 != null) {
@@ -219,12 +219,12 @@ public final class LocalBroadcastManager {
 
     public void unregisterReceiver(@NonNull BroadcastReceiver broadcastReceiver) {
         synchronized (this.mReceivers) {
-            ArrayList<ReceiverRecord> remove = this.mReceivers.remove(broadcastReceiver);
-            if (remove == null) {
+            ArrayList<ReceiverRecord> arrayListRemove = this.mReceivers.remove(broadcastReceiver);
+            if (arrayListRemove == null) {
                 return;
             }
-            for (int size = remove.size() - 1; size >= 0; size--) {
-                ReceiverRecord receiverRecord = remove.get(size);
+            for (int size = arrayListRemove.size() - 1; size >= 0; size--) {
+                ReceiverRecord receiverRecord = arrayListRemove.get(size);
                 receiverRecord.dead = true;
                 for (int i2 = 0; i2 < receiverRecord.filter.countActions(); i2++) {
                     String action = receiverRecord.filter.getAction(i2);
@@ -232,7 +232,7 @@ public final class LocalBroadcastManager {
                     if (arrayList != null) {
                         for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
                             ReceiverRecord receiverRecord2 = arrayList.get(size2);
-                            if (receiverRecord2.f25889receiver == broadcastReceiver) {
+                            if (receiverRecord2.f1309receiver == broadcastReceiver) {
                                 receiverRecord2.dead = true;
                                 arrayList.remove(size2);
                             }

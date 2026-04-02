@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.callback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface FrontDetectCallback {
     void onLivenessCancel();
 

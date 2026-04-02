@@ -12,11 +12,27 @@ import com.tencent.tinker.lib.util.UpgradePatchRetry;
 import com.tencent.tinker.loader.shareutil.SharePatchFileUtil;
 import java.io.File;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerLoadReporter extends DefaultLoadReporter {
     private static final String TAG = "Tinker.TinkerLoadReporter";
     private final LoadReporter userLoadReporter;
+
+    /* JADX INFO: renamed from: com.tencent.bugly.beta.tinker.TinkerLoadReporter$1 */
+    /* JADX INFO: compiled from: BUGLY */
+    class AnonymousClass1 implements MessageQueue.IdleHandler {
+        AnonymousClass1() {
+        }
+
+        @Override // android.os.MessageQueue.IdleHandler
+        public boolean queueIdle() {
+            if (!UpgradePatchRetry.getInstance(TinkerLoadReporter.this.context).onPatchRetryLoad()) {
+                return false;
+            }
+            TinkerReport.onReportRetryPatch();
+            return false;
+        }
+    }
 
     public TinkerLoadReporter(Context context) {
         super(context);
@@ -53,8 +69,8 @@ public class TinkerLoadReporter extends DefaultLoadReporter {
         }
         TinkerLog.i(TAG, "patch loadReporter onLoadFileNotFound: patch file not found: %s, fileType:%d, isDirectory:%b", new Object[]{file.getAbsolutePath(), Integer.valueOf(i2), Boolean.valueOf(z)});
         if (i2 == 4) {
-            Tinker with = Tinker.with(this.context);
-            if (with.isMainProcess() && (file2 = with.getTinkerLoadResultIfPresent().patchVersionFile) != null) {
+            Tinker tinkerWith = Tinker.with(this.context);
+            if (tinkerWith.isMainProcess() && (file2 = tinkerWith.getTinkerLoadResultIfPresent().patchVersionFile) != null) {
                 if (UpgradePatchRetry.getInstance(this.context).onPatchListenerCheck(SharePatchFileUtil.getMD5(file2))) {
                     TinkerLog.i(TAG, "try to repair oat file on patch process", new Object[0]);
                     TinkerInstaller.onReceiveUpgradePatch(this.context, file2.getAbsolutePath());
@@ -129,6 +145,9 @@ public class TinkerLoadReporter extends DefaultLoadReporter {
         }
         Looper.getMainLooper();
         Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() { // from class: com.tencent.bugly.beta.tinker.TinkerLoadReporter.1
+            AnonymousClass1() {
+            }
+
             @Override // android.os.MessageQueue.IdleHandler
             public boolean queueIdle() {
                 if (!UpgradePatchRetry.getInstance(TinkerLoadReporter.this.context).onPatchRetryLoad()) {

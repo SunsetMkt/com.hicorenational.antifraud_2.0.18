@@ -1,6 +1,6 @@
 package com.hihonor.push.sdk.common.data;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface UpMsgType {
     public static final String QUERY_PUSH_STATUS = "up_msg_query_push_status";
     public static final String REQUEST_PUSH_TOKEN = "up_msg_request_push_token";

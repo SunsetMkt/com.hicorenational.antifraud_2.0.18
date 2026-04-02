@@ -7,14 +7,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import com.huawei.hms.common.internal.Preconditions;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ErrDlgFragmentForSupport extends DialogFragment {
+    private Dialog a = null;
 
-    /* renamed from: a */
-    private Dialog f7191a = null;
-
-    /* renamed from: b */
-    private DialogInterface.OnCancelListener f7192b = null;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private DialogInterface.OnCancelListener f4503b = null;
 
     public static ErrDlgFragmentForSupport newInstance(Dialog dialog) {
         return newInstance(dialog, null);
@@ -22,7 +20,7 @@ public class ErrDlgFragmentForSupport extends DialogFragment {
 
     @Override // android.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.f7192b;
+        DialogInterface.OnCancelListener onCancelListener = this.f4503b;
         if (onCancelListener != null) {
             onCancelListener.onCancel(dialogInterface);
         }
@@ -30,10 +28,10 @@ public class ErrDlgFragmentForSupport extends DialogFragment {
 
     @Override // android.app.DialogFragment
     public Dialog onCreateDialog(Bundle bundle) {
-        if (this.f7191a == null) {
+        if (this.a == null) {
             setShowsDialog(false);
         }
-        return this.f7191a;
+        return this.a;
     }
 
     @Override // android.app.DialogFragment
@@ -45,10 +43,10 @@ public class ErrDlgFragmentForSupport extends DialogFragment {
     public static ErrDlgFragmentForSupport newInstance(Dialog dialog, DialogInterface.OnCancelListener onCancelListener) {
         Preconditions.checkNotNull(dialog, "Dialog cannot be null!");
         ErrDlgFragmentForSupport errDlgFragmentForSupport = new ErrDlgFragmentForSupport();
-        errDlgFragmentForSupport.f7191a = dialog;
+        errDlgFragmentForSupport.a = dialog;
         dialog.setOnCancelListener(null);
-        errDlgFragmentForSupport.f7191a.setOnDismissListener(null);
-        errDlgFragmentForSupport.f7192b = onCancelListener;
+        errDlgFragmentForSupport.a.setOnDismissListener(null);
+        errDlgFragmentForSupport.f4503b = onCancelListener;
         return errDlgFragmentForSupport;
     }
 }

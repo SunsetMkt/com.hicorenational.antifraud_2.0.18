@@ -3,7 +3,7 @@ package okhttp3.internal.connection;
 import java.io.IOException;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class RouteException extends RuntimeException {
     private IOException firstException;
     private IOException lastException;

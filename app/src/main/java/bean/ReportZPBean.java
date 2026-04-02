@@ -3,14 +3,12 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ReportZPBean extends BaseBean {
     private List<ReportZPEleBean> children;
     private String clusterID;
     private int code;
-
-    /* renamed from: id */
-    private long f1619id;
+    private long id;
     private String isShow;
     private String name;
     private String parentClusterID;
@@ -30,7 +28,7 @@ public class ReportZPBean extends BaseBean {
     }
 
     public long getId() {
-        return this.f1619id;
+        return this.id;
     }
 
     public String getIsShow() {
@@ -66,7 +64,7 @@ public class ReportZPBean extends BaseBean {
     }
 
     public void setId(long j2) {
-        this.f1619id = j2;
+        this.id = j2;
     }
 
     public void setIsShow(String str) {

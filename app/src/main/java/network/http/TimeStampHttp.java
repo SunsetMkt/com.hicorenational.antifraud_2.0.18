@@ -3,11 +3,11 @@ package network.http;
 import android.app.Activity;
 import android.text.TextUtils;
 import bean.TellNumHtyBean;
-import com.google.gson.AbstractC2063k;
-import com.google.gson.C2051e;
-import com.google.gson.C2067o;
-import com.google.gson.p152d0.C2049a;
-import com.hicorenational.antifraud.C2113R;
+import com.google.gson.d0.a;
+import com.google.gson.e;
+import com.google.gson.k;
+import com.google.gson.o;
+import com.hicorenational.antifraud.R;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,19 +15,19 @@ import java.util.Iterator;
 import java.util.List;
 import network.account.APIresult;
 import network.gson.ResponseDataTypeAdaptor;
-import p388ui.Hicore;
-import p388ui.basemvp.BaseView;
-import p388ui.model.ModelPresent;
-import util.C7301n1;
-import util.C7324u0;
+import ui.Hicore;
+import ui.basemvp.BaseView;
+import ui.model.ModelPresent;
+import util.s1;
+import util.x0;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class TimeStampHttp<T> extends ModelPresent {
     static TimeStampHttp stampHttp;
     private String TAG;
 
     public interface TimeStampCallback {
-        void onSuccess(HashMap hashMap);
+        void onSuccess(HashMap map);
 
         void onfail(String str);
     }
@@ -45,25 +45,25 @@ public class TimeStampHttp<T> extends ModelPresent {
         }
         String str = aPIresult.getsData();
         String timestamp = aPIresult.getTimestamp();
-        String lowerCase = C7324u0.m26608c(aPIresult.getSign()).toLowerCase();
+        String lowerCase = x0.c(aPIresult.getSign()).toLowerCase();
         StringBuilder sb = new StringBuilder();
         sb.append(timestamp);
-        String str2 = "";
+        String strA = "";
         sb.append("");
         try {
-            str2 = C7324u0.m26598a(str, lowerCase, C7324u0.m26610d(sb.toString()).toLowerCase());
+            strA = x0.a(str, lowerCase, x0.d(sb.toString()).toLowerCase());
         } catch (Exception e2) {
             e2.printStackTrace();
         }
-        C2051e buildGson = ResponseDataTypeAdaptor.buildGson();
-        APIresult aPIresult2 = (APIresult) buildGson.m5569a(str2, (Class) APIresult.class);
+        e eVarBuildGson = ResponseDataTypeAdaptor.buildGson();
+        APIresult aPIresult2 = (APIresult) eVarBuildGson.a(strA, (Class) APIresult.class);
         if (cls != null) {
             try {
-                AbstractC2063k abstractC2063k = new C2067o().m5677a(str2).getAsJsonObject().get("data");
-                if (abstractC2063k != null) {
-                    Iterator<AbstractC2063k> it = new C2067o().m5677a(abstractC2063k.toString()).getAsJsonArray().iterator();
+                k kVar = new o().a(strA).getAsJsonObject().get("data");
+                if (kVar != null) {
+                    Iterator<k> it = new o().a(kVar.toString()).getAsJsonArray().iterator();
                     while (it.hasNext()) {
-                        arrayList.add(buildGson.m5564a(it.next(), (Type) cls));
+                        arrayList.add(eVarBuildGson.a(it.next(), (Type) cls));
                     }
                     aPIresult2.setData(arrayList);
                 } else {
@@ -81,14 +81,14 @@ public class TimeStampHttp<T> extends ModelPresent {
     }
 
     public static <V> APIresult<V> analyzeParamList(APIresult<V> aPIresult) {
-        return analyzeParamList(aPIresult, new C2049a<V>() { // from class: network.http.TimeStampHttp.1
+        return analyzeParamList(aPIresult, new a<V>() { // from class: network.http.TimeStampHttp.1
         }.getType());
     }
 
     private void failDeal(TimeStampCallback timeStampCallback, String str) {
         if (timeStampCallback != null) {
             if (TextUtils.isEmpty(str)) {
-                str = Hicore.getApp().getResources().getString(C2113R.string.err_system);
+                str = Hicore.getApp().getResources().getString(R.string.err_system);
             }
             timeStampCallback.onfail(str);
         }
@@ -101,49 +101,44 @@ public class TimeStampHttp<T> extends ModelPresent {
 
     private static <V> void systemError(APIresult<V> aPIresult) {
         if (aPIresult.getCode() == 999) {
-            aPIresult.setMsg(Hicore.getApp().getResources().getString(C2113R.string.err_system));
+            aPIresult.setMsg(Hicore.getApp().getResources().getString(R.string.err_system));
         }
     }
 
     public HashMap<String, String> buildParam(String str, T t) {
-        String str2;
+        String strB;
         if (t == null) {
             throw new NullPointerException("This orignalParam is Null");
         }
-        HashMap<String, String> hashMap = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         try {
-            String m5572a = ResponseDataTypeAdaptor.buildGson().m5572a(t);
-            String lowerCase = C7324u0.m26608c(m5572a).toLowerCase();
-            String lowerCase2 = C7324u0.m26608c(lowerCase).toLowerCase();
-            String lowerCase3 = C7324u0.m26610d(str + "").toLowerCase();
+            String strA = ResponseDataTypeAdaptor.buildGson().a(t);
+            String lowerCase = x0.c(strA).toLowerCase();
+            String lowerCase2 = x0.c(lowerCase).toLowerCase();
+            String lowerCase3 = x0.d(str + "").toLowerCase();
             try {
-                str2 = C7324u0.m26605b(m5572a, lowerCase2, lowerCase3);
+                strB = x0.b(strA, lowerCase2, lowerCase3);
                 try {
-                    C7301n1.m26457b("jsonStr encrypt-->", m5572a);
-                    C7301n1.m26457b("signMD5 encrypt-->", lowerCase2);
-                    C7301n1.m26457b("16MD5 encrypt-->", lowerCase3);
-                    C7301n1.m26457b("jsonAES encrypt-->", str2);
+                    s1.b("jsonStr encrypt-->", strA);
+                    s1.b("signMD5 encrypt-->", lowerCase2);
+                    s1.b("16MD5 encrypt-->", lowerCase3);
+                    s1.b("jsonAES encrypt-->", strB);
                 } catch (Exception e2) {
                     e = e2;
                     e.printStackTrace();
-                    String replaceAll = str2.replaceAll("[\\s*\t\n\r]", "");
-                    hashMap.put("timestamp", str + "");
-                    hashMap.put("data", replaceAll);
-                    hashMap.put("sign", lowerCase);
-                    return hashMap;
                 }
             } catch (Exception e3) {
                 e = e3;
-                str2 = "";
+                strB = "";
             }
-            String replaceAll2 = str2.replaceAll("[\\s*\t\n\r]", "");
-            hashMap.put("timestamp", str + "");
-            hashMap.put("data", replaceAll2);
-            hashMap.put("sign", lowerCase);
+            String strReplaceAll = strB.replaceAll("[\\s*\t\n\r]", "");
+            map.put("timestamp", str + "");
+            map.put("data", strReplaceAll);
+            map.put("sign", lowerCase);
         } catch (Exception e4) {
             e4.printStackTrace();
         }
-        return hashMap;
+        return map;
     }
 
     public void principalHttp(T t, TimeStampCallback timeStampCallback) {
@@ -160,7 +155,7 @@ public class TimeStampHttp<T> extends ModelPresent {
     /* JADX WARN: Multi-variable type inference failed */
     public static <V> APIresult<V> analyzeParam(APIresult<V> aPIresult, Class<V> cls) {
         if (aPIresult == null) {
-            aPIresult = new APIresult<>(Hicore.getApp().getResources().getString(C2113R.string.err_system));
+            aPIresult = new APIresult<>(Hicore.getApp().getResources().getString(R.string.err_system));
         }
         if (!(aPIresult instanceof APIresult)) {
             systemError(aPIresult);
@@ -173,30 +168,30 @@ public class TimeStampHttp<T> extends ModelPresent {
         String timestamp = aPIresult.getTimestamp();
         String sign = aPIresult.getSign();
         if (TextUtils.isEmpty(timestamp) || TextUtils.isEmpty(sign)) {
-            return new APIresult<>(Hicore.getApp().getResources().getString(C2113R.string.err_system));
+            return new APIresult<>(Hicore.getApp().getResources().getString(R.string.err_system));
         }
-        String lowerCase = C7324u0.m26608c(sign).toLowerCase();
+        String lowerCase = x0.c(sign).toLowerCase();
         StringBuilder sb = new StringBuilder();
         sb.append(timestamp);
-        String str2 = "";
+        String strA = "";
         sb.append("");
-        String lowerCase2 = C7324u0.m26610d(sb.toString()).toLowerCase();
+        String lowerCase2 = x0.d(sb.toString()).toLowerCase();
         try {
-            str2 = C7324u0.m26598a(str, lowerCase, lowerCase2);
-            C7301n1.m26457b("jsonStr decrypt-->", str2);
-            C7301n1.m26457b("signMD5 decrypt-->", lowerCase);
-            C7301n1.m26457b("16MD5 decrypt-->", lowerCase2);
-            C7301n1.m26457b("jsonAES decrypt-->", str);
+            strA = x0.a(str, lowerCase, lowerCase2);
+            s1.b("jsonStr decrypt-->", strA);
+            s1.b("signMD5 decrypt-->", lowerCase);
+            s1.b("16MD5 decrypt-->", lowerCase2);
+            s1.b("jsonAES decrypt-->", str);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
-        C2051e buildGson = ResponseDataTypeAdaptor.buildGson();
-        TellNumHtyBean tellNumHtyBean = (APIresult<V>) ((APIresult) buildGson.m5569a(str2, (Class) APIresult.class));
+        e eVarBuildGson = ResponseDataTypeAdaptor.buildGson();
+        TellNumHtyBean tellNumHtyBean = (APIresult<V>) ((APIresult) eVarBuildGson.a(strA, (Class) APIresult.class));
         if (cls != null) {
             try {
-                AbstractC2063k abstractC2063k = new C2067o().m5677a(str2).getAsJsonObject().get("data");
-                if (abstractC2063k != null) {
-                    tellNumHtyBean.setData(buildGson.m5570a(abstractC2063k.toString(), (Type) cls));
+                k kVar = new o().a(strA).getAsJsonObject().get("data");
+                if (kVar != null) {
+                    tellNumHtyBean.setData(eVarBuildGson.a(kVar.toString(), (Type) cls));
                 } else {
                     tellNumHtyBean.setData(null);
                 }
@@ -212,7 +207,7 @@ public class TimeStampHttp<T> extends ModelPresent {
     /* JADX WARN: Multi-variable type inference failed */
     public static <V> APIresult<V> analyzeParamList(APIresult<V> aPIresult, Type type) {
         if (aPIresult == null) {
-            aPIresult = new APIresult<>(Hicore.getApp().getResources().getString(C2113R.string.err_system));
+            aPIresult = new APIresult<>(Hicore.getApp().getResources().getString(R.string.err_system));
         }
         if (!(aPIresult instanceof APIresult)) {
             systemError(aPIresult);
@@ -225,30 +220,30 @@ public class TimeStampHttp<T> extends ModelPresent {
         String timestamp = aPIresult.getTimestamp();
         String sign = aPIresult.getSign();
         if (TextUtils.isEmpty(timestamp) || TextUtils.isEmpty(sign)) {
-            return new APIresult<>(Hicore.getApp().getResources().getString(C2113R.string.err_system));
+            return new APIresult<>(Hicore.getApp().getResources().getString(R.string.err_system));
         }
-        String lowerCase = C7324u0.m26608c(sign).toLowerCase();
+        String lowerCase = x0.c(sign).toLowerCase();
         StringBuilder sb = new StringBuilder();
         sb.append(timestamp);
-        String str2 = "";
+        String strA = "";
         sb.append("");
-        String lowerCase2 = C7324u0.m26610d(sb.toString()).toLowerCase();
+        String lowerCase2 = x0.d(sb.toString()).toLowerCase();
         try {
-            str2 = C7324u0.m26598a(str, lowerCase, lowerCase2);
-            C7301n1.m26457b("jsonStr decrypt-->", str2);
-            C7301n1.m26457b("signMD5 decrypt-->", lowerCase);
-            C7301n1.m26457b("16MD5 decrypt-->", lowerCase2);
-            C7301n1.m26457b("jsonAES decrypt-->", str);
+            strA = x0.a(str, lowerCase, lowerCase2);
+            s1.b("jsonStr decrypt-->", strA);
+            s1.b("signMD5 decrypt-->", lowerCase);
+            s1.b("16MD5 decrypt-->", lowerCase2);
+            s1.b("jsonAES decrypt-->", str);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
-        C2051e buildGson = ResponseDataTypeAdaptor.buildGson();
-        TellNumHtyBean tellNumHtyBean = (APIresult<V>) ((APIresult) buildGson.m5569a(str2, (Class) APIresult.class));
+        e eVarBuildGson = ResponseDataTypeAdaptor.buildGson();
+        TellNumHtyBean tellNumHtyBean = (APIresult<V>) ((APIresult) eVarBuildGson.a(strA, (Class) APIresult.class));
         if (type != null) {
             try {
-                AbstractC2063k abstractC2063k = new C2067o().m5677a(str2).getAsJsonObject().get("data");
-                if (abstractC2063k != null) {
-                    tellNumHtyBean.setData(buildGson.m5570a(abstractC2063k.toString(), type));
+                k kVar = new o().a(strA).getAsJsonObject().get("data");
+                if (kVar != null) {
+                    tellNumHtyBean.setData(eVarBuildGson.a(kVar.toString(), type));
                 } else {
                     tellNumHtyBean.setData(null);
                 }

@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import com.tencent.p208mm.opensdk.channel.MMessageActV2;
+import com.tencent.mm.opensdk.channel.MMessageActV2;
 import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -15,13 +15,13 @@ import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.UmengText;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UmengTool {
     public static void checkAlipay(Context context) {
         if (UMUtils.checkPath(context.getPackageName() + ".apshare.ShareEntryActivity")) {
-            SLog.m12716E(UmengText.CHECK.ALIPAYSUCCESS);
+            SLog.E(UmengText.CHECK.ALIPAYSUCCESS);
         } else {
-            SLog.m12716E(UmengText.CHECK.ALIPAYERROR);
+            SLog.E(UmengText.CHECK.ALIPAYERROR);
         }
     }
 
@@ -36,25 +36,25 @@ public class UmengTool {
 
     public static String checkKakao(Context context) {
         if (TextUtils.isEmpty(context.getPackageName())) {
-            return "包名为空";
+            return "\u5305\u540d\u4e3a\u7a7a";
         }
         try {
             context.getPackageManager().getPackageInfo(context.getPackageName(), 64);
-            return "kakao 配置正确，请检查kakao后台签名:" + UMUtils.getAppHashKey(context);
+            return "kakao \u914d\u7f6e\u6b63\u786e\uff0c\u8bf7\u68c0\u67e5kakao\u540e\u53f0\u7b7e\u540d:" + UMUtils.getAppHashKey(context);
         } catch (PackageManager.NameNotFoundException unused) {
-            return "签名获取失败";
+            return "\u7b7e\u540d\u83b7\u53d6\u5931\u8d25";
         }
     }
 
     public static String checkLinkin(Context context) {
         if (TextUtils.isEmpty(context.getPackageName())) {
-            return "包名为空";
+            return "\u5305\u540d\u4e3a\u7a7a";
         }
         try {
             context.getPackageManager().getPackageInfo(context.getPackageName(), 64);
-            return "领英 配置正确，请检查领英后台签名:" + UMUtils.getAppHashKey(context);
+            return "\u9886\u82f1 \u914d\u7f6e\u6b63\u786e\uff0c\u8bf7\u68c0\u67e5\u9886\u82f1\u540e\u53f0\u7b7e\u540d:" + UMUtils.getAppHashKey(context);
         } catch (PackageManager.NameNotFoundException unused) {
-            return "签名获取失败";
+            return "\u7b7e\u540d\u83b7\u53d6\u5931\u8d25";
         }
     }
 
@@ -63,7 +63,7 @@ public class UmengTool {
     }
 
     public static String checkQQByself(Context context) {
-        return !UMUtils.checkAndroidManifest(context, "com.tencent.tauth.AuthActivity") ? UmengText.C3778QQ.getError("com.tencent.tauth.AuthActivity") : !UMUtils.checkAndroidManifest(context, "com.tencent.connect.common.AssistActivity") ? UmengText.C3778QQ.getError("com.tencent.connect.common.AssistActivity") : !UMUtils.checkIntentFilterData(context, ((PlatformConfig.APPIDPlatform) PlatformConfig.getPlatform(SHARE_MEDIA.QQ)).appId) ? UmengText.C3778QQ.ERRORDATA : "qq配置正确";
+        return !UMUtils.checkAndroidManifest(context, "com.tencent.tauth.AuthActivity") ? UmengText.QQ.getError("com.tencent.tauth.AuthActivity") : !UMUtils.checkAndroidManifest(context, "com.tencent.connect.common.AssistActivity") ? UmengText.QQ.getError("com.tencent.connect.common.AssistActivity") : !UMUtils.checkIntentFilterData(context, ((PlatformConfig.APPIDPlatform) PlatformConfig.getPlatform(SHARE_MEDIA.QQ)).appId) ? UmengText.QQ.ERRORDATA : "qq\u914d\u7f6e\u6b63\u786e";
     }
 
     public static void checkSina(Context context) {
@@ -79,7 +79,7 @@ public class UmengTool {
     }
 
     public static String checkVKByself(Context context) {
-        return "你使用的签名：" + UMUtils.getAppSHA1Key(context).replace(Constants.COLON_SEPARATOR, "");
+        return "\u4f60\u4f7f\u7528\u7684\u7b7e\u540d\uff1a" + UMUtils.getAppSHA1Key(context).replace(Constants.COLON_SEPARATOR, "");
     }
 
     public static void checkWx(Context context) {
@@ -90,13 +90,13 @@ public class UmengTool {
         String packageName = context.getPackageName();
         String str = packageName + MMessageActV2.DEFAULT_ENTRY_CLASS_NAME;
         if (UMUtils.checkPath(str)) {
-            return UMUtils.checkAndroidManifest(context, str) ? UmengText.CHECK.checkSuccess(UMUtils.getAppMD5Signature(context).toLowerCase(), packageName) : UmengText.C3779WX.WX_ERRORMANIFEST;
+            return UMUtils.checkAndroidManifest(context, str) ? UmengText.CHECK.checkSuccess(UMUtils.getAppMD5Signature(context).toLowerCase(), packageName) : UmengText.WX.WX_ERRORMANIFEST;
         }
-        return UmengText.C3779WX.WX_ERRORACTIVITY;
+        return UmengText.WX.WX_ERRORACTIVITY;
     }
 
     public static void getSignature(Context context) {
-        showDialog(context, "包名：" + ContextUtil.getPackageName() + "\n签名:" + UMUtils.getAppMD5Signature(context) + "\nfacebook keyhash:" + UMUtils.getAppHashKey(context));
+        showDialog(context, "\u5305\u540d\uff1a" + ContextUtil.getPackageName() + "\n\u7b7e\u540d:" + UMUtils.getAppMD5Signature(context) + "\nfacebook keyhash:" + UMUtils.getAppHashKey(context));
     }
 
     public static String getStrRedicrectUrl() {
@@ -104,6 +104,6 @@ public class UmengTool {
     }
 
     public static void showDialog(Context context, String str) {
-        new AlertDialog.Builder(context).setTitle("友盟Debug模式自检").setMessage(str).setPositiveButton("关闭", (DialogInterface.OnClickListener) null).show();
+        new AlertDialog.Builder(context).setTitle("\u53cb\u76dfDebug\u6a21\u5f0f\u81ea\u68c0").setMessage(str).setPositiveButton("\u5173\u95ed", (DialogInterface.OnClickListener) null).show();
     }
 }

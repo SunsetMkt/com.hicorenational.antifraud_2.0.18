@@ -16,11 +16,11 @@ import android.os.PowerManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import com.heytap.mcssdk.constant.C2084a;
+import com.heytap.mcssdk.constant.a;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class JobIntentService extends Service {
     static final boolean DEBUG = false;
     static final String TAG = "JobIntentService";
@@ -42,12 +42,12 @@ public abstract class JobIntentService extends Service {
         @Override // android.os.AsyncTask
         public Void doInBackground(Void... voidArr) {
             while (true) {
-                GenericWorkItem dequeueWork = JobIntentService.this.dequeueWork();
-                if (dequeueWork == null) {
+                GenericWorkItem genericWorkItemDequeueWork = JobIntentService.this.dequeueWork();
+                if (genericWorkItemDequeueWork == null) {
                     return null;
                 }
-                JobIntentService.this.onHandleWork(dequeueWork.getIntent());
-                dequeueWork.complete();
+                JobIntentService.this.onHandleWork(genericWorkItemDequeueWork.getIntent());
+                genericWorkItemDequeueWork.complete();
             }
         }
 
@@ -96,7 +96,7 @@ public abstract class JobIntentService extends Service {
                     if (!this.mLaunchingService) {
                         this.mLaunchingService = true;
                         if (!this.mServiceProcessing) {
-                            this.mLaunchWakeLock.acquire(C2084a.f6122d);
+                            this.mLaunchWakeLock.acquire(a.f3868d);
                         }
                     }
                 }
@@ -108,7 +108,7 @@ public abstract class JobIntentService extends Service {
             synchronized (this) {
                 if (this.mServiceProcessing) {
                     if (this.mLaunchingService) {
-                        this.mLaunchWakeLock.acquire(C2084a.f6122d);
+                        this.mLaunchWakeLock.acquire(a.f3868d);
                     }
                     this.mServiceProcessing = false;
                     this.mRunWakeLock.release();
@@ -208,12 +208,12 @@ public abstract class JobIntentService extends Service {
                 if (this.mParams == null) {
                     return null;
                 }
-                JobWorkItem dequeueWork = this.mParams.dequeueWork();
-                if (dequeueWork == null) {
+                JobWorkItem jobWorkItemDequeueWork = this.mParams.dequeueWork();
+                if (jobWorkItemDequeueWork == null) {
                     return null;
                 }
-                dequeueWork.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
-                return new WrapperWorkItem(dequeueWork);
+                jobWorkItemDequeueWork.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
+                return new WrapperWorkItem(jobWorkItemDequeueWork);
             }
         }
 
@@ -226,11 +226,11 @@ public abstract class JobIntentService extends Service {
 
         @Override // android.app.job.JobServiceEngine
         public boolean onStopJob(JobParameters jobParameters) {
-            boolean doStopCurrentWork = this.mService.doStopCurrentWork();
+            boolean zDoStopCurrentWork = this.mService.doStopCurrentWork();
             synchronized (this.mLock) {
                 this.mParams = null;
             }
-            return doStopCurrentWork;
+            return zDoStopCurrentWork;
         }
     }
 

@@ -14,18 +14,14 @@ import androidx.core.graphics.PathParser;
 import com.xiaomi.mipush.sdk.Constants;
 import org.xmlpull.v1.XmlPullParser;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class PathInterpolatorCompat implements Interpolator {
     public static final double EPSILON = 1.0E-5d;
     public static final int MAX_NUM_POINTS = 3000;
     private static final float PRECISION = 0.002f;
-
-    /* renamed from: mX */
-    private float[] f630mX;
-
-    /* renamed from: mY */
-    private float[] f631mY;
+    private float[] mX;
+    private float[] mY;
 
     public PathInterpolatorCompat(Context context, AttributeSet attributeSet, XmlPullParser xmlPullParser) {
         this(context.getResources(), context.getTheme(), attributeSet, xmlPullParser);
@@ -42,25 +38,25 @@ public class PathInterpolatorCompat implements Interpolator {
         int i2 = 0;
         PathMeasure pathMeasure = new PathMeasure(path, false);
         float length = pathMeasure.getLength();
-        int min = Math.min(MAX_NUM_POINTS, ((int) (length / PRECISION)) + 1);
-        if (min <= 0) {
+        int iMin = Math.min(MAX_NUM_POINTS, ((int) (length / 0.002f)) + 1);
+        if (iMin <= 0) {
             throw new IllegalArgumentException("The Path has a invalid length " + length);
         }
-        this.f630mX = new float[min];
-        this.f631mY = new float[min];
+        this.mX = new float[iMin];
+        this.mY = new float[iMin];
         float[] fArr = new float[2];
-        for (int i3 = 0; i3 < min; i3++) {
-            pathMeasure.getPosTan((i3 * length) / (min - 1), fArr, null);
-            this.f630mX[i3] = fArr[0];
-            this.f631mY[i3] = fArr[1];
+        for (int i3 = 0; i3 < iMin; i3++) {
+            pathMeasure.getPosTan((i3 * length) / (iMin - 1), fArr, null);
+            this.mX[i3] = fArr[0];
+            this.mY[i3] = fArr[1];
         }
-        if (Math.abs(this.f630mX[0]) <= 1.0E-5d && Math.abs(this.f631mY[0]) <= 1.0E-5d) {
-            int i4 = min - 1;
-            if (Math.abs(this.f630mX[i4] - 1.0f) <= 1.0E-5d && Math.abs(this.f631mY[i4] - 1.0f) <= 1.0E-5d) {
+        if (Math.abs(this.mX[0]) <= 1.0E-5d && Math.abs(this.mY[0]) <= 1.0E-5d) {
+            int i4 = iMin - 1;
+            if (Math.abs(this.mX[i4] - 1.0f) <= 1.0E-5d && Math.abs(this.mY[i4] - 1.0f) <= 1.0E-5d) {
                 int i5 = 0;
                 float f2 = 0.0f;
-                while (i2 < min) {
-                    float[] fArr2 = this.f630mX;
+                while (i2 < iMin) {
+                    float[] fArr2 = this.mX;
                     int i6 = i5 + 1;
                     float f3 = fArr2[i5];
                     if (f3 < f2) {
@@ -79,14 +75,14 @@ public class PathInterpolatorCompat implements Interpolator {
         }
         StringBuilder sb = new StringBuilder();
         sb.append("The Path must start at (0,0) and end at (1,1) start: ");
-        sb.append(this.f630mX[0]);
+        sb.append(this.mX[0]);
         sb.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
-        sb.append(this.f631mY[0]);
+        sb.append(this.mY[0]);
         sb.append(" end:");
-        int i7 = min - 1;
-        sb.append(this.f630mX[i7]);
+        int i7 = iMin - 1;
+        sb.append(this.mX[i7]);
         sb.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
-        sb.append(this.f631mY[i7]);
+        sb.append(this.mY[i7]);
         throw new IllegalArgumentException(sb.toString());
     }
 
@@ -100,9 +96,9 @@ public class PathInterpolatorCompat implements Interpolator {
     private void parseInterpolatorFromTypeArray(TypedArray typedArray, XmlPullParser xmlPullParser) {
         if (TypedArrayUtils.hasAttribute(xmlPullParser, "pathData")) {
             String namedString = TypedArrayUtils.getNamedString(typedArray, xmlPullParser, "pathData", 4);
-            Path createPathFromPathData = PathParser.createPathFromPathData(namedString);
-            if (createPathFromPathData != null) {
-                initPath(createPathFromPathData);
+            Path pathCreatePathFromPathData = PathParser.createPathFromPathData(namedString);
+            if (pathCreatePathFromPathData != null) {
+                initPath(pathCreatePathFromPathData);
                 return;
             }
             throw new InflateException("The path is null, which is created from " + namedString);
@@ -115,11 +111,11 @@ public class PathInterpolatorCompat implements Interpolator {
         }
         float namedFloat = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "controlX1", 0, 0.0f);
         float namedFloat2 = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "controlY1", 1, 0.0f);
-        boolean hasAttribute = TypedArrayUtils.hasAttribute(xmlPullParser, "controlX2");
-        if (hasAttribute != TypedArrayUtils.hasAttribute(xmlPullParser, "controlY2")) {
+        boolean zHasAttribute = TypedArrayUtils.hasAttribute(xmlPullParser, "controlX2");
+        if (zHasAttribute != TypedArrayUtils.hasAttribute(xmlPullParser, "controlY2")) {
             throw new InflateException("pathInterpolator requires both controlX2 and controlY2 for cubic Beziers.");
         }
-        if (hasAttribute) {
+        if (zHasAttribute) {
             initCubic(namedFloat, namedFloat2, TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "controlX2", 2, 0.0f), TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "controlY2", 3, 0.0f));
         } else {
             initQuad(namedFloat, namedFloat2);
@@ -135,29 +131,29 @@ public class PathInterpolatorCompat implements Interpolator {
             return 1.0f;
         }
         int i2 = 0;
-        int length = this.f630mX.length - 1;
+        int length = this.mX.length - 1;
         while (length - i2 > 1) {
             int i3 = (i2 + length) / 2;
-            if (f2 < this.f630mX[i3]) {
+            if (f2 < this.mX[i3]) {
                 length = i3;
             } else {
                 i2 = i3;
             }
         }
-        float[] fArr = this.f630mX;
+        float[] fArr = this.mX;
         float f3 = fArr[length] - fArr[i2];
         if (f3 == 0.0f) {
-            return this.f631mY[i2];
+            return this.mY[i2];
         }
         float f4 = (f2 - fArr[i2]) / f3;
-        float[] fArr2 = this.f631mY;
+        float[] fArr2 = this.mY;
         float f5 = fArr2[i2];
         return f5 + (f4 * (fArr2[length] - f5));
     }
 
     public PathInterpolatorCompat(Resources resources, Resources.Theme theme, AttributeSet attributeSet, XmlPullParser xmlPullParser) {
-        TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_PATH_INTERPOLATOR);
-        parseInterpolatorFromTypeArray(obtainAttributes, xmlPullParser);
-        obtainAttributes.recycle();
+        TypedArray typedArrayObtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_PATH_INTERPOLATOR);
+        parseInterpolatorFromTypeArray(typedArrayObtainAttributes, xmlPullParser);
+        typedArrayObtainAttributes.recycle();
     }
 }

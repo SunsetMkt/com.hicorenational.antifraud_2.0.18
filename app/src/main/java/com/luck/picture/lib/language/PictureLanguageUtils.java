@@ -10,7 +10,7 @@ import com.luck.picture.lib.tools.SPUtils;
 import java.lang.ref.WeakReference;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureLanguageUtils {
     private static final String KEY_LOCALE = "KEY_LOCALE";
     private static final String VALUE_FOLLOW_SYSTEM = "VALUE_FOLLOW_SYSTEM";

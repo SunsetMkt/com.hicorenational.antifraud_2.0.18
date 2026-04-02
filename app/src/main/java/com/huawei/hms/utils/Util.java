@@ -16,20 +16,18 @@ import com.huawei.hms.common.util.AGCUtils;
 import com.huawei.hms.support.log.HMSLog;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Util {
+    private static boolean a = false;
 
-    /* renamed from: a */
-    private static boolean f7988a = false;
+    /* JADX INFO: renamed from: b */
+    private static boolean f5017b = false;
 
-    /* renamed from: b */
-    private static boolean f7989b = false;
+    /* JADX INFO: renamed from: c */
+    private static final Object f5018c = new Object();
 
-    /* renamed from: c */
-    private static final Object f7990c = new Object();
-
-    /* renamed from: d */
-    private static String f7991d;
+    /* JADX INFO: renamed from: d */
+    private static String f5019d;
 
     public static int compareHmsVersion(String str, String str2) {
         if (TextUtils.isEmpty(str)) {
@@ -39,25 +37,25 @@ public class Util {
             return 1;
         }
         if (StringUtil.checkVersion(str) && StringUtil.checkVersion(str2)) {
-            String[] split = str.split("\\.");
-            String[] split2 = str2.split("\\.");
-            if (2 < split.length && 2 < split2.length) {
-                if (Integer.parseInt(split[0]) > Integer.parseInt(split2[0])) {
+            String[] strArrSplit = str.split("\\.");
+            String[] strArrSplit2 = str2.split("\\.");
+            if (2 < strArrSplit.length && 2 < strArrSplit2.length) {
+                if (Integer.parseInt(strArrSplit[0]) > Integer.parseInt(strArrSplit2[0])) {
                     return 1;
                 }
-                if (Integer.parseInt(split[0]) < Integer.parseInt(split2[0])) {
+                if (Integer.parseInt(strArrSplit[0]) < Integer.parseInt(strArrSplit2[0])) {
                     return -1;
                 }
-                if (Integer.parseInt(split[1]) > Integer.parseInt(split2[1])) {
+                if (Integer.parseInt(strArrSplit[1]) > Integer.parseInt(strArrSplit2[1])) {
                     return 1;
                 }
-                if (Integer.parseInt(split[1]) < Integer.parseInt(split2[1])) {
+                if (Integer.parseInt(strArrSplit[1]) < Integer.parseInt(strArrSplit2[1])) {
                     return -1;
                 }
-                if (Integer.parseInt(split[2]) > Integer.parseInt(split2[2])) {
+                if (Integer.parseInt(strArrSplit[2]) > Integer.parseInt(strArrSplit2[2])) {
                     return 1;
                 }
-                if (Integer.parseInt(split[2]) < Integer.parseInt(split2[2])) {
+                if (Integer.parseInt(strArrSplit[2]) < Integer.parseInt(strArrSplit2[2])) {
                     return -1;
                 }
             }
@@ -75,12 +73,12 @@ public class Util {
 
     public static String getAppName(Context context, String str) {
         if (context == null) {
-            HMSLog.m7715e("Util", "In getAppName, context is null.");
+            HMSLog.e("Util", "In getAppName, context is null.");
             return "";
         }
         PackageManager packageManager = context.getPackageManager();
         if (packageManager == null) {
-            HMSLog.m7715e("Util", "In getAppName, Failed to get 'PackageManager' instance.");
+            HMSLog.e("Util", "In getAppName, Failed to get 'PackageManager' instance.");
             return "";
         }
         try {
@@ -90,7 +88,7 @@ public class Util {
             CharSequence applicationLabel = packageManager.getApplicationLabel(packageManager.getApplicationInfo(str, 128));
             return applicationLabel == null ? "" : applicationLabel.toString();
         } catch (AndroidException | RuntimeException unused) {
-            HMSLog.m7715e("Util", "In getAppName, Failed to get app name.");
+            HMSLog.e("Util", "In getAppName, Failed to get app name.");
             return "";
         }
     }
@@ -107,24 +105,24 @@ public class Util {
         }
         PackageManager packageManager = context.getPackageManager();
         if (packageManager == null) {
-            HMSLog.m7715e("Util", "In getHmsVersion, Failed to get 'PackageManager' instance.");
+            HMSLog.e("Util", "In getHmsVersion, Failed to get 'PackageManager' instance.");
             return 0;
         }
         try {
             ApplicationInfo applicationInfo = packageManager.getPackageInfo(context.getPackageName(), 128).applicationInfo;
             if (applicationInfo != null && (bundle = applicationInfo.metaData) != null && (obj = bundle.get("com.huawei.hms.version")) != null) {
-                String valueOf = String.valueOf(obj);
-                if (!TextUtils.isEmpty(valueOf)) {
-                    return StringUtil.convertVersion2Integer(valueOf);
+                String strValueOf = String.valueOf(obj);
+                if (!TextUtils.isEmpty(strValueOf)) {
+                    return StringUtil.convertVersion2Integer(strValueOf);
                 }
             }
-            HMSLog.m7717i("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
+            HMSLog.i("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
             return 0;
         } catch (AndroidException unused) {
-            HMSLog.m7715e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
+            HMSLog.e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.");
             return 0;
         } catch (RuntimeException e2) {
-            HMSLog.m7716e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.", e2);
+            HMSLog.e("Util", "In getHmsVersion, Failed to read meta data for the HMS VERSION.", e2);
             return 0;
         }
     }
@@ -139,37 +137,37 @@ public class Util {
 
     @Deprecated
     public static String getProductCountry() {
-        int lastIndexOf;
+        int iLastIndexOf;
         String systemProperties = getSystemProperties("ro.product.locale.region", "");
         if (!TextUtils.isEmpty(systemProperties)) {
             return systemProperties;
         }
         String systemProperties2 = getSystemProperties("ro.product.locale", "");
-        if (!TextUtils.isEmpty(systemProperties2) && (lastIndexOf = systemProperties2.lastIndexOf(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) != -1) {
-            return systemProperties2.substring(lastIndexOf + 1);
+        if (!TextUtils.isEmpty(systemProperties2) && (iLastIndexOf = systemProperties2.lastIndexOf(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) != -1) {
+            return systemProperties2.substring(iLastIndexOf + 1);
         }
         String localCountry = SystemUtils.getLocalCountry();
         return !TextUtils.isEmpty(localCountry) ? localCountry : "";
     }
 
     public static String getServiceActionMetadata(Context context) {
-        String str = f7991d;
+        String str = f5019d;
         if (str != null) {
             return str;
         }
-        ResolveInfo resolveInfo = null;
+        ResolveInfo resolveInfoResolveService = null;
         try {
             Intent intent = new Intent(PackageConstants.INTERNAL_SERVICES_ACTION);
             intent.setPackage(context.getPackageName());
-            resolveInfo = context.getPackageManager().resolveService(intent, 128);
+            resolveInfoResolveService = context.getPackageManager().resolveService(intent, 128);
         } catch (Exception e2) {
-            HMSLog.m7715e("Util", "Exception when getServiceActionMetadata. " + e2.getMessage());
+            HMSLog.e("Util", "Exception when getServiceActionMetadata. " + e2.getMessage());
         }
-        if (resolveInfo != null) {
-            f7991d = PackageConstants.INTERNAL_SERVICES_ACTION;
+        if (resolveInfoResolveService != null) {
+            f5019d = PackageConstants.INTERNAL_SERVICES_ACTION;
             return PackageConstants.INTERNAL_SERVICES_ACTION;
         }
-        f7991d = "";
+        f5019d = "";
         return "";
     }
 
@@ -191,41 +189,41 @@ public class Util {
         Bundle bundle;
         Object obj;
         if (context == null) {
-            return f7989b;
+            return f5017b;
         }
-        synchronized (f7990c) {
-            if (!f7988a) {
+        synchronized (f5018c) {
+            if (!a) {
                 boolean z = false;
                 PackageManager packageManager = context.getPackageManager();
                 if (packageManager == null) {
-                    HMSLog.m7715e("Util", "In isAvailableLibExist, Failed to get 'PackageManager' instance.");
+                    HMSLog.e("Util", "In isAvailableLibExist, Failed to get 'PackageManager' instance.");
                     try {
                         Class.forName("com.huawei.hms.adapter.AvailableAdapter");
                         z = true;
                     } catch (ClassNotFoundException unused) {
-                        HMSLog.m7715e("Util", "In isAvailableLibExist, Failed to find class AvailableAdapter.");
+                        HMSLog.e("Util", "In isAvailableLibExist, Failed to find class AvailableAdapter.");
                     }
-                    f7989b = z;
-                    f7988a = true;
+                    f5017b = z;
+                    a = true;
                 } else {
                     try {
                         ApplicationInfo applicationInfo = packageManager.getPackageInfo(context.getPackageName(), 128).applicationInfo;
                         if (applicationInfo != null && (bundle = applicationInfo.metaData) != null && (obj = bundle.get("availableLoaded")) != null && String.valueOf(obj).equalsIgnoreCase("yes")) {
-                            HMSLog.m7717i("Util", "available exist: true");
+                            HMSLog.i("Util", "available exist: true");
                             z = true;
                         }
                     } catch (AndroidException unused2) {
-                        HMSLog.m7715e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.");
+                        HMSLog.e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.");
                     } catch (RuntimeException e2) {
-                        HMSLog.m7716e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.", e2);
+                        HMSLog.e("Util", "In isAvailableLibExist, Failed to read meta data for the availableLoaded.", e2);
                     }
-                    f7989b = z;
-                    f7988a = true;
+                    f5017b = z;
+                    a = true;
                 }
             }
         }
-        HMSLog.m7717i("Util", "available exist: " + f7989b);
-        return f7989b;
+        HMSLog.i("Util", "available exist: " + f5017b);
+        return f5017b;
     }
 
     @Deprecated
@@ -239,10 +237,10 @@ public class Util {
 
     public static void unBindServiceCatchException(Context context, ServiceConnection serviceConnection) {
         try {
-            HMSLog.m7717i("Util", "Trying to unbind service from " + serviceConnection);
+            HMSLog.i("Util", "Trying to unbind service from " + serviceConnection);
             context.unbindService(serviceConnection);
         } catch (Exception e2) {
-            HMSLog.m7715e("Util", "On unBindServiceException:" + e2.getMessage());
+            HMSLog.e("Util", "On unBindServiceException:" + e2.getMessage());
         }
     }
 }

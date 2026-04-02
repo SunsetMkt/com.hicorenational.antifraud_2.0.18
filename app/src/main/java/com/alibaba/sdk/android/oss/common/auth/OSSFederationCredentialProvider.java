@@ -4,7 +4,7 @@ import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.common.OSSLog;
 import com.alibaba.sdk.android.oss.common.utils.DateUtil;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class OSSFederationCredentialProvider implements OSSCredentialProvider {
     private volatile OSSFederationToken cachedToken;
 

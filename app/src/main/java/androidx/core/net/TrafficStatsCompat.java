@@ -8,7 +8,7 @@ import java.net.DatagramSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class TrafficStatsCompat {
     private TrafficStatsCompat() {
     }
@@ -38,9 +38,9 @@ public final class TrafficStatsCompat {
             TrafficStats.tagDatagramSocket(datagramSocket);
             return;
         }
-        ParcelFileDescriptor fromDatagramSocket = ParcelFileDescriptor.fromDatagramSocket(datagramSocket);
-        TrafficStats.tagSocket(new DatagramSocketWrapper(datagramSocket, fromDatagramSocket.getFileDescriptor()));
-        fromDatagramSocket.detachFd();
+        ParcelFileDescriptor parcelFileDescriptorFromDatagramSocket = ParcelFileDescriptor.fromDatagramSocket(datagramSocket);
+        TrafficStats.tagSocket(new DatagramSocketWrapper(datagramSocket, parcelFileDescriptorFromDatagramSocket.getFileDescriptor()));
+        parcelFileDescriptorFromDatagramSocket.detachFd();
     }
 
     @Deprecated
@@ -53,9 +53,9 @@ public final class TrafficStatsCompat {
             TrafficStats.untagDatagramSocket(datagramSocket);
             return;
         }
-        ParcelFileDescriptor fromDatagramSocket = ParcelFileDescriptor.fromDatagramSocket(datagramSocket);
-        TrafficStats.untagSocket(new DatagramSocketWrapper(datagramSocket, fromDatagramSocket.getFileDescriptor()));
-        fromDatagramSocket.detachFd();
+        ParcelFileDescriptor parcelFileDescriptorFromDatagramSocket = ParcelFileDescriptor.fromDatagramSocket(datagramSocket);
+        TrafficStats.untagSocket(new DatagramSocketWrapper(datagramSocket, parcelFileDescriptorFromDatagramSocket.getFileDescriptor()));
+        parcelFileDescriptorFromDatagramSocket.detachFd();
     }
 
     @Deprecated

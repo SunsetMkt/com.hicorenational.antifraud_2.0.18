@@ -5,23 +5,24 @@ import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
 import java.io.IOException;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ParcelableMMKV implements Parcelable {
     public static final Parcelable.Creator<ParcelableMMKV> CREATOR = new Parcelable.Creator<ParcelableMMKV>() { // from class: com.tencent.mmkv.ParcelableMMKV.1
-        /* JADX WARN: Can't rename method to resolve collision */
+        AnonymousClass1() {
+        }
+
         @Override // android.os.Parcelable.Creator
         public ParcelableMMKV createFromParcel(Parcel parcel) {
-            String readString = parcel.readString();
+            String string = parcel.readString();
             ParcelFileDescriptor parcelFileDescriptor = (ParcelFileDescriptor) ParcelFileDescriptor.CREATOR.createFromParcel(parcel);
             ParcelFileDescriptor parcelFileDescriptor2 = (ParcelFileDescriptor) ParcelFileDescriptor.CREATOR.createFromParcel(parcel);
-            String readString2 = parcel.readString();
+            String string2 = parcel.readString();
             if (parcelFileDescriptor == null || parcelFileDescriptor2 == null) {
                 return null;
             }
-            return new ParcelableMMKV(readString, parcelFileDescriptor.detachFd(), parcelFileDescriptor2.detachFd(), readString2);
+            return new ParcelableMMKV(string, parcelFileDescriptor.detachFd(), parcelFileDescriptor2.detachFd(), string2);
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public ParcelableMMKV[] newArray(int i2) {
             return new ParcelableMMKV[i2];
@@ -31,6 +32,33 @@ public final class ParcelableMMKV implements Parcelable {
     private int ashmemMetaFD;
     private String cryptKey;
     private String mmapID;
+
+    /* JADX INFO: renamed from: com.tencent.mmkv.ParcelableMMKV$1 */
+    static class AnonymousClass1 implements Parcelable.Creator<ParcelableMMKV> {
+        AnonymousClass1() {
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ParcelableMMKV createFromParcel(Parcel parcel) {
+            String string = parcel.readString();
+            ParcelFileDescriptor parcelFileDescriptor = (ParcelFileDescriptor) ParcelFileDescriptor.CREATOR.createFromParcel(parcel);
+            ParcelFileDescriptor parcelFileDescriptor2 = (ParcelFileDescriptor) ParcelFileDescriptor.CREATOR.createFromParcel(parcel);
+            String string2 = parcel.readString();
+            if (parcelFileDescriptor == null || parcelFileDescriptor2 == null) {
+                return null;
+            }
+            return new ParcelableMMKV(string, parcelFileDescriptor.detachFd(), parcelFileDescriptor2.detachFd(), string2);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ParcelableMMKV[] newArray(int i2) {
+            return new ParcelableMMKV[i2];
+        }
+    }
+
+    /* synthetic */ ParcelableMMKV(String str, int i2, int i3, String str2, AnonymousClass1 anonymousClass1) {
+        this(str, i2, i3, str2);
+    }
 
     @Override // android.os.Parcelable
     public int describeContents() {
@@ -50,11 +78,11 @@ public final class ParcelableMMKV implements Parcelable {
     public void writeToParcel(Parcel parcel, int i2) {
         try {
             parcel.writeString(this.mmapID);
-            ParcelFileDescriptor fromFd = ParcelFileDescriptor.fromFd(this.ashmemFD);
-            ParcelFileDescriptor fromFd2 = ParcelFileDescriptor.fromFd(this.ashmemMetaFD);
+            ParcelFileDescriptor parcelFileDescriptorFromFd = ParcelFileDescriptor.fromFd(this.ashmemFD);
+            ParcelFileDescriptor parcelFileDescriptorFromFd2 = ParcelFileDescriptor.fromFd(this.ashmemMetaFD);
             int i3 = i2 | 1;
-            fromFd.writeToParcel(parcel, i3);
-            fromFd2.writeToParcel(parcel, i3);
+            parcelFileDescriptorFromFd.writeToParcel(parcel, i3);
+            parcelFileDescriptorFromFd2.writeToParcel(parcel, i3);
             if (this.cryptKey != null) {
                 parcel.writeString(this.cryptKey);
             }

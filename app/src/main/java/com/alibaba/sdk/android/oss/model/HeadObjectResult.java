@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.model;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HeadObjectResult extends OSSResult {
     private ObjectMetadata metadata = new ObjectMetadata();
 

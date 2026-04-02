@@ -2,7 +2,7 @@ package com.huawei.agconnect.core.service.auth;
 
 import com.huawei.hmf.tasks.Task;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface AuthProvider {
     void addTokenListener(OnTokenListener onTokenListener);
 

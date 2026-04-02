@@ -1,6 +1,6 @@
 package cn.cloudwalk;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface FaceInterface {
 
     public interface CW_FACE_LIVENESS_ERRCODE extends FaceInterface {

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import anet.channel.strategy.dispatch.DispatchConstants;
 import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ViewConfigurationCompat {
     private static final String TAG = "ViewConfigCompat";
     private static Method sGetScaledScrollFactorMethod;

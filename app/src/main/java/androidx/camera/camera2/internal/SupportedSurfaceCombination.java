@@ -32,7 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class SupportedSurfaceCombination {
     private static final int ALIGN16 = 16;
     private CamcorderProfileHelper mCamcorderProfileHelper;
@@ -65,8 +65,8 @@ final class SupportedSurfaceCombination {
 
         @Override // java.util.Comparator
         public int compare(Size size, Size size2) {
-            int signum = Long.signum((size.getWidth() * size.getHeight()) - (size2.getWidth() * size2.getHeight()));
-            return this.mReverse ? signum * (-1) : signum;
+            int iSignum = Long.signum((((long) size.getWidth()) * ((long) size.getHeight())) - (((long) size2.getWidth()) * ((long) size2.getHeight())));
+            return this.mReverse ? iSignum * (-1) : iSignum;
         }
 
         CompareSizesByArea(boolean z) {
@@ -157,28 +157,28 @@ final class SupportedSurfaceCombination {
 
     private List<List<Size>> getAllPossibleSizeArrangements(List<List<Size>> list) {
         Iterator<List<Size>> it = list.iterator();
-        int i2 = 1;
+        int size = 1;
         while (it.hasNext()) {
-            i2 *= it.next().size();
+            size *= it.next().size();
         }
-        if (i2 == 0) {
+        if (size == 0) {
             throw new IllegalArgumentException("Failed to find supported resolutions.");
         }
         ArrayList arrayList = new ArrayList();
-        for (int i3 = 0; i3 < i2; i3++) {
+        for (int i2 = 0; i2 < size; i2++) {
             arrayList.add(new ArrayList());
         }
-        int i4 = i2;
-        int size = i2 / list.get(0).size();
-        for (int i5 = 0; i5 < list.size(); i5++) {
-            List<Size> list2 = list.get(i5);
-            for (int i6 = 0; i6 < i2; i6++) {
-                ((List) arrayList.get(i6)).add(list2.get((i6 % i4) / size));
+        int i3 = size;
+        int size2 = size / list.get(0).size();
+        for (int i4 = 0; i4 < list.size(); i4++) {
+            List<Size> list2 = list.get(i4);
+            for (int i5 = 0; i5 < size; i5++) {
+                ((List) arrayList.get(i5)).add(list2.get((i5 % i3) / size2));
             }
-            if (i5 < list.size() - 1) {
-                int i7 = size;
-                size /= list.get(i5 + 1).size();
-                i4 = i7;
+            if (i4 < list.size() - 1) {
+                int i6 = size2;
+                size2 /= list.get(i4 + 1).size();
+                i3 = i6;
             }
         }
         return arrayList;
@@ -215,9 +215,9 @@ final class SupportedSurfaceCombination {
         Collections.reverse(arrayList2);
         Iterator it2 = arrayList2.iterator();
         while (it2.hasNext()) {
-            int intValue = ((Integer) it2.next()).intValue();
+            int iIntValue = ((Integer) it2.next()).intValue();
             for (UseCase useCase : list) {
-                if (intValue == useCase.getUseCaseConfig().getSurfaceOccupancyPriority(0)) {
+                if (iIntValue == useCase.getUseCaseConfig().getSurfaceOccupancyPriority(0)) {
                     arrayList.add(Integer.valueOf(list.indexOf(useCase)));
                 }
             }
@@ -271,7 +271,7 @@ final class SupportedSurfaceCombination {
 
     private static boolean ratioIntersectsMod16Segment(int i2, int i3, Rational rational) {
         Preconditions.checkArgument(i3 % 16 == 0);
-        double numerator = (i2 * rational.getNumerator()) / rational.getDenominator();
+        double numerator = ((double) (i2 * rational.getNumerator())) / ((double) rational.getDenominator());
         return numerator > ((double) Math.max(0, i3 + (-16))) && numerator < ((double) (i3 + 16));
     }
 
@@ -298,7 +298,7 @@ final class SupportedSurfaceCombination {
         if (list == null || list.isEmpty()) {
             return;
         }
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         ArrayList arrayList = new ArrayList();
         Rational rational = null;
         for (int i2 = 0; i2 < list.size(); i2++) {
@@ -308,11 +308,11 @@ final class SupportedSurfaceCombination {
                 if (rational == null || !hasMatchingAspectRatio(size2, rational)) {
                     rational = rational2;
                 }
-                Size size3 = (Size) hashMap.get(rational);
+                Size size3 = (Size) map.get(rational);
                 if (size3 != null) {
                     arrayList.add(size3);
                 }
-                hashMap.put(rational, size2);
+                map.put(rational, size2);
             }
         }
         list.removeAll(arrayList);
@@ -324,10 +324,10 @@ final class SupportedSurfaceCombination {
 
     boolean checkSupported(List<SurfaceConfig> list) {
         Iterator<SurfaceCombination> it = this.mSurfaceCombinations.iterator();
-        boolean z = false;
-        while (it.hasNext() && !(z = it.next().isSupported(list))) {
+        boolean zIsSupported = false;
+        while (it.hasNext() && !(zIsSupported = it.next().isSupported(list))) {
         }
-        return z;
+        return zIsSupported;
     }
 
     List<SurfaceCombination> getBurstSupportedCombinationList() {
@@ -355,8 +355,8 @@ final class SupportedSurfaceCombination {
         if (this.mHardwareLevel != 2 || Build.VERSION.SDK_INT != 21) {
             return null;
         }
-        Size fetchMaxSize = fetchMaxSize(256);
-        return rotateAspectRatioByRotation(new Rational(fetchMaxSize.getWidth(), fetchMaxSize.getHeight()), i2);
+        Size sizeFetchMaxSize = fetchMaxSize(256);
+        return rotateAspectRatioByRotation(new Rational(sizeFetchMaxSize.getWidth(), sizeFetchMaxSize.getHeight()), i2);
     }
 
     List<SurfaceCombination> getFullSupportedCombinationList() {
@@ -521,7 +521,7 @@ final class SupportedSurfaceCombination {
     }
 
     Map<UseCase, Size> getSuggestedResolutions(List<UseCase> list, List<UseCase> list2) {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         List<Integer> useCasesPriorityOrder = getUseCasesPriorityOrder(list2);
         ArrayList arrayList = new ArrayList();
         Iterator<Integer> it = useCasesPriorityOrder.iterator();
@@ -545,11 +545,11 @@ final class SupportedSurfaceCombination {
             }
             if (checkSupported(arrayList2)) {
                 for (UseCase useCase2 : list2) {
-                    hashMap.put(useCase2, next.get(useCasesPriorityOrder.indexOf(Integer.valueOf(list2.indexOf(useCase2)))));
+                    map.put(useCase2, next.get(useCasesPriorityOrder.indexOf(Integer.valueOf(list2.indexOf(useCase2)))));
                 }
             }
         }
-        return hashMap;
+        return map;
     }
 
     @VisibleForTesting
@@ -580,21 +580,21 @@ final class SupportedSurfaceCombination {
         }
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
-        Rational rational2 = null;
+        Rational rationalRotateAspectRatioByRotation = null;
         if (imageOutputConfig.hasTargetAspectRatio()) {
-            boolean isRotationNeeded = isRotationNeeded(0);
+            boolean zIsRotationNeeded = isRotationNeeded(0);
             int targetAspectRatio = imageOutputConfig.getTargetAspectRatio();
             if (targetAspectRatio == 0) {
-                rational = isRotationNeeded ? ASPECT_RATIO_4_3 : ASPECT_RATIO_3_4;
+                rational = zIsRotationNeeded ? ASPECT_RATIO_4_3 : ASPECT_RATIO_3_4;
             } else if (targetAspectRatio == 1) {
-                rational = isRotationNeeded ? ASPECT_RATIO_16_9 : ASPECT_RATIO_9_16;
+                rational = zIsRotationNeeded ? ASPECT_RATIO_16_9 : ASPECT_RATIO_9_16;
             }
-            rational2 = rational;
+            rationalRotateAspectRatioByRotation = rational;
         } else {
-            rational2 = rotateAspectRatioByRotation(imageOutputConfig.getTargetAspectRatioCustom(null), targetRotation);
+            rationalRotateAspectRatioByRotation = rotateAspectRatioByRotation(imageOutputConfig.getTargetAspectRatioCustom(null), targetRotation);
         }
         for (Size size3 : arrayList) {
-            if (rational2 == null || hasMatchingAspectRatio(size3, rational2)) {
+            if (rationalRotateAspectRatioByRotation == null || hasMatchingAspectRatio(size3, rationalRotateAspectRatioByRotation)) {
                 if (!arrayList2.contains(size3)) {
                     arrayList2.add(size3);
                 }
@@ -602,8 +602,8 @@ final class SupportedSurfaceCombination {
                 arrayList3.add(size3);
             }
         }
-        if (rational2 != null) {
-            Collections.sort(arrayList3, new CompareSizesByDistanceToTargetRatio(Float.valueOf(rational2.floatValue())));
+        if (rationalRotateAspectRatioByRotation != null) {
+            Collections.sort(arrayList3, new CompareSizesByDistanceToTargetRatio(Float.valueOf(rationalRotateAspectRatioByRotation.floatValue())));
         }
         if (targetResolution.equals(ZERO_SIZE)) {
             targetResolution = imageOutputConfig.getDefaultResolution(ZERO_SIZE);
@@ -640,14 +640,14 @@ final class SupportedSurfaceCombination {
             throw new IllegalArgumentException("Can not get supported output size for the format: " + i2);
         }
         SurfaceConfig.ConfigType configType = i2 == 35 ? SurfaceConfig.ConfigType.YUV : i2 == 256 ? SurfaceConfig.ConfigType.JPEG : i2 == 32 ? SurfaceConfig.ConfigType.RAW : SurfaceConfig.ConfigType.PRIV;
-        Size fetchMaxSize = fetchMaxSize(i2);
+        Size sizeFetchMaxSize = fetchMaxSize(i2);
         if (size.getWidth() * size.getHeight() <= this.mSurfaceSizeDefinition.getAnalysisSize().getWidth() * this.mSurfaceSizeDefinition.getAnalysisSize().getHeight()) {
             configSize = SurfaceConfig.ConfigSize.ANALYSIS;
         } else if (size.getWidth() * size.getHeight() <= this.mSurfaceSizeDefinition.getPreviewSize().getWidth() * this.mSurfaceSizeDefinition.getPreviewSize().getHeight()) {
             configSize = SurfaceConfig.ConfigSize.PREVIEW;
         } else if (size.getWidth() * size.getHeight() <= this.mSurfaceSizeDefinition.getRecordSize().getWidth() * this.mSurfaceSizeDefinition.getRecordSize().getHeight()) {
             configSize = SurfaceConfig.ConfigSize.RECORD;
-        } else if (size.getWidth() * size.getHeight() <= fetchMaxSize.getWidth() * fetchMaxSize.getHeight()) {
+        } else if (size.getWidth() * size.getHeight() <= sizeFetchMaxSize.getWidth() * sizeFetchMaxSize.getHeight()) {
             configSize = SurfaceConfig.ConfigSize.MAXIMUM;
         }
         return SurfaceConfig.create(configType, configSize);
@@ -655,7 +655,7 @@ final class SupportedSurfaceCombination {
 
     @Nullable
     private Size[] getAllOutputSizesByFormat(int i2, @Nullable UseCase useCase) {
-        Size[] sizeArr = null;
+        Size[] outputSizes = null;
         List<Pair<Integer, Size[]>> supportedResolutions = useCase != null ? ((ImageOutputConfig) useCase.getUseCaseConfig()).getSupportedResolutions(null) : null;
         if (supportedResolutions != null) {
             Iterator<Pair<Integer, Size[]>> it = supportedResolutions.iterator();
@@ -665,12 +665,12 @@ final class SupportedSurfaceCombination {
                 }
                 Pair<Integer, Size[]> next = it.next();
                 if (((Integer) next.first).intValue() == i2) {
-                    sizeArr = (Size[]) next.second;
+                    outputSizes = (Size[]) next.second;
                     break;
                 }
             }
         }
-        if (sizeArr == null) {
+        if (outputSizes == null) {
             CameraCharacteristics cameraCharacteristics = this.mCharacteristics;
             if (cameraCharacteristics == null) {
                 throw new IllegalStateException("CameraCharacteristics is null.");
@@ -679,11 +679,11 @@ final class SupportedSurfaceCombination {
             if (streamConfigurationMap == null) {
                 throw new IllegalArgumentException("Can not get supported output size for the format: " + i2);
             }
-            sizeArr = (Build.VERSION.SDK_INT >= 23 || i2 != 34) ? streamConfigurationMap.getOutputSizes(i2) : streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
+            outputSizes = (Build.VERSION.SDK_INT >= 23 || i2 != 34) ? streamConfigurationMap.getOutputSizes(i2) : streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
         }
-        if (sizeArr != null) {
-            Arrays.sort(sizeArr, new CompareSizesByArea(true));
-            return sizeArr;
+        if (outputSizes != null) {
+            Arrays.sort(outputSizes, new CompareSizesByArea(true));
+            return outputSizes;
         }
         throw new IllegalArgumentException("Can not get supported output size for the format: " + i2);
     }

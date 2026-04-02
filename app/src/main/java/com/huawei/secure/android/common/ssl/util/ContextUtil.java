@@ -2,20 +2,18 @@ package com.huawei.secure.android.common.ssl.util;
 
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ContextUtil {
-
-    /* renamed from: a */
-    private static Context f8237a;
+    private static Context a;
 
     public static Context getInstance() {
-        return f8237a;
+        return a;
     }
 
     public static void setContext(Context context) {
-        if (context == null || f8237a != null) {
+        if (context == null || a != null) {
             return;
         }
-        f8237a = context.getApplicationContext();
+        a = context.getApplicationContext();
     }
 }

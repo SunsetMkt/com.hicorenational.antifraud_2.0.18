@@ -7,8 +7,8 @@ import java.net.SocketTimeoutException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IRequestListener {
     void onComplete(JSONObject jSONObject);
 

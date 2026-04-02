@@ -3,9 +3,9 @@ package com.yalantis.ucrop.immersion;
 import android.os.Build;
 import android.view.Window;
 import androidx.appcompat.app.AppCompatActivity;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import d.c.a.b.a.a;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CropImmersiveManage {
     public static void immersiveAboveAPI23(AppCompatActivity appCompatActivity, int i2, int i3, boolean z) {
         if (Build.VERSION.SDK_INT >= 23) {
@@ -21,7 +21,7 @@ public class CropImmersiveManage {
         try {
             Window window = appCompatActivity.getWindow();
             if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-                window.setFlags(AbstractC1191a.f2487B1, AbstractC1191a.f2487B1);
+                window.setFlags(a.B1, a.B1);
                 return;
             }
             if (Build.VERSION.SDK_INT >= 21) {

@@ -3,7 +3,7 @@ package androidx.constraintlayout.solver.widgets;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ChainHead {
     private boolean mDefined;
     protected ConstraintWidget mFirst;
@@ -96,14 +96,10 @@ public class ChainHead {
                         this.mLastMatchConstraintWidget = constraintWidget2;
                     }
                     if (this.mOrientation == 0) {
-                        if (constraintWidget2.mMatchConstraintDefaultWidth != 0) {
-                            this.mOptimizable = false;
-                        } else if (constraintWidget2.mMatchConstraintMinWidth != 0 || constraintWidget2.mMatchConstraintMaxWidth != 0) {
+                        if (constraintWidget2.mMatchConstraintDefaultWidth != 0 || constraintWidget2.mMatchConstraintMinWidth != 0 || constraintWidget2.mMatchConstraintMaxWidth != 0) {
                             this.mOptimizable = false;
                         }
-                    } else if (constraintWidget2.mMatchConstraintDefaultHeight != 0) {
-                        this.mOptimizable = false;
-                    } else if (constraintWidget2.mMatchConstraintMinHeight != 0 || constraintWidget2.mMatchConstraintMaxHeight != 0) {
+                    } else if (constraintWidget2.mMatchConstraintDefaultHeight != 0 || constraintWidget2.mMatchConstraintMinHeight != 0 || constraintWidget2.mMatchConstraintMaxHeight != 0) {
                         this.mOptimizable = false;
                     }
                     if (constraintWidget2.mDimensionRatio != 0.0f) {

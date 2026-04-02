@@ -16,166 +16,117 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import manager.FloatingWindow;
 import manager.IFloatingWindow;
 import manager.NotificationHelper;
-import p000a.p001a.p014u.C0052a;
-import util.C7301n1;
+import util.s1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WarnGuidService extends Service {
+    public static final String w = "extra_warn_guide_content";
+    public static int x = 1;
+    TextView a;
 
-    /* renamed from: w */
-    public static final String f6337w = "extra_warn_guide_content";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    TextView f4000b;
 
-    /* renamed from: x */
-    public static int f6338x = 1;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    ImageView f4001c;
 
-    /* renamed from: a */
-    TextView f6339a;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    View f4002d;
 
-    /* renamed from: b */
-    TextView f6340b;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    View f4003e;
 
-    /* renamed from: c */
-    ImageView f6341c;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    TextView f4004f;
 
-    /* renamed from: d */
-    View f6342d;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    View f4005g;
 
-    /* renamed from: e */
-    View f6343e;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    IFloatingWindow f4006h;
 
-    /* renamed from: f */
-    TextView f6344f;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    WindowManager.LayoutParams f4007i;
 
-    /* renamed from: g */
-    View f6345g;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private WindowManager f4008j;
 
-    /* renamed from: h */
-    IFloatingWindow f6346h;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private float f4009k;
 
-    /* renamed from: i */
-    WindowManager.LayoutParams f6347i;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private float f4010l;
 
-    /* renamed from: j */
-    private WindowManager f6348j;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private float f4011m;
 
-    /* renamed from: k */
-    private float f6349k;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private float f4012n;
+    private float o;
+    private float p;
+    private int q;
+    private int r;
+    private NotificationManager s;
+    private String t = "appid";
+    private String u = NotificationHelper.CHANEL_NAME;
+    private View.OnTouchListener v = new a();
 
-    /* renamed from: l */
-    private float f6350l;
-
-    /* renamed from: m */
-    private float f6351m;
-
-    /* renamed from: n */
-    private float f6352n;
-
-    /* renamed from: o */
-    private float f6353o;
-
-    /* renamed from: p */
-    private float f6354p;
-
-    /* renamed from: q */
-    private int f6355q;
-
-    /* renamed from: r */
-    private int f6356r;
-
-    /* renamed from: s */
-    private NotificationManager f6357s;
-
-    /* renamed from: t */
-    private String f6358t = "appid";
-
-    /* renamed from: u */
-    private String f6359u = NotificationHelper.CHANEL_NAME;
-
-    /* renamed from: v */
-    private View.OnTouchListener f6360v = new ViewOnTouchListenerC2120a();
-
-    /* renamed from: com.hicorenational.antifraud.service.WarnGuidService$a */
-    class ViewOnTouchListenerC2120a implements View.OnTouchListener {
-        ViewOnTouchListenerC2120a() {
+    class a implements View.OnTouchListener {
+        a() {
         }
 
-        /* JADX WARN: Code restructure failed: missing block: B:7:0x000d, code lost:
-        
-            if (r3 != 3) goto L13;
-         */
+        /* JADX WARN: Removed duplicated region for block: B:11:0x0016  */
         @Override // android.view.View.OnTouchListener
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public boolean onTouch(android.view.View r3, android.view.MotionEvent r4) {
-            /*
-                r2 = this;
-                int r3 = r4.getAction()
-                r0 = 1
-                if (r3 == 0) goto L1c
-                if (r3 == r0) goto L16
-                r1 = 2
-                if (r3 == r1) goto L10
-                r4 = 3
-                if (r3 == r4) goto L16
-                goto L21
-            L10:
-                com.hicorenational.antifraud.service.WarnGuidService r3 = com.hicorenational.antifraud.service.WarnGuidService.this
-                com.hicorenational.antifraud.service.WarnGuidService.m5968b(r3, r4)
-                goto L21
-            L16:
-                com.hicorenational.antifraud.service.WarnGuidService r3 = com.hicorenational.antifraud.service.WarnGuidService.this
-                com.hicorenational.antifraud.service.WarnGuidService.m5963a(r3)
-                goto L21
-            L1c:
-                com.hicorenational.antifraud.service.WarnGuidService r3 = com.hicorenational.antifraud.service.WarnGuidService.this
-                com.hicorenational.antifraud.service.WarnGuidService.m5964a(r3, r4)
-            L21:
-                return r0
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.hicorenational.antifraud.service.WarnGuidService.ViewOnTouchListenerC2120a.onTouch(android.view.View, android.view.MotionEvent):boolean");
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            int action = motionEvent.getAction();
+            if (action == 0) {
+                WarnGuidService.this.a(motionEvent);
+            } else if (action == 1) {
+                WarnGuidService.this.b();
+            } else if (action == 2) {
+                WarnGuidService.this.b(motionEvent);
+            } else if (action == 3) {
+            }
+            return true;
         }
     }
 
-    /* renamed from: com.hicorenational.antifraud.service.WarnGuidService$b */
-    public class BinderC2121b extends Binder {
-        public BinderC2121b() {
+    public class b extends Binder {
+        public b() {
         }
 
-        /* renamed from: a */
-        public WarnGuidService m5975a() {
+        public WarnGuidService a() {
             return WarnGuidService.this;
         }
     }
 
-    /* renamed from: c */
-    private Notification m5969c() {
-        Notification.Builder contentText = new Notification.Builder(this).setSmallIcon(C2113R.mipmap.logo).setContentTitle(NotificationHelper.CHANEL_NAME).setContentText("打击防范网络诈骗");
+    private Notification c() {
+        Notification.Builder contentText = new Notification.Builder(this).setSmallIcon(R.mipmap.logo).setContentTitle(NotificationHelper.CHANEL_NAME).setContentText("\u6253\u51fb\u9632\u8303\u7f51\u7edc\u8bc8\u9a97");
         if (Build.VERSION.SDK_INT < 26) {
             return contentText.build();
         }
-        this.f6357s.createNotificationChannel(new NotificationChannel(this.f6358t, this.f6359u, 4));
-        return new Notification.Builder(getApplicationContext(), this.f6358t).build();
+        this.s.createNotificationChannel(new NotificationChannel(this.t, this.u, 4));
+        return new Notification.Builder(getApplicationContext(), this.t).build();
     }
 
-    /* renamed from: d */
-    private void m5970d() {
+    private void d() {
         if (Build.VERSION.SDK_INT >= 18) {
-            startForeground(f6338x, m5969c());
+            startForeground(x, c());
         } else {
-            startForeground(f6338x, new Notification());
+            startForeground(x, new Notification());
         }
     }
 
-    /* renamed from: e */
-    private void m5971e() {
+    private void e() {
         try {
-            this.f6348j.updateViewLayout(this.f6345g, this.f6347i);
+            this.f4008j.updateViewLayout(this.f4005g, this.f4007i);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -183,156 +134,148 @@ public class WarnGuidService extends Service {
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        C7301n1.m26459c(C0052a.f162n, "WarnGuidService-----------------------onBind");
-        return new BinderC2121b();
+        s1.c(b.a.u.a.f1912n, "WarnGuidService-----------------------onBind");
+        return new b();
     }
 
     @Override // android.app.Service
     public void onCreate() {
         super.onCreate();
-        this.f6348j = (WindowManager) getSystemService("window");
-        this.f6357s = (NotificationManager) getSystemService("notification");
-        m5970d();
+        this.f4008j = (WindowManager) getSystemService("window");
+        this.s = (NotificationManager) getSystemService("notification");
+        d();
     }
 
     @Override // android.app.Service
     public void onDestroy() {
         super.onDestroy();
-        C7301n1.m26459c(C0052a.f162n, "服务onDestroy-----------------------    ");
-        IFloatingWindow iFloatingWindow = this.f6346h;
+        s1.c(b.a.u.a.f1912n, "\u670d\u52a1onDestroy-----------------------    ");
+        IFloatingWindow iFloatingWindow = this.f4006h;
         if (iFloatingWindow != null) {
             iFloatingWindow.removeAll();
-            this.f6346h.dismiss();
+            this.f4006h.dismiss();
         }
     }
 
     @Override // android.app.Service
     public int onStartCommand(Intent intent, int i2, int i3) {
-        String str;
+        String stringExtra;
         try {
-            str = intent.getStringExtra(f6337w);
+            stringExtra = intent.getStringExtra(w);
         } catch (Exception e2) {
             e2.printStackTrace();
-            str = "";
+            stringExtra = "";
         }
-        if (TextUtils.isEmpty(str)) {
-            str = "请进入相应设置";
+        if (TextUtils.isEmpty(stringExtra)) {
+            stringExtra = "\u8bf7\u8fdb\u5165\u76f8\u5e94\u8bbe\u7f6e";
         }
-        m5965a(str);
+        a(stringExtra);
         return super.onStartCommand(intent, i2, i3);
     }
 
     @Override // android.app.Service
     public boolean onUnbind(Intent intent) {
-        C7301n1.m26459c(C0052a.f162n, "WarnGuidService-----------------------onUnbind");
+        s1.c(b.a.u.a.f1912n, "WarnGuidService-----------------------onUnbind");
         return super.onUnbind(intent);
     }
 
-    /* renamed from: b */
-    public /* synthetic */ void m5973b(View view) {
-        this.f6342d.setVisibility(0);
-        this.f6343e.setVisibility(8);
+    public /* synthetic */ void b(View view) {
+        this.f4002d.setVisibility(0);
+        this.f4003e.setVisibility(8);
     }
 
-    /* renamed from: a */
-    private void m5965a(String str) {
-        this.f6346h = new FloatingWindow(this);
-        this.f6347i = this.f6346h.getWarnGuideLayoutParams();
-        this.f6346h.setParams(this.f6347i);
-        this.f6345g = LayoutInflater.from(this).inflate(C2113R.layout.layout_warn_guide, (ViewGroup) null);
-        this.f6342d = this.f6345g.findViewById(C2113R.id.layout_open);
-        this.f6343e = this.f6345g.findViewById(C2113R.id.layout_close);
-        this.f6339a = (TextView) this.f6345g.findViewById(C2113R.id.tv_scale_open);
-        this.f6340b = (TextView) this.f6345g.findViewById(C2113R.id.tv_scale_close);
-        this.f6341c = (ImageView) this.f6345g.findViewById(C2113R.id.iv_close);
-        this.f6344f = (TextView) this.f6345g.findViewById(C2113R.id.tv_guide);
+    private void a(String str) {
+        this.f4006h = new FloatingWindow(this);
+        this.f4007i = this.f4006h.getWarnGuideLayoutParams();
+        this.f4006h.setParams(this.f4007i);
+        this.f4005g = LayoutInflater.from(this).inflate(R.layout.layout_warn_guide, (ViewGroup) null);
+        this.f4002d = this.f4005g.findViewById(R.id.layout_open);
+        this.f4003e = this.f4005g.findViewById(R.id.layout_close);
+        this.a = (TextView) this.f4005g.findViewById(R.id.tv_scale_open);
+        this.f4000b = (TextView) this.f4005g.findViewById(R.id.tv_scale_close);
+        this.f4001c = (ImageView) this.f4005g.findViewById(R.id.iv_close);
+        this.f4004f = (TextView) this.f4005g.findViewById(R.id.tv_guide);
         if (!TextUtils.isEmpty(str)) {
-            this.f6344f.setText(str);
+            this.f4004f.setText(str);
         }
-        this.f6345g.setOnTouchListener(this.f6360v);
-        this.f6355q = this.f6348j.getDefaultDisplay().getWidth();
-        this.f6356r = this.f6348j.getDefaultDisplay().getHeight();
-        this.f6340b.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.c
+        this.f4005g.setOnTouchListener(this.v);
+        this.q = this.f4008j.getDefaultDisplay().getWidth();
+        this.r = this.f4008j.getDefaultDisplay().getHeight();
+        this.f4000b.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.c
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                WarnGuidService.this.m5972a(view);
+                this.a.a(view);
             }
         });
-        this.f6339a.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.e
+        this.a.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.e
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                WarnGuidService.this.m5973b(view);
+                this.a.b(view);
             }
         });
-        this.f6341c.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.d
+        this.f4001c.setOnClickListener(new View.OnClickListener() { // from class: com.hicorenational.antifraud.service.d
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                WarnGuidService.this.m5974c(view);
+                this.a.c(view);
             }
         });
-        this.f6346h.setContentView(this.f6345g);
-        this.f6346h.show();
+        this.f4006h.setContentView(this.f4005g);
+        this.f4006h.show();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public void m5967b(MotionEvent motionEvent) {
-        this.f6349k = motionEvent.getRawX();
-        this.f6350l = motionEvent.getRawY();
-        String str = "mXInView====" + this.f6353o;
-        String str2 = "mXInScreen====" + this.f6349k;
-        WindowManager.LayoutParams layoutParams = this.f6347i;
-        layoutParams.x = (int) this.f6349k;
-        layoutParams.y = ((int) (this.f6350l - this.f6354p)) - (this.f6345g.getHeight() / 2);
-        m5971e();
+    public void b(MotionEvent motionEvent) {
+        this.f4009k = motionEvent.getRawX();
+        this.f4010l = motionEvent.getRawY();
+        String str = "mXInView====" + this.o;
+        String str2 = "mXInScreen====" + this.f4009k;
+        WindowManager.LayoutParams layoutParams = this.f4007i;
+        layoutParams.x = (int) this.f4009k;
+        layoutParams.y = ((int) (this.f4010l - this.p)) - (this.f4005g.getHeight() / 2);
+        e();
     }
 
-    /* renamed from: c */
-    public /* synthetic */ void m5974c(View view) {
-        this.f6346h.dismiss();
-    }
-
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public void m5966b() {
-        m5961a();
-    }
-
-    /* renamed from: a */
-    public /* synthetic */ void m5972a(View view) {
-        this.f6342d.setVisibility(8);
-        this.f6343e.setVisibility(0);
+    public /* synthetic */ void c(View view) {
+        this.f4006h.dismiss();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m5962a(MotionEvent motionEvent) {
-        this.f6353o = motionEvent.getX();
-        this.f6354p = motionEvent.getY();
-        this.f6351m = motionEvent.getRawX();
-        this.f6352n = motionEvent.getRawY();
-        this.f6349k = motionEvent.getRawX();
-        this.f6350l = motionEvent.getRawY();
+    public void b() {
+        a();
     }
 
-    /* renamed from: a */
-    private void m5961a() {
-        String str = "wmParams.x ====" + this.f6347i.x;
-        String str2 = "mScreenWidth====" + this.f6355q;
-        int i2 = this.f6347i.x;
-        if (i2 > 0 && i2 < this.f6355q) {
-            m5971e();
+    public /* synthetic */ void a(View view) {
+        this.f4002d.setVisibility(8);
+        this.f4003e.setVisibility(0);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void a(MotionEvent motionEvent) {
+        this.o = motionEvent.getX();
+        this.p = motionEvent.getY();
+        this.f4011m = motionEvent.getRawX();
+        this.f4012n = motionEvent.getRawY();
+        this.f4009k = motionEvent.getRawX();
+        this.f4010l = motionEvent.getRawY();
+    }
+
+    private void a() {
+        String str = "wmParams.x ====" + this.f4007i.x;
+        String str2 = "mScreenWidth====" + this.q;
+        int i2 = this.f4007i.x;
+        if (i2 > 0 && i2 < this.q) {
+            e();
             return;
         }
-        if (Math.abs(this.f6347i.x) < 0) {
-            this.f6347i.x = 0;
+        if (Math.abs(this.f4007i.x) < 0) {
+            this.f4007i.x = 0;
         } else {
-            int abs = Math.abs(this.f6347i.x);
-            int i3 = this.f6355q;
-            if (abs > i3) {
-                this.f6347i.x = i3;
+            int iAbs = Math.abs(this.f4007i.x);
+            int i3 = this.q;
+            if (iAbs > i3) {
+                this.f4007i.x = i3;
             }
         }
-        m5971e();
+        e();
     }
 }

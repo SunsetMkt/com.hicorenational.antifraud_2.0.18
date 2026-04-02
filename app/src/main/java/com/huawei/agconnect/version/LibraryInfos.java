@@ -1,6 +1,6 @@
 package com.huawei.agconnect.version;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LibraryInfos {
     private static final LibraryInfos INSTANCE = new LibraryInfos();
     private String libraryType = "Java";

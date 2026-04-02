@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.view.View;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class TypeButton extends View {
     public static final int TYPE_CANCEL = 1;
     public static final int TYPE_CONFIRM = 2;
@@ -57,15 +57,15 @@ public class TypeButton extends View {
             Path path4 = this.path;
             float f8 = this.center_X;
             float f9 = this.index;
-            path4.moveTo(f8 - f9, (float) (this.center_Y - (f9 * 1.5d)));
+            path4.moveTo(f8 - f9, (float) (((double) this.center_Y) - (((double) f9) * 1.5d)));
             Path path5 = this.path;
             float f10 = this.center_X;
             float f11 = this.index;
-            path5.lineTo(f10 - f11, (float) (this.center_Y - (f11 / 2.3d)));
+            path5.lineTo(f10 - f11, (float) (((double) this.center_Y) - (((double) f11) / 2.3d)));
             Path path6 = this.path;
             double d2 = this.center_X;
             float f12 = this.index;
-            path6.lineTo((float) (d2 - (f12 * 1.6d)), this.center_Y - f12);
+            path6.lineTo((float) (d2 - (((double) f12) * 1.6d)), this.center_Y - f12);
             this.path.close();
             canvas.drawPath(this.path, this.mPaint);
         }

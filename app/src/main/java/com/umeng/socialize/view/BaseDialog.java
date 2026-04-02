@@ -24,11 +24,9 @@ import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.SocializeUtils;
 import java.lang.reflect.Method;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class BaseDialog extends Dialog {
-
-    /* renamed from: R */
-    public final ResContainer f13822R;
+    public final ResContainer R;
     public Activity mActivity;
     public View mContent;
     public Context mContext;
@@ -57,7 +55,7 @@ public abstract class BaseDialog extends Dialog {
             }
         };
         this.mContext = activity.getApplicationContext();
-        this.f13822R = ResContainer.get(this.mContext);
+        this.R = ResContainer.get(this.mContext);
         this.mActivity = activity;
         this.mPlatform = share_media;
     }
@@ -65,39 +63,38 @@ public abstract class BaseDialog extends Dialog {
     public void initViews() {
         setOwnerActivity(this.mActivity);
         LayoutInflater layoutInflater = (LayoutInflater) this.mActivity.getSystemService("layout_inflater");
-        int layout = this.f13822R.layout("umeng_socialize_oauth_dialog");
-        int m12637id = this.f13822R.m12637id("umeng_socialize_follow");
+        int iLayout = this.R.layout("umeng_socialize_oauth_dialog");
+        int iId = this.R.id("umeng_socialize_follow");
         String str = null;
-        this.mContent = layoutInflater.inflate(layout, (ViewGroup) null);
-        final View findViewById = this.mContent.findViewById(m12637id);
-        findViewById.setVisibility(8);
-        int m12637id2 = this.f13822R.m12637id("progress_bar_parent");
-        int m12637id3 = this.f13822R.m12637id("umeng_back");
-        int m12637id4 = this.f13822R.m12637id("umeng_share_btn");
-        int m12637id5 = this.f13822R.m12637id("umeng_title");
-        int m12637id6 = this.f13822R.m12637id("umeng_socialize_titlebar");
-        this.mProgressbar = this.mContent.findViewById(m12637id2);
+        this.mContent = layoutInflater.inflate(iLayout, (ViewGroup) null);
+        final View viewFindViewById = this.mContent.findViewById(iId);
+        viewFindViewById.setVisibility(8);
+        int iId2 = this.R.id("progress_bar_parent");
+        int iId3 = this.R.id("umeng_back");
+        int iId4 = this.R.id("umeng_share_btn");
+        int iId5 = this.R.id("umeng_title");
+        int iId6 = this.R.id("umeng_socialize_titlebar");
+        this.mProgressbar = this.mContent.findViewById(iId2);
         this.mProgressbar.setVisibility(0);
-        ((RelativeLayout) this.mContent.findViewById(m12637id3)).setOnClickListener(new View.OnClickListener() { // from class: com.umeng.socialize.view.BaseDialog.2
+        ((RelativeLayout) this.mContent.findViewById(iId3)).setOnClickListener(new View.OnClickListener() { // from class: com.umeng.socialize.view.BaseDialog.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 BaseDialog.this.dismiss();
             }
         });
-        this.mContent.findViewById(m12637id4).setVisibility(8);
-        this.titleMidTv = (TextView) this.mContent.findViewById(m12637id5);
+        this.mContent.findViewById(iId4).setVisibility(8);
+        this.titleMidTv = (TextView) this.mContent.findViewById(iId5);
         if (this.mPlatform.toString().equals("SINA")) {
             str = PlatformName.SINA;
         } else if (this.mPlatform.toString().equals("DOUBAN")) {
             str = PlatformName.DOUBAN;
         }
-        this.titleMidTv.setText("授权" + str);
+        this.titleMidTv.setText("\u6388\u6743" + str);
         setUpWebView();
-        final View findViewById2 = this.mContent.findViewById(m12637id6);
-        final int dip2Px = SocializeUtils.dip2Px(this.mContext, 200.0f);
+        final View viewFindViewById2 = this.mContent.findViewById(iId6);
+        final int iDip2Px = SocializeUtils.dip2Px(this.mContext, 200.0f);
         FrameLayout frameLayout = new FrameLayout(this.mContext) { // from class: com.umeng.socialize.view.BaseDialog.3
-            /* renamed from: a */
-            private void m12721a(final View view, final View view2, int i2, int i3) {
+            private void a(final View view, final View view2, int i2, int i3) {
                 if (view2.getVisibility() == 0 && i3 < i2) {
                     BaseDialog.this.mHandler.post(new Runnable() { // from class: com.umeng.socialize.view.BaseDialog.3.1
                         @Override // java.lang.Runnable
@@ -129,7 +126,7 @@ public abstract class BaseDialog extends Dialog {
                 if (SocializeUtils.isFloatWindowStyle(BaseDialog.this.mContext)) {
                     return;
                 }
-                m12721a(findViewById, findViewById2, dip2Px, i3);
+                a(viewFindViewById, viewFindViewById2, iDip2Px, i3);
             }
         };
         frameLayout.addView(this.mContent, -1, -1);
@@ -178,7 +175,7 @@ public abstract class BaseDialog extends Dialog {
     public abstract void setClient(WebView webView);
 
     public boolean setUpWebView() {
-        this.mWebView = (WebView) this.mContent.findViewById(this.f13822R.m12637id("webView"));
+        this.mWebView = (WebView) this.mContent.findViewById(this.R.id("webView"));
         setClient(this.mWebView);
         this.mWebView.requestFocusFromTouch();
         this.mWebView.setVerticalScrollBarEnabled(false);

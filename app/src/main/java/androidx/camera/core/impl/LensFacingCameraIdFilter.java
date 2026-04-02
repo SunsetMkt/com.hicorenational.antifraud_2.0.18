@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.CameraX;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LensFacingCameraIdFilter implements CameraIdFilter {
     private int mLensFacing;
 

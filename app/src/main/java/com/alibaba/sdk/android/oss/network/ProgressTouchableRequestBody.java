@@ -10,7 +10,7 @@ import okio.BufferedSink;
 import okio.Okio;
 import okio.Source;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ProgressTouchableRequestBody<T extends OSSRequest> extends RequestBody {
     private static final int SEGMENT_SIZE = 2048;
     private OSSProgressCallback callback;
@@ -46,11 +46,11 @@ public class ProgressTouchableRequestBody<T extends OSSRequest> extends RequestB
             if (j2 >= j3) {
                 break;
             }
-            long read = source.read(bufferedSink.buffer(), Math.min(j3 - j2, 2048L));
-            if (read == -1) {
+            long j4 = source.read(bufferedSink.buffer(), Math.min(j3 - j2, 2048L));
+            if (j4 == -1) {
                 break;
             }
-            j2 += read;
+            j2 += j4;
             bufferedSink.flush();
             OSSProgressCallback oSSProgressCallback = this.callback;
             if (oSSProgressCallback != null && j2 != 0) {

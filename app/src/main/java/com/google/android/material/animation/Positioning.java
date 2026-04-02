@@ -1,6 +1,6 @@
 package com.google.android.material.animation;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Positioning {
     public final int gravity;
     public final float xAdjustment;

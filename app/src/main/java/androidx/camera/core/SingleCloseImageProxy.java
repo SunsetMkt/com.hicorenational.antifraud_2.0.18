@@ -2,7 +2,7 @@ package androidx.camera.core;
 
 import androidx.annotation.GuardedBy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class SingleCloseImageProxy extends ForwardingImageProxy {
 
     @GuardedBy("this")

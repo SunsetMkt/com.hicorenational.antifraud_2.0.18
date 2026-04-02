@@ -2,7 +2,7 @@ package com.huawei.hms.common.api;
 
 import com.huawei.hms.support.api.client.Result;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Response<T extends Result> {
     protected T result;
 

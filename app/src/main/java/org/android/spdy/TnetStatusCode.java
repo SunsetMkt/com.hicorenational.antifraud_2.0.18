@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class TnetStatusCode {
     public static final int EASY_DEFAULT_ERROR = -3800;
     public static final int EASY_EAGAIN = -3848;

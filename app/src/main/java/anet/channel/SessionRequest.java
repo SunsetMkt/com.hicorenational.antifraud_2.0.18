@@ -5,28 +5,20 @@ import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 import anet.channel.appmonitor.AppMonitor;
-import anet.channel.entity.C0781a;
-import anet.channel.entity.C0783c;
 import anet.channel.entity.ConnType;
 import anet.channel.entity.EventType;
-import anet.channel.session.C0813d;
 import anet.channel.session.TnetSpdySession;
 import anet.channel.statist.AlarmObject;
 import anet.channel.statist.SessionConnStat;
 import anet.channel.status.NetworkStatusHelper;
 import anet.channel.strategy.IConnStrategy;
 import anet.channel.strategy.StrategyCenter;
-import anet.channel.strategy.utils.C0848c;
 import anet.channel.thread.ThreadPoolExecutorFactory;
 import anet.channel.util.ALog;
-import anet.channel.util.C0857c;
-import anet.channel.util.C0863i;
 import anet.channel.util.HttpConstant;
 import anet.channel.util.HttpUrl;
 import com.taobao.accs.common.Constants;
-import com.taobao.accs.utl.C3042j;
-import com.umeng.analytics.pro.C3351bh;
-import com.umeng.analytics.pro.C3397d;
+import com.umeng.analytics.pro.bh;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -37,50 +29,46 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 class SessionRequest {
+    SessionCenter a;
 
-    /* renamed from: a */
-    SessionCenter f721a;
+    /* JADX INFO: renamed from: b */
+    e f1367b;
 
-    /* renamed from: b */
-    C0773e f722b;
+    /* JADX INFO: renamed from: c */
+    SessionInfo f1368c;
 
-    /* renamed from: c */
-    SessionInfo f723c;
+    /* JADX INFO: renamed from: e */
+    volatile Session f1370e;
 
-    /* renamed from: e */
-    volatile Session f725e;
+    /* JADX INFO: renamed from: i */
+    private String f1374i;
 
-    /* renamed from: i */
-    private String f729i;
+    /* JADX INFO: renamed from: j */
+    private String f1375j;
 
-    /* renamed from: j */
-    private String f730j;
+    /* JADX INFO: renamed from: k */
+    private volatile Future f1376k;
 
-    /* renamed from: k */
-    private volatile Future f731k;
+    /* JADX INFO: renamed from: d */
+    volatile boolean f1369d = false;
 
-    /* renamed from: d */
-    volatile boolean f724d = false;
+    /* JADX INFO: renamed from: f */
+    volatile boolean f1371f = false;
 
-    /* renamed from: f */
-    volatile boolean f726f = false;
+    /* JADX INFO: renamed from: g */
+    HashMap<SessionGetCallback, c> f1372g = new HashMap<>();
 
-    /* renamed from: g */
-    HashMap<SessionGetCallback, RunnableC0741c> f727g = new HashMap<>();
+    /* JADX INFO: renamed from: h */
+    SessionConnStat f1373h = null;
 
-    /* renamed from: h */
-    SessionConnStat f728h = null;
+    /* JADX INFO: renamed from: l */
+    private Object f1377l = new Object();
 
-    /* renamed from: l */
-    private Object f732l = new Object();
-
-    /* JADX INFO: Access modifiers changed from: private */
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     interface IConnCb {
         void onDisConnect(Session session, long j2, int i2);
 
@@ -89,55 +77,52 @@ class SessionRequest {
         void onSuccess(Session session, long j2);
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.SessionRequest$a */
-    class C0739a implements IConnCb {
+    /* JADX INFO: compiled from: Taobao */
+    class a implements IConnCb {
+        boolean a = false;
 
-        /* renamed from: a */
-        boolean f733a = false;
+        /* JADX INFO: renamed from: c */
+        private Context f1379c;
 
-        /* renamed from: c */
-        private Context f735c;
+        /* JADX INFO: renamed from: d */
+        private List<anet.channel.entity.a> f1380d;
 
-        /* renamed from: d */
-        private List<C0781a> f736d;
+        /* JADX INFO: renamed from: e */
+        private anet.channel.entity.a f1381e;
 
-        /* renamed from: e */
-        private C0781a f737e;
-
-        C0739a(Context context, List<C0781a> list, C0781a c0781a) {
-            this.f735c = context;
-            this.f736d = list;
-            this.f737e = c0781a;
+        a(Context context, List<anet.channel.entity.a> list, anet.channel.entity.a aVar) {
+            this.f1379c = context;
+            this.f1380d = list;
+            this.f1381e = aVar;
         }
 
         @Override // anet.channel.SessionRequest.IConnCb
         public void onDisConnect(Session session, long j2, int i2) {
             SessionInfo sessionInfo;
-            boolean isAppBackground = GlobalAppRuntimeInfo.isAppBackground();
-            ALog.m713d("awcn.SessionRequest", "Connect Disconnect", this.f737e.m515h(), C3397d.f11932aw, session, Constants.KEY_HOST, SessionRequest.this.m429a(), "appIsBg", Boolean.valueOf(isAppBackground), "isHandleFinish", Boolean.valueOf(this.f733a));
+            boolean zIsAppBackground = GlobalAppRuntimeInfo.isAppBackground();
+            ALog.d("awcn.SessionRequest", "Connect Disconnect", this.f1381e.h(), com.umeng.analytics.pro.d.aw, session, Constants.KEY_HOST, SessionRequest.this.a(), "appIsBg", Boolean.valueOf(zIsAppBackground), "isHandleFinish", Boolean.valueOf(this.a));
             SessionRequest sessionRequest = SessionRequest.this;
-            sessionRequest.f722b.m488b(sessionRequest, session);
-            if (this.f733a) {
+            sessionRequest.f1367b.b(sessionRequest, session);
+            if (this.a) {
                 return;
             }
-            this.f733a = true;
-            if (session.f702t) {
-                if (isAppBackground && ((sessionInfo = SessionRequest.this.f723c) == null || !sessionInfo.isAccs || AwcnConfig.isAccsSessionCreateForbiddenInBg())) {
-                    ALog.m715e("awcn.SessionRequest", "[onDisConnect]app background, don't Recreate", this.f737e.m515h(), C3397d.f11932aw, session);
+            this.a = true;
+            if (session.t) {
+                if (zIsAppBackground && ((sessionInfo = SessionRequest.this.f1368c) == null || !sessionInfo.isAccs || AwcnConfig.isAccsSessionCreateForbiddenInBg())) {
+                    ALog.e("awcn.SessionRequest", "[onDisConnect]app background, don't Recreate", this.f1381e.h(), com.umeng.analytics.pro.d.aw, session);
                     return;
                 }
                 if (!NetworkStatusHelper.isConnected()) {
-                    ALog.m715e("awcn.SessionRequest", "[onDisConnect]no network, don't Recreate", this.f737e.m515h(), C3397d.f11932aw, session);
+                    ALog.e("awcn.SessionRequest", "[onDisConnect]no network, don't Recreate", this.f1381e.h(), com.umeng.analytics.pro.d.aw, session);
                     return;
                 }
                 try {
-                    ALog.m713d("awcn.SessionRequest", "session disconnected, try to recreate session", this.f737e.m515h(), new Object[0]);
-                    int i3 = 10000;
-                    if (SessionRequest.this.f723c != null && SessionRequest.this.f723c.isAccs) {
-                        i3 = AwcnConfig.getAccsReconnectionDelayPeriod();
+                    ALog.d("awcn.SessionRequest", "session disconnected, try to recreate session", this.f1381e.h(), new Object[0]);
+                    int accsReconnectionDelayPeriod = 10000;
+                    if (SessionRequest.this.f1368c != null && SessionRequest.this.f1368c.isAccs) {
+                        accsReconnectionDelayPeriod = AwcnConfig.getAccsReconnectionDelayPeriod();
                     }
-                    ThreadPoolExecutorFactory.submitScheduledTask(new RunnableC0792i(this, session), (long) (Math.random() * i3), TimeUnit.MILLISECONDS);
+                    ThreadPoolExecutorFactory.submitScheduledTask(new i(this, session), (long) (Math.random() * ((double) accsReconnectionDelayPeriod)), TimeUnit.MILLISECONDS);
                 } catch (Exception unused) {
                 }
             }
@@ -146,347 +131,334 @@ class SessionRequest {
         @Override // anet.channel.SessionRequest.IConnCb
         public void onFailed(Session session, long j2, int i2, int i3) {
             if (ALog.isPrintLog(1)) {
-                ALog.m713d("awcn.SessionRequest", "Connect failed", this.f737e.m515h(), C3397d.f11932aw, session, Constants.KEY_HOST, SessionRequest.this.m429a(), "isHandleFinish", Boolean.valueOf(this.f733a));
+                ALog.d("awcn.SessionRequest", "Connect failed", this.f1381e.h(), com.umeng.analytics.pro.d.aw, session, Constants.KEY_HOST, SessionRequest.this.a(), "isHandleFinish", Boolean.valueOf(this.a));
             }
-            if (SessionRequest.this.f726f) {
-                SessionRequest.this.f726f = false;
+            if (SessionRequest.this.f1371f) {
+                SessionRequest.this.f1371f = false;
                 return;
             }
-            if (this.f733a) {
+            if (this.a) {
                 return;
             }
-            this.f733a = true;
+            this.a = true;
             SessionRequest sessionRequest = SessionRequest.this;
-            sessionRequest.f722b.m488b(sessionRequest, session);
-            if (!session.f703u || !NetworkStatusHelper.isConnected() || this.f736d.isEmpty()) {
-                SessionRequest.this.m440c();
-                SessionRequest.this.m433a(session, i2, i3);
-                synchronized (SessionRequest.this.f727g) {
-                    for (Map.Entry<SessionGetCallback, RunnableC0741c> entry : SessionRequest.this.f727g.entrySet()) {
-                        RunnableC0741c value = entry.getValue();
-                        if (value.f741b.compareAndSet(false, true)) {
+            sessionRequest.f1367b.b(sessionRequest, session);
+            if (!session.u || !NetworkStatusHelper.isConnected() || this.f1380d.isEmpty()) {
+                SessionRequest.this.c();
+                SessionRequest.this.a(session, i2, i3);
+                synchronized (SessionRequest.this.f1372g) {
+                    for (Map.Entry<SessionGetCallback, c> entry : SessionRequest.this.f1372g.entrySet()) {
+                        c value = entry.getValue();
+                        if (value.f1383b.compareAndSet(false, true)) {
                             ThreadPoolExecutorFactory.removeScheduleTask(value);
                             entry.getKey().onSessionGetFail();
                         }
                     }
-                    SessionRequest.this.f727g.clear();
+                    SessionRequest.this.f1372g.clear();
                 }
                 return;
             }
             if (ALog.isPrintLog(1)) {
-                ALog.m713d("awcn.SessionRequest", "use next connInfo to create session", this.f737e.m515h(), Constants.KEY_HOST, SessionRequest.this.m429a());
+                ALog.d("awcn.SessionRequest", "use next connInfo to create session", this.f1381e.h(), Constants.KEY_HOST, SessionRequest.this.a());
             }
-            C0781a c0781a = this.f737e;
-            if (c0781a.f836b == c0781a.f837c && (i3 == -2003 || i3 == -2410)) {
-                ListIterator<C0781a> listIterator = this.f736d.listIterator();
+            anet.channel.entity.a aVar = this.f1381e;
+            if (aVar.f1440b == aVar.f1441c && (i3 == -2003 || i3 == -2410)) {
+                ListIterator<anet.channel.entity.a> listIterator = this.f1380d.listIterator();
                 while (listIterator.hasNext()) {
-                    if (session.getIp().equals(listIterator.next().f835a.getIp())) {
+                    if (session.getIp().equals(listIterator.next().a.getIp())) {
                         listIterator.remove();
                     }
                 }
             }
-            if (C0848c.m708b(session.getIp())) {
-                ListIterator<C0781a> listIterator2 = this.f736d.listIterator();
+            if (anet.channel.strategy.utils.c.b(session.getIp())) {
+                ListIterator<anet.channel.entity.a> listIterator2 = this.f1380d.listIterator();
                 while (listIterator2.hasNext()) {
-                    if (C0848c.m708b(listIterator2.next().f835a.getIp())) {
+                    if (anet.channel.strategy.utils.c.b(listIterator2.next().a.getIp())) {
                         listIterator2.remove();
                     }
                 }
             }
-            if (!this.f736d.isEmpty()) {
-                C0781a remove = this.f736d.remove(0);
+            if (!this.f1380d.isEmpty()) {
+                anet.channel.entity.a aVarRemove = this.f1380d.remove(0);
                 SessionRequest sessionRequest2 = SessionRequest.this;
-                Context context = this.f735c;
-                sessionRequest2.m424a(context, remove, sessionRequest2.new C0739a(context, this.f736d, remove), remove.m515h());
+                Context context = this.f1379c;
+                sessionRequest2.a(context, aVarRemove, sessionRequest2.new a(context, this.f1380d, aVarRemove), aVarRemove.h());
                 return;
             }
-            SessionRequest.this.m440c();
-            SessionRequest.this.m433a(session, i2, i3);
-            synchronized (SessionRequest.this.f727g) {
-                for (Map.Entry<SessionGetCallback, RunnableC0741c> entry2 : SessionRequest.this.f727g.entrySet()) {
-                    RunnableC0741c value2 = entry2.getValue();
-                    if (value2.f741b.compareAndSet(false, true)) {
+            SessionRequest.this.c();
+            SessionRequest.this.a(session, i2, i3);
+            synchronized (SessionRequest.this.f1372g) {
+                for (Map.Entry<SessionGetCallback, c> entry2 : SessionRequest.this.f1372g.entrySet()) {
+                    c value2 = entry2.getValue();
+                    if (value2.f1383b.compareAndSet(false, true)) {
                         ThreadPoolExecutorFactory.removeScheduleTask(value2);
                         entry2.getKey().onSessionGetFail();
                     }
                 }
-                SessionRequest.this.f727g.clear();
+                SessionRequest.this.f1372g.clear();
             }
         }
 
         @Override // anet.channel.SessionRequest.IConnCb
         public void onSuccess(Session session, long j2) {
-            ALog.m713d("awcn.SessionRequest", "Connect Success", this.f737e.m515h(), C3397d.f11932aw, session, Constants.KEY_HOST, SessionRequest.this.m429a());
+            ALog.d("awcn.SessionRequest", "Connect Success", this.f1381e.h(), com.umeng.analytics.pro.d.aw, session, Constants.KEY_HOST, SessionRequest.this.a());
             try {
-                if (SessionRequest.this.f726f) {
-                    SessionRequest.this.f726f = false;
+                if (SessionRequest.this.f1371f) {
+                    SessionRequest.this.f1371f = false;
                     session.close(false);
                     return;
                 }
-                SessionRequest.this.f722b.m487a(SessionRequest.this, session);
-                SessionRequest.this.m432a(session);
-                synchronized (SessionRequest.this.f727g) {
-                    for (Map.Entry<SessionGetCallback, RunnableC0741c> entry : SessionRequest.this.f727g.entrySet()) {
-                        RunnableC0741c value = entry.getValue();
-                        if (value.f741b.compareAndSet(false, true)) {
+                SessionRequest.this.f1367b.a(SessionRequest.this, session);
+                SessionRequest.this.a(session);
+                synchronized (SessionRequest.this.f1372g) {
+                    for (Map.Entry<SessionGetCallback, c> entry : SessionRequest.this.f1372g.entrySet()) {
+                        c value = entry.getValue();
+                        if (value.f1383b.compareAndSet(false, true)) {
                             ThreadPoolExecutorFactory.removeScheduleTask(value);
                             entry.getKey().onSessionGetSuccess(session);
                         }
                     }
-                    SessionRequest.this.f727g.clear();
+                    SessionRequest.this.f1372g.clear();
                 }
             } catch (Exception e2) {
-                ALog.m714e("awcn.SessionRequest", "[onSuccess]:", this.f737e.m515h(), e2, new Object[0]);
+                ALog.e("awcn.SessionRequest", "[onSuccess]:", this.f1381e.h(), e2, new Object[0]);
             } finally {
-                SessionRequest.this.m440c();
+                SessionRequest.this.c();
             }
         }
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.SessionRequest$b */
-    private class RunnableC0740b implements Runnable {
+    /* JADX INFO: compiled from: Taobao */
+    private class b implements Runnable {
+        String a;
 
-        /* renamed from: a */
-        String f738a;
-
-        RunnableC0740b(String str) {
-            this.f738a = null;
-            this.f738a = str;
+        b(String str) {
+            this.a = null;
+            this.a = str;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            if (SessionRequest.this.f724d) {
-                ALog.m715e("awcn.SessionRequest", "Connecting timeout!!! reset status!", this.f738a, new Object[0]);
-                SessionConnStat sessionConnStat = SessionRequest.this.f728h;
+            if (SessionRequest.this.f1369d) {
+                ALog.e("awcn.SessionRequest", "Connecting timeout!!! reset status!", this.a, new Object[0]);
+                SessionConnStat sessionConnStat = SessionRequest.this.f1373h;
                 sessionConnStat.ret = 2;
-                sessionConnStat.totalTime = System.currentTimeMillis() - SessionRequest.this.f728h.start;
-                if (SessionRequest.this.f725e != null) {
-                    SessionRequest.this.f725e.f703u = false;
-                    SessionRequest.this.f725e.close();
+                sessionConnStat.totalTime = System.currentTimeMillis() - SessionRequest.this.f1373h.start;
+                if (SessionRequest.this.f1370e != null) {
+                    SessionRequest.this.f1370e.u = false;
+                    SessionRequest.this.f1370e.close();
                     SessionRequest sessionRequest = SessionRequest.this;
-                    sessionRequest.f728h.syncValueFromSession(sessionRequest.f725e);
+                    sessionRequest.f1373h.syncValueFromSession(sessionRequest.f1370e);
                 }
-                AppMonitor.getInstance().commitStat(SessionRequest.this.f728h);
-                SessionRequest.this.m436a(false);
+                AppMonitor.getInstance().commitStat(SessionRequest.this.f1373h);
+                SessionRequest.this.a(false);
             }
         }
     }
 
-    /* compiled from: Taobao */
-    /* renamed from: anet.channel.SessionRequest$c */
-    protected class RunnableC0741c implements Runnable {
+    /* JADX INFO: compiled from: Taobao */
+    protected class c implements Runnable {
+        SessionGetCallback a;
 
-        /* renamed from: a */
-        SessionGetCallback f740a;
+        /* JADX INFO: renamed from: b */
+        AtomicBoolean f1383b = new AtomicBoolean(false);
 
-        /* renamed from: b */
-        AtomicBoolean f741b = new AtomicBoolean(false);
-
-        protected RunnableC0741c(SessionGetCallback sessionGetCallback) {
-            this.f740a = null;
-            this.f740a = sessionGetCallback;
+        protected c(SessionGetCallback sessionGetCallback) {
+            this.a = null;
+            this.a = sessionGetCallback;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            if (this.f741b.compareAndSet(false, true)) {
-                ALog.m715e("awcn.SessionRequest", "get session timeout", null, new Object[0]);
-                synchronized (SessionRequest.this.f727g) {
-                    SessionRequest.this.f727g.remove(this.f740a);
+            if (this.f1383b.compareAndSet(false, true)) {
+                ALog.e("awcn.SessionRequest", "get session timeout", null, new Object[0]);
+                synchronized (SessionRequest.this.f1372g) {
+                    SessionRequest.this.f1372g.remove(this.a);
                 }
-                this.f740a.onSessionGetFail();
+                this.a.onSessionGetFail();
             }
         }
     }
 
     SessionRequest(String str, SessionCenter sessionCenter) {
-        this.f729i = str;
-        String str2 = this.f729i;
-        this.f730j = str2.substring(str2.indexOf(HttpConstant.SCHEME_SPLIT) + 3);
-        this.f721a = sessionCenter;
-        this.f723c = sessionCenter.f716g.m453b(this.f730j);
-        this.f722b = sessionCenter.f714e;
+        this.f1374i = str;
+        String str2 = this.f1374i;
+        this.f1375j = str2.substring(str2.indexOf(HttpConstant.SCHEME_SPLIT) + 3);
+        this.a = sessionCenter;
+        this.f1368c = sessionCenter.f1363g.b(this.f1375j);
+        this.f1367b = sessionCenter.f1361e;
     }
 
-    /* renamed from: b */
-    protected synchronized void m438b(Context context, int i2, String str, SessionGetCallback sessionGetCallback, long j2) {
-        Session m484a = this.f722b.m484a(this, i2);
-        if (m484a != null) {
-            ALog.m713d("awcn.SessionRequest", "Available Session exist!!!", str, new Object[0]);
-            sessionGetCallback.onSessionGetSuccess(m484a);
+    protected synchronized void b(Context context, int i2, String str, SessionGetCallback sessionGetCallback, long j2) {
+        Session sessionA = this.f1367b.a(this, i2);
+        if (sessionA != null) {
+            ALog.d("awcn.SessionRequest", "Available Session exist!!!", str, new Object[0]);
+            sessionGetCallback.onSessionGetSuccess(sessionA);
             return;
         }
         if (TextUtils.isEmpty(str)) {
-            str = C0863i.m740a(null);
+            str = anet.channel.util.i.a(null);
         }
-        ALog.m713d("awcn.SessionRequest", "SessionRequest start", str, Constants.KEY_HOST, this.f729i, "type", Integer.valueOf(i2));
-        if (this.f724d) {
-            ALog.m713d("awcn.SessionRequest", "session connecting", str, Constants.KEY_HOST, m429a());
-            if (m437b() == i2) {
-                RunnableC0741c runnableC0741c = new RunnableC0741c(sessionGetCallback);
-                synchronized (this.f727g) {
-                    this.f727g.put(sessionGetCallback, runnableC0741c);
+        ALog.d("awcn.SessionRequest", "SessionRequest start", str, Constants.KEY_HOST, this.f1374i, "type", Integer.valueOf(i2));
+        if (this.f1369d) {
+            ALog.d("awcn.SessionRequest", "session connecting", str, Constants.KEY_HOST, a());
+            if (b() == i2) {
+                c cVar = new c(sessionGetCallback);
+                synchronized (this.f1372g) {
+                    this.f1372g.put(sessionGetCallback, cVar);
                 }
-                ThreadPoolExecutorFactory.submitScheduledTask(runnableC0741c, j2, TimeUnit.MILLISECONDS);
+                ThreadPoolExecutorFactory.submitScheduledTask(cVar, j2, TimeUnit.MILLISECONDS);
             } else {
                 sessionGetCallback.onSessionGetFail();
             }
             return;
         }
-        m436a(true);
-        this.f731k = ThreadPoolExecutorFactory.submitScheduledTask(new RunnableC0740b(str), 45L, TimeUnit.SECONDS);
-        this.f728h = new SessionConnStat();
-        this.f728h.start = System.currentTimeMillis();
+        a(true);
+        this.f1376k = ThreadPoolExecutorFactory.submitScheduledTask(new b(str), 45L, TimeUnit.SECONDS);
+        this.f1373h = new SessionConnStat();
+        this.f1373h.start = System.currentTimeMillis();
         if (!NetworkStatusHelper.isConnected()) {
             if (ALog.isPrintLog(1)) {
-                ALog.m713d("awcn.SessionRequest", "network is not available, can't create session", str, "isConnected", Boolean.valueOf(NetworkStatusHelper.isConnected()));
+                ALog.d("awcn.SessionRequest", "network is not available, can't create session", str, "isConnected", Boolean.valueOf(NetworkStatusHelper.isConnected()));
             }
-            m440c();
+            c();
             throw new RuntimeException("no network");
         }
-        List<IConnStrategy> m422a = m422a(i2, str);
-        if (m422a.isEmpty()) {
-            ALog.m716i("awcn.SessionRequest", "no avalible strategy, can't create session", str, Constants.KEY_HOST, this.f729i, "type", Integer.valueOf(i2));
-            m440c();
+        List<IConnStrategy> listA = a(i2, str);
+        if (listA.isEmpty()) {
+            ALog.i("awcn.SessionRequest", "no avalible strategy, can't create session", str, Constants.KEY_HOST, this.f1374i, "type", Integer.valueOf(i2));
+            c();
             throw new NoAvailStrategyException("no avalible strategy");
         }
-        List<C0781a> m423a = m423a(m422a, str);
+        List<anet.channel.entity.a> listA2 = a(listA, str);
         try {
-            C0781a remove = m423a.remove(0);
-            m424a(context, remove, new C0739a(context, m423a, remove), remove.m515h());
-            RunnableC0741c runnableC0741c2 = new RunnableC0741c(sessionGetCallback);
-            synchronized (this.f727g) {
-                this.f727g.put(sessionGetCallback, runnableC0741c2);
+            anet.channel.entity.a aVarRemove = listA2.remove(0);
+            a(context, aVarRemove, new a(context, listA2, aVarRemove), aVarRemove.h());
+            c cVar2 = new c(sessionGetCallback);
+            synchronized (this.f1372g) {
+                this.f1372g.put(sessionGetCallback, cVar2);
             }
-            ThreadPoolExecutorFactory.submitScheduledTask(runnableC0741c2, j2, TimeUnit.MILLISECONDS);
+            ThreadPoolExecutorFactory.submitScheduledTask(cVar2, j2, TimeUnit.MILLISECONDS);
         } catch (Throwable unused) {
-            m440c();
+            c();
         }
         return;
     }
 
-    /* renamed from: c */
-    void m440c() {
-        m436a(false);
-        synchronized (this.f732l) {
-            this.f732l.notifyAll();
+    void c() {
+        a(false);
+        synchronized (this.f1377l) {
+            this.f1377l.notifyAll();
         }
     }
 
-    /* renamed from: a */
-    protected String m429a() {
-        return this.f729i;
+    protected String a() {
+        return this.f1374i;
     }
 
-    /* renamed from: a */
-    void m436a(boolean z) {
-        this.f724d = z;
+    void a(boolean z) {
+        this.f1369d = z;
         if (z) {
             return;
         }
-        if (this.f731k != null) {
-            this.f731k.cancel(true);
-            this.f731k = null;
+        if (this.f1376k != null) {
+            this.f1376k.cancel(true);
+            this.f1376k = null;
         }
-        this.f725e = null;
+        this.f1370e = null;
     }
 
-    /* renamed from: c */
-    private void m428c(Session session, int i2, String str) {
-        SessionInfo sessionInfo = this.f723c;
+    private void c(Session session, int i2, String str) {
+        SessionInfo sessionInfo = this.f1368c;
         if (sessionInfo == null || !sessionInfo.isAccs) {
             return;
         }
-        ALog.m715e("awcn.SessionRequest", "sendConnectInfoToAccsByCallBack", null, new Object[0]);
+        ALog.e("awcn.SessionRequest", "sendConnectInfoToAccsByCallBack", null, new Object[0]);
         Intent intent = new Intent(Constants.ACTION_ACCS_CONNECT_INFO);
         intent.putExtra("command", 103);
         intent.putExtra(Constants.KEY_HOST, session.getHost());
         intent.putExtra(Constants.KEY_CENTER_HOST, true);
-        boolean isAvailable = session.isAvailable();
-        if (!isAvailable) {
+        boolean zIsAvailable = session.isAvailable();
+        if (!zIsAvailable) {
             intent.putExtra(Constants.KEY_ERROR_CODE, i2);
             intent.putExtra(Constants.KEY_ERROR_DETAIL, str);
         }
-        intent.putExtra(Constants.KEY_CONNECT_AVAILABLE, isAvailable);
+        intent.putExtra(Constants.KEY_CONNECT_AVAILABLE, zIsAvailable);
         intent.putExtra(Constants.KEY_TYPE_INAPP, true);
-        this.f721a.f717h.notifyListener(intent);
+        this.a.f1364h.notifyListener(intent);
     }
 
-    /* renamed from: a */
-    protected synchronized void m431a(Context context, int i2, String str, SessionGetCallback sessionGetCallback, long j2) {
-        Session m484a = this.f722b.m484a(this, i2);
-        if (m484a != null) {
-            ALog.m713d("awcn.SessionRequest", "Available Session exist!!!", str, new Object[0]);
+    protected synchronized void a(Context context, int i2, String str, SessionGetCallback sessionGetCallback, long j2) {
+        Session sessionA = this.f1367b.a(this, i2);
+        if (sessionA != null) {
+            ALog.d("awcn.SessionRequest", "Available Session exist!!!", str, new Object[0]);
             if (sessionGetCallback != null) {
-                sessionGetCallback.onSessionGetSuccess(m484a);
+                sessionGetCallback.onSessionGetSuccess(sessionA);
             }
             return;
         }
         if (TextUtils.isEmpty(str)) {
-            str = C0863i.m740a(null);
+            str = anet.channel.util.i.a(null);
         }
-        ALog.m713d("awcn.SessionRequest", "SessionRequest start", str, Constants.KEY_HOST, this.f729i, "type", Integer.valueOf(i2));
-        if (this.f724d) {
-            ALog.m713d("awcn.SessionRequest", "session connecting", str, Constants.KEY_HOST, m429a());
+        ALog.d("awcn.SessionRequest", "SessionRequest start", str, Constants.KEY_HOST, this.f1374i, "type", Integer.valueOf(i2));
+        if (this.f1369d) {
+            ALog.d("awcn.SessionRequest", "session connecting", str, Constants.KEY_HOST, a());
             if (sessionGetCallback != null) {
-                if (m437b() == i2) {
-                    RunnableC0741c runnableC0741c = new RunnableC0741c(sessionGetCallback);
-                    synchronized (this.f727g) {
-                        this.f727g.put(sessionGetCallback, runnableC0741c);
+                if (b() == i2) {
+                    c cVar = new c(sessionGetCallback);
+                    synchronized (this.f1372g) {
+                        this.f1372g.put(sessionGetCallback, cVar);
                     }
-                    ThreadPoolExecutorFactory.submitScheduledTask(runnableC0741c, j2, TimeUnit.MILLISECONDS);
+                    ThreadPoolExecutorFactory.submitScheduledTask(cVar, j2, TimeUnit.MILLISECONDS);
                 } else {
                     sessionGetCallback.onSessionGetFail();
                 }
             }
             return;
         }
-        m436a(true);
-        this.f731k = ThreadPoolExecutorFactory.submitScheduledTask(new RunnableC0740b(str), 45L, TimeUnit.SECONDS);
-        this.f728h = new SessionConnStat();
-        this.f728h.start = System.currentTimeMillis();
+        a(true);
+        this.f1376k = ThreadPoolExecutorFactory.submitScheduledTask(new b(str), 45L, TimeUnit.SECONDS);
+        this.f1373h = new SessionConnStat();
+        this.f1373h.start = System.currentTimeMillis();
         if (!NetworkStatusHelper.isConnected()) {
             if (ALog.isPrintLog(1)) {
-                ALog.m713d("awcn.SessionRequest", "network is not available, can't create session", str, "isConnected", Boolean.valueOf(NetworkStatusHelper.isConnected()));
+                ALog.d("awcn.SessionRequest", "network is not available, can't create session", str, "isConnected", Boolean.valueOf(NetworkStatusHelper.isConnected()));
             }
-            m440c();
+            c();
             throw new RuntimeException("no network");
         }
-        List<IConnStrategy> m422a = m422a(i2, str);
-        if (!m422a.isEmpty()) {
-            List<C0781a> m423a = m423a(m422a, str);
+        List<IConnStrategy> listA = a(i2, str);
+        if (!listA.isEmpty()) {
+            List<anet.channel.entity.a> listA2 = a(listA, str);
             try {
-                C0781a remove = m423a.remove(0);
-                m424a(context, remove, new C0739a(context, m423a, remove), remove.m515h());
+                anet.channel.entity.a aVarRemove = listA2.remove(0);
+                a(context, aVarRemove, new a(context, listA2, aVarRemove), aVarRemove.h());
                 if (sessionGetCallback != null) {
-                    RunnableC0741c runnableC0741c2 = new RunnableC0741c(sessionGetCallback);
-                    synchronized (this.f727g) {
-                        this.f727g.put(sessionGetCallback, runnableC0741c2);
+                    c cVar2 = new c(sessionGetCallback);
+                    synchronized (this.f1372g) {
+                        this.f1372g.put(sessionGetCallback, cVar2);
                     }
-                    ThreadPoolExecutorFactory.submitScheduledTask(runnableC0741c2, j2, TimeUnit.MILLISECONDS);
+                    ThreadPoolExecutorFactory.submitScheduledTask(cVar2, j2, TimeUnit.MILLISECONDS);
                 }
             } catch (Throwable unused) {
-                m440c();
+                c();
             }
             return;
         }
-        ALog.m716i("awcn.SessionRequest", "no avalible strategy, can't create session", str, Constants.KEY_HOST, this.f729i, "type", Integer.valueOf(i2));
-        m440c();
+        ALog.i("awcn.SessionRequest", "no avalible strategy, can't create session", str, Constants.KEY_HOST, this.f1374i, "type", Integer.valueOf(i2));
+        c();
         throw new NoAvailStrategyException("no avalible strategy");
     }
 
-    /* renamed from: b */
-    protected void m439b(boolean z) {
-        ALog.m713d("awcn.SessionRequest", "closeSessions", this.f721a.f712c, Constants.KEY_HOST, this.f729i, "autoCreate", Boolean.valueOf(z));
-        if (!z && this.f725e != null) {
-            this.f725e.f703u = false;
-            this.f725e.close(false);
+    protected void b(boolean z) {
+        ALog.d("awcn.SessionRequest", "closeSessions", this.a.f1359c, Constants.KEY_HOST, this.f1374i, "autoCreate", Boolean.valueOf(z));
+        if (!z && this.f1370e != null) {
+            this.f1370e.u = false;
+            this.f1370e.close(false);
         }
-        List<Session> m486a = this.f722b.m486a(this);
-        if (m486a != null) {
-            for (Session session : m486a) {
+        List<Session> listA = this.f1367b.a(this);
+        if (listA != null) {
+            for (Session session : listA) {
                 if (session != null) {
                     session.close(z);
                 }
@@ -494,106 +466,101 @@ class SessionRequest {
         }
     }
 
-    /* renamed from: a */
-    void m432a(Session session) {
+    void a(Session session) {
         AlarmObject alarmObject = new AlarmObject();
         alarmObject.module = "networkPrefer";
-        alarmObject.modulePoint = C3351bh.f11648bt;
-        alarmObject.arg = this.f729i;
+        alarmObject.modulePoint = bh.bt;
+        alarmObject.arg = this.f1374i;
         alarmObject.isSuccess = true;
         AppMonitor.getInstance().commitAlarm(alarmObject);
-        this.f728h.syncValueFromSession(session);
-        SessionConnStat sessionConnStat = this.f728h;
+        this.f1373h.syncValueFromSession(session);
+        SessionConnStat sessionConnStat = this.f1373h;
         sessionConnStat.ret = 1;
-        sessionConnStat.totalTime = System.currentTimeMillis() - this.f728h.start;
-        AppMonitor.getInstance().commitStat(this.f728h);
+        sessionConnStat.totalTime = System.currentTimeMillis() - this.f1373h.start;
+        AppMonitor.getInstance().commitStat(this.f1373h);
     }
 
-    /* renamed from: b */
-    protected int m437b() {
-        Session session = this.f725e;
+    protected int b() {
+        Session session = this.f1370e;
         if (session != null) {
-            return session.f692j.getType();
+            return session.f1352j.getType();
         }
         return -1;
     }
 
-    /* renamed from: b */
-    private void m427b(Session session, int i2, String str) {
+    private void b(Session session, int i2, String str) {
         SessionInfo sessionInfo;
         Context context = GlobalAppRuntimeInfo.getContext();
-        if (context == null || (sessionInfo = this.f723c) == null || !sessionInfo.isAccs) {
+        if (context == null || (sessionInfo = this.f1368c) == null || !sessionInfo.isAccs) {
             return;
         }
-        ALog.m715e("awcn.SessionRequest", "sendConnectInfoToAccsByService", null, new Object[0]);
+        ALog.e("awcn.SessionRequest", "sendConnectInfoToAccsByService", null, new Object[0]);
         try {
             Intent intent = new Intent(Constants.ACTION_RECEIVE);
             intent.setPackage(context.getPackageName());
-            intent.setClassName(context, C3042j.msgService);
+            intent.setClassName(context, com.taobao.accs.utl.j.msgService);
             intent.putExtra("command", 103);
             intent.putExtra(Constants.KEY_HOST, session.getHost());
             intent.putExtra(Constants.KEY_CENTER_HOST, true);
-            boolean isAvailable = session.isAvailable();
-            if (!isAvailable) {
+            boolean zIsAvailable = session.isAvailable();
+            if (!zIsAvailable) {
                 intent.putExtra(Constants.KEY_ERROR_CODE, i2);
                 intent.putExtra(Constants.KEY_ERROR_DETAIL, str);
             }
-            intent.putExtra(Constants.KEY_CONNECT_AVAILABLE, isAvailable);
+            intent.putExtra(Constants.KEY_CONNECT_AVAILABLE, zIsAvailable);
             intent.putExtra(Constants.KEY_TYPE_INAPP, true);
             if (Build.VERSION.SDK_INT >= 26) {
-                context.bindService(intent, new ServiceConnectionC0788h(this, intent, context), 1);
+                context.bindService(intent, new h(this, intent, context), 1);
             } else {
                 context.startService(intent);
             }
         } catch (Throwable th) {
-            ALog.m714e("awcn.SessionRequest", "sendConnectInfoToAccsByService", null, th, new Object[0]);
+            ALog.e("awcn.SessionRequest", "sendConnectInfoToAccsByService", null, th, new Object[0]);
         }
     }
 
-    /* renamed from: a */
-    void m433a(Session session, int i2, int i3) {
+    void a(Session session, int i2, int i3) {
         if (256 != i2 || i3 == -2613 || i3 == -2601) {
             return;
         }
         AlarmObject alarmObject = new AlarmObject();
         alarmObject.module = "networkPrefer";
-        alarmObject.modulePoint = C3351bh.f11648bt;
-        alarmObject.arg = this.f729i;
+        alarmObject.modulePoint = bh.bt;
+        alarmObject.arg = this.f1374i;
         alarmObject.errorCode = String.valueOf(i3);
         alarmObject.isSuccess = false;
         AppMonitor.getInstance().commitAlarm(alarmObject);
-        SessionConnStat sessionConnStat = this.f728h;
+        SessionConnStat sessionConnStat = this.f1373h;
         sessionConnStat.ret = 0;
         sessionConnStat.appendErrorTrace(i3);
-        this.f728h.errorCode = String.valueOf(i3);
-        this.f728h.totalTime = System.currentTimeMillis() - this.f728h.start;
-        this.f728h.syncValueFromSession(session);
-        AppMonitor.getInstance().commitStat(this.f728h);
+        this.f1373h.errorCode = String.valueOf(i3);
+        this.f1373h.totalTime = System.currentTimeMillis() - this.f1373h.start;
+        this.f1373h.syncValueFromSession(session);
+        AppMonitor.getInstance().commitStat(this.f1373h);
     }
 
-    /* renamed from: a */
-    private List<IConnStrategy> m422a(int i2, String str) {
-        HttpUrl parse;
-        List<IConnStrategy> list = Collections.EMPTY_LIST;
+    private List<IConnStrategy> a(int i2, String str) {
+        HttpUrl httpUrl;
+        List<IConnStrategy> connStrategyListByHost = Collections.EMPTY_LIST;
         try {
-            parse = HttpUrl.parse(m429a());
+            httpUrl = HttpUrl.parse(a());
         } catch (Throwable th) {
-            ALog.m714e("awcn.SessionRequest", "", str, th, new Object[0]);
+            ALog.e("awcn.SessionRequest", "", str, th, new Object[0]);
         }
-        if (parse == null) {
+        if (httpUrl == null) {
             return Collections.EMPTY_LIST;
         }
-        list = StrategyCenter.getInstance().getConnStrategyListByHost(parse.host());
-        if (!list.isEmpty()) {
-            boolean equalsIgnoreCase = HttpConstant.HTTPS.equalsIgnoreCase(parse.scheme());
-            boolean m726b = C0857c.m726b();
-            ListIterator<IConnStrategy> listIterator = list.listIterator();
+        connStrategyListByHost = StrategyCenter.getInstance().getConnStrategyListByHost(httpUrl.host());
+        if (!connStrategyListByHost.isEmpty()) {
+            boolean zEqualsIgnoreCase = HttpConstant.HTTPS.equalsIgnoreCase(httpUrl.scheme());
+            boolean zB = anet.channel.util.c.b();
+            ListIterator<IConnStrategy> listIterator = connStrategyListByHost.listIterator();
             while (listIterator.hasNext()) {
                 IConnStrategy next = listIterator.next();
-                ConnType valueOf = ConnType.valueOf(next.getProtocol());
-                if (valueOf != null) {
-                    if (valueOf.isSSL() == equalsIgnoreCase && (i2 == C0783c.f845c || valueOf.getType() == i2)) {
-                        if (m726b && C0848c.m708b(next.getIp())) {
+                ConnType connTypeValueOf = ConnType.valueOf(next.getProtocol());
+                if (connTypeValueOf != null) {
+                    if (connTypeValueOf.isSSL() == zEqualsIgnoreCase && (i2 == anet.channel.entity.c.f1447c || connTypeValueOf.getType() == i2)) {
+                        if (zB && anet.channel.strategy.utils.c.b(next.getIp())) {
                             listIterator.remove();
                         }
                     }
@@ -602,13 +569,12 @@ class SessionRequest {
             }
         }
         if (ALog.isPrintLog(1)) {
-            ALog.m713d("awcn.SessionRequest", "[getAvailStrategy]", str, "strategies", list);
+            ALog.d("awcn.SessionRequest", "[getAvailStrategy]", str, "strategies", connStrategyListByHost);
         }
-        return list;
+        return connStrategyListByHost;
     }
 
-    /* renamed from: a */
-    private List<C0781a> m423a(List<IConnStrategy> list, String str) {
+    private List<anet.channel.entity.a> a(List<IConnStrategy> list, String str) {
         if (list.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
@@ -621,10 +587,10 @@ class SessionRequest {
             int i4 = i3;
             for (int i5 = 0; i5 <= retryTimes; i5++) {
                 i4++;
-                C0781a c0781a = new C0781a(m429a(), str + AbstractC1191a.f2606s1 + i4, iConnStrategy);
-                c0781a.f836b = i5;
-                c0781a.f837c = retryTimes;
-                arrayList.add(c0781a);
+                anet.channel.entity.a aVar = new anet.channel.entity.a(a(), str + d.c.a.b.a.a.s1 + i4, iConnStrategy);
+                aVar.f1440b = i5;
+                aVar.f1441c = retryTimes;
+                arrayList.add(aVar);
             }
             i2++;
             i3 = i4;
@@ -632,73 +598,67 @@ class SessionRequest {
         return arrayList;
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m424a(Context context, C0781a c0781a, IConnCb iConnCb, String str) {
-        ConnType m510c = c0781a.m510c();
-        if (context != null && !m510c.isHttpType()) {
-            TnetSpdySession tnetSpdySession = new TnetSpdySession(context, c0781a);
-            tnetSpdySession.initConfig(this.f721a.f713d);
-            tnetSpdySession.initSessionInfo(this.f723c);
-            tnetSpdySession.setTnetPublicKey(this.f721a.f716g.m454c(this.f730j));
-            this.f725e = tnetSpdySession;
+    public void a(Context context, anet.channel.entity.a aVar, IConnCb iConnCb, String str) {
+        ConnType connTypeC = aVar.c();
+        if (context != null && !connTypeC.isHttpType()) {
+            TnetSpdySession tnetSpdySession = new TnetSpdySession(context, aVar);
+            tnetSpdySession.initConfig(this.a.f1360d);
+            tnetSpdySession.initSessionInfo(this.f1368c);
+            tnetSpdySession.setTnetPublicKey(this.a.f1363g.c(this.f1375j));
+            this.f1370e = tnetSpdySession;
         } else {
-            this.f725e = new C0813d(context, c0781a);
+            this.f1370e = new anet.channel.session.d(context, aVar);
         }
-        ALog.m716i("awcn.SessionRequest", "create connection...", str, "Host", m429a(), "Type", c0781a.m510c(), "IP", c0781a.m508a(), "Port", Integer.valueOf(c0781a.m509b()), "heartbeat", Integer.valueOf(c0781a.m514g()), C3397d.f11932aw, this.f725e);
-        m425a(this.f725e, iConnCb, System.currentTimeMillis());
-        this.f725e.connect();
-        SessionConnStat sessionConnStat = this.f728h;
+        ALog.i("awcn.SessionRequest", "create connection...", str, "Host", a(), "Type", aVar.c(), "IP", aVar.a(), "Port", Integer.valueOf(aVar.b()), "heartbeat", Integer.valueOf(aVar.g()), com.umeng.analytics.pro.d.aw, this.f1370e);
+        a(this.f1370e, iConnCb, System.currentTimeMillis());
+        this.f1370e.connect();
+        SessionConnStat sessionConnStat = this.f1373h;
         sessionConnStat.retryTimes++;
         sessionConnStat.startConnect = System.currentTimeMillis();
-        SessionConnStat sessionConnStat2 = this.f728h;
+        SessionConnStat sessionConnStat2 = this.f1373h;
         if (sessionConnStat2.retryTimes == 0) {
-            sessionConnStat2.putExtra("firstIp", c0781a.m508a());
+            sessionConnStat2.putExtra("firstIp", aVar.a());
         }
     }
 
-    /* renamed from: a */
-    private void m425a(Session session, IConnCb iConnCb, long j2) {
+    private void a(Session session, IConnCb iConnCb, long j2) {
         if (iConnCb == null) {
             return;
         }
-        session.registerEventcb(EventType.ALL, new C0784f(this, iConnCb, j2));
-        session.registerEventcb(1792, new C0787g(this, session));
+        session.registerEventcb(EventType.ALL, new f(this, iConnCb, j2));
+        session.registerEventcb(1792, new g(this, session));
     }
 
-    /* renamed from: a */
-    protected void m435a(String str) {
-        ALog.m713d("awcn.SessionRequest", "reCreateSession", str, Constants.KEY_HOST, this.f729i);
-        m439b(true);
+    protected void a(String str) {
+        ALog.d("awcn.SessionRequest", "reCreateSession", str, Constants.KEY_HOST, this.f1374i);
+        b(true);
     }
 
-    /* renamed from: a */
-    protected void m430a(long j2) throws InterruptedException, TimeoutException {
-        ALog.m713d("awcn.SessionRequest", "[await]", null, "timeoutMs", Long.valueOf(j2));
+    protected void a(long j2) throws InterruptedException, TimeoutException {
+        ALog.d("awcn.SessionRequest", "[await]", null, "timeoutMs", Long.valueOf(j2));
         if (j2 <= 0) {
             return;
         }
-        synchronized (this.f732l) {
-            long currentTimeMillis = System.currentTimeMillis() + j2;
-            while (this.f724d) {
-                long currentTimeMillis2 = System.currentTimeMillis();
-                if (currentTimeMillis2 >= currentTimeMillis) {
+        synchronized (this.f1377l) {
+            long jCurrentTimeMillis = System.currentTimeMillis() + j2;
+            while (this.f1369d) {
+                long jCurrentTimeMillis2 = System.currentTimeMillis();
+                if (jCurrentTimeMillis2 >= jCurrentTimeMillis) {
                     break;
                 } else {
-                    this.f732l.wait(currentTimeMillis - currentTimeMillis2);
+                    this.f1377l.wait(jCurrentTimeMillis - jCurrentTimeMillis2);
                 }
             }
-            if (this.f724d) {
+            if (this.f1369d) {
                 throw new TimeoutException();
             }
         }
     }
 
-    /* renamed from: a */
-    void m434a(Session session, int i2, String str) {
+    void a(Session session, int i2, String str) {
         if (AwcnConfig.isSendConnectInfoByService()) {
-            m427b(session, i2, str);
+            b(session, i2, str);
         }
-        m428c(session, i2, str);
+        c(session, i2, str);
     }
 }

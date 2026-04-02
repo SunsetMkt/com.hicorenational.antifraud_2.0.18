@@ -18,8 +18,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ColorStateListInflaterCompat;
 import java.util.WeakHashMap;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedAPI"})
-/* loaded from: classes.dex */
 public final class AppCompatResources {
     private static final String LOG_TAG = "AppCompatResources";
     private static final ThreadLocal<TypedValue> TL_TYPED_VALUE = new ThreadLocal<>();
@@ -73,12 +73,12 @@ public final class AppCompatResources {
         if (cachedColorStateList != null) {
             return cachedColorStateList;
         }
-        ColorStateList inflateColorStateList = inflateColorStateList(context, i2);
-        if (inflateColorStateList == null) {
+        ColorStateList colorStateListInflateColorStateList = inflateColorStateList(context, i2);
+        if (colorStateListInflateColorStateList == null) {
             return ContextCompat.getColorStateList(context, i2);
         }
-        addColorStateListToCache(context, i2, inflateColorStateList);
-        return inflateColorStateList;
+        addColorStateListToCache(context, i2, colorStateListInflateColorStateList);
+        return colorStateListInflateColorStateList;
     }
 
     @Nullable

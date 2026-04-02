@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import com.huawei.hms.aaid.init.AutoInitHelper;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class InitProvider extends ContentProvider {
     @Override // android.content.ContentProvider
     public int delete(Uri uri, String str, String[] strArr) {

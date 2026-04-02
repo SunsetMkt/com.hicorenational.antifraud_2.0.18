@@ -8,18 +8,15 @@ import com.xiaomi.mipush.sdk.Constants;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DplueCache {
-    /* renamed from: a */
-    private static JSONObject m12685a(JSONObject jSONObject) {
-        JSONObject optJSONObject;
-        return (jSONObject == null || (optJSONObject = jSONObject.optJSONObject("content")) == null) ? new JSONObject() : optJSONObject.optJSONObject("share");
+    private static JSONObject a(JSONObject jSONObject) {
+        JSONObject jSONObjectOptJSONObject;
+        return (jSONObject == null || (jSONObjectOptJSONObject = jSONObject.optJSONObject("content")) == null) ? new JSONObject() : jSONObjectOptJSONObject.optJSONObject("share");
     }
 
     public static boolean deleteFile(File file) {
@@ -49,7 +46,7 @@ public class DplueCache {
         return null;
     }
 
-    public static String readFile(File file) {
+    public static String readFile(File file) throws Throwable {
         if (!file.exists()) {
             return "";
         }
@@ -60,11 +57,11 @@ public class DplueCache {
                 BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(ContextUtil.getContext().openFileInput(file.getName())));
                 while (true) {
                     try {
-                        String readLine = bufferedReader2.readLine();
-                        if (readLine == null) {
+                        String line = bufferedReader2.readLine();
+                        if (line == null) {
                             break;
                         }
-                        sb.append(readLine);
+                        sb.append(line);
                     } catch (Exception e2) {
                         bufferedReader = bufferedReader2;
                         e = e2;
@@ -90,13 +87,13 @@ public class DplueCache {
                         throw th;
                     }
                 }
-                String sb2 = sb.toString();
+                String string = sb.toString();
                 try {
                     bufferedReader2.close();
                 } catch (Exception e5) {
                     SLog.error(UmengText.CACHE.CACHEFILE, e5);
                 }
-                return sb2;
+                return string;
             } catch (Throwable th2) {
                 th = th2;
             }
@@ -105,16 +102,15 @@ public class DplueCache {
         }
     }
 
-    public static boolean save(JSONObject jSONObject, File file) throws JSONException, IOException {
+    public static boolean save(JSONObject jSONObject, File file) throws Throwable {
         if (!file.exists()) {
             file.createNewFile();
-            return m12686a(jSONObject.toString(), file);
+            return a(jSONObject.toString(), file);
         }
-        return m12686a(readFile(file) + Constants.ACCEPT_TIME_SEPARATOR_SP + jSONObject, file);
+        return a(readFile(file) + Constants.ACCEPT_TIME_SEPARATOR_SP + jSONObject, file);
     }
 
-    /* renamed from: a */
-    private static boolean m12686a(String str, File file) {
+    private static boolean a(String str, File file) throws Throwable {
         BufferedWriter bufferedWriter = null;
         try {
             try {

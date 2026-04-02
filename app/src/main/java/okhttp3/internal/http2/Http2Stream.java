@@ -13,15 +13,13 @@ import okio.Sink;
 import okio.Source;
 import okio.Timeout;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Http2Stream {
     static final /* synthetic */ boolean $assertionsDisabled = false;
     long bytesLeftInWriteWindow;
     final Http2Connection connection;
     private boolean hasResponseHeaders;
-
-    /* renamed from: id */
-    final int f21461id;
+    final int id;
     private final List<Header> requestHeaders;
     private List<Header> responseHeaders;
     final FramingSink sink;
@@ -42,7 +40,7 @@ public final class Http2Stream {
         }
 
         private void emitFrame(boolean z) throws IOException {
-            long min;
+            long jMin;
             synchronized (Http2Stream.this) {
                 Http2Stream.this.writeTimeout.enter();
                 while (Http2Stream.this.bytesLeftInWriteWindow <= 0 && !this.finished && !this.closed && Http2Stream.this.errorCode == null) {
@@ -53,12 +51,12 @@ public final class Http2Stream {
                 }
                 Http2Stream.this.writeTimeout.exitAndThrowIfTimedOut();
                 Http2Stream.this.checkOutNotClosed();
-                min = Math.min(Http2Stream.this.bytesLeftInWriteWindow, this.sendBuffer.size());
-                Http2Stream.this.bytesLeftInWriteWindow -= min;
+                jMin = Math.min(Http2Stream.this.bytesLeftInWriteWindow, this.sendBuffer.size());
+                Http2Stream.this.bytesLeftInWriteWindow -= jMin;
             }
             Http2Stream.this.writeTimeout.enter();
             try {
-                Http2Stream.this.connection.writeData(Http2Stream.this.f21461id, z && min == this.sendBuffer.size(), this.sendBuffer, min);
+                Http2Stream.this.connection.writeData(Http2Stream.this.id, z && jMin == this.sendBuffer.size(), this.sendBuffer, jMin);
             } finally {
             }
         }
@@ -76,7 +74,7 @@ public final class Http2Stream {
                         }
                     } else {
                         Http2Stream http2Stream = Http2Stream.this;
-                        http2Stream.connection.writeData(http2Stream.f21461id, true, null, 0L);
+                        http2Stream.connection.writeData(http2Stream.id, true, null, 0L);
                     }
                 }
                 synchronized (Http2Stream.this) {
@@ -174,7 +172,7 @@ public final class Http2Stream {
                     j3 = -1;
                 }
                 if (errorCode == null && Http2Stream.this.unacknowledgedBytesRead >= Http2Stream.this.connection.okHttpSettings.getInitialWindowSize() / 2) {
-                    Http2Stream.this.connection.writeWindowUpdateLater(Http2Stream.this.f21461id, Http2Stream.this.unacknowledgedBytesRead);
+                    Http2Stream.this.connection.writeWindowUpdateLater(Http2Stream.this.id, Http2Stream.this.unacknowledgedBytesRead);
                     Http2Stream.this.unacknowledgedBytesRead = 0L;
                 }
             }
@@ -207,11 +205,11 @@ public final class Http2Stream {
                     bufferedSource.skip(j2);
                     return;
                 }
-                long read = bufferedSource.read(this.receiveBuffer, j2);
-                if (read == -1) {
+                long j3 = bufferedSource.read(this.receiveBuffer, j2);
+                if (j3 == -1) {
                     throw new EOFException();
                 }
-                j2 -= read;
+                j2 -= j3;
                 synchronized (Http2Stream.this) {
                     if (this.readBuffer.size() != 0) {
                         z2 = false;
@@ -262,7 +260,7 @@ public final class Http2Stream {
         if (list == null) {
             throw new NullPointerException("requestHeaders == null");
         }
-        this.f21461id = i2;
+        this.id = i2;
         this.connection = http2Connection;
         this.bytesLeftInWriteWindow = http2Connection.peerSettings.getInitialWindowSize();
         this.source = new FramingSource(http2Connection.okHttpSettings.getInitialWindowSize());
@@ -282,7 +280,7 @@ public final class Http2Stream {
             }
             this.errorCode = errorCode;
             notifyAll();
-            this.connection.removeStream(this.f21461id);
+            this.connection.removeStream(this.id);
             return true;
         }
     }
@@ -296,18 +294,18 @@ public final class Http2Stream {
 
     void cancelStreamIfNecessary() throws IOException {
         boolean z;
-        boolean isOpen;
+        boolean zIsOpen;
         synchronized (this) {
             z = !this.source.finished && this.source.closed && (this.sink.finished || this.sink.closed);
-            isOpen = isOpen();
+            zIsOpen = isOpen();
         }
         if (z) {
             close(ErrorCode.CANCEL);
         } else {
-            if (isOpen) {
+            if (zIsOpen) {
                 return;
             }
-            this.connection.removeStream(this.f21461id);
+            this.connection.removeStream(this.id);
         }
     }
 
@@ -327,13 +325,13 @@ public final class Http2Stream {
 
     public void close(ErrorCode errorCode) throws IOException {
         if (closeInternal(errorCode)) {
-            this.connection.writeSynReset(this.f21461id, errorCode);
+            this.connection.writeSynReset(this.id, errorCode);
         }
     }
 
     public void closeLater(ErrorCode errorCode) {
         if (closeInternal(errorCode)) {
-            this.connection.writeSynResetLater(this.f21461id, errorCode);
+            this.connection.writeSynResetLater(this.id, errorCode);
         }
     }
 
@@ -346,7 +344,7 @@ public final class Http2Stream {
     }
 
     public int getId() {
-        return this.f21461id;
+        return this.id;
     }
 
     public List<Header> getRequestHeaders() {
@@ -367,7 +365,7 @@ public final class Http2Stream {
     }
 
     public boolean isLocallyInitiated() {
-        return this.connection.client == ((this.f21461id & 1) == 1);
+        return this.connection.client == ((this.id & 1) == 1);
     }
 
     public synchronized boolean isOpen() {
@@ -391,26 +389,26 @@ public final class Http2Stream {
     }
 
     void receiveFin() {
-        boolean isOpen;
+        boolean zIsOpen;
         synchronized (this) {
             this.source.finished = true;
-            isOpen = isOpen();
+            zIsOpen = isOpen();
             notifyAll();
         }
-        if (isOpen) {
+        if (zIsOpen) {
             return;
         }
-        this.connection.removeStream(this.f21461id);
+        this.connection.removeStream(this.id);
     }
 
     void receiveHeaders(List<Header> list) {
-        boolean z;
+        boolean zIsOpen;
         synchronized (this) {
-            z = true;
+            zIsOpen = true;
             this.hasResponseHeaders = true;
             if (this.responseHeaders == null) {
                 this.responseHeaders = list;
-                z = isOpen();
+                zIsOpen = isOpen();
                 notifyAll();
             } else {
                 ArrayList arrayList = new ArrayList();
@@ -420,10 +418,10 @@ public final class Http2Stream {
                 this.responseHeaders = arrayList;
             }
         }
-        if (z) {
+        if (zIsOpen) {
             return;
         }
-        this.connection.removeStream(this.f21461id);
+        this.connection.removeStream(this.id);
     }
 
     synchronized void receiveRstStream(ErrorCode errorCode) {
@@ -455,7 +453,7 @@ public final class Http2Stream {
                 z2 = this.connection.bytesLeftInWriteWindow == 0;
             }
         }
-        this.connection.writeSynReply(this.f21461id, z3, list);
+        this.connection.writeSynReply(this.id, z3, list);
         if (z2) {
             this.connection.flush();
         }

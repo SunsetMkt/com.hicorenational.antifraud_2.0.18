@@ -2,43 +2,41 @@ package com.huawei.hms.stats;
 
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HianalyticsExist {
+    private static final Object a = new Object();
 
-    /* renamed from: a */
-    private static final Object f7814a = new Object();
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static boolean f4911b = false;
 
-    /* renamed from: b */
-    private static boolean f7815b = false;
-
-    /* renamed from: c */
-    private static boolean f7816c = false;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static boolean f4912c = false;
 
     public static boolean isHianalyticsExist() {
         boolean z;
-        synchronized (f7814a) {
-            if (!f7815b) {
+        synchronized (a) {
+            if (!f4911b) {
                 boolean z2 = false;
                 try {
                     Class.forName("com.huawei.hianalytics.process.HiAnalyticsInstance");
                     z = true;
                 } catch (ClassNotFoundException unused) {
-                    HMSLog.m7717i("HianalyticsExist", "In isHianalyticsExist, Failed to find class HiAnalyticsConfig.");
+                    HMSLog.i("HianalyticsExist", "In isHianalyticsExist, Failed to find class HiAnalyticsConfig.");
                     z = false;
                 }
                 try {
                     Class.forName("com.huawei.hms.hatool.HmsHiAnalyticsUtils");
                     z2 = true;
                 } catch (ClassNotFoundException unused2) {
-                    HMSLog.m7717i("HianalyticsExist", "In isHianalyticsExist, Failed to find class HmsHiAnalyticsUtils.");
+                    HMSLog.i("HianalyticsExist", "In isHianalyticsExist, Failed to find class HmsHiAnalyticsUtils.");
                 }
                 if (z && !z2) {
-                    f7816c = true;
+                    f4912c = true;
                 }
-                f7815b = true;
-                HMSLog.m7717i("HianalyticsExist", "hianalytics exist: " + f7816c);
+                f4911b = true;
+                HMSLog.i("HianalyticsExist", "hianalytics exist: " + f4912c);
             }
         }
-        return f7816c;
+        return f4912c;
     }
 }

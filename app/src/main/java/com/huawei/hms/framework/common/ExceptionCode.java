@@ -12,7 +12,7 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLProtocolException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ExceptionCode {
     public static final int CANCEL = 10000100;
     private static final String CONNECT = "connect";
@@ -81,26 +81,23 @@ public class ExceptionCode {
         return str.contains("unexpected end of stream") ? UNEXPECTED_EOF : str.contains("unable to resolve host") ? UNABLE_TO_RESOLVE_HOST : str.contains("read error") ? READ_ERROR : str.contains("connection reset") ? CONNECTION_RESET : str.contains("software caused connection abort") ? CONNECTION_ABORT : str.contains("failed to connect to") ? CONNECT_FAILED : str.contains("connection refused") ? CONNECTION_REFUSED : str.contains("connection timed out") ? SOCKET_CONNECT_TIMEOUT : str.contains("no route to host") ? ROUTE_FAILED : str.contains("network is unreachable") ? NETWORK_UNREACHABLE : str.contains("socket closed") ? SOCKET_CLOSE : NETWORK_IO_EXCEPTION;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:18:0x003d  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     private static int getErrorCodeSocketTimeout(Exception exc) {
-        char c2;
-        String checkExceptionContainsKey = checkExceptionContainsKey(exc, "connect", READ, WRITE);
-        int hashCode = checkExceptionContainsKey.hashCode();
-        if (hashCode == 3496342) {
-            if (checkExceptionContainsKey.equals(READ)) {
-                c2 = 1;
+        byte b2;
+        String strCheckExceptionContainsKey = checkExceptionContainsKey(exc, "connect", READ, WRITE);
+        int iHashCode = strCheckExceptionContainsKey.hashCode();
+        if (iHashCode != 3496342) {
+            if (iHashCode != 113399775) {
+                b2 = (iHashCode == 951351530 && strCheckExceptionContainsKey.equals("connect")) ? (byte) 0 : (byte) -1;
+            } else if (strCheckExceptionContainsKey.equals(WRITE)) {
+                b2 = 2;
             }
-            c2 = 65535;
-        } else if (hashCode != 113399775) {
-            if (hashCode == 951351530 && checkExceptionContainsKey.equals("connect")) {
-                c2 = 0;
-            }
-            c2 = 65535;
-        } else {
-            if (checkExceptionContainsKey.equals(WRITE)) {
-                c2 = 2;
-            }
-            c2 = 65535;
+        } else if (strCheckExceptionContainsKey.equals(READ)) {
+            b2 = 1;
         }
-        return c2 != 0 ? c2 != 1 ? c2 != 2 ? SOCKET_TIMEOUT : SOCKET_WRITE_TIMEOUT : SOCKET_READ_TIMEOUT : SOCKET_CONNECT_TIMEOUT;
+        return b2 != 0 ? b2 != 1 ? b2 != 2 ? SOCKET_TIMEOUT : SOCKET_WRITE_TIMEOUT : SOCKET_READ_TIMEOUT : SOCKET_CONNECT_TIMEOUT;
     }
 }

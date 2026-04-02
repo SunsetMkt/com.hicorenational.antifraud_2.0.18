@@ -7,7 +7,7 @@ import com.umeng.commonsdk.framework.UMFrUtils;
 import com.umeng.commonsdk.utils.UMUtils;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMGlobalContext {
     private static final String TAG = "UMGlobalContext";
     private String mAppVersion;
@@ -16,28 +16,29 @@ public class UMGlobalContext {
     private String mChannel;
     private String mProcessName;
 
-    /* renamed from: com.umeng.commonsdk.service.UMGlobalContext$a */
-    private static class C3487a {
+    private static class a {
+        private static final UMGlobalContext a = new UMGlobalContext();
 
-        /* renamed from: a */
-        private static final UMGlobalContext f12678a = new UMGlobalContext();
-
-        private C3487a() {
+        private a() {
         }
+    }
+
+    /* synthetic */ UMGlobalContext(AnonymousClass1 anonymousClass1) {
+        this();
     }
 
     public static Context getAppContext(Context context) {
-        if (C3487a.f12678a.mApplicationContext == null && context != null) {
-            C3487a.f12678a.mApplicationContext = context.getApplicationContext();
+        if (a.a.mApplicationContext == null && context != null) {
+            a.a.mApplicationContext = context.getApplicationContext();
         }
-        return C3487a.f12678a.mApplicationContext;
+        return a.a.mApplicationContext;
     }
 
     public static UMGlobalContext getInstance(Context context) {
-        if (C3487a.f12678a.mApplicationContext == null && context != null) {
-            C3487a.f12678a.mApplicationContext = context;
+        if (a.a.mApplicationContext == null && context != null) {
+            a.a.mApplicationContext = context;
         }
-        return C3487a.f12678a;
+        return a.a;
     }
 
     public String getAppVersion() {
@@ -64,14 +65,14 @@ public class UMGlobalContext {
     public String getProcessName(Context context) {
         if (TextUtils.isEmpty(this.mProcessName)) {
             if (context != null) {
-                Context context2 = C3487a.f12678a.mApplicationContext;
+                Context context2 = a.a.mApplicationContext;
                 if (context2 != null) {
                     this.mProcessName = UMFrUtils.getCurrentProcessName(context2);
                 } else {
                     this.mProcessName = UMFrUtils.getCurrentProcessName(context);
                 }
             } else {
-                this.mProcessName = UMFrUtils.getCurrentProcessName(C3487a.f12678a.mApplicationContext);
+                this.mProcessName = UMFrUtils.getCurrentProcessName(a.a.mApplicationContext);
             }
         }
         return this.mProcessName;
@@ -82,7 +83,7 @@ public class UMGlobalContext {
     }
 
     public String toString() {
-        if (C3487a.f12678a.mApplicationContext == null) {
+        if (a.a.mApplicationContext == null) {
             return "uninitialized.";
         }
         StringBuilder sb = new StringBuilder("[");
@@ -97,6 +98,6 @@ public class UMGlobalContext {
     }
 
     public static Context getAppContext() {
-        return C3487a.f12678a.mApplicationContext;
+        return a.a.mApplicationContext;
     }
 }

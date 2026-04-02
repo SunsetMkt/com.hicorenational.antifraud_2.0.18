@@ -25,68 +25,63 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class XPermission {
 
-    /* renamed from: k */
-    private static List<String> f8508k;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private static List<String> f5358k;
 
-    /* renamed from: l */
-    private static XPermission f8509l;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private static XPermission f5359l;
 
-    /* renamed from: m */
-    private static InterfaceC2762d f8510m;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private static d f5360m;
 
-    /* renamed from: n */
-    private static InterfaceC2762d f8511n;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private static d f5361n;
+    private Context a;
 
-    /* renamed from: a */
-    private Context f8512a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private c f5362b;
 
-    /* renamed from: b */
-    private InterfaceC2761c f8513b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private d f5363c;
 
-    /* renamed from: c */
-    private InterfaceC2762d f8514c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private b f5364d;
 
-    /* renamed from: d */
-    private InterfaceC2760b f8515d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private e f5365e;
 
-    /* renamed from: e */
-    private InterfaceC2763e f8516e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private Set<String> f5366f;
 
-    /* renamed from: f */
-    private Set<String> f8517f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private List<String> f5367g;
 
-    /* renamed from: g */
-    private List<String> f8518g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private List<String> f5368h;
 
-    /* renamed from: h */
-    private List<String> f8519h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private List<String> f5369i;
 
-    /* renamed from: i */
-    private List<String> f8520i;
-
-    /* renamed from: j */
-    private List<String> f8521j;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private List<String> f5370j;
 
     @RequiresApi(api = 23)
     public static class PermissionActivity extends Activity {
+        private static final String a = "TYPE";
 
-        /* renamed from: a */
-        private static final String f8522a = "TYPE";
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final int f5371b = 1;
 
-        /* renamed from: b */
-        public static final int f8523b = 1;
+        /* JADX INFO: renamed from: c, reason: collision with root package name */
+        public static final int f5372c = 2;
 
-        /* renamed from: c */
-        public static final int f8524c = 2;
+        /* JADX INFO: renamed from: d, reason: collision with root package name */
+        public static final int f5373d = 3;
 
-        /* renamed from: d */
-        public static final int f8525d = 3;
-
-        /* renamed from: a */
-        public static void m8286a(Context context, int i2) {
+        public static void a(Context context, int i2) {
             Intent intent = new Intent(context, (Class<?>) PermissionActivity.class);
             intent.addFlags(CommonNetImpl.FLAG_AUTH);
             intent.putExtra("TYPE", i2);
@@ -102,25 +97,25 @@ public final class XPermission {
         @Override // android.app.Activity
         protected void onActivityResult(int i2, int i3, Intent intent) {
             if (i2 == 2) {
-                if (XPermission.f8510m == null) {
+                if (XPermission.f5360m == null) {
                     return;
                 }
-                if (XPermission.f8509l.m8283c()) {
-                    XPermission.f8510m.onGranted();
+                if (XPermission.f5359l.c()) {
+                    XPermission.f5360m.onGranted();
                 } else {
-                    XPermission.f8510m.mo8291a();
+                    XPermission.f5360m.a();
                 }
-                InterfaceC2762d unused = XPermission.f8510m = null;
+                d unused = XPermission.f5360m = null;
             } else if (i2 == 3) {
-                if (XPermission.f8511n == null) {
+                if (XPermission.f5361n == null) {
                     return;
                 }
-                if (XPermission.f8509l.m8281b()) {
-                    XPermission.f8511n.onGranted();
+                if (XPermission.f5359l.b()) {
+                    XPermission.f5361n.onGranted();
                 } else {
-                    XPermission.f8511n.mo8291a();
+                    XPermission.f5361n.a();
                 }
-                InterfaceC2762d unused2 = XPermission.f8511n = null;
+                d unused2 = XPermission.f5361n = null;
             }
             finish();
         }
@@ -133,200 +128,178 @@ public final class XPermission {
             if (intExtra != 1) {
                 if (intExtra == 2) {
                     super.onCreate(bundle);
-                    XPermission.f8509l.m8257b(this, 2);
+                    XPermission.f5359l.b(this, 2);
                     return;
                 } else {
                     if (intExtra == 3) {
                         super.onCreate(bundle);
-                        XPermission.f8509l.m8251a(this, 3);
+                        XPermission.f5359l.a(this, 3);
                         return;
                     }
                     return;
                 }
             }
-            if (XPermission.f8509l == null) {
+            if (XPermission.f5359l == null) {
                 super.onCreate(bundle);
                 finish();
                 return;
             }
-            if (XPermission.f8509l.f8516e != null) {
-                XPermission.f8509l.f8516e.m8292a(this);
+            if (XPermission.f5359l.f5365e != null) {
+                XPermission.f5359l.f5365e.a(this);
             }
             super.onCreate(bundle);
-            if (XPermission.f8509l.m8264c(this)) {
+            if (XPermission.f5359l.c(this)) {
                 finish();
                 return;
             }
-            if (XPermission.f8509l.f8518g != null) {
-                int size = XPermission.f8509l.f8518g.size();
+            if (XPermission.f5359l.f5367g != null) {
+                int size = XPermission.f5359l.f5367g.size();
                 if (size <= 0) {
                     finish();
                 } else {
-                    requestPermissions((String[]) XPermission.f8509l.f8518g.toArray(new String[size]), 1);
+                    requestPermissions((String[]) XPermission.f5359l.f5367g.toArray(new String[size]), 1);
                 }
             }
         }
 
         @Override // android.app.Activity
         public void onRequestPermissionsResult(int i2, @NonNull String[] strArr, @NonNull int[] iArr) {
-            XPermission.f8509l.m8256b(this);
+            XPermission.f5359l.b(this);
             finish();
         }
     }
 
-    /* renamed from: com.lxj.xpermission.XPermission$a */
-    class C2759a implements InterfaceC2761c.a {
-        C2759a() {
+    class a implements c.a {
+        a() {
         }
 
-        @Override // com.lxj.xpermission.XPermission.InterfaceC2761c.a
-        /* renamed from: a */
-        public void mo8287a(boolean z) {
+        @Override // com.lxj.xpermission.XPermission.c.a
+        public void a(boolean z) {
             if (z) {
-                XPermission.this.m8272j();
+                XPermission.this.j();
             } else {
-                XPermission.this.m8271i();
+                XPermission.this.i();
             }
         }
     }
 
-    /* renamed from: com.lxj.xpermission.XPermission$b */
-    public interface InterfaceC2760b {
-        /* renamed from: a */
-        void m8288a(List<String> list);
+    public interface b {
+        void a(List<String> list);
 
-        /* renamed from: a */
-        void m8289a(List<String> list, List<String> list2);
+        void a(List<String> list, List<String> list2);
     }
 
-    /* renamed from: com.lxj.xpermission.XPermission$c */
-    public interface InterfaceC2761c {
+    public interface c {
 
-        /* renamed from: com.lxj.xpermission.XPermission$c$a */
         public interface a {
-            /* renamed from: a */
-            void mo8287a(boolean z);
+            void a(boolean z);
         }
 
-        /* renamed from: a */
-        void m8290a(a aVar);
+        void a(a aVar);
     }
 
-    /* renamed from: com.lxj.xpermission.XPermission$d */
-    public interface InterfaceC2762d {
-        /* renamed from: a */
-        void mo8291a();
+    public interface d {
+        void a();
 
         void onGranted();
     }
 
-    /* renamed from: com.lxj.xpermission.XPermission$e */
-    public interface InterfaceC2763e {
-        /* renamed from: a */
-        void m8292a(Activity activity);
+    public interface e {
+        void a(Activity activity);
     }
 
     private XPermission(Context context, String... strArr) {
-        f8509l = this;
-        this.f8512a = context;
-        m8261b(strArr);
+        f5359l = this;
+        this.a = context;
+        b(strArr);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: i */
-    public void m8271i() {
-        if (this.f8514c != null) {
-            if (this.f8518g.size() == 0 || this.f8517f.size() == this.f8519h.size()) {
-                this.f8514c.onGranted();
-            } else if (!this.f8520i.isEmpty()) {
-                this.f8514c.mo8291a();
+    public void i() {
+        if (this.f5363c != null) {
+            if (this.f5367g.size() == 0 || this.f5366f.size() == this.f5368h.size()) {
+                this.f5363c.onGranted();
+            } else if (!this.f5369i.isEmpty()) {
+                this.f5363c.a();
             }
-            this.f8514c = null;
+            this.f5363c = null;
         }
-        if (this.f8515d != null) {
-            if (this.f8518g.size() == 0 || this.f8517f.size() == this.f8519h.size()) {
-                this.f8515d.m8288a(this.f8519h);
-            } else if (!this.f8520i.isEmpty()) {
-                this.f8515d.m8289a(this.f8521j, this.f8520i);
+        if (this.f5364d != null) {
+            if (this.f5367g.size() == 0 || this.f5366f.size() == this.f5368h.size()) {
+                this.f5364d.a(this.f5368h);
+            } else if (!this.f5369i.isEmpty()) {
+                this.f5364d.a(this.f5370j, this.f5369i);
             }
-            this.f8515d = null;
+            this.f5364d = null;
         }
-        this.f8513b = null;
-        this.f8516e = null;
+        this.f5362b = null;
+        this.f5365e = null;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     @RequiresApi(api = 23)
-    /* renamed from: j */
-    public void m8272j() {
-        this.f8520i = new ArrayList();
-        this.f8521j = new ArrayList();
-        PermissionActivity.m8286a(this.f8512a, 1);
+    public void j() {
+        this.f5369i = new ArrayList();
+        this.f5370j = new ArrayList();
+        PermissionActivity.a(this.a, 1);
     }
 
     @RequiresApi(api = 23)
-    /* renamed from: c */
-    public boolean m8283c() {
-        return Settings.System.canWrite(this.f8512a);
+    public boolean c() {
+        return Settings.System.canWrite(this.a);
     }
 
-    /* renamed from: e */
-    public void m8285e() {
-        this.f8519h = new ArrayList();
-        this.f8518g = new ArrayList();
+    public void e() {
+        this.f5368h = new ArrayList();
+        this.f5367g = new ArrayList();
         if (Build.VERSION.SDK_INT < 23) {
-            this.f8519h.addAll(this.f8517f);
-            m8271i();
+            this.f5368h.addAll(this.f5366f);
+            i();
             return;
         }
-        for (String str : this.f8517f) {
-            if (m8262b(str)) {
-                this.f8519h.add(str);
+        for (String str : this.f5366f) {
+            if (b(str)) {
+                this.f5368h.add(str);
             } else {
-                this.f8518g.add(str);
+                this.f5367g.add(str);
             }
         }
-        if (this.f8518g.isEmpty()) {
-            m8271i();
+        if (this.f5367g.isEmpty()) {
+            i();
         } else {
-            m8272j();
+            j();
         }
     }
 
     @RequiresApi(api = 23)
-    /* renamed from: c */
-    public void m8282c(InterfaceC2762d interfaceC2762d) {
-        if (!m8283c()) {
-            f8510m = interfaceC2762d;
-            PermissionActivity.m8286a(this.f8512a, 2);
-        } else if (interfaceC2762d != null) {
-            interfaceC2762d.onGranted();
+    public void c(d dVar) {
+        if (!c()) {
+            f5360m = dVar;
+            PermissionActivity.a(this.a, 2);
+        } else if (dVar != null) {
+            dVar.onGranted();
         }
     }
 
-    /* renamed from: d */
-    public void m8284d() {
+    public void d() {
         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.parse("package:" + this.f8512a.getPackageName()));
-        if (m8254a(intent)) {
-            this.f8512a.startActivity(intent.addFlags(CommonNetImpl.FLAG_AUTH));
+        intent.setData(Uri.parse("package:" + this.a.getPackageName()));
+        if (a(intent)) {
+            this.a.startActivity(intent.addFlags(CommonNetImpl.FLAG_AUTH));
         }
     }
 
-    /* renamed from: b */
-    private boolean m8262b(String str) {
-        return Build.VERSION.SDK_INT < 23 || ContextCompat.checkSelfPermission(this.f8512a, str) == 0;
+    private boolean b(String str) {
+        return Build.VERSION.SDK_INT < 23 || ContextCompat.checkSelfPermission(this.a, str) == 0;
     }
 
-    /* renamed from: a */
-    public List<String> m8277a() {
-        return m8278a(this.f8512a.getPackageName());
+    public List<String> a() {
+        return a(this.a.getPackageName());
     }
 
-    /* renamed from: a */
-    public List<String> m8278a(String str) {
+    public List<String> a(String str) {
         try {
-            String[] strArr = this.f8512a.getPackageManager().getPackageInfo(str, 4096).requestedPermissions;
+            String[] strArr = this.a.getPackageManager().getPackageInfo(str, 4096).requestedPermissions;
             if (strArr == null) {
                 return Collections.emptyList();
             }
@@ -339,12 +312,11 @@ public final class XPermission {
 
     /* JADX INFO: Access modifiers changed from: private */
     @TargetApi(23)
-    /* renamed from: b */
-    public void m8257b(Activity activity, int i2) {
+    public void b(Activity activity, int i2) {
         Intent intent = new Intent("android.settings.action.MANAGE_WRITE_SETTINGS");
-        intent.setData(Uri.parse("package:" + this.f8512a.getPackageName()));
-        if (!m8254a(intent)) {
-            m8284d();
+        intent.setData(Uri.parse("package:" + this.a.getPackageName()));
+        if (!a(intent)) {
+            d();
         } else {
             activity.startActivityForResult(intent, i2);
         }
@@ -352,31 +324,29 @@ public final class XPermission {
 
     /* JADX INFO: Access modifiers changed from: private */
     @RequiresApi(api = 23)
-    /* renamed from: c */
-    public boolean m8264c(Activity activity) {
+    public boolean c(Activity activity) {
         boolean z = false;
-        if (this.f8513b != null) {
-            Iterator<String> it = this.f8518g.iterator();
+        if (this.f5362b != null) {
+            Iterator<String> it = this.f5367g.iterator();
             while (true) {
                 if (!it.hasNext()) {
                     break;
                 }
                 if (activity.shouldShowRequestPermissionRationale(it.next())) {
-                    m8250a(activity);
-                    this.f8513b.m8290a(new C2759a());
+                    a(activity);
+                    this.f5362b.a(new a());
                     z = true;
                     break;
                 }
             }
-            this.f8513b = null;
+            this.f5362b = null;
         }
         return z;
     }
 
-    /* renamed from: a */
-    public boolean m8279a(String... strArr) {
+    public boolean a(String... strArr) {
         for (String str : strArr) {
-            if (!m8262b(str)) {
+            if (!b(str)) {
                 return false;
             }
         }
@@ -384,119 +354,106 @@ public final class XPermission {
     }
 
     @RequiresApi(api = 23)
-    /* renamed from: b */
-    public boolean m8281b() {
+    public boolean b() {
         if (Build.VERSION.SDK_INT >= 26) {
-            AppOpsManager appOpsManager = (AppOpsManager) this.f8512a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) this.a.getSystemService("appops");
             if (appOpsManager == null) {
                 return false;
             }
-            int checkOpNoThrow = appOpsManager.checkOpNoThrow("android:system_alert_window", Process.myUid(), this.f8512a.getPackageName());
-            return checkOpNoThrow == 0 || checkOpNoThrow == 1;
+            int iCheckOpNoThrow = appOpsManager.checkOpNoThrow("android:system_alert_window", Process.myUid(), this.a.getPackageName());
+            return iCheckOpNoThrow == 0 || iCheckOpNoThrow == 1;
         }
-        return Settings.canDrawOverlays(this.f8512a);
+        return Settings.canDrawOverlays(this.a);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     @TargetApi(23)
-    /* renamed from: a */
-    public void m8251a(Activity activity, int i2) {
+    public void a(Activity activity, int i2) {
         Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION");
-        intent.setData(Uri.parse("package:" + this.f8512a.getPackageName()));
-        if (!m8254a(intent)) {
-            m8284d();
+        intent.setData(Uri.parse("package:" + this.a.getPackageName()));
+        if (!a(intent)) {
+            d();
         } else {
             activity.startActivityForResult(intent, i2);
         }
     }
 
     @RequiresApi(api = 23)
-    /* renamed from: b */
-    public void m8280b(InterfaceC2762d interfaceC2762d) {
-        if (!m8281b()) {
-            f8511n = interfaceC2762d;
-            PermissionActivity.m8286a(this.f8512a, 3);
-        } else if (interfaceC2762d != null) {
-            interfaceC2762d.onGranted();
+    public void b(d dVar) {
+        if (!b()) {
+            f5361n = dVar;
+            PermissionActivity.a(this.a, 3);
+        } else if (dVar != null) {
+            dVar.onGranted();
         }
     }
 
-    /* renamed from: a */
-    public static XPermission m8249a(Context context, String... strArr) {
-        XPermission xPermission = f8509l;
+    public static XPermission a(Context context, String... strArr) {
+        XPermission xPermission = f5359l;
         if (xPermission == null) {
             return new XPermission(context, strArr);
         }
-        xPermission.m8261b(strArr);
-        return f8509l;
+        xPermission.b(strArr);
+        return f5359l;
     }
 
-    /* renamed from: a */
-    public static XPermission m8248a(Context context) {
-        return m8249a(context, (String[]) null);
+    public static XPermission a(Context context) {
+        return a(context, (String[]) null);
     }
 
-    /* renamed from: b */
-    private void m8261b(String... strArr) {
-        this.f8517f = new LinkedHashSet();
-        f8508k = m8277a();
+    private void b(String... strArr) {
+        this.f5366f = new LinkedHashSet();
+        f5358k = a();
         if (strArr == null) {
             return;
         }
         for (String str : strArr) {
-            for (String str2 : C2765b.m8293a(str)) {
-                if (f8508k.contains(str2)) {
-                    this.f8517f.add(str2);
+            for (String str2 : com.lxj.xpermission.b.a(str)) {
+                if (f5358k.contains(str2)) {
+                    this.f5366f.add(str2);
                 }
             }
         }
     }
 
-    /* renamed from: a */
-    private boolean m8254a(Intent intent) {
-        return this.f8512a.getPackageManager().queryIntentActivities(intent, 65536).size() > 0;
+    private boolean a(Intent intent) {
+        return this.a.getPackageManager().queryIntentActivities(intent, 65536).size() > 0;
     }
 
-    /* renamed from: a */
-    public XPermission m8274a(InterfaceC2761c interfaceC2761c) {
-        this.f8513b = interfaceC2761c;
+    public XPermission a(c cVar) {
+        this.f5362b = cVar;
         return this;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public void m8256b(Activity activity) {
-        m8250a(activity);
-        m8271i();
+    public void b(Activity activity) {
+        a(activity);
+        i();
     }
 
-    /* renamed from: a */
-    public XPermission m8275a(InterfaceC2762d interfaceC2762d) {
-        this.f8514c = interfaceC2762d;
+    public XPermission a(d dVar) {
+        this.f5363c = dVar;
         return this;
     }
 
-    /* renamed from: a */
-    public XPermission m8273a(InterfaceC2760b interfaceC2760b) {
-        this.f8515d = interfaceC2760b;
+    public XPermission a(b bVar) {
+        this.f5364d = bVar;
         return this;
     }
 
-    /* renamed from: a */
-    public XPermission m8276a(InterfaceC2763e interfaceC2763e) {
-        this.f8516e = interfaceC2763e;
+    public XPermission a(e eVar) {
+        this.f5365e = eVar;
         return this;
     }
 
-    /* renamed from: a */
-    private void m8250a(Activity activity) {
-        for (String str : this.f8518g) {
-            if (m8262b(str)) {
-                this.f8519h.add(str);
+    private void a(Activity activity) {
+        for (String str : this.f5367g) {
+            if (b(str)) {
+                this.f5368h.add(str);
             } else {
-                this.f8520i.add(str);
+                this.f5369i.add(str);
                 if (!activity.shouldShowRequestPermissionRationale(str)) {
-                    this.f8521j.add(str);
+                    this.f5370j.add(str);
                 }
             }
         }

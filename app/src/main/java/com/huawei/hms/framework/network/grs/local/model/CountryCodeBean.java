@@ -11,7 +11,7 @@ import com.huawei.hms.framework.network.grs.GrsBaseInfo;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CountryCodeBean {
     private static final String ANDRIOD_SYSTEMPROP = "android.os.SystemProperties";
     private static final int ANDROID_9_API_LEVEL = 28;
@@ -50,7 +50,7 @@ public class CountryCodeBean {
             if (Build.VERSION.SDK_INT >= 28 || Build.VERSION.RELEASE.charAt(0) >= '9') {
                 getRegionSettingCountryCode();
                 str = TAG;
-                str2 = "other Android 9.0 upper， get countryCode form Locale.getDefault().getCountry()";
+                str2 = "other Android 9.0 upper\uff0c get countryCode form Locale.getDefault().getCountry()";
             } else {
                 getProductCountryCode();
                 str = TAG;
@@ -65,19 +65,19 @@ public class CountryCodeBean {
             str = TAG;
             str2 = "EMUI 9.0 lower System, get countryCode form ro.product.locale.region or locale";
         }
-        Logger.m6799i(str, str2);
+        Logger.i(str, str2);
         this.countrySource = GrsBaseInfo.CountryCodeSource.LOCALE_INFO;
     }
 
     private void getProductCountryCode() {
-        int lastIndexOf;
+        int iLastIndexOf;
         this.countryCode = SystemPropUtils.getProperty("get", LOCALE_REGION_COUNTRYSYSTEMPROP, ANDRIOD_SYSTEMPROP, "UNKNOWN");
-        Logger.m6799i(TAG, "countryCode by ro.product.locale.region is: " + this.countryCode);
+        Logger.i(TAG, "countryCode by ro.product.locale.region is: " + this.countryCode);
         if (TextUtils.isEmpty(this.countryCode) || "UNKNOWN".equals(this.countryCode)) {
             String property = SystemPropUtils.getProperty("get", LOCALE_COUNTRYSYSTEMPROP, ANDRIOD_SYSTEMPROP, "UNKNOWN");
-            if (!TextUtils.isEmpty(property) && (lastIndexOf = property.lastIndexOf(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) != -1) {
-                this.countryCode = property.substring(lastIndexOf + 1);
-                Logger.m6799i(TAG, "countryCode by ro.product.locale is: " + this.countryCode);
+            if (!TextUtils.isEmpty(property) && (iLastIndexOf = property.lastIndexOf(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) != -1) {
+                this.countryCode = property.substring(iLastIndexOf + 1);
+                Logger.i(TAG, "countryCode by ro.product.locale is: " + this.countryCode);
             }
         }
         if ("cn".equalsIgnoreCase(this.countryCode)) {
@@ -88,7 +88,7 @@ public class CountryCodeBean {
 
     private void getRegionSettingCountryCode() {
         this.countryCode = Locale.getDefault().getCountry();
-        Logger.m6799i(TAG, "countryCode by system's region setting is: " + this.countryCode);
+        Logger.i(TAG, "countryCode by system's region setting is: " + this.countryCode);
         if (TextUtils.isEmpty(this.countryCode)) {
             this.countryCode = "UNKNOWN";
         }
@@ -119,7 +119,7 @@ public class CountryCodeBean {
             }
             sb.append(str2);
             sb.append(this.countryCode);
-            Logger.m6799i(str, sb.toString());
+            Logger.i(str, sb.toString());
         }
         checkCodeLenth();
     }
@@ -127,7 +127,7 @@ public class CountryCodeBean {
     private void getVendorCountryCode() {
         this.countrySource = GrsBaseInfo.CountryCodeSource.VENDOR_COUNTRY;
         this.countryCode = SystemPropUtils.getProperty("get", VENDORCOUNTRY_SYSTEMPROP, ANDRIOD_SYSTEMPROP, "UNKNOWN");
-        Logger.m6799i(TAG, "countryCode by ro.hw.country is: " + this.countryCode);
+        Logger.i(TAG, "countryCode by ro.hw.country is: " + this.countryCode);
         if (SPECIAL_COUNTRYCODE_EU.equalsIgnoreCase(this.countryCode) || SPECIAL_COUNTRYCODE_LA.equalsIgnoreCase(this.countryCode)) {
             this.countryCode = "UNKNOWN";
             this.countrySource = "UNKNOWN";
@@ -136,7 +136,7 @@ public class CountryCodeBean {
                 checkCodeLenth();
                 return;
             }
-            Logger.m6799i(TAG, "special country of UK to map GB.");
+            Logger.i(TAG, "special country of UK to map GB.");
             this.countryCode = SPECIAL_COUNTRYCODE_GB;
             this.countrySource = GrsBaseInfo.CountryCodeSource.VENDOR_COUNTRY;
         }
@@ -149,20 +149,20 @@ public class CountryCodeBean {
         try {
             getVendorCountryCode();
             if (isCodeValidate()) {
-                Logger.m6799i(TAG, "get issue_country code from VENDOR_COUNTRY");
+                Logger.i(TAG, "get issue_country code from VENDOR_COUNTRY");
                 return;
             }
             getSimCountryCode(context);
             if (isCodeValidate()) {
-                Logger.m6799i(TAG, "get issue_country code from SIM_COUNTRY");
+                Logger.i(TAG, "get issue_country code from SIM_COUNTRY");
                 return;
             }
             getLocaleCountryCode();
             if (isCodeValidate()) {
-                Logger.m6799i(TAG, "get issue_country code from LOCALE_INFO");
+                Logger.i(TAG, "get issue_country code from LOCALE_INFO");
             }
         } catch (Exception unused) {
-            Logger.m6803w(TAG, "get CountryCode error");
+            Logger.w(TAG, "get CountryCode error");
         }
     }
 

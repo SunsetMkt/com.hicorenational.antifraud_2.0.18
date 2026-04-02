@@ -15,8 +15,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class WindowCallbackWrapper implements Window.Callback {
     final Window.Callback mWrapped;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import network.FileInfo;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FileInfo_2 {
     private List<FileInfo.FileDetailsBean> fileDetails = new ArrayList();
 

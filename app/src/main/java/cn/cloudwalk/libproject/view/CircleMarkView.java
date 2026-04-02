@@ -1,6 +1,5 @@
 package cn.cloudwalk.libproject.view;
 
-import android.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -10,11 +9,11 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import cn.cloudwalk.libproject.C1241R;
+import cn.cloudwalk.libproject.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CircleMarkView extends View {
     public static final int AnimType_ActionChange = 1;
     public static final int AnimType_Testing = 0;
@@ -175,22 +174,22 @@ public class CircleMarkView extends View {
         int i4 = this.radius;
         this.text_x_center = i4;
         this.interRedius = i4 - (this.lineHeight / 2);
-        this.text_y_center = (i4 - ((int) (this.interRedius * 0.5d))) - sp2px(14.0f);
+        this.text_y_center = (i4 - ((int) (((double) this.interRedius) * 0.5d))) - sp2px(14.0f);
         canvas.drawText(this.tipMsg, this.text_x_center, this.text_y_center, this.tipPaint);
         canvas.restore();
     }
 
     private void initAttrs(AttributeSet attributeSet, int i2, int i3) {
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C1241R.styleable.CircleMarkView, i2, i3);
-        this.lineHeight = obtainStyledAttributes.getDimensionPixelSize(C1241R.styleable.CircleMarkView_line_height, 14);
-        this.arcColor = obtainStyledAttributes.getColor(C1241R.styleable.CircleMarkView_arc_color, getResources().getColor(C1241R.color.color_f44e58));
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.CircleMarkView, i2, i3);
+        this.lineHeight = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.CircleMarkView_line_height, 14);
+        this.arcColor = typedArrayObtainStyledAttributes.getColor(R.styleable.CircleMarkView_arc_color, getResources().getColor(R.color.color_f44e58));
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     private void initView() {
-        this.color_gray = getResources().getColor(C1241R.color.color_a0a0a0);
-        this.color_blue = getResources().getColor(C1241R.color.color_44d7b6);
-        this.color_white = getResources().getColor(R.color.white);
+        this.color_gray = getResources().getColor(R.color.color_a0a0a0);
+        this.color_blue = getResources().getColor(R.color.color_44d7b6);
+        this.color_white = getResources().getColor(android.R.color.white);
         this.linePaint = new Paint();
         this.linePaint.setStrokeWidth(6.0f);
         this.linePaint.setAntiAlias(true);

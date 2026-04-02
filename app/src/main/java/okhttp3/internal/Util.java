@@ -2,6 +2,9 @@ package okhttp3.internal;
 
 import android.support.v4.media.session.PlaybackStateCompat;
 import com.xiaomi.mipush.sdk.Constants;
+import i.f1;
+import i.q2.t.m0;
+import j.a.a.a.c;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -26,6 +29,7 @@ import java.util.TimeZone;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+import javax.annotation.Nullable;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -37,11 +41,8 @@ import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
 import okio.Source;
-import p286h.C5230f1;
-import p286h.p309q2.p311t.C5556m0;
-import p324i.p325a.p326a.p327a.C5758c;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Util {
     private static final Pattern VERIFY_AS_IP_ADDRESS;
     private static final Method addSuppressedExceptionMethod;
@@ -55,26 +56,58 @@ public final class Util {
     private static final ByteString UTF_32_BE_BOM = ByteString.decodeHex("0000ffff");
     private static final ByteString UTF_32_LE_BOM = ByteString.decodeHex("ffff0000");
     public static final Charset UTF_8 = Charset.forName("UTF-8");
-    public static final Charset ISO_8859_1 = Charset.forName(C5758c.f20750a);
-    private static final Charset UTF_16_BE = Charset.forName(C5758c.f20753d);
-    private static final Charset UTF_16_LE = Charset.forName(C5758c.f20754e);
+    public static final Charset ISO_8859_1 = Charset.forName(c.a);
+    private static final Charset UTF_16_BE = Charset.forName(c.f12442d);
+    private static final Charset UTF_16_LE = Charset.forName(c.f12443e);
     private static final Charset UTF_32_BE = Charset.forName("UTF-32BE");
     private static final Charset UTF_32_LE = Charset.forName("UTF-32LE");
     public static final TimeZone UTC = TimeZone.getTimeZone("GMT");
     public static final Comparator<String> NATURAL_ORDER = new Comparator<String>() { // from class: okhttp3.internal.Util.1
+        AnonymousClass1() {
+        }
+
         @Override // java.util.Comparator
         public int compare(String str, String str2) {
             return str.compareTo(str2);
         }
     };
 
+    /* JADX INFO: renamed from: okhttp3.internal.Util$1 */
+    class AnonymousClass1 implements Comparator<String> {
+        AnonymousClass1() {
+        }
+
+        @Override // java.util.Comparator
+        public int compare(String str, String str2) {
+            return str.compareTo(str2);
+        }
+    }
+
+    /* JADX INFO: renamed from: okhttp3.internal.Util$2 */
+    class AnonymousClass2 implements ThreadFactory {
+        final /* synthetic */ boolean val$daemon;
+        final /* synthetic */ String val$name;
+
+        AnonymousClass2(String str, boolean z) {
+            str = str;
+            z = z;
+        }
+
+        @Override // java.util.concurrent.ThreadFactory
+        public Thread newThread(Runnable runnable) {
+            Thread thread = new Thread(runnable, str);
+            thread.setDaemon(z);
+            return thread;
+        }
+    }
+
     static {
-        Method method = null;
+        Method declaredMethod = null;
         try {
-            method = Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class);
+            declaredMethod = Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class);
         } catch (Exception unused) {
         }
-        addSuppressedExceptionMethod = method;
+        addSuppressedExceptionMethod = declaredMethod;
         VERIFY_AS_IP_ADDRESS = Pattern.compile("([0-9a-fA-F]*:[0-9a-fA-F:.]*)|([\\d.]+)");
     }
 
@@ -139,11 +172,11 @@ public final class Util {
                 return null;
             }
         }
-        InetAddress decodeIpv6 = (str.startsWith("[") && str.endsWith("]")) ? decodeIpv6(str, 1, str.length() - 1) : decodeIpv6(str, 0, str.length());
-        if (decodeIpv6 == null) {
+        InetAddress inetAddressDecodeIpv6 = (str.startsWith("[") && str.endsWith("]")) ? decodeIpv6(str, 1, str.length() - 1) : decodeIpv6(str, 0, str.length());
+        if (inetAddressDecodeIpv6 == null) {
             return null;
         }
-        byte[] address = decodeIpv6.getAddress();
+        byte[] address = inetAddressDecodeIpv6.getAddress();
         if (address.length == 16) {
             return inet6AddressToAscii(address);
         }
@@ -193,8 +226,8 @@ public final class Util {
 
     private static boolean containsInvalidHostnameAsciiCodes(String str) {
         for (int i2 = 0; i2 < str.length(); i2++) {
-            char charAt = str.charAt(i2);
-            if (charAt <= 31 || charAt >= 127 || " #%/:?@[\\]".indexOf(charAt) != -1) {
+            char cCharAt = str.charAt(i2);
+            if (cCharAt <= 31 || cCharAt >= '\u007f' || " #%/:?@[\\]".indexOf(cCharAt) != -1) {
                 return true;
             }
         }
@@ -230,11 +263,11 @@ public final class Util {
             int i6 = i2;
             int i7 = 0;
             while (i6 < i3) {
-                char charAt = str.charAt(i6);
-                if (charAt < '0' || charAt > '9') {
+                char cCharAt = str.charAt(i6);
+                if (cCharAt < '0' || cCharAt > '9') {
                     break;
                 }
-                if ((i7 == 0 && i2 != i6) || (i7 = ((i7 * 10) + charAt) - 48) > 255) {
+                if ((i7 == 0 && i2 != i6) || (i7 = ((i7 * 10) + cCharAt) - 48) > 255) {
                     return false;
                 }
                 i6++;
@@ -249,127 +282,105 @@ public final class Util {
         return i5 == i4 + 4;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:26:0x007a, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:107:0x007c, code lost:
+    
+        if (r3 == r0.length) goto L115;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:108:0x007e, code lost:
+    
+        if (r4 != (-1)) goto L110;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:109:0x0080, code lost:
     
         return null;
      */
-    /* JADX WARN: Removed duplicated region for block: B:16:0x0050  */
-    @javax.annotation.Nullable
+    /* JADX WARN: Code restructure failed: missing block: B:110:0x0081, code lost:
+    
+        r11 = r3 - r4;
+        java.lang.System.arraycopy(r0, r4, r0, r0.length - r11, r11);
+        java.util.Arrays.fill(r0, r4, (r0.length - r3) + r4, (byte) 0);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:112:0x0092, code lost:
+    
+        return java.net.InetAddress.getByAddress(r0);
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:114:0x0098, code lost:
+    
+        throw new java.lang.AssertionError();
+     */
+    /* JADX WARN: Removed duplicated region for block: B:95:0x0050  */
+    @Nullable
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private static java.net.InetAddress decodeIpv6(java.lang.String r10, int r11, int r12) {
-        /*
-            r0 = 16
-            byte[] r0 = new byte[r0]
-            r1 = -1
-            r2 = 0
-            r3 = 0
-            r4 = -1
-            r5 = -1
-        L9:
-            r6 = 0
-            if (r11 >= r12) goto L7b
-            int r7 = r0.length
-            if (r3 != r7) goto L10
-            return r6
-        L10:
-            int r7 = r11 + 2
-            if (r7 > r12) goto L28
-            r8 = 2
-            java.lang.String r9 = "::"
-            boolean r8 = r10.regionMatches(r11, r9, r2, r8)
-            if (r8 == 0) goto L28
-            if (r4 == r1) goto L20
-            return r6
-        L20:
-            int r3 = r3 + 2
-            r4 = r3
-            if (r7 != r12) goto L26
-            goto L7b
-        L26:
-            r5 = r7
-            goto L4c
-        L28:
-            if (r3 == 0) goto L4b
-            r7 = 1
-            java.lang.String r8 = ":"
-            boolean r8 = r10.regionMatches(r11, r8, r2, r7)
-            if (r8 == 0) goto L36
-            int r11 = r11 + 1
-            goto L4b
-        L36:
-            java.lang.String r8 = "."
-            boolean r11 = r10.regionMatches(r11, r8, r2, r7)
-            if (r11 == 0) goto L4a
-            int r11 = r3 + (-2)
-            boolean r10 = decodeIpv4Suffix(r10, r5, r12, r0, r11)
-            if (r10 != 0) goto L47
-            return r6
-        L47:
-            int r3 = r3 + 2
-            goto L7b
-        L4a:
-            return r6
-        L4b:
-            r5 = r11
-        L4c:
-            r11 = r5
-            r7 = 0
-        L4e:
-            if (r11 >= r12) goto L61
-            char r8 = r10.charAt(r11)
-            int r8 = decodeHexDigit(r8)
-            if (r8 != r1) goto L5b
-            goto L61
-        L5b:
-            int r7 = r7 << 4
-            int r7 = r7 + r8
-            int r11 = r11 + 1
-            goto L4e
-        L61:
-            int r8 = r11 - r5
-            if (r8 == 0) goto L7a
-            r9 = 4
-            if (r8 <= r9) goto L69
-            goto L7a
-        L69:
-            int r6 = r3 + 1
-            int r8 = r7 >>> 8
-            r8 = r8 & 255(0xff, float:3.57E-43)
-            byte r8 = (byte) r8
-            r0[r3] = r8
-            int r3 = r6 + 1
-            r7 = r7 & 255(0xff, float:3.57E-43)
-            byte r7 = (byte) r7
-            r0[r6] = r7
-            goto L9
-        L7a:
-            return r6
-        L7b:
-            int r10 = r0.length
-            if (r3 == r10) goto L8e
-            if (r4 != r1) goto L81
-            return r6
-        L81:
-            int r10 = r0.length
-            int r11 = r3 - r4
-            int r10 = r10 - r11
-            java.lang.System.arraycopy(r0, r4, r0, r10, r11)
-            int r10 = r0.length
-            int r10 = r10 - r3
-            int r10 = r10 + r4
-            java.util.Arrays.fill(r0, r4, r10, r2)
-        L8e:
-            java.net.InetAddress r10 = java.net.InetAddress.getByAddress(r0)     // Catch: java.net.UnknownHostException -> L93
-            return r10
-        L93:
-            java.lang.AssertionError r10 = new java.lang.AssertionError
-            r10.<init>()
-            throw r10
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.Util.decodeIpv6(java.lang.String, int, int):java.net.InetAddress");
+    private static InetAddress decodeIpv6(String str, int i2, int i3) {
+        int i4;
+        byte[] bArr = new byte[16];
+        int i5 = 0;
+        int i6 = -1;
+        int i7 = -1;
+        while (true) {
+            if (i2 < i3) {
+                if (i5 != bArr.length) {
+                    int i8 = i2 + 2;
+                    if (i8 <= i3 && str.regionMatches(i2, "::", 0, 2)) {
+                        if (i6 == -1) {
+                            i5 += 2;
+                            i6 = i5;
+                            if (i8 != i3) {
+                                i7 = i8;
+                                i2 = i7;
+                                int i9 = 0;
+                                while (i2 < i3) {
+                                }
+                                i4 = i2 - i7;
+                                if (i4 == 0) {
+                                    break;
+                                }
+                                break;
+                                break;
+                            }
+                            break;
+                        }
+                        return null;
+                    }
+                    if (i5 != 0) {
+                        if (str.regionMatches(i2, Constants.COLON_SEPARATOR, 0, 1)) {
+                            i2++;
+                        } else {
+                            if (!str.regionMatches(i2, ".", 0, 1) || !decodeIpv4Suffix(str, i7, i3, bArr, i5 - 2)) {
+                                return null;
+                            }
+                            i5 += 2;
+                        }
+                    }
+                    i7 = i2;
+                    i2 = i7;
+                    int i92 = 0;
+                    while (i2 < i3) {
+                        int iDecodeHexDigit = decodeHexDigit(str.charAt(i2));
+                        if (iDecodeHexDigit == -1) {
+                            break;
+                        }
+                        i92 = (i92 << 4) + iDecodeHexDigit;
+                        i2++;
+                    }
+                    i4 = i2 - i7;
+                    if (i4 == 0 || i4 > 4) {
+                        break;
+                    }
+                    int i10 = i5 + 1;
+                    bArr[i5] = (byte) ((i92 >>> 8) & 255);
+                    i5 = i10 + 1;
+                    bArr[i10] = (byte) (i92 & 255);
+                } else {
+                    return null;
+                }
+            } else {
+                break;
+            }
+        }
+        return null;
     }
 
     public static int delimiterOffset(String str, int i2, int i3, String str2) {
@@ -399,16 +410,16 @@ public final class Util {
     }
 
     public static String hostHeader(HttpUrl httpUrl, boolean z) {
-        String host;
+        String strHost;
         if (httpUrl.host().contains(Constants.COLON_SEPARATOR)) {
-            host = "[" + httpUrl.host() + "]";
+            strHost = "[" + httpUrl.host() + "]";
         } else {
-            host = httpUrl.host();
+            strHost = httpUrl.host();
         }
         if (!z && httpUrl.port() == HttpUrl.defaultPort(httpUrl.scheme())) {
-            return host;
+            return strHost;
         }
-        return host + Constants.COLON_SEPARATOR + httpUrl.port();
+        return strHost + Constants.COLON_SEPARATOR + httpUrl.port();
     }
 
     public static <T> List<T> immutableList(List<T> list) {
@@ -432,8 +443,8 @@ public final class Util {
     public static int indexOfControlOrNonAscii(String str) {
         int length = str.length();
         for (int i2 = 0; i2 < length; i2++) {
-            char charAt = str.charAt(i2);
-            if (charAt <= 31 || charAt >= 127) {
+            char cCharAt = str.charAt(i2);
+            if (cCharAt <= 31 || cCharAt >= '\u007f') {
                 return i2;
             }
         }
@@ -469,7 +480,7 @@ public final class Util {
                 if (i2 > 0) {
                     buffer.writeByte(58);
                 }
-                buffer.writeHexadecimalUnsignedLong(((bArr[i2] & C5230f1.f20085c) << 8) | (bArr[i2 + 1] & C5230f1.f20085c));
+                buffer.writeHexadecimalUnsignedLong(((bArr[i2] & f1.f12066c) << 8) | (bArr[i2 + 1] & f1.f12066c));
                 i2 += 2;
             }
         }
@@ -527,32 +538,32 @@ public final class Util {
     }
 
     public static boolean skipAll(Source source, int i2, TimeUnit timeUnit) throws IOException {
-        long nanoTime = System.nanoTime();
-        long deadlineNanoTime = source.timeout().hasDeadline() ? source.timeout().deadlineNanoTime() - nanoTime : Long.MAX_VALUE;
-        source.timeout().deadlineNanoTime(Math.min(deadlineNanoTime, timeUnit.toNanos(i2)) + nanoTime);
+        long jNanoTime = System.nanoTime();
+        long jDeadlineNanoTime = source.timeout().hasDeadline() ? source.timeout().deadlineNanoTime() - jNanoTime : Long.MAX_VALUE;
+        source.timeout().deadlineNanoTime(Math.min(jDeadlineNanoTime, timeUnit.toNanos(i2)) + jNanoTime);
         try {
             Buffer buffer = new Buffer();
             while (source.read(buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) != -1) {
                 buffer.clear();
             }
-            if (deadlineNanoTime == C5556m0.f20396b) {
+            if (jDeadlineNanoTime == m0.f12222b) {
                 source.timeout().clearDeadline();
             } else {
-                source.timeout().deadlineNanoTime(nanoTime + deadlineNanoTime);
+                source.timeout().deadlineNanoTime(jNanoTime + jDeadlineNanoTime);
             }
             return true;
         } catch (InterruptedIOException unused) {
-            if (deadlineNanoTime == C5556m0.f20396b) {
+            if (jDeadlineNanoTime == m0.f12222b) {
                 source.timeout().clearDeadline();
             } else {
-                source.timeout().deadlineNanoTime(nanoTime + deadlineNanoTime);
+                source.timeout().deadlineNanoTime(jNanoTime + jDeadlineNanoTime);
             }
             return false;
         } catch (Throwable th) {
-            if (deadlineNanoTime == C5556m0.f20396b) {
+            if (jDeadlineNanoTime == m0.f12222b) {
                 source.timeout().clearDeadline();
             } else {
-                source.timeout().deadlineNanoTime(nanoTime + deadlineNanoTime);
+                source.timeout().deadlineNanoTime(jNanoTime + jDeadlineNanoTime);
             }
             throw th;
         }
@@ -560,8 +571,8 @@ public final class Util {
 
     public static int skipLeadingAsciiWhitespace(String str, int i2, int i3) {
         while (i2 < i3) {
-            char charAt = str.charAt(i2);
-            if (charAt != '\t' && charAt != '\n' && charAt != '\f' && charAt != '\r' && charAt != ' ') {
+            char cCharAt = str.charAt(i2);
+            if (cCharAt != '\t' && cCharAt != '\n' && cCharAt != '\f' && cCharAt != '\r' && cCharAt != ' ') {
                 return i2;
             }
             i2++;
@@ -571,16 +582,24 @@ public final class Util {
 
     public static int skipTrailingAsciiWhitespace(String str, int i2, int i3) {
         for (int i4 = i3 - 1; i4 >= i2; i4--) {
-            char charAt = str.charAt(i4);
-            if (charAt != '\t' && charAt != '\n' && charAt != '\f' && charAt != '\r' && charAt != ' ') {
+            char cCharAt = str.charAt(i4);
+            if (cCharAt != '\t' && cCharAt != '\n' && cCharAt != '\f' && cCharAt != '\r' && cCharAt != ' ') {
                 return i4 + 1;
             }
         }
         return i2;
     }
 
-    public static ThreadFactory threadFactory(final String str, final boolean z) {
+    public static ThreadFactory threadFactory(String str, boolean z) {
         return new ThreadFactory() { // from class: okhttp3.internal.Util.2
+            final /* synthetic */ boolean val$daemon;
+            final /* synthetic */ String val$name;
+
+            AnonymousClass2(String str2, boolean z2) {
+                str = str2;
+                z = z2;
+            }
+
             @Override // java.util.concurrent.ThreadFactory
             public Thread newThread(Runnable runnable) {
                 Thread thread = new Thread(runnable, str);
@@ -591,8 +610,8 @@ public final class Util {
     }
 
     public static String trimSubstring(String str, int i2, int i3) {
-        int skipLeadingAsciiWhitespace = skipLeadingAsciiWhitespace(str, i2, i3);
-        return str.substring(skipLeadingAsciiWhitespace, skipTrailingAsciiWhitespace(str, skipLeadingAsciiWhitespace, i3));
+        int iSkipLeadingAsciiWhitespace = skipLeadingAsciiWhitespace(str, i2, i3);
+        return str.substring(iSkipLeadingAsciiWhitespace, skipTrailingAsciiWhitespace(str, iSkipLeadingAsciiWhitespace, i3));
     }
 
     public static boolean verifyAsIpAddress(String str) {

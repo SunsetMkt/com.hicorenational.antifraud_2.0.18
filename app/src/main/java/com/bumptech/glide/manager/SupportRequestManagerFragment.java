@@ -8,53 +8,47 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import com.bumptech.glide.ComponentCallbacks2C1576b;
-import com.bumptech.glide.ComponentCallbacks2C1585k;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SupportRequestManagerFragment extends Fragment {
 
-    /* renamed from: g */
-    private static final String f5062g = "SupportRMFragment";
+    /* JADX INFO: renamed from: g */
+    private static final String f3313g = "SupportRMFragment";
+    private final com.bumptech.glide.manager.a a;
 
-    /* renamed from: a */
-    private final C1787a f5063a;
+    /* JADX INFO: renamed from: b */
+    private final l f3314b;
 
-    /* renamed from: b */
-    private final InterfaceC1798l f5064b;
+    /* JADX INFO: renamed from: c */
+    private final Set<SupportRequestManagerFragment> f3315c;
 
-    /* renamed from: c */
-    private final Set<SupportRequestManagerFragment> f5065c;
-
-    /* renamed from: d */
+    /* JADX INFO: renamed from: d */
     @Nullable
-    private SupportRequestManagerFragment f5066d;
+    private SupportRequestManagerFragment f3316d;
 
-    /* renamed from: e */
+    /* JADX INFO: renamed from: e */
     @Nullable
-    private ComponentCallbacks2C1585k f5067e;
+    private com.bumptech.glide.k f3317e;
 
-    /* renamed from: f */
+    /* JADX INFO: renamed from: f */
     @Nullable
-    private Fragment f5068f;
+    private Fragment f3318f;
 
-    /* renamed from: com.bumptech.glide.manager.SupportRequestManagerFragment$a */
-    private class C1786a implements InterfaceC1798l {
-        C1786a() {
+    private class a implements l {
+        a() {
         }
 
-        @Override // com.bumptech.glide.manager.InterfaceC1798l
+        @Override // com.bumptech.glide.manager.l
         @NonNull
-        /* renamed from: a */
-        public Set<ComponentCallbacks2C1585k> mo4509a() {
-            Set<SupportRequestManagerFragment> m4519d = SupportRequestManagerFragment.this.m4519d();
-            HashSet hashSet = new HashSet(m4519d.size());
-            for (SupportRequestManagerFragment supportRequestManagerFragment : m4519d) {
-                if (supportRequestManagerFragment.m4521f() != null) {
-                    hashSet.add(supportRequestManagerFragment.m4521f());
+        public Set<com.bumptech.glide.k> a() {
+            Set<SupportRequestManagerFragment> setD = SupportRequestManagerFragment.this.d();
+            HashSet hashSet = new HashSet(setD.size());
+            for (SupportRequestManagerFragment supportRequestManagerFragment : setD) {
+                if (supportRequestManagerFragment.f() != null) {
+                    hashSet.add(supportRequestManagerFragment.f());
                 }
             }
             return hashSet;
@@ -66,23 +60,21 @@ public class SupportRequestManagerFragment extends Fragment {
     }
 
     public SupportRequestManagerFragment() {
-        this(new C1787a());
+        this(new com.bumptech.glide.manager.a());
     }
 
-    /* renamed from: b */
-    private void m4513b(SupportRequestManagerFragment supportRequestManagerFragment) {
-        this.f5065c.remove(supportRequestManagerFragment);
+    private void b(SupportRequestManagerFragment supportRequestManagerFragment) {
+        this.f3315c.remove(supportRequestManagerFragment);
     }
 
-    /* renamed from: c */
-    private boolean m4514c(@NonNull Fragment fragment) {
-        Fragment m4515h = m4515h();
+    private boolean c(@NonNull Fragment fragment) {
+        Fragment fragmentH = h();
         while (true) {
             Fragment parentFragment = fragment.getParentFragment();
             if (parentFragment == null) {
                 return false;
             }
-            if (parentFragment.equals(m4515h)) {
+            if (parentFragment.equals(fragmentH)) {
                 return true;
             }
             fragment = fragment.getParentFragment();
@@ -90,39 +82,35 @@ public class SupportRequestManagerFragment extends Fragment {
     }
 
     @Nullable
-    /* renamed from: h */
-    private Fragment m4515h() {
+    private Fragment h() {
         Fragment parentFragment = getParentFragment();
-        return parentFragment != null ? parentFragment : this.f5068f;
+        return parentFragment != null ? parentFragment : this.f3318f;
     }
 
-    /* renamed from: i */
-    private void m4516i() {
-        SupportRequestManagerFragment supportRequestManagerFragment = this.f5066d;
+    private void i() {
+        SupportRequestManagerFragment supportRequestManagerFragment = this.f3316d;
         if (supportRequestManagerFragment != null) {
-            supportRequestManagerFragment.m4513b(this);
-            this.f5066d = null;
+            supportRequestManagerFragment.b(this);
+            this.f3316d = null;
         }
     }
 
-    /* renamed from: a */
-    public void m4518a(@Nullable ComponentCallbacks2C1585k componentCallbacks2C1585k) {
-        this.f5067e = componentCallbacks2C1585k;
+    public void a(@Nullable com.bumptech.glide.k kVar) {
+        this.f3317e = kVar;
     }
 
     @NonNull
-    /* renamed from: d */
-    Set<SupportRequestManagerFragment> m4519d() {
-        SupportRequestManagerFragment supportRequestManagerFragment = this.f5066d;
+    Set<SupportRequestManagerFragment> d() {
+        SupportRequestManagerFragment supportRequestManagerFragment = this.f3316d;
         if (supportRequestManagerFragment == null) {
             return Collections.emptySet();
         }
         if (equals(supportRequestManagerFragment)) {
-            return Collections.unmodifiableSet(this.f5065c);
+            return Collections.unmodifiableSet(this.f3315c);
         }
         HashSet hashSet = new HashSet();
-        for (SupportRequestManagerFragment supportRequestManagerFragment2 : this.f5066d.m4519d()) {
-            if (m4514c(supportRequestManagerFragment2.m4515h())) {
+        for (SupportRequestManagerFragment supportRequestManagerFragment2 : this.f3316d.d()) {
+            if (c(supportRequestManagerFragment2.h())) {
                 hashSet.add(supportRequestManagerFragment2);
             }
         }
@@ -130,108 +118,101 @@ public class SupportRequestManagerFragment extends Fragment {
     }
 
     @NonNull
-    /* renamed from: e */
-    C1787a m4520e() {
-        return this.f5063a;
+    com.bumptech.glide.manager.a e() {
+        return this.a;
     }
 
     @Nullable
-    /* renamed from: f */
-    public ComponentCallbacks2C1585k m4521f() {
-        return this.f5067e;
+    public com.bumptech.glide.k f() {
+        return this.f3317e;
     }
 
     @NonNull
-    /* renamed from: g */
-    public InterfaceC1798l m4522g() {
-        return this.f5064b;
+    public l g() {
+        return this.f3314b;
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onAttach(Context context) {
         super.onAttach(context);
-        FragmentManager m4512b = m4512b((Fragment) this);
-        if (m4512b == null) {
-            Log.isLoggable(f5062g, 5);
+        FragmentManager fragmentManagerB = b((Fragment) this);
+        if (fragmentManagerB == null) {
+            Log.isLoggable(f3313g, 5);
             return;
         }
         try {
-            m4510a(getContext(), m4512b);
+            a(getContext(), fragmentManagerB);
         } catch (IllegalStateException unused) {
-            Log.isLoggable(f5062g, 5);
+            Log.isLoggable(f3313g, 5);
         }
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onDestroy() {
         super.onDestroy();
-        this.f5063a.m4523a();
-        m4516i();
+        this.a.a();
+        i();
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onDetach() {
         super.onDetach();
-        this.f5068f = null;
-        m4516i();
+        this.f3318f = null;
+        i();
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onStart() {
         super.onStart();
-        this.f5063a.m4525b();
+        this.a.b();
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onStop() {
         super.onStop();
-        this.f5063a.m4527c();
+        this.a.c();
     }
 
     @Override // androidx.fragment.app.Fragment
     public String toString() {
-        return super.toString() + "{parent=" + m4515h() + "}";
+        return super.toString() + "{parent=" + h() + "}";
     }
 
     @SuppressLint({"ValidFragment"})
     @VisibleForTesting
-    public SupportRequestManagerFragment(@NonNull C1787a c1787a) {
-        this.f5064b = new C1786a();
-        this.f5065c = new HashSet();
-        this.f5063a = c1787a;
+    public SupportRequestManagerFragment(@NonNull com.bumptech.glide.manager.a aVar) {
+        this.f3314b = new a();
+        this.f3315c = new HashSet();
+        this.a = aVar;
     }
 
-    /* renamed from: a */
-    private void m4511a(SupportRequestManagerFragment supportRequestManagerFragment) {
-        this.f5065c.add(supportRequestManagerFragment);
+    private void a(SupportRequestManagerFragment supportRequestManagerFragment) {
+        this.f3315c.add(supportRequestManagerFragment);
     }
 
     @Nullable
-    /* renamed from: b */
-    private static FragmentManager m4512b(@NonNull Fragment fragment) {
+    private static FragmentManager b(@NonNull Fragment fragment) {
         while (fragment.getParentFragment() != null) {
             fragment = fragment.getParentFragment();
         }
         return fragment.getFragmentManager();
     }
 
-    /* renamed from: a */
-    void m4517a(@Nullable Fragment fragment) {
-        FragmentManager m4512b;
-        this.f5068f = fragment;
-        if (fragment == null || fragment.getContext() == null || (m4512b = m4512b(fragment)) == null) {
+    void a(@Nullable Fragment fragment) {
+        FragmentManager fragmentManagerB;
+        this.f3318f = fragment;
+        if (fragment == null || fragment.getContext() == null || (fragmentManagerB = b(fragment)) == null) {
             return;
         }
-        m4510a(fragment.getContext(), m4512b);
+        a(fragment.getContext(), fragmentManagerB);
     }
 
-    /* renamed from: a */
-    private void m4510a(@NonNull Context context, @NonNull FragmentManager fragmentManager) {
-        m4516i();
-        this.f5066d = ComponentCallbacks2C1576b.m3633a(context).m3665i().m4551a(context, fragmentManager);
-        if (equals(this.f5066d)) {
+    private void a(@NonNull Context context, @NonNull FragmentManager fragmentManager) {
+        i();
+        this.f3316d = com.bumptech.glide.b.a(context).i().a(context, fragmentManager);
+        if (equals(this.f3316d)) {
             return;
         }
-        this.f5066d.m4511a(this);
+        this.f3316d.a(this);
     }
 }

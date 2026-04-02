@@ -5,7 +5,7 @@ import androidx.camera.core.CameraInfoUnavailableException;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.UseCase;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 interface LifecycleCameraProvider {
     boolean hasCamera(@NonNull CameraSelector cameraSelector) throws CameraInfoUnavailableException;
 

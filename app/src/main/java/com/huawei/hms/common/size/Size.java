@@ -2,27 +2,25 @@ package com.huawei.hms.common.size;
 
 import com.huawei.hms.common.internal.Objects;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Size {
+    private final int a;
 
-    /* renamed from: a */
-    private final int f7305a;
-
-    /* renamed from: b */
-    private final int f7306b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private final int f4579b;
 
     public Size(int i2, int i3) {
-        this.f7305a = i2;
-        this.f7306b = i3;
+        this.a = i2;
+        this.f4579b = i3;
     }
 
     public static Size parseSize(String str) {
         try {
-            int indexOf = str.indexOf("x");
-            if (indexOf < 0) {
-                indexOf = str.indexOf("*");
+            int iIndexOf = str.indexOf("x");
+            if (iIndexOf < 0) {
+                iIndexOf = str.indexOf("*");
             }
-            return new Size(Integer.parseInt(str.substring(0, indexOf)), Integer.parseInt(str.substring(indexOf + 1)));
+            return new Size(Integer.parseInt(str.substring(0, iIndexOf)), Integer.parseInt(str.substring(iIndexOf + 1)));
         } catch (Exception unused) {
             throw new IllegalArgumentException("Size parses failed");
         }
@@ -39,15 +37,15 @@ public class Size {
             return false;
         }
         Size size = (Size) obj;
-        return this.f7305a == size.f7305a && this.f7306b == size.f7306b;
+        return this.a == size.a && this.f4579b == size.f4579b;
     }
 
     public final int getHeight() {
-        return this.f7306b;
+        return this.f4579b;
     }
 
     public final int getWidth() {
-        return this.f7305a;
+        return this.a;
     }
 
     public int hashCode() {
@@ -55,6 +53,6 @@ public class Size {
     }
 
     public final String toString() {
-        return "Width is " + this.f7305a + " Height is " + this.f7306b;
+        return "Width is " + this.a + " Height is " + this.f4579b;
     }
 }

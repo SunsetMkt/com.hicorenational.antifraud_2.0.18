@@ -11,7 +11,7 @@ import android.view.animation.Interpolator;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AutoScrollHelper implements View.OnTouchListener {
     private static final int DEFAULT_ACTIVATION_DELAY = ViewConfiguration.getTapTimeout();
     private static final int DEFAULT_EDGE_TYPE = 1;
@@ -85,11 +85,11 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
             if (this.mDeltaTime == 0) {
                 throw new RuntimeException("Cannot compute scroll delta before calling start()");
             }
-            long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-            float interpolateValue = interpolateValue(getValueAt(currentAnimationTimeMillis));
-            long j2 = currentAnimationTimeMillis - this.mDeltaTime;
-            this.mDeltaTime = currentAnimationTimeMillis;
-            float f2 = j2 * interpolateValue;
+            long jCurrentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
+            float fInterpolateValue = interpolateValue(getValueAt(jCurrentAnimationTimeMillis));
+            long j2 = jCurrentAnimationTimeMillis - this.mDeltaTime;
+            this.mDeltaTime = jCurrentAnimationTimeMillis;
+            float f2 = j2 * fInterpolateValue;
             this.mDeltaX = (int) (this.mTargetVelocityX * f2);
             this.mDeltaY = (int) (f2 * this.mTargetVelocityY);
         }
@@ -117,10 +117,10 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
         }
 
         public void requestStop() {
-            long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-            this.mEffectiveRampDown = AutoScrollHelper.constrain((int) (currentAnimationTimeMillis - this.mStartTime), 0, this.mRampDownDuration);
-            this.mStopValue = getValueAt(currentAnimationTimeMillis);
-            this.mStopTime = currentAnimationTimeMillis;
+            long jCurrentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
+            this.mEffectiveRampDown = AutoScrollHelper.constrain((int) (jCurrentAnimationTimeMillis - this.mStartTime), 0, this.mRampDownDuration);
+            this.mStopValue = getValueAt(jCurrentAnimationTimeMillis);
+            this.mStopTime = jCurrentAnimationTimeMillis;
         }
 
         public void setRampDownDuration(int i2) {
@@ -184,7 +184,7 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
         setMinimumVelocity(f4, f4);
         setEdgeType(1);
         setMaximumEdges(Float.MAX_VALUE, Float.MAX_VALUE);
-        setRelativeEdges(DEFAULT_RELATIVE_EDGE, DEFAULT_RELATIVE_EDGE);
+        setRelativeEdges(0.2f, 0.2f);
         setRelativeVelocity(1.0f, 1.0f);
         setActivationDelay(DEFAULT_ACTIVATION_DELAY);
         setRampUpDuration(500);
@@ -233,15 +233,15 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
 
     private float getEdgeValue(float f2, float f3, float f4, float f5) {
         float interpolation;
-        float constrain = constrain(f2 * f3, 0.0f, f4);
-        float constrainEdgeValue = constrainEdgeValue(f3 - f5, constrain) - constrainEdgeValue(f5, constrain);
-        if (constrainEdgeValue < 0.0f) {
-            interpolation = -this.mEdgeInterpolator.getInterpolation(-constrainEdgeValue);
+        float fConstrain = constrain(f2 * f3, 0.0f, f4);
+        float fConstrainEdgeValue = constrainEdgeValue(f3 - f5, fConstrain) - constrainEdgeValue(f5, fConstrain);
+        if (fConstrainEdgeValue < 0.0f) {
+            interpolation = -this.mEdgeInterpolator.getInterpolation(-fConstrainEdgeValue);
         } else {
-            if (constrainEdgeValue <= 0.0f) {
+            if (fConstrainEdgeValue <= 0.0f) {
                 return 0.0f;
             }
-            interpolation = this.mEdgeInterpolator.getInterpolation(constrainEdgeValue);
+            interpolation = this.mEdgeInterpolator.getInterpolation(fConstrainEdgeValue);
         }
         return constrain(interpolation, -1.0f, 1.0f);
     }
@@ -274,10 +274,10 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
     public abstract boolean canTargetScrollVertically(int i2);
 
     void cancelTargetTouch() {
-        long uptimeMillis = SystemClock.uptimeMillis();
-        MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-        this.mTarget.onTouchEvent(obtain);
-        obtain.recycle();
+        long jUptimeMillis = SystemClock.uptimeMillis();
+        MotionEvent motionEventObtain = MotionEvent.obtain(jUptimeMillis, jUptimeMillis, 3, 0.0f, 0.0f, 0);
+        this.mTarget.onTouchEvent(motionEventObtain);
+        motionEventObtain.recycle();
     }
 
     public boolean isEnabled() {
@@ -288,70 +288,34 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
         return this.mExclusive;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:11:0x0013, code lost:
-    
-        if (r0 != 3) goto L20;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:13:0x0016  */
     @Override // android.view.View.OnTouchListener
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean onTouch(android.view.View r6, android.view.MotionEvent r7) {
-        /*
-            r5 = this;
-            boolean r0 = r5.mEnabled
-            r1 = 0
-            if (r0 != 0) goto L6
-            return r1
-        L6:
-            int r0 = r7.getActionMasked()
-            r2 = 1
-            if (r0 == 0) goto L1a
-            if (r0 == r2) goto L16
-            r3 = 2
-            if (r0 == r3) goto L1e
-            r6 = 3
-            if (r0 == r6) goto L16
-            goto L58
-        L16:
-            r5.requestStop()
-            goto L58
-        L1a:
-            r5.mNeedsCancel = r2
-            r5.mAlreadyDelayed = r1
-        L1e:
-            float r0 = r7.getX()
-            int r3 = r6.getWidth()
-            float r3 = (float) r3
-            android.view.View r4 = r5.mTarget
-            int r4 = r4.getWidth()
-            float r4 = (float) r4
-            float r0 = r5.computeTargetVelocity(r1, r0, r3, r4)
-            float r7 = r7.getY()
-            int r6 = r6.getHeight()
-            float r6 = (float) r6
-            android.view.View r3 = r5.mTarget
-            int r3 = r3.getHeight()
-            float r3 = (float) r3
-            float r6 = r5.computeTargetVelocity(r2, r7, r6, r3)
-            androidx.core.widget.AutoScrollHelper$ClampedScroller r7 = r5.mScroller
-            r7.setTargetVelocity(r0, r6)
-            boolean r6 = r5.mAnimating
-            if (r6 != 0) goto L58
-            boolean r6 = r5.shouldAnimate()
-            if (r6 == 0) goto L58
-            r5.startAnimating()
-        L58:
-            boolean r6 = r5.mExclusive
-            if (r6 == 0) goto L61
-            boolean r6 = r5.mAnimating
-            if (r6 == 0) goto L61
-            r1 = 1
-        L61:
-            return r1
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.core.widget.AutoScrollHelper.onTouch(android.view.View, android.view.MotionEvent):boolean");
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (!this.mEnabled) {
+            return false;
+        }
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked == 1) {
+                requestStop();
+            } else if (actionMasked != 2) {
+                if (actionMasked == 3) {
+                }
+            }
+            return this.mExclusive && this.mAnimating;
+        }
+        this.mNeedsCancel = true;
+        this.mAlreadyDelayed = false;
+        this.mScroller.setTargetVelocity(computeTargetVelocity(0, motionEvent.getX(), view.getWidth(), this.mTarget.getWidth()), computeTargetVelocity(1, motionEvent.getY(), view.getHeight(), this.mTarget.getHeight()));
+        if (!this.mAnimating && shouldAnimate()) {
+            startAnimating();
+        }
+        if (this.mExclusive) {
+            return false;
+        }
     }
 
     public abstract void scrollTargetBy(int i2, int i3);

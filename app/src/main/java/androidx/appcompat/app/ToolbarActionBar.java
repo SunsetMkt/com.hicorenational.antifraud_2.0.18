@@ -25,7 +25,7 @@ import androidx.appcompat.widget.ToolbarWidgetWrapper;
 import androidx.core.view.ViewCompat;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ToolbarActionBar extends ActionBar {
     DecorToolbar mDecorToolbar;
     private boolean mLastMenuVisibility;
@@ -111,15 +111,15 @@ class ToolbarActionBar extends ActionBar {
 
         @Override // androidx.appcompat.view.WindowCallbackWrapper, android.view.Window.Callback
         public boolean onPreparePanel(int i2, View view, Menu menu) {
-            boolean onPreparePanel = super.onPreparePanel(i2, view, menu);
-            if (onPreparePanel) {
+            boolean zOnPreparePanel = super.onPreparePanel(i2, view, menu);
+            if (zOnPreparePanel) {
                 ToolbarActionBar toolbarActionBar = ToolbarActionBar.this;
                 if (!toolbarActionBar.mToolbarMenuPrepared) {
                     toolbarActionBar.mDecorToolbar.setMenuPrepared();
                     ToolbarActionBar.this.mToolbarMenuPrepared = true;
                 }
             }
-            return onPreparePanel;
+            return zOnPreparePanel;
         }
     }
 

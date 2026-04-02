@@ -1,10 +1,10 @@
 package com.heytap.msp.push.mode;
 
 import android.text.TextUtils;
-import com.heytap.mcssdk.p160k.C2107g;
+import com.heytap.mcssdk.k.g;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MessageStat {
     private static final String APP_PACKAGE = "appPackage";
     private static final String DATA_EXTRA = "data_extra";
@@ -74,7 +74,7 @@ public class MessageStat {
             messageStat.setDataExtra(jSONObject.optString("data_extra"));
             return messageStat;
         } catch (Exception e2) {
-            C2107g.m5896e(e2.getLocalizedMessage());
+            g.e(e2.getLocalizedMessage());
             return null;
         }
     }
@@ -178,7 +178,7 @@ public class MessageStat {
                 jSONObject.putOpt("data_extra", this.mDataExtra);
             }
         } catch (Exception e2) {
-            C2107g.m5896e(e2.getLocalizedMessage());
+            g.e(e2.getLocalizedMessage());
         }
         return jSONObject.toString();
     }

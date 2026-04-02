@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ObjectMetadata {
     public static final String AES_256_SERVER_SIDE_ENCRYPTION = "AES256";
     private Map<String, String> userMetadata = new CaseInsensitiveHashMap();
@@ -141,12 +141,12 @@ public class ObjectMetadata {
     }
 
     public String toString() {
-        String str;
+        String string;
         try {
-            str = getExpirationTime().toString();
+            string = getExpirationTime().toString();
         } catch (Exception unused) {
-            str = "";
+            string = "";
         }
-        return "Last-Modified:" + getLastModified() + "\n" + HttpHeaders.EXPIRES + Constants.COLON_SEPARATOR + str + "\nrawExpires:" + getRawExpiresValue() + "\n" + HttpHeaders.CONTENT_MD5 + Constants.COLON_SEPARATOR + getContentMD5() + "\n" + OSSHeaders.OSS_OBJECT_TYPE + Constants.COLON_SEPARATOR + getObjectType() + "\n" + OSSHeaders.OSS_SERVER_SIDE_ENCRYPTION + Constants.COLON_SEPARATOR + getServerSideEncryption() + "\n" + HttpHeaders.CONTENT_DISPOSITION + Constants.COLON_SEPARATOR + getContentDisposition() + "\nContent-Encoding" + Constants.COLON_SEPARATOR + getContentEncoding() + "\nCache-Control" + Constants.COLON_SEPARATOR + getCacheControl() + "\n" + HttpHeaders.ETAG + Constants.COLON_SEPARATOR + getETag() + "\n";
+        return "Last-Modified:" + getLastModified() + "\n" + HttpHeaders.EXPIRES + Constants.COLON_SEPARATOR + string + "\nrawExpires:" + getRawExpiresValue() + "\n" + HttpHeaders.CONTENT_MD5 + Constants.COLON_SEPARATOR + getContentMD5() + "\n" + OSSHeaders.OSS_OBJECT_TYPE + Constants.COLON_SEPARATOR + getObjectType() + "\n" + OSSHeaders.OSS_SERVER_SIDE_ENCRYPTION + Constants.COLON_SEPARATOR + getServerSideEncryption() + "\n" + HttpHeaders.CONTENT_DISPOSITION + Constants.COLON_SEPARATOR + getContentDisposition() + "\nContent-Encoding" + Constants.COLON_SEPARATOR + getContentEncoding() + "\nCache-Control" + Constants.COLON_SEPARATOR + getCacheControl() + "\n" + HttpHeaders.ETAG + Constants.COLON_SEPARATOR + getETag() + "\n";
     }
 }

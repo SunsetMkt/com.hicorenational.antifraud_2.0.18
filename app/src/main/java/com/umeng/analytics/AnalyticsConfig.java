@@ -2,14 +2,13 @@ package com.umeng.analytics;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.umeng.analytics.pro.C3336at;
-import com.umeng.analytics.pro.C3409j;
-import com.umeng.common.C3443b;
+import com.umeng.analytics.pro.at;
+import com.umeng.analytics.pro.j;
 import com.umeng.commonsdk.debug.UMLog;
 import com.umeng.commonsdk.utils.UMUtils;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AnalyticsConfig {
     public static boolean CATCH_EXCEPTION = false;
     public static boolean CHANGE_CATCH_EXCEPTION_NOTALLOW = true;
@@ -21,39 +20,36 @@ public class AnalyticsConfig {
     public static String GPU_VENDER = "";
     public static final String RTD_PERIOD = "period";
     public static final String RTD_START_TIME = "startTime";
+    static double[] a = null;
 
-    /* renamed from: a */
-    static double[] f11347a = null;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static String f6940b = null;
 
-    /* renamed from: b */
-    private static String f11348b = null;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static String f6941c = null;
 
-    /* renamed from: c */
-    private static String f11349c = null;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static String f6942d = null;
 
-    /* renamed from: d */
-    private static String f11350d = null;
-
-    /* renamed from: e */
-    private static int f11351e = 0;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static int f6943e = 0;
     public static boolean enable = true;
     public static long kContinueSessionMillis = 30000;
     public static String mWrapperType;
     public static String mWrapperVersion;
-    public static final String RTD_SP_FILE = C3336at.m10865b().m10868b(C3336at.f11482A);
+    public static final String RTD_SP_FILE = at.b().b(at.A);
 
-    /* renamed from: f */
-    private static Object f11352f = new Object();
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static Object f6944f = new Object();
 
-    /* renamed from: g */
-    private static boolean f11353g = false;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private static boolean f6945g = false;
 
-    /* renamed from: h */
-    private static String f11354h = "";
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private static String f6946h = "";
 
-    /* renamed from: a */
-    static void m10734a(String str) {
-        f11349c = str;
+    static void a(String str) {
+        f6941c = str;
     }
 
     public static String getAppkey(Context context) {
@@ -77,68 +73,66 @@ public class AnalyticsConfig {
     }
 
     public static double[] getLocation() {
-        return f11347a;
+        return a;
     }
 
     public static String getRealTimeDebugKey() {
         String str;
-        synchronized (f11352f) {
-            str = f11354h;
+        synchronized (f6944f) {
+            str = f6946h;
         }
         return str;
     }
 
     public static String getSecretKey(Context context) {
-        if (TextUtils.isEmpty(f11350d)) {
-            f11350d = C3443b.m11503a(context).m11513c();
+        if (TextUtils.isEmpty(f6942d)) {
+            f6942d = com.umeng.common.b.a(context).c();
         }
-        return f11350d;
+        return f6942d;
     }
 
     public static int getVerticalType(Context context) {
-        if (f11351e == 0) {
-            f11351e = C3443b.m11503a(context).m11514d();
+        if (f6943e == 0) {
+            f6943e = com.umeng.common.b.a(context).d();
         }
-        return f11351e;
+        return f6943e;
     }
 
     public static boolean isRealTimeDebugMode() {
         boolean z;
-        synchronized (f11352f) {
-            z = f11353g;
+        synchronized (f6944f) {
+            z = f6945g;
         }
         return z;
     }
 
     public static void turnOffRealTimeDebug() {
-        synchronized (f11352f) {
-            f11353g = false;
-            f11354h = "";
+        synchronized (f6944f) {
+            f6945g = false;
+            f6946h = "";
         }
     }
 
     public static void turnOnRealTimeDebug(Map<String, String> map) {
-        synchronized (f11352f) {
-            f11353g = true;
+        synchronized (f6944f) {
+            f6945g = true;
             if (map != null && map.containsKey(DEBUG_KEY)) {
-                f11354h = map.get(DEBUG_KEY);
+                f6946h = map.get(DEBUG_KEY);
             }
         }
     }
 
-    /* renamed from: a */
-    static void m10733a(Context context, String str) {
+    static void a(Context context, String str) {
         if (TextUtils.isEmpty(str)) {
-            UMLog.m11549aq(C3409j.f12068A, 0, "\\|");
+            UMLog.aq(j.A, 0, "\\|");
         } else {
-            f11350d = str;
-            C3443b.m11503a(context).m11509a(f11350d);
+            f6942d = str;
+            com.umeng.common.b.a(context).a(f6942d);
         }
     }
 
-    /* renamed from: a */
-    static void m10732a(Context context, int i2) {
-        f11351e = i2;
-        C3443b.m11503a(context).m11508a(f11351e);
+    static void a(Context context, int i2) {
+        f6943e = i2;
+        com.umeng.common.b.a(context).a(f6943e);
     }
 }

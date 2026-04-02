@@ -28,7 +28,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AppCompatDelegate {
     static final boolean DEBUG = false;
     public static final int FEATURE_ACTION_MODE_OVERLAY = 10;

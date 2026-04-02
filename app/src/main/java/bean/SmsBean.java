@@ -2,12 +2,10 @@ package bean;
 
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SmsBean implements Serializable {
     private String fileUri;
-
-    /* renamed from: id */
-    private String f1622id;
+    private String id;
     private int index = -1;
     private boolean isSelect;
     private int report_type;
@@ -26,7 +24,7 @@ public class SmsBean implements Serializable {
     }
 
     public String getId() {
-        return this.f1622id;
+        return this.id;
     }
 
     public int getIndex() {
@@ -70,7 +68,7 @@ public class SmsBean implements Serializable {
     }
 
     public void setId(String str) {
-        this.f1622id = str;
+        this.id = str;
     }
 
     public void setIndex(int i2) {

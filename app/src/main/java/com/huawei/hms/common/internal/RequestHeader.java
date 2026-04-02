@@ -11,7 +11,7 @@ import com.tencent.connect.common.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RequestHeader implements IMessageEntity {
     private static final String TAG = "RequestHeader";
 
@@ -61,7 +61,7 @@ public class RequestHeader implements IMessageEntity {
             this.transaction_id = JsonUtil.getStringValue(jSONObject, CommonCode.MapKey.TRANSACTION_ID);
             return true;
         } catch (JSONException e2) {
-            HMSLog.m7715e(TAG, "fromJson failed: " + e2.getMessage());
+            HMSLog.e(TAG, "fromJson failed: " + e2.getMessage());
             return false;
         }
     }
@@ -70,8 +70,8 @@ public class RequestHeader implements IMessageEntity {
         if (TextUtils.isEmpty(this.app_id)) {
             return "";
         }
-        String[] split = this.app_id.split("\\|");
-        return split.length == 0 ? "" : split.length == 1 ? split[0] : split[1];
+        String[] strArrSplit = this.app_id.split("\\|");
+        return strArrSplit.length == 0 ? "" : strArrSplit.length == 1 ? strArrSplit[0] : strArrSplit[1];
     }
 
     public int getApiLevel() {
@@ -178,7 +178,7 @@ public class RequestHeader implements IMessageEntity {
             }
             jSONObject.put(CommonCode.MapKey.TRANSACTION_ID, this.transaction_id);
         } catch (JSONException e2) {
-            HMSLog.m7715e(TAG, "toJson failed: " + e2.getMessage());
+            HMSLog.e(TAG, "toJson failed: " + e2.getMessage());
         }
         return jSONObject.toString();
     }

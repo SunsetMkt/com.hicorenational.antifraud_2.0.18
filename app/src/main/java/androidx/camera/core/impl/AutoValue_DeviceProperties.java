@@ -2,7 +2,7 @@ package androidx.camera.core.impl;
 
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_DeviceProperties extends DeviceProperties {
     private final String manufacturer;
     private final String model;

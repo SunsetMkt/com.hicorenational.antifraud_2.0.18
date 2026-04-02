@@ -5,7 +5,7 @@ import com.xiaomi.mipush.sdk.Constants;
 import java.net.URLEncoder;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpUtil {
     public static String paramToQueryString(Map<String, String> map, String str) {
         if (map == null || map.isEmpty()) {

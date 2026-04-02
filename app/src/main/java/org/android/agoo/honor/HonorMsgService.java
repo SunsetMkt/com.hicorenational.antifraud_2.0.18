@@ -7,7 +7,7 @@ import com.taobao.accs.utl.ALog;
 import org.android.agoo.control.AgooFactory;
 import org.android.agoo.control.NotifManager;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HonorMsgService extends HonorMessageService {
     public static final String HONOR_TOKEN = "HONOR_TOKEN";
     public static final String MSG_SOURCE = "honor";
@@ -18,7 +18,7 @@ public class HonorMsgService extends HonorMessageService {
     public void onMessageReceived(HonorPushDataMsg honorPushDataMsg) {
         try {
             String data = honorPushDataMsg.getData();
-            ALog.m9183i(TAG, "onPushMsg", "content", data);
+            ALog.i(TAG, "onPushMsg", "content", data);
             if (data == null) {
                 return;
             }
@@ -29,7 +29,7 @@ public class HonorMsgService extends HonorMessageService {
             }
             this.agooFactory.msgRecevie(data.getBytes(), "honor");
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "onPushMsg", th, new Object[0]);
+            ALog.e(TAG, "onPushMsg", th, new Object[0]);
         }
     }
 
@@ -39,12 +39,12 @@ public class HonorMsgService extends HonorMessageService {
             if (TextUtils.isEmpty(str)) {
                 return;
             }
-            ALog.m9183i(TAG, "onToken", "token", str);
+            ALog.i(TAG, "onToken", "token", str);
             NotifManager notifManager = new NotifManager();
             notifManager.init(getApplicationContext());
             notifManager.reportThirdPushToken(str, HONOR_TOKEN);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "onToken", th, new Object[0]);
+            ALog.e(TAG, "onToken", th, new Object[0]);
         }
     }
 }

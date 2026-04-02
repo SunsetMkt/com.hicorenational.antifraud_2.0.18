@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JsCallback {
     private static final String CALLBACK_JS_FORMAT = "javascript:%s.callback(%d, %d %s);";
     private boolean mCouldGoOn = true;
@@ -32,15 +32,15 @@ public class JsCallback {
         if ((obj instanceof JSONObject) || (obj instanceof JSONArray)) {
             return true;
         }
-        String obj2 = obj.toString();
+        String string = obj.toString();
         try {
             try {
-                new JSONObject(obj2);
+                new JSONObject(string);
             } catch (JSONException unused) {
                 return false;
             }
         } catch (JSONException unused2) {
-            new JSONArray(obj2);
+            new JSONArray(string);
         }
         return true;
     }
@@ -56,18 +56,18 @@ public class JsCallback {
         for (Object obj : objArr) {
             sb.append(Constants.ACCEPT_TIME_SEPARATOR_SP);
             boolean z = obj instanceof String;
-            boolean isJavaScriptObject = isJavaScriptObject(obj);
-            if (z && !isJavaScriptObject) {
+            boolean zIsJavaScriptObject = isJavaScriptObject(obj);
+            if (z && !zIsJavaScriptObject) {
                 sb.append("\"");
             }
             sb.append(String.valueOf(obj));
-            if (z && !isJavaScriptObject) {
+            if (z && !zIsJavaScriptObject) {
                 sb.append("\"");
             }
         }
-        String format = String.format(CALLBACK_JS_FORMAT, this.mInjectedName, Integer.valueOf(this.mIndex), Integer.valueOf(this.mIsPermanent), sb.toString());
+        String str = String.format(CALLBACK_JS_FORMAT, this.mInjectedName, Integer.valueOf(this.mIndex), Integer.valueOf(this.mIsPermanent), sb.toString());
         LogUtils.isDebug();
-        this.mWebViewRef.get().loadUrl(format);
+        this.mWebViewRef.get().loadUrl(str);
         this.mCouldGoOn = this.mIsPermanent > 0;
     }
 

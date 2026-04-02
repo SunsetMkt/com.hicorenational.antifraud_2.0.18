@@ -45,7 +45,8 @@
   },
   "standard": [
     "1017",
-    "1015"
+    "1015",
+    "1020"
   ],
   "localApi": "https://local-dev-k8s.fqzpt.com:9943/c-gw/",
   "h5Url": "https://local-dev-k8s.fqzpt.com:9943/c-gw/",

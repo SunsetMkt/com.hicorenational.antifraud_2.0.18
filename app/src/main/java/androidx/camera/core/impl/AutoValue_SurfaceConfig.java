@@ -2,7 +2,7 @@ package androidx.camera.core.impl;
 
 import androidx.camera.core.impl.SurfaceConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AutoValue_SurfaceConfig extends SurfaceConfig {
     private final SurfaceConfig.ConfigSize configSize;
     private final SurfaceConfig.ConfigType configType;

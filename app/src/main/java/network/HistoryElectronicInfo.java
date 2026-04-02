@@ -2,7 +2,7 @@ package network;
 
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class HistoryElectronicInfo extends BaseBean {
     private List<RowsBean> rows;
     private int total;
@@ -16,9 +16,7 @@ public class HistoryElectronicInfo extends BaseBean {
         private String createTime;
         private String createUser;
         private FileDetailsBean fileDetails;
-
-        /* renamed from: id */
-        private String f21448id;
+        private String id;
         private boolean isDeleted;
         private String reporterIdNumber;
         private String reporterName;
@@ -109,7 +107,7 @@ public class HistoryElectronicInfo extends BaseBean {
         }
 
         public String getId() {
-            return this.f21448id;
+            return this.id;
         }
 
         public String getReporterIdNumber() {
@@ -177,7 +175,7 @@ public class HistoryElectronicInfo extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f21448id = str;
+            this.id = str;
         }
 
         public void setIsDeleted(boolean z) {

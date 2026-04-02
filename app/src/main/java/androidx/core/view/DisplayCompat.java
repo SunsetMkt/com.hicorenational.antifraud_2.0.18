@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.util.Preconditions;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class DisplayCompat {
     private static final int DISPLAY_SIZE_4K_HEIGHT = 2160;
     private static final int DISPLAY_SIZE_4K_WIDTH = 3840;
@@ -22,9 +22,9 @@ public final class DisplayCompat {
     }
 
     private static Point getPhysicalDisplaySize(@NonNull Context context, @NonNull Display display) {
-        Point parsePhysicalDisplaySizeFromSystemProperties = Build.VERSION.SDK_INT < 28 ? parsePhysicalDisplaySizeFromSystemProperties("sys.display-size", display) : parsePhysicalDisplaySizeFromSystemProperties("vendor.display-size", display);
-        if (parsePhysicalDisplaySizeFromSystemProperties != null) {
-            return parsePhysicalDisplaySizeFromSystemProperties;
+        Point physicalDisplaySizeFromSystemProperties = Build.VERSION.SDK_INT < 28 ? parsePhysicalDisplaySizeFromSystemProperties("sys.display-size", display) : parsePhysicalDisplaySizeFromSystemProperties("vendor.display-size", display);
+        if (physicalDisplaySizeFromSystemProperties != null) {
+            return physicalDisplaySizeFromSystemProperties;
         }
         if (isSonyBravia4kTv(context)) {
             return new Point(DISPLAY_SIZE_4K_WIDTH, DISPLAY_SIZE_4K_HEIGHT);
@@ -87,12 +87,12 @@ public final class DisplayCompat {
     }
 
     private static Point parseDisplaySize(@NonNull String str) throws NumberFormatException {
-        String[] split = str.trim().split("x", -1);
-        if (split.length == 2) {
-            int parseInt = Integer.parseInt(split[0]);
-            int parseInt2 = Integer.parseInt(split[1]);
-            if (parseInt > 0 && parseInt2 > 0) {
-                return new Point(parseInt, parseInt2);
+        String[] strArrSplit = str.trim().split("x", -1);
+        if (strArrSplit.length == 2) {
+            int i2 = Integer.parseInt(strArrSplit[0]);
+            int i3 = Integer.parseInt(strArrSplit[1]);
+            if (i2 > 0 && i3 > 0) {
+                return new Point(i2, i3);
             }
         }
         throw new NumberFormatException();

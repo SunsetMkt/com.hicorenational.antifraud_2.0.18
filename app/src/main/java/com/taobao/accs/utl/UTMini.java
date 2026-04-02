@@ -7,8 +7,8 @@ import com.huawei.hms.framework.common.ContainerUtils;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public final class UTMini {
     public static final int EVENTID_AGOO = 19999;
     public static final String PAGE_AGOO = "Page_Push";

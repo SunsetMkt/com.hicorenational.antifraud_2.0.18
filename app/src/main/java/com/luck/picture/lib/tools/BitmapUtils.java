@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class BitmapUtils {
     public static Bitmap compressMatrix(Bitmap bitmap) {
         Matrix matrix = new Matrix();
@@ -49,7 +49,7 @@ public class BitmapUtils {
             height = width;
         }
         int i2 = height / 2;
-        return Bitmap.createBitmap(bitmap, width / 3, 0, i2, (int) (i2 / 1.2d), (Matrix) null, false);
+        return Bitmap.createBitmap(bitmap, width / 3, 0, i2, (int) (((double) i2) / 1.2d), (Matrix) null, false);
     }
 
     private static int exifInterfaceDegree(ExifInterface exifInterface) {
@@ -68,21 +68,21 @@ public class BitmapUtils {
 
     @RequiresApi(api = 21)
     public static Bitmap getCameraMap(Activity activity, Bitmap bitmap, int i2) {
-        Bitmap rotateBitmap;
+        Bitmap bitmapRotateBitmap;
         if (bitmap.getWidth() <= bitmap.getHeight()) {
             return getCameraOrientation(activity, i2) ? mirrorBitmap(bitmap, 1) : mirrorBitmap(bitmap, -1);
         }
         try {
             Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
             Camera.getCameraInfo(i2, cameraInfo);
-            rotateBitmap = rotateBitmap(cameraInfo.orientation, bitmap);
-            if (rotateBitmap == null) {
-                rotateBitmap = bitmap;
+            bitmapRotateBitmap = rotateBitmap(cameraInfo.orientation, bitmap);
+            if (bitmapRotateBitmap == null) {
+                bitmapRotateBitmap = bitmap;
             }
         } catch (Exception unused) {
-            rotateBitmap = rotateBitmap(SubsamplingScaleImageView.ORIENTATION_270, bitmap);
+            bitmapRotateBitmap = rotateBitmap(SubsamplingScaleImageView.ORIENTATION_270, bitmap);
         }
-        return mirrorBitmap(rotateBitmap, -1);
+        return mirrorBitmap(bitmapRotateBitmap, -1);
     }
 
     @RequiresApi(api = 21)
@@ -166,10 +166,10 @@ public class BitmapUtils {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = 2;
                 File file = new File(str);
-                Bitmap rotatingImage = rotatingImage(BitmapFactory.decodeFile(file.getAbsolutePath(), options), i2);
-                if (rotatingImage != null) {
-                    saveBitmapFile(rotatingImage, file);
-                    rotatingImage.recycle();
+                Bitmap bitmapRotatingImage = rotatingImage(BitmapFactory.decodeFile(file.getAbsolutePath(), options), i2);
+                if (bitmapRotatingImage != null) {
+                    saveBitmapFile(bitmapRotatingImage, file);
+                    bitmapRotatingImage.recycle();
                 }
             } catch (Exception e2) {
                 e2.printStackTrace();
@@ -202,11 +202,11 @@ public class BitmapUtils {
         int width = bitmap.getWidth();
         Matrix matrix = new Matrix();
         matrix.postScale(i2 / width, i3 / height);
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
         if (!bitmap.isRecycled()) {
             bitmap.recycle();
         }
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 
     public static Bitmap showProtraitBitmap(Bitmap bitmap) {
@@ -257,11 +257,11 @@ public class BitmapUtils {
         int height = bitmap.getHeight();
         Matrix matrix = new Matrix();
         matrix.preScale(f2, f2);
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
-        if (createBitmap.equals(bitmap)) {
-            return createBitmap;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
+        if (bitmapCreateBitmap.equals(bitmap)) {
+            return bitmapCreateBitmap;
         }
         bitmap.recycle();
-        return createBitmap;
+        return bitmapCreateBitmap;
     }
 }

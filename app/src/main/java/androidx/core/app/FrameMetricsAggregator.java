@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FrameMetricsAggregator {
     public static final int ANIMATION_DURATION = 256;
     public static final int ANIMATION_INDEX = 8;

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SimpleCursorAdapter extends ResourceCursorAdapter {
     private CursorToStringConverter mCursorToStringConverter;
 
@@ -60,22 +60,22 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
         int length = iArr.length;
         int[] iArr2 = this.mFrom;
         for (int i2 = 0; i2 < length; i2++) {
-            View findViewById = view.findViewById(iArr[i2]);
-            if (findViewById != null) {
-                if (viewBinder != null ? viewBinder.setViewValue(findViewById, cursor, iArr2[i2]) : false) {
+            View viewFindViewById = view.findViewById(iArr[i2]);
+            if (viewFindViewById != null) {
+                if (viewBinder != null ? viewBinder.setViewValue(viewFindViewById, cursor, iArr2[i2]) : false) {
                     continue;
                 } else {
                     String string = cursor.getString(iArr2[i2]);
                     if (string == null) {
                         string = "";
                     }
-                    if (findViewById instanceof TextView) {
-                        setViewText((TextView) findViewById, string);
+                    if (viewFindViewById instanceof TextView) {
+                        setViewText((TextView) viewFindViewById, string);
                     } else {
-                        if (!(findViewById instanceof ImageView)) {
-                            throw new IllegalStateException(findViewById.getClass().getName() + " is not a  view that can be bounds by this SimpleCursorAdapter");
+                        if (!(viewFindViewById instanceof ImageView)) {
+                            throw new IllegalStateException(viewFindViewById.getClass().getName() + " is not a  view that can be bounds by this SimpleCursorAdapter");
                         }
-                        setViewImage((ImageView) findViewById, string);
+                        setViewImage((ImageView) viewFindViewById, string);
                     }
                 }
             }

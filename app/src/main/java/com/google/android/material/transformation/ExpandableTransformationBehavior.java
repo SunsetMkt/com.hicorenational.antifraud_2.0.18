@@ -10,7 +10,8 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@Deprecated
 public abstract class ExpandableTransformationBehavior extends ExpandableBehavior {
 
     @Nullable

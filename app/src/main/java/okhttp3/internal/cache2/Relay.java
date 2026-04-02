@@ -9,7 +9,7 @@ import okio.ByteString;
 import okio.Source;
 import okio.Timeout;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class Relay {
     private static final long FILE_HEADER_SIZE = 32;
     static final ByteString PREFIX_CLEAN = ByteString.encodeUtf8("OkHttp cache v1\n");
@@ -57,134 +57,77 @@ final class Relay {
             }
         }
 
-        /* JADX WARN: Code restructure failed: missing block: B:18:0x004d, code lost:
-        
-            if (r5 != 2) goto L26;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:19:0x004f, code lost:
-        
-            r2 = java.lang.Math.min(r23, r7 - r21.sourcePos);
-            r21.fileOperator.read(r21.sourcePos + 32, r22, r2);
-            r21.sourcePos += r2;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:20:0x0068, code lost:
-        
-            return r2;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:24:0x006a, code lost:
-        
-            r5 = r21.this$0.upstream.read(r21.this$0.upstreamBuffer, r21.this$0.bufferMaxSize);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:25:0x007c, code lost:
-        
-            if (r5 != (-1)) goto L38;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:26:0x007e, code lost:
-        
-            r21.this$0.commit(r7);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:27:0x0083, code lost:
-        
-            r2 = r21.this$0;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:28:0x0085, code lost:
-        
-            monitor-enter(r2);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:30:0x0086, code lost:
-        
-            r21.this$0.upstreamReader = null;
-            r21.this$0.notifyAll();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:31:0x008f, code lost:
-        
-            monitor-exit(r2);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:32:0x0090, code lost:
-        
-            return -1;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:37:0x0094, code lost:
-        
-            r2 = java.lang.Math.min(r5, r23);
-            r21.this$0.upstreamBuffer.copyTo(r22, 0, r2);
-            r21.sourcePos += r2;
-            r21.fileOperator.write(r7 + 32, r21.this$0.upstreamBuffer.clone(), r5);
-            r7 = r21.this$0;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:38:0x00bd, code lost:
-        
-            monitor-enter(r7);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:40:0x00be, code lost:
-        
-            r21.this$0.buffer.write(r21.this$0.upstreamBuffer, r5);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:41:0x00d7, code lost:
-        
-            if (r21.this$0.buffer.size() <= r21.this$0.bufferMaxSize) goto L43;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:42:0x00d9, code lost:
-        
-            r21.this$0.buffer.skip(r21.this$0.buffer.size() - r21.this$0.bufferMaxSize);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:43:0x00ed, code lost:
-        
-            r21.this$0.upstreamPos += r5;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:44:0x00f4, code lost:
-        
-            monitor-exit(r7);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:45:0x00f5, code lost:
-        
-            r5 = r21.this$0;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:46:0x00f7, code lost:
-        
-            monitor-enter(r5);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:48:0x00f8, code lost:
-        
-            r21.this$0.upstreamReader = null;
-            r21.this$0.notifyAll();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:49:0x0101, code lost:
-        
-            monitor-exit(r5);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:50:0x0102, code lost:
-        
-            return r2;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:59:0x0109, code lost:
-        
-            r0 = move-exception;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:61:0x010c, code lost:
-        
-            monitor-enter(r21.this$0);
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:63:0x010d, code lost:
-        
-            r21.this$0.upstreamReader = null;
-            r21.this$0.notifyAll();
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:65:0x0117, code lost:
-        
-            throw r0;
-         */
         @Override // okio.Source
-        /*
-            Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
-        */
-        public long read(okio.Buffer r22, long r23) throws java.io.IOException {
-            /*
-                Method dump skipped, instructions count: 322
-                To view this dump change 'Code comments level' option to 'DEBUG'
-            */
-            throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.cache2.Relay.RelaySource.read(okio.Buffer, long):long");
+        public long read(Buffer buffer, long j2) throws IOException {
+            long j3;
+            char c2;
+            if (this.fileOperator == null) {
+                throw new IllegalStateException("closed");
+            }
+            synchronized (Relay.this) {
+                while (true) {
+                    long j4 = this.sourcePos;
+                    j3 = Relay.this.upstreamPos;
+                    if (j4 != j3) {
+                        long size = j3 - Relay.this.buffer.size();
+                        if (this.sourcePos >= size) {
+                            long jMin = Math.min(j2, j3 - this.sourcePos);
+                            Relay.this.buffer.copyTo(buffer, this.sourcePos - size, jMin);
+                            this.sourcePos += jMin;
+                            return jMin;
+                        }
+                        c2 = 2;
+                    } else if (!Relay.this.complete) {
+                        if (Relay.this.upstreamReader == null) {
+                            Relay.this.upstreamReader = Thread.currentThread();
+                            c2 = 1;
+                            break;
+                        }
+                        this.timeout.waitUntilNotified(Relay.this);
+                    } else {
+                        return -1L;
+                    }
+                }
+                if (c2 == 2) {
+                    long jMin2 = Math.min(j2, j3 - this.sourcePos);
+                    this.fileOperator.read(this.sourcePos + 32, buffer, jMin2);
+                    this.sourcePos += jMin2;
+                    return jMin2;
+                }
+                try {
+                    long j5 = Relay.this.upstream.read(Relay.this.upstreamBuffer, Relay.this.bufferMaxSize);
+                    if (j5 == -1) {
+                        Relay.this.commit(j3);
+                        synchronized (Relay.this) {
+                            Relay.this.upstreamReader = null;
+                            Relay.this.notifyAll();
+                        }
+                        return -1L;
+                    }
+                    long jMin3 = Math.min(j5, j2);
+                    Relay.this.upstreamBuffer.copyTo(buffer, 0L, jMin3);
+                    this.sourcePos += jMin3;
+                    this.fileOperator.write(j3 + 32, Relay.this.upstreamBuffer.clone(), j5);
+                    synchronized (Relay.this) {
+                        Relay.this.buffer.write(Relay.this.upstreamBuffer, j5);
+                        if (Relay.this.buffer.size() > Relay.this.bufferMaxSize) {
+                            Relay.this.buffer.skip(Relay.this.buffer.size() - Relay.this.bufferMaxSize);
+                        }
+                        Relay.this.upstreamPos += j5;
+                    }
+                    synchronized (Relay.this) {
+                        Relay.this.upstreamReader = null;
+                        Relay.this.notifyAll();
+                    }
+                    return jMin3;
+                } catch (Throwable th) {
+                    synchronized (Relay.this) {
+                        Relay.this.upstreamReader = null;
+                        Relay.this.notifyAll();
+                        throw th;
+                    }
+                }
+            }
         }
 
         @Override // okio.Source
@@ -218,11 +161,11 @@ final class Relay {
         if (!buffer.readByteString(PREFIX_CLEAN.size()).equals(PREFIX_CLEAN)) {
             throw new IOException("unreadable cache file");
         }
-        long readLong = buffer.readLong();
-        long readLong2 = buffer.readLong();
+        long j2 = buffer.readLong();
+        long j3 = buffer.readLong();
         Buffer buffer2 = new Buffer();
-        fileOperator.read(readLong + 32, buffer2, readLong2);
-        return new Relay(randomAccessFile, null, readLong, buffer2.readByteString(), 0L);
+        fileOperator.read(j2 + 32, buffer2, j3);
+        return new Relay(randomAccessFile, null, j2, buffer2.readByteString(), 0L);
     }
 
     private void writeHeader(ByteString byteString, long j2, long j3) throws IOException {

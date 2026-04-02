@@ -6,28 +6,26 @@ import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.constraintlayout.solver.widgets.analyzer.DependencyNode;
 import androidx.constraintlayout.solver.widgets.analyzer.WidgetRun;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class VerticalWidgetRun extends WidgetRun {
     public DependencyNode baseline;
     DimensionDependency baselineDimension;
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.analyzer.VerticalWidgetRun$1 */
-    static /* synthetic */ class C04631 {
-
-        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType */
-        static final /* synthetic */ int[] f606xbf6f0c8e = new int[WidgetRun.RunType.values().length];
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.VerticalWidgetRun$1 */
+    static /* synthetic */ class AnonymousClass1 {
+        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType = new int[WidgetRun.RunType.values().length];
 
         static {
             try {
-                f606xbf6f0c8e[WidgetRun.RunType.START.ordinal()] = 1;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.START.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f606xbf6f0c8e[WidgetRun.RunType.END.ordinal()] = 2;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.END.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f606xbf6f0c8e[WidgetRun.RunType.CENTER.ordinal()] = 3;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.CENTER.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }
@@ -294,9 +292,9 @@ public class VerticalWidgetRun extends WidgetRun {
     public void update(Dependency dependency) {
         float f2;
         float dimensionRatio;
-        float f3;
+        float dimensionRatio2;
         int i2;
-        int i3 = C04631.f606xbf6f0c8e[this.mRunType.ordinal()];
+        int i3 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[this.mRunType.ordinal()];
         if (i3 == 1) {
             updateRunStart(dependency);
         } else if (i3 == 2) {
@@ -324,8 +322,8 @@ public class VerticalWidgetRun extends WidgetRun {
                     f2 = constraintWidget3.horizontalRun.dimension.value;
                     dimensionRatio = constraintWidget3.getDimensionRatio();
                 } else if (dimensionRatioSide == 0) {
-                    f3 = r7.horizontalRun.dimension.value * this.widget.getDimensionRatio();
-                    i2 = (int) (f3 + 0.5f);
+                    dimensionRatio2 = r7.horizontalRun.dimension.value * this.widget.getDimensionRatio();
+                    i2 = (int) (dimensionRatio2 + 0.5f);
                     this.dimension.resolve(i2);
                 } else if (dimensionRatioSide != 1) {
                     i2 = 0;
@@ -335,8 +333,8 @@ public class VerticalWidgetRun extends WidgetRun {
                     f2 = constraintWidget4.horizontalRun.dimension.value;
                     dimensionRatio = constraintWidget4.getDimensionRatio();
                 }
-                f3 = f2 / dimensionRatio;
-                i2 = (int) (f3 + 0.5f);
+                dimensionRatio2 = f2 / dimensionRatio;
+                i2 = (int) (dimensionRatio2 + 0.5f);
                 this.dimension.resolve(i2);
             }
         }

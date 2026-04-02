@@ -20,21 +20,20 @@ import com.huawei.hms.support.api.entity.core.JosGetNoticeReq;
 import com.huawei.hms.support.api.entity.core.JosGetNoticeResp;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ConnectService {
 
-    /* renamed from: com.huawei.hms.support.api.core.ConnectService$a */
-    class C2514a extends PendingResultImpl<ResolveResult<ConnectResp>, ConnectResp> {
-        C2514a(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
+    class a extends PendingResultImpl<ResolveResult<ConnectResp>, ConnectResp> {
+        a(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
             super(apiClient, str, iMessageEntity);
         }
 
         @Override // com.huawei.hms.support.api.PendingResultImpl
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public ResolveResult<ConnectResp> onComplete(ConnectResp connectResp) {
             ResolveResult<ConnectResp> resolveResult = new ResolveResult<>(connectResp);
             resolveResult.setStatus(Status.SUCCESS);
-            HMSLog.m7712d("connectservice", "connect - onComplete: success");
+            HMSLog.d("connectservice", "connect - onComplete: success");
             return resolveResult;
         }
 
@@ -44,18 +43,17 @@ public final class ConnectService {
         }
     }
 
-    /* renamed from: com.huawei.hms.support.api.core.ConnectService$b */
-    class C2515b extends PendingResultImpl<ResolveResult<ConnectResp>, ConnectResp> {
-        C2515b(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
+    class b extends PendingResultImpl<ResolveResult<ConnectResp>, ConnectResp> {
+        b(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
             super(apiClient, str, iMessageEntity);
         }
 
         @Override // com.huawei.hms.support.api.PendingResultImpl
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public ResolveResult<ConnectResp> onComplete(ConnectResp connectResp) {
             ResolveResult<ConnectResp> resolveResult = new ResolveResult<>(connectResp);
             resolveResult.setStatus(Status.SUCCESS);
-            HMSLog.m7712d("connectservice", "forceConnect - onComplete: success");
+            HMSLog.d("connectservice", "forceConnect - onComplete: success");
             return resolveResult;
         }
 
@@ -65,20 +63,19 @@ public final class ConnectService {
         }
     }
 
-    /* renamed from: com.huawei.hms.support.api.core.ConnectService$c */
-    class C2516c extends PendingResultImpl<ResolveResult<JosGetNoticeResp>, JosGetNoticeResp> {
-        C2516c(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
+    class c extends PendingResultImpl<ResolveResult<JosGetNoticeResp>, JosGetNoticeResp> {
+        c(ApiClient apiClient, String str, IMessageEntity iMessageEntity) {
             super(apiClient, str, iMessageEntity);
         }
 
         @Override // com.huawei.hms.support.api.PendingResultImpl
-        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
         public ResolveResult<JosGetNoticeResp> onComplete(JosGetNoticeResp josGetNoticeResp) {
             if (josGetNoticeResp == null) {
-                HMSLog.m7715e("connectservice", "JosNoticeResp is null");
+                HMSLog.e("connectservice", "JosNoticeResp is null");
                 return null;
             }
-            HMSLog.m7717i("connectservice", "josNoticeResp status code :" + josGetNoticeResp.getStatusCode());
+            HMSLog.i("connectservice", "josNoticeResp status code :" + josGetNoticeResp.getStatusCode());
             ResolveResult<JosGetNoticeResp> resolveResult = new ResolveResult<>(josGetNoticeResp);
             resolveResult.setStatus(Status.SUCCESS);
             return resolveResult;
@@ -93,7 +90,7 @@ public final class ConnectService {
     }
 
     public static PendingResult<ResolveResult<ConnectResp>> connect(ApiClient apiClient, ConnectInfo connectInfo) {
-        return new C2514a(apiClient, CoreNaming.CONNECT, connectInfo);
+        return new a(apiClient, CoreNaming.CONNECT, connectInfo);
     }
 
     public static ResolvePendingResult<DisconnectResp> disconnect(ApiClient apiClient, DisconnectInfo disconnectInfo) {
@@ -101,7 +98,7 @@ public final class ConnectService {
     }
 
     public static PendingResult<ResolveResult<ConnectResp>> forceConnect(ApiClient apiClient, ConnectInfo connectInfo) {
-        return new C2515b(apiClient, CoreNaming.FORECONNECT, connectInfo);
+        return new b(apiClient, CoreNaming.FORECONNECT, connectInfo);
     }
 
     public static PendingResult<ResolveResult<JosGetNoticeResp>> getNotice(ApiClient apiClient, int i2, String str) {
@@ -111,6 +108,6 @@ public final class ConnectService {
         if (apiClient != null && !TextUtils.isEmpty(apiClient.getCpID())) {
             josGetNoticeReq.setCpID(apiClient.getCpID());
         }
-        return new C2516c(apiClient, CoreNaming.GETNOTICE, josGetNoticeReq);
+        return new c(apiClient, CoreNaming.GETNOTICE, josGetNoticeReq);
     }
 }

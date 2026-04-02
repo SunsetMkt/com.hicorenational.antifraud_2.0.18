@@ -1,6 +1,6 @@
 package okhttp3.internal.platform;
 
-import com.umeng.analytics.pro.C3397d;
+import com.umeng.analytics.pro.d;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
@@ -24,7 +24,7 @@ import okhttp3.internal.tls.CertificateChainCleaner;
 import okhttp3.internal.tls.TrustRootIndex;
 import okio.Buffer;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Platform {
     public static final int INFO = 4;
     public static final int WARN = 5;
@@ -57,20 +57,20 @@ public class Platform {
     }
 
     private static Platform findPlatform() {
-        Platform buildIfSupported;
-        Platform buildIfSupported2 = AndroidPlatform.buildIfSupported();
-        if (buildIfSupported2 != null) {
-            return buildIfSupported2;
+        Platform platformBuildIfSupported;
+        Platform platformBuildIfSupported2 = AndroidPlatform.buildIfSupported();
+        if (platformBuildIfSupported2 != null) {
+            return platformBuildIfSupported2;
         }
-        if (isConscryptPreferred() && (buildIfSupported = ConscryptPlatform.buildIfSupported()) != null) {
-            return buildIfSupported;
+        if (isConscryptPreferred() && (platformBuildIfSupported = ConscryptPlatform.buildIfSupported()) != null) {
+            return platformBuildIfSupported;
         }
-        Jdk9Platform buildIfSupported3 = Jdk9Platform.buildIfSupported();
-        if (buildIfSupported3 != null) {
-            return buildIfSupported3;
+        Jdk9Platform jdk9PlatformBuildIfSupported = Jdk9Platform.buildIfSupported();
+        if (jdk9PlatformBuildIfSupported != null) {
+            return jdk9PlatformBuildIfSupported;
         }
-        Platform buildIfSupported4 = JdkWithJettyBootPlatform.buildIfSupported();
-        return buildIfSupported4 != null ? buildIfSupported4 : new Platform();
+        Platform platformBuildIfSupported3 = JdkWithJettyBootPlatform.buildIfSupported();
+        return platformBuildIfSupported3 != null ? platformBuildIfSupported3 : new Platform();
     }
 
     public static Platform get() {
@@ -85,10 +85,10 @@ public class Platform {
     }
 
     static <T> T readFieldOrNull(Object obj, Class<T> cls, String str) {
-        Object readFieldOrNull;
-        for (Class<?> cls2 = obj.getClass(); cls2 != Object.class; cls2 = cls2.getSuperclass()) {
+        Object fieldOrNull;
+        for (Class<?> superclass = obj.getClass(); superclass != Object.class; superclass = superclass.getSuperclass()) {
             try {
-                Field declaredField = cls2.getDeclaredField(str);
+                Field declaredField = superclass.getDeclaredField(str);
                 declaredField.setAccessible(true);
                 Object obj2 = declaredField.get(obj);
                 if (obj2 != null && cls.isInstance(obj2)) {
@@ -100,10 +100,10 @@ public class Platform {
             } catch (NoSuchFieldException unused2) {
             }
         }
-        if (str.equals("delegate") || (readFieldOrNull = readFieldOrNull(obj, Object.class, "delegate")) == null) {
+        if (str.equals("delegate") || (fieldOrNull = readFieldOrNull(obj, Object.class, "delegate")) == null) {
             return null;
         }
-        return (T) readFieldOrNull(readFieldOrNull, cls, str);
+        return (T) readFieldOrNull(fieldOrNull, cls, str);
     }
 
     public void afterHandshake(SSLSocket sSLSocket) {
@@ -174,20 +174,20 @@ public class Platform {
 
     protected X509TrustManager trustManager(SSLSocketFactory sSLSocketFactory) {
         try {
-            Object readFieldOrNull = readFieldOrNull(sSLSocketFactory, Class.forName("sun.security.ssl.SSLContextImpl"), C3397d.f11892R);
-            if (readFieldOrNull == null) {
+            Object fieldOrNull = readFieldOrNull(sSLSocketFactory, Class.forName("sun.security.ssl.SSLContextImpl"), d.R);
+            if (fieldOrNull == null) {
                 return null;
             }
-            return (X509TrustManager) readFieldOrNull(readFieldOrNull, X509TrustManager.class, "trustManager");
+            return (X509TrustManager) readFieldOrNull(fieldOrNull, X509TrustManager.class, "trustManager");
         } catch (ClassNotFoundException unused) {
             return null;
         }
     }
 
     public CertificateChainCleaner buildCertificateChainCleaner(SSLSocketFactory sSLSocketFactory) {
-        X509TrustManager trustManager = trustManager(sSLSocketFactory);
-        if (trustManager != null) {
-            return buildCertificateChainCleaner(trustManager);
+        X509TrustManager x509TrustManagerTrustManager = trustManager(sSLSocketFactory);
+        if (x509TrustManagerTrustManager != null) {
+            return buildCertificateChainCleaner(x509TrustManagerTrustManager);
         }
         throw new IllegalStateException("Unable to extract the trust manager on " + get() + ", sslSocketFactory is " + sSLSocketFactory.getClass());
     }

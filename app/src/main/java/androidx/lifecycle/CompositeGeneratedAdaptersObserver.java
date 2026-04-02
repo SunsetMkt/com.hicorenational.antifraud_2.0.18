@@ -2,7 +2,7 @@ package androidx.lifecycle;
 
 import androidx.lifecycle.Lifecycle;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class CompositeGeneratedAdaptersObserver implements LifecycleEventObserver {
     private final GeneratedAdapter[] mGeneratedAdapters;
 

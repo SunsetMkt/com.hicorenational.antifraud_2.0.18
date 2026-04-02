@@ -1,27 +1,25 @@
 package com.huawei.hms.push.notification;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SubscribedItem {
+    private String a;
 
-    /* renamed from: a */
-    private String f7754a;
-
-    /* renamed from: b */
-    private int f7755b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private int f4885b;
 
     public String getEntityId() {
-        return this.f7754a;
+        return this.a;
     }
 
     public int getResultCode() {
-        return this.f7755b;
+        return this.f4885b;
     }
 
     public void setEntityId(String str) {
-        this.f7754a = str;
+        this.a = str;
     }
 
     public void setResultCode(int i2) {
-        this.f7755b = i2;
+        this.f4885b = i2;
     }
 }

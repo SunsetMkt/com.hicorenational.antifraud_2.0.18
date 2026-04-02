@@ -21,8 +21,8 @@ import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class TypefaceCompatUtil {
     private static final String CACHE_FILE_PREFIX = ".font";
     private static final String TAG = "TypefaceCompatUtil";
@@ -56,8 +56,8 @@ public class TypefaceCompatUtil {
         }
     }
 
-    public static boolean copyToFile(File file, InputStream inputStream) {
-        StrictMode.ThreadPolicy allowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
+    public static boolean copyToFile(File file, InputStream inputStream) throws Throwable {
+        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
         FileOutputStream fileOutputStream = null;
         try {
             try {
@@ -65,26 +65,26 @@ public class TypefaceCompatUtil {
                 try {
                     byte[] bArr = new byte[1024];
                     while (true) {
-                        int read = inputStream.read(bArr);
-                        if (read == -1) {
+                        int i2 = inputStream.read(bArr);
+                        if (i2 == -1) {
                             closeQuietly(fileOutputStream2);
-                            StrictMode.setThreadPolicy(allowThreadDiskWrites);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
                             return true;
                         }
-                        fileOutputStream2.write(bArr, 0, read);
+                        fileOutputStream2.write(bArr, 0, i2);
                     }
                 } catch (IOException e2) {
                     e = e2;
                     fileOutputStream = fileOutputStream2;
                     String str = "Error copying resource contents to temp file: " + e.getMessage();
                     closeQuietly(fileOutputStream);
-                    StrictMode.setThreadPolicy(allowThreadDiskWrites);
+                    StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
                     return false;
                 } catch (Throwable th) {
                     th = th;
                     fileOutputStream = fileOutputStream2;
                     closeQuietly(fileOutputStream);
-                    StrictMode.setThreadPolicy(allowThreadDiskWrites);
+                    StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
                     throw th;
                 }
             } catch (Throwable th2) {
@@ -132,21 +132,21 @@ public class TypefaceCompatUtil {
     @RequiresApi(19)
     public static ByteBuffer mmap(Context context, CancellationSignal cancellationSignal, Uri uri) {
         try {
-            ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r", cancellationSignal);
-            if (openFileDescriptor == null) {
-                if (openFileDescriptor != null) {
-                    openFileDescriptor.close();
+            ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r", cancellationSignal);
+            if (parcelFileDescriptorOpenFileDescriptor == null) {
+                if (parcelFileDescriptorOpenFileDescriptor != null) {
+                    parcelFileDescriptorOpenFileDescriptor.close();
                 }
                 return null;
             }
             try {
-                FileInputStream fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
+                FileInputStream fileInputStream = new FileInputStream(parcelFileDescriptorOpenFileDescriptor.getFileDescriptor());
                 try {
                     FileChannel channel = fileInputStream.getChannel();
                     MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
                     fileInputStream.close();
-                    if (openFileDescriptor != null) {
-                        openFileDescriptor.close();
+                    if (parcelFileDescriptorOpenFileDescriptor != null) {
+                        parcelFileDescriptorOpenFileDescriptor.close();
                     }
                     return map;
                 } finally {
@@ -158,21 +158,21 @@ public class TypefaceCompatUtil {
         }
     }
 
-    public static boolean copyToFile(File file, Resources resources, int i2) {
-        InputStream inputStream;
+    public static boolean copyToFile(File file, Resources resources, int i2) throws Throwable {
+        InputStream inputStreamOpenRawResource;
         try {
-            inputStream = resources.openRawResource(i2);
+            inputStreamOpenRawResource = resources.openRawResource(i2);
         } catch (Throwable th) {
             th = th;
-            inputStream = null;
+            inputStreamOpenRawResource = null;
         }
         try {
-            boolean copyToFile = copyToFile(file, inputStream);
-            closeQuietly(inputStream);
-            return copyToFile;
+            boolean zCopyToFile = copyToFile(file, inputStreamOpenRawResource);
+            closeQuietly(inputStreamOpenRawResource);
+            return zCopyToFile;
         } catch (Throwable th2) {
             th = th2;
-            closeQuietly(inputStream);
+            closeQuietly(inputStreamOpenRawResource);
             throw th;
         }
     }

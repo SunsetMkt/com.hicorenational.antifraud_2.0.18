@@ -6,6 +6,8 @@ import android.view.View;
 import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.constraintlayout.motion.utils.Oscillator;
 import androidx.constraintlayout.widget.ConstraintAttribute;
+import androidx.core.app.NotificationCompat;
+import com.umeng.analytics.pro.cw;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,7 +18,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class KeyCycleOscillator {
     private static final String TAG = "KeyCycleOscillator";
     private CurveFit mCurveFit;
@@ -122,7 +124,7 @@ public abstract class KeyCycleOscillator {
         }
 
         public void setPoint(int i2, int i3, float f2, float f3, float f4) {
-            this.mPosition[i2] = i3 / 100.0d;
+            this.mPosition[i2] = ((double) i3) / 100.0d;
             this.mPeriod[i2] = f2;
             this.mOffset[i2] = f3;
             this.mValues[i2] = f4;
@@ -204,15 +206,15 @@ public abstract class KeyCycleOscillator {
                 i4 = i5 - 1;
                 int i7 = iArr2[i4];
                 if (i6 < i7) {
-                    int partition = partition(iArr, fArr, i6, i7);
+                    int iPartition = partition(iArr, fArr, i6, i7);
                     int i8 = i4 + 1;
-                    iArr2[i4] = partition - 1;
+                    iArr2[i4] = iPartition - 1;
                     int i9 = i8 + 1;
                     iArr2[i8] = i6;
                     int i10 = i9 + 1;
                     iArr2[i9] = i7;
                     i4 = i10 + 1;
-                    iArr2[i10] = partition + 1;
+                    iArr2[i10] = iPartition + 1;
                 }
             }
         }
@@ -256,15 +258,15 @@ public abstract class KeyCycleOscillator {
                 i4 = i5 - 1;
                 int i7 = iArr2[i4];
                 if (i6 < i7) {
-                    int partition = partition(iArr, fArr, fArr2, i6, i7);
+                    int iPartition = partition(iArr, fArr, fArr2, i6, i7);
                     int i8 = i4 + 1;
-                    iArr2[i4] = partition - 1;
+                    iArr2[i4] = iPartition - 1;
                     int i9 = i8 + 1;
                     iArr2[i8] = i6;
                     int i10 = i9 + 1;
                     iArr2[i9] = i7;
                     i4 = i10 + 1;
-                    iArr2[i10] = partition + 1;
+                    iArr2[i10] = iPartition + 1;
                 }
             }
         }
@@ -421,38 +423,112 @@ public abstract class KeyCycleOscillator {
         }
     }
 
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     static KeyCycleOscillator makeSpline(String str) {
         if (str.startsWith("CUSTOM")) {
             return new CustomSet();
         }
-        switch (str) {
-            case "alpha":
+        byte b2 = -1;
+        switch (str.hashCode()) {
+            case -1249320806:
+                if (str.equals("rotationX")) {
+                    b2 = 3;
+                }
+                break;
+            case -1249320805:
+                if (str.equals("rotationY")) {
+                    b2 = 4;
+                }
+                break;
+            case -1225497657:
+                if (str.equals("translationX")) {
+                    b2 = 10;
+                }
+                break;
+            case -1225497656:
+                if (str.equals("translationY")) {
+                    b2 = 11;
+                }
+                break;
+            case -1225497655:
+                if (str.equals("translationZ")) {
+                    b2 = 12;
+                }
+                break;
+            case -1001078227:
+                if (str.equals(NotificationCompat.CATEGORY_PROGRESS)) {
+                    b2 = cw.f7203k;
+                }
+                break;
+            case -908189618:
+                if (str.equals("scaleX")) {
+                    b2 = 6;
+                }
+                break;
+            case -908189617:
+                if (str.equals("scaleY")) {
+                    b2 = 7;
+                }
+                break;
+            case -797520672:
+                if (str.equals("waveVariesBy")) {
+                    b2 = 9;
+                }
+                break;
+            case -40300674:
+                if (str.equals("rotation")) {
+                    b2 = 2;
+                }
+                break;
+            case -4379043:
+                if (str.equals("elevation")) {
+                    b2 = 1;
+                }
+                break;
+            case 37232917:
+                if (str.equals("transitionPathRotate")) {
+                    b2 = 5;
+                }
+                break;
+            case 92909918:
+                if (str.equals("alpha")) {
+                    b2 = 0;
+                }
+                break;
+            case 156108012:
+                if (str.equals("waveOffset")) {
+                    b2 = 8;
+                }
+                break;
+        }
+        switch (b2) {
+            case 0:
                 return new AlphaSet();
-            case "elevation":
+            case 1:
                 return new ElevationSet();
-            case "rotation":
+            case 2:
                 return new RotationSet();
-            case "rotationX":
+            case 3:
                 return new RotationXset();
-            case "rotationY":
+            case 4:
                 return new RotationYset();
-            case "transitionPathRotate":
+            case 5:
                 return new PathRotateSet();
-            case "scaleX":
+            case 6:
                 return new ScaleXset();
-            case "scaleY":
+            case 7:
                 return new ScaleYset();
-            case "waveOffset":
+            case 8:
                 return new AlphaSet();
-            case "waveVariesBy":
+            case 9:
                 return new AlphaSet();
-            case "translationX":
+            case 10:
                 return new TranslationXset();
-            case "translationY":
+            case 11:
                 return new TranslationYset();
-            case "translationZ":
+            case 12:
                 return new TranslationZset();
-            case "progress":
+            case 13:
                 return new ProgressSet();
             default:
                 return null;
@@ -501,19 +577,17 @@ public abstract class KeyCycleOscillator {
         double[] dArr = new double[size];
         double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, 2);
         this.mCycleOscillator = new CycleOscillator(this.mWaveShape, this.mVariesBy, size);
-        Iterator<WavePoint> it = this.mWavePoints.iterator();
         int i2 = 0;
-        while (it.hasNext()) {
-            WavePoint next = it.next();
-            float f3 = next.mPeriod;
-            dArr[i2] = f3 * 0.01d;
+        for (WavePoint wavePoint : this.mWavePoints) {
+            float f3 = wavePoint.mPeriod;
+            dArr[i2] = ((double) f3) * 0.01d;
             double[] dArr3 = dArr2[i2];
-            float f4 = next.mValue;
+            float f4 = wavePoint.mValue;
             dArr3[0] = f4;
             double[] dArr4 = dArr2[i2];
-            float f5 = next.mOffset;
+            float f5 = wavePoint.mOffset;
             dArr4[1] = f5;
-            this.mCycleOscillator.setPoint(i2, next.mPosition, f3, f5, f4);
+            this.mCycleOscillator.setPoint(i2, wavePoint.mPosition, f3, f5, f4);
             i2++;
         }
         this.mCycleOscillator.setup(f2);

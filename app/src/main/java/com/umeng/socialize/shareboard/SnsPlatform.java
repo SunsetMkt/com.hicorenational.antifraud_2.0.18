@@ -2,7 +2,7 @@ package com.umeng.socialize.shareboard;
 
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class SnsPlatform {
     public String mGrayIcon;
     public String mIcon;

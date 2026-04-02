@@ -6,11 +6,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import com.xiaomi.mipush.sdk.Constants;
+import d.c.a.b.a.a;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Debug {
     public static void dumpLayoutParams(ViewGroup viewGroup, String str) {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
@@ -25,7 +25,7 @@ public class Debug {
                 try {
                     Object obj = field.get(layoutParams);
                     if (field.getName().contains("To") && !obj.toString().equals("-1")) {
-                        System.out.println(str2 + "       " + field.getName() + AbstractC1191a.f2568g + obj);
+                        System.out.println(str2 + "       " + field.getName() + a.f10074g + obj);
                     }
                 } catch (IllegalAccessException unused) {
                 }
@@ -42,7 +42,7 @@ public class Debug {
             try {
                 Object obj2 = field.get(obj);
                 if (field.getName().startsWith("layout_constraint") && ((!(obj2 instanceof Integer) || !obj2.toString().equals("-1")) && ((!(obj2 instanceof Integer) || !obj2.toString().equals("0")) && ((!(obj2 instanceof Float) || !obj2.toString().equals("1.0")) && (!(obj2 instanceof Float) || !obj2.toString().equals("0.5")))))) {
-                    System.out.println(str + "    " + field.getName() + AbstractC1191a.f2568g + obj2);
+                    System.out.println(str + "    " + field.getName() + a.f10074g + obj2);
                 }
             } catch (IllegalAccessException unused) {
             }
@@ -97,24 +97,24 @@ public class Debug {
 
     public static void logStack(String str, String str2, int i2) {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-        int min = Math.min(i2, stackTrace.length - 1);
-        String str3 = AbstractC1191a.f2568g;
-        for (int i3 = 1; i3 <= min; i3++) {
+        int iMin = Math.min(i2, stackTrace.length - 1);
+        String str3 = a.f10074g;
+        for (int i3 = 1; i3 <= iMin; i3++) {
             StackTraceElement stackTraceElement = stackTrace[i3];
             String str4 = ".(" + stackTrace[i3].getFileName() + Constants.COLON_SEPARATOR + stackTrace[i3].getLineNumber() + ") " + stackTrace[i3].getMethodName();
-            str3 = str3 + AbstractC1191a.f2568g;
+            str3 = str3 + a.f10074g;
             String str5 = str2 + str3 + str4 + str3;
         }
     }
 
     public static void printStack(String str, int i2) {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-        int min = Math.min(i2, stackTrace.length - 1);
-        String str2 = AbstractC1191a.f2568g;
-        for (int i3 = 1; i3 <= min; i3++) {
+        int iMin = Math.min(i2, stackTrace.length - 1);
+        String str2 = a.f10074g;
+        for (int i3 = 1; i3 <= iMin; i3++) {
             StackTraceElement stackTraceElement = stackTrace[i3];
             String str3 = ".(" + stackTrace[i3].getFileName() + Constants.COLON_SEPARATOR + stackTrace[i3].getLineNumber() + ") ";
-            str2 = str2 + AbstractC1191a.f2568g;
+            str2 = str2 + a.f10074g;
             System.out.println(str + str2 + str3 + str2);
         }
     }
@@ -131,24 +131,24 @@ public class Debug {
     }
 
     public static String getName(Context context, int[] iArr) {
-        String str;
+        String resourceEntryName;
         try {
-            String str2 = iArr.length + "[";
+            String str = iArr.length + "[";
             int i2 = 0;
             while (i2 < iArr.length) {
                 StringBuilder sb = new StringBuilder();
-                sb.append(str2);
-                sb.append(i2 == 0 ? "" : AbstractC1191a.f2568g);
-                String sb2 = sb.toString();
+                sb.append(str);
+                sb.append(i2 == 0 ? "" : a.f10074g);
+                String string = sb.toString();
                 try {
-                    str = context.getResources().getResourceEntryName(iArr[i2]);
+                    resourceEntryName = context.getResources().getResourceEntryName(iArr[i2]);
                 } catch (Resources.NotFoundException unused) {
-                    str = "? " + iArr[i2] + AbstractC1191a.f2568g;
+                    resourceEntryName = "? " + iArr[i2] + a.f10074g;
                 }
-                str2 = sb2 + str;
+                str = string + resourceEntryName;
                 i2++;
             }
-            return str2 + "]";
+            return str + "]";
         } catch (Exception e2) {
             e2.toString();
             return "UNKNOWN";
@@ -164,7 +164,7 @@ public class Debug {
                 Object obj = field.get(layoutParams);
                 String name = field.getName();
                 if (name.contains("To") && !obj.toString().equals("-1")) {
-                    System.out.println(str2 + "       " + name + AbstractC1191a.f2568g + obj);
+                    System.out.println(str2 + "       " + name + a.f10074g + obj);
                 }
             } catch (IllegalAccessException unused) {
             }

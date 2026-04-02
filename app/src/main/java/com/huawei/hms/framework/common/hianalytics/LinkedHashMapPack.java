@@ -2,7 +2,7 @@ package com.huawei.hms.framework.common.hianalytics;
 
 import java.util.LinkedHashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LinkedHashMapPack {
     private LinkedHashMap<String, String> map = new LinkedHashMap<>();
 

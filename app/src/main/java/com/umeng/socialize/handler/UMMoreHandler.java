@@ -13,7 +13,7 @@ import com.umeng.socialize.utils.SocializeUtils;
 import com.umeng.socialize.utils.UmengText;
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMMoreHandler extends UMSSOHandler {
     @Override // com.umeng.socialize.handler.UMSSOHandler
     public String getVersion() {
@@ -26,23 +26,23 @@ public class UMMoreHandler extends UMSSOHandler {
         intent.setAction("android.intent.action.SEND");
         if (shareContent.mMedia instanceof UMImage) {
             intent.setType("image/*");
-            File asFileImage = ((UMImage) shareContent.mMedia).asFileImage();
-            if (asFileImage != null) {
-                intent.putExtra("android.intent.extra.STREAM", SocializeUtils.insertImage(getContext(), asFileImage.getPath()));
+            File fileAsFileImage = ((UMImage) shareContent.mMedia).asFileImage();
+            if (fileAsFileImage != null) {
+                intent.putExtra("android.intent.extra.STREAM", SocializeUtils.insertImage(getContext(), fileAsFileImage.getPath()));
             }
         } else {
             intent.setType("text/plain");
         }
         intent.putExtra("android.intent.extra.SUBJECT", shareContent.subject);
         intent.putExtra("android.intent.extra.TEXT", shareContent.mText);
-        Intent createChooser = Intent.createChooser(intent, Config.MORE_TITLE);
-        createChooser.addFlags(CommonNetImpl.FLAG_AUTH);
+        Intent intentCreateChooser = Intent.createChooser(intent, Config.MORE_TITLE);
+        intentCreateChooser.addFlags(CommonNetImpl.FLAG_AUTH);
         try {
             Activity currentActivity = getCurrentActivity();
             if (currentActivity == null || currentActivity.isFinishing()) {
                 uMShareListener.onError(SHARE_MEDIA.MORE, new Exception("activity null!"));
             } else {
-                currentActivity.startActivity(createChooser);
+                currentActivity.startActivity(intentCreateChooser);
                 uMShareListener.onResult(SHARE_MEDIA.MORE);
             }
             return true;

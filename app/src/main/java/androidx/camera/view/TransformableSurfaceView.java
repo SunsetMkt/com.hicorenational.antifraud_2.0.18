@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class TransformableSurfaceView extends SurfaceView {
     private RectF mOverriddenLayoutRect;
 

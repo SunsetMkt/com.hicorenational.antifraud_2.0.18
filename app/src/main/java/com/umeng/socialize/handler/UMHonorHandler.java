@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Pair;
-import com.hihonor.cloudservice.support.account.request.C2131a;
 import com.hihonor.cloudservice.support.account.request.SignInOptions;
 import com.hihonor.cloudservice.support.account.result.SignInAccountInfo;
 import com.hihonor.cloudservice.support.api.entity.auth.Scope;
@@ -27,6 +26,10 @@ import com.umeng.socialize.utils.ContextUtil;
 import com.umeng.socialize.utils.SLog;
 import com.umeng.socialize.utils.SocializeUtils;
 import com.umeng.socialize.utils.UMAuthUtils;
+import d.c.a.c.a.a;
+import d.c.a.d.g;
+import d.c.a.d.h;
+import d.c.a.d.j;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,13 +39,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
-import p031c.p075c.p076a.p077a.C1182a;
-import p031c.p075c.p076a.p084c.p085a.C1198a;
-import p031c.p075c.p076a.p090d.AbstractC1213j;
-import p031c.p075c.p076a.p090d.InterfaceC1210g;
-import p031c.p075c.p076a.p090d.InterfaceC1211h;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMHonorHandler extends UMSSOHandler {
     private static final String TAG = "UMHonorHandler";
     private PlatformConfig.APPIDPlatform config;
@@ -54,24 +52,24 @@ public class UMHonorHandler extends UMSSOHandler {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void getTokenByCode(SignInAccountInfo signInAccountInfo) {
-        HashMap hashMap = new HashMap();
-        hashMap.put("grant_type", "authorization_code");
-        hashMap.put("code", signInAccountInfo.m6045b());
+        HashMap map = new HashMap();
+        map.put("grant_type", "authorization_code");
+        map.put("code", signInAccountInfo.b());
         String str = this.config.redirectUrl;
         if (TextUtils.isEmpty(str)) {
             str = "honorid://redirect_url";
         }
-        hashMap.put("redirect_uri", str);
-        hashMap.put(Constants.PARAM_CLIENT_ID, this.config.getAppid());
-        hashMap.put("client_secret", this.config.getAppSecret());
-        final Pair<Integer, String> request = request("https://hnoauth-login.cloud.hihonor.com/oauth2/v3/token", hashMap);
-        if (((Integer) request.first).intValue() != 200) {
-            String str2 = "failed:" + ((String) request.second);
+        map.put("redirect_uri", str);
+        map.put(Constants.PARAM_CLIENT_ID, this.config.getAppid());
+        map.put("client_secret", this.config.getAppSecret());
+        final Pair<Integer, String> pairRequest = request("https://hnoauth-login.cloud.hihonor.com/oauth2/v3/token", map);
+        if (((Integer) pairRequest.first).intValue() != 200) {
+            String str2 = "failed:" + ((String) pairRequest.second);
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.11
                 @Override // java.lang.Runnable
                 public void run() {
                     try {
-                        UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onError(UMHonorHandler.this.mTarget, 0, new Exception((String) request.second));
+                        UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onError(UMHonorHandler.this.mTarget, 0, new Exception((String) pairRequest.second));
                     } catch (Throwable th) {
                         th.printStackTrace();
                     }
@@ -80,7 +78,7 @@ public class UMHonorHandler extends UMSSOHandler {
             return;
         }
         try {
-            JSONObject jSONObject = new JSONObject((String) request.second);
+            JSONObject jSONObject = new JSONObject((String) pairRequest.second);
             if (jSONObject.has("access_token")) {
                 getUserInfoByToken(jSONObject.getString("access_token"));
             }
@@ -100,16 +98,16 @@ public class UMHonorHandler extends UMSSOHandler {
     }
 
     private void getUserInfoByToken(String str) {
-        HashMap hashMap = new HashMap();
-        hashMap.put("access_token", str);
-        hashMap.put("getNickName", "1");
-        final Pair<Integer, String> request = request("https://account-drcn.platform.hihonorcloud.com/rest.php?nsp_svc=GOpen.User.getInfo", hashMap);
-        if (((Integer) request.first).intValue() != 200) {
+        HashMap map = new HashMap();
+        map.put("access_token", str);
+        map.put("getNickName", "1");
+        final Pair<Integer, String> pairRequest = request("https://account-drcn.platform.hihonorcloud.com/rest.php?nsp_svc=GOpen.User.getInfo", map);
+        if (((Integer) pairRequest.first).intValue() != 200) {
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.14
                 @Override // java.lang.Runnable
                 public void run() {
                     try {
-                        UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onError(UMHonorHandler.this.mTarget, 0, new Exception((String) request.second));
+                        UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onError(UMHonorHandler.this.mTarget, 0, new Exception((String) pairRequest.second));
                     } catch (Throwable th) {
                         th.printStackTrace();
                     }
@@ -118,22 +116,22 @@ public class UMHonorHandler extends UMSSOHandler {
             return;
         }
         try {
-            final Map<String, String> jsonToMap = SocializeUtils.jsonToMap(new JSONObject((String) request.second).toString());
+            final Map<String, String> mapJsonToMap = SocializeUtils.jsonToMap(new JSONObject((String) pairRequest.second).toString());
             if (this.mSP != null) {
                 this.mSP.setAuthed();
             }
-            jsonToMap.put("uid", jsonToMap.get("openID"));
-            jsonToMap.put(CommonNetImpl.NAME, jsonToMap.get("displayName"));
-            jsonToMap.put("iconurl", jsonToMap.get(UserInfo.HEADPICTUREURL));
-            String remove = jsonToMap.remove("mobileNumber");
-            if (!TextUtils.isEmpty(remove)) {
-                jsonToMap.put("mobileNumber", UMAuthUtils.encrypt(remove, this.config.getAppSecret()));
+            mapJsonToMap.put("uid", mapJsonToMap.get("openID"));
+            mapJsonToMap.put(CommonNetImpl.NAME, mapJsonToMap.get("displayName"));
+            mapJsonToMap.put("iconurl", mapJsonToMap.get(UserInfo.HEADPICTUREURL));
+            String strRemove = mapJsonToMap.remove("mobileNumber");
+            if (!TextUtils.isEmpty(strRemove)) {
+                mapJsonToMap.put("mobileNumber", UMAuthUtils.encrypt(strRemove, this.config.getAppSecret()));
             }
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.12
                 @Override // java.lang.Runnable
                 public void run() {
                     try {
-                        UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onComplete(UMHonorHandler.this.mTarget, 0, jsonToMap);
+                        UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onComplete(UMHonorHandler.this.mTarget, 0, mapJsonToMap);
                     } catch (Throwable th) {
                         th.printStackTrace();
                     }
@@ -170,7 +168,7 @@ public class UMHonorHandler extends UMSSOHandler {
             });
             return;
         }
-        SLog.debug("UMHonorHandler authorizationCode: " + signInAccountInfo.m6045b());
+        SLog.debug("UMHonorHandler authorizationCode: " + signInAccountInfo.b());
         QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.9
             @Override // java.lang.Runnable
             public void run() {
@@ -196,7 +194,7 @@ public class UMHonorHandler extends UMSSOHandler {
     public static Pair<Integer, String> request(String str, Map<String, String> map) {
         String message;
         String encodedQuery;
-        int i2 = -1;
+        int responseCode = -1;
         try {
             Uri.Builder builder = new Uri.Builder();
             for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -214,26 +212,26 @@ public class UMHonorHandler extends UMSSOHandler {
         httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setInstanceFollowRedirects(false);
-        httpURLConnection.setConnectTimeout(BuglyStrategy.C3070a.MAX_USERDATA_VALUE_LENGTH);
-        httpURLConnection.setReadTimeout(BuglyStrategy.C3070a.MAX_USERDATA_VALUE_LENGTH);
+        httpURLConnection.setConnectTimeout(BuglyStrategy.a.MAX_USERDATA_VALUE_LENGTH);
+        httpURLConnection.setReadTimeout(BuglyStrategy.a.MAX_USERDATA_VALUE_LENGTH);
         httpURLConnection.setDoOutput(true);
         httpURLConnection.getOutputStream().write(encodedQuery.getBytes());
-        i2 = httpURLConnection.getResponseCode();
-        InputStream inputStream = i2 < 400 ? httpURLConnection.getInputStream() : httpURLConnection.getErrorStream();
+        responseCode = httpURLConnection.getResponseCode();
+        InputStream inputStream = responseCode < 400 ? httpURLConnection.getInputStream() : httpURLConnection.getErrorStream();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder sb = new StringBuilder();
         while (true) {
-            String readLine = bufferedReader.readLine();
-            if (readLine == null) {
+            String line = bufferedReader.readLine();
+            if (line == null) {
                 break;
             }
-            sb.append(readLine);
+            sb.append(line);
         }
         message = sb.toString();
-        SLog.m12717I("response:" + message);
+        SLog.I("response:" + message);
         bufferedReader.close();
         inputStream.close();
-        return Pair.create(Integer.valueOf(i2), message);
+        return Pair.create(Integer.valueOf(responseCode), message);
     }
 
     private void silentSignIn() {
@@ -243,25 +241,25 @@ public class UMHonorHandler extends UMSSOHandler {
             ArrayList arrayList = new ArrayList();
             arrayList.add(new Scope("profile"));
             arrayList.add(new Scope("https://www.hihonor.com/auth/account/mobile.number"));
-            C1198a.m2292b(currentActivity, new C2131a(SignInOptions.f6374q).m5984a(arrayList).m5987b(appid).m5981a()).mo2309a().mo2328a(new InterfaceC1211h<SignInAccountInfo>() { // from class: com.umeng.socialize.handler.UMHonorHandler.4
-                @Override // p031c.p075c.p076a.p090d.InterfaceC1211h
+            a.b(currentActivity, new com.hihonor.cloudservice.support.account.request.a(SignInOptions.q).a(arrayList).b(appid).a()).a().a(new h<SignInAccountInfo>() { // from class: com.umeng.socialize.handler.UMHonorHandler.4
+                @Override // d.c.a.d.h
                 public void onSuccess(SignInAccountInfo signInAccountInfo) {
                     UMHonorHandler.this.onSignIn(signInAccountInfo);
                 }
-            }).mo2327a(new InterfaceC1210g() { // from class: com.umeng.socialize.handler.UMHonorHandler.3
-                @Override // p031c.p075c.p076a.p090d.InterfaceC1210g
+            }).a(new g() { // from class: com.umeng.socialize.handler.UMHonorHandler.3
+                @Override // d.c.a.d.g
                 public void onFailure(Exception exc) {
-                    C1182a c1182a = (C1182a) exc;
+                    d.c.a.a.a aVar = (d.c.a.a.a) exc;
                     try {
-                        if (c1182a.getStatusCode() == 55 || c1182a.getStatusCode() == 31) {
+                        if (aVar.getStatusCode() == 55 || aVar.getStatusCode() == 31) {
                             UMHonorHandler.this.jumpAuthorization(currentActivity, appid);
                             return;
                         }
                     } catch (Throwable th) {
                         th.printStackTrace();
                     }
-                    final String message = c1182a.getMessage();
-                    SLog.m12716E("UMHonorHandler error: " + message);
+                    final String message = aVar.getMessage();
+                    SLog.E("UMHonorHandler error: " + message);
                     QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.3.1
                         @Override // java.lang.Runnable
                         public void run() {
@@ -276,7 +274,7 @@ public class UMHonorHandler extends UMSSOHandler {
             });
             return;
         }
-        SLog.m12716E("UMHonorHandler appId:" + appid + " activity:" + currentActivity);
+        SLog.E("UMHonorHandler appId:" + appid + " activity:" + currentActivity);
         QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.2
             @Override // java.lang.Runnable
             public void run() {
@@ -346,7 +344,7 @@ public class UMHonorHandler extends UMSSOHandler {
             }
         }
         if (TextUtils.isEmpty(appid)) {
-            SLog.m12717I("UMHonorHandler appId null");
+            SLog.I("UMHonorHandler appId null");
             runnable2 = new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.17
                 @Override // java.lang.Runnable
                 public void run() {
@@ -363,15 +361,15 @@ public class UMHonorHandler extends UMSSOHandler {
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(new Scope("profile"));
                 arrayList.add(new Scope("https://www.hihonor.com/auth/account/mobile.number"));
-                C1198a.m2292b(currentActivity, new C2131a().m5987b(appid).m5984a(arrayList).m5981a()).mo2312d().mo2328a(new InterfaceC1211h<Void>() { // from class: com.umeng.socialize.handler.UMHonorHandler.16
-                    @Override // p031c.p075c.p076a.p090d.InterfaceC1211h
+                a.b(currentActivity, new com.hihonor.cloudservice.support.account.request.a().b(appid).a(arrayList).a()).d().a(new h<Void>() { // from class: com.umeng.socialize.handler.UMHonorHandler.16
+                    @Override // d.c.a.d.h
                     public void onSuccess(Void r1) {
-                        SLog.m12717I("UMHonorHandler cancelAuthorization Success");
+                        SLog.I("UMHonorHandler cancelAuthorization Success");
                     }
-                }).mo2327a(new InterfaceC1210g() { // from class: com.umeng.socialize.handler.UMHonorHandler.15
-                    @Override // p031c.p075c.p076a.p090d.InterfaceC1210g
+                }).a(new g() { // from class: com.umeng.socialize.handler.UMHonorHandler.15
+                    @Override // d.c.a.d.g
                     public void onFailure(Exception exc) {
-                        SLog.m12716E("UMHonorHandlercancelAuthorization fail: " + exc.toString());
+                        SLog.E("UMHonorHandlercancelAuthorization fail: " + exc.toString());
                     }
                 });
                 runnable = new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.17
@@ -387,7 +385,7 @@ public class UMHonorHandler extends UMSSOHandler {
                 QueuedWork.runInMain(runnable);
                 return;
             }
-            SLog.m12717I("UMHonorHandler activity null");
+            SLog.I("UMHonorHandler activity null");
             runnable2 = new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.17
                 @Override // java.lang.Runnable
                 public void run() {
@@ -442,8 +440,8 @@ public class UMHonorHandler extends UMSSOHandler {
     public boolean isInstall() {
         try {
             Context context = ContextUtil.getContext();
-            if (C1198a.m2289a()) {
-                return !C1198a.m2293b(context);
+            if (a.a()) {
+                return !a.b(context);
             }
             return false;
         } catch (Throwable th) {
@@ -466,11 +464,11 @@ public class UMHonorHandler extends UMSSOHandler {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new Scope("profile"));
         arrayList.add(new Scope("https://www.hihonor.com/auth/account/mobile.number"));
-        Intent mo2311c = C1198a.m2292b(activity, new C2131a(SignInOptions.f6374q).m5987b(str).m5984a(arrayList).m5981a()).mo2311c();
-        if (mo2311c != null) {
-            activity.startActivityFromChild(activity, mo2311c, getRequestCode());
+        Intent intentC = a.b(activity, new com.hihonor.cloudservice.support.account.request.a(SignInOptions.q).b(str).a(arrayList).a()).c();
+        if (intentC != null) {
+            activity.startActivityFromChild(activity, intentC, getRequestCode());
         } else {
-            SLog.m12716E("UMHonorHandler Honor version too low");
+            SLog.E("UMHonorHandler Honor version too low");
             QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.5
                 @Override // java.lang.Runnable
                 public void run() {
@@ -489,21 +487,21 @@ public class UMHonorHandler extends UMSSOHandler {
         super.onActivityResult(i2, i3, intent);
         if (getRequestCode() == i2) {
             try {
-                AbstractC1213j<SignInAccountInfo> m2285a = C1198a.m2285a(i3, intent);
-                if (m2285a.mo2343e()) {
-                    onSignIn(m2285a.mo2340b());
+                j<SignInAccountInfo> jVarA = a.a(i3, intent);
+                if (jVarA.e()) {
+                    onSignIn(jVarA.b());
                     return;
                 }
-                final Exception mo2336a = m2285a.mo2336a();
-                if (mo2336a instanceof C1182a) {
-                    C1182a c1182a = (C1182a) mo2336a;
-                    SLog.m12716E("UMHonorHandler errCode : " + c1182a.getStatusCode() + " , errMsg = " + c1182a.getMessage());
+                final Exception excA = jVarA.a();
+                if (excA instanceof d.c.a.a.a) {
+                    d.c.a.a.a aVar = (d.c.a.a.a) excA;
+                    SLog.E("UMHonorHandler errCode : " + aVar.getStatusCode() + " , errMsg = " + aVar.getMessage());
                 }
                 QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMHonorHandler.6
                     @Override // java.lang.Runnable
                     public void run() {
                         try {
-                            UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onError(UMHonorHandler.this.mTarget, 0, mo2336a);
+                            UMHonorHandler.this.getAuthListener(UMHonorHandler.this.mAuthListener).onError(UMHonorHandler.this.mTarget, 0, excA);
                         } catch (Throwable th) {
                             th.printStackTrace();
                         }

@@ -2,7 +2,7 @@ package androidx.constraintlayout.solver.state;
 
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Dimension {
     private final int WRAP_CONTENT;
     Object mInitialValue;

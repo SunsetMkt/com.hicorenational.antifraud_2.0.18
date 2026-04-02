@@ -2,6 +2,6 @@ package com.huawei.hms.support.api.entity.core;
 
 import com.huawei.hms.core.aidl.IMessageEntity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CheckConnectResp implements IMessageEntity {
 }

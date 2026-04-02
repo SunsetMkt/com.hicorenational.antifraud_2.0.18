@@ -8,7 +8,7 @@ import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.sina.weibo.sdk.share.WbShareCallback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IWBAPI {
     void authorize(Activity activity, WbAuthListener wbAuthListener);
 

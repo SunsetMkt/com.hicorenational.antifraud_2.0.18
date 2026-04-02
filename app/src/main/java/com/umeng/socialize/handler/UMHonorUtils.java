@@ -5,7 +5,7 @@ import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.utils.UMAuthUtils;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMHonorUtils {
     public static String decryptMobileNumber(String str) throws Exception {
         if (TextUtils.isEmpty(str)) {

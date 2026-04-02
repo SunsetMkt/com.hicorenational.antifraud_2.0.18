@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class NetTimeGaurd {
     public static final int CREATE = 0;
     public static final int ERROR = 2;
@@ -19,14 +19,14 @@ public class NetTimeGaurd {
 
     static void end(String str, int i2, long j2) {
         if (SpdyAgent.enableTimeGaurd) {
-            long currentTimeMillis = System.currentTimeMillis() - j2;
+            long jCurrentTimeMillis = System.currentTimeMillis() - j2;
             long[] jArr = totaltime;
-            jArr[i2] = jArr[i2] + currentTimeMillis;
-            String str2 = "NetTimeGaurd[end]" + str + " time=" + currentTimeMillis + " total=" + totaltime[i2];
-            if (currentTimeMillis <= calltime) {
+            jArr[i2] = jArr[i2] + jCurrentTimeMillis;
+            String str2 = "NetTimeGaurd[end]" + str + " time=" + jCurrentTimeMillis + " total=" + totaltime[i2];
+            if (jCurrentTimeMillis <= calltime) {
                 return;
             }
-            throw new SpdyErrorException("CallBack:" + str + " timeconsuming:" + currentTimeMillis + "  mustlessthan:" + calltime, -1);
+            throw new SpdyErrorException("CallBack:" + str + " timeconsuming:" + jCurrentTimeMillis + "  mustlessthan:" + calltime, -1);
         }
     }
 

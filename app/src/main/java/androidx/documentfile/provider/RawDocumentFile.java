@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class RawDocumentFile extends DocumentFile {
     private File mFile;
 
@@ -18,29 +18,29 @@ class RawDocumentFile extends DocumentFile {
     }
 
     private static boolean deleteContents(File file) {
-        File[] listFiles = file.listFiles();
-        if (listFiles == null) {
+        File[] fileArrListFiles = file.listFiles();
+        if (fileArrListFiles == null) {
             return true;
         }
-        boolean z = true;
-        for (File file2 : listFiles) {
+        boolean zDeleteContents = true;
+        for (File file2 : fileArrListFiles) {
             if (file2.isDirectory()) {
-                z &= deleteContents(file2);
+                zDeleteContents &= deleteContents(file2);
             }
             if (!file2.delete()) {
                 String str = "Failed to delete " + file2;
-                z = false;
+                zDeleteContents = false;
             }
         }
-        return z;
+        return zDeleteContents;
     }
 
     private static String getTypeForName(String str) {
-        int lastIndexOf = str.lastIndexOf(46);
-        if (lastIndexOf < 0) {
+        int iLastIndexOf = str.lastIndexOf(46);
+        if (iLastIndexOf < 0) {
             return OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE;
         }
-        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(str.substring(lastIndexOf + 1).toLowerCase());
+        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(str.substring(iLastIndexOf + 1).toLowerCase());
         return mimeTypeFromExtension != null ? mimeTypeFromExtension : OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE;
     }
 
@@ -139,9 +139,9 @@ class RawDocumentFile extends DocumentFile {
     @Override // androidx.documentfile.provider.DocumentFile
     public DocumentFile[] listFiles() {
         ArrayList arrayList = new ArrayList();
-        File[] listFiles = this.mFile.listFiles();
-        if (listFiles != null) {
-            for (File file : listFiles) {
+        File[] fileArrListFiles = this.mFile.listFiles();
+        if (fileArrListFiles != null) {
+            for (File file : fileArrListFiles) {
                 arrayList.add(new RawDocumentFile(this, file));
             }
         }

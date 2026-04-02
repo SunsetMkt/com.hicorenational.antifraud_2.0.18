@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class FragmentManagerViewModel extends ViewModel {
     private static final ViewModelProvider.Factory FACTORY = new ViewModelProvider.Factory() { // from class: androidx.fragment.app.FragmentManagerViewModel.1
         @Override // androidx.lifecycle.ViewModelProvider.Factory
@@ -90,18 +90,18 @@ class FragmentManagerViewModel extends ViewModel {
         if (this.mRetainedFragments.isEmpty() && this.mChildNonConfigs.isEmpty() && this.mViewModelStores.isEmpty()) {
             return null;
         }
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (Map.Entry<String, FragmentManagerViewModel> entry : this.mChildNonConfigs.entrySet()) {
             FragmentManagerNonConfig snapshot = entry.getValue().getSnapshot();
             if (snapshot != null) {
-                hashMap.put(entry.getKey(), snapshot);
+                map.put(entry.getKey(), snapshot);
             }
         }
         this.mHasSavedSnapshot = true;
-        if (this.mRetainedFragments.isEmpty() && hashMap.isEmpty() && this.mViewModelStores.isEmpty()) {
+        if (this.mRetainedFragments.isEmpty() && map.isEmpty() && this.mViewModelStores.isEmpty()) {
             return null;
         }
-        return new FragmentManagerNonConfig(new ArrayList(this.mRetainedFragments), hashMap, new HashMap(this.mViewModelStores));
+        return new FragmentManagerNonConfig(new ArrayList(this.mRetainedFragments), map, new HashMap(this.mViewModelStores));
     }
 
     @NonNull

@@ -1,6 +1,6 @@
 package event;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class TimerBeginEvent {
     private long mBaseTime;
 

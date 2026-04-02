@@ -1,6 +1,6 @@
 package com.just.agentweb;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface BaseIndicatorSpec {
     void hide();
 

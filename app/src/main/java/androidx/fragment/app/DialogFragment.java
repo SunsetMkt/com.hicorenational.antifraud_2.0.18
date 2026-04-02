@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DialogFragment extends Fragment implements DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
     private static final String SAVED_BACK_STACK_ID = "android:backStackId";
     private static final String SAVED_CANCELABLE = "android:cancelable";
@@ -34,6 +34,9 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
     boolean mShownByMe;
     boolean mViewDestroyed;
     private Runnable mDismissRunnable = new Runnable() { // from class: androidx.fragment.app.DialogFragment.1
+        AnonymousClass1() {
+        }
+
         @Override // java.lang.Runnable
         public void run() {
             DialogFragment dialogFragment = DialogFragment.this;
@@ -48,6 +51,21 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
     boolean mCancelable = true;
     boolean mShowsDialog = true;
     int mBackStackId = -1;
+
+    /* JADX INFO: renamed from: androidx.fragment.app.DialogFragment$1 */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            DialogFragment dialogFragment = DialogFragment.this;
+            Dialog dialog = dialogFragment.mDialog;
+            if (dialog != null) {
+                dialogFragment.onDismiss(dialog);
+            }
+        }
+    }
 
     public void dismiss() {
         dismissInternal(false, false);
@@ -81,12 +99,12 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
             this.mBackStackId = -1;
             return;
         }
-        FragmentTransaction beginTransaction = requireFragmentManager().beginTransaction();
-        beginTransaction.remove(this);
+        FragmentTransaction fragmentTransactionBeginTransaction = requireFragmentManager().beginTransaction();
+        fragmentTransactionBeginTransaction.remove(this);
         if (z) {
-            beginTransaction.commitAllowingStateLoss();
+            fragmentTransactionBeginTransaction.commitAllowingStateLoss();
         } else {
-            beginTransaction.commit();
+            fragmentTransactionBeginTransaction.commit();
         }
     }
 
@@ -215,11 +233,11 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
 
     @Override // androidx.fragment.app.Fragment
     public void onSaveInstanceState(@NonNull Bundle bundle) {
-        Bundle onSaveInstanceState;
+        Bundle bundleOnSaveInstanceState;
         super.onSaveInstanceState(bundle);
         Dialog dialog = this.mDialog;
-        if (dialog != null && (onSaveInstanceState = dialog.onSaveInstanceState()) != null) {
-            bundle.putBundle(SAVED_DIALOG_STATE_TAG, onSaveInstanceState);
+        if (dialog != null && (bundleOnSaveInstanceState = dialog.onSaveInstanceState()) != null) {
+            bundle.putBundle(SAVED_DIALOG_STATE_TAG, bundleOnSaveInstanceState);
         }
         int i2 = this.mStyle;
         if (i2 != 0) {
@@ -309,17 +327,17 @@ public class DialogFragment extends Fragment implements DialogInterface.OnCancel
     public void show(@NonNull FragmentManager fragmentManager, @Nullable String str) {
         this.mDismissed = false;
         this.mShownByMe = true;
-        FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
-        beginTransaction.add(this, str);
-        beginTransaction.commit();
+        FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
+        fragmentTransactionBeginTransaction.add(this, str);
+        fragmentTransactionBeginTransaction.commit();
     }
 
     public void showNow(@NonNull FragmentManager fragmentManager, @Nullable String str) {
         this.mDismissed = false;
         this.mShownByMe = true;
-        FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
-        beginTransaction.add(this, str);
-        beginTransaction.commitNow();
+        FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
+        fragmentTransactionBeginTransaction.add(this, str);
+        fragmentTransactionBeginTransaction.commitNow();
     }
 
     public int show(@NonNull FragmentTransaction fragmentTransaction, @Nullable String str) {

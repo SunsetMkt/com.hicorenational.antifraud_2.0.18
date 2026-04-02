@@ -3,7 +3,7 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WhiteTelBean extends BaseBean {
     private String areaName;
     private List<String> list;

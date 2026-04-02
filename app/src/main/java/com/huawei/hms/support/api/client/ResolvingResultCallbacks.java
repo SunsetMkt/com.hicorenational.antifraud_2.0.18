@@ -5,8 +5,8 @@ import com.huawei.hms.common.internal.Preconditions;
 import com.huawei.hms.support.api.client.Result;
 import com.huawei.hms.support.log.HMSLog;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public abstract class ResolvingResultCallbacks<R extends Result> extends ResultCallbacks<R> {
     private static final String TAG = "ResolvingResultCallbacks";
     private final Activity mActivity;
@@ -26,7 +26,7 @@ public abstract class ResolvingResultCallbacks<R extends Result> extends ResultC
                 onUnresolvableFailure(status);
             }
         } catch (Exception e2) {
-            HMSLog.m7715e(TAG, "Failed to start resolution: " + e2);
+            HMSLog.e(TAG, "Failed to start resolution: " + e2);
             onUnresolvableFailure(Status.RESULT_INTERNAL_ERROR);
         }
     }

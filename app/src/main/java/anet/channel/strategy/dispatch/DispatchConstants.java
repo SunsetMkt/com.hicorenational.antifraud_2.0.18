@@ -2,10 +2,9 @@ package anet.channel.strategy.dispatch;
 
 import android.text.TextUtils;
 import anet.channel.GlobalAppRuntimeInfo;
-import anet.channel.strategy.utils.C0848c;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class DispatchConstants {
     public static final String ANDROID = "android";
     public static final String APPKEY = "appkey";
@@ -38,7 +37,7 @@ public class DispatchConstants {
     public static final String serverPath = "/amdc/mobileDispatch";
     public static String[] initHostArray = new String[0];
     public static String[] AMDC_SERVER_DOMAIN = {"amdc.m.taobao.com", "amdc.wapa.taobao.com", "amdc.taobao.net"};
-    public static String[][] AMDC_SERVER_FIX_IP = {new String[]{C0848c.m705a(203119206064L), C0848c.m705a(203119211219L)}, new String[]{C0848c.m705a(106011052006L)}, null};
+    public static String[][] AMDC_SERVER_FIX_IP = {new String[]{anet.channel.strategy.utils.c.a(203119206064L), anet.channel.strategy.utils.c.a(203119211219L)}, new String[]{anet.channel.strategy.utils.c.a(106011052006L)}, null};
 
     public static String getAmdcServerDomain() {
         return AMDC_SERVER_DOMAIN[GlobalAppRuntimeInfo.getEnv().getEnvMode()];

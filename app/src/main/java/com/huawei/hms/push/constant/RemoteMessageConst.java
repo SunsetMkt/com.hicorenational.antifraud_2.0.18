@@ -1,6 +1,6 @@
 package com.huawei.hms.push.constant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RemoteMessageConst {
     public static final String ANALYTIC_INFO = "analyticInfo";
     public static final int CACHE_SEND_MODE = 1;
@@ -27,9 +27,7 @@ public class RemoteMessageConst {
     public static final String RECEIPT_MODE = "receiptMode";
     public static final String SEND_MODE = "sendMode";
     public static final String SEND_TIME = "sendTime";
-
-    /* renamed from: TO */
-    public static final String f7742TO = "to";
+    public static final String TO = "to";
     public static final String TTL = "ttl";
     public static final String URGENCY = "urgency";
 

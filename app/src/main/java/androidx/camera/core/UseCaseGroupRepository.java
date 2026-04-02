@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class UseCaseGroupRepository {
     final Object mUseCasesLock = new Object();
 
@@ -98,11 +98,11 @@ final class UseCaseGroupRepository {
     }
 
     Collection<UseCaseGroupLifecycleController> getUseCaseGroups() {
-        Collection<UseCaseGroupLifecycleController> unmodifiableCollection;
+        Collection<UseCaseGroupLifecycleController> collectionUnmodifiableCollection;
         synchronized (this.mUseCasesLock) {
-            unmodifiableCollection = Collections.unmodifiableCollection(this.mLifecycleToUseCaseGroupControllerMap.values());
+            collectionUnmodifiableCollection = Collections.unmodifiableCollection(this.mLifecycleToUseCaseGroupControllerMap.values());
         }
-        return unmodifiableCollection;
+        return collectionUnmodifiableCollection;
     }
 
     @VisibleForTesting
@@ -115,14 +115,14 @@ final class UseCaseGroupRepository {
     }
 
     UseCaseGroupLifecycleController getOrCreateUseCaseGroup(LifecycleOwner lifecycleOwner, UseCaseGroupSetup useCaseGroupSetup) {
-        UseCaseGroupLifecycleController useCaseGroupLifecycleController;
+        UseCaseGroupLifecycleController useCaseGroupLifecycleControllerCreateUseCaseGroup;
         synchronized (this.mUseCasesLock) {
-            useCaseGroupLifecycleController = this.mLifecycleToUseCaseGroupControllerMap.get(lifecycleOwner);
-            if (useCaseGroupLifecycleController == null) {
-                useCaseGroupLifecycleController = createUseCaseGroup(lifecycleOwner);
-                useCaseGroupSetup.setup(useCaseGroupLifecycleController.getUseCaseGroup());
+            useCaseGroupLifecycleControllerCreateUseCaseGroup = this.mLifecycleToUseCaseGroupControllerMap.get(lifecycleOwner);
+            if (useCaseGroupLifecycleControllerCreateUseCaseGroup == null) {
+                useCaseGroupLifecycleControllerCreateUseCaseGroup = createUseCaseGroup(lifecycleOwner);
+                useCaseGroupSetup.setup(useCaseGroupLifecycleControllerCreateUseCaseGroup.getUseCaseGroup());
             }
         }
-        return useCaseGroupLifecycleController;
+        return useCaseGroupLifecycleControllerCreateUseCaseGroup;
     }
 }

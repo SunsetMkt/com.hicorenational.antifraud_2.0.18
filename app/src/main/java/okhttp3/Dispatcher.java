@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import okhttp3.RealCall;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Dispatcher {
 
     @Nullable
@@ -160,20 +160,20 @@ public final class Dispatcher {
     }
 
     private <T> void finished(Deque<T> deque, T t, boolean z) {
-        int runningCallsCount;
+        int iRunningCallsCount;
         Runnable runnable;
         synchronized (this) {
             if (deque.remove(t)) {
                 if (z) {
                     promoteCalls();
                 }
-                runningCallsCount = runningCallsCount();
+                iRunningCallsCount = runningCallsCount();
                 runnable = this.idleCallback;
             } else {
                 throw new AssertionError("Call wasn't in-flight!");
             }
         }
-        if (runningCallsCount != 0 || runnable == null) {
+        if (iRunningCallsCount != 0 || runnable == null) {
             return;
         }
         runnable.run();

@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.huawei.hms.api.HuaweiServicesNotAvailableException;
 import com.huawei.hms.api.HuaweiServicesRepairableException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SecComponentInstallWizard {
     public static final String PROVIDER_NAME = "HmsCore_OpenSSL";
 
@@ -15,6 +15,6 @@ public class SecComponentInstallWizard {
         void onSuccess();
     }
 
-    public static void install(Context context) throws HuaweiServicesNotAvailableException, HuaweiServicesRepairableException {
+    public static void install(Context context) throws HuaweiServicesRepairableException, HuaweiServicesNotAvailableException {
     }
 }

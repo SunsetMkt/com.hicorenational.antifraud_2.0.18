@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DeleteRequest extends URequest {
     public DeleteRequest(String str, String str2) {
         super("https://api.weibo.com/oauth2/revokeoauth2");
@@ -22,9 +22,9 @@ public class DeleteRequest extends URequest {
 
     @Override // com.umeng.socialize.net.utils.URequest
     public Map<String, Object> getBodyPair() {
-        HashMap hashMap = new HashMap();
-        hashMap.putAll(this.mParams);
-        return hashMap;
+        HashMap map = new HashMap();
+        map.putAll(this.mParams);
+        return map;
     }
 
     @Override // com.umeng.socialize.net.utils.URequest

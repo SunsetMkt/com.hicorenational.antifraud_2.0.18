@@ -1,9 +1,9 @@
 package com.huawei.hms.framework.common;
 
+import d.c.a.b.a.a;
 import java.util.regex.Pattern;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CheckParamUtils {
     private static final String TAG = "CheckParamUtils";
     private static final String IPV6_REGEX = "(^((([0-9A-Fa-f]{1,4}:){7}(([0-9A-Fa-f]{1,4}){1}|:))|(([0-9A-Fa-f]{1,4}:){6}((:[0-9A-Fa-f]{1,4}){1}|((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){5}((:[0-9A-Fa-f]{1,4}){1,2}|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){4}((:[0-9A-Fa-f]{1,4}){1,3}|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){3}((:[0-9A-Fa-f]{1,4}){1,4}|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){2}((:[0-9A-Fa-f]{1,4}){1,5}|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|(([0-9A-Fa-f]{1,4}:){1}((:[0-9A-Fa-f]{1,4}){1,6}|:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:))|(:((:[0-9A-Fa-f]{1,4}){1,7}|(:[fF]{4}){0,1}:((22[0-3]|2[0-1][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})([.](25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|([0-9]){1,2})){3})|:)))$)";
@@ -20,7 +20,7 @@ public class CheckParamUtils {
         if (i2 > i4 || i2 < i3) {
             return i5;
         }
-        Logger.m6794d(TAG, str);
+        Logger.d(TAG, str);
         return i2;
     }
 
@@ -31,14 +31,14 @@ public class CheckParamUtils {
     }
 
     public static boolean isIpV4(String str) {
-        if (str == null || str.isEmpty() || str.length() > 15 || !str.replace(".", "").matches(AbstractC1191a.f2612u1)) {
+        if (str == null || str.isEmpty() || str.length() > 15 || !str.replace(".", "").matches(a.u1)) {
             return false;
         }
-        String[] split = str.split("\\.");
-        if (split.length != 4) {
+        String[] strArrSplit = str.split("\\.");
+        if (strArrSplit.length != 4) {
             return false;
         }
-        for (String str2 : split) {
+        for (String str2 : strArrSplit) {
             if (str2.length() > 4 || Integer.parseInt(str2) > 255) {
                 return false;
             }
@@ -57,7 +57,7 @@ public class CheckParamUtils {
         if (j2 > j4 || j2 < j3) {
             return j5;
         }
-        Logger.m6794d(TAG, str);
+        Logger.d(TAG, str);
         return j2;
     }
 }

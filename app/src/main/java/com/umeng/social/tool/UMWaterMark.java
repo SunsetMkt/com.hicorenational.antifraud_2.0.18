@@ -7,7 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class UMWaterMark {
     static final int RELATIVE_POSITION_HORIZONTAL_LEFT = 4;
     static final int RELATIVE_POSITION_HORIZONTAL_RIGHT = 3;
@@ -34,27 +34,27 @@ class UMWaterMark {
     }
 
     private float getDx(int i2) {
-        int dip2px = dip2px(this.mLeftMargin);
+        int iDip2px = dip2px(this.mLeftMargin);
         int i3 = -dip2px(this.mRightMargin);
         int i4 = this.mGravity & 7;
         if (i4 != 1) {
-            return i4 != 5 ? dip2px : (i2 - getMarkWidth()) + i3;
+            return i4 != 5 ? iDip2px : (i2 - getMarkWidth()) + i3;
         }
-        if (dip2px == 0) {
-            dip2px = i3;
+        if (iDip2px == 0) {
+            iDip2px = i3;
         }
-        return (((i2 - getMarkWidth()) * 1.0f) / 2.0f) + dip2px;
+        return (((i2 - getMarkWidth()) * 1.0f) / 2.0f) + iDip2px;
     }
 
     private float getDy(int i2) {
         int i3 = -dip2px(this.mBottomMargin);
-        int dip2px = dip2px(this.mTopMargin);
+        int iDip2px = dip2px(this.mTopMargin);
         int i4 = this.mGravity & 112;
         if (i4 != 16) {
-            return i4 != 80 ? dip2px : (i2 - getMarkHeight()) + i3;
+            return i4 != 80 ? iDip2px : (i2 - getMarkHeight()) + i3;
         }
-        if (dip2px != 0) {
-            i3 = dip2px;
+        if (iDip2px != 0) {
+            i3 = iDip2px;
         }
         return (((i2 - getMarkHeight()) * 1.0f) / 2.0f) + i3;
     }
@@ -143,7 +143,7 @@ class UMWaterMark {
     }
 
     public Bitmap compound(Bitmap bitmap) {
-        Bitmap createBitmap;
+        Bitmap bitmapCreateBitmap;
         Canvas canvas;
         if (bitmap == null) {
             return null;
@@ -163,17 +163,17 @@ class UMWaterMark {
             int markHeight = getMarkHeight();
             if (markWidth > 0 && markHeight > 0) {
                 if (this.mIsTransparent) {
-                    createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                    canvas = new Canvas(createBitmap);
+                    bitmapCreateBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                    canvas = new Canvas(bitmapCreateBitmap);
                     canvas.drawColor(0);
                 } else {
-                    createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-                    canvas = new Canvas(createBitmap);
+                    bitmapCreateBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                    canvas = new Canvas(bitmapCreateBitmap);
                 }
                 canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
                 Matrix matrix = new Matrix();
-                float min = (this.mScale * Math.min(bitmap.getWidth(), bitmap.getHeight())) / Math.max(markWidth, markHeight);
-                matrix.postScale(min, min, getScaleAnchorX(markWidth), getScaleAnchorY(markHeight));
+                float fMin = (this.mScale * Math.min(bitmap.getWidth(), bitmap.getHeight())) / Math.max(markWidth, markHeight);
+                matrix.postScale(fMin, fMin, getScaleAnchorX(markWidth), getScaleAnchorY(markHeight));
                 if (this.mDegree != -1) {
                     matrix.postRotate(this.mDegree, markWidth / 2, markHeight / 2);
                 }
@@ -188,7 +188,7 @@ class UMWaterMark {
                 safelyRecycleBitmap(bitmap);
                 safelyRecycleBitmap(markBitmap);
                 releaseResource();
-                return createBitmap;
+                return bitmapCreateBitmap;
             }
             String str2 = "mark bitmap is error, markWidth:" + markWidth + ", markHeight:" + markHeight;
             return bitmap;
@@ -218,24 +218,24 @@ class UMWaterMark {
     }
 
     Rect onMeasure(int i2, int i3) {
-        int i4;
-        int i5;
-        int i6;
-        int i7 = 0;
+        int dx;
+        int markWidth;
+        int markHeight;
+        int dy = 0;
         if (isHorizontalRelativePosition()) {
-            i4 = 0;
-            i5 = 0;
+            dx = 0;
+            markWidth = 0;
         } else {
-            i4 = (int) getDx(i2);
-            i5 = getMarkWidth() + i4;
+            dx = (int) getDx(i2);
+            markWidth = getMarkWidth() + dx;
         }
         if (isVerticalRelativePosition()) {
-            i6 = 0;
+            markHeight = 0;
         } else {
-            i7 = (int) getDy(i3);
-            i6 = getMarkHeight() + i7;
+            dy = (int) getDy(i3);
+            markHeight = getMarkHeight() + dy;
         }
-        this.mMeasureRect.set(i4, i7, i5, i6);
+        this.mMeasureRect.set(dx, dy, markWidth, markHeight);
         return this.mMeasureRect;
     }
 

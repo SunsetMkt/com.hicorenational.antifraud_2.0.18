@@ -3,7 +3,7 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CriminalSocialBean extends BaseBean {
     private String caseInfoId;
     private List<CriminalSocialFileBean> netAccountDetails;

@@ -17,131 +17,128 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.android.agoo.common.AgooConstants;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 @Keep
-/* loaded from: classes.dex */
 public class GlobalClientInfo {
     public static final String AGOO_SERVICE_ID = "agooSend";
+    public static Context a = null;
 
-    /* renamed from: a */
-    public static Context f9386a = null;
+    /* JADX INFO: renamed from: b */
+    public static IAgooAppReceiver f5716b = null;
 
-    /* renamed from: b */
-    public static IAgooAppReceiver f9387b = null;
+    /* JADX INFO: renamed from: c */
+    public static String f5717c = null;
 
-    /* renamed from: c */
-    public static String f9388c = null;
+    /* JADX INFO: renamed from: d */
+    public static boolean f5718d = false;
 
-    /* renamed from: d */
-    public static boolean f9389d = false;
+    /* JADX INFO: renamed from: e */
+    private static final String f5719e = "com.taobao.accs.client.GlobalClientInfo";
 
-    /* renamed from: e */
-    private static final String f9390e = "com.taobao.accs.client.GlobalClientInfo";
+    /* JADX INFO: renamed from: f */
+    private static volatile GlobalClientInfo f5720f;
 
-    /* renamed from: f */
-    private static volatile GlobalClientInfo f9391f;
+    /* JADX INFO: renamed from: l */
+    private static Map<String, String> f5721l = new ConcurrentHashMap();
 
-    /* renamed from: l */
-    private static Map<String, String> f9392l = new ConcurrentHashMap();
+    /* JADX INFO: renamed from: m */
+    private static Map<String, Map<String, String>> f5722m = new ConcurrentHashMap();
 
-    /* renamed from: m */
-    private static Map<String, Map<String, String>> f9393m = new ConcurrentHashMap();
+    /* JADX INFO: renamed from: g */
+    private ConcurrentHashMap<String, ILoginInfo> f5723g;
 
-    /* renamed from: g */
-    private ConcurrentHashMap<String, ILoginInfo> f9394g;
+    /* JADX INFO: renamed from: h */
+    private ConcurrentHashMap<String, IAppReceiver> f5724h;
 
-    /* renamed from: h */
-    private ConcurrentHashMap<String, IAppReceiver> f9395h;
+    /* JADX INFO: renamed from: i */
+    private ActivityManager f5725i;
 
-    /* renamed from: i */
-    private ActivityManager f9396i;
+    /* JADX INFO: renamed from: j */
+    private ConnectivityManager f5726j;
 
-    /* renamed from: j */
-    private ConnectivityManager f9397j;
+    /* JADX INFO: renamed from: k */
+    private PackageInfo f5727k;
 
-    /* renamed from: k */
-    private PackageInfo f9398k;
-
-    /* renamed from: n */
-    private Map<String, AccsDataListener> f9399n = new ConcurrentHashMap();
+    /* JADX INFO: renamed from: n */
+    private Map<String, AccsDataListener> f5728n = new ConcurrentHashMap();
 
     static {
-        f9392l.put(AGOO_SERVICE_ID, "org.android.agoo.accs.AgooService");
-        f9392l.put(AgooConstants.AGOO_SERVICE_AGOOACK, "org.android.agoo.accs.AgooService");
-        f9392l.put("agooTokenReport", "org.android.agoo.accs.AgooService");
+        f5721l.put(AGOO_SERVICE_ID, "org.android.agoo.accs.AgooService");
+        f5721l.put(AgooConstants.AGOO_SERVICE_AGOOACK, "org.android.agoo.accs.AgooService");
+        f5721l.put("agooTokenReport", "org.android.agoo.accs.AgooService");
     }
 
     private GlobalClientInfo(Context context) {
-        f9386a = getContext();
-        if (f9386a == null && context != null) {
-            f9386a = context.getApplicationContext();
+        a = getContext();
+        if (a == null && context != null) {
+            a = context.getApplicationContext();
         }
-        ThreadPoolExecutorFactory.execute(new RunnableC2980c(this));
+        ThreadPoolExecutorFactory.execute(new c(this));
     }
 
-    /* renamed from: a */
-    private void m8975a(String str, Map<String, String> map) {
+    private void a(String str, Map<String, String> map) {
         if (map == null) {
             return;
         }
-        if (f9393m.get(str) == null) {
-            f9393m.put(str, new ConcurrentHashMap());
+        if (f5722m.get(str) == null) {
+            f5722m.put(str, new ConcurrentHashMap());
         }
-        f9393m.get(str).putAll(map);
+        f5722m.get(str).putAll(map);
     }
 
     public static Context getContext() {
-        return f9386a;
+        return a;
     }
 
     @Keep
     public static GlobalClientInfo getInstance(Context context) {
-        if (f9391f == null) {
+        if (f5720f == null) {
             synchronized (GlobalClientInfo.class) {
-                if (f9391f == null) {
-                    f9391f = new GlobalClientInfo(context);
+                if (f5720f == null) {
+                    f5720f = new GlobalClientInfo(context);
                 }
             }
         }
-        return f9391f;
+        return f5720f;
     }
 
     public void clearLoginInfoImpl() {
-        this.f9394g = null;
+        this.f5723g = null;
     }
 
     public ActivityManager getActivityManager() {
-        if (this.f9396i == null) {
-            this.f9396i = (ActivityManager) f9386a.getSystemService("activity");
+        if (this.f5725i == null) {
+            this.f5725i = (ActivityManager) a.getSystemService("activity");
         }
-        return this.f9396i;
+        return this.f5725i;
     }
 
     public Map<String, String> getAllService(String str) {
-        if (f9393m.get(str) == null || f9393m.get(str).isEmpty()) {
+        if (f5722m.get(str) == null || f5722m.get(str).isEmpty()) {
             return null;
         }
-        return f9393m.get(str);
+        return f5722m.get(str);
     }
 
     public Map<String, IAppReceiver> getAppReceiver() {
-        return this.f9395h;
+        return this.f5724h;
     }
 
     public ConnectivityManager getConnectivityManager() {
-        if (this.f9397j == null) {
-            this.f9397j = (ConnectivityManager) f9386a.getSystemService("connectivity");
+        if (this.f5726j == null) {
+            this.f5726j = (ConnectivityManager) a.getSystemService("connectivity");
         }
-        return this.f9397j;
+        return this.f5726j;
     }
 
     public AccsDataListener getListener(String str) {
-        return this.f9399n.get(str);
+        return this.f5728n.get(str);
     }
 
     public String getNick(String str) {
         ILoginInfo iLoginInfo;
-        ConcurrentHashMap<String, ILoginInfo> concurrentHashMap = this.f9394g;
+        ConcurrentHashMap<String, ILoginInfo> concurrentHashMap = this.f5723g;
         if (concurrentHashMap == null || (iLoginInfo = concurrentHashMap.get(str)) == null) {
             return null;
         }
@@ -150,22 +147,22 @@ public class GlobalClientInfo {
 
     public PackageInfo getPackageInfo() {
         try {
-            if (this.f9398k == null) {
-                this.f9398k = f9386a.getPackageManager().getPackageInfo(f9386a.getPackageName(), 0);
+            if (this.f5727k == null) {
+                this.f5727k = a.getPackageManager().getPackageInfo(a.getPackageName(), 0);
             }
         } catch (Throwable th) {
-            ALog.m9181e("GlobalClientInfo", "getPackageInfo", th, new Object[0]);
+            ALog.e("GlobalClientInfo", "getPackageInfo", th, new Object[0]);
         }
-        return this.f9398k;
+        return this.f5727k;
     }
 
     public String getService(String str) {
-        return f9392l.get(str);
+        return f5721l.get(str);
     }
 
     public String getSid(String str) {
         ILoginInfo iLoginInfo;
-        ConcurrentHashMap<String, ILoginInfo> concurrentHashMap = this.f9394g;
+        ConcurrentHashMap<String, ILoginInfo> concurrentHashMap = this.f5723g;
         if (concurrentHashMap == null || (iLoginInfo = concurrentHashMap.get(str)) == null) {
             return null;
         }
@@ -174,7 +171,7 @@ public class GlobalClientInfo {
 
     public String getUserId(String str) {
         ILoginInfo iLoginInfo;
-        ConcurrentHashMap<String, ILoginInfo> concurrentHashMap = this.f9394g;
+        ConcurrentHashMap<String, ILoginInfo> concurrentHashMap = this.f5723g;
         if (concurrentHashMap == null || (iLoginInfo = concurrentHashMap.get(str)) == null) {
             return null;
         }
@@ -182,10 +179,10 @@ public class GlobalClientInfo {
     }
 
     public void registerAllRemoteService(String str, Map<String, String> map) {
-        if (f9393m.get(str) == null) {
-            f9393m.put(str, new ConcurrentHashMap());
+        if (f5722m.get(str) == null) {
+            f5722m.put(str, new ConcurrentHashMap());
         }
-        f9393m.get(str).putAll(map);
+        f5722m.get(str).putAll(map);
     }
 
     public void registerListener(String str, AccsAbstractDataListener accsAbstractDataListener) {
@@ -194,79 +191,79 @@ public class GlobalClientInfo {
 
     @Keep
     public void registerRemoteListener(String str, AccsDataListener accsDataListener) {
-        this.f9399n.put(str, accsDataListener);
+        this.f5728n.put(str, accsDataListener);
     }
 
     public void registerRemoteService(String str, String str2) {
-        f9392l.put(str, str2);
+        f5721l.put(str, str2);
     }
 
     public void registerService(String str, String str2) {
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             return;
         }
-        f9392l.put(str, str2);
+        f5721l.put(str, str2);
     }
 
     public void setAppReceiver(String str, IAppReceiver iAppReceiver) {
         if (iAppReceiver != null) {
             if (iAppReceiver instanceof IAgooAppReceiver) {
-                f9387b = (IAgooAppReceiver) iAppReceiver;
+                f5716b = (IAgooAppReceiver) iAppReceiver;
                 return;
             }
-            if (this.f9395h == null) {
-                this.f9395h = new ConcurrentHashMap<>(2);
+            if (this.f5724h == null) {
+                this.f5724h = new ConcurrentHashMap<>(2);
             }
-            this.f9395h.put(str, iAppReceiver);
-            m8975a(str, iAppReceiver.getAllServices());
+            this.f5724h.put(str, iAppReceiver);
+            a(str, iAppReceiver.getAllServices());
         }
     }
 
     public void setLoginInfoImpl(String str, ILoginInfo iLoginInfo) {
-        if (this.f9394g == null) {
-            this.f9394g = new ConcurrentHashMap<>(1);
+        if (this.f5723g == null) {
+            this.f5723g = new ConcurrentHashMap<>(1);
         }
         if (iLoginInfo != null) {
-            this.f9394g.put(str, iLoginInfo);
+            this.f5723g.put(str, iLoginInfo);
         }
     }
 
     @Keep
     public void setRemoteAgooAppReceiver(IAgooAppReceiver iAgooAppReceiver) {
-        f9387b = iAgooAppReceiver;
+        f5716b = iAgooAppReceiver;
     }
 
     @Keep
     public void setRemoteAppReceiver(String str, IAppReceiver iAppReceiver) {
-        if (this.f9395h == null) {
-            this.f9395h = new ConcurrentHashMap<>(2);
+        if (this.f5724h == null) {
+            this.f5724h = new ConcurrentHashMap<>(2);
         }
-        this.f9395h.put(str, iAppReceiver);
-        m8975a(str, iAppReceiver.getAllServices());
+        this.f5724h.put(str, iAppReceiver);
+        a(str, iAppReceiver.getAllServices());
     }
 
     public void unRegisterService(String str) {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        f9392l.remove(str);
+        f5721l.remove(str);
     }
 
     public void unregisterListener(String str) {
-        this.f9399n.remove(str);
+        this.f5728n.remove(str);
     }
 
     public void unregisterRemoteListener(String str) {
-        this.f9399n.remove(str);
+        this.f5728n.remove(str);
     }
 
     public void unregisterRemoteService(String str) {
-        f9392l.remove(str);
+        f5721l.remove(str);
     }
 
     public String getService(String str, String str2) {
-        if (f9393m.get(str) != null) {
-            return f9393m.get(str).get(str2);
+        if (f5722m.get(str) != null) {
+            return f5722m.get(str).get(str2);
         }
         return null;
     }
@@ -275,6 +272,6 @@ public class GlobalClientInfo {
         if (TextUtils.isEmpty(str) || accsDataListener == null) {
             return;
         }
-        this.f9399n.put(str, accsDataListener);
+        this.f5728n.put(str, accsDataListener);
     }
 }

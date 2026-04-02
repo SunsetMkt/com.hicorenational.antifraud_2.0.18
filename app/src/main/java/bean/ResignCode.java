@@ -1,6 +1,6 @@
 package bean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ResignCode {
     public static final int homeBanner = 100;
     public static final int homeCaseList = 103;

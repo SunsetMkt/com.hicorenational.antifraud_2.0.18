@@ -2,15 +2,16 @@ package com.taobao.accs.flowcontrol;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.taobao.accs.base.TaoBaseService;
 import com.taobao.accs.utl.ALog;
+import d.c.a.b.a.a;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class FlowControl {
     public static final int DELAY_MAX = -1;
     public static final int DELAY_MAX_BRUSH = -1000;
@@ -23,14 +24,12 @@ public class FlowControl {
     public static final int STATUS_FLOW_CTRL_ALL = 420;
     public static final int STATUS_FLOW_CTRL_BRUSH = 422;
     public static final int STATUS_FLOW_CTRL_CUR = 421;
+    private Context a;
 
-    /* renamed from: a */
-    private Context f9498a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private FlowCtrlInfoHolder f5784b;
 
-    /* renamed from: b */
-    private FlowCtrlInfoHolder f9499b;
-
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class FlowControlInfo implements Serializable {
         private static final long serialVersionUID = -2259991484877844919L;
         public String bizId;
@@ -71,7 +70,7 @@ public class FlowControl {
         }
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class FlowCtrlInfoHolder implements Serializable {
         private static final long serialVersionUID = 6307563052429742524L;
         Map<String, FlowControlInfo> flowCtrlMap = null;
@@ -81,14 +80,14 @@ public class FlowControl {
                 return null;
             }
             if (!TextUtils.isEmpty(str2)) {
-                str = str + AbstractC1191a.f2606s1 + str2;
+                str = str + a.s1 + str2;
             }
             return this.flowCtrlMap.get(str);
         }
 
         public void put(String str, String str2, FlowControlInfo flowControlInfo) {
             if (!TextUtils.isEmpty(str2)) {
-                str = str + AbstractC1191a.f2606s1 + str2;
+                str = str + a.s1 + str2;
             }
             if (this.flowCtrlMap == null) {
                 this.flowCtrlMap = new HashMap();
@@ -98,72 +97,145 @@ public class FlowControl {
     }
 
     public FlowControl(Context context) {
-        this.f9498a = context;
+        this.a = context;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:6:0x0142 A[RETURN] */
-    /* JADX WARN: Removed duplicated region for block: B:8:0x0144  */
-    /* renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public int m9055a(java.util.Map<java.lang.Integer, java.lang.String> r22, java.lang.String r23) {
-        /*
-            Method dump skipped, instructions count: 335
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.taobao.accs.flowcontrol.FlowControl.m9055a(java.util.Map, java.lang.String):int");
+    public int a(Map<Integer, String> map, String str) {
+        long j2;
+        int iIntValue;
+        FlowControlInfo flowControlInfo;
+        if (map != null) {
+            try {
+                String str2 = map.get(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_STATUS.ordinal()));
+                String str3 = map.get(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_DELAY.ordinal()));
+                String str4 = map.get(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_EXPIRE.ordinal()));
+                String str5 = map.get(Integer.valueOf(TaoBaseService.ExtHeaderType.TYPE_BUSINESS.ordinal()));
+                iIntValue = TextUtils.isEmpty(str2) ? 0 : Integer.valueOf(str2).intValue();
+                try {
+                    long jLongValue = TextUtils.isEmpty(str3) ? 0L : Long.valueOf(str3).longValue();
+                    try {
+                        long jLongValue2 = TextUtils.isEmpty(str4) ? 0L : Long.valueOf(str4).longValue();
+                        if ((iIntValue != 420 && iIntValue != 421 && iIntValue != 422) || !a(jLongValue, jLongValue2)) {
+                            return 0;
+                        }
+                        try {
+                            synchronized (this) {
+                                try {
+                                    if (this.f5784b == null) {
+                                        this.f5784b = new FlowCtrlInfoHolder();
+                                    }
+                                    if (iIntValue == 420) {
+                                        j2 = jLongValue;
+                                        flowControlInfo = new FlowControlInfo("ALL", "", iIntValue, jLongValue, jLongValue2, System.currentTimeMillis());
+                                        this.f5784b.put("ALL", "", flowControlInfo);
+                                    } else {
+                                        j2 = jLongValue;
+                                        if (iIntValue == 422) {
+                                            flowControlInfo = new FlowControlInfo(SERVICE_ALL_BRUSH, "", iIntValue, j2, jLongValue2, System.currentTimeMillis());
+                                            this.f5784b.put(SERVICE_ALL_BRUSH, "", flowControlInfo);
+                                        } else if (iIntValue != 421 || TextUtils.isEmpty(str)) {
+                                            flowControlInfo = null;
+                                        } else {
+                                            FlowControlInfo flowControlInfo2 = new FlowControlInfo(str, str5, iIntValue, j2, jLongValue2, System.currentTimeMillis());
+                                            this.f5784b.put(str, str5, flowControlInfo2);
+                                            flowControlInfo = flowControlInfo2;
+                                        }
+                                    }
+                                    if (flowControlInfo != null) {
+                                        ALog.e("FlowControl", "updateFlowCtrlInfo " + flowControlInfo.toString(), new Object[0]);
+                                    }
+                                } catch (Throwable th) {
+                                    th = th;
+                                    j2 = jLongValue;
+                                    try {
+                                        throw th;
+                                    } catch (Throwable th2) {
+                                        th = th2;
+                                    }
+                                }
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                        }
+                    } catch (Throwable th4) {
+                        th = th4;
+                        j2 = jLongValue;
+                    }
+                } catch (Throwable th5) {
+                    th = th5;
+                    j2 = 0;
+                }
+            } catch (Throwable th6) {
+                th = th6;
+                j2 = 0;
+                iIntValue = 0;
+            }
+            ALog.e("FlowControl", "updateFlowCtrlInfo", th, new Object[0]);
+        } else {
+            j2 = 0;
+            iIntValue = 0;
+        }
+        if (j2 > 0) {
+            return 1;
+        }
+        if (j2 == 0) {
+            return 0;
+        }
+        return 422 == iIntValue ? 3 : 2;
     }
 
-    /* renamed from: a */
-    private boolean m9054a(long j2, long j3) {
+    private boolean a(long j2, long j3) {
         if (j2 != 0 && j3 > 0) {
             return true;
         }
-        ALog.m9182e("FlowControl", "error flow ctrl info", new Object[0]);
+        ALog.e("FlowControl", "error flow ctrl info", new Object[0]);
         return false;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:50:0x008c, code lost:
-    
-        if (r5.isExpired() != false) goto L58;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:51:0x0096, code lost:
-    
-        m9053a();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:59:0x0094, code lost:
-    
-        if (r0.isExpired() != false) goto L58;
-     */
-    /* JADX WARN: Removed duplicated region for block: B:21:0x004c A[Catch: all -> 0x00dc, TryCatch #0 {, blocks: (B:9:0x0013, B:11:0x0032, B:14:0x0039, B:16:0x003f, B:19:0x0046, B:21:0x004c, B:24:0x0053, B:26:0x0059, B:29:0x0060, B:49:0x0088, B:51:0x0096, B:52:0x0099, B:58:0x0090), top: B:8:0x0013 }] */
-    /* JADX WARN: Removed duplicated region for block: B:26:0x0059 A[Catch: all -> 0x00dc, TryCatch #0 {, blocks: (B:9:0x0013, B:11:0x0032, B:14:0x0039, B:16:0x003f, B:19:0x0046, B:21:0x004c, B:24:0x0053, B:26:0x0059, B:29:0x0060, B:49:0x0088, B:51:0x0096, B:52:0x0099, B:58:0x0090), top: B:8:0x0013 }] */
-    /* JADX WARN: Removed duplicated region for block: B:32:0x0068  */
-    /* JADX WARN: Removed duplicated region for block: B:39:0x0075  */
-    /* JADX WARN: Removed duplicated region for block: B:40:0x0078  */
-    /* JADX WARN: Removed duplicated region for block: B:58:0x0090 A[Catch: all -> 0x00dc, TryCatch #0 {, blocks: (B:9:0x0013, B:11:0x0032, B:14:0x0039, B:16:0x003f, B:19:0x0046, B:21:0x004c, B:24:0x0053, B:26:0x0059, B:29:0x0060, B:49:0x0088, B:51:0x0096, B:52:0x0099, B:58:0x0090), top: B:8:0x0013 }] */
-    /* renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public long m9056a(java.lang.String r14, java.lang.String r15) {
-        /*
-            Method dump skipped, instructions count: 224
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.taobao.accs.flowcontrol.FlowControl.m9056a(java.lang.String, java.lang.String):long");
+    public long a(String str, String str2) {
+        long j2;
+        long j3;
+        long j4;
+        FlowCtrlInfoHolder flowCtrlInfoHolder = this.f5784b;
+        long j5 = 0;
+        if (flowCtrlInfoHolder == null || flowCtrlInfoHolder.flowCtrlMap == null || TextUtils.isEmpty(str)) {
+            return 0L;
+        }
+        synchronized (this) {
+            FlowControlInfo flowControlInfo = this.f5784b.get("ALL", null);
+            FlowControlInfo flowControlInfo2 = this.f5784b.get(SERVICE_ALL_BRUSH, null);
+            FlowControlInfo flowControlInfo3 = this.f5784b.get(str, null);
+            FlowControlInfo flowControlInfo4 = this.f5784b.get(str, str2);
+            j2 = (flowControlInfo == null || flowControlInfo.isExpired()) ? 0L : flowControlInfo.delayTime;
+            long j6 = (flowControlInfo2 == null || flowControlInfo2.isExpired()) ? 0L : flowControlInfo2.delayTime;
+            j3 = (flowControlInfo3 == null || flowControlInfo3.isExpired()) ? 0L : flowControlInfo3.delayTime;
+            if (flowControlInfo4 != null && !flowControlInfo4.isExpired()) {
+                j5 = flowControlInfo4.delayTime;
+            }
+            j4 = -1;
+            if (j2 != -1 && j5 != -1 && j3 != -1) {
+                if (j6 == -1) {
+                    j4 = -1000;
+                } else {
+                    long j7 = j2 > j5 ? j2 : j5;
+                    j4 = j7 > j3 ? j7 : j3;
+                }
+            }
+            if ((flowControlInfo4 != null && flowControlInfo4.isExpired()) || (flowControlInfo != null && flowControlInfo.isExpired())) {
+                a();
+            }
+        }
+        ALog.e("FlowControl", "getFlowCtrlDelay service " + str + " biz " + str2 + " result:" + j4 + " global:" + j2 + " serviceDelay:" + j3 + " bidDelay:" + j5, new Object[0]);
+        return j4;
     }
 
-    /* renamed from: a */
-    private void m9053a() {
-        FlowCtrlInfoHolder flowCtrlInfoHolder = this.f9499b;
+    private void a() {
+        FlowCtrlInfoHolder flowCtrlInfoHolder = this.f5784b;
         if (flowCtrlInfoHolder == null || flowCtrlInfoHolder.flowCtrlMap == null) {
             return;
         }
         synchronized (this) {
-            Iterator<Map.Entry<String, FlowControlInfo>> it = this.f9499b.flowCtrlMap.entrySet().iterator();
+            Iterator<Map.Entry<String, FlowControlInfo>> it = this.f5784b.flowCtrlMap.entrySet().iterator();
             while (it.hasNext()) {
                 if (it.next().getValue().isExpired()) {
                     it.remove();

@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.camera2.internal.Camera2CameraCaptureResult;
 import androidx.camera.core.impl.CameraCaptureResult;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Camera2CameraCaptureResultConverter {
     private Camera2CameraCaptureResultConverter() {
     }

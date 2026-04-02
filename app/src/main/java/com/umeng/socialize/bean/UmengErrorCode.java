@@ -1,8 +1,8 @@
 package com.umeng.socialize.bean;
 
-import p388ui.activity.BaseProgressUploadActivity;
+import ui.activity.BaseProgressUploadActivity;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public enum UmengErrorCode {
     UnKnowCode(2000),
     AuthorizeFailed(BaseProgressUploadActivity.REQUESTION_CODE_RECORD_AUDIO_2),
@@ -12,41 +12,38 @@ public enum UmengErrorCode {
     ShareDataTypeIllegal(2004),
     NotInstall(2008);
 
-
-    /* renamed from: a */
-    private final int f13583a;
+    private final int a;
 
     UmengErrorCode(int i2) {
-        this.f13583a = i2;
+        this.a = i2;
     }
 
-    /* renamed from: a */
-    private String m12609a() {
-        return "错误码：" + this.f13583a + " 错误信息：";
+    private String a() {
+        return "\u9519\u8bef\u7801\uff1a" + this.a + " \u9519\u8bef\u4fe1\u606f\uff1a";
     }
 
     public String getMessage() {
         if (this == UnKnowCode) {
-            return m12609a() + "未知错误----";
+            return a() + "\u672a\u77e5\u9519\u8bef----";
         }
         if (this == AuthorizeFailed) {
-            return m12609a() + "授权失败----";
+            return a() + "\u6388\u6743\u5931\u8d25----";
         }
         if (this == ShareFailed) {
-            return m12609a() + "分享失败----";
+            return a() + "\u5206\u4eab\u5931\u8d25----";
         }
         if (this == RequestForUserProfileFailed) {
-            return m12609a() + "获取用户资料失败----";
+            return a() + "\u83b7\u53d6\u7528\u6237\u8d44\u6599\u5931\u8d25----";
         }
         if (this == ShareDataNil) {
-            return m12609a() + "分享内容为空";
+            return a() + "\u5206\u4eab\u5185\u5bb9\u4e3a\u7a7a";
         }
         if (this == ShareDataTypeIllegal) {
-            return m12609a() + "分享内容不合法----";
+            return a() + "\u5206\u4eab\u5185\u5bb9\u4e0d\u5408\u6cd5----";
         }
         if (this != NotInstall) {
             return "unkonw";
         }
-        return m12609a() + "没有安装应用";
+        return a() + "\u6ca1\u6709\u5b89\u88c5\u5e94\u7528";
     }
 }

@@ -3,7 +3,7 @@ package com.heytap.msp.push.constant;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppConfigConstant {
 
     @Retention(RetentionPolicy.SOURCE)

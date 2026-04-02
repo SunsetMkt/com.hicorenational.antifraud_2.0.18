@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import androidx.annotation.Nullable;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AgentWebConfig {
     static String AGENTWEB_FILE_PATH = null;
     public static final String AGENTWEB_NAME = "AgentWeb";
@@ -27,6 +27,28 @@ public class AgentWebConfig {
     static final String AGENTWEB_CACHE_PATCH = File.separator + FILE_CACHE_PATH;
     public static boolean DEBUG = false;
 
+    /* JADX INFO: renamed from: com.just.agentweb.AgentWebConfig$1 */
+    static class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            CookieManager.getInstance().flush();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.just.agentweb.AgentWebConfig$2 */
+    static class AnonymousClass2 implements ValueCallback<Boolean> {
+        AnonymousClass2() {
+        }
+
+        @Override // android.webkit.ValueCallback
+        public void onReceiveValue(Boolean bool) {
+            LogUtils.i(AgentWebConfig.TAG, "removeExpiredCookies:" + bool);
+        }
+    }
+
     static {
         IS_KITKAT_OR_BELOW_KITKAT = Build.VERSION.SDK_INT <= 19;
         IS_INITIALIZED = false;
@@ -35,17 +57,15 @@ public class AgentWebConfig {
     }
 
     public static synchronized void clearDiskCache(Context context) {
-        synchronized (AgentWebConfig.class) {
-            try {
-                AgentWebUtils.clearCacheFolder(new File(getCachePath(context)), 0);
-                String externalCachePath = getExternalCachePath(context);
-                if (!TextUtils.isEmpty(externalCachePath)) {
-                    AgentWebUtils.clearCacheFolder(new File(externalCachePath), 0);
-                }
-            } catch (Throwable th) {
-                if (LogUtils.isDebug()) {
-                    th.printStackTrace();
-                }
+        try {
+            AgentWebUtils.clearCacheFolder(new File(getCachePath(context)), 0);
+            String externalCachePath = getExternalCachePath(context);
+            if (!TextUtils.isEmpty(externalCachePath)) {
+                AgentWebUtils.clearCacheFolder(new File(externalCachePath), 0);
+            }
+        } catch (Throwable th) {
+            if (LogUtils.isDebug()) {
+                th.printStackTrace();
             }
         }
     }
@@ -80,9 +100,12 @@ public class AgentWebConfig {
 
     private static ValueCallback<Boolean> getDefaultIgnoreCallback() {
         return new ValueCallback<Boolean>() { // from class: com.just.agentweb.AgentWebConfig.2
+            AnonymousClass2() {
+            }
+
             @Override // android.webkit.ValueCallback
             public void onReceiveValue(Boolean bool) {
-                LogUtils.m8083i(AgentWebConfig.TAG, "removeExpiredCookies:" + bool);
+                LogUtils.i(AgentWebConfig.TAG, "removeExpiredCookies:" + bool);
             }
         };
     }
@@ -92,11 +115,9 @@ public class AgentWebConfig {
     }
 
     static synchronized void initCookiesManager(Context context) {
-        synchronized (AgentWebConfig.class) {
-            if (!IS_INITIALIZED) {
-                createCookiesSyncInstance(context);
-                IS_INITIALIZED = true;
-            }
+        if (!IS_INITIALIZED) {
+            createCookiesSyncInstance(context);
+            IS_INITIALIZED = true;
         }
     }
 
@@ -129,6 +150,9 @@ public class AgentWebConfig {
             CookieSyncManager.getInstance().sync();
         } else {
             AsyncTask.THREAD_POOL_EXECUTOR.execute(new Runnable() { // from class: com.just.agentweb.AgentWebConfig.1
+                AnonymousClass1() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
                     CookieManager.getInstance().flush();

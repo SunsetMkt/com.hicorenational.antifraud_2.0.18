@@ -1,7 +1,7 @@
 package com.alibaba.sdk.android.oss.common.auth;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class OSSPlainTextAKSKCredentialProvider implements OSSCredentialProvider {
     private String accessKeyId;
     private String accessKeySecret;

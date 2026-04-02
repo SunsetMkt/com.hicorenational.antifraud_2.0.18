@@ -2,7 +2,7 @@ package com.huawei.hms.adapter.sysobs;
 
 import android.content.Intent;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface SystemNotifier {
     void notifyNoticeObservers(int i2);
 

@@ -4,15 +4,15 @@ import android.content.Context;
 import android.text.TextUtils;
 import com.taobao.accs.common.Constants;
 import com.taobao.accs.utl.ALog;
-import com.taobao.accs.utl.C3054v;
+import com.taobao.accs.utl.v;
 import java.io.Serializable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class AccsClientConfig implements Serializable {
     public static final String DEFAULT_CONFIGTAG = "default";
     public static final int SECURITY_OFF = 2;
@@ -47,7 +47,7 @@ public class AccsClientConfig implements Serializable {
     public static Map<String, AccsClientConfig> mPreviewConfigs = new ConcurrentHashMap(1);
     public static Map<String, AccsClientConfig> mDebugConfigs = new ConcurrentHashMap(1);
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class Builder {
         private String mAppKey = "";
         private String mTag = "";
@@ -106,10 +106,10 @@ public class AccsClientConfig implements Serializable {
             }
             int i2 = accsClientConfig.mConfigEnv;
             Map<String, AccsClientConfig> map = i2 != 1 ? i2 != 2 ? AccsClientConfig.mReleaseConfigs : AccsClientConfig.mDebugConfigs : AccsClientConfig.mPreviewConfigs;
-            ALog.m9180d(AccsClientConfig.TAG, "build", "config", accsClientConfig);
+            ALog.d(AccsClientConfig.TAG, "build", "config", accsClientConfig);
             AccsClientConfig accsClientConfig2 = map.get(accsClientConfig.getTag());
             if (accsClientConfig2 != null) {
-                ALog.m9186w(AccsClientConfig.TAG, "build conver", "old config", accsClientConfig2);
+                ALog.w(AccsClientConfig.TAG, "build conver", "old config", accsClientConfig2);
             }
             map.put(accsClientConfig.getTag(), accsClientConfig);
             return accsClientConfig;
@@ -206,7 +206,7 @@ public class AccsClientConfig implements Serializable {
         }
     }
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     @Retention(RetentionPolicy.CLASS)
     public @interface ENV {
     }
@@ -222,7 +222,7 @@ public class AccsClientConfig implements Serializable {
                 return accsClientConfig;
             }
         }
-        ALog.m9182e(TAG, "getConfigByTag return null", "appkey", str);
+        ALog.e(TAG, "getConfigByTag return null", "appkey", str);
         return null;
     }
 
@@ -230,7 +230,7 @@ public class AccsClientConfig implements Serializable {
         int i2 = mEnv;
         AccsClientConfig accsClientConfig = i2 != 0 ? i2 != 1 ? i2 != 2 ? mReleaseConfigs.get(str) : mDebugConfigs.get(str) : mPreviewConfigs.get(str) : mReleaseConfigs.get(str);
         if (accsClientConfig == null) {
-            ALog.m9182e(TAG, "getConfigByTag return null", Constants.KEY_CONFIG_TAG, str);
+            ALog.e(TAG, "getConfigByTag return null", Constants.KEY_CONFIG_TAG, str);
         }
         return accsClientConfig;
     }
@@ -246,8 +246,8 @@ public class AccsClientConfig implements Serializable {
             }
             try {
                 Class<?> cls = Class.forName("android.app.ActivityThread");
-                Object invoke = cls.getMethod("currentActivityThread", new Class[0]).invoke(cls, new Object[0]);
-                mContext = (Context) invoke.getClass().getMethod("getApplication", new Class[0]).invoke(invoke, new Object[0]);
+                Object objInvoke = cls.getMethod("currentActivityThread", new Class[0]).invoke(cls, new Object[0]);
+                mContext = (Context) objInvoke.getClass().getMethod("getApplication", new Class[0]).invoke(objInvoke, new Object[0]);
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
@@ -259,7 +259,7 @@ public class AccsClientConfig implements Serializable {
         Map<String, AccsClientConfig> map = i2 != 1 ? i2 != 2 ? mReleaseConfigs : mDebugConfigs : mPreviewConfigs;
         AccsClientConfig accsClientConfig2 = map.get(accsClientConfig.getTag());
         if (accsClientConfig2 != null) {
-            ALog.m9186w(TAG, "build conver", "old config", accsClientConfig2);
+            ALog.w(TAG, "build conver", "old config", accsClientConfig2);
         }
         map.put(accsClientConfig.getTag(), accsClientConfig);
     }
@@ -272,7 +272,7 @@ public class AccsClientConfig implements Serializable {
             return false;
         }
         AccsClientConfig accsClientConfig = (AccsClientConfig) obj;
-        return this.mSecurity == accsClientConfig.mSecurity && this.mInappPubKey == accsClientConfig.mInappPubKey && this.mChannelPubKey == accsClientConfig.mChannelPubKey && this.mKeepalive == accsClientConfig.mKeepalive && this.mAutoUnit == accsClientConfig.mAutoUnit && this.mConfigEnv == accsClientConfig.mConfigEnv && this.mDisableChannel == accsClientConfig.mDisableChannel && this.mQuickReconnect == accsClientConfig.mQuickReconnect && this.mAccsHeartbeatEnable == accsClientConfig.mAccsHeartbeatEnable && this.mPullUpEnable == accsClientConfig.mPullUpEnable && this.mForePingEnable == accsClientConfig.mForePingEnable && this.mPingTimeout == accsClientConfig.mPingTimeout && C3054v.m9285a(this.mAppKey, accsClientConfig.mAppKey) && C3054v.m9285a(this.mAppSecret, accsClientConfig.mAppSecret) && C3054v.m9285a(this.mInappHost, accsClientConfig.mInappHost) && C3054v.m9285a(this.mChannelHost, accsClientConfig.mChannelHost) && C3054v.m9285a(this.mStoreId, accsClientConfig.mStoreId) && C3054v.m9285a(this.mAuthCode, accsClientConfig.mAuthCode) && C3054v.m9285a(this.mTag, accsClientConfig.mTag);
+        return this.mSecurity == accsClientConfig.mSecurity && this.mInappPubKey == accsClientConfig.mInappPubKey && this.mChannelPubKey == accsClientConfig.mChannelPubKey && this.mKeepalive == accsClientConfig.mKeepalive && this.mAutoUnit == accsClientConfig.mAutoUnit && this.mConfigEnv == accsClientConfig.mConfigEnv && this.mDisableChannel == accsClientConfig.mDisableChannel && this.mQuickReconnect == accsClientConfig.mQuickReconnect && this.mAccsHeartbeatEnable == accsClientConfig.mAccsHeartbeatEnable && this.mPullUpEnable == accsClientConfig.mPullUpEnable && this.mForePingEnable == accsClientConfig.mForePingEnable && this.mPingTimeout == accsClientConfig.mPingTimeout && v.a(this.mAppKey, accsClientConfig.mAppKey) && v.a(this.mAppSecret, accsClientConfig.mAppSecret) && v.a(this.mInappHost, accsClientConfig.mInappHost) && v.a(this.mChannelHost, accsClientConfig.mChannelHost) && v.a(this.mStoreId, accsClientConfig.mStoreId) && v.a(this.mAuthCode, accsClientConfig.mAuthCode) && v.a(this.mTag, accsClientConfig.mTag);
     }
 
     public String getAppKey() {

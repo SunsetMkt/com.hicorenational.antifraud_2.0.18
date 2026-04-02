@@ -3,8 +3,8 @@ package androidx.appcompat.view.menu;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public interface MenuView {
 
     public interface ItemView {

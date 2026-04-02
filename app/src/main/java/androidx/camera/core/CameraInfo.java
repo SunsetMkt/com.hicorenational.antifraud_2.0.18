@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CameraInfo {
 
     @NonNull

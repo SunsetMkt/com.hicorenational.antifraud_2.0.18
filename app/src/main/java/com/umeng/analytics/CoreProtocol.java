@@ -1,57 +1,56 @@
 package com.umeng.analytics;
 
 import android.content.Context;
-import com.umeng.analytics.pro.C3414o;
+import com.umeng.analytics.pro.o;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import com.umeng.commonsdk.framework.UMSenderStateNotify;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CoreProtocol implements UMLogDataProtocol, UMSenderStateNotify {
+    private static Context a;
 
-    /* renamed from: a */
-    private static Context f11355a;
+    private static class a {
+        private static final CoreProtocol a = new CoreProtocol();
 
-    /* renamed from: com.umeng.analytics.CoreProtocol$a */
-    private static class C3304a {
-
-        /* renamed from: a */
-        private static final CoreProtocol f11356a = new CoreProtocol();
-
-        private C3304a() {
+        private a() {
         }
     }
 
+    /* synthetic */ CoreProtocol(AnonymousClass1 anonymousClass1) {
+        this();
+    }
+
     public static CoreProtocol getInstance(Context context) {
-        if (f11355a == null && context != null) {
-            f11355a = context.getApplicationContext();
+        if (a == null && context != null) {
+            a = context.getApplicationContext();
         }
-        return C3304a.f11356a;
+        return a.a;
     }
 
     @Override // com.umeng.commonsdk.framework.UMSenderStateNotify
     public void onConnectionAvailable() {
-        C3414o.m11300a(f11355a).m11333a();
+        o.a(a).a();
     }
 
     @Override // com.umeng.commonsdk.framework.UMSenderStateNotify
     public void onSenderIdle() {
-        C3414o.m11300a(f11355a).m11340b();
+        o.a(a).b();
     }
 
     @Override // com.umeng.commonsdk.framework.UMLogDataProtocol
     public void removeCacheData(Object obj) {
-        C3414o.m11300a(f11355a).m11334a(obj);
+        o.a(a).a(obj);
     }
 
     @Override // com.umeng.commonsdk.framework.UMLogDataProtocol
     public JSONObject setupReportData(long j2) {
-        return C3414o.m11300a(f11355a).m11332a(j2);
+        return o.a(a).a(j2);
     }
 
     @Override // com.umeng.commonsdk.framework.UMLogDataProtocol
     public void workEvent(Object obj, int i2) {
-        C3414o.m11300a(f11355a).m11335a(obj, i2);
+        o.a(a).a(obj, i2);
     }
 
     private CoreProtocol() {

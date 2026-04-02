@@ -8,8 +8,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public class Space extends View {
     @Deprecated
     public Space(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {

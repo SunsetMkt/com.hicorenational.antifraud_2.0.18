@@ -8,24 +8,26 @@ import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.FocusMeteringResult;
 import androidx.camera.core.impl.utils.futures.Futures;
 import java.util.List;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CameraControlInternal extends CameraControl {
     public static final CameraControlInternal DEFAULT_EMPTY_INSTANCE = new CameraControlInternal() { // from class: androidx.camera.core.impl.CameraControlInternal.1
+        AnonymousClass1() {
+        }
+
         @Override // androidx.camera.core.impl.CameraControlInternal
         public void cancelAfAeTrigger(boolean z, boolean z2) {
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public InterfaceFutureC0952a<Void> cancelFocusAndMetering() {
+        public d.b.b.a.a.a<Void> cancelFocusAndMetering() {
             return Futures.immediateFuture(null);
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public InterfaceFutureC0952a<Void> enableTorch(boolean z) {
+        public d.b.b.a.a.a<Void> enableTorch(boolean z) {
             return Futures.immediateFuture(null);
         }
 
@@ -44,19 +46,19 @@ public interface CameraControlInternal extends CameraControl {
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public InterfaceFutureC0952a<Void> setLinearZoom(float f2) {
+        public d.b.b.a.a.a<Void> setLinearZoom(float f2) {
             return Futures.immediateFuture(null);
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public InterfaceFutureC0952a<Void> setZoomRatio(float f2) {
+        public d.b.b.a.a.a<Void> setZoomRatio(float f2) {
             return Futures.immediateFuture(null);
         }
 
         @Override // androidx.camera.core.CameraControl
         @NonNull
-        public InterfaceFutureC0952a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
+        public d.b.b.a.a.a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
             return Futures.immediateFuture(FocusMeteringResult.emptyInstance());
         }
 
@@ -72,6 +74,71 @@ public interface CameraControlInternal extends CameraControl {
         public void triggerAf() {
         }
     };
+
+    /* JADX INFO: renamed from: androidx.camera.core.impl.CameraControlInternal$1 */
+    static class AnonymousClass1 implements CameraControlInternal {
+        AnonymousClass1() {
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public void cancelAfAeTrigger(boolean z, boolean z2) {
+        }
+
+        @Override // androidx.camera.core.CameraControl
+        @NonNull
+        public d.b.b.a.a.a<Void> cancelFocusAndMetering() {
+            return Futures.immediateFuture(null);
+        }
+
+        @Override // androidx.camera.core.CameraControl
+        @NonNull
+        public d.b.b.a.a.a<Void> enableTorch(boolean z) {
+            return Futures.immediateFuture(null);
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public int getFlashMode() {
+            return 2;
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public void setCropRegion(@Nullable Rect rect) {
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public void setFlashMode(int i2) {
+        }
+
+        @Override // androidx.camera.core.CameraControl
+        @NonNull
+        public d.b.b.a.a.a<Void> setLinearZoom(float f2) {
+            return Futures.immediateFuture(null);
+        }
+
+        @Override // androidx.camera.core.CameraControl
+        @NonNull
+        public d.b.b.a.a.a<Void> setZoomRatio(float f2) {
+            return Futures.immediateFuture(null);
+        }
+
+        @Override // androidx.camera.core.CameraControl
+        @NonNull
+        public d.b.b.a.a.a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
+            return Futures.immediateFuture(FocusMeteringResult.emptyInstance());
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public void submitCaptureRequests(@NonNull List<CaptureConfig> list) {
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public void triggerAePrecapture() {
+        }
+
+        @Override // androidx.camera.core.impl.CameraControlInternal
+        public void triggerAf() {
+        }
+    }
 
     public interface ControlUpdateCallback {
         void onCameraControlCaptureRequests(@NonNull List<CaptureConfig> list);

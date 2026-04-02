@@ -1,6 +1,6 @@
 package com.yalantis.ucrop.util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class CubicEasing {
     public static float easeIn(float f2, float f3, float f4, float f5) {
         float f6 = f2 / f5;

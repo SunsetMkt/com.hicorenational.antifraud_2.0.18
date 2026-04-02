@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(26)
-/* loaded from: classes.dex */
 class MediaBrowserCompatApi26 {
 
     interface SubscriptionCallback extends MediaBrowserCompatApi21.SubscriptionCallback {

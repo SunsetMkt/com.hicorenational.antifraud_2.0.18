@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.Dimension;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,50 +25,60 @@ import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.view.menu.SubMenuBuilder;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.C1921R;
+import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
+import com.google.android.material.R;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class NavigationMenuPresenter implements MenuPresenter {
     private static final String STATE_ADAPTER = "android:menu:adapter";
     private static final String STATE_HEADER = "android:menu:header";
     private static final String STATE_HIERARCHY = "android:menu:list";
 
-    /* renamed from: adapter, reason: collision with root package name */
-    NavigationMenuAdapter f25892adapter;
+    /* JADX INFO: renamed from: adapter, reason: collision with root package name */
+    NavigationMenuAdapter f3634adapter;
     private MenuPresenter.Callback callback;
+    boolean hasCustomItemIconSize;
     LinearLayout headerLayout;
     ColorStateList iconTintList;
-
-    /* renamed from: id */
-    private int f5643id;
+    private int id;
     Drawable itemBackground;
     int itemHorizontalPadding;
     int itemIconPadding;
+    int itemIconSize;
+    private int itemMaxLines;
     LayoutInflater layoutInflater;
     MenuBuilder menu;
     private NavigationMenuView menuView;
-    final View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.google.android.material.internal.NavigationMenuPresenter.1
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            NavigationMenuPresenter.this.setUpdateSuspended(true);
-            MenuItemImpl itemData = ((NavigationMenuItemView) view).getItemData();
-            NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
-            boolean performItemAction = navigationMenuPresenter.menu.performItemAction(itemData, navigationMenuPresenter, 0);
-            if (itemData != null && itemData.isCheckable() && performItemAction) {
-                NavigationMenuPresenter.this.f25892adapter.setCheckedItem(itemData);
-            }
-            NavigationMenuPresenter.this.setUpdateSuspended(false);
-            NavigationMenuPresenter.this.updateMenuView(false);
-        }
-    };
     int paddingSeparator;
     private int paddingTopDefault;
     int textAppearance;
     boolean textAppearanceSet;
     ColorStateList textColor;
+    boolean isBehindStatusBar = true;
+    private int overScrollMode = -1;
+    final View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.google.android.material.internal.NavigationMenuPresenter.1
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            boolean z = true;
+            NavigationMenuPresenter.this.setUpdateSuspended(true);
+            MenuItemImpl itemData = ((NavigationMenuItemView) view).getItemData();
+            NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
+            boolean zPerformItemAction = navigationMenuPresenter.menu.performItemAction(itemData, navigationMenuPresenter, 0);
+            if (itemData != null && itemData.isCheckable() && zPerformItemAction) {
+                NavigationMenuPresenter.this.f3634adapter.setCheckedItem(itemData);
+            } else {
+                z = false;
+            }
+            NavigationMenuPresenter.this.setUpdateSuspended(false);
+            if (z) {
+                NavigationMenuPresenter.this.updateMenuView(false);
+            }
+        }
+    };
 
     private static class HeaderViewHolder extends ViewHolder {
         public HeaderViewHolder(View view) {
@@ -107,9 +118,9 @@ public class NavigationMenuPresenter implements MenuPresenter {
             int size = NavigationMenuPresenter.this.menu.getVisibleItems().size();
             int i2 = -1;
             boolean z = false;
-            int i3 = 0;
-            for (int i4 = 0; i4 < size; i4++) {
-                MenuItemImpl menuItemImpl = NavigationMenuPresenter.this.menu.getVisibleItems().get(i4);
+            int size2 = 0;
+            for (int i3 = 0; i3 < size; i3++) {
+                MenuItemImpl menuItemImpl = NavigationMenuPresenter.this.menu.getVisibleItems().get(i3);
                 if (menuItemImpl.isChecked()) {
                     setCheckedItem(menuItemImpl);
                 }
@@ -119,15 +130,15 @@ public class NavigationMenuPresenter implements MenuPresenter {
                 if (menuItemImpl.hasSubMenu()) {
                     SubMenu subMenu = menuItemImpl.getSubMenu();
                     if (subMenu.hasVisibleItems()) {
-                        if (i4 != 0) {
+                        if (i3 != 0) {
                             this.items.add(new NavigationMenuSeparatorItem(NavigationMenuPresenter.this.paddingSeparator, 0));
                         }
                         this.items.add(new NavigationMenuTextItem(menuItemImpl));
-                        int size2 = this.items.size();
-                        int size3 = subMenu.size();
+                        int size3 = this.items.size();
+                        int size4 = subMenu.size();
                         boolean z2 = false;
-                        for (int i5 = 0; i5 < size3; i5++) {
-                            MenuItemImpl menuItemImpl2 = (MenuItemImpl) subMenu.getItem(i5);
+                        for (int i4 = 0; i4 < size4; i4++) {
+                            MenuItemImpl menuItemImpl2 = (MenuItemImpl) subMenu.getItem(i4);
                             if (menuItemImpl2.isVisible()) {
                                 if (!z2 && menuItemImpl2.getIcon() != null) {
                                     z2 = true;
@@ -142,23 +153,23 @@ public class NavigationMenuPresenter implements MenuPresenter {
                             }
                         }
                         if (z2) {
-                            appendTransparentIconIfMissing(size2, this.items.size());
+                            appendTransparentIconIfMissing(size3, this.items.size());
                         }
                     }
                 } else {
                     int groupId = menuItemImpl.getGroupId();
                     if (groupId != i2) {
-                        i3 = this.items.size();
+                        size2 = this.items.size();
                         boolean z3 = menuItemImpl.getIcon() != null;
-                        if (i4 != 0) {
-                            i3++;
+                        if (i3 != 0) {
+                            size2++;
                             ArrayList<NavigationMenuItem> arrayList = this.items;
-                            int i6 = NavigationMenuPresenter.this.paddingSeparator;
-                            arrayList.add(new NavigationMenuSeparatorItem(i6, i6));
+                            int i5 = NavigationMenuPresenter.this.paddingSeparator;
+                            arrayList.add(new NavigationMenuSeparatorItem(i5, i5));
                         }
                         z = z3;
                     } else if (!z && menuItemImpl.getIcon() != null) {
-                        appendTransparentIconIfMissing(i3, this.items.size());
+                        appendTransparentIconIfMissing(size2, this.items.size());
                         z = true;
                     }
                     NavigationMenuTextItem navigationMenuTextItem = new NavigationMenuTextItem(menuItemImpl);
@@ -170,6 +181,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
             this.updateSuspended = false;
         }
 
+        @NonNull
         public Bundle createInstanceState() {
             Bundle bundle = new Bundle();
             MenuItemImpl menuItemImpl = this.checkedItem;
@@ -223,7 +235,17 @@ public class NavigationMenuPresenter implements MenuPresenter {
             throw new RuntimeException("Unknown item type.");
         }
 
-        public void restoreInstanceState(Bundle bundle) {
+        int getRowCount() {
+            int i2 = NavigationMenuPresenter.this.headerLayout.getChildCount() == 0 ? 0 : 1;
+            for (int i3 = 0; i3 < NavigationMenuPresenter.this.f3634adapter.getItemCount(); i3++) {
+                if (NavigationMenuPresenter.this.f3634adapter.getItemViewType(i3) == 0) {
+                    i2++;
+                }
+            }
+            return i2;
+        }
+
+        public void restoreInstanceState(@NonNull Bundle bundle) {
             MenuItemImpl menuItem;
             View actionView;
             ParcelableSparseArray parcelableSparseArray;
@@ -259,7 +281,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
             }
         }
 
-        public void setCheckedItem(MenuItemImpl menuItemImpl) {
+        public void setCheckedItem(@NonNull MenuItemImpl menuItemImpl) {
             if (this.checkedItem == menuItemImpl || !menuItemImpl.isCheckable()) {
                 return;
             }
@@ -281,7 +303,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
         }
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-        public void onBindViewHolder(ViewHolder viewHolder, int i2) {
+        public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i2) {
             int itemViewType = getItemViewType(i2);
             if (itemViewType != 0) {
                 if (itemViewType == 1) {
@@ -312,10 +334,16 @@ public class NavigationMenuPresenter implements MenuPresenter {
             navigationMenuItemView.setNeedsEmptyIcon(navigationMenuTextItem.needsEmptyIcon);
             navigationMenuItemView.setHorizontalPadding(NavigationMenuPresenter.this.itemHorizontalPadding);
             navigationMenuItemView.setIconPadding(NavigationMenuPresenter.this.itemIconPadding);
+            NavigationMenuPresenter navigationMenuPresenter2 = NavigationMenuPresenter.this;
+            if (navigationMenuPresenter2.hasCustomItemIconSize) {
+                navigationMenuItemView.setIconSize(navigationMenuPresenter2.itemIconSize);
+            }
+            navigationMenuItemView.setMaxLines(NavigationMenuPresenter.this.itemMaxLines);
             navigationMenuItemView.initialize(navigationMenuTextItem.getMenuItem(), 0);
         }
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        @Nullable
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
             if (i2 == 0) {
                 NavigationMenuPresenter navigationMenuPresenter = NavigationMenuPresenter.this;
@@ -380,22 +408,34 @@ public class NavigationMenuPresenter implements MenuPresenter {
         }
     }
 
+    private class NavigationMenuViewAccessibilityDelegate extends RecyclerViewAccessibilityDelegate {
+        NavigationMenuViewAccessibilityDelegate(@NonNull RecyclerView recyclerView) {
+            super(recyclerView);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate, androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            accessibilityNodeInfoCompat.setCollectionInfo(AccessibilityNodeInfoCompat.CollectionInfoCompat.obtain(NavigationMenuPresenter.this.f3634adapter.getRowCount(), 0, false));
+        }
+    }
+
     private static class NormalViewHolder extends ViewHolder {
-        public NormalViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup, View.OnClickListener onClickListener) {
-            super(layoutInflater.inflate(C1921R.layout.design_navigation_item, viewGroup, false));
+        public NormalViewHolder(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, View.OnClickListener onClickListener) {
+            super(layoutInflater.inflate(R.layout.design_navigation_item, viewGroup, false));
             this.itemView.setOnClickListener(onClickListener);
         }
     }
 
     private static class SeparatorViewHolder extends ViewHolder {
-        public SeparatorViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            super(layoutInflater.inflate(C1921R.layout.design_navigation_item_separator, viewGroup, false));
+        public SeparatorViewHolder(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            super(layoutInflater.inflate(R.layout.design_navigation_item_separator, viewGroup, false));
         }
     }
 
     private static class SubheaderViewHolder extends ViewHolder {
-        public SubheaderViewHolder(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            super(layoutInflater.inflate(C1921R.layout.design_navigation_item_subheader, viewGroup, false));
+        public SubheaderViewHolder(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            super(layoutInflater.inflate(R.layout.design_navigation_item_subheader, viewGroup, false));
         }
     }
 
@@ -403,6 +443,12 @@ public class NavigationMenuPresenter implements MenuPresenter {
         public ViewHolder(View view) {
             super(view);
         }
+    }
+
+    private void updateTopPadding() {
+        int i2 = (this.headerLayout.getChildCount() == 0 && this.isBehindStatusBar) ? this.paddingTopDefault : 0;
+        NavigationMenuView navigationMenuView = this.menuView;
+        navigationMenuView.setPadding(0, i2, 0, navigationMenuView.getPaddingBottom());
     }
 
     public void addHeaderView(@NonNull View view) {
@@ -416,15 +462,14 @@ public class NavigationMenuPresenter implements MenuPresenter {
         return false;
     }
 
-    public void dispatchApplyWindowInsets(WindowInsetsCompat windowInsetsCompat) {
+    public void dispatchApplyWindowInsets(@NonNull WindowInsetsCompat windowInsetsCompat) {
         int systemWindowInsetTop = windowInsetsCompat.getSystemWindowInsetTop();
         if (this.paddingTopDefault != systemWindowInsetTop) {
             this.paddingTopDefault = systemWindowInsetTop;
-            if (this.headerLayout.getChildCount() == 0) {
-                NavigationMenuView navigationMenuView = this.menuView;
-                navigationMenuView.setPadding(0, this.paddingTopDefault, 0, navigationMenuView.getPaddingBottom());
-            }
+            updateTopPadding();
         }
+        NavigationMenuView navigationMenuView = this.menuView;
+        navigationMenuView.setPadding(0, navigationMenuView.getPaddingTop(), 0, windowInsetsCompat.getSystemWindowInsetBottom());
         ViewCompat.dispatchApplyWindowInsets(this.headerLayout, windowInsetsCompat);
     }
 
@@ -440,7 +485,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
 
     @Nullable
     public MenuItemImpl getCheckedItem() {
-        return this.f25892adapter.getCheckedItem();
+        return this.f3634adapter.getCheckedItem();
     }
 
     public int getHeaderCount() {
@@ -453,7 +498,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public int getId() {
-        return this.f5643id;
+        return this.id;
     }
 
     @Nullable
@@ -469,6 +514,10 @@ public class NavigationMenuPresenter implements MenuPresenter {
         return this.itemIconPadding;
     }
 
+    public int getItemMaxLines() {
+        return this.itemMaxLines;
+    }
+
     @Nullable
     public ColorStateList getItemTextColor() {
         return this.textColor;
@@ -482,27 +531,37 @@ public class NavigationMenuPresenter implements MenuPresenter {
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public MenuView getMenuView(ViewGroup viewGroup) {
         if (this.menuView == null) {
-            this.menuView = (NavigationMenuView) this.layoutInflater.inflate(C1921R.layout.design_navigation_menu, viewGroup, false);
-            if (this.f25892adapter == null) {
-                this.f25892adapter = new NavigationMenuAdapter();
+            this.menuView = (NavigationMenuView) this.layoutInflater.inflate(R.layout.design_navigation_menu, viewGroup, false);
+            NavigationMenuView navigationMenuView = this.menuView;
+            navigationMenuView.setAccessibilityDelegateCompat(new NavigationMenuViewAccessibilityDelegate(navigationMenuView));
+            if (this.f3634adapter == null) {
+                this.f3634adapter = new NavigationMenuAdapter();
             }
-            this.headerLayout = (LinearLayout) this.layoutInflater.inflate(C1921R.layout.design_navigation_item_header, (ViewGroup) this.menuView, false);
-            this.menuView.setAdapter(this.f25892adapter);
+            int i2 = this.overScrollMode;
+            if (i2 != -1) {
+                this.menuView.setOverScrollMode(i2);
+            }
+            this.headerLayout = (LinearLayout) this.layoutInflater.inflate(R.layout.design_navigation_item_header, (ViewGroup) this.menuView, false);
+            this.menuView.setAdapter(this.f3634adapter);
         }
         return this.menuView;
     }
 
     public View inflateHeaderView(@LayoutRes int i2) {
-        View inflate = this.layoutInflater.inflate(i2, (ViewGroup) this.headerLayout, false);
-        addHeaderView(inflate);
-        return inflate;
+        View viewInflate = this.layoutInflater.inflate(i2, (ViewGroup) this.headerLayout, false);
+        addHeaderView(viewInflate);
+        return viewInflate;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
-    public void initForMenu(Context context, MenuBuilder menuBuilder) {
+    public void initForMenu(@NonNull Context context, @NonNull MenuBuilder menuBuilder) {
         this.layoutInflater = LayoutInflater.from(context);
         this.menu = menuBuilder;
-        this.paddingSeparator = context.getResources().getDimensionPixelOffset(C1921R.dimen.design_navigation_separator_vertical_padding);
+        this.paddingSeparator = context.getResources().getDimensionPixelOffset(R.dimen.design_navigation_separator_vertical_padding);
+    }
+
+    public boolean isBehindStatusBar() {
+        return this.isBehindStatusBar;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
@@ -523,7 +582,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
             }
             Bundle bundle2 = bundle.getBundle(STATE_ADAPTER);
             if (bundle2 != null) {
-                this.f25892adapter.restoreInstanceState(bundle2);
+                this.f3634adapter.restoreInstanceState(bundle2);
             }
             SparseArray sparseParcelableArray2 = bundle.getSparseParcelableArray(STATE_HEADER);
             if (sparseParcelableArray2 != null) {
@@ -533,6 +592,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
+    @NonNull
     public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         if (this.menuView != null) {
@@ -540,7 +600,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
             this.menuView.saveHierarchyState(sparseArray);
             bundle.putSparseParcelableArray("android:menu:list", sparseArray);
         }
-        NavigationMenuAdapter navigationMenuAdapter = this.f25892adapter;
+        NavigationMenuAdapter navigationMenuAdapter = this.f3634adapter;
         if (navigationMenuAdapter != null) {
             bundle.putBundle(STATE_ADAPTER, navigationMenuAdapter.createInstanceState());
         }
@@ -565,17 +625,24 @@ public class NavigationMenuPresenter implements MenuPresenter {
         }
     }
 
+    public void setBehindStatusBar(boolean z) {
+        if (this.isBehindStatusBar != z) {
+            this.isBehindStatusBar = z;
+            updateTopPadding();
+        }
+    }
+
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public void setCallback(MenuPresenter.Callback callback) {
         this.callback = callback;
     }
 
     public void setCheckedItem(@NonNull MenuItemImpl menuItemImpl) {
-        this.f25892adapter.setCheckedItem(menuItemImpl);
+        this.f3634adapter.setCheckedItem(menuItemImpl);
     }
 
     public void setId(int i2) {
-        this.f5643id = i2;
+        this.id = i2;
     }
 
     public void setItemBackground(@Nullable Drawable drawable) {
@@ -593,8 +660,21 @@ public class NavigationMenuPresenter implements MenuPresenter {
         updateMenuView(false);
     }
 
+    public void setItemIconSize(@Dimension int i2) {
+        if (this.itemIconSize != i2) {
+            this.itemIconSize = i2;
+            this.hasCustomItemIconSize = true;
+            updateMenuView(false);
+        }
+    }
+
     public void setItemIconTintList(@Nullable ColorStateList colorStateList) {
         this.iconTintList = colorStateList;
+        updateMenuView(false);
+    }
+
+    public void setItemMaxLines(int i2) {
+        this.itemMaxLines = i2;
         updateMenuView(false);
     }
 
@@ -609,8 +689,16 @@ public class NavigationMenuPresenter implements MenuPresenter {
         updateMenuView(false);
     }
 
+    public void setOverScrollMode(int i2) {
+        this.overScrollMode = i2;
+        NavigationMenuView navigationMenuView = this.menuView;
+        if (navigationMenuView != null) {
+            navigationMenuView.setOverScrollMode(i2);
+        }
+    }
+
     public void setUpdateSuspended(boolean z) {
-        NavigationMenuAdapter navigationMenuAdapter = this.f25892adapter;
+        NavigationMenuAdapter navigationMenuAdapter = this.f3634adapter;
         if (navigationMenuAdapter != null) {
             navigationMenuAdapter.setUpdateSuspended(z);
         }
@@ -618,7 +706,7 @@ public class NavigationMenuPresenter implements MenuPresenter {
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public void updateMenuView(boolean z) {
-        NavigationMenuAdapter navigationMenuAdapter = this.f25892adapter;
+        NavigationMenuAdapter navigationMenuAdapter = this.f3634adapter;
         if (navigationMenuAdapter != null) {
             navigationMenuAdapter.update();
         }

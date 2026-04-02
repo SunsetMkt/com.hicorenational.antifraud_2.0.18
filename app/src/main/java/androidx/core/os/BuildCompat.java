@@ -2,7 +2,7 @@ package androidx.core.os;
 
 import android.os.Build;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BuildCompat {
     private BuildCompat() {
     }

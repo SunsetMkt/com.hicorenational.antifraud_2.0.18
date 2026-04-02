@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.core.internal.view.SupportMenuItem;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MenuItemCompat {
 
     @Deprecated
@@ -177,12 +177,12 @@ public final class MenuItemCompat {
         return menuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() { // from class: androidx.core.view.MenuItemCompat.1
             @Override // android.view.MenuItem.OnActionExpandListener
             public boolean onMenuItemActionCollapse(MenuItem menuItem2) {
-                return OnActionExpandListener.this.onMenuItemActionCollapse(menuItem2);
+                return onActionExpandListener.onMenuItemActionCollapse(menuItem2);
             }
 
             @Override // android.view.MenuItem.OnActionExpandListener
             public boolean onMenuItemActionExpand(MenuItem menuItem2) {
-                return OnActionExpandListener.this.onMenuItemActionExpand(menuItem2);
+                return onActionExpandListener.onMenuItemActionExpand(menuItem2);
             }
         });
     }

@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.view.WindowInsets;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class WindowInsetsCompat {
     private static final WindowInsetsCompatImpl IMPL;
     private final Object mInsets;

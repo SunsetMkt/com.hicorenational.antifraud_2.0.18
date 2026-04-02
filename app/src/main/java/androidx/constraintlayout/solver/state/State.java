@@ -12,7 +12,7 @@ import androidx.constraintlayout.solver.widgets.HelperWidget;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class State {
     static final int CONSTRAINT_RATIO = 2;
     static final int CONSTRAINT_SPREAD = 0;
@@ -24,8 +24,8 @@ public class State {
     public final ConstraintReference mParent = new ConstraintReference(this);
     private int numHelpers = 0;
 
-    /* renamed from: androidx.constraintlayout.solver.state.State$1 */
-    static /* synthetic */ class C04551 {
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.State$1 */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Helper = new int[Helper.values().length];
 
         static {
@@ -116,25 +116,25 @@ public class State {
         for (Object obj : this.mHelperReferences.keySet()) {
             HelperWidget helperWidget = this.mHelperReferences.get(obj).getHelperWidget();
             if (helperWidget != null) {
-                Reference reference = this.mReferences.get(obj);
-                if (reference == null) {
-                    reference = constraints(obj);
+                Reference referenceConstraints = this.mReferences.get(obj);
+                if (referenceConstraints == null) {
+                    referenceConstraints = constraints(obj);
                 }
-                reference.setConstraintWidget(helperWidget);
+                referenceConstraints.setConstraintWidget(helperWidget);
             }
         }
         Iterator<Object> it = this.mReferences.keySet().iterator();
         while (it.hasNext()) {
-            Reference reference2 = this.mReferences.get(it.next());
-            if (reference2 != this.mParent) {
-                ConstraintWidget constraintWidget = reference2.getConstraintWidget();
+            Reference reference = this.mReferences.get(it.next());
+            if (reference != this.mParent) {
+                ConstraintWidget constraintWidget = reference.getConstraintWidget();
                 constraintWidget.setParent(null);
-                if (reference2 instanceof GuidelineReference) {
-                    reference2.apply();
+                if (reference instanceof GuidelineReference) {
+                    reference.apply();
                 }
                 constraintWidgetContainer.add(constraintWidget);
             } else {
-                reference2.setConstraintWidget(constraintWidgetContainer);
+                reference.setConstraintWidget(constraintWidgetContainer);
             }
         }
         Iterator<Object> it2 = this.mHelperReferences.keySet().iterator();
@@ -173,14 +173,14 @@ public class State {
     }
 
     public ConstraintReference constraints(Object obj) {
-        Reference reference = this.mReferences.get(obj);
-        if (reference == null) {
-            reference = createConstraintReference(obj);
-            this.mReferences.put(obj, reference);
-            reference.setKey(obj);
+        Reference referenceCreateConstraintReference = this.mReferences.get(obj);
+        if (referenceCreateConstraintReference == null) {
+            referenceCreateConstraintReference = createConstraintReference(obj);
+            this.mReferences.put(obj, referenceCreateConstraintReference);
+            referenceCreateConstraintReference.setKey(obj);
         }
-        if (reference instanceof ConstraintReference) {
-            return (ConstraintReference) reference;
+        if (referenceCreateConstraintReference instanceof ConstraintReference) {
+            return (ConstraintReference) referenceCreateConstraintReference;
         }
         return null;
     }
@@ -207,15 +207,15 @@ public class State {
 
     public GuidelineReference guideline(Object obj, int i2) {
         Reference reference = this.mReferences.get(obj);
-        Reference reference2 = reference;
+        Object obj2 = reference;
         if (reference == null) {
             GuidelineReference guidelineReference = new GuidelineReference(this);
             guidelineReference.setOrientation(i2);
             guidelineReference.setKey(obj);
             this.mReferences.put(obj, guidelineReference);
-            reference2 = guidelineReference;
+            obj2 = guidelineReference;
         }
-        return (GuidelineReference) reference2;
+        return (GuidelineReference) obj2;
     }
 
     public State height(Dimension dimension) {
@@ -229,7 +229,7 @@ public class State {
         }
         HelperReference helperReference = this.mHelperReferences.get(obj);
         if (helperReference == null) {
-            int i2 = C04551.$SwitchMap$androidx$constraintlayout$solver$state$State$Helper[helper.ordinal()];
+            int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$state$State$Helper[helper.ordinal()];
             if (i2 == 1) {
                 horizontalChainReference = new HorizontalChainReference(this);
             } else if (i2 == 2) {

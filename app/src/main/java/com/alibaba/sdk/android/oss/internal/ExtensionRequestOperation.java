@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ExtensionRequestOperation {
     private static ExecutorService executorService = Executors.newFixedThreadPool(5, new ThreadFactory() { // from class: com.alibaba.sdk.android.oss.internal.ExtensionRequestOperation.1
         @Override // java.util.concurrent.ThreadFactory
@@ -44,47 +44,47 @@ public class ExtensionRequestOperation {
     }
 
     public void abortResumableUpload(ResumableUploadRequest resumableUploadRequest) throws IOException {
-        String calculateMd5Str;
+        String strCalculateMd5Str;
         setCRC64(resumableUploadRequest);
         if (OSSUtils.isEmptyString(resumableUploadRequest.getRecordDirectory())) {
             return;
         }
         String uploadFilePath = resumableUploadRequest.getUploadFilePath();
         if (uploadFilePath != null) {
-            calculateMd5Str = BinaryUtil.calculateMd5Str(uploadFilePath);
+            strCalculateMd5Str = BinaryUtil.calculateMd5Str(uploadFilePath);
         } else {
-            ParcelFileDescriptor openFileDescriptor = this.apiOperation.getApplicationContext().getContentResolver().openFileDescriptor(resumableUploadRequest.getUploadUri(), "r");
+            ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = this.apiOperation.getApplicationContext().getContentResolver().openFileDescriptor(resumableUploadRequest.getUploadUri(), "r");
             try {
-                calculateMd5Str = BinaryUtil.calculateMd5Str(openFileDescriptor.getFileDescriptor());
+                strCalculateMd5Str = BinaryUtil.calculateMd5Str(parcelFileDescriptorOpenFileDescriptor.getFileDescriptor());
             } finally {
-                if (openFileDescriptor != null) {
-                    openFileDescriptor.close();
+                if (parcelFileDescriptorOpenFileDescriptor != null) {
+                    parcelFileDescriptorOpenFileDescriptor.close();
                 }
             }
         }
-        String calculateMd5Str2 = BinaryUtil.calculateMd5Str((calculateMd5Str + resumableUploadRequest.getBucketName() + resumableUploadRequest.getObjectKey() + String.valueOf(resumableUploadRequest.getPartSize())).getBytes());
+        String strCalculateMd5Str2 = BinaryUtil.calculateMd5Str((strCalculateMd5Str + resumableUploadRequest.getBucketName() + resumableUploadRequest.getObjectKey() + String.valueOf(resumableUploadRequest.getPartSize())).getBytes());
         StringBuilder sb = new StringBuilder();
         sb.append(resumableUploadRequest.getRecordDirectory());
         sb.append("/");
-        sb.append(calculateMd5Str2);
+        sb.append(strCalculateMd5Str2);
         File file = new File(sb.toString());
         if (file.exists()) {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String readLine = bufferedReader.readLine();
+            String line = bufferedReader.readLine();
             bufferedReader.close();
-            OSSLog.logDebug("[initUploadId] - Found record file, uploadid: " + readLine);
+            OSSLog.logDebug("[initUploadId] - Found record file, uploadid: " + line);
             if (resumableUploadRequest.getCRC64() == OSSRequest.CRC64Config.YES) {
-                File file2 = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + OSSConstants.RESOURCE_NAME_OSS + File.separator + readLine);
+                File file2 = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + OSSConstants.RESOURCE_NAME_OSS + File.separator + line);
                 if (file2.exists()) {
                     file2.delete();
                 }
             }
-            this.apiOperation.abortMultipartUpload(new AbortMultipartUploadRequest(resumableUploadRequest.getBucketName(), resumableUploadRequest.getObjectKey(), readLine), null);
+            this.apiOperation.abortMultipartUpload(new AbortMultipartUploadRequest(resumableUploadRequest.getBucketName(), resumableUploadRequest.getObjectKey(), line), null);
         }
         file.delete();
     }
 
-    public boolean doesObjectExist(String str, String str2) throws ClientException, ServiceException {
+    public boolean doesObjectExist(String str, String str2) throws ServiceException, ClientException {
         try {
             this.apiOperation.headObject(new HeadObjectRequest(str, str2), null).getResult();
             return true;

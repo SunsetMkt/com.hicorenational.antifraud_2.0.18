@@ -8,37 +8,34 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import com.scwang.smartrefresh.layout.C2851R;
+import com.scwang.smartrefresh.layout.R;
+import com.scwang.smartrefresh.layout.b.g;
+import com.scwang.smartrefresh.layout.b.i;
+import com.scwang.smartrefresh.layout.b.j;
+import com.scwang.smartrefresh.layout.c.b;
 import com.scwang.smartrefresh.layout.internal.InternalAbstract;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2873g;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2875i;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2876j;
-import com.scwang.smartrefresh.layout.p190c.EnumC2879b;
-import com.scwang.smartrefresh.layout.p192e.C2889b;
 
-/* loaded from: classes.dex */
-public class FalsifyHeader extends InternalAbstract implements InterfaceC2873g {
+/* JADX INFO: loaded from: classes2.dex */
+public class FalsifyHeader extends InternalAbstract implements g {
 
-    /* renamed from: d */
-    protected InterfaceC2875i f9205d;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    protected i f5641d;
 
     public FalsifyHeader(Context context) {
         this(context, null);
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-    /* renamed from: a */
-    public void mo8715a(@NonNull InterfaceC2875i interfaceC2875i, int i2, int i3) {
-        this.f9205d = interfaceC2875i;
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
+    public void a(@NonNull i iVar, int i2, int i3) {
+        this.f5641d = iVar;
     }
 
-    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-    /* renamed from: b */
-    public void mo8719b(@NonNull InterfaceC2876j interfaceC2876j, int i2, int i3) {
-        InterfaceC2875i interfaceC2875i = this.f9205d;
-        if (interfaceC2875i != null) {
-            interfaceC2875i.mo8693a(EnumC2879b.None);
-            this.f9205d.mo8693a(EnumC2879b.RefreshFinish);
+    @Override // com.scwang.smartrefresh.layout.internal.InternalAbstract, com.scwang.smartrefresh.layout.b.h
+    public void b(@NonNull j jVar, int i2, int i3) {
+        i iVar = this.f5641d;
+        if (iVar != null) {
+            iVar.a(b.None);
+            this.f5641d.a(b.RefreshFinish);
         }
     }
 
@@ -46,16 +43,16 @@ public class FalsifyHeader extends InternalAbstract implements InterfaceC2873g {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (isInEditMode()) {
-            int m8735b = C2889b.m8735b(5.0f);
+            int iB = com.scwang.smartrefresh.layout.e.b.b(5.0f);
             Paint paint = new Paint();
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(-858993460);
-            paint.setStrokeWidth(C2889b.m8735b(1.0f));
-            float f2 = m8735b;
+            paint.setStrokeWidth(com.scwang.smartrefresh.layout.e.b.b(1.0f));
+            float f2 = iB;
             paint.setPathEffect(new DashPathEffect(new float[]{f2, f2, f2, f2}, 1.0f));
-            canvas.drawRect(f2, f2, getWidth() - m8735b, getBottom() - m8735b, paint);
+            canvas.drawRect(f2, f2, getWidth() - iB, getBottom() - iB, paint);
             TextView textView = new TextView(getContext());
-            textView.setText(getResources().getString(C2851R.string.srl_component_falsify, FalsifyHeader.class.getSimpleName(), Float.valueOf(C2889b.m8734b(getHeight()))));
+            textView.setText(getResources().getString(R.string.srl_component_falsify, FalsifyHeader.class.getSimpleName(), Float.valueOf(com.scwang.smartrefresh.layout.e.b.b(getHeight()))));
             textView.setTextColor(-858993460);
             textView.setGravity(17);
             textView.measure(View.MeasureSpec.makeMeasureSpec(getWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeight(), 1073741824));

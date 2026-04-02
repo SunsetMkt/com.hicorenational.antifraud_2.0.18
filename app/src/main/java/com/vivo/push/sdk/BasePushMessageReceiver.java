@@ -5,35 +5,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.text.TextUtils;
-import com.vivo.push.C3924m;
+import com.vivo.push.m;
 import com.vivo.push.model.UnvarnishedMessage;
-import com.vivo.push.util.C3984aa;
-import com.vivo.push.util.C4010u;
 import com.vivo.push.util.ContextDelegate;
+import com.vivo.push.util.aa;
+import com.vivo.push.util.u;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class BasePushMessageReceiver extends BroadcastReceiver implements PushMessageCallback {
     public static final String TAG = "PushMessageReceiver";
 
     @Override // com.vivo.push.sdk.PushMessageCallback
     public boolean isAllowNet(Context context) {
         if (context == null) {
-            C4010u.m13292a(TAG, "isAllowNet sContext is null");
+            u.a(TAG, "isAllowNet sContext is null");
             return false;
         }
         String packageName = context.getPackageName();
         if (TextUtils.isEmpty(packageName)) {
-            C4010u.m13292a(TAG, "isAllowNet pkgName is null");
+            u.a(TAG, "isAllowNet pkgName is null");
             return false;
         }
         Intent intent = new Intent("com.vivo.pushservice.action.PUSH_SERVICE");
         intent.setPackage(packageName);
-        List<ResolveInfo> queryIntentServices = context.getPackageManager().queryIntentServices(intent, 576);
-        if (queryIntentServices != null && queryIntentServices.size() > 0) {
-            return C3984aa.m13182a(context, packageName);
+        List<ResolveInfo> listQueryIntentServices = context.getPackageManager().queryIntentServices(intent, 576);
+        if (listQueryIntentServices != null && listQueryIntentServices.size() > 0) {
+            return aa.a(context, packageName);
         }
-        C4010u.m13292a(TAG, "this is client sdk");
+        u.a(TAG, "this is client sdk");
         return true;
     }
 
@@ -64,12 +64,12 @@ public abstract class BasePushMessageReceiver extends BroadcastReceiver implemen
     @Override // android.content.BroadcastReceiver
     public final void onReceive(Context context, Intent intent) {
         Context context2 = ContextDelegate.getContext(context);
-        C3924m.m13016a().m13030a(context2);
-        C4010u.m13309d(TAG, "PushMessageReceiver " + context2.getPackageName() + " ; requestId = " + intent.getStringExtra("req_id"));
+        m.a().a(context2);
+        u.d(TAG, "PushMessageReceiver " + context2.getPackageName() + " ; requestId = " + intent.getStringExtra("req_id"));
         try {
-            C3924m.m13016a().m13029a(intent, this);
+            m.a().a(intent, this);
         } catch (Exception e2) {
-            C4010u.m13309d(TAG, "onReceive doReceiveCommand erroe" + e2.getMessage());
+            u.d(TAG, "onReceive doReceiveCommand erroe" + e2.getMessage());
         }
     }
 

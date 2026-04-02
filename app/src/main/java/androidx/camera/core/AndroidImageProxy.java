@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.ImageProxy;
 import java.nio.ByteBuffer;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class AndroidImageProxy implements ImageProxy {
 
     @GuardedBy("this")

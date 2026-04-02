@@ -1,6 +1,6 @@
 package com.huawei.hms.support.api.entity.core;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JosStatusCodes {
     public static final int RNT_CODE_NETWORK_ERROR = 8300;
     public static final int RNT_CODE_NO_JOS_INFO = 8002;

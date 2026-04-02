@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaselineLayout extends ViewGroup {
     private int baseline;
 
@@ -40,30 +40,30 @@ public class BaselineLayout extends ViewGroup {
     @Override // android.view.View
     protected void onMeasure(int i2, int i3) {
         int childCount = getChildCount();
-        int i4 = -1;
-        int i5 = -1;
-        int i6 = 0;
-        int i7 = 0;
-        int i8 = 0;
-        for (int i9 = 0; i9 < childCount; i9++) {
-            View childAt = getChildAt(i9);
+        int iMax = -1;
+        int iMax2 = -1;
+        int iMax3 = 0;
+        int iMax4 = 0;
+        int iCombineMeasuredStates = 0;
+        for (int i4 = 0; i4 < childCount; i4++) {
+            View childAt = getChildAt(i4);
             if (childAt.getVisibility() != 8) {
                 measureChild(childAt, i2, i3);
                 int baseline = childAt.getBaseline();
                 if (baseline != -1) {
-                    i4 = Math.max(i4, baseline);
-                    i5 = Math.max(i5, childAt.getMeasuredHeight() - baseline);
+                    iMax = Math.max(iMax, baseline);
+                    iMax2 = Math.max(iMax2, childAt.getMeasuredHeight() - baseline);
                 }
-                i7 = Math.max(i7, childAt.getMeasuredWidth());
-                i6 = Math.max(i6, childAt.getMeasuredHeight());
-                i8 = View.combineMeasuredStates(i8, childAt.getMeasuredState());
+                iMax4 = Math.max(iMax4, childAt.getMeasuredWidth());
+                iMax3 = Math.max(iMax3, childAt.getMeasuredHeight());
+                iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, childAt.getMeasuredState());
             }
         }
-        if (i4 != -1) {
-            i6 = Math.max(i6, Math.max(i5, getPaddingBottom()) + i4);
-            this.baseline = i4;
+        if (iMax != -1) {
+            iMax3 = Math.max(iMax3, Math.max(iMax2, getPaddingBottom()) + iMax);
+            this.baseline = iMax;
         }
-        setMeasuredDimension(View.resolveSizeAndState(Math.max(i7, getSuggestedMinimumWidth()), i2, i8), View.resolveSizeAndState(Math.max(i6, getSuggestedMinimumHeight()), i3, i8 << 16));
+        setMeasuredDimension(View.resolveSizeAndState(Math.max(iMax4, getSuggestedMinimumWidth()), i2, iCombineMeasuredStates), View.resolveSizeAndState(Math.max(iMax3, getSuggestedMinimumHeight()), i3, iCombineMeasuredStates << 16));
     }
 
     public BaselineLayout(Context context, AttributeSet attributeSet) {

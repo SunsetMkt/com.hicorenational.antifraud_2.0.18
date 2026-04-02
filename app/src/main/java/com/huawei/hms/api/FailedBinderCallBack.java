@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FailedBinderCallBack {
     private static final long AGING_TIME = 10000;
     public static final String CALLER_ID = "callId";
@@ -41,7 +41,7 @@ public class FailedBinderCallBack {
 
     private void putCallBackInMap(Long l2, BinderCallBack binderCallBack) {
         if (binderCallBackMap == null) {
-            HMSLog.m7715e(TAG, "binderCallBackMap is null");
+            HMSLog.e(TAG, "binderCallBackMap is null");
         } else {
             agingCheck();
             binderCallBackMap.put(l2, binderCallBack);
@@ -53,7 +53,7 @@ public class FailedBinderCallBack {
         if (map != null) {
             return map.remove(l2);
         }
-        HMSLog.m7715e(TAG, "binderCallBackMap is null");
+        HMSLog.e(TAG, "binderCallBackMap is null");
         return null;
     }
 

@@ -14,7 +14,7 @@ import javax.net.ssl.SSLSocket;
 import okhttp3.ConnectionSpec;
 import okhttp3.internal.Internal;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ConnectionSpecSelector {
     private final List<ConnectionSpec> connectionSpecs;
     private boolean isFallback;

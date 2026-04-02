@@ -10,140 +10,125 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import bean.HomeNewCaseBean;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.List;
 import manager.AccountManager;
 import manager.NotificationHelper;
-import p357j.C5845d;
-import p388ui.Hicore;
-import p388ui.activity.PromosWebDetActivity;
-import util.C7292k1;
-import util.C7337y1;
+import ui.Hicore;
+import ui.activity.PromosWebDetActivity;
+import util.g2;
+import util.p1;
 
-/* loaded from: classes.dex */
-public class HomeNewCaseAdapter extends RecyclerView.Adapter<C0066a> {
+/* JADX INFO: loaded from: classes.dex */
+public class HomeNewCaseAdapter extends RecyclerView.Adapter<a> {
 
-    /* renamed from: c */
-    static final int f222c = 2;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    static final int f1129c = 2;
 
-    /* renamed from: d */
-    static final int f223d = 3;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    static final int f1130d = 3;
 
-    /* renamed from: e */
-    static final int f224e = 4;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    static final int f1131e = 4;
 
-    /* renamed from: f */
-    static final int f225f = 6;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    static final int f1132f = 6;
+    private Context a;
 
-    /* renamed from: a */
-    private Context f226a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private List<HomeNewCaseBean.RowsBean> f1133b;
 
-    /* renamed from: b */
-    private List<HomeNewCaseBean.RowsBean> f227b;
+    class a extends RecyclerView.ViewHolder {
+        public View a;
 
-    /* renamed from: adapter.HomeNewCaseAdapter$a */
-    class C0066a extends RecyclerView.ViewHolder {
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public ImageView f1134b;
 
-        /* renamed from: a */
-        public View f228a;
+        /* JADX INFO: renamed from: c, reason: collision with root package name */
+        public TextView f1135c;
 
-        /* renamed from: b */
-        public ImageView f229b;
+        /* JADX INFO: renamed from: d, reason: collision with root package name */
+        public TextView f1136d;
 
-        /* renamed from: c */
-        public TextView f230c;
+        /* JADX INFO: renamed from: e, reason: collision with root package name */
+        public View f1137e;
 
-        /* renamed from: d */
-        public TextView f231d;
-
-        /* renamed from: e */
-        public View f232e;
-
-        public C0066a(View view) {
+        public a(View view) {
             super(view);
-            this.f228a = view.findViewById(C2113R.id.rl_type_topic);
-            this.f229b = (ImageView) view.findViewById(C2113R.id.iv_topic_pic);
-            this.f230c = (TextView) view.findViewById(C2113R.id.iv_topic_tit);
-            this.f231d = (TextView) view.findViewById(C2113R.id.iv_topic_time);
-            this.f232e = view.findViewById(C2113R.id.view_line);
+            this.a = view.findViewById(R.id.rl_type_topic);
+            this.f1134b = (ImageView) view.findViewById(R.id.iv_topic_pic);
+            this.f1135c = (TextView) view.findViewById(R.id.iv_topic_tit);
+            this.f1136d = (TextView) view.findViewById(R.id.iv_topic_time);
+            this.f1137e = view.findViewById(R.id.view_line);
         }
     }
 
     public HomeNewCaseAdapter(Context context, List<HomeNewCaseBean.RowsBean> list) {
-        this.f226a = context;
-        this.f227b = list;
+        this.a = context;
+        this.f1133b = list;
     }
 
-    /* renamed from: b */
-    private void m245b(C0066a c0066a, int i2) {
-        final HomeNewCaseBean.RowsBean rowsBean = this.f227b.get(i2);
-        c0066a.f230c.setText(rowsBean.getTitle());
-        String m26738a = C7337y1.m26738a(rowsBean.getReleaseTime());
+    private void b(a aVar, int i2) {
+        final HomeNewCaseBean.RowsBean rowsBean = this.f1133b.get(i2);
+        aVar.f1135c.setText(rowsBean.getTitle());
+        String strA = g2.a(rowsBean.getReleaseTime());
         if (TextUtils.isEmpty(rowsBean.getAuthor())) {
-            c0066a.f231d.setText("国家反诈中心  " + m26738a);
+            aVar.f1136d.setText("\u56fd\u5bb6\u53cd\u8bc8\u4e2d\u5fc3  " + strA);
         } else {
-            c0066a.f231d.setText(rowsBean.getAuthor() + "  " + m26738a);
+            aVar.f1136d.setText(rowsBean.getAuthor() + "  " + strA);
         }
-        c0066a.f229b.setVisibility(0);
-        if (2 == rowsBean.getMterialType()) {
-            C5845d.m24609a(rowsBean.getCdnCover(), c0066a.f229b);
-        } else if (3 == rowsBean.getMterialType()) {
-            C5845d.m24609a(rowsBean.getCdnCover(), c0066a.f229b);
-        } else if (4 == rowsBean.getMterialType()) {
-            c0066a.f229b.setVisibility(4);
+        aVar.f1134b.setVisibility(0);
+        if (2 == rowsBean.getMterialType() || 3 == rowsBean.getMterialType() || 4 != rowsBean.getMterialType()) {
+            k.d.a(rowsBean.getCdnCover(), aVar.f1134b);
         } else {
-            C5845d.m24609a(rowsBean.getCdnCover(), c0066a.f229b);
+            aVar.f1134b.setVisibility(4);
         }
         if (TextUtils.isEmpty(rowsBean.getCdnCover())) {
-            c0066a.f229b.setVisibility(4);
+            aVar.f1134b.setVisibility(4);
         }
-        c0066a.itemView.setOnClickListener(new View.OnClickListener() { // from class: adapter.b
+        aVar.itemView.setOnClickListener(new View.OnClickListener() { // from class: adapter.b
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                HomeNewCaseAdapter.this.m248a(rowsBean, view);
+                this.a.a(rowsBean, view);
             }
         });
     }
 
-    /* renamed from: a */
-    public List<HomeNewCaseBean.RowsBean> m246a() {
-        return this.f227b;
+    public List<HomeNewCaseBean.RowsBean> a() {
+        return this.f1133b;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
-        return this.f227b.size();
+        return this.f1133b.size();
     }
 
-    /* renamed from: a */
-    public void m249a(List<HomeNewCaseBean.RowsBean> list) {
-        this.f227b.clear();
-        this.f227b.addAll(list);
+    public void a(List<HomeNewCaseBean.RowsBean> list) {
+        this.f1133b.clear();
+        this.f1133b.addAll(list);
         notifyDataSetChanged();
     }
 
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public C0066a onCreateViewHolder(ViewGroup viewGroup, int i2) {
-        return new C0066a(LayoutInflater.from(viewGroup.getContext()).inflate(C2113R.layout.item_home_new_case, viewGroup, false));
+    public a onCreateViewHolder(ViewGroup viewGroup, int i2) {
+        return new a(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_home_new_case, viewGroup, false));
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    /* renamed from: a, reason: merged with bridge method [inline-methods] */
-    public void onBindViewHolder(C0066a c0066a, int i2) {
-        m245b(c0066a, i2);
+    /* JADX INFO: renamed from: a, reason: merged with bridge method [inline-methods] */
+    public void onBindViewHolder(a aVar, int i2) {
+        b(aVar, i2);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m248a(HomeNewCaseBean.RowsBean rowsBean, View view) {
+    public /* synthetic */ void a(HomeNewCaseBean.RowsBean rowsBean, View view) {
         if (Hicore.getApp().isDouble()) {
             return;
         }
-        Intent intent = new Intent(this.f226a, (Class<?>) PromosWebDetActivity.class);
-        intent.putExtra(C7292k1.f25363P, NotificationHelper.CHANEL_NAME);
-        intent.putExtra(C7292k1.f25365Q, rowsBean.getLocalFilePath() + AccountManager.getShareParam());
-        intent.putExtra(C7292k1.f25371T, rowsBean.getId());
-        intent.putExtra(C7292k1.f25373U, 2);
-        this.f226a.startActivity(intent);
+        Intent intent = new Intent(this.a, (Class<?>) PromosWebDetActivity.class);
+        intent.putExtra(p1.P, NotificationHelper.CHANEL_NAME);
+        intent.putExtra(p1.Q, rowsBean.getLocalFilePath() + AccountManager.getShareParam());
+        intent.putExtra(p1.T, rowsBean.getId());
+        intent.putExtra(p1.U, 2);
+        this.a.startActivity(intent);
     }
 }

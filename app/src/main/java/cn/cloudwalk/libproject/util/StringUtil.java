@@ -1,8 +1,8 @@
 package cn.cloudwalk.libproject.util;
 
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import d.c.a.b.a.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class StringUtil {
     private static final int PAD_LIMIT = 8192;
 
@@ -38,7 +38,7 @@ public class StringUtil {
             return null;
         }
         if (isEmpty(str2)) {
-            str2 = AbstractC1191a.f2568g;
+            str2 = a.f10074g;
         }
         int length = str2.length();
         int length2 = i2 - str.length();

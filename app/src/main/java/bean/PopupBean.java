@@ -3,15 +3,13 @@ package bean;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PopupBean {
     private int closeable;
     private String content;
     private String createTime;
     private String endTime;
-
-    /* renamed from: id */
-    private long f1606id;
+    private long id;
     private int imgHeight;
     private int imgWidth;
     private String linkTitle;
@@ -20,9 +18,7 @@ public class PopupBean {
     private int popupCountType;
     private String startTime;
     private String title;
-
-    /* renamed from: to */
-    private String f1607to;
+    private String to;
     private int type;
     private String updateTime;
 
@@ -43,7 +39,7 @@ public class PopupBean {
     }
 
     public long getId() {
-        return this.f1606id;
+        return this.id;
     }
 
     public int getImgHeight() {
@@ -79,7 +75,7 @@ public class PopupBean {
     }
 
     public String getTo() {
-        return this.f1607to;
+        return this.to;
     }
 
     public int getType() {
@@ -107,7 +103,7 @@ public class PopupBean {
     }
 
     public void setId(long j2) {
-        this.f1606id = j2;
+        this.id = j2;
     }
 
     public void setImgHeight(int i2) {
@@ -143,7 +139,7 @@ public class PopupBean {
     }
 
     public void setTo(String str) {
-        this.f1607to = str;
+        this.to = str;
     }
 
     public void setType(int i2) {

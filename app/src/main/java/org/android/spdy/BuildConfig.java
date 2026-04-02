@@ -1,6 +1,6 @@
 package org.android.spdy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class BuildConfig {
     public static final String APPLICATION_ID = "org.android.spdy";
     public static final String BUILD_TYPE = "release";

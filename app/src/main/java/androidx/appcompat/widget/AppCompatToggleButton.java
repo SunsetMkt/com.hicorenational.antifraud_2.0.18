@@ -7,7 +7,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatToggleButton extends ToggleButton {
     private final AppCompatTextHelper mTextHelper;
 

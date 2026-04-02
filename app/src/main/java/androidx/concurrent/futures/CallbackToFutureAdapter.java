@@ -2,14 +2,14 @@ package androidx.concurrent.futures;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import d.b.b.a.a.a;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CallbackToFutureAdapter {
 
     public static final class Completer<T> {
@@ -99,9 +99,12 @@ public final class CallbackToFutureAdapter {
         Object attachCompleter(@NonNull Completer<T> completer) throws Exception;
     }
 
-    private static final class SafeFuture<T> implements InterfaceFutureC0952a<T> {
+    private static final class SafeFuture<T> implements a<T> {
         final WeakReference<Completer<T>> completerWeakReference;
         private final AbstractResolvableFuture<T> delegate = new AbstractResolvableFuture<T>() { // from class: androidx.concurrent.futures.CallbackToFutureAdapter.SafeFuture.1
+            AnonymousClass1() {
+            }
+
             @Override // androidx.concurrent.futures.AbstractResolvableFuture
             protected String pendingToString() {
                 Completer<T> completer = SafeFuture.this.completerWeakReference.get();
@@ -112,11 +115,26 @@ public final class CallbackToFutureAdapter {
             }
         };
 
+        /* JADX INFO: renamed from: androidx.concurrent.futures.CallbackToFutureAdapter$SafeFuture$1 */
+        class AnonymousClass1 extends AbstractResolvableFuture<T> {
+            AnonymousClass1() {
+            }
+
+            @Override // androidx.concurrent.futures.AbstractResolvableFuture
+            protected String pendingToString() {
+                Completer<T> completer = SafeFuture.this.completerWeakReference.get();
+                if (completer == null) {
+                    return "Completer object has been garbage collected, future will fail soon";
+                }
+                return "tag=[" + completer.tag + "]";
+            }
+        }
+
         SafeFuture(Completer<T> completer) {
             this.completerWeakReference = new WeakReference<>(completer);
         }
 
-        @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
+        @Override // d.b.b.a.a.a
         public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
             this.delegate.addListener(runnable, executor);
         }
@@ -124,11 +142,11 @@ public final class CallbackToFutureAdapter {
         @Override // java.util.concurrent.Future
         public boolean cancel(boolean z) {
             Completer<T> completer = this.completerWeakReference.get();
-            boolean cancel = this.delegate.cancel(z);
-            if (cancel && completer != null) {
+            boolean zCancel = this.delegate.cancel(z);
+            if (zCancel && completer != null) {
                 completer.fireCancellationListeners();
             }
-            return cancel;
+            return zCancel;
         }
 
         boolean cancelWithoutNotifyingCompleter(boolean z) {
@@ -136,7 +154,7 @@ public final class CallbackToFutureAdapter {
         }
 
         @Override // java.util.concurrent.Future
-        public T get() throws InterruptedException, ExecutionException {
+        public T get() throws ExecutionException, InterruptedException {
             return this.delegate.get();
         }
 
@@ -163,7 +181,7 @@ public final class CallbackToFutureAdapter {
         }
 
         @Override // java.util.concurrent.Future
-        public T get(long j2, @NonNull TimeUnit timeUnit) throws InterruptedException, ExecutionException, TimeoutException {
+        public T get(long j2, @NonNull TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
             return this.delegate.get(j2, timeUnit);
         }
     }
@@ -172,15 +190,15 @@ public final class CallbackToFutureAdapter {
     }
 
     @NonNull
-    public static <T> InterfaceFutureC0952a<T> getFuture(@NonNull Resolver<T> resolver) {
+    public static <T> a<T> getFuture(@NonNull Resolver<T> resolver) {
         Completer<T> completer = new Completer<>();
         SafeFuture<T> safeFuture = new SafeFuture<>(completer);
         completer.future = safeFuture;
         completer.tag = resolver.getClass();
         try {
-            Object attachCompleter = resolver.attachCompleter(completer);
-            if (attachCompleter != null) {
-                completer.tag = attachCompleter;
+            Object objAttachCompleter = resolver.attachCompleter(completer);
+            if (objAttachCompleter != null) {
+                completer.tag = objAttachCompleter;
             }
         } catch (Exception e2) {
             safeFuture.setException(e2);

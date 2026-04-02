@@ -7,10 +7,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MessageCodecV2 extends MessageCodec {
     @Override // com.huawei.hms.core.aidl.MessageCodec
-    protected List<Object> readList(Type type, Bundle bundle) throws InstantiationException, IllegalAccessException {
+    protected List<Object> readList(Type type, Bundle bundle) throws IllegalAccessException, InstantiationException {
         int i2 = bundle.getInt("_list_size_");
         ArrayList arrayList = new ArrayList(i2);
         for (int i3 = 0; i3 < i2; i3++) {

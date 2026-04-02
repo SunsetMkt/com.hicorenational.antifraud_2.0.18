@@ -2,6 +2,7 @@ package androidx.transition;
 
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -17,7 +18,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import org.xmlpull.v1.XmlPullParser;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Slide extends Visibility {
     private static final String PROPNAME_SCREEN_POSITION = "android:slide:screenPosition";
     private CalculateSlide mSlideCalculator;
@@ -88,7 +89,7 @@ public class Slide extends Visibility {
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public @interface GravityFlag {
     }
 
@@ -128,7 +129,7 @@ public class Slide extends Visibility {
         int[] iArr = (int[]) transitionValues2.values.get(PROPNAME_SCREEN_POSITION);
         float translationX = view.getTranslationX();
         float translationY = view.getTranslationY();
-        return TranslationAnimationCreator.createAnimation(view, transitionValues2, iArr[0], iArr[1], this.mSlideCalculator.getGoneX(viewGroup, view), this.mSlideCalculator.getGoneY(viewGroup, view), translationX, translationY, sDecelerate);
+        return TranslationAnimationCreator.createAnimation(view, transitionValues2, iArr[0], iArr[1], this.mSlideCalculator.getGoneX(viewGroup, view), this.mSlideCalculator.getGoneY(viewGroup, view), translationX, translationY, sDecelerate, this);
     }
 
     @Override // androidx.transition.Visibility
@@ -137,7 +138,7 @@ public class Slide extends Visibility {
             return null;
         }
         int[] iArr = (int[]) transitionValues.values.get(PROPNAME_SCREEN_POSITION);
-        return TranslationAnimationCreator.createAnimation(view, transitionValues, iArr[0], iArr[1], view.getTranslationX(), view.getTranslationY(), this.mSlideCalculator.getGoneX(viewGroup, view), this.mSlideCalculator.getGoneY(viewGroup, view), sAccelerate);
+        return TranslationAnimationCreator.createAnimation(view, transitionValues, iArr[0], iArr[1], view.getTranslationX(), view.getTranslationY(), this.mSlideCalculator.getGoneX(viewGroup, view), this.mSlideCalculator.getGoneY(viewGroup, view), sAccelerate, this);
     }
 
     public void setSlideEdge(int i2) {
@@ -169,13 +170,14 @@ public class Slide extends Visibility {
         setSlideEdge(i2);
     }
 
+    @SuppressLint({"RestrictedApi"})
     public Slide(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.mSlideCalculator = sCalculateBottom;
         this.mSlideEdge = 80;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.SLIDE);
-        int namedInt = TypedArrayUtils.getNamedInt(obtainStyledAttributes, (XmlPullParser) attributeSet, "slideEdge", 0, 80);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, Styleable.SLIDE);
+        int namedInt = TypedArrayUtils.getNamedInt(typedArrayObtainStyledAttributes, (XmlPullParser) attributeSet, "slideEdge", 0, 80);
+        typedArrayObtainStyledAttributes.recycle();
         setSlideEdge(namedInt);
     }
 }

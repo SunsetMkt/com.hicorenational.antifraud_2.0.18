@@ -1,81 +1,63 @@
 package androidx.core.graphics.drawable;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.Px;
 import com.umeng.socialize.net.utils.SocializeProtocolConstants;
-import p286h.InterfaceC5713y;
-import p286h.p309q2.p311t.C5544i0;
-import p324i.p336c.p337a.InterfaceC5816d;
+import i.q2.t.i0;
+import i.y;
+import j.c.a.d;
+import j.c.a.e;
 
-/* compiled from: Drawable.kt */
-@InterfaceC5713y(m23544bv = {1, 0, 2}, m23545d1 = {"\u0000\"\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0005\u001a*\u0010\u0000\u001a\u00020\u0001*\u00020\u00022\b\b\u0003\u0010\u0003\u001a\u00020\u00042\b\b\u0003\u0010\u0005\u001a\u00020\u00042\n\b\u0002\u0010\u0006\u001a\u0004\u0018\u00010\u0007\u001a2\u0010\b\u001a\u00020\t*\u00020\u00022\b\b\u0003\u0010\n\u001a\u00020\u00042\b\b\u0003\u0010\u000b\u001a\u00020\u00042\b\b\u0003\u0010\f\u001a\u00020\u00042\b\b\u0003\u0010\r\u001a\u00020\u0004¨\u0006\u000e"}, m23546d2 = {"toBitmap", "Landroid/graphics/Bitmap;", "Landroid/graphics/drawable/Drawable;", SocializeProtocolConstants.WIDTH, "", SocializeProtocolConstants.HEIGHT, "config", "Landroid/graphics/Bitmap$Config;", "updateBounds", "", "left", "top", "right", "bottom", "core-ktx_release"}, m23547k = 2, m23548mv = {1, 1, 10})
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Drawable.kt */
+/* JADX INFO: loaded from: classes.dex */
+@y(bv = {1, 0, 2}, d1 = {"\u0000\"\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0005\u001a*\u0010\u0000\u001a\u00020\u0001*\u00020\u00022\b\b\u0003\u0010\u0003\u001a\u00020\u00042\b\b\u0003\u0010\u0005\u001a\u00020\u00042\n\b\u0002\u0010\u0006\u001a\u0004\u0018\u00010\u0007\u001a2\u0010\b\u001a\u00020\t*\u00020\u00022\b\b\u0003\u0010\n\u001a\u00020\u00042\b\b\u0003\u0010\u000b\u001a\u00020\u00042\b\b\u0003\u0010\f\u001a\u00020\u00042\b\b\u0003\u0010\r\u001a\u00020\u0004\u00a8\u0006\u000e"}, d2 = {"toBitmap", "Landroid/graphics/Bitmap;", "Landroid/graphics/drawable/Drawable;", SocializeProtocolConstants.WIDTH, "", SocializeProtocolConstants.HEIGHT, "config", "Landroid/graphics/Bitmap$Config;", "updateBounds", "", "left", "top", "right", "bottom", "core-ktx_release"}, k = 2, mv = {1, 1, 10})
 public final class DrawableKt {
-    /* JADX WARN: Code restructure failed: missing block: B:5:0x001b, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:6:0x001b, code lost:
     
         if (r0.getConfig() == r9) goto L7;
      */
-    @p324i.p336c.p337a.InterfaceC5816d
+    @d
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static final android.graphics.Bitmap toBitmap(@p324i.p336c.p337a.InterfaceC5816d android.graphics.drawable.Drawable r6, @androidx.annotation.Px int r7, @androidx.annotation.Px int r8, @p324i.p336c.p337a.InterfaceC5817e android.graphics.Bitmap.Config r9) {
-        /*
-            java.lang.String r0 = "$receiver"
-            p286h.p309q2.p311t.C5544i0.m22546f(r6, r0)
-            boolean r0 = r6 instanceof android.graphics.drawable.BitmapDrawable
-            java.lang.String r1 = "bitmap"
-            if (r0 == 0) goto L42
-            if (r9 == 0) goto L1d
-            r0 = r6
-            android.graphics.drawable.BitmapDrawable r0 = (android.graphics.drawable.BitmapDrawable) r0
-            android.graphics.Bitmap r0 = r0.getBitmap()
-            p286h.p309q2.p311t.C5544i0.m22521a(r0, r1)
-            android.graphics.Bitmap$Config r0 = r0.getConfig()
-            if (r0 != r9) goto L42
-        L1d:
-            android.graphics.drawable.BitmapDrawable r6 = (android.graphics.drawable.BitmapDrawable) r6
-            int r9 = r6.getIntrinsicWidth()
-            if (r7 != r9) goto L33
-            int r9 = r6.getIntrinsicHeight()
-            if (r8 != r9) goto L33
-            android.graphics.Bitmap r6 = r6.getBitmap()
-            p286h.p309q2.p311t.C5544i0.m22521a(r6, r1)
-            return r6
-        L33:
-            android.graphics.Bitmap r6 = r6.getBitmap()
-            r9 = 1
-            android.graphics.Bitmap r6 = android.graphics.Bitmap.createScaledBitmap(r6, r7, r8, r9)
-            java.lang.String r7 = "Bitmap.createScaledBitma…map, width, height, true)"
-            p286h.p309q2.p311t.C5544i0.m22521a(r6, r7)
-            return r6
-        L42:
-            android.graphics.Rect r0 = r6.getBounds()
-            int r2 = r0.left
-            int r3 = r0.top
-            int r4 = r0.right
-            int r0 = r0.bottom
-            if (r9 == 0) goto L51
-            goto L53
-        L51:
-            android.graphics.Bitmap$Config r9 = android.graphics.Bitmap.Config.ARGB_8888
-        L53:
-            android.graphics.Bitmap r9 = android.graphics.Bitmap.createBitmap(r7, r8, r9)
-            r5 = 0
-            r6.setBounds(r5, r5, r7, r8)
-            android.graphics.Canvas r7 = new android.graphics.Canvas
-            r7.<init>(r9)
-            r6.draw(r7)
-            r6.setBounds(r2, r3, r4, r0)
-            p286h.p309q2.p311t.C5544i0.m22521a(r9, r1)
-            return r9
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.core.graphics.drawable.DrawableKt.toBitmap(android.graphics.drawable.Drawable, int, int, android.graphics.Bitmap$Config):android.graphics.Bitmap");
+    public static final Bitmap toBitmap(@d Drawable drawable, @Px int i2, @Px int i3, @e Bitmap.Config config) {
+        i0.f(drawable, "$receiver");
+        if (drawable instanceof BitmapDrawable) {
+            if (config != null) {
+                Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                i0.a((Object) bitmap, "bitmap");
+            }
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if (i2 == bitmapDrawable.getIntrinsicWidth() && i3 == bitmapDrawable.getIntrinsicHeight()) {
+                Bitmap bitmap2 = bitmapDrawable.getBitmap();
+                i0.a((Object) bitmap2, "bitmap");
+                return bitmap2;
+            }
+            Bitmap bitmapCreateScaledBitmap = Bitmap.createScaledBitmap(bitmapDrawable.getBitmap(), i2, i3, true);
+            i0.a((Object) bitmapCreateScaledBitmap, "Bitmap.createScaledBitma\u2026map, width, height, true)");
+            return bitmapCreateScaledBitmap;
+        }
+        Rect bounds = drawable.getBounds();
+        int i4 = bounds.left;
+        int i5 = bounds.top;
+        int i6 = bounds.right;
+        int i7 = bounds.bottom;
+        if (config == null) {
+            config = Bitmap.Config.ARGB_8888;
+        }
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, config);
+        drawable.setBounds(0, 0, i2, i3);
+        drawable.draw(new Canvas(bitmapCreateBitmap));
+        drawable.setBounds(i4, i5, i6, i7);
+        i0.a((Object) bitmapCreateBitmap, "bitmap");
+        return bitmapCreateBitmap;
     }
 
-    @InterfaceC5816d
+    @d
     public static /* bridge */ /* synthetic */ Bitmap toBitmap$default(Drawable drawable, int i2, int i3, Bitmap.Config config, int i4, Object obj) {
         if ((i4 & 1) != 0) {
             i2 = drawable.getIntrinsicWidth();
@@ -89,8 +71,8 @@ public final class DrawableKt {
         return toBitmap(drawable, i2, i3, config);
     }
 
-    public static final void updateBounds(@InterfaceC5816d Drawable drawable, @Px int i2, @Px int i3, @Px int i4, @Px int i5) {
-        C5544i0.m22546f(drawable, "$receiver");
+    public static final void updateBounds(@d Drawable drawable, @Px int i2, @Px int i3, @Px int i4, @Px int i5) {
+        i0.f(drawable, "$receiver");
         drawable.setBounds(i2, i3, i4, i5);
     }
 

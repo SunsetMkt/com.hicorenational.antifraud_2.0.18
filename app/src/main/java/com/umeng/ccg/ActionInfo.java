@@ -2,7 +2,7 @@ package com.umeng.ccg;
 
 import android.content.Context;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface ActionInfo {
     String getModule(Context context);
 

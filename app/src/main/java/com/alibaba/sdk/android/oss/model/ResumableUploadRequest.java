@@ -4,7 +4,7 @@ import android.net.Uri;
 import com.alibaba.sdk.android.oss.common.utils.OSSUtils;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ResumableUploadRequest extends MultipartUploadRequest {
     private Boolean deleteUploadOnCancelling;
     private String recordDirectory;

@@ -3,7 +3,7 @@ package androidx.recyclerview.widget;
 import android.util.SparseArray;
 import java.lang.reflect.Array;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class TileList<T> {
     Tile<T> mLastAccessedTile;
     final int mTileSize;
@@ -34,17 +34,17 @@ class TileList<T> {
     }
 
     public Tile<T> addOrReplace(Tile<T> tile) {
-        int indexOfKey = this.mTiles.indexOfKey(tile.mStartPosition);
-        if (indexOfKey < 0) {
+        int iIndexOfKey = this.mTiles.indexOfKey(tile.mStartPosition);
+        if (iIndexOfKey < 0) {
             this.mTiles.put(tile.mStartPosition, tile);
             return null;
         }
-        Tile<T> valueAt = this.mTiles.valueAt(indexOfKey);
-        this.mTiles.setValueAt(indexOfKey, tile);
-        if (this.mLastAccessedTile == valueAt) {
+        Tile<T> tileValueAt = this.mTiles.valueAt(iIndexOfKey);
+        this.mTiles.setValueAt(iIndexOfKey, tile);
+        if (this.mLastAccessedTile == tileValueAt) {
             this.mLastAccessedTile = tile;
         }
-        return valueAt;
+        return tileValueAt;
     }
 
     public void clear() {
@@ -58,11 +58,11 @@ class TileList<T> {
     public T getItemAt(int i2) {
         Tile<T> tile = this.mLastAccessedTile;
         if (tile == null || !tile.containsPosition(i2)) {
-            int indexOfKey = this.mTiles.indexOfKey(i2 - (i2 % this.mTileSize));
-            if (indexOfKey < 0) {
+            int iIndexOfKey = this.mTiles.indexOfKey(i2 - (i2 % this.mTileSize));
+            if (iIndexOfKey < 0) {
                 return null;
             }
-            this.mLastAccessedTile = this.mTiles.valueAt(indexOfKey);
+            this.mLastAccessedTile = this.mTiles.valueAt(iIndexOfKey);
         }
         return this.mLastAccessedTile.getByPosition(i2);
     }

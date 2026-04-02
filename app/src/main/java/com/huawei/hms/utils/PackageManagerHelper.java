@@ -10,17 +10,15 @@ import android.text.TextUtils;
 import android.util.AndroidException;
 import com.huawei.hms.common.internal.Objects;
 import com.huawei.hms.support.log.HMSLog;
+import d.c.a.b.a.a;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PackageManagerHelper {
-
-    /* renamed from: a */
-    private final PackageManager f7973a;
+    private final PackageManager a;
 
     public enum PackageStates {
         ENABLED,
@@ -30,38 +28,37 @@ public class PackageManagerHelper {
     }
 
     public PackageManagerHelper(Context context) {
-        this.f7973a = context.getPackageManager();
+        this.a = context.getPackageManager();
     }
 
-    /* renamed from: a */
-    private byte[] m7793a(String str) {
+    private byte[] a(String str) {
         Signature[] signatureArr;
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, 64);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, 64);
             if (packageInfo != null && (signatureArr = packageInfo.signatures) != null && signatureArr.length > 0) {
                 return signatureArr[0].toByteArray();
             }
         } catch (AndroidException e2) {
-            HMSLog.m7715e("PackageManagerHelper", "Failed to get application signature certificate fingerprint." + e2.getMessage());
+            HMSLog.e("PackageManagerHelper", "Failed to get application signature certificate fingerprint." + e2.getMessage());
         } catch (RuntimeException e3) {
-            HMSLog.m7716e("PackageManagerHelper", "Failed to get application signature certificate fingerprint.", e3);
+            HMSLog.e("PackageManagerHelper", "Failed to get application signature certificate fingerprint.", e3);
         }
-        HMSLog.m7715e("PackageManagerHelper", "Failed to get application signature certificate fingerprint.");
+        HMSLog.e("PackageManagerHelper", "Failed to get application signature certificate fingerprint.");
         return new byte[0];
     }
 
     public String getApplicationName(String str) {
         try {
-            return this.f7973a.getApplicationLabel(this.f7973a.getApplicationInfo(str, 128)).toString();
+            return this.a.getApplicationLabel(this.a.getApplicationInfo(str, 128)).toString();
         } catch (AndroidException | RuntimeException unused) {
-            HMSLog.m7715e("PackageManagerHelper", "Failed to get application name for " + str);
+            HMSLog.e("PackageManagerHelper", "Failed to get application name for " + str);
             return null;
         }
     }
 
     public long getPackageFirstInstallTime(String str) {
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, 128);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, 128);
             if (packageInfo != null) {
                 return packageInfo.firstInstallTime;
             }
@@ -72,11 +69,11 @@ public class PackageManagerHelper {
     }
 
     public String getPackageSignature(String str) {
-        byte[] m7793a = m7793a(str);
-        if (m7793a == null || m7793a.length == 0) {
+        byte[] bArrA = a(str);
+        if (bArrA == null || bArrA.length == 0) {
             return null;
         }
-        return HEX.encodeHexString(SHA256.digest(m7793a), true);
+        return HEX.encodeHexString(SHA256.digest(bArrA), true);
     }
 
     public String getPackageSigningCertificate(String str) {
@@ -84,55 +81,55 @@ public class PackageManagerHelper {
             return getPackageSignature(str);
         }
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, AbstractC1191a.f2490C1);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, a.C1);
             if (Objects.isNull(packageInfo, packageInfo.signingInfo)) {
-                HMSLog.m7715e("PackageManagerHelper", "packageInfo or packageInfo.signingInfo is null");
+                HMSLog.e("PackageManagerHelper", "packageInfo or packageInfo.signingInfo is null");
                 return null;
             }
             Signature[] apkContentsSigners = packageInfo.signingInfo.getApkContentsSigners();
             if (!Objects.isNull(apkContentsSigners, apkContentsSigners[0])) {
                 return HEX.encodeHexString(SHA256.digest(apkContentsSigners[0].toByteArray()), true);
             }
-            HMSLog.m7715e("PackageManagerHelper", "get V3 signature is null");
+            HMSLog.e("PackageManagerHelper", "get V3 signature is null");
             return null;
         } catch (AndroidException | RuntimeException unused) {
-            HMSLog.m7715e("PackageManagerHelper", "getPackageSignatureV3 has exception");
+            HMSLog.e("PackageManagerHelper", "getPackageSignatureV3 has exception");
             return null;
         }
     }
 
     public PackageStates getPackageStates(String str) {
         if (TextUtils.isEmpty(str)) {
-            HMSLog.m7715e("PackageManagerHelper", "servicePackageName is empty.");
+            HMSLog.e("PackageManagerHelper", "servicePackageName is empty.");
             return PackageStates.NOT_INSTALLED;
         }
         try {
-            return this.f7973a.getApplicationInfo(str, 128).enabled ? PackageStates.ENABLED : PackageStates.DISABLED;
+            return this.a.getApplicationInfo(str, 128).enabled ? PackageStates.ENABLED : PackageStates.DISABLED;
         } catch (AndroidException | RuntimeException unused) {
-            HMSLog.m7715e("PackageManagerHelper", "in getPackageStates, getApplicationInfo threw an exception");
+            HMSLog.e("PackageManagerHelper", "in getPackageStates, getApplicationInfo threw an exception");
             return PackageStates.NOT_INSTALLED;
         }
     }
 
     public int getPackageVersionCode(String str) {
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, 16);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, 16);
             if (packageInfo != null) {
                 return packageInfo.versionCode;
             }
             return 0;
         } catch (AndroidException e2) {
-            HMSLog.m7715e("PackageManagerHelper", "get PackageVersionCode failed " + e2);
+            HMSLog.e("PackageManagerHelper", "get PackageVersionCode failed " + e2);
             return 0;
         } catch (RuntimeException e3) {
-            HMSLog.m7716e("PackageManagerHelper", "get PackageVersionCode failed", e3);
+            HMSLog.e("PackageManagerHelper", "get PackageVersionCode failed", e3);
             return 0;
         }
     }
 
     public String getPackageVersionName(String str) {
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, 16);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, 16);
             if (packageInfo != null) {
                 String str2 = packageInfo.versionName;
                 if (str2 != null) {
@@ -143,7 +140,7 @@ public class PackageManagerHelper {
         } catch (AndroidException unused) {
             return "";
         } catch (RuntimeException e2) {
-            HMSLog.m7716e("PackageManagerHelper", "get getPackageVersionName failed", e2);
+            HMSLog.e("PackageManagerHelper", "get getPackageVersionName failed", e2);
             return "";
         }
     }
@@ -151,7 +148,7 @@ public class PackageManagerHelper {
     public boolean hasProvider(String str, String str2) {
         ProviderInfo[] providerInfoArr;
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, 8);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, 8);
             if (packageInfo != null && (providerInfoArr = packageInfo.providers) != null) {
                 for (ProviderInfo providerInfo : providerInfoArr) {
                     if (str2.equals(providerInfo.authority)) {
@@ -166,7 +163,7 @@ public class PackageManagerHelper {
 
     public boolean isPackageFreshInstall(String str) {
         try {
-            PackageInfo packageInfo = this.f7973a.getPackageInfo(str, 128);
+            PackageInfo packageInfo = this.a.getPackageInfo(str, 128);
             if (packageInfo != null) {
                 return packageInfo.firstInstallTime == packageInfo.lastUpdateTime;
             }
@@ -177,24 +174,24 @@ public class PackageManagerHelper {
     }
 
     public boolean verifyPackageArchive(String str, String str2, String str3) {
-        PackageInfo packageInfo;
+        PackageInfo packageArchiveInfo;
         InputStream inputStream = null;
         try {
-            packageInfo = this.f7973a.getPackageArchiveInfo(str, 64);
+            packageArchiveInfo = this.a.getPackageArchiveInfo(str, 64);
         } catch (Exception e2) {
-            HMSLog.m7715e("PackageManagerHelper", "getPackageArchiveInfo Exception. " + e2.getMessage());
-            packageInfo = null;
+            HMSLog.e("PackageManagerHelper", "getPackageArchiveInfo Exception. " + e2.getMessage());
+            packageArchiveInfo = null;
         }
-        if (packageInfo != null && packageInfo.signatures.length > 0) {
+        if (packageArchiveInfo != null && packageArchiveInfo.signatures.length > 0) {
             try {
-                if (!str2.equals(packageInfo.packageName)) {
+                if (!str2.equals(packageArchiveInfo.packageName)) {
                     return false;
                 }
                 try {
-                    inputStream = IOUtils.toInputStream(packageInfo.signatures[0].toByteArray());
+                    inputStream = IOUtils.toInputStream(packageArchiveInfo.signatures[0].toByteArray());
                     return str3.equalsIgnoreCase(HEX.encodeHexString(SHA256.digest(CertificateFactory.getInstance("X.509").generateCertificate(inputStream).getEncoded()), true));
                 } catch (IOException | CertificateException e3) {
-                    HMSLog.m7715e("PackageManagerHelper", "Failed to get application signature certificate fingerprint." + e3.getMessage());
+                    HMSLog.e("PackageManagerHelper", "Failed to get application signature certificate fingerprint." + e3.getMessage());
                 }
             } finally {
                 IOUtils.closeQuietly((InputStream) null);

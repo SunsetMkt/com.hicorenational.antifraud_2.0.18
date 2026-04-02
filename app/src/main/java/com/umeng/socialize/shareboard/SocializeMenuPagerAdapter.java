@@ -7,7 +7,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class SocializeMenuPagerAdapter extends PagerAdapter {
     private Context mContext;
     private ShareBoardMenuHelper mMenuHelper;
@@ -33,9 +33,9 @@ class SocializeMenuPagerAdapter extends PagerAdapter {
 
     @Override // androidx.viewpager.widget.PagerAdapter
     public Object instantiateItem(ViewGroup viewGroup, int i2) {
-        View createPageLayout = this.mMenuHelper.createPageLayout(this.mContext, this.mPageData.get(i2));
-        viewGroup.addView(createPageLayout);
-        return createPageLayout;
+        View viewCreatePageLayout = this.mMenuHelper.createPageLayout(this.mContext, this.mPageData.get(i2));
+        viewGroup.addView(viewCreatePageLayout);
+        return viewCreatePageLayout;
     }
 
     @Override // androidx.viewpager.widget.PagerAdapter

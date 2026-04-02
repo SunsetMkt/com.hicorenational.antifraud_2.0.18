@@ -5,22 +5,18 @@ import android.os.Build;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.common.SocializeConstants;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class URLBuilder {
     private String imei;
     private String mac;
     private String model;
 
-    /* renamed from: network, reason: collision with root package name */
-    private String f25898network;
-
-    /* renamed from: os */
-    private String f13817os;
+    /* JADX INFO: renamed from: network, reason: collision with root package name */
+    private String f8403network;
+    private String os;
     private String protoversion;
     private String sdkversion;
-
-    /* renamed from: ts */
-    private String f13818ts;
+    private String ts;
     private String mReqType = "0";
     private String mHost = null;
     private String mPath = null;
@@ -34,19 +30,19 @@ public class URLBuilder {
     public URLBuilder(Context context) {
         this.imei = null;
         this.mac = null;
-        this.f25898network = null;
+        this.f8403network = null;
         this.model = null;
         this.sdkversion = null;
-        this.f13817os = null;
-        this.f13818ts = null;
+        this.os = null;
+        this.ts = null;
         this.protoversion = null;
         this.imei = DeviceConfig.getDeviceId(context);
         this.mac = DeviceConfig.getMac(context);
-        this.f25898network = DeviceConfig.getNetworkAccessMode(context)[0];
+        this.f8403network = DeviceConfig.getNetworkAccessMode(context)[0];
         this.model = Build.MODEL;
         this.sdkversion = "7.3.2";
-        this.f13817os = "Android";
-        this.f13818ts = String.valueOf(System.currentTimeMillis());
+        this.os = "Android";
+        this.ts = String.valueOf(System.currentTimeMillis());
         this.protoversion = SocializeConstants.PROTOCOL_VERSON;
     }
 
@@ -70,9 +66,9 @@ public class URLBuilder {
             sb.append("&mac=");
             sb.append(this.mac);
         }
-        if (this.f25898network != null) {
+        if (this.f8403network != null) {
             sb.append("&en=");
-            sb.append(this.f25898network);
+            sb.append(this.f8403network);
         }
         if (this.model != null) {
             sb.append("&de=");
@@ -82,13 +78,13 @@ public class URLBuilder {
             sb.append("&sdkv=");
             sb.append(this.sdkversion);
         }
-        if (this.f13817os != null) {
+        if (this.os != null) {
             sb.append("&os=");
-            sb.append(this.f13817os);
+            sb.append(this.os);
         }
-        if (this.f13818ts != null) {
+        if (this.ts != null) {
             sb.append("&dt=");
-            sb.append(this.f13818ts);
+            sb.append(this.ts);
         }
         if (this.mUID != null) {
             sb.append("&uid=");
@@ -125,8 +121,7 @@ public class URLBuilder {
         return this;
     }
 
-    /* renamed from: to */
-    public String m12720to() {
+    public String to() {
         return this.mHost + this.mPath + this.mAppkey + "/" + this.mEntityKey + "/?" + buildParams();
     }
 
@@ -138,11 +133,11 @@ public class URLBuilder {
         sb.append("/");
         sb.append(this.mEntityKey);
         sb.append("/?");
-        String buildParams = buildParams();
+        String strBuildParams = buildParams();
         try {
-            sb.append(buildParams);
+            sb.append(strBuildParams);
         } catch (Exception unused) {
-            sb.append(buildParams);
+            sb.append(strBuildParams);
         }
         return sb.toString();
     }

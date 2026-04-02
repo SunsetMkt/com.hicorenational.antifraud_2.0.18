@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.huawei.hms.support.log.HMSLog;
 import java.util.ArrayList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AccountPicker {
     public static final String CHOOSE_ACCOUNT = "com.huawei.hms.common.account.CHOOSE_ACCOUNT";
     public static final int CUSTOM_THEME_ACCOUNT_CHIPS = 2;
@@ -38,7 +38,7 @@ public final class AccountPicker {
         try {
             intent.setPackage(PackageConstants.SERVICES_PACKAGE_ALL_SCENE);
         } catch (IllegalArgumentException unused) {
-            HMSLog.m7715e("AccountPicker", "IllegalArgumentException when newChooseAccountIntent intent.setPackage");
+            HMSLog.e("AccountPicker", "IllegalArgumentException when newChooseAccountIntent intent.setPackage");
         }
         intent.putExtra(EXTRA_ALLOWABLE_ACCOUNTS_ARRAYLIST, arrayList);
         intent.putExtra(EXTRA_ALLOWABLE_ACCOUNT_TYPES_STRING_ARRAY, strArr);

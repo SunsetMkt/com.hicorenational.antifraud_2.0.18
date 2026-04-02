@@ -10,9 +10,9 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import cn.cloudwalk.libproject.Contants;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import d.c.a.b.a.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class NavUtils {
     public static final String PARENT_ACTIVITY = "android.support.PARENT_ACTIVITY";
     private static final String TAG = "NavUtils";
@@ -62,7 +62,7 @@ public final class NavUtils {
             activity.navigateUpTo(intent);
             return;
         }
-        intent.addFlags(AbstractC1191a.f2487B1);
+        intent.addFlags(a.B1);
         activity.startActivity(intent);
         activity.finish();
     }

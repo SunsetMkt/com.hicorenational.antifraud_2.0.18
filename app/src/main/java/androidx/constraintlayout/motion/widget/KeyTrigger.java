@@ -6,12 +6,14 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.View;
-import androidx.constraintlayout.widget.C0471R;
+import android.view.ViewGroup;
+import androidx.constraintlayout.widget.R;
+import d.c.a.b.a.a;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class KeyTrigger extends Key {
     public static final int KEY_TYPE = 5;
     static final String NAME = "KeyTrigger";
@@ -51,16 +53,16 @@ public class KeyTrigger extends Key {
         private static SparseIntArray mAttrMap = new SparseIntArray();
 
         static {
-            mAttrMap.append(C0471R.styleable.KeyTrigger_framePosition, 8);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_onCross, 4);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_onNegativeCross, 1);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_onPositiveCross, 2);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_motionTarget, 7);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_triggerId, 6);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_triggerSlack, 5);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_motion_triggerOnCollision, 9);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_motion_postLayoutCollision, 10);
-            mAttrMap.append(C0471R.styleable.KeyTrigger_triggerReceiver, 11);
+            mAttrMap.append(R.styleable.KeyTrigger_framePosition, 8);
+            mAttrMap.append(R.styleable.KeyTrigger_onCross, 4);
+            mAttrMap.append(R.styleable.KeyTrigger_onNegativeCross, 1);
+            mAttrMap.append(R.styleable.KeyTrigger_onPositiveCross, 2);
+            mAttrMap.append(R.styleable.KeyTrigger_motionTarget, 7);
+            mAttrMap.append(R.styleable.KeyTrigger_triggerId, 6);
+            mAttrMap.append(R.styleable.KeyTrigger_triggerSlack, 5);
+            mAttrMap.append(R.styleable.KeyTrigger_motion_triggerOnCollision, 9);
+            mAttrMap.append(R.styleable.KeyTrigger_motion_postLayoutCollision, 10);
+            mAttrMap.append(R.styleable.KeyTrigger_triggerReceiver, 11);
         }
 
         private Loader() {
@@ -74,44 +76,50 @@ public class KeyTrigger extends Key {
                     case 1:
                         keyTrigger.mNegativeCross = typedArray.getString(index);
                         continue;
+                        break;
                     case 2:
                         keyTrigger.mPositiveCross = typedArray.getString(index);
                         continue;
+                        break;
                     case 4:
                         keyTrigger.mCross = typedArray.getString(index);
                         continue;
+                        break;
                     case 5:
                         keyTrigger.mTriggerSlack = typedArray.getFloat(index, keyTrigger.mTriggerSlack);
                         continue;
+                        break;
                     case 6:
                         keyTrigger.mTriggerID = typedArray.getResourceId(index, keyTrigger.mTriggerID);
                         continue;
+                        break;
                     case 7:
                         if (MotionLayout.IS_IN_EDIT_MODE) {
                             keyTrigger.mTargetId = typedArray.getResourceId(index, keyTrigger.mTargetId);
                             if (keyTrigger.mTargetId == -1) {
                                 keyTrigger.mTargetString = typedArray.getString(index);
-                                break;
                             } else {
                                 continue;
                             }
                         } else if (typedArray.peekValue(index).type == 3) {
                             keyTrigger.mTargetString = typedArray.getString(index);
-                            break;
                         } else {
                             keyTrigger.mTargetId = typedArray.getResourceId(index, keyTrigger.mTargetId);
-                            break;
                         }
+                        break;
                     case 8:
                         keyTrigger.mFramePosition = typedArray.getInteger(index, keyTrigger.mFramePosition);
                         keyTrigger.mFireThreshold = (keyTrigger.mFramePosition + 0.5f) / 100.0f;
                         continue;
+                        break;
                     case 9:
                         keyTrigger.mTriggerCollisionId = typedArray.getResourceId(index, keyTrigger.mTriggerCollisionId);
                         continue;
+                        break;
                     case 10:
                         keyTrigger.mPostLayout = typedArray.getBoolean(index, keyTrigger.mPostLayout);
                         continue;
+                        break;
                     case 11:
                         keyTrigger.mTriggerReceiver = typedArray.getResourceId(index, keyTrigger.mTriggerReceiver);
                         break;
@@ -152,23 +160,153 @@ public class KeyTrigger extends Key {
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
-    public void addValues(HashMap<String, SplineSet> hashMap) {
+    public void addValues(HashMap<String, SplineSet> map) {
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:100:0x00cc  */
-    /* JADX WARN: Removed duplicated region for block: B:104:0x00a3  */
-    /* JADX WARN: Removed duplicated region for block: B:87:0x008e  */
-    /* JADX WARN: Removed duplicated region for block: B:94:0x00b8  */
+    /* JADX WARN: Removed duplicated region for block: B:39:0x008e  */
+    /* JADX WARN: Removed duplicated region for block: B:44:0x00a3  */
+    /* JADX WARN: Removed duplicated region for block: B:50:0x00b8  */
+    /* JADX WARN: Removed duplicated region for block: B:55:0x00cc  */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public void conditionallyFire(float r10, android.view.View r11) {
-        /*
-            Method dump skipped, instructions count: 607
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.motion.widget.KeyTrigger.conditionallyFire(float, android.view.View):void");
+    public void conditionallyFire(float f2, View view) {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        boolean z5 = true;
+        if (this.mTriggerCollisionId != Key.UNSET) {
+            if (this.mTriggerCollisionView == null) {
+                this.mTriggerCollisionView = ((ViewGroup) view.getParent()).findViewById(this.mTriggerCollisionId);
+            }
+            setUpRect(this.mCollisionRect, this.mTriggerCollisionView, this.mPostLayout);
+            setUpRect(this.mTargetRect, view, this.mPostLayout);
+            if (this.mCollisionRect.intersect(this.mTargetRect)) {
+                if (this.mFireCrossReset) {
+                    this.mFireCrossReset = false;
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (this.mFirePositiveReset) {
+                    this.mFirePositiveReset = false;
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                this.mFireNegativeReset = true;
+                z5 = z4;
+                z3 = false;
+            } else {
+                if (this.mFireCrossReset) {
+                    z = false;
+                } else {
+                    this.mFireCrossReset = true;
+                    z = true;
+                }
+                if (this.mFireNegativeReset) {
+                    this.mFireNegativeReset = false;
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                this.mFirePositiveReset = true;
+                z5 = false;
+            }
+            z2 = z3;
+        } else {
+            if (this.mFireCrossReset) {
+                float f3 = this.mFireThreshold;
+                if ((f2 - f3) * (this.mFireLastPos - f3) < 0.0f) {
+                    this.mFireCrossReset = false;
+                    z = true;
+                }
+                if (!this.mFireNegativeReset) {
+                    float f4 = this.mFireThreshold;
+                    float f5 = f2 - f4;
+                    if ((this.mFireLastPos - f4) * f5 < 0.0f && f5 < 0.0f) {
+                        this.mFireNegativeReset = false;
+                        z2 = true;
+                    }
+                    if (this.mFirePositiveReset) {
+                        float f6 = this.mFireThreshold;
+                        float f7 = f2 - f6;
+                        if ((this.mFireLastPos - f6) * f7 < 0.0f && f7 > 0.0f) {
+                            this.mFirePositiveReset = false;
+                        }
+                    } else if (Math.abs(f2 - this.mFireThreshold) > this.mTriggerSlack) {
+                        this.mFirePositiveReset = true;
+                    }
+                    z5 = false;
+                } else if (Math.abs(f2 - this.mFireThreshold) > this.mTriggerSlack) {
+                    this.mFireNegativeReset = true;
+                }
+                z2 = false;
+                if (this.mFirePositiveReset) {
+                }
+                z5 = false;
+            } else if (Math.abs(f2 - this.mFireThreshold) > this.mTriggerSlack) {
+                this.mFireCrossReset = true;
+            }
+            z = false;
+            if (!this.mFireNegativeReset) {
+            }
+            z2 = false;
+            if (this.mFirePositiveReset) {
+            }
+            z5 = false;
+        }
+        this.mFireLastPos = f2;
+        if (z2 || z || z5) {
+            ((MotionLayout) view.getParent()).fireTrigger(this.mTriggerID, z5, f2);
+        }
+        if (this.mTriggerReceiver != Key.UNSET) {
+            view = ((MotionLayout) view.getParent()).findViewById(this.mTriggerReceiver);
+        }
+        if (z2 && this.mNegativeCross != null) {
+            if (this.mFireNegativeCross == null) {
+                try {
+                    this.mFireNegativeCross = view.getClass().getMethod(this.mNegativeCross, new Class[0]);
+                } catch (NoSuchMethodException unused) {
+                    String str = "Could not find method \"" + this.mNegativeCross + "\"on class " + view.getClass().getSimpleName() + a.f10074g + Debug.getName(view);
+                }
+            }
+            try {
+                this.mFireNegativeCross.invoke(view, new Object[0]);
+            } catch (Exception unused2) {
+                String str2 = "Exception in call \"" + this.mNegativeCross + "\"on class " + view.getClass().getSimpleName() + a.f10074g + Debug.getName(view);
+            }
+        }
+        if (z5 && this.mPositiveCross != null) {
+            if (this.mFirePositiveCross == null) {
+                try {
+                    this.mFirePositiveCross = view.getClass().getMethod(this.mPositiveCross, new Class[0]);
+                } catch (NoSuchMethodException unused3) {
+                    String str3 = "Could not find method \"" + this.mPositiveCross + "\"on class " + view.getClass().getSimpleName() + a.f10074g + Debug.getName(view);
+                }
+            }
+            try {
+                this.mFirePositiveCross.invoke(view, new Object[0]);
+            } catch (Exception unused4) {
+                String str4 = "Exception in call \"" + this.mPositiveCross + "\"on class " + view.getClass().getSimpleName() + a.f10074g + Debug.getName(view);
+            }
+        }
+        if (!z || this.mCross == null) {
+            return;
+        }
+        if (this.mFireCross == null) {
+            try {
+                this.mFireCross = view.getClass().getMethod(this.mCross, new Class[0]);
+            } catch (NoSuchMethodException unused5) {
+                String str5 = "Could not find method \"" + this.mCross + "\"on class " + view.getClass().getSimpleName() + a.f10074g + Debug.getName(view);
+            }
+        }
+        try {
+            this.mFireCross.invoke(view, new Object[0]);
+        } catch (Exception unused6) {
+            String str6 = "Exception in call \"" + this.mCross + "\"on class " + view.getClass().getSimpleName() + a.f10074g + Debug.getName(view);
+        }
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
@@ -181,7 +319,7 @@ public class KeyTrigger extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0471R.styleable.KeyTrigger), context);
+        Loader.read(this, context.obtainStyledAttributes(attributeSet, R.styleable.KeyTrigger), context);
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key

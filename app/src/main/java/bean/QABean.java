@@ -2,14 +2,12 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class QABean extends BaseBean {
     private String answer;
     private String createTime;
     private String description;
-
-    /* renamed from: id */
-    private String f1611id;
+    private String id;
     private int isShow;
     private int qaClassifyCode;
     private String question;
@@ -29,7 +27,7 @@ public class QABean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1611id;
+        return this.id;
     }
 
     public int getIsShow() {
@@ -65,7 +63,7 @@ public class QABean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1611id = str;
+        this.id = str;
     }
 
     public void setIsShow(int i2) {

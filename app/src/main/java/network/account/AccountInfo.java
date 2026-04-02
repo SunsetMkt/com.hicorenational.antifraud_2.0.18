@@ -3,12 +3,10 @@ package network.account;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AccountInfo extends BaseBean {
     private int auditstatus;
-
-    /* renamed from: id */
-    private String f21452id;
+    private String id;
     private String idNumber;
     private boolean isPolice;
     private boolean isVerified;
@@ -30,7 +28,7 @@ public class AccountInfo extends BaseBean {
     }
 
     public String getId() {
-        return this.f21452id;
+        return this.id;
     }
 
     public String getIdNumber() {
@@ -102,7 +100,7 @@ public class AccountInfo extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f21452id = str;
+        this.id = str;
     }
 
     public void setIdNumber(String str) {

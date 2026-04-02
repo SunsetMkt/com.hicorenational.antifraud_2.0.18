@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
     private Entry<K, V> mEnd;
     private WeakHashMap<SupportRemove<K, V>, Boolean> mIterators = new WeakHashMap<>();
@@ -237,11 +237,11 @@ public class SafeIterableMap<K, V> implements Iterable<Map.Entry<K, V>> {
 
     public int hashCode() {
         Iterator<Map.Entry<K, V>> it = iterator();
-        int i2 = 0;
+        int iHashCode = 0;
         while (it.hasNext()) {
-            i2 += it.next().hashCode();
+            iHashCode += it.next().hashCode();
         }
-        return i2;
+        return iHashCode;
     }
 
     @Override // java.lang.Iterable

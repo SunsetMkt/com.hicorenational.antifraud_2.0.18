@@ -1,13 +1,13 @@
 package okhttp3;
 
+import i.z2.h0;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
-import p286h.p323z2.C5736h0;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class MediaType {
     private static final String QUOTED = "\"([^\"]*)\"";
     private static final String TOKEN = "([a-zA-Z0-9-!#$%&'*+.^_`{|}~]+)";
@@ -30,29 +30,29 @@ public final class MediaType {
     public static MediaType get(String str) {
         Matcher matcher = TYPE_SUBTYPE.matcher(str);
         if (!matcher.lookingAt()) {
-            throw new IllegalArgumentException("No subtype found for: \"" + str + C5736h0.f20712a);
+            throw new IllegalArgumentException("No subtype found for: \"" + str + h0.a);
         }
         String lowerCase = matcher.group(1).toLowerCase(Locale.US);
         String lowerCase2 = matcher.group(2).toLowerCase(Locale.US);
         String str2 = null;
         Matcher matcher2 = PARAMETER.matcher(str);
-        for (int end = matcher.end(); end < str.length(); end = matcher2.end()) {
-            matcher2.region(end, str.length());
+        for (int iEnd = matcher.end(); iEnd < str.length(); iEnd = matcher2.end()) {
+            matcher2.region(iEnd, str.length());
             if (!matcher2.lookingAt()) {
-                throw new IllegalArgumentException("Parameter is not formatted correctly: \"" + str.substring(end) + "\" for: \"" + str + C5736h0.f20712a);
+                throw new IllegalArgumentException("Parameter is not formatted correctly: \"" + str.substring(iEnd) + "\" for: \"" + str + h0.a);
             }
-            String group = matcher2.group(1);
-            if (group != null && group.equalsIgnoreCase("charset")) {
-                String group2 = matcher2.group(2);
-                if (group2 == null) {
-                    group2 = matcher2.group(3);
-                } else if (group2.startsWith("'") && group2.endsWith("'") && group2.length() > 2) {
-                    group2 = group2.substring(1, group2.length() - 1);
+            String strGroup = matcher2.group(1);
+            if (strGroup != null && strGroup.equalsIgnoreCase("charset")) {
+                String strGroup2 = matcher2.group(2);
+                if (strGroup2 == null) {
+                    strGroup2 = matcher2.group(3);
+                } else if (strGroup2.startsWith("'") && strGroup2.endsWith("'") && strGroup2.length() > 2) {
+                    strGroup2 = strGroup2.substring(1, strGroup2.length() - 1);
                 }
-                if (str2 != null && !group2.equalsIgnoreCase(str2)) {
-                    throw new IllegalArgumentException("Multiple charsets defined: \"" + str2 + "\" and: \"" + group2 + "\" for: \"" + str + C5736h0.f20712a);
+                if (str2 != null && !strGroup2.equalsIgnoreCase(str2)) {
+                    throw new IllegalArgumentException("Multiple charsets defined: \"" + str2 + "\" and: \"" + strGroup2 + "\" for: \"" + str + h0.a);
                 }
-                str2 = group2;
+                str2 = strGroup2;
             }
         }
         return new MediaType(str, lowerCase, lowerCase2, str2);

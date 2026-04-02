@@ -1,6 +1,6 @@
 package com.hihonor.push.sdk.ipc;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum HonorApiAvailability$PackageStates {
     ENABLED,
     DISABLED,

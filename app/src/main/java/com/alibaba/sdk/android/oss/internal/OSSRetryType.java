@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss.internal;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum OSSRetryType {
     OSSRetryTypeShouldNotRetry,
     OSSRetryTypeShouldRetry,

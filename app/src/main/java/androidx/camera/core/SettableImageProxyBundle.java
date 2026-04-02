@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class SettableImageProxyBundle implements ImageProxyBundle {
     private final List<Integer> mCaptureIdList;
     final Object mLock = new Object();
@@ -20,7 +19,7 @@ final class SettableImageProxyBundle implements ImageProxyBundle {
     final SparseArray<CallbackToFutureAdapter.Completer<ImageProxy>> mCompleters = new SparseArray<>();
 
     @GuardedBy("mLock")
-    private final SparseArray<InterfaceFutureC0952a<ImageProxy>> mFutureResults = new SparseArray<>();
+    private final SparseArray<d.b.b.a.a.a<ImageProxy>> mFutureResults = new SparseArray<>();
 
     @GuardedBy("mLock")
     private final List<ImageProxy> mOwnedImageProxies = new ArrayList();
@@ -37,14 +36,14 @@ final class SettableImageProxyBundle implements ImageProxyBundle {
         synchronized (this.mLock) {
             Iterator<Integer> it = this.mCaptureIdList.iterator();
             while (it.hasNext()) {
-                final int intValue = it.next().intValue();
-                this.mFutureResults.put(intValue, CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<ImageProxy>() { // from class: androidx.camera.core.SettableImageProxyBundle.1
+                final int iIntValue = it.next().intValue();
+                this.mFutureResults.put(iIntValue, CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<ImageProxy>() { // from class: androidx.camera.core.SettableImageProxyBundle.1
                     @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
                     public Object attachCompleter(@NonNull CallbackToFutureAdapter.Completer<ImageProxy> completer) {
                         synchronized (SettableImageProxyBundle.this.mLock) {
-                            SettableImageProxyBundle.this.mCompleters.put(intValue, completer);
+                            SettableImageProxyBundle.this.mCompleters.put(iIntValue, completer);
                         }
-                        return "getImageProxy(id: " + intValue + ")";
+                        return "getImageProxy(id: " + iIntValue + ")";
                     }
                 }));
             }
@@ -94,18 +93,18 @@ final class SettableImageProxyBundle implements ImageProxyBundle {
 
     @Override // androidx.camera.core.impl.ImageProxyBundle
     @NonNull
-    public InterfaceFutureC0952a<ImageProxy> getImageProxy(int i2) {
-        InterfaceFutureC0952a<ImageProxy> interfaceFutureC0952a;
+    public d.b.b.a.a.a<ImageProxy> getImageProxy(int i2) {
+        d.b.b.a.a.a<ImageProxy> aVar;
         synchronized (this.mLock) {
             if (this.mClosed) {
                 throw new IllegalStateException("ImageProxyBundle already closed.");
             }
-            interfaceFutureC0952a = this.mFutureResults.get(i2);
-            if (interfaceFutureC0952a == null) {
+            aVar = this.mFutureResults.get(i2);
+            if (aVar == null) {
                 throw new IllegalArgumentException("ImageProxyBundle does not contain this id: " + i2);
             }
         }
-        return interfaceFutureC0952a;
+        return aVar;
     }
 
     void reset() {

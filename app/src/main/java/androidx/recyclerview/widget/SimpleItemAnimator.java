@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class SimpleItemAnimator extends RecyclerView.ItemAnimator {
     private static final boolean DEBUG = false;
     private static final String TAG = "SimpleItemAnimator";

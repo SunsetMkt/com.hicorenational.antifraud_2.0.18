@@ -12,9 +12,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ConstraintWidgetContainer extends WidgetContainer {
     private static final boolean DEBUG = false;
     static final boolean DEBUG_GRAPH = false;
@@ -120,8 +119,8 @@ public class ConstraintWidgetContainer extends WidgetContainer {
     }
 
     public boolean addChildrenToSolver(LinearSystem linearSystem) {
-        boolean optimizeFor = optimizeFor(64);
-        addToSolver(linearSystem, optimizeFor);
+        boolean zOptimizeFor = optimizeFor(64);
+        addToSolver(linearSystem, zOptimizeFor);
         int size = this.mChildren.size();
         boolean z = false;
         for (int i2 = 0; i2 < size; i2++) {
@@ -143,7 +142,7 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         for (int i4 = 0; i4 < size; i4++) {
             ConstraintWidget constraintWidget3 = this.mChildren.get(i4);
             if (constraintWidget3.addFirst()) {
-                constraintWidget3.addToSolver(linearSystem, optimizeFor);
+                constraintWidget3.addToSolver(linearSystem, zOptimizeFor);
             }
         }
         if (LinearSystem.USE_DEPENDENCY_ORDERING) {
@@ -155,36 +154,34 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                 }
             }
             addChildrenToSolverByDependency(this, linearSystem, hashSet, getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT ? 0 : 1, false);
-            Iterator<ConstraintWidget> it = hashSet.iterator();
-            while (it.hasNext()) {
-                ConstraintWidget next = it.next();
-                Optimizer.checkMatchParent(this, linearSystem, next);
-                next.addToSolver(linearSystem, optimizeFor);
+            for (ConstraintWidget constraintWidget5 : hashSet) {
+                Optimizer.checkMatchParent(this, linearSystem, constraintWidget5);
+                constraintWidget5.addToSolver(linearSystem, zOptimizeFor);
             }
         } else {
             for (int i6 = 0; i6 < size; i6++) {
-                ConstraintWidget constraintWidget5 = this.mChildren.get(i6);
-                if (constraintWidget5 instanceof ConstraintWidgetContainer) {
-                    ConstraintWidget.DimensionBehaviour[] dimensionBehaviourArr = constraintWidget5.mListDimensionBehaviors;
+                ConstraintWidget constraintWidget6 = this.mChildren.get(i6);
+                if (constraintWidget6 instanceof ConstraintWidgetContainer) {
+                    ConstraintWidget.DimensionBehaviour[] dimensionBehaviourArr = constraintWidget6.mListDimensionBehaviors;
                     ConstraintWidget.DimensionBehaviour dimensionBehaviour = dimensionBehaviourArr[0];
                     ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = dimensionBehaviourArr[1];
                     if (dimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                        constraintWidget5.setHorizontalDimensionBehaviour(ConstraintWidget.DimensionBehaviour.FIXED);
+                        constraintWidget6.setHorizontalDimensionBehaviour(ConstraintWidget.DimensionBehaviour.FIXED);
                     }
                     if (dimensionBehaviour2 == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                        constraintWidget5.setVerticalDimensionBehaviour(ConstraintWidget.DimensionBehaviour.FIXED);
+                        constraintWidget6.setVerticalDimensionBehaviour(ConstraintWidget.DimensionBehaviour.FIXED);
                     }
-                    constraintWidget5.addToSolver(linearSystem, optimizeFor);
+                    constraintWidget6.addToSolver(linearSystem, zOptimizeFor);
                     if (dimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                        constraintWidget5.setHorizontalDimensionBehaviour(dimensionBehaviour);
+                        constraintWidget6.setHorizontalDimensionBehaviour(dimensionBehaviour);
                     }
                     if (dimensionBehaviour2 == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                        constraintWidget5.setVerticalDimensionBehaviour(dimensionBehaviour2);
+                        constraintWidget6.setVerticalDimensionBehaviour(dimensionBehaviour2);
                     }
                 } else {
-                    Optimizer.checkMatchParent(this, linearSystem, constraintWidget5);
-                    if (!constraintWidget5.addFirst()) {
-                        constraintWidget5.addToSolver(linearSystem, optimizeFor);
+                    Optimizer.checkMatchParent(this, linearSystem, constraintWidget6);
+                    if (!constraintWidget6.addFirst()) {
+                        constraintWidget6.addToSolver(linearSystem, zOptimizeFor);
                     }
                 }
             }
@@ -318,10 +315,16 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         return this.mWidthMeasuredTooSmall;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:157:0x0319 A[PHI: r0 r6
+  0x0319: PHI (r0v20 boolean) = (r0v19 boolean), (r0v22 boolean), (r0v22 boolean), (r0v22 boolean) binds: [B:144:0x02db, B:152:0x0301, B:153:0x0303, B:155:0x0309] A[DONT_GENERATE, DONT_INLINE]
+  0x0319: PHI (r6v7 boolean) = (r6v6 boolean), (r6v9 boolean), (r6v9 boolean), (r6v9 boolean) binds: [B:144:0x02db, B:152:0x0301, B:153:0x0303, B:155:0x0309] A[DONT_GENERATE, DONT_INLINE]] */
     /* JADX WARN: Type inference failed for: r8v10, types: [boolean] */
     /* JADX WARN: Type inference failed for: r8v12 */
     /* JADX WARN: Type inference failed for: r8v9 */
     @Override // androidx.constraintlayout.solver.widgets.WidgetContainer
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public void layout() {
         int i2;
         int i3;
@@ -330,13 +333,13 @@ public class ConstraintWidgetContainer extends WidgetContainer {
         boolean z3;
         ?? r8;
         ConstraintWidget.DimensionBehaviour dimensionBehaviour;
-        this.f598mX = 0;
-        this.f599mY = 0;
+        this.mX = 0;
+        this.mY = 0;
         this.mWidthMeasuredTooSmall = false;
         this.mHeightMeasuredTooSmall = false;
         int size = this.mChildren.size();
-        int max = Math.max(0, getWidth());
-        int max2 = Math.max(0, getHeight());
+        int iMax = Math.max(0, getWidth());
+        int iMax2 = Math.max(0, getHeight());
         ConstraintWidget.DimensionBehaviour[] dimensionBehaviourArr = this.mListDimensionBehaviors;
         ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = dimensionBehaviourArr[1];
         ConstraintWidget.DimensionBehaviour dimensionBehaviour3 = dimensionBehaviourArr[0];
@@ -359,28 +362,28 @@ public class ConstraintWidgetContainer extends WidgetContainer {
             }
         }
         if (size <= 2 || !((dimensionBehaviour3 == (dimensionBehaviour = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) || dimensionBehaviour2 == dimensionBehaviour) && Optimizer.enabled(this.mOptimizationLevel, 1024) && Grouping.simpleSolvingPass(this, getMeasurer()))) {
-            i2 = max2;
-            i3 = max;
+            i2 = iMax2;
+            i3 = iMax;
             z = false;
         } else {
             if (dimensionBehaviour3 == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                if (max >= getWidth() || max <= 0) {
-                    max = getWidth();
+                if (iMax >= getWidth() || iMax <= 0) {
+                    iMax = getWidth();
                 } else {
-                    setWidth(max);
+                    setWidth(iMax);
                     this.mWidthMeasuredTooSmall = true;
                 }
             }
             if (dimensionBehaviour2 == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
-                if (max2 >= getHeight() || max2 <= 0) {
-                    max2 = getHeight();
+                if (iMax2 >= getHeight() || iMax2 <= 0) {
+                    iMax2 = getHeight();
                 } else {
-                    setHeight(max2);
+                    setHeight(iMax2);
                     this.mHeightMeasuredTooSmall = true;
                 }
             }
-            i2 = max2;
-            i3 = max;
+            i2 = iMax2;
+            i3 = iMax;
             z = true;
         }
         boolean z4 = optimizeFor(64) || optimizeFor(128);
@@ -399,11 +402,11 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                 ((WidgetContainer) constraintWidget2).layout();
             }
         }
-        boolean optimizeFor = optimizeFor(64);
+        boolean zOptimizeFor = optimizeFor(64);
         boolean z6 = z;
         int i6 = 0;
-        boolean z7 = true;
-        while (z7) {
+        boolean zAddChildrenToSolver = true;
+        while (zAddChildrenToSolver) {
             int i7 = i6 + 1;
             try {
                 this.mSystem.reset();
@@ -412,7 +415,7 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                 for (int i8 = 0; i8 < size; i8++) {
                     this.mChildren.get(i8).createObjectVariables(this.mSystem);
                 }
-                z7 = addChildrenToSolver(this.mSystem);
+                zAddChildrenToSolver = addChildrenToSolver(this.mSystem);
                 if (this.verticalWrapMin != null && this.verticalWrapMin.get() != null) {
                     addMinWrap(this.verticalWrapMin.get(), this.mSystem.createObjectVariable(this.mTop));
                     this.verticalWrapMin = null;
@@ -429,43 +432,43 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                     addMaxWrap(this.horizontalWrapMax.get(), this.mSystem.createObjectVariable(this.mRight));
                     this.horizontalWrapMax = null;
                 }
-                if (z7) {
+                if (zAddChildrenToSolver) {
                     this.mSystem.minimize();
                 }
             } catch (Exception e2) {
                 e2.printStackTrace();
                 System.out.println("EXCEPTION : " + e2);
             }
-            if (z7) {
+            if (zAddChildrenToSolver) {
                 updateChildrenFromSolver(this.mSystem, Optimizer.flags);
             } else {
-                updateFromSolver(this.mSystem, optimizeFor);
+                updateFromSolver(this.mSystem, zOptimizeFor);
                 for (int i9 = 0; i9 < size; i9++) {
-                    this.mChildren.get(i9).updateFromSolver(this.mSystem, optimizeFor);
+                    this.mChildren.get(i9).updateFromSolver(this.mSystem, zOptimizeFor);
                 }
             }
             if (z5 && i7 < 8 && Optimizer.flags[2]) {
-                int i10 = 0;
-                int i11 = 0;
-                for (int i12 = 0; i12 < size; i12++) {
-                    ConstraintWidget constraintWidget3 = this.mChildren.get(i12);
-                    i10 = Math.max(i10, constraintWidget3.f598mX + constraintWidget3.getWidth());
-                    i11 = Math.max(i11, constraintWidget3.f599mY + constraintWidget3.getHeight());
+                int iMax3 = 0;
+                int iMax4 = 0;
+                for (int i10 = 0; i10 < size; i10++) {
+                    ConstraintWidget constraintWidget3 = this.mChildren.get(i10);
+                    iMax3 = Math.max(iMax3, constraintWidget3.mX + constraintWidget3.getWidth());
+                    iMax4 = Math.max(iMax4, constraintWidget3.mY + constraintWidget3.getHeight());
                 }
-                int max3 = Math.max(this.mMinWidth, i10);
-                int max4 = Math.max(this.mMinHeight, i11);
-                if (dimensionBehaviour3 != ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || getWidth() >= max3) {
+                int iMax5 = Math.max(this.mMinWidth, iMax3);
+                int iMax6 = Math.max(this.mMinHeight, iMax4);
+                if (dimensionBehaviour3 != ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || getWidth() >= iMax5) {
                     z3 = false;
                 } else {
-                    setWidth(max3);
+                    setWidth(iMax5);
                     this.mListDimensionBehaviors[0] = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
                     z3 = true;
                     z6 = true;
                 }
-                if (dimensionBehaviour2 != ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || getHeight() >= max4) {
+                if (dimensionBehaviour2 != ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || getHeight() >= iMax6) {
                     z2 = z6;
                 } else {
-                    setHeight(max4);
+                    setHeight(iMax6);
                     this.mListDimensionBehaviors[1] = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
                     z3 = true;
                     z2 = true;
@@ -474,16 +477,16 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                 z2 = z6;
                 z3 = false;
             }
-            int max5 = Math.max(this.mMinWidth, getWidth());
-            if (max5 > getWidth()) {
-                setWidth(max5);
+            int iMax7 = Math.max(this.mMinWidth, getWidth());
+            if (iMax7 > getWidth()) {
+                setWidth(iMax7);
                 this.mListDimensionBehaviors[0] = ConstraintWidget.DimensionBehaviour.FIXED;
                 z3 = true;
                 z2 = true;
             }
-            int max6 = Math.max(this.mMinHeight, getHeight());
-            if (max6 > getHeight()) {
-                setHeight(max6);
+            int iMax8 = Math.max(this.mMinHeight, getHeight());
+            if (iMax8 > getHeight()) {
+                setHeight(iMax8);
                 r8 = 1;
                 this.mListDimensionBehaviors[1] = ConstraintWidget.DimensionBehaviour.FIXED;
                 z3 = true;
@@ -491,7 +494,10 @@ public class ConstraintWidgetContainer extends WidgetContainer {
             } else {
                 r8 = 1;
             }
-            if (!z2) {
+            if (z2) {
+                zAddChildrenToSolver = z3;
+                z6 = z2;
+            } else {
                 if (this.mListDimensionBehaviors[0] == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT && i3 > 0 && getWidth() > i3) {
                     this.mWidthMeasuredTooSmall = r8;
                     this.mListDimensionBehaviors[0] = ConstraintWidget.DimensionBehaviour.FIXED;
@@ -503,13 +509,10 @@ public class ConstraintWidgetContainer extends WidgetContainer {
                     this.mHeightMeasuredTooSmall = r8;
                     this.mListDimensionBehaviors[r8] = ConstraintWidget.DimensionBehaviour.FIXED;
                     setHeight(i2);
-                    z7 = true;
+                    zAddChildrenToSolver = true;
                     z6 = true;
-                    i6 = i7;
                 }
             }
-            z7 = z3;
-            z6 = z2;
             i6 = i7;
         }
         this.mChildren = arrayList;
@@ -565,11 +568,11 @@ public class ConstraintWidgetContainer extends WidgetContainer {
 
     public void updateChildrenFromSolver(LinearSystem linearSystem, boolean[] zArr) {
         zArr[2] = false;
-        boolean optimizeFor = optimizeFor(64);
-        updateFromSolver(linearSystem, optimizeFor);
+        boolean zOptimizeFor = optimizeFor(64);
+        updateFromSolver(linearSystem, zOptimizeFor);
         int size = this.mChildren.size();
         for (int i2 = 0; i2 < size; i2++) {
-            this.mChildren.get(i2).updateFromSolver(linearSystem, optimizeFor);
+            this.mChildren.get(i2).updateFromSolver(linearSystem, zOptimizeFor);
         }
     }
 

@@ -10,7 +10,7 @@ import java.util.Iterator;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class StateSet {
     private static final boolean DEBUG = false;
     public static final String TAG = "ConstraintLayoutStates";
@@ -31,14 +31,14 @@ public class StateSet {
         public State(Context context, XmlPullParser xmlPullParser) {
             this.mConstraintID = -1;
             this.mIsLayout = false;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0471R.styleable.State);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.State);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.State_android_id) {
-                    this.mId = obtainStyledAttributes.getResourceId(index, this.mId);
-                } else if (index == C0471R.styleable.State_constraints) {
-                    this.mConstraintID = obtainStyledAttributes.getResourceId(index, this.mConstraintID);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.State_android_id) {
+                    this.mId = typedArrayObtainStyledAttributes.getResourceId(index, this.mId);
+                } else if (index == R.styleable.State_constraints) {
+                    this.mConstraintID = typedArrayObtainStyledAttributes.getResourceId(index, this.mConstraintID);
                     String resourceTypeName = context.getResources().getResourceTypeName(this.mConstraintID);
                     context.getResources().getResourceName(this.mConstraintID);
                     if ("layout".equals(resourceTypeName)) {
@@ -46,7 +46,7 @@ public class StateSet {
                     }
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
 
         void add(Variant variant) {
@@ -79,28 +79,28 @@ public class StateSet {
             this.mMaxHeight = Float.NaN;
             this.mConstraintID = -1;
             this.mIsLayout = false;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0471R.styleable.Variant);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.Variant);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.Variant_constraints) {
-                    this.mConstraintID = obtainStyledAttributes.getResourceId(index, this.mConstraintID);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.Variant_constraints) {
+                    this.mConstraintID = typedArrayObtainStyledAttributes.getResourceId(index, this.mConstraintID);
                     String resourceTypeName = context.getResources().getResourceTypeName(this.mConstraintID);
                     context.getResources().getResourceName(this.mConstraintID);
                     if ("layout".equals(resourceTypeName)) {
                         this.mIsLayout = true;
                     }
-                } else if (index == C0471R.styleable.Variant_region_heightLessThan) {
-                    this.mMaxHeight = obtainStyledAttributes.getDimension(index, this.mMaxHeight);
-                } else if (index == C0471R.styleable.Variant_region_heightMoreThan) {
-                    this.mMinHeight = obtainStyledAttributes.getDimension(index, this.mMinHeight);
-                } else if (index == C0471R.styleable.Variant_region_widthLessThan) {
-                    this.mMaxWidth = obtainStyledAttributes.getDimension(index, this.mMaxWidth);
-                } else if (index == C0471R.styleable.Variant_region_widthMoreThan) {
-                    this.mMinWidth = obtainStyledAttributes.getDimension(index, this.mMinWidth);
+                } else if (index == R.styleable.Variant_region_heightLessThan) {
+                    this.mMaxHeight = typedArrayObtainStyledAttributes.getDimension(index, this.mMaxHeight);
+                } else if (index == R.styleable.Variant_region_heightMoreThan) {
+                    this.mMinHeight = typedArrayObtainStyledAttributes.getDimension(index, this.mMinHeight);
+                } else if (index == R.styleable.Variant_region_widthLessThan) {
+                    this.mMaxWidth = typedArrayObtainStyledAttributes.getDimension(index, this.mMaxWidth);
+                } else if (index == R.styleable.Variant_region_widthMoreThan) {
+                    this.mMinWidth = typedArrayObtainStyledAttributes.getDimension(index, this.mMinWidth);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
 
         boolean match(float f2, float f3) {
@@ -123,15 +123,15 @@ public class StateSet {
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     private void load(Context context, XmlPullParser xmlPullParser) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0471R.styleable.StateSet);
-        int indexCount = obtainStyledAttributes.getIndexCount();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.StateSet);
+        int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
         for (int i2 = 0; i2 < indexCount; i2++) {
-            int index = obtainStyledAttributes.getIndex(i2);
-            if (index == C0471R.styleable.StateSet_defaultState) {
-                this.mDefaultState = obtainStyledAttributes.getResourceId(index, this.mDefaultState);
+            int index = typedArrayObtainStyledAttributes.getIndex(i2);
+            if (index == R.styleable.StateSet_defaultState) {
+                this.mDefaultState = typedArrayObtainStyledAttributes.getResourceId(index, this.mDefaultState);
             }
         }
-        obtainStyledAttributes.recycle();
+        typedArrayObtainStyledAttributes.recycle();
         State state = null;
         try {
             int eventType = xmlPullParser.getEventType();
@@ -140,38 +140,34 @@ public class StateSet {
                     xmlPullParser.getName();
                 } else if (eventType == 2) {
                     String name = xmlPullParser.getName();
-                    char c2 = 65535;
+                    byte b2 = -1;
                     switch (name.hashCode()) {
                         case 80204913:
                             if (name.equals("State")) {
-                                c2 = 2;
-                                break;
+                                b2 = 2;
                             }
                             break;
                         case 1301459538:
                             if (name.equals("LayoutDescription")) {
-                                c2 = 0;
-                                break;
+                                b2 = 0;
                             }
                             break;
                         case 1382829617:
                             if (name.equals("StateSet")) {
-                                c2 = 1;
-                                break;
+                                b2 = 1;
                             }
                             break;
                         case 1901439077:
                             if (name.equals("Variant")) {
-                                c2 = 3;
-                                break;
+                                b2 = 3;
                             }
                             break;
                     }
-                    if (c2 != 0 && c2 != 1) {
-                        if (c2 == 2) {
+                    if (b2 != 0 && b2 != 1) {
+                        if (b2 == 2) {
                             state = new State(context, xmlPullParser);
                             this.mStateList.put(state.mId, state);
-                        } else if (c2 != 3) {
+                        } else if (b2 != 3) {
                             String str = "unknown tag " + name;
                         } else {
                             Variant variant = new Variant(context, xmlPullParser);
@@ -212,14 +208,12 @@ public class StateSet {
             return state.mConstraintID;
         }
         Variant variant = null;
-        Iterator<Variant> it2 = state.mVariants.iterator();
-        while (it2.hasNext()) {
-            Variant next = it2.next();
-            if (next.match(f2, f3)) {
-                if (i2 == next.mConstraintID) {
+        for (Variant variant2 : state.mVariants) {
+            if (variant2.match(f2, f3)) {
+                if (i2 == variant2.mConstraintID) {
                     return i2;
                 }
-                variant = next;
+                variant = variant2;
             }
         }
         return variant != null ? variant.mConstraintID : state.mConstraintID;
@@ -230,9 +224,9 @@ public class StateSet {
         if (i3 != i2) {
             return true;
         }
-        State valueAt = i2 == -1 ? this.mStateList.valueAt(0) : this.mStateList.get(i3);
+        State stateValueAt = i2 == -1 ? this.mStateList.valueAt(0) : this.mStateList.get(i3);
         int i4 = this.mCurrentConstraintNumber;
-        return (i4 == -1 || !valueAt.mVariants.get(i4).match(f2, f3)) && this.mCurrentConstraintNumber != valueAt.findMatch(f2, f3);
+        return (i4 == -1 || !stateValueAt.mVariants.get(i4).match(f2, f3)) && this.mCurrentConstraintNumber != stateValueAt.findMatch(f2, f3);
     }
 
     public void setOnConstraintsChanged(ConstraintsChangedListener constraintsChangedListener) {
@@ -244,19 +238,19 @@ public class StateSet {
     }
 
     public int updateConstraints(int i2, int i3, float f2, float f3) {
-        int findMatch;
+        int iFindMatch;
         if (i2 == i3) {
-            State valueAt = i3 == -1 ? this.mStateList.valueAt(0) : this.mStateList.get(this.mCurrentStateId);
-            if (valueAt == null) {
+            State stateValueAt = i3 == -1 ? this.mStateList.valueAt(0) : this.mStateList.get(this.mCurrentStateId);
+            if (stateValueAt == null) {
                 return -1;
             }
-            return ((this.mCurrentConstraintNumber == -1 || !valueAt.mVariants.get(i2).match(f2, f3)) && i2 != (findMatch = valueAt.findMatch(f2, f3))) ? findMatch == -1 ? valueAt.mConstraintID : valueAt.mVariants.get(findMatch).mConstraintID : i2;
+            return ((this.mCurrentConstraintNumber == -1 || !stateValueAt.mVariants.get(i2).match(f2, f3)) && i2 != (iFindMatch = stateValueAt.findMatch(f2, f3))) ? iFindMatch == -1 ? stateValueAt.mConstraintID : stateValueAt.mVariants.get(iFindMatch).mConstraintID : i2;
         }
         State state = this.mStateList.get(i3);
         if (state == null) {
             return -1;
         }
-        int findMatch2 = state.findMatch(f2, f3);
-        return findMatch2 == -1 ? state.mConstraintID : state.mVariants.get(findMatch2).mConstraintID;
+        int iFindMatch2 = state.findMatch(f2, f3);
+        return iFindMatch2 == -1 ? state.mConstraintID : state.mVariants.get(iFindMatch2).mConstraintID;
     }
 }

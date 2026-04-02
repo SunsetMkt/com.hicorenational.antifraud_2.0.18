@@ -7,8 +7,8 @@ import android.view.View;
 import androidx.annotation.RestrictTo;
 import java.util.Locale;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class AllCapsTransformationMethod implements TransformationMethod {
     private Locale mLocale;
 

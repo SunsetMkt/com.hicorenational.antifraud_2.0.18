@@ -5,7 +5,7 @@ import android.os.Build;
 import android.view.View;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DialogCompat {
     private DialogCompat() {
     }
@@ -15,9 +15,9 @@ public class DialogCompat {
         if (Build.VERSION.SDK_INT >= 28) {
             return dialog.requireViewById(i2);
         }
-        View findViewById = dialog.findViewById(i2);
-        if (findViewById != null) {
-            return findViewById;
+        View viewFindViewById = dialog.findViewById(i2);
+        if (viewFindViewById != null) {
+            return viewFindViewById;
         }
         throw new IllegalArgumentException("ID does not reference a View inside this Dialog");
     }

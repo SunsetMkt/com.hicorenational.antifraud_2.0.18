@@ -2,7 +2,7 @@ package androidx.recyclerview.widget;
 
 import androidx.recyclerview.widget.TileList;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 interface ThreadUtil<T> {
 
     public interface BackgroundCallback<T> {

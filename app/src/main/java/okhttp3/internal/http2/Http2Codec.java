@@ -29,7 +29,7 @@ import okio.Okio;
 import okio.Sink;
 import okio.Source;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Http2Codec implements HttpCodec {
     private final Interceptor.Chain chain;
     private final Http2Connection connection;
@@ -41,13 +41,11 @@ public final class Http2Codec implements HttpCodec {
     private static final ByteString KEEP_ALIVE = ByteString.encodeUtf8("keep-alive");
     private static final ByteString PROXY_CONNECTION = ByteString.encodeUtf8("proxy-connection");
     private static final ByteString TRANSFER_ENCODING = ByteString.encodeUtf8("transfer-encoding");
-
-    /* renamed from: TE */
-    private static final ByteString f21460TE = ByteString.encodeUtf8("te");
+    private static final ByteString TE = ByteString.encodeUtf8("te");
     private static final ByteString ENCODING = ByteString.encodeUtf8("encoding");
     private static final ByteString UPGRADE = ByteString.encodeUtf8("upgrade");
-    private static final List<ByteString> HTTP_2_SKIPPED_REQUEST_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, f21460TE, TRANSFER_ENCODING, ENCODING, UPGRADE, Header.TARGET_METHOD, Header.TARGET_PATH, Header.TARGET_SCHEME, Header.TARGET_AUTHORITY);
-    private static final List<ByteString> HTTP_2_SKIPPED_RESPONSE_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, f21460TE, TRANSFER_ENCODING, ENCODING, UPGRADE);
+    private static final List<ByteString> HTTP_2_SKIPPED_REQUEST_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, TE, TRANSFER_ENCODING, ENCODING, UPGRADE, Header.TARGET_METHOD, Header.TARGET_PATH, Header.TARGET_SCHEME, Header.TARGET_AUTHORITY);
+    private static final List<ByteString> HTTP_2_SKIPPED_RESPONSE_HEADERS = Util.immutableList(CONNECTION, HOST, KEEP_ALIVE, PROXY_CONNECTION, TE, TRANSFER_ENCODING, ENCODING, UPGRADE);
 
     class StreamFinishingSource extends ForwardingSource {
         long bytesRead;
@@ -77,11 +75,11 @@ public final class Http2Codec implements HttpCodec {
         @Override // okio.ForwardingSource, okio.Source
         public long read(Buffer buffer, long j2) throws IOException {
             try {
-                long read = delegate().read(buffer, j2);
-                if (read > 0) {
-                    this.bytesRead += read;
+                long j3 = delegate().read(buffer, j2);
+                if (j3 > 0) {
+                    this.bytesRead += j3;
                 }
-                return read;
+                return j3;
             } catch (IOException e2) {
                 endOfInput(e2);
                 throw e2;
@@ -101,16 +99,16 @@ public final class Http2Codec implements HttpCodec {
         ArrayList arrayList = new ArrayList(headers.size() + 4);
         arrayList.add(new Header(Header.TARGET_METHOD, request.method()));
         arrayList.add(new Header(Header.TARGET_PATH, RequestLine.requestPath(request.url())));
-        String header = request.header("Host");
-        if (header != null) {
-            arrayList.add(new Header(Header.TARGET_AUTHORITY, header));
+        String strHeader = request.header("Host");
+        if (strHeader != null) {
+            arrayList.add(new Header(Header.TARGET_AUTHORITY, strHeader));
         }
         arrayList.add(new Header(Header.TARGET_SCHEME, request.url().scheme()));
         int size = headers.size();
         for (int i2 = 0; i2 < size; i2++) {
-            ByteString encodeUtf8 = ByteString.encodeUtf8(headers.name(i2).toLowerCase(Locale.US));
-            if (!HTTP_2_SKIPPED_REQUEST_HEADERS.contains(encodeUtf8)) {
-                arrayList.add(new Header(encodeUtf8, headers.value(i2)));
+            ByteString byteStringEncodeUtf8 = ByteString.encodeUtf8(headers.name(i2).toLowerCase(Locale.US));
+            if (!HTTP_2_SKIPPED_REQUEST_HEADERS.contains(byteStringEncodeUtf8)) {
+                arrayList.add(new Header(byteStringEncodeUtf8, headers.value(i2)));
             }
         }
         return arrayList;
@@ -125,11 +123,11 @@ public final class Http2Codec implements HttpCodec {
             Header header = list.get(i2);
             if (header != null) {
                 ByteString byteString = header.name;
-                String utf8 = header.value.utf8();
+                String strUtf8 = header.value.utf8();
                 if (byteString.equals(Header.RESPONSE_STATUS)) {
-                    statusLine = StatusLine.parse("HTTP/1.1 " + utf8);
+                    statusLine = StatusLine.parse("HTTP/1.1 " + strUtf8);
                 } else if (!HTTP_2_SKIPPED_RESPONSE_HEADERS.contains(byteString)) {
-                    Internal.instance.addLenient(builder2, byteString.utf8(), utf8);
+                    Internal.instance.addLenient(builder2, byteString.utf8(), strUtf8);
                 }
             } else if (statusLine != null && statusLine.code == 100) {
                 builder2 = new Headers.Builder();
@@ -174,11 +172,11 @@ public final class Http2Codec implements HttpCodec {
 
     @Override // okhttp3.internal.http.HttpCodec
     public Response.Builder readResponseHeaders(boolean z) throws IOException {
-        Response.Builder readHttp2HeadersList = readHttp2HeadersList(this.stream.takeResponseHeaders(), this.protocol);
-        if (z && Internal.instance.code(readHttp2HeadersList) == 100) {
+        Response.Builder http2HeadersList = readHttp2HeadersList(this.stream.takeResponseHeaders(), this.protocol);
+        if (z && Internal.instance.code(http2HeadersList) == 100) {
             return null;
         }
-        return readHttp2HeadersList;
+        return http2HeadersList;
     }
 
     @Override // okhttp3.internal.http.HttpCodec

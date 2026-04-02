@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v4.media.MediaBrowserCompat;
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
 public class MediaBrowserCompatUtils {
     private MediaBrowserCompatUtils() {
     }

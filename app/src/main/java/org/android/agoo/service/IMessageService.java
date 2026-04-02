@@ -6,58 +6,55 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* compiled from: Taobao */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IMessageService extends IInterface {
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static abstract class Stub extends Binder implements IMessageService {
         private static final String DESCRIPTOR = "org.android.agoo.service.IMessageService";
         static final int TRANSACTION_ping = 1;
         static final int TRANSACTION_probe = 2;
 
-        /* compiled from: Taobao */
-        /* renamed from: org.android.agoo.service.IMessageService$Stub$a */
-        private static class C6035a implements IMessageService {
+        /* JADX INFO: compiled from: Taobao */
+        private static class a implements IMessageService {
+            private IBinder a;
 
-            /* renamed from: a */
-            private IBinder f21513a;
-
-            C6035a(IBinder iBinder) {
-                this.f21513a = iBinder;
+            a(IBinder iBinder) {
+                this.a = iBinder;
             }
 
             @Override // android.os.IInterface
             public IBinder asBinder() {
-                return this.f21513a;
+                return this.a;
             }
 
             @Override // org.android.agoo.service.IMessageService
             public boolean ping() throws RemoteException {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
+                Parcel parcelObtain2 = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(Stub.DESCRIPTOR);
-                    this.f21513a.transact(1, obtain, obtain2, 0);
-                    obtain2.readException();
-                    return obtain2.readInt() != 0;
+                    parcelObtain.writeInterfaceToken(Stub.DESCRIPTOR);
+                    this.a.transact(1, parcelObtain, parcelObtain2, 0);
+                    parcelObtain2.readException();
+                    return parcelObtain2.readInt() != 0;
                 } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
+                    parcelObtain2.recycle();
+                    parcelObtain.recycle();
                 }
             }
 
             @Override // org.android.agoo.service.IMessageService
             public void probe() throws RemoteException {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
+                Parcel parcelObtain2 = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(Stub.DESCRIPTOR);
-                    this.f21513a.transact(2, obtain, obtain2, 0);
-                    obtain2.readException();
+                    parcelObtain.writeInterfaceToken(Stub.DESCRIPTOR);
+                    this.a.transact(2, parcelObtain, parcelObtain2, 0);
+                    parcelObtain2.readException();
                 } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
+                    parcelObtain2.recycle();
+                    parcelObtain.recycle();
                 }
             }
         }
@@ -70,8 +67,8 @@ public interface IMessageService extends IInterface {
             if (iBinder == null) {
                 return null;
             }
-            IInterface queryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
-            return queryLocalInterface instanceof IMessageService ? (IMessageService) queryLocalInterface : new C6035a(iBinder);
+            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(DESCRIPTOR);
+            return iInterfaceQueryLocalInterface instanceof IMessageService ? (IMessageService) iInterfaceQueryLocalInterface : new a(iBinder);
         }
 
         @Override // android.os.IInterface
@@ -83,9 +80,9 @@ public interface IMessageService extends IInterface {
         public boolean onTransact(int i2, Parcel parcel, Parcel parcel2, int i3) throws RemoteException {
             if (i2 == 1) {
                 parcel.enforceInterface(DESCRIPTOR);
-                boolean ping = ping();
+                boolean zPing = ping();
                 parcel2.writeNoException();
-                parcel2.writeInt(ping ? 1 : 0);
+                parcel2.writeInt(zPing ? 1 : 0);
                 return true;
             }
             if (i2 != 2) {

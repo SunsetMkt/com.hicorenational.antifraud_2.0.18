@@ -8,10 +8,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import com.xiaomi.mipush.sdk.Constants;
+import d.c.a.b.a.a;
 import java.util.Locale;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class LocaleListCompat {
     private static final LocaleListCompat sEmptyLocaleList = create(new Locale[0]);
     private LocaleListInterface mImpl;
@@ -27,29 +27,29 @@ public final class LocaleListCompat {
 
     static Locale forLanguageTagCompat(String str) {
         if (str.contains(Constants.ACCEPT_TIME_SEPARATOR_SERVER)) {
-            String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SERVER, -1);
-            if (split.length > 2) {
-                return new Locale(split[0], split[1], split[2]);
+            String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SERVER, -1);
+            if (strArrSplit.length > 2) {
+                return new Locale(strArrSplit[0], strArrSplit[1], strArrSplit[2]);
             }
-            if (split.length > 1) {
-                return new Locale(split[0], split[1]);
+            if (strArrSplit.length > 1) {
+                return new Locale(strArrSplit[0], strArrSplit[1]);
             }
-            if (split.length == 1) {
-                return new Locale(split[0]);
+            if (strArrSplit.length == 1) {
+                return new Locale(strArrSplit[0]);
             }
         } else {
-            if (!str.contains(AbstractC1191a.f2606s1)) {
+            if (!str.contains(a.s1)) {
                 return new Locale(str);
             }
-            String[] split2 = str.split(AbstractC1191a.f2606s1, -1);
-            if (split2.length > 2) {
-                return new Locale(split2[0], split2[1], split2[2]);
+            String[] strArrSplit2 = str.split(a.s1, -1);
+            if (strArrSplit2.length > 2) {
+                return new Locale(strArrSplit2[0], strArrSplit2[1], strArrSplit2[2]);
             }
-            if (split2.length > 1) {
-                return new Locale(split2[0], split2[1]);
+            if (strArrSplit2.length > 1) {
+                return new Locale(strArrSplit2[0], strArrSplit2[1]);
             }
-            if (split2.length == 1) {
-                return new Locale(split2[0]);
+            if (strArrSplit2.length == 1) {
+                return new Locale(strArrSplit2[0]);
             }
         }
         throw new IllegalArgumentException("Can not parse language tag: [" + str + "]");
@@ -60,10 +60,10 @@ public final class LocaleListCompat {
         if (str == null || str.isEmpty()) {
             return getEmptyLocaleList();
         }
-        String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP, -1);
-        Locale[] localeArr = new Locale[split.length];
+        String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP, -1);
+        Locale[] localeArr = new Locale[strArrSplit.length];
         for (int i2 = 0; i2 < localeArr.length; i2++) {
-            localeArr[i2] = Build.VERSION.SDK_INT >= 21 ? Locale.forLanguageTag(split[i2]) : forLanguageTagCompat(split[i2]);
+            localeArr[i2] = Build.VERSION.SDK_INT >= 21 ? Locale.forLanguageTag(strArrSplit[i2]) : forLanguageTagCompat(strArrSplit[i2]);
         }
         return create(localeArr);
     }

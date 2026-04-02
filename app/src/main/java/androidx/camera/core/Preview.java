@@ -41,7 +41,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Preview extends UseCase {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -63,6 +63,44 @@ public final class Preview extends UseCase {
 
     @Nullable
     SurfaceProvider mSurfaceProvider;
+
+    /* JADX INFO: renamed from: androidx.camera.core.Preview$1 */
+    class AnonymousClass1 extends CameraCaptureCallback {
+        final /* synthetic */ ImageInfoProcessor val$processor;
+
+        AnonymousClass1(ImageInfoProcessor imageInfoProcessor) {
+            imageInfoProcessor = imageInfoProcessor;
+        }
+
+        @Override // androidx.camera.core.impl.CameraCaptureCallback
+        public void onCaptureCompleted(@NonNull CameraCaptureResult cameraCaptureResult) {
+            super.onCaptureCompleted(cameraCaptureResult);
+            if (imageInfoProcessor.process(new CameraCaptureResultImageInfo(cameraCaptureResult))) {
+                Preview.this.notifyUpdated();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.Preview$2 */
+    class AnonymousClass2 implements SessionConfig.ErrorListener {
+        final /* synthetic */ String val$cameraId;
+        final /* synthetic */ PreviewConfig val$config;
+        final /* synthetic */ Size val$resolution;
+
+        AnonymousClass2(String str, PreviewConfig previewConfig, Size size) {
+            str = str;
+            previewConfig = previewConfig;
+            size = size;
+        }
+
+        @Override // androidx.camera.core.impl.SessionConfig.ErrorListener
+        public void onError(@NonNull SessionConfig sessionConfig, @NonNull SessionConfig.SessionError sessionError) {
+            if (Preview.this.isCurrentlyBoundCamera(str)) {
+                Preview.this.attachToCamera(str, Preview.this.createPipeline(str, previewConfig, size).build());
+                Preview.this.notifyReset();
+            }
+        }
+    }
 
     public static final class Builder implements UseCaseConfig.Builder<Preview, PreviewConfig, Builder>, ImageOutputConfig.Builder<Builder>, ThreadConfig.Builder<Builder> {
         private final MutableOptionsBundle mMutableConfig;
@@ -131,7 +169,6 @@ public final class Preview extends UseCase {
             throw new IllegalArgumentException("Cannot use both setTargetResolution and setTargetAspectRatio on the same config.");
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -139,7 +176,6 @@ public final class Preview extends UseCase {
             return new PreviewConfig(OptionsBundle.from(this.mMutableConfig));
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.internal.ThreadConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -148,7 +184,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -157,7 +192,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -166,7 +200,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -175,7 +208,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -184,7 +216,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -193,7 +224,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -202,7 +232,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -211,7 +240,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -220,7 +248,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.UseCaseConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -229,7 +256,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetAspectRatio(int i2) {
@@ -237,7 +263,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -265,7 +290,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetResolution(@NonNull Size size) {
@@ -276,7 +300,6 @@ public final class Preview extends UseCase {
             return this;
         }
 
-        /* JADX WARN: Can't rename method to resolve collision */
         @Override // androidx.camera.core.impl.ImageOutputConfig.Builder
         @NonNull
         public Builder setTargetRotation(int i2) {
@@ -320,8 +343,7 @@ public final class Preview extends UseCase {
         attachToCamera(str, createPipeline(str, previewConfig, size).build());
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m352a(SurfaceRequest surfaceRequest) {
+    public /* synthetic */ void a(SurfaceRequest surfaceRequest) {
         this.mSurfaceProvider.onSurfaceRequested(surfaceRequest);
     }
 
@@ -335,9 +357,9 @@ public final class Preview extends UseCase {
         if (boundCamera == null || !CameraX.getSurfaceManager().requiresCorrectedAspectRatio(boundCamera.getCameraInfoInternal().getCameraId()) || (correctedAspectRatio = CameraX.getSurfaceManager().getCorrectedAspectRatio(boundCamera.getCameraInfoInternal().getCameraId(), previewConfig.getTargetRotation(0))) == null) {
             return previewConfig;
         }
-        Builder fromConfig = Builder.fromConfig(previewConfig);
-        fromConfig.setTargetAspectRatioCustom(correctedAspectRatio);
-        return fromConfig.getUseCaseConfig();
+        Builder builderFromConfig = Builder.fromConfig(previewConfig);
+        builderFromConfig.setTargetAspectRatioCustom(correctedAspectRatio);
+        return builderFromConfig.getUseCaseConfig();
     }
 
     @Override // androidx.camera.core.UseCase
@@ -351,16 +373,16 @@ public final class Preview extends UseCase {
         super.clear();
     }
 
-    SessionConfig.Builder createPipeline(@NonNull final String str, @NonNull final PreviewConfig previewConfig, @NonNull final Size size) {
+    SessionConfig.Builder createPipeline(@NonNull String str, @NonNull PreviewConfig previewConfig, @NonNull Size size) {
         Threads.checkMainThread();
         Preconditions.checkState(isPreviewSurfaceProviderSet());
-        SessionConfig.Builder createFrom = SessionConfig.Builder.createFrom(previewConfig);
+        SessionConfig.Builder builderCreateFrom = SessionConfig.Builder.createFrom(previewConfig);
         CaptureProcessor captureProcessor = previewConfig.getCaptureProcessor(null);
         final SurfaceRequest surfaceRequest = new SurfaceRequest(size);
         this.mPreviewSurfaceProviderExecutor.execute(new Runnable() { // from class: androidx.camera.core.g0
             @Override // java.lang.Runnable
             public final void run() {
-                Preview.this.m352a(surfaceRequest);
+                this.a.a(surfaceRequest);
             }
         });
         if (captureProcessor != null) {
@@ -371,13 +393,19 @@ public final class Preview extends UseCase {
                 this.mProcessingPreviewHandler = new Handler(this.mProcessingPreviewThread.getLooper());
             }
             ProcessingSurface processingSurface = new ProcessingSurface(size.getWidth(), size.getHeight(), 35, this.mProcessingPreviewHandler, defaultCaptureStage, captureProcessor, surfaceRequest.getDeferrableSurface());
-            createFrom.addCameraCaptureCallback(processingSurface.getCameraCaptureCallback());
+            builderCreateFrom.addCameraCaptureCallback(processingSurface.getCameraCaptureCallback());
             this.mSessionDeferrableSurface = processingSurface;
-            createFrom.setTag(Integer.valueOf(defaultCaptureStage.getId()));
+            builderCreateFrom.setTag(Integer.valueOf(defaultCaptureStage.getId()));
         } else {
-            final ImageInfoProcessor imageInfoProcessor = previewConfig.getImageInfoProcessor(null);
+            ImageInfoProcessor imageInfoProcessor = previewConfig.getImageInfoProcessor(null);
             if (imageInfoProcessor != null) {
-                createFrom.addCameraCaptureCallback(new CameraCaptureCallback() { // from class: androidx.camera.core.Preview.1
+                builderCreateFrom.addCameraCaptureCallback(new CameraCaptureCallback() { // from class: androidx.camera.core.Preview.1
+                    final /* synthetic */ ImageInfoProcessor val$processor;
+
+                    AnonymousClass1(ImageInfoProcessor imageInfoProcessor2) {
+                        imageInfoProcessor = imageInfoProcessor2;
+                    }
+
                     @Override // androidx.camera.core.impl.CameraCaptureCallback
                     public void onCaptureCompleted(@NonNull CameraCaptureResult cameraCaptureResult) {
                         super.onCaptureCompleted(cameraCaptureResult);
@@ -389,8 +417,18 @@ public final class Preview extends UseCase {
             }
             this.mSessionDeferrableSurface = surfaceRequest.getDeferrableSurface();
         }
-        createFrom.addSurface(this.mSessionDeferrableSurface);
-        createFrom.addErrorListener(new SessionConfig.ErrorListener() { // from class: androidx.camera.core.Preview.2
+        builderCreateFrom.addSurface(this.mSessionDeferrableSurface);
+        builderCreateFrom.addErrorListener(new SessionConfig.ErrorListener() { // from class: androidx.camera.core.Preview.2
+            final /* synthetic */ String val$cameraId;
+            final /* synthetic */ PreviewConfig val$config;
+            final /* synthetic */ Size val$resolution;
+
+            AnonymousClass2(String str2, PreviewConfig previewConfig2, Size size2) {
+                str = str2;
+                previewConfig = previewConfig2;
+                size = size2;
+            }
+
             @Override // androidx.camera.core.impl.SessionConfig.ErrorListener
             public void onError(@NonNull SessionConfig sessionConfig, @NonNull SessionConfig.SessionError sessionError) {
                 if (Preview.this.isCurrentlyBoundCamera(str)) {
@@ -399,7 +437,7 @@ public final class Preview extends UseCase {
                 }
             }
         });
-        return createFrom;
+        return builderCreateFrom;
     }
 
     @Override // androidx.camera.core.UseCase

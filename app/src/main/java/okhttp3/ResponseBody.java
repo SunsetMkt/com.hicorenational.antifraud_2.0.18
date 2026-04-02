@@ -12,9 +12,36 @@ import okio.Buffer;
 import okio.BufferedSource;
 import okio.ByteString;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class ResponseBody implements Closeable {
     private Reader reader;
+
+    /* JADX INFO: renamed from: okhttp3.ResponseBody$1 */
+    class AnonymousClass1 extends ResponseBody {
+        final /* synthetic */ BufferedSource val$content;
+        final /* synthetic */ long val$contentLength;
+
+        AnonymousClass1(long j2, BufferedSource bufferedSource) {
+            j = j2;
+            bufferedSource = bufferedSource;
+        }
+
+        @Override // okhttp3.ResponseBody
+        public long contentLength() {
+            return j;
+        }
+
+        @Override // okhttp3.ResponseBody
+        @Nullable
+        public MediaType contentType() {
+            return mediaType;
+        }
+
+        @Override // okhttp3.ResponseBody
+        public BufferedSource source() {
+            return bufferedSource;
+        }
+    }
 
     static final class BomAwareReader extends Reader {
         private final Charset charset;
@@ -54,8 +81,8 @@ public abstract class ResponseBody implements Closeable {
     }
 
     private Charset charset() {
-        MediaType contentType = contentType();
-        return contentType != null ? contentType.charset(Util.UTF_8) : Util.UTF_8;
+        MediaType mediaTypeContentType = contentType();
+        return mediaTypeContentType != null ? mediaTypeContentType.charset(Util.UTF_8) : Util.UTF_8;
     }
 
     public static ResponseBody create(@Nullable MediaType mediaType, String str) {
@@ -64,8 +91,8 @@ public abstract class ResponseBody implements Closeable {
             charset = Util.UTF_8;
             mediaType = MediaType.parse(mediaType + "; charset=utf-8");
         }
-        Buffer writeString = new Buffer().writeString(str, charset);
-        return create(mediaType, writeString.size(), writeString);
+        Buffer bufferWriteString = new Buffer().writeString(str, charset);
+        return create(mediaType, bufferWriteString.size(), bufferWriteString);
     }
 
     public final InputStream byteStream() {
@@ -73,20 +100,20 @@ public abstract class ResponseBody implements Closeable {
     }
 
     public final byte[] bytes() throws IOException {
-        long contentLength = contentLength();
-        if (contentLength > 2147483647L) {
-            throw new IOException("Cannot buffer entire body for content length: " + contentLength);
+        long jContentLength = contentLength();
+        if (jContentLength > 2147483647L) {
+            throw new IOException("Cannot buffer entire body for content length: " + jContentLength);
         }
-        BufferedSource source = source();
+        BufferedSource bufferedSourceSource = source();
         try {
-            byte[] readByteArray = source.readByteArray();
-            Util.closeQuietly(source);
-            if (contentLength == -1 || contentLength == readByteArray.length) {
-                return readByteArray;
+            byte[] byteArray = bufferedSourceSource.readByteArray();
+            Util.closeQuietly(bufferedSourceSource);
+            if (jContentLength == -1 || jContentLength == byteArray.length) {
+                return byteArray;
             }
-            throw new IOException("Content-Length (" + contentLength + ") and stream length (" + readByteArray.length + ") disagree");
+            throw new IOException("Content-Length (" + jContentLength + ") and stream length (" + byteArray.length + ") disagree");
         } catch (Throwable th) {
-            Util.closeQuietly(source);
+            Util.closeQuietly(bufferedSourceSource);
             throw th;
         }
     }
@@ -114,11 +141,11 @@ public abstract class ResponseBody implements Closeable {
     public abstract BufferedSource source();
 
     public final String string() throws IOException {
-        BufferedSource source = source();
+        BufferedSource bufferedSourceSource = source();
         try {
-            return source.readString(Util.bomAwareCharset(source, charset()));
+            return bufferedSourceSource.readString(Util.bomAwareCharset(bufferedSourceSource, charset()));
         } finally {
-            Util.closeQuietly(source);
+            Util.closeQuietly(bufferedSourceSource);
         }
     }
 
@@ -130,18 +157,26 @@ public abstract class ResponseBody implements Closeable {
         return create(mediaType, byteString.size(), new Buffer().write(byteString));
     }
 
-    public static ResponseBody create(@Nullable final MediaType mediaType, final long j2, final BufferedSource bufferedSource) {
+    public static ResponseBody create(@Nullable MediaType mediaType, long j2, BufferedSource bufferedSource) {
         if (bufferedSource != null) {
             return new ResponseBody() { // from class: okhttp3.ResponseBody.1
+                final /* synthetic */ BufferedSource val$content;
+                final /* synthetic */ long val$contentLength;
+
+                AnonymousClass1(long j22, BufferedSource bufferedSource2) {
+                    j = j22;
+                    bufferedSource = bufferedSource2;
+                }
+
                 @Override // okhttp3.ResponseBody
                 public long contentLength() {
-                    return j2;
+                    return j;
                 }
 
                 @Override // okhttp3.ResponseBody
                 @Nullable
                 public MediaType contentType() {
-                    return MediaType.this;
+                    return mediaType;
                 }
 
                 @Override // okhttp3.ResponseBody

@@ -3,7 +3,7 @@ package androidx.core.text;
 import java.nio.CharBuffer;
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class TextDirectionHeuristicsCompat {
     private static final int STATE_FALSE = 1;
     private static final int STATE_TRUE = 0;
@@ -28,9 +28,9 @@ public final class TextDirectionHeuristicsCompat {
             int i4 = i3 + i2;
             boolean z = false;
             while (i2 < i4) {
-                int isRtlText = TextDirectionHeuristicsCompat.isRtlText(Character.getDirectionality(charSequence.charAt(i2)));
-                if (isRtlText != 0) {
-                    if (isRtlText != 1) {
+                int iIsRtlText = TextDirectionHeuristicsCompat.isRtlText(Character.getDirectionality(charSequence.charAt(i2)));
+                if (iIsRtlText != 0) {
+                    if (iIsRtlText != 1) {
                         continue;
                         i2++;
                     } else if (!this.mLookForRtl) {
@@ -58,12 +58,12 @@ public final class TextDirectionHeuristicsCompat {
         @Override // androidx.core.text.TextDirectionHeuristicsCompat.TextDirectionAlgorithm
         public int checkRtl(CharSequence charSequence, int i2, int i3) {
             int i4 = i3 + i2;
-            int i5 = 2;
-            while (i2 < i4 && i5 == 2) {
-                i5 = TextDirectionHeuristicsCompat.isRtlTextOrFormat(Character.getDirectionality(charSequence.charAt(i2)));
+            int iIsRtlTextOrFormat = 2;
+            while (i2 < i4 && iIsRtlTextOrFormat == 2) {
+                iIsRtlTextOrFormat = TextDirectionHeuristicsCompat.isRtlTextOrFormat(Character.getDirectionality(charSequence.charAt(i2)));
                 i2++;
             }
-            return i5;
+            return iIsRtlTextOrFormat;
         }
     }
 
@@ -79,11 +79,11 @@ public final class TextDirectionHeuristicsCompat {
         }
 
         private boolean doCheck(CharSequence charSequence, int i2, int i3) {
-            int checkRtl = this.mAlgorithm.checkRtl(charSequence, i2, i3);
-            if (checkRtl == 0) {
+            int iCheckRtl = this.mAlgorithm.checkRtl(charSequence, i2, i3);
+            if (iCheckRtl == 0) {
                 return true;
             }
-            if (checkRtl != 1) {
+            if (iCheckRtl != 1) {
                 return defaultIsRtl();
             }
             return false;

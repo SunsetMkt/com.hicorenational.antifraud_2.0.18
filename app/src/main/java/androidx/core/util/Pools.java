@@ -3,7 +3,7 @@ package androidx.core.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Pools {
 
     public interface Pool<T> {
@@ -82,11 +82,11 @@ public final class Pools {
 
         @Override // androidx.core.util.Pools.SimplePool, androidx.core.util.Pools.Pool
         public boolean release(@NonNull T t) {
-            boolean release;
+            boolean zRelease;
             synchronized (this.mLock) {
-                release = super.release(t);
+                zRelease = super.release(t);
             }
-            return release;
+            return zRelease;
         }
     }
 

@@ -7,7 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMAuthUtils {
     public static String decrypt(String str, String str2) throws Exception {
         if (TextUtils.isEmpty(str2) || TextUtils.isEmpty(str)) {
@@ -15,16 +15,16 @@ public class UMAuthUtils {
         }
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         byte[] bytes = str2.getBytes();
-        int i2 = 32;
+        int length = 32;
         if (bytes.length < 16) {
             bytes = new byte[16];
             Arrays.fill(bytes, (byte) 1);
             System.arraycopy(bytes, 0, str2.getBytes(), 0, str2.length());
-            i2 = 16;
+            length = 16;
         } else if (bytes.length <= 32) {
-            i2 = bytes.length % 8 != 0 ? bytes.length - (bytes.length % 8) : bytes.length;
+            length = bytes.length % 8 != 0 ? bytes.length - (bytes.length % 8) : bytes.length;
         }
-        cipher.init(2, new SecretKeySpec(bytes, 0, i2, "AES"), new IvParameterSpec(Arrays.copyOfRange(bytes, 0, 16)));
+        cipher.init(2, new SecretKeySpec(bytes, 0, length, "AES"), new IvParameterSpec(Arrays.copyOfRange(bytes, 0, 16)));
         return new String(cipher.doFinal(Base64.decode(str, 0)));
     }
 
@@ -34,16 +34,16 @@ public class UMAuthUtils {
         }
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         byte[] bytes = str2.getBytes();
-        int i2 = 32;
+        int length = 32;
         if (bytes.length < 16) {
             bytes = new byte[16];
             Arrays.fill(bytes, (byte) 1);
             System.arraycopy(bytes, 0, str2.getBytes(), 0, str2.length());
-            i2 = 16;
+            length = 16;
         } else if (bytes.length <= 32) {
-            i2 = bytes.length % 8 != 0 ? bytes.length - (bytes.length % 8) : bytes.length;
+            length = bytes.length % 8 != 0 ? bytes.length - (bytes.length % 8) : bytes.length;
         }
-        cipher.init(1, new SecretKeySpec(bytes, 0, i2, "AES"), new IvParameterSpec(Arrays.copyOfRange(bytes, 0, 16)));
+        cipher.init(1, new SecretKeySpec(bytes, 0, length, "AES"), new IvParameterSpec(Arrays.copyOfRange(bytes, 0, 16)));
         return Base64.encodeToString(cipher.doFinal(str.getBytes()), 0);
     }
 }

@@ -10,7 +10,7 @@ import com.huawei.hms.push.utils.PushBiUtil;
 import com.huawei.hms.support.api.client.Status;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AttributionReportTask extends BaseVoidTask {
     public AttributionReportTask(String str, String str2, String str3) {
         super(str, str2, str3);
@@ -27,22 +27,21 @@ public class AttributionReportTask extends BaseVoidTask {
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.huawei.hms.push.task.BaseVoidTask, com.huawei.hms.common.internal.TaskApiCall
     public void doExecute(PushClient pushClient, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<Void> taskCompletionSource) {
         if (responseErrorCode.getErrorCode() == 0) {
-            HMSLog.m7717i("AnalysisReportTask", "analysis report task,Operate succeed");
+            HMSLog.i("AnalysisReportTask", "analysis report task,Operate succeed");
             taskCompletionSource.setResult(null);
         } else {
-            HMSLog.m7715e("AnalysisReportTask", "analysis report task,Operate failed with ret=" + responseErrorCode.getErrorCode());
-            ErrorEnum fromCode = ErrorEnum.fromCode(responseErrorCode.getErrorCode());
-            if (fromCode == ErrorEnum.ERROR_UNKNOWN) {
+            HMSLog.e("AnalysisReportTask", "analysis report task,Operate failed with ret=" + responseErrorCode.getErrorCode());
+            ErrorEnum errorEnumFromCode = ErrorEnum.fromCode(responseErrorCode.getErrorCode());
+            if (errorEnumFromCode == ErrorEnum.ERROR_UNKNOWN) {
                 taskCompletionSource.setException(new ApiException(new Status(responseErrorCode.getErrorCode(), responseErrorCode.getErrorReason())));
-            } else if (fromCode == ErrorEnum.ERROR_NOT_IN_SERVICE) {
+            } else if (errorEnumFromCode == ErrorEnum.ERROR_NOT_IN_SERVICE) {
                 new PushPreferences(pushClient.getContext(), "hwpush_local_config").saveLong("analysis_last_failed_time", Long.valueOf(System.currentTimeMillis()));
-                taskCompletionSource.setException(fromCode.toApiException());
+                taskCompletionSource.setException(errorEnumFromCode.toApiException());
             } else {
-                taskCompletionSource.setException(fromCode.toApiException());
+                taskCompletionSource.setException(errorEnumFromCode.toApiException());
             }
         }
         PushBiUtil.reportExit(pushClient.getContext(), getUri(), responseErrorCode);

@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AccessibilityNodeProviderCompat {
     public static final int HOST_VIEW_ID = -1;
     private final Object mProvider;
@@ -24,23 +24,23 @@ public class AccessibilityNodeProviderCompat {
 
         @Override // android.view.accessibility.AccessibilityNodeProvider
         public AccessibilityNodeInfo createAccessibilityNodeInfo(int i2) {
-            AccessibilityNodeInfoCompat createAccessibilityNodeInfo = this.mCompat.createAccessibilityNodeInfo(i2);
-            if (createAccessibilityNodeInfo == null) {
+            AccessibilityNodeInfoCompat accessibilityNodeInfoCompatCreateAccessibilityNodeInfo = this.mCompat.createAccessibilityNodeInfo(i2);
+            if (accessibilityNodeInfoCompatCreateAccessibilityNodeInfo == null) {
                 return null;
             }
-            return createAccessibilityNodeInfo.unwrap();
+            return accessibilityNodeInfoCompatCreateAccessibilityNodeInfo.unwrap();
         }
 
         @Override // android.view.accessibility.AccessibilityNodeProvider
         public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(String str, int i2) {
-            List<AccessibilityNodeInfoCompat> findAccessibilityNodeInfosByText = this.mCompat.findAccessibilityNodeInfosByText(str, i2);
-            if (findAccessibilityNodeInfosByText == null) {
+            List<AccessibilityNodeInfoCompat> listFindAccessibilityNodeInfosByText = this.mCompat.findAccessibilityNodeInfosByText(str, i2);
+            if (listFindAccessibilityNodeInfosByText == null) {
                 return null;
             }
             ArrayList arrayList = new ArrayList();
-            int size = findAccessibilityNodeInfosByText.size();
+            int size = listFindAccessibilityNodeInfosByText.size();
             for (int i3 = 0; i3 < size; i3++) {
-                arrayList.add(findAccessibilityNodeInfosByText.get(i3).unwrap());
+                arrayList.add(listFindAccessibilityNodeInfosByText.get(i3).unwrap());
             }
             return arrayList;
         }
@@ -59,11 +59,11 @@ public class AccessibilityNodeProviderCompat {
 
         @Override // android.view.accessibility.AccessibilityNodeProvider
         public AccessibilityNodeInfo findFocus(int i2) {
-            AccessibilityNodeInfoCompat findFocus = this.mCompat.findFocus(i2);
-            if (findFocus == null) {
+            AccessibilityNodeInfoCompat accessibilityNodeInfoCompatFindFocus = this.mCompat.findFocus(i2);
+            if (accessibilityNodeInfoCompatFindFocus == null) {
                 return null;
             }
-            return findFocus.unwrap();
+            return accessibilityNodeInfoCompatFindFocus.unwrap();
         }
     }
 

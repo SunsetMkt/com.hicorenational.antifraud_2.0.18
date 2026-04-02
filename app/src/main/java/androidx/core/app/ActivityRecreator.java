@@ -14,8 +14,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY})
-/* loaded from: classes.dex */
 final class ActivityRecreator {
     private static final String LOG_TAG = "ActivityRecreator";
     private static final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -205,7 +205,7 @@ final class ActivityRecreator {
             mainHandler.post(new Runnable() { // from class: androidx.core.app.ActivityRecreator.1
                 @Override // java.lang.Runnable
                 public void run() {
-                    LifecycleCheckCallbacks.this.currentlyRecreatingToken = obj2;
+                    lifecycleCheckCallbacks.currentlyRecreatingToken = obj2;
                 }
             });
             try {

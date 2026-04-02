@@ -5,7 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SquareRelativeLayout extends RelativeLayout {
     public SquareRelativeLayout(Context context) {
         super(context);

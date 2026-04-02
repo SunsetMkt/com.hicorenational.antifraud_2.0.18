@@ -3,11 +3,11 @@ package androidx.constraintlayout.motion.widget;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.constraintlayout.widget.R;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DesignTool implements ProxyInterface {
     private static final boolean DEBUG = false;
     private static final String TAG = "DesignTool";
@@ -52,36 +52,36 @@ public class DesignTool implements ProxyInterface {
         this.mMotionLayout = motionLayout;
     }
 
-    private static void Connect(int i2, ConstraintSet constraintSet, View view, HashMap<String, String> hashMap, int i3, int i4) {
+    private static void Connect(int i2, ConstraintSet constraintSet, View view, HashMap<String, String> map, int i3, int i4) {
         String str = allAttributes.get(Pair.create(Integer.valueOf(i3), Integer.valueOf(i4)));
-        String str2 = hashMap.get(str);
+        String str2 = map.get(str);
         if (str2 != null) {
             String str3 = allMargins.get(str);
-            constraintSet.connect(view.getId(), i3, Integer.parseInt(str2), i4, str3 != null ? GetPxFromDp(i2, hashMap.get(str3)) : 0);
+            constraintSet.connect(view.getId(), i3, Integer.parseInt(str2), i4, str3 != null ? GetPxFromDp(i2, map.get(str3)) : 0);
         }
     }
 
     private static int GetPxFromDp(int i2, String str) {
-        int indexOf;
-        if (str == null || (indexOf = str.indexOf(100)) == -1) {
+        int iIndexOf;
+        if (str == null || (iIndexOf = str.indexOf(100)) == -1) {
             return 0;
         }
-        return (int) ((Integer.valueOf(str.substring(0, indexOf)).intValue() * i2) / 160.0f);
+        return (int) ((Integer.valueOf(str.substring(0, iIndexOf)).intValue() * i2) / 160.0f);
     }
 
-    private static void SetAbsolutePositions(int i2, ConstraintSet constraintSet, View view, HashMap<String, String> hashMap) {
-        String str = hashMap.get("layout_editor_absoluteX");
+    private static void SetAbsolutePositions(int i2, ConstraintSet constraintSet, View view, HashMap<String, String> map) {
+        String str = map.get("layout_editor_absoluteX");
         if (str != null) {
             constraintSet.setEditorAbsoluteX(view.getId(), GetPxFromDp(i2, str));
         }
-        String str2 = hashMap.get("layout_editor_absoluteY");
+        String str2 = map.get("layout_editor_absoluteY");
         if (str2 != null) {
             constraintSet.setEditorAbsoluteY(view.getId(), GetPxFromDp(i2, str2));
         }
     }
 
-    private static void SetBias(ConstraintSet constraintSet, View view, HashMap<String, String> hashMap, int i2) {
-        String str = hashMap.get(i2 == 1 ? "layout_constraintVertical_bias" : "layout_constraintHorizontal_bias");
+    private static void SetBias(ConstraintSet constraintSet, View view, HashMap<String, String> map, int i2) {
+        String str = map.get(i2 == 1 ? "layout_constraintVertical_bias" : "layout_constraintHorizontal_bias");
         if (str != null) {
             if (i2 == 0) {
                 constraintSet.setHorizontalBias(view.getId(), Float.parseFloat(str));
@@ -91,14 +91,14 @@ public class DesignTool implements ProxyInterface {
         }
     }
 
-    private static void SetDimensions(int i2, ConstraintSet constraintSet, View view, HashMap<String, String> hashMap, int i3) {
-        String str = hashMap.get(i3 == 1 ? "layout_height" : "layout_width");
+    private static void SetDimensions(int i2, ConstraintSet constraintSet, View view, HashMap<String, String> map, int i3) {
+        String str = map.get(i3 == 1 ? "layout_height" : "layout_width");
         if (str != null) {
-            int GetPxFromDp = str.equalsIgnoreCase("wrap_content") ? -2 : GetPxFromDp(i2, str);
+            int iGetPxFromDp = str.equalsIgnoreCase("wrap_content") ? -2 : GetPxFromDp(i2, str);
             if (i3 == 0) {
-                constraintSet.constrainWidth(view.getId(), GetPxFromDp);
+                constraintSet.constrainWidth(view.getId(), iGetPxFromDp);
             } else {
-                constraintSet.constrainHeight(view.getId(), GetPxFromDp);
+                constraintSet.constrainHeight(view.getId(), iGetPxFromDp);
             }
         }
     }
@@ -144,10 +144,10 @@ public class DesignTool implements ProxyInterface {
         if (motionLayout.mScene == null) {
             motionLayout.mScene = this.mSceneCache;
         }
-        int lookUpConstraintId = this.mMotionLayout.lookUpConstraintId(str);
-        System.out.println(" dumping  " + str + " (" + lookUpConstraintId + ")");
+        int iLookUpConstraintId = this.mMotionLayout.lookUpConstraintId(str);
+        System.out.println(" dumping  " + str + " (" + iLookUpConstraintId + ")");
         try {
-            this.mMotionLayout.mScene.getConstraintSet(lookUpConstraintId).dump(this.mMotionLayout.mScene, new int[0]);
+            this.mMotionLayout.mScene.getConstraintSet(iLookUpConstraintId).dump(this.mMotionLayout.mScene, new int[0]);
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -305,32 +305,32 @@ public class DesignTool implements ProxyInterface {
     @Override // androidx.constraintlayout.motion.widget.ProxyInterface
     public void setAttributes(int i2, String str, Object obj, Object obj2) {
         View view = (View) obj;
-        HashMap hashMap = (HashMap) obj2;
-        int lookUpConstraintId = this.mMotionLayout.lookUpConstraintId(str);
-        ConstraintSet constraintSet = this.mMotionLayout.mScene.getConstraintSet(lookUpConstraintId);
+        HashMap map = (HashMap) obj2;
+        int iLookUpConstraintId = this.mMotionLayout.lookUpConstraintId(str);
+        ConstraintSet constraintSet = this.mMotionLayout.mScene.getConstraintSet(iLookUpConstraintId);
         if (constraintSet == null) {
             return;
         }
         constraintSet.clear(view.getId());
-        SetDimensions(i2, constraintSet, view, hashMap, 0);
-        SetDimensions(i2, constraintSet, view, hashMap, 1);
-        Connect(i2, constraintSet, view, hashMap, 6, 6);
-        Connect(i2, constraintSet, view, hashMap, 6, 7);
-        Connect(i2, constraintSet, view, hashMap, 7, 7);
-        Connect(i2, constraintSet, view, hashMap, 7, 6);
-        Connect(i2, constraintSet, view, hashMap, 1, 1);
-        Connect(i2, constraintSet, view, hashMap, 1, 2);
-        Connect(i2, constraintSet, view, hashMap, 2, 2);
-        Connect(i2, constraintSet, view, hashMap, 2, 1);
-        Connect(i2, constraintSet, view, hashMap, 3, 3);
-        Connect(i2, constraintSet, view, hashMap, 3, 4);
-        Connect(i2, constraintSet, view, hashMap, 4, 3);
-        Connect(i2, constraintSet, view, hashMap, 4, 4);
-        Connect(i2, constraintSet, view, hashMap, 5, 5);
-        SetBias(constraintSet, view, hashMap, 0);
-        SetBias(constraintSet, view, hashMap, 1);
-        SetAbsolutePositions(i2, constraintSet, view, hashMap);
-        this.mMotionLayout.updateState(lookUpConstraintId, constraintSet);
+        SetDimensions(i2, constraintSet, view, map, 0);
+        SetDimensions(i2, constraintSet, view, map, 1);
+        Connect(i2, constraintSet, view, map, 6, 6);
+        Connect(i2, constraintSet, view, map, 6, 7);
+        Connect(i2, constraintSet, view, map, 7, 7);
+        Connect(i2, constraintSet, view, map, 7, 6);
+        Connect(i2, constraintSet, view, map, 1, 1);
+        Connect(i2, constraintSet, view, map, 1, 2);
+        Connect(i2, constraintSet, view, map, 2, 2);
+        Connect(i2, constraintSet, view, map, 2, 1);
+        Connect(i2, constraintSet, view, map, 3, 3);
+        Connect(i2, constraintSet, view, map, 3, 4);
+        Connect(i2, constraintSet, view, map, 4, 3);
+        Connect(i2, constraintSet, view, map, 4, 4);
+        Connect(i2, constraintSet, view, map, 5, 5);
+        SetBias(constraintSet, view, map, 0);
+        SetBias(constraintSet, view, map, 1);
+        SetAbsolutePositions(i2, constraintSet, view, map);
+        this.mMotionLayout.updateState(iLookUpConstraintId, constraintSet);
         this.mMotionLayout.requestLayout();
     }
 
@@ -394,15 +394,15 @@ public class DesignTool implements ProxyInterface {
         if (motionLayout.mScene == null) {
             motionLayout.mScene = this.mSceneCache;
         }
-        int lookUpConstraintId = str != null ? this.mMotionLayout.lookUpConstraintId(str) : C0471R.id.motion_base;
-        this.mLastStartStateId = lookUpConstraintId;
-        if (lookUpConstraintId != 0) {
-            if (lookUpConstraintId == this.mMotionLayout.getStartState()) {
+        int iLookUpConstraintId = str != null ? this.mMotionLayout.lookUpConstraintId(str) : R.id.motion_base;
+        this.mLastStartStateId = iLookUpConstraintId;
+        if (iLookUpConstraintId != 0) {
+            if (iLookUpConstraintId == this.mMotionLayout.getStartState()) {
                 this.mMotionLayout.setProgress(0.0f);
-            } else if (lookUpConstraintId == this.mMotionLayout.getEndState()) {
+            } else if (iLookUpConstraintId == this.mMotionLayout.getEndState()) {
                 this.mMotionLayout.setProgress(1.0f);
             } else {
-                this.mMotionLayout.transitionToState(lookUpConstraintId);
+                this.mMotionLayout.transitionToState(iLookUpConstraintId);
                 this.mMotionLayout.setProgress(1.0f);
             }
         }
@@ -426,11 +426,11 @@ public class DesignTool implements ProxyInterface {
         if (motionLayout.mScene == null) {
             motionLayout.mScene = this.mSceneCache;
         }
-        int lookUpConstraintId = this.mMotionLayout.lookUpConstraintId(str);
-        int lookUpConstraintId2 = this.mMotionLayout.lookUpConstraintId(str2);
-        this.mMotionLayout.setTransition(lookUpConstraintId, lookUpConstraintId2);
-        this.mLastStartStateId = lookUpConstraintId;
-        this.mLastEndStateId = lookUpConstraintId2;
+        int iLookUpConstraintId = this.mMotionLayout.lookUpConstraintId(str);
+        int iLookUpConstraintId2 = this.mMotionLayout.lookUpConstraintId(str2);
+        this.mMotionLayout.setTransition(iLookUpConstraintId, iLookUpConstraintId2);
+        this.mLastStartStateId = iLookUpConstraintId;
+        this.mLastEndStateId = iLookUpConstraintId2;
         this.mLastStartState = str;
         this.mLastEndState = str2;
     }

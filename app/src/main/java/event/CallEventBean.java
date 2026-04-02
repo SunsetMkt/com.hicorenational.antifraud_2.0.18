@@ -3,7 +3,7 @@ package event;
 import bean.CallBean;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CallEventBean {
     private List<CallBean> mStringList;
 

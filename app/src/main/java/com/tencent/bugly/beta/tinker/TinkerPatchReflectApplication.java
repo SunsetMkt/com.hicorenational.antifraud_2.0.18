@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerPatchReflectApplication extends TinkerApplication {
     private static final String TAG = "Tinker.ReflectApp";
     private boolean isReflectFailure;
@@ -143,25 +143,25 @@ public class TinkerPatchReflectApplication extends TinkerApplication {
                 }
                 Field declaredField3 = cls.getDeclaredField("mApplication");
                 declaredField3.setAccessible(true);
-                Field field = null;
+                Field declaredField4 = null;
                 try {
-                    field = Application.class.getDeclaredField("mLoadedApk");
+                    declaredField4 = Application.class.getDeclaredField("mLoadedApk");
                 } catch (NoSuchFieldException e2) {
                     e2.printStackTrace();
                 }
                 String[] strArr = {"mPackages", "mResourcePackages"};
                 for (int i3 = 0; i3 < 2; i3++) {
-                    Field declaredField4 = cls2.getDeclaredField(strArr[i3]);
-                    declaredField4.setAccessible(true);
-                    Iterator it = ((Map) declaredField4.get(activityThread)).entrySet().iterator();
+                    Field declaredField5 = cls2.getDeclaredField(strArr[i3]);
+                    declaredField5.setAccessible(true);
+                    Iterator it = ((Map) declaredField5.get(activityThread)).entrySet().iterator();
                     while (it.hasNext()) {
                         Object obj = ((WeakReference) ((Map.Entry) it.next()).getValue()).get();
                         if (obj != null && declaredField3.get(obj) == this) {
                             if (this.realApplication != null) {
                                 declaredField3.set(obj, this.realApplication);
                             }
-                            if (this.realApplication != null && field != null) {
-                                field.set(this.realApplication, obj);
+                            if (this.realApplication != null && declaredField4 != null) {
+                                declaredField4.set(this.realApplication, obj);
                             }
                         }
                     }

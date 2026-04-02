@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ViewCollections {
     private ViewCollections() {
     }

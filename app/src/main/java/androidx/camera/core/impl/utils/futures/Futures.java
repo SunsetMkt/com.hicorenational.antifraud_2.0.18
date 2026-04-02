@@ -15,16 +15,74 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Futures {
     private static final Function<?, ?> IDENTITY_FUNCTION = new Function<Object, Object>() { // from class: androidx.camera.core.impl.utils.futures.Futures.2
+        AnonymousClass2() {
+        }
+
         @Override // androidx.arch.core.util.Function
         public Object apply(Object obj) {
             return obj;
         }
     };
+
+    /* JADX INFO: renamed from: androidx.camera.core.impl.utils.futures.Futures$1 */
+    static class AnonymousClass1<I, O> implements AsyncFunction<I, O> {
+        AnonymousClass1() {
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
+        public d.b.b.a.a.a<O> apply(I i2) {
+            return Futures.immediateFuture(function.apply(i2));
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.impl.utils.futures.Futures$2 */
+    static class AnonymousClass2 implements Function<Object, Object> {
+        AnonymousClass2() {
+        }
+
+        @Override // androidx.arch.core.util.Function
+        public Object apply(Object obj) {
+            return obj;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.impl.utils.futures.Futures$3 */
+    static class AnonymousClass3<I> implements FutureCallback<I> {
+        final /* synthetic */ Function val$function;
+
+        AnonymousClass3(Function function) {
+            function = function;
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.FutureCallback
+        public void onFailure(Throwable th) {
+            completer.setException(th);
+        }
+
+        @Override // androidx.camera.core.impl.utils.futures.FutureCallback
+        public void onSuccess(@Nullable I i2) {
+            try {
+                completer.set(function.apply(i2));
+            } catch (Throwable th) {
+                completer.setException(th);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.camera.core.impl.utils.futures.Futures$4 */
+    static class AnonymousClass4 implements Runnable {
+        AnonymousClass4() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            aVar.cancel(true);
+        }
+    }
 
     private static final class CallbackListener<V> implements Runnable {
         final FutureCallback<? super V> mCallback;
@@ -58,19 +116,18 @@ public final class Futures {
     private Futures() {
     }
 
-    /* renamed from: a */
-    static /* synthetic */ Object m375a(InterfaceFutureC0952a interfaceFutureC0952a, CallbackToFutureAdapter.Completer completer) throws Exception {
-        propagateTransform(false, interfaceFutureC0952a, IDENTITY_FUNCTION, completer, CameraXExecutors.directExecutor());
-        return "nonCancellationPropagating[" + interfaceFutureC0952a + "]";
+    static /* synthetic */ Object a(d.b.b.a.a.a aVar, CallbackToFutureAdapter.Completer completer) throws Exception {
+        propagateTransform(false, aVar, IDENTITY_FUNCTION, completer, CameraXExecutors.directExecutor());
+        return "nonCancellationPropagating[" + aVar + "]";
     }
 
-    public static <V> void addCallback(@NonNull InterfaceFutureC0952a<V> interfaceFutureC0952a, @NonNull FutureCallback<? super V> futureCallback, @NonNull Executor executor) {
+    public static <V> void addCallback(@NonNull d.b.b.a.a.a<V> aVar, @NonNull FutureCallback<? super V> futureCallback, @NonNull Executor executor) {
         Preconditions.checkNotNull(futureCallback);
-        interfaceFutureC0952a.addListener(new CallbackListener(interfaceFutureC0952a, futureCallback), executor);
+        aVar.addListener(new CallbackListener(aVar, futureCallback), executor);
     }
 
     @NonNull
-    public static <V> InterfaceFutureC0952a<List<V>> allAsList(@NonNull Collection<? extends InterfaceFutureC0952a<? extends V>> collection) {
+    public static <V> d.b.b.a.a.a<List<V>> allAsList(@NonNull Collection<? extends d.b.b.a.a.a<? extends V>> collection) {
         return new ListFuture(new ArrayList(collection), true, CameraXExecutors.directExecutor());
     }
 
@@ -104,7 +161,7 @@ public final class Futures {
     }
 
     @NonNull
-    public static <V> InterfaceFutureC0952a<V> immediateFailedFuture(@NonNull Throwable th) {
+    public static <V> d.b.b.a.a.a<V> immediateFailedFuture(@NonNull Throwable th) {
         return new ImmediateFuture.ImmediateFailedFuture(th);
     }
 
@@ -114,77 +171,89 @@ public final class Futures {
     }
 
     @NonNull
-    public static <V> InterfaceFutureC0952a<V> immediateFuture(@Nullable V v) {
+    public static <V> d.b.b.a.a.a<V> immediateFuture(@Nullable V v) {
         return v == null ? ImmediateFuture.nullFuture() : new ImmediateFuture.ImmediateSuccessfulFuture(v);
     }
 
     @NonNull
-    public static <V> InterfaceFutureC0952a<V> nonCancellationPropagating(@NonNull final InterfaceFutureC0952a<V> interfaceFutureC0952a) {
-        Preconditions.checkNotNull(interfaceFutureC0952a);
-        return interfaceFutureC0952a.isDone() ? interfaceFutureC0952a : CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.utils.futures.a
+    public static <V> d.b.b.a.a.a<V> nonCancellationPropagating(@NonNull final d.b.b.a.a.a<V> aVar) {
+        Preconditions.checkNotNull(aVar);
+        return aVar.isDone() ? aVar : CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver() { // from class: androidx.camera.core.impl.utils.futures.a
             @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
             public final Object attachCompleter(CallbackToFutureAdapter.Completer completer) {
-                return Futures.m375a(InterfaceFutureC0952a.this, completer);
+                return Futures.a(aVar, completer);
             }
         });
     }
 
-    public static <V> void propagate(@NonNull InterfaceFutureC0952a<V> interfaceFutureC0952a, @NonNull CallbackToFutureAdapter.Completer<V> completer) {
-        propagateTransform(interfaceFutureC0952a, IDENTITY_FUNCTION, completer, CameraXExecutors.directExecutor());
+    public static <V> void propagate(@NonNull d.b.b.a.a.a<V> aVar, @NonNull CallbackToFutureAdapter.Completer<V> completer) {
+        propagateTransform(aVar, IDENTITY_FUNCTION, completer, CameraXExecutors.directExecutor());
     }
 
-    public static <I, O> void propagateTransform(@NonNull InterfaceFutureC0952a<I> interfaceFutureC0952a, @NonNull Function<? super I, ? extends O> function, @NonNull CallbackToFutureAdapter.Completer<O> completer, @NonNull Executor executor) {
-        propagateTransform(true, interfaceFutureC0952a, function, completer, executor);
+    public static <I, O> void propagateTransform(@NonNull d.b.b.a.a.a<I> aVar, @NonNull Function<? super I, ? extends O> function, @NonNull CallbackToFutureAdapter.Completer<O> completer, @NonNull Executor executor) {
+        propagateTransform(true, aVar, function, completer, executor);
     }
 
     @NonNull
-    public static <V> InterfaceFutureC0952a<List<V>> successfulAsList(@NonNull Collection<? extends InterfaceFutureC0952a<? extends V>> collection) {
+    public static <V> d.b.b.a.a.a<List<V>> successfulAsList(@NonNull Collection<? extends d.b.b.a.a.a<? extends V>> collection) {
         return new ListFuture(new ArrayList(collection), false, CameraXExecutors.directExecutor());
     }
 
     @NonNull
-    public static <I, O> InterfaceFutureC0952a<O> transform(@NonNull InterfaceFutureC0952a<I> interfaceFutureC0952a, @NonNull final Function<? super I, ? extends O> function, @NonNull Executor executor) {
+    public static <I, O> d.b.b.a.a.a<O> transform(@NonNull d.b.b.a.a.a<I> aVar, @NonNull Function<? super I, ? extends O> function, @NonNull Executor executor) {
         Preconditions.checkNotNull(function);
-        return transformAsync(interfaceFutureC0952a, new AsyncFunction<I, O>() { // from class: androidx.camera.core.impl.utils.futures.Futures.1
+        return transformAsync(aVar, new AsyncFunction<I, O>() { // from class: androidx.camera.core.impl.utils.futures.Futures.1
+            AnonymousClass1() {
+            }
+
             @Override // androidx.camera.core.impl.utils.futures.AsyncFunction
-            public InterfaceFutureC0952a<O> apply(I i2) {
-                return Futures.immediateFuture(Function.this.apply(i2));
+            public d.b.b.a.a.a<O> apply(I i2) {
+                return Futures.immediateFuture(function.apply(i2));
             }
         }, executor);
     }
 
     @NonNull
-    public static <I, O> InterfaceFutureC0952a<O> transformAsync(@NonNull InterfaceFutureC0952a<I> interfaceFutureC0952a, @NonNull AsyncFunction<? super I, ? extends O> asyncFunction, @NonNull Executor executor) {
-        ChainingListenableFuture chainingListenableFuture = new ChainingListenableFuture(asyncFunction, interfaceFutureC0952a);
-        interfaceFutureC0952a.addListener(chainingListenableFuture, executor);
+    public static <I, O> d.b.b.a.a.a<O> transformAsync(@NonNull d.b.b.a.a.a<I> aVar, @NonNull AsyncFunction<? super I, ? extends O> asyncFunction, @NonNull Executor executor) {
+        ChainingListenableFuture chainingListenableFuture = new ChainingListenableFuture(asyncFunction, aVar);
+        aVar.addListener(chainingListenableFuture, executor);
         return chainingListenableFuture;
     }
 
-    private static <I, O> void propagateTransform(boolean z, @NonNull final InterfaceFutureC0952a<I> interfaceFutureC0952a, @NonNull final Function<? super I, ? extends O> function, @NonNull final CallbackToFutureAdapter.Completer<O> completer, @NonNull Executor executor) {
-        Preconditions.checkNotNull(interfaceFutureC0952a);
+    private static <I, O> void propagateTransform(boolean z, @NonNull d.b.b.a.a.a<I> aVar, @NonNull Function<? super I, ? extends O> function, @NonNull CallbackToFutureAdapter.Completer<O> completer, @NonNull Executor executor) {
+        Preconditions.checkNotNull(aVar);
         Preconditions.checkNotNull(function);
         Preconditions.checkNotNull(completer);
         Preconditions.checkNotNull(executor);
-        addCallback(interfaceFutureC0952a, new FutureCallback<I>() { // from class: androidx.camera.core.impl.utils.futures.Futures.3
+        addCallback(aVar, new FutureCallback<I>() { // from class: androidx.camera.core.impl.utils.futures.Futures.3
+            final /* synthetic */ Function val$function;
+
+            AnonymousClass3(Function function2) {
+                function = function2;
+            }
+
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onFailure(Throwable th) {
-                CallbackToFutureAdapter.Completer.this.setException(th);
+                completer.setException(th);
             }
 
             @Override // androidx.camera.core.impl.utils.futures.FutureCallback
             public void onSuccess(@Nullable I i2) {
                 try {
-                    CallbackToFutureAdapter.Completer.this.set(function.apply(i2));
+                    completer.set(function.apply(i2));
                 } catch (Throwable th) {
-                    CallbackToFutureAdapter.Completer.this.setException(th);
+                    completer.setException(th);
                 }
             }
         }, executor);
         if (z) {
             completer.addCancellationListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.Futures.4
+                AnonymousClass4() {
+                }
+
                 @Override // java.lang.Runnable
                 public void run() {
-                    InterfaceFutureC0952a.this.cancel(true);
+                    aVar.cancel(true);
                 }
             }, CameraXExecutors.directExecutor());
         }

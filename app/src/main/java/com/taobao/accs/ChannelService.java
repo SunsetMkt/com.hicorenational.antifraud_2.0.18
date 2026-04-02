@@ -12,8 +12,8 @@ import com.taobao.accs.common.Constants;
 import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.utl.ALog;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class ChannelService extends BaseService {
     public static final int DEFAULT_FORGROUND_V = 21;
     static final int NOTIFY_ID = 9371;
@@ -23,14 +23,12 @@ public class ChannelService extends BaseService {
     private static ChannelService mInstance;
     private boolean mFristStarted = true;
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     public static class KernelService extends Service {
+        private static KernelService a;
 
-        /* renamed from: a */
-        private static KernelService f9368a;
-
-        /* renamed from: b */
-        private Context f9369b;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private Context f5705b;
 
         @Override // android.app.Service
         public IBinder onBind(Intent intent) {
@@ -40,8 +38,8 @@ public class ChannelService extends BaseService {
         @Override // android.app.Service
         public void onCreate() {
             super.onCreate();
-            f9368a = this;
-            this.f9369b = getApplicationContext();
+            a = this;
+            this.f5705b = getApplicationContext();
         }
 
         @Override // android.app.Service
@@ -49,19 +47,19 @@ public class ChannelService extends BaseService {
             try {
                 stopForeground(true);
             } catch (Throwable th) {
-                ALog.m9181e(ChannelService.TAG, "onDestroy", th, new Object[0]);
+                ALog.e(ChannelService.TAG, "onDestroy", th, new Object[0]);
             }
-            f9368a = null;
+            a = null;
             super.onDestroy();
         }
 
         @Override // android.app.Service
         public int onStartCommand(Intent intent, int i2, int i3) {
             try {
-                ThreadPoolExecutorFactory.execute(new RunnableC2960a(this));
+                ThreadPoolExecutorFactory.execute(new a(this));
                 return 2;
             } catch (Throwable th) {
-                ALog.m9181e(ChannelService.TAG, " onStartCommand", th, new Object[0]);
+                ALog.e(ChannelService.TAG, " onStartCommand", th, new Object[0]);
                 return 2;
             }
         }
@@ -75,7 +73,7 @@ public class ChannelService extends BaseService {
         try {
             return context.getSharedPreferences(Constants.SP_FILE_NAME, 0).getInt(SUPPORT_FOREGROUND_VERSION_KEY, 21);
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "getSupportForegroundVer fail:", th, "key", SUPPORT_FOREGROUND_VERSION_KEY);
+            ALog.e(TAG, "getSupportForegroundVer fail:", th, "key", SUPPORT_FOREGROUND_VERSION_KEY);
             return 21;
         }
     }
@@ -88,7 +86,7 @@ public class ChannelService extends BaseService {
                 context.startService(intent);
             }
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "startKernel", th, new Object[0]);
+            ALog.e(TAG, "startKernel", th, new Object[0]);
         }
     }
 
@@ -100,20 +98,20 @@ public class ChannelService extends BaseService {
                 context.stopService(intent);
             }
         } catch (Throwable th) {
-            ALog.m9181e(TAG, "stopKernel", th, new Object[0]);
+            ALog.e(TAG, "stopKernel", th, new Object[0]);
         }
     }
 
     @Override // com.taobao.accs.base.BaseService, android.app.Service
     public void onCreate() {
         super.onCreate();
-        GlobalClientInfo.f9386a = getApplicationContext();
+        GlobalClientInfo.a = getApplicationContext();
         mInstance = this;
         if (Build.VERSION.SDK_INT < 18) {
             try {
                 startForeground(NOTIFY_ID, new Notification());
             } catch (Throwable th) {
-                ALog.m9181e(TAG, "ChannelService onCreate", th, new Object[0]);
+                ALog.e(TAG, "ChannelService onCreate", th, new Object[0]);
             }
         }
     }
@@ -124,7 +122,7 @@ public class ChannelService extends BaseService {
             try {
                 stopForeground(true);
             } catch (Throwable th) {
-                ALog.m9181e(TAG, "ChannelService onDestroy", th, new Object[0]);
+                ALog.e(TAG, "ChannelService onDestroy", th, new Object[0]);
             }
         }
         stopKernel(getApplicationContext());

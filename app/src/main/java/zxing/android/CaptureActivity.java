@@ -11,60 +11,54 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageButton;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
+import d.b.c.r;
 import java.util.Collection;
 import java.util.Map;
-import p031c.p035b.p043c.C1107r;
-import p031c.p035b.p043c.EnumC0953a;
-import p031c.p035b.p043c.EnumC1044e;
-import p381m.p382a.C5929d;
 import zxing.view.ViewfinderView;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class CaptureActivity extends Activity implements SurfaceHolder.Callback {
 
-    /* renamed from: k */
-    public static final int f25792k = 0;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    public static final int f15120k = 0;
 
-    /* renamed from: l */
-    public static final String f25793l = "codedContent";
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    public static final String f15121l = "codedContent";
 
-    /* renamed from: m */
-    private static final String f25794m = CaptureActivity.class.getSimpleName();
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private static final String f15122m = CaptureActivity.class.getSimpleName();
+    private n.a.d a;
 
-    /* renamed from: a */
-    private C5929d f25795a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private zxing.android.a f15123b;
 
-    /* renamed from: b */
-    private HandlerC7342a f25796b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private ViewfinderView f15124c;
 
-    /* renamed from: c */
-    private ViewfinderView f25797c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private boolean f15125d;
 
-    /* renamed from: d */
-    private boolean f25798d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private d f15126e;
 
-    /* renamed from: e */
-    private EnumC7345d f25799e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private Collection<d.b.c.a> f15127f;
 
-    /* renamed from: f */
-    private Collection<EnumC0953a> f25800f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private Map<d.b.c.e, ?> f15128g;
 
-    /* renamed from: g */
-    private Map<EnumC1044e, ?> f25801g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f15129h;
 
-    /* renamed from: h */
-    private String f25802h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private c f15130i;
 
-    /* renamed from: i */
-    private C7344c f25803i;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private ImageButton f15131j;
 
-    /* renamed from: j */
-    private ImageButton f25804j;
-
-    /* renamed from: zxing.android.CaptureActivity$a */
-    class ViewOnClickListenerC7341a implements View.OnClickListener {
-        ViewOnClickListenerC7341a() {
+    class a implements View.OnClickListener {
+        a() {
         }
 
         @Override // android.view.View.OnClickListener
@@ -73,68 +67,62 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         }
     }
 
-    /* renamed from: a */
-    private void m26816a(Context context) {
+    private void a(Context context) {
     }
 
-    /* renamed from: e */
-    private void m26818e() {
+    private void e() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(C2113R.string.app_name));
-        builder.setMessage(getString(C2113R.string.msg_camera_framework_bug));
-        builder.setPositiveButton(C2113R.string.button_ok, new DialogInterfaceOnClickListenerC7343b(this));
-        builder.setOnCancelListener(new DialogInterfaceOnClickListenerC7343b(this));
+        builder.setTitle(getString(R.string.app_name));
+        builder.setMessage(getString(R.string.msg_camera_framework_bug));
+        builder.setPositiveButton(R.string.button_ok, new b(this));
+        builder.setOnCancelListener(new b(this));
         builder.show();
     }
 
-    /* renamed from: a */
-    public void m26819a() {
-        this.f25797c.m26838a();
+    public void a() {
+        this.f15124c.a();
     }
 
-    /* renamed from: b */
-    public C5929d m26821b() {
-        return this.f25795a;
+    public n.a.d b() {
+        return this.a;
     }
 
-    /* renamed from: c */
-    public Handler m26822c() {
-        return this.f25796b;
+    public Handler c() {
+        return this.f15123b;
     }
 
-    /* renamed from: d */
-    public ViewfinderView m26823d() {
-        return this.f25797c;
+    public ViewfinderView d() {
+        return this.f15124c;
     }
 
     @Override // android.app.Activity
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         getWindow().addFlags(128);
-        setContentView(C2113R.layout.capture);
-        this.f25798d = false;
-        this.f25803i = new C7344c(this);
-        this.f25804j = (ImageButton) findViewById(C2113R.id.capture_imageview_back);
-        this.f25804j.setOnClickListener(new ViewOnClickListenerC7341a());
+        setContentView(R.layout.capture);
+        this.f15125d = false;
+        this.f15130i = new c(this);
+        this.f15131j = (ImageButton) findViewById(R.id.capture_imageview_back);
+        this.f15131j.setOnClickListener(new a());
     }
 
     @Override // android.app.Activity
     protected void onDestroy() {
-        this.f25803i.m26834d();
+        this.f15130i.d();
         super.onDestroy();
     }
 
     @Override // android.app.Activity
     protected void onPause() {
-        HandlerC7342a handlerC7342a = this.f25796b;
-        if (handlerC7342a != null) {
-            handlerC7342a.m26824a();
-            this.f25796b = null;
+        zxing.android.a aVar = this.f15123b;
+        if (aVar != null) {
+            aVar.a();
+            this.f15123b = null;
         }
-        this.f25803i.m26832b();
-        this.f25795a.m24899a();
-        if (!this.f25798d) {
-            ((SurfaceView) findViewById(C2113R.id.preview_view)).getHolder().removeCallback(this);
+        this.f15130i.b();
+        this.a.a();
+        if (!this.f15125d) {
+            ((SurfaceView) findViewById(R.id.preview_view)).getHolder().removeCallback(this);
         }
         super.onPause();
     }
@@ -142,20 +130,20 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     @Override // android.app.Activity
     protected void onResume() {
         super.onResume();
-        this.f25795a = new C5929d(getApplication());
-        this.f25797c = (ViewfinderView) findViewById(C2113R.id.viewfinder_view);
-        this.f25797c.setCameraManager(this.f25795a);
-        this.f25796b = null;
-        SurfaceHolder holder = ((SurfaceView) findViewById(C2113R.id.preview_view)).getHolder();
-        if (this.f25798d) {
-            m26817a(holder);
+        this.a = new n.a.d(getApplication());
+        this.f15124c = (ViewfinderView) findViewById(R.id.viewfinder_view);
+        this.f15124c.setCameraManager(this.a);
+        this.f15123b = null;
+        SurfaceHolder holder = ((SurfaceView) findViewById(R.id.preview_view)).getHolder();
+        if (this.f15125d) {
+            a(holder);
         } else {
             holder.addCallback(this);
         }
-        this.f25803i.m26833c();
-        this.f25799e = EnumC7345d.NONE;
-        this.f25800f = null;
-        this.f25802h = null;
+        this.f15130i.c();
+        this.f15126e = d.NONE;
+        this.f15127f = null;
+        this.f15129h = null;
     }
 
     @Override // android.view.SurfaceHolder.Callback
@@ -164,45 +152,43 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     @Override // android.view.SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        if (this.f25798d) {
+        if (this.f15125d) {
             return;
         }
-        this.f25798d = true;
-        m26817a(surfaceHolder);
+        this.f15125d = true;
+        a(surfaceHolder);
     }
 
     @Override // android.view.SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        this.f25798d = false;
+        this.f15125d = false;
     }
 
-    /* renamed from: a */
-    public void m26820a(C1107r c1107r, Bitmap bitmap, float f2) {
-        this.f25803i.m26831a();
-        if (c1107r != null) {
-            m26816a(this);
+    public void a(r rVar, Bitmap bitmap, float f2) {
+        this.f15130i.a();
+        if (rVar != null) {
+            a(this);
             Intent intent = getIntent();
-            intent.putExtra(f25793l, c1107r.m1917e());
+            intent.putExtra(f15121l, rVar.e());
             setResult(-1, intent);
             finish();
         }
     }
 
-    /* renamed from: a */
-    private void m26817a(SurfaceHolder surfaceHolder) {
+    private void a(SurfaceHolder surfaceHolder) {
         if (surfaceHolder != null) {
-            if (this.f25795a.m24906d()) {
+            if (this.a.d()) {
                 return;
             }
             try {
-                this.f25795a.m24903a(surfaceHolder);
-                if (this.f25796b == null) {
-                    this.f25796b = new HandlerC7342a(this, this.f25800f, this.f25801g, this.f25802h, this.f25795a);
+                this.a.a(surfaceHolder);
+                if (this.f15123b == null) {
+                    this.f15123b = new zxing.android.a(this, this.f15127f, this.f15128g, this.f15129h, this.a);
                     return;
                 }
                 return;
             } catch (Exception unused) {
-                m26818e();
+                e();
                 return;
             }
         }

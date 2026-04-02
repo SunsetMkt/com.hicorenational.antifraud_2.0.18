@@ -3,40 +3,37 @@ package com.hihonor.honorid.core.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ParamInfo implements Parcelable {
-    public static final Parcelable.Creator<ParamInfo> CREATOR = new C2157a();
+    public static final Parcelable.Creator<ParamInfo> CREATOR = new a();
+    private String a;
 
-    /* renamed from: a */
-    private String f6553a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f4140b;
 
-    /* renamed from: b */
-    private String f6554b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4141c;
 
-    /* renamed from: c */
-    private String f6555c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private int f4142d;
 
-    /* renamed from: d */
-    private int f6556d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f4143e;
 
-    /* renamed from: e */
-    private String f6557e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private boolean f4144f;
 
-    /* renamed from: f */
-    private boolean f6558f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private boolean f4145g;
 
-    /* renamed from: g */
-    private boolean f6559g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f4146h;
 
-    /* renamed from: h */
-    private String f6560h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private String f4147i;
 
-    /* renamed from: i */
-    private String f6561i;
-
-    /* renamed from: com.hihonor.honorid.core.data.ParamInfo$a */
-    class C2157a implements Parcelable.Creator<ParamInfo> {
-        C2157a() {
+    class a implements Parcelable.Creator<ParamInfo> {
+        a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
@@ -53,15 +50,15 @@ public class ParamInfo implements Parcelable {
     }
 
     protected ParamInfo(Parcel parcel) {
-        this.f6553a = parcel.readString();
-        this.f6554b = parcel.readString();
-        this.f6555c = parcel.readString();
-        this.f6556d = parcel.readInt();
-        this.f6557e = parcel.readString();
-        this.f6558f = parcel.readByte() != 0;
-        this.f6559g = parcel.readByte() != 0;
-        this.f6560h = parcel.readString();
-        this.f6561i = parcel.readString();
+        this.a = parcel.readString();
+        this.f4140b = parcel.readString();
+        this.f4141c = parcel.readString();
+        this.f4142d = parcel.readInt();
+        this.f4143e = parcel.readString();
+        this.f4144f = parcel.readByte() != 0;
+        this.f4145g = parcel.readByte() != 0;
+        this.f4146h = parcel.readString();
+        this.f4147i = parcel.readString();
     }
 
     @Override // android.os.Parcelable
@@ -71,14 +68,14 @@ public class ParamInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6553a);
-        parcel.writeString(this.f6554b);
-        parcel.writeString(this.f6555c);
-        parcel.writeInt(this.f6556d);
-        parcel.writeString(this.f6557e);
-        parcel.writeByte(this.f6558f ? (byte) 1 : (byte) 0);
-        parcel.writeByte(this.f6559g ? (byte) 1 : (byte) 0);
-        parcel.writeString(this.f6560h);
-        parcel.writeString(this.f6561i);
+        parcel.writeString(this.a);
+        parcel.writeString(this.f4140b);
+        parcel.writeString(this.f4141c);
+        parcel.writeInt(this.f4142d);
+        parcel.writeString(this.f4143e);
+        parcel.writeByte(this.f4144f ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.f4145g ? (byte) 1 : (byte) 0);
+        parcel.writeString(this.f4146h);
+        parcel.writeString(this.f4147i);
     }
 }

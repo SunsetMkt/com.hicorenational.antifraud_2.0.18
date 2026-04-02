@@ -1,33 +1,31 @@
 package network;
 
 import java.util.concurrent.TimeUnit;
+import m.n;
+import m.q.a.h;
 import network.interceptor.RequestParamInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import p245d.C4440a;
-import p375l.C5885n;
-import p375l.p376q.p377a.C5895h;
-import p375l.p378r.p379a.C5897a;
-import util.C7301n1;
-import util.C7307p1;
-import util.C7325u1;
+import util.c2;
+import util.s1;
+import util.u1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Api {
     private static final int TIMEOUT_IDVAR = 300;
-    private static final int TIMEOUT_NOR = 6;
+    private static final int TIMEOUT_NOR = 15;
     private static String mHost = null;
     private static Api mImeiApi = null;
-    private static int timeOut = 6;
+    private static int timeOut = 15;
     HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() { // from class: network.a
         @Override // okhttp3.logging.HttpLoggingInterceptor.Logger
         public final void log(String str) {
-            C7301n1.m26457b("RetrofitLog", "retrofitBack = " + str);
+            s1.b("RetrofitLog", "retrofitBack = " + str);
         }
     });
     RequestParamInterceptor paramInterceptor = new RequestParamInterceptor();
-    private C5885n mRetrofit = new C5885n.b().m24814a(C4440a.m16407i()).m24817a(C5897a.m24871a()).m24816a(C5895h.m24868a()).m24820a(createClient()).m24822a();
-    private C5885n mRetrofitUnHeader = new C5885n.b().m24814a(C4440a.m16407i()).m24817a(C5897a.m24871a()).m24816a(C5895h.m24868a()).m24820a(createClientUnHeader()).m24822a();
+    private n mRetrofit = new n.b().a(e.a.i()).a(m.r.a.a.a()).a(h.a()).a(createClient()).a();
+    private n mRetrofitUnHeader = new n.b().a(e.a.i()).a(m.r.a.a.a()).a(h.a()).a(createClientUnHeader()).a();
 
     private static class SingleHodle {
         private static final Api mApi = new Api();
@@ -52,37 +50,32 @@ public class Api {
     }
 
     public static synchronized Api getInstance() {
-        Api api;
-        synchronized (Api.class) {
-            timeOut = 6;
-            api = SingleHodle.mApi;
-        }
-        return api;
+        timeOut = 15;
+        return SingleHodle.mApi;
+    }
+
+    public static synchronized Api getInstanceAiMode() {
+        timeOut = 1800;
+        return new Api();
     }
 
     public static synchronized Api getInstanceImei() {
-        synchronized (Api.class) {
-            if (!C7325u1.m26623a(C7307p1.f25516y, true)) {
-                return SingleHodle.mApi;
-            }
-            if (mImeiApi == null) {
-                synchronized (Api.class) {
-                    if (mImeiApi == null) {
-                        mImeiApi = new Api();
-                    }
+        if (!c2.a(u1.y, true)) {
+            return SingleHodle.mApi;
+        }
+        if (mImeiApi == null) {
+            synchronized (Api.class) {
+                if (mImeiApi == null) {
+                    mImeiApi = new Api();
                 }
             }
-            return mImeiApi;
         }
+        return mImeiApi;
     }
 
     public static synchronized Api getInstanceMode() {
-        Api api;
-        synchronized (Api.class) {
-            timeOut = 300;
-            api = new Api();
-        }
-        return api;
+        timeOut = 300;
+        return new Api();
     }
 
     public static String getmHost() {
@@ -94,10 +87,10 @@ public class Api {
     }
 
     public IReportService getReportService() {
-        return (IReportService) this.mRetrofit.m24799a(IReportService.class);
+        return (IReportService) this.mRetrofit.a(IReportService.class);
     }
 
     public IReportService getReportServiceUnHeader() {
-        return (IReportService) this.mRetrofitUnHeader.m24799a(IReportService.class);
+        return (IReportService) this.mRetrofitUnHeader.a(IReportService.class);
     }
 }

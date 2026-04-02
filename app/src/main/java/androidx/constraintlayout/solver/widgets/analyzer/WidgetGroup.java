@@ -4,18 +4,16 @@ import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.widgets.Chain;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
+import d.c.a.b.a.a;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WidgetGroup {
     private static final boolean DEBUG = false;
     static int count;
-
-    /* renamed from: id */
-    int f607id;
+    int id;
     int orientation;
     ArrayList<ConstraintWidget> widgets = new ArrayList<>();
     boolean authoritative = false;
@@ -50,11 +48,11 @@ public class WidgetGroup {
     }
 
     public WidgetGroup(int i2) {
-        this.f607id = -1;
+        this.id = -1;
         this.orientation = 0;
         int i3 = count;
         count = i3 + 1;
-        this.f607id = i3;
+        this.id = i3;
         this.orientation = i2;
     }
 
@@ -132,7 +130,7 @@ public class WidgetGroup {
         if (this.moveTo != -1 && size > 0) {
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 WidgetGroup widgetGroup = arrayList.get(i2);
-                if (this.moveTo == widgetGroup.f607id) {
+                if (this.moveTo == widgetGroup.id) {
                     moveTo(this.orientation, widgetGroup);
                 }
             }
@@ -147,7 +145,7 @@ public class WidgetGroup {
     }
 
     public int getId() {
-        return this.f607id;
+        return this.id;
     }
 
     public int getOrientation() {
@@ -168,17 +166,15 @@ public class WidgetGroup {
     }
 
     public void moveTo(int i2, WidgetGroup widgetGroup) {
-        Iterator<ConstraintWidget> it = this.widgets.iterator();
-        while (it.hasNext()) {
-            ConstraintWidget next = it.next();
-            widgetGroup.add(next);
+        for (ConstraintWidget constraintWidget : this.widgets) {
+            widgetGroup.add(constraintWidget);
             if (i2 == 0) {
-                next.horizontalGroup = widgetGroup.getId();
+                constraintWidget.horizontalGroup = widgetGroup.getId();
             } else {
-                next.verticalGroup = widgetGroup.getId();
+                constraintWidget.verticalGroup = widgetGroup.getId();
             }
         }
-        this.moveTo = widgetGroup.f607id;
+        this.moveTo = widgetGroup.id;
     }
 
     public void setAuthoritative(boolean z) {
@@ -194,10 +190,10 @@ public class WidgetGroup {
     }
 
     public String toString() {
-        String str = getOrientationString() + " [" + this.f607id + "] <";
+        String str = getOrientationString() + " [" + this.id + "] <";
         Iterator<ConstraintWidget> it = this.widgets.iterator();
         while (it.hasNext()) {
-            str = str + AbstractC1191a.f2568g + it.next().getDebugName();
+            str = str + a.f10074g + it.next().getDebugName();
         }
         return str + " >";
     }

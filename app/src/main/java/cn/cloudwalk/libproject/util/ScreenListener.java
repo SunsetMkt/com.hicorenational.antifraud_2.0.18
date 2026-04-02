@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.PowerManager;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ScreenListener {
     private Context mContext;
     private ScreenBroadcastReceiver mScreenReceiver = new ScreenBroadcastReceiver();

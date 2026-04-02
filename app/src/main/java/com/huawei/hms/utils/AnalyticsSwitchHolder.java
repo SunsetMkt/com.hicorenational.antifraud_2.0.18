@@ -5,71 +5,61 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.AndroidException;
-import com.huawei.hms.stats.C2507a;
 import com.huawei.hms.support.hianalytics.HiAnalyticsUtils;
 import com.huawei.hms.support.log.HMSLog;
 import java.sql.Timestamp;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AnalyticsSwitchHolder {
     public static final int ANALYTICS_DISABLED = 2;
     public static final int ANALYTICS_ENABLED = 1;
+    private static volatile int a;
 
-    /* renamed from: a */
-    private static volatile int f7922a;
+    /* JADX INFO: renamed from: b */
+    private static final Object f4976b = new Object();
 
-    /* renamed from: b */
-    private static final Object f7923b = new Object();
+    /* JADX INFO: renamed from: c */
+    private static volatile Long f4977c = 0L;
 
-    /* renamed from: c */
-    private static volatile Long f7924c = 0L;
+    /* JADX INFO: renamed from: d */
+    private static volatile boolean f4978d = false;
 
-    /* renamed from: d */
-    private static volatile boolean f7925d = false;
+    /* JADX INFO: renamed from: e */
+    private static volatile boolean f4979e = false;
 
-    /* renamed from: e */
-    private static volatile boolean f7926e = false;
+    class a implements Runnable {
+        final /* synthetic */ Context a;
 
-    /* renamed from: com.huawei.hms.utils.AnalyticsSwitchHolder$a */
-    class RunnableC2537a implements Runnable {
-
-        /* renamed from: a */
-        final /* synthetic */ Context f7927a;
-
-        RunnableC2537a(Context context) {
-            this.f7927a = context;
+        a(Context context) {
+            this.a = context;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            AnalyticsSwitchHolder.m7734f(this.f7927a);
-            HMSLog.m7717i("AnalyticsSwitchHolder", "getStateForHmsAnalyticsProvider");
+            AnalyticsSwitchHolder.f(this.a);
+            HMSLog.i("AnalyticsSwitchHolder", "getStateForHmsAnalyticsProvider");
         }
     }
 
-    /* renamed from: com.huawei.hms.utils.AnalyticsSwitchHolder$b */
-    class RunnableC2538b implements Runnable {
+    class b implements Runnable {
+        final /* synthetic */ Context a;
 
-        /* renamed from: a */
-        final /* synthetic */ Context f7928a;
-
-        RunnableC2538b(Context context) {
-            this.f7928a = context;
+        b(Context context) {
+            this.a = context;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            HMSLog.m7717i("AnalyticsSwitchHolder", "enter setAnalyticsStateAndTimestamp");
-            AnalyticsSwitchHolder.m7734f(this.f7928a);
-            HMSLog.m7717i("AnalyticsSwitchHolder", "quit setAnalyticsStateAndTimestamp");
+            HMSLog.i("AnalyticsSwitchHolder", "enter setAnalyticsStateAndTimestamp");
+            AnalyticsSwitchHolder.f(this.a);
+            HMSLog.i("AnalyticsSwitchHolder", "quit setAnalyticsStateAndTimestamp");
         }
     }
 
-    /* renamed from: b */
-    private static boolean m7730b(Context context) {
+    private static boolean b(Context context) {
         Bundle bundle;
         if (context == null) {
-            HMSLog.m7715e("AnalyticsSwitchHolder", "In getBiIsReportSetting, context is null.");
+            HMSLog.e("AnalyticsSwitchHolder", "In getBiIsReportSetting, context is null.");
             return false;
         }
         PackageManager packageManager = context.getPackageManager();
@@ -80,65 +70,60 @@ public class AnalyticsSwitchHolder {
                     return bundle.getBoolean("com.huawei.hms.client.bireport.setting");
                 }
             } catch (AndroidException unused) {
-                HMSLog.m7715e("AnalyticsSwitchHolder", "In getBiIsReportSetting, Failed to read meta data bi report setting.");
+                HMSLog.e("AnalyticsSwitchHolder", "In getBiIsReportSetting, Failed to read meta data bi report setting.");
             } catch (RuntimeException e2) {
-                HMSLog.m7716e("AnalyticsSwitchHolder", "In getBiIsReportSetting, Failed to read meta data bi report setting.", e2);
+                HMSLog.e("AnalyticsSwitchHolder", "In getBiIsReportSetting, Failed to read meta data bi report setting.", e2);
             }
         }
-        HMSLog.m7717i("AnalyticsSwitchHolder", "In getBiIsReportSetting, configuration not found for bi report setting.");
+        HMSLog.i("AnalyticsSwitchHolder", "In getBiIsReportSetting, configuration not found for bi report setting.");
         return false;
     }
 
-    /* renamed from: c */
-    private static void m7731c(Context context) {
-        f7924c = Long.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
-        new Thread(new RunnableC2537a(context), "Thread-getStateForHmsAnalyticsProvider").start();
+    private static void c(Context context) {
+        f4977c = Long.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
+        new Thread(new a(context), "Thread-getStateForHmsAnalyticsProvider").start();
     }
 
-    /* renamed from: d */
-    private static boolean m7732d(Context context) {
+    private static boolean d(Context context) {
         return RegionUtils.isChinaROM(context);
     }
 
-    /* renamed from: e */
-    private static void m7733e(Context context) {
+    private static void e(Context context) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        if (timestamp.getTime() - f7924c.longValue() < 86400000 || f7924c.longValue() <= 0) {
+        if (timestamp.getTime() - f4977c.longValue() < 86400000 || f4977c.longValue() <= 0) {
             return;
         }
-        f7924c = Long.valueOf(timestamp.getTime());
-        new Thread(new RunnableC2538b(context), "Thread-refreshOobeAnalyticsState").start();
+        f4977c = Long.valueOf(timestamp.getTime());
+        new Thread(new b(context), "Thread-refreshOobeAnalyticsState").start();
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: f */
-    public static void m7734f(Context context) {
+    public static void f(Context context) {
         if (context == null) {
-            HMSLog.m7715e("AnalyticsSwitchHolder", "In setAnalyticsState、, context is null.");
+            HMSLog.e("AnalyticsSwitchHolder", "In setAnalyticsState\u3001, context is null.");
             return;
         }
         if (HiAnalyticsUtils.getInstance().getOobeAnalyticsState(context) != 1) {
-            synchronized (f7923b) {
-                f7922a = 2;
+            synchronized (f4976b) {
+                a = 2;
             }
-            C2507a.m7656c().m7657a();
+            com.huawei.hms.stats.a.c().a();
             return;
         }
-        synchronized (f7923b) {
-            f7922a = 1;
+        synchronized (f4976b) {
+            a = 1;
         }
-        if (HiAnalyticsUtils.getInstance().getInitFlag() || f7925d) {
+        if (HiAnalyticsUtils.getInstance().getInitFlag() || f4978d) {
             return;
         }
         HMSBIInitializer.getInstance(context).initHaSDK();
-        f7925d = true;
+        f4978d = true;
     }
 
     public static int getAndRefreshAnalyticsState(Context context) {
         int i2;
-        synchronized (f7923b) {
+        synchronized (f4976b) {
             isAnalyticsDisabled(context);
-            i2 = f7922a;
+            i2 = a;
         }
         return i2;
     }
@@ -146,7 +131,7 @@ public class AnalyticsSwitchHolder {
     public static boolean getBiSetting(Context context) {
         Bundle bundle;
         if (context == null) {
-            HMSLog.m7715e("AnalyticsSwitchHolder", "In getBiSetting, context is null.");
+            HMSLog.e("AnalyticsSwitchHolder", "In getBiSetting, context is null.");
             return false;
         }
         PackageManager packageManager = context.getPackageManager();
@@ -157,39 +142,39 @@ public class AnalyticsSwitchHolder {
                     return bundle.getBoolean("com.huawei.hms.client.bi.setting");
                 }
             } catch (AndroidException unused) {
-                HMSLog.m7715e("AnalyticsSwitchHolder", "In getBiSetting, Failed to read meta data bisetting.");
+                HMSLog.e("AnalyticsSwitchHolder", "In getBiSetting, Failed to read meta data bisetting.");
             } catch (RuntimeException e2) {
-                HMSLog.m7716e("AnalyticsSwitchHolder", "In getBiSetting, Failed to read meta data bisetting.", e2);
+                HMSLog.e("AnalyticsSwitchHolder", "In getBiSetting, Failed to read meta data bisetting.", e2);
             }
         }
-        HMSLog.m7717i("AnalyticsSwitchHolder", "In getBiSetting, configuration not found for bisetting.");
+        HMSLog.i("AnalyticsSwitchHolder", "In getBiSetting, configuration not found for bisetting.");
         return false;
     }
 
     public static boolean isAnalyticsDisabled(Context context) {
-        synchronized (f7923b) {
-            if (f7922a == 0) {
+        synchronized (f4976b) {
+            if (a == 0) {
                 if (context == null) {
                     return true;
                 }
-                if (m7730b(context)) {
-                    HMSLog.m7717i("AnalyticsSwitchHolder", "Builder->biReportSetting :true");
-                    f7922a = 1;
+                if (b(context)) {
+                    HMSLog.i("AnalyticsSwitchHolder", "Builder->biReportSetting :true");
+                    a = 1;
                 } else if (getBiSetting(context)) {
-                    HMSLog.m7717i("AnalyticsSwitchHolder", "Builder->biSetting :true");
-                    f7922a = 2;
-                } else if (m7732d(context)) {
-                    f7922a = 1;
+                    HMSLog.i("AnalyticsSwitchHolder", "Builder->biSetting :true");
+                    a = 2;
+                } else if (d(context)) {
+                    a = 1;
                 } else {
-                    HMSLog.m7717i("AnalyticsSwitchHolder", "not ChinaROM");
-                    f7922a = 3;
-                    f7926e = true;
-                    m7731c(context);
+                    HMSLog.i("AnalyticsSwitchHolder", "not ChinaROM");
+                    a = 3;
+                    f4979e = true;
+                    c(context);
                 }
-            } else if (f7926e) {
-                m7733e(context);
+            } else if (f4979e) {
+                e(context);
             }
-            return f7922a != 1;
+            return a != 1;
         }
     }
 }

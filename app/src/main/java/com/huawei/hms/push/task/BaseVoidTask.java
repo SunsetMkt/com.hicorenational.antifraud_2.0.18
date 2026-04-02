@@ -10,7 +10,7 @@ import com.huawei.hms.push.utils.PushBiUtil;
 import com.huawei.hms.support.api.client.Status;
 import com.huawei.hms.support.log.HMSLog;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseVoidTask extends TaskApiCall<PushClient, Void> {
     public BaseVoidTask(String str, String str2, String str3) {
         super(str, str2, str3);
@@ -22,17 +22,16 @@ public class BaseVoidTask extends TaskApiCall<PushClient, Void> {
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.huawei.hms.common.internal.TaskApiCall
     public void doExecute(PushClient pushClient, ResponseErrorCode responseErrorCode, String str, TaskCompletionSource<Void> taskCompletionSource) {
         if (responseErrorCode.getErrorCode() == 0) {
-            HMSLog.m7717i("BaseVoidTask", "Operate succeed");
+            HMSLog.i("BaseVoidTask", "Operate succeed");
             taskCompletionSource.setResult(null);
         } else {
-            HMSLog.m7715e("BaseVoidTask", "Operate failed with ret=" + responseErrorCode.getErrorCode());
-            ErrorEnum fromCode = ErrorEnum.fromCode(responseErrorCode.getErrorCode());
-            if (fromCode != ErrorEnum.ERROR_UNKNOWN) {
-                taskCompletionSource.setException(fromCode.toApiException());
+            HMSLog.e("BaseVoidTask", "Operate failed with ret=" + responseErrorCode.getErrorCode());
+            ErrorEnum errorEnumFromCode = ErrorEnum.fromCode(responseErrorCode.getErrorCode());
+            if (errorEnumFromCode != ErrorEnum.ERROR_UNKNOWN) {
+                taskCompletionSource.setException(errorEnumFromCode.toApiException());
             } else {
                 taskCompletionSource.setException(new ApiException(new Status(responseErrorCode.getErrorCode(), responseErrorCode.getErrorReason())));
             }

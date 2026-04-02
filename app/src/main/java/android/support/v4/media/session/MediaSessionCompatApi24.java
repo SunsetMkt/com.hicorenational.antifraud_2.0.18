@@ -7,8 +7,8 @@ import android.support.v4.media.session.MediaSessionCompatApi23;
 import androidx.annotation.RequiresApi;
 import java.lang.reflect.InvocationTargetException;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(24)
-/* loaded from: classes.dex */
 class MediaSessionCompatApi24 {
     private static final String TAG = "MediaSessionCompatApi24";
 

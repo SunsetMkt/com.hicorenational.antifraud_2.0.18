@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class SocializePagerAdapter {
     public static final int POSITION_NONE = -2;
     public static final int POSITION_UNCHANGED = -1;

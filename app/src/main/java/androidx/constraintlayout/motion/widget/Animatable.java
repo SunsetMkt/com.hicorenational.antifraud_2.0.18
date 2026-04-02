@@ -1,6 +1,6 @@
 package androidx.constraintlayout.motion.widget;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface Animatable {
     float getProgress();
 

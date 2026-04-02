@@ -1,6 +1,6 @@
 package com.sina.weibo.sdk.openapi;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SdkConfig {
     private boolean userAgree;
     private boolean userAgreeWifiInfo;

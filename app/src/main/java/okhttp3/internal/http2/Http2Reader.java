@@ -1,5 +1,7 @@
 package okhttp3.internal.http2;
 
+import i.f1;
+import i.t1;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -12,10 +14,8 @@ import okio.BufferedSource;
 import okio.ByteString;
 import okio.Source;
 import okio.Timeout;
-import p286h.C5230f1;
-import p286h.C5611t1;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class Http2Reader implements Closeable {
     static final Logger logger = Logger.getLogger(Http2.class.getName());
     private final boolean client;
@@ -37,17 +37,17 @@ final class Http2Reader implements Closeable {
 
         private void readContinuationHeader() throws IOException {
             int i2 = this.streamId;
-            int readMedium = Http2Reader.readMedium(this.source);
-            this.left = readMedium;
-            this.length = readMedium;
-            byte readByte = (byte) (this.source.readByte() & C5230f1.f20085c);
-            this.flags = (byte) (this.source.readByte() & C5230f1.f20085c);
+            int medium = Http2Reader.readMedium(this.source);
+            this.left = medium;
+            this.length = medium;
+            byte b2 = (byte) (this.source.readByte() & f1.f12066c);
+            this.flags = (byte) (this.source.readByte() & f1.f12066c);
             if (Http2Reader.logger.isLoggable(Level.FINE)) {
-                Http2Reader.logger.fine(Http2.frameLog(true, this.streamId, this.length, readByte, this.flags));
+                Http2Reader.logger.fine(Http2.frameLog(true, this.streamId, this.length, b2, this.flags));
             }
             this.streamId = this.source.readInt() & Integer.MAX_VALUE;
-            if (readByte != 9) {
-                throw Http2.ioException("%s != TYPE_CONTINUATION", Byte.valueOf(readByte));
+            if (b2 != 9) {
+                throw Http2.ioException("%s != TYPE_CONTINUATION", Byte.valueOf(b2));
             }
             if (this.streamId != i2) {
                 throw Http2.ioException("TYPE_CONTINUATION streamId changed", new Object[0]);
@@ -63,12 +63,12 @@ final class Http2Reader implements Closeable {
             while (true) {
                 int i2 = this.left;
                 if (i2 != 0) {
-                    long read = this.source.read(buffer, Math.min(j2, i2));
-                    if (read == -1) {
+                    long j3 = this.source.read(buffer, Math.min(j2, i2));
+                    if (j3 == -1) {
                         return -1L;
                     }
-                    this.left = (int) (this.left - read);
-                    return read;
+                    this.left = (int) (((long) this.left) - j3);
+                    return j3;
                 }
                 this.source.skip(this.padding);
                 this.padding = (short) 0;
@@ -134,9 +134,9 @@ final class Http2Reader implements Closeable {
         if ((b2 & 32) != 0) {
             throw Http2.ioException("PROTOCOL_ERROR: FLAG_COMPRESSED without SETTINGS_COMPRESS_DATA", new Object[0]);
         }
-        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & C5230f1.f20085c) : (short) 0;
-        handler.data(z, i3, this.source, lengthWithoutPadding(i2, b2, readByte));
-        this.source.skip(readByte);
+        short s = (b2 & 8) != 0 ? (short) (this.source.readByte() & f1.f12066c) : (short) 0;
+        handler.data(z, i3, this.source, lengthWithoutPadding(i2, b2, s));
+        this.source.skip(s);
     }
 
     private void readGoAway(Handler handler, int i2, byte b2, int i3) throws IOException {
@@ -146,18 +146,18 @@ final class Http2Reader implements Closeable {
         if (i3 != 0) {
             throw Http2.ioException("TYPE_GOAWAY streamId != 0", new Object[0]);
         }
-        int readInt = this.source.readInt();
-        int readInt2 = this.source.readInt();
-        int i4 = i2 - 8;
-        ErrorCode fromHttp2 = ErrorCode.fromHttp2(readInt2);
-        if (fromHttp2 == null) {
-            throw Http2.ioException("TYPE_GOAWAY unexpected error code: %d", Integer.valueOf(readInt2));
+        int i4 = this.source.readInt();
+        int i5 = this.source.readInt();
+        int i6 = i2 - 8;
+        ErrorCode errorCodeFromHttp2 = ErrorCode.fromHttp2(i5);
+        if (errorCodeFromHttp2 == null) {
+            throw Http2.ioException("TYPE_GOAWAY unexpected error code: %d", Integer.valueOf(i5));
         }
         ByteString byteString = ByteString.EMPTY;
-        if (i4 > 0) {
-            byteString = this.source.readByteString(i4);
+        if (i6 > 0) {
+            byteString = this.source.readByteString(i6);
         }
-        handler.goAway(readInt, fromHttp2, byteString);
+        handler.goAway(i4, errorCodeFromHttp2, byteString);
     }
 
     private List<Header> readHeaderBlock(int i2, short s, byte b2, int i3) throws IOException {
@@ -176,16 +176,16 @@ final class Http2Reader implements Closeable {
             throw Http2.ioException("PROTOCOL_ERROR: TYPE_HEADERS streamId == 0", new Object[0]);
         }
         boolean z = (b2 & 1) != 0;
-        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & C5230f1.f20085c) : (short) 0;
+        short s = (b2 & 8) != 0 ? (short) (this.source.readByte() & f1.f12066c) : (short) 0;
         if ((b2 & 32) != 0) {
             readPriority(handler, i3);
             i2 -= 5;
         }
-        handler.headers(z, i3, -1, readHeaderBlock(lengthWithoutPadding(i2, b2, readByte), readByte, b2, i3));
+        handler.headers(z, i3, -1, readHeaderBlock(lengthWithoutPadding(i2, b2, s), s, b2, i3));
     }
 
     static int readMedium(BufferedSource bufferedSource) throws IOException {
-        return (bufferedSource.readByte() & C5230f1.f20085c) | ((bufferedSource.readByte() & C5230f1.f20085c) << 16) | ((bufferedSource.readByte() & C5230f1.f20085c) << 8);
+        return (bufferedSource.readByte() & f1.f12066c) | ((bufferedSource.readByte() & f1.f12066c) << 16) | ((bufferedSource.readByte() & f1.f12066c) << 8);
     }
 
     private void readPing(Handler handler, int i2, byte b2, int i3) throws IOException {
@@ -212,8 +212,8 @@ final class Http2Reader implements Closeable {
         if (i3 == 0) {
             throw Http2.ioException("PROTOCOL_ERROR: TYPE_PUSH_PROMISE streamId == 0", new Object[0]);
         }
-        short readByte = (b2 & 8) != 0 ? (short) (this.source.readByte() & C5230f1.f20085c) : (short) 0;
-        handler.pushPromise(i3, this.source.readInt() & Integer.MAX_VALUE, readHeaderBlock(lengthWithoutPadding(i2 - 4, b2, readByte), readByte, b2, i3));
+        short s = (b2 & 8) != 0 ? (short) (this.source.readByte() & f1.f12066c) : (short) 0;
+        handler.pushPromise(i3, this.source.readInt() & Integer.MAX_VALUE, readHeaderBlock(lengthWithoutPadding(i2 - 4, b2, s), s, b2, i3));
     }
 
     private void readRstStream(Handler handler, int i2, byte b2, int i3) throws IOException {
@@ -223,12 +223,12 @@ final class Http2Reader implements Closeable {
         if (i3 == 0) {
             throw Http2.ioException("TYPE_RST_STREAM streamId == 0", new Object[0]);
         }
-        int readInt = this.source.readInt();
-        ErrorCode fromHttp2 = ErrorCode.fromHttp2(readInt);
-        if (fromHttp2 == null) {
-            throw Http2.ioException("TYPE_RST_STREAM unexpected error code: %d", Integer.valueOf(readInt));
+        int i4 = this.source.readInt();
+        ErrorCode errorCodeFromHttp2 = ErrorCode.fromHttp2(i4);
+        if (errorCodeFromHttp2 == null) {
+            throw Http2.ioException("TYPE_RST_STREAM unexpected error code: %d", Integer.valueOf(i4));
         }
-        handler.rstStream(i3, fromHttp2);
+        handler.rstStream(i3, errorCodeFromHttp2);
     }
 
     private void readSettings(Handler handler, int i2, byte b2, int i3) throws IOException {
@@ -247,31 +247,33 @@ final class Http2Reader implements Closeable {
         }
         Settings settings = new Settings();
         for (int i4 = 0; i4 < i2; i4 += 6) {
-            int readShort = this.source.readShort() & C5611t1.f20467c;
-            int readInt = this.source.readInt();
-            switch (readShort) {
+            int i5 = this.source.readShort() & t1.f12275c;
+            int i6 = this.source.readInt();
+            switch (i5) {
                 case 2:
-                    if (readInt != 0 && readInt != 1) {
+                    if (i6 != 0 && i6 != 1) {
                         throw Http2.ioException("PROTOCOL_ERROR SETTINGS_ENABLE_PUSH != 0 or 1", new Object[0]);
                     }
                     break;
+                    break;
                 case 3:
-                    readShort = 4;
+                    i5 = 4;
                     break;
                 case 4:
-                    readShort = 7;
-                    if (readInt < 0) {
+                    i5 = 7;
+                    if (i6 < 0) {
                         throw Http2.ioException("PROTOCOL_ERROR SETTINGS_INITIAL_WINDOW_SIZE > 2^31 - 1", new Object[0]);
                     }
                     break;
+                    break;
                 case 5:
-                    if (readInt < 16384 || readInt > 16777215) {
-                        throw Http2.ioException("PROTOCOL_ERROR SETTINGS_MAX_FRAME_SIZE: %s", Integer.valueOf(readInt));
+                    if (i6 < 16384 || i6 > 16777215) {
+                        throw Http2.ioException("PROTOCOL_ERROR SETTINGS_MAX_FRAME_SIZE: %s", Integer.valueOf(i6));
                     }
                     break;
                     break;
             }
-            settings.set(readShort, readInt);
+            settings.set(i5, i6);
         }
         handler.settings(false, settings);
     }
@@ -280,11 +282,11 @@ final class Http2Reader implements Closeable {
         if (i2 != 4) {
             throw Http2.ioException("TYPE_WINDOW_UPDATE length !=4: %s", Integer.valueOf(i2));
         }
-        long readInt = this.source.readInt() & 2147483647L;
-        if (readInt == 0) {
-            throw Http2.ioException("windowSizeIncrement was 0", Long.valueOf(readInt));
+        long j2 = ((long) this.source.readInt()) & 2147483647L;
+        if (j2 == 0) {
+            throw Http2.ioException("windowSizeIncrement was 0", Long.valueOf(j2));
         }
-        handler.windowUpdate(i3, readInt);
+        handler.windowUpdate(i3, j2);
     }
 
     @Override // java.io.Closeable, java.lang.AutoCloseable
@@ -295,49 +297,49 @@ final class Http2Reader implements Closeable {
     public boolean nextFrame(boolean z, Handler handler) throws IOException {
         try {
             this.source.require(9L);
-            int readMedium = readMedium(this.source);
-            if (readMedium < 0 || readMedium > 16384) {
-                throw Http2.ioException("FRAME_SIZE_ERROR: %s", Integer.valueOf(readMedium));
+            int medium = readMedium(this.source);
+            if (medium < 0 || medium > 16384) {
+                throw Http2.ioException("FRAME_SIZE_ERROR: %s", Integer.valueOf(medium));
             }
-            byte readByte = (byte) (this.source.readByte() & C5230f1.f20085c);
-            if (z && readByte != 4) {
-                throw Http2.ioException("Expected a SETTINGS frame but was %s", Byte.valueOf(readByte));
+            byte b2 = (byte) (this.source.readByte() & f1.f12066c);
+            if (z && b2 != 4) {
+                throw Http2.ioException("Expected a SETTINGS frame but was %s", Byte.valueOf(b2));
             }
-            byte readByte2 = (byte) (this.source.readByte() & C5230f1.f20085c);
-            int readInt = this.source.readInt() & Integer.MAX_VALUE;
+            byte b3 = (byte) (this.source.readByte() & f1.f12066c);
+            int i2 = this.source.readInt() & Integer.MAX_VALUE;
             if (logger.isLoggable(Level.FINE)) {
-                logger.fine(Http2.frameLog(true, readInt, readMedium, readByte, readByte2));
+                logger.fine(Http2.frameLog(true, i2, medium, b2, b3));
             }
-            switch (readByte) {
+            switch (b2) {
                 case 0:
-                    readData(handler, readMedium, readByte2, readInt);
+                    readData(handler, medium, b3, i2);
                     return true;
                 case 1:
-                    readHeaders(handler, readMedium, readByte2, readInt);
+                    readHeaders(handler, medium, b3, i2);
                     return true;
                 case 2:
-                    readPriority(handler, readMedium, readByte2, readInt);
+                    readPriority(handler, medium, b3, i2);
                     return true;
                 case 3:
-                    readRstStream(handler, readMedium, readByte2, readInt);
+                    readRstStream(handler, medium, b3, i2);
                     return true;
                 case 4:
-                    readSettings(handler, readMedium, readByte2, readInt);
+                    readSettings(handler, medium, b3, i2);
                     return true;
                 case 5:
-                    readPushPromise(handler, readMedium, readByte2, readInt);
+                    readPushPromise(handler, medium, b3, i2);
                     return true;
                 case 6:
-                    readPing(handler, readMedium, readByte2, readInt);
+                    readPing(handler, medium, b3, i2);
                     return true;
                 case 7:
-                    readGoAway(handler, readMedium, readByte2, readInt);
+                    readGoAway(handler, medium, b3, i2);
                     return true;
                 case 8:
-                    readWindowUpdate(handler, readMedium, readByte2, readInt);
+                    readWindowUpdate(handler, medium, b3, i2);
                     return true;
                 default:
-                    this.source.skip(readMedium);
+                    this.source.skip(medium);
                     return true;
             }
         } catch (IOException unused) {
@@ -352,17 +354,17 @@ final class Http2Reader implements Closeable {
             }
             return;
         }
-        ByteString readByteString = this.source.readByteString(Http2.CONNECTION_PREFACE.size());
+        ByteString byteString = this.source.readByteString(Http2.CONNECTION_PREFACE.size());
         if (logger.isLoggable(Level.FINE)) {
-            logger.fine(Util.format("<< CONNECTION %s", readByteString.hex()));
+            logger.fine(Util.format("<< CONNECTION %s", byteString.hex()));
         }
-        if (!Http2.CONNECTION_PREFACE.equals(readByteString)) {
-            throw Http2.ioException("Expected a connection header but was %s", readByteString.utf8());
+        if (!Http2.CONNECTION_PREFACE.equals(byteString)) {
+            throw Http2.ioException("Expected a connection header but was %s", byteString.utf8());
         }
     }
 
     private void readPriority(Handler handler, int i2) throws IOException {
-        int readInt = this.source.readInt();
-        handler.priority(i2, readInt & Integer.MAX_VALUE, (this.source.readByte() & C5230f1.f20085c) + 1, (Integer.MIN_VALUE & readInt) != 0);
+        int i3 = this.source.readInt();
+        handler.priority(i2, i3 & Integer.MAX_VALUE, (this.source.readByte() & f1.f12066c) + 1, (Integer.MIN_VALUE & i3) != 0);
     }
 }

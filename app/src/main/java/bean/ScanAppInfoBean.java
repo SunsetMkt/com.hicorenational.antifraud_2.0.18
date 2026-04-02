@@ -3,7 +3,7 @@ package bean;
 import android.graphics.drawable.Drawable;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ScanAppInfoBean extends BaseBean {
     private Drawable appIcon;
     private String appName;

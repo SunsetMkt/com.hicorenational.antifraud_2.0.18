@@ -3,14 +3,13 @@ package com.huawei.hms.common.internal;
 import android.os.Handler;
 import android.os.Looper;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Preconditions {
     private Preconditions() {
         throw new AssertionError("Cannot use constructor to make a new instance");
     }
 
-    /* renamed from: a */
-    private static boolean m6742a() {
+    private static boolean a() {
         return Looper.getMainLooper() == Looper.myLooper();
     }
 
@@ -25,13 +24,13 @@ public final class Preconditions {
     }
 
     public static void checkMainThread(String str) {
-        if (!m6742a()) {
+        if (!a()) {
             throw new IllegalStateException(str);
         }
     }
 
     public static void checkNotMainThread() {
-        if (m6742a()) {
+        if (a()) {
             throw new IllegalStateException("Must not be called on the main application thread");
         }
     }

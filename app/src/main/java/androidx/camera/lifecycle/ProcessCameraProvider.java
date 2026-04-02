@@ -17,9 +17,8 @@ import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.core.util.Preconditions;
 import androidx.lifecycle.LifecycleOwner;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ProcessCameraProvider implements LifecycleCameraProvider {
     private static final ProcessCameraProvider sAppInstance = new ProcessCameraProvider();
 
@@ -27,14 +26,12 @@ public final class ProcessCameraProvider implements LifecycleCameraProvider {
     }
 
     @NonNull
-    public static InterfaceFutureC0952a<ProcessCameraProvider> getInstance(@NonNull Context context) {
+    public static d.b.b.a.a.a<ProcessCameraProvider> getInstance(@NonNull Context context) {
         Preconditions.checkNotNull(context);
         return Futures.transform(CameraX.getOrCreateInstance(context), new Function() { // from class: androidx.camera.lifecycle.a
             @Override // androidx.arch.core.util.Function
             public final Object apply(Object obj) {
-                ProcessCameraProvider processCameraProvider;
-                processCameraProvider = ProcessCameraProvider.sAppInstance;
-                return processCameraProvider;
+                return ProcessCameraProvider.sAppInstance;
             }
         }, CameraXExecutors.directExecutor());
     }
@@ -71,7 +68,7 @@ public final class ProcessCameraProvider implements LifecycleCameraProvider {
 
     @NonNull
     @RestrictTo({RestrictTo.Scope.TESTS})
-    public InterfaceFutureC0952a<Void> shutdown() {
+    public d.b.b.a.a.a<Void> shutdown() {
         return CameraX.shutdown();
     }
 

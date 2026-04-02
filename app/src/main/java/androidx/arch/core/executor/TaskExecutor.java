@@ -3,8 +3,8 @@ package androidx.arch.core.executor;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public abstract class TaskExecutor {
     public abstract void executeOnDiskIO(@NonNull Runnable runnable);
 

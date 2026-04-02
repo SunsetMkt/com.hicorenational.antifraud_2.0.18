@@ -7,83 +7,80 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.tensorflow.lite.C6077c;
+import org.tensorflow.lite.c;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class NativeInterpreterWrapper implements AutoCloseable {
 
-    /* renamed from: l */
-    private static final int f21667l = 512;
+    /* JADX INFO: renamed from: l */
+    private static final int f12997l = 512;
+    private long a;
 
-    /* renamed from: a */
-    private long f21668a;
+    /* JADX INFO: renamed from: b */
+    private long f12998b;
 
-    /* renamed from: b */
-    private long f21669b;
+    /* JADX INFO: renamed from: c */
+    private long f12999c;
 
-    /* renamed from: c */
-    private long f21670c;
+    /* JADX INFO: renamed from: d */
+    private long f13000d;
 
-    /* renamed from: d */
-    private long f21671d;
+    /* JADX INFO: renamed from: e */
+    private ByteBuffer f13001e;
 
-    /* renamed from: e */
-    private ByteBuffer f21672e;
+    /* JADX INFO: renamed from: f */
+    private Map<String, Integer> f13002f;
 
-    /* renamed from: f */
-    private Map<String, Integer> f21673f;
+    /* JADX INFO: renamed from: g */
+    private Map<String, Integer> f13003g;
 
-    /* renamed from: g */
-    private Map<String, Integer> f21674g;
+    /* JADX INFO: renamed from: h */
+    private Tensor[] f13004h;
 
-    /* renamed from: h */
-    private Tensor[] f21675h;
+    /* JADX INFO: renamed from: i */
+    private Tensor[] f13005i;
 
-    /* renamed from: i */
-    private Tensor[] f21676i;
+    /* JADX INFO: renamed from: j */
+    private boolean f13006j;
 
-    /* renamed from: j */
-    private boolean f21677j;
-
-    /* renamed from: k */
-    private final List<InterfaceC6076b> f21678k;
+    /* JADX INFO: renamed from: k */
+    private final List<b> f13007k;
 
     static {
-        TensorFlowLite.m25136a();
+        TensorFlowLite.a();
     }
 
     NativeInterpreterWrapper(String str) {
-        this(str, (C6077c.a) null);
+        this(str, (c.a) null);
     }
 
-    /* renamed from: a */
-    private void m25099a(long j2, long j3, C6077c.a aVar) {
+    private void a(long j2, long j3, c.a aVar) {
         if (aVar == null) {
-            aVar = new C6077c.a();
+            aVar = new c.a();
         }
-        this.f21668a = j2;
-        this.f21670c = j3;
-        this.f21669b = createInterpreter(j3, j2, aVar.f21688a);
-        this.f21675h = new Tensor[getInputCount(this.f21669b)];
-        this.f21676i = new Tensor[getOutputCount(this.f21669b)];
-        Boolean bool = aVar.f21689b;
+        this.a = j2;
+        this.f12999c = j3;
+        this.f12998b = createInterpreter(j3, j2, aVar.a);
+        this.f13004h = new Tensor[getInputCount(this.f12998b)];
+        this.f13005i = new Tensor[getOutputCount(this.f12998b)];
+        Boolean bool = aVar.f13012b;
         if (bool != null) {
-            m25104a(bool.booleanValue());
+            a(bool.booleanValue());
         }
-        Boolean bool2 = aVar.f21690c;
+        Boolean bool2 = aVar.f13013c;
         if (bool2 != null) {
-            allowFp16PrecisionForFp32(this.f21669b, bool2.booleanValue());
+            allowFp16PrecisionForFp32(this.f12998b, bool2.booleanValue());
         }
-        Boolean bool3 = aVar.f21691d;
+        Boolean bool3 = aVar.f13014d;
         if (bool3 != null) {
-            allowBufferHandleOutput(this.f21669b, bool3.booleanValue());
+            allowBufferHandleOutput(this.f12998b, bool3.booleanValue());
         }
-        for (InterfaceC6076b interfaceC6076b : aVar.f21692e) {
-            applyDelegate(this.f21669b, j2, interfaceC6076b.mo25139c());
-            this.f21678k.add(interfaceC6076b);
+        for (b bVar : aVar.f13015e) {
+            applyDelegate(this.f12998b, j2, bVar.c());
+            this.f13007k.add(bVar);
         }
-        allocateTensors(this.f21669b, j2);
-        this.f21677j = true;
+        allocateTensors(this.f12998b, j2);
+        this.f13006j = true;
     }
 
     private static native long allocateTensors(long j2, long j3);
@@ -130,176 +127,167 @@ final class NativeInterpreterWrapper implements AutoCloseable {
 
     private static native void useNNAPI(long j2, boolean z);
 
-    /* renamed from: b */
-    int m25107b(String str) {
-        if (this.f21674g == null) {
-            String[] outputNames = getOutputNames(this.f21669b);
-            this.f21674g = new HashMap();
+    int b(String str) {
+        if (this.f13003g == null) {
+            String[] outputNames = getOutputNames(this.f12998b);
+            this.f13003g = new HashMap();
             if (outputNames != null) {
                 for (int i2 = 0; i2 < outputNames.length; i2++) {
-                    this.f21674g.put(outputNames[i2], Integer.valueOf(i2));
+                    this.f13003g.put(outputNames[i2], Integer.valueOf(i2));
                 }
             }
         }
-        if (this.f21674g.containsKey(str)) {
-            return this.f21674g.get(str).intValue();
+        if (this.f13003g.containsKey(str)) {
+            return this.f13003g.get(str).intValue();
         }
-        throw new IllegalArgumentException(String.format("Input error: '%s' is not a valid name for any output. Names of outputs and their indexes are %s", str, this.f21674g.toString()));
+        throw new IllegalArgumentException(String.format("Input error: '%s' is not a valid name for any output. Names of outputs and their indexes are %s", str, this.f13003g.toString()));
     }
 
-    /* renamed from: c */
-    int m25109c(int i2) {
-        return getOutputQuantizationZeroPoint(this.f21669b, i2);
+    int c(int i2) {
+        return getOutputQuantizationZeroPoint(this.f12998b, i2);
     }
 
     @Override // java.lang.AutoCloseable
     public void close() {
         int i2 = 0;
         while (true) {
-            Tensor[] tensorArr = this.f21675h;
+            Tensor[] tensorArr = this.f13004h;
             if (i2 >= tensorArr.length) {
                 break;
             }
             if (tensorArr[i2] != null) {
-                tensorArr[i2].m25126a();
-                this.f21675h[i2] = null;
+                tensorArr[i2].a();
+                this.f13004h[i2] = null;
             }
             i2++;
         }
         int i3 = 0;
         while (true) {
-            Tensor[] tensorArr2 = this.f21676i;
+            Tensor[] tensorArr2 = this.f13005i;
             if (i3 >= tensorArr2.length) {
-                delete(this.f21668a, this.f21670c, this.f21669b);
-                this.f21668a = 0L;
-                this.f21670c = 0L;
-                this.f21669b = 0L;
-                this.f21672e = null;
-                this.f21673f = null;
-                this.f21674g = null;
-                this.f21677j = false;
-                this.f21678k.clear();
+                delete(this.a, this.f12999c, this.f12998b);
+                this.a = 0L;
+                this.f12999c = 0L;
+                this.f12998b = 0L;
+                this.f13001e = null;
+                this.f13002f = null;
+                this.f13003g = null;
+                this.f13006j = false;
+                this.f13007k.clear();
                 return;
             }
             if (tensorArr2[i3] != null) {
-                tensorArr2[i3].m25126a();
-                this.f21676i[i3] = null;
+                tensorArr2[i3].a();
+                this.f13005i[i3] = null;
             }
             i3++;
         }
     }
 
-    /* renamed from: d */
-    Long m25110d() {
-        long j2 = this.f21671d;
+    Long d() {
+        long j2 = this.f13000d;
         if (j2 < 0) {
             return null;
         }
         return Long.valueOf(j2);
     }
 
-    /* renamed from: e */
-    void m25113e(int i2) {
-        numThreads(this.f21669b, i2);
+    void e(int i2) {
+        numThreads(this.f12998b, i2);
     }
 
-    NativeInterpreterWrapper(String str, C6077c.a aVar) {
-        this.f21671d = -1L;
-        this.f21677j = false;
-        this.f21678k = new ArrayList();
-        long createErrorReporter = createErrorReporter(512);
-        m25099a(createErrorReporter, createModel(str, createErrorReporter), aVar);
+    NativeInterpreterWrapper(String str, c.a aVar) {
+        this.f13000d = -1L;
+        this.f13006j = false;
+        this.f13007k = new ArrayList();
+        long jCreateErrorReporter = createErrorReporter(512);
+        a(jCreateErrorReporter, createModel(str, jCreateErrorReporter), aVar);
     }
 
-    /* renamed from: c */
-    int m25108c() {
-        return this.f21675h.length;
+    int c() {
+        return this.f13004h.length;
     }
 
-    /* renamed from: d */
-    Tensor m25111d(int i2) {
+    Tensor d(int i2) {
         if (i2 >= 0) {
-            Tensor[] tensorArr = this.f21676i;
+            Tensor[] tensorArr = this.f13005i;
             if (i2 < tensorArr.length) {
                 Tensor tensor = tensorArr[i2];
                 if (tensor != null) {
                     return tensor;
                 }
-                long j2 = this.f21669b;
-                Tensor m25115a = Tensor.m25115a(j2, getOutputTensorIndex(j2, i2));
-                tensorArr[i2] = m25115a;
-                return m25115a;
+                long j2 = this.f12998b;
+                Tensor tensorA = Tensor.a(j2, getOutputTensorIndex(j2, i2));
+                tensorArr[i2] = tensorA;
+                return tensorA;
             }
         }
         throw new IllegalArgumentException("Invalid output Tensor index: " + i2);
     }
 
-    /* renamed from: e */
-    int m25112e() {
-        return this.f21676i.length;
+    int e() {
+        return this.f13005i.length;
     }
 
     NativeInterpreterWrapper(ByteBuffer byteBuffer) {
-        this(byteBuffer, (C6077c.a) null);
+        this(byteBuffer, (c.a) null);
     }
 
-    NativeInterpreterWrapper(ByteBuffer byteBuffer, C6077c.a aVar) {
-        this.f21671d = -1L;
-        this.f21677j = false;
-        this.f21678k = new ArrayList();
+    NativeInterpreterWrapper(ByteBuffer byteBuffer, c.a aVar) {
+        this.f13000d = -1L;
+        this.f13006j = false;
+        this.f13007k = new ArrayList();
         if (byteBuffer != null && ((byteBuffer instanceof MappedByteBuffer) || (byteBuffer.isDirect() && byteBuffer.order() == ByteOrder.nativeOrder()))) {
-            this.f21672e = byteBuffer;
-            long createErrorReporter = createErrorReporter(512);
-            m25099a(createErrorReporter, createModelWithBuffer(this.f21672e, createErrorReporter), aVar);
+            this.f13001e = byteBuffer;
+            long jCreateErrorReporter = createErrorReporter(512);
+            a(jCreateErrorReporter, createModelWithBuffer(this.f13001e, jCreateErrorReporter), aVar);
             return;
         }
         throw new IllegalArgumentException("Model ByteBuffer should be either a MappedByteBuffer of the model file, or a direct ByteBuffer using ByteOrder.nativeOrder() which contains bytes of model content.");
     }
 
-    /* renamed from: b */
-    float m25106b(int i2) {
-        return getOutputQuantizationScale(this.f21669b, i2);
+    float b(int i2) {
+        return getOutputQuantizationScale(this.f12998b, i2);
     }
 
-    /* renamed from: a */
-    void m25105a(Object[] objArr, Map<Integer, Object> map) {
-        this.f21671d = -1L;
+    void a(Object[] objArr, Map<Integer, Object> map) {
+        this.f13000d = -1L;
         if (objArr != null && objArr.length != 0) {
             if (map != null && !map.isEmpty()) {
                 int i2 = 0;
                 for (int i3 = 0; i3 < objArr.length; i3++) {
-                    int[] m25128b = m25101a(i3).m25128b(objArr[i3]);
-                    if (m25128b != null) {
-                        m25102a(i3, m25128b);
+                    int[] iArrB = a(i3).b(objArr[i3]);
+                    if (iArrB != null) {
+                        a(i3, iArrB);
                     }
                 }
-                boolean z = !this.f21677j;
+                boolean z = !this.f13006j;
                 if (z) {
-                    allocateTensors(this.f21669b, this.f21668a);
-                    this.f21677j = true;
+                    allocateTensors(this.f12998b, this.a);
+                    this.f13006j = true;
                 }
                 for (int i4 = 0; i4 < objArr.length; i4++) {
-                    m25101a(i4).m25130c(objArr[i4]);
+                    a(i4).c(objArr[i4]);
                 }
-                long nanoTime = System.nanoTime();
-                run(this.f21669b, this.f21668a);
-                long nanoTime2 = System.nanoTime() - nanoTime;
+                long jNanoTime = System.nanoTime();
+                run(this.f12998b, this.a);
+                long jNanoTime2 = System.nanoTime() - jNanoTime;
                 if (z) {
                     while (true) {
-                        Tensor[] tensorArr = this.f21676i;
+                        Tensor[] tensorArr = this.f13005i;
                         if (i2 >= tensorArr.length) {
                             break;
                         }
                         if (tensorArr[i2] != null) {
-                            tensorArr[i2].m25134g();
+                            tensorArr[i2].g();
                         }
                         i2++;
                     }
                 }
                 for (Map.Entry<Integer, Object> entry : map.entrySet()) {
-                    m25111d(entry.getKey().intValue()).m25125a(entry.getValue());
+                    d(entry.getKey().intValue()).a(entry.getValue());
                 }
-                this.f21671d = nanoTime2;
+                this.f13000d = jNanoTime2;
                 return;
             }
             throw new IllegalArgumentException("Input error: Outputs should not be null or empty.");
@@ -307,58 +295,53 @@ final class NativeInterpreterWrapper implements AutoCloseable {
         throw new IllegalArgumentException("Input error: Inputs should not be null or empty.");
     }
 
-    /* renamed from: a */
-    void m25102a(int i2, int[] iArr) {
-        if (resizeInput(this.f21669b, this.f21668a, i2, iArr)) {
-            this.f21677j = false;
-            Tensor[] tensorArr = this.f21675h;
+    void a(int i2, int[] iArr) {
+        if (resizeInput(this.f12998b, this.a, i2, iArr)) {
+            this.f13006j = false;
+            Tensor[] tensorArr = this.f13004h;
             if (tensorArr[i2] != null) {
-                tensorArr[i2].m25134g();
+                tensorArr[i2].g();
             }
         }
     }
 
-    /* renamed from: a */
-    void m25104a(boolean z) {
-        useNNAPI(this.f21669b, z);
+    void a(boolean z) {
+        useNNAPI(this.f12998b, z);
     }
 
-    /* renamed from: a */
-    void m25103a(InterfaceC6076b interfaceC6076b) {
-        applyDelegate(this.f21669b, this.f21668a, interfaceC6076b.mo25139c());
-        this.f21678k.add(interfaceC6076b);
+    void a(b bVar) {
+        applyDelegate(this.f12998b, this.a, bVar.c());
+        this.f13007k.add(bVar);
     }
 
-    /* renamed from: a */
-    int m25100a(String str) {
-        if (this.f21673f == null) {
-            String[] inputNames = getInputNames(this.f21669b);
-            this.f21673f = new HashMap();
+    int a(String str) {
+        if (this.f13002f == null) {
+            String[] inputNames = getInputNames(this.f12998b);
+            this.f13002f = new HashMap();
             if (inputNames != null) {
                 for (int i2 = 0; i2 < inputNames.length; i2++) {
-                    this.f21673f.put(inputNames[i2], Integer.valueOf(i2));
+                    this.f13002f.put(inputNames[i2], Integer.valueOf(i2));
                 }
             }
         }
-        if (this.f21673f.containsKey(str)) {
-            return this.f21673f.get(str).intValue();
+        if (this.f13002f.containsKey(str)) {
+            return this.f13002f.get(str).intValue();
         }
-        throw new IllegalArgumentException(String.format("Input error: '%s' is not a valid name for any input. Names of inputs and their indexes are %s", str, this.f21673f.toString()));
+        throw new IllegalArgumentException(String.format("Input error: '%s' is not a valid name for any input. Names of inputs and their indexes are %s", str, this.f13002f.toString()));
     }
 
-    /* renamed from: a */
-    Tensor m25101a(int i2) {
+    Tensor a(int i2) {
         if (i2 >= 0) {
-            Tensor[] tensorArr = this.f21675h;
+            Tensor[] tensorArr = this.f13004h;
             if (i2 < tensorArr.length) {
                 Tensor tensor = tensorArr[i2];
                 if (tensor != null) {
                     return tensor;
                 }
-                long j2 = this.f21669b;
-                Tensor m25115a = Tensor.m25115a(j2, getInputTensorIndex(j2, i2));
-                tensorArr[i2] = m25115a;
-                return m25115a;
+                long j2 = this.f12998b;
+                Tensor tensorA = Tensor.a(j2, getInputTensorIndex(j2, i2));
+                tensorArr[i2] = tensorA;
+                return tensorA;
             }
         }
         throw new IllegalArgumentException("Invalid input Tensor index: " + i2);

@@ -1,6 +1,6 @@
 package androidx.core.graphics;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum BlendModeCompat {
     CLEAR,
     SRC,

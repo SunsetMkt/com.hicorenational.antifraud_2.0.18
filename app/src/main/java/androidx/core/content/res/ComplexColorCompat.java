@@ -14,8 +14,8 @@ import androidx.annotation.RestrictTo;
 import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public final class ComplexColorCompat {
     private static final String LOG_TAG = "ComplexColorCompat";
     private int mColor;
@@ -29,10 +29,10 @@ public final class ComplexColorCompat {
     }
 
     @NonNull
-    private static ComplexColorCompat createFromXml(@NonNull Resources resources, @ColorRes int i2, @Nullable Resources.Theme theme) throws IOException, XmlPullParserException {
+    private static ComplexColorCompat createFromXml(@NonNull Resources resources, @ColorRes int i2, @Nullable Resources.Theme theme) throws XmlPullParserException, IOException {
         int next;
         XmlResourceParser xml = resources.getXml(i2);
-        AttributeSet asAttributeSet = Xml.asAttributeSet(xml);
+        AttributeSet attributeSetAsAttributeSet = Xml.asAttributeSet(xml);
         do {
             next = xml.next();
             if (next == 2) {
@@ -43,20 +43,20 @@ public final class ComplexColorCompat {
             throw new XmlPullParserException("No start tag found");
         }
         String name = xml.getName();
-        char c2 = 65535;
-        int hashCode = name.hashCode();
-        if (hashCode != 89650992) {
-            if (hashCode == 1191572447 && name.equals("selector")) {
-                c2 = 0;
+        byte b2 = -1;
+        int iHashCode = name.hashCode();
+        if (iHashCode != 89650992) {
+            if (iHashCode == 1191572447 && name.equals("selector")) {
+                b2 = 0;
             }
         } else if (name.equals("gradient")) {
-            c2 = 1;
+            b2 = 1;
         }
-        if (c2 == 0) {
-            return from(ColorStateListInflaterCompat.createFromXmlInner(resources, xml, asAttributeSet, theme));
+        if (b2 == 0) {
+            return from(ColorStateListInflaterCompat.createFromXmlInner(resources, xml, attributeSetAsAttributeSet, theme));
         }
-        if (c2 == 1) {
-            return from(GradientColorInflaterCompat.createFromXmlInner(resources, xml, asAttributeSet, theme));
+        if (b2 == 1) {
+            return from(GradientColorInflaterCompat.createFromXmlInner(resources, xml, attributeSetAsAttributeSet, theme));
         }
         throw new XmlPullParserException(xml.getPositionDescription() + ": unsupported complex color tag " + name);
     }

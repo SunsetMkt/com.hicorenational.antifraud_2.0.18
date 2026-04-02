@@ -9,11 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.C0471R;
+import androidx.constraintlayout.widget.R;
 import androidx.core.widget.NestedScrollView;
 import org.xmlpull.v1.XmlPullParser;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class TouchResponse {
     private static final boolean DEBUG = false;
     static final int FLAG_DISABLE_POST_SCROLL = 1;
@@ -65,46 +65,46 @@ class TouchResponse {
         int indexCount = typedArray.getIndexCount();
         for (int i2 = 0; i2 < indexCount; i2++) {
             int index = typedArray.getIndex(i2);
-            if (index == C0471R.styleable.OnSwipe_touchAnchorId) {
+            if (index == R.styleable.OnSwipe_touchAnchorId) {
                 this.mTouchAnchorId = typedArray.getResourceId(index, this.mTouchAnchorId);
-            } else if (index == C0471R.styleable.OnSwipe_touchAnchorSide) {
+            } else if (index == R.styleable.OnSwipe_touchAnchorSide) {
                 this.mTouchAnchorSide = typedArray.getInt(index, this.mTouchAnchorSide);
                 float[][] fArr = TOUCH_SIDES;
                 int i3 = this.mTouchAnchorSide;
                 this.mTouchAnchorX = fArr[i3][0];
                 this.mTouchAnchorY = fArr[i3][1];
-            } else if (index == C0471R.styleable.OnSwipe_dragDirection) {
+            } else if (index == R.styleable.OnSwipe_dragDirection) {
                 this.mTouchSide = typedArray.getInt(index, this.mTouchSide);
                 float[][] fArr2 = TOUCH_DIRECTION;
                 int i4 = this.mTouchSide;
                 this.mTouchDirectionX = fArr2[i4][0];
                 this.mTouchDirectionY = fArr2[i4][1];
-            } else if (index == C0471R.styleable.OnSwipe_maxVelocity) {
+            } else if (index == R.styleable.OnSwipe_maxVelocity) {
                 this.mMaxVelocity = typedArray.getFloat(index, this.mMaxVelocity);
-            } else if (index == C0471R.styleable.OnSwipe_maxAcceleration) {
+            } else if (index == R.styleable.OnSwipe_maxAcceleration) {
                 this.mMaxAcceleration = typedArray.getFloat(index, this.mMaxAcceleration);
-            } else if (index == C0471R.styleable.OnSwipe_moveWhenScrollAtTop) {
+            } else if (index == R.styleable.OnSwipe_moveWhenScrollAtTop) {
                 this.mMoveWhenScrollAtTop = typedArray.getBoolean(index, this.mMoveWhenScrollAtTop);
-            } else if (index == C0471R.styleable.OnSwipe_dragScale) {
+            } else if (index == R.styleable.OnSwipe_dragScale) {
                 this.mDragScale = typedArray.getFloat(index, this.mDragScale);
-            } else if (index == C0471R.styleable.OnSwipe_dragThreshold) {
+            } else if (index == R.styleable.OnSwipe_dragThreshold) {
                 this.mDragThreshold = typedArray.getFloat(index, this.mDragThreshold);
-            } else if (index == C0471R.styleable.OnSwipe_touchRegionId) {
+            } else if (index == R.styleable.OnSwipe_touchRegionId) {
                 this.mTouchRegionId = typedArray.getResourceId(index, this.mTouchRegionId);
-            } else if (index == C0471R.styleable.OnSwipe_onTouchUp) {
+            } else if (index == R.styleable.OnSwipe_onTouchUp) {
                 this.mOnTouchUp = typedArray.getInt(index, this.mOnTouchUp);
-            } else if (index == C0471R.styleable.OnSwipe_nestedScrollFlags) {
+            } else if (index == R.styleable.OnSwipe_nestedScrollFlags) {
                 this.mFlags = typedArray.getInteger(index, 0);
-            } else if (index == C0471R.styleable.OnSwipe_limitBoundsTo) {
+            } else if (index == R.styleable.OnSwipe_limitBoundsTo) {
                 this.mLimitBoundsTo = typedArray.getResourceId(index, 0);
             }
         }
     }
 
     private void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0471R.styleable.OnSwipe);
-        fill(obtainStyledAttributes);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.OnSwipe);
+        fill(typedArrayObtainStyledAttributes);
+        typedArrayObtainStyledAttributes.recycle();
     }
 
     float dot(float f2, float f3) {
@@ -120,12 +120,12 @@ class TouchResponse {
     }
 
     RectF getLimitBoundsTo(ViewGroup viewGroup, RectF rectF) {
-        View findViewById;
+        View viewFindViewById;
         int i2 = this.mLimitBoundsTo;
-        if (i2 == -1 || (findViewById = viewGroup.findViewById(i2)) == null) {
+        if (i2 == -1 || (viewFindViewById = viewGroup.findViewById(i2)) == null) {
             return null;
         }
-        rectF.set(findViewById.getLeft(), findViewById.getTop(), findViewById.getRight(), findViewById.getBottom());
+        rectF.set(viewFindViewById.getLeft(), viewFindViewById.getTop(), viewFindViewById.getRight(), viewFindViewById.getBottom());
         return rectF;
     }
 
@@ -162,12 +162,12 @@ class TouchResponse {
     }
 
     RectF getTouchRegion(ViewGroup viewGroup, RectF rectF) {
-        View findViewById;
+        View viewFindViewById;
         int i2 = this.mTouchRegionId;
-        if (i2 == -1 || (findViewById = viewGroup.findViewById(i2)) == null) {
+        if (i2 == -1 || (viewFindViewById = viewGroup.findViewById(i2)) == null) {
             return null;
         }
-        rectF.set(findViewById.getLeft(), findViewById.getTop(), findViewById.getRight(), findViewById.getBottom());
+        rectF.set(viewFindViewById.getLeft(), viewFindViewById.getTop(), viewFindViewById.getRight(), viewFindViewById.getBottom());
         return rectF;
     }
 
@@ -195,10 +195,10 @@ class TouchResponse {
             if (i4 != -1) {
                 this.mMotionLayout.getAnchorDpDt(i4, progress, this.mTouchAnchorX, this.mTouchAnchorY, this.mAnchorDpDt);
             } else {
-                float min = Math.min(this.mMotionLayout.getWidth(), this.mMotionLayout.getHeight());
+                float fMin = Math.min(this.mMotionLayout.getWidth(), this.mMotionLayout.getHeight());
                 float[] fArr = this.mAnchorDpDt;
-                fArr[1] = this.mTouchDirectionY * min;
-                fArr[0] = min * this.mTouchDirectionX;
+                fArr[1] = this.mTouchDirectionY * fMin;
+                fArr[0] = fMin * this.mTouchDirectionX;
             }
             float f2 = this.mTouchDirectionX;
             float[] fArr2 = this.mAnchorDpDt;
@@ -235,10 +235,10 @@ class TouchResponse {
             if (i5 != -1) {
                 this.mMotionLayout.getAnchorDpDt(i5, progress2, this.mTouchAnchorX, this.mTouchAnchorY, this.mAnchorDpDt);
             } else {
-                float min2 = Math.min(this.mMotionLayout.getWidth(), this.mMotionLayout.getHeight());
+                float fMin2 = Math.min(this.mMotionLayout.getWidth(), this.mMotionLayout.getHeight());
                 float[] fArr3 = this.mAnchorDpDt;
-                fArr3[1] = this.mTouchDirectionY * min2;
-                fArr3[0] = min2 * this.mTouchDirectionX;
+                fArr3[1] = this.mTouchDirectionY * fMin2;
+                fArr3[0] = fMin2 * this.mTouchDirectionX;
             }
             float f7 = this.mTouchDirectionX;
             float[] fArr4 = this.mAnchorDpDt;
@@ -247,9 +247,9 @@ class TouchResponse {
                 fArr5[0] = 0.01f;
                 fArr5[1] = 0.01f;
             }
-            float max = Math.max(Math.min(progress2 + (this.mTouchDirectionX != 0.0f ? rawX / this.mAnchorDpDt[0] : rawY / this.mAnchorDpDt[1]), 1.0f), 0.0f);
-            if (max != this.mMotionLayout.getProgress()) {
-                this.mMotionLayout.setProgress(max);
+            float fMax = Math.max(Math.min(progress2 + (this.mTouchDirectionX != 0.0f ? rawX / this.mAnchorDpDt[0] : rawY / this.mAnchorDpDt[1]), 1.0f), 0.0f);
+            if (fMax != this.mMotionLayout.getProgress()) {
+                this.mMotionLayout.setProgress(fMax);
                 motionTracker.computeCurrentVelocity(1000);
                 this.mMotionLayout.mLastVelocity = this.mTouchDirectionX != 0.0f ? motionTracker.getXVelocity() / this.mAnchorDpDt[0] : motionTracker.getYVelocity() / this.mAnchorDpDt[1];
             } else {
@@ -275,9 +275,9 @@ class TouchResponse {
             fArr2[1] = 0.01f;
         }
         float f5 = this.mTouchDirectionX;
-        float max = Math.max(Math.min(progress + (f5 != 0.0f ? (f2 * f5) / this.mAnchorDpDt[0] : (f3 * this.mTouchDirectionY) / this.mAnchorDpDt[1]), 1.0f), 0.0f);
-        if (max != this.mMotionLayout.getProgress()) {
-            this.mMotionLayout.setProgress(max);
+        float fMax = Math.max(Math.min(progress + (f5 != 0.0f ? (f2 * f5) / this.mAnchorDpDt[0] : (f3 * this.mTouchDirectionY) / this.mAnchorDpDt[1]), 1.0f), 0.0f);
+        if (fMax != this.mMotionLayout.getProgress()) {
+            this.mMotionLayout.setProgress(fMax);
         }
     }
 
@@ -356,21 +356,21 @@ class TouchResponse {
     }
 
     void setupTouch() {
-        View view;
+        View viewFindViewById;
         int i2 = this.mTouchAnchorId;
         if (i2 != -1) {
-            view = this.mMotionLayout.findViewById(i2);
-            if (view == null) {
+            viewFindViewById = this.mMotionLayout.findViewById(i2);
+            if (viewFindViewById == null) {
                 String str = "cannot find TouchAnchorId @id/" + Debug.getName(this.mMotionLayout.getContext(), this.mTouchAnchorId);
             }
         } else {
-            view = null;
+            viewFindViewById = null;
         }
-        if (view instanceof NestedScrollView) {
-            NestedScrollView nestedScrollView = (NestedScrollView) view;
+        if (viewFindViewById instanceof NestedScrollView) {
+            NestedScrollView nestedScrollView = (NestedScrollView) viewFindViewById;
             nestedScrollView.setOnTouchListener(new View.OnTouchListener() { // from class: androidx.constraintlayout.motion.widget.TouchResponse.1
                 @Override // android.view.View.OnTouchListener
-                public boolean onTouch(View view2, MotionEvent motionEvent) {
+                public boolean onTouch(View view, MotionEvent motionEvent) {
                     return false;
                 }
             });

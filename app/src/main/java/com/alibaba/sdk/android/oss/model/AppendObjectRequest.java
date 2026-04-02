@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.model;
 import android.net.Uri;
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppendObjectRequest extends OSSRequest {
     private String bucketName;
     private Long initCRC64;

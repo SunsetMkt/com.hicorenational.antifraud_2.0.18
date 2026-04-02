@@ -4,7 +4,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import javax.annotation.Nullable;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Route {
     final Address address;
     final InetSocketAddress inetSocketAddress;

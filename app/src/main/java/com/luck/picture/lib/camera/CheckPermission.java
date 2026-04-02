@@ -2,7 +2,7 @@ package com.luck.picture.lib.camera;
 
 import android.media.AudioRecord;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CheckPermission {
     public static final int STATE_NO_PERMISSION = -2;
     public static final int STATE_RECORDING = -1;

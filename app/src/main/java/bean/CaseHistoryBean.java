@@ -3,7 +3,7 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CaseHistoryBean extends BaseBean {
     private List<Rows> rows;
     private int total;
@@ -20,9 +20,7 @@ public class CaseHistoryBean extends BaseBean {
         private String createTime;
         private String documentNumber;
         private String documentTypeText;
-
-        /* renamed from: id */
-        private String f1585id;
+        private String id;
         private int isExpired;
         private String name;
         private String payments;
@@ -82,7 +80,7 @@ public class CaseHistoryBean extends BaseBean {
         }
 
         public String getId() {
-            return this.f1585id;
+            return this.id;
         }
 
         public int getIsExpired() {
@@ -182,7 +180,7 @@ public class CaseHistoryBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f1585id = str;
+            this.id = str;
         }
 
         public void setIsExpired(int i2) {

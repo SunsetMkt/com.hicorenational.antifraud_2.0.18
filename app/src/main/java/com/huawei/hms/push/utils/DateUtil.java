@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DateUtil {
     private DateUtil() {
     }
@@ -18,12 +18,12 @@ public class DateUtil {
         try {
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(l2);
         } catch (Exception e2) {
-            HMSLog.m7716e("DateUtil", "parseMilliSecondToString Exception.", e2);
+            HMSLog.e("DateUtil", "parseMilliSecondToString Exception.", e2);
             return null;
         }
     }
 
-    public static long parseUtcToMillisecond(String str) throws ParseException, StringIndexOutOfBoundsException {
+    public static long parseUtcToMillisecond(String str) throws StringIndexOutOfBoundsException, ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         return simpleDateFormat.parse(str.substring(0, str.indexOf(".")) + (str.substring(str.indexOf(".")).substring(0, 4) + "Z")).getTime();

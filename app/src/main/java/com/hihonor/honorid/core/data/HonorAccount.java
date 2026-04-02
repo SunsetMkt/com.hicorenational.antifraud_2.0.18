@@ -4,127 +4,97 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HonorAccount implements Parcelable {
-    public static final Parcelable.Creator<HonorAccount> CREATOR = new C2156a();
+    public static final Parcelable.Creator<HonorAccount> CREATOR = new a();
+    private String A;
 
-    /* renamed from: A */
-    private String f6526A;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f4127b;
 
-    /* renamed from: b */
-    private String f6528b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4128c;
 
-    /* renamed from: c */
-    private String f6529c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String f4129d;
 
-    /* renamed from: d */
-    private String f6530d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f4130e;
 
-    /* renamed from: e */
-    private String f6531e;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private String f4132g;
 
-    /* renamed from: g */
-    private String f6533g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f4133h;
 
-    /* renamed from: h */
-    private String f6534h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    private String f4134i;
 
-    /* renamed from: i */
-    private String f6535i;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    private String f4135j;
 
-    /* renamed from: j */
-    private String f6536j;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    private String f4136k;
 
-    /* renamed from: k */
-    private String f6537k;
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    private String f4138m;
 
-    /* renamed from: m */
-    private String f6539m;
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    private String f4139n;
+    private String o;
+    private String p;
+    private String q;
+    private String r;
+    private String s;
+    private String t;
+    private String u;
+    private String v;
+    private String w;
+    private boolean y;
+    private String z;
+    private String a = "-1";
 
-    /* renamed from: n */
-    private String f6540n;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private int f4131f = 0;
 
-    /* renamed from: o */
-    private String f6541o;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    private String f4137l = "";
+    private int x = 0;
 
-    /* renamed from: p */
-    private String f6542p;
-
-    /* renamed from: q */
-    private String f6543q;
-
-    /* renamed from: r */
-    private String f6544r;
-
-    /* renamed from: s */
-    private String f6545s;
-
-    /* renamed from: t */
-    private String f6546t;
-
-    /* renamed from: u */
-    private String f6547u;
-
-    /* renamed from: v */
-    private String f6548v;
-
-    /* renamed from: w */
-    private String f6549w;
-
-    /* renamed from: y */
-    private boolean f6551y;
-
-    /* renamed from: z */
-    private String f6552z;
-
-    /* renamed from: a */
-    private String f6527a = "-1";
-
-    /* renamed from: f */
-    private int f6532f = 0;
-
-    /* renamed from: l */
-    private String f6538l = "";
-
-    /* renamed from: x */
-    private int f6550x = 0;
-
-    /* renamed from: com.hihonor.honorid.core.data.HonorAccount$a */
-    class C2156a implements Parcelable.Creator<HonorAccount> {
-        C2156a() {
+    class a implements Parcelable.Creator<HonorAccount> {
+        a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public HonorAccount createFromParcel(Parcel parcel) {
             HonorAccount honorAccount = new HonorAccount();
-            honorAccount.f6527a = parcel.readString();
-            honorAccount.f6528b = parcel.readString();
-            honorAccount.f6529c = parcel.readString();
-            honorAccount.f6530d = parcel.readString();
-            honorAccount.f6531e = parcel.readString();
-            honorAccount.f6532f = parcel.readInt();
-            honorAccount.f6533g = parcel.readString();
-            honorAccount.f6534h = parcel.readString();
-            honorAccount.f6535i = parcel.readString();
-            honorAccount.f6536j = parcel.readString();
-            honorAccount.f6537k = parcel.readString();
-            honorAccount.f6538l = parcel.readString();
-            honorAccount.f6539m = parcel.readString();
-            honorAccount.f6540n = parcel.readString();
-            honorAccount.f6541o = parcel.readString();
-            honorAccount.f6542p = parcel.readString();
-            honorAccount.f6543q = parcel.readString();
-            honorAccount.f6544r = parcel.readString();
-            honorAccount.f6545s = parcel.readString();
-            honorAccount.f6546t = parcel.readString();
-            honorAccount.f6547u = parcel.readString();
-            honorAccount.f6548v = parcel.readString();
-            honorAccount.f6551y = parcel.readByte() == 1;
-            honorAccount.f6552z = parcel.readString();
-            honorAccount.f6526A = parcel.readString();
+            honorAccount.a = parcel.readString();
+            honorAccount.f4127b = parcel.readString();
+            honorAccount.f4128c = parcel.readString();
+            honorAccount.f4129d = parcel.readString();
+            honorAccount.f4130e = parcel.readString();
+            honorAccount.f4131f = parcel.readInt();
+            honorAccount.f4132g = parcel.readString();
+            honorAccount.f4133h = parcel.readString();
+            honorAccount.f4134i = parcel.readString();
+            honorAccount.f4135j = parcel.readString();
+            honorAccount.f4136k = parcel.readString();
+            honorAccount.f4137l = parcel.readString();
+            honorAccount.f4138m = parcel.readString();
+            honorAccount.f4139n = parcel.readString();
+            honorAccount.o = parcel.readString();
+            honorAccount.p = parcel.readString();
+            honorAccount.q = parcel.readString();
+            honorAccount.r = parcel.readString();
+            honorAccount.s = parcel.readString();
+            honorAccount.t = parcel.readString();
+            honorAccount.u = parcel.readString();
+            honorAccount.v = parcel.readString();
+            honorAccount.y = parcel.readByte() == 1;
+            honorAccount.z = parcel.readString();
+            honorAccount.A = parcel.readString();
             return honorAccount;
         }
 
@@ -146,313 +116,262 @@ public class HonorAccount implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6527a);
-        parcel.writeString(this.f6528b);
-        parcel.writeString(this.f6529c);
-        parcel.writeString(this.f6530d);
-        parcel.writeString(this.f6531e);
-        parcel.writeInt(this.f6532f);
-        parcel.writeString(this.f6533g);
-        parcel.writeString(this.f6534h);
-        parcel.writeString(this.f6535i);
-        parcel.writeString(this.f6536j);
-        parcel.writeString(this.f6537k);
-        parcel.writeString(this.f6538l);
-        parcel.writeString(this.f6539m);
-        parcel.writeString(this.f6540n);
-        parcel.writeString(this.f6541o);
-        parcel.writeString(this.f6542p);
-        parcel.writeString(this.f6543q);
-        parcel.writeString(this.f6544r);
-        parcel.writeString(this.f6545s);
-        parcel.writeString(this.f6546t);
-        parcel.writeString(this.f6547u);
-        parcel.writeString(this.f6548v);
-        parcel.writeByte(this.f6551y ? (byte) 1 : (byte) 0);
-        parcel.writeString(this.f6552z);
-        parcel.writeString(this.f6526A);
+        parcel.writeString(this.a);
+        parcel.writeString(this.f4127b);
+        parcel.writeString(this.f4128c);
+        parcel.writeString(this.f4129d);
+        parcel.writeString(this.f4130e);
+        parcel.writeInt(this.f4131f);
+        parcel.writeString(this.f4132g);
+        parcel.writeString(this.f4133h);
+        parcel.writeString(this.f4134i);
+        parcel.writeString(this.f4135j);
+        parcel.writeString(this.f4136k);
+        parcel.writeString(this.f4137l);
+        parcel.writeString(this.f4138m);
+        parcel.writeString(this.f4139n);
+        parcel.writeString(this.o);
+        parcel.writeString(this.p);
+        parcel.writeString(this.q);
+        parcel.writeString(this.r);
+        parcel.writeString(this.s);
+        parcel.writeString(this.t);
+        parcel.writeString(this.u);
+        parcel.writeString(this.v);
+        parcel.writeByte(this.y ? (byte) 1 : (byte) 0);
+        parcel.writeString(this.z);
+        parcel.writeString(this.A);
     }
 
-    /* renamed from: x */
-    public void m6205x(String str) {
-        this.f6531e = str;
+    public void x(String str) {
+        this.f4130e = str;
     }
 
-    /* renamed from: b */
-    public void m6161b(int i2) {
-        this.f6532f = i2;
+    public void b(int i2) {
+        this.f4131f = i2;
     }
 
-    /* renamed from: c */
-    public String m6163c() {
-        return this.f6530d;
+    public String c() {
+        return this.f4129d;
     }
 
-    /* renamed from: d */
-    public String m6165d() {
-        return this.f6537k;
+    public String d() {
+        return this.f4136k;
     }
 
-    /* renamed from: e */
-    public String m6167e() {
-        return this.f6544r;
+    public String e() {
+        return this.r;
     }
 
-    /* renamed from: f */
-    public void m6170f(String str) {
-        this.f6533g = str;
+    public void f(String str) {
+        this.f4132g = str;
     }
 
-    /* renamed from: g */
-    public void m6172g(String str) {
-        this.f6534h = str;
+    public void g(String str) {
+        this.f4133h = str;
     }
 
-    /* renamed from: h */
-    public void m6174h(String str) {
-        this.f6536j = str;
+    public void h(String str) {
+        this.f4135j = str;
     }
 
-    /* renamed from: i */
-    public String m6175i() {
-        return this.f6526A;
+    public String i() {
+        return this.A;
     }
 
-    /* renamed from: j */
-    public String m6177j() {
-        return this.f6539m;
+    public String j() {
+        return this.f4138m;
     }
 
-    /* renamed from: k */
-    public String m6179k() {
-        String str = this.f6545s;
+    public String k() {
+        String str = this.s;
         return str == null ? "0" : str;
     }
 
-    /* renamed from: l */
-    public String m6181l() {
-        return this.f6538l;
+    public String l() {
+        return this.f4137l;
     }
 
-    /* renamed from: m */
-    public String m6183m() {
-        return this.f6548v;
+    public String m() {
+        return this.v;
     }
 
-    /* renamed from: n */
-    public void m6186n(String str) {
-        this.f6540n = str;
+    public void n(String str) {
+        this.f4139n = str;
     }
 
-    /* renamed from: o */
-    public void m6188o(String str) {
-        this.f6527a = str;
+    public void o(String str) {
+        this.a = str;
     }
 
-    /* renamed from: p */
-    public String m6189p() {
-        return this.f6549w;
+    public String p() {
+        return this.w;
     }
 
-    /* renamed from: q */
-    public int m6191q() {
-        return this.f6532f;
+    public int q() {
+        return this.f4131f;
     }
 
-    /* renamed from: r */
-    public String m6193r() {
-        return this.f6535i;
+    public String r() {
+        return this.f4134i;
     }
 
-    /* renamed from: s */
-    public String m6195s() {
-        return this.f6529c;
+    public String s() {
+        return this.f4128c;
     }
 
-    /* renamed from: t */
-    public String m6197t() {
-        return this.f6528b;
+    public String t() {
+        return this.f4127b;
     }
 
-    /* renamed from: u */
-    public void m6200u(String str) {
-        this.f6528b = str;
+    public void u(String str) {
+        this.f4127b = str;
     }
 
-    /* renamed from: v */
-    public String m6201v() {
-        return this.f6552z;
+    public String v() {
+        return this.z;
     }
 
-    /* renamed from: w */
-    public void m6204w(String str) {
-        this.f6552z = str;
+    public void w(String str) {
+        this.z = str;
     }
 
-    /* renamed from: b */
-    public void m6162b(String str) {
-        this.f6546t = str;
+    public void b(String str) {
+        this.t = str;
     }
 
-    /* renamed from: c */
-    public void m6164c(String str) {
-        this.f6530d = str;
+    public void c(String str) {
+        this.f4129d = str;
     }
 
-    /* renamed from: d */
-    public void m6166d(String str) {
-        this.f6537k = str;
+    public void d(String str) {
+        this.f4136k = str;
     }
 
-    /* renamed from: e */
-    public void m6168e(String str) {
-        this.f6544r = str;
+    public void e(String str) {
+        this.r = str;
     }
 
-    /* renamed from: f */
-    public String m6169f() {
-        return this.f6534h;
+    public String f() {
+        return this.f4133h;
     }
 
-    /* renamed from: g */
-    public String m6171g() {
-        return this.f6536j;
+    public String g() {
+        return this.f4135j;
     }
 
-    /* renamed from: h */
-    public int m6173h() {
-        return this.f6550x;
+    public int h() {
+        return this.x;
     }
 
-    /* renamed from: i */
-    public void m6176i(String str) {
-        this.f6526A = str;
+    public void i(String str) {
+        this.A = str;
     }
 
-    /* renamed from: j */
-    public void m6178j(String str) {
-        this.f6539m = str;
+    public void j(String str) {
+        this.f4138m = str;
     }
 
-    /* renamed from: k */
-    public void m6180k(String str) {
-        this.f6545s = str;
+    public void k(String str) {
+        this.s = str;
     }
 
-    /* renamed from: l */
-    public void m6182l(String str) {
-        this.f6538l = str;
+    public void l(String str) {
+        this.f4137l = str;
     }
 
-    /* renamed from: m */
-    public void m6184m(String str) {
-        this.f6548v = str;
+    public void m(String str) {
+        this.v = str;
     }
 
-    /* renamed from: n */
-    public String m6185n() {
-        return this.f6547u;
+    public String n() {
+        return this.u;
     }
 
-    /* renamed from: o */
-    public String m6187o() {
-        return TextUtils.isEmpty(this.f6541o) ? "" : this.f6541o;
+    public String o() {
+        return TextUtils.isEmpty(this.o) ? "" : this.o;
     }
 
-    /* renamed from: p */
-    public void m6190p(String str) {
-        this.f6547u = str;
+    public void p(String str) {
+        this.u = str;
     }
 
-    /* renamed from: q */
-    public void m6192q(String str) {
-        this.f6541o = str;
+    public void q(String str) {
+        this.o = str;
     }
 
-    /* renamed from: r */
-    public void m6194r(String str) {
-        this.f6549w = str;
+    public void r(String str) {
+        this.w = str;
     }
 
-    /* renamed from: s */
-    public void m6196s(String str) {
-        this.f6535i = str;
+    public void s(String str) {
+        this.f4134i = str;
     }
 
-    /* renamed from: t */
-    public void m6198t(String str) {
-        this.f6529c = str;
+    public void t(String str) {
+        this.f4128c = str;
     }
 
-    /* renamed from: u */
-    public String m6199u() {
-        return this.f6542p;
+    public String u() {
+        return this.p;
     }
 
-    /* renamed from: v */
-    public void m6202v(String str) {
-        this.f6542p = str;
+    public void v(String str) {
+        this.p = str;
     }
 
-    /* renamed from: w */
-    public String m6203w() {
-        return this.f6531e;
+    public String w() {
+        return this.f4130e;
     }
 
-    /* renamed from: a */
-    public String m6156a() {
-        return this.f6543q;
+    public String a() {
+        return this.q;
     }
 
-    /* renamed from: b */
-    public String m6160b() {
-        return this.f6546t;
+    public String b() {
+        return this.t;
     }
 
-    /* renamed from: a */
-    public void m6158a(String str) {
-        this.f6543q = str;
+    public void a(String str) {
+        this.q = str;
     }
 
-    /* renamed from: a */
-    public void m6157a(int i2) {
-        this.f6550x = i2;
+    public void a(int i2) {
+        this.x = i2;
     }
 
-    /* renamed from: a */
-    public void m6159a(boolean z) {
-        this.f6551y = z;
+    public void a(boolean z) {
+        this.y = z;
     }
 
-    /* renamed from: a */
-    public HonorAccount m6155a(Bundle bundle) {
-        m6188o(bundle.getString("sL"));
-        m6200u(bundle.getString("requestTokenType"));
-        m6198t(bundle.getString(AbstractC1191a.f2521N));
-        m6164c(bundle.getString(AbstractC1191a.f2503H));
-        m6205x(bundle.getString("userId"));
-        m6161b(bundle.getInt(AbstractC1191a.f2598q));
-        m6170f(bundle.getString("Cookie"));
-        m6172g(bundle.getString("deviceId"));
-        m6196s(bundle.getString(AbstractC1191a.f2607t));
-        m6174h(bundle.getString("deviceType"));
-        m6166d(bundle.getString("accountType"));
-        m6182l(bundle.getString("loginUserName"));
-        m6178j(bundle.getString(AbstractC1191a.f2491D));
-        m6186n(bundle.getString(AbstractC1191a.f2494E));
-        m6192q(bundle.getString(AbstractC1191a.f2497F));
-        m6202v(bundle.getString("uuid"));
-        m6158a(bundle.getString(AbstractC1191a.f2580k));
-        m6168e(bundle.getString(AbstractC1191a.f2583l));
-        m6194r(bundle.getString(AbstractC1191a.f2586m));
-        m6157a(bundle.getInt(AbstractC1191a.f2592o, 0));
-        m6180k(bundle.getString(AbstractC1191a.f2595p));
-        m6162b(bundle.getString("access_token"));
-        m6190p(bundle.getString("code"));
-        m6184m(bundle.getString("open_id"));
-        m6159a(bundle.getBoolean(AbstractC1191a.f2523N1));
-        m6204w(bundle.getString(AbstractC1191a.f2526O1));
-        m6176i(bundle.getString(AbstractC1191a.f2529P1));
+    public HonorAccount a(Bundle bundle) {
+        o(bundle.getString("sL"));
+        u(bundle.getString("requestTokenType"));
+        t(bundle.getString(d.c.a.b.a.a.N));
+        c(bundle.getString(d.c.a.b.a.a.H));
+        x(bundle.getString("userId"));
+        b(bundle.getInt(d.c.a.b.a.a.q));
+        f(bundle.getString("Cookie"));
+        g(bundle.getString("deviceId"));
+        s(bundle.getString(d.c.a.b.a.a.t));
+        h(bundle.getString("deviceType"));
+        d(bundle.getString("accountType"));
+        l(bundle.getString("loginUserName"));
+        j(bundle.getString(d.c.a.b.a.a.D));
+        n(bundle.getString(d.c.a.b.a.a.E));
+        q(bundle.getString(d.c.a.b.a.a.F));
+        v(bundle.getString("uuid"));
+        a(bundle.getString(d.c.a.b.a.a.f10078k));
+        e(bundle.getString(d.c.a.b.a.a.f10079l));
+        r(bundle.getString(d.c.a.b.a.a.f10080m));
+        a(bundle.getInt(d.c.a.b.a.a.o, 0));
+        k(bundle.getString(d.c.a.b.a.a.p));
+        b(bundle.getString("access_token"));
+        p(bundle.getString("code"));
+        m(bundle.getString("open_id"));
+        a(bundle.getBoolean(d.c.a.b.a.a.N1));
+        w(bundle.getString(d.c.a.b.a.a.O1));
+        i(bundle.getString(d.c.a.b.a.a.P1));
         return this;
     }
 }

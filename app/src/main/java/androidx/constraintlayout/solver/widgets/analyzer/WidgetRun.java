@@ -3,7 +3,7 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class WidgetRun implements Dependency {
     protected ConstraintWidget.DimensionBehaviour dimensionBehavior;
     public int matchConstraintsType;
@@ -16,31 +16,29 @@ public abstract class WidgetRun implements Dependency {
     public DependencyNode end = new DependencyNode(this);
     protected RunType mRunType = RunType.NONE;
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.analyzer.WidgetRun$1 */
-    static /* synthetic */ class C04641 {
-
-        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
-        static final /* synthetic */ int[] f608x4c44d048 = new int[ConstraintAnchor.Type.values().length];
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.WidgetRun$1 */
+    static /* synthetic */ class AnonymousClass1 {
+        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = new int[ConstraintAnchor.Type.values().length];
 
         static {
             try {
-                f608x4c44d048[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f608x4c44d048[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f608x4c44d048[ConstraintAnchor.Type.TOP.ordinal()] = 3;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.TOP.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                f608x4c44d048[ConstraintAnchor.Type.BASELINE.ordinal()] = 4;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BASELINE.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                f608x4c44d048[ConstraintAnchor.Type.BOTTOM.ordinal()] = 5;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BOTTOM.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
         }
@@ -112,29 +110,29 @@ public abstract class WidgetRun implements Dependency {
     abstract void clear();
 
     protected final int getLimitedDimension(int i2, int i3) {
-        int max;
+        int iMax;
         if (i3 == 0) {
             ConstraintWidget constraintWidget = this.widget;
             int i4 = constraintWidget.mMatchConstraintMaxWidth;
-            max = Math.max(constraintWidget.mMatchConstraintMinWidth, i2);
+            iMax = Math.max(constraintWidget.mMatchConstraintMinWidth, i2);
             if (i4 > 0) {
-                max = Math.min(i4, i2);
+                iMax = Math.min(i4, i2);
             }
-            if (max == i2) {
+            if (iMax == i2) {
                 return i2;
             }
         } else {
             ConstraintWidget constraintWidget2 = this.widget;
             int i5 = constraintWidget2.mMatchConstraintMaxHeight;
-            max = Math.max(constraintWidget2.mMatchConstraintMinHeight, i2);
+            iMax = Math.max(constraintWidget2.mMatchConstraintMinHeight, i2);
             if (i5 > 0) {
-                max = Math.min(i5, i2);
+                iMax = Math.min(i5, i2);
             }
-            if (max == i2) {
+            if (iMax == i2) {
                 return i2;
             }
         }
-        return max;
+        return iMax;
     }
 
     protected final DependencyNode getTarget(ConstraintAnchor constraintAnchor) {
@@ -143,7 +141,7 @@ public abstract class WidgetRun implements Dependency {
             return null;
         }
         ConstraintWidget constraintWidget = constraintAnchor2.mOwner;
-        int i2 = C04641.f608x4c44d048[constraintAnchor2.mType.ordinal()];
+        int i2 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[constraintAnchor2.mType.ordinal()];
         if (i2 == 1) {
             return constraintWidget.horizontalRun.start;
         }
@@ -249,11 +247,11 @@ public abstract class WidgetRun implements Dependency {
             i3 = this.start.margin - this.end.margin;
         } else {
             if (i2 != 0) {
-                return j2 - this.end.margin;
+                return j2 - ((long) this.end.margin);
             }
             i3 = this.start.margin;
         }
-        return j2 + i3;
+        return j2 + ((long) i3);
     }
 
     protected final void addTarget(DependencyNode dependencyNode, DependencyNode dependencyNode2, int i2, DimensionDependency dimensionDependency) {
@@ -272,7 +270,7 @@ public abstract class WidgetRun implements Dependency {
         }
         ConstraintWidget constraintWidget = constraintAnchor2.mOwner;
         WidgetRun widgetRun = i2 == 0 ? constraintWidget.horizontalRun : constraintWidget.verticalRun;
-        int i3 = C04641.f608x4c44d048[constraintAnchor.mTarget.mType.ordinal()];
+        int i3 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[constraintAnchor.mTarget.mType.ordinal()];
         if (i3 != 1) {
             if (i3 != 2) {
                 if (i3 != 3) {

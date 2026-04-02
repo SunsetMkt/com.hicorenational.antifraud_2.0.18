@@ -1,49 +1,47 @@
 package okio;
 
+import i.c;
+import i.e1;
+import i.o0;
+import i.q2.s.l;
+import i.q2.t.f0;
+import i.q2.t.i0;
+import i.y;
+import i.y1;
+import j.c.a.d;
+import j.c.a.e;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import p286h.C5226e1;
-import p286h.C5715y1;
-import p286h.EnumC5220d;
-import p286h.InterfaceC5216c;
-import p286h.InterfaceC5467o0;
-import p286h.InterfaceC5713y;
-import p286h.p309q2.InterfaceC5481e;
-import p286h.p309q2.p310s.InterfaceC5506l;
-import p286h.p309q2.p311t.C5535f0;
-import p286h.p309q2.p311t.C5544i0;
-import p324i.p336c.p337a.InterfaceC5816d;
-import p324i.p336c.p337a.InterfaceC5817e;
 
-/* compiled from: Pipe.kt */
-@InterfaceC5713y(m23544bv = {1, 0, 3}, m23545d1 = {"\u0000D\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u000b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\u000e\u0010\u001e\u001a\u00020\u001f2\u0006\u0010\u0011\u001a\u00020\nJ\r\u0010\u0011\u001a\u00020\nH\u0007¢\u0006\u0002\b J\r\u0010\u0018\u001a\u00020\u0019H\u0007¢\u0006\u0002\b!J&\u0010\"\u001a\u00020\u001f*\u00020\n2\u0017\u0010#\u001a\u0013\u0012\u0004\u0012\u00020\n\u0012\u0004\u0012\u00020\u001f0$¢\u0006\u0002\b%H\u0082\bR\u0014\u0010\u0005\u001a\u00020\u0006X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u001c\u0010\t\u001a\u0004\u0018\u00010\nX\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u0014\u0010\u0002\u001a\u00020\u0003X\u0080\u0004¢\u0006\b\n\u0000\u001a\u0004\b\u000f\u0010\u0010R\u0013\u0010\u0011\u001a\u00020\n8G¢\u0006\b\n\u0000\u001a\u0004\b\u0011\u0010\fR\u001a\u0010\u0012\u001a\u00020\u0013X\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0014\u0010\u0015\"\u0004\b\u0016\u0010\u0017R\u0013\u0010\u0018\u001a\u00020\u00198G¢\u0006\b\n\u0000\u001a\u0004\b\u0018\u0010\u001aR\u001a\u0010\u001b\u001a\u00020\u0013X\u0080\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u0015\"\u0004\b\u001d\u0010\u0017¨\u0006&"}, m23546d2 = {"Lokio/Pipe;", "", "maxBufferSize", "", "(J)V", "buffer", "Lokio/Buffer;", "getBuffer$okio", "()Lokio/Buffer;", "foldedSink", "Lokio/Sink;", "getFoldedSink$okio", "()Lokio/Sink;", "setFoldedSink$okio", "(Lokio/Sink;)V", "getMaxBufferSize$okio", "()J", "sink", "sinkClosed", "", "getSinkClosed$okio", "()Z", "setSinkClosed$okio", "(Z)V", "source", "Lokio/Source;", "()Lokio/Source;", "sourceClosed", "getSourceClosed$okio", "setSourceClosed$okio", "fold", "", "-deprecated_sink", "-deprecated_source", "forward", "block", "Lkotlin/Function1;", "Lkotlin/ExtensionFunctionType;", "okio"}, m23547k = 1, m23548mv = {1, 1, 16})
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: Pipe.kt */
+/* JADX INFO: loaded from: classes2.dex */
+@y(bv = {1, 0, 3}, d1 = {"\u0000D\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\t\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u000b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J\u000e\u0010\u001e\u001a\u00020\u001f2\u0006\u0010\u0011\u001a\u00020\nJ\r\u0010\u0011\u001a\u00020\nH\u0007\u00a2\u0006\u0002\b J\r\u0010\u0018\u001a\u00020\u0019H\u0007\u00a2\u0006\u0002\b!J&\u0010\"\u001a\u00020\u001f*\u00020\n2\u0017\u0010#\u001a\u0013\u0012\u0004\u0012\u00020\n\u0012\u0004\u0012\u00020\u001f0$\u00a2\u0006\u0002\b%H\u0082\bR\u0014\u0010\u0005\u001a\u00020\u0006X\u0080\u0004\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u001c\u0010\t\u001a\u0004\u0018\u00010\nX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u0014\u0010\u0002\u001a\u00020\u0003X\u0080\u0004\u00a2\u0006\b\n\u0000\u001a\u0004\b\u000f\u0010\u0010R\u0013\u0010\u0011\u001a\u00020\n8G\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0011\u0010\fR\u001a\u0010\u0012\u001a\u00020\u0013X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0014\u0010\u0015\"\u0004\b\u0016\u0010\u0017R\u0013\u0010\u0018\u001a\u00020\u00198G\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0018\u0010\u001aR\u001a\u0010\u001b\u001a\u00020\u0013X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u0015\"\u0004\b\u001d\u0010\u0017\u00a8\u0006&"}, d2 = {"Lokio/Pipe;", "", "maxBufferSize", "", "(J)V", "buffer", "Lokio/Buffer;", "getBuffer$okio", "()Lokio/Buffer;", "foldedSink", "Lokio/Sink;", "getFoldedSink$okio", "()Lokio/Sink;", "setFoldedSink$okio", "(Lokio/Sink;)V", "getMaxBufferSize$okio", "()J", "sink", "sinkClosed", "", "getSinkClosed$okio", "()Z", "setSinkClosed$okio", "(Z)V", "source", "Lokio/Source;", "()Lokio/Source;", "sourceClosed", "getSourceClosed$okio", "setSourceClosed$okio", "fold", "", "-deprecated_sink", "-deprecated_source", "forward", "block", "Lkotlin/Function1;", "Lkotlin/ExtensionFunctionType;", "okio"}, k = 1, mv = {1, 1, 16})
 public final class Pipe {
 
-    @InterfaceC5816d
+    @d
     private final Buffer buffer = new Buffer();
 
-    @InterfaceC5817e
+    @e
     private Sink foldedSink;
     private final long maxBufferSize;
 
-    @InterfaceC5816d
+    @d
     private final Sink sink;
     private boolean sinkClosed;
 
-    @InterfaceC5816d
+    @d
     private final Source source;
     private boolean sourceClosed;
 
     public Pipe(long j2) {
         this.maxBufferSize = j2;
         if (this.maxBufferSize >= 1) {
-            this.sink = new Sink() { // from class: okio.Pipe$sink$1
+            this.sink = new Sink() { // from class: okio.Pipe.sink.1
                 private final Timeout timeout = new Timeout();
 
                 @Override // okio.Sink, java.io.Closeable, java.lang.AutoCloseable
                 public void close() {
-                    boolean hasDeadline;
+                    boolean zHasDeadline;
                     synchronized (Pipe.this.getBuffer$okio()) {
                         if (Pipe.this.getSinkClosed$okio()) {
                             return;
@@ -56,17 +54,17 @@ public final class Pipe {
                             Pipe.this.setSinkClosed$okio(true);
                             Buffer buffer$okio = Pipe.this.getBuffer$okio();
                             if (buffer$okio == null) {
-                                throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
+                                throw new e1("null cannot be cast to non-null type java.lang.Object");
                             }
                             buffer$okio.notifyAll();
                             foldedSink$okio = null;
                         }
-                        C5715y1 c5715y1 = C5715y1.f20665a;
+                        y1 y1Var = y1.a;
                         if (foldedSink$okio != null) {
                             Pipe pipe = Pipe.this;
                             Timeout timeout = foldedSink$okio.timeout();
                             Timeout timeout2 = pipe.sink().timeout();
-                            long timeoutNanos = timeout.timeoutNanos();
+                            long jTimeoutNanos = timeout.timeoutNanos();
                             timeout.timeout(Timeout.Companion.minTimeout(timeout2.timeoutNanos(), timeout.timeoutNanos()), TimeUnit.NANOSECONDS);
                             if (!timeout.hasDeadline()) {
                                 if (timeout2.hasDeadline()) {
@@ -74,28 +72,28 @@ public final class Pipe {
                                 }
                                 try {
                                     foldedSink$okio.close();
-                                    if (hasDeadline) {
+                                    if (zHasDeadline) {
                                         return;
                                     } else {
                                         return;
                                     }
                                 } finally {
-                                    timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                                    timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                                     if (timeout2.hasDeadline()) {
                                         timeout.clearDeadline();
                                     }
                                 }
                             }
-                            long deadlineNanoTime = timeout.deadlineNanoTime();
+                            long jDeadlineNanoTime = timeout.deadlineNanoTime();
                             if (timeout2.hasDeadline()) {
                                 timeout.deadlineNanoTime(Math.min(timeout.deadlineNanoTime(), timeout2.deadlineNanoTime()));
                             }
                             try {
                                 foldedSink$okio.close();
                             } finally {
-                                timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                                timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                                 if (timeout2.hasDeadline()) {
-                                    timeout.deadlineNanoTime(deadlineNanoTime);
+                                    timeout.deadlineNanoTime(jDeadlineNanoTime);
                                 }
                             }
                         }
@@ -105,7 +103,7 @@ public final class Pipe {
                 @Override // okio.Sink, java.io.Flushable
                 public void flush() {
                     Sink foldedSink$okio;
-                    boolean hasDeadline;
+                    boolean zHasDeadline;
                     synchronized (Pipe.this.getBuffer$okio()) {
                         if (!(!Pipe.this.getSinkClosed$okio())) {
                             throw new IllegalStateException("closed".toString());
@@ -117,13 +115,13 @@ public final class Pipe {
                             }
                             foldedSink$okio = null;
                         }
-                        C5715y1 c5715y1 = C5715y1.f20665a;
+                        y1 y1Var = y1.a;
                     }
                     if (foldedSink$okio != null) {
                         Pipe pipe = Pipe.this;
                         Timeout timeout = foldedSink$okio.timeout();
                         Timeout timeout2 = pipe.sink().timeout();
-                        long timeoutNanos = timeout.timeoutNanos();
+                        long jTimeoutNanos = timeout.timeoutNanos();
                         timeout.timeout(Timeout.Companion.minTimeout(timeout2.timeoutNanos(), timeout.timeoutNanos()), TimeUnit.NANOSECONDS);
                         if (!timeout.hasDeadline()) {
                             if (timeout2.hasDeadline()) {
@@ -131,55 +129,62 @@ public final class Pipe {
                             }
                             try {
                                 foldedSink$okio.flush();
-                                if (hasDeadline) {
+                                if (zHasDeadline) {
                                     return;
                                 } else {
                                     return;
                                 }
                             } finally {
-                                timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                                timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                                 if (timeout2.hasDeadline()) {
                                     timeout.clearDeadline();
                                 }
                             }
                         }
-                        long deadlineNanoTime = timeout.deadlineNanoTime();
+                        long jDeadlineNanoTime = timeout.deadlineNanoTime();
                         if (timeout2.hasDeadline()) {
                             timeout.deadlineNanoTime(Math.min(timeout.deadlineNanoTime(), timeout2.deadlineNanoTime()));
                         }
                         try {
                             foldedSink$okio.flush();
                         } finally {
-                            timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                            timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                             if (timeout2.hasDeadline()) {
-                                timeout.deadlineNanoTime(deadlineNanoTime);
+                                timeout.deadlineNanoTime(jDeadlineNanoTime);
                             }
                         }
                     }
                 }
 
                 @Override // okio.Sink
-                @InterfaceC5816d
+                @d
                 public Timeout timeout() {
                     return this.timeout;
                 }
 
+                /* JADX WARN: Code restructure failed: missing block: B:24:0x0079, code lost:
+                
+                    r1 = i.y1.a;
+                 */
                 @Override // okio.Sink
-                public void write(@InterfaceC5816d Buffer buffer, long j3) {
-                    Sink sink;
-                    boolean hasDeadline;
-                    C5544i0.m22546f(buffer, "source");
+                /*
+                    Code decompiled incorrectly, please refer to instructions dump.
+                */
+                public void write(@d Buffer buffer, long j3) {
+                    Sink foldedSink$okio;
+                    boolean zHasDeadline;
+                    i0.f(buffer, "source");
                     synchronized (Pipe.this.getBuffer$okio()) {
                         if (!(!Pipe.this.getSinkClosed$okio())) {
                             throw new IllegalStateException("closed".toString());
                         }
                         while (true) {
                             if (j3 <= 0) {
-                                sink = null;
+                                foldedSink$okio = null;
                                 break;
                             }
-                            sink = Pipe.this.getFoldedSink$okio();
-                            if (sink != null) {
+                            foldedSink$okio = Pipe.this.getFoldedSink$okio();
+                            if (foldedSink$okio != null) {
                                 break;
                             }
                             if (Pipe.this.getSourceClosed$okio()) {
@@ -189,58 +194,57 @@ public final class Pipe {
                             if (maxBufferSize$okio == 0) {
                                 this.timeout.waitUntilNotified(Pipe.this.getBuffer$okio());
                             } else {
-                                long min = Math.min(maxBufferSize$okio, j3);
-                                Pipe.this.getBuffer$okio().write(buffer, min);
-                                j3 -= min;
+                                long jMin = Math.min(maxBufferSize$okio, j3);
+                                Pipe.this.getBuffer$okio().write(buffer, jMin);
+                                j3 -= jMin;
                                 Buffer buffer$okio = Pipe.this.getBuffer$okio();
                                 if (buffer$okio == null) {
-                                    throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
+                                    throw new e1("null cannot be cast to non-null type java.lang.Object");
                                 }
                                 buffer$okio.notifyAll();
                             }
                         }
-                        C5715y1 c5715y1 = C5715y1.f20665a;
                     }
-                    if (sink != null) {
+                    if (foldedSink$okio != null) {
                         Pipe pipe = Pipe.this;
-                        Timeout timeout = sink.timeout();
+                        Timeout timeout = foldedSink$okio.timeout();
                         Timeout timeout2 = pipe.sink().timeout();
-                        long timeoutNanos = timeout.timeoutNanos();
+                        long jTimeoutNanos = timeout.timeoutNanos();
                         timeout.timeout(Timeout.Companion.minTimeout(timeout2.timeoutNanos(), timeout.timeoutNanos()), TimeUnit.NANOSECONDS);
                         if (!timeout.hasDeadline()) {
                             if (timeout2.hasDeadline()) {
                                 timeout.deadlineNanoTime(timeout2.deadlineNanoTime());
                             }
                             try {
-                                sink.write(buffer, j3);
-                                if (hasDeadline) {
+                                foldedSink$okio.write(buffer, j3);
+                                if (zHasDeadline) {
                                     return;
                                 } else {
                                     return;
                                 }
                             } finally {
-                                timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                                timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                                 if (timeout2.hasDeadline()) {
                                     timeout.clearDeadline();
                                 }
                             }
                         }
-                        long deadlineNanoTime = timeout.deadlineNanoTime();
+                        long jDeadlineNanoTime = timeout.deadlineNanoTime();
                         if (timeout2.hasDeadline()) {
                             timeout.deadlineNanoTime(Math.min(timeout.deadlineNanoTime(), timeout2.deadlineNanoTime()));
                         }
                         try {
-                            sink.write(buffer, j3);
+                            foldedSink$okio.write(buffer, j3);
                         } finally {
-                            timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                            timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                             if (timeout2.hasDeadline()) {
-                                timeout.deadlineNanoTime(deadlineNanoTime);
+                                timeout.deadlineNanoTime(jDeadlineNanoTime);
                             }
                         }
                     }
                 }
             };
-            this.source = new Source() { // from class: okio.Pipe$source$1
+            this.source = new Source() { // from class: okio.Pipe.source.1
                 private final Timeout timeout = new Timeout();
 
                 @Override // okio.Source, java.io.Closeable, java.lang.AutoCloseable
@@ -249,16 +253,16 @@ public final class Pipe {
                         Pipe.this.setSourceClosed$okio(true);
                         Buffer buffer$okio = Pipe.this.getBuffer$okio();
                         if (buffer$okio == null) {
-                            throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
+                            throw new e1("null cannot be cast to non-null type java.lang.Object");
                         }
                         buffer$okio.notifyAll();
-                        C5715y1 c5715y1 = C5715y1.f20665a;
+                        y1 y1Var = y1.a;
                     }
                 }
 
                 @Override // okio.Source
-                public long read(@InterfaceC5816d Buffer buffer, long j3) {
-                    C5544i0.m22546f(buffer, "sink");
+                public long read(@d Buffer buffer, long j3) {
+                    i0.f(buffer, "sink");
                     synchronized (Pipe.this.getBuffer$okio()) {
                         if (!(!Pipe.this.getSourceClosed$okio())) {
                             throw new IllegalStateException("closed".toString());
@@ -269,18 +273,18 @@ public final class Pipe {
                             }
                             this.timeout.waitUntilNotified(Pipe.this.getBuffer$okio());
                         }
-                        long read = Pipe.this.getBuffer$okio().read(buffer, j3);
+                        long j4 = Pipe.this.getBuffer$okio().read(buffer, j3);
                         Buffer buffer$okio = Pipe.this.getBuffer$okio();
                         if (buffer$okio == null) {
-                            throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
+                            throw new e1("null cannot be cast to non-null type java.lang.Object");
                         }
                         buffer$okio.notifyAll();
-                        return read;
+                        return j4;
                     }
                 }
 
                 @Override // okio.Source
-                @InterfaceC5816d
+                @d
                 public Timeout timeout() {
                     return this.timeout;
                 }
@@ -291,63 +295,63 @@ public final class Pipe {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public final void forward(@InterfaceC5816d Sink sink, InterfaceC5506l<? super Sink, C5715y1> interfaceC5506l) {
+    public final void forward(@d Sink sink, l<? super Sink, y1> lVar) {
         Timeout timeout = sink.timeout();
         Timeout timeout2 = sink().timeout();
-        long timeoutNanos = timeout.timeoutNanos();
+        long jTimeoutNanos = timeout.timeoutNanos();
         timeout.timeout(Timeout.Companion.minTimeout(timeout2.timeoutNanos(), timeout.timeoutNanos()), TimeUnit.NANOSECONDS);
         if (!timeout.hasDeadline()) {
             if (timeout2.hasDeadline()) {
                 timeout.deadlineNanoTime(timeout2.deadlineNanoTime());
             }
             try {
-                interfaceC5506l.invoke(sink);
+                lVar.invoke(sink);
                 return;
             } finally {
-                C5535f0.m22474b(1);
-                timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+                f0.b(1);
+                timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
                 if (timeout2.hasDeadline()) {
                     timeout.clearDeadline();
                 }
-                C5535f0.m22471a(1);
+                f0.a(1);
             }
         }
-        long deadlineNanoTime = timeout.deadlineNanoTime();
+        long jDeadlineNanoTime = timeout.deadlineNanoTime();
         if (timeout2.hasDeadline()) {
             timeout.deadlineNanoTime(Math.min(timeout.deadlineNanoTime(), timeout2.deadlineNanoTime()));
         }
         try {
-            interfaceC5506l.invoke(sink);
+            lVar.invoke(sink);
         } finally {
-            C5535f0.m22474b(1);
-            timeout.timeout(timeoutNanos, TimeUnit.NANOSECONDS);
+            f0.b(1);
+            timeout.timeout(jTimeoutNanos, TimeUnit.NANOSECONDS);
             if (timeout2.hasDeadline()) {
-                timeout.deadlineNanoTime(deadlineNanoTime);
+                timeout.deadlineNanoTime(jDeadlineNanoTime);
             }
-            C5535f0.m22471a(1);
+            f0.a(1);
         }
     }
 
-    @InterfaceC5481e(name = "-deprecated_sink")
-    @InterfaceC5216c(level = EnumC5220d.ERROR, message = "moved to val", replaceWith = @InterfaceC5467o0(expression = "sink", imports = {}))
-    @InterfaceC5816d
-    /* renamed from: -deprecated_sink, reason: not valid java name */
-    public final Sink m26884deprecated_sink() {
+    @c(level = i.d.ERROR, message = "moved to val", replaceWith = @o0(expression = "sink", imports = {}))
+    @i.q2.e(name = "-deprecated_sink")
+    @d
+    /* JADX INFO: renamed from: -deprecated_sink, reason: not valid java name */
+    public final Sink m805deprecated_sink() {
         return this.sink;
     }
 
-    @InterfaceC5481e(name = "-deprecated_source")
-    @InterfaceC5216c(level = EnumC5220d.ERROR, message = "moved to val", replaceWith = @InterfaceC5467o0(expression = "source", imports = {}))
-    @InterfaceC5816d
-    /* renamed from: -deprecated_source, reason: not valid java name */
-    public final Source m26885deprecated_source() {
+    @c(level = i.d.ERROR, message = "moved to val", replaceWith = @o0(expression = "source", imports = {}))
+    @i.q2.e(name = "-deprecated_source")
+    @d
+    /* JADX INFO: renamed from: -deprecated_source, reason: not valid java name */
+    public final Source m806deprecated_source() {
         return this.source;
     }
 
-    public final void fold(@InterfaceC5816d Sink sink) throws IOException {
+    public final void fold(@d Sink sink) throws IOException {
         boolean z;
         Buffer buffer;
-        C5544i0.m22546f(sink, "sink");
+        i0.f(sink, "sink");
         while (true) {
             synchronized (this.buffer) {
                 if (!(this.foldedSink == null)) {
@@ -363,10 +367,10 @@ public final class Pipe {
                 buffer.write(this.buffer, this.buffer.size());
                 Buffer buffer2 = this.buffer;
                 if (buffer2 == null) {
-                    throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
+                    throw new e1("null cannot be cast to non-null type java.lang.Object");
                 }
                 buffer2.notifyAll();
-                C5715y1 c5715y1 = C5715y1.f20665a;
+                y1 y1Var = y1.a;
             }
             try {
                 sink.write(buffer, buffer.size());
@@ -380,22 +384,22 @@ public final class Pipe {
                     this.sourceClosed = true;
                     Buffer buffer3 = this.buffer;
                     if (buffer3 == null) {
-                        throw new C5226e1("null cannot be cast to non-null type java.lang.Object");
+                        throw new e1("null cannot be cast to non-null type java.lang.Object");
                     }
                     buffer3.notifyAll();
-                    C5715y1 c5715y12 = C5715y1.f20665a;
+                    y1 y1Var2 = y1.a;
                     throw th;
                 }
             }
         }
     }
 
-    @InterfaceC5816d
+    @d
     public final Buffer getBuffer$okio() {
         return this.buffer;
     }
 
-    @InterfaceC5817e
+    @e
     public final Sink getFoldedSink$okio() {
         return this.foldedSink;
     }
@@ -412,7 +416,7 @@ public final class Pipe {
         return this.sourceClosed;
     }
 
-    public final void setFoldedSink$okio(@InterfaceC5817e Sink sink) {
+    public final void setFoldedSink$okio(@e Sink sink) {
         this.foldedSink = sink;
     }
 
@@ -424,14 +428,14 @@ public final class Pipe {
         this.sourceClosed = z;
     }
 
-    @InterfaceC5481e(name = "sink")
-    @InterfaceC5816d
+    @i.q2.e(name = "sink")
+    @d
     public final Sink sink() {
         return this.sink;
     }
 
-    @InterfaceC5481e(name = "source")
-    @InterfaceC5816d
+    @i.q2.e(name = "source")
+    @d
     public final Source source() {
         return this.source;
     }

@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class AmdcRuntimeInfo {
     private static final String TAG = "awcn.AmdcRuntimeInfo";
     private static volatile int amdcLimitLevel = 0;
@@ -35,12 +35,10 @@ public class AmdcRuntimeInfo {
     }
 
     public static synchronized Map<String, String> getParams() {
-        synchronized (AmdcRuntimeInfo.class) {
-            if (params == null) {
-                return Collections.EMPTY_MAP;
-            }
-            return new HashMap(params);
+        if (params == null) {
+            return Collections.EMPTY_MAP;
         }
+        return new HashMap(params);
     }
 
     public static IAmdcSign getSign() {
@@ -66,12 +64,10 @@ public class AmdcRuntimeInfo {
     }
 
     public static synchronized void setParam(String str, String str2) {
-        synchronized (AmdcRuntimeInfo.class) {
-            if (params == null) {
-                params = new HashMap();
-            }
-            params.put(str, str2);
+        if (params == null) {
+            params = new HashMap();
         }
+        params.put(str, str2);
     }
 
     public static void setSign(IAmdcSign iAmdcSign) {
@@ -79,12 +75,12 @@ public class AmdcRuntimeInfo {
     }
 
     public static void updateAmdcLimit(int i2, int i3) {
-        ALog.m716i(TAG, "set amdc limit", null, "level", Integer.valueOf(i2), "time", Integer.valueOf(i3));
+        ALog.i(TAG, "set amdc limit", null, "level", Integer.valueOf(i2), "time", Integer.valueOf(i3));
         if (i2 < 0 || i2 > 3) {
             return;
         }
         amdcLimitLevel = i2;
-        amdcLimitTime = System.currentTimeMillis() + (i3 * 1000);
+        amdcLimitTime = System.currentTimeMillis() + (((long) i3) * 1000);
     }
 
     public static void updateLocation(double d2, double d3) {

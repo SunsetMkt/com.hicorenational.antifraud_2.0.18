@@ -1,6 +1,6 @@
 package com.vivo.push;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class PushClientConstants {
     public static final String COM_ANDROID_SYSTEMUI = "com.android.systemui";
     public static final String NOTIFICATION_PERMISSION_ACTION = "com.android.notification.permission.action.FRONT";

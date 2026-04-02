@@ -1,45 +1,43 @@
 package com.umeng.socialize;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeException extends RuntimeException {
 
-    /* renamed from: b */
-    private static final long f13445b = 1;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final long f8147b = 1;
+    protected int a;
 
-    /* renamed from: a */
-    protected int f13446a;
-
-    /* renamed from: c */
-    private String f13447c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f8148c;
 
     public SocializeException(int i2, String str) {
         super(str);
-        this.f13446a = 5000;
-        this.f13447c = "";
-        this.f13446a = i2;
-        this.f13447c = str;
+        this.a = 5000;
+        this.f8148c = "";
+        this.a = i2;
+        this.f8148c = str;
     }
 
     public int getErrorCode() {
-        return this.f13446a;
+        return this.a;
     }
 
     @Override // java.lang.Throwable
     public String getMessage() {
-        return this.f13447c;
+        return this.f8148c;
     }
 
     public SocializeException(String str, Throwable th) {
         super(str, th);
-        this.f13446a = 5000;
-        this.f13447c = "";
-        this.f13447c = str;
+        this.a = 5000;
+        this.f8148c = "";
+        this.f8148c = str;
     }
 
     public SocializeException(String str) {
         super(str);
-        this.f13446a = 5000;
-        this.f13447c = "";
-        this.f13447c = str;
+        this.a = 5000;
+        this.f8148c = "";
+        this.f8148c = str;
     }
 }

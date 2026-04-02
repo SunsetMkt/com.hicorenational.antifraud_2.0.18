@@ -6,7 +6,7 @@ import com.umeng.socialize.Config;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.utils.ContextUtil;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMLog {
     private static boolean isAuth = false;
     private static boolean isShare = false;
@@ -37,10 +37,10 @@ public class UMLog {
         if (ContextUtil.getContext() == null || isAuth) {
             return;
         }
-        SharedPreferences.Editor edit = ContextUtil.getContext().getSharedPreferences(SocializeConstants.SOCIAL_PREFERENCE_NAME, 0).edit();
-        edit.putBoolean("auth", true);
-        edit.putBoolean("isjump", Config.isJumptoAppStore);
-        edit.commit();
+        SharedPreferences.Editor editorEdit = ContextUtil.getContext().getSharedPreferences(SocializeConstants.SOCIAL_PREFERENCE_NAME, 0).edit();
+        editorEdit.putBoolean("auth", true);
+        editorEdit.putBoolean("isjump", Config.isJumptoAppStore);
+        editorEdit.commit();
         isShare = true;
     }
 
@@ -48,10 +48,10 @@ public class UMLog {
         if (ContextUtil.getContext() == null || isShare) {
             return;
         }
-        SharedPreferences.Editor edit = ContextUtil.getContext().getSharedPreferences(SocializeConstants.SOCIAL_PREFERENCE_NAME, 0).edit();
-        edit.putBoolean("share", true);
-        edit.putBoolean("isjump", Config.isJumptoAppStore);
-        edit.commit();
+        SharedPreferences.Editor editorEdit = ContextUtil.getContext().getSharedPreferences(SocializeConstants.SOCIAL_PREFERENCE_NAME, 0).edit();
+        editorEdit.putBoolean("share", true);
+        editorEdit.putBoolean("isjump", Config.isJumptoAppStore);
+        editorEdit.commit();
         isShare = true;
     }
 

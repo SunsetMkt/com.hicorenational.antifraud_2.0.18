@@ -2,7 +2,7 @@ package com.luck.picture.lib.app;
 
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IApp {
     Context getAppContext();
 }

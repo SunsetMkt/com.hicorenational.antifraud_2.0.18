@@ -2,7 +2,7 @@ package com.yalantis.ucrop.model;
 
 import android.graphics.Bitmap;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CropParameters {
     private Bitmap.CompressFormat mCompressFormat;
     private int mCompressQuality;

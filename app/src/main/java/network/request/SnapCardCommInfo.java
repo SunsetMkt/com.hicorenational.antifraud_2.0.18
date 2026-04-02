@@ -6,7 +6,7 @@ import java.util.List;
 import network.BaseBean;
 import network.ReportCallInfo;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SnapCardCommInfo extends BaseBean {
     private SnapCardSuspectBean caseInfo;
     private List<SocialTradBean> paymentReportDetails;

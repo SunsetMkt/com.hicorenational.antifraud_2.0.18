@@ -1,6 +1,6 @@
 package com.umeng.commonsdk.statistics;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMErrorCode {
     public static final int E_UM_BE_CREATE_FAILED = 111;
     public static final int E_UM_BE_DEFLATE_FAILED = 112;

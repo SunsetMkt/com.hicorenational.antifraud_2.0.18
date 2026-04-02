@@ -7,8 +7,8 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
-/* loaded from: classes.dex */
 final class FragmentState implements Parcelable {
     public static final Parcelable.Creator<FragmentState> CREATOR = new Parcelable.Creator<FragmentState>() { // from class: androidx.fragment.app.FragmentState.1
         /* JADX WARN: Can't rename method to resolve collision */

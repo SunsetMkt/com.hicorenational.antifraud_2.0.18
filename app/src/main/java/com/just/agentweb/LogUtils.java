@@ -1,27 +1,24 @@
 package com.just.agentweb;
 
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
+import d.c.a.b.a.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class LogUtils {
     private static final String PREFIX = "agentweb-";
 
     LogUtils() {
     }
 
-    /* renamed from: e */
-    static void m8081e(String str, String str2) {
+    static void e(String str, String str2) {
         if (isDebug()) {
             PREFIX.concat(str);
         }
     }
 
-    /* renamed from: e */
-    static void m8082e(String str, String str2, Throwable th) {
+    static void e(String str, String str2, Throwable th) {
     }
 
-    /* renamed from: i */
-    static void m8083i(String str, String str2) {
+    static void i(String str, String str2) {
         if (isDebug()) {
             PREFIX.concat(str);
         }
@@ -36,11 +33,10 @@ class LogUtils {
             PREFIX.concat(str);
             return;
         }
-        throw new RuntimeException(PREFIX.concat(str) + AbstractC1191a.f2568g + str2, th);
+        throw new RuntimeException(PREFIX.concat(str) + a.f10074g + str2, th);
     }
 
-    /* renamed from: v */
-    static void m8084v(String str, String str2) {
+    static void v(String str, String str2) {
         if (isDebug()) {
             PREFIX.concat(str);
         }

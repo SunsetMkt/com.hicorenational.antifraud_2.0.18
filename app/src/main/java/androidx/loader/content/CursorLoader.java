@@ -13,7 +13,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CursorLoader extends AsyncTaskLoader<Cursor> {
     CancellationSignal mCancellationSignal;
     Cursor mCursor;
@@ -150,7 +150,7 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
         Cursor cursor2 = this.mCursor;
         this.mCursor = cursor;
         if (isStarted()) {
-            super.deliverResult((CursorLoader) cursor);
+            super.deliverResult(cursor);
         }
         if (cursor2 == null || cursor2 == cursor || cursor2.isClosed()) {
             return;
@@ -168,20 +168,20 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
             this.mCancellationSignal = new CancellationSignal();
         }
         try {
-            Cursor query = ContentResolverCompat.query(getContext().getContentResolver(), this.mUri, this.mProjection, this.mSelection, this.mSelectionArgs, this.mSortOrder, this.mCancellationSignal);
-            if (query != null) {
+            Cursor cursorQuery = ContentResolverCompat.query(getContext().getContentResolver(), this.mUri, this.mProjection, this.mSelection, this.mSelectionArgs, this.mSortOrder, this.mCancellationSignal);
+            if (cursorQuery != null) {
                 try {
-                    query.getCount();
-                    query.registerContentObserver(this.mObserver);
+                    cursorQuery.getCount();
+                    cursorQuery.registerContentObserver(this.mObserver);
                 } catch (RuntimeException e2) {
-                    query.close();
+                    cursorQuery.close();
                     throw e2;
                 }
             }
             synchronized (this) {
                 this.mCancellationSignal = null;
             }
-            return query;
+            return cursorQuery;
         } catch (Throwable th) {
             synchronized (this) {
                 this.mCancellationSignal = null;

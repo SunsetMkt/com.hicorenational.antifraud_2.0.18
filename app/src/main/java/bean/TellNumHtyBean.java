@@ -2,15 +2,13 @@ package bean;
 
 import network.account.APIresult;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TellNumHtyBean extends APIresult {
     private String carrieroperator;
     private int caseCategory;
     private String caseCategoryText;
     private String createTime;
-
-    /* renamed from: id */
-    private String f1632id;
+    private String id;
     private String number;
     private String submitTime;
     private String submitterID;
@@ -33,7 +31,7 @@ public class TellNumHtyBean extends APIresult {
     }
 
     public String getId() {
-        return this.f1632id;
+        return this.id;
     }
 
     public String getNumber() {
@@ -69,7 +67,7 @@ public class TellNumHtyBean extends APIresult {
     }
 
     public void setId(String str) {
-        this.f1632id = str;
+        this.id = str;
     }
 
     public void setNumber(String str) {

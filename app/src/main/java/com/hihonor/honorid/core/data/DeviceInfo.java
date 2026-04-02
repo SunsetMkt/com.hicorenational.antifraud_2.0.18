@@ -3,81 +3,72 @@ package com.hihonor.honorid.core.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import com.hihonor.honorid.p162d.p163a.C2167d;
-import com.hihonor.honorid.p165f.C2172b;
+import com.hihonor.honorid.d.a.d;
+import com.hihonor.honorid.f.b;
 import org.xmlpull.v1.XmlPullParser;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DeviceInfo implements Parcelable {
-    public static final Parcelable.Creator<DeviceInfo> CREATOR = new C2155a();
+    public static final Parcelable.Creator<DeviceInfo> CREATOR = new a();
 
-    /* renamed from: h */
-    public static final String f6509h = "deviceType";
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    public static final String f4114h = "deviceType";
 
-    /* renamed from: i */
-    public static final String f6510i = "deviceID";
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    public static final String f4115i = "deviceID";
 
-    /* renamed from: j */
-    public static final String f6511j = "uuid";
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    public static final String f4116j = "uuid";
 
-    /* renamed from: k */
-    public static final String f6512k = "terminalType";
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    public static final String f4117k = "terminalType";
 
-    /* renamed from: l */
-    public static final String f6513l = "deviceAliasName";
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    public static final String f4118l = "deviceAliasName";
 
-    /* renamed from: m */
-    public static final String f6514m = "loginTime";
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    public static final String f4119m = "loginTime";
 
-    /* renamed from: n */
-    public static final String f6515n = "logoutTime";
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    public static final String f4120n = "logoutTime";
+    public static final String o = "frequentlyUsed";
+    public static final String p = "deviceInfo";
+    public static final String q = "deviceIDList";
+    private String a;
 
-    /* renamed from: o */
-    public static final String f6516o = "frequentlyUsed";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String f4121b;
 
-    /* renamed from: p */
-    public static final String f6517p = "deviceInfo";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4122c;
 
-    /* renamed from: q */
-    public static final String f6518q = "deviceIDList";
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String f4123d;
 
-    /* renamed from: a */
-    private String f6519a;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f4124e;
 
-    /* renamed from: b */
-    private String f6520b;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private String f4125f;
 
-    /* renamed from: c */
-    private String f6521c;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private String f4126g = "";
 
-    /* renamed from: d */
-    private String f6522d;
-
-    /* renamed from: e */
-    private String f6523e;
-
-    /* renamed from: f */
-    private String f6524f;
-
-    /* renamed from: g */
-    private String f6525g = "";
-
-    /* renamed from: com.hihonor.honorid.core.data.DeviceInfo$a */
-    class C2155a implements Parcelable.Creator<DeviceInfo> {
-        C2155a() {
+    class a implements Parcelable.Creator<DeviceInfo> {
+        a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public DeviceInfo createFromParcel(Parcel parcel) {
             DeviceInfo deviceInfo = new DeviceInfo();
-            deviceInfo.f6520b = parcel.readString();
-            deviceInfo.f6522d = parcel.readString();
-            deviceInfo.f6519a = parcel.readString();
-            deviceInfo.f6521c = parcel.readString();
-            deviceInfo.f6523e = parcel.readString();
-            deviceInfo.f6524f = parcel.readString();
-            deviceInfo.f6525g = parcel.readString();
+            deviceInfo.f4121b = parcel.readString();
+            deviceInfo.f4123d = parcel.readString();
+            deviceInfo.a = parcel.readString();
+            deviceInfo.f4122c = parcel.readString();
+            deviceInfo.f4124e = parcel.readString();
+            deviceInfo.f4125f = parcel.readString();
+            deviceInfo.f4126g = parcel.readString();
             return deviceInfo;
         }
 
@@ -89,9 +80,9 @@ public class DeviceInfo implements Parcelable {
     }
 
     public DeviceInfo(String str, String str2, String str3) {
-        this.f6519a = str;
-        this.f6520b = str2;
-        this.f6521c = str3;
+        this.a = str;
+        this.f4121b = str2;
+        this.f4122c = str3;
     }
 
     @Override // android.os.Parcelable
@@ -99,140 +90,123 @@ public class DeviceInfo implements Parcelable {
         return 0;
     }
 
-    /* renamed from: h */
-    public boolean m6129h() {
-        return TextUtils.isEmpty(this.f6524f) && !TextUtils.isEmpty(this.f6523e);
+    public boolean h() {
+        return TextUtils.isEmpty(this.f4125f) && !TextUtils.isEmpty(this.f4124e);
     }
 
     public String toString() {
-        return "{'mDeviceAliasName':" + C2167d.m6309a(this.f6522d) + ",'mDeviceId':" + C2167d.m6309a(this.f6520b) + ",'mTerminalType':" + this.f6521c + ",'mDeviceType':" + this.f6519a + ",'mLoginTime':" + this.f6523e + ",'mLogoutTime':" + this.f6524f + ",'mFrequentlyUsed':" + this.f6525g + "}";
+        return "{'mDeviceAliasName':" + d.a(this.f4123d) + ",'mDeviceId':" + d.a(this.f4121b) + ",'mTerminalType':" + this.f4122c + ",'mDeviceType':" + this.a + ",'mLoginTime':" + this.f4124e + ",'mLogoutTime':" + this.f4125f + ",'mFrequentlyUsed':" + this.f4126g + "}";
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6520b);
-        parcel.writeString(this.f6522d);
-        parcel.writeString(this.f6519a);
-        parcel.writeString(this.f6521c);
-        parcel.writeString(this.f6523e);
-        parcel.writeString(this.f6524f);
-        parcel.writeString(this.f6525g);
+        parcel.writeString(this.f4121b);
+        parcel.writeString(this.f4123d);
+        parcel.writeString(this.a);
+        parcel.writeString(this.f4122c);
+        parcel.writeString(this.f4124e);
+        parcel.writeString(this.f4125f);
+        parcel.writeString(this.f4126g);
     }
 
-    /* renamed from: a */
-    public String m6114a() {
-        return this.f6522d;
+    public String a() {
+        return this.f4123d;
     }
 
-    /* renamed from: b */
-    public String m6117b() {
-        return this.f6520b;
+    public String b() {
+        return this.f4121b;
     }
 
-    /* renamed from: c */
-    public String m6119c() {
-        return this.f6519a;
+    public String c() {
+        return this.a;
     }
 
-    /* renamed from: d */
-    public String m6121d() {
-        return this.f6521c;
+    public String d() {
+        return this.f4122c;
     }
 
-    /* renamed from: e */
-    public String m6123e() {
-        return this.f6525g;
+    public String e() {
+        return this.f4126g;
     }
 
-    /* renamed from: f */
-    public String m6125f() {
-        return this.f6523e;
+    public String f() {
+        return this.f4124e;
     }
 
-    /* renamed from: g */
-    public String m6127g() {
-        return this.f6524f;
+    public String g() {
+        return this.f4125f;
     }
 
-    /* renamed from: a */
-    public static void m6107a(XmlPullParser xmlPullParser, DeviceInfo deviceInfo, String str) {
+    public static void a(XmlPullParser xmlPullParser, DeviceInfo deviceInfo, String str) {
         if (xmlPullParser == null || deviceInfo == null || str == null) {
             return;
         }
-        if (f6510i.equals(str)) {
-            deviceInfo.m6118b(xmlPullParser.nextText());
+        if (f4115i.equals(str)) {
+            deviceInfo.b(xmlPullParser.nextText());
             return;
         }
         if ("deviceType".equals(str)) {
-            deviceInfo.m6120c(xmlPullParser.nextText());
+            deviceInfo.c(xmlPullParser.nextText());
             return;
         }
         if ("terminalType".equals(str)) {
-            deviceInfo.m6122d(xmlPullParser.nextText());
+            deviceInfo.d(xmlPullParser.nextText());
             return;
         }
-        if (f6513l.equals(str)) {
-            deviceInfo.m6115a(xmlPullParser.nextText());
+        if (f4118l.equals(str)) {
+            deviceInfo.a(xmlPullParser.nextText());
             return;
         }
-        if (f6514m.equals(str)) {
-            deviceInfo.m6126f(xmlPullParser.nextText());
-        } else if (f6515n.equals(str)) {
-            deviceInfo.m6128g(xmlPullParser.nextText());
-        } else if (f6516o.equals(str)) {
-            deviceInfo.m6124e(xmlPullParser.nextText());
+        if (f4119m.equals(str)) {
+            deviceInfo.f(xmlPullParser.nextText());
+        } else if (f4120n.equals(str)) {
+            deviceInfo.g(xmlPullParser.nextText());
+        } else if (o.equals(str)) {
+            deviceInfo.e(xmlPullParser.nextText());
         }
     }
 
-    /* renamed from: b */
-    public void m6118b(String str) {
-        this.f6520b = str;
+    public void b(String str) {
+        this.f4121b = str;
     }
 
-    /* renamed from: c */
-    public void m6120c(String str) {
-        this.f6519a = str;
+    public void c(String str) {
+        this.a = str;
     }
 
-    /* renamed from: d */
-    public void m6122d(String str) {
-        this.f6521c = str;
+    public void d(String str) {
+        this.f4122c = str;
     }
 
-    /* renamed from: e */
-    public void m6124e(String str) {
-        this.f6525g = str;
+    public void e(String str) {
+        this.f4126g = str;
     }
 
-    /* renamed from: f */
-    public void m6126f(String str) {
-        this.f6523e = str;
+    public void f(String str) {
+        this.f4124e = str;
     }
 
-    /* renamed from: g */
-    public void m6128g(String str) {
-        this.f6524f = str;
+    public void g(String str) {
+        this.f4125f = str;
     }
 
     public DeviceInfo() {
     }
 
-    /* renamed from: a */
-    public boolean m6116a(Object obj) {
+    public boolean a(Object obj) {
         if (obj != null && (obj instanceof DeviceInfo)) {
             if (obj == this) {
                 return true;
             }
             DeviceInfo deviceInfo = (DeviceInfo) obj;
-            if (C2172b.m6329a(this.f6522d, deviceInfo.f6522d) && C2172b.m6329a(this.f6520b, deviceInfo.f6520b) && C2172b.m6329a(this.f6521c, deviceInfo.f6521c) && C2172b.m6329a(this.f6519a, deviceInfo.f6519a)) {
+            if (b.a(this.f4123d, deviceInfo.f4123d) && b.a(this.f4121b, deviceInfo.f4121b) && b.a(this.f4122c, deviceInfo.f4122c) && b.a(this.a, deviceInfo.a)) {
                 return true;
             }
         }
         return false;
     }
 
-    /* renamed from: a */
-    public void m6115a(String str) {
-        this.f6522d = str;
+    public void a(String str) {
+        this.f4123d = str;
     }
 }

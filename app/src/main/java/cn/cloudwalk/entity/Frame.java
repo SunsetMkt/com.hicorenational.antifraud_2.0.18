@@ -1,6 +1,6 @@
 package cn.cloudwalk.entity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Frame {
     private byte[] alignData;
     private int mode;

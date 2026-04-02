@@ -3,7 +3,7 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IDVarfyBean extends BaseBean {
     public List<Rows> rows;
     public int total;
@@ -11,9 +11,7 @@ public class IDVarfyBean extends BaseBean {
 
     public static class Rows extends BaseBean {
         private String deadline;
-
-        /* renamed from: id */
-        private String f1600id;
+        private String id;
         private String intivedMobile;
         private String intivedPhotoFileUrl;
         private String launchTime;
@@ -25,7 +23,7 @@ public class IDVarfyBean extends BaseBean {
         }
 
         public String getId() {
-            return this.f1600id;
+            return this.id;
         }
 
         public String getIntivedMobile() {
@@ -53,7 +51,7 @@ public class IDVarfyBean extends BaseBean {
         }
 
         public void setId(String str) {
-            this.f1600id = str;
+            this.id = str;
         }
 
         public void setIntivedMobile(String str) {

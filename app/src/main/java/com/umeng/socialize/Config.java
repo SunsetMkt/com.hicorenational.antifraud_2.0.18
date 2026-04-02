@@ -2,7 +2,7 @@ package com.umeng.socialize;
 
 import com.tencent.bugly.BuglyStrategy;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class Config {
     public static String EntityKey = "-1";
     public static String EntityName = "share";
@@ -31,37 +31,35 @@ public class Config {
 
     @Deprecated
     public static int KaKaoLoginType = 0;
-    public static String MORE_TITLE = "分享";
+    public static String MORE_TITLE = "\u5206\u4eab";
 
     @Deprecated
     public static int LinkedInProfileScope = 0;
 
     @Deprecated
     public static int LinkedInShareCode = 0;
-    public static int connectionTimeOut = BuglyStrategy.C3070a.MAX_USERDATA_VALUE_LENGTH;
-    public static int readSocketTimeOut = BuglyStrategy.C3070a.MAX_USERDATA_VALUE_LENGTH;
+    public static int connectionTimeOut = BuglyStrategy.a.MAX_USERDATA_VALUE_LENGTH;
+    public static int readSocketTimeOut = BuglyStrategy.a.MAX_USERDATA_VALUE_LENGTH;
 
     @Deprecated
     public static boolean isNeedAuth = false;
     public static boolean isJumptoAppStore = false;
     public static boolean isFacebookRead = false;
-
-    /* renamed from: a */
-    private static int f13425a = 0;
+    private static int a = 0;
 
     public static int getMINITYPE() {
-        return f13425a;
+        return a;
     }
 
     public static void setMini() {
-        f13425a = 0;
+        a = 0;
     }
 
     public static void setMiniPreView() {
-        f13425a = 2;
+        a = 2;
     }
 
     public static void setMiniTest() {
-        f13425a = 1;
+        a = 1;
     }
 }

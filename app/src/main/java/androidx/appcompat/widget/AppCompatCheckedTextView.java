@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.TextViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatCheckedTextView extends CheckedTextView {
     private static final int[] TINT_ATTRS = {R.attr.checkMark};
     private final AppCompatTextHelper mTextHelper;
@@ -65,8 +65,8 @@ public class AppCompatCheckedTextView extends CheckedTextView {
         this.mTextHelper = new AppCompatTextHelper(this);
         this.mTextHelper.loadFromAttributes(attributeSet, i2);
         this.mTextHelper.applyCompoundDrawablesTints();
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(getContext(), attributeSet, TINT_ATTRS, i2, 0);
-        setCheckMarkDrawable(obtainStyledAttributes.getDrawable(0));
-        obtainStyledAttributes.recycle();
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(getContext(), attributeSet, TINT_ATTRS, i2, 0);
+        setCheckMarkDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(0));
+        tintTypedArrayObtainStyledAttributes.recycle();
     }
 }

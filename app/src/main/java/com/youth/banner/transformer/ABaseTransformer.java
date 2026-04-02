@@ -3,7 +3,7 @@ package com.youth.banner.transformer;
 import android.view.View;
 import androidx.viewpager.widget.ViewPager;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public abstract class ABaseTransformer implements ViewPager.PageTransformer {
     protected static final float min(float f2, float f3) {
         return f2 < f3 ? f3 : f2;

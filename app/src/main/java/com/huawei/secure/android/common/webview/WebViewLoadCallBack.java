@@ -1,6 +1,6 @@
 package com.huawei.secure.android.common.webview;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface WebViewLoadCallBack {
 
     public enum ErrorCode {

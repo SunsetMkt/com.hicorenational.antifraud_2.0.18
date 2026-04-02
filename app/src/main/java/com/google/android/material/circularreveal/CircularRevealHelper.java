@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.internal.view.SupportMenu;
 import androidx.core.view.ViewCompat;
@@ -20,7 +21,7 @@ import com.google.android.material.math.MathUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CircularRevealHelper {
     public static final int BITMAP_SHADER = 0;
     public static final int CLIP_PATH = 1;
@@ -37,12 +38,19 @@ public class CircularRevealHelper {
 
     @Nullable
     private CircularRevealWidget.RevealInfo revealInfo;
+
+    @NonNull
     private final Paint revealPaint;
+
+    @NonNull
     private final Path revealPath;
+
+    @NonNull
     private final Paint scrimPaint;
+
+    @NonNull
     private final View view;
 
-    /* JADX INFO: Access modifiers changed from: package-private */
     public interface Delegate {
         void actualDraw(Canvas canvas);
 
@@ -75,14 +83,14 @@ public class CircularRevealHelper {
         this.scrimPaint.setColor(0);
     }
 
-    private void drawDebugCircle(Canvas canvas, int i2, float f2) {
+    private void drawDebugCircle(@NonNull Canvas canvas, int i2, float f2) {
         this.debugPaint.setColor(i2);
         this.debugPaint.setStrokeWidth(f2);
         CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
         canvas.drawCircle(revealInfo.centerX, revealInfo.centerY, revealInfo.radius - (f2 / 2.0f), this.debugPaint);
     }
 
-    private void drawDebugMode(Canvas canvas) {
+    private void drawDebugMode(@NonNull Canvas canvas) {
         this.delegate.actualDraw(canvas);
         if (shouldDrawScrim()) {
             CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
@@ -95,18 +103,18 @@ public class CircularRevealHelper {
         drawOverlayDrawable(canvas);
     }
 
-    private void drawOverlayDrawable(Canvas canvas) {
+    private void drawOverlayDrawable(@NonNull Canvas canvas) {
         if (shouldDrawOverlayDrawable()) {
             Rect bounds = this.overlayDrawable.getBounds();
-            float width = this.revealInfo.centerX - (bounds.width() / 2.0f);
-            float height = this.revealInfo.centerY - (bounds.height() / 2.0f);
-            canvas.translate(width, height);
+            float fWidth = this.revealInfo.centerX - (bounds.width() / 2.0f);
+            float fHeight = this.revealInfo.centerY - (bounds.height() / 2.0f);
+            canvas.translate(fWidth, fHeight);
             this.overlayDrawable.draw(canvas);
-            canvas.translate(-width, -height);
+            canvas.translate(-fWidth, -fHeight);
         }
     }
 
-    private float getDistanceToFurthestCorner(CircularRevealWidget.RevealInfo revealInfo) {
+    private float getDistanceToFurthestCorner(@NonNull CircularRevealWidget.RevealInfo revealInfo) {
         return MathUtils.distanceToFurthestCorner(revealInfo.centerX, revealInfo.centerY, 0.0f, 0.0f, this.view.getWidth(), this.view.getHeight());
     }
 
@@ -164,7 +172,7 @@ public class CircularRevealHelper {
         }
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         if (shouldDrawCircularReveal()) {
             int i2 = STRATEGY;
             if (i2 == 0) {
@@ -175,13 +183,13 @@ public class CircularRevealHelper {
                     canvas.drawCircle(revealInfo2.centerX, revealInfo2.centerY, revealInfo2.radius, this.scrimPaint);
                 }
             } else if (i2 == 1) {
-                int save = canvas.save();
+                int iSave = canvas.save();
                 canvas.clipPath(this.revealPath);
                 this.delegate.actualDraw(canvas);
                 if (shouldDrawScrim()) {
                     canvas.drawRect(0.0f, 0.0f, this.view.getWidth(), this.view.getHeight(), this.scrimPaint);
                 }
-                canvas.restoreToCount(save);
+                canvas.restoreToCount(iSave);
             } else {
                 if (i2 != 2) {
                     throw new IllegalStateException("Unsupported strategy " + STRATEGY);

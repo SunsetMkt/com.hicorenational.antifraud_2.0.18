@@ -5,14 +5,13 @@ import android.util.SparseArray;
 import android.view.View;
 import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.core.app.NotificationCompat;
 import com.xiaomi.mipush.sdk.Constants;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class TimeCycleSplineSet {
     private static final int CURVE_OFFSET = 2;
     private static final int CURVE_PERIOD = 1;
@@ -71,13 +70,13 @@ public abstract class TimeCycleSplineSet {
                     this.last_cycle = 0.0f;
                 }
             }
-            this.last_cycle = (float) ((this.last_cycle + ((j3 * 1.0E-9d) * f3)) % 1.0d);
+            this.last_cycle = (float) ((((double) this.last_cycle) + ((j3 * 1.0E-9d) * ((double) f3))) % 1.0d);
             this.last_time = j2;
-            float calcWave = calcWave(this.last_cycle);
+            float fCalcWave = calcWave(this.last_cycle);
             this.mContinue = false;
             for (int i2 = 0; i2 < this.mCache.length; i2++) {
                 this.mContinue |= ((double) this.mTempValues[i2]) != 0.0d;
-                this.mCache[i2] = (this.mTempValues[i2] * calcWave) + f4;
+                this.mCache[i2] = (this.mTempValues[i2] * fCalcWave) + f4;
             }
             this.mConstraintAttributeList.valueAt(0).setInterpolatedValue(view, this.mCache);
             if (f3 != 0.0f) {
@@ -89,18 +88,18 @@ public abstract class TimeCycleSplineSet {
         @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
         public void setup(int i2) {
             int size = this.mConstraintAttributeList.size();
-            int noOfInterpValues = this.mConstraintAttributeList.valueAt(0).noOfInterpValues();
+            int iNoOfInterpValues = this.mConstraintAttributeList.valueAt(0).noOfInterpValues();
             double[] dArr = new double[size];
-            int i3 = noOfInterpValues + 2;
+            int i3 = iNoOfInterpValues + 2;
             this.mTempValues = new float[i3];
-            this.mCache = new float[noOfInterpValues];
+            this.mCache = new float[iNoOfInterpValues];
             double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, i3);
             for (int i4 = 0; i4 < size; i4++) {
-                int keyAt = this.mConstraintAttributeList.keyAt(i4);
-                ConstraintAttribute valueAt = this.mConstraintAttributeList.valueAt(i4);
-                float[] valueAt2 = this.mWaveProperties.valueAt(i4);
-                dArr[i4] = keyAt * 0.01d;
-                valueAt.getValuesToInterpolate(this.mTempValues);
+                int iKeyAt = this.mConstraintAttributeList.keyAt(i4);
+                ConstraintAttribute constraintAttributeValueAt = this.mConstraintAttributeList.valueAt(i4);
+                float[] fArrValueAt = this.mWaveProperties.valueAt(i4);
+                dArr[i4] = ((double) iKeyAt) * 0.01d;
+                constraintAttributeValueAt.getValuesToInterpolate(this.mTempValues);
                 int i5 = 0;
                 while (true) {
                     if (i5 < this.mTempValues.length) {
@@ -108,8 +107,8 @@ public abstract class TimeCycleSplineSet {
                         i5++;
                     }
                 }
-                dArr2[i4][noOfInterpValues] = valueAt2[0];
-                dArr2[i4][noOfInterpValues + 1] = valueAt2[1];
+                dArr2[i4][iNoOfInterpValues] = fArrValueAt[0];
+                dArr2[i4][iNoOfInterpValues + 1] = fArrValueAt[1];
             }
             this.mCurveFit = CurveFit.get(i2, dArr, dArr2);
         }
@@ -250,15 +249,15 @@ public abstract class TimeCycleSplineSet {
                 i4 = i5 - 1;
                 int i7 = iArr2[i4];
                 if (i6 < i7) {
-                    int partition = partition(iArr, fArr, i6, i7);
+                    int iPartition = partition(iArr, fArr, i6, i7);
                     int i8 = i4 + 1;
-                    iArr2[i4] = partition - 1;
+                    iArr2[i4] = iPartition - 1;
                     int i9 = i8 + 1;
                     iArr2[i8] = i6;
                     int i10 = i9 + 1;
                     iArr2[i9] = i7;
                     i4 = i10 + 1;
-                    iArr2[i10] = partition + 1;
+                    iArr2[i10] = iPartition + 1;
                 }
             }
         }
@@ -327,133 +326,47 @@ public abstract class TimeCycleSplineSet {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Removed duplicated region for block: B:41:0x008b  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     static TimeCycleSplineSet makeSpline(String str, long j2) {
-        char c2;
         TimeCycleSplineSet alphaSet;
-        switch (str.hashCode()) {
-            case -1249320806:
-                if (str.equals("rotationX")) {
-                    c2 = 3;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1249320805:
-                if (str.equals("rotationY")) {
-                    c2 = 4;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1225497657:
-                if (str.equals("translationX")) {
-                    c2 = '\b';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1225497656:
-                if (str.equals("translationY")) {
-                    c2 = '\t';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1225497655:
-                if (str.equals("translationZ")) {
-                    c2 = '\n';
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -1001078227:
-                if (str.equals(NotificationCompat.CATEGORY_PROGRESS)) {
-                    c2 = 11;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -908189618:
-                if (str.equals("scaleX")) {
-                    c2 = 6;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -908189617:
-                if (str.equals("scaleY")) {
-                    c2 = 7;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -40300674:
-                if (str.equals("rotation")) {
-                    c2 = 2;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case -4379043:
-                if (str.equals("elevation")) {
-                    c2 = 1;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case 37232917:
-                if (str.equals("transitionPathRotate")) {
-                    c2 = 5;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            case 92909918:
-                if (str.equals("alpha")) {
-                    c2 = 0;
-                    break;
-                }
-                c2 = 65535;
-                break;
-            default:
-                c2 = 65535;
-                break;
-        }
-        switch (c2) {
-            case 0:
+        switch (str) {
+            case "alpha":
                 alphaSet = new AlphaSet();
                 break;
-            case 1:
+            case "elevation":
                 alphaSet = new ElevationSet();
                 break;
-            case 2:
+            case "rotation":
                 alphaSet = new RotationSet();
                 break;
-            case 3:
+            case "rotationX":
                 alphaSet = new RotationXset();
                 break;
-            case 4:
+            case "rotationY":
                 alphaSet = new RotationYset();
                 break;
-            case 5:
+            case "transitionPathRotate":
                 alphaSet = new PathRotate();
                 break;
-            case 6:
+            case "scaleX":
                 alphaSet = new ScaleXset();
                 break;
-            case 7:
+            case "scaleY":
                 alphaSet = new ScaleYset();
                 break;
-            case '\b':
+            case "translationX":
                 alphaSet = new TranslationXset();
                 break;
-            case '\t':
+            case "translationY":
                 alphaSet = new TranslationYset();
                 break;
-            case '\n':
+            case "translationZ":
                 alphaSet = new TranslationZset();
                 break;
-            case 11:
+            case "progress":
                 alphaSet = new ProgressSet();
                 break;
             default:
@@ -464,28 +377,28 @@ public abstract class TimeCycleSplineSet {
     }
 
     protected float calcWave(float f2) {
-        float abs;
+        float fAbs;
         switch (this.mWaveShape) {
             case 1:
                 return Math.signum(f2 * VAL_2PI);
             case 2:
-                abs = Math.abs(f2);
+                fAbs = Math.abs(f2);
                 break;
             case 3:
                 return (((f2 * 2.0f) + 1.0f) % 2.0f) - 1.0f;
             case 4:
-                abs = ((f2 * 2.0f) + 1.0f) % 2.0f;
+                fAbs = ((f2 * 2.0f) + 1.0f) % 2.0f;
                 break;
             case 5:
                 return (float) Math.cos(f2 * VAL_2PI);
             case 6:
-                float abs2 = 1.0f - Math.abs(((f2 * 4.0f) % 4.0f) - 2.0f);
-                abs = abs2 * abs2;
+                float fAbs2 = 1.0f - Math.abs(((f2 * 4.0f) % 4.0f) - 2.0f);
+                fAbs = fAbs2 * fAbs2;
                 break;
             default:
                 return (float) Math.sin(f2 * VAL_2PI);
         }
-        return 1.0f - abs;
+        return 1.0f - fAbs;
     }
 
     public float get(float f2, long j2, View view, KeyCache keyCache) {
@@ -502,13 +415,13 @@ public abstract class TimeCycleSplineSet {
                 this.last_cycle = 0.0f;
             }
         }
-        this.last_cycle = (float) ((this.last_cycle + (((j2 - this.last_time) * 1.0E-9d) * f3)) % 1.0d);
+        this.last_cycle = (float) ((((double) this.last_cycle) + (((j2 - this.last_time) * 1.0E-9d) * ((double) f3))) % 1.0d);
         keyCache.setFloatValue(view, this.mType, 0, this.last_cycle);
         this.last_time = j2;
         float f4 = this.mCache[0];
-        float calcWave = (calcWave(this.last_cycle) * f4) + this.mCache[2];
+        float fCalcWave = (calcWave(this.last_cycle) * f4) + this.mCache[2];
         this.mContinue = (f4 == 0.0f && f3 == 0.0f) ? false : true;
-        return calcWave;
+        return fCalcWave;
     }
 
     public CurveFit getCurveFit() {
@@ -537,44 +450,48 @@ public abstract class TimeCycleSplineSet {
         this.mType = str;
     }
 
+    /* JADX WARN: Removed duplicated region for block: B:22:0x005a  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public void setup(int i2) {
-        int i3;
-        int i4 = this.count;
-        if (i4 == 0) {
+        int i3 = this.count;
+        if (i3 == 0) {
             String str = "Error no points added to " + this.mType;
             return;
         }
-        Sort.doubleQuickSort(this.mTimePoints, this.mValues, 0, i4 - 1);
-        int i5 = 1;
-        int i6 = 0;
+        Sort.doubleQuickSort(this.mTimePoints, this.mValues, 0, i3 - 1);
+        int i4 = 1;
+        int i5 = 0;
         while (true) {
             int[] iArr = this.mTimePoints;
-            if (i5 >= iArr.length) {
+            if (i4 >= iArr.length) {
                 break;
             }
-            if (iArr[i5] != iArr[i5 - 1]) {
-                i6++;
+            if (iArr[i4] != iArr[i4 - 1]) {
+                i5++;
             }
-            i5++;
+            i4++;
         }
-        if (i6 == 0) {
-            i6 = 1;
+        if (i5 == 0) {
+            i5 = 1;
         }
-        double[] dArr = new double[i6];
-        double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, i6, 3);
-        int i7 = 0;
-        while (i3 < this.count) {
-            if (i3 > 0) {
+        double[] dArr = new double[i5];
+        double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, i5, 3);
+        int i6 = 0;
+        for (int i7 = 0; i7 < this.count; i7++) {
+            if (i7 > 0) {
                 int[] iArr2 = this.mTimePoints;
-                i3 = iArr2[i3] == iArr2[i3 + (-1)] ? i3 + 1 : 0;
+                if (iArr2[i7] != iArr2[i7 - 1]) {
+                    dArr[i6] = ((double) this.mTimePoints[i7]) * 0.01d;
+                    double[] dArr3 = dArr2[i6];
+                    float[][] fArr = this.mValues;
+                    dArr3[0] = fArr[i7][0];
+                    dArr2[i6][1] = fArr[i7][1];
+                    dArr2[i6][2] = fArr[i7][2];
+                    i6++;
+                }
             }
-            dArr[i7] = this.mTimePoints[i3] * 0.01d;
-            double[] dArr3 = dArr2[i7];
-            float[][] fArr = this.mValues;
-            dArr3[0] = fArr[i3][0];
-            dArr2[i7][1] = fArr[i3][1];
-            dArr2[i7][2] = fArr[i3][2];
-            i7++;
         }
         this.mCurveFit = CurveFit.get(i2, dArr, dArr2);
     }

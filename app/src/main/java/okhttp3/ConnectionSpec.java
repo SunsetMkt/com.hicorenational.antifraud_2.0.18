@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import javax.net.ssl.SSLSocket;
 import okhttp3.internal.Util;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ConnectionSpec {
 
     @Nullable
@@ -31,23 +31,23 @@ public final class ConnectionSpec {
     }
 
     private ConnectionSpec supportedSpec(SSLSocket sSLSocket, boolean z) {
-        String[] intersect = this.cipherSuites != null ? Util.intersect(CipherSuite.ORDER_BY_NAME, sSLSocket.getEnabledCipherSuites(), this.cipherSuites) : sSLSocket.getEnabledCipherSuites();
-        String[] intersect2 = this.tlsVersions != null ? Util.intersect(Util.NATURAL_ORDER, sSLSocket.getEnabledProtocols(), this.tlsVersions) : sSLSocket.getEnabledProtocols();
+        String[] strArrIntersect = this.cipherSuites != null ? Util.intersect(CipherSuite.ORDER_BY_NAME, sSLSocket.getEnabledCipherSuites(), this.cipherSuites) : sSLSocket.getEnabledCipherSuites();
+        String[] strArrIntersect2 = this.tlsVersions != null ? Util.intersect(Util.NATURAL_ORDER, sSLSocket.getEnabledProtocols(), this.tlsVersions) : sSLSocket.getEnabledProtocols();
         String[] supportedCipherSuites = sSLSocket.getSupportedCipherSuites();
-        int indexOf = Util.indexOf(CipherSuite.ORDER_BY_NAME, supportedCipherSuites, "TLS_FALLBACK_SCSV");
-        if (z && indexOf != -1) {
-            intersect = Util.concat(intersect, supportedCipherSuites[indexOf]);
+        int iIndexOf = Util.indexOf(CipherSuite.ORDER_BY_NAME, supportedCipherSuites, "TLS_FALLBACK_SCSV");
+        if (z && iIndexOf != -1) {
+            strArrIntersect = Util.concat(strArrIntersect, supportedCipherSuites[iIndexOf]);
         }
-        return new Builder(this).cipherSuites(intersect).tlsVersions(intersect2).build();
+        return new Builder(this).cipherSuites(strArrIntersect).tlsVersions(strArrIntersect2).build();
     }
 
     void apply(SSLSocket sSLSocket, boolean z) {
-        ConnectionSpec supportedSpec = supportedSpec(sSLSocket, z);
-        String[] strArr = supportedSpec.tlsVersions;
+        ConnectionSpec connectionSpecSupportedSpec = supportedSpec(sSLSocket, z);
+        String[] strArr = connectionSpecSupportedSpec.tlsVersions;
         if (strArr != null) {
             sSLSocket.setEnabledProtocols(strArr);
         }
-        String[] strArr2 = supportedSpec.cipherSuites;
+        String[] strArr2 = connectionSpecSupportedSpec.cipherSuites;
         if (strArr2 != null) {
             sSLSocket.setEnabledCipherSuites(strArr2);
         }

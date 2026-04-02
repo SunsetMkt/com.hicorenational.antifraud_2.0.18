@@ -22,49 +22,46 @@ import com.huawei.hms.support.log.HMSLog;
 import com.huawei.hms.utils.JsonUtil;
 import com.huawei.secure.android.common.encrypt.hash.SHA;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HmsProfile {
     public static final int CUSTOM_PROFILE = 2;
     public static final int HUAWEI_PROFILE = 1;
 
-    /* renamed from: c */
-    private static final String f7692c = "HmsProfile";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final String f4851c = "HmsProfile";
+    private Context a;
 
-    /* renamed from: a */
-    private Context f7693a;
-
-    /* renamed from: b */
-    private HuaweiApi<Api.ApiOptions.NoOptions> f7694b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private HuaweiApi<Api.ApiOptions.NoOptions> f4852b;
 
     private HmsProfile(Context context) {
-        this.f7693a = null;
+        this.a = null;
         Preconditions.checkNotNull(context);
-        this.f7693a = context;
+        this.a = context;
         Api api = new Api(HuaweiApiAvailability.HMS_API_NAME_PUSH);
         if (context instanceof Activity) {
-            this.f7694b = new HuaweiApi<>((Activity) context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, (AbstractClientBuilder) new PushClientBuilder());
+            this.f4852b = new HuaweiApi<>((Activity) context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, (AbstractClientBuilder) new PushClientBuilder());
         } else {
-            this.f7694b = new HuaweiApi<>(context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, new PushClientBuilder());
+            this.f4852b = new HuaweiApi<>(context, (Api<Api.ApiOptions>) api, (Api.ApiOptions) null, new PushClientBuilder());
         }
-        this.f7694b.setKitSdkVersion(61200300);
+        this.f4852b.setKitSdkVersion(61200300);
     }
 
-    /* renamed from: a */
-    private Task<Void> m7522a(int i2, String str, int i3, String str2) {
+    private Task<Void> a(int i2, String str, int i3, String str2) {
         if (!isSupportProfile()) {
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
             taskCompletionSource.setException(ErrorEnum.ERROR_OPERATION_NOT_SUPPORTED.toApiException());
             return taskCompletionSource.getTask();
         }
         if (!TextUtils.isEmpty(str)) {
-            String m7523a = m7523a(this.f7693a);
-            if (TextUtils.isEmpty(m7523a)) {
-                HMSLog.m7717i(f7692c, "agc connect services config missing project id.");
+            String strA = a(this.a);
+            if (TextUtils.isEmpty(strA)) {
+                HMSLog.i(f4851c, "agc connect services config missing project id.");
                 TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                 taskCompletionSource2.setException(ErrorEnum.ERROR_MISSING_PROJECT_ID.toApiException());
                 return taskCompletionSource2.getTask();
             }
-            if (str.equals(m7523a)) {
+            if (str.equals(strA)) {
                 str = "";
             }
         }
@@ -75,30 +72,29 @@ public class HmsProfile {
         } else {
             profileReq.setOperation(1);
         }
-        String reportEntry = PushBiUtil.reportEntry(this.f7693a, PushNaming.PUSH_PROFILE);
+        String strReportEntry = PushBiUtil.reportEntry(this.a, PushNaming.PUSH_PROFILE);
         try {
             profileReq.setSubjectId(str);
             profileReq.setProfileId(SHA.sha256Encrypt(str2));
-            profileReq.setPkgName(this.f7693a.getPackageName());
-            return this.f7694b.doWrite(new ProfileTask(PushNaming.PUSH_PROFILE, JsonUtil.createJsonString(profileReq), reportEntry));
+            profileReq.setPkgName(this.a.getPackageName());
+            return this.f4852b.doWrite(new ProfileTask(PushNaming.PUSH_PROFILE, JsonUtil.createJsonString(profileReq), strReportEntry));
         } catch (Exception e2) {
             if (!(e2.getCause() instanceof ApiException)) {
                 TaskCompletionSource taskCompletionSource3 = new TaskCompletionSource();
-                PushBiUtil.reportExit(this.f7693a, PushNaming.PUSH_PROFILE, reportEntry, ErrorEnum.ERROR_INTERNAL_ERROR);
+                PushBiUtil.reportExit(this.a, PushNaming.PUSH_PROFILE, strReportEntry, ErrorEnum.ERROR_INTERNAL_ERROR);
                 taskCompletionSource3.setException(ErrorEnum.ERROR_INTERNAL_ERROR.toApiException());
                 return taskCompletionSource3.getTask();
             }
             TaskCompletionSource taskCompletionSource4 = new TaskCompletionSource();
             ApiException apiException = (ApiException) e2.getCause();
             taskCompletionSource4.setException(apiException);
-            PushBiUtil.reportExit(this.f7693a, PushNaming.PUSH_PROFILE, reportEntry, apiException.getStatusCode());
+            PushBiUtil.reportExit(this.a, PushNaming.PUSH_PROFILE, strReportEntry, apiException.getStatusCode());
             return taskCompletionSource4.getTask();
         }
     }
 
-    /* renamed from: b */
-    private boolean m7524b(Context context) {
-        return AbstractC2484d.m7546b(context) >= 110001400;
+    private boolean b(Context context) {
+        return d.b(context) >= 110001400;
     }
 
     public static HmsProfile getInstance(Context context) {
@@ -114,31 +110,31 @@ public class HmsProfile {
     }
 
     public boolean isSupportProfile() {
-        if (!AbstractC2484d.m7550d(this.f7693a)) {
+        if (!d.d(this.a)) {
             return true;
         }
-        if (AbstractC2484d.m7549c()) {
-            HMSLog.m7717i(f7692c, "current EMUI version below 9.1, not support profile operation.");
+        if (d.c()) {
+            HMSLog.i(f4851c, "current EMUI version below 9.1, not support profile operation.");
             return false;
         }
-        if (m7524b(this.f7693a)) {
+        if (b(this.a)) {
             return true;
         }
-        HMSLog.m7717i(f7692c, "current HwPushService.apk version below 11.0.1.400,please upgrade your HwPushService.apk version.");
+        HMSLog.i(f4851c, "current HwPushService.apk version below 11.0.1.400,please upgrade your HwPushService.apk version.");
         return false;
     }
 
     public Task<Void> addProfile(String str, int i2, String str2) {
         if (i2 != 1 && i2 != 2) {
-            HMSLog.m7717i(f7692c, "add profile type undefined.");
+            HMSLog.i(f4851c, "add profile type undefined.");
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
             taskCompletionSource.setException(ErrorEnum.ERROR_PUSH_ARGUMENTS_INVALID.toApiException());
             return taskCompletionSource.getTask();
         }
         if (!TextUtils.isEmpty(str2)) {
-            return m7522a(0, str, i2, str2);
+            return a(0, str, i2, str2);
         }
-        HMSLog.m7717i(f7692c, "add profile params is empty.");
+        HMSLog.i(f4851c, "add profile params is empty.");
         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
         taskCompletionSource2.setException(ErrorEnum.ERROR_PUSH_ARGUMENTS_INVALID.toApiException());
         return taskCompletionSource2.getTask();
@@ -146,16 +142,15 @@ public class HmsProfile {
 
     public Task<Void> deleteProfile(String str, String str2) {
         if (!TextUtils.isEmpty(str2)) {
-            return m7522a(1, str, -1, str2);
+            return a(1, str, -1, str2);
         }
-        HMSLog.m7715e(f7692c, "del profile params is empty.");
+        HMSLog.e(f4851c, "del profile params is empty.");
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         taskCompletionSource.setException(ErrorEnum.ERROR_PUSH_ARGUMENTS_INVALID.toApiException());
         return taskCompletionSource.getTask();
     }
 
-    /* renamed from: a */
-    private static String m7523a(Context context) {
+    private static String a(Context context) {
         return AGConnectServicesConfig.fromContext(context).getString("client/project_id");
     }
 }

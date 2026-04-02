@@ -3,6 +3,7 @@ package com.luck.picture.lib.tools;
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -24,16 +25,15 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
+import java.util.Locale;
 import okio.BufferedSink;
 import okio.BufferedSource;
 import okio.Okio;
-import okio.Source;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class PictureFileUtils {
     public static final String POSTFIX = ".jpg";
     public static final String POST_AUDIO = ".mp3";
@@ -45,22 +45,22 @@ public class PictureFileUtils {
     }
 
     public static boolean bufferCopy(BufferedSource bufferedSource, File file) {
-        BufferedSink bufferedSink = null;
+        BufferedSink bufferedSinkBuffer = null;
         try {
             try {
-                bufferedSink = Okio.buffer(Okio.sink(file));
-                bufferedSink.writeAll(bufferedSource);
-                bufferedSink.flush();
+                bufferedSinkBuffer = Okio.buffer(Okio.sink(file));
+                bufferedSinkBuffer.writeAll(bufferedSource);
+                bufferedSinkBuffer.flush();
                 return true;
             } catch (Exception e2) {
                 e2.printStackTrace();
                 close(bufferedSource);
-                close(bufferedSink);
+                close(bufferedSinkBuffer);
                 return false;
             }
         } finally {
             close(bufferedSource);
-            close(bufferedSink);
+            close(bufferedSinkBuffer);
         }
     }
 
@@ -74,44 +74,44 @@ public class PictureFileUtils {
         }
     }
 
-    public static void copyFile(@NonNull String str, @NonNull String str2) throws IOException {
-        FileChannel fileChannel;
+    public static void copyFile(@NonNull String str, @NonNull String str2) throws Throwable {
+        FileChannel channel;
         if (str.equalsIgnoreCase(str2)) {
             return;
         }
-        FileChannel fileChannel2 = null;
+        FileChannel fileChannel = null;
         try {
-            FileChannel channel = new FileInputStream(new File(str)).getChannel();
+            FileChannel channel2 = new FileInputStream(new File(str)).getChannel();
             try {
-                fileChannel = new FileOutputStream(new File(str2)).getChannel();
+                channel = new FileOutputStream(new File(str2)).getChannel();
                 try {
-                    channel.transferTo(0L, channel.size(), fileChannel);
-                    channel.close();
+                    channel2.transferTo(0L, channel2.size(), channel);
+                    channel2.close();
+                    if (channel2 != null) {
+                        channel2.close();
+                    }
                     if (channel != null) {
                         channel.close();
                     }
-                    if (fileChannel != null) {
-                        fileChannel.close();
-                    }
                 } catch (Throwable th) {
-                    fileChannel2 = channel;
+                    fileChannel = channel2;
                     th = th;
-                    if (fileChannel2 != null) {
-                        fileChannel2.close();
-                    }
                     if (fileChannel != null) {
                         fileChannel.close();
+                    }
+                    if (channel != null) {
+                        channel.close();
                     }
                     throw th;
                 }
             } catch (Throwable th2) {
-                fileChannel2 = channel;
+                fileChannel = channel2;
                 th = th2;
-                fileChannel = null;
+                channel = null;
             }
         } catch (Throwable th3) {
             th = th3;
-            fileChannel = null;
+            channel = null;
         }
     }
 
@@ -193,15 +193,15 @@ public class PictureFileUtils {
         if (file == null) {
             throw new NullPointerException("The media output path cannot be null");
         }
-        boolean isEmpty = TextUtils.isEmpty(str);
+        boolean zIsEmpty = TextUtils.isEmpty(str);
         if (i2 == 2) {
-            if (isEmpty) {
+            if (zIsEmpty) {
                 str = DateUtils.getCreateFileName("VID_") + ".mp4";
             }
             return new File(file, str);
         }
         if (i2 == 3) {
-            if (isEmpty) {
+            if (zIsEmpty) {
                 str = DateUtils.getCreateFileName("AUD_") + POST_AUDIO;
             }
             return new File(file, str);
@@ -209,7 +209,7 @@ public class PictureFileUtils {
         if (TextUtils.isEmpty(str2)) {
             str2 = ".jpg";
         }
-        if (isEmpty) {
+        if (zIsEmpty) {
             str = DateUtils.getCreateFileName("IMG_") + str2;
         }
         return new File(file, str);
@@ -219,30 +219,30 @@ public class PictureFileUtils {
         mHandler.post(new Runnable() { // from class: com.luck.picture.lib.tools.PictureFileUtils.1
             @Override // java.lang.Runnable
             public void run() {
-                File[] listFiles;
-                File[] listFiles2;
-                File[] listFiles3;
+                File[] fileArrListFiles;
+                File[] fileArrListFiles2;
+                File[] fileArrListFiles3;
                 File externalFilesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-                if (externalFilesDir != null && (listFiles3 = externalFilesDir.listFiles()) != null) {
-                    for (File file : listFiles3) {
+                if (externalFilesDir != null && (fileArrListFiles3 = externalFilesDir.listFiles()) != null) {
+                    for (File file : fileArrListFiles3) {
                         if (file.isFile()) {
                             file.delete();
                         }
                     }
                 }
                 File externalFilesDir2 = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES);
-                if (externalFilesDir2 != null && (listFiles2 = externalFilesDir2.listFiles()) != null) {
-                    for (File file2 : listFiles2) {
+                if (externalFilesDir2 != null && (fileArrListFiles2 = externalFilesDir2.listFiles()) != null) {
+                    for (File file2 : fileArrListFiles2) {
                         if (file2.isFile()) {
                             file2.delete();
                         }
                     }
                 }
                 File externalFilesDir3 = context.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-                if (externalFilesDir3 == null || (listFiles = externalFilesDir3.listFiles()) == null) {
+                if (externalFilesDir3 == null || (fileArrListFiles = externalFilesDir3.listFiles()) == null) {
                     return;
                 }
-                for (File file3 : listFiles) {
+                for (File file3 : fileArrListFiles) {
                     if (file3.isFile()) {
                         file3.delete();
                     }
@@ -252,12 +252,12 @@ public class PictureFileUtils {
     }
 
     public static void deleteCacheDirFile(Context context, int i2) {
-        File[] listFiles;
+        File[] fileArrListFiles;
         File externalFilesDir = context.getExternalFilesDir(i2 == PictureMimeType.ofImage() ? Environment.DIRECTORY_PICTURES : Environment.DIRECTORY_MOVIES);
-        if (externalFilesDir == null || (listFiles = externalFilesDir.listFiles()) == null) {
+        if (externalFilesDir == null || (fileArrListFiles = externalFilesDir.listFiles()) == null) {
             return;
         }
-        for (File file : listFiles) {
+        for (File file : fileArrListFiles) {
             if (file.isFile()) {
                 file.delete();
             }
@@ -299,88 +299,57 @@ public class PictureFileUtils {
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:19:0x0049, code lost:
-    
-        if (r8 == null) goto L22;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:5:0x002b, code lost:
-    
-        if (r8 != null) goto L14;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:6:0x002d, code lost:
-    
-        r8.close();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:7:0x004c, code lost:
-    
-        return null;
-     */
     /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Removed duplicated region for block: B:23:0x0050  */
+    /* JADX WARN: Removed duplicated region for block: B:25:0x0050  */
     /* JADX WARN: Type inference failed for: r8v0, types: [android.content.Context] */
     /* JADX WARN: Type inference failed for: r8v1 */
     /* JADX WARN: Type inference failed for: r8v3, types: [android.database.Cursor] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static java.lang.String getDataColumn(android.content.Context r8, android.net.Uri r9, java.lang.String r10, java.lang.String[] r11) {
-        /*
-            java.lang.String r0 = "_data"
-            java.lang.String[] r3 = new java.lang.String[]{r0}
-            r7 = 0
-            android.content.ContentResolver r1 = r8.getContentResolver()     // Catch: java.lang.Throwable -> L31 java.lang.IllegalArgumentException -> L34
-            r6 = 0
-            r2 = r9
-            r4 = r10
-            r5 = r11
-            android.database.Cursor r8 = r1.query(r2, r3, r4, r5, r6)     // Catch: java.lang.Throwable -> L31 java.lang.IllegalArgumentException -> L34
-            if (r8 == 0) goto L2b
-            boolean r9 = r8.moveToFirst()     // Catch: java.lang.IllegalArgumentException -> L29 java.lang.Throwable -> L4d
-            if (r9 == 0) goto L2b
-            int r9 = r8.getColumnIndexOrThrow(r0)     // Catch: java.lang.IllegalArgumentException -> L29 java.lang.Throwable -> L4d
-            java.lang.String r9 = r8.getString(r9)     // Catch: java.lang.IllegalArgumentException -> L29 java.lang.Throwable -> L4d
-            if (r8 == 0) goto L28
-            r8.close()
-        L28:
-            return r9
-        L29:
-            r9 = move-exception
-            goto L36
-        L2b:
-            if (r8 == 0) goto L4c
-        L2d:
-            r8.close()
-            goto L4c
-        L31:
-            r9 = move-exception
-            r8 = r7
-            goto L4e
-        L34:
-            r9 = move-exception
-            r8 = r7
-        L36:
-            java.util.Locale r10 = java.util.Locale.getDefault()     // Catch: java.lang.Throwable -> L4d
-            java.lang.String r11 = "getDataColumn: _data - [%s]"
-            r0 = 1
-            java.lang.Object[] r0 = new java.lang.Object[r0]     // Catch: java.lang.Throwable -> L4d
-            r1 = 0
-            java.lang.String r9 = r9.getMessage()     // Catch: java.lang.Throwable -> L4d
-            r0[r1] = r9     // Catch: java.lang.Throwable -> L4d
-            java.lang.String.format(r10, r11, r0)     // Catch: java.lang.Throwable -> L4d
-            if (r8 == 0) goto L4c
-            goto L2d
-        L4c:
-            return r7
-        L4d:
-            r9 = move-exception
-        L4e:
-            if (r8 == 0) goto L53
-            r8.close()
-        L53:
-            throw r9
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.luck.picture.lib.tools.PictureFileUtils.getDataColumn(android.content.Context, android.net.Uri, java.lang.String, java.lang.String[]):java.lang.String");
+    public static String getDataColumn(Context context, Uri uri, String str, String[] strArr) throws Throwable {
+        Cursor cursorQuery;
+        try {
+            try {
+                cursorQuery = context.getContentResolver().query(uri, new String[]{"_data"}, str, strArr, null);
+                if (cursorQuery != null) {
+                    try {
+                        if (cursorQuery.moveToFirst()) {
+                            String string = cursorQuery.getString(cursorQuery.getColumnIndexOrThrow("_data"));
+                            if (cursorQuery != null) {
+                                cursorQuery.close();
+                            }
+                            return string;
+                        }
+                    } catch (IllegalArgumentException e2) {
+                        e = e2;
+                        String.format(Locale.getDefault(), "getDataColumn: _data - [%s]", e.getMessage());
+                        if (cursorQuery != null) {
+                        }
+                        return null;
+                    }
+                }
+            } catch (IllegalArgumentException e3) {
+                e = e3;
+                cursorQuery = null;
+            } catch (Throwable th) {
+                th = th;
+                context = 0;
+                if (context != 0) {
+                }
+                throw th;
+            }
+            if (cursorQuery != null) {
+                cursorQuery.close();
+            }
+            return null;
+        } catch (Throwable th2) {
+            th = th2;
+            if (context != 0) {
+                context.close();
+            }
+            throw th;
+        }
     }
 
     public static String getDiskCacheDir(Context context) {
@@ -393,20 +362,20 @@ public class PictureFileUtils {
         Uri uri2 = null;
         if ((Build.VERSION.SDK_INT >= 19) && DocumentsContract.isDocumentUri(context, uri)) {
             if (isExternalStorageDocument(uri)) {
-                String[] split = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
-                if ("primary".equalsIgnoreCase(split[0])) {
+                String[] strArrSplit = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
+                if ("primary".equalsIgnoreCase(strArrSplit[0])) {
                     if (SdkVersionUtils.checkedAndroid_Q()) {
-                        return context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/" + split[1];
+                        return context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/" + strArrSplit[1];
                     }
-                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                    return Environment.getExternalStorageDirectory() + "/" + strArrSplit[1];
                 }
             } else {
                 if (isDownloadsDocument(uri)) {
                     return getDataColumn(context, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), null, null);
                 }
                 if (isMediaDocument(uri)) {
-                    String[] split2 = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
-                    String str = split2[0];
+                    String[] strArrSplit2 = DocumentsContract.getDocumentId(uri).split(Constants.COLON_SEPARATOR);
+                    String str = strArrSplit2[0];
                     if ("image".equals(str)) {
                         uri2 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                     } else if ("video".equals(str)) {
@@ -414,7 +383,7 @@ public class PictureFileUtils {
                     } else if ("audio".equals(str)) {
                         uri2 = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                     }
-                    return getDataColumn(context, uri2, "_id=?", new String[]{split2[1]});
+                    return getDataColumn(context, uri2, "_id=?", new String[]{strArrSplit2[1]});
                 }
             }
         } else {
@@ -478,72 +447,75 @@ public class PictureFileUtils {
     }
 
     public static boolean bufferCopy(BufferedSource bufferedSource, OutputStream outputStream) {
-        BufferedSink bufferedSink = null;
+        BufferedSink bufferedSinkBuffer = null;
         try {
             try {
-                bufferedSink = Okio.buffer(Okio.sink(outputStream));
-                bufferedSink.writeAll(bufferedSource);
-                bufferedSink.flush();
+                bufferedSinkBuffer = Okio.buffer(Okio.sink(outputStream));
+                bufferedSinkBuffer.writeAll(bufferedSource);
+                bufferedSinkBuffer.flush();
                 return true;
             } catch (Exception e2) {
                 e2.printStackTrace();
                 close(bufferedSource);
-                close(bufferedSink);
+                close(bufferedSinkBuffer);
                 return false;
             }
         } finally {
             close(bufferedSource);
-            close(bufferedSink);
+            close(bufferedSinkBuffer);
         }
     }
 
-    public static boolean bufferCopy(File file, OutputStream outputStream) {
-        Source source;
+    public static boolean bufferCopy(File file, OutputStream outputStream) throws Throwable {
+        BufferedSource bufferedSourceBuffer;
         BufferedSink bufferedSink;
-        BufferedSink bufferedSink2 = null;
+        BufferedSink bufferedSinkBuffer = null;
+        bufferedSinkBuffer = null;
+        bufferedSinkBuffer = null;
+        BufferedSource bufferedSource = null;
         try {
-            source = Okio.buffer(Okio.source(file));
+            bufferedSourceBuffer = Okio.buffer(Okio.source(file));
         } catch (Exception e2) {
             e = e2;
             bufferedSink = null;
         } catch (Throwable th) {
             th = th;
-            source = null;
+            bufferedSourceBuffer = null;
         }
         try {
-            bufferedSink2 = Okio.buffer(Okio.sink(outputStream));
-            bufferedSink2.writeAll(source);
-            bufferedSink2.flush();
-            close(source);
+            bufferedSinkBuffer = Okio.buffer(Okio.sink(outputStream));
+            bufferedSinkBuffer.writeAll(bufferedSourceBuffer);
+            bufferedSinkBuffer.flush();
+            close(bufferedSourceBuffer);
             close(outputStream);
-            close(bufferedSink2);
+            close(bufferedSinkBuffer);
             return true;
         } catch (Exception e3) {
             e = e3;
-            BufferedSink bufferedSink3 = bufferedSink2;
-            bufferedSink2 = source;
-            bufferedSink = bufferedSink3;
+            BufferedSink bufferedSink2 = bufferedSinkBuffer;
+            bufferedSource = bufferedSourceBuffer;
+            bufferedSink = bufferedSink2;
             try {
                 e.printStackTrace();
-                close(bufferedSink2);
+                close(bufferedSource);
                 close(outputStream);
                 close(bufferedSink);
                 return false;
             } catch (Throwable th2) {
                 th = th2;
-                BufferedSink bufferedSink4 = bufferedSink2;
-                bufferedSink2 = bufferedSink;
-                source = bufferedSink4;
-                close(source);
+                BufferedSource bufferedSource2 = bufferedSource;
+                bufferedSinkBuffer = bufferedSink;
+                bufferedSourceBuffer = bufferedSource2;
+                close(bufferedSourceBuffer);
                 close(outputStream);
-                close(bufferedSink2);
+                close(bufferedSinkBuffer);
                 throw th;
             }
         } catch (Throwable th3) {
             th = th3;
-            close(source);
+            close(bufferedSourceBuffer);
             close(outputStream);
-            close(bufferedSink2);
+            close(bufferedSinkBuffer);
             throw th;
         }
     }

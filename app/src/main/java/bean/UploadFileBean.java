@@ -2,7 +2,7 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UploadFileBean extends BaseBean {
     private String callTelDetailID;
     private String fileMd5;
@@ -12,9 +12,7 @@ public class UploadFileBean extends BaseBean {
     private long fileSize;
     private int fileType;
     private String fileUrl;
-
-    /* renamed from: id */
-    private String f1635id;
+    private String id;
     private String localPath;
     private String mailingTelDetailID;
     private String paymentInfoID;
@@ -54,7 +52,7 @@ public class UploadFileBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1635id;
+        return this.id;
     }
 
     public String getLocalPath() {
@@ -110,7 +108,7 @@ public class UploadFileBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1635id = str;
+        this.id = str;
     }
 
     public void setLocalPath(String str) {

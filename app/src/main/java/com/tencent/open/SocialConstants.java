@@ -1,7 +1,7 @@
 package com.tencent.open;
 
-/* compiled from: ProGuard */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: ProGuard */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocialConstants {
     public static final String ACTION_ASK = "action_ask";
     public static final String ACTION_BRAG = "action_brag";

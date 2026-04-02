@@ -2,7 +2,7 @@ package com.huawei.hms.api;
 
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ProtocolNegotiate {
     private static final int MAX_VERSION = 2;
     private static ProtocolNegotiate instance = new ProtocolNegotiate();

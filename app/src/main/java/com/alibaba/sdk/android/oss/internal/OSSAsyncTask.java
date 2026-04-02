@@ -7,7 +7,7 @@ import com.alibaba.sdk.android.oss.network.ExecutionContext;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class OSSAsyncTask<T extends OSSResult> {
     private volatile boolean canceled;
     private ExecutionContext context;
@@ -28,7 +28,7 @@ public class OSSAsyncTask<T extends OSSResult> {
         }
     }
 
-    public T getResult() throws ClientException, ServiceException {
+    public T getResult() throws ServiceException, ClientException {
         try {
             return this.future.get();
         } catch (InterruptedException e2) {

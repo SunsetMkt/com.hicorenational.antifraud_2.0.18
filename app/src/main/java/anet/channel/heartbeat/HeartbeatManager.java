@@ -1,13 +1,13 @@
 package anet.channel.heartbeat;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class HeartbeatManager {
     public static IHeartbeat getDefaultBackgroundAccsHeartbeat() {
-        return new RunnableC0789a();
+        return new a();
     }
 
     public static IHeartbeat getDefaultHeartbeat() {
-        return new RunnableC0790b();
+        return new b();
     }
 }

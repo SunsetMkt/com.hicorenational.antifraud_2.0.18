@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.camera;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface Delegate {
     void onFocus(float f2, float f3);
 

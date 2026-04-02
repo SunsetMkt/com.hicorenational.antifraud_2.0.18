@@ -5,7 +5,7 @@ import com.umeng.socialize.net.utils.UClient;
 import com.umeng.socialize.net.utils.URequest;
 import com.umeng.socialize.utils.SLog;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeClient extends UClient {
     public SocializeReseponse execute(URequest uRequest) {
         if (SocializeConstants.DEBUG_MODE) {

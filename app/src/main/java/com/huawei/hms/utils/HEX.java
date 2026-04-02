@@ -1,21 +1,18 @@
 package com.huawei.hms.utils;
 
-import com.umeng.analytics.pro.C3393cw;
+import com.umeng.analytics.pro.cw;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class HEX {
+    private static final char[] a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    /* renamed from: a */
-    private static final char[] f7934a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    /* renamed from: b */
-    private static final char[] f7935b = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final char[] f4983b = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     private HEX() {
     }
 
-    /* renamed from: a */
-    private static char[] m7735a(byte[] bArr, char[] cArr) {
+    private static char[] a(byte[] bArr, char[] cArr) {
         if (bArr == null) {
             return new char[0];
         }
@@ -26,7 +23,7 @@ public final class HEX {
             int i4 = i2 + 1;
             cArr2[i2] = cArr[(bArr[i3] & 240) >>> 4];
             i2 = i4 + 1;
-            cArr2[i4] = cArr[bArr[i3] & C3393cw.f11873m];
+            cArr2[i4] = cArr[bArr[i3] & cw.f7205m];
         }
         return cArr2;
     }
@@ -40,6 +37,6 @@ public final class HEX {
     }
 
     public static char[] encodeHex(byte[] bArr, boolean z) {
-        return m7735a(bArr, z ? f7935b : f7934a);
+        return a(bArr, z ? f4983b : a);
     }
 }

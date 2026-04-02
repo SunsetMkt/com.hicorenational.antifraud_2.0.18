@@ -1,6 +1,6 @@
-# com.hicorenational.antifraud_2.0.18
+# com.hicorenational.antifraud
 
-`com.hicorenational.antifraud_2.0.18` decompiled.
+`com.hicorenational.antifraud` decompiled.
 
 ## Get APK
 
@@ -8,8 +8,8 @@ Download at <https://fzapph5.gjfzpt.cn/QRCode/>.
 
 ## Decompile
 
--   [jadx](https://github.com/skylot/jadx)
--   There's no protection in recent versions, just obfuscate.
+- [jadx](https://github.com/skylot/jadx)
+- There's no protection in recent versions, just obfuscate.
 
 ## Disclaimer
 

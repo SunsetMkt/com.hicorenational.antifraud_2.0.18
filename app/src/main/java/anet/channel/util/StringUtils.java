@@ -1,10 +1,10 @@
 package anet.channel.util;
 
-import com.umeng.analytics.pro.C3393cw;
+import com.umeng.analytics.pro.cw;
 import java.security.MessageDigest;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class StringUtils {
     private static final char[] DIGITS_LOWER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
@@ -20,7 +20,7 @@ public class StringUtils {
             int i4 = i2 + 1;
             cArr2[i2] = cArr[(bArr[i3] & 240) >>> 4];
             i2 = i4 + 1;
-            cArr2[i4] = cArr[bArr[i3] & C3393cw.f11873m];
+            cArr2[i4] = cArr[bArr[i3] & cw.f7205m];
         }
         return new String(cArr2);
     }

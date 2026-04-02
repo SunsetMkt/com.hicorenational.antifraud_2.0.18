@@ -8,12 +8,11 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Set;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class KeyFrames {
     private static final String TAG = "KeyFrames";
     public static final int UNSET = -1;
@@ -41,13 +40,13 @@ public class KeyFrames {
                         String name = xmlPullParser.getName();
                         if (sKeyMakers.containsKey(name)) {
                             try {
-                                Key newInstance = sKeyMakers.get(name).newInstance(new Object[0]);
+                                Key keyNewInstance = sKeyMakers.get(name).newInstance(new Object[0]);
                                 try {
-                                    newInstance.load(context, Xml.asAttributeSet(xmlPullParser));
-                                    addKey(newInstance);
+                                    keyNewInstance.load(context, Xml.asAttributeSet(xmlPullParser));
+                                    addKey(keyNewInstance);
                                 } catch (Exception unused) {
                                 }
-                                key = newInstance;
+                                key = keyNewInstance;
                             } catch (Exception unused2) {
                             }
                         } else if (name.equalsIgnoreCase("CustomAttribute") && key != null && key.mCustomConstraints != null) {
@@ -86,11 +85,9 @@ public class KeyFrames {
         }
         ArrayList<Key> arrayList2 = this.mFramesMap.get(-1);
         if (arrayList2 != null) {
-            Iterator<Key> it = arrayList2.iterator();
-            while (it.hasNext()) {
-                Key next = it.next();
-                if (next.matches(((ConstraintLayout.LayoutParams) motionController.mView.getLayoutParams()).constraintTag)) {
-                    motionController.addKey(next);
+            for (Key key : arrayList2) {
+                if (key.matches(((ConstraintLayout.LayoutParams) motionController.mView.getLayoutParams()).constraintTag)) {
+                    motionController.addKey(key);
                 }
             }
         }

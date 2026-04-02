@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FileProvider extends ContentProvider {
     private static final String ATTR_NAME = "name";
     private static final String ATTR_PATH = "path";
@@ -32,18 +32,15 @@ public class FileProvider extends ContentProvider {
     private static final String TAG_EXTERNAL_FILES = "external-files-path";
     private static final String TAG_FILES_PATH = "files-path";
     private static final String TAG_ROOT_PATH = "root-path";
-    private InterfaceC2928a mStrategy;
+    private a mStrategy;
     private static final String[] COLUMNS = {"_display_name", "_size"};
     private static final File DEVICE_ROOT = new File("/");
-    private static HashMap<String, InterfaceC2928a> sCache = new HashMap<>();
+    private static HashMap<String, a> sCache = new HashMap<>();
 
-    /* renamed from: com.sina.weibo.sdk.content.FileProvider$a */
-    interface InterfaceC2928a {
-        /* renamed from: a */
-        Uri mo8848a(File file);
+    interface a {
+        Uri a(File file);
 
-        /* renamed from: a */
-        File mo8849a(Uri uri);
+        File a(Uri uri);
     }
 
     private static File buildPath(File file, String... strArr) {
@@ -69,14 +66,14 @@ public class FileProvider extends ContentProvider {
         return Build.VERSION.SDK_INT >= 19 ? context.getExternalFilesDirs(null) : new File[]{context.getExternalFilesDir(null)};
     }
 
-    private static InterfaceC2928a getPathStrategy(Context context, String str) {
-        InterfaceC2928a interfaceC2928a;
+    private static a getPathStrategy(Context context, String str) {
+        a pathStrategy;
         synchronized (sCache) {
-            interfaceC2928a = sCache.get(str);
-            if (interfaceC2928a == null) {
+            pathStrategy = sCache.get(str);
+            if (pathStrategy == null) {
                 try {
-                    interfaceC2928a = parsePathStrategy(context, str);
-                    sCache.put(str, interfaceC2928a);
+                    pathStrategy = parsePathStrategy(context, str);
+                    sCache.put(str, pathStrategy);
                 } catch (IOException e2) {
                     throw new IllegalArgumentException("Failed to parse android.support.FILE_PROVIDER_PATHS meta-data", e2);
                 } catch (XmlPullParserException e3) {
@@ -84,11 +81,11 @@ public class FileProvider extends ContentProvider {
                 }
             }
         }
-        return interfaceC2928a;
+        return pathStrategy;
     }
 
     public static Uri getUriForFile(Context context, String str, File file) {
-        return getPathStrategy(context, str).mo8848a(file);
+        return getPathStrategy(context, str).a(file);
     }
 
     private static int modeToMode(String str) {
@@ -110,50 +107,50 @@ public class FileProvider extends ContentProvider {
         throw new IllegalArgumentException("Invalid mode: ".concat(String.valueOf(str)));
     }
 
-    private static InterfaceC2928a parsePathStrategy(Context context, String str) {
-        C2929b c2929b = new C2929b(str);
-        XmlResourceParser loadXmlMetaData = context.getPackageManager().resolveContentProvider(str, 128).loadXmlMetaData(context.getPackageManager(), META_DATA_FILE_PROVIDER_PATHS);
-        if (loadXmlMetaData == null) {
+    private static a parsePathStrategy(Context context, String str) {
+        b bVar = new b(str);
+        XmlResourceParser xmlResourceParserLoadXmlMetaData = context.getPackageManager().resolveContentProvider(str, 128).loadXmlMetaData(context.getPackageManager(), META_DATA_FILE_PROVIDER_PATHS);
+        if (xmlResourceParserLoadXmlMetaData == null) {
             throw new IllegalArgumentException("Missing android.support.FILE_PROVIDER_PATHS meta-data");
         }
         while (true) {
-            int next = loadXmlMetaData.next();
+            int next = xmlResourceParserLoadXmlMetaData.next();
             if (next == 1) {
-                return c2929b;
+                return bVar;
             }
             if (next == 2) {
-                String name = loadXmlMetaData.getName();
-                File file = null;
-                String attributeValue = loadXmlMetaData.getAttributeValue(null, "name");
-                String attributeValue2 = loadXmlMetaData.getAttributeValue(null, ATTR_PATH);
+                String name = xmlResourceParserLoadXmlMetaData.getName();
+                File externalStorageDirectory = null;
+                String attributeValue = xmlResourceParserLoadXmlMetaData.getAttributeValue(null, "name");
+                String attributeValue2 = xmlResourceParserLoadXmlMetaData.getAttributeValue(null, ATTR_PATH);
                 if (TAG_ROOT_PATH.equals(name)) {
-                    file = DEVICE_ROOT;
+                    externalStorageDirectory = DEVICE_ROOT;
                 } else if (TAG_FILES_PATH.equals(name)) {
-                    file = context.getFilesDir();
+                    externalStorageDirectory = context.getFilesDir();
                 } else if (TAG_CACHE_PATH.equals(name)) {
-                    file = context.getCacheDir();
+                    externalStorageDirectory = context.getCacheDir();
                 } else if (TAG_EXTERNAL.equals(name)) {
-                    file = Environment.getExternalStorageDirectory();
+                    externalStorageDirectory = Environment.getExternalStorageDirectory();
                 } else if (TAG_EXTERNAL_FILES.equals(name)) {
                     File[] externalFilesDirs = getExternalFilesDirs(context);
                     if (externalFilesDirs.length > 0) {
-                        file = externalFilesDirs[0];
+                        externalStorageDirectory = externalFilesDirs[0];
                     }
                 } else if (TAG_EXTERNAL_CACHE.equals(name)) {
                     File[] externalCacheDirs = getExternalCacheDirs(context);
                     if (externalCacheDirs.length > 0) {
-                        file = externalCacheDirs[0];
+                        externalStorageDirectory = externalCacheDirs[0];
                     }
                 }
-                if (file != null) {
-                    File buildPath = buildPath(file, attributeValue2);
+                if (externalStorageDirectory != null) {
+                    File fileBuildPath = buildPath(externalStorageDirectory, attributeValue2);
                     if (TextUtils.isEmpty(attributeValue)) {
                         throw new IllegalArgumentException("Name must not be empty");
                     }
                     try {
-                        c2929b.f9308h.put(attributeValue, buildPath.getCanonicalFile());
+                        bVar.f5691h.put(attributeValue, fileBuildPath.getCanonicalFile());
                     } catch (IOException e2) {
-                        throw new IllegalArgumentException("Failed to resolve canonical path for ".concat(String.valueOf(buildPath)), e2);
+                        throw new IllegalArgumentException("Failed to resolve canonical path for ".concat(String.valueOf(fileBuildPath)), e2);
                     }
                 } else {
                     continue;
@@ -176,17 +173,17 @@ public class FileProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public int delete(Uri uri, String str, String[] strArr) {
-        return this.mStrategy.mo8849a(uri).delete() ? 1 : 0;
+        return this.mStrategy.a(uri).delete() ? 1 : 0;
     }
 
     @Override // android.content.ContentProvider
     public String getType(Uri uri) {
-        File mo8849a = this.mStrategy.mo8849a(uri);
-        int lastIndexOf = mo8849a.getName().lastIndexOf(46);
-        if (lastIndexOf < 0) {
+        File fileA = this.mStrategy.a(uri);
+        int iLastIndexOf = fileA.getName().lastIndexOf(46);
+        if (iLastIndexOf < 0) {
             return OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE;
         }
-        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(mo8849a.getName().substring(lastIndexOf + 1));
+        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileA.getName().substring(iLastIndexOf + 1));
         return mimeTypeFromExtension != null ? mimeTypeFromExtension : OSSConstants.DEFAULT_OBJECT_CONTENT_TYPE;
     }
 
@@ -202,13 +199,13 @@ public class FileProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public ParcelFileDescriptor openFile(Uri uri, String str) {
-        return ParcelFileDescriptor.open(this.mStrategy.mo8849a(uri), modeToMode(str));
+        return ParcelFileDescriptor.open(this.mStrategy.a(uri), modeToMode(str));
     }
 
     @Override // android.content.ContentProvider
     public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
         int i2;
-        File mo8849a = this.mStrategy.mo8849a(uri);
+        File fileA = this.mStrategy.a(uri);
         if (strArr == null) {
             strArr = COLUMNS;
         }
@@ -219,18 +216,18 @@ public class FileProvider extends ContentProvider {
             if ("_display_name".equals(str3)) {
                 strArr3[i3] = "_display_name";
                 i2 = i3 + 1;
-                objArr[i3] = mo8849a.getName();
+                objArr[i3] = fileA.getName();
             } else if ("_size".equals(str3)) {
                 strArr3[i3] = "_size";
                 i2 = i3 + 1;
-                objArr[i3] = Long.valueOf(mo8849a.length());
+                objArr[i3] = Long.valueOf(fileA.length());
             }
             i3 = i2;
         }
-        String[] copyOf = copyOf(strArr3, i3);
-        Object[] copyOf2 = copyOf(objArr, i3);
-        MatrixCursor matrixCursor = new MatrixCursor(copyOf, 1);
-        matrixCursor.addRow(copyOf2);
+        String[] strArrCopyOf = copyOf(strArr3, i3);
+        Object[] objArrCopyOf = copyOf(objArr, i3);
+        MatrixCursor matrixCursor = new MatrixCursor(strArrCopyOf, 1);
+        matrixCursor.addRow(objArrCopyOf);
         return matrixCursor;
     }
 
@@ -245,26 +242,24 @@ public class FileProvider extends ContentProvider {
         return objArr2;
     }
 
-    /* renamed from: com.sina.weibo.sdk.content.FileProvider$b */
-    static class C2929b implements InterfaceC2928a {
+    static class b implements a {
 
-        /* renamed from: g */
-        private final String f9307g;
+        /* JADX INFO: renamed from: g, reason: collision with root package name */
+        private final String f5690g;
 
-        /* renamed from: h */
-        final HashMap<String, File> f9308h = new HashMap<>();
+        /* JADX INFO: renamed from: h, reason: collision with root package name */
+        final HashMap<String, File> f5691h = new HashMap<>();
 
-        public C2929b(String str) {
-            this.f9307g = str;
+        public b(String str) {
+            this.f5690g = str;
         }
 
-        @Override // com.sina.weibo.sdk.content.FileProvider.InterfaceC2928a
-        /* renamed from: a */
-        public final Uri mo8848a(File file) {
+        @Override // com.sina.weibo.sdk.content.FileProvider.a
+        public final Uri a(File file) {
             try {
                 String canonicalPath = file.getCanonicalPath();
                 Map.Entry<String, File> entry = null;
-                for (Map.Entry<String, File> entry2 : this.f9308h.entrySet()) {
+                for (Map.Entry<String, File> entry2 : this.f5691h.entrySet()) {
                     String path = entry2.getValue().getPath();
                     if (canonicalPath.startsWith(path) && (entry == null || path.length() > entry.getValue().getPath().length())) {
                         entry = entry2;
@@ -274,22 +269,21 @@ public class FileProvider extends ContentProvider {
                     throw new IllegalArgumentException("Failed to find configured root that contains ".concat(String.valueOf(canonicalPath)));
                 }
                 String path2 = entry.getValue().getPath();
-                return new Uri.Builder().scheme("content").authority(this.f9307g).encodedPath(Uri.encode(entry.getKey()) + '/' + Uri.encode(path2.endsWith("/") ? canonicalPath.substring(path2.length()) : canonicalPath.substring(path2.length() + 1), "/")).build();
+                return new Uri.Builder().scheme("content").authority(this.f5690g).encodedPath(Uri.encode(entry.getKey()) + '/' + Uri.encode(path2.endsWith("/") ? canonicalPath.substring(path2.length()) : canonicalPath.substring(path2.length() + 1), "/")).build();
             } catch (IOException unused) {
                 throw new IllegalArgumentException("Failed to resolve canonical path for ".concat(String.valueOf(file)));
             }
         }
 
-        @Override // com.sina.weibo.sdk.content.FileProvider.InterfaceC2928a
-        /* renamed from: a */
-        public final File mo8849a(Uri uri) {
+        @Override // com.sina.weibo.sdk.content.FileProvider.a
+        public final File a(Uri uri) {
             String encodedPath = uri.getEncodedPath();
-            int indexOf = encodedPath.indexOf(47, 1);
-            String decode = Uri.decode(encodedPath.substring(1, indexOf));
-            String decode2 = Uri.decode(encodedPath.substring(indexOf + 1));
-            File file = this.f9308h.get(decode);
+            int iIndexOf = encodedPath.indexOf(47, 1);
+            String strDecode = Uri.decode(encodedPath.substring(1, iIndexOf));
+            String strDecode2 = Uri.decode(encodedPath.substring(iIndexOf + 1));
+            File file = this.f5691h.get(strDecode);
             if (file != null) {
-                File file2 = new File(file, decode2);
+                File file2 = new File(file, strDecode2);
                 try {
                     File canonicalFile = file2.getCanonicalFile();
                     if (canonicalFile.getPath().startsWith(file.getPath())) {

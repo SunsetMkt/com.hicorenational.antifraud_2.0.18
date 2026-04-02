@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import java.lang.reflect.Method;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ActionBarDrawerToggleHoneycomb {
     private static final String TAG = "ActionBarDrawerToggleHC";
     private static final int[] THEME_ATTRS = {R.attr.homeAsUpIndicator};
@@ -25,11 +25,11 @@ class ActionBarDrawerToggleHoneycomb {
                 this.setHomeAsUpIndicator = android.app.ActionBar.class.getDeclaredMethod("setHomeAsUpIndicator", Drawable.class);
                 this.setHomeActionContentDescription = android.app.ActionBar.class.getDeclaredMethod("setHomeActionContentDescription", Integer.TYPE);
             } catch (NoSuchMethodException unused) {
-                View findViewById = activity.findViewById(R.id.home);
-                if (findViewById == null) {
+                View viewFindViewById = activity.findViewById(R.id.home);
+                if (viewFindViewById == null) {
                     return;
                 }
-                ViewGroup viewGroup = (ViewGroup) findViewById.getParent();
+                ViewGroup viewGroup = (ViewGroup) viewFindViewById.getParent();
                 if (viewGroup.getChildCount() != 2) {
                     return;
                 }
@@ -46,9 +46,9 @@ class ActionBarDrawerToggleHoneycomb {
     }
 
     public static Drawable getThemeUpIndicator(Activity activity) {
-        TypedArray obtainStyledAttributes = activity.obtainStyledAttributes(THEME_ATTRS);
-        Drawable drawable = obtainStyledAttributes.getDrawable(0);
-        obtainStyledAttributes.recycle();
+        TypedArray typedArrayObtainStyledAttributes = activity.obtainStyledAttributes(THEME_ATTRS);
+        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(0);
+        typedArrayObtainStyledAttributes.recycle();
         return drawable;
     }
 

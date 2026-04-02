@@ -4,7 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Preconditions;
 import androidx.core.util.Supplier;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class Present<T> extends Optional<T> {
     private static final long serialVersionUID = 0;
     private final T mReference;
@@ -37,8 +37,7 @@ final class Present<T> extends Optional<T> {
     }
 
     @Override // androidx.camera.core.impl.utils.Optional
-    /* renamed from: or */
-    public T mo373or(T t) {
+    public T or(T t) {
         Preconditions.checkNotNull(t, "use Optional.orNull() instead of Optional.or(null)");
         return this.mReference;
     }
@@ -54,15 +53,13 @@ final class Present<T> extends Optional<T> {
     }
 
     @Override // androidx.camera.core.impl.utils.Optional
-    /* renamed from: or */
-    public Optional<T> mo371or(Optional<? extends T> optional) {
+    public Optional<T> or(Optional<? extends T> optional) {
         Preconditions.checkNotNull(optional);
         return this;
     }
 
     @Override // androidx.camera.core.impl.utils.Optional
-    /* renamed from: or */
-    public T mo372or(Supplier<? extends T> supplier) {
+    public T or(Supplier<? extends T> supplier) {
         Preconditions.checkNotNull(supplier);
         return this.mReference;
     }

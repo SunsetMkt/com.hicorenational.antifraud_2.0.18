@@ -4,7 +4,7 @@ import java.util.Comparator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class JSONArraySortUtil implements Comparator<JSONObject> {
     private String mCompareKey;
 

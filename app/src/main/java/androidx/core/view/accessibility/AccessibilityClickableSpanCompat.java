@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class AccessibilityClickableSpanCompat extends ClickableSpan {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})

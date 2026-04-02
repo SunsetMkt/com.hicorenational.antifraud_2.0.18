@@ -2,7 +2,7 @@ package com.taobao.accs;
 
 import com.taobao.accs.base.BaseReceiver;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class EventReceiver extends BaseReceiver {
 }

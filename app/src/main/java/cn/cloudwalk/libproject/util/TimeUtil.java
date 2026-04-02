@@ -1,6 +1,6 @@
 package cn.cloudwalk.libproject.util;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TimeUtil {
     static long startTime;
 

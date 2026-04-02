@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface Dns {
     public static final Dns SYSTEM = new Dns() { // from class: okhttp3.Dns.1
         @Override // okhttp3.Dns

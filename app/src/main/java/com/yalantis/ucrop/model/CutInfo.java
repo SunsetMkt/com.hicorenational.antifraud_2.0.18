@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class CutInfo implements Parcelable {
     public static final Parcelable.Creator<CutInfo> CREATOR = new Parcelable.Creator<CutInfo>() { // from class: com.yalantis.ucrop.model.CutInfo.1
         /* JADX WARN: Can't rename method to resolve collision */
@@ -23,9 +23,7 @@ public class CutInfo implements Parcelable {
     private String cutPath;
     private long duration;
     private Uri httpOutUri;
-
-    /* renamed from: id */
-    private long f16840id;
+    private long id;
     private int imageHeight;
     private int imageWidth;
     private boolean isCut;
@@ -61,7 +59,7 @@ public class CutInfo implements Parcelable {
     }
 
     public long getId() {
-        return this.f16840id;
+        return this.id;
     }
 
     public int getImageHeight() {
@@ -121,7 +119,7 @@ public class CutInfo implements Parcelable {
     }
 
     public void setId(long j2) {
-        this.f16840id = j2;
+        this.id = j2;
     }
 
     public void setImageHeight(int i2) {
@@ -158,7 +156,7 @@ public class CutInfo implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeLong(this.f16840id);
+        parcel.writeLong(this.id);
         parcel.writeString(this.path);
         parcel.writeString(this.cutPath);
         parcel.writeString(this.androidQToPath);
@@ -180,7 +178,7 @@ public class CutInfo implements Parcelable {
     }
 
     protected CutInfo(Parcel parcel) {
-        this.f16840id = parcel.readLong();
+        this.id = parcel.readLong();
         this.path = parcel.readString();
         this.cutPath = parcel.readString();
         this.androidQToPath = parcel.readString();

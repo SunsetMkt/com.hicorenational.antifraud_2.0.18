@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.core.internal.view.SupportMenu;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MenuCompat {
     private MenuCompat() {
     }

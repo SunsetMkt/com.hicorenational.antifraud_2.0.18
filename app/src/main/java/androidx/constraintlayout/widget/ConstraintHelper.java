@@ -14,14 +14,14 @@ import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
 import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.constraintlayout.solver.widgets.HelperWidget;
-import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.constraintlayout.widget.R;
 import com.xiaomi.mipush.sdk.Constants;
 import java.util.Arrays;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class ConstraintHelper extends View {
     protected int mCount;
     protected Helper mHelperWidget;
@@ -47,16 +47,16 @@ public abstract class ConstraintHelper extends View {
         if (str == null || str.length() == 0 || this.myContext == null) {
             return;
         }
-        String trim = str.trim();
+        String strTrim = str.trim();
         if (getParent() instanceof ConstraintLayout) {
         }
-        int findId = findId(trim);
-        if (findId != 0) {
-            this.mMap.put(Integer.valueOf(findId), trim);
-            addRscID(findId);
+        int iFindId = findId(strTrim);
+        if (iFindId != 0) {
+            this.mMap.put(Integer.valueOf(iFindId), strTrim);
+            addRscID(iFindId);
             return;
         }
-        String str2 = "Could not find id of \"" + trim + "\"";
+        String str2 = "Could not find id of \"" + strTrim + "\"";
     }
 
     private void addRscID(int i2) {
@@ -78,7 +78,7 @@ public abstract class ConstraintHelper extends View {
         if (str == null || str.length() == 0 || this.myContext == null) {
             return;
         }
-        String trim = str.trim();
+        String strTrim = str.trim();
         ConstraintLayout constraintLayout = getParent() instanceof ConstraintLayout ? (ConstraintLayout) getParent() : null;
         if (constraintLayout == null) {
             return;
@@ -87,7 +87,7 @@ public abstract class ConstraintHelper extends View {
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = constraintLayout.getChildAt(i2);
             ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
-            if ((layoutParams instanceof ConstraintLayout.LayoutParams) && trim.equals(((ConstraintLayout.LayoutParams) layoutParams).constraintTag)) {
+            if ((layoutParams instanceof ConstraintLayout.LayoutParams) && strTrim.equals(((ConstraintLayout.LayoutParams) layoutParams).constraintTag)) {
                 if (childAt.getId() == -1) {
                     String str2 = "to use ConstraintTag view " + childAt.getClass().getSimpleName() + " must have an ID";
                 } else {
@@ -98,39 +98,39 @@ public abstract class ConstraintHelper extends View {
     }
 
     private int[] convertReferenceString(View view, String str) {
-        String[] split = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
+        String[] strArrSplit = str.split(Constants.ACCEPT_TIME_SEPARATOR_SP);
         view.getContext();
-        int[] iArr = new int[split.length];
+        int[] iArr = new int[strArrSplit.length];
         int i2 = 0;
-        for (String str2 : split) {
-            int findId = findId(str2.trim());
-            if (findId != 0) {
-                iArr[i2] = findId;
+        for (String str2 : strArrSplit) {
+            int iFindId = findId(str2.trim());
+            if (iFindId != 0) {
+                iArr[i2] = iFindId;
                 i2++;
             }
         }
-        return i2 != split.length ? Arrays.copyOf(iArr, i2) : iArr;
+        return i2 != strArrSplit.length ? Arrays.copyOf(iArr, i2) : iArr;
     }
 
     private int findId(String str) {
         ConstraintLayout constraintLayout = getParent() instanceof ConstraintLayout ? (ConstraintLayout) getParent() : null;
-        int i2 = 0;
+        int iFindId = 0;
         if (isInEditMode() && constraintLayout != null) {
             Object designInformation = constraintLayout.getDesignInformation(0, str);
             if (designInformation instanceof Integer) {
-                i2 = ((Integer) designInformation).intValue();
+                iFindId = ((Integer) designInformation).intValue();
             }
         }
-        if (i2 == 0 && constraintLayout != null) {
-            i2 = findId(constraintLayout, str);
+        if (iFindId == 0 && constraintLayout != null) {
+            iFindId = findId(constraintLayout, str);
         }
-        if (i2 == 0) {
+        if (iFindId == 0) {
             try {
-                i2 = C0471R.id.class.getField(str).getInt(null);
+                iFindId = R.id.class.getField(str).getInt(null);
             } catch (Exception unused) {
             }
         }
-        return i2 == 0 ? this.myContext.getResources().getIdentifier(str, "id", this.myContext.getPackageName()) : i2;
+        return iFindId == 0 ? this.myContext.getResources().getIdentifier(str, "id", this.myContext.getPackageName()) : iFindId;
     }
 
     public void addView(View view) {
@@ -173,19 +173,19 @@ public abstract class ConstraintHelper extends View {
 
     protected void init(AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_Layout);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.ConstraintLayout_Layout_constraint_referenced_ids) {
-                    this.mReferenceIds = obtainStyledAttributes.getString(index);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.ConstraintLayout_Layout_constraint_referenced_ids) {
+                    this.mReferenceIds = typedArrayObtainStyledAttributes.getString(index);
                     setIds(this.mReferenceIds);
-                } else if (index == C0471R.styleable.ConstraintLayout_Layout_constraint_referenced_tags) {
-                    this.mReferenceTags = obtainStyledAttributes.getString(index);
+                } else if (index == R.styleable.ConstraintLayout_Layout_constraint_referenced_tags) {
+                    this.mReferenceTags = typedArrayObtainStyledAttributes.getString(index);
                     setReferenceTags(this.mReferenceTags);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -288,13 +288,13 @@ public abstract class ConstraintHelper extends View {
         int i2 = 0;
         this.mCount = 0;
         while (true) {
-            int indexOf = str.indexOf(44, i2);
-            if (indexOf == -1) {
+            int iIndexOf = str.indexOf(44, i2);
+            if (iIndexOf == -1) {
                 addID(str.substring(i2));
                 return;
             } else {
-                addID(str.substring(i2, indexOf));
-                i2 = indexOf + 1;
+                addID(str.substring(i2, iIndexOf));
+                i2 = iIndexOf + 1;
             }
         }
     }
@@ -307,13 +307,13 @@ public abstract class ConstraintHelper extends View {
         int i2 = 0;
         this.mCount = 0;
         while (true) {
-            int indexOf = str.indexOf(44, i2);
-            if (indexOf == -1) {
+            int iIndexOf = str.indexOf(44, i2);
+            if (iIndexOf == -1) {
                 addTag(str.substring(i2));
                 return;
             } else {
-                addTag(str.substring(i2, indexOf));
-                i2 = indexOf + 1;
+                addTag(str.substring(i2, iIndexOf));
+                i2 = iIndexOf + 1;
             }
         }
     }
@@ -348,7 +348,7 @@ public abstract class ConstraintHelper extends View {
 
     public void updatePreLayout(ConstraintLayout constraintLayout) {
         String str;
-        int findId;
+        int iFindId;
         if (isInEditMode()) {
             setIds(this.mReferenceIds);
         }
@@ -360,10 +360,10 @@ public abstract class ConstraintHelper extends View {
         for (int i2 = 0; i2 < this.mCount; i2++) {
             int i3 = this.mIds[i2];
             View viewById = constraintLayout.getViewById(i3);
-            if (viewById == null && (findId = findId(constraintLayout, (str = this.mMap.get(Integer.valueOf(i3))))) != 0) {
-                this.mIds[i2] = findId;
-                this.mMap.put(Integer.valueOf(findId), str);
-                viewById = constraintLayout.getViewById(findId);
+            if (viewById == null && (iFindId = findId(constraintLayout, (str = this.mMap.get(Integer.valueOf(i3))))) != 0) {
+                this.mIds[i2] = iFindId;
+                this.mMap.put(Integer.valueOf(iFindId), str);
+                viewById = constraintLayout.getViewById(iFindId);
             }
             if (viewById != null) {
                 this.mHelperWidget.add(constraintLayout.getViewWidget(viewById));
@@ -409,12 +409,12 @@ public abstract class ConstraintHelper extends View {
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = constraintLayout.getChildAt(i2);
             if (childAt.getId() != -1) {
-                String str2 = null;
+                String resourceEntryName = null;
                 try {
-                    str2 = resources.getResourceEntryName(childAt.getId());
+                    resourceEntryName = resources.getResourceEntryName(childAt.getId());
                 } catch (Resources.NotFoundException unused) {
                 }
-                if (str.equals(str2)) {
+                if (str.equals(resourceEntryName)) {
                     return childAt.getId();
                 }
             }

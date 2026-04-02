@@ -7,8 +7,8 @@ import com.taobao.accs.common.ThreadPoolExecutorFactory;
 import com.taobao.accs.internal.ReceiverImpl;
 import com.taobao.accs.utl.ALog;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public class BaseReceiver extends BroadcastReceiver {
     private static final String TAG = BaseReceiver.class.getSimpleName();
     private IBaseReceiver baseReceiver;
@@ -26,7 +26,7 @@ public class BaseReceiver extends BroadcastReceiver {
                 }
             });
         } catch (Exception e2) {
-            ALog.m9182e(TAG, "build ReceiverImpl error", e2.getMessage());
+            ALog.e(TAG, "build ReceiverImpl error", e2.getMessage());
         }
     }
 }

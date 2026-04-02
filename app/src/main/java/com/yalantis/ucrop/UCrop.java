@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UCrop {
     public static final String EXTRA_ASPECT_RATIO_X = "com.yalantis.ucrop.AspectRatioX";
     public static final String EXTRA_ASPECT_RATIO_Y = "com.yalantis.ucrop.AspectRatioY";
@@ -325,8 +325,7 @@ public class UCrop {
         return intent.getIntExtra(EXTRA_OUTPUT_IMAGE_WIDTH, -1);
     }
 
-    /* renamed from: of */
-    public static UCrop m16371of(@NonNull Uri uri, @NonNull Uri uri2) {
+    public static UCrop of(@NonNull Uri uri, @NonNull Uri uri2) {
         return new UCrop(uri, uri2);
     }
 
@@ -344,7 +343,7 @@ public class UCrop {
 
     public void start(@NonNull Activity activity, int i2, @AnimRes int i3) {
         activity.startActivityForResult(getIntent(activity), i2);
-        activity.overridePendingTransition(i3, C4415R.anim.ucrop_anim_fade_in);
+        activity.overridePendingTransition(i3, R.anim.ucrop_anim_fade_in);
     }
 
     public void startAnimationActivity(@NonNull Activity activity, @AnimRes int i2) {
@@ -365,7 +364,7 @@ public class UCrop {
 
     public void startMultiple(@NonNull Activity activity, int i2, @AnimRes int i3) {
         activity.startActivityForResult(getMultipleIntent(activity), i2);
-        activity.overridePendingTransition(i3, C4415R.anim.ucrop_anim_fade_in);
+        activity.overridePendingTransition(i3, R.anim.ucrop_anim_fade_in);
     }
 
     public UCrop useSourceImageAspectRatio() {

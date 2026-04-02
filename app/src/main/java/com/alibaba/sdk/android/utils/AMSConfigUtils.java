@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.utils;
 
 import android.content.Context;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AMSConfigUtils {
     private static final String ACCOUNT_ID = "ams_accountId";
     private static final String APP_KEY = "ams_appKey";

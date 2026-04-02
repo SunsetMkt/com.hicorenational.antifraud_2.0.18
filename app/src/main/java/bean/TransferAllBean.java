@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TransferAllBean extends BaseBean {
     private TransferBean transferBean = new TransferBean();
     private List<TransferFileBean> transferRecord = new ArrayList();

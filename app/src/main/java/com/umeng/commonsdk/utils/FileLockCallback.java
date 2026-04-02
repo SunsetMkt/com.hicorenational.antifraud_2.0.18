@@ -2,7 +2,7 @@ package com.umeng.commonsdk.utils;
 
 import java.io.File;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface FileLockCallback {
     boolean onFileLock(File file, int i2);
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import okio.Buffer;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class FileOperator {
     private final FileChannel fileChannel;
 
@@ -17,9 +17,9 @@ final class FileOperator {
             throw new IndexOutOfBoundsException();
         }
         while (j3 > 0) {
-            long transferTo = this.fileChannel.transferTo(j2, j3, buffer);
-            j2 += transferTo;
-            j3 -= transferTo;
+            long jTransferTo = this.fileChannel.transferTo(j2, j3, buffer);
+            j2 += jTransferTo;
+            j3 -= jTransferTo;
         }
     }
 
@@ -30,9 +30,9 @@ final class FileOperator {
         long j4 = j2;
         long j5 = j3;
         while (j5 > 0) {
-            long transferFrom = this.fileChannel.transferFrom(buffer, j4, j5);
-            j4 += transferFrom;
-            j5 -= transferFrom;
+            long jTransferFrom = this.fileChannel.transferFrom(buffer, j4, j5);
+            j4 += jTransferFrom;
+            j5 -= jTransferFrom;
         }
     }
 }

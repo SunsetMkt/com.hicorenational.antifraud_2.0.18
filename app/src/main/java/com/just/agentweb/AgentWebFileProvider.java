@@ -5,7 +5,7 @@ import android.content.pm.ProviderInfo;
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AgentWebFileProvider extends FileProvider {
     @Override // androidx.core.content.FileProvider, android.content.ContentProvider
     public void attachInfo(@NonNull Context context, @NonNull ProviderInfo providerInfo) {

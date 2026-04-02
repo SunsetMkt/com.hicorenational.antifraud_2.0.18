@@ -6,7 +6,7 @@ import anet.channel.util.HttpConstant;
 import bean.SurveyH5Bean;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class UriCompat {
     private UriCompat() {
     }
@@ -22,9 +22,9 @@ public final class UriCompat {
                 sb.append(':');
                 if (schemeSpecificPart != null) {
                     for (int i2 = 0; i2 < schemeSpecificPart.length(); i2++) {
-                        char charAt = schemeSpecificPart.charAt(i2);
-                        if (charAt == '-' || charAt == '@' || charAt == '.') {
-                            sb.append(charAt);
+                        char cCharAt = schemeSpecificPart.charAt(i2);
+                        if (cCharAt == '-' || cCharAt == '@' || cCharAt == '.') {
+                            sb.append(cCharAt);
                         } else {
                             sb.append('x');
                         }

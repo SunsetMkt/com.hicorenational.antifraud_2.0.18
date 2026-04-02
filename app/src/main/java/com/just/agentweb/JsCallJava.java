@@ -4,15 +4,15 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.webkit.WebView;
 import com.xiaomi.mipush.sdk.Constants;
+import d.c.a.b.a.a;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import org.android.agoo.common.AgooConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JsCallJava {
     private static final String[] IGNORE_UNSAFE_METHODS = {"getClass", "hashCode", AgooConstants.MESSAGE_NOTIFICATION, "notifyAll", "equals", "toString", "wait"};
     private static final String KEY_ARGS = "args";
@@ -41,9 +41,9 @@ public class JsCallJava {
             sb.append(" init begin\");var a={queue:[],callback:function(){var d=Array.prototype.slice.call(arguments,0);var c=d.shift();var e=d.shift();this.queue[c].apply(this,d);if(!e){delete this.queue[c]}}};");
             for (Method method : methods) {
                 String str2 = "method:" + method;
-                String genJavaMethodSign = genJavaMethodSign(method);
-                if (genJavaMethodSign != null) {
-                    this.mMethodsMap.put(genJavaMethodSign, method);
+                String strGenJavaMethodSign = genJavaMethodSign(method);
+                if (strGenJavaMethodSign != null) {
+                    this.mMethodsMap.put(strGenJavaMethodSign, method);
                     sb.append(String.format("a.%s=", method.getName()));
                 }
             }
@@ -113,11 +113,11 @@ public class JsCallJava {
     }
 
     private String getReturn(JSONObject jSONObject, int i2, Object obj, long j2) {
-        String format = String.format(RETURN_RESULT_FORMAT, Integer.valueOf(i2), obj == null ? AbstractC1191a.f2571h : obj instanceof String ? "\"".concat(String.valueOf(((String) obj).replace("\"", "\\\""))).concat("\"") : String.valueOf(obj));
+        String str = String.format(RETURN_RESULT_FORMAT, Integer.valueOf(i2), obj == null ? a.f10075h : obj instanceof String ? "\"".concat(String.valueOf(((String) obj).replace("\"", "\\\""))).concat("\"") : String.valueOf(obj));
         if (LogUtils.isDebug()) {
-            String str = "call time: " + (SystemClock.uptimeMillis() - j2) + ", request: " + jSONObject + ", result:" + format;
+            String str2 = "call time: " + (SystemClock.uptimeMillis() - j2) + ", request: " + jSONObject + ", result:" + str;
         }
-        return format;
+        return str;
     }
 
     static boolean isSafeWebViewCallMsg(String str) {
@@ -129,9 +129,9 @@ public class JsCallJava {
     }
 
     public String call(WebView webView, JSONObject jSONObject) {
-        long uptimeMillis = LogUtils.isDebug() ? SystemClock.uptimeMillis() : 0L;
+        long jUptimeMillis = LogUtils.isDebug() ? SystemClock.uptimeMillis() : 0L;
         if (jSONObject == null) {
-            return getReturn(jSONObject, 500, "call data empty", uptimeMillis);
+            return getReturn(jSONObject, 500, "call data empty", jUptimeMillis);
         }
         try {
             String string = jSONObject.getString(KEY_METHOD);
@@ -141,27 +141,27 @@ public class JsCallJava {
             Object[] objArr = new Object[length];
             int i2 = 0;
             for (int i3 = 0; i3 < length; i3++) {
-                String optString = jSONArray.optString(i3);
-                Object obj = null;
-                if ("string".equals(optString)) {
+                String strOptString = jSONArray.optString(i3);
+                Object jSONObject2 = null;
+                if ("string".equals(strOptString)) {
                     string = string + "_S";
                     if (!jSONArray2.isNull(i3)) {
-                        obj = jSONArray2.getString(i3);
+                        jSONObject2 = jSONArray2.getString(i3);
                     }
-                    objArr[i3] = obj;
-                } else if ("number".equals(optString)) {
+                    objArr[i3] = jSONObject2;
+                } else if ("number".equals(strOptString)) {
                     string = string + "_N";
                     i2 = (i2 * 10) + i3 + 1;
-                } else if ("boolean".equals(optString)) {
+                } else if ("boolean".equals(strOptString)) {
                     string = string + "_B";
                     objArr[i3] = Boolean.valueOf(jSONArray2.getBoolean(i3));
-                } else if ("object".equals(optString)) {
+                } else if ("object".equals(strOptString)) {
                     string = string + "_O";
                     if (!jSONArray2.isNull(i3)) {
-                        obj = jSONArray2.getJSONObject(i3);
+                        jSONObject2 = jSONArray2.getJSONObject(i3);
                     }
-                    objArr[i3] = obj;
-                } else if ("function".equals(optString)) {
+                    objArr[i3] = jSONObject2;
+                } else if ("function".equals(strOptString)) {
                     string = string + "_F";
                     objArr[i3] = new JsCallback(webView, this.mInterfacedName, jSONArray2.getInt(i3));
                 } else {
@@ -170,7 +170,7 @@ public class JsCallJava {
             }
             Method method = this.mMethodsMap.get(string);
             if (method == null) {
-                return getReturn(jSONObject, 500, "not found method(" + string + ") with valid parameters", uptimeMillis);
+                return getReturn(jSONObject, 500, "not found method(" + string + ") with valid parameters", jUptimeMillis);
             }
             if (i2 > 0) {
                 Class<?>[] parameterTypes = method.getParameterTypes();
@@ -187,13 +187,13 @@ public class JsCallJava {
                     i2 /= 10;
                 }
             }
-            return getReturn(jSONObject, 200, method.invoke(this.mInterfaceObj, objArr), uptimeMillis);
+            return getReturn(jSONObject, 200, method.invoke(this.mInterfaceObj, objArr), jUptimeMillis);
         } catch (Exception e2) {
             LogUtils.safeCheckCrash(TAG, "call", e2);
             if (e2.getCause() != null) {
-                return getReturn(jSONObject, 500, "method execute result:" + e2.getCause().getMessage(), uptimeMillis);
+                return getReturn(jSONObject, 500, "method execute result:" + e2.getCause().getMessage(), jUptimeMillis);
             }
-            return getReturn(jSONObject, 500, "method execute result:" + e2.getMessage(), uptimeMillis);
+            return getReturn(jSONObject, 500, "method execute result:" + e2.getMessage(), jUptimeMillis);
         }
     }
 

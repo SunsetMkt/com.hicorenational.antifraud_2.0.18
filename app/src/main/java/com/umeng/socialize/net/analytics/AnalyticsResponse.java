@@ -5,7 +5,7 @@ import com.umeng.socialize.net.base.SocializeReseponse;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class AnalyticsResponse extends SocializeReseponse {
     public Map<SHARE_MEDIA, Integer> mInfoMap;
     public String mWeiboId;

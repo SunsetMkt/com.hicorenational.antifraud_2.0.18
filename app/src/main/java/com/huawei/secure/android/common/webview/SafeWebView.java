@@ -25,39 +25,34 @@ import com.huawei.secure.android.common.webview.WebViewLoadCallBack;
 import java.util.Arrays;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SafeWebView extends WebView {
 
-    /* renamed from: f */
-    private static final String f8308f = "SafeWebView";
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static final String f5258f = "SafeWebView";
+    private String a;
 
-    /* renamed from: a */
-    private String f8309a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private String[] f5259b;
 
-    /* renamed from: b */
-    private String[] f8310b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String[] f5260c;
 
-    /* renamed from: c */
-    private String[] f8311c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String[] f5261d;
 
-    /* renamed from: d */
-    private String[] f8312d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private WebViewLoadCallBack f5262e;
 
-    /* renamed from: e */
-    private WebViewLoadCallBack f8313e;
+    private final class b extends WebViewClient {
+        private WebViewClient a;
 
-    /* renamed from: com.huawei.secure.android.common.webview.SafeWebView$b */
-    private final class C2575b extends WebViewClient {
-
-        /* renamed from: a */
-        private WebViewClient f8314a;
-
-        /* renamed from: b */
-        private boolean f8315b;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private boolean f5263b;
 
         @Override // android.webkit.WebViewClient
         public void doUpdateVisitedHistory(WebView webView, String str, boolean z) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.doUpdateVisitedHistory(webView, str, z);
             } else {
@@ -67,7 +62,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onFormResubmission(WebView webView, Message message, Message message2) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onFormResubmission(webView, message, message2);
             } else {
@@ -77,7 +72,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onLoadResource(WebView webView, String str) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onLoadResource(webView, str);
             } else {
@@ -88,7 +83,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(23)
         public void onPageCommitVisible(WebView webView, String str) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onPageCommitVisible(webView, str);
             } else {
@@ -98,7 +93,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onPageFinished(WebView webView, String str) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onPageFinished(webView, str);
             } else {
@@ -108,8 +103,8 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onPageStarted(WebView webView, String str, Bitmap bitmap) {
-            WebViewClient webViewClient = this.f8314a;
-            if (webViewClient != null && !this.f8315b) {
+            WebViewClient webViewClient = this.a;
+            if (webViewClient != null && !this.f5263b) {
                 webViewClient.onPageStarted(webView, str, bitmap);
             } else if (SafeWebView.this.isWhiteListUrl(str)) {
                 super.onPageStarted(webView, str, bitmap);
@@ -121,7 +116,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(21)
         public void onReceivedClientCertRequest(WebView webView, ClientCertRequest clientCertRequest) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedClientCertRequest(webView, clientCertRequest);
             } else {
@@ -131,7 +126,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onReceivedError(WebView webView, int i2, String str, String str2) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedError(webView, i2, str, str2);
             } else {
@@ -141,7 +136,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onReceivedHttpAuthRequest(WebView webView, HttpAuthHandler httpAuthHandler, String str, String str2) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedHttpAuthRequest(webView, httpAuthHandler, str, str2);
             } else {
@@ -152,7 +147,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(23)
         public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
             } else {
@@ -163,7 +158,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(12)
         public void onReceivedLoginRequest(WebView webView, String str, String str2, String str3) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedLoginRequest(webView, str, str2, str3);
             } else {
@@ -174,7 +169,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(8)
         public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedSslError(webView, sslErrorHandler, sslError);
             } else {
@@ -185,14 +180,14 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @SuppressLint({"NewApi"})
         public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             return webViewClient != null ? webViewClient.onRenderProcessGone(webView, renderProcessGoneDetail) : super.onRenderProcessGone(webView, renderProcessGoneDetail);
         }
 
         @Override // android.webkit.WebViewClient
         @SuppressLint({"NewApi"})
         public void onSafeBrowsingHit(WebView webView, WebResourceRequest webResourceRequest, int i2, SafeBrowsingResponse safeBrowsingResponse) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onSafeBrowsingHit(webView, webResourceRequest, i2, safeBrowsingResponse);
             } else {
@@ -202,7 +197,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onScaleChanged(WebView webView, float f2, float f3) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onScaleChanged(webView, f2, f3);
             } else {
@@ -212,7 +207,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onTooManyRedirects(WebView webView, Message message, Message message2) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onTooManyRedirects(webView, message, message2);
             } else {
@@ -222,7 +217,7 @@ public class SafeWebView extends WebView {
 
         @Override // android.webkit.WebViewClient
         public void onUnhandledKeyEvent(WebView webView, KeyEvent keyEvent) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onUnhandledKeyEvent(webView, keyEvent);
             } else {
@@ -233,31 +228,31 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(21)
         public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             return webViewClient != null ? webViewClient.shouldInterceptRequest(webView, webResourceRequest) : super.shouldInterceptRequest(webView, webResourceRequest);
         }
 
         @Override // android.webkit.WebViewClient
         public boolean shouldOverrideKeyEvent(WebView webView, KeyEvent keyEvent) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             return webViewClient != null ? webViewClient.shouldOverrideKeyEvent(webView, keyEvent) : super.shouldOverrideKeyEvent(webView, keyEvent);
         }
 
         @Override // android.webkit.WebViewClient
         public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             return webViewClient != null ? webViewClient.shouldOverrideUrlLoading(webView, str) : super.shouldOverrideUrlLoading(webView, str);
         }
 
-        private C2575b(WebViewClient webViewClient, boolean z) {
-            this.f8314a = webViewClient;
-            this.f8315b = z;
+        private b(WebViewClient webViewClient, boolean z) {
+            this.a = webViewClient;
+            this.f5263b = z;
         }
 
         @Override // android.webkit.WebViewClient
         @TargetApi(23)
         public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 webViewClient.onReceivedError(webView, webResourceRequest, webResourceError);
             } else {
@@ -268,7 +263,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(11)
         public WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 return webViewClient.shouldInterceptRequest(webView, str);
             }
@@ -278,7 +273,7 @@ public class SafeWebView extends WebView {
         @Override // android.webkit.WebViewClient
         @TargetApi(24)
         public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-            WebViewClient webViewClient = this.f8314a;
+            WebViewClient webViewClient = this.a;
             if (webViewClient != null) {
                 return webViewClient.shouldOverrideUrlLoading(webView, webResourceRequest);
             }
@@ -288,26 +283,25 @@ public class SafeWebView extends WebView {
 
     public SafeWebView(Context context) {
         super(context);
-        m8076a();
+        a();
     }
 
-    /* renamed from: a */
-    private boolean m8077a(String str) {
+    private boolean a(String str) {
         return URLUtil.isHttpUrl(str);
     }
 
     public String getDefaultErrorPage() {
-        return this.f8309a;
+        return this.a;
     }
 
     public WebViewLoadCallBack getWebViewLoadCallBack() {
-        return this.f8313e;
+        return this.f5262e;
     }
 
     @TargetApi(9)
     @Deprecated
     public String[] getWhitelist() {
-        String[] strArr = this.f8310b;
+        String[] strArr = this.f5259b;
         if (strArr == null) {
             return null;
         }
@@ -315,7 +309,7 @@ public class SafeWebView extends WebView {
     }
 
     public String[] getWhitelistNotMatchSubDomain() {
-        String[] strArr = this.f8311c;
+        String[] strArr = this.f5260c;
         if (strArr == null) {
             return null;
         }
@@ -324,7 +318,7 @@ public class SafeWebView extends WebView {
 
     @Deprecated
     public String[] getWhitelistNotMathcSubDomain() {
-        String[] strArr = this.f8311c;
+        String[] strArr = this.f5260c;
         if (strArr == null) {
             return null;
         }
@@ -333,7 +327,7 @@ public class SafeWebView extends WebView {
 
     @TargetApi(9)
     public String[] getWhitelistWithPath() {
-        String[] strArr = this.f8312d;
+        String[] strArr = this.f5261d;
         if (strArr == null) {
             return null;
         }
@@ -343,7 +337,7 @@ public class SafeWebView extends WebView {
     @TargetApi(9)
     public boolean isWhiteListUrl(String str) {
         if (TextUtils.isEmpty(str)) {
-            LogsUtil.m8021e(f8308f, "url is null");
+            LogsUtil.e(f5258f, "url is null");
             return false;
         }
         if (!URLUtil.isNetworkUrl(str)) {
@@ -363,10 +357,10 @@ public class SafeWebView extends WebView {
 
     @Override // android.webkit.WebView
     public void loadDataWithBaseURL(String str, String str2, String str3, String str4, String str5) {
-        if (!m8077a(str)) {
+        if (!a(str)) {
             super.loadDataWithBaseURL(str, str2, str3, str4, str5);
-        } else if (!TextUtils.isEmpty(this.f8309a)) {
-            super.loadDataWithBaseURL(this.f8309a, str2, str3, str4, str5);
+        } else if (!TextUtils.isEmpty(this.a)) {
+            super.loadDataWithBaseURL(this.a, str2, str3, str4, str5);
         } else if (getWebViewLoadCallBack() != null) {
             getWebViewLoadCallBack().onCheckError(str, WebViewLoadCallBack.ErrorCode.HTTP_URL);
         }
@@ -374,17 +368,17 @@ public class SafeWebView extends WebView {
 
     @Override // android.webkit.WebView
     public void loadUrl(String str) {
-        if (isWhiteListUrl(str) && !m8077a(str)) {
+        if (isWhiteListUrl(str) && !a(str)) {
             super.loadUrl(str);
-        } else if (!TextUtils.isEmpty(this.f8309a)) {
-            super.loadUrl(this.f8309a);
+        } else if (!TextUtils.isEmpty(this.a)) {
+            super.loadUrl(this.a);
         } else if (getWebViewLoadCallBack() != null) {
             getWebViewLoadCallBack().onCheckError(str, WebViewLoadCallBack.ErrorCode.HTTP_URL);
         }
     }
 
     public final void onCheckError(WebView webView, String str) {
-        LogsUtil.m8022e(f8308f, "onCheckError url is not in white list ", str);
+        LogsUtil.e(f5258f, "onCheckError url is not in white list ", str);
         webView.stopLoading();
         String defaultErrorPage = getDefaultErrorPage();
         if (!TextUtils.isEmpty(defaultErrorPage)) {
@@ -396,80 +390,79 @@ public class SafeWebView extends WebView {
 
     @Override // android.webkit.WebView
     public void postUrl(String str, byte[] bArr) {
-        if (isWhiteListUrl(str) && !m8077a(str)) {
+        if (isWhiteListUrl(str) && !a(str)) {
             super.postUrl(str, bArr);
-        } else if (!TextUtils.isEmpty(this.f8309a)) {
-            super.postUrl(this.f8309a, bArr);
+        } else if (!TextUtils.isEmpty(this.a)) {
+            super.postUrl(this.a, bArr);
         } else if (getWebViewLoadCallBack() != null) {
             getWebViewLoadCallBack().onCheckError(str, WebViewLoadCallBack.ErrorCode.HTTP_URL);
         }
     }
 
     public void setDefaultErrorPage(String str) {
-        this.f8309a = str;
+        this.a = str;
     }
 
     @Override // android.webkit.WebView
     public void setWebViewClient(WebViewClient webViewClient) {
-        super.setWebViewClient(new C2575b(webViewClient, true));
+        super.setWebViewClient(new b(webViewClient, true));
     }
 
     public void setWebViewLoadCallBack(WebViewLoadCallBack webViewLoadCallBack) {
-        this.f8313e = webViewLoadCallBack;
+        this.f5262e = webViewLoadCallBack;
     }
 
     @TargetApi(9)
     @Deprecated
     public void setWhitelist(String[] strArr) {
-        this.f8310b = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
+        this.f5259b = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
     }
 
     public void setWhitelistNotMatchSubDomain(String[] strArr) {
-        this.f8311c = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
+        this.f5260c = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
     }
 
     @Deprecated
     public void setWhitelistNotMathcSubDomain(String[] strArr) {
-        this.f8311c = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
+        this.f5260c = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
     }
 
     @TargetApi(9)
     public void setWhitelistWithPath(String[] strArr) {
-        this.f8312d = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
+        this.f5261d = strArr == null ? null : (String[]) Arrays.copyOf(strArr, strArr.length);
     }
 
-    /* renamed from: a */
-    private void m8076a() {
+    private void a() {
         SafeWebSettings.initWebviewAndSettings(this);
         setWebViewClient(null);
     }
 
     public void setWebViewClient(WebViewClient webViewClient, boolean z) {
-        super.setWebViewClient(new C2575b(webViewClient, z));
+        super.setWebViewClient(new b(webViewClient, z));
     }
 
     public SafeWebView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m8076a();
+        a();
     }
 
     public SafeWebView(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        m8076a();
+        a();
     }
 
     @TargetApi(21)
     public SafeWebView(Context context, AttributeSet attributeSet, int i2, int i3) {
         super(context, attributeSet, i2, i3);
-        m8076a();
+        a();
     }
 
     @Override // android.webkit.WebView
     public void loadUrl(String str, Map<String, String> map) {
-        if (isWhiteListUrl(str) && !m8077a(str)) {
+        if (isWhiteListUrl(str) && !a(str)) {
             super.loadUrl(str, map);
-        } else if (!TextUtils.isEmpty(this.f8309a)) {
-            super.loadUrl(this.f8309a, map);
+        } else if (!TextUtils.isEmpty(this.a)) {
+            super.loadUrl(this.a, map);
         } else if (getWebViewLoadCallBack() != null) {
             getWebViewLoadCallBack().onCheckError(str, WebViewLoadCallBack.ErrorCode.HTTP_URL);
         }

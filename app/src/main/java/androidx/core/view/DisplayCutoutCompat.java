@@ -6,7 +6,7 @@ import android.view.DisplayCutout;
 import androidx.annotation.RequiresApi;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class DisplayCutoutCompat {
     private final Object mDisplayCutout;
 

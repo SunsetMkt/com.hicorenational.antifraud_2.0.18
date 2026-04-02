@@ -1,21 +1,84 @@
 package bean.module;
 
 import bean.WhiteTelBean;
-import com.google.gson.C2051e;
-import com.google.gson.p152d0.C2049a;
+import com.google.gson.d0.a;
+import com.google.gson.e;
 import interfaces.IResultCallback;
 import interfaces.IResultMuCallback;
 import java.util.List;
 import manager.AccountManager;
-import p245d.C4440a;
-import p388ui.presenter.WelocmPresenter;
-import util.C7277f1;
-import util.C7307p1;
+import ui.presenter.WelocmPresenter;
+import util.j1;
+import util.u1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LocalModuelConfig extends ModuelConfig {
     public static String ISHAVE_LOCAL = "sucess_get_config";
     public static String LASTCONFIG = "lastConfig";
+
+    /* JADX INFO: renamed from: bean.module.LocalModuelConfig$1 */
+    class AnonymousClass1 extends a<RegionMudelBean> {
+        AnonymousClass1() {
+        }
+    }
+
+    /* JADX INFO: renamed from: bean.module.LocalModuelConfig$2 */
+    class AnonymousClass2 implements IResultMuCallback {
+        final /* synthetic */ IResultCallback val$iResult;
+
+        AnonymousClass2(IResultCallback iResultCallback) {
+            iResultCallback = iResultCallback;
+        }
+
+        @Override // interfaces.IResultMuCallback
+        public void onIRFail() {
+        }
+
+        @Override // interfaces.IResultMuCallback
+        public void onIRSuccess(RegionMudelBean regionMudelBean, boolean z) {
+            if (z) {
+                u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+            } else {
+                u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                u1.a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
+                u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+            }
+            e.a.c();
+            e.a.d();
+            iResultCallback.onIRSuccess(regionMudelBean);
+            LocalModuelConfig.this.collectWhiteList(regionMudelBean);
+        }
+    }
+
+    /* JADX INFO: renamed from: bean.module.LocalModuelConfig$3 */
+    class AnonymousClass3 implements IResultMuCallback {
+        final /* synthetic */ IResultCallback val$iResult;
+
+        AnonymousClass3(IResultCallback iResultCallback) {
+            iResultCallback = iResultCallback;
+        }
+
+        @Override // interfaces.IResultMuCallback
+        public void onIRFail() {
+        }
+
+        @Override // interfaces.IResultMuCallback
+        public void onIRSuccess(RegionMudelBean regionMudelBean, boolean z) {
+            if (z) {
+                u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+            } else {
+                u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                u1.a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
+                u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+            }
+            e.a.c();
+            e.a.d();
+            iResultCallback.onIRSuccess(regionMudelBean);
+            LocalModuelConfig.this.collectWhiteList(regionMudelBean);
+        }
+    }
 
     private static class SingleHodle {
         private static final LocalModuelConfig mConfig = new LocalModuelConfig();
@@ -24,7 +87,10 @@ public class LocalModuelConfig extends ModuelConfig {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* synthetic */ LocalModuelConfig(AnonymousClass1 anonymousClass1) {
+        this();
+    }
+
     public void collectWhiteList(RegionMudelBean regionMudelBean) {
         List<WhiteTelBean> whiteTelList;
         if (regionMudelBean == null || (whiteTelList = regionMudelBean.getWhiteTelList()) == null || whiteTelList.size() <= 0) {
@@ -45,19 +111,27 @@ public class LocalModuelConfig extends ModuelConfig {
     }
 
     public RegionMudelBean getConfigJson() {
-        RegionMudelBean regionMudelBean = (RegionMudelBean) new C2051e().m5570a(C7277f1.m26347a("config.json", "UTF-8"), new C2049a<RegionMudelBean>() { // from class: bean.module.LocalModuelConfig.1
+        RegionMudelBean regionMudelBean = (RegionMudelBean) new e().a(j1.a("config.json", "UTF-8"), new a<RegionMudelBean>() { // from class: bean.module.LocalModuelConfig.1
+            AnonymousClass1() {
+            }
         }.getType());
-        C7307p1.m26486b(ISHAVE_LOCAL, 1);
-        C7307p1.m26478a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
-        C7307p1.m26478a(LASTCONFIG, regionMudelBean);
-        C4440a.m16400c();
-        C4440a.m16402d();
+        u1.b(ISHAVE_LOCAL, 1);
+        u1.a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
+        u1.a(LASTCONFIG, regionMudelBean);
+        e.a.c();
+        e.a.d();
         collectWhiteList(regionMudelBean);
         return regionMudelBean;
     }
 
-    public void getConfigMude(String str, final IResultCallback iResultCallback) {
+    public void getConfigMude(String str, IResultCallback iResultCallback) {
         getConfigMude(str, new IResultMuCallback() { // from class: bean.module.LocalModuelConfig.2
+            final /* synthetic */ IResultCallback val$iResult;
+
+            AnonymousClass2(IResultCallback iResultCallback2) {
+                iResultCallback = iResultCallback2;
+            }
+
             @Override // interfaces.IResultMuCallback
             public void onIRFail() {
             }
@@ -65,15 +139,15 @@ public class LocalModuelConfig extends ModuelConfig {
             @Override // interfaces.IResultMuCallback
             public void onIRSuccess(RegionMudelBean regionMudelBean, boolean z) {
                 if (z) {
-                    C7307p1.m26486b(LocalModuelConfig.ISHAVE_LOCAL, 1);
-                    C7307p1.m26478a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+                    u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                    u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
                 } else {
-                    C7307p1.m26486b(LocalModuelConfig.ISHAVE_LOCAL, 1);
-                    C7307p1.m26478a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
-                    C7307p1.m26478a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+                    u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                    u1.a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
+                    u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
                 }
-                C4440a.m16400c();
-                C4440a.m16402d();
+                e.a.c();
+                e.a.d();
                 iResultCallback.onIRSuccess(regionMudelBean);
                 LocalModuelConfig.this.collectWhiteList(regionMudelBean);
             }
@@ -83,8 +157,14 @@ public class LocalModuelConfig extends ModuelConfig {
     private LocalModuelConfig() {
     }
 
-    public void getConfigMude(boolean z, final IResultCallback iResultCallback) {
+    public void getConfigMude(boolean z, IResultCallback iResultCallback) {
         getConfigMude(z, AccountManager.getRegisterRegionCode(), new IResultMuCallback() { // from class: bean.module.LocalModuelConfig.3
+            final /* synthetic */ IResultCallback val$iResult;
+
+            AnonymousClass3(IResultCallback iResultCallback2) {
+                iResultCallback = iResultCallback2;
+            }
+
             @Override // interfaces.IResultMuCallback
             public void onIRFail() {
             }
@@ -92,15 +172,15 @@ public class LocalModuelConfig extends ModuelConfig {
             @Override // interfaces.IResultMuCallback
             public void onIRSuccess(RegionMudelBean regionMudelBean, boolean z2) {
                 if (z2) {
-                    C7307p1.m26486b(LocalModuelConfig.ISHAVE_LOCAL, 1);
-                    C7307p1.m26478a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+                    u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                    u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
                 } else {
-                    C7307p1.m26486b(LocalModuelConfig.ISHAVE_LOCAL, 1);
-                    C7307p1.m26478a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
-                    C7307p1.m26478a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
+                    u1.b(LocalModuelConfig.ISHAVE_LOCAL, 1);
+                    u1.a(regionMudelBean.getJsonRegionCode(), regionMudelBean);
+                    u1.a(LocalModuelConfig.LASTCONFIG, regionMudelBean);
                 }
-                C4440a.m16400c();
-                C4440a.m16402d();
+                e.a.c();
+                e.a.d();
                 iResultCallback.onIRSuccess(regionMudelBean);
                 LocalModuelConfig.this.collectWhiteList(regionMudelBean);
             }

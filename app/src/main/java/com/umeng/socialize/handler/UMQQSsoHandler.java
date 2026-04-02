@@ -35,7 +35,7 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMQQSsoHandler extends UMTencentSSOHandler {
     private static final String TAG = "UMQQSsoHandler";
     private IUiListener mShareListener;
@@ -44,11 +44,11 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
     private final String UNIONID_PARAM = "&unionid=1";
     private IUiListener holder = null;
 
-    /* renamed from: com.umeng.socialize.handler.UMQQSsoHandler$5 */
-    class C36925 implements IUiListener {
+    /* JADX INFO: renamed from: com.umeng.socialize.handler.UMQQSsoHandler$5, reason: invalid class name */
+    class AnonymousClass5 implements IUiListener {
         final /* synthetic */ UMAuthListener val$listener;
 
-        C36925(UMAuthListener uMAuthListener) {
+        AnonymousClass5(UMAuthListener uMAuthListener) {
             this.val$listener = uMAuthListener;
         }
 
@@ -60,13 +60,13 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
         @Override // com.tencent.tauth.IUiListener
         public void onComplete(final Object obj) {
             SocializeUtils.safeCloseDialog(UMQQSsoHandler.this.mProgressDialog);
-            final Bundle parseOauthData = UMQQSsoHandler.this.parseOauthData(obj);
+            final Bundle oauthData = UMQQSsoHandler.this.parseOauthData(obj);
             if (UMQQSsoHandler.this.qqPreferences == null && UMQQSsoHandler.this.getContext() != null) {
                 UMQQSsoHandler uMQQSsoHandler = UMQQSsoHandler.this;
                 uMQQSsoHandler.qqPreferences = new QQPreferences(uMQQSsoHandler.getContext(), SHARE_MEDIA.QQ.toString());
             }
             if (UMQQSsoHandler.this.qqPreferences != null) {
-                UMQQSsoHandler.this.qqPreferences.setAuthData(parseOauthData).commit();
+                UMQQSsoHandler.this.qqPreferences.setAuthData(oauthData).commit();
             }
             QueuedWork.runInBack(new Runnable() { // from class: com.umeng.socialize.handler.UMQQSsoHandler.5.1
                 @Override // java.lang.Runnable
@@ -80,35 +80,35 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
                     if (!TextUtils.isEmpty(unionIdRequest)) {
                         try {
                             JSONObject jSONObject = new JSONObject(unionIdRequest.replace("callback", "").replace("(", "").replace(")", ""));
-                            String optString = jSONObject.optString("unionid");
+                            String strOptString = jSONObject.optString("unionid");
                             UMQQSsoHandler.this.setmOpenid(jSONObject.optString("openid"));
-                            UMQQSsoHandler.this.setUnionid(optString);
+                            UMQQSsoHandler.this.setUnionid(strOptString);
                             if (UMQQSsoHandler.this.qqPreferences != null) {
                                 UMQQSsoHandler.this.qqPreferences.commit();
                             }
-                            String optString2 = jSONObject.optString("error_description");
-                            if (!TextUtils.isEmpty(optString2)) {
-                                SLog.m12716E(UmengText.C3778QQ.ERRORINFO + optString2);
+                            String strOptString2 = jSONObject.optString("error_description");
+                            if (!TextUtils.isEmpty(strOptString2)) {
+                                SLog.E(UmengText.QQ.ERRORINFO + strOptString2);
                             }
                         } catch (JSONException e2) {
                             SLog.error(e2);
                         }
                     }
                     UMQQSsoHandler.this.initOpenidAndToken((JSONObject) obj);
-                    final Map<String, String> bundleTomap = SocializeUtils.bundleTomap(parseOauthData);
+                    final Map<String, String> mapBundleTomap = SocializeUtils.bundleTomap(oauthData);
                     UMQQSsoHandler uMQQSsoHandler3 = UMQQSsoHandler.this;
-                    bundleTomap.put("unionid", uMQQSsoHandler3.getUnionid(uMQQSsoHandler3.qqPreferences));
+                    mapBundleTomap.put("unionid", uMQQSsoHandler3.getUnionid(uMQQSsoHandler3.qqPreferences));
                     QueuedWork.runInMain(new Runnable() { // from class: com.umeng.socialize.handler.UMQQSsoHandler.5.1.1
                         @Override // java.lang.Runnable
                         public void run() {
-                            C36925 c36925 = C36925.this;
-                            UMQQSsoHandler.this.getAuthListener(c36925.val$listener).onComplete(SHARE_MEDIA.QQ, 0, bundleTomap);
+                            AnonymousClass5 anonymousClass5 = AnonymousClass5.this;
+                            UMQQSsoHandler.this.getAuthListener(anonymousClass5.val$listener).onComplete(SHARE_MEDIA.QQ, 0, mapBundleTomap);
                         }
                     });
                     PlatformConfig.APPIDPlatform aPPIDPlatform = UMQQSsoHandler.this.config;
                     if (aPPIDPlatform != null) {
-                        bundleTomap.put(CommonNetImpl.AID, aPPIDPlatform.appId);
-                        bundleTomap.put(CommonNetImpl.f13712AS, UMQQSsoHandler.this.config.appkey);
+                        mapBundleTomap.put(CommonNetImpl.AID, aPPIDPlatform.appId);
+                        mapBundleTomap.put(CommonNetImpl.AS, UMQQSsoHandler.this.config.appkey);
                     }
                 }
             }, true);
@@ -172,9 +172,9 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
         if (uMShareConfig != null) {
             qQShareContent.setCompressListener(uMShareConfig.getCompressListener());
         }
-        Bundle buildParams = qQShareContent.buildParams(getShareConfig().isHideQzoneOnQQFriendList(), getShareConfig().getAppName());
-        buildParams.putString("appName", getShareConfig().getAppName());
-        return buildParams;
+        Bundle bundleBuildParams = qQShareContent.buildParams(getShareConfig().isHideQzoneOnQQFriendList(), getShareConfig().getAppName());
+        bundleBuildParams.putString("appName", getShareConfig().getAppName());
+        return bundleBuildParams;
     }
 
     private static String convertStreamToString(InputStream inputStream) {
@@ -184,11 +184,11 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
             try {
                 try {
                     try {
-                        String readLine = bufferedReader.readLine();
-                        if (readLine == null) {
+                        String line = bufferedReader.readLine();
+                        if (line == null) {
                             break;
                         }
-                        sb.append(readLine + "/n");
+                        sb.append(line + "/n");
                     } catch (IOException e2) {
                         SLog.error(e2);
                     }
@@ -267,10 +267,10 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
                     return;
                 }
                 try {
-                    Map<String, String> parseUserInfo = UMQQSsoHandler.this.parseUserInfo(obj.toString());
-                    UMQQSsoHandler.this.appendTokenToUserInfo(parseUserInfo);
-                    if (TextUtils.isEmpty(parseUserInfo.get("ret")) || !parseUserInfo.get("ret").equals("100030")) {
-                        UMQQSsoHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.QQ, 2, parseUserInfo);
+                    Map<String, String> userInfo = UMQQSsoHandler.this.parseUserInfo(obj.toString());
+                    UMQQSsoHandler.this.appendTokenToUserInfo(userInfo);
+                    if (TextUtils.isEmpty(userInfo.get("ret")) || !userInfo.get("ret").equals("100030")) {
+                        UMQQSsoHandler.this.getAuthListener(uMAuthListener).onComplete(SHARE_MEDIA.QQ, 2, userInfo);
                     } else {
                         UMQQSsoHandler.this.qqPreferencesDelete();
                         UMQQSsoHandler.this.authAndFetchUserInfo(uMAuthListener);
@@ -325,12 +325,12 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
     /* JADX INFO: Access modifiers changed from: private */
     public String getUnionIdRequest(String str) {
         try {
-            URLConnection openConnection = new URL(str).openConnection();
-            if (openConnection == null) {
+            URLConnection uRLConnectionOpenConnection = new URL(str).openConnection();
+            if (uRLConnectionOpenConnection == null) {
                 return "";
             }
-            openConnection.connect();
-            InputStream inputStream = openConnection.getInputStream();
+            uRLConnectionOpenConnection.connect();
+            InputStream inputStream = uRLConnectionOpenConnection.getInputStream();
             return inputStream == null ? "" : convertStreamToString(inputStream);
         } catch (Exception e2) {
             e2.printStackTrace();
@@ -358,7 +358,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
             this.mTencent.setAccessToken(string, string2);
             this.mTencent.setOpenId(string3);
         } catch (Exception e2) {
-            SLog.error(UmengText.C3778QQ.OPENIDANDTOKEN, e2);
+            SLog.error(UmengText.QQ.OPENIDANDTOKEN, e2);
         }
     }
 
@@ -416,22 +416,22 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
     /* JADX INFO: Access modifiers changed from: private */
     public Map<String, String> parseUserInfo(String str) throws JSONException {
         JSONObject jSONObject = new JSONObject(str);
-        HashMap hashMap = new HashMap();
-        hashMap.put("screen_name", jSONObject.optString("nickname"));
-        hashMap.put(CommonNetImpl.NAME, jSONObject.optString("nickname"));
-        hashMap.put(com.hihonor.honorid.core.data.UserInfo.GENDER, getGender(jSONObject.optString(com.hihonor.honorid.core.data.UserInfo.GENDER)));
-        hashMap.put("profile_image_url", jSONObject.optString("figureurl_qq_2"));
-        hashMap.put("iconurl", jSONObject.optString("figureurl_qq_2"));
-        hashMap.put("is_yellow_year_vip", jSONObject.optString("is_yellow_year_vip"));
-        hashMap.put("yellow_vip_level", jSONObject.optString("yellow_vip_level"));
-        hashMap.put("msg", jSONObject.optString("msg"));
-        hashMap.put(com.hihonor.honorid.core.data.UserInfo.CITY, jSONObject.optString(com.hihonor.honorid.core.data.UserInfo.CITY));
-        hashMap.put("vip", jSONObject.optString("vip"));
-        hashMap.put("ret", jSONObject.optString("ret"));
-        hashMap.put("level", jSONObject.optString("level"));
-        hashMap.put(com.hihonor.honorid.core.data.UserInfo.PROVINCE, jSONObject.optString(com.hihonor.honorid.core.data.UserInfo.PROVINCE));
-        hashMap.put("is_yellow_vip", jSONObject.optString("is_yellow_vip"));
-        return hashMap;
+        HashMap map = new HashMap();
+        map.put("screen_name", jSONObject.optString("nickname"));
+        map.put(CommonNetImpl.NAME, jSONObject.optString("nickname"));
+        map.put(com.hihonor.honorid.core.data.UserInfo.GENDER, getGender(jSONObject.optString(com.hihonor.honorid.core.data.UserInfo.GENDER)));
+        map.put("profile_image_url", jSONObject.optString("figureurl_qq_2"));
+        map.put("iconurl", jSONObject.optString("figureurl_qq_2"));
+        map.put("is_yellow_year_vip", jSONObject.optString("is_yellow_year_vip"));
+        map.put("yellow_vip_level", jSONObject.optString("yellow_vip_level"));
+        map.put("msg", jSONObject.optString("msg"));
+        map.put(com.hihonor.honorid.core.data.UserInfo.CITY, jSONObject.optString(com.hihonor.honorid.core.data.UserInfo.CITY));
+        map.put("vip", jSONObject.optString("vip"));
+        map.put("ret", jSONObject.optString("ret"));
+        map.put("level", jSONObject.optString("level"));
+        map.put(com.hihonor.honorid.core.data.UserInfo.PROVINCE, jSONObject.optString(com.hihonor.honorid.core.data.UserInfo.PROVINCE));
+        map.put("is_yellow_vip", jSONObject.optString("is_yellow_vip"));
+        return map;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -474,7 +474,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
             return;
         }
         IUiListener iUiListener = this.mShareListener;
-        String str = UmengText.C3778QQ.QQ_ERROR;
+        String str = UmengText.QQ.QQ_ERROR;
         iUiListener.onError(new UiError(-1, str, str));
     }
 
@@ -512,7 +512,7 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
     }
 
     protected IUiListener getQQAuthlistener(UMAuthListener uMAuthListener) {
-        return new C36925(uMAuthListener);
+        return new AnonymousClass5(uMAuthListener);
     }
 
     @Override // com.umeng.socialize.handler.UMSSOHandler
@@ -606,14 +606,14 @@ public class UMQQSsoHandler extends UMTencentSSOHandler {
             onNotInstall(uMShareListener);
             return false;
         }
-        Bundle buildShareContent = buildShareContent(shareContent);
-        String string = buildShareContent.getString("error");
+        Bundle bundleBuildShareContent = buildShareContent(shareContent);
+        String string = bundleBuildShareContent.getString("error");
         if (!TextUtils.isEmpty(string)) {
             onShareParamsError(uMShareListener, string);
             return false;
         }
         this.mShareListener = getQQSharelistener(uMShareListener);
-        shareToQQ(buildShareContent);
+        shareToQQ(bundleBuildShareContent);
         return false;
     }
 }

@@ -10,9 +10,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import util.p395c2.C7265a;
+import util.n2.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Placeholder extends View {
     private View mContent;
     private int mContentId;
@@ -30,17 +30,17 @@ public class Placeholder extends View {
         super.setVisibility(this.mEmptyVisibility);
         this.mContentId = -1;
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_placeholder);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_placeholder);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.ConstraintLayout_placeholder_content) {
-                    this.mContentId = obtainStyledAttributes.getResourceId(index, this.mContentId);
-                } else if (index == C0471R.styleable.ConstraintLayout_placeholder_placeholder_emptyVisibility) {
-                    this.mEmptyVisibility = obtainStyledAttributes.getInt(index, this.mEmptyVisibility);
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.ConstraintLayout_placeholder_content) {
+                    this.mContentId = typedArrayObtainStyledAttributes.getResourceId(index, this.mContentId);
+                } else if (index == R.styleable.ConstraintLayout_placeholder_placeholder_emptyVisibility) {
+                    this.mEmptyVisibility = typedArrayObtainStyledAttributes.getInt(index, this.mEmptyVisibility);
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 
@@ -55,24 +55,24 @@ public class Placeholder extends View {
     @Override // android.view.View
     public void onDraw(Canvas canvas) {
         if (isInEditMode()) {
-            canvas.drawRGB(C7265a.f25275z0, C7265a.f25275z0, C7265a.f25275z0);
+            canvas.drawRGB(a.z0, a.z0, a.z0);
             Paint paint = new Paint();
-            paint.setARGB(255, C7265a.f25265u0, C7265a.f25265u0, C7265a.f25265u0);
+            paint.setARGB(255, a.u0, a.u0, a.u0);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setTypeface(Typeface.create(Typeface.DEFAULT, 0));
             Rect rect = new Rect();
             canvas.getClipBounds(rect);
             paint.setTextSize(rect.height());
-            int height = rect.height();
-            int width = rect.width();
+            int iHeight = rect.height();
+            int iWidth = rect.width();
             paint.setTextAlign(Paint.Align.LEFT);
             paint.getTextBounds("?", 0, 1, rect);
-            canvas.drawText("?", ((width / 2.0f) - (rect.width() / 2.0f)) - rect.left, ((height / 2.0f) + (rect.height() / 2.0f)) - rect.bottom, paint);
+            canvas.drawText("?", ((iWidth / 2.0f) - (rect.width() / 2.0f)) - rect.left, ((iHeight / 2.0f) + (rect.height() / 2.0f)) - rect.bottom, paint);
         }
     }
 
     public void setContentId(int i2) {
-        View findViewById;
+        View viewFindViewById;
         if (this.mContentId == i2) {
             return;
         }
@@ -83,10 +83,10 @@ public class Placeholder extends View {
             this.mContent = null;
         }
         this.mContentId = i2;
-        if (i2 == -1 || (findViewById = ((View) getParent()).findViewById(i2)) == null) {
+        if (i2 == -1 || (viewFindViewById = ((View) getParent()).findViewById(i2)) == null) {
             return;
         }
-        findViewById.setVisibility(8);
+        viewFindViewById.setVisibility(8);
     }
 
     public void setEmptyVisibility(int i2) {

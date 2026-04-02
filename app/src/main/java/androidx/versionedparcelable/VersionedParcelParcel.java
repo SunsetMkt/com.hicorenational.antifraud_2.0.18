@@ -11,8 +11,8 @@ import androidx.annotation.RestrictTo;
 import androidx.collection.ArrayMap;
 import java.lang.reflect.Method;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY})
-/* loaded from: classes.dex */
 class VersionedParcelParcel extends VersionedParcel {
     private static final boolean DEBUG = false;
     private static final String TAG = "VersionedParcelParcel";
@@ -34,22 +34,22 @@ class VersionedParcelParcel extends VersionedParcel {
         int i2 = this.mCurrentField;
         if (i2 >= 0) {
             int i3 = this.mPositionLookup.get(i2);
-            int dataPosition = this.mParcel.dataPosition();
+            int iDataPosition = this.mParcel.dataPosition();
             this.mParcel.setDataPosition(i3);
-            this.mParcel.writeInt(dataPosition - i3);
-            this.mParcel.setDataPosition(dataPosition);
+            this.mParcel.writeInt(iDataPosition - i3);
+            this.mParcel.setDataPosition(iDataPosition);
         }
     }
 
     @Override // androidx.versionedparcelable.VersionedParcel
     protected VersionedParcel createSubParcel() {
         Parcel parcel = this.mParcel;
-        int dataPosition = parcel.dataPosition();
+        int iDataPosition = parcel.dataPosition();
         int i2 = this.mNextRead;
         if (i2 == this.mOffset) {
             i2 = this.mEnd;
         }
-        return new VersionedParcelParcel(parcel, dataPosition, i2, this.mPrefix + "  ", this.mReadCache, this.mWriteCache, this.mParcelizerCache);
+        return new VersionedParcelParcel(parcel, iDataPosition, i2, this.mPrefix + "  ", this.mReadCache, this.mWriteCache, this.mParcelizerCache);
     }
 
     @Override // androidx.versionedparcelable.VersionedParcel
@@ -64,11 +64,11 @@ class VersionedParcelParcel extends VersionedParcel {
 
     @Override // androidx.versionedparcelable.VersionedParcel
     public byte[] readByteArray() {
-        int readInt = this.mParcel.readInt();
-        if (readInt < 0) {
+        int i2 = this.mParcel.readInt();
+        if (i2 < 0) {
             return null;
         }
-        byte[] bArr = new byte[readInt];
+        byte[] bArr = new byte[i2];
         this.mParcel.readByteArray(bArr);
         return bArr;
     }
@@ -94,9 +94,9 @@ class VersionedParcelParcel extends VersionedParcel {
                 return false;
             }
             this.mParcel.setDataPosition(this.mNextRead);
-            int readInt = this.mParcel.readInt();
+            int i4 = this.mParcel.readInt();
             this.mFieldId = this.mParcel.readInt();
-            this.mNextRead += readInt;
+            this.mNextRead += i4;
         }
         return this.mFieldId == i2;
     }

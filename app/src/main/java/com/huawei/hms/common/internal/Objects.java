@@ -5,36 +5,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Objects {
 
     public static final class ToStringHelper {
+        private final List<String> a;
 
-        /* renamed from: a */
-        private final List<String> f7282a;
-
-        /* renamed from: b */
-        private final Object f7283b;
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        private final Object f4564b;
 
         public final ToStringHelper add(String str, Object obj) {
             String str2 = (String) Preconditions.checkNotNull(str);
-            String valueOf = String.valueOf(obj);
-            StringBuilder sb = new StringBuilder(str2.length() + valueOf.length() + 1);
+            String strValueOf = String.valueOf(obj);
+            StringBuilder sb = new StringBuilder(str2.length() + strValueOf.length() + 1);
             sb.append(str2);
             sb.append(ContainerUtils.KEY_VALUE_DELIMITER);
-            sb.append(valueOf);
-            this.f7282a.add(sb.toString());
+            sb.append(strValueOf);
+            this.a.add(sb.toString());
             return this;
         }
 
         public final String toString() {
-            String simpleName = this.f7283b.getClass().getSimpleName();
+            String simpleName = this.f4564b.getClass().getSimpleName();
             StringBuilder sb = new StringBuilder(100);
             sb.append(simpleName);
             sb.append('{');
-            int size = this.f7282a.size();
+            int size = this.a.size();
             for (int i2 = 0; i2 < size; i2++) {
-                sb.append(this.f7282a.get(i2));
+                sb.append(this.a.get(i2));
                 if (i2 < size - 1) {
                     sb.append(", ");
                 }
@@ -44,8 +42,8 @@ public final class Objects {
         }
 
         private ToStringHelper(Object obj) {
-            this.f7283b = Preconditions.checkNotNull(obj);
-            this.f7282a = new ArrayList();
+            this.f4564b = Preconditions.checkNotNull(obj);
+            this.a = new ArrayList();
         }
     }
 

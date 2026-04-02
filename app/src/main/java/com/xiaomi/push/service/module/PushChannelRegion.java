@@ -1,7 +1,7 @@
 package com.xiaomi.push.service.module;
 
+/* JADX INFO: loaded from: classes2.dex */
 @Deprecated
-/* loaded from: classes2.dex */
 public enum PushChannelRegion {
     China,
     Global,

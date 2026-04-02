@@ -3,7 +3,7 @@ package cn.cloudwalk.libproject.util;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TestUtil {
     private static int count;
     static int count1;
@@ -21,13 +21,13 @@ public class TestUtil {
         FileOutputStream fileOutputStream = new FileOutputStream(str + "/frame" + count1);
         byte[] bArr2 = new byte[1024000];
         while (true) {
-            int read = byteArrayInputStream.read(bArr2);
-            if (read == -1) {
+            int i2 = byteArrayInputStream.read(bArr2);
+            if (i2 == -1) {
                 byteArrayInputStream.close();
                 fileOutputStream.close();
                 return;
             }
-            fileOutputStream.write(bArr2, 0, read);
+            fileOutputStream.write(bArr2, 0, i2);
         }
     }
 

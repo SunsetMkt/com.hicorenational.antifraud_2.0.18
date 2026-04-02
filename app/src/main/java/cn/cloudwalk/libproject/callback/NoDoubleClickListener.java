@@ -3,7 +3,7 @@ package cn.cloudwalk.libproject.callback;
 import android.view.View;
 import java.util.Calendar;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class NoDoubleClickListener implements View.OnClickListener {
     public static final int MIN_CLICK_DELAY_TIME = 500;
     private long lastClickTime = 0;

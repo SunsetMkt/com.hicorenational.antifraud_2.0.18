@@ -18,7 +18,7 @@ import okhttp3.internal.connection.RouteDatabase;
 import okhttp3.internal.connection.StreamAllocation;
 import okhttp3.internal.platform.Platform;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class ConnectionPool {
     static final /* synthetic */ boolean $assertionsDisabled = false;
     private static final Executor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60, TimeUnit.SECONDS, new SynchronousQueue(), Util.threadFactory("OkHttp ConnectionPool", true));
@@ -29,21 +29,21 @@ public final class ConnectionPool {
     private final int maxIdleConnections;
     final RouteDatabase routeDatabase;
 
-    /* renamed from: okhttp3.ConnectionPool$1 */
-    class RunnableC59761 implements Runnable {
-        RunnableC59761() {
+    /* JADX INFO: renamed from: okhttp3.ConnectionPool$1 */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
             while (true) {
-                long cleanup = ConnectionPool.this.cleanup(System.nanoTime());
-                if (cleanup == -1) {
+                long jCleanup = ConnectionPool.this.cleanup(System.nanoTime());
+                if (jCleanup == -1) {
                     return;
                 }
-                if (cleanup > 0) {
-                    long j2 = cleanup / 1000000;
-                    long j3 = cleanup - (1000000 * j2);
+                if (jCleanup > 0) {
+                    long j2 = jCleanup / 1000000;
+                    long j3 = jCleanup - (1000000 * j2);
                     synchronized (ConnectionPool.this) {
                         try {
                             ConnectionPool.this.wait(j2, (int) j3);
@@ -188,19 +188,19 @@ public final class ConnectionPool {
 
     public ConnectionPool(int i2, long j2, TimeUnit timeUnit) {
         this.cleanupRunnable = new Runnable() { // from class: okhttp3.ConnectionPool.1
-            RunnableC59761() {
+            AnonymousClass1() {
             }
 
             @Override // java.lang.Runnable
             public void run() {
                 while (true) {
-                    long cleanup = ConnectionPool.this.cleanup(System.nanoTime());
-                    if (cleanup == -1) {
+                    long jCleanup = ConnectionPool.this.cleanup(System.nanoTime());
+                    if (jCleanup == -1) {
                         return;
                     }
-                    if (cleanup > 0) {
-                        long j22 = cleanup / 1000000;
-                        long j3 = cleanup - (1000000 * j22);
+                    if (jCleanup > 0) {
+                        long j22 = jCleanup / 1000000;
+                        long j3 = jCleanup - (1000000 * j22);
                         synchronized (ConnectionPool.this) {
                             try {
                                 ConnectionPool.this.wait(j22, (int) j3);

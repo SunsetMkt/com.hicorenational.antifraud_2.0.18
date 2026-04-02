@@ -3,75 +3,68 @@ package com.hihonor.honorid.core.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TmemberRight implements Parcelable {
-    public static final Parcelable.Creator<TmemberRight> CREATOR = new C2159a();
+    public static final Parcelable.Creator<TmemberRight> CREATOR = new a();
 
-    /* renamed from: i */
-    public static final String f6562i = "userId";
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    public static final String f4148i = "userId";
 
-    /* renamed from: j */
-    public static final String f6563j = "deviceType";
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    public static final String f4149j = "deviceType";
 
-    /* renamed from: k */
-    public static final String f6564k = "deviceId";
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    public static final String f4150k = "deviceId";
 
-    /* renamed from: l */
-    public static final String f6565l = "deviceID2";
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    public static final String f4151l = "deviceID2";
 
-    /* renamed from: m */
-    public static final String f6566m = "terminalType";
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    public static final String f4152m = "terminalType";
 
-    /* renamed from: n */
-    public static final String f6567n = "rightsId";
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    public static final String f4153n = "rightsId";
+    public static final String o = "memberBindTime";
+    public static final String p = "expiredDate";
+    private long a;
 
-    /* renamed from: o */
-    public static final String f6568o = "memberBindTime";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private int f4154b;
 
-    /* renamed from: p */
-    public static final String f6569p = "expiredDate";
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4155c;
 
-    /* renamed from: a */
-    private long f6570a;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private String f4156d;
 
-    /* renamed from: b */
-    private int f6571b;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private String f4157e;
 
-    /* renamed from: c */
-    private String f6572c;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private int f4158f;
 
-    /* renamed from: d */
-    private String f6573d;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    private String f4159g;
 
-    /* renamed from: e */
-    private String f6574e;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    private String f4160h;
 
-    /* renamed from: f */
-    private int f6575f;
-
-    /* renamed from: g */
-    private String f6576g;
-
-    /* renamed from: h */
-    private String f6577h;
-
-    /* renamed from: com.hihonor.honorid.core.data.TmemberRight$a */
-    class C2159a implements Parcelable.Creator<TmemberRight> {
-        C2159a() {
+    class a implements Parcelable.Creator<TmemberRight> {
+        a() {
         }
 
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public TmemberRight createFromParcel(Parcel parcel) {
             TmemberRight tmemberRight = new TmemberRight();
-            tmemberRight.f6570a = parcel.readLong();
-            tmemberRight.f6571b = parcel.readInt();
-            tmemberRight.f6572c = parcel.readString();
-            tmemberRight.f6573d = parcel.readString();
-            tmemberRight.f6574e = parcel.readString();
-            tmemberRight.f6575f = parcel.readInt();
-            tmemberRight.f6576g = parcel.readString();
-            tmemberRight.f6577h = parcel.readString();
+            tmemberRight.a = parcel.readLong();
+            tmemberRight.f4154b = parcel.readInt();
+            tmemberRight.f4155c = parcel.readString();
+            tmemberRight.f4156d = parcel.readString();
+            tmemberRight.f4157e = parcel.readString();
+            tmemberRight.f4158f = parcel.readInt();
+            tmemberRight.f4159g = parcel.readString();
+            tmemberRight.f4160h = parcel.readString();
             return tmemberRight;
         }
 
@@ -89,13 +82,13 @@ public class TmemberRight implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeLong(this.f6570a);
-        parcel.writeInt(this.f6571b);
-        parcel.writeString(this.f6572c);
-        parcel.writeString(this.f6573d);
-        parcel.writeString(this.f6574e);
-        parcel.writeInt(this.f6575f);
-        parcel.writeString(this.f6576g);
-        parcel.writeString(this.f6577h);
+        parcel.writeLong(this.a);
+        parcel.writeInt(this.f4154b);
+        parcel.writeString(this.f4155c);
+        parcel.writeString(this.f4156d);
+        parcel.writeString(this.f4157e);
+        parcel.writeInt(this.f4158f);
+        parcel.writeString(this.f4159g);
+        parcel.writeString(this.f4160h);
     }
 }

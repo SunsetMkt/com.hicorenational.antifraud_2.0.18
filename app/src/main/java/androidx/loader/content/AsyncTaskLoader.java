@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AsyncTaskLoader<D> extends Loader<D> {
     static final boolean DEBUG = false;
     static final String TAG = "AsyncTaskLoader";
@@ -182,13 +182,13 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
             this.mTask = null;
             return false;
         }
-        boolean cancel = this.mTask.cancel(false);
-        if (cancel) {
+        boolean zCancel = this.mTask.cancel(false);
+        if (zCancel) {
             this.mCancellingTask = this.mTask;
             cancelLoadInBackground();
         }
         this.mTask = null;
-        return cancel;
+        return zCancel;
     }
 
     public void onCanceled(@Nullable D d2) {

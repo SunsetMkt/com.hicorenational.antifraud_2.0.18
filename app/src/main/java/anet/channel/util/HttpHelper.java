@@ -10,8 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class HttpHelper {
     public static boolean checkRedirect(Request request, int i2) {
         return request.isRedirectEnable() && i2 >= 300 && i2 < 400 && i2 != 304 && request.getRedirectTimes() < 10;
@@ -24,11 +24,11 @@ public class HttpHelper {
         if (map.isEmpty()) {
             return Collections.EMPTY_MAP;
         }
-        HashMap hashMap = new HashMap(map.size());
+        HashMap map2 = new HashMap(map.size());
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            hashMap.put(entry.getKey(), new ArrayList(entry.getValue()));
+            map2.put(entry.getKey(), new ArrayList(entry.getValue()));
         }
-        return hashMap;
+        return map2;
     }
 
     public static List<String> getHeaderFieldByKey(Map<String, List<String>> map, String str) {
@@ -105,15 +105,15 @@ public class HttpHelper {
     }
 
     public static String trySolveFileExtFromUrlPath(String str) {
-        int lastIndexOf;
-        int lastIndexOf2;
+        int iLastIndexOf;
+        int iLastIndexOf2;
         if (str == null) {
             return null;
         }
         try {
             int length = str.length();
-            if (length > 1 && (lastIndexOf = str.lastIndexOf(47)) != -1 && lastIndexOf != length - 1 && (lastIndexOf2 = str.lastIndexOf(46)) != -1 && lastIndexOf2 > lastIndexOf) {
-                return str.substring(lastIndexOf2 + 1, length);
+            if (length > 1 && (iLastIndexOf = str.lastIndexOf(47)) != -1 && iLastIndexOf != length - 1 && (iLastIndexOf2 = str.lastIndexOf(46)) != -1 && iLastIndexOf2 > iLastIndexOf) {
+                return str.substring(iLastIndexOf2 + 1, length);
             }
             return null;
         } catch (Exception unused) {

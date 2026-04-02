@@ -3,33 +3,26 @@ package com.hihonor.honorid;
 import android.os.Parcelable;
 import com.hihonor.honorid.UseCase.RequestValues;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class UseCase<Q extends RequestValues> {
-
-    /* renamed from: a */
-    private Q f6487a;
+    private Q a;
 
     public static abstract class RequestValues implements Parcelable {
     }
 
-    /* renamed from: com.hihonor.honorid.UseCase$a */
-    public interface InterfaceC2150a {
+    public interface a {
     }
 
-    /* renamed from: a */
-    void m6089a() {
-        mo6090a((UseCase<Q>) this.f6487a);
+    void a() {
+        a(this.a);
     }
 
-    /* renamed from: a */
-    protected abstract void mo6090a(Q q);
+    protected abstract void a(Q q);
 
-    /* renamed from: a */
-    public void m6091a(InterfaceC2150a interfaceC2150a) {
+    public void a(a aVar) {
     }
 
-    /* renamed from: b */
-    public void m6092b(Q q) {
-        this.f6487a = q;
+    public void b(Q q) {
+        this.a = q;
     }
 }

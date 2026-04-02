@@ -2,7 +2,7 @@ package com.luck.picture.lib.language;
 
 import java.util.Locale;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class LocaleTransform {
     public static Locale getLanguage(int i2) {
         switch (i2) {

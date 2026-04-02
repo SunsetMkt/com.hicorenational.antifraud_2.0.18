@@ -13,9 +13,9 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.Nullable;
-import androidx.cardview.C0437R;
+import androidx.cardview.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class RoundRectDrawableWithShadow extends Drawable {
     private static final double COS_45 = Math.cos(Math.toRadians(45.0d));
     private static final float SHADOW_MULTIPLIER = 1.5f;
@@ -42,9 +42,9 @@ class RoundRectDrawableWithShadow extends Drawable {
     }
 
     RoundRectDrawableWithShadow(Resources resources, ColorStateList colorStateList, float f2, float f3, float f4) {
-        this.mShadowStartColor = resources.getColor(C0437R.color.cardview_shadow_start_color);
-        this.mShadowEndColor = resources.getColor(C0437R.color.cardview_shadow_end_color);
-        this.mInsetShadow = resources.getDimensionPixelSize(C0437R.dimen.cardview_compat_inset_shadow);
+        this.mShadowStartColor = resources.getColor(R.color.cardview_shadow_start_color);
+        this.mShadowEndColor = resources.getColor(R.color.cardview_shadow_end_color);
+        this.mInsetShadow = resources.getDimensionPixelSize(R.dimen.cardview_compat_inset_shadow);
         setBackground(colorStateList);
         this.mCornerShadowPaint = new Paint(5);
         this.mCornerShadowPaint.setStyle(Paint.Style.FILL);
@@ -96,11 +96,11 @@ class RoundRectDrawableWithShadow extends Drawable {
     }
 
     static float calculateHorizontalPadding(float f2, float f3, boolean z) {
-        return z ? (float) (f2 + ((1.0d - COS_45) * f3)) : f2;
+        return z ? (float) (((double) f2) + ((1.0d - COS_45) * ((double) f3))) : f2;
     }
 
     static float calculateVerticalPadding(float f2, float f3, boolean z) {
-        return z ? (float) ((f2 * SHADOW_MULTIPLIER) + ((1.0d - COS_45) * f3)) : f2 * SHADOW_MULTIPLIER;
+        return z ? (float) (((double) (f2 * SHADOW_MULTIPLIER)) + ((1.0d - COS_45) * ((double) f3))) : f2 * SHADOW_MULTIPLIER;
     }
 
     private void drawShadow(Canvas canvas) {
@@ -110,15 +110,15 @@ class RoundRectDrawableWithShadow extends Drawable {
         float f5 = f4 * 2.0f;
         boolean z = this.mCardBounds.width() - f5 > 0.0f;
         boolean z2 = this.mCardBounds.height() - f5 > 0.0f;
-        int save = canvas.save();
+        int iSave = canvas.save();
         RectF rectF = this.mCardBounds;
         canvas.translate(rectF.left + f4, rectF.top + f4);
         canvas.drawPath(this.mCornerShadowPath, this.mCornerShadowPaint);
         if (z) {
             canvas.drawRect(0.0f, f3, this.mCardBounds.width() - f5, -this.mCornerRadius, this.mEdgeShadowPaint);
         }
-        canvas.restoreToCount(save);
-        int save2 = canvas.save();
+        canvas.restoreToCount(iSave);
+        int iSave2 = canvas.save();
         RectF rectF2 = this.mCardBounds;
         canvas.translate(rectF2.right - f4, rectF2.bottom - f4);
         canvas.rotate(180.0f);
@@ -126,8 +126,8 @@ class RoundRectDrawableWithShadow extends Drawable {
         if (z) {
             canvas.drawRect(0.0f, f3, this.mCardBounds.width() - f5, (-this.mCornerRadius) + this.mShadowSize, this.mEdgeShadowPaint);
         }
-        canvas.restoreToCount(save2);
-        int save3 = canvas.save();
+        canvas.restoreToCount(iSave2);
+        int iSave3 = canvas.save();
         RectF rectF3 = this.mCardBounds;
         canvas.translate(rectF3.left + f4, rectF3.bottom - f4);
         canvas.rotate(270.0f);
@@ -135,8 +135,8 @@ class RoundRectDrawableWithShadow extends Drawable {
         if (z2) {
             canvas.drawRect(0.0f, f3, this.mCardBounds.height() - f5, -this.mCornerRadius, this.mEdgeShadowPaint);
         }
-        canvas.restoreToCount(save3);
-        int save4 = canvas.save();
+        canvas.restoreToCount(iSave3);
+        int iSave4 = canvas.save();
         RectF rectF4 = this.mCardBounds;
         canvas.translate(rectF4.right - f4, rectF4.top + f4);
         canvas.rotate(90.0f);
@@ -144,7 +144,7 @@ class RoundRectDrawableWithShadow extends Drawable {
         if (z2) {
             canvas.drawRect(0.0f, f3, this.mCardBounds.height() - f5, -this.mCornerRadius, this.mEdgeShadowPaint);
         }
-        canvas.restoreToCount(save4);
+        canvas.restoreToCount(iSave4);
     }
 
     private void setBackground(ColorStateList colorStateList) {
@@ -230,9 +230,9 @@ class RoundRectDrawableWithShadow extends Drawable {
 
     @Override // android.graphics.drawable.Drawable
     public boolean getPadding(Rect rect) {
-        int ceil = (int) Math.ceil(calculateVerticalPadding(this.mRawMaxShadowSize, this.mCornerRadius, this.mAddPaddingForCorners));
-        int ceil2 = (int) Math.ceil(calculateHorizontalPadding(this.mRawMaxShadowSize, this.mCornerRadius, this.mAddPaddingForCorners));
-        rect.set(ceil2, ceil, ceil2, ceil);
+        int iCeil = (int) Math.ceil(calculateVerticalPadding(this.mRawMaxShadowSize, this.mCornerRadius, this.mAddPaddingForCorners));
+        int iCeil2 = (int) Math.ceil(calculateHorizontalPadding(this.mRawMaxShadowSize, this.mCornerRadius, this.mAddPaddingForCorners));
+        rect.set(iCeil2, iCeil, iCeil2, iCeil);
         return true;
     }
 

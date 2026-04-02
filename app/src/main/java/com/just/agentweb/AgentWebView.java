@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AgentWebView extends LollipopFixedWebView {
     private static final String TAG = AgentWebView.class.getSimpleName();
     private FixedOnReceivedTitle mFixedOnReceivedTitle;
@@ -122,18 +122,18 @@ public class AgentWebView extends LollipopFixedWebView {
             if (this.mIsOnReceivedTitle || this.mWebChromeClient == null) {
                 return;
             }
-            WebBackForwardList webBackForwardList = null;
+            WebBackForwardList webBackForwardListCopyBackForwardList = null;
             try {
-                webBackForwardList = webView.copyBackForwardList();
+                webBackForwardListCopyBackForwardList = webView.copyBackForwardList();
             } catch (NullPointerException e2) {
                 if (LogUtils.isDebug()) {
                     e2.printStackTrace();
                 }
             }
-            if (webBackForwardList == null || webBackForwardList.getSize() <= 0 || webBackForwardList.getCurrentIndex() < 0 || webBackForwardList.getItemAtIndex(webBackForwardList.getCurrentIndex()) == null) {
+            if (webBackForwardListCopyBackForwardList == null || webBackForwardListCopyBackForwardList.getSize() <= 0 || webBackForwardListCopyBackForwardList.getCurrentIndex() < 0 || webBackForwardListCopyBackForwardList.getItemAtIndex(webBackForwardListCopyBackForwardList.getCurrentIndex()) == null) {
                 return;
             }
-            this.mWebChromeClient.onReceivedTitle(webView, webBackForwardList.getItemAtIndex(webBackForwardList.getCurrentIndex()).getTitle());
+            this.mWebChromeClient.onReceivedTitle(webView, webBackForwardListCopyBackForwardList.getItemAtIndex(webBackForwardListCopyBackForwardList.getCurrentIndex()).getTitle());
         }
 
         public void onPageStarted() {
@@ -178,13 +178,13 @@ public class AgentWebView extends LollipopFixedWebView {
     }
 
     public static Pair<Boolean, String> isWebViewPackageException(Throwable th) {
-        String th2 = th.getCause() == null ? th.toString() : th.getCause().toString();
+        String string = th.getCause() == null ? th.toString() : th.getCause().toString();
         String stackTraceString = Log.getStackTraceString(th);
         if (!stackTraceString.contains("android.content.pm.PackageManager$NameNotFoundException") && !stackTraceString.contains("java.lang.RuntimeException: Cannot load WebView") && !stackTraceString.contains("android.webkit.WebViewFactory$MissingWebViewPackageException: Failed to load WebView provider: No WebView installed")) {
-            return new Pair<>(false, th2);
+            return new Pair<>(false, string);
         }
         LogUtils.safeCheckCrash(TAG, "isWebViewPackageException", th);
-        return new Pair<>(true, "WebView load failed, " + th2);
+        return new Pair<>(true, "WebView load failed, " + string);
     }
 
     private void releaseConfigCallback() {
@@ -248,7 +248,7 @@ public class AgentWebView extends LollipopFixedWebView {
             declaredMethod.setAccessible(false);
         } catch (Throwable th) {
             if (LogUtils.isDebug()) {
-                LogUtils.m8082e(TAG, "setAccessibilityEnabled", th);
+                LogUtils.e(TAG, "setAccessibilityEnabled", th);
             }
         }
     }
@@ -269,7 +269,7 @@ public class AgentWebView extends LollipopFixedWebView {
             return;
         }
         String str2 = "use mJsCallJavas:" + str;
-        LogUtils.m8083i(TAG, "addJavascriptInterface:" + obj + "   interfaceName:" + str);
+        LogUtils.i(TAG, "addJavascriptInterface:" + obj + "   interfaceName:" + str);
         if (this.mJsCallJavas == null) {
             this.mJsCallJavas = new HashMap();
         }
@@ -285,8 +285,8 @@ public class AgentWebView extends LollipopFixedWebView {
     }
 
     public String buildNotRepeatInjectJS(String str, String str2) {
-        String format = String.format("__injectFlag_%1$s__", str);
-        return "javascript:try{(function(){if(window." + format + "){console.log('" + format + " has been injected');return;}window." + format + "=true;" + str2 + "}())}catch(e){console.warn(e)}";
+        String str3 = String.format("__injectFlag_%1$s__", str);
+        return "javascript:try{(function(){if(window." + str3 + "){console.log('" + str3 + " has been injected');return;}window." + str3 + "=true;" + str2 + "}())}catch(e){console.warn(e)}";
     }
 
     public String buildTryCatchInjectJS(String str) {
@@ -316,7 +316,7 @@ public class AgentWebView extends LollipopFixedWebView {
         releaseConfigCallback();
         if (this.mIsInited) {
             resetAccessibilityEnabled();
-            LogUtils.m8083i(TAG, "destroy web");
+            LogUtils.i(TAG, "destroy web");
             super.destroy();
         }
     }
@@ -342,7 +342,7 @@ public class AgentWebView extends LollipopFixedWebView {
                 }
             } catch (Throwable th) {
                 if (LogUtils.isDebug()) {
-                    LogUtils.m8082e(TAG, "fixedAccessibilityInjectorExceptionForOnPageFinished", th);
+                    LogUtils.e(TAG, "fixedAccessibilityInjectorExceptionForOnPageFinished", th);
                 }
             }
         }
@@ -376,11 +376,11 @@ public class AgentWebView extends LollipopFixedWebView {
         try {
             super.setOverScrollMode(i2);
         } catch (Throwable th) {
-            Pair<Boolean, String> isWebViewPackageException = isWebViewPackageException(th);
-            if (!((Boolean) isWebViewPackageException.first).booleanValue()) {
+            Pair<Boolean, String> pairIsWebViewPackageException = isWebViewPackageException(th);
+            if (!((Boolean) pairIsWebViewPackageException.first).booleanValue()) {
                 throw th;
             }
-            Toast.makeText(getContext(), (CharSequence) isWebViewPackageException.second, 0).show();
+            Toast.makeText(getContext(), (CharSequence) pairIsWebViewPackageException.second, 0).show();
             destroy();
         }
     }

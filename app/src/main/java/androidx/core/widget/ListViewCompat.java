@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ListViewCompat {
     private ListViewCompat() {
     }

@@ -1,7 +1,7 @@
 package com.taobao.accs;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes2.dex */
 public interface ILoginInfo {
     boolean getCommentUsed();
 

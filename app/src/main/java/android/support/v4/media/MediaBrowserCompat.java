@@ -41,7 +41,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class MediaBrowserCompat {
     public static final String CUSTOM_ACTION_DOWNLOAD = "android.support.v4.media.action.DOWNLOAD";
     public static final String CUSTOM_ACTION_REMOVE_DOWNLOADED_FILE = "android.support.v4.media.action.REMOVE_DOWNLOADED_FILE";
@@ -230,9 +230,9 @@ public final class MediaBrowserCompat {
                     return;
                 }
                 parcel.setDataPosition(0);
-                MediaItem createFromParcel = MediaItem.CREATOR.createFromParcel(parcel);
+                MediaItem mediaItemCreateFromParcel = MediaItem.CREATOR.createFromParcel(parcel);
                 parcel.recycle();
-                ItemCallback.this.onItemLoaded(createFromParcel);
+                ItemCallback.this.onItemLoaded(mediaItemCreateFromParcel);
             }
         }
 
@@ -440,9 +440,9 @@ public final class MediaBrowserCompat {
                 } catch (RemoteException unused) {
                 }
             }
-            IMediaSession asInterface = IMediaSession.Stub.asInterface(BundleCompat.getBinder(extras, MediaBrowserProtocol.EXTRA_SESSION_BINDER));
-            if (asInterface != null) {
-                this.mMediaSessionToken = MediaSessionCompat.Token.fromToken(MediaBrowserCompatApi21.getSessionToken(this.mBrowserObj), asInterface);
+            IMediaSession iMediaSessionAsInterface = IMediaSession.Stub.asInterface(BundleCompat.getBinder(extras, MediaBrowserProtocol.EXTRA_SESSION_BINDER));
+            if (iMediaSessionAsInterface != null) {
+                this.mMediaSessionToken = MediaSessionCompat.Token.fromToken(MediaBrowserCompatApi21.getSessionToken(this.mBrowserObj), iMediaSessionAsInterface);
             }
         }
 
@@ -847,13 +847,13 @@ public final class MediaBrowserCompat {
                         intent.setComponent(MediaBrowserImplBase.this.mServiceComponent);
                         MediaBrowserImplBase mediaBrowserImplBase3 = MediaBrowserImplBase.this;
                         mediaBrowserImplBase3.mServiceConnection = mediaBrowserImplBase3.new MediaServiceConnection();
-                        boolean z = false;
+                        boolean zBindService = false;
                         try {
-                            z = MediaBrowserImplBase.this.mContext.bindService(intent, MediaBrowserImplBase.this.mServiceConnection, 1);
+                            zBindService = MediaBrowserImplBase.this.mContext.bindService(intent, MediaBrowserImplBase.this.mServiceConnection, 1);
                         } catch (Exception unused) {
                             String str = "Failed binding to service " + MediaBrowserImplBase.this.mServiceComponent;
                         }
-                        if (!z) {
+                        if (!zBindService) {
                             MediaBrowserImplBase.this.forceCloseConnection();
                             MediaBrowserImplBase.this.mCallback.onConnectionFailed();
                         }
@@ -1221,12 +1221,12 @@ public final class MediaBrowserCompat {
         }
 
         private void sendRequest(int i2, Bundle bundle, Messenger messenger) throws RemoteException {
-            Message obtain = Message.obtain();
-            obtain.what = i2;
-            obtain.arg1 = 1;
-            obtain.setData(bundle);
-            obtain.replyTo = messenger;
-            this.mMessenger.send(obtain);
+            Message messageObtain = Message.obtain();
+            messageObtain.what = i2;
+            messageObtain.arg1 = 1;
+            messageObtain.setData(bundle);
+            messageObtain.replyTo = messenger;
+            this.mMessenger.send(messageObtain);
         }
 
         void addSubscription(String str, IBinder iBinder, Bundle bundle, Messenger messenger) throws RemoteException {
@@ -1346,14 +1346,14 @@ public final class MediaBrowserCompat {
                     return list;
                 }
                 int i4 = i3 * i2;
-                int i5 = i4 + i3;
+                int size = i4 + i3;
                 if (i2 < 0 || i3 < 1 || i4 >= list.size()) {
                     return Collections.emptyList();
                 }
-                if (i5 > list.size()) {
-                    i5 = list.size();
+                if (size > list.size()) {
+                    size = list.size();
                 }
-                return list.subList(i4, i5);
+                return list.subList(i4, size);
             }
 
             @Override // android.support.v4.media.MediaBrowserCompatApi21.SubscriptionCallback
@@ -1364,15 +1364,15 @@ public final class MediaBrowserCompat {
                     SubscriptionCallback.this.onChildrenLoaded(str, MediaItem.fromMediaItemList(list));
                     return;
                 }
-                List<MediaItem> fromMediaItemList = MediaItem.fromMediaItemList(list);
+                List<MediaItem> listFromMediaItemList = MediaItem.fromMediaItemList(list);
                 List<SubscriptionCallback> callbacks = subscription.getCallbacks();
                 List<Bundle> optionsList = subscription.getOptionsList();
                 for (int i2 = 0; i2 < callbacks.size(); i2++) {
                     Bundle bundle = optionsList.get(i2);
                     if (bundle == null) {
-                        SubscriptionCallback.this.onChildrenLoaded(str, fromMediaItemList);
+                        SubscriptionCallback.this.onChildrenLoaded(str, listFromMediaItemList);
                     } else {
-                        SubscriptionCallback.this.onChildrenLoaded(str, applyOptions(fromMediaItemList, bundle), bundle);
+                        SubscriptionCallback.this.onChildrenLoaded(str, applyOptions(listFromMediaItemList, bundle), bundle);
                     }
                 }
             }

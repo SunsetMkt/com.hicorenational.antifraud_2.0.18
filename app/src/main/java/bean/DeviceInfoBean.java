@@ -2,13 +2,11 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DeviceInfoBean extends BaseBean {
     private DeviceBean androidExtra;
     private String currentType;
-
-    /* renamed from: ip */
-    private String f1597ip;
+    private String ip;
 
     public DeviceBean getAndroidExtra() {
         return this.androidExtra;
@@ -19,7 +17,7 @@ public class DeviceInfoBean extends BaseBean {
     }
 
     public String getIp() {
-        return this.f1597ip;
+        return this.ip;
     }
 
     public void setAndroidExtra(DeviceBean deviceBean) {
@@ -31,6 +29,6 @@ public class DeviceInfoBean extends BaseBean {
     }
 
     public void setIp(String str) {
-        this.f1597ip = str;
+        this.ip = str;
     }
 }

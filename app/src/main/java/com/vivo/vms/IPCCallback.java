@@ -7,7 +7,7 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IPCCallback extends IInterface {
     public static final String DESCRIPTOR = "com.vivo.vms.IPCCallback";
 
@@ -40,21 +40,21 @@ public interface IPCCallback extends IInterface {
 
             @Override // com.vivo.vms.IPCCallback
             public void call(Bundle bundle) throws RemoteException {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
+                Parcel parcelObtain = Parcel.obtain();
+                Parcel parcelObtain2 = Parcel.obtain();
                 try {
-                    obtain.writeInterfaceToken(IPCCallback.DESCRIPTOR);
-                    if (this.mRemote.transact(1, obtain, obtain2, 0) || Stub.getDefaultImpl() == null) {
-                        obtain2.readException();
-                        if (obtain2.readInt() != 0) {
-                            bundle.readFromParcel(obtain2);
+                    parcelObtain.writeInterfaceToken(IPCCallback.DESCRIPTOR);
+                    if (this.mRemote.transact(1, parcelObtain, parcelObtain2, 0) || Stub.getDefaultImpl() == null) {
+                        parcelObtain2.readException();
+                        if (parcelObtain2.readInt() != 0) {
+                            bundle.readFromParcel(parcelObtain2);
                         }
                     } else {
                         Stub.getDefaultImpl().call(bundle);
                     }
                 } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
+                    parcelObtain2.recycle();
+                    parcelObtain.recycle();
                 }
             }
 
@@ -71,8 +71,8 @@ public interface IPCCallback extends IInterface {
             if (iBinder == null) {
                 return null;
             }
-            IInterface queryLocalInterface = iBinder.queryLocalInterface(IPCCallback.DESCRIPTOR);
-            return (queryLocalInterface == null || !(queryLocalInterface instanceof IPCCallback)) ? new Proxy(iBinder) : (IPCCallback) queryLocalInterface;
+            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface(IPCCallback.DESCRIPTOR);
+            return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof IPCCallback)) ? new Proxy(iBinder) : (IPCCallback) iInterfaceQueryLocalInterface;
         }
 
         public static IPCCallback getDefaultImpl() {

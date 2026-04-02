@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import okhttp3.internal.Util;
 import okhttp3.internal.http.HttpDate;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Headers {
     private final String[] namesAndValues;
 
@@ -24,8 +24,7 @@ public final class Headers {
         this.namesAndValues = (String[]) list.toArray(new String[list.size()]);
     }
 
-    /* renamed from: of */
-    public static Headers m24924of(String... strArr) {
+    public static Headers of(String... strArr) {
         if (strArr == null) {
             throw new NullPointerException("namesAndValues == null");
         }
@@ -52,8 +51,9 @@ public final class Headers {
     public long byteCount() {
         String[] strArr = this.namesAndValues;
         long length = strArr.length * 2;
-        for (int i2 = 0; i2 < strArr.length; i2++) {
-            length += this.namesAndValues[i2].length();
+        int length2 = strArr.length;
+        for (int i2 = 0; i2 < length2; i2++) {
+            length += (long) this.namesAndValues[i2].length();
         }
         return length;
     }
@@ -108,12 +108,12 @@ public final class Headers {
         int size = size();
         for (int i2 = 0; i2 < size; i2++) {
             String lowerCase = name(i2).toLowerCase(Locale.US);
-            List list = (List) treeMap.get(lowerCase);
-            if (list == null) {
-                list = new ArrayList(2);
-                treeMap.put(lowerCase, list);
+            List arrayList = (List) treeMap.get(lowerCase);
+            if (arrayList == null) {
+                arrayList = new ArrayList(2);
+                treeMap.put(lowerCase, arrayList);
             }
-            list.add(value(i2));
+            arrayList.add(value(i2));
         }
         return treeMap;
     }
@@ -169,9 +169,9 @@ public final class Headers {
             }
             int length = str.length();
             for (int i2 = 0; i2 < length; i2++) {
-                char charAt = str.charAt(i2);
-                if (charAt <= ' ' || charAt >= 127) {
-                    throw new IllegalArgumentException(Util.format("Unexpected char %#04x at %d in header name: %s", Integer.valueOf(charAt), Integer.valueOf(i2), str));
+                char cCharAt = str.charAt(i2);
+                if (cCharAt <= ' ' || cCharAt >= '\u007f') {
+                    throw new IllegalArgumentException(Util.format("Unexpected char %#04x at %d in header name: %s", Integer.valueOf(cCharAt), Integer.valueOf(i2), str));
                 }
             }
             if (str2 == null) {
@@ -179,17 +179,17 @@ public final class Headers {
             }
             int length2 = str2.length();
             for (int i3 = 0; i3 < length2; i3++) {
-                char charAt2 = str2.charAt(i3);
-                if ((charAt2 <= 31 && charAt2 != '\t') || charAt2 >= 127) {
-                    throw new IllegalArgumentException(Util.format("Unexpected char %#04x at %d in %s value: %s", Integer.valueOf(charAt2), Integer.valueOf(i3), str, str2));
+                char cCharAt2 = str2.charAt(i3);
+                if ((cCharAt2 <= 31 && cCharAt2 != '\t') || cCharAt2 >= '\u007f') {
+                    throw new IllegalArgumentException(Util.format("Unexpected char %#04x at %d in %s value: %s", Integer.valueOf(cCharAt2), Integer.valueOf(i3), str, str2));
                 }
             }
         }
 
         public Builder add(String str) {
-            int indexOf = str.indexOf(Constants.COLON_SEPARATOR);
-            if (indexOf != -1) {
-                return add(str.substring(0, indexOf).trim(), str.substring(indexOf + 1));
+            int iIndexOf = str.indexOf(Constants.COLON_SEPARATOR);
+            if (iIndexOf != -1) {
+                return add(str.substring(0, iIndexOf).trim(), str.substring(iIndexOf + 1));
             }
             throw new IllegalArgumentException("Unexpected header: " + str);
         }
@@ -203,8 +203,8 @@ public final class Headers {
         }
 
         Builder addLenient(String str) {
-            int indexOf = str.indexOf(Constants.COLON_SEPARATOR, 1);
-            return indexOf != -1 ? addLenient(str.substring(0, indexOf), str.substring(indexOf + 1)) : str.startsWith(Constants.COLON_SEPARATOR) ? addLenient("", str.substring(1)) : addLenient("", str);
+            int iIndexOf = str.indexOf(Constants.COLON_SEPARATOR, 1);
+            return iIndexOf != -1 ? addLenient(str.substring(0, iIndexOf), str.substring(iIndexOf + 1)) : str.startsWith(Constants.COLON_SEPARATOR) ? addLenient("", str.substring(1)) : addLenient("", str);
         }
 
         public Headers build() {
@@ -256,21 +256,20 @@ public final class Headers {
         this.namesAndValues = strArr;
     }
 
-    /* renamed from: of */
-    public static Headers m24923of(Map<String, String> map) {
+    public static Headers of(Map<String, String> map) {
         if (map != null) {
             String[] strArr = new String[map.size() * 2];
             int i2 = 0;
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
-                    String trim = entry.getKey().trim();
-                    String trim2 = entry.getValue().trim();
-                    if (trim.length() != 0 && trim.indexOf(0) == -1 && trim2.indexOf(0) == -1) {
-                        strArr[i2] = trim;
-                        strArr[i2 + 1] = trim2;
+                    String strTrim = entry.getKey().trim();
+                    String strTrim2 = entry.getValue().trim();
+                    if (strTrim.length() != 0 && strTrim.indexOf(0) == -1 && strTrim2.indexOf(0) == -1) {
+                        strArr[i2] = strTrim;
+                        strArr[i2 + 1] = strTrim2;
                         i2 += 2;
                     } else {
-                        throw new IllegalArgumentException("Unexpected header: " + trim + ": " + trim2);
+                        throw new IllegalArgumentException("Unexpected header: " + strTrim + ": " + strTrim2);
                     }
                 } else {
                     throw new IllegalArgumentException("Headers cannot be null");

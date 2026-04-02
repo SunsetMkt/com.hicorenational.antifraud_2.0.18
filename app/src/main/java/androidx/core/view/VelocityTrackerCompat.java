@@ -2,8 +2,8 @@ package androidx.core.view;
 
 import android.view.VelocityTracker;
 
+/* JADX INFO: loaded from: classes.dex */
 @Deprecated
-/* loaded from: classes.dex */
 public final class VelocityTrackerCompat {
     private VelocityTrackerCompat() {
     }

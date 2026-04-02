@@ -3,7 +3,6 @@ package androidx.camera.core;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 import androidx.camera.core.ForwardingImageProxy;
-import androidx.camera.core.ImageAnalysisNonBlockingAnalyzer;
 import androidx.camera.core.impl.ImageReaderProxy;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
@@ -13,7 +12,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class ImageAnalysisNonBlockingAnalyzer extends ImageAnalysisAbstractAnalyzer {
     private static final String TAG = "NonBlockingCallback";
     final Executor mBackgroundExecutor;
@@ -34,13 +33,12 @@ final class ImageAnalysisNonBlockingAnalyzer extends ImageAnalysisAbstractAnalyz
             addOnImageCloseListener(new ForwardingImageProxy.OnImageCloseListener() { // from class: androidx.camera.core.l
                 @Override // androidx.camera.core.ForwardingImageProxy.OnImageCloseListener
                 public final void onImageClose(ImageProxy imageProxy2) {
-                    ImageAnalysisNonBlockingAnalyzer.CacheAnalyzingImageProxy.this.m332a(imageProxy2);
+                    this.a.a(imageProxy2);
                 }
             });
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m332a(ImageProxy imageProxy) {
+        public /* synthetic */ void a(ImageProxy imageProxy) {
             this.mClosed = true;
             final ImageAnalysisNonBlockingAnalyzer imageAnalysisNonBlockingAnalyzer = this.mNonBlockingAnalyzerWeakReference.get();
             if (imageAnalysisNonBlockingAnalyzer != null) {
@@ -49,7 +47,7 @@ final class ImageAnalysisNonBlockingAnalyzer extends ImageAnalysisAbstractAnalyz
                 executor.execute(new Runnable() { // from class: androidx.camera.core.r0
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ImageAnalysisNonBlockingAnalyzer.this.analyzeCachedImage();
+                        imageAnalysisNonBlockingAnalyzer.analyzeCachedImage();
                     }
                 });
             }
@@ -116,11 +114,11 @@ final class ImageAnalysisNonBlockingAnalyzer extends ImageAnalysisAbstractAnalyz
 
     @Override // androidx.camera.core.impl.ImageReaderProxy.OnImageAvailableListener
     public void onImageAvailable(@NonNull ImageReaderProxy imageReaderProxy) {
-        ImageProxy acquireLatestImage = imageReaderProxy.acquireLatestImage();
-        if (acquireLatestImage == null) {
+        ImageProxy imageProxyAcquireLatestImage = imageReaderProxy.acquireLatestImage();
+        if (imageProxyAcquireLatestImage == null) {
             return;
         }
-        analyze(acquireLatestImage);
+        analyze(imageProxyAcquireLatestImage);
     }
 
     @Override // androidx.camera.core.ImageAnalysisAbstractAnalyzer

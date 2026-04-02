@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.oss;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TaskCancelException extends Exception {
     public TaskCancelException() {
     }

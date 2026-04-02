@@ -1,24 +1,24 @@
 package com.huawei.secure.android.common.ssl.hostname;
 
-import com.huawei.secure.android.common.ssl.util.AsyncTaskC2561c;
-import com.huawei.secure.android.common.ssl.util.C2563e;
+import com.huawei.secure.android.common.ssl.util.c;
+import com.huawei.secure.android.common.ssl.util.e;
 import java.security.cert.X509Certificate;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class StrictHostnameVerifier implements HostnameVerifier {
     @Override // javax.net.ssl.HostnameVerifier
     public final boolean verify(String str, SSLSession sSLSession) {
         try {
             X509Certificate x509Certificate = (X509Certificate) sSLSession.getPeerCertificates()[0];
-            C2563e.m7987c("", "verify: certificate is : " + x509Certificate.getSubjectDN().getName());
-            C2558b.m7935a(str, x509Certificate, true);
-            AsyncTaskC2561c.m7966a();
+            e.c("", "verify: certificate is : " + x509Certificate.getSubjectDN().getName());
+            b.a(str, x509Certificate, true);
+            c.a();
             return true;
         } catch (SSLException e2) {
-            C2563e.m7986b("", "SSLException : " + e2.getMessage());
+            e.b("", "SSLException : " + e2.getMessage());
             return false;
         }
     }

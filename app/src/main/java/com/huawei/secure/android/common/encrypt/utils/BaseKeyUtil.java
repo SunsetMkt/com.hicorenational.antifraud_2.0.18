@@ -3,43 +3,38 @@ package com.huawei.secure.android.common.encrypt.utils;
 import android.annotation.SuppressLint;
 import com.huawei.secure.android.common.encrypt.hash.PBKDF2;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BaseKeyUtil {
+    private static final String a = "BaseKeyUtil";
 
-    /* renamed from: a */
-    private static final String f8095a = "BaseKeyUtil";
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private static final int f5105b = 16;
 
-    /* renamed from: b */
-    private static final int f8096b = 16;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private static final int f5106c = 16;
 
-    /* renamed from: c */
-    private static final int f8097c = 16;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final int f5107d = 10000;
 
-    /* renamed from: d */
-    private static final int f8098d = 10000;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    private static final int f5108e = 32;
 
-    /* renamed from: e */
-    private static final int f8099e = 32;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    private static final int f5109f = 1;
 
-    /* renamed from: f */
-    private static final int f8100f = 1;
-
-    /* renamed from: a */
-    private static int m7875a(int i2, int i3, int i4) {
+    private static int a(int i2, int i3, int i4) {
         if (i3 < i2) {
             i2 = i3;
         }
         return i4 < i2 ? i4 : i2;
     }
 
-    /* renamed from: a */
-    private static boolean m7876a(int i2) {
+    private static boolean a(int i2) {
         return i2 >= 16;
     }
 
-    /* renamed from: a */
-    private static boolean m7877a(int i2, byte[] bArr) {
-        return m7876a(i2) & m7878a(bArr);
+    private static boolean a(int i2, byte[] bArr) {
+        return a(i2) & a(bArr);
     }
 
     public static String exportHexRootKey(String str, String str2, String str3, byte[] bArr, int i2, boolean z) {
@@ -69,26 +64,25 @@ public class BaseKeyUtil {
         return exportRootKey(str, str2, str3, bArr, 10000, i2, z);
     }
 
-    /* renamed from: a */
-    private static boolean m7878a(byte[] bArr) {
+    private static boolean a(byte[] bArr) {
         return bArr.length >= 16;
     }
 
     public static byte[] exportRootKey(String str, String str2, String str3, byte[] bArr, int i2, int i3, boolean z) {
-        byte[] hexStr2ByteArray = HexUtil.hexStr2ByteArray(str);
-        byte[] hexStr2ByteArray2 = HexUtil.hexStr2ByteArray(str2);
-        byte[] hexStr2ByteArray3 = HexUtil.hexStr2ByteArray(str3);
-        int m7875a = m7875a(hexStr2ByteArray.length, hexStr2ByteArray2.length, hexStr2ByteArray3.length);
-        if (m7877a(m7875a, bArr)) {
-            char[] cArr = new char[m7875a];
-            for (int i4 = 0; i4 < m7875a; i4++) {
-                cArr[i4] = (char) ((hexStr2ByteArray[i4] ^ hexStr2ByteArray2[i4]) ^ hexStr2ByteArray3[i4]);
+        byte[] bArrHexStr2ByteArray = HexUtil.hexStr2ByteArray(str);
+        byte[] bArrHexStr2ByteArray2 = HexUtil.hexStr2ByteArray(str2);
+        byte[] bArrHexStr2ByteArray3 = HexUtil.hexStr2ByteArray(str3);
+        int iA = a(bArrHexStr2ByteArray.length, bArrHexStr2ByteArray2.length, bArrHexStr2ByteArray3.length);
+        if (a(iA, bArr)) {
+            char[] cArr = new char[iA];
+            for (int i4 = 0; i4 < iA; i4++) {
+                cArr[i4] = (char) ((bArrHexStr2ByteArray[i4] ^ bArrHexStr2ByteArray2[i4]) ^ bArrHexStr2ByteArray3[i4]);
             }
             if (!z) {
-                C2551b.m7899c(f8095a, "exportRootKey: sha1");
+                b.c(a, "exportRootKey: sha1");
                 return PBKDF2.pbkdf2(cArr, bArr, i2, i3 * 8);
             }
-            C2551b.m7899c(f8095a, "exportRootKey: sha256");
+            b.c(a, "exportRootKey: sha256");
             return PBKDF2.pbkdf2SHA256(cArr, bArr, i2, i3 * 8);
         }
         throw new IllegalArgumentException("key length must be more than 128bit.");

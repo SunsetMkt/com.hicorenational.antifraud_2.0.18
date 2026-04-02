@@ -9,8 +9,8 @@ import androidx.appcompat.view.menu.MenuPresenter;
 import androidx.appcompat.view.menu.MenuView;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public abstract class BaseMenuPresenter implements MenuPresenter {
     private MenuPresenter.Callback mCallback;
     protected Context mContext;
@@ -75,9 +75,9 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
 
     /* JADX WARN: Multi-variable type inference failed */
     public View getItemView(MenuItemImpl menuItemImpl, View view, ViewGroup viewGroup) {
-        MenuView.ItemView createItemView = view instanceof MenuView.ItemView ? (MenuView.ItemView) view : createItemView(viewGroup);
-        bindItemView(menuItemImpl, createItemView);
-        return (View) createItemView;
+        MenuView.ItemView itemViewCreateItemView = view instanceof MenuView.ItemView ? (MenuView.ItemView) view : createItemView(viewGroup);
+        bindItemView(menuItemImpl, itemViewCreateItemView);
+        return (View) itemViewCreateItemView;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
@@ -105,19 +105,27 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
         }
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r2v4, types: [androidx.appcompat.view.menu.MenuBuilder] */
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public boolean onSubMenuSelected(SubMenuBuilder subMenuBuilder) {
         MenuPresenter.Callback callback = this.mCallback;
-        SubMenuBuilder subMenuBuilder2 = subMenuBuilder;
+        MenuBuilder menuBuilder = subMenuBuilder;
         if (callback == null) {
             return false;
         }
         if (subMenuBuilder == null) {
-            subMenuBuilder2 = this.mMenu;
+            menuBuilder = this.mMenu;
         }
-        return callback.onOpenSubMenu(subMenuBuilder2);
+        return callback.onOpenSubMenu(menuBuilder);
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter

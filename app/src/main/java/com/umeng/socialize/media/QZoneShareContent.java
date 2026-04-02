@@ -6,7 +6,7 @@ import com.umeng.socialize.ShareContent;
 import java.io.File;
 import java.util.ArrayList;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class QZoneShareContent extends SimpleShareContent {
     private boolean isPublish;
     public int mShareType;
@@ -96,9 +96,9 @@ public class QZoneShareContent extends SimpleShareContent {
             bundle.putStringArrayList("imageLocalUrl", arrayList);
         } else {
             for (UMImage uMImage : getmImages()) {
-                File asFileImage = uMImage.asFileImage();
-                if (asFileImage != null) {
-                    arrayList.add(asFileImage.toString());
+                File fileAsFileImage = uMImage.asFileImage();
+                if (fileAsFileImage != null) {
+                    arrayList.add(fileAsFileImage.toString());
                 }
             }
             bundle.remove("imageLocalUrl");

@@ -3,7 +3,7 @@ package com.luck.picture.lib.camera.listener;
 import androidx.annotation.NonNull;
 import java.io.File;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface CameraListener {
     void onError(int i2, String str, Throwable th);
 

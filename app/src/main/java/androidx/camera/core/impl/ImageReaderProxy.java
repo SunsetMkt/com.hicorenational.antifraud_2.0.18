@@ -8,7 +8,7 @@ import androidx.annotation.RestrictTo;
 import androidx.camera.core.ImageProxy;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ImageReaderProxy {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})

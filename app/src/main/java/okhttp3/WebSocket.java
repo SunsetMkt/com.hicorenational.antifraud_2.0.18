@@ -3,7 +3,7 @@ package okhttp3;
 import javax.annotation.Nullable;
 import okio.ByteString;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface WebSocket {
 
     public interface Factory {

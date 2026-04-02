@@ -6,7 +6,7 @@ import com.vivo.push.model.UPSNotificationMessage;
 import com.vivo.push.model.UnvarnishedMessage;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface PushMessageCallback {
     boolean isAllowNet(Context context);
 

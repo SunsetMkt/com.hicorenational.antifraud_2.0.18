@@ -2,7 +2,7 @@ package bean;
 
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PageBean<T> {
     private List<T> rows;
     private int total;

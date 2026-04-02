@@ -3,7 +3,7 @@ package androidx.recyclerview.widget;
 import android.graphics.Canvas;
 import android.view.View;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface ItemTouchUIUtil {
     void clearView(View view);
 

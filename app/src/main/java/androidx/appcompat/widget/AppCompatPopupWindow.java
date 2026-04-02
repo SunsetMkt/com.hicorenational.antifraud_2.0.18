@@ -9,10 +9,10 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.core.widget.PopupWindowCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class AppCompatPopupWindow extends PopupWindow {
     private static final boolean COMPAT_OVERLAP_ANCHOR;
     private boolean mOverlapAnchor;
@@ -27,12 +27,12 @@ class AppCompatPopupWindow extends PopupWindow {
     }
 
     private void init(Context context, AttributeSet attributeSet, int i2, int i3) {
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0120R.styleable.PopupWindow, i2, i3);
-        if (obtainStyledAttributes.hasValue(C0120R.styleable.PopupWindow_overlapAnchor)) {
-            setSupportOverlapAnchor(obtainStyledAttributes.getBoolean(C0120R.styleable.PopupWindow_overlapAnchor, false));
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, R.styleable.PopupWindow, i2, i3);
+        if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.PopupWindow_overlapAnchor)) {
+            setSupportOverlapAnchor(tintTypedArrayObtainStyledAttributes.getBoolean(R.styleable.PopupWindow_overlapAnchor, false));
         }
-        setBackgroundDrawable(obtainStyledAttributes.getDrawable(C0120R.styleable.PopupWindow_android_popupBackground));
-        obtainStyledAttributes.recycle();
+        setBackgroundDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(R.styleable.PopupWindow_android_popupBackground));
+        tintTypedArrayObtainStyledAttributes.recycle();
     }
 
     private void setSupportOverlapAnchor(boolean z) {

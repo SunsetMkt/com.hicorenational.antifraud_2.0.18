@@ -6,8 +6,8 @@ import android.graphics.RectF;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.RoundRectDrawableWithShadow;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(17)
-/* loaded from: classes.dex */
 class CardViewApi17Impl extends CardViewBaseImpl {
     CardViewApi17Impl() {
     }

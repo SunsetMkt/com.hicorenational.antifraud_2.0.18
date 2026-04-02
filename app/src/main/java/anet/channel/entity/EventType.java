@@ -1,7 +1,7 @@
 package anet.channel.entity;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class EventType {
     public static final int ALL = 4095;
     public static final int AUTH_FAIL = 1024;

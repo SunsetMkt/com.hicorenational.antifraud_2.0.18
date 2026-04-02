@@ -4,5 +4,6 @@
     android:paddingRight="?attr/listPreferredItemPaddingRight"
     android:focusable="true"
     android:layout_width="match_parent"
-    android:layout_height="?attr/listPreferredItemHeightSmall"
-    android:foreground="?attr/selectableItemBackground"/>
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:minHeight="?attr/listPreferredItemHeightSmall"/>

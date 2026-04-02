@@ -5,37 +5,33 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import anet.channel.util.ALog;
-import anetwork.channel.aidl.InterfaceC0866b;
-import anetwork.channel.aidl.InterfaceC0872h;
-import p000a.p001a.p005m.BinderC0020b;
-import p000a.p001a.p007o.BinderC0024b;
+import anetwork.channel.aidl.b;
+import anetwork.channel.aidl.h;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class NetworkService extends Service {
+    private Context a;
 
-    /* renamed from: a */
-    private Context f1209a;
+    /* JADX INFO: renamed from: b */
+    private h.a f1675b = null;
 
-    /* renamed from: b */
-    private InterfaceC0872h.a f1210b = null;
+    /* JADX INFO: renamed from: c */
+    private h.a f1676c = null;
 
-    /* renamed from: c */
-    private InterfaceC0872h.a f1211c = null;
-
-    /* renamed from: d */
-    InterfaceC0866b.a f1212d = new BinderC0867c(this);
+    /* JADX INFO: renamed from: d */
+    b.a f1677d = new c(this);
 
     @Override // android.app.Service
     public IBinder onBind(Intent intent) {
-        this.f1209a = getApplicationContext();
+        this.a = getApplicationContext();
         if (ALog.isPrintLog(2)) {
-            ALog.m716i("anet.NetworkService", "onBind:" + intent.getAction(), null, new Object[0]);
+            ALog.i("anet.NetworkService", "onBind:" + intent.getAction(), null, new Object[0]);
         }
-        this.f1210b = new BinderC0020b(this.f1209a);
-        this.f1211c = new BinderC0024b(this.f1209a);
-        if (InterfaceC0866b.class.getName().equals(intent.getAction())) {
-            return this.f1212d;
+        this.f1675b = new b.a.m.b(this.a);
+        this.f1676c = new b.a.o.b(this.a);
+        if (b.class.getName().equals(intent.getAction())) {
+            return this.f1677d;
         }
         return null;
     }

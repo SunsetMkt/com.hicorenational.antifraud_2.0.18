@@ -1,8 +1,8 @@
 package anet.channel.statist;
 
-/* compiled from: Taobao */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 @Monitor(module = "networkPrefer", monitorPoint = "cookieMonitor")
-/* loaded from: classes.dex */
 public class CookieMonitorStat extends StatObject {
 
     @Dimension

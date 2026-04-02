@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 import java.lang.ref.WeakReference;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class VectorEnabledTintResources extends Resources {
     public static final int MAX_SDK_WHERE_REQUIRED = 20;
     private static boolean sCompatVectorFromResourcesEnabled = false;

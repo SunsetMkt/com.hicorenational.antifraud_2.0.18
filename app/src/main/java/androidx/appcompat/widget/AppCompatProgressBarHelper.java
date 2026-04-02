@@ -16,7 +16,7 @@ import android.util.AttributeSet;
 import android.widget.ProgressBar;
 import androidx.core.graphics.drawable.WrappedDrawable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class AppCompatProgressBarHelper {
     private static final int[] TINT_ATTRS = {R.attr.indeterminateDrawable, R.attr.progressDrawable};
     private Bitmap mSampleTile;
@@ -78,9 +78,9 @@ class AppCompatProgressBarHelper {
         AnimationDrawable animationDrawable2 = new AnimationDrawable();
         animationDrawable2.setOneShot(animationDrawable.isOneShot());
         for (int i2 = 0; i2 < numberOfFrames; i2++) {
-            Drawable tileify = tileify(animationDrawable.getFrame(i2), true);
-            tileify.setLevel(10000);
-            animationDrawable2.addFrame(tileify, animationDrawable.getDuration(i2));
+            Drawable drawableTileify = tileify(animationDrawable.getFrame(i2), true);
+            drawableTileify.setLevel(10000);
+            animationDrawable2.addFrame(drawableTileify, animationDrawable.getDuration(i2));
         }
         animationDrawable2.setLevel(10000);
         return animationDrawable2;
@@ -91,15 +91,15 @@ class AppCompatProgressBarHelper {
     }
 
     void loadFromAttributes(AttributeSet attributeSet, int i2) {
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, TINT_ATTRS, i2, 0);
-        Drawable drawableIfKnown = obtainStyledAttributes.getDrawableIfKnown(0);
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, TINT_ATTRS, i2, 0);
+        Drawable drawableIfKnown = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(0);
         if (drawableIfKnown != null) {
             this.mView.setIndeterminateDrawable(tileifyIndeterminate(drawableIfKnown));
         }
-        Drawable drawableIfKnown2 = obtainStyledAttributes.getDrawableIfKnown(1);
+        Drawable drawableIfKnown2 = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(1);
         if (drawableIfKnown2 != null) {
             this.mView.setProgressDrawable(tileify(drawableIfKnown2, false));
         }
-        obtainStyledAttributes.recycle();
+        tintTypedArrayObtainStyledAttributes.recycle();
     }
 }

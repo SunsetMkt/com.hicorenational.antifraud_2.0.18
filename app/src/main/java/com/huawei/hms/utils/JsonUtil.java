@@ -18,7 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JsonUtil {
     protected static final int VAL_BYTE = 2;
     protected static final int VAL_ENTITY = 0;
@@ -27,48 +27,46 @@ public class JsonUtil {
     protected static final int VAL_NULL = -1;
     protected static final String VAL_TYPE = "_val_type_";
 
-    /* renamed from: a */
-    private static String m7780a(IMessageEntity iMessageEntity) throws IllegalAccessException, JSONException {
+    private static String a(IMessageEntity iMessageEntity) throws IllegalAccessException, JSONException {
         JSONObject jSONObject = new JSONObject();
-        for (Class<?> cls = iMessageEntity.getClass(); cls != null; cls = cls.getSuperclass()) {
-            for (Field field : cls.getDeclaredFields()) {
+        for (Class<?> superclass = iMessageEntity.getClass(); superclass != null; superclass = superclass.getSuperclass()) {
+            for (Field field : superclass.getDeclaredFields()) {
                 if (field.isAnnotationPresent(Packed.class)) {
-                    boolean isAccessible = field.isAccessible();
-                    m7786a(field, true);
+                    boolean zIsAccessible = field.isAccessible();
+                    a(field, true);
                     String name = field.getName();
                     Object obj = field.get(iMessageEntity);
-                    m7786a(field, isAccessible);
-                    m7787a(name, obj, jSONObject);
+                    a(field, zIsAccessible);
+                    a(name, obj, jSONObject);
                 }
             }
         }
         return jSONObject.toString();
     }
 
-    /* renamed from: b */
-    private static Object m7789b(IMessageEntity iMessageEntity, Field field, JSONObject jSONObject) throws JSONException, IllegalAccessException {
-        Object m7779a = m7779a(field.getName(), jSONObject);
-        if (m7779a != null) {
+    private static Object b(IMessageEntity iMessageEntity, Field field, JSONObject jSONObject) throws JSONException, IllegalAccessException {
+        Object objA = a(field.getName(), jSONObject);
+        if (objA != null) {
             try {
                 if (field.getType().getName().startsWith("com.huawei") && (field.getType().newInstance() instanceof IMessageEntity)) {
-                    return jsonToEntity((String) m7779a, (IMessageEntity) field.getType().newInstance());
+                    return jsonToEntity((String) objA, (IMessageEntity) field.getType().newInstance());
                 }
-                if (!(m7779a instanceof JSONObject) || !((JSONObject) m7779a).has(VAL_TYPE)) {
-                    return m7779a;
+                if (!(objA instanceof JSONObject) || !((JSONObject) objA).has(VAL_TYPE)) {
+                    return objA;
                 }
-                int i2 = ((JSONObject) m7779a).getInt(VAL_TYPE);
+                int i2 = ((JSONObject) objA).getInt(VAL_TYPE);
                 if (i2 != 1 && i2 != 0) {
                     if (i2 == 2) {
-                        return m7788a((JSONObject) m7779a);
+                        return a((JSONObject) objA);
                     }
                     if (i2 == 3) {
-                        return m7790b(field.getGenericType(), (JSONObject) m7779a);
+                        return b(field.getGenericType(), (JSONObject) objA);
                     }
-                    HMSLog.m7715e("JsonUtil", "cannot support type : " + i2);
+                    HMSLog.e("JsonUtil", "cannot support type : " + i2);
                 }
-                return m7781a(field.getGenericType(), (JSONObject) m7779a);
+                return a(field.getGenericType(), (JSONObject) objA);
             } catch (InstantiationException unused) {
-                HMSLog.m7715e("JsonUtil", "InstantiationException  ");
+                HMSLog.e("JsonUtil", "InstantiationException  ");
             }
         }
         return null;
@@ -77,16 +75,16 @@ public class JsonUtil {
     @Deprecated
     public static String createJsonString(IMessageEntity iMessageEntity) {
         if (iMessageEntity == null) {
-            HMSLog.m7715e("JsonUtil", "createJsonString error, the input IMessageEntity is null");
+            HMSLog.e("JsonUtil", "createJsonString error, the input IMessageEntity is null");
             return "";
         }
         try {
-            return m7780a(iMessageEntity);
+            return a(iMessageEntity);
         } catch (IllegalAccessException e2) {
-            HMSLog.m7715e("JsonUtil", "catch IllegalAccessException " + e2.getMessage());
+            HMSLog.e("JsonUtil", "catch IllegalAccessException " + e2.getMessage());
             return "";
         } catch (JSONException e3) {
-            HMSLog.m7715e("JsonUtil", "catch JSONException " + e3.getMessage());
+            HMSLog.e("JsonUtil", "catch JSONException " + e3.getMessage());
             return "";
         }
     }
@@ -103,7 +101,7 @@ public class JsonUtil {
                     return obj;
                 }
             } catch (JSONException unused) {
-                HMSLog.m7715e("JsonUtil", "getInfoFromJsonobject:parser json error :" + str2);
+                HMSLog.e("JsonUtil", "getInfoFromJsonobject:parser json error :" + str2);
             }
         }
         return null;
@@ -140,9 +138,9 @@ public class JsonUtil {
                     for (Field field : declaredFields) {
                         if (field.isAnnotationPresent(Packed.class)) {
                             try {
-                                m7782a(iMessageEntity, field, jSONObject);
+                                a(iMessageEntity, field, jSONObject);
                             } catch (IllegalAccessException unused) {
-                                HMSLog.m7715e("JsonUtil", "jsonToEntity, set value of the field exception, field name:" + field.getName());
+                                HMSLog.e("JsonUtil", "jsonToEntity, set value of the field exception, field name:" + field.getName());
                             }
                         }
                     }
@@ -151,13 +149,12 @@ public class JsonUtil {
                 cls = superclass;
             }
         } catch (JSONException e2) {
-            HMSLog.m7715e("JsonUtil", "catch JSONException when parse jsonString" + e2.getMessage());
+            HMSLog.e("JsonUtil", "catch JSONException when parse jsonString" + e2.getMessage());
         }
         return iMessageEntity;
     }
 
-    /* renamed from: a */
-    private static void m7786a(final Field field, final boolean z) {
+    private static void a(final Field field, final boolean z) {
         AccessController.doPrivileged(new PrivilegedAction() { // from class: com.huawei.hms.utils.JsonUtil.1
             @Override // java.security.PrivilegedAction
             public Object run() {
@@ -167,23 +164,21 @@ public class JsonUtil {
         });
     }
 
-    /* renamed from: b */
-    private static Map m7790b(Type type, JSONObject jSONObject) throws JSONException, IllegalAccessException, InstantiationException {
+    private static Map b(Type type, JSONObject jSONObject) throws JSONException, IllegalAccessException, InstantiationException {
         Class cls = (Class) ((ParameterizedType) type).getActualTypeArguments()[1];
         JSONArray jSONArray = new JSONArray(jSONObject.getString("_map_"));
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         for (int i2 = 0; i2 < jSONArray.length(); i2 += 2) {
             if (cls.newInstance() instanceof IMessageEntity) {
-                hashMap.put(jSONArray.get(i2), jsonToEntity(jSONArray.getString(i2 + 1), (IMessageEntity) cls.newInstance()));
+                map.put(jSONArray.get(i2), jsonToEntity(jSONArray.getString(i2 + 1), (IMessageEntity) cls.newInstance()));
             } else {
-                hashMap.put(jSONArray.get(i2), jSONArray.get(i2 + 1));
+                map.put(jSONArray.get(i2), jSONArray.get(i2 + 1));
             }
         }
-        return hashMap;
+        return map;
     }
 
-    /* renamed from: a */
-    private static boolean m7787a(String str, Object obj, JSONObject jSONObject) throws JSONException, IllegalAccessException {
+    private static boolean a(String str, Object obj, JSONObject jSONObject) throws JSONException, IllegalAccessException {
         if (obj instanceof String) {
             jSONObject.put(str, (String) obj);
             return true;
@@ -217,41 +212,40 @@ public class JsonUtil {
             return true;
         }
         if (obj instanceof byte[]) {
-            m7785a(str, (byte[]) obj, jSONObject);
+            a(str, (byte[]) obj, jSONObject);
             return true;
         }
         if (obj instanceof List) {
-            m7783a(str, (List<?>) obj, jSONObject);
+            a(str, (List<?>) obj, jSONObject);
             return true;
         }
         if (obj instanceof Map) {
-            m7784a(str, (Map) obj, jSONObject);
+            a(str, (Map) obj, jSONObject);
             return true;
         }
         if (obj instanceof IMessageEntity) {
             try {
-                jSONObject.put(str, m7780a((IMessageEntity) obj));
+                jSONObject.put(str, a((IMessageEntity) obj));
                 return true;
             } catch (IllegalAccessException e2) {
-                HMSLog.m7715e("JsonUtil", "IllegalAccessException , " + e2);
+                HMSLog.e("JsonUtil", "IllegalAccessException , " + e2);
             }
         }
         return false;
     }
 
-    /* renamed from: a */
-    private static void m7784a(String str, Map map, JSONObject jSONObject) throws JSONException, IllegalAccessException {
+    private static void a(String str, Map map, JSONObject jSONObject) throws JSONException, IllegalAccessException {
         JSONArray jSONArray = new JSONArray();
         for (Map.Entry entry : map.entrySet()) {
             Object key = entry.getKey();
             Object value = entry.getValue();
             if (key instanceof IMessageEntity) {
-                jSONArray.put(m7780a((IMessageEntity) key));
+                jSONArray.put(a((IMessageEntity) key));
             } else {
                 jSONArray.put(key);
             }
             if (value instanceof IMessageEntity) {
-                jSONArray.put(m7780a((IMessageEntity) value));
+                jSONArray.put(a((IMessageEntity) value));
             } else {
                 jSONArray.put(value);
             }
@@ -262,25 +256,23 @@ public class JsonUtil {
         jSONObject.put(str, jSONObject2);
     }
 
-    /* renamed from: a */
-    private static void m7785a(String str, byte[] bArr, JSONObject jSONObject) throws JSONException {
+    private static void a(String str, byte[] bArr, JSONObject jSONObject) throws JSONException {
         JSONObject jSONObject2 = new JSONObject();
         jSONObject2.put(VAL_TYPE, 2);
         try {
             jSONObject2.put("_byte_", Base64.encode(bArr));
         } catch (IllegalArgumentException e2) {
-            HMSLog.m7715e("JsonUtil", "writeByte failed : " + e2.getMessage());
+            HMSLog.e("JsonUtil", "writeByte failed : " + e2.getMessage());
         }
         jSONObject.put(str, jSONObject2);
     }
 
-    /* renamed from: a */
-    private static void m7783a(String str, List<?> list, JSONObject jSONObject) throws JSONException, IllegalAccessException {
+    private static void a(String str, List<?> list, JSONObject jSONObject) throws JSONException, IllegalAccessException {
         JSONObject jSONObject2 = new JSONObject();
         jSONObject2.put(VAL_TYPE, 1);
         jSONObject2.put("_list_size_", list.size());
         for (int i2 = 0; i2 < list.size(); i2++) {
-            m7787a("_list_item_" + i2, list.get(i2), jSONObject2);
+            a("_list_item_" + i2, list.get(i2), jSONObject2);
             if (list.get(i2) instanceof IMessageEntity) {
                 jSONObject2.put(VAL_TYPE, 0);
             }
@@ -288,19 +280,17 @@ public class JsonUtil {
         jSONObject.put(str, jSONObject2);
     }
 
-    /* renamed from: a */
-    private static void m7782a(IMessageEntity iMessageEntity, Field field, JSONObject jSONObject) throws JSONException, IllegalAccessException {
-        Object m7789b = m7789b(iMessageEntity, field, jSONObject);
-        if (m7789b != null) {
-            boolean isAccessible = field.isAccessible();
-            m7786a(field, true);
-            field.set(iMessageEntity, m7789b);
-            m7786a(field, isAccessible);
+    private static void a(IMessageEntity iMessageEntity, Field field, JSONObject jSONObject) throws JSONException, IllegalAccessException {
+        Object objB = b(iMessageEntity, field, jSONObject);
+        if (objB != null) {
+            boolean zIsAccessible = field.isAccessible();
+            a(field, true);
+            field.set(iMessageEntity, objB);
+            a(field, zIsAccessible);
         }
     }
 
-    /* renamed from: a */
-    private static Object m7779a(String str, JSONObject jSONObject) throws JSONException {
+    private static Object a(String str, JSONObject jSONObject) throws JSONException {
         if (jSONObject.has(str)) {
             return jSONObject.get(str);
         }
@@ -313,8 +303,7 @@ public class JsonUtil {
         return null;
     }
 
-    /* renamed from: a */
-    private static List<Object> m7781a(Type type, JSONObject jSONObject) throws JSONException, IllegalAccessException, InstantiationException {
+    private static List<Object> a(Type type, JSONObject jSONObject) throws JSONException, IllegalAccessException, InstantiationException {
         int i2 = jSONObject.getInt("_list_size_");
         int i3 = jSONObject.getInt(VAL_TYPE);
         ArrayList arrayList = new ArrayList(i2);
@@ -329,12 +318,11 @@ public class JsonUtil {
         return arrayList;
     }
 
-    /* renamed from: a */
-    private static byte[] m7788a(JSONObject jSONObject) throws JSONException {
+    private static byte[] a(JSONObject jSONObject) throws JSONException {
         try {
             return Base64.decode(jSONObject.getString("_byte_"));
         } catch (IllegalArgumentException e2) {
-            HMSLog.m7715e("JsonUtil", "readByte failed : " + e2.getMessage());
+            HMSLog.e("JsonUtil", "readByte failed : " + e2.getMessage());
             return null;
         }
     }

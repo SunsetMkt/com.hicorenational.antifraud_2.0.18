@@ -7,28 +7,26 @@ import com.huawei.hms.push.utils.PushBiUtil;
 import com.huawei.hms.support.api.entity.push.PushNaming;
 import java.util.concurrent.Callable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IntentCallable implements Callable<Void> {
+    private Context a;
 
-    /* renamed from: a */
-    private Context f7797a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Intent f4904b;
 
-    /* renamed from: b */
-    private Intent f7798b;
-
-    /* renamed from: c */
-    private String f7799c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private String f4905c;
 
     public IntentCallable(Context context, Intent intent, String str) {
-        this.f7797a = context;
-        this.f7798b = intent;
-        this.f7799c = str;
+        this.a = context;
+        this.f4904b = intent;
+        this.f4905c = str;
     }
 
     @Override // java.util.concurrent.Callable
     public Void call() throws Exception {
-        this.f7797a.sendBroadcast(this.f7798b);
-        PushBiUtil.reportExit(this.f7797a, PushNaming.SET_NOTIFY_FLAG, this.f7799c, ErrorEnum.SUCCESS);
+        this.a.sendBroadcast(this.f4904b);
+        PushBiUtil.reportExit(this.a, PushNaming.SET_NOTIFY_FLAG, this.f4905c, ErrorEnum.SUCCESS);
         return null;
     }
 }

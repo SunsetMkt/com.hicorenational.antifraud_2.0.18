@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AnimatedVectorDrawableCompat extends VectorDrawableCommon implements Animatable2Compat {
     private static final String ANIMATED_VECTOR = "animated-vector";
     private static final boolean DBG_ANIMATION_VECTOR_DRAWABLE = false;
@@ -78,11 +78,11 @@ public class AnimatedVectorDrawableCompat extends VectorDrawableCommon implement
                     this.mTargetNameMap = new ArrayMap<>(size);
                     for (int i2 = 0; i2 < size; i2++) {
                         Animator animator = animatedVectorDrawableCompatState.mAnimators.get(i2);
-                        Animator clone = animator.clone();
+                        Animator animatorClone = animator.clone();
                         String str = animatedVectorDrawableCompatState.mTargetNameMap.get(animator);
-                        clone.setTarget(this.mVectorDrawable.getTargetByName(str));
-                        this.mAnimators.add(clone);
-                        this.mTargetNameMap.put(clone, str);
+                        animatorClone.setTarget(this.mVectorDrawable.getTargetByName(str));
+                        this.mAnimators.add(animatorClone);
+                        this.mTargetNameMap.put(animatorClone, str);
                     }
                     setupAnimatorSet();
                 }
@@ -128,7 +128,7 @@ public class AnimatedVectorDrawableCompat extends VectorDrawableCommon implement
         }
         try {
             XmlResourceParser xml = context.getResources().getXml(i2);
-            AttributeSet asAttributeSet = Xml.asAttributeSet(xml);
+            AttributeSet attributeSetAsAttributeSet = Xml.asAttributeSet(xml);
             do {
                 next = xml.next();
                 if (next == 2) {
@@ -136,7 +136,7 @@ public class AnimatedVectorDrawableCompat extends VectorDrawableCommon implement
                 }
             } while (next != 1);
             if (next == 2) {
-                return createFromXmlInner(context, context.getResources(), xml, asAttributeSet, context.getTheme());
+                return createFromXmlInner(context, context.getResources(), xml, attributeSetAsAttributeSet, context.getTheme());
             }
             throw new XmlPullParserException("No start tag found");
         } catch (IOException | XmlPullParserException unused) {
@@ -339,32 +339,32 @@ public class AnimatedVectorDrawableCompat extends VectorDrawableCommon implement
             if (eventType == 2) {
                 String name = xmlPullParser.getName();
                 if (ANIMATED_VECTOR.equals(name)) {
-                    TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_ANIMATED_VECTOR_DRAWABLE);
-                    int resourceId = obtainAttributes.getResourceId(0, 0);
+                    TypedArray typedArrayObtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_ANIMATED_VECTOR_DRAWABLE);
+                    int resourceId = typedArrayObtainAttributes.getResourceId(0, 0);
                     if (resourceId != 0) {
-                        VectorDrawableCompat create = VectorDrawableCompat.create(resources, resourceId, theme);
-                        create.setAllowCaching(false);
-                        create.setCallback(this.mCallback);
+                        VectorDrawableCompat vectorDrawableCompatCreate = VectorDrawableCompat.create(resources, resourceId, theme);
+                        vectorDrawableCompatCreate.setAllowCaching(false);
+                        vectorDrawableCompatCreate.setCallback(this.mCallback);
                         VectorDrawableCompat vectorDrawableCompat = this.mAnimatedVectorState.mVectorDrawable;
                         if (vectorDrawableCompat != null) {
                             vectorDrawableCompat.setCallback(null);
                         }
-                        this.mAnimatedVectorState.mVectorDrawable = create;
+                        this.mAnimatedVectorState.mVectorDrawable = vectorDrawableCompatCreate;
                     }
-                    obtainAttributes.recycle();
+                    typedArrayObtainAttributes.recycle();
                 } else if ("target".equals(name)) {
-                    TypedArray obtainAttributes2 = resources.obtainAttributes(attributeSet, AndroidResources.STYLEABLE_ANIMATED_VECTOR_DRAWABLE_TARGET);
-                    String string = obtainAttributes2.getString(0);
-                    int resourceId2 = obtainAttributes2.getResourceId(1, 0);
+                    TypedArray typedArrayObtainAttributes2 = resources.obtainAttributes(attributeSet, AndroidResources.STYLEABLE_ANIMATED_VECTOR_DRAWABLE_TARGET);
+                    String string = typedArrayObtainAttributes2.getString(0);
+                    int resourceId2 = typedArrayObtainAttributes2.getResourceId(1, 0);
                     if (resourceId2 != 0) {
                         Context context = this.mContext;
                         if (context == null) {
-                            obtainAttributes2.recycle();
+                            typedArrayObtainAttributes2.recycle();
                             throw new IllegalStateException("Context can't be null when inflating animators");
                         }
                         setupAnimatorsForTarget(string, AnimatorInflaterCompat.loadAnimator(context, resourceId2));
                     }
-                    obtainAttributes2.recycle();
+                    typedArrayObtainAttributes2.recycle();
                 } else {
                     continue;
                 }
@@ -593,11 +593,11 @@ public class AnimatedVectorDrawableCompat extends VectorDrawableCommon implement
         if (arrayList == null || animationCallback == null) {
             return false;
         }
-        boolean remove = arrayList.remove(animationCallback);
+        boolean zRemove = arrayList.remove(animationCallback);
         if (this.mAnimationCallbacks.size() == 0) {
             removeAnimatorSetListener();
         }
-        return remove;
+        return zRemove;
     }
 
     private AnimatedVectorDrawableCompat(@Nullable Context context) {

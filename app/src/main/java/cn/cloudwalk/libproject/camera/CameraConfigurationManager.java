@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class CameraConfigurationManager {
     private static final Pattern COMMA_PATTERN = Pattern.compile(Constants.ACCEPT_TIME_SEPARATOR_SP);
     private static final String TAG = "CameraConfigurationManager";
@@ -31,20 +31,18 @@ final class CameraConfigurationManager {
 
     class PreviewComparator implements Comparator<Camera.Size> {
 
-        /* renamed from: h */
-        int f2712h;
-
-        /* renamed from: w */
-        int f2713w;
+        /* JADX INFO: renamed from: h, reason: collision with root package name */
+        int f1971h;
+        int w;
 
         public PreviewComparator(int i2, int i3) {
-            this.f2713w = i2;
-            this.f2712h = i3;
+            this.w = i2;
+            this.f1971h = i3;
         }
 
         @Override // java.util.Comparator
         public int compare(Camera.Size size, Camera.Size size2) {
-            return Math.abs((size.width * size.height) - (this.f2713w * this.f2712h)) - Math.abs((size2.width * size2.height) - (this.f2713w * this.f2712h));
+            return Math.abs((size.width * size.height) - (this.w * this.f1971h)) - Math.abs((size2.width * size2.height) - (this.w * this.f1971h));
         }
     }
 
@@ -54,9 +52,9 @@ final class CameraConfigurationManager {
 
     private void doSetTorch(Camera camera, boolean z) {
         Camera.Parameters parameters = camera.getParameters();
-        String findSettableValue = z ? findSettableValue(parameters.getSupportedFlashModes(), "torch", "on") : findSettableValue(parameters.getSupportedFlashModes(), "off");
-        if (findSettableValue != null) {
-            parameters.setFlashMode(findSettableValue);
+        String strFindSettableValue = z ? findSettableValue(parameters.getSupportedFlashModes(), "torch", "on") : findSettableValue(parameters.getSupportedFlashModes(), "off");
+        if (strFindSettableValue != null) {
+            parameters.setFlashMode(strFindSettableValue);
         }
         camera.setParameters(parameters);
     }
@@ -65,9 +63,9 @@ final class CameraConfigurationManager {
         int i3 = 0;
         for (String str : COMMA_PATTERN.split(charSequence)) {
             try {
-                double parseDouble = Double.parseDouble(str.trim());
-                int i4 = (int) (10.0d * parseDouble);
-                if (Math.abs(i2 - parseDouble) < Math.abs(i2 - i3)) {
+                double d2 = Double.parseDouble(str.trim());
+                int i4 = (int) (10.0d * d2);
+                if (Math.abs(((double) i2) - d2) < Math.abs(i2 - i3)) {
                     i3 = i4;
                 }
             } catch (NumberFormatException unused) {
@@ -78,8 +76,8 @@ final class CameraConfigurationManager {
     }
 
     private static Point findBestPreviewSizeValue(CharSequence charSequence, Point point) {
-        String[] split = COMMA_PATTERN.split(charSequence);
-        int length = split.length;
+        String[] strArrSplit = COMMA_PATTERN.split(charSequence);
+        int length = strArrSplit.length;
         int i2 = 0;
         int i3 = Integer.MAX_VALUE;
         int i4 = 0;
@@ -88,22 +86,22 @@ final class CameraConfigurationManager {
             if (i2 >= length) {
                 break;
             }
-            String trim = split[i2].trim();
-            int indexOf = trim.indexOf(120);
-            if (indexOf >= 0) {
+            String strTrim = strArrSplit[i2].trim();
+            int iIndexOf = strTrim.indexOf(120);
+            if (iIndexOf >= 0) {
                 try {
-                    int parseInt = Integer.parseInt(trim.substring(0, indexOf));
-                    int parseInt2 = Integer.parseInt(trim.substring(indexOf + 1));
-                    int abs = Math.abs(parseInt - point.x) + Math.abs(parseInt2 - point.y);
-                    if (abs == 0) {
-                        i4 = parseInt2;
-                        i5 = parseInt;
+                    int i6 = Integer.parseInt(strTrim.substring(0, iIndexOf));
+                    int i7 = Integer.parseInt(strTrim.substring(iIndexOf + 1));
+                    int iAbs = Math.abs(i6 - point.x) + Math.abs(i7 - point.y);
+                    if (iAbs == 0) {
+                        i4 = i7;
+                        i5 = i6;
                         break;
                     }
-                    if (abs < i3) {
-                        i4 = parseInt2;
-                        i3 = abs;
-                        i5 = parseInt;
+                    if (iAbs < i3) {
+                        i4 = i7;
+                        i3 = iAbs;
+                        i5 = i6;
                     }
                 } catch (NumberFormatException unused) {
                     continue;
@@ -133,8 +131,8 @@ final class CameraConfigurationManager {
         if (str == null) {
             str = parameters.get("preview-size-value");
         }
-        Point findBestPreviewSizeValue = str != null ? findBestPreviewSizeValue(str, point) : null;
-        return findBestPreviewSizeValue == null ? new Point((point.x >> 3) << 3, (point.y >> 3) << 3) : findBestPreviewSizeValue;
+        Point pointFindBestPreviewSizeValue = str != null ? findBestPreviewSizeValue(str, point) : null;
+        return pointFindBestPreviewSizeValue == null ? new Point((point.x >> 3) << 3, (point.y >> 3) << 3) : pointFindBestPreviewSizeValue;
     }
 
     private Camera.Size getOptimalPreviewSize(List<Camera.Size> list, int i2, int i3) {
@@ -184,13 +182,13 @@ final class CameraConfigurationManager {
     private void setZoom(Camera.Parameters parameters) {
         String str = parameters.get("zoom-supported");
         if (str == null || Boolean.parseBoolean(str)) {
-            int i2 = 27;
+            int iFindBestMotZoomValue = 27;
             String str2 = parameters.get("max-zoom");
             if (str2 != null) {
                 try {
-                    int parseDouble = (int) (Double.parseDouble(str2) * 10.0d);
-                    if (27 > parseDouble) {
-                        i2 = parseDouble;
+                    int i2 = (int) (Double.parseDouble(str2) * 10.0d);
+                    if (27 > i2) {
+                        iFindBestMotZoomValue = i2;
                     }
                 } catch (NumberFormatException e2) {
                     LogUtils.LOGE(LogUtils.LOG_EXCEPTION, e2.getMessage());
@@ -199,9 +197,9 @@ final class CameraConfigurationManager {
             String str3 = parameters.get("taking-picture-zoom-max");
             if (str3 != null) {
                 try {
-                    int parseInt = Integer.parseInt(str3);
-                    if (i2 > parseInt) {
-                        i2 = parseInt;
+                    int i3 = Integer.parseInt(str3);
+                    if (iFindBestMotZoomValue > i3) {
+                        iFindBestMotZoomValue = i3;
                     }
                 } catch (NumberFormatException e3) {
                     LogUtils.LOGE(LogUtils.LOG_EXCEPTION, e3.getMessage());
@@ -209,23 +207,23 @@ final class CameraConfigurationManager {
             }
             String str4 = parameters.get("mot-zoom-values");
             if (str4 != null) {
-                i2 = findBestMotZoomValue(str4, i2);
+                iFindBestMotZoomValue = findBestMotZoomValue(str4, iFindBestMotZoomValue);
             }
             String str5 = parameters.get("mot-zoom-step");
             if (str5 != null) {
                 try {
-                    int parseDouble2 = (int) (Double.parseDouble(str5.trim()) * 10.0d);
-                    if (parseDouble2 > 1) {
-                        i2 -= i2 % parseDouble2;
+                    int i4 = (int) (Double.parseDouble(str5.trim()) * 10.0d);
+                    if (i4 > 1) {
+                        iFindBestMotZoomValue -= iFindBestMotZoomValue % i4;
                     }
                 } catch (NumberFormatException unused) {
                 }
             }
             if (str2 != null || str4 != null) {
-                parameters.set("zoom", String.valueOf(i2 / 10.0d));
+                parameters.set("zoom", String.valueOf(((double) iFindBestMotZoomValue) / 10.0d));
             }
             if (str3 != null) {
-                parameters.set("taking-picture-zoom", i2);
+                parameters.set("taking-picture-zoom", iFindBestMotZoomValue);
             }
         }
     }
@@ -294,7 +292,7 @@ final class CameraConfigurationManager {
         if (optimalPreviewSize != null) {
             parameters.setPreviewSize(optimalPreviewSize.width, optimalPreviewSize.height);
         } else {
-            LogUtils.LOGE(TAG, "设置预览失败");
+            LogUtils.LOGE(TAG, "\u8bbe\u7f6e\u9884\u89c8\u5931\u8d25");
         }
         parameters.setPreviewFormat(17);
         setZoom(parameters);
@@ -339,14 +337,14 @@ final class CameraConfigurationManager {
         camera.setDisplayOrientation(getDisplayOrientation(i2));
         Display defaultDisplay = ((WindowManager) this.mContext.getSystemService("window")).getDefaultDisplay();
         List<Camera.Size> supportedPictureSizes = parameters.getSupportedPictureSizes();
-        ArrayList<Camera.Size> sortPicSize = (supportedPictureSizes == null || supportedPictureSizes.size() <= 0) ? null : sortPicSize(supportedPictureSizes, defaultDisplay.getWidth(), defaultDisplay.getHeight());
-        if (sortPicSize == null) {
+        ArrayList<Camera.Size> arrayListSortPicSize = (supportedPictureSizes == null || supportedPictureSizes.size() <= 0) ? null : sortPicSize(supportedPictureSizes, defaultDisplay.getWidth(), defaultDisplay.getHeight());
+        if (arrayListSortPicSize == null) {
             camera.setParameters(parameters);
             return;
         }
-        for (int i3 = 0; i3 < sortPicSize.size(); i3++) {
+        for (int i3 = 0; i3 < arrayListSortPicSize.size(); i3++) {
             try {
-                parameters.setPictureSize(sortPicSize.get(i3).width, sortPicSize.get(i3).height);
+                parameters.setPictureSize(arrayListSortPicSize.get(i3).width, arrayListSortPicSize.get(i3).height);
                 camera.setParameters(parameters);
                 return;
             } catch (Exception unused) {

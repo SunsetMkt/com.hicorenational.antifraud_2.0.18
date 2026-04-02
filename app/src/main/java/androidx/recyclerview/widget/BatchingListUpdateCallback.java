@@ -2,7 +2,7 @@ package androidx.recyclerview.widget;
 
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BatchingListUpdateCallback implements ListUpdateCallback {
     private static final int TYPE_ADD = 1;
     private static final int TYPE_CHANGE = 3;

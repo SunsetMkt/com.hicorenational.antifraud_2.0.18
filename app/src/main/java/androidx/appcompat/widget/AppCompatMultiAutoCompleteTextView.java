@@ -13,11 +13,10 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.TintableBackgroundView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatMultiAutoCompleteTextView extends MultiAutoCompleteTextView implements TintableBackgroundView {
     private static final int[] TINT_ATTRS = {R.attr.popupBackground};
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
@@ -118,17 +117,17 @@ public class AppCompatMultiAutoCompleteTextView extends MultiAutoCompleteTextVie
     }
 
     public AppCompatMultiAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0120R.attr.autoCompleteTextViewStyle);
+        this(context, attributeSet, androidx.appcompat.R.attr.autoCompleteTextViewStyle);
     }
 
     public AppCompatMultiAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
         super(TintContextWrapper.wrap(context), attributeSet, i2);
         ThemeUtils.checkAppCompatTheme(this, getContext());
-        TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(getContext(), attributeSet, TINT_ATTRS, i2, 0);
-        if (obtainStyledAttributes.hasValue(0)) {
-            setDropDownBackgroundDrawable(obtainStyledAttributes.getDrawable(0));
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(getContext(), attributeSet, TINT_ATTRS, i2, 0);
+        if (tintTypedArrayObtainStyledAttributes.hasValue(0)) {
+            setDropDownBackgroundDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(0));
         }
-        obtainStyledAttributes.recycle();
+        tintTypedArrayObtainStyledAttributes.recycle();
         this.mBackgroundTintHelper = new AppCompatBackgroundHelper(this);
         this.mBackgroundTintHelper.loadFromAttributes(attributeSet, i2);
         this.mTextHelper = new AppCompatTextHelper(this);

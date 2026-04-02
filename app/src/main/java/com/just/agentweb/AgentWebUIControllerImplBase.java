@@ -6,7 +6,7 @@ import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AgentWebUIControllerImplBase extends AbsAgentWebUIController {
     public static AbsAgentWebUIController build() {
         return new AgentWebUIControllerImplBase();

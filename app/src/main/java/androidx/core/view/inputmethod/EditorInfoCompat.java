@@ -6,7 +6,7 @@ import android.view.inputmethod.EditorInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class EditorInfoCompat {
     private static final String CONTENT_MIME_TYPES_INTEROP_KEY = "android.support.v13.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES";
     private static final String CONTENT_MIME_TYPES_KEY = "androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES";
@@ -43,15 +43,15 @@ public final class EditorInfoCompat {
         if (bundle == null) {
             return 0;
         }
-        boolean containsKey = bundle.containsKey(CONTENT_MIME_TYPES_KEY);
-        boolean containsKey2 = editorInfo.extras.containsKey(CONTENT_MIME_TYPES_INTEROP_KEY);
-        if (containsKey && containsKey2) {
+        boolean zContainsKey = bundle.containsKey(CONTENT_MIME_TYPES_KEY);
+        boolean zContainsKey2 = editorInfo.extras.containsKey(CONTENT_MIME_TYPES_INTEROP_KEY);
+        if (zContainsKey && zContainsKey2) {
             return 4;
         }
-        if (containsKey) {
+        if (zContainsKey) {
             return 3;
         }
-        return containsKey2 ? 2 : 0;
+        return zContainsKey2 ? 2 : 0;
     }
 
     public static void setContentMimeTypes(@NonNull EditorInfo editorInfo, @Nullable String[] strArr) {

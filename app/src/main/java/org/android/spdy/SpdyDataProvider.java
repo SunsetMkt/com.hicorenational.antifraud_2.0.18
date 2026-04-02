@@ -2,7 +2,7 @@ package org.android.spdy;
 
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SpdyDataProvider {
     byte[] data;
     public boolean finished;

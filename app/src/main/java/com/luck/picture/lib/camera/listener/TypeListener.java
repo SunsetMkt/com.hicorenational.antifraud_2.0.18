@@ -1,6 +1,6 @@
 package com.luck.picture.lib.camera.listener;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface TypeListener {
     void cancel();
 

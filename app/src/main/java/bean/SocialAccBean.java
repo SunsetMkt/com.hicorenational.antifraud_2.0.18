@@ -2,15 +2,13 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SocialAccBean extends BaseBean {
     private String accountName;
     private String accountNum;
     private String accountOtherName;
     private String accountOtherTips;
-
-    /* renamed from: id */
-    private String f1623id;
+    private String id;
     private String suspectInfoID;
 
     public String getAccountName() {
@@ -30,7 +28,7 @@ public class SocialAccBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1623id;
+        return this.id;
     }
 
     public String getSuspectInfoID() {
@@ -54,7 +52,7 @@ public class SocialAccBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1623id = str;
+        this.id = str;
     }
 
     public void setSuspectInfoID(String str) {

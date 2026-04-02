@@ -1,10 +1,12 @@
 package androidx.appcompat.widget;
 
 import android.R;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -28,13 +31,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
-import androidx.appcompat.C0120R;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.view.menu.ShowableListMenu;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AppCompatSpinner extends Spinner implements TintableBackgroundView {
     private static final int[] ATTRS_ANDROID_SPINNERMODE = {R.attr.spinnerMode};
     private static final int MAX_ITEMS_MEASURED = 15;
@@ -327,14 +331,14 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
             AppCompatSpinner appCompatSpinner = AppCompatSpinner.this;
             int i3 = appCompatSpinner.mDropDownWidth;
             if (i3 == -2) {
-                int compatMeasureContentWidth = appCompatSpinner.compatMeasureContentWidth((SpinnerAdapter) this.mAdapter, getBackground());
+                int iCompatMeasureContentWidth = appCompatSpinner.compatMeasureContentWidth((SpinnerAdapter) this.mAdapter, getBackground());
                 int i4 = AppCompatSpinner.this.getContext().getResources().getDisplayMetrics().widthPixels;
                 Rect rect2 = AppCompatSpinner.this.mTempRect;
                 int i5 = (i4 - rect2.left) - rect2.right;
-                if (compatMeasureContentWidth > i5) {
-                    compatMeasureContentWidth = i5;
+                if (iCompatMeasureContentWidth > i5) {
+                    iCompatMeasureContentWidth = i5;
                 }
-                setContentWidth(Math.max(compatMeasureContentWidth, (width - paddingLeft) - paddingRight));
+                setContentWidth(Math.max(iCompatMeasureContentWidth, (width - paddingLeft) - paddingRight));
             } else if (i3 == -1) {
                 setContentWidth((width - paddingLeft) - paddingRight);
             } else {
@@ -376,7 +380,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
         @Override // androidx.appcompat.widget.AppCompatSpinner.SpinnerPopup
         public void show(int i2, int i3) {
             ViewTreeObserver viewTreeObserver;
-            boolean isShowing = isShowing();
+            boolean zIsShowing = isShowing();
             computeContentWidth();
             setInputMethodMode(2);
             super.show();
@@ -387,7 +391,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
                 listView.setTextAlignment(i3);
             }
             setSelection(AppCompatSpinner.this.getSelectedItemPosition());
-            if (isShowing || (viewTreeObserver = AppCompatSpinner.this.getViewTreeObserver()) == null) {
+            if (zIsShowing || (viewTreeObserver = AppCompatSpinner.this.getViewTreeObserver()) == null) {
                 return;
             }
             final ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() { // from class: androidx.appcompat.widget.AppCompatSpinner.DropdownPopup.2
@@ -487,31 +491,31 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
         if (spinnerAdapter == null) {
             return 0;
         }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 0);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 0);
-        int max = Math.max(0, getSelectedItemPosition());
-        int min = Math.min(spinnerAdapter.getCount(), max + 15);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 0);
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 0);
+        int iMax = Math.max(0, getSelectedItemPosition());
+        int iMin = Math.min(spinnerAdapter.getCount(), iMax + 15);
         View view = null;
-        int i3 = 0;
-        for (int max2 = Math.max(0, max - (15 - (min - max))); max2 < min; max2++) {
-            int itemViewType = spinnerAdapter.getItemViewType(max2);
+        int iMax2 = 0;
+        for (int iMax3 = Math.max(0, iMax - (15 - (iMin - iMax))); iMax3 < iMin; iMax3++) {
+            int itemViewType = spinnerAdapter.getItemViewType(iMax3);
             if (itemViewType != i2) {
                 view = null;
                 i2 = itemViewType;
             }
-            view = spinnerAdapter.getView(max2, view, this);
+            view = spinnerAdapter.getView(iMax3, view, this);
             if (view.getLayoutParams() == null) {
                 view.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
             }
-            view.measure(makeMeasureSpec, makeMeasureSpec2);
-            i3 = Math.max(i3, view.getMeasuredWidth());
+            view.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
+            iMax2 = Math.max(iMax2, view.getMeasuredWidth());
         }
         if (drawable == null) {
-            return i3;
+            return iMax2;
         }
         drawable.getPadding(this.mTempRect);
         Rect rect = this.mTempRect;
-        return i3 + rect.left + rect.right;
+        return iMax2 + rect.left + rect.right;
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -783,7 +787,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
     }
 
     public AppCompatSpinner(@NonNull Context context, int i2) {
-        this(context, null, C0120R.attr.spinnerStyle, i2);
+        this(context, null, androidx.appcompat.R.attr.spinnerStyle, i2);
     }
 
     @Override // android.widget.AdapterView
@@ -803,7 +807,7 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
     }
 
     public AppCompatSpinner(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0120R.attr.spinnerStyle);
+        this(context, attributeSet, androidx.appcompat.R.attr.spinnerStyle);
     }
 
     public AppCompatSpinner(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2) {
@@ -814,140 +818,95 @@ public class AppCompatSpinner extends Spinner implements TintableBackgroundView 
         this(context, attributeSet, i2, i3, null);
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:27:0x004f, code lost:
-    
-        if (r10 != null) goto L16;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:28:0x0051, code lost:
-    
-        r10.recycle();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:30:0x0060, code lost:
-    
-        if (r10 == null) goto L27;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:16:0x0051 A[PHI: r9 r10
+  0x0051: PHI (r9v2 int) = (r9v0 int), (r9v4 int) binds: [B:25:0x0060, B:15:0x004f] A[DONT_GENERATE, DONT_INLINE]
+  0x0051: PHI (r10v8 android.content.res.TypedArray) = (r10v7 android.content.res.TypedArray), (r10v10 android.content.res.TypedArray) binds: [B:25:0x0060, B:15:0x004f] A[DONT_GENERATE, DONT_INLINE]] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public AppCompatSpinner(@androidx.annotation.NonNull android.content.Context r6, @androidx.annotation.Nullable android.util.AttributeSet r7, int r8, int r9, android.content.res.Resources.Theme r10) {
-        /*
-            r5 = this;
-            r5.<init>(r6, r7, r8)
-            android.graphics.Rect r0 = new android.graphics.Rect
-            r0.<init>()
-            r5.mTempRect = r0
-            android.content.Context r0 = r5.getContext()
-            androidx.appcompat.widget.ThemeUtils.checkAppCompatTheme(r5, r0)
-            int[] r0 = androidx.appcompat.C0120R.styleable.Spinner
-            r1 = 0
-            androidx.appcompat.widget.TintTypedArray r0 = androidx.appcompat.widget.TintTypedArray.obtainStyledAttributes(r6, r7, r0, r8, r1)
-            androidx.appcompat.widget.AppCompatBackgroundHelper r2 = new androidx.appcompat.widget.AppCompatBackgroundHelper
-            r2.<init>(r5)
-            r5.mBackgroundTintHelper = r2
-            if (r10 == 0) goto L29
-            androidx.appcompat.view.ContextThemeWrapper r2 = new androidx.appcompat.view.ContextThemeWrapper
-            r2.<init>(r6, r10)
-            r5.mPopupContext = r2
-            goto L3b
-        L29:
-            int r10 = androidx.appcompat.C0120R.styleable.Spinner_popupTheme
-            int r10 = r0.getResourceId(r10, r1)
-            if (r10 == 0) goto L39
-            androidx.appcompat.view.ContextThemeWrapper r2 = new androidx.appcompat.view.ContextThemeWrapper
-            r2.<init>(r6, r10)
-            r5.mPopupContext = r2
-            goto L3b
-        L39:
-            r5.mPopupContext = r6
-        L3b:
-            r10 = -1
-            r2 = 0
-            if (r9 != r10) goto L63
-            int[] r10 = androidx.appcompat.widget.AppCompatSpinner.ATTRS_ANDROID_SPINNERMODE     // Catch: java.lang.Throwable -> L57 java.lang.Exception -> L5f
-            android.content.res.TypedArray r10 = r6.obtainStyledAttributes(r7, r10, r8, r1)     // Catch: java.lang.Throwable -> L57 java.lang.Exception -> L5f
-            boolean r3 = r10.hasValue(r1)     // Catch: java.lang.Throwable -> L55 java.lang.Exception -> L60
-            if (r3 == 0) goto L4f
-            int r9 = r10.getInt(r1, r1)     // Catch: java.lang.Throwable -> L55 java.lang.Exception -> L60
-        L4f:
-            if (r10 == 0) goto L63
-        L51:
-            r10.recycle()
-            goto L63
-        L55:
-            r6 = move-exception
-            goto L59
-        L57:
-            r6 = move-exception
-            r10 = r2
-        L59:
-            if (r10 == 0) goto L5e
-            r10.recycle()
-        L5e:
-            throw r6
-        L5f:
-            r10 = r2
-        L60:
-            if (r10 == 0) goto L63
-            goto L51
-        L63:
-            r10 = 1
-            if (r9 == 0) goto La0
-            if (r9 == r10) goto L69
-            goto Lb2
-        L69:
-            androidx.appcompat.widget.AppCompatSpinner$DropdownPopup r9 = new androidx.appcompat.widget.AppCompatSpinner$DropdownPopup
-            android.content.Context r3 = r5.mPopupContext
-            r9.<init>(r3, r7, r8)
-            android.content.Context r3 = r5.mPopupContext
-            int[] r4 = androidx.appcompat.C0120R.styleable.Spinner
-            androidx.appcompat.widget.TintTypedArray r1 = androidx.appcompat.widget.TintTypedArray.obtainStyledAttributes(r3, r7, r4, r8, r1)
-            int r3 = androidx.appcompat.C0120R.styleable.Spinner_android_dropDownWidth
-            r4 = -2
-            int r3 = r1.getLayoutDimension(r3, r4)
-            r5.mDropDownWidth = r3
-            int r3 = androidx.appcompat.C0120R.styleable.Spinner_android_popupBackground
-            android.graphics.drawable.Drawable r3 = r1.getDrawable(r3)
-            r9.setBackgroundDrawable(r3)
-            int r3 = androidx.appcompat.C0120R.styleable.Spinner_android_prompt
-            java.lang.String r3 = r0.getString(r3)
-            r9.setPromptText(r3)
-            r1.recycle()
-            r5.mPopup = r9
-            androidx.appcompat.widget.AppCompatSpinner$1 r1 = new androidx.appcompat.widget.AppCompatSpinner$1
-            r1.<init>(r5)
-            r5.mForwardingListener = r1
-            goto Lb2
-        La0:
-            androidx.appcompat.widget.AppCompatSpinner$DialogPopup r9 = new androidx.appcompat.widget.AppCompatSpinner$DialogPopup
-            r9.<init>()
-            r5.mPopup = r9
-            androidx.appcompat.widget.AppCompatSpinner$SpinnerPopup r9 = r5.mPopup
-            int r1 = androidx.appcompat.C0120R.styleable.Spinner_android_prompt
-            java.lang.String r1 = r0.getString(r1)
-            r9.setPromptText(r1)
-        Lb2:
-            int r9 = androidx.appcompat.C0120R.styleable.Spinner_android_entries
-            java.lang.CharSequence[] r9 = r0.getTextArray(r9)
-            if (r9 == 0) goto Lca
-            android.widget.ArrayAdapter r1 = new android.widget.ArrayAdapter
-            r3 = 17367048(0x1090008, float:2.5162948E-38)
-            r1.<init>(r6, r3, r9)
-            int r6 = androidx.appcompat.C0120R.layout.support_simple_spinner_dropdown_item
-            r1.setDropDownViewResource(r6)
-            r5.setAdapter(r1)
-        Lca:
-            r0.recycle()
-            r5.mPopupSet = r10
-            android.widget.SpinnerAdapter r6 = r5.mTempAdapter
-            if (r6 == 0) goto Ld8
-            r5.setAdapter(r6)
-            r5.mTempAdapter = r2
-        Ld8:
-            androidx.appcompat.widget.AppCompatBackgroundHelper r6 = r5.mBackgroundTintHelper
-            r6.loadFromAttributes(r7, r8)
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.widget.AppCompatSpinner.<init>(android.content.Context, android.util.AttributeSet, int, int, android.content.res.Resources$Theme):void");
+    public AppCompatSpinner(@NonNull Context context, @Nullable AttributeSet attributeSet, int i2, int i3, Resources.Theme theme) throws Throwable {
+        TypedArray typedArrayObtainStyledAttributes;
+        super(context, attributeSet, i2);
+        this.mTempRect = new Rect();
+        ThemeUtils.checkAppCompatTheme(this, getContext());
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, androidx.appcompat.R.styleable.Spinner, i2, 0);
+        this.mBackgroundTintHelper = new AppCompatBackgroundHelper(this);
+        if (theme != null) {
+            this.mPopupContext = new ContextThemeWrapper(context, theme);
+        } else {
+            int resourceId = tintTypedArrayObtainStyledAttributes.getResourceId(androidx.appcompat.R.styleable.Spinner_popupTheme, 0);
+            if (resourceId != 0) {
+                this.mPopupContext = new ContextThemeWrapper(context, resourceId);
+            } else {
+                this.mPopupContext = context;
+            }
+        }
+        if (i3 == -1) {
+            try {
+                typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, ATTRS_ANDROID_SPINNERMODE, i2, 0);
+            } catch (Exception unused) {
+                typedArrayObtainStyledAttributes = null;
+            } catch (Throwable th) {
+                th = th;
+                typedArrayObtainStyledAttributes = null;
+            }
+            try {
+                i3 = typedArrayObtainStyledAttributes.hasValue(0) ? typedArrayObtainStyledAttributes.getInt(0, 0) : i3;
+            } catch (Exception unused2) {
+                if (typedArrayObtainStyledAttributes != null) {
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (typedArrayObtainStyledAttributes != null) {
+                    typedArrayObtainStyledAttributes.recycle();
+                }
+                throw th;
+            }
+            if (typedArrayObtainStyledAttributes != null) {
+                typedArrayObtainStyledAttributes.recycle();
+            }
+        }
+        if (i3 == 0) {
+            this.mPopup = new DialogPopup();
+            this.mPopup.setPromptText(tintTypedArrayObtainStyledAttributes.getString(androidx.appcompat.R.styleable.Spinner_android_prompt));
+        } else if (i3 == 1) {
+            final DropdownPopup dropdownPopup = new DropdownPopup(this.mPopupContext, attributeSet, i2);
+            TintTypedArray tintTypedArrayObtainStyledAttributes2 = TintTypedArray.obtainStyledAttributes(this.mPopupContext, attributeSet, androidx.appcompat.R.styleable.Spinner, i2, 0);
+            this.mDropDownWidth = tintTypedArrayObtainStyledAttributes2.getLayoutDimension(androidx.appcompat.R.styleable.Spinner_android_dropDownWidth, -2);
+            dropdownPopup.setBackgroundDrawable(tintTypedArrayObtainStyledAttributes2.getDrawable(androidx.appcompat.R.styleable.Spinner_android_popupBackground));
+            dropdownPopup.setPromptText(tintTypedArrayObtainStyledAttributes.getString(androidx.appcompat.R.styleable.Spinner_android_prompt));
+            tintTypedArrayObtainStyledAttributes2.recycle();
+            this.mPopup = dropdownPopup;
+            this.mForwardingListener = new ForwardingListener(this) { // from class: androidx.appcompat.widget.AppCompatSpinner.1
+                @Override // androidx.appcompat.widget.ForwardingListener
+                public ShowableListMenu getPopup() {
+                    return dropdownPopup;
+                }
+
+                @Override // androidx.appcompat.widget.ForwardingListener
+                @SuppressLint({"SyntheticAccessor"})
+                public boolean onForwardingStarted() {
+                    if (AppCompatSpinner.this.getInternalPopup().isShowing()) {
+                        return true;
+                    }
+                    AppCompatSpinner.this.showPopup();
+                    return true;
+                }
+            };
+        }
+        CharSequence[] textArray = tintTypedArrayObtainStyledAttributes.getTextArray(androidx.appcompat.R.styleable.Spinner_android_entries);
+        if (textArray != null) {
+            ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.simple_spinner_item, textArray);
+            arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+            setAdapter((SpinnerAdapter) arrayAdapter);
+        }
+        tintTypedArrayObtainStyledAttributes.recycle();
+        this.mPopupSet = true;
+        SpinnerAdapter spinnerAdapter = this.mTempAdapter;
+        if (spinnerAdapter != null) {
+            setAdapter(spinnerAdapter);
+            this.mTempAdapter = null;
+        }
+        this.mBackgroundTintHelper.loadFromAttributes(attributeSet, i2);
     }
 }

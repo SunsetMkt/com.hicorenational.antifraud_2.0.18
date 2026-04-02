@@ -6,7 +6,7 @@ import java.util.concurrent.RunnableScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RunnableScheduledFutureEnhance<T> implements RunnableScheduledFuture<T> {
     private String parentName = Thread.currentThread().getName();
     private RunnableScheduledFuture<T> proxy;

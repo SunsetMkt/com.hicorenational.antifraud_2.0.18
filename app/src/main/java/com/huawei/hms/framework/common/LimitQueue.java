@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LimitQueue<E> extends ConcurrentLinkedQueue<E> {
     private static final String TAG = "LimitQueue";
     private static final long serialVersionUID = -4636313759149307798L;
@@ -49,11 +49,11 @@ public class LimitQueue<E> extends ConcurrentLinkedQueue<E> {
 
     public E get(int i2) {
         Iterator<E> it = iterator();
-        E e2 = null;
+        E next = null;
         for (int i3 = 0; i3 <= i2 && it.hasNext(); i3++) {
-            e2 = it.next();
+            next = it.next();
         }
-        return e2;
+        return next;
     }
 
     public int getLimit() {
@@ -73,11 +73,11 @@ public class LimitQueue<E> extends ConcurrentLinkedQueue<E> {
 
     public E peekLast() {
         Iterator<E> it = iterator();
-        E e2 = null;
+        E next = null;
         while (it.hasNext()) {
-            e2 = it.next();
+            next = it.next();
         }
-        return e2;
+        return next;
     }
 
     @Override // java.util.concurrent.ConcurrentLinkedQueue, java.util.Queue
@@ -90,7 +90,7 @@ public class LimitQueue<E> extends ConcurrentLinkedQueue<E> {
         try {
             return (E) super.remove();
         } catch (NoSuchElementException unused) {
-            Logger.m6803w(TAG, "remove failed, limitQueue is empty");
+            Logger.w(TAG, "remove failed, limitQueue is empty");
             return null;
         }
     }

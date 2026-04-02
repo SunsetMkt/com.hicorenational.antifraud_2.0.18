@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class UploadPartRequest extends OSSRequest {
     private String bucketName;
     private String md5Digest;

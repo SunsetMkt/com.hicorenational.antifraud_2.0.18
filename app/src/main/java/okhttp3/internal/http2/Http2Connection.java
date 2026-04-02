@@ -29,7 +29,7 @@ import okio.BufferedSource;
 import okio.ByteString;
 import okio.Okio;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public final class Http2Connection implements Closeable {
     static final /* synthetic */ boolean $assertionsDisabled = false;
     static final int OKHTTP_CLIENT_WINDOW_SIZE = 16777216;
@@ -140,7 +140,7 @@ public final class Http2Connection implements Closeable {
         }
 
         @Override // okhttp3.internal.NamedRunnable
-        protected void execute() {
+        protected void execute() throws Throwable {
             ErrorCode errorCode;
             Http2Connection http2Connection;
             ErrorCode errorCode2 = ErrorCode.INTERNAL_ERROR;
@@ -169,8 +169,6 @@ public final class Http2Connection implements Closeable {
                         errorCode = ErrorCode.PROTOCOL_ERROR;
                         errorCode2 = ErrorCode.PROTOCOL_ERROR;
                         http2Connection = Http2Connection.this;
-                        http2Connection.close(errorCode, errorCode2);
-                        Util.closeQuietly(this.reader);
                     }
                     http2Connection.close(errorCode, errorCode2);
                 } catch (IOException unused4) {
@@ -272,9 +270,9 @@ public final class Http2Connection implements Closeable {
                 Http2Connection.this.pushResetLater(i2, errorCode);
                 return;
             }
-            Http2Stream removeStream = Http2Connection.this.removeStream(i2);
-            if (removeStream != null) {
-                removeStream.receiveRstStream(errorCode);
+            Http2Stream http2StreamRemoveStream = Http2Connection.this.removeStream(i2);
+            if (http2StreamRemoveStream != null) {
+                http2StreamRemoveStream.receiveRstStream(errorCode);
             }
         }
 
@@ -431,11 +429,11 @@ public final class Http2Connection implements Closeable {
                 @Override // okhttp3.internal.NamedRunnable
                 public void execute() {
                     try {
-                        boolean onData = Http2Connection.this.pushObserver.onData(i2, buffer, i3, z);
-                        if (onData) {
+                        boolean zOnData = Http2Connection.this.pushObserver.onData(i2, buffer, i3, z);
+                        if (zOnData) {
                             Http2Connection.this.writer.rstStream(i2, ErrorCode.CANCEL);
                         }
-                        if (onData || z) {
+                        if (zOnData || z) {
                             synchronized (Http2Connection.this) {
                                 Http2Connection.this.currentPushRequests.remove(Integer.valueOf(i2));
                             }
@@ -454,15 +452,15 @@ public final class Http2Connection implements Closeable {
             pushExecutorExecute(new NamedRunnable("OkHttp %s Push Headers[%s]", new Object[]{this.hostname, Integer.valueOf(i2)}) { // from class: okhttp3.internal.http2.Http2Connection.4
                 @Override // okhttp3.internal.NamedRunnable
                 public void execute() {
-                    boolean onHeaders = Http2Connection.this.pushObserver.onHeaders(i2, list, z);
-                    if (onHeaders) {
+                    boolean zOnHeaders = Http2Connection.this.pushObserver.onHeaders(i2, list, z);
+                    if (zOnHeaders) {
                         try {
                             Http2Connection.this.writer.rstStream(i2, ErrorCode.CANCEL);
                         } catch (IOException unused) {
                             return;
                         }
                     }
-                    if (onHeaders || z) {
+                    if (zOnHeaders || z) {
                         synchronized (Http2Connection.this) {
                             Http2Connection.this.currentPushRequests.remove(Integer.valueOf(i2));
                         }
@@ -524,10 +522,10 @@ public final class Http2Connection implements Closeable {
     }
 
     synchronized Http2Stream removeStream(int i2) {
-        Http2Stream remove;
-        remove = this.streams.remove(Integer.valueOf(i2));
+        Http2Stream http2StreamRemove;
+        http2StreamRemove = this.streams.remove(Integer.valueOf(i2));
         notifyAll();
-        return remove;
+        return http2StreamRemove;
     }
 
     public void setSettings(Settings settings) throws IOException {
@@ -567,7 +565,7 @@ public final class Http2Connection implements Closeable {
     }
 
     public void writeData(int i2, boolean z, Buffer buffer, long j2) throws IOException {
-        int min;
+        int iMin;
         long j3;
         if (j2 == 0) {
             this.writer.data(z, i2, buffer, 0);
@@ -586,12 +584,12 @@ public final class Http2Connection implements Closeable {
                         throw new InterruptedIOException();
                     }
                 }
-                min = Math.min((int) Math.min(j2, this.bytesLeftInWriteWindow), this.writer.maxDataLength());
-                j3 = min;
+                iMin = Math.min((int) Math.min(j2, this.bytesLeftInWriteWindow), this.writer.maxDataLength());
+                j3 = iMin;
                 this.bytesLeftInWriteWindow -= j3;
             }
             j2 -= j3;
-            this.writer.data(z && j2 == 0, i2, buffer, min);
+            this.writer.data(z && j2 == 0, i2, buffer, iMin);
         }
     }
 
@@ -659,95 +657,40 @@ public final class Http2Connection implements Closeable {
         }
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:21:0x0043 A[Catch: all -> 0x0075, TryCatch #0 {, blocks: (B:6:0x0007, B:8:0x000e, B:9:0x0013, B:11:0x0017, B:13:0x002b, B:15:0x0033, B:19:0x003d, B:21:0x0043, B:22:0x004c, B:36:0x006f, B:37:0x0074), top: B:5:0x0007, outer: #1 }] */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    private okhttp3.internal.http2.Http2Stream newStream(int r11, java.util.List<okhttp3.internal.http2.Header> r12, boolean r13) throws java.io.IOException {
-        /*
-            r10 = this;
-            r6 = r13 ^ 1
-            r4 = 0
-            okhttp3.internal.http2.Http2Writer r7 = r10.writer
-            monitor-enter(r7)
-            monitor-enter(r10)     // Catch: java.lang.Throwable -> L78
-            int r0 = r10.nextStreamId     // Catch: java.lang.Throwable -> L75
-            r1 = 1073741823(0x3fffffff, float:1.9999999)
-            if (r0 <= r1) goto L13
-            okhttp3.internal.http2.ErrorCode r0 = okhttp3.internal.http2.ErrorCode.REFUSED_STREAM     // Catch: java.lang.Throwable -> L75
-            r10.shutdown(r0)     // Catch: java.lang.Throwable -> L75
-        L13:
-            boolean r0 = r10.shutdown     // Catch: java.lang.Throwable -> L75
-            if (r0 != 0) goto L6f
-            int r8 = r10.nextStreamId     // Catch: java.lang.Throwable -> L75
-            int r0 = r10.nextStreamId     // Catch: java.lang.Throwable -> L75
-            int r0 = r0 + 2
-            r10.nextStreamId = r0     // Catch: java.lang.Throwable -> L75
-            okhttp3.internal.http2.Http2Stream r9 = new okhttp3.internal.http2.Http2Stream     // Catch: java.lang.Throwable -> L75
-            r0 = r9
-            r1 = r8
-            r2 = r10
-            r3 = r6
-            r5 = r12
-            r0.<init>(r1, r2, r3, r4, r5)     // Catch: java.lang.Throwable -> L75
-            if (r13 == 0) goto L3c
-            long r0 = r10.bytesLeftInWriteWindow     // Catch: java.lang.Throwable -> L75
-            r2 = 0
-            int r13 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1))
-            if (r13 == 0) goto L3c
-            long r0 = r9.bytesLeftInWriteWindow     // Catch: java.lang.Throwable -> L75
-            int r13 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1))
-            if (r13 != 0) goto L3a
-            goto L3c
-        L3a:
-            r13 = 0
-            goto L3d
-        L3c:
-            r13 = 1
-        L3d:
-            boolean r0 = r9.isOpen()     // Catch: java.lang.Throwable -> L75
-            if (r0 == 0) goto L4c
-            java.util.Map<java.lang.Integer, okhttp3.internal.http2.Http2Stream> r0 = r10.streams     // Catch: java.lang.Throwable -> L75
-            java.lang.Integer r1 = java.lang.Integer.valueOf(r8)     // Catch: java.lang.Throwable -> L75
-            r0.put(r1, r9)     // Catch: java.lang.Throwable -> L75
-        L4c:
-            monitor-exit(r10)     // Catch: java.lang.Throwable -> L75
-            if (r11 != 0) goto L55
-            okhttp3.internal.http2.Http2Writer r0 = r10.writer     // Catch: java.lang.Throwable -> L78
-            r0.synStream(r6, r8, r11, r12)     // Catch: java.lang.Throwable -> L78
-            goto L5e
-        L55:
-            boolean r0 = r10.client     // Catch: java.lang.Throwable -> L78
-            if (r0 != 0) goto L67
-            okhttp3.internal.http2.Http2Writer r0 = r10.writer     // Catch: java.lang.Throwable -> L78
-            r0.pushPromise(r11, r8, r12)     // Catch: java.lang.Throwable -> L78
-        L5e:
-            monitor-exit(r7)     // Catch: java.lang.Throwable -> L78
-            if (r13 == 0) goto L66
-            okhttp3.internal.http2.Http2Writer r11 = r10.writer
-            r11.flush()
-        L66:
-            return r9
-        L67:
-            java.lang.IllegalArgumentException r11 = new java.lang.IllegalArgumentException     // Catch: java.lang.Throwable -> L78
-            java.lang.String r12 = "client streams shouldn't have associated stream IDs"
-            r11.<init>(r12)     // Catch: java.lang.Throwable -> L78
-            throw r11     // Catch: java.lang.Throwable -> L78
-        L6f:
-            okhttp3.internal.http2.ConnectionShutdownException r11 = new okhttp3.internal.http2.ConnectionShutdownException     // Catch: java.lang.Throwable -> L75
-            r11.<init>()     // Catch: java.lang.Throwable -> L75
-            throw r11     // Catch: java.lang.Throwable -> L75
-        L75:
-            r11 = move-exception
-            monitor-exit(r10)     // Catch: java.lang.Throwable -> L75
-            throw r11     // Catch: java.lang.Throwable -> L78
-        L78:
-            r11 = move-exception
-            monitor-exit(r7)     // Catch: java.lang.Throwable -> L78
-            throw r11
-        */
-        throw new UnsupportedOperationException("Method not decompiled: okhttp3.internal.http2.Http2Connection.newStream(int, java.util.List, boolean):okhttp3.internal.http2.Http2Stream");
+    private Http2Stream newStream(int i2, List<Header> list, boolean z) throws IOException {
+        int i3;
+        Http2Stream http2Stream;
+        boolean z2;
+        boolean z3 = !z;
+        synchronized (this.writer) {
+            synchronized (this) {
+                if (this.nextStreamId > 1073741823) {
+                    shutdown(ErrorCode.REFUSED_STREAM);
+                }
+                if (this.shutdown) {
+                    throw new ConnectionShutdownException();
+                }
+                i3 = this.nextStreamId;
+                this.nextStreamId += 2;
+                http2Stream = new Http2Stream(i3, this, z3, false, list);
+                z2 = !z || this.bytesLeftInWriteWindow == 0 || http2Stream.bytesLeftInWriteWindow == 0;
+                if (http2Stream.isOpen()) {
+                    this.streams.put(Integer.valueOf(i3), http2Stream);
+                }
+            }
+            if (i2 == 0) {
+                this.writer.synStream(z3, i3, i2, list);
+            } else {
+                if (this.client) {
+                    throw new IllegalArgumentException("client streams shouldn't have associated stream IDs");
+                }
+                this.writer.pushPromise(i2, i3, list);
+            }
+        }
+        if (z2) {
+            this.writer.flush();
+        }
+        return http2Stream;
     }
 
     void close(ErrorCode errorCode, ErrorCode errorCode2) throws IOException {

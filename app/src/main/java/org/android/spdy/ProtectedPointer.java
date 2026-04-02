@@ -2,7 +2,7 @@ package org.android.spdy;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 class ProtectedPointer {
     private static final long CLOSED = 3;
     private static final long INIT = 1;

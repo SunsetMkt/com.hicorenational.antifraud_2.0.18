@@ -4,7 +4,7 @@ import android.os.Build;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SafeWebSettings {
     public static void disableContentAccess(WebSettings webSettings) {
         if (Build.VERSION.SDK_INT >= 11) {

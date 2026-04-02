@@ -2,45 +2,40 @@ package anetwork.channel.aidl;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import p000a.p001a.C0004e;
+import b.a.e;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
-public class DefaultProgressEvent implements Parcelable, C0004e.b {
-    public static final Parcelable.Creator<DefaultProgressEvent> CREATOR = new C0885k();
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
+public class DefaultProgressEvent implements Parcelable, e.b {
+    public static final Parcelable.Creator<DefaultProgressEvent> CREATOR = new k();
+    int a;
 
-    /* renamed from: a */
-    int f1198a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    int f1666b;
 
-    /* renamed from: b */
-    int f1199b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    int f1667c;
 
-    /* renamed from: c */
-    int f1200c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    Object f1668d;
 
-    /* renamed from: d */
-    Object f1201d;
-
-    /* renamed from: e */
-    byte[] f1202e;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    byte[] f1669e;
 
     public DefaultProgressEvent() {
     }
 
-    @Override // p000a.p001a.C0004e.b
-    /* renamed from: a */
-    public int mo11a() {
-        return this.f1199b;
+    @Override // b.a.e.b
+    public int a() {
+        return this.f1666b;
     }
 
-    /* renamed from: b */
-    public Object m746b() {
-        return this.f1201d;
+    public Object b() {
+        return this.f1668d;
     }
 
-    @Override // p000a.p001a.C0004e.b
-    /* renamed from: d */
-    public String mo12d() {
+    @Override // b.a.e.b
+    public String d() {
         return "";
     }
 
@@ -49,62 +44,57 @@ public class DefaultProgressEvent implements Parcelable, C0004e.b {
         return 0;
     }
 
-    @Override // p000a.p001a.C0004e.b
-    /* renamed from: m */
-    public int mo13m() {
-        return this.f1198a;
+    @Override // b.a.e.b
+    public int m() {
+        return this.a;
     }
 
-    @Override // p000a.p001a.C0004e.b
-    /* renamed from: n */
-    public byte[] mo14n() {
-        return this.f1202e;
+    @Override // b.a.e.b
+    public byte[] n() {
+        return this.f1669e;
     }
 
-    @Override // p000a.p001a.C0004e.b
-    /* renamed from: o */
-    public int mo15o() {
-        return this.f1200c;
+    @Override // b.a.e.b
+    public int o() {
+        return this.f1667c;
     }
 
     public String toString() {
-        return "DefaultProgressEvent [index=" + this.f1198a + ", size=" + this.f1199b + ", total=" + this.f1200c + "]";
+        return "DefaultProgressEvent [index=" + this.a + ", size=" + this.f1666b + ", total=" + this.f1667c + "]";
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeInt(this.f1198a);
-        parcel.writeInt(this.f1199b);
-        parcel.writeInt(this.f1200c);
-        byte[] bArr = this.f1202e;
+        parcel.writeInt(this.a);
+        parcel.writeInt(this.f1666b);
+        parcel.writeInt(this.f1667c);
+        byte[] bArr = this.f1669e;
         parcel.writeInt(bArr != null ? bArr.length : 0);
-        parcel.writeByteArray(this.f1202e);
+        parcel.writeByteArray(this.f1669e);
     }
 
     public DefaultProgressEvent(int i2, int i3, int i4, byte[] bArr) {
-        this.f1198a = i2;
-        this.f1199b = i3;
-        this.f1200c = i4;
-        this.f1202e = bArr;
+        this.a = i2;
+        this.f1666b = i3;
+        this.f1667c = i4;
+        this.f1669e = bArr;
     }
 
-    /* renamed from: a */
-    public void m745a(Object obj) {
-        this.f1201d = obj;
+    public void a(Object obj) {
+        this.f1668d = obj;
     }
 
-    /* renamed from: a */
-    public static DefaultProgressEvent m744a(Parcel parcel) {
+    public static DefaultProgressEvent a(Parcel parcel) {
         DefaultProgressEvent defaultProgressEvent = new DefaultProgressEvent();
         try {
-            defaultProgressEvent.f1198a = parcel.readInt();
-            defaultProgressEvent.f1199b = parcel.readInt();
-            defaultProgressEvent.f1200c = parcel.readInt();
-            int readInt = parcel.readInt();
-            if (readInt > 0) {
-                byte[] bArr = new byte[readInt];
+            defaultProgressEvent.a = parcel.readInt();
+            defaultProgressEvent.f1666b = parcel.readInt();
+            defaultProgressEvent.f1667c = parcel.readInt();
+            int i2 = parcel.readInt();
+            if (i2 > 0) {
+                byte[] bArr = new byte[i2];
                 parcel.readByteArray(bArr);
-                defaultProgressEvent.f1202e = bArr;
+                defaultProgressEvent.f1669e = bArr;
             }
         } catch (Exception unused) {
         }

@@ -9,7 +9,7 @@ import com.luck.picture.lib.PictureSelectorPreviewWeChatStyleActivity;
 import com.luck.picture.lib.PictureVideoPlayActivity;
 import com.umeng.socialize.net.dplus.CommonNetImpl;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class JumpUtils {
     public static void startPicturePreviewActivity(Context context, boolean z, Bundle bundle, int i2) {
         if (DoubleUtils.isFastDoubleClick()) {

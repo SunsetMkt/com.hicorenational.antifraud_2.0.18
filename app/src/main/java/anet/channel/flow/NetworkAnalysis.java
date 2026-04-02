@@ -1,11 +1,11 @@
 package anet.channel.flow;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class NetworkAnalysis {
     private static volatile INetworkAnalysis networkAnalysis = new AnalysisProxy(null);
 
-    /* compiled from: Taobao */
+    /* JADX INFO: compiled from: Taobao */
     private static class AnalysisProxy implements INetworkAnalysis {
         private INetworkAnalysis networkAnalysis;
 

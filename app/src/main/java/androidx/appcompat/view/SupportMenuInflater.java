@@ -17,7 +17,7 @@ import android.view.SubMenu;
 import android.view.View;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0120R;
+import androidx.appcompat.R;
 import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.appcompat.view.menu.MenuItemWrapperICS;
 import androidx.appcompat.widget.DrawableUtils;
@@ -28,10 +28,11 @@ import androidx.core.view.MenuItemCompat;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public class SupportMenuInflater extends MenuInflater {
     static final String LOG_TAG = "SupportMenuInflater";
     static final int NO_ID = 0;
@@ -194,9 +195,9 @@ public class SupportMenuInflater extends MenuInflater {
 
         public SubMenu addSubMenuItem() {
             this.itemAdded = true;
-            SubMenu addSubMenu = this.menu.addSubMenu(this.groupId, this.itemId, this.itemCategoryOrder, this.itemTitle);
-            setItem(addSubMenu.getItem());
-            return addSubMenu;
+            SubMenu subMenuAddSubMenu = this.menu.addSubMenu(this.groupId, this.itemId, this.itemCategoryOrder, this.itemTitle);
+            setItem(subMenuAddSubMenu.getItem());
+            return subMenuAddSubMenu;
         }
 
         public boolean hasAddedItem() {
@@ -204,58 +205,58 @@ public class SupportMenuInflater extends MenuInflater {
         }
 
         public void readGroup(AttributeSet attributeSet) {
-            TypedArray obtainStyledAttributes = SupportMenuInflater.this.mContext.obtainStyledAttributes(attributeSet, C0120R.styleable.MenuGroup);
-            this.groupId = obtainStyledAttributes.getResourceId(C0120R.styleable.MenuGroup_android_id, 0);
-            this.groupCategory = obtainStyledAttributes.getInt(C0120R.styleable.MenuGroup_android_menuCategory, 0);
-            this.groupOrder = obtainStyledAttributes.getInt(C0120R.styleable.MenuGroup_android_orderInCategory, 0);
-            this.groupCheckable = obtainStyledAttributes.getInt(C0120R.styleable.MenuGroup_android_checkableBehavior, 0);
-            this.groupVisible = obtainStyledAttributes.getBoolean(C0120R.styleable.MenuGroup_android_visible, true);
-            this.groupEnabled = obtainStyledAttributes.getBoolean(C0120R.styleable.MenuGroup_android_enabled, true);
-            obtainStyledAttributes.recycle();
+            TypedArray typedArrayObtainStyledAttributes = SupportMenuInflater.this.mContext.obtainStyledAttributes(attributeSet, R.styleable.MenuGroup);
+            this.groupId = typedArrayObtainStyledAttributes.getResourceId(R.styleable.MenuGroup_android_id, 0);
+            this.groupCategory = typedArrayObtainStyledAttributes.getInt(R.styleable.MenuGroup_android_menuCategory, 0);
+            this.groupOrder = typedArrayObtainStyledAttributes.getInt(R.styleable.MenuGroup_android_orderInCategory, 0);
+            this.groupCheckable = typedArrayObtainStyledAttributes.getInt(R.styleable.MenuGroup_android_checkableBehavior, 0);
+            this.groupVisible = typedArrayObtainStyledAttributes.getBoolean(R.styleable.MenuGroup_android_visible, true);
+            this.groupEnabled = typedArrayObtainStyledAttributes.getBoolean(R.styleable.MenuGroup_android_enabled, true);
+            typedArrayObtainStyledAttributes.recycle();
         }
 
         public void readItem(AttributeSet attributeSet) {
-            TintTypedArray obtainStyledAttributes = TintTypedArray.obtainStyledAttributes(SupportMenuInflater.this.mContext, attributeSet, C0120R.styleable.MenuItem);
-            this.itemId = obtainStyledAttributes.getResourceId(C0120R.styleable.MenuItem_android_id, 0);
-            this.itemCategoryOrder = (obtainStyledAttributes.getInt(C0120R.styleable.MenuItem_android_menuCategory, this.groupCategory) & SupportMenu.CATEGORY_MASK) | (obtainStyledAttributes.getInt(C0120R.styleable.MenuItem_android_orderInCategory, this.groupOrder) & 65535);
-            this.itemTitle = obtainStyledAttributes.getText(C0120R.styleable.MenuItem_android_title);
-            this.itemTitleCondensed = obtainStyledAttributes.getText(C0120R.styleable.MenuItem_android_titleCondensed);
-            this.itemIconResId = obtainStyledAttributes.getResourceId(C0120R.styleable.MenuItem_android_icon, 0);
-            this.itemAlphabeticShortcut = getShortcut(obtainStyledAttributes.getString(C0120R.styleable.MenuItem_android_alphabeticShortcut));
-            this.itemAlphabeticModifiers = obtainStyledAttributes.getInt(C0120R.styleable.MenuItem_alphabeticModifiers, 4096);
-            this.itemNumericShortcut = getShortcut(obtainStyledAttributes.getString(C0120R.styleable.MenuItem_android_numericShortcut));
-            this.itemNumericModifiers = obtainStyledAttributes.getInt(C0120R.styleable.MenuItem_numericModifiers, 4096);
-            if (obtainStyledAttributes.hasValue(C0120R.styleable.MenuItem_android_checkable)) {
-                this.itemCheckable = obtainStyledAttributes.getBoolean(C0120R.styleable.MenuItem_android_checkable, false) ? 1 : 0;
+            TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(SupportMenuInflater.this.mContext, attributeSet, R.styleable.MenuItem);
+            this.itemId = tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.MenuItem_android_id, 0);
+            this.itemCategoryOrder = (tintTypedArrayObtainStyledAttributes.getInt(R.styleable.MenuItem_android_menuCategory, this.groupCategory) & SupportMenu.CATEGORY_MASK) | (tintTypedArrayObtainStyledAttributes.getInt(R.styleable.MenuItem_android_orderInCategory, this.groupOrder) & 65535);
+            this.itemTitle = tintTypedArrayObtainStyledAttributes.getText(R.styleable.MenuItem_android_title);
+            this.itemTitleCondensed = tintTypedArrayObtainStyledAttributes.getText(R.styleable.MenuItem_android_titleCondensed);
+            this.itemIconResId = tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.MenuItem_android_icon, 0);
+            this.itemAlphabeticShortcut = getShortcut(tintTypedArrayObtainStyledAttributes.getString(R.styleable.MenuItem_android_alphabeticShortcut));
+            this.itemAlphabeticModifiers = tintTypedArrayObtainStyledAttributes.getInt(R.styleable.MenuItem_alphabeticModifiers, 4096);
+            this.itemNumericShortcut = getShortcut(tintTypedArrayObtainStyledAttributes.getString(R.styleable.MenuItem_android_numericShortcut));
+            this.itemNumericModifiers = tintTypedArrayObtainStyledAttributes.getInt(R.styleable.MenuItem_numericModifiers, 4096);
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.MenuItem_android_checkable)) {
+                this.itemCheckable = tintTypedArrayObtainStyledAttributes.getBoolean(R.styleable.MenuItem_android_checkable, false) ? 1 : 0;
             } else {
                 this.itemCheckable = this.groupCheckable;
             }
-            this.itemChecked = obtainStyledAttributes.getBoolean(C0120R.styleable.MenuItem_android_checked, false);
-            this.itemVisible = obtainStyledAttributes.getBoolean(C0120R.styleable.MenuItem_android_visible, this.groupVisible);
-            this.itemEnabled = obtainStyledAttributes.getBoolean(C0120R.styleable.MenuItem_android_enabled, this.groupEnabled);
-            this.itemShowAsAction = obtainStyledAttributes.getInt(C0120R.styleable.MenuItem_showAsAction, -1);
-            this.itemListenerMethodName = obtainStyledAttributes.getString(C0120R.styleable.MenuItem_android_onClick);
-            this.itemActionViewLayout = obtainStyledAttributes.getResourceId(C0120R.styleable.MenuItem_actionLayout, 0);
-            this.itemActionViewClassName = obtainStyledAttributes.getString(C0120R.styleable.MenuItem_actionViewClass);
-            this.itemActionProviderClassName = obtainStyledAttributes.getString(C0120R.styleable.MenuItem_actionProviderClass);
+            this.itemChecked = tintTypedArrayObtainStyledAttributes.getBoolean(R.styleable.MenuItem_android_checked, false);
+            this.itemVisible = tintTypedArrayObtainStyledAttributes.getBoolean(R.styleable.MenuItem_android_visible, this.groupVisible);
+            this.itemEnabled = tintTypedArrayObtainStyledAttributes.getBoolean(R.styleable.MenuItem_android_enabled, this.groupEnabled);
+            this.itemShowAsAction = tintTypedArrayObtainStyledAttributes.getInt(R.styleable.MenuItem_showAsAction, -1);
+            this.itemListenerMethodName = tintTypedArrayObtainStyledAttributes.getString(R.styleable.MenuItem_android_onClick);
+            this.itemActionViewLayout = tintTypedArrayObtainStyledAttributes.getResourceId(R.styleable.MenuItem_actionLayout, 0);
+            this.itemActionViewClassName = tintTypedArrayObtainStyledAttributes.getString(R.styleable.MenuItem_actionViewClass);
+            this.itemActionProviderClassName = tintTypedArrayObtainStyledAttributes.getString(R.styleable.MenuItem_actionProviderClass);
             if ((this.itemActionProviderClassName != null) && this.itemActionViewLayout == 0 && this.itemActionViewClassName == null) {
                 this.itemActionProvider = (ActionProvider) newInstance(this.itemActionProviderClassName, SupportMenuInflater.ACTION_PROVIDER_CONSTRUCTOR_SIGNATURE, SupportMenuInflater.this.mActionProviderConstructorArguments);
             } else {
                 this.itemActionProvider = null;
             }
-            this.itemContentDescription = obtainStyledAttributes.getText(C0120R.styleable.MenuItem_contentDescription);
-            this.itemTooltipText = obtainStyledAttributes.getText(C0120R.styleable.MenuItem_tooltipText);
-            if (obtainStyledAttributes.hasValue(C0120R.styleable.MenuItem_iconTintMode)) {
-                this.itemIconTintMode = DrawableUtils.parseTintMode(obtainStyledAttributes.getInt(C0120R.styleable.MenuItem_iconTintMode, -1), this.itemIconTintMode);
+            this.itemContentDescription = tintTypedArrayObtainStyledAttributes.getText(R.styleable.MenuItem_contentDescription);
+            this.itemTooltipText = tintTypedArrayObtainStyledAttributes.getText(R.styleable.MenuItem_tooltipText);
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.MenuItem_iconTintMode)) {
+                this.itemIconTintMode = DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes.getInt(R.styleable.MenuItem_iconTintMode, -1), this.itemIconTintMode);
             } else {
                 this.itemIconTintMode = null;
             }
-            if (obtainStyledAttributes.hasValue(C0120R.styleable.MenuItem_iconTint)) {
-                this.itemIconTintList = obtainStyledAttributes.getColorStateList(C0120R.styleable.MenuItem_iconTint);
+            if (tintTypedArrayObtainStyledAttributes.hasValue(R.styleable.MenuItem_iconTint)) {
+                this.itemIconTintList = tintTypedArrayObtainStyledAttributes.getColorStateList(R.styleable.MenuItem_iconTint);
             } else {
                 this.itemIconTintList = null;
             }
-            obtainStyledAttributes.recycle();
+            tintTypedArrayObtainStyledAttributes.recycle();
             this.itemAdded = false;
         }
 
@@ -280,255 +281,67 @@ public class SupportMenuInflater extends MenuInflater {
         return (!(obj instanceof Activity) && (obj instanceof ContextWrapper)) ? findRealOwner(((ContextWrapper) obj).getBaseContext()) : obj;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:11:0x0049, code lost:
-    
-        if (r6 == 2) goto L41;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:13:0x004c, code lost:
-    
-        if (r6 == 3) goto L20;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:14:0x0050, code lost:
-    
-        r6 = r13.getName();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:15:0x0054, code lost:
-    
-        if (r7 == false) goto L25;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:17:0x005a, code lost:
-    
-        if (r6.equals(r8) == false) goto L25;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:18:0x005c, code lost:
-    
-        r8 = null;
-        r7 = false;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:20:0x00ba, code lost:
-    
-        r6 = r13.next();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:22:0x0063, code lost:
-    
-        if (r6.equals(androidx.appcompat.view.SupportMenuInflater.XML_GROUP) == false) goto L28;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:23:0x0065, code lost:
-    
-        r0.resetGroup();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:26:0x006d, code lost:
-    
-        if (r6.equals(androidx.appcompat.view.SupportMenuInflater.XML_ITEM) == false) goto L38;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:28:0x0073, code lost:
-    
-        if (r0.hasAddedItem() != false) goto L65;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:29:0x0075, code lost:
-    
-        r6 = r0.itemActionProvider;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:30:0x0077, code lost:
-    
-        if (r6 == null) goto L37;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:32:0x007d, code lost:
-    
-        if (r6.hasSubMenu() == false) goto L37;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:33:0x007f, code lost:
-    
-        r0.addSubMenuItem();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:35:0x0083, code lost:
-    
-        r0.addItem();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:39:0x008b, code lost:
-    
-        if (r6.equals(androidx.appcompat.view.SupportMenuInflater.XML_MENU) == false) goto L68;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:40:0x008d, code lost:
-    
-        r15 = true;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:44:0x008f, code lost:
-    
-        if (r7 == false) goto L43;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:45:0x0092, code lost:
-    
-        r6 = r13.getName();
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:46:0x009a, code lost:
-    
-        if (r6.equals(androidx.appcompat.view.SupportMenuInflater.XML_GROUP) == false) goto L46;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:47:0x009c, code lost:
-    
-        r0.readGroup(r14);
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:50:0x00a4, code lost:
-    
-        if (r6.equals(androidx.appcompat.view.SupportMenuInflater.XML_ITEM) == false) goto L49;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:51:0x00a6, code lost:
-    
-        r0.readItem(r14);
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:54:0x00ae, code lost:
-    
-        if (r6.equals(androidx.appcompat.view.SupportMenuInflater.XML_MENU) == false) goto L52;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:55:0x00b0, code lost:
-    
-        parseMenu(r13, r14, r0.addSubMenuItem());
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:57:0x00b8, code lost:
-    
-        r8 = r6;
-        r7 = true;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:62:0x00c6, code lost:
-    
-        throw new java.lang.RuntimeException("Unexpected end of document");
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:65:0x00c7, code lost:
-    
-        return;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:7:0x003b, code lost:
-    
-        r6 = r15;
-        r8 = null;
-        r15 = false;
-        r7 = false;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:8:0x0041, code lost:
-    
-        if (r15 != false) goto L60;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:9:0x0043, code lost:
-    
-        if (r6 == 1) goto L61;
-     */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    private void parseMenu(org.xmlpull.v1.XmlPullParser r13, android.util.AttributeSet r14, android.view.Menu r15) throws org.xmlpull.v1.XmlPullParserException, java.io.IOException {
-        /*
-            r12 = this;
-            androidx.appcompat.view.SupportMenuInflater$MenuState r0 = new androidx.appcompat.view.SupportMenuInflater$MenuState
-            r0.<init>(r15)
-            int r15 = r13.getEventType()
-        L9:
-            r1 = 2
-            java.lang.String r2 = "menu"
-            r3 = 1
-            if (r15 != r1) goto L35
-            java.lang.String r15 = r13.getName()
-            boolean r4 = r15.equals(r2)
-            if (r4 == 0) goto L1e
-            int r15 = r13.next()
-            goto L3b
-        L1e:
-            java.lang.RuntimeException r13 = new java.lang.RuntimeException
-            java.lang.StringBuilder r14 = new java.lang.StringBuilder
-            r14.<init>()
-            java.lang.String r0 = "Expecting menu, got "
-            r14.append(r0)
-            r14.append(r15)
-            java.lang.String r14 = r14.toString()
-            r13.<init>(r14)
-            throw r13
-        L35:
-            int r15 = r13.next()
-            if (r15 != r3) goto L9
-        L3b:
-            r4 = 0
-            r5 = 0
-            r6 = r15
-            r8 = r4
-            r15 = 0
-            r7 = 0
-        L41:
-            if (r15 != 0) goto Lc7
-            if (r6 == r3) goto Lbf
-            java.lang.String r9 = "item"
-            java.lang.String r10 = "group"
-            if (r6 == r1) goto L8f
-            r11 = 3
-            if (r6 == r11) goto L50
-            goto Lba
-        L50:
-            java.lang.String r6 = r13.getName()
-            if (r7 == 0) goto L5f
-            boolean r11 = r6.equals(r8)
-            if (r11 == 0) goto L5f
-            r8 = r4
-            r7 = 0
-            goto Lba
-        L5f:
-            boolean r10 = r6.equals(r10)
-            if (r10 == 0) goto L69
-            r0.resetGroup()
-            goto Lba
-        L69:
-            boolean r9 = r6.equals(r9)
-            if (r9 == 0) goto L87
-            boolean r6 = r0.hasAddedItem()
-            if (r6 != 0) goto Lba
-            androidx.core.view.ActionProvider r6 = r0.itemActionProvider
-            if (r6 == 0) goto L83
-            boolean r6 = r6.hasSubMenu()
-            if (r6 == 0) goto L83
-            r0.addSubMenuItem()
-            goto Lba
-        L83:
-            r0.addItem()
-            goto Lba
-        L87:
-            boolean r6 = r6.equals(r2)
-            if (r6 == 0) goto Lba
-            r15 = 1
-            goto Lba
-        L8f:
-            if (r7 == 0) goto L92
-            goto Lba
-        L92:
-            java.lang.String r6 = r13.getName()
-            boolean r10 = r6.equals(r10)
-            if (r10 == 0) goto La0
-            r0.readGroup(r14)
-            goto Lba
-        La0:
-            boolean r9 = r6.equals(r9)
-            if (r9 == 0) goto Laa
-            r0.readItem(r14)
-            goto Lba
-        Laa:
-            boolean r9 = r6.equals(r2)
-            if (r9 == 0) goto Lb8
-            android.view.SubMenu r6 = r0.addSubMenuItem()
-            r12.parseMenu(r13, r14, r6)
-            goto Lba
-        Lb8:
-            r8 = r6
-            r7 = 1
-        Lba:
-            int r6 = r13.next()
-            goto L41
-        Lbf:
-            java.lang.RuntimeException r13 = new java.lang.RuntimeException
-            java.lang.String r14 = "Unexpected end of document"
-            r13.<init>(r14)
-            throw r13
-        Lc7:
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.view.SupportMenuInflater.parseMenu(org.xmlpull.v1.XmlPullParser, android.util.AttributeSet, android.view.Menu):void");
+    private void parseMenu(XmlPullParser xmlPullParser, AttributeSet attributeSet, Menu menu) throws XmlPullParserException, IOException {
+        MenuState menuState = new MenuState(menu);
+        int eventType = xmlPullParser.getEventType();
+        while (true) {
+            if (eventType == 2) {
+                String name = xmlPullParser.getName();
+                if (!name.equals(XML_MENU)) {
+                    throw new RuntimeException("Expecting menu, got " + name);
+                }
+                eventType = xmlPullParser.next();
+            } else {
+                eventType = xmlPullParser.next();
+                if (eventType == 1) {
+                    break;
+                }
+            }
+        }
+        int next = eventType;
+        String str = null;
+        boolean z = false;
+        boolean z2 = false;
+        while (!z) {
+            if (next == 1) {
+                throw new RuntimeException("Unexpected end of document");
+            }
+            if (next != 2) {
+                if (next == 3) {
+                    String name2 = xmlPullParser.getName();
+                    if (z2 && name2.equals(str)) {
+                        str = null;
+                        z2 = false;
+                    } else if (name2.equals(XML_GROUP)) {
+                        menuState.resetGroup();
+                    } else if (name2.equals(XML_ITEM)) {
+                        if (!menuState.hasAddedItem()) {
+                            ActionProvider actionProvider = menuState.itemActionProvider;
+                            if (actionProvider == null || !actionProvider.hasSubMenu()) {
+                                menuState.addItem();
+                            } else {
+                                menuState.addSubMenuItem();
+                            }
+                        }
+                    } else if (name2.equals(XML_MENU)) {
+                        z = true;
+                    }
+                }
+            } else if (!z2) {
+                String name3 = xmlPullParser.getName();
+                if (name3.equals(XML_GROUP)) {
+                    menuState.readGroup(attributeSet);
+                } else if (name3.equals(XML_ITEM)) {
+                    menuState.readItem(attributeSet);
+                } else if (name3.equals(XML_MENU)) {
+                    parseMenu(xmlPullParser, attributeSet, menuState.addSubMenuItem());
+                } else {
+                    str = name3;
+                    z2 = true;
+                }
+            }
+            next = xmlPullParser.next();
+        }
     }
 
     Object getRealOwner() {
@@ -544,12 +357,12 @@ public class SupportMenuInflater extends MenuInflater {
             super.inflate(i2, menu);
             return;
         }
-        XmlResourceParser xmlResourceParser = null;
+        XmlResourceParser layout = null;
         try {
             try {
                 try {
-                    xmlResourceParser = this.mContext.getResources().getLayout(i2);
-                    parseMenu(xmlResourceParser, Xml.asAttributeSet(xmlResourceParser), menu);
+                    layout = this.mContext.getResources().getLayout(i2);
+                    parseMenu(layout, Xml.asAttributeSet(layout), menu);
                 } catch (IOException e2) {
                     throw new InflateException("Error inflating menu XML", e2);
                 }
@@ -557,8 +370,8 @@ public class SupportMenuInflater extends MenuInflater {
                 throw new InflateException("Error inflating menu XML", e3);
             }
         } finally {
-            if (xmlResourceParser != null) {
-                xmlResourceParser.close();
+            if (layout != null) {
+                layout.close();
             }
         }
     }

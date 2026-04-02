@@ -2,7 +2,7 @@ package com.huawei.hms.framework.common;
 
 import com.huawei.android.os.BuildEx;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class EmuiUtil {
     private static final String BUILDEX_NAME = "com.huawei.android.os.BuildEx";
     public static final String BUILDEX_VERSION = "com.huawei.android.os.BuildEx$VERSION";
@@ -35,25 +35,25 @@ public class EmuiUtil {
     }
 
     public static int getEMUIVersionCode() {
-        int intValue;
+        int iIntValue;
         Object staticFieldObj = ReflectionUtils.getStaticFieldObj(BUILDEX_VERSION, EMUI_SDK_INT);
         if (staticFieldObj != null) {
             try {
-                intValue = ((Integer) staticFieldObj).intValue();
+                iIntValue = ((Integer) staticFieldObj).intValue();
             } catch (ClassCastException e2) {
-                Logger.m6797e(TAG, "getEMUIVersionCode ClassCastException:", e2);
+                Logger.e(TAG, "getEMUIVersionCode ClassCastException:", e2);
+                iIntValue = 0;
             }
-            Logger.m6794d(TAG, "the emui version code is::" + intValue);
-            return intValue;
+        } else {
+            iIntValue = 0;
         }
-        intValue = 0;
-        Logger.m6794d(TAG, "the emui version code is::" + intValue);
-        return intValue;
+        Logger.d(TAG, "the emui version code is::" + iIntValue);
+        return iIntValue;
     }
 
     private static void initEmuiType() {
         int eMUIVersionCode = getEMUIVersionCode();
-        Logger.m6794d(TAG, "getEmuiType emuiVersionCode=" + eMUIVersionCode);
+        Logger.d(TAG, "getEmuiType emuiVersionCode=" + eMUIVersionCode);
         if (eMUIVersionCode >= 17) {
             emuiType = 90;
         } else if (eMUIVersionCode >= 15) {
@@ -72,7 +72,7 @@ public class EmuiUtil {
             emuiType = 30;
         }
         if (emuiType == -1) {
-            Logger.m6799i(TAG, "emuiType is unkown");
+            Logger.i(TAG, "emuiType is unkown");
         }
     }
 
@@ -86,11 +86,11 @@ public class EmuiUtil {
                 return BuildEx.VERSION.EMUI_SDK_INT >= 17;
             }
         } catch (NoSuchMethodError unused) {
-            Logger.m6794d(TAG, "no such method for com.huawei.android.os.BuildEx.VERSION");
+            Logger.d(TAG, "no such method for com.huawei.android.os.BuildEx.VERSION");
         } catch (Throwable unused2) {
-            Logger.m6794d(TAG, "com.huawei.android.os.BuildEx.VERSION has other exception");
+            Logger.d(TAG, "com.huawei.android.os.BuildEx.VERSION has other exception");
         }
-        Logger.m6794d(TAG, "com.huawei.android.os.BuildEx : false");
+        Logger.d(TAG, "com.huawei.android.os.BuildEx : false");
         return false;
     }
 }

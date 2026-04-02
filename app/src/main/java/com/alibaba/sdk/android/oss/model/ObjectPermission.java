@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.model;
 
 import com.taobao.accs.AccsClientConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public enum ObjectPermission {
     Private("private"),
     PublicRead("public-read"),

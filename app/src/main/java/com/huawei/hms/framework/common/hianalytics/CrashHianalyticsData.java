@@ -2,7 +2,7 @@ package com.huawei.hms.framework.common.hianalytics;
 
 import android.os.Process;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CrashHianalyticsData extends HianalyticsBaseData {
     public static final String CRASH_TYPE = "crash_type";
     public static final String EVENT_ID_CRASH = "crash";

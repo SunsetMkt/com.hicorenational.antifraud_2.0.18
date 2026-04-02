@@ -6,11 +6,11 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
-import androidx.constraintlayout.widget.C0471R;
 import androidx.constraintlayout.widget.ConstraintHelper;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Layer extends ConstraintHelper {
     private static final String TAG = "Layer";
     private boolean mApplyElevationOnAttach;
@@ -74,14 +74,14 @@ public class Layer extends ConstraintHelper {
         }
         calcCenters();
         double radians = Float.isNaN(this.mGroupRotateAngle) ? 0.0d : Math.toRadians(this.mGroupRotateAngle);
-        float sin = (float) Math.sin(radians);
-        float cos = (float) Math.cos(radians);
+        float fSin = (float) Math.sin(radians);
+        float fCos = (float) Math.cos(radians);
         float f2 = this.mScaleX;
-        float f3 = f2 * cos;
+        float f3 = f2 * fCos;
         float f4 = this.mScaleY;
-        float f5 = (-f4) * sin;
-        float f6 = f2 * sin;
-        float f7 = f4 * cos;
+        float f5 = (-f4) * fSin;
+        float f6 = f2 * fSin;
+        float f7 = f4 * fCos;
         for (int i2 = 0; i2 < this.mCount; i2++) {
             View view = this.mViews[i2];
             int left = (view.getLeft() + view.getRight()) / 2;
@@ -144,17 +144,17 @@ public class Layer extends ConstraintHelper {
         super.init(attributeSet);
         this.mUseViewMeasure = false;
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ConstraintLayout_Layout);
-            int indexCount = obtainStyledAttributes.getIndexCount();
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.ConstraintLayout_Layout_android_visibility) {
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.ConstraintLayout_Layout_android_visibility) {
                     this.mApplyVisibilityOnAttach = true;
-                } else if (index == C0471R.styleable.ConstraintLayout_Layout_android_elevation) {
+                } else if (index == R.styleable.ConstraintLayout_Layout_android_elevation) {
                     this.mApplyElevationOnAttach = true;
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
     }
 

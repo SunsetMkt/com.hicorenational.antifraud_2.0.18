@@ -3,7 +3,7 @@ package androidx.camera.camera2.impl;
 import androidx.annotation.Nullable;
 import androidx.camera.core.impl.CaptureConfig;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class CameraEventCallback {
     @Nullable
     public CaptureConfig onDisableSession() {

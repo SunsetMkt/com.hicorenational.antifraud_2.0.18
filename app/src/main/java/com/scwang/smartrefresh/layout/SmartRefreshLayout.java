@@ -16,6 +16,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -31,380 +32,206 @@ import androidx.core.view.NestedScrollingParentHelper;
 import androidx.vectordrawable.graphics.drawable.PathInterpolatorCompat;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
-import com.scwang.smartrefresh.layout.impl.C2900a;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2867a;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2868b;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2869c;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2871e;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2872f;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2873g;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2874h;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2875i;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2876j;
-import com.scwang.smartrefresh.layout.p189b.InterfaceC2877k;
-import com.scwang.smartrefresh.layout.p190c.EnumC2878a;
-import com.scwang.smartrefresh.layout.p190c.EnumC2879b;
-import com.scwang.smartrefresh.layout.p190c.EnumC2880c;
-import com.scwang.smartrefresh.layout.p191d.InterfaceC2882b;
-import com.scwang.smartrefresh.layout.p191d.InterfaceC2883c;
-import com.scwang.smartrefresh.layout.p191d.InterfaceC2884d;
-import com.scwang.smartrefresh.layout.p191d.InterfaceC2885e;
-import com.scwang.smartrefresh.layout.p192e.AbstractC2892e;
-import com.scwang.smartrefresh.layout.p192e.C2889b;
-import com.scwang.smartrefresh.layout.p192e.InterpolatorC2893f;
-import com.scwang.smartrefresh.layout.p192e.RunnableC2888a;
+import com.scwang.smartrefresh.layout.impl.RefreshFooterWrapper;
+import com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes2.dex */
 @SuppressLint({"RestrictedApi"})
-/* loaded from: classes.dex */
-public class SmartRefreshLayout extends ViewGroup implements InterfaceC2876j, NestedScrollingParent {
-
-    /* renamed from: T0 */
-    protected static InterfaceC2867a f8972T0;
-
-    /* renamed from: U0 */
-    protected static InterfaceC2868b f8973U0;
-
-    /* renamed from: V0 */
-    protected static InterfaceC2869c f8974V0;
-
-    /* renamed from: A */
-    protected boolean f8975A;
-
-    /* renamed from: A0 */
-    protected InterfaceC2874h f8976A0;
-
-    /* renamed from: B */
-    protected boolean f8977B;
-
-    /* renamed from: B0 */
-    protected InterfaceC2874h f8978B0;
-
-    /* renamed from: C */
-    protected boolean f8979C;
-
-    /* renamed from: C0 */
-    protected InterfaceC2871e f8980C0;
-
-    /* renamed from: D */
-    protected boolean f8981D;
-
-    /* renamed from: D0 */
-    protected Paint f8982D0;
-
-    /* renamed from: E */
-    protected boolean f8983E;
-
-    /* renamed from: E0 */
-    protected Handler f8984E0;
-
-    /* renamed from: F */
-    protected boolean f8985F;
-
-    /* renamed from: F0 */
-    protected InterfaceC2875i f8986F0;
-
-    /* renamed from: G */
-    protected boolean f8987G;
-
-    /* renamed from: G0 */
-    protected List<RunnableC2888a> f8988G0;
-
-    /* renamed from: H */
-    protected boolean f8989H;
-
-    /* renamed from: H0 */
-    protected EnumC2879b f8990H0;
-
-    /* renamed from: I */
-    protected boolean f8991I;
-
-    /* renamed from: I0 */
-    protected EnumC2879b f8992I0;
-
-    /* renamed from: J */
-    protected boolean f8993J;
-
-    /* renamed from: J0 */
-    protected long f8994J0;
-
-    /* renamed from: K */
-    protected boolean f8995K;
-
-    /* renamed from: K0 */
-    protected int f8996K0;
-
-    /* renamed from: L */
-    protected boolean f8997L;
-
-    /* renamed from: L0 */
-    protected int f8998L0;
-
-    /* renamed from: M */
-    protected boolean f8999M;
-
-    /* renamed from: M0 */
-    protected boolean f9000M0;
-
-    /* renamed from: N */
-    protected boolean f9001N;
-
-    /* renamed from: N0 */
-    protected boolean f9002N0;
-
-    /* renamed from: O */
-    protected boolean f9003O;
-
-    /* renamed from: O0 */
-    protected boolean f9004O0;
-
-    /* renamed from: P0 */
-    protected boolean f9005P0;
-
-    /* renamed from: Q0 */
-    protected MotionEvent f9006Q0;
-
-    /* renamed from: R0 */
-    protected Runnable f9007R0;
-
-    /* renamed from: S0 */
-    protected ValueAnimator f9008S0;
-
-    /* renamed from: a */
-    protected int f9009a;
-
-    /* renamed from: b */
-    protected int f9010b;
-
-    /* renamed from: b0 */
-    protected boolean f9011b0;
-
-    /* renamed from: c */
-    protected int f9012c;
-
-    /* renamed from: c0 */
-    protected boolean f9013c0;
-
-    /* renamed from: d */
-    protected int f9014d;
-
-    /* renamed from: d0 */
-    protected boolean f9015d0;
-
-    /* renamed from: e */
-    protected int f9016e;
-
-    /* renamed from: e0 */
-    protected boolean f9017e0;
-
-    /* renamed from: f */
-    protected int f9018f;
-
-    /* renamed from: f0 */
-    protected boolean f9019f0;
-
-    /* renamed from: g */
-    protected int f9020g;
-
-    /* renamed from: g0 */
-    protected boolean f9021g0;
-
-    /* renamed from: h */
-    protected float f9022h;
-
-    /* renamed from: h0 */
-    protected InterfaceC2884d f9023h0;
-
-    /* renamed from: i */
-    protected float f9024i;
-
-    /* renamed from: i0 */
-    protected InterfaceC2882b f9025i0;
-
-    /* renamed from: j */
-    protected float f9026j;
-
-    /* renamed from: j0 */
-    protected InterfaceC2883c f9027j0;
-
-    /* renamed from: k */
-    protected float f9028k;
-
-    /* renamed from: k0 */
-    protected InterfaceC2877k f9029k0;
-
-    /* renamed from: l */
-    protected float f9030l;
-
-    /* renamed from: l0 */
-    protected int f9031l0;
-
-    /* renamed from: m */
-    protected char f9032m;
-
-    /* renamed from: m0 */
-    protected boolean f9033m0;
-
-    /* renamed from: n */
-    protected boolean f9034n;
-
-    /* renamed from: n0 */
-    protected int[] f9035n0;
-
-    /* renamed from: o */
-    protected boolean f9036o;
-
-    /* renamed from: o0 */
-    protected NestedScrollingChildHelper f9037o0;
-
-    /* renamed from: p */
-    protected int f9038p;
-
-    /* renamed from: p0 */
-    protected NestedScrollingParentHelper f9039p0;
-
-    /* renamed from: q */
-    protected int f9040q;
-
-    /* renamed from: q0 */
-    protected int f9041q0;
-
-    /* renamed from: r */
-    protected int f9042r;
-
-    /* renamed from: r0 */
-    protected EnumC2878a f9043r0;
-
-    /* renamed from: s */
-    protected int f9044s;
-
-    /* renamed from: s0 */
-    protected int f9045s0;
-
-    /* renamed from: t */
-    protected int f9046t;
-
-    /* renamed from: t0 */
-    protected EnumC2878a f9047t0;
-
-    /* renamed from: u */
-    protected int f9048u;
-
-    /* renamed from: u0 */
-    protected int f9049u0;
-
-    /* renamed from: v */
-    protected int f9050v;
-
-    /* renamed from: v0 */
-    protected int f9051v0;
-
-    /* renamed from: w */
-    protected Scroller f9052w;
-
-    /* renamed from: w0 */
-    protected float f9053w0;
-
-    /* renamed from: x */
-    protected VelocityTracker f9054x;
-
-    /* renamed from: x0 */
-    protected float f9055x0;
-
-    /* renamed from: y */
-    protected Interpolator f9056y;
-
-    /* renamed from: y0 */
-    protected float f9057y0;
-
-    /* renamed from: z */
-    protected int[] f9058z;
-
-    /* renamed from: z0 */
-    protected float f9059z0;
-
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$a */
-    static /* synthetic */ class C2852a {
-
-        /* renamed from: a */
-        static final /* synthetic */ int[] f9060a = new int[EnumC2879b.values().length];
+public class SmartRefreshLayout extends ViewGroup implements com.scwang.smartrefresh.layout.b.j, NestedScrollingParent {
+    protected static com.scwang.smartrefresh.layout.b.a T0;
+    protected static com.scwang.smartrefresh.layout.b.b U0;
+    protected static com.scwang.smartrefresh.layout.b.c V0;
+    protected boolean A;
+    protected com.scwang.smartrefresh.layout.b.h A0;
+    protected boolean B;
+    protected com.scwang.smartrefresh.layout.b.h B0;
+    protected boolean C;
+    protected com.scwang.smartrefresh.layout.b.e C0;
+    protected boolean D;
+    protected Paint D0;
+    protected boolean E;
+    protected Handler E0;
+    protected boolean F;
+    protected com.scwang.smartrefresh.layout.b.i F0;
+    protected boolean G;
+    protected List<com.scwang.smartrefresh.layout.e.a> G0;
+    protected boolean H;
+    protected com.scwang.smartrefresh.layout.c.b H0;
+    protected boolean I;
+    protected com.scwang.smartrefresh.layout.c.b I0;
+    protected boolean J;
+    protected long J0;
+    protected boolean K;
+    protected int K0;
+    protected boolean L;
+    protected int L0;
+    protected boolean M;
+    protected boolean M0;
+    protected boolean N;
+    protected boolean N0;
+    protected boolean O;
+    protected boolean O0;
+    protected boolean P0;
+    protected MotionEvent Q0;
+    protected Runnable R0;
+    protected ValueAnimator S0;
+    protected int a;
+
+    /* JADX INFO: renamed from: b */
+    protected int f5570b;
+    protected boolean b0;
+
+    /* JADX INFO: renamed from: c */
+    protected int f5571c;
+    protected boolean c0;
+
+    /* JADX INFO: renamed from: d */
+    protected int f5572d;
+    protected boolean d0;
+
+    /* JADX INFO: renamed from: e */
+    protected int f5573e;
+    protected boolean e0;
+
+    /* JADX INFO: renamed from: f */
+    protected int f5574f;
+    protected boolean f0;
+
+    /* JADX INFO: renamed from: g */
+    protected int f5575g;
+    protected boolean g0;
+
+    /* JADX INFO: renamed from: h */
+    protected float f5576h;
+    protected com.scwang.smartrefresh.layout.d.d h0;
+
+    /* JADX INFO: renamed from: i */
+    protected float f5577i;
+    protected com.scwang.smartrefresh.layout.d.b i0;
+
+    /* JADX INFO: renamed from: j */
+    protected float f5578j;
+    protected com.scwang.smartrefresh.layout.d.c j0;
+
+    /* JADX INFO: renamed from: k */
+    protected float f5579k;
+    protected com.scwang.smartrefresh.layout.b.k k0;
+
+    /* JADX INFO: renamed from: l */
+    protected float f5580l;
+    protected int l0;
+
+    /* JADX INFO: renamed from: m */
+    protected char f5581m;
+    protected boolean m0;
+
+    /* JADX INFO: renamed from: n */
+    protected boolean f5582n;
+    protected int[] n0;
+    protected boolean o;
+    protected NestedScrollingChildHelper o0;
+    protected int p;
+    protected NestedScrollingParentHelper p0;
+    protected int q;
+    protected int q0;
+    protected int r;
+    protected com.scwang.smartrefresh.layout.c.a r0;
+    protected int s;
+    protected int s0;
+    protected int t;
+    protected com.scwang.smartrefresh.layout.c.a t0;
+    protected int u;
+    protected int u0;
+    protected int v;
+    protected int v0;
+    protected Scroller w;
+    protected float w0;
+    protected VelocityTracker x;
+    protected float x0;
+    protected Interpolator y;
+    protected float y0;
+    protected int[] z;
+    protected float z0;
+
+    static /* synthetic */ class a {
+        static final /* synthetic */ int[] a = new int[com.scwang.smartrefresh.layout.c.b.values().length];
 
         static {
             try {
-                f9060a[EnumC2879b.None.ordinal()] = 1;
+                a[com.scwang.smartrefresh.layout.c.b.None.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f9060a[EnumC2879b.PullDownToRefresh.ordinal()] = 2;
+                a[com.scwang.smartrefresh.layout.c.b.PullDownToRefresh.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f9060a[EnumC2879b.PullUpToLoad.ordinal()] = 3;
+                a[com.scwang.smartrefresh.layout.c.b.PullUpToLoad.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
             try {
-                f9060a[EnumC2879b.PullDownCanceled.ordinal()] = 4;
+                a[com.scwang.smartrefresh.layout.c.b.PullDownCanceled.ordinal()] = 4;
             } catch (NoSuchFieldError unused4) {
             }
             try {
-                f9060a[EnumC2879b.PullUpCanceled.ordinal()] = 5;
+                a[com.scwang.smartrefresh.layout.c.b.PullUpCanceled.ordinal()] = 5;
             } catch (NoSuchFieldError unused5) {
             }
             try {
-                f9060a[EnumC2879b.ReleaseToRefresh.ordinal()] = 6;
+                a[com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh.ordinal()] = 6;
             } catch (NoSuchFieldError unused6) {
             }
             try {
-                f9060a[EnumC2879b.ReleaseToLoad.ordinal()] = 7;
+                a[com.scwang.smartrefresh.layout.c.b.ReleaseToLoad.ordinal()] = 7;
             } catch (NoSuchFieldError unused7) {
             }
             try {
-                f9060a[EnumC2879b.ReleaseToTwoLevel.ordinal()] = 8;
+                a[com.scwang.smartrefresh.layout.c.b.ReleaseToTwoLevel.ordinal()] = 8;
             } catch (NoSuchFieldError unused8) {
             }
             try {
-                f9060a[EnumC2879b.RefreshReleased.ordinal()] = 9;
+                a[com.scwang.smartrefresh.layout.c.b.RefreshReleased.ordinal()] = 9;
             } catch (NoSuchFieldError unused9) {
             }
             try {
-                f9060a[EnumC2879b.LoadReleased.ordinal()] = 10;
+                a[com.scwang.smartrefresh.layout.c.b.LoadReleased.ordinal()] = 10;
             } catch (NoSuchFieldError unused10) {
             }
             try {
-                f9060a[EnumC2879b.Refreshing.ordinal()] = 11;
+                a[com.scwang.smartrefresh.layout.c.b.Refreshing.ordinal()] = 11;
             } catch (NoSuchFieldError unused11) {
             }
             try {
-                f9060a[EnumC2879b.Loading.ordinal()] = 12;
+                a[com.scwang.smartrefresh.layout.c.b.Loading.ordinal()] = 12;
             } catch (NoSuchFieldError unused12) {
             }
             try {
-                f9060a[EnumC2879b.RefreshFinish.ordinal()] = 13;
+                a[com.scwang.smartrefresh.layout.c.b.RefreshFinish.ordinal()] = 13;
             } catch (NoSuchFieldError unused13) {
             }
             try {
-                f9060a[EnumC2879b.LoadFinish.ordinal()] = 14;
+                a[com.scwang.smartrefresh.layout.c.b.LoadFinish.ordinal()] = 14;
             } catch (NoSuchFieldError unused14) {
             }
             try {
-                f9060a[EnumC2879b.TwoLevelReleased.ordinal()] = 15;
+                a[com.scwang.smartrefresh.layout.c.b.TwoLevelReleased.ordinal()] = 15;
             } catch (NoSuchFieldError unused15) {
             }
             try {
-                f9060a[EnumC2879b.TwoLevelFinish.ordinal()] = 16;
+                a[com.scwang.smartrefresh.layout.c.b.TwoLevelFinish.ordinal()] = 16;
             } catch (NoSuchFieldError unused16) {
             }
             try {
-                f9060a[EnumC2879b.TwoLevel.ordinal()] = 17;
+                a[com.scwang.smartrefresh.layout.c.b.TwoLevel.ordinal()] = 17;
             } catch (NoSuchFieldError unused17) {
             }
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$b */
-    class C2853b extends AnimatorListenerAdapter {
-        C2853b() {
+    class b extends AnimatorListenerAdapter {
+        b() {
         }
 
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
@@ -413,45 +240,43 @@ public class SmartRefreshLayout extends ViewGroup implements InterfaceC2876j, Ne
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$c */
-    class C2854c extends AnimatorListenerAdapter {
-        C2854c() {
+    class c extends AnimatorListenerAdapter {
+        c() {
         }
 
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
         public void onAnimationEnd(Animator animator) {
-            SmartRefreshLayout.this.f8994J0 = System.currentTimeMillis();
-            SmartRefreshLayout.this.m8631a(EnumC2879b.Refreshing);
+            SmartRefreshLayout.this.J0 = System.currentTimeMillis();
+            SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.Refreshing);
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            InterfaceC2884d interfaceC2884d = smartRefreshLayout.f9023h0;
-            if (interfaceC2884d != null) {
-                interfaceC2884d.mo8732a(smartRefreshLayout);
-            } else if (smartRefreshLayout.f9027j0 == null) {
-                smartRefreshLayout.mo8648d(PathInterpolatorCompat.MAX_NUM_POINTS);
+            com.scwang.smartrefresh.layout.d.d dVar = smartRefreshLayout.h0;
+            if (dVar != null) {
+                dVar.a(smartRefreshLayout);
+            } else if (smartRefreshLayout.j0 == null) {
+                smartRefreshLayout.d(PathInterpolatorCompat.MAX_NUM_POINTS);
             }
             SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-            InterfaceC2874h interfaceC2874h = smartRefreshLayout2.f8976A0;
-            if (interfaceC2874h != null) {
-                int i2 = smartRefreshLayout2.f9041q0;
-                interfaceC2874h.mo8716a(smartRefreshLayout2, i2, (int) (smartRefreshLayout2.f9053w0 * i2));
+            com.scwang.smartrefresh.layout.b.h hVar = smartRefreshLayout2.A0;
+            if (hVar != null) {
+                int i2 = smartRefreshLayout2.q0;
+                hVar.a(smartRefreshLayout2, i2, (int) (smartRefreshLayout2.w0 * i2));
             }
             SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
-            InterfaceC2883c interfaceC2883c = smartRefreshLayout3.f9027j0;
-            if (interfaceC2883c == null || !(smartRefreshLayout3.f8976A0 instanceof InterfaceC2873g)) {
+            com.scwang.smartrefresh.layout.d.c cVar = smartRefreshLayout3.j0;
+            if (cVar == null || !(smartRefreshLayout3.A0 instanceof com.scwang.smartrefresh.layout.b.g)) {
                 return;
             }
-            interfaceC2883c.mo8732a(smartRefreshLayout3);
+            cVar.a(smartRefreshLayout3);
             SmartRefreshLayout smartRefreshLayout4 = SmartRefreshLayout.this;
-            InterfaceC2883c interfaceC2883c2 = smartRefreshLayout4.f9027j0;
-            InterfaceC2873g interfaceC2873g = (InterfaceC2873g) smartRefreshLayout4.f8976A0;
-            int i3 = smartRefreshLayout4.f9041q0;
-            interfaceC2883c2.mo8731b(interfaceC2873g, i3, (int) (smartRefreshLayout4.f9053w0 * i3));
+            com.scwang.smartrefresh.layout.d.c cVar2 = smartRefreshLayout4.j0;
+            com.scwang.smartrefresh.layout.b.g gVar = (com.scwang.smartrefresh.layout.b.g) smartRefreshLayout4.A0;
+            int i3 = smartRefreshLayout4.q0;
+            cVar2.b(gVar, i3, (int) (smartRefreshLayout4.w0 * i3));
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$d */
-    class C2855d extends AnimatorListenerAdapter {
-        C2855d() {
+    class d extends AnimatorListenerAdapter {
+        d() {
         }
 
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
@@ -462,144 +287,133 @@ public class SmartRefreshLayout extends ViewGroup implements InterfaceC2876j, Ne
         @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
         public void onAnimationEnd(Animator animator) {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            smartRefreshLayout.f9008S0 = null;
-            if (smartRefreshLayout.f9010b != 0) {
-                EnumC2879b enumC2879b = smartRefreshLayout.f8990H0;
-                if (enumC2879b != smartRefreshLayout.f8992I0) {
-                    smartRefreshLayout.setViceState(enumC2879b);
+            smartRefreshLayout.S0 = null;
+            if (smartRefreshLayout.f5570b != 0) {
+                com.scwang.smartrefresh.layout.c.b bVar = smartRefreshLayout.H0;
+                if (bVar != smartRefreshLayout.I0) {
+                    smartRefreshLayout.setViceState(bVar);
                     return;
                 }
                 return;
             }
-            EnumC2879b enumC2879b2 = smartRefreshLayout.f8990H0;
-            EnumC2879b enumC2879b3 = EnumC2879b.None;
-            if (enumC2879b2 == enumC2879b3 || enumC2879b2.isOpening) {
+            com.scwang.smartrefresh.layout.c.b bVar2 = smartRefreshLayout.H0;
+            com.scwang.smartrefresh.layout.c.b bVar3 = com.scwang.smartrefresh.layout.c.b.None;
+            if (bVar2 == bVar3 || bVar2.isOpening) {
                 return;
             }
-            smartRefreshLayout.m8631a(enumC2879b3);
+            smartRefreshLayout.a(bVar3);
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$e */
-    class C2856e implements ValueAnimator.AnimatorUpdateListener {
-        C2856e() {
+    class e implements ValueAnimator.AnimatorUpdateListener {
+        e() {
         }
 
         @Override // android.animation.ValueAnimator.AnimatorUpdateListener
         public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            SmartRefreshLayout.this.f8986F0.mo8689a(((Integer) valueAnimator.getAnimatedValue()).intValue(), false);
+            SmartRefreshLayout.this.F0.a(((Integer) valueAnimator.getAnimatedValue()).intValue(), false);
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$f */
-    class RunnableC2857f implements Runnable {
-        RunnableC2857f() {
+    class f implements Runnable {
+        f() {
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            InterfaceC2882b interfaceC2882b = smartRefreshLayout.f9025i0;
-            if (interfaceC2882b != null) {
-                interfaceC2882b.mo8723b(smartRefreshLayout);
-            } else if (smartRefreshLayout.f9027j0 == null) {
-                smartRefreshLayout.mo8651e(2000);
+            com.scwang.smartrefresh.layout.d.b bVar = smartRefreshLayout.i0;
+            if (bVar != null) {
+                bVar.b(smartRefreshLayout);
+            } else if (smartRefreshLayout.j0 == null) {
+                smartRefreshLayout.e(2000);
             }
             SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-            InterfaceC2883c interfaceC2883c = smartRefreshLayout2.f9027j0;
-            if (interfaceC2883c != null) {
-                interfaceC2883c.mo8723b(smartRefreshLayout2);
+            com.scwang.smartrefresh.layout.d.c cVar = smartRefreshLayout2.j0;
+            if (cVar != null) {
+                cVar.b(smartRefreshLayout2);
             }
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$g */
-    class RunnableC2858g implements Runnable {
+    class g implements Runnable {
+        final /* synthetic */ boolean a;
 
-        /* renamed from: a */
-        final /* synthetic */ boolean f9066a;
-
-        RunnableC2858g(boolean z) {
-            this.f9066a = z;
+        g(boolean z) {
+            this.a = z;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            if (smartRefreshLayout.f8990H0 != EnumC2879b.Refreshing || smartRefreshLayout.f8976A0 == null || smartRefreshLayout.f8980C0 == null) {
+            if (smartRefreshLayout.H0 != com.scwang.smartrefresh.layout.c.b.Refreshing || smartRefreshLayout.A0 == null || smartRefreshLayout.C0 == null) {
                 return;
             }
-            smartRefreshLayout.m8631a(EnumC2879b.RefreshFinish);
+            smartRefreshLayout.a(com.scwang.smartrefresh.layout.c.b.RefreshFinish);
             SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-            int mo8713a = smartRefreshLayout2.f8976A0.mo8713a(smartRefreshLayout2, this.f9066a);
+            int iA = smartRefreshLayout2.A0.a(smartRefreshLayout2, this.a);
             SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
-            InterfaceC2883c interfaceC2883c = smartRefreshLayout3.f9027j0;
-            if (interfaceC2883c != null) {
-                InterfaceC2874h interfaceC2874h = smartRefreshLayout3.f8976A0;
-                if (interfaceC2874h instanceof InterfaceC2873g) {
-                    interfaceC2883c.mo8728a((InterfaceC2873g) interfaceC2874h, this.f9066a);
+            com.scwang.smartrefresh.layout.d.c cVar = smartRefreshLayout3.j0;
+            if (cVar != null) {
+                com.scwang.smartrefresh.layout.b.h hVar = smartRefreshLayout3.A0;
+                if (hVar instanceof com.scwang.smartrefresh.layout.b.g) {
+                    cVar.a((com.scwang.smartrefresh.layout.b.g) hVar, this.a);
                 }
             }
-            if (mo8713a < Integer.MAX_VALUE) {
+            if (iA < Integer.MAX_VALUE) {
                 SmartRefreshLayout smartRefreshLayout4 = SmartRefreshLayout.this;
-                if (smartRefreshLayout4.f9034n || smartRefreshLayout4.f9033m0) {
+                if (smartRefreshLayout4.f5582n || smartRefreshLayout4.m0) {
                     SmartRefreshLayout smartRefreshLayout5 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout5.f9034n) {
-                        smartRefreshLayout5.f9024i = smartRefreshLayout5.f9028k;
-                        smartRefreshLayout5.f9014d = 0;
-                        smartRefreshLayout5.f9034n = false;
+                    if (smartRefreshLayout5.f5582n) {
+                        smartRefreshLayout5.f5577i = smartRefreshLayout5.f5579k;
+                        smartRefreshLayout5.f5572d = 0;
+                        smartRefreshLayout5.f5582n = false;
                     }
-                    long currentTimeMillis = System.currentTimeMillis();
+                    long jCurrentTimeMillis = System.currentTimeMillis();
                     SmartRefreshLayout smartRefreshLayout6 = SmartRefreshLayout.this;
-                    SmartRefreshLayout.super.dispatchTouchEvent(MotionEvent.obtain(currentTimeMillis, currentTimeMillis, 0, smartRefreshLayout6.f9026j, (smartRefreshLayout6.f9028k + smartRefreshLayout6.f9010b) - (smartRefreshLayout6.f9009a * 2), 0));
+                    SmartRefreshLayout.super.dispatchTouchEvent(MotionEvent.obtain(jCurrentTimeMillis, jCurrentTimeMillis, 0, smartRefreshLayout6.f5578j, (smartRefreshLayout6.f5579k + smartRefreshLayout6.f5570b) - (smartRefreshLayout6.a * 2), 0));
                     SmartRefreshLayout smartRefreshLayout7 = SmartRefreshLayout.this;
-                    SmartRefreshLayout.super.dispatchTouchEvent(MotionEvent.obtain(currentTimeMillis, currentTimeMillis, 2, smartRefreshLayout7.f9026j, smartRefreshLayout7.f9028k + smartRefreshLayout7.f9010b, 0));
+                    SmartRefreshLayout.super.dispatchTouchEvent(MotionEvent.obtain(jCurrentTimeMillis, jCurrentTimeMillis, 2, smartRefreshLayout7.f5578j, smartRefreshLayout7.f5579k + smartRefreshLayout7.f5570b, 0));
                     SmartRefreshLayout smartRefreshLayout8 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout8.f9033m0) {
-                        smartRefreshLayout8.f9031l0 = 0;
+                    if (smartRefreshLayout8.m0) {
+                        smartRefreshLayout8.l0 = 0;
                     }
                 }
                 SmartRefreshLayout smartRefreshLayout9 = SmartRefreshLayout.this;
-                int i2 = smartRefreshLayout9.f9010b;
+                int i2 = smartRefreshLayout9.f5570b;
                 if (i2 <= 0) {
                     if (i2 < 0) {
-                        smartRefreshLayout9.m8613a(0, mo8713a, smartRefreshLayout9.f9056y, smartRefreshLayout9.f9018f);
+                        smartRefreshLayout9.a(0, iA, smartRefreshLayout9.y, smartRefreshLayout9.f5574f);
                         return;
                     } else {
-                        smartRefreshLayout9.f8986F0.mo8689a(0, false);
-                        SmartRefreshLayout.this.m8671k();
+                        smartRefreshLayout9.F0.a(0, false);
+                        SmartRefreshLayout.this.k();
                         return;
                     }
                 }
-                ValueAnimator m8613a = smartRefreshLayout9.m8613a(0, mo8713a, smartRefreshLayout9.f9056y, smartRefreshLayout9.f9018f);
+                ValueAnimator valueAnimatorA = smartRefreshLayout9.a(0, iA, smartRefreshLayout9.y, smartRefreshLayout9.f5574f);
                 SmartRefreshLayout smartRefreshLayout10 = SmartRefreshLayout.this;
-                ValueAnimator.AnimatorUpdateListener mo8703a = smartRefreshLayout10.f9001N ? smartRefreshLayout10.f8980C0.mo8703a(smartRefreshLayout10.f9010b) : null;
-                if (m8613a == null || mo8703a == null) {
+                ValueAnimator.AnimatorUpdateListener animatorUpdateListenerA = smartRefreshLayout10.N ? smartRefreshLayout10.C0.a(smartRefreshLayout10.f5570b) : null;
+                if (valueAnimatorA == null || animatorUpdateListenerA == null) {
                     return;
                 }
-                m8613a.addUpdateListener(mo8703a);
+                valueAnimatorA.addUpdateListener(animatorUpdateListenerA);
             }
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$h */
-    class RunnableC2859h implements Runnable {
+    class h implements Runnable {
+        final /* synthetic */ boolean a;
 
-        /* renamed from: a */
-        final /* synthetic */ boolean f9068a;
+        /* JADX INFO: renamed from: b */
+        final /* synthetic */ boolean f5584b;
 
-        /* renamed from: b */
-        final /* synthetic */ boolean f9069b;
-
-        /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$h$a */
         class a implements Runnable {
+            final /* synthetic */ int a;
 
-            /* renamed from: a */
-            final /* synthetic */ int f9071a;
-
-            /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$h$a$a, reason: collision with other inner class name */
-            class C7371a extends AnimatorListenerAdapter {
-                C7371a() {
+            /* JADX INFO: renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$h$a$a */
+            class C0107a extends AnimatorListenerAdapter {
+                C0107a() {
                 }
 
                 @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
@@ -609,912 +423,837 @@ public class SmartRefreshLayout extends ViewGroup implements InterfaceC2876j, Ne
 
                 @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
                 public void onAnimationEnd(Animator animator) {
-                    RunnableC2859h runnableC2859h = RunnableC2859h.this;
+                    h hVar = h.this;
                     SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                    smartRefreshLayout.f9004O0 = false;
-                    if (runnableC2859h.f9069b) {
-                        smartRefreshLayout.mo8629a(true);
+                    smartRefreshLayout.O0 = false;
+                    if (hVar.f5584b) {
+                        smartRefreshLayout.a(true);
                     }
                     SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout2.f8990H0 == EnumC2879b.LoadFinish) {
-                        smartRefreshLayout2.m8631a(EnumC2879b.None);
+                    if (smartRefreshLayout2.H0 == com.scwang.smartrefresh.layout.c.b.LoadFinish) {
+                        smartRefreshLayout2.a(com.scwang.smartrefresh.layout.c.b.None);
                     }
                 }
             }
 
             a(int i2) {
-                this.f9071a = i2;
+                this.a = i2;
             }
 
             @Override // java.lang.Runnable
             public void run() {
-                ValueAnimator valueAnimator;
+                ValueAnimator valueAnimatorA;
                 SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                ValueAnimator.AnimatorUpdateListener mo8703a = (!smartRefreshLayout.f8999M || this.f9071a >= 0) ? null : smartRefreshLayout.f8980C0.mo8703a(smartRefreshLayout.f9010b);
-                if (mo8703a != null) {
-                    mo8703a.onAnimationUpdate(ValueAnimator.ofInt(0, 0));
+                ValueAnimator.AnimatorUpdateListener animatorUpdateListenerA = (!smartRefreshLayout.M || this.a >= 0) ? null : smartRefreshLayout.C0.a(smartRefreshLayout.f5570b);
+                if (animatorUpdateListenerA != null) {
+                    animatorUpdateListenerA.onAnimationUpdate(ValueAnimator.ofInt(0, 0));
                 }
-                C7371a c7371a = new C7371a();
-                RunnableC2859h runnableC2859h = RunnableC2859h.this;
+                C0107a c0107a = new C0107a();
+                h hVar = h.this;
                 SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-                int i2 = smartRefreshLayout2.f9010b;
+                int i2 = smartRefreshLayout2.f5570b;
                 if (i2 > 0) {
-                    valueAnimator = smartRefreshLayout2.f8986F0.mo8687a(0);
+                    valueAnimatorA = smartRefreshLayout2.F0.a(0);
                 } else {
-                    if (mo8703a != null || i2 == 0) {
-                        ValueAnimator valueAnimator2 = SmartRefreshLayout.this.f9008S0;
-                        if (valueAnimator2 != null) {
-                            valueAnimator2.cancel();
-                            SmartRefreshLayout.this.f9008S0 = null;
+                    if (animatorUpdateListenerA != null || i2 == 0) {
+                        ValueAnimator valueAnimator = SmartRefreshLayout.this.S0;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                            SmartRefreshLayout.this.S0 = null;
                         }
-                        SmartRefreshLayout.this.f8986F0.mo8689a(0, false);
-                        SmartRefreshLayout.this.m8671k();
-                    } else if (runnableC2859h.f9069b && smartRefreshLayout2.f8987G) {
-                        int i3 = smartRefreshLayout2.f9045s0;
+                        SmartRefreshLayout.this.F0.a(0, false);
+                        SmartRefreshLayout.this.k();
+                    } else if (hVar.f5584b && smartRefreshLayout2.G) {
+                        int i3 = smartRefreshLayout2.s0;
                         if (i2 >= (-i3)) {
-                            smartRefreshLayout2.m8631a(EnumC2879b.None);
+                            smartRefreshLayout2.a(com.scwang.smartrefresh.layout.c.b.None);
                         } else {
-                            valueAnimator = smartRefreshLayout2.f8986F0.mo8687a(-i3);
+                            valueAnimatorA = smartRefreshLayout2.F0.a(-i3);
                         }
                     } else {
-                        valueAnimator = SmartRefreshLayout.this.f8986F0.mo8687a(0);
+                        valueAnimatorA = SmartRefreshLayout.this.F0.a(0);
                     }
-                    valueAnimator = null;
+                    valueAnimatorA = null;
                 }
-                if (valueAnimator != null) {
-                    valueAnimator.addListener(c7371a);
+                if (valueAnimatorA != null) {
+                    valueAnimatorA.addListener(c0107a);
                 } else {
-                    c7371a.onAnimationEnd(null);
+                    c0107a.onAnimationEnd(null);
                 }
             }
         }
 
-        RunnableC2859h(boolean z, boolean z2) {
-            this.f9068a = z;
-            this.f9069b = z2;
+        h(boolean z, boolean z2) {
+            this.a = z;
+            this.f5584b = z2;
         }
 
-        /* JADX WARN: Code restructure failed: missing block: B:21:0x004f, code lost:
-        
-            if (r2.f8980C0.mo8710b() != false) goto L25;
-         */
+        /* JADX WARN: Removed duplicated region for block: B:75:0x0052  */
         @Override // java.lang.Runnable
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
         public void run() {
-            /*
-                Method dump skipped, instructions count: 215
-                To view this dump change 'Code comments level' option to 'DEBUG'
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.scwang.smartrefresh.layout.SmartRefreshLayout.RunnableC2859h.run():void");
-        }
-    }
-
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$i */
-    class RunnableC2860i implements Runnable {
-
-        /* renamed from: a */
-        final /* synthetic */ float f9074a;
-
-        /* renamed from: b */
-        final /* synthetic */ int f9075b;
-
-        /* renamed from: c */
-        final /* synthetic */ boolean f9076c;
-
-        /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$i$a */
-        class a implements ValueAnimator.AnimatorUpdateListener {
-            a() {
-            }
-
-            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                SmartRefreshLayout.this.f8986F0.mo8689a(((Integer) valueAnimator.getAnimatedValue()).intValue(), true);
-            }
-        }
-
-        /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$i$b */
-        class b extends AnimatorListenerAdapter {
-            b() {
-            }
-
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animator) {
-                RunnableC2860i runnableC2860i = RunnableC2860i.this;
-                SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                smartRefreshLayout.f9008S0 = null;
-                if (!runnableC2860i.f9076c) {
-                    EnumC2879b enumC2879b = smartRefreshLayout.f8990H0;
-                    EnumC2879b enumC2879b2 = EnumC2879b.ReleaseToRefresh;
-                    if (enumC2879b != enumC2879b2) {
-                        smartRefreshLayout.f8986F0.mo8693a(enumC2879b2);
-                    }
-                } else if (smartRefreshLayout.f8990H0 == EnumC2879b.ReleaseToRefresh) {
-                    smartRefreshLayout.f8986F0.mo8693a(EnumC2879b.PullDownToRefresh);
-                }
-                SmartRefreshLayout.this.m8668j();
-            }
-
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationStart(Animator animator) {
-                SmartRefreshLayout.this.f9026j = r2.getMeasuredWidth() / 2;
-                SmartRefreshLayout.this.f8986F0.mo8693a(EnumC2879b.PullDownToRefresh);
-            }
-        }
-
-        RunnableC2860i(float f2, int i2, boolean z) {
-            this.f9074a = f2;
-            this.f9075b = i2;
-            this.f9076c = z;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
+            boolean z;
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            smartRefreshLayout.f9008S0 = ValueAnimator.ofInt(smartRefreshLayout.f9010b, (int) (smartRefreshLayout.f9041q0 * this.f9074a));
-            SmartRefreshLayout.this.f9008S0.setDuration(this.f9075b);
-            SmartRefreshLayout.this.f9008S0.setInterpolator(new DecelerateInterpolator());
-            SmartRefreshLayout.this.f9008S0.addUpdateListener(new a());
-            SmartRefreshLayout.this.f9008S0.addListener(new b());
-            SmartRefreshLayout.this.f9008S0.start();
-        }
-    }
-
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$j */
-    class RunnableC2861j implements Runnable {
-
-        /* renamed from: a */
-        final /* synthetic */ float f9080a;
-
-        /* renamed from: b */
-        final /* synthetic */ int f9081b;
-
-        /* renamed from: c */
-        final /* synthetic */ boolean f9082c;
-
-        /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$j$a */
-        class a implements ValueAnimator.AnimatorUpdateListener {
-            a() {
-            }
-
-            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                SmartRefreshLayout.this.f8986F0.mo8689a(((Integer) valueAnimator.getAnimatedValue()).intValue(), true);
-            }
-        }
-
-        /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$j$b */
-        class b extends AnimatorListenerAdapter {
-            b() {
-            }
-
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animator) {
-                RunnableC2861j runnableC2861j = RunnableC2861j.this;
-                SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                smartRefreshLayout.f9008S0 = null;
-                if (!runnableC2861j.f9082c) {
-                    EnumC2879b enumC2879b = smartRefreshLayout.f8990H0;
-                    EnumC2879b enumC2879b2 = EnumC2879b.ReleaseToLoad;
-                    if (enumC2879b != enumC2879b2) {
-                        smartRefreshLayout.f8986F0.mo8693a(enumC2879b2);
-                    }
-                } else if (smartRefreshLayout.f8990H0 == EnumC2879b.ReleaseToLoad) {
-                    smartRefreshLayout.f8986F0.mo8693a(EnumC2879b.PullUpToLoad);
-                }
-                SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-                if (!smartRefreshLayout2.f8995K) {
-                    smartRefreshLayout2.m8668j();
+            if (smartRefreshLayout.H0 != com.scwang.smartrefresh.layout.c.b.Loading || smartRefreshLayout.B0 == null || smartRefreshLayout.C0 == null) {
+                if (this.f5584b) {
+                    SmartRefreshLayout.this.a(true);
                     return;
                 }
-                smartRefreshLayout2.f8995K = false;
-                smartRefreshLayout2.m8668j();
-                SmartRefreshLayout.this.f8995K = true;
+                return;
+            }
+            smartRefreshLayout.a(com.scwang.smartrefresh.layout.c.b.LoadFinish);
+            SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
+            int iA = smartRefreshLayout2.B0.a(smartRefreshLayout2, this.a);
+            SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
+            com.scwang.smartrefresh.layout.d.c cVar = smartRefreshLayout3.j0;
+            if (cVar != null) {
+                com.scwang.smartrefresh.layout.b.h hVar = smartRefreshLayout3.B0;
+                if (hVar instanceof com.scwang.smartrefresh.layout.b.f) {
+                    cVar.a((com.scwang.smartrefresh.layout.b.f) hVar, this.a);
+                }
+            }
+            if (iA < Integer.MAX_VALUE) {
+                if (this.f5584b) {
+                    SmartRefreshLayout smartRefreshLayout4 = SmartRefreshLayout.this;
+                    z = smartRefreshLayout4.G && smartRefreshLayout4.f5570b < 0 && smartRefreshLayout4.C0.b();
+                }
+                SmartRefreshLayout smartRefreshLayout5 = SmartRefreshLayout.this;
+                int i2 = smartRefreshLayout5.f5570b;
+                int iMax = i2 - (z ? Math.max(i2, -smartRefreshLayout5.s0) : 0);
+                SmartRefreshLayout smartRefreshLayout6 = SmartRefreshLayout.this;
+                if (smartRefreshLayout6.f5582n || smartRefreshLayout6.m0) {
+                    SmartRefreshLayout smartRefreshLayout7 = SmartRefreshLayout.this;
+                    if (smartRefreshLayout7.f5582n) {
+                        smartRefreshLayout7.f5577i = smartRefreshLayout7.f5579k;
+                        smartRefreshLayout7.f5582n = false;
+                        smartRefreshLayout7.f5572d = smartRefreshLayout7.f5570b - iMax;
+                    }
+                    long jCurrentTimeMillis = System.currentTimeMillis();
+                    SmartRefreshLayout smartRefreshLayout8 = SmartRefreshLayout.this;
+                    float f2 = iMax;
+                    SmartRefreshLayout.super.dispatchTouchEvent(MotionEvent.obtain(jCurrentTimeMillis, jCurrentTimeMillis, 0, smartRefreshLayout8.f5578j, smartRefreshLayout8.f5579k + f2 + (smartRefreshLayout8.a * 2), 0));
+                    SmartRefreshLayout smartRefreshLayout9 = SmartRefreshLayout.this;
+                    SmartRefreshLayout.super.dispatchTouchEvent(MotionEvent.obtain(jCurrentTimeMillis, jCurrentTimeMillis, 2, smartRefreshLayout9.f5578j, smartRefreshLayout9.f5579k + f2, 0));
+                    SmartRefreshLayout smartRefreshLayout10 = SmartRefreshLayout.this;
+                    if (smartRefreshLayout10.m0) {
+                        smartRefreshLayout10.l0 = 0;
+                    }
+                }
+                SmartRefreshLayout.this.postDelayed(new a(iMax), SmartRefreshLayout.this.f5570b < 0 ? iA : 0L);
+            }
+        }
+    }
+
+    class i implements Runnable {
+        final /* synthetic */ float a;
+
+        /* JADX INFO: renamed from: b */
+        final /* synthetic */ int f5587b;
+
+        /* JADX INFO: renamed from: c */
+        final /* synthetic */ boolean f5588c;
+
+        class a implements ValueAnimator.AnimatorUpdateListener {
+            a() {
+            }
+
+            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                SmartRefreshLayout.this.F0.a(((Integer) valueAnimator.getAnimatedValue()).intValue(), true);
+            }
+        }
+
+        class b extends AnimatorListenerAdapter {
+            b() {
+            }
+
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationEnd(Animator animator) {
+                i iVar = i.this;
+                SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
+                smartRefreshLayout.S0 = null;
+                if (!iVar.f5588c) {
+                    com.scwang.smartrefresh.layout.c.b bVar = smartRefreshLayout.H0;
+                    com.scwang.smartrefresh.layout.c.b bVar2 = com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh;
+                    if (bVar != bVar2) {
+                        smartRefreshLayout.F0.a(bVar2);
+                    }
+                } else if (smartRefreshLayout.H0 == com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh) {
+                    smartRefreshLayout.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
+                }
+                SmartRefreshLayout.this.j();
             }
 
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationStart(Animator animator) {
-                SmartRefreshLayout.this.f9026j = r2.getMeasuredWidth() / 2;
-                SmartRefreshLayout.this.f8986F0.mo8693a(EnumC2879b.PullUpToLoad);
+                SmartRefreshLayout.this.f5578j = r2.getMeasuredWidth() / 2;
+                SmartRefreshLayout.this.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
             }
         }
 
-        RunnableC2861j(float f2, int i2, boolean z) {
-            this.f9080a = f2;
-            this.f9081b = i2;
-            this.f9082c = z;
+        i(float f2, int i2, boolean z) {
+            this.a = f2;
+            this.f5587b = i2;
+            this.f5588c = z;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            smartRefreshLayout.f9008S0 = ValueAnimator.ofInt(smartRefreshLayout.f9010b, -((int) (smartRefreshLayout.f9045s0 * this.f9080a)));
-            SmartRefreshLayout.this.f9008S0.setDuration(this.f9081b);
-            SmartRefreshLayout.this.f9008S0.setInterpolator(new DecelerateInterpolator());
-            SmartRefreshLayout.this.f9008S0.addUpdateListener(new a());
-            SmartRefreshLayout.this.f9008S0.addListener(new b());
-            SmartRefreshLayout.this.f9008S0.start();
+            smartRefreshLayout.S0 = ValueAnimator.ofInt(smartRefreshLayout.f5570b, (int) (smartRefreshLayout.q0 * this.a));
+            SmartRefreshLayout.this.S0.setDuration(this.f5587b);
+            SmartRefreshLayout.this.S0.setInterpolator(new DecelerateInterpolator());
+            SmartRefreshLayout.this.S0.addUpdateListener(new a());
+            SmartRefreshLayout.this.S0.addListener(new b());
+            SmartRefreshLayout.this.S0.start();
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$k */
-    protected class RunnableC2862k implements Runnable {
+    class j implements Runnable {
+        final /* synthetic */ float a;
 
-        /* renamed from: c */
-        int f9088c;
+        /* JADX INFO: renamed from: b */
+        final /* synthetic */ int f5590b;
 
-        /* renamed from: f */
-        float f9091f;
+        /* JADX INFO: renamed from: c */
+        final /* synthetic */ boolean f5591c;
 
-        /* renamed from: a */
-        int f9086a = 0;
+        class a implements ValueAnimator.AnimatorUpdateListener {
+            a() {
+            }
 
-        /* renamed from: b */
-        int f9087b = 10;
+            @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                SmartRefreshLayout.this.F0.a(((Integer) valueAnimator.getAnimatedValue()).intValue(), true);
+            }
+        }
 
-        /* renamed from: e */
-        float f9090e = 0.0f;
+        class b extends AnimatorListenerAdapter {
+            b() {
+            }
 
-        /* renamed from: d */
-        long f9089d = AnimationUtils.currentAnimationTimeMillis();
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationEnd(Animator animator) {
+                j jVar = j.this;
+                SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
+                smartRefreshLayout.S0 = null;
+                if (!jVar.f5591c) {
+                    com.scwang.smartrefresh.layout.c.b bVar = smartRefreshLayout.H0;
+                    com.scwang.smartrefresh.layout.c.b bVar2 = com.scwang.smartrefresh.layout.c.b.ReleaseToLoad;
+                    if (bVar != bVar2) {
+                        smartRefreshLayout.F0.a(bVar2);
+                    }
+                } else if (smartRefreshLayout.H0 == com.scwang.smartrefresh.layout.c.b.ReleaseToLoad) {
+                    smartRefreshLayout.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
+                }
+                SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
+                if (!smartRefreshLayout2.K) {
+                    smartRefreshLayout2.j();
+                    return;
+                }
+                smartRefreshLayout2.K = false;
+                smartRefreshLayout2.j();
+                SmartRefreshLayout.this.K = true;
+            }
 
-        RunnableC2862k(float f2, int i2) {
-            this.f9091f = f2;
-            this.f9088c = i2;
-            SmartRefreshLayout.this.postDelayed(this, this.f9087b);
+            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+            public void onAnimationStart(Animator animator) {
+                SmartRefreshLayout.this.f5578j = r2.getMeasuredWidth() / 2;
+                SmartRefreshLayout.this.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
+            }
+        }
+
+        j(float f2, int i2, boolean z) {
+            this.a = f2;
+            this.f5590b = i2;
+            this.f5591c = z;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            if (smartRefreshLayout.f9007R0 != this || smartRefreshLayout.f8990H0.isFinishing) {
+            smartRefreshLayout.S0 = ValueAnimator.ofInt(smartRefreshLayout.f5570b, -((int) (smartRefreshLayout.s0 * this.a)));
+            SmartRefreshLayout.this.S0.setDuration(this.f5590b);
+            SmartRefreshLayout.this.S0.setInterpolator(new DecelerateInterpolator());
+            SmartRefreshLayout.this.S0.addUpdateListener(new a());
+            SmartRefreshLayout.this.S0.addListener(new b());
+            SmartRefreshLayout.this.S0.start();
+        }
+    }
+
+    protected class k implements Runnable {
+
+        /* JADX INFO: renamed from: c */
+        int f5594c;
+
+        /* JADX INFO: renamed from: f */
+        float f5597f;
+        int a = 0;
+
+        /* JADX INFO: renamed from: b */
+        int f5593b = 10;
+
+        /* JADX INFO: renamed from: e */
+        float f5596e = 0.0f;
+
+        /* JADX INFO: renamed from: d */
+        long f5595d = AnimationUtils.currentAnimationTimeMillis();
+
+        k(float f2, int i2) {
+            this.f5597f = f2;
+            this.f5594c = i2;
+            SmartRefreshLayout.this.postDelayed(this, this.f5593b);
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
+            if (smartRefreshLayout.R0 != this || smartRefreshLayout.H0.isFinishing) {
                 return;
             }
-            if (Math.abs(smartRefreshLayout.f9010b) < Math.abs(this.f9088c)) {
-                double d2 = this.f9091f;
-                this.f9086a = this.f9086a + 1;
-                this.f9091f = (float) (d2 * Math.pow(0.949999988079071d, r4 * 2));
-            } else if (this.f9088c != 0) {
-                double d3 = this.f9091f;
-                this.f9086a = this.f9086a + 1;
-                this.f9091f = (float) (d3 * Math.pow(0.44999998807907104d, r4 * 2));
+            if (Math.abs(smartRefreshLayout.f5570b) < Math.abs(this.f5594c)) {
+                double d2 = this.f5597f;
+                this.a = this.a + 1;
+                this.f5597f = (float) (d2 * Math.pow(0.949999988079071d, r4 * 2));
+            } else if (this.f5594c != 0) {
+                double d3 = this.f5597f;
+                this.a = this.a + 1;
+                this.f5597f = (float) (d3 * Math.pow(0.44999998807907104d, r4 * 2));
             } else {
-                double d4 = this.f9091f;
-                this.f9086a = this.f9086a + 1;
-                this.f9091f = (float) (d4 * Math.pow(0.8500000238418579d, r4 * 2));
+                double d4 = this.f5597f;
+                this.a = this.a + 1;
+                this.f5597f = (float) (d4 * Math.pow(0.8500000238418579d, r4 * 2));
             }
-            long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-            float f2 = this.f9091f * (((currentAnimationTimeMillis - this.f9089d) * 1.0f) / 1000.0f);
+            long jCurrentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
+            float f2 = this.f5597f * (((jCurrentAnimationTimeMillis - this.f5595d) * 1.0f) / 1000.0f);
             if (Math.abs(f2) >= 1.0f) {
-                this.f9089d = currentAnimationTimeMillis;
-                this.f9090e += f2;
-                SmartRefreshLayout.this.m8672k(this.f9090e);
-                SmartRefreshLayout.this.postDelayed(this, this.f9087b);
+                this.f5595d = jCurrentAnimationTimeMillis;
+                this.f5596e += f2;
+                SmartRefreshLayout.this.k(this.f5596e);
+                SmartRefreshLayout.this.postDelayed(this, this.f5593b);
                 return;
             }
             SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-            smartRefreshLayout2.f9007R0 = null;
-            if (Math.abs(smartRefreshLayout2.f9010b) >= Math.abs(this.f9088c)) {
-                int min = Math.min(Math.max((int) C2889b.m8734b(Math.abs(SmartRefreshLayout.this.f9010b - this.f9088c)), 30), 100) * 10;
+            smartRefreshLayout2.R0 = null;
+            if (Math.abs(smartRefreshLayout2.f5570b) >= Math.abs(this.f5594c)) {
+                int iMin = Math.min(Math.max((int) com.scwang.smartrefresh.layout.e.b.b(Math.abs(SmartRefreshLayout.this.f5570b - this.f5594c)), 30), 100) * 10;
                 SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
-                smartRefreshLayout3.m8613a(this.f9088c, 0, smartRefreshLayout3.f9056y, min);
+                smartRefreshLayout3.a(this.f5594c, 0, smartRefreshLayout3.y, iMin);
             }
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$l */
-    protected class RunnableC2863l implements Runnable {
+    protected class l implements Runnable {
+        int a;
 
-        /* renamed from: a */
-        int f9093a;
+        /* JADX INFO: renamed from: d */
+        float f5601d;
 
-        /* renamed from: d */
-        float f9096d;
+        /* JADX INFO: renamed from: b */
+        int f5599b = 0;
 
-        /* renamed from: b */
-        int f9094b = 0;
+        /* JADX INFO: renamed from: c */
+        int f5600c = 10;
 
-        /* renamed from: c */
-        int f9095c = 10;
+        /* JADX INFO: renamed from: e */
+        float f5602e = 0.98f;
 
-        /* renamed from: e */
-        float f9097e = 0.98f;
+        /* JADX INFO: renamed from: f */
+        long f5603f = 0;
 
-        /* renamed from: f */
-        long f9098f = 0;
+        /* JADX INFO: renamed from: g */
+        long f5604g = AnimationUtils.currentAnimationTimeMillis();
 
-        /* renamed from: g */
-        long f9099g = AnimationUtils.currentAnimationTimeMillis();
-
-        RunnableC2863l(float f2) {
-            this.f9096d = f2;
-            this.f9093a = SmartRefreshLayout.this.f9010b;
+        l(float f2) {
+            this.f5601d = f2;
+            this.a = SmartRefreshLayout.this.f5570b;
         }
 
-        /* JADX WARN: Code restructure failed: missing block: B:31:0x00a1, code lost:
+        /* JADX WARN: Code restructure failed: missing block: B:93:0x00a1, code lost:
         
-            if (r0 < (-r1.f9045s0)) goto L44;
+            if (r0 < (-r1.s0)) goto L94;
          */
-        /* JADX WARN: Code restructure failed: missing block: B:45:0x004f, code lost:
-        
-            if (r0.f9010b > r0.f9041q0) goto L29;
-         */
-        /* JADX WARN: Code restructure failed: missing block: B:47:0x0041, code lost:
-        
-            if (r0.f9010b >= (-r0.f9045s0)) goto L25;
-         */
-        /* renamed from: a */
+        /* JADX WARN: Removed duplicated region for block: B:75:0x0043  */
+        /* JADX WARN: Removed duplicated region for block: B:79:0x0051  */
         /*
             Code decompiled incorrectly, please refer to instructions dump.
-            To view partially-correct code enable 'Show inconsistent code' option in preferences
         */
-        public java.lang.Runnable m8686a() {
-            /*
-                r11 = this;
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r0 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                com.scwang.smartrefresh.layout.c.b r1 = r0.f8990H0
-                boolean r2 = r1.isFinishing
-                r3 = 0
-                if (r2 == 0) goto La
-                return r3
-            La:
-                int r2 = r0.f9010b
-                if (r2 == 0) goto La8
-                boolean r1 = r1.isOpening
-                if (r1 != 0) goto L22
-                boolean r1 = r0.f9015d0
-                if (r1 == 0) goto L51
-                boolean r1 = r0.f8987G
-                if (r1 == 0) goto L51
-                boolean r1 = r0.f8977B
-                boolean r0 = r0.m8685v(r1)
-                if (r0 == 0) goto L51
-            L22:
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r0 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                com.scwang.smartrefresh.layout.c.b r1 = r0.f8990H0
-                com.scwang.smartrefresh.layout.c.b r2 = com.scwang.smartrefresh.layout.p190c.EnumC2879b.Loading
-                if (r1 == r2) goto L3a
-                boolean r1 = r0.f9015d0
-                if (r1 == 0) goto L43
-                boolean r1 = r0.f8987G
-                if (r1 == 0) goto L43
-                boolean r1 = r0.f8977B
-                boolean r0 = r0.m8685v(r1)
-                if (r0 == 0) goto L43
-            L3a:
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r0 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                int r1 = r0.f9010b
-                int r0 = r0.f9045s0
-                int r0 = -r0
-                if (r1 < r0) goto L51
-            L43:
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r0 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                com.scwang.smartrefresh.layout.c.b r1 = r0.f8990H0
-                com.scwang.smartrefresh.layout.c.b r2 = com.scwang.smartrefresh.layout.p190c.EnumC2879b.Refreshing
-                if (r1 != r2) goto La8
-                int r1 = r0.f9010b
-                int r0 = r0.f9041q0
-                if (r1 <= r0) goto La8
-            L51:
-                r0 = 0
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r1 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                int r1 = r1.f9010b
-                float r2 = r11.f9096d
-                r0 = r1
-                r4 = 0
-            L5a:
-                int r5 = r1 * r0
-                if (r5 <= 0) goto La8
-                double r5 = (double) r2
-                float r2 = r11.f9097e
-                double r7 = (double) r2
-                int r4 = r4 + 1
-                int r2 = r11.f9095c
-                int r2 = r2 * r4
-                int r2 = r2 / 10
-                double r9 = (double) r2
-                double r7 = java.lang.Math.pow(r7, r9)
-                double r5 = r5 * r7
-                float r2 = (float) r5
-                int r5 = r11.f9095c
-                float r5 = (float) r5
-                r6 = 1065353216(0x3f800000, float:1.0)
-                float r5 = r5 * r6
-                r7 = 1148846080(0x447a0000, float:1000.0)
-                float r5 = r5 / r7
-                float r5 = r5 * r2
-                float r7 = java.lang.Math.abs(r5)
-                int r6 = (r7 > r6 ? 1 : (r7 == r6 ? 0 : -1))
-                if (r6 >= 0) goto La4
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r1 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                com.scwang.smartrefresh.layout.c.b r2 = r1.f8990H0
-                boolean r4 = r2.isOpening
-                if (r4 == 0) goto La3
-                com.scwang.smartrefresh.layout.c.b r4 = com.scwang.smartrefresh.layout.p190c.EnumC2879b.Refreshing
-                if (r2 != r4) goto L96
-                int r1 = r1.f9041q0
-                if (r0 > r1) goto La3
-            L96:
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r1 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                com.scwang.smartrefresh.layout.c.b r2 = r1.f8990H0
-                com.scwang.smartrefresh.layout.c.b r4 = com.scwang.smartrefresh.layout.p190c.EnumC2879b.Refreshing
-                if (r2 == r4) goto La8
-                int r1 = r1.f9045s0
-                int r1 = -r1
-                if (r0 >= r1) goto La8
-            La3:
-                return r3
-            La4:
-                float r0 = (float) r0
-                float r0 = r0 + r5
-                int r0 = (int) r0
-                goto L5a
-            La8:
-                long r0 = android.view.animation.AnimationUtils.currentAnimationTimeMillis()
-                r11.f9098f = r0
-                com.scwang.smartrefresh.layout.SmartRefreshLayout r0 = com.scwang.smartrefresh.layout.SmartRefreshLayout.this
-                int r1 = r11.f9095c
-                long r1 = (long) r1
-                r0.postDelayed(r11, r1)
-                return r11
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.scwang.smartrefresh.layout.SmartRefreshLayout.RunnableC2863l.m8686a():java.lang.Runnable");
+        public Runnable a() {
+            SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
+            com.scwang.smartrefresh.layout.c.b bVar = smartRefreshLayout.H0;
+            if (bVar.isFinishing) {
+                return null;
+            }
+            if (smartRefreshLayout.f5570b != 0) {
+                if (bVar.isOpening || (smartRefreshLayout.d0 && smartRefreshLayout.G && smartRefreshLayout.v(smartRefreshLayout.B))) {
+                    SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
+                    if (smartRefreshLayout2.H0 == com.scwang.smartrefresh.layout.c.b.Loading || (smartRefreshLayout2.d0 && smartRefreshLayout2.G && smartRefreshLayout2.v(smartRefreshLayout2.B))) {
+                        SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
+                        if (smartRefreshLayout3.f5570b >= (-smartRefreshLayout3.s0)) {
+                            SmartRefreshLayout smartRefreshLayout4 = SmartRefreshLayout.this;
+                            if (smartRefreshLayout4.H0 == com.scwang.smartrefresh.layout.c.b.Refreshing && smartRefreshLayout4.f5570b > smartRefreshLayout4.q0) {
+                                int i2 = SmartRefreshLayout.this.f5570b;
+                                float fPow = this.f5601d;
+                                int i3 = i2;
+                                int i4 = 0;
+                                while (true) {
+                                    if (i2 * i3 <= 0) {
+                                        break;
+                                    }
+                                    i4++;
+                                    fPow = (float) (((double) fPow) * Math.pow(this.f5602e, (this.f5600c * i4) / 10));
+                                    float f2 = ((this.f5600c * 1.0f) / 1000.0f) * fPow;
+                                    if (Math.abs(f2) < 1.0f) {
+                                        SmartRefreshLayout smartRefreshLayout5 = SmartRefreshLayout.this;
+                                        com.scwang.smartrefresh.layout.c.b bVar2 = smartRefreshLayout5.H0;
+                                        if (bVar2.isOpening && (bVar2 != com.scwang.smartrefresh.layout.c.b.Refreshing || i3 <= smartRefreshLayout5.q0)) {
+                                            SmartRefreshLayout smartRefreshLayout6 = SmartRefreshLayout.this;
+                                            if (smartRefreshLayout6.H0 != com.scwang.smartrefresh.layout.c.b.Refreshing) {
+                                            }
+                                        }
+                                        return null;
+                                    }
+                                    i3 = (int) (i3 + f2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            this.f5603f = AnimationUtils.currentAnimationTimeMillis();
+            SmartRefreshLayout.this.postDelayed(this, this.f5600c);
+            return this;
         }
 
         @Override // java.lang.Runnable
         public void run() {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            if (smartRefreshLayout.f9007R0 != this || smartRefreshLayout.f8990H0.isFinishing) {
+            if (smartRefreshLayout.R0 != this || smartRefreshLayout.H0.isFinishing) {
                 return;
             }
-            long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-            long j2 = currentAnimationTimeMillis - this.f9099g;
-            this.f9096d = (float) (this.f9096d * Math.pow(this.f9097e, (currentAnimationTimeMillis - this.f9098f) / (1000 / this.f9095c)));
-            float f2 = this.f9096d * ((j2 * 1.0f) / 1000.0f);
+            long jCurrentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
+            long j2 = jCurrentAnimationTimeMillis - this.f5604g;
+            this.f5601d = (float) (((double) this.f5601d) * Math.pow(this.f5602e, (jCurrentAnimationTimeMillis - this.f5603f) / ((long) (1000 / this.f5600c))));
+            float f2 = this.f5601d * ((j2 * 1.0f) / 1000.0f);
             if (Math.abs(f2) <= 1.0f) {
-                SmartRefreshLayout.this.f9007R0 = null;
+                SmartRefreshLayout.this.R0 = null;
                 return;
             }
-            this.f9099g = currentAnimationTimeMillis;
-            this.f9093a = (int) (this.f9093a + f2);
+            this.f5604g = jCurrentAnimationTimeMillis;
+            this.a = (int) (this.a + f2);
             SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-            int i2 = smartRefreshLayout2.f9010b;
-            int i3 = this.f9093a;
+            int i2 = smartRefreshLayout2.f5570b;
+            int i3 = this.a;
             if (i2 * i3 > 0) {
-                smartRefreshLayout2.f8986F0.mo8689a(i3, true);
-                SmartRefreshLayout.this.postDelayed(this, this.f9095c);
+                smartRefreshLayout2.F0.a(i3, true);
+                SmartRefreshLayout.this.postDelayed(this, this.f5600c);
                 return;
             }
-            smartRefreshLayout2.f9007R0 = null;
-            smartRefreshLayout2.f8986F0.mo8689a(0, true);
-            AbstractC2892e.m8746a(SmartRefreshLayout.this.f8980C0.mo8711c(), (int) (-this.f9096d));
+            smartRefreshLayout2.R0 = null;
+            smartRefreshLayout2.F0.a(0, true);
+            com.scwang.smartrefresh.layout.e.e.a(SmartRefreshLayout.this.C0.c(), (int) (-this.f5601d));
             SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
-            if (!smartRefreshLayout3.f9004O0 || f2 <= 0.0f) {
+            if (!smartRefreshLayout3.O0 || f2 <= 0.0f) {
                 return;
             }
-            smartRefreshLayout3.f9004O0 = false;
+            smartRefreshLayout3.O0 = false;
         }
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$n */
-    public class C2865n implements InterfaceC2875i {
+    public class n implements com.scwang.smartrefresh.layout.b.i {
 
-        /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$n$a */
         class a extends AnimatorListenerAdapter {
             a() {
             }
 
             @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
             public void onAnimationEnd(Animator animator) {
-                SmartRefreshLayout.this.f8986F0.mo8693a(EnumC2879b.TwoLevel);
+                SmartRefreshLayout.this.F0.a(com.scwang.smartrefresh.layout.c.b.TwoLevel);
             }
         }
 
-        public C2865n() {
+        public n() {
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
+        @Override // com.scwang.smartrefresh.layout.b.i
         @NonNull
-        /* renamed from: a */
-        public InterfaceC2871e mo8688a() {
-            return SmartRefreshLayout.this.f8980C0;
+        public com.scwang.smartrefresh.layout.b.e a() {
+            return SmartRefreshLayout.this.C0;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: b */
-        public InterfaceC2875i mo8695b() {
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i b() {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            if (smartRefreshLayout.f8990H0 == EnumC2879b.TwoLevel) {
-                smartRefreshLayout.f8986F0.mo8693a(EnumC2879b.TwoLevelFinish);
-                if (SmartRefreshLayout.this.f9010b == 0) {
-                    mo8689a(0, false);
-                    SmartRefreshLayout.this.m8631a(EnumC2879b.None);
+            if (smartRefreshLayout.H0 == com.scwang.smartrefresh.layout.c.b.TwoLevel) {
+                smartRefreshLayout.F0.a(com.scwang.smartrefresh.layout.c.b.TwoLevelFinish);
+                if (SmartRefreshLayout.this.f5570b == 0) {
+                    a(0, false);
+                    SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.None);
                 } else {
-                    mo8687a(0).setDuration(SmartRefreshLayout.this.f9016e);
+                    a(0).setDuration(SmartRefreshLayout.this.f5573e);
                 }
             }
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
+        @Override // com.scwang.smartrefresh.layout.b.i
         @NonNull
-        /* renamed from: c */
-        public InterfaceC2876j mo8698c() {
+        public com.scwang.smartrefresh.layout.b.j c() {
             return SmartRefreshLayout.this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public InterfaceC2875i mo8693a(@NonNull EnumC2879b enumC2879b) {
-            switch (C2852a.f9060a[enumC2879b.ordinal()]) {
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i a(@NonNull com.scwang.smartrefresh.layout.c.b bVar) {
+            switch (a.a[bVar.ordinal()]) {
                 case 1:
-                    SmartRefreshLayout.this.m8671k();
+                    SmartRefreshLayout.this.k();
                     break;
                 case 2:
                     SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                    if (!smartRefreshLayout.f8990H0.isOpening && smartRefreshLayout.m8685v(smartRefreshLayout.f8975A)) {
-                        SmartRefreshLayout.this.m8631a(EnumC2879b.PullDownToRefresh);
-                        break;
+                    if (!smartRefreshLayout.H0.isOpening && smartRefreshLayout.v(smartRefreshLayout.A)) {
+                        SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
                     } else {
-                        SmartRefreshLayout.this.setViceState(EnumC2879b.PullDownToRefresh);
-                        break;
+                        SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
                     }
                     break;
                 case 3:
                     SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout2.m8685v(smartRefreshLayout2.f8977B)) {
+                    if (smartRefreshLayout2.v(smartRefreshLayout2.B)) {
                         SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
-                        EnumC2879b enumC2879b2 = smartRefreshLayout3.f8990H0;
-                        if (!enumC2879b2.isOpening && !enumC2879b2.isFinishing && (!smartRefreshLayout3.f9015d0 || !smartRefreshLayout3.f8987G)) {
-                            SmartRefreshLayout.this.m8631a(EnumC2879b.PullUpToLoad);
-                            break;
+                        com.scwang.smartrefresh.layout.c.b bVar2 = smartRefreshLayout3.H0;
+                        if (!bVar2.isOpening && !bVar2.isFinishing && (!smartRefreshLayout3.d0 || !smartRefreshLayout3.G)) {
+                            SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
                         }
                     }
-                    SmartRefreshLayout.this.setViceState(EnumC2879b.PullUpToLoad);
+                    SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
                     break;
                 case 4:
                     SmartRefreshLayout smartRefreshLayout4 = SmartRefreshLayout.this;
-                    if (!smartRefreshLayout4.f8990H0.isOpening && smartRefreshLayout4.m8685v(smartRefreshLayout4.f8975A)) {
-                        SmartRefreshLayout.this.m8631a(EnumC2879b.PullDownCanceled);
-                        SmartRefreshLayout.this.m8671k();
-                        break;
+                    if (!smartRefreshLayout4.H0.isOpening && smartRefreshLayout4.v(smartRefreshLayout4.A)) {
+                        SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.PullDownCanceled);
+                        SmartRefreshLayout.this.k();
                     } else {
-                        SmartRefreshLayout.this.setViceState(EnumC2879b.PullDownCanceled);
-                        break;
+                        SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.PullDownCanceled);
                     }
                     break;
                 case 5:
                     SmartRefreshLayout smartRefreshLayout5 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout5.m8685v(smartRefreshLayout5.f8977B)) {
+                    if (smartRefreshLayout5.v(smartRefreshLayout5.B)) {
                         SmartRefreshLayout smartRefreshLayout6 = SmartRefreshLayout.this;
-                        if (!smartRefreshLayout6.f8990H0.isOpening && (!smartRefreshLayout6.f9015d0 || !smartRefreshLayout6.f8987G)) {
-                            SmartRefreshLayout.this.m8631a(EnumC2879b.PullUpCanceled);
-                            SmartRefreshLayout.this.m8671k();
-                            break;
+                        if (!smartRefreshLayout6.H0.isOpening && (!smartRefreshLayout6.d0 || !smartRefreshLayout6.G)) {
+                            SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.PullUpCanceled);
+                            SmartRefreshLayout.this.k();
                         }
                     }
-                    SmartRefreshLayout.this.setViceState(EnumC2879b.PullUpCanceled);
+                    SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.PullUpCanceled);
                     break;
                 case 6:
                     SmartRefreshLayout smartRefreshLayout7 = SmartRefreshLayout.this;
-                    if (!smartRefreshLayout7.f8990H0.isOpening && smartRefreshLayout7.m8685v(smartRefreshLayout7.f8975A)) {
-                        SmartRefreshLayout.this.m8631a(EnumC2879b.ReleaseToRefresh);
-                        break;
+                    if (!smartRefreshLayout7.H0.isOpening && smartRefreshLayout7.v(smartRefreshLayout7.A)) {
+                        SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh);
                     } else {
-                        SmartRefreshLayout.this.setViceState(EnumC2879b.ReleaseToRefresh);
-                        break;
+                        SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh);
                     }
                     break;
                 case 7:
                     SmartRefreshLayout smartRefreshLayout8 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout8.m8685v(smartRefreshLayout8.f8977B)) {
+                    if (smartRefreshLayout8.v(smartRefreshLayout8.B)) {
                         SmartRefreshLayout smartRefreshLayout9 = SmartRefreshLayout.this;
-                        EnumC2879b enumC2879b3 = smartRefreshLayout9.f8990H0;
-                        if (!enumC2879b3.isOpening && !enumC2879b3.isFinishing && (!smartRefreshLayout9.f9015d0 || !smartRefreshLayout9.f8987G)) {
-                            SmartRefreshLayout.this.m8631a(EnumC2879b.ReleaseToLoad);
-                            break;
+                        com.scwang.smartrefresh.layout.c.b bVar3 = smartRefreshLayout9.H0;
+                        if (!bVar3.isOpening && !bVar3.isFinishing && (!smartRefreshLayout9.d0 || !smartRefreshLayout9.G)) {
+                            SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.ReleaseToLoad);
                         }
                     }
-                    SmartRefreshLayout.this.setViceState(EnumC2879b.ReleaseToLoad);
+                    SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.ReleaseToLoad);
                     break;
                 case 8:
                     SmartRefreshLayout smartRefreshLayout10 = SmartRefreshLayout.this;
-                    if (!smartRefreshLayout10.f8990H0.isOpening && smartRefreshLayout10.m8685v(smartRefreshLayout10.f8975A)) {
-                        SmartRefreshLayout.this.m8631a(EnumC2879b.ReleaseToTwoLevel);
-                        break;
+                    if (!smartRefreshLayout10.H0.isOpening && smartRefreshLayout10.v(smartRefreshLayout10.A)) {
+                        SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.ReleaseToTwoLevel);
                     } else {
-                        SmartRefreshLayout.this.setViceState(EnumC2879b.ReleaseToTwoLevel);
-                        break;
+                        SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.ReleaseToTwoLevel);
                     }
+                    break;
                 case 9:
                     SmartRefreshLayout smartRefreshLayout11 = SmartRefreshLayout.this;
-                    if (!smartRefreshLayout11.f8990H0.isOpening && smartRefreshLayout11.m8685v(smartRefreshLayout11.f8975A)) {
-                        SmartRefreshLayout.this.m8631a(EnumC2879b.RefreshReleased);
-                        break;
+                    if (!smartRefreshLayout11.H0.isOpening && smartRefreshLayout11.v(smartRefreshLayout11.A)) {
+                        SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.RefreshReleased);
                     } else {
-                        SmartRefreshLayout.this.setViceState(EnumC2879b.RefreshReleased);
-                        break;
+                        SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.RefreshReleased);
                     }
                     break;
                 case 10:
                     SmartRefreshLayout smartRefreshLayout12 = SmartRefreshLayout.this;
-                    if (!smartRefreshLayout12.f8990H0.isOpening && smartRefreshLayout12.m8685v(smartRefreshLayout12.f8977B)) {
-                        SmartRefreshLayout.this.m8631a(EnumC2879b.LoadReleased);
-                        break;
+                    if (!smartRefreshLayout12.H0.isOpening && smartRefreshLayout12.v(smartRefreshLayout12.B)) {
+                        SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.LoadReleased);
                     } else {
-                        SmartRefreshLayout.this.setViceState(EnumC2879b.LoadReleased);
-                        break;
+                        SmartRefreshLayout.this.setViceState(com.scwang.smartrefresh.layout.c.b.LoadReleased);
                     }
                     break;
                 case 11:
-                    SmartRefreshLayout.this.m8676m();
+                    SmartRefreshLayout.this.m();
                     break;
                 case 12:
-                    SmartRefreshLayout.this.m8674l();
+                    SmartRefreshLayout.this.l();
                     break;
                 case 13:
                     SmartRefreshLayout smartRefreshLayout13 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout13.f8990H0 == EnumC2879b.Refreshing) {
-                        smartRefreshLayout13.m8631a(EnumC2879b.RefreshFinish);
-                        break;
+                    if (smartRefreshLayout13.H0 == com.scwang.smartrefresh.layout.c.b.Refreshing) {
+                        smartRefreshLayout13.a(com.scwang.smartrefresh.layout.c.b.RefreshFinish);
                     }
                     break;
                 case 14:
                     SmartRefreshLayout smartRefreshLayout14 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout14.f8990H0 == EnumC2879b.Loading) {
-                        smartRefreshLayout14.m8631a(EnumC2879b.LoadFinish);
-                        break;
+                    if (smartRefreshLayout14.H0 == com.scwang.smartrefresh.layout.c.b.Loading) {
+                        smartRefreshLayout14.a(com.scwang.smartrefresh.layout.c.b.LoadFinish);
                     }
                     break;
                 case 15:
-                    SmartRefreshLayout.this.m8631a(EnumC2879b.TwoLevelReleased);
+                    SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.TwoLevelReleased);
                     break;
                 case 16:
-                    SmartRefreshLayout.this.m8631a(EnumC2879b.TwoLevelFinish);
+                    SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.TwoLevelFinish);
                     break;
                 case 17:
-                    SmartRefreshLayout.this.m8631a(EnumC2879b.TwoLevel);
+                    SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.TwoLevel);
                     break;
             }
             return null;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: b */
-        public InterfaceC2875i mo8697b(@NonNull InterfaceC2874h interfaceC2874h, boolean z) {
-            if (interfaceC2874h.equals(SmartRefreshLayout.this.f8976A0)) {
-                SmartRefreshLayout.this.f9000M0 = z;
-            } else if (interfaceC2874h.equals(SmartRefreshLayout.this.f8978B0)) {
-                SmartRefreshLayout.this.f9002N0 = z;
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i b(@NonNull com.scwang.smartrefresh.layout.b.h hVar, boolean z) {
+            if (hVar.equals(SmartRefreshLayout.this.A0)) {
+                SmartRefreshLayout.this.M0 = z;
+            } else if (hVar.equals(SmartRefreshLayout.this.B0)) {
+                SmartRefreshLayout.this.N0 = z;
             }
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: b */
-        public InterfaceC2875i mo8696b(int i2) {
-            SmartRefreshLayout.this.f9016e = i2;
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i b(int i2) {
+            SmartRefreshLayout.this.f5573e = i2;
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public InterfaceC2875i mo8694a(boolean z) {
+        /* JADX WARN: Removed duplicated region for block: B:21:0x0023  */
+        @Override // com.scwang.smartrefresh.layout.b.i
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
+        public com.scwang.smartrefresh.layout.b.i a(boolean z) {
             if (z) {
                 a aVar = new a();
-                ValueAnimator mo8687a = mo8687a(SmartRefreshLayout.this.getMeasuredHeight());
-                if (mo8687a != null) {
-                    if (mo8687a == SmartRefreshLayout.this.f9008S0) {
-                        mo8687a.setDuration(r1.f9016e);
-                        mo8687a.addListener(aVar);
+                ValueAnimator valueAnimatorA = a(SmartRefreshLayout.this.getMeasuredHeight());
+                if (valueAnimatorA != null) {
+                    if (valueAnimatorA == SmartRefreshLayout.this.S0) {
+                        valueAnimatorA.setDuration(r1.f5573e);
+                        valueAnimatorA.addListener(aVar);
+                    } else {
+                        aVar.onAnimationEnd(null);
                     }
                 }
-                aVar.onAnimationEnd(null);
-            } else if (mo8687a(0) == null) {
-                SmartRefreshLayout.this.m8631a(EnumC2879b.None);
+            } else if (a(0) == null) {
+                SmartRefreshLayout.this.a(com.scwang.smartrefresh.layout.c.b.None);
             }
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public InterfaceC2875i mo8689a(int i2, boolean z) {
-            InterfaceC2883c interfaceC2883c;
-            InterfaceC2883c interfaceC2883c2;
-            InterfaceC2874h interfaceC2874h;
-            InterfaceC2874h interfaceC2874h2;
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i a(int i2, boolean z) {
+            com.scwang.smartrefresh.layout.d.c cVar;
+            com.scwang.smartrefresh.layout.d.c cVar2;
+            com.scwang.smartrefresh.layout.b.h hVar;
+            com.scwang.smartrefresh.layout.b.h hVar2;
             SmartRefreshLayout smartRefreshLayout;
-            InterfaceC2874h interfaceC2874h3;
-            InterfaceC2874h interfaceC2874h4;
-            InterfaceC2874h interfaceC2874h5;
-            InterfaceC2874h interfaceC2874h6;
+            com.scwang.smartrefresh.layout.b.h hVar3;
+            com.scwang.smartrefresh.layout.b.h hVar4;
+            com.scwang.smartrefresh.layout.b.h hVar5;
+            com.scwang.smartrefresh.layout.b.h hVar6;
             SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-            if (smartRefreshLayout2.f9010b == i2 && (((interfaceC2874h5 = smartRefreshLayout2.f8976A0) == null || !interfaceC2874h5.mo8718a()) && ((interfaceC2874h6 = SmartRefreshLayout.this.f8978B0) == null || !interfaceC2874h6.mo8718a()))) {
+            if (smartRefreshLayout2.f5570b == i2 && (((hVar5 = smartRefreshLayout2.A0) == null || !hVar5.a()) && ((hVar6 = SmartRefreshLayout.this.B0) == null || !hVar6.a()))) {
                 return this;
             }
             SmartRefreshLayout smartRefreshLayout3 = SmartRefreshLayout.this;
-            int i3 = smartRefreshLayout3.f9010b;
-            smartRefreshLayout3.f9010b = i2;
-            if (z && smartRefreshLayout3.f8992I0.isDragging) {
-                if (smartRefreshLayout3.f9010b > smartRefreshLayout3.f9041q0 * smartRefreshLayout3.f9057y0) {
-                    if (smartRefreshLayout3.f8990H0 != EnumC2879b.ReleaseToTwoLevel) {
-                        smartRefreshLayout3.f8986F0.mo8693a(EnumC2879b.ReleaseToRefresh);
+            int i3 = smartRefreshLayout3.f5570b;
+            smartRefreshLayout3.f5570b = i2;
+            if (z && smartRefreshLayout3.I0.isDragging) {
+                if (smartRefreshLayout3.f5570b > smartRefreshLayout3.q0 * smartRefreshLayout3.y0) {
+                    if (smartRefreshLayout3.H0 != com.scwang.smartrefresh.layout.c.b.ReleaseToTwoLevel) {
+                        smartRefreshLayout3.F0.a(com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh);
                     }
-                } else if ((-r2) > smartRefreshLayout3.f9045s0 * smartRefreshLayout3.f9059z0 && !smartRefreshLayout3.f9015d0) {
-                    smartRefreshLayout3.f8986F0.mo8693a(EnumC2879b.ReleaseToLoad);
+                } else if ((-r2) > smartRefreshLayout3.s0 * smartRefreshLayout3.z0 && !smartRefreshLayout3.d0) {
+                    smartRefreshLayout3.F0.a(com.scwang.smartrefresh.layout.c.b.ReleaseToLoad);
                 } else {
                     SmartRefreshLayout smartRefreshLayout4 = SmartRefreshLayout.this;
-                    if (smartRefreshLayout4.f9010b < 0 && !smartRefreshLayout4.f9015d0) {
-                        smartRefreshLayout4.f8986F0.mo8693a(EnumC2879b.PullUpToLoad);
+                    if (smartRefreshLayout4.f5570b < 0 && !smartRefreshLayout4.d0) {
+                        smartRefreshLayout4.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
                     } else {
                         SmartRefreshLayout smartRefreshLayout5 = SmartRefreshLayout.this;
-                        if (smartRefreshLayout5.f9010b > 0) {
-                            smartRefreshLayout5.f8986F0.mo8693a(EnumC2879b.PullDownToRefresh);
+                        if (smartRefreshLayout5.f5570b > 0) {
+                            smartRefreshLayout5.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
                         }
                     }
                 }
             }
             SmartRefreshLayout smartRefreshLayout6 = SmartRefreshLayout.this;
-            if (smartRefreshLayout6.f8980C0 != null) {
-                Integer num = null;
-                if (i2 >= 0 && (interfaceC2874h4 = smartRefreshLayout6.f8976A0) != null) {
-                    if (smartRefreshLayout6.m8636a(smartRefreshLayout6.f8983E, interfaceC2874h4)) {
-                        num = Integer.valueOf(i2);
+            if (smartRefreshLayout6.C0 != null) {
+                Integer numValueOf = null;
+                if (i2 >= 0 && (hVar4 = smartRefreshLayout6.A0) != null) {
+                    if (smartRefreshLayout6.a(smartRefreshLayout6.E, hVar4)) {
+                        numValueOf = Integer.valueOf(i2);
                     } else if (i3 < 0) {
-                        num = 0;
+                        numValueOf = 0;
                     }
                 }
-                if (i2 <= 0 && (interfaceC2874h3 = (smartRefreshLayout = SmartRefreshLayout.this).f8978B0) != null) {
-                    if (smartRefreshLayout.m8636a(smartRefreshLayout.f8985F, interfaceC2874h3)) {
-                        num = Integer.valueOf(i2);
+                if (i2 <= 0 && (hVar3 = (smartRefreshLayout = SmartRefreshLayout.this).B0) != null) {
+                    if (smartRefreshLayout.a(smartRefreshLayout.F, hVar3)) {
+                        numValueOf = Integer.valueOf(i2);
                     } else if (i3 > 0) {
-                        num = 0;
+                        numValueOf = 0;
                     }
                 }
-                if (num != null) {
-                    InterfaceC2871e interfaceC2871e = SmartRefreshLayout.this.f8980C0;
-                    int intValue = num.intValue();
+                if (numValueOf != null) {
+                    com.scwang.smartrefresh.layout.b.e eVar = SmartRefreshLayout.this.C0;
+                    int iIntValue = numValueOf.intValue();
                     SmartRefreshLayout smartRefreshLayout7 = SmartRefreshLayout.this;
-                    interfaceC2871e.mo8704a(intValue, smartRefreshLayout7.f9042r, smartRefreshLayout7.f9044s);
+                    eVar.a(iIntValue, smartRefreshLayout7.r, smartRefreshLayout7.s);
                     SmartRefreshLayout smartRefreshLayout8 = SmartRefreshLayout.this;
-                    boolean z2 = (smartRefreshLayout8.f8979C && (interfaceC2874h2 = smartRefreshLayout8.f8976A0) != null && interfaceC2874h2.getSpinnerStyle() == EnumC2880c.FixedBehind) || SmartRefreshLayout.this.f8996K0 != 0;
+                    boolean z2 = (smartRefreshLayout8.C && (hVar2 = smartRefreshLayout8.A0) != null && hVar2.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) || SmartRefreshLayout.this.K0 != 0;
                     SmartRefreshLayout smartRefreshLayout9 = SmartRefreshLayout.this;
-                    boolean z3 = (smartRefreshLayout9.f8981D && (interfaceC2874h = smartRefreshLayout9.f8978B0) != null && interfaceC2874h.getSpinnerStyle() == EnumC2880c.FixedBehind) || SmartRefreshLayout.this.f8998L0 != 0;
-                    if ((z2 && (num.intValue() >= 0 || i3 > 0)) || (z3 && (num.intValue() <= 0 || i3 < 0))) {
+                    boolean z3 = (smartRefreshLayout9.D && (hVar = smartRefreshLayout9.B0) != null && hVar.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) || SmartRefreshLayout.this.L0 != 0;
+                    if ((z2 && (numValueOf.intValue() >= 0 || i3 > 0)) || (z3 && (numValueOf.intValue() <= 0 || i3 < 0))) {
                         smartRefreshLayout3.invalidate();
                     }
                 }
             }
-            if ((i2 >= 0 || i3 > 0) && SmartRefreshLayout.this.f8976A0 != null) {
-                int max = Math.max(i2, 0);
+            if ((i2 >= 0 || i3 > 0) && SmartRefreshLayout.this.A0 != null) {
+                int iMax = Math.max(i2, 0);
                 SmartRefreshLayout smartRefreshLayout10 = SmartRefreshLayout.this;
-                int i4 = smartRefreshLayout10.f9041q0;
-                int i5 = (int) (i4 * smartRefreshLayout10.f9053w0);
-                float f2 = (max * 1.0f) / (i4 == 0 ? 1 : i4);
+                int i4 = smartRefreshLayout10.q0;
+                int i5 = (int) (i4 * smartRefreshLayout10.w0);
+                float f2 = (iMax * 1.0f) / (i4 == 0 ? 1 : i4);
                 SmartRefreshLayout smartRefreshLayout11 = SmartRefreshLayout.this;
-                if (smartRefreshLayout11.m8685v(smartRefreshLayout11.f8975A) || (SmartRefreshLayout.this.f8990H0 == EnumC2879b.RefreshFinish && !z)) {
+                if (smartRefreshLayout11.v(smartRefreshLayout11.A) || (SmartRefreshLayout.this.H0 == com.scwang.smartrefresh.layout.c.b.RefreshFinish && !z)) {
                     SmartRefreshLayout smartRefreshLayout12 = SmartRefreshLayout.this;
-                    if (i3 != smartRefreshLayout12.f9010b) {
-                        if (smartRefreshLayout12.f8976A0.getSpinnerStyle() == EnumC2880c.Translate) {
-                            SmartRefreshLayout.this.f8976A0.getView().setTranslationY(SmartRefreshLayout.this.f9010b);
+                    if (i3 != smartRefreshLayout12.f5570b) {
+                        if (smartRefreshLayout12.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Translate) {
+                            SmartRefreshLayout.this.A0.getView().setTranslationY(SmartRefreshLayout.this.f5570b);
                             SmartRefreshLayout smartRefreshLayout13 = SmartRefreshLayout.this;
-                            if (smartRefreshLayout13.f8996K0 != 0 && smartRefreshLayout13.f8982D0 != null && !smartRefreshLayout13.m8636a(smartRefreshLayout13.f8983E, smartRefreshLayout13.f8976A0)) {
+                            if (smartRefreshLayout13.K0 != 0 && smartRefreshLayout13.D0 != null && !smartRefreshLayout13.a(smartRefreshLayout13.E, smartRefreshLayout13.A0)) {
                                 smartRefreshLayout3.invalidate();
                             }
-                        } else if (SmartRefreshLayout.this.f8976A0.getSpinnerStyle() == EnumC2880c.Scale) {
-                            SmartRefreshLayout.this.f8976A0.getView().requestLayout();
+                        } else if (SmartRefreshLayout.this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Scale) {
+                            SmartRefreshLayout.this.A0.getView().requestLayout();
                         }
-                        SmartRefreshLayout.this.f8976A0.mo8717a(z, f2, max, i4, i5);
+                        SmartRefreshLayout.this.A0.a(z, f2, iMax, i4, i5);
                     }
-                    if (z && SmartRefreshLayout.this.f8976A0.mo8718a()) {
-                        int i6 = (int) SmartRefreshLayout.this.f9026j;
+                    if (z && SmartRefreshLayout.this.A0.a()) {
+                        int i6 = (int) SmartRefreshLayout.this.f5578j;
                         int width = smartRefreshLayout3.getWidth();
-                        SmartRefreshLayout.this.f8976A0.mo8714a(SmartRefreshLayout.this.f9026j / (width == 0 ? 1 : width), i6, width);
+                        SmartRefreshLayout.this.A0.a(SmartRefreshLayout.this.f5578j / (width == 0 ? 1 : width), i6, width);
                     }
                 }
                 SmartRefreshLayout smartRefreshLayout14 = SmartRefreshLayout.this;
-                if (i3 != smartRefreshLayout14.f9010b && (interfaceC2883c = smartRefreshLayout14.f9027j0) != null) {
-                    InterfaceC2874h interfaceC2874h7 = smartRefreshLayout14.f8976A0;
-                    if (interfaceC2874h7 instanceof InterfaceC2873g) {
-                        interfaceC2883c.mo8729a((InterfaceC2873g) interfaceC2874h7, z, f2, max, i4, i5);
+                if (i3 != smartRefreshLayout14.f5570b && (cVar = smartRefreshLayout14.j0) != null) {
+                    com.scwang.smartrefresh.layout.b.h hVar7 = smartRefreshLayout14.A0;
+                    if (hVar7 instanceof com.scwang.smartrefresh.layout.b.g) {
+                        cVar.a((com.scwang.smartrefresh.layout.b.g) hVar7, z, f2, iMax, i4, i5);
                     }
                 }
             }
-            if ((i2 <= 0 || i3 < 0) && SmartRefreshLayout.this.f8978B0 != null) {
+            if ((i2 <= 0 || i3 < 0) && SmartRefreshLayout.this.B0 != null) {
                 int i7 = -Math.min(i2, 0);
                 SmartRefreshLayout smartRefreshLayout15 = SmartRefreshLayout.this;
-                int i8 = smartRefreshLayout15.f9045s0;
-                int i9 = (int) (i8 * smartRefreshLayout15.f9055x0);
+                int i8 = smartRefreshLayout15.s0;
+                int i9 = (int) (i8 * smartRefreshLayout15.x0);
                 float f3 = (i7 * 1.0f) / (i8 == 0 ? 1 : i8);
                 SmartRefreshLayout smartRefreshLayout16 = SmartRefreshLayout.this;
-                if (smartRefreshLayout16.m8685v(smartRefreshLayout16.f8977B) || (SmartRefreshLayout.this.f8990H0 == EnumC2879b.LoadFinish && !z)) {
+                if (smartRefreshLayout16.v(smartRefreshLayout16.B) || (SmartRefreshLayout.this.H0 == com.scwang.smartrefresh.layout.c.b.LoadFinish && !z)) {
                     SmartRefreshLayout smartRefreshLayout17 = SmartRefreshLayout.this;
-                    if (i3 != smartRefreshLayout17.f9010b) {
-                        if (smartRefreshLayout17.f8978B0.getSpinnerStyle() == EnumC2880c.Translate) {
-                            SmartRefreshLayout.this.f8978B0.getView().setTranslationY(SmartRefreshLayout.this.f9010b);
+                    if (i3 != smartRefreshLayout17.f5570b) {
+                        if (smartRefreshLayout17.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Translate) {
+                            SmartRefreshLayout.this.B0.getView().setTranslationY(SmartRefreshLayout.this.f5570b);
                             SmartRefreshLayout smartRefreshLayout18 = SmartRefreshLayout.this;
-                            if (smartRefreshLayout18.f8998L0 != 0 && smartRefreshLayout18.f8982D0 != null && !smartRefreshLayout18.m8636a(smartRefreshLayout18.f8985F, smartRefreshLayout18.f8978B0)) {
+                            if (smartRefreshLayout18.L0 != 0 && smartRefreshLayout18.D0 != null && !smartRefreshLayout18.a(smartRefreshLayout18.F, smartRefreshLayout18.B0)) {
                                 smartRefreshLayout3.invalidate();
                             }
-                        } else if (SmartRefreshLayout.this.f8978B0.getSpinnerStyle() == EnumC2880c.Scale) {
-                            SmartRefreshLayout.this.f8978B0.getView().requestLayout();
+                        } else if (SmartRefreshLayout.this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Scale) {
+                            SmartRefreshLayout.this.B0.getView().requestLayout();
                         }
-                        SmartRefreshLayout.this.f8978B0.mo8717a(z, f3, i7, i8, i9);
+                        SmartRefreshLayout.this.B0.a(z, f3, i7, i8, i9);
                     }
-                    if (z && SmartRefreshLayout.this.f8978B0.mo8718a()) {
-                        int i10 = (int) SmartRefreshLayout.this.f9026j;
+                    if (z && SmartRefreshLayout.this.B0.a()) {
+                        int i10 = (int) SmartRefreshLayout.this.f5578j;
                         int width2 = smartRefreshLayout3.getWidth();
-                        SmartRefreshLayout.this.f8978B0.mo8714a(SmartRefreshLayout.this.f9026j / (width2 != 0 ? width2 : 1), i10, width2);
+                        SmartRefreshLayout.this.B0.a(SmartRefreshLayout.this.f5578j / (width2 != 0 ? width2 : 1), i10, width2);
                     }
                 }
                 SmartRefreshLayout smartRefreshLayout19 = SmartRefreshLayout.this;
-                if (i3 != smartRefreshLayout19.f9010b && (interfaceC2883c2 = smartRefreshLayout19.f9027j0) != null) {
-                    InterfaceC2874h interfaceC2874h8 = smartRefreshLayout19.f8978B0;
-                    if (interfaceC2874h8 instanceof InterfaceC2872f) {
-                        interfaceC2883c2.mo8726a((InterfaceC2872f) interfaceC2874h8, z, f3, i7, i8, i9);
+                if (i3 != smartRefreshLayout19.f5570b && (cVar2 = smartRefreshLayout19.j0) != null) {
+                    com.scwang.smartrefresh.layout.b.h hVar8 = smartRefreshLayout19.B0;
+                    if (hVar8 instanceof com.scwang.smartrefresh.layout.b.f) {
+                        cVar2.a((com.scwang.smartrefresh.layout.b.f) hVar8, z, f3, i7, i8, i9);
                     }
                 }
             }
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public ValueAnimator mo8687a(int i2) {
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public ValueAnimator a(int i2) {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            return smartRefreshLayout.m8613a(i2, 0, smartRefreshLayout.f9056y, smartRefreshLayout.f9018f);
+            return smartRefreshLayout.a(i2, 0, smartRefreshLayout.y, smartRefreshLayout.f5574f);
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public InterfaceC2875i mo8691a(@NonNull InterfaceC2874h interfaceC2874h, int i2) {
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i a(@NonNull com.scwang.smartrefresh.layout.b.h hVar, int i2) {
             SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-            if (smartRefreshLayout.f8982D0 == null && i2 != 0) {
-                smartRefreshLayout.f8982D0 = new Paint();
+            if (smartRefreshLayout.D0 == null && i2 != 0) {
+                smartRefreshLayout.D0 = new Paint();
             }
-            if (interfaceC2874h.equals(SmartRefreshLayout.this.f8976A0)) {
-                SmartRefreshLayout.this.f8996K0 = i2;
-            } else if (interfaceC2874h.equals(SmartRefreshLayout.this.f8978B0)) {
-                SmartRefreshLayout.this.f8998L0 = i2;
+            if (hVar.equals(SmartRefreshLayout.this.A0)) {
+                SmartRefreshLayout.this.K0 = i2;
+            } else if (hVar.equals(SmartRefreshLayout.this.B0)) {
+                SmartRefreshLayout.this.L0 = i2;
             }
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public InterfaceC2875i mo8692a(@NonNull InterfaceC2874h interfaceC2874h, boolean z) {
-            if (interfaceC2874h.equals(SmartRefreshLayout.this.f8976A0)) {
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i a(@NonNull com.scwang.smartrefresh.layout.b.h hVar, boolean z) {
+            if (hVar.equals(SmartRefreshLayout.this.A0)) {
                 SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                if (!smartRefreshLayout.f9019f0) {
-                    smartRefreshLayout.f9019f0 = true;
-                    smartRefreshLayout.f8983E = z;
+                if (!smartRefreshLayout.f0) {
+                    smartRefreshLayout.f0 = true;
+                    smartRefreshLayout.E = z;
                 }
-            } else if (interfaceC2874h.equals(SmartRefreshLayout.this.f8978B0)) {
+            } else if (hVar.equals(SmartRefreshLayout.this.B0)) {
                 SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-                if (!smartRefreshLayout2.f9021g0) {
-                    smartRefreshLayout2.f9021g0 = true;
-                    smartRefreshLayout2.f8985F = z;
+                if (!smartRefreshLayout2.g0) {
+                    smartRefreshLayout2.g0 = true;
+                    smartRefreshLayout2.F = z;
                 }
             }
             return this;
         }
 
-        @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2875i
-        /* renamed from: a */
-        public InterfaceC2875i mo8690a(@NonNull InterfaceC2874h interfaceC2874h) {
-            if (interfaceC2874h.equals(SmartRefreshLayout.this.f8976A0)) {
+        @Override // com.scwang.smartrefresh.layout.b.i
+        public com.scwang.smartrefresh.layout.b.i a(@NonNull com.scwang.smartrefresh.layout.b.h hVar) {
+            if (hVar.equals(SmartRefreshLayout.this.A0)) {
                 SmartRefreshLayout smartRefreshLayout = SmartRefreshLayout.this;
-                EnumC2878a enumC2878a = smartRefreshLayout.f9043r0;
-                if (enumC2878a.notified) {
-                    smartRefreshLayout.f9043r0 = enumC2878a.unNotify();
+                com.scwang.smartrefresh.layout.c.a aVar = smartRefreshLayout.r0;
+                if (aVar.notified) {
+                    smartRefreshLayout.r0 = aVar.unNotify();
                 }
-            } else if (interfaceC2874h.equals(SmartRefreshLayout.this.f8978B0)) {
+            } else if (hVar.equals(SmartRefreshLayout.this.B0)) {
                 SmartRefreshLayout smartRefreshLayout2 = SmartRefreshLayout.this;
-                EnumC2878a enumC2878a2 = smartRefreshLayout2.f9047t0;
-                if (enumC2878a2.notified) {
-                    smartRefreshLayout2.f9047t0 = enumC2878a2.unNotify();
+                com.scwang.smartrefresh.layout.c.a aVar2 = smartRefreshLayout2.t0;
+                if (aVar2.notified) {
+                    smartRefreshLayout2.t0 = aVar2.unNotify();
                 }
             }
             return this;
@@ -1525,1812 +1264,1947 @@ public class SmartRefreshLayout extends ViewGroup implements InterfaceC2876j, Ne
         this(context, null);
     }
 
-    public static void setDefaultRefreshFooterCreator(@NonNull InterfaceC2867a interfaceC2867a) {
-        f8972T0 = interfaceC2867a;
+    public static void setDefaultRefreshFooterCreator(@NonNull com.scwang.smartrefresh.layout.b.a aVar) {
+        T0 = aVar;
     }
 
-    public static void setDefaultRefreshHeaderCreator(@NonNull InterfaceC2868b interfaceC2868b) {
-        f8973U0 = interfaceC2868b;
+    public static void setDefaultRefreshHeaderCreator(@NonNull com.scwang.smartrefresh.layout.b.b bVar) {
+        U0 = bVar;
     }
 
-    public static void setDefaultRefreshInitializer(@NonNull InterfaceC2869c interfaceC2869c) {
-        f8974V0 = interfaceC2869c;
+    public static void setDefaultRefreshInitializer(@NonNull com.scwang.smartrefresh.layout.b.c cVar) {
+        V0 = cVar;
     }
 
     @Override // android.view.ViewGroup
     protected boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return layoutParams instanceof C2864m;
+        return layoutParams instanceof m;
     }
 
     @Override // android.view.View
     public void computeScroll() {
-        this.f9052w.getCurrY();
-        if (this.f9052w.computeScrollOffset()) {
-            int finalY = this.f9052w.getFinalY();
-            if ((finalY >= 0 || !((this.f8993J || m8685v(this.f8975A)) && this.f8980C0.mo8708a())) && (finalY <= 0 || !((this.f8993J || m8685v(this.f8977B)) && this.f8980C0.mo8710b()))) {
-                this.f9005P0 = true;
+        this.w.getCurrY();
+        if (this.w.computeScrollOffset()) {
+            int finalY = this.w.getFinalY();
+            if ((finalY >= 0 || !((this.J || v(this.A)) && this.C0.a())) && (finalY <= 0 || !((this.J || v(this.B)) && this.C0.b()))) {
+                this.P0 = true;
                 invalidate();
             } else {
-                if (this.f9005P0) {
-                    m8669j(Build.VERSION.SDK_INT >= 14 ? finalY > 0 ? -this.f9052w.getCurrVelocity() : this.f9052w.getCurrVelocity() : ((this.f9052w.getCurrY() - finalY) * 1.0f) / Math.max(this.f9052w.getDuration() - this.f9052w.timePassed(), 1));
+                if (this.P0) {
+                    j(Build.VERSION.SDK_INT >= 14 ? finalY > 0 ? -this.w.getCurrVelocity() : this.w.getCurrVelocity() : ((this.w.getCurrY() - finalY) * 1.0f) / Math.max(this.w.getDuration() - this.w.timePassed(), 1));
                 }
-                this.f9052w.forceFinished(true);
+                this.w.forceFinished(true);
             }
         }
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:61:0x00ce, code lost:
+    /* JADX WARN: Code restructure failed: missing block: B:323:0x00e8, code lost:
     
-        if (r4.isFinishing == false) goto L68;
+        if (r22.H0.isFooter == false) goto L325;
      */
-    /* JADX WARN: Code restructure failed: missing block: B:63:0x00d4, code lost:
-    
-        if (r22.f8990H0.isHeader == false) goto L68;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:69:0x00e2, code lost:
-    
-        if (r4.isFinishing == false) goto L77;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:71:0x00e8, code lost:
-    
-        if (r22.f8990H0.isFooter == false) goto L77;
-     */
-    /* JADX WARN: Code restructure failed: missing block: B:90:0x0116, code lost:
-    
-        if (r6 != 3) goto L230;
-     */
-    /* JADX WARN: Removed duplicated region for block: B:198:0x02cb  */
+    /* JADX WARN: Removed duplicated region for block: B:316:0x00d6  */
+    /* JADX WARN: Removed duplicated region for block: B:459:0x02cb  */
     @Override // android.view.ViewGroup, android.view.View
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean dispatchTouchEvent(android.view.MotionEvent r23) {
-        /*
-            Method dump skipped, instructions count: 896
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.scwang.smartrefresh.layout.SmartRefreshLayout.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        char c2;
+        com.scwang.smartrefresh.layout.b.h hVar;
+        com.scwang.smartrefresh.layout.b.h hVar2;
+        int actionMasked = motionEvent.getActionMasked();
+        boolean z = actionMasked == 6;
+        int actionIndex = z ? motionEvent.getActionIndex() : -1;
+        int pointerCount = motionEvent.getPointerCount();
+        float x = 0.0f;
+        float y = 0.0f;
+        for (int i2 = 0; i2 < pointerCount; i2++) {
+            if (actionIndex != i2) {
+                x += motionEvent.getX(i2);
+                y += motionEvent.getY(i2);
+            }
+        }
+        if (z) {
+            pointerCount--;
+        }
+        float f2 = pointerCount;
+        float f3 = x / f2;
+        float f4 = y / f2;
+        if ((actionMasked == 6 || actionMasked == 5) && this.f5582n) {
+            this.f5577i += f4 - this.f5579k;
+        }
+        this.f5578j = f3;
+        this.f5579k = f4;
+        if (this.m0) {
+            int i3 = this.l0;
+            boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+            if (actionMasked == 2 && i3 == this.l0) {
+                int i4 = (int) this.f5578j;
+                int width = getWidth();
+                float f5 = this.f5578j / (width != 0 ? width : 1);
+                if (v(this.A) && this.f5570b > 0 && (hVar2 = this.A0) != null && hVar2.a()) {
+                    this.A0.a(f5, i4, width);
+                } else if (v(this.B) && this.f5570b < 0 && (hVar = this.B0) != null && hVar.a()) {
+                    this.B0.a(f5, i4, width);
+                }
+            }
+            return zDispatchTouchEvent;
+        }
+        if (isEnabled() && (v(this.A) || v(this.B) || this.J)) {
+            if (this.M0) {
+                com.scwang.smartrefresh.layout.c.b bVar = this.H0;
+                if ((!bVar.isOpening && !bVar.isFinishing) || !this.H0.isHeader) {
+                    if (this.N0) {
+                        com.scwang.smartrefresh.layout.c.b bVar2 = this.H0;
+                        if (!bVar2.isOpening) {
+                            if (bVar2.isFinishing) {
+                            }
+                        }
+                    }
+                    if (!f(actionMasked)) {
+                        com.scwang.smartrefresh.layout.c.b bVar3 = this.H0;
+                        if (!bVar3.isFinishing && ((bVar3 != com.scwang.smartrefresh.layout.c.b.Loading || !this.c0) && (this.H0 != com.scwang.smartrefresh.layout.c.b.Refreshing || !this.b0))) {
+                            if (actionMasked == 0) {
+                                this.v = 0;
+                                this.x.addMovement(motionEvent);
+                                this.w.forceFinished(true);
+                                this.f5576h = f3;
+                                this.f5577i = f4;
+                                this.f5571c = 0;
+                                this.f5572d = this.f5570b;
+                                this.f5582n = false;
+                                this.o = super.dispatchTouchEvent(motionEvent);
+                                if (this.H0 == com.scwang.smartrefresh.layout.c.b.TwoLevel && this.f5577i < (getMeasuredHeight() * 5) / 6) {
+                                    this.f5581m = 'h';
+                                    return this.o;
+                                }
+                                com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+                                if (eVar != null) {
+                                    eVar.a(motionEvent);
+                                }
+                                return true;
+                            }
+                            if (actionMasked != 1) {
+                                if (actionMasked == 2) {
+                                    float f6 = f3 - this.f5576h;
+                                    float f7 = f4 - this.f5577i;
+                                    this.x.addMovement(motionEvent);
+                                    if (!this.f5582n && (c2 = this.f5581m) != 'h' && this.C0 != null) {
+                                        if (c2 == 'v' || (Math.abs(f7) >= this.a && Math.abs(f6) < Math.abs(f7))) {
+                                            this.f5581m = 'v';
+                                            if (f7 > 0.0f && (this.f5570b < 0 || ((this.J || v(this.A)) && this.C0.a()))) {
+                                                this.f5582n = true;
+                                                this.f5577i = f4 - this.a;
+                                            } else if (f7 < 0.0f && (this.f5570b > 0 || ((this.J || v(this.B)) && ((this.H0 == com.scwang.smartrefresh.layout.c.b.Loading && this.O0) || this.C0.b())))) {
+                                                this.f5582n = true;
+                                                this.f5577i = this.a + f4;
+                                            }
+                                            if (this.f5582n) {
+                                                f7 = f4 - this.f5577i;
+                                                if (this.o) {
+                                                    motionEvent.setAction(3);
+                                                    super.dispatchTouchEvent(motionEvent);
+                                                }
+                                                int i5 = this.f5570b;
+                                                if (i5 > 0 || (i5 == 0 && f7 > 0.0f)) {
+                                                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
+                                                } else {
+                                                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
+                                                }
+                                                ViewParent parent = getParent();
+                                                if (parent != null) {
+                                                    parent.requestDisallowInterceptTouchEvent(true);
+                                                }
+                                            }
+                                        } else if (Math.abs(f6) >= this.a && Math.abs(f6) > Math.abs(f7) && this.f5581m != 'v') {
+                                            this.f5581m = 'h';
+                                        }
+                                    }
+                                    if (this.f5582n) {
+                                        int i6 = ((int) f7) + this.f5572d;
+                                        if ((this.I0.isHeader && (i6 < 0 || this.f5571c < 0)) || (this.I0.isFooter && (i6 > 0 || this.f5571c > 0))) {
+                                            this.f5571c = i6;
+                                            long eventTime = motionEvent.getEventTime();
+                                            if (this.Q0 == null) {
+                                                this.Q0 = MotionEvent.obtain(eventTime, eventTime, 0, this.f5576h + f6, this.f5577i, 0);
+                                                super.dispatchTouchEvent(this.Q0);
+                                            }
+                                            MotionEvent motionEventObtain = MotionEvent.obtain(eventTime, eventTime, 2, this.f5576h + f6, this.f5577i + i6, 0);
+                                            super.dispatchTouchEvent(motionEventObtain);
+                                            if (this.O0 && f7 > this.a && this.f5570b < 0) {
+                                                this.O0 = false;
+                                            }
+                                            if (i6 <= 0 || !((this.J || v(this.A)) && this.C0.a())) {
+                                                if (i6 < 0 && ((this.J || v(this.B)) && this.C0.b())) {
+                                                    this.f5579k = f4;
+                                                    this.f5577i = f4;
+                                                    this.f5572d = 0;
+                                                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
+                                                }
+                                                if ((!this.I0.isHeader && i6 < 0) || (this.I0.isFooter && i6 > 0)) {
+                                                    if (this.f5570b != 0) {
+                                                        k(0.0f);
+                                                    }
+                                                    return true;
+                                                }
+                                                if (this.Q0 != null) {
+                                                    this.Q0 = null;
+                                                    motionEventObtain.setAction(3);
+                                                    super.dispatchTouchEvent(motionEventObtain);
+                                                }
+                                                motionEventObtain.recycle();
+                                            } else {
+                                                this.f5579k = f4;
+                                                this.f5577i = f4;
+                                                this.f5572d = 0;
+                                                this.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
+                                            }
+                                            i6 = 0;
+                                            if (!this.I0.isHeader) {
+                                            }
+                                            if (this.Q0 != null) {
+                                            }
+                                            motionEventObtain.recycle();
+                                        }
+                                        k(i6);
+                                        return true;
+                                    }
+                                    if (this.O0 && f7 > this.a && this.f5570b < 0) {
+                                        this.O0 = false;
+                                    }
+                                } else if (actionMasked == 3) {
+                                }
+                                return super.dispatchTouchEvent(motionEvent);
+                            }
+                            this.x.addMovement(motionEvent);
+                            this.x.computeCurrentVelocity(1000, this.u);
+                            this.v = (int) this.x.getYVelocity();
+                            a((Float) null);
+                            this.x.clear();
+                            this.f5581m = 'n';
+                            MotionEvent motionEvent2 = this.Q0;
+                            if (motionEvent2 != null) {
+                                motionEvent2.recycle();
+                                this.Q0 = null;
+                                long eventTime2 = motionEvent.getEventTime();
+                                MotionEvent motionEventObtain2 = MotionEvent.obtain(eventTime2, eventTime2, actionMasked, this.f5576h, f4, 0);
+                                super.dispatchTouchEvent(motionEventObtain2);
+                                motionEventObtain2.recycle();
+                            }
+                            j();
+                            if (this.f5582n) {
+                                this.f5582n = false;
+                                return true;
+                            }
+                            return super.dispatchTouchEvent(motionEvent);
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override // android.view.ViewGroup
     protected boolean drawChild(Canvas canvas, View view, long j2) {
         Paint paint;
         Paint paint2;
-        InterfaceC2871e interfaceC2871e = this.f8980C0;
-        View view2 = interfaceC2871e != null ? interfaceC2871e.getView() : null;
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h != null && interfaceC2874h.getView() == view) {
-            if (!m8685v(this.f8975A) || (!this.f8989H && isInEditMode())) {
+        com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+        View view2 = eVar != null ? eVar.getView() : null;
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar != null && hVar.getView() == view) {
+            if (!v(this.A) || (!this.H && isInEditMode())) {
                 return true;
             }
             if (view2 != null) {
-                int max = Math.max(view2.getTop() + view2.getPaddingTop() + this.f9010b, view.getTop());
-                int i2 = this.f8996K0;
-                if (i2 != 0 && (paint2 = this.f8982D0) != null) {
+                int iMax = Math.max(view2.getTop() + view2.getPaddingTop() + this.f5570b, view.getTop());
+                int i2 = this.K0;
+                if (i2 != 0 && (paint2 = this.D0) != null) {
                     paint2.setColor(i2);
-                    if (this.f8976A0.getSpinnerStyle() == EnumC2880c.Scale) {
-                        max = view.getBottom();
-                    } else if (this.f8976A0.getSpinnerStyle() == EnumC2880c.Translate) {
-                        max = view.getBottom() + this.f9010b;
+                    if (this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Scale) {
+                        iMax = view.getBottom();
+                    } else if (this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Translate) {
+                        iMax = view.getBottom() + this.f5570b;
                     }
-                    canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), max, this.f8982D0);
+                    canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), iMax, this.D0);
                 }
-                if (this.f8979C && this.f8976A0.getSpinnerStyle() == EnumC2880c.FixedBehind) {
+                if (this.C && this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
                     canvas.save();
-                    canvas.clipRect(view.getLeft(), view.getTop(), view.getRight(), max);
-                    boolean drawChild = super.drawChild(canvas, view, j2);
+                    canvas.clipRect(view.getLeft(), view.getTop(), view.getRight(), iMax);
+                    boolean zDrawChild = super.drawChild(canvas, view, j2);
                     canvas.restore();
-                    return drawChild;
+                    return zDrawChild;
                 }
             }
         }
-        InterfaceC2874h interfaceC2874h2 = this.f8978B0;
-        if (interfaceC2874h2 != null && interfaceC2874h2.getView() == view) {
-            if (!m8685v(this.f8977B) || (!this.f8989H && isInEditMode())) {
+        com.scwang.smartrefresh.layout.b.h hVar2 = this.B0;
+        if (hVar2 != null && hVar2.getView() == view) {
+            if (!v(this.B) || (!this.H && isInEditMode())) {
                 return true;
             }
             if (view2 != null) {
-                int min = Math.min((view2.getBottom() - view2.getPaddingBottom()) + this.f9010b, view.getBottom());
-                int i3 = this.f8998L0;
-                if (i3 != 0 && (paint = this.f8982D0) != null) {
+                int iMin = Math.min((view2.getBottom() - view2.getPaddingBottom()) + this.f5570b, view.getBottom());
+                int i3 = this.L0;
+                if (i3 != 0 && (paint = this.D0) != null) {
                     paint.setColor(i3);
-                    if (this.f8978B0.getSpinnerStyle() == EnumC2880c.Scale) {
-                        min = view.getTop();
-                    } else if (this.f8978B0.getSpinnerStyle() == EnumC2880c.Translate) {
-                        min = view.getTop() + this.f9010b;
+                    if (this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Scale) {
+                        iMin = view.getTop();
+                    } else if (this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Translate) {
+                        iMin = view.getTop() + this.f5570b;
                     }
-                    canvas.drawRect(view.getLeft(), min, view.getRight(), view.getBottom(), this.f8982D0);
+                    canvas.drawRect(view.getLeft(), iMin, view.getRight(), view.getBottom(), this.D0);
                 }
-                if (this.f8981D && this.f8978B0.getSpinnerStyle() == EnumC2880c.FixedBehind) {
+                if (this.D && this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
                     canvas.save();
-                    canvas.clipRect(view.getLeft(), min, view.getRight(), view.getBottom());
-                    boolean drawChild2 = super.drawChild(canvas, view, j2);
+                    canvas.clipRect(view.getLeft(), iMin, view.getRight(), view.getBottom());
+                    boolean zDrawChild2 = super.drawChild(canvas, view, j2);
                     canvas.restore();
-                    return drawChild2;
+                    return zDrawChild2;
                 }
             }
         }
         return super.drawChild(canvas, view, j2);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     public SmartRefreshLayout getLayout() {
         return this;
     }
 
     @Override // android.view.ViewGroup, androidx.core.view.NestedScrollingParent
     public int getNestedScrollAxes() {
-        return this.f9039p0.getNestedScrollAxes();
+        return this.p0.getNestedScrollAxes();
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     @Nullable
-    public InterfaceC2872f getRefreshFooter() {
-        InterfaceC2874h interfaceC2874h = this.f8978B0;
-        if (interfaceC2874h instanceof InterfaceC2872f) {
-            return (InterfaceC2872f) interfaceC2874h;
+    public com.scwang.smartrefresh.layout.b.f getRefreshFooter() {
+        com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+        if (hVar instanceof com.scwang.smartrefresh.layout.b.f) {
+            return (com.scwang.smartrefresh.layout.b.f) hVar;
         }
         return null;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     @Nullable
-    public InterfaceC2873g getRefreshHeader() {
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h instanceof InterfaceC2873g) {
-            return (InterfaceC2873g) interfaceC2874h;
+    public com.scwang.smartrefresh.layout.b.g getRefreshHeader() {
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar instanceof com.scwang.smartrefresh.layout.b.g) {
+            return (com.scwang.smartrefresh.layout.b.g) hVar;
         }
         return null;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    public EnumC2879b getState() {
-        return this.f8990H0;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public com.scwang.smartrefresh.layout.c.b getState() {
+        return this.H0;
     }
 
     @Override // android.view.View
     public boolean isNestedScrollingEnabled() {
-        return this.f9037o0.isNestedScrollingEnabled();
+        return this.o0.isNestedScrollingEnabled();
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onAttachedToWindow() {
-        InterfaceC2874h interfaceC2874h;
+        com.scwang.smartrefresh.layout.b.h hVar;
         super.onAttachedToWindow();
         if (!isInEditMode()) {
-            if (this.f8984E0 == null) {
-                this.f8984E0 = new Handler();
+            if (this.E0 == null) {
+                this.E0 = new Handler();
             }
-            List<RunnableC2888a> list = this.f8988G0;
+            List<com.scwang.smartrefresh.layout.e.a> list = this.G0;
             if (list != null) {
-                for (RunnableC2888a runnableC2888a : list) {
-                    this.f8984E0.postDelayed(runnableC2888a, runnableC2888a.f9114a);
+                for (com.scwang.smartrefresh.layout.e.a aVar : list) {
+                    this.E0.postDelayed(aVar, aVar.a);
                 }
-                this.f8988G0.clear();
-                this.f8988G0 = null;
+                this.G0.clear();
+                this.G0 = null;
             }
-            if (this.f8976A0 == null) {
-                InterfaceC2868b interfaceC2868b = f8973U0;
-                if (interfaceC2868b != null) {
-                    mo8622a(interfaceC2868b.m8700a(getContext(), this));
+            if (this.A0 == null) {
+                com.scwang.smartrefresh.layout.b.b bVar = U0;
+                if (bVar != null) {
+                    a(bVar.a(getContext(), this));
                 } else {
-                    mo8622a(new BezierRadarHeader(getContext()));
+                    a(new BezierRadarHeader(getContext()));
                 }
             }
-            if (this.f8978B0 == null) {
-                InterfaceC2867a interfaceC2867a = f8972T0;
-                if (interfaceC2867a != null) {
-                    mo8620a(interfaceC2867a.m8699a(getContext(), this));
+            if (this.B0 == null) {
+                com.scwang.smartrefresh.layout.b.a aVar2 = T0;
+                if (aVar2 != null) {
+                    a(aVar2.a(getContext(), this));
                 } else {
-                    boolean z = this.f8977B;
-                    mo8620a(new BallPulseFooter(getContext()));
-                    this.f8977B = z;
+                    boolean z = this.B;
+                    a(new BallPulseFooter(getContext()));
+                    this.B = z;
                 }
             } else {
-                this.f8977B = this.f8977B || !this.f9017e0;
+                this.B = this.B || !this.e0;
             }
-            if (this.f8980C0 == null) {
+            if (this.C0 == null) {
                 int childCount = getChildCount();
                 for (int i2 = 0; i2 < childCount; i2++) {
                     View childAt = getChildAt(i2);
-                    InterfaceC2874h interfaceC2874h2 = this.f8976A0;
-                    if ((interfaceC2874h2 == null || childAt != interfaceC2874h2.getView()) && ((interfaceC2874h = this.f8978B0) == null || childAt != interfaceC2874h.getView())) {
-                        this.f8980C0 = new C2900a(childAt);
+                    com.scwang.smartrefresh.layout.b.h hVar2 = this.A0;
+                    if ((hVar2 == null || childAt != hVar2.getView()) && ((hVar = this.B0) == null || childAt != hVar.getView())) {
+                        this.C0 = new com.scwang.smartrefresh.layout.impl.a(childAt);
                     }
                 }
             }
-            if (this.f8980C0 == null) {
-                int m8735b = C2889b.m8735b(20.0f);
+            if (this.C0 == null) {
+                int iB = com.scwang.smartrefresh.layout.e.b.b(20.0f);
                 TextView textView = new TextView(getContext());
                 textView.setTextColor(-39424);
                 textView.setGravity(17);
                 textView.setTextSize(20.0f);
-                textView.setText(C2851R.string.srl_content_empty);
+                textView.setText(R.string.srl_content_empty);
                 super.addView(textView, -1, -1);
-                this.f8980C0 = new C2900a(textView);
-                this.f8980C0.getView().setPadding(m8735b, m8735b, m8735b, m8735b);
+                this.C0 = new com.scwang.smartrefresh.layout.impl.a(textView);
+                this.C0.getView().setPadding(iB, iB, iB, iB);
             }
-            int i3 = this.f9038p;
-            View findViewById = i3 > 0 ? findViewById(i3) : null;
-            int i4 = this.f9040q;
-            View findViewById2 = i4 > 0 ? findViewById(i4) : null;
-            this.f8980C0.mo8707a(this.f9029k0);
-            this.f8980C0.mo8709b(this.f9003O);
-            this.f8980C0.mo8706a(this.f8986F0, findViewById, findViewById2);
-            if (this.f9010b != 0) {
-                m8631a(EnumC2879b.None);
-                InterfaceC2871e interfaceC2871e = this.f8980C0;
-                this.f9010b = 0;
-                interfaceC2871e.mo8704a(0, this.f9042r, this.f9044s);
+            int i3 = this.p;
+            View viewFindViewById = i3 > 0 ? findViewById(i3) : null;
+            int i4 = this.q;
+            View viewFindViewById2 = i4 > 0 ? findViewById(i4) : null;
+            this.C0.a(this.k0);
+            this.C0.b(this.O);
+            this.C0.a(this.F0, viewFindViewById, viewFindViewById2);
+            if (this.f5570b != 0) {
+                a(com.scwang.smartrefresh.layout.c.b.None);
+                com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+                this.f5570b = 0;
+                eVar.a(0, this.r, this.s);
             }
         }
-        int[] iArr = this.f9058z;
+        int[] iArr = this.z;
         if (iArr != null) {
-            InterfaceC2874h interfaceC2874h3 = this.f8976A0;
-            if (interfaceC2874h3 != null) {
-                interfaceC2874h3.setPrimaryColors(iArr);
+            com.scwang.smartrefresh.layout.b.h hVar3 = this.A0;
+            if (hVar3 != null) {
+                hVar3.setPrimaryColors(iArr);
             }
-            InterfaceC2874h interfaceC2874h4 = this.f8978B0;
-            if (interfaceC2874h4 != null) {
-                interfaceC2874h4.setPrimaryColors(this.f9058z);
+            com.scwang.smartrefresh.layout.b.h hVar4 = this.B0;
+            if (hVar4 != null) {
+                hVar4.setPrimaryColors(this.z);
             }
         }
-        InterfaceC2871e interfaceC2871e2 = this.f8980C0;
-        if (interfaceC2871e2 != null) {
-            super.bringChildToFront(interfaceC2871e2.getView());
+        com.scwang.smartrefresh.layout.b.e eVar2 = this.C0;
+        if (eVar2 != null) {
+            super.bringChildToFront(eVar2.getView());
         }
-        InterfaceC2874h interfaceC2874h5 = this.f8976A0;
-        if (interfaceC2874h5 != null && interfaceC2874h5.getSpinnerStyle() != EnumC2880c.FixedBehind) {
-            super.bringChildToFront(this.f8976A0.getView());
+        com.scwang.smartrefresh.layout.b.h hVar5 = this.A0;
+        if (hVar5 != null && hVar5.getSpinnerStyle() != com.scwang.smartrefresh.layout.c.c.FixedBehind) {
+            super.bringChildToFront(this.A0.getView());
         }
-        InterfaceC2874h interfaceC2874h6 = this.f8978B0;
-        if (interfaceC2874h6 == null || interfaceC2874h6.getSpinnerStyle() == EnumC2880c.FixedBehind) {
+        com.scwang.smartrefresh.layout.b.h hVar6 = this.B0;
+        if (hVar6 == null || hVar6.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
             return;
         }
-        super.bringChildToFront(this.f8978B0.getView());
+        super.bringChildToFront(this.B0.getView());
     }
 
     @Override // android.view.ViewGroup, android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f8986F0.mo8689a(0, true);
-        m8631a(EnumC2879b.None);
-        Handler handler = this.f8984E0;
+        this.F0.a(0, true);
+        a(com.scwang.smartrefresh.layout.c.b.None);
+        Handler handler = this.E0;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
-            this.f8984E0 = null;
+            this.E0 = null;
         }
-        List<RunnableC2888a> list = this.f8988G0;
+        List<com.scwang.smartrefresh.layout.e.a> list = this.G0;
         if (list != null) {
             list.clear();
-            this.f8988G0 = null;
+            this.G0 = null;
         }
-        this.f9017e0 = true;
-        this.f9007R0 = null;
-        ValueAnimator valueAnimator = this.f9008S0;
+        this.e0 = true;
+        this.R0 = null;
+        ValueAnimator valueAnimator = this.S0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f9008S0.removeAllUpdateListeners();
-            this.f9008S0.cancel();
-            this.f9008S0 = null;
+            this.S0.removeAllUpdateListeners();
+            this.S0.cancel();
+            this.S0 = null;
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Removed duplicated region for block: B:30:0x0052  */
     @Override // android.view.View
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
     protected void onFinishInflate() {
-        /*
-            r11 = this;
-            super.onFinishInflate()
-            int r0 = super.getChildCount()
-            r1 = 3
-            if (r0 > r1) goto L9e
-            r2 = -1
-            r3 = 0
-            r4 = 0
-            r5 = -1
-            r6 = 0
-        Lf:
-            r7 = 2
-            r8 = 1
-            if (r4 >= r0) goto L33
-            android.view.View r9 = super.getChildAt(r4)
-            boolean r10 = com.scwang.smartrefresh.layout.p192e.AbstractC2892e.m8748a(r9)
-            if (r10 == 0) goto L24
-            if (r6 < r7) goto L21
-            if (r4 != r8) goto L24
-        L21:
-            r5 = r4
-            r6 = 2
-            goto L30
-        L24:
-            boolean r7 = r9 instanceof com.scwang.smartrefresh.layout.p189b.InterfaceC2874h
-            if (r7 != 0) goto L30
-            if (r6 >= r8) goto L30
-            if (r4 <= 0) goto L2d
-            goto L2e
-        L2d:
-            r8 = 0
-        L2e:
-            r5 = r4
-            r6 = r8
-        L30:
-            int r4 = r4 + 1
-            goto Lf
-        L33:
-            if (r5 < 0) goto L4d
-            com.scwang.smartrefresh.layout.impl.a r4 = new com.scwang.smartrefresh.layout.impl.a
-            android.view.View r6 = super.getChildAt(r5)
-            r4.<init>(r6)
-            r11.f8980C0 = r4
-            if (r5 != r8) goto L48
-            if (r0 != r1) goto L46
-            r1 = 0
-            goto L4f
-        L46:
-            r1 = 0
-            goto L4e
-        L48:
-            if (r0 != r7) goto L4d
-            r1 = -1
-            r7 = 1
-            goto L4f
-        L4d:
-            r1 = -1
-        L4e:
-            r7 = -1
-        L4f:
-            r4 = 0
-        L50:
-            if (r4 >= r0) goto L9d
-            android.view.View r5 = super.getChildAt(r4)
-            if (r4 == r1) goto L8b
-            if (r4 == r7) goto L65
-            if (r1 != r2) goto L65
-            com.scwang.smartrefresh.layout.b.h r6 = r11.f8976A0
-            if (r6 != 0) goto L65
-            boolean r6 = r5 instanceof com.scwang.smartrefresh.layout.p189b.InterfaceC2873g
-            if (r6 == 0) goto L65
-            goto L8b
-        L65:
-            if (r4 == r7) goto L6d
-            if (r7 != r2) goto L9a
-            boolean r6 = r5 instanceof com.scwang.smartrefresh.layout.p189b.InterfaceC2872f
-            if (r6 == 0) goto L9a
-        L6d:
-            boolean r6 = r11.f8977B
-            if (r6 != 0) goto L78
-            boolean r6 = r11.f9017e0
-            if (r6 != 0) goto L76
-            goto L78
-        L76:
-            r6 = 0
-            goto L79
-        L78:
-            r6 = 1
-        L79:
-            r11.f8977B = r6
-            boolean r6 = r5 instanceof com.scwang.smartrefresh.layout.p189b.InterfaceC2872f
-            if (r6 == 0) goto L82
-            com.scwang.smartrefresh.layout.b.f r5 = (com.scwang.smartrefresh.layout.p189b.InterfaceC2872f) r5
-            goto L88
-        L82:
-            com.scwang.smartrefresh.layout.impl.RefreshFooterWrapper r6 = new com.scwang.smartrefresh.layout.impl.RefreshFooterWrapper
-            r6.<init>(r5)
-            r5 = r6
-        L88:
-            r11.f8978B0 = r5
-            goto L9a
-        L8b:
-            boolean r6 = r5 instanceof com.scwang.smartrefresh.layout.p189b.InterfaceC2873g
-            if (r6 == 0) goto L92
-            com.scwang.smartrefresh.layout.b.g r5 = (com.scwang.smartrefresh.layout.p189b.InterfaceC2873g) r5
-            goto L98
-        L92:
-            com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper r6 = new com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper
-            r6.<init>(r5)
-            r5 = r6
-        L98:
-            r11.f8976A0 = r5
-        L9a:
-            int r4 = r4 + 1
-            goto L50
-        L9d:
-            return
-        L9e:
-            java.lang.RuntimeException r0 = new java.lang.RuntimeException
-            java.lang.String r1 = "最多只支持3个子View，Most only support three sub view"
-            r0.<init>(r1)
-            throw r0
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.scwang.smartrefresh.layout.SmartRefreshLayout.onFinishInflate():void");
-    }
-
-    @Override // android.view.ViewGroup, android.view.View
-    protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-        int i6;
-        int paddingLeft = getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        getPaddingBottom();
+        int i2;
+        int i3;
+        super.onFinishInflate();
         int childCount = super.getChildCount();
-        for (int i7 = 0; i7 < childCount; i7++) {
-            View childAt = super.getChildAt(i7);
-            InterfaceC2871e interfaceC2871e = this.f8980C0;
-            if (interfaceC2871e != null && interfaceC2871e.getView() == childAt) {
-                boolean z2 = isInEditMode() && this.f8989H && m8685v(this.f8975A) && this.f8976A0 != null;
-                View view = this.f8980C0.getView();
-                C2864m c2864m = (C2864m) view.getLayoutParams();
-                int i8 = ((ViewGroup.MarginLayoutParams) c2864m).leftMargin + paddingLeft;
-                int i9 = ((ViewGroup.MarginLayoutParams) c2864m).topMargin + paddingTop;
-                int measuredWidth = view.getMeasuredWidth() + i8;
-                int measuredHeight = view.getMeasuredHeight() + i9;
-                if (z2 && m8636a(this.f8983E, this.f8976A0)) {
-                    int i10 = this.f9041q0;
-                    i9 += i10;
-                    measuredHeight += i10;
-                }
-                view.layout(i8, i9, measuredWidth, measuredHeight);
+        if (childCount > 3) {
+            throw new RuntimeException("\u6700\u591a\u53ea\u652f\u63013\u4e2a\u5b50View\uff0cMost only support three sub view");
+        }
+        int i4 = 0;
+        int i5 = -1;
+        char c2 = 0;
+        while (true) {
+            i2 = 2;
+            if (i4 >= childCount) {
+                break;
             }
-            InterfaceC2874h interfaceC2874h = this.f8976A0;
-            if (interfaceC2874h != null && interfaceC2874h.getView() == childAt) {
-                boolean z3 = isInEditMode() && this.f8989H && m8685v(this.f8975A);
-                View view2 = this.f8976A0.getView();
-                C2864m c2864m2 = (C2864m) view2.getLayoutParams();
-                int i11 = ((ViewGroup.MarginLayoutParams) c2864m2).leftMargin;
-                int i12 = ((ViewGroup.MarginLayoutParams) c2864m2).topMargin + this.f9049u0;
-                int measuredWidth2 = view2.getMeasuredWidth() + i11;
-                int measuredHeight2 = view2.getMeasuredHeight() + i12;
-                if (!z3 && this.f8976A0.getSpinnerStyle() == EnumC2880c.Translate) {
-                    int i13 = this.f9041q0;
-                    i12 -= i13;
-                    measuredHeight2 -= i13;
-                }
-                view2.layout(i11, i12, measuredWidth2, measuredHeight2);
+            View childAt = super.getChildAt(i4);
+            if (com.scwang.smartrefresh.layout.e.e.a(childAt) && (c2 < 2 || i4 == 1)) {
+                i5 = i4;
+                c2 = 2;
+            } else if (!(childAt instanceof com.scwang.smartrefresh.layout.b.h) && c2 < 1) {
+                i5 = i4;
+                c2 = i4 <= 0 ? (char) 0 : (char) 1;
             }
-            InterfaceC2874h interfaceC2874h2 = this.f8978B0;
-            if (interfaceC2874h2 != null && interfaceC2874h2.getView() == childAt) {
-                boolean z4 = isInEditMode() && this.f8989H && m8685v(this.f8977B);
-                View view3 = this.f8978B0.getView();
-                C2864m c2864m3 = (C2864m) view3.getLayoutParams();
-                EnumC2880c spinnerStyle = this.f8978B0.getSpinnerStyle();
-                int i14 = ((ViewGroup.MarginLayoutParams) c2864m3).leftMargin;
-                int measuredHeight3 = ((ViewGroup.MarginLayoutParams) c2864m3).topMargin + getMeasuredHeight();
-                int i15 = this.f9051v0;
-                int i16 = measuredHeight3 - i15;
-                if (spinnerStyle == EnumC2880c.MatchLayout) {
-                    i16 = ((ViewGroup.MarginLayoutParams) c2864m3).topMargin - i15;
-                } else {
-                    if (z4 || spinnerStyle == EnumC2880c.FixedFront || spinnerStyle == EnumC2880c.FixedBehind) {
-                        i6 = this.f9045s0;
-                    } else if (spinnerStyle == EnumC2880c.Scale && this.f9010b < 0) {
-                        i6 = Math.max(m8685v(this.f8977B) ? -this.f9010b : 0, 0);
-                    }
-                    i16 -= i6;
+            i4++;
+        }
+        if (i5 >= 0) {
+            this.C0 = new com.scwang.smartrefresh.layout.impl.a(super.getChildAt(i5));
+            if (i5 != 1) {
+                if (childCount == 2) {
+                    i3 = -1;
+                    i2 = 1;
                 }
-                view3.layout(i14, i16, view3.getMeasuredWidth() + i14, view3.getMeasuredHeight() + i16);
+                i3 = -1;
+                i2 = -1;
+            } else if (childCount == 3) {
+                i3 = 0;
+            } else {
+                i3 = 0;
+                i2 = -1;
+            }
+        } else {
+            i3 = -1;
+            i2 = -1;
+        }
+        for (int i6 = 0; i6 < childCount; i6++) {
+            View childAt2 = super.getChildAt(i6);
+            if (i6 == i3 || (i6 != i2 && i3 == -1 && this.A0 == null && (childAt2 instanceof com.scwang.smartrefresh.layout.b.g))) {
+                this.A0 = childAt2 instanceof com.scwang.smartrefresh.layout.b.g ? (com.scwang.smartrefresh.layout.b.g) childAt2 : new RefreshHeaderWrapper(childAt2);
+            } else if (i6 == i2 || (i2 == -1 && (childAt2 instanceof com.scwang.smartrefresh.layout.b.f))) {
+                this.B = this.B || !this.e0;
+                this.B0 = childAt2 instanceof com.scwang.smartrefresh.layout.b.f ? (com.scwang.smartrefresh.layout.b.f) childAt2 : new RefreshFooterWrapper(childAt2);
             }
         }
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:21:0x00ce  */
-    /* JADX WARN: Removed duplicated region for block: B:24:0x00f2  */
-    /* JADX WARN: Removed duplicated region for block: B:27:0x010b  */
-    /* JADX WARN: Removed duplicated region for block: B:32:0x00d3  */
+    @Override // android.view.ViewGroup, android.view.View
+    protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+        int iMax;
+        int paddingLeft = getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        getPaddingBottom();
+        int childCount = super.getChildCount();
+        for (int i6 = 0; i6 < childCount; i6++) {
+            View childAt = super.getChildAt(i6);
+            com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+            if (eVar != null && eVar.getView() == childAt) {
+                boolean z2 = isInEditMode() && this.H && v(this.A) && this.A0 != null;
+                View view = this.C0.getView();
+                m mVar = (m) view.getLayoutParams();
+                int i7 = ((ViewGroup.MarginLayoutParams) mVar).leftMargin + paddingLeft;
+                int i8 = ((ViewGroup.MarginLayoutParams) mVar).topMargin + paddingTop;
+                int measuredWidth = view.getMeasuredWidth() + i7;
+                int measuredHeight = view.getMeasuredHeight() + i8;
+                if (z2 && a(this.E, this.A0)) {
+                    int i9 = this.q0;
+                    i8 += i9;
+                    measuredHeight += i9;
+                }
+                view.layout(i7, i8, measuredWidth, measuredHeight);
+            }
+            com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+            if (hVar != null && hVar.getView() == childAt) {
+                boolean z3 = isInEditMode() && this.H && v(this.A);
+                View view2 = this.A0.getView();
+                m mVar2 = (m) view2.getLayoutParams();
+                int i10 = ((ViewGroup.MarginLayoutParams) mVar2).leftMargin;
+                int i11 = ((ViewGroup.MarginLayoutParams) mVar2).topMargin + this.u0;
+                int measuredWidth2 = view2.getMeasuredWidth() + i10;
+                int measuredHeight2 = view2.getMeasuredHeight() + i11;
+                if (!z3 && this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Translate) {
+                    int i12 = this.q0;
+                    i11 -= i12;
+                    measuredHeight2 -= i12;
+                }
+                view2.layout(i10, i11, measuredWidth2, measuredHeight2);
+            }
+            com.scwang.smartrefresh.layout.b.h hVar2 = this.B0;
+            if (hVar2 != null && hVar2.getView() == childAt) {
+                boolean z4 = isInEditMode() && this.H && v(this.B);
+                View view3 = this.B0.getView();
+                m mVar3 = (m) view3.getLayoutParams();
+                com.scwang.smartrefresh.layout.c.c spinnerStyle = this.B0.getSpinnerStyle();
+                int i13 = ((ViewGroup.MarginLayoutParams) mVar3).leftMargin;
+                int measuredHeight3 = ((ViewGroup.MarginLayoutParams) mVar3).topMargin + getMeasuredHeight();
+                int i14 = this.v0;
+                int i15 = measuredHeight3 - i14;
+                if (spinnerStyle == com.scwang.smartrefresh.layout.c.c.MatchLayout) {
+                    i15 = ((ViewGroup.MarginLayoutParams) mVar3).topMargin - i14;
+                } else {
+                    if (z4 || spinnerStyle == com.scwang.smartrefresh.layout.c.c.FixedFront || spinnerStyle == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
+                        iMax = this.s0;
+                    } else if (spinnerStyle == com.scwang.smartrefresh.layout.c.c.Scale && this.f5570b < 0) {
+                        iMax = Math.max(v(this.B) ? -this.f5570b : 0, 0);
+                    }
+                    i15 -= iMax;
+                }
+                view3.layout(i13, i15, view3.getMeasuredWidth() + i13, view3.getMeasuredHeight() + i15);
+            }
+        }
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:173:0x00c3  */
+    /* JADX WARN: Removed duplicated region for block: B:176:0x00ce  */
+    /* JADX WARN: Removed duplicated region for block: B:177:0x00d3  */
+    /* JADX WARN: Removed duplicated region for block: B:187:0x00f2  */
+    /* JADX WARN: Removed duplicated region for block: B:190:0x010b  */
     @Override // android.view.View
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    protected void onMeasure(int r18, int r19) {
-        /*
-            Method dump skipped, instructions count: 742
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.scwang.smartrefresh.layout.SmartRefreshLayout.onMeasure(int, int):void");
+    protected void onMeasure(int i2, int i3) {
+        int iMax;
+        com.scwang.smartrefresh.layout.c.a aVar;
+        boolean z = isInEditMode() && this.H;
+        int childCount = super.getChildCount();
+        int measuredHeight = 0;
+        for (int i4 = 0; i4 < childCount; i4++) {
+            View childAt = super.getChildAt(i4);
+            com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+            if (hVar != null && hVar.getView() == childAt) {
+                View view = this.A0.getView();
+                m mVar = (m) view.getLayoutParams();
+                int childMeasureSpec = ViewGroup.getChildMeasureSpec(i2, ((ViewGroup.MarginLayoutParams) mVar).leftMargin + ((ViewGroup.MarginLayoutParams) mVar).rightMargin, ((ViewGroup.MarginLayoutParams) mVar).width);
+                int i5 = this.q0;
+                if (this.r0.ordinal() >= com.scwang.smartrefresh.layout.c.a.XmlLayoutUnNotify.ordinal()) {
+                    iMax = i5;
+                    if (this.A0.getSpinnerStyle() != com.scwang.smartrefresh.layout.c.c.MatchLayout) {
+                        iMax = View.MeasureSpec.getSize(i3);
+                    } else if (this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Scale && !z) {
+                        iMax = Math.max(0, v(this.A) ? this.f5570b : 0);
+                    }
+                    if (iMax != -1) {
+                        view.measure(childMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.max((iMax - ((ViewGroup.MarginLayoutParams) mVar).bottomMargin) - ((ViewGroup.MarginLayoutParams) mVar).topMargin, 0), 1073741824));
+                    }
+                    aVar = this.r0;
+                    if (!aVar.notified) {
+                        this.r0 = aVar.notified();
+                        com.scwang.smartrefresh.layout.b.h hVar2 = this.A0;
+                        com.scwang.smartrefresh.layout.b.i iVar = this.F0;
+                        int i6 = this.q0;
+                        hVar2.a(iVar, i6, (int) (this.w0 * i6));
+                    }
+                    if (z && v(this.A)) {
+                        measuredHeight += view.getMeasuredHeight();
+                    }
+                } else {
+                    if (((ViewGroup.MarginLayoutParams) mVar).height > 0) {
+                        iMax = ((ViewGroup.MarginLayoutParams) mVar).height + ((ViewGroup.MarginLayoutParams) mVar).bottomMargin + ((ViewGroup.MarginLayoutParams) mVar).topMargin;
+                        if (this.r0.canReplaceWith(com.scwang.smartrefresh.layout.c.a.XmlExactUnNotify)) {
+                            this.q0 = ((ViewGroup.MarginLayoutParams) mVar).height + ((ViewGroup.MarginLayoutParams) mVar).bottomMargin + ((ViewGroup.MarginLayoutParams) mVar).topMargin;
+                            this.r0 = com.scwang.smartrefresh.layout.c.a.XmlExactUnNotify;
+                        }
+                    } else if (((ViewGroup.MarginLayoutParams) mVar).height == -2 && (this.A0.getSpinnerStyle() != com.scwang.smartrefresh.layout.c.c.MatchLayout || !this.r0.notified)) {
+                        int iMax2 = Math.max((View.MeasureSpec.getSize(i3) - ((ViewGroup.MarginLayoutParams) mVar).bottomMargin) - ((ViewGroup.MarginLayoutParams) mVar).topMargin, 0);
+                        view.measure(childMeasureSpec, View.MeasureSpec.makeMeasureSpec(iMax2, Integer.MIN_VALUE));
+                        int measuredHeight2 = view.getMeasuredHeight();
+                        if (measuredHeight2 > 0) {
+                            if (measuredHeight2 != iMax2 && this.r0.canReplaceWith(com.scwang.smartrefresh.layout.c.a.XmlWrapUnNotify)) {
+                                this.q0 = measuredHeight2 + ((ViewGroup.MarginLayoutParams) mVar).bottomMargin + ((ViewGroup.MarginLayoutParams) mVar).topMargin;
+                                this.r0 = com.scwang.smartrefresh.layout.c.a.XmlWrapUnNotify;
+                            }
+                            iMax = -1;
+                        }
+                    }
+                    if (this.A0.getSpinnerStyle() != com.scwang.smartrefresh.layout.c.c.MatchLayout) {
+                    }
+                    if (iMax != -1) {
+                    }
+                    aVar = this.r0;
+                    if (!aVar.notified) {
+                    }
+                    if (z) {
+                        measuredHeight += view.getMeasuredHeight();
+                    }
+                }
+            }
+            com.scwang.smartrefresh.layout.b.h hVar3 = this.B0;
+            if (hVar3 != null && hVar3.getView() == childAt) {
+                View view2 = this.B0.getView();
+                m mVar2 = (m) view2.getLayoutParams();
+                int childMeasureSpec2 = ViewGroup.getChildMeasureSpec(i2, ((ViewGroup.MarginLayoutParams) mVar2).leftMargin + ((ViewGroup.MarginLayoutParams) mVar2).rightMargin, ((ViewGroup.MarginLayoutParams) mVar2).width);
+                int iMax3 = this.s0;
+                if (this.t0.ordinal() < com.scwang.smartrefresh.layout.c.a.XmlLayoutUnNotify.ordinal()) {
+                    if (((ViewGroup.MarginLayoutParams) mVar2).height > 0) {
+                        iMax3 = ((ViewGroup.MarginLayoutParams) mVar2).height + ((ViewGroup.MarginLayoutParams) mVar2).topMargin + ((ViewGroup.MarginLayoutParams) mVar2).bottomMargin;
+                        if (this.t0.canReplaceWith(com.scwang.smartrefresh.layout.c.a.XmlExactUnNotify)) {
+                            this.s0 = ((ViewGroup.MarginLayoutParams) mVar2).height + ((ViewGroup.MarginLayoutParams) mVar2).topMargin + ((ViewGroup.MarginLayoutParams) mVar2).bottomMargin;
+                            this.t0 = com.scwang.smartrefresh.layout.c.a.XmlExactUnNotify;
+                        }
+                    } else if (((ViewGroup.MarginLayoutParams) mVar2).height == -2 && (this.B0.getSpinnerStyle() != com.scwang.smartrefresh.layout.c.c.MatchLayout || !this.t0.notified)) {
+                        int iMax4 = Math.max((View.MeasureSpec.getSize(i3) - ((ViewGroup.MarginLayoutParams) mVar2).bottomMargin) - ((ViewGroup.MarginLayoutParams) mVar2).topMargin, 0);
+                        view2.measure(childMeasureSpec2, View.MeasureSpec.makeMeasureSpec(iMax4, Integer.MIN_VALUE));
+                        int measuredHeight3 = view2.getMeasuredHeight();
+                        if (measuredHeight3 > 0) {
+                            if (measuredHeight3 != iMax4 && this.t0.canReplaceWith(com.scwang.smartrefresh.layout.c.a.XmlWrapUnNotify)) {
+                                this.s0 = measuredHeight3 + ((ViewGroup.MarginLayoutParams) mVar2).topMargin + ((ViewGroup.MarginLayoutParams) mVar2).bottomMargin;
+                                this.t0 = com.scwang.smartrefresh.layout.c.a.XmlWrapUnNotify;
+                            }
+                            iMax3 = -1;
+                        }
+                    }
+                }
+                if (this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.MatchLayout) {
+                    iMax3 = View.MeasureSpec.getSize(i3);
+                } else if (this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.Scale && !z) {
+                    iMax3 = Math.max(0, v(this.B) ? -this.f5570b : 0);
+                }
+                if (iMax3 != -1) {
+                    view2.measure(childMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.max((iMax3 - ((ViewGroup.MarginLayoutParams) mVar2).bottomMargin) - ((ViewGroup.MarginLayoutParams) mVar2).topMargin, 0), 1073741824));
+                }
+                com.scwang.smartrefresh.layout.c.a aVar2 = this.t0;
+                if (!aVar2.notified) {
+                    this.t0 = aVar2.notified();
+                    com.scwang.smartrefresh.layout.b.h hVar4 = this.B0;
+                    com.scwang.smartrefresh.layout.b.i iVar2 = this.F0;
+                    int i7 = this.s0;
+                    hVar4.a(iVar2, i7, (int) (this.x0 * i7));
+                }
+                if (z && v(this.B)) {
+                    measuredHeight += view2.getMeasuredHeight();
+                }
+            }
+            com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+            if (eVar != null && eVar.getView() == childAt) {
+                View view3 = this.C0.getView();
+                m mVar3 = (m) view3.getLayoutParams();
+                view3.measure(ViewGroup.getChildMeasureSpec(i2, getPaddingLeft() + getPaddingRight() + ((ViewGroup.MarginLayoutParams) mVar3).leftMargin + ((ViewGroup.MarginLayoutParams) mVar3).rightMargin, ((ViewGroup.MarginLayoutParams) mVar3).width), ViewGroup.getChildMeasureSpec(i3, getPaddingTop() + getPaddingBottom() + ((ViewGroup.MarginLayoutParams) mVar3).topMargin + ((ViewGroup.MarginLayoutParams) mVar3).bottomMargin + ((z && (this.A0 != null && v(this.A) && a(this.E, this.A0))) ? this.q0 : 0) + ((z && (this.B0 != null && v(this.B) && a(this.F, this.B0))) ? this.s0 : 0), ((ViewGroup.MarginLayoutParams) mVar3).height));
+                measuredHeight += view3.getMeasuredHeight();
+            }
+        }
+        super.setMeasuredDimension(View.resolveSize(super.getSuggestedMinimumWidth(), i2), View.resolveSize(measuredHeight, i3));
+        this.f5578j = getMeasuredWidth() / 2;
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public boolean onNestedFling(@NonNull View view, float f2, float f3, boolean z) {
-        return this.f9037o0.dispatchNestedFling(f2, f3, z);
+        return this.o0.dispatchNestedFling(f2, f3, z);
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public boolean onNestedPreFling(@NonNull View view, float f2, float f3) {
-        return (this.f9004O0 && f3 > 0.0f) || m8635a(Float.valueOf(-f3)) || this.f9037o0.dispatchNestedPreFling(f2, f3);
+        return (this.O0 && f3 > 0.0f) || a(Float.valueOf(-f3)) || this.o0.dispatchNestedPreFling(f2, f3);
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public void onNestedPreScroll(@NonNull View view, int i2, int i3, @NonNull int[] iArr) {
         int i4;
-        int i5 = this.f9031l0;
+        int i5 = this.l0;
         if (i3 * i5 > 0) {
-            if (Math.abs(i3) > Math.abs(this.f9031l0)) {
-                i4 = this.f9031l0;
-                this.f9031l0 = 0;
+            if (Math.abs(i3) > Math.abs(this.l0)) {
+                i4 = this.l0;
+                this.l0 = 0;
             } else {
-                this.f9031l0 -= i3;
+                this.l0 -= i3;
                 i4 = i3;
             }
-            m8672k(this.f9031l0);
-            EnumC2879b enumC2879b = this.f8992I0;
-            if (enumC2879b.isOpening || enumC2879b == EnumC2879b.None) {
-                if (this.f9010b > 0) {
-                    this.f8986F0.mo8693a(EnumC2879b.PullDownToRefresh);
+            k(this.l0);
+            com.scwang.smartrefresh.layout.c.b bVar = this.I0;
+            if (bVar.isOpening || bVar == com.scwang.smartrefresh.layout.c.b.None) {
+                if (this.f5570b > 0) {
+                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
                 } else {
-                    this.f8986F0.mo8693a(EnumC2879b.PullUpToLoad);
+                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
                 }
             }
-        } else if (i3 <= 0 || !this.f9004O0) {
+        } else if (i3 <= 0 || !this.O0) {
             i4 = 0;
         } else {
-            this.f9031l0 = i5 - i3;
-            m8672k(this.f9031l0);
+            this.l0 = i5 - i3;
+            k(this.l0);
             i4 = i3;
         }
-        this.f9037o0.dispatchNestedPreScroll(i2, i3 - i4, iArr, null);
+        this.o0.dispatchNestedPreScroll(i2, i3 - i4, iArr, null);
         iArr[1] = iArr[1] + i4;
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public void onNestedScroll(@NonNull View view, int i2, int i3, int i4, int i5) {
-        this.f9037o0.dispatchNestedScroll(i2, i3, i4, i5, this.f9035n0);
-        int i6 = i5 + this.f9035n0[1];
-        if (i6 != 0 && (this.f8993J || ((i6 < 0 && m8685v(this.f8975A)) || (i6 > 0 && m8685v(this.f8977B))))) {
-            if (this.f8992I0 == EnumC2879b.None) {
-                this.f8986F0.mo8693a(i6 > 0 ? EnumC2879b.PullUpToLoad : EnumC2879b.PullDownToRefresh);
+        this.o0.dispatchNestedScroll(i2, i3, i4, i5, this.n0);
+        int i6 = i5 + this.n0[1];
+        if (i6 != 0 && (this.J || ((i6 < 0 && v(this.A)) || (i6 > 0 && v(this.B))))) {
+            if (this.I0 == com.scwang.smartrefresh.layout.c.b.None) {
+                this.F0.a(i6 > 0 ? com.scwang.smartrefresh.layout.c.b.PullUpToLoad : com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
             }
-            int i7 = this.f9031l0 - i6;
-            this.f9031l0 = i7;
-            m8672k(i7);
+            int i7 = this.l0 - i6;
+            this.l0 = i7;
+            k(i7);
         }
-        if (!this.f9004O0 || i3 >= 0) {
+        if (!this.O0 || i3 >= 0) {
             return;
         }
-        this.f9004O0 = false;
+        this.O0 = false;
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public void onNestedScrollAccepted(@NonNull View view, @NonNull View view2, int i2) {
-        this.f9039p0.onNestedScrollAccepted(view, view2, i2);
-        this.f9037o0.startNestedScroll(i2 & 2);
-        this.f9031l0 = this.f9010b;
-        this.f9033m0 = true;
-        m8657f(0);
+        this.p0.onNestedScrollAccepted(view, view2, i2);
+        this.o0.startNestedScroll(i2 & 2);
+        this.l0 = this.f5570b;
+        this.m0 = true;
+        f(0);
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public boolean onStartNestedScroll(@NonNull View view, @NonNull View view2, int i2) {
-        return (isEnabled() && isNestedScrollingEnabled() && (i2 & 2) != 0) && (this.f8993J || m8685v(this.f8975A) || m8685v(this.f8977B));
+        return (isEnabled() && isNestedScrollingEnabled() && (i2 & 2) != 0) && (this.J || v(this.A) || v(this.B));
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent, androidx.core.view.NestedScrollingParent
     public void onStopNestedScroll(@NonNull View view) {
-        this.f9039p0.onStopNestedScroll(view);
-        this.f9033m0 = false;
-        this.f9031l0 = 0;
-        m8668j();
-        this.f9037o0.stopNestedScroll();
+        this.p0.onStopNestedScroll(view);
+        this.m0 = false;
+        this.l0 = 0;
+        j();
+        this.o0.stopNestedScroll();
     }
 
     @Override // android.view.View
     public boolean post(@NonNull Runnable runnable) {
-        Handler handler = this.f8984E0;
+        Handler handler = this.E0;
         if (handler != null) {
-            return handler.post(new RunnableC2888a(runnable, 0L));
+            return handler.post(new com.scwang.smartrefresh.layout.e.a(runnable, 0L));
         }
-        List<RunnableC2888a> list = this.f8988G0;
-        if (list == null) {
-            list = new ArrayList<>();
+        List<com.scwang.smartrefresh.layout.e.a> arrayList = this.G0;
+        if (arrayList == null) {
+            arrayList = new ArrayList<>();
         }
-        this.f8988G0 = list;
-        this.f8988G0.add(new RunnableC2888a(runnable, 0L));
+        this.G0 = arrayList;
+        this.G0.add(new com.scwang.smartrefresh.layout.e.a(runnable, 0L));
         return false;
     }
 
     @Override // android.view.View
     public boolean postDelayed(@NonNull Runnable runnable, long j2) {
         if (j2 == 0) {
-            new RunnableC2888a(runnable, 0L).run();
+            new com.scwang.smartrefresh.layout.e.a(runnable, 0L).run();
             return true;
         }
-        Handler handler = this.f8984E0;
+        Handler handler = this.E0;
         if (handler != null) {
-            return handler.postDelayed(new RunnableC2888a(runnable, 0L), j2);
+            return handler.postDelayed(new com.scwang.smartrefresh.layout.e.a(runnable, 0L), j2);
         }
-        List<RunnableC2888a> list = this.f8988G0;
-        if (list == null) {
-            list = new ArrayList<>();
+        List<com.scwang.smartrefresh.layout.e.a> arrayList = this.G0;
+        if (arrayList == null) {
+            arrayList = new ArrayList<>();
         }
-        this.f8988G0 = list;
-        this.f8988G0.add(new RunnableC2888a(runnable, j2));
+        this.G0 = arrayList;
+        this.G0.add(new com.scwang.smartrefresh.layout.e.a(runnable, j2));
         return false;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: q */
-    public InterfaceC2876j mo8680q(boolean z) {
-        this.f8987G = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public com.scwang.smartrefresh.layout.b.j q(boolean z) {
+        this.G = z;
         return this;
     }
 
     @Override // android.view.View
     public void setNestedScrollingEnabled(boolean z) {
-        this.f9037o0.setNestedScrollingEnabled(z);
+        this.o0.setNestedScrollingEnabled(z);
     }
 
     protected void setStateDirectLoading(boolean z) {
-        if (this.f8990H0 != EnumC2879b.Loading) {
-            this.f8994J0 = System.currentTimeMillis();
-            this.f9004O0 = true;
-            m8631a(EnumC2879b.Loading);
-            InterfaceC2882b interfaceC2882b = this.f9025i0;
-            if (interfaceC2882b != null) {
+        if (this.H0 != com.scwang.smartrefresh.layout.c.b.Loading) {
+            this.J0 = System.currentTimeMillis();
+            this.O0 = true;
+            a(com.scwang.smartrefresh.layout.c.b.Loading);
+            com.scwang.smartrefresh.layout.d.b bVar = this.i0;
+            if (bVar != null) {
                 if (z) {
-                    interfaceC2882b.mo8723b(this);
+                    bVar.b(this);
                 }
-            } else if (this.f9027j0 == null) {
-                mo8651e(2000);
+            } else if (this.j0 == null) {
+                e(2000);
             }
-            InterfaceC2874h interfaceC2874h = this.f8978B0;
-            if (interfaceC2874h != null) {
-                int i2 = this.f9045s0;
-                interfaceC2874h.mo8716a(this, i2, (int) (this.f9055x0 * i2));
+            com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+            if (hVar != null) {
+                int i2 = this.s0;
+                hVar.a(this, i2, (int) (this.x0 * i2));
             }
-            InterfaceC2883c interfaceC2883c = this.f9027j0;
-            if (interfaceC2883c == null || !(this.f8978B0 instanceof InterfaceC2872f)) {
+            com.scwang.smartrefresh.layout.d.c cVar = this.j0;
+            if (cVar == null || !(this.B0 instanceof com.scwang.smartrefresh.layout.b.f)) {
                 return;
             }
-            if (interfaceC2883c != null && z) {
-                interfaceC2883c.mo8723b(this);
+            if (cVar != null && z) {
+                cVar.b(this);
             }
-            InterfaceC2883c interfaceC2883c2 = this.f9027j0;
-            InterfaceC2872f interfaceC2872f = (InterfaceC2872f) this.f8978B0;
-            int i3 = this.f9045s0;
-            interfaceC2883c2.mo8724a(interfaceC2872f, i3, (int) (this.f9055x0 * i3));
+            com.scwang.smartrefresh.layout.d.c cVar2 = this.j0;
+            com.scwang.smartrefresh.layout.b.f fVar = (com.scwang.smartrefresh.layout.b.f) this.B0;
+            int i3 = this.s0;
+            cVar2.a(fVar, i3, (int) (this.x0 * i3));
         }
     }
 
-    protected void setViceState(EnumC2879b enumC2879b) {
-        EnumC2879b enumC2879b2 = this.f8990H0;
-        if (enumC2879b2.isDragging && enumC2879b2.isHeader != enumC2879b.isHeader) {
-            m8631a(EnumC2879b.None);
+    protected void setViceState(com.scwang.smartrefresh.layout.c.b bVar) {
+        com.scwang.smartrefresh.layout.c.b bVar2 = this.H0;
+        if (bVar2.isDragging && bVar2.isHeader != bVar.isHeader) {
+            a(com.scwang.smartrefresh.layout.c.b.None);
         }
-        if (this.f8992I0 != enumC2879b) {
-            this.f8992I0 = enumC2879b;
+        if (this.I0 != bVar) {
+            this.I0 = bVar;
         }
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: u */
-    public InterfaceC2876j mo8684u(boolean z) {
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public com.scwang.smartrefresh.layout.b.j u(boolean z) {
         setNestedScrollingEnabled(z);
         return this;
     }
 
-    /* renamed from: v */
-    protected boolean m8685v(boolean z) {
-        return z && !this.f8997L;
+    protected boolean v(boolean z) {
+        return z && !this.L;
     }
 
     public SmartRefreshLayout(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // android.view.ViewGroup
-    public C2864m generateDefaultLayoutParams() {
-        return new C2864m(-1, -1);
+    public m generateDefaultLayoutParams() {
+        return new m(-1, -1);
     }
 
-    /* renamed from: j */
-    protected void m8669j(float f2) {
-        EnumC2879b enumC2879b;
-        if (this.f9008S0 == null) {
-            if (f2 > 0.0f && ((enumC2879b = this.f8990H0) == EnumC2879b.Refreshing || enumC2879b == EnumC2879b.TwoLevel)) {
-                this.f9007R0 = new RunnableC2862k(f2, this.f9041q0);
+    protected void j(float f2) {
+        com.scwang.smartrefresh.layout.c.b bVar;
+        if (this.S0 == null) {
+            if (f2 > 0.0f && ((bVar = this.H0) == com.scwang.smartrefresh.layout.c.b.Refreshing || bVar == com.scwang.smartrefresh.layout.c.b.TwoLevel)) {
+                this.R0 = new k(f2, this.q0);
                 return;
             }
-            if (f2 < 0.0f && (this.f8990H0 == EnumC2879b.Loading || ((this.f8987G && this.f9015d0 && m8685v(this.f8977B)) || (this.f8995K && !this.f9015d0 && m8685v(this.f8977B) && this.f8990H0 != EnumC2879b.Refreshing)))) {
-                this.f9007R0 = new RunnableC2862k(f2, -this.f9045s0);
-            } else if (this.f9010b == 0 && this.f8991I) {
-                this.f9007R0 = new RunnableC2862k(f2, 0);
+            if (f2 < 0.0f && (this.H0 == com.scwang.smartrefresh.layout.c.b.Loading || ((this.G && this.d0 && v(this.B)) || (this.K && !this.d0 && v(this.B) && this.H0 != com.scwang.smartrefresh.layout.c.b.Refreshing)))) {
+                this.R0 = new k(f2, -this.s0);
+            } else if (this.f5570b == 0 && this.I) {
+                this.R0 = new k(f2, 0);
             }
         }
     }
 
-    /* renamed from: k */
-    protected void m8671k() {
-        EnumC2879b enumC2879b = this.f8990H0;
-        EnumC2879b enumC2879b2 = EnumC2879b.None;
-        if (enumC2879b != enumC2879b2 && this.f9010b == 0) {
-            m8631a(enumC2879b2);
+    protected void k() {
+        com.scwang.smartrefresh.layout.c.b bVar = this.H0;
+        com.scwang.smartrefresh.layout.c.b bVar2 = com.scwang.smartrefresh.layout.c.b.None;
+        if (bVar != bVar2 && this.f5570b == 0) {
+            a(bVar2);
         }
-        if (this.f9010b != 0) {
-            this.f8986F0.mo8687a(0);
+        if (this.f5570b != 0) {
+            this.F0.a(0);
         }
     }
 
-    /* renamed from: l */
-    protected void m8674l() {
-        C2853b c2853b = new C2853b();
-        m8631a(EnumC2879b.LoadReleased);
-        ValueAnimator mo8687a = this.f8986F0.mo8687a(-this.f9045s0);
-        if (mo8687a != null) {
-            mo8687a.addListener(c2853b);
+    protected void l() {
+        b bVar = new b();
+        a(com.scwang.smartrefresh.layout.c.b.LoadReleased);
+        ValueAnimator valueAnimatorA = this.F0.a(-this.s0);
+        if (valueAnimatorA != null) {
+            valueAnimatorA.addListener(bVar);
         }
-        InterfaceC2874h interfaceC2874h = this.f8978B0;
-        if (interfaceC2874h != null) {
-            int i2 = this.f9045s0;
-            interfaceC2874h.mo8719b(this, i2, (int) (this.f9055x0 * i2));
+        com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+        if (hVar != null) {
+            int i2 = this.s0;
+            hVar.b(this, i2, (int) (this.x0 * i2));
         }
-        InterfaceC2883c interfaceC2883c = this.f9027j0;
-        if (interfaceC2883c != null) {
-            InterfaceC2874h interfaceC2874h2 = this.f8978B0;
-            if (interfaceC2874h2 instanceof InterfaceC2872f) {
-                int i3 = this.f9045s0;
-                interfaceC2883c.mo8730b((InterfaceC2872f) interfaceC2874h2, i3, (int) (this.f9055x0 * i3));
+        com.scwang.smartrefresh.layout.d.c cVar = this.j0;
+        if (cVar != null) {
+            com.scwang.smartrefresh.layout.b.h hVar2 = this.B0;
+            if (hVar2 instanceof com.scwang.smartrefresh.layout.b.f) {
+                int i3 = this.s0;
+                cVar.b((com.scwang.smartrefresh.layout.b.f) hVar2, i3, (int) (this.x0 * i3));
             }
         }
-        if (mo8687a == null) {
-            c2853b.onAnimationEnd(null);
+        if (valueAnimatorA == null) {
+            bVar.onAnimationEnd(null);
         }
     }
 
-    /* renamed from: m */
-    protected void m8676m() {
-        C2854c c2854c = new C2854c();
-        m8631a(EnumC2879b.RefreshReleased);
-        ValueAnimator mo8687a = this.f8986F0.mo8687a(this.f9041q0);
-        if (mo8687a != null) {
-            mo8687a.addListener(c2854c);
+    protected void m() {
+        c cVar = new c();
+        a(com.scwang.smartrefresh.layout.c.b.RefreshReleased);
+        ValueAnimator valueAnimatorA = this.F0.a(this.q0);
+        if (valueAnimatorA != null) {
+            valueAnimatorA.addListener(cVar);
         }
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h != null) {
-            int i2 = this.f9041q0;
-            interfaceC2874h.mo8719b(this, i2, (int) (this.f9053w0 * i2));
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar != null) {
+            int i2 = this.q0;
+            hVar.b(this, i2, (int) (this.w0 * i2));
         }
-        InterfaceC2883c interfaceC2883c = this.f9027j0;
-        if (interfaceC2883c != null) {
-            InterfaceC2874h interfaceC2874h2 = this.f8976A0;
-            if (interfaceC2874h2 instanceof InterfaceC2873g) {
-                int i3 = this.f9041q0;
-                interfaceC2883c.mo8727a((InterfaceC2873g) interfaceC2874h2, i3, (int) (this.f9053w0 * i3));
+        com.scwang.smartrefresh.layout.d.c cVar2 = this.j0;
+        if (cVar2 != null) {
+            com.scwang.smartrefresh.layout.b.h hVar2 = this.A0;
+            if (hVar2 instanceof com.scwang.smartrefresh.layout.b.g) {
+                int i3 = this.q0;
+                cVar2.a((com.scwang.smartrefresh.layout.b.g) hVar2, i3, (int) (this.w0 * i3));
             }
         }
-        if (mo8687a == null) {
-            c2854c.onAnimationEnd(null);
+        if (valueAnimatorA == null) {
+            cVar.onAnimationEnd(null);
         }
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: n */
-    public SmartRefreshLayout mo8677n(boolean z) {
-        this.f8979C = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout n(boolean z) {
+        this.C = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: o */
-    public SmartRefreshLayout mo8678o(boolean z) {
-        this.f8999M = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout o(boolean z) {
+        this.M = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: p */
-    public SmartRefreshLayout mo8679p(boolean z) {
-        this.f8981D = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout p(boolean z) {
+        this.D = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: r */
-    public SmartRefreshLayout mo8681r(boolean z) {
-        this.f9001N = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout r(boolean z) {
+        this.N = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: s */
-    public SmartRefreshLayout mo8682s(boolean z) {
-        this.f9017e0 = true;
-        this.f8977B = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout s(boolean z) {
+        this.e0 = true;
+        this.B = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     public SmartRefreshLayout setPrimaryColors(@ColorInt int... iArr) {
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h != null) {
-            interfaceC2874h.setPrimaryColors(iArr);
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar != null) {
+            hVar.setPrimaryColors(iArr);
         }
-        InterfaceC2874h interfaceC2874h2 = this.f8978B0;
-        if (interfaceC2874h2 != null) {
-            interfaceC2874h2.setPrimaryColors(iArr);
+        com.scwang.smartrefresh.layout.b.h hVar2 = this.B0;
+        if (hVar2 != null) {
+            hVar2.setPrimaryColors(iArr);
         }
-        this.f9058z = iArr;
+        this.z = iArr;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     @Deprecated
-    /* renamed from: t */
-    public SmartRefreshLayout mo8683t(boolean z) {
-        this.f8987G = z;
+    public SmartRefreshLayout t(boolean z) {
+        this.G = z;
         return this;
     }
 
     public SmartRefreshLayout(Context context, AttributeSet attributeSet, int i2) {
         super(context, attributeSet, i2);
-        this.f9016e = 250;
-        this.f9018f = 250;
-        this.f9030l = 0.5f;
-        this.f9032m = 'n';
-        this.f9038p = -1;
-        this.f9040q = -1;
-        this.f9042r = -1;
-        this.f9044s = -1;
-        this.f8975A = true;
-        this.f8977B = false;
-        this.f8979C = true;
-        this.f8981D = true;
-        this.f8983E = true;
-        this.f8985F = true;
-        this.f8987G = false;
-        this.f8989H = true;
-        this.f8991I = true;
-        this.f8993J = false;
-        this.f8995K = true;
-        this.f8997L = false;
-        this.f8999M = true;
-        this.f9001N = true;
-        this.f9003O = true;
-        this.f9011b0 = false;
-        this.f9013c0 = false;
-        this.f9015d0 = false;
-        this.f9017e0 = false;
-        this.f9019f0 = false;
-        this.f9021g0 = false;
-        this.f9035n0 = new int[2];
-        this.f9037o0 = new NestedScrollingChildHelper(this);
-        this.f9039p0 = new NestedScrollingParentHelper(this);
-        EnumC2878a enumC2878a = EnumC2878a.DefaultUnNotify;
-        this.f9043r0 = enumC2878a;
-        this.f9047t0 = enumC2878a;
-        this.f9053w0 = 2.5f;
-        this.f9055x0 = 2.5f;
-        this.f9057y0 = 1.0f;
-        this.f9059z0 = 1.0f;
-        this.f8986F0 = new C2865n();
-        EnumC2879b enumC2879b = EnumC2879b.None;
-        this.f8990H0 = enumC2879b;
-        this.f8992I0 = enumC2879b;
-        this.f8994J0 = 0L;
-        this.f8996K0 = 0;
-        this.f8998L0 = 0;
-        this.f9004O0 = false;
-        this.f9005P0 = false;
-        this.f9006Q0 = null;
+        this.f5573e = 250;
+        this.f5574f = 250;
+        this.f5580l = 0.5f;
+        this.f5581m = 'n';
+        this.p = -1;
+        this.q = -1;
+        this.r = -1;
+        this.s = -1;
+        this.A = true;
+        this.B = false;
+        this.C = true;
+        this.D = true;
+        this.E = true;
+        this.F = true;
+        this.G = false;
+        this.H = true;
+        this.I = true;
+        this.J = false;
+        this.K = true;
+        this.L = false;
+        this.M = true;
+        this.N = true;
+        this.O = true;
+        this.b0 = false;
+        this.c0 = false;
+        this.d0 = false;
+        this.e0 = false;
+        this.f0 = false;
+        this.g0 = false;
+        this.n0 = new int[2];
+        this.o0 = new NestedScrollingChildHelper(this);
+        this.p0 = new NestedScrollingParentHelper(this);
+        com.scwang.smartrefresh.layout.c.a aVar = com.scwang.smartrefresh.layout.c.a.DefaultUnNotify;
+        this.r0 = aVar;
+        this.t0 = aVar;
+        this.w0 = 2.5f;
+        this.x0 = 2.5f;
+        this.y0 = 1.0f;
+        this.z0 = 1.0f;
+        this.F0 = new n();
+        com.scwang.smartrefresh.layout.c.b bVar = com.scwang.smartrefresh.layout.c.b.None;
+        this.H0 = bVar;
+        this.I0 = bVar;
+        this.J0 = 0L;
+        this.K0 = 0;
+        this.L0 = 0;
+        this.O0 = false;
+        this.P0 = false;
+        this.Q0 = null;
         super.setClipToPadding(false);
-        C2889b c2889b = new C2889b();
+        com.scwang.smartrefresh.layout.e.b bVar2 = new com.scwang.smartrefresh.layout.e.b();
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-        this.f9052w = new Scroller(context);
-        this.f9054x = VelocityTracker.obtain();
-        this.f9020g = context.getResources().getDisplayMetrics().heightPixels;
-        this.f9056y = new InterpolatorC2893f();
-        this.f9009a = viewConfiguration.getScaledTouchSlop();
-        this.f9046t = viewConfiguration.getScaledMinimumFlingVelocity();
-        this.f9048u = viewConfiguration.getScaledMaximumFlingVelocity();
-        this.f9045s0 = c2889b.m8737a(60.0f);
-        this.f9041q0 = c2889b.m8737a(100.0f);
-        this.f9037o0.setNestedScrollingEnabled(true);
-        InterfaceC2869c interfaceC2869c = f8974V0;
-        if (interfaceC2869c != null) {
-            interfaceC2869c.m8701a(context, this);
+        this.w = new Scroller(context);
+        this.x = VelocityTracker.obtain();
+        this.f5575g = context.getResources().getDisplayMetrics().heightPixels;
+        this.y = new com.scwang.smartrefresh.layout.e.f();
+        this.a = viewConfiguration.getScaledTouchSlop();
+        this.t = viewConfiguration.getScaledMinimumFlingVelocity();
+        this.u = viewConfiguration.getScaledMaximumFlingVelocity();
+        this.s0 = bVar2.a(60.0f);
+        this.q0 = bVar2.a(100.0f);
+        this.o0.setNestedScrollingEnabled(true);
+        com.scwang.smartrefresh.layout.b.c cVar = V0;
+        if (cVar != null) {
+            cVar.a(context, this);
         }
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C2851R.styleable.SmartRefreshLayout);
-        NestedScrollingChildHelper nestedScrollingChildHelper = this.f9037o0;
-        nestedScrollingChildHelper.setNestedScrollingEnabled(obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableNestedScrolling, nestedScrollingChildHelper.isNestedScrollingEnabled()));
-        this.f9030l = obtainStyledAttributes.getFloat(C2851R.styleable.SmartRefreshLayout_srlDragRate, this.f9030l);
-        this.f9053w0 = obtainStyledAttributes.getFloat(C2851R.styleable.SmartRefreshLayout_srlHeaderMaxDragRate, this.f9053w0);
-        this.f9055x0 = obtainStyledAttributes.getFloat(C2851R.styleable.SmartRefreshLayout_srlFooterMaxDragRate, this.f9055x0);
-        this.f9057y0 = obtainStyledAttributes.getFloat(C2851R.styleable.SmartRefreshLayout_srlHeaderTriggerRate, this.f9057y0);
-        this.f9059z0 = obtainStyledAttributes.getFloat(C2851R.styleable.SmartRefreshLayout_srlFooterTriggerRate, this.f9059z0);
-        this.f8975A = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableRefresh, this.f8975A);
-        this.f9018f = obtainStyledAttributes.getInt(C2851R.styleable.SmartRefreshLayout_srlReboundDuration, this.f9018f);
-        this.f8977B = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableLoadMore, this.f8977B);
-        this.f9041q0 = obtainStyledAttributes.getDimensionPixelOffset(C2851R.styleable.SmartRefreshLayout_srlHeaderHeight, this.f9041q0);
-        this.f9045s0 = obtainStyledAttributes.getDimensionPixelOffset(C2851R.styleable.SmartRefreshLayout_srlFooterHeight, this.f9045s0);
-        this.f9049u0 = obtainStyledAttributes.getDimensionPixelOffset(C2851R.styleable.SmartRefreshLayout_srlHeaderInsetStart, this.f9049u0);
-        this.f9051v0 = obtainStyledAttributes.getDimensionPixelOffset(C2851R.styleable.SmartRefreshLayout_srlFooterInsetStart, this.f9051v0);
-        this.f9011b0 = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlDisableContentWhenRefresh, this.f9011b0);
-        this.f9013c0 = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlDisableContentWhenLoading, this.f9013c0);
-        this.f8983E = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableHeaderTranslationContent, this.f8983E);
-        this.f8985F = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableFooterTranslationContent, this.f8985F);
-        this.f8989H = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnablePreviewInEditMode, this.f8989H);
-        this.f8995K = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableAutoLoadMore, this.f8995K);
-        this.f8991I = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableOverScrollBounce, this.f8991I);
-        this.f8997L = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnablePureScrollMode, this.f8997L);
-        this.f8999M = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableScrollContentWhenLoaded, this.f8999M);
-        this.f9001N = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableScrollContentWhenRefreshed, this.f9001N);
-        this.f9003O = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableLoadMoreWhenContentNotFull, this.f9003O);
-        this.f8987G = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableFooterFollowWhenLoadFinished, this.f8987G);
-        this.f8987G = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableFooterFollowWhenNoMoreData, this.f8987G);
-        this.f8979C = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableClipHeaderWhenFixedBehind, this.f8979C);
-        this.f8981D = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableClipFooterWhenFixedBehind, this.f8981D);
-        this.f8993J = obtainStyledAttributes.getBoolean(C2851R.styleable.SmartRefreshLayout_srlEnableOverScrollDrag, this.f8993J);
-        this.f9038p = obtainStyledAttributes.getResourceId(C2851R.styleable.SmartRefreshLayout_srlFixedHeaderViewId, this.f9038p);
-        this.f9040q = obtainStyledAttributes.getResourceId(C2851R.styleable.SmartRefreshLayout_srlFixedFooterViewId, this.f9040q);
-        this.f9042r = obtainStyledAttributes.getResourceId(C2851R.styleable.SmartRefreshLayout_srlHeaderTranslationViewId, this.f9042r);
-        this.f9044s = obtainStyledAttributes.getResourceId(C2851R.styleable.SmartRefreshLayout_srlFooterTranslationViewId, this.f9044s);
-        if (this.f8997L && !obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_srlEnableOverScrollDrag)) {
-            this.f8993J = true;
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.SmartRefreshLayout);
+        NestedScrollingChildHelper nestedScrollingChildHelper = this.o0;
+        nestedScrollingChildHelper.setNestedScrollingEnabled(typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableNestedScrolling, nestedScrollingChildHelper.isNestedScrollingEnabled()));
+        this.f5580l = typedArrayObtainStyledAttributes.getFloat(R.styleable.SmartRefreshLayout_srlDragRate, this.f5580l);
+        this.w0 = typedArrayObtainStyledAttributes.getFloat(R.styleable.SmartRefreshLayout_srlHeaderMaxDragRate, this.w0);
+        this.x0 = typedArrayObtainStyledAttributes.getFloat(R.styleable.SmartRefreshLayout_srlFooterMaxDragRate, this.x0);
+        this.y0 = typedArrayObtainStyledAttributes.getFloat(R.styleable.SmartRefreshLayout_srlHeaderTriggerRate, this.y0);
+        this.z0 = typedArrayObtainStyledAttributes.getFloat(R.styleable.SmartRefreshLayout_srlFooterTriggerRate, this.z0);
+        this.A = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableRefresh, this.A);
+        this.f5574f = typedArrayObtainStyledAttributes.getInt(R.styleable.SmartRefreshLayout_srlReboundDuration, this.f5574f);
+        this.B = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableLoadMore, this.B);
+        this.q0 = typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.SmartRefreshLayout_srlHeaderHeight, this.q0);
+        this.s0 = typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.SmartRefreshLayout_srlFooterHeight, this.s0);
+        this.u0 = typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.SmartRefreshLayout_srlHeaderInsetStart, this.u0);
+        this.v0 = typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.SmartRefreshLayout_srlFooterInsetStart, this.v0);
+        this.b0 = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlDisableContentWhenRefresh, this.b0);
+        this.c0 = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlDisableContentWhenLoading, this.c0);
+        this.E = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableHeaderTranslationContent, this.E);
+        this.F = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableFooterTranslationContent, this.F);
+        this.H = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnablePreviewInEditMode, this.H);
+        this.K = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableAutoLoadMore, this.K);
+        this.I = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableOverScrollBounce, this.I);
+        this.L = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnablePureScrollMode, this.L);
+        this.M = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableScrollContentWhenLoaded, this.M);
+        this.N = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableScrollContentWhenRefreshed, this.N);
+        this.O = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableLoadMoreWhenContentNotFull, this.O);
+        this.G = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableFooterFollowWhenLoadFinished, this.G);
+        this.G = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableFooterFollowWhenNoMoreData, this.G);
+        this.C = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableClipHeaderWhenFixedBehind, this.C);
+        this.D = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableClipFooterWhenFixedBehind, this.D);
+        this.J = typedArrayObtainStyledAttributes.getBoolean(R.styleable.SmartRefreshLayout_srlEnableOverScrollDrag, this.J);
+        this.p = typedArrayObtainStyledAttributes.getResourceId(R.styleable.SmartRefreshLayout_srlFixedHeaderViewId, this.p);
+        this.q = typedArrayObtainStyledAttributes.getResourceId(R.styleable.SmartRefreshLayout_srlFixedFooterViewId, this.q);
+        this.r = typedArrayObtainStyledAttributes.getResourceId(R.styleable.SmartRefreshLayout_srlHeaderTranslationViewId, this.r);
+        this.s = typedArrayObtainStyledAttributes.getResourceId(R.styleable.SmartRefreshLayout_srlFooterTranslationViewId, this.s);
+        if (this.L && !typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_srlEnableOverScrollDrag)) {
+            this.J = true;
         }
-        this.f9017e0 = this.f9017e0 || obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_srlEnableLoadMore);
-        this.f9019f0 = this.f9019f0 || obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_srlEnableHeaderTranslationContent);
-        this.f9021g0 = this.f9021g0 || obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_srlEnableFooterTranslationContent);
-        this.f9043r0 = obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_srlHeaderHeight) ? EnumC2878a.XmlLayoutUnNotify : this.f9043r0;
-        this.f9047t0 = obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_srlFooterHeight) ? EnumC2878a.XmlLayoutUnNotify : this.f9047t0;
-        int color = obtainStyledAttributes.getColor(C2851R.styleable.SmartRefreshLayout_srlAccentColor, 0);
-        int color2 = obtainStyledAttributes.getColor(C2851R.styleable.SmartRefreshLayout_srlPrimaryColor, 0);
+        this.e0 = this.e0 || typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_srlEnableLoadMore);
+        this.f0 = this.f0 || typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_srlEnableHeaderTranslationContent);
+        this.g0 = this.g0 || typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_srlEnableFooterTranslationContent);
+        this.r0 = typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_srlHeaderHeight) ? com.scwang.smartrefresh.layout.c.a.XmlLayoutUnNotify : this.r0;
+        this.t0 = typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_srlFooterHeight) ? com.scwang.smartrefresh.layout.c.a.XmlLayoutUnNotify : this.t0;
+        int color = typedArrayObtainStyledAttributes.getColor(R.styleable.SmartRefreshLayout_srlAccentColor, 0);
+        int color2 = typedArrayObtainStyledAttributes.getColor(R.styleable.SmartRefreshLayout_srlPrimaryColor, 0);
         if (color2 != 0) {
             if (color != 0) {
-                this.f9058z = new int[]{color2, color};
+                this.z = new int[]{color2, color};
             } else {
-                this.f9058z = new int[]{color2};
+                this.z = new int[]{color2};
             }
         } else if (color != 0) {
-            this.f9058z = new int[]{0, color};
+            this.z = new int[]{0, color};
         }
-        obtainStyledAttributes.recycle();
+        typedArrayObtainStyledAttributes.recycle();
     }
 
-    /* renamed from: f */
-    protected boolean m8657f(int i2) {
+    protected boolean f(int i2) {
         if (i2 == 0) {
-            if (this.f9008S0 != null) {
-                EnumC2879b enumC2879b = this.f8990H0;
-                if (enumC2879b.isFinishing || enumC2879b == EnumC2879b.TwoLevelReleased) {
+            if (this.S0 != null) {
+                com.scwang.smartrefresh.layout.c.b bVar = this.H0;
+                if (bVar.isFinishing || bVar == com.scwang.smartrefresh.layout.c.b.TwoLevelReleased) {
                     return true;
                 }
-                if (enumC2879b == EnumC2879b.PullDownCanceled) {
-                    this.f8986F0.mo8693a(EnumC2879b.PullDownToRefresh);
-                } else if (enumC2879b == EnumC2879b.PullUpCanceled) {
-                    this.f8986F0.mo8693a(EnumC2879b.PullUpToLoad);
+                if (bVar == com.scwang.smartrefresh.layout.c.b.PullDownCanceled) {
+                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownToRefresh);
+                } else if (bVar == com.scwang.smartrefresh.layout.c.b.PullUpCanceled) {
+                    this.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpToLoad);
                 }
-                this.f9008S0.cancel();
-                this.f9008S0 = null;
+                this.S0.cancel();
+                this.S0 = null;
             }
-            this.f9007R0 = null;
+            this.R0 = null;
         }
-        return this.f9008S0 != null;
+        return this.S0 != null;
     }
 
-    /* JADX INFO: Access modifiers changed from: protected */
     @Override // android.view.ViewGroup
-    public C2864m generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return new C2864m(layoutParams);
+    public m generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return new m(layoutParams);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: h */
-    public SmartRefreshLayout mo8661h(float f2) {
-        this.f9030l = f2;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout h(float f2) {
+        this.f5580l = f2;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: i */
-    public SmartRefreshLayout mo8664i(float f2) {
-        if (this.f9043r0.canReplaceWith(EnumC2878a.CodeExact)) {
-            this.f9041q0 = C2889b.m8735b(f2);
-            this.f9043r0 = EnumC2878a.CodeExactUnNotify;
-            InterfaceC2874h interfaceC2874h = this.f8976A0;
-            if (interfaceC2874h != null) {
-                interfaceC2874h.getView().requestLayout();
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout i(float f2) {
+        if (this.r0.canReplaceWith(com.scwang.smartrefresh.layout.c.a.CodeExact)) {
+            this.q0 = com.scwang.smartrefresh.layout.e.b.b(f2);
+            this.r0 = com.scwang.smartrefresh.layout.c.a.CodeExactUnNotify;
+            com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+            if (hVar != null) {
+                hVar.getView().requestLayout();
             }
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: c */
-    public SmartRefreshLayout mo8642c(float f2) {
-        if (this.f9047t0.canReplaceWith(EnumC2878a.CodeExact)) {
-            this.f9045s0 = C2889b.m8735b(f2);
-            this.f9047t0 = EnumC2878a.CodeExactUnNotify;
-            InterfaceC2874h interfaceC2874h = this.f8978B0;
-            if (interfaceC2874h != null) {
-                interfaceC2874h.getView().requestLayout();
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout c(float f2) {
+        if (this.t0.canReplaceWith(com.scwang.smartrefresh.layout.c.a.CodeExact)) {
+            this.s0 = com.scwang.smartrefresh.layout.e.b.b(f2);
+            this.t0 = com.scwang.smartrefresh.layout.c.a.CodeExactUnNotify;
+            com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+            if (hVar != null) {
+                hVar.getView().requestLayout();
             }
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: e */
-    public SmartRefreshLayout mo8650e(float f2) {
-        this.f9051v0 = C2889b.m8735b(f2);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout e(float f2) {
+        this.v0 = com.scwang.smartrefresh.layout.e.b.b(f2);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: g */
-    public SmartRefreshLayout mo8659g(float f2) {
-        this.f9057y0 = f2;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout g(float f2) {
+        this.y0 = f2;
         return this;
     }
 
     @Override // android.view.ViewGroup
-    public C2864m generateLayoutParams(AttributeSet attributeSet) {
-        return new C2864m(getContext(), attributeSet);
+    public m generateLayoutParams(AttributeSet attributeSet) {
+        return new m(getContext(), attributeSet);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: h */
-    public SmartRefreshLayout mo8662h(boolean z) {
-        this.f8975A = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout h(boolean z) {
+        this.A = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: e */
-    public SmartRefreshLayout mo8652e(boolean z) {
-        return mo8615a(z ? Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.f8994J0))), 300) : 0, z);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout e(boolean z) {
+        return a(z ? Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.J0))), 300) : 0, z);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: g */
-    public SmartRefreshLayout mo8660g(boolean z) {
-        this.f8993J = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout g(boolean z) {
+        this.J = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: h */
-    public boolean mo8663h() {
-        int i2 = this.f8984E0 == null ? 400 : 0;
-        int i3 = this.f9018f;
-        float f2 = (this.f9053w0 / 2.0f) + 0.5f;
-        int i4 = this.f9041q0;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public boolean h() {
+        int i2 = this.E0 == null ? 400 : 0;
+        int i3 = this.f5574f;
+        float f2 = (this.w0 / 2.0f) + 0.5f;
+        int i4 = this.q0;
         float f3 = f2 * i4 * 1.0f;
         if (i4 == 0) {
             i4 = 1;
         }
-        return mo8641b(i2, i3, f3 / i4, true);
+        return b(i2, i3, f3 / i4, true);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: b */
-    public SmartRefreshLayout mo8638b(float f2) {
-        this.f9059z0 = f2;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout b(float f2) {
+        this.z0 = f2;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: d */
-    public SmartRefreshLayout mo8647d(float f2) {
-        this.f9053w0 = f2;
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h != null && this.f8984E0 != null) {
-            InterfaceC2875i interfaceC2875i = this.f8986F0;
-            int i2 = this.f9041q0;
-            interfaceC2874h.mo8715a(interfaceC2875i, i2, (int) (this.f9053w0 * i2));
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout d(float f2) {
+        this.w0 = f2;
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar != null && this.E0 != null) {
+            com.scwang.smartrefresh.layout.b.i iVar = this.F0;
+            int i2 = this.q0;
+            hVar.a(iVar, i2, (int) (this.w0 * i2));
         } else {
-            this.f9043r0 = this.f9043r0.unNotify();
+            this.r0 = this.r0.unNotify();
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: g */
-    public SmartRefreshLayout mo8658g() {
-        return mo8648d(Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.f8994J0))), 300));
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout g() {
+        return d(Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.J0))), 300));
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: b */
-    public SmartRefreshLayout mo8639b(int i2) {
-        this.f9018f = i2;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout b(int i2) {
+        this.f5574f = i2;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: e */
-    public SmartRefreshLayout mo8651e(int i2) {
-        return mo8616a(i2, true, false);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout e(int i2) {
+        return a(i2, true, false);
     }
 
-    /* renamed from: k */
-    protected void m8672k(float f2) {
-        EnumC2879b enumC2879b;
-        if (this.f8990H0 == EnumC2879b.TwoLevel && f2 > 0.0f) {
-            this.f8986F0.mo8689a(Math.min((int) f2, getMeasuredHeight()), true);
-        } else if (this.f8990H0 == EnumC2879b.Refreshing && f2 >= 0.0f) {
-            int i2 = this.f9041q0;
+    protected void k(float f2) {
+        com.scwang.smartrefresh.layout.c.b bVar;
+        if (this.H0 == com.scwang.smartrefresh.layout.c.b.TwoLevel && f2 > 0.0f) {
+            this.F0.a(Math.min((int) f2, getMeasuredHeight()), true);
+        } else if (this.H0 == com.scwang.smartrefresh.layout.c.b.Refreshing && f2 >= 0.0f) {
+            int i2 = this.q0;
             if (f2 < i2) {
-                this.f8986F0.mo8689a((int) f2, true);
+                this.F0.a((int) f2, true);
             } else {
-                double d2 = (this.f9053w0 - 1.0f) * i2;
-                int max = Math.max((this.f9020g * 4) / 3, getHeight());
-                int i3 = this.f9041q0;
-                double d3 = max - i3;
-                double max2 = Math.max(0.0f, (f2 - i3) * this.f9030l);
-                double d4 = -max2;
+                double d2 = (this.w0 - 1.0f) * i2;
+                int iMax = Math.max((this.f5575g * 4) / 3, getHeight());
+                int i3 = this.q0;
+                double d3 = iMax - i3;
+                double dMax = Math.max(0.0f, (f2 - i3) * this.f5580l);
+                double d4 = -dMax;
                 if (d3 == 0.0d) {
                     d3 = 1.0d;
                 }
-                this.f8986F0.mo8689a(((int) Math.min(d2 * (1.0d - Math.pow(100.0d, d4 / d3)), max2)) + this.f9041q0, true);
+                this.F0.a(((int) Math.min(d2 * (1.0d - Math.pow(100.0d, d4 / d3)), dMax)) + this.q0, true);
             }
-        } else if (f2 < 0.0f && (this.f8990H0 == EnumC2879b.Loading || ((this.f8987G && this.f9015d0 && m8685v(this.f8977B)) || (this.f8995K && !this.f9015d0 && m8685v(this.f8977B))))) {
-            int i4 = this.f9045s0;
+        } else if (f2 < 0.0f && (this.H0 == com.scwang.smartrefresh.layout.c.b.Loading || ((this.G && this.d0 && v(this.B)) || (this.K && !this.d0 && v(this.B))))) {
+            int i4 = this.s0;
             if (f2 > (-i4)) {
-                this.f8986F0.mo8689a((int) f2, true);
+                this.F0.a((int) f2, true);
             } else {
-                double d5 = (this.f9055x0 - 1.0f) * i4;
-                int max3 = Math.max((this.f9020g * 4) / 3, getHeight());
-                int i5 = this.f9045s0;
-                double d6 = max3 - i5;
-                double d7 = -Math.min(0.0f, (i5 + f2) * this.f9030l);
+                double d5 = (this.x0 - 1.0f) * i4;
+                int iMax2 = Math.max((this.f5575g * 4) / 3, getHeight());
+                int i5 = this.s0;
+                double d6 = iMax2 - i5;
+                double d7 = -Math.min(0.0f, (i5 + f2) * this.f5580l);
                 double d8 = -d7;
                 if (d6 == 0.0d) {
                     d6 = 1.0d;
                 }
-                this.f8986F0.mo8689a(((int) (-Math.min(d5 * (1.0d - Math.pow(100.0d, d8 / d6)), d7))) - this.f9045s0, true);
+                this.F0.a(((int) (-Math.min(d5 * (1.0d - Math.pow(100.0d, d8 / d6)), d7))) - this.s0, true);
             }
         } else if (f2 >= 0.0f) {
-            double d9 = this.f9053w0 * this.f9041q0;
-            double max4 = Math.max(this.f9020g / 2, getHeight());
-            double max5 = Math.max(0.0f, this.f9030l * f2);
-            double d10 = -max5;
-            if (max4 == 0.0d) {
-                max4 = 1.0d;
+            double d9 = this.w0 * this.q0;
+            double dMax2 = Math.max(this.f5575g / 2, getHeight());
+            double dMax3 = Math.max(0.0f, this.f5580l * f2);
+            double d10 = -dMax3;
+            if (dMax2 == 0.0d) {
+                dMax2 = 1.0d;
             }
-            this.f8986F0.mo8689a((int) Math.min(d9 * (1.0d - Math.pow(100.0d, d10 / max4)), max5), true);
+            this.F0.a((int) Math.min(d9 * (1.0d - Math.pow(100.0d, d10 / dMax2)), dMax3), true);
         } else {
-            double d11 = this.f9055x0 * this.f9045s0;
-            double max6 = Math.max(this.f9020g / 2, getHeight());
-            double d12 = -Math.min(0.0f, this.f9030l * f2);
+            double d11 = this.x0 * this.s0;
+            double dMax4 = Math.max(this.f5575g / 2, getHeight());
+            double d12 = -Math.min(0.0f, this.f5580l * f2);
             double d13 = -d12;
-            if (max6 == 0.0d) {
-                max6 = 1.0d;
+            if (dMax4 == 0.0d) {
+                dMax4 = 1.0d;
             }
-            this.f8986F0.mo8689a((int) (-Math.min(d11 * (1.0d - Math.pow(100.0d, d13 / max6)), d12)), true);
+            this.F0.a((int) (-Math.min(d11 * (1.0d - Math.pow(100.0d, d13 / dMax4)), d12)), true);
         }
-        if (!this.f8995K || this.f9015d0 || !m8685v(this.f8977B) || f2 >= 0.0f || (enumC2879b = this.f8990H0) == EnumC2879b.Refreshing || enumC2879b == EnumC2879b.Loading || enumC2879b == EnumC2879b.LoadFinish) {
+        if (!this.K || this.d0 || !v(this.B) || f2 >= 0.0f || (bVar = this.H0) == com.scwang.smartrefresh.layout.c.b.Refreshing || bVar == com.scwang.smartrefresh.layout.c.b.Loading || bVar == com.scwang.smartrefresh.layout.c.b.LoadFinish) {
             return;
         }
-        if (this.f9013c0) {
-            this.f9007R0 = null;
-            this.f8986F0.mo8687a(-this.f9045s0);
+        if (this.c0) {
+            this.R0 = null;
+            this.F0.a(-this.s0);
         }
         setStateDirectLoading(false);
-        postDelayed(new RunnableC2857f(), this.f9018f);
+        postDelayed(new f(), this.f5574f);
     }
 
-    /* renamed from: com.scwang.smartrefresh.layout.SmartRefreshLayout$m */
-    public static class C2864m extends ViewGroup.MarginLayoutParams {
+    public static class m extends ViewGroup.MarginLayoutParams {
+        public int a;
 
-        /* renamed from: a */
-        public int f9101a;
+        /* JADX INFO: renamed from: b */
+        public com.scwang.smartrefresh.layout.c.c f5606b;
 
-        /* renamed from: b */
-        public EnumC2880c f9102b;
-
-        public C2864m(Context context, AttributeSet attributeSet) {
+        public m(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
-            this.f9101a = 0;
-            this.f9102b = null;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C2851R.styleable.SmartRefreshLayout_Layout);
-            this.f9101a = obtainStyledAttributes.getColor(C2851R.styleable.SmartRefreshLayout_Layout_layout_srlBackgroundColor, this.f9101a);
-            if (obtainStyledAttributes.hasValue(C2851R.styleable.SmartRefreshLayout_Layout_layout_srlSpinnerStyle)) {
-                this.f9102b = EnumC2880c.values()[obtainStyledAttributes.getInt(C2851R.styleable.SmartRefreshLayout_Layout_layout_srlSpinnerStyle, EnumC2880c.Translate.ordinal())];
+            this.a = 0;
+            this.f5606b = null;
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.SmartRefreshLayout_Layout);
+            this.a = typedArrayObtainStyledAttributes.getColor(R.styleable.SmartRefreshLayout_Layout_layout_srlBackgroundColor, this.a);
+            if (typedArrayObtainStyledAttributes.hasValue(R.styleable.SmartRefreshLayout_Layout_layout_srlSpinnerStyle)) {
+                this.f5606b = com.scwang.smartrefresh.layout.c.c.values()[typedArrayObtainStyledAttributes.getInt(R.styleable.SmartRefreshLayout_Layout_layout_srlSpinnerStyle, com.scwang.smartrefresh.layout.c.c.Translate.ordinal())];
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
         }
 
-        public C2864m(int i2, int i3) {
+        public m(int i2, int i3) {
             super(i2, i3);
-            this.f9101a = 0;
-            this.f9102b = null;
+            this.a = 0;
+            this.f5606b = null;
         }
 
-        public C2864m(ViewGroup.MarginLayoutParams marginLayoutParams) {
+        public m(ViewGroup.MarginLayoutParams marginLayoutParams) {
             super(marginLayoutParams);
-            this.f9101a = 0;
-            this.f9102b = null;
+            this.a = 0;
+            this.f5606b = null;
         }
 
-        public C2864m(ViewGroup.LayoutParams layoutParams) {
+        public m(ViewGroup.LayoutParams layoutParams) {
             super(layoutParams);
-            this.f9101a = 0;
-            this.f9102b = null;
+            this.a = 0;
+            this.f5606b = null;
         }
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: b */
-    public SmartRefreshLayout mo8640b(boolean z) {
-        this.f9003O = z;
-        InterfaceC2871e interfaceC2871e = this.f8980C0;
-        if (interfaceC2871e != null) {
-            interfaceC2871e.mo8709b(z);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout b(boolean z) {
+        this.O = z;
+        com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+        if (eVar != null) {
+            eVar.b(z);
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: e */
-    public boolean mo8653e() {
-        int i2 = this.f8984E0 == null ? 400 : 0;
-        int i3 = this.f9018f;
-        float f2 = (this.f9053w0 / 2.0f) + 0.5f;
-        int i4 = this.f9041q0;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public boolean e() {
+        int i2 = this.E0 == null ? 400 : 0;
+        int i3 = this.f5574f;
+        float f2 = (this.w0 / 2.0f) + 0.5f;
+        int i4 = this.q0;
         float f3 = f2 * i4 * 1.0f;
         if (i4 == 0) {
             i4 = 1;
         }
-        return mo8641b(i2, i3, f3 / i4, false);
+        return b(i2, i3, f3 / i4, false);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: i */
-    public SmartRefreshLayout mo8665i(boolean z) {
-        return mo8616a(z ? Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.f8994J0))), 300) : 0, z, false);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout i(boolean z) {
+        return a(z ? Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.J0))), 300) : 0, z, false);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: c */
-    public SmartRefreshLayout mo8643c(boolean z) {
-        this.f8991I = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout c(boolean z) {
+        this.I = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: c */
-    public InterfaceC2876j mo8644c() {
-        EnumC2879b enumC2879b = this.f8990H0;
-        if (enumC2879b == EnumC2879b.Refreshing) {
-            mo8658g();
-        } else if (enumC2879b == EnumC2879b.Loading) {
-            mo8637b();
-        } else if (this.f9010b != 0) {
-            m8613a(0, 0, this.f9056y, this.f9018f);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public com.scwang.smartrefresh.layout.b.j c() {
+        com.scwang.smartrefresh.layout.c.b bVar = this.H0;
+        if (bVar == com.scwang.smartrefresh.layout.c.b.Refreshing) {
+            g();
+        } else if (bVar == com.scwang.smartrefresh.layout.c.b.Loading) {
+            b();
+        } else if (this.f5570b != 0) {
+            a(0, 0, this.y, this.f5574f);
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: d */
-    public SmartRefreshLayout mo8649d(boolean z) {
-        this.f9011b0 = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout d(boolean z) {
+        this.b0 = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: i */
-    public boolean mo8666i() {
-        int i2 = this.f9018f;
-        int i3 = this.f9045s0;
-        float f2 = i3 * ((this.f9055x0 / 2.0f) + 0.5f) * 1.0f;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public boolean i() {
+        int i2 = this.f5574f;
+        int i3 = this.s0;
+        float f2 = i3 * ((this.x0 / 2.0f) + 0.5f) * 1.0f;
         if (i3 == 0) {
             i3 = 1;
         }
-        return mo8634a(0, i2, f2 / i3, false);
+        return a(0, i2, f2 / i3, false);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: b */
-    public SmartRefreshLayout mo8637b() {
-        return mo8651e(Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.f8994J0))), 300));
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout b() {
+        return e(Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.J0))), 300));
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: d */
-    public SmartRefreshLayout mo8648d(int i2) {
-        return mo8615a(i2, true);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout d(int i2) {
+        return a(i2, true);
     }
 
-    /* renamed from: j */
-    protected void m8668j() {
-        EnumC2879b enumC2879b = this.f8990H0;
-        if (enumC2879b == EnumC2879b.TwoLevel) {
-            if (this.f9050v > -1000 && this.f9010b > getMeasuredHeight() / 2) {
-                ValueAnimator mo8687a = this.f8986F0.mo8687a(getMeasuredHeight());
-                if (mo8687a != null) {
-                    mo8687a.setDuration(this.f9016e);
+    protected void j() {
+        com.scwang.smartrefresh.layout.c.b bVar = this.H0;
+        if (bVar == com.scwang.smartrefresh.layout.c.b.TwoLevel) {
+            if (this.v > -1000 && this.f5570b > getMeasuredHeight() / 2) {
+                ValueAnimator valueAnimatorA = this.F0.a(getMeasuredHeight());
+                if (valueAnimatorA != null) {
+                    valueAnimatorA.setDuration(this.f5573e);
                     return;
                 }
                 return;
             }
-            if (this.f9034n) {
-                this.f8986F0.mo8695b();
+            if (this.f5582n) {
+                this.F0.b();
                 return;
             }
             return;
         }
-        if (enumC2879b != EnumC2879b.Loading && (!this.f8987G || !this.f9015d0 || this.f9010b >= 0 || !m8685v(this.f8977B))) {
-            EnumC2879b enumC2879b2 = this.f8990H0;
-            if (enumC2879b2 == EnumC2879b.Refreshing) {
-                int i2 = this.f9010b;
-                int i3 = this.f9041q0;
+        if (bVar != com.scwang.smartrefresh.layout.c.b.Loading && (!this.G || !this.d0 || this.f5570b >= 0 || !v(this.B))) {
+            com.scwang.smartrefresh.layout.c.b bVar2 = this.H0;
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.Refreshing) {
+                int i2 = this.f5570b;
+                int i3 = this.q0;
                 if (i2 > i3) {
-                    this.f8986F0.mo8687a(i3);
+                    this.F0.a(i3);
                     return;
                 } else {
                     if (i2 < 0) {
-                        this.f8986F0.mo8687a(0);
+                        this.F0.a(0);
                         return;
                     }
                     return;
                 }
             }
-            if (enumC2879b2 == EnumC2879b.PullDownToRefresh) {
-                this.f8986F0.mo8693a(EnumC2879b.PullDownCanceled);
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.PullDownToRefresh) {
+                this.F0.a(com.scwang.smartrefresh.layout.c.b.PullDownCanceled);
                 return;
             }
-            if (enumC2879b2 == EnumC2879b.PullUpToLoad) {
-                this.f8986F0.mo8693a(EnumC2879b.PullUpCanceled);
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.PullUpToLoad) {
+                this.F0.a(com.scwang.smartrefresh.layout.c.b.PullUpCanceled);
                 return;
             }
-            if (enumC2879b2 == EnumC2879b.ReleaseToRefresh) {
-                this.f8986F0.mo8693a(EnumC2879b.Refreshing);
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.ReleaseToRefresh) {
+                this.F0.a(com.scwang.smartrefresh.layout.c.b.Refreshing);
                 return;
             }
-            if (enumC2879b2 == EnumC2879b.ReleaseToLoad) {
-                this.f8986F0.mo8693a(EnumC2879b.Loading);
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.ReleaseToLoad) {
+                this.F0.a(com.scwang.smartrefresh.layout.c.b.Loading);
                 return;
             }
-            if (enumC2879b2 == EnumC2879b.ReleaseToTwoLevel) {
-                this.f8986F0.mo8693a(EnumC2879b.TwoLevelReleased);
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.ReleaseToTwoLevel) {
+                this.F0.a(com.scwang.smartrefresh.layout.c.b.TwoLevelReleased);
                 return;
             }
-            if (enumC2879b2 == EnumC2879b.RefreshReleased) {
-                if (this.f9008S0 == null) {
-                    this.f8986F0.mo8687a(this.f9041q0);
+            if (bVar2 == com.scwang.smartrefresh.layout.c.b.RefreshReleased) {
+                if (this.S0 == null) {
+                    this.F0.a(this.q0);
                     return;
                 }
                 return;
-            } else if (enumC2879b2 == EnumC2879b.LoadReleased) {
-                if (this.f9008S0 == null) {
-                    this.f8986F0.mo8687a(-this.f9045s0);
+            } else if (bVar2 == com.scwang.smartrefresh.layout.c.b.LoadReleased) {
+                if (this.S0 == null) {
+                    this.F0.a(-this.s0);
                     return;
                 }
                 return;
             } else {
-                if (this.f9010b != 0) {
-                    this.f8986F0.mo8687a(0);
+                if (this.f5570b != 0) {
+                    this.F0.a(0);
                     return;
                 }
                 return;
             }
         }
-        int i4 = this.f9010b;
-        int i5 = this.f9045s0;
+        int i4 = this.f5570b;
+        int i5 = this.s0;
         if (i4 < (-i5)) {
-            this.f8986F0.mo8687a(-i5);
+            this.F0.a(-i5);
         } else if (i4 > 0) {
-            this.f8986F0.mo8687a(0);
+            this.F0.a(0);
         }
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: l */
-    public SmartRefreshLayout mo8673l(boolean z) {
-        this.f8995K = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout l(boolean z) {
+        this.K = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: m */
-    public SmartRefreshLayout mo8675m(boolean z) {
-        this.f9013c0 = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout m(boolean z) {
+        this.c0 = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: d */
-    public SmartRefreshLayout mo8646d() {
-        return mo8616a(Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.f8994J0))), 300), true, true);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout d() {
+        return a(Math.min(Math.max(0, 300 - ((int) (System.currentTimeMillis() - this.J0))), 300), true, true);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: b */
-    public boolean mo8641b(int i2, int i3, float f2, boolean z) {
-        if (this.f8990H0 != EnumC2879b.None || !m8685v(this.f8975A)) {
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public boolean b(int i2, int i3, float f2, boolean z) {
+        if (this.H0 != com.scwang.smartrefresh.layout.c.b.None || !v(this.A)) {
             return false;
         }
-        ValueAnimator valueAnimator = this.f9008S0;
+        ValueAnimator valueAnimator = this.S0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        RunnableC2860i runnableC2860i = new RunnableC2860i(f2, i3, z);
+        i iVar = new i(f2, i3, z);
         if (i2 > 0) {
-            this.f9008S0 = new ValueAnimator();
-            postDelayed(runnableC2860i, i2);
+            this.S0 = new ValueAnimator();
+            postDelayed(iVar, i2);
             return true;
         }
-        runnableC2860i.run();
+        iVar.run();
         return true;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: f */
-    public SmartRefreshLayout mo8654f(float f2) {
-        this.f9049u0 = C2889b.m8735b(f2);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout f(float f2) {
+        this.u0 = com.scwang.smartrefresh.layout.e.b.b(f2);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: f */
-    public SmartRefreshLayout mo8655f(boolean z) {
-        this.f8985F = z;
-        this.f9021g0 = true;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout f(boolean z) {
+        this.F = z;
+        this.g0 = true;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     @Deprecated
-    /* renamed from: c */
-    public boolean mo8645c(int i2) {
-        int i3 = this.f9018f;
-        int i4 = this.f9045s0;
-        float f2 = i4 * ((this.f9055x0 / 2.0f) + 0.5f) * 1.0f;
+    public boolean c(int i2) {
+        int i3 = this.f5574f;
+        int i4 = this.s0;
+        float f2 = i4 * ((this.x0 / 2.0f) + 0.5f) * 1.0f;
         if (i4 == 0) {
             i4 = 1;
         }
-        return mo8634a(i2, i3, f2 / i4, false);
+        return a(i2, i3, f2 / i4, false);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: f */
-    public InterfaceC2876j mo8656f() {
-        this.f9015d0 = false;
-        InterfaceC2874h interfaceC2874h = this.f8978B0;
-        if ((interfaceC2874h instanceof InterfaceC2872f) && !((InterfaceC2872f) interfaceC2874h).mo8712a(false)) {
-            System.out.println("Footer:" + this.f8978B0 + " NoMoreData is not supported.(不支持NoMoreData，请使用ClassicsFooter或者自定义)");
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public com.scwang.smartrefresh.layout.b.j f() {
+        this.d0 = false;
+        com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+        if ((hVar instanceof com.scwang.smartrefresh.layout.b.f) && !((com.scwang.smartrefresh.layout.b.f) hVar).a(false)) {
+            System.out.println("Footer:" + this.B0 + " NoMoreData is not supported.(\u4e0d\u652f\u6301NoMoreData\uff0c\u8bf7\u4f7f\u7528ClassicsFooter\u6216\u8005\u81ea\u5b9a\u4e49)");
         }
         return this;
     }
 
-    /* renamed from: a */
-    protected boolean m8635a(Float f2) {
-        float floatValue = f2 == null ? this.f9050v : f2.floatValue();
-        if (Math.abs(floatValue) > this.f9046t) {
-            int i2 = this.f9010b;
-            if (i2 * floatValue < 0.0f) {
-                EnumC2879b enumC2879b = this.f8990H0;
-                if (enumC2879b.isOpening) {
-                    if (enumC2879b != EnumC2879b.TwoLevel && enumC2879b != this.f8992I0) {
-                        this.f9007R0 = new RunnableC2863l(floatValue).m8686a();
+    protected boolean a(Float f2) {
+        float fFloatValue = f2 == null ? this.v : f2.floatValue();
+        if (Math.abs(fFloatValue) > this.t) {
+            int i2 = this.f5570b;
+            if (i2 * fFloatValue < 0.0f) {
+                com.scwang.smartrefresh.layout.c.b bVar = this.H0;
+                if (bVar.isOpening) {
+                    if (bVar != com.scwang.smartrefresh.layout.c.b.TwoLevel && bVar != this.I0) {
+                        this.R0 = new l(fFloatValue).a();
                         return true;
                     }
-                } else if (i2 > this.f9041q0 * this.f9057y0 || (-i2) > this.f9045s0 * this.f9059z0) {
+                } else if (i2 > this.q0 * this.y0 || (-i2) > this.s0 * this.z0) {
                     return true;
                 }
             }
-            if ((floatValue < 0.0f && ((this.f8991I && (this.f8993J || m8685v(this.f8977B))) || ((this.f8990H0 == EnumC2879b.Loading && this.f9010b >= 0) || (this.f8995K && m8685v(this.f8977B))))) || (floatValue > 0.0f && ((this.f8991I && (this.f8993J || m8685v(this.f8975A))) || (this.f8990H0 == EnumC2879b.Refreshing && this.f9010b <= 0)))) {
-                this.f9005P0 = false;
-                this.f9052w.fling(0, 0, 0, (int) (-floatValue), 0, 0, -2147483647, Integer.MAX_VALUE);
-                this.f9052w.computeScrollOffset();
+            if ((fFloatValue < 0.0f && ((this.I && (this.J || v(this.B))) || ((this.H0 == com.scwang.smartrefresh.layout.c.b.Loading && this.f5570b >= 0) || (this.K && v(this.B))))) || (fFloatValue > 0.0f && ((this.I && (this.J || v(this.A))) || (this.H0 == com.scwang.smartrefresh.layout.c.b.Refreshing && this.f5570b <= 0)))) {
+                this.P0 = false;
+                this.w.fling(0, 0, 0, (int) (-fFloatValue), 0, 0, -2147483647, Integer.MAX_VALUE);
+                this.w.computeScrollOffset();
                 invalidate();
             }
         }
         return false;
     }
 
-    /* renamed from: a */
-    protected void m8631a(EnumC2879b enumC2879b) {
-        EnumC2879b enumC2879b2 = this.f8990H0;
-        if (enumC2879b2 != enumC2879b) {
-            this.f8990H0 = enumC2879b;
-            this.f8992I0 = enumC2879b;
-            InterfaceC2874h interfaceC2874h = this.f8976A0;
-            InterfaceC2874h interfaceC2874h2 = this.f8978B0;
-            InterfaceC2883c interfaceC2883c = this.f9027j0;
-            if (interfaceC2874h != null) {
-                interfaceC2874h.mo8733a(this, enumC2879b2, enumC2879b);
+    protected void a(com.scwang.smartrefresh.layout.c.b bVar) {
+        com.scwang.smartrefresh.layout.c.b bVar2 = this.H0;
+        if (bVar2 != bVar) {
+            this.H0 = bVar;
+            this.I0 = bVar;
+            com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+            com.scwang.smartrefresh.layout.b.h hVar2 = this.B0;
+            com.scwang.smartrefresh.layout.d.c cVar = this.j0;
+            if (hVar != null) {
+                hVar.a(this, bVar2, bVar);
             }
-            if (interfaceC2874h2 != null) {
-                interfaceC2874h2.mo8733a(this, enumC2879b2, enumC2879b);
+            if (hVar2 != null) {
+                hVar2.a(this, bVar2, bVar);
             }
-            if (interfaceC2883c != null) {
-                interfaceC2883c.mo8733a(this, enumC2879b2, enumC2879b);
+            if (cVar != null) {
+                cVar.a(this, bVar2, bVar);
             }
         }
     }
 
-    /* renamed from: a */
-    protected boolean m8636a(boolean z, InterfaceC2874h interfaceC2874h) {
-        return z || this.f8997L || interfaceC2874h == null || interfaceC2874h.getSpinnerStyle() == EnumC2880c.FixedBehind;
+    protected boolean a(boolean z, com.scwang.smartrefresh.layout.b.h hVar) {
+        return z || this.L || hVar == null || hVar.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind;
     }
 
-    /* renamed from: a */
-    protected ValueAnimator m8613a(int i2, int i3, Interpolator interpolator, int i4) {
-        if (this.f9010b == i2) {
+    protected ValueAnimator a(int i2, int i3, Interpolator interpolator, int i4) {
+        if (this.f5570b == i2) {
             return null;
         }
-        ValueAnimator valueAnimator = this.f9008S0;
+        ValueAnimator valueAnimator = this.S0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f9007R0 = null;
-        this.f9008S0 = ValueAnimator.ofInt(this.f9010b, i2);
-        this.f9008S0.setDuration(i4);
-        this.f9008S0.setInterpolator(interpolator);
-        this.f9008S0.addListener(new C2855d());
-        this.f9008S0.addUpdateListener(new C2856e());
-        this.f9008S0.setStartDelay(i3);
-        this.f9008S0.start();
-        return this.f9008S0;
+        this.R0 = null;
+        this.S0 = ValueAnimator.ofInt(this.f5570b, i2);
+        this.S0.setDuration(i4);
+        this.S0.setInterpolator(interpolator);
+        this.S0.addListener(new d());
+        this.S0.addUpdateListener(new e());
+        this.S0.setStartDelay(i3);
+        this.S0.start();
+        return this.S0;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: k */
-    public SmartRefreshLayout mo8670k(boolean z) {
-        this.f8983E = z;
-        this.f9019f0 = true;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout k(boolean z) {
+        this.E = z;
+        this.f0 = true;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: j */
-    public SmartRefreshLayout mo8667j(boolean z) {
-        this.f8997L = z;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout j(boolean z) {
+        this.L = z;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8614a(float f2) {
-        this.f9055x0 = f2;
-        InterfaceC2874h interfaceC2874h = this.f8978B0;
-        if (interfaceC2874h != null && this.f8984E0 != null) {
-            InterfaceC2875i interfaceC2875i = this.f8986F0;
-            int i2 = this.f9045s0;
-            interfaceC2874h.mo8715a(interfaceC2875i, i2, (int) (i2 * this.f9055x0));
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(float f2) {
+        this.x0 = f2;
+        com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+        if (hVar != null && this.E0 != null) {
+            com.scwang.smartrefresh.layout.b.i iVar = this.F0;
+            int i2 = this.s0;
+            hVar.a(iVar, i2, (int) (i2 * this.x0));
         } else {
-            this.f9047t0 = this.f9047t0.unNotify();
+            this.t0 = this.t0.unNotify();
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8619a(@NonNull Interpolator interpolator) {
-        this.f9056y = interpolator;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull Interpolator interpolator) {
+        this.y = interpolator;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8622a(@NonNull InterfaceC2873g interfaceC2873g) {
-        return mo8623a(interfaceC2873g, -1, -2);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull com.scwang.smartrefresh.layout.b.g gVar) {
+        return a(gVar, -1, -2);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8623a(@NonNull InterfaceC2873g interfaceC2873g, int i2, int i3) {
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h != null) {
-            super.removeView(interfaceC2874h.getView());
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull com.scwang.smartrefresh.layout.b.g gVar, int i2, int i3) {
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar != null) {
+            super.removeView(hVar.getView());
         }
-        this.f8976A0 = interfaceC2873g;
-        this.f8996K0 = 0;
-        this.f9000M0 = false;
-        this.f9043r0 = this.f9043r0.unNotify();
-        if (this.f8976A0.getSpinnerStyle() == EnumC2880c.FixedBehind) {
-            super.addView(this.f8976A0.getView(), 0, new C2864m(i2, i3));
+        this.A0 = gVar;
+        this.K0 = 0;
+        this.M0 = false;
+        this.r0 = this.r0.unNotify();
+        if (this.A0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
+            super.addView(this.A0.getView(), 0, new m(i2, i3));
         } else {
-            super.addView(this.f8976A0.getView(), i2, i3);
+            super.addView(this.A0.getView(), i2, i3);
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8620a(@NonNull InterfaceC2872f interfaceC2872f) {
-        return mo8621a(interfaceC2872f, -1, -2);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull com.scwang.smartrefresh.layout.b.f fVar) {
+        return a(fVar, -1, -2);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8621a(@NonNull InterfaceC2872f interfaceC2872f, int i2, int i3) {
-        InterfaceC2874h interfaceC2874h = this.f8978B0;
-        if (interfaceC2874h != null) {
-            super.removeView(interfaceC2874h.getView());
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull com.scwang.smartrefresh.layout.b.f fVar, int i2, int i3) {
+        com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+        if (hVar != null) {
+            super.removeView(hVar.getView());
         }
-        this.f8978B0 = interfaceC2872f;
-        this.f8998L0 = 0;
-        this.f9002N0 = false;
-        this.f9047t0 = this.f9047t0.unNotify();
-        this.f8977B = !this.f9017e0 || this.f8977B;
-        if (this.f8978B0.getSpinnerStyle() == EnumC2880c.FixedBehind) {
-            super.addView(this.f8978B0.getView(), 0, new C2864m(i2, i3));
+        this.B0 = fVar;
+        this.L0 = 0;
+        this.N0 = false;
+        this.t0 = this.t0.unNotify();
+        this.B = !this.e0 || this.B;
+        if (this.B0.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
+            super.addView(this.B0.getView(), 0, new m(i2, i3));
         } else {
-            super.addView(this.f8978B0.getView(), i2, i3);
+            super.addView(this.B0.getView(), i2, i3);
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8617a(@NonNull View view) {
-        return mo8618a(view, -1, -1);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull View view) {
+        return a(view, -1, -1);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8618a(@NonNull View view, int i2, int i3) {
-        InterfaceC2871e interfaceC2871e = this.f8980C0;
-        if (interfaceC2871e != null) {
-            super.removeView(interfaceC2871e.getView());
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@NonNull View view, int i2, int i3) {
+        com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+        if (eVar != null) {
+            super.removeView(eVar.getView());
         }
-        super.addView(view, 0, new C2864m(i2, i3));
-        InterfaceC2874h interfaceC2874h = this.f8976A0;
-        if (interfaceC2874h != null && interfaceC2874h.getSpinnerStyle() == EnumC2880c.FixedBehind) {
+        super.addView(view, 0, new m(i2, i3));
+        com.scwang.smartrefresh.layout.b.h hVar = this.A0;
+        if (hVar != null && hVar.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
             super.bringChildToFront(view);
-            InterfaceC2874h interfaceC2874h2 = this.f8978B0;
-            if (interfaceC2874h2 != null && interfaceC2874h2.getSpinnerStyle() != EnumC2880c.FixedBehind) {
-                super.bringChildToFront(this.f8978B0.getView());
+            com.scwang.smartrefresh.layout.b.h hVar2 = this.B0;
+            if (hVar2 != null && hVar2.getSpinnerStyle() != com.scwang.smartrefresh.layout.c.c.FixedBehind) {
+                super.bringChildToFront(this.B0.getView());
             }
         } else {
-            InterfaceC2874h interfaceC2874h3 = this.f8978B0;
-            if (interfaceC2874h3 != null && interfaceC2874h3.getSpinnerStyle() == EnumC2880c.FixedBehind) {
+            com.scwang.smartrefresh.layout.b.h hVar3 = this.B0;
+            if (hVar3 != null && hVar3.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
                 super.bringChildToFront(view);
-                InterfaceC2874h interfaceC2874h4 = this.f8976A0;
-                if (interfaceC2874h4 != null && interfaceC2874h4.getSpinnerStyle() == EnumC2880c.FixedBehind) {
-                    super.bringChildToFront(this.f8976A0.getView());
+                com.scwang.smartrefresh.layout.b.h hVar4 = this.A0;
+                if (hVar4 != null && hVar4.getSpinnerStyle() == com.scwang.smartrefresh.layout.c.c.FixedBehind) {
+                    super.bringChildToFront(this.A0.getView());
                 }
             }
         }
-        this.f8980C0 = new C2900a(view);
-        if (this.f8984E0 != null) {
-            int i4 = this.f9038p;
-            View findViewById = i4 > 0 ? findViewById(i4) : null;
-            int i5 = this.f9040q;
-            View findViewById2 = i5 > 0 ? findViewById(i5) : null;
-            this.f8980C0.mo8707a(this.f9029k0);
-            this.f8980C0.mo8709b(this.f9003O);
-            this.f8980C0.mo8706a(this.f8986F0, findViewById, findViewById2);
+        this.C0 = new com.scwang.smartrefresh.layout.impl.a(view);
+        if (this.E0 != null) {
+            int i4 = this.p;
+            View viewFindViewById = i4 > 0 ? findViewById(i4) : null;
+            int i5 = this.q;
+            View viewFindViewById2 = i5 > 0 ? findViewById(i5) : null;
+            this.C0.a(this.k0);
+            this.C0.b(this.O);
+            this.C0.a(this.F0, viewFindViewById, viewFindViewById2);
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8627a(InterfaceC2884d interfaceC2884d) {
-        this.f9023h0 = interfaceC2884d;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(com.scwang.smartrefresh.layout.d.d dVar) {
+        this.h0 = dVar;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8625a(InterfaceC2882b interfaceC2882b) {
-        this.f9025i0 = interfaceC2882b;
-        this.f8977B = this.f8977B || !(this.f9017e0 || interfaceC2882b == null);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(com.scwang.smartrefresh.layout.d.b bVar) {
+        this.i0 = bVar;
+        this.B = this.B || !(this.e0 || bVar == null);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8628a(InterfaceC2885e interfaceC2885e) {
-        this.f9023h0 = interfaceC2885e;
-        this.f9025i0 = interfaceC2885e;
-        this.f8977B = this.f8977B || !(this.f9017e0 || interfaceC2885e == null);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(com.scwang.smartrefresh.layout.d.e eVar) {
+        this.h0 = eVar;
+        this.i0 = eVar;
+        this.B = this.B || !(this.e0 || eVar == null);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8626a(InterfaceC2883c interfaceC2883c) {
-        this.f9027j0 = interfaceC2883c;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(com.scwang.smartrefresh.layout.d.c cVar) {
+        this.j0 = cVar;
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8630a(@ColorRes int... iArr) {
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(@ColorRes int... iArr) {
         int[] iArr2 = new int[iArr.length];
         for (int i2 = 0; i2 < iArr.length; i2++) {
-            iArr2[i2] = AbstractC2892e.m8745a(getContext(), iArr[i2]);
+            iArr2[i2] = com.scwang.smartrefresh.layout.e.e.a(getContext(), iArr[i2]);
         }
         setPrimaryColors(iArr2);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8624a(InterfaceC2877k interfaceC2877k) {
-        this.f9029k0 = interfaceC2877k;
-        InterfaceC2871e interfaceC2871e = this.f8980C0;
-        if (interfaceC2871e != null) {
-            interfaceC2871e.mo8707a(interfaceC2877k);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(com.scwang.smartrefresh.layout.b.k kVar) {
+        this.k0 = kVar;
+        com.scwang.smartrefresh.layout.b.e eVar = this.C0;
+        if (eVar != null) {
+            eVar.a(kVar);
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     @Deprecated
-    /* renamed from: a */
-    public SmartRefreshLayout mo8629a(boolean z) {
-        if (this.f8990H0 == EnumC2879b.Loading && z) {
-            mo8637b();
+    public SmartRefreshLayout a(boolean z) {
+        if (this.H0 == com.scwang.smartrefresh.layout.c.b.Loading && z) {
+            b();
         }
-        this.f9015d0 = z;
-        InterfaceC2874h interfaceC2874h = this.f8978B0;
-        if ((interfaceC2874h instanceof InterfaceC2872f) && !((InterfaceC2872f) interfaceC2874h).mo8712a(z)) {
-            System.out.println("Footer:" + this.f8978B0 + " NoMoreData is not supported.(不支持NoMoreData，请使用ClassicsFooter或者自定义)");
+        this.d0 = z;
+        com.scwang.smartrefresh.layout.b.h hVar = this.B0;
+        if ((hVar instanceof com.scwang.smartrefresh.layout.b.f) && !((com.scwang.smartrefresh.layout.b.f) hVar).a(z)) {
+            System.out.println("Footer:" + this.B0 + " NoMoreData is not supported.(\u4e0d\u652f\u6301NoMoreData\uff0c\u8bf7\u4f7f\u7528ClassicsFooter\u6216\u8005\u81ea\u5b9a\u4e49)");
         }
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8615a(int i2, boolean z) {
-        if (this.f8990H0 == EnumC2879b.Refreshing && z) {
-            mo8656f();
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(int i2, boolean z) {
+        if (this.H0 == com.scwang.smartrefresh.layout.c.b.Refreshing && z) {
+            f();
         }
-        postDelayed(new RunnableC2858g(z), i2 <= 0 ? 1L : i2);
+        postDelayed(new g(z), i2 <= 0 ? 1L : i2);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public SmartRefreshLayout mo8616a(int i2, boolean z, boolean z2) {
-        postDelayed(new RunnableC2859h(z, z2), i2 <= 0 ? 1L : i2);
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public SmartRefreshLayout a(int i2, boolean z, boolean z2) {
+        postDelayed(new h(z, z2), i2 <= 0 ? 1L : i2);
         return this;
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
+    @Override // com.scwang.smartrefresh.layout.b.j
     @Deprecated
-    /* renamed from: a */
-    public boolean mo8633a(int i2) {
-        int i3 = this.f9018f;
-        float f2 = (this.f9053w0 / 2.0f) + 0.5f;
-        int i4 = this.f9041q0;
+    public boolean a(int i2) {
+        int i3 = this.f5574f;
+        float f2 = (this.w0 / 2.0f) + 0.5f;
+        int i4 = this.q0;
         float f3 = f2 * i4 * 1.0f;
         if (i4 == 0) {
             i4 = 1;
         }
-        return mo8641b(i2, i3, f3 / i4, false);
+        return b(i2, i3, f3 / i4, false);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public boolean mo8632a() {
-        int i2 = this.f9018f;
-        int i3 = this.f9045s0;
-        float f2 = i3 * ((this.f9055x0 / 2.0f) + 0.5f) * 1.0f;
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public boolean a() {
+        int i2 = this.f5574f;
+        int i3 = this.s0;
+        float f2 = i3 * ((this.x0 / 2.0f) + 0.5f) * 1.0f;
         if (i3 == 0) {
             i3 = 1;
         }
-        return mo8634a(0, i2, f2 / i3, true);
+        return a(0, i2, f2 / i3, true);
     }
 
-    @Override // com.scwang.smartrefresh.layout.p189b.InterfaceC2876j
-    /* renamed from: a */
-    public boolean mo8634a(int i2, int i3, float f2, boolean z) {
-        if (this.f8990H0 != EnumC2879b.None || !m8685v(this.f8977B) || this.f9015d0) {
+    @Override // com.scwang.smartrefresh.layout.b.j
+    public boolean a(int i2, int i3, float f2, boolean z) {
+        if (this.H0 != com.scwang.smartrefresh.layout.c.b.None || !v(this.B) || this.d0) {
             return false;
         }
-        ValueAnimator valueAnimator = this.f9008S0;
+        ValueAnimator valueAnimator = this.S0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        RunnableC2861j runnableC2861j = new RunnableC2861j(f2, i3, z);
+        j jVar = new j(f2, i3, z);
         if (i2 > 0) {
-            this.f9008S0 = new ValueAnimator();
-            postDelayed(runnableC2861j, i2);
+            this.S0 = new ValueAnimator();
+            postDelayed(jVar, i2);
             return true;
         }
-        runnableC2861j.run();
+        jVar.run();
         return true;
     }
 }

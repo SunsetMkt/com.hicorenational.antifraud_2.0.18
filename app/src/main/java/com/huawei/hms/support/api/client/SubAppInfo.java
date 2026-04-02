@@ -1,6 +1,6 @@
 package com.huawei.hms.support.api.client;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SubAppInfo {
     private String subAppID;
 

@@ -3,22 +3,29 @@ package com.google.android.material.chip;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.CompoundButton;
 import androidx.annotation.BoolRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.Dimension;
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.C1921R;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import com.google.android.material.R;
 import com.google.android.material.internal.FlowLayout;
 import com.google.android.material.internal.ThemeEnforcement;
+import com.google.android.material.theme.overlay.MaterialThemeOverlay;
+import java.util.ArrayList;
+import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ChipGroup extends FlowLayout {
+    private static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_ChipGroup;
 
     @IdRes
     private int checkedId;
@@ -32,8 +39,11 @@ public class ChipGroup extends FlowLayout {
 
     @Nullable
     private OnCheckedChangeListener onCheckedChangeListener;
+
+    @NonNull
     private PassThroughHierarchyChangeListener passThroughListener;
     private boolean protectFromCheckedChange;
+    private boolean selectionRequired;
     private boolean singleSelection;
 
     private class CheckedStateTracker implements CompoundButton.OnCheckedChangeListener {
@@ -41,8 +51,13 @@ public class ChipGroup extends FlowLayout {
         }
 
         @Override // android.widget.CompoundButton.OnCheckedChangeListener
-        public void onCheckedChanged(CompoundButton compoundButton, boolean z) {
+        public void onCheckedChanged(@NonNull CompoundButton compoundButton, boolean z) {
             if (ChipGroup.this.protectFromCheckedChange) {
+                return;
+            }
+            if (ChipGroup.this.getCheckedChipIds().isEmpty() && ChipGroup.this.selectionRequired) {
+                ChipGroup.this.setCheckedStateForView(compoundButton.getId(), true);
+                ChipGroup.this.setCheckedId(compoundButton.getId(), false);
                 return;
             }
             int id = compoundButton.getId();
@@ -92,9 +107,13 @@ public class ChipGroup extends FlowLayout {
         public void onChildViewAdded(View view, View view2) {
             if (view == ChipGroup.this && (view2 instanceof Chip)) {
                 if (view2.getId() == -1) {
-                    view2.setId(Build.VERSION.SDK_INT >= 17 ? View.generateViewId() : view2.hashCode());
+                    view2.setId(ViewCompat.generateViewId());
                 }
-                ((Chip) view2).setOnCheckedChangeListenerInternal(ChipGroup.this.checkedStateTracker);
+                Chip chip = (Chip) view2;
+                if (chip.isChecked()) {
+                    ((ChipGroup) view).check(chip.getId());
+                }
+                chip.setOnCheckedChangeListenerInternal(ChipGroup.this.checkedStateTracker);
             }
             ViewGroup.OnHierarchyChangeListener onHierarchyChangeListener = this.onHierarchyChangeListener;
             if (onHierarchyChangeListener != null) {
@@ -118,22 +137,27 @@ public class ChipGroup extends FlowLayout {
         this(context, null);
     }
 
+    private int getChipCount() {
+        int i2 = 0;
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            if (getChildAt(i3) instanceof Chip) {
+                i2++;
+            }
+        }
+        return i2;
+    }
+
     /* JADX INFO: Access modifiers changed from: private */
     public void setCheckedId(int i2) {
-        this.checkedId = i2;
-        OnCheckedChangeListener onCheckedChangeListener = this.onCheckedChangeListener;
-        if (onCheckedChangeListener == null || !this.singleSelection) {
-            return;
-        }
-        onCheckedChangeListener.onCheckedChanged(this, i2);
+        setCheckedId(i2, true);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setCheckedStateForView(@IdRes int i2, boolean z) {
-        View findViewById = findViewById(i2);
-        if (findViewById instanceof Chip) {
+        View viewFindViewById = findViewById(i2);
+        if (viewFindViewById instanceof Chip) {
             this.protectFromCheckedChange = true;
-            ((Chip) findViewById).setChecked(z);
+            ((Chip) viewFindViewById).setChecked(z);
             this.protectFromCheckedChange = false;
         }
     }
@@ -185,11 +209,13 @@ public class ChipGroup extends FlowLayout {
     }
 
     @Override // android.view.ViewGroup
+    @NonNull
     protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams(-2, -2);
     }
 
     @Override // android.view.ViewGroup
+    @NonNull
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attributeSet) {
         return new LayoutParams(getContext(), attributeSet);
     }
@@ -202,6 +228,21 @@ public class ChipGroup extends FlowLayout {
         return -1;
     }
 
+    @NonNull
+    public List<Integer> getCheckedChipIds() {
+        ArrayList arrayList = new ArrayList();
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            View childAt = getChildAt(i2);
+            if ((childAt instanceof Chip) && ((Chip) childAt).isChecked()) {
+                arrayList.add(Integer.valueOf(childAt.getId()));
+                if (this.singleSelection) {
+                    return arrayList;
+                }
+            }
+        }
+        return arrayList;
+    }
+
     @Dimension
     public int getChipSpacingHorizontal() {
         return this.chipSpacingHorizontal;
@@ -210,6 +251,31 @@ public class ChipGroup extends FlowLayout {
     @Dimension
     public int getChipSpacingVertical() {
         return this.chipSpacingVertical;
+    }
+
+    int getIndexOfChip(@Nullable View view) {
+        if (!(view instanceof Chip)) {
+            return -1;
+        }
+        int i2 = 0;
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            if (getChildAt(i3) instanceof Chip) {
+                if (((Chip) getChildAt(i3)) == view) {
+                    return i2;
+                }
+                i2++;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isSelectionRequired() {
+        return this.selectionRequired;
+    }
+
+    @Override // com.google.android.material.internal.FlowLayout
+    public boolean isSingleLine() {
+        return super.isSingleLine();
     }
 
     public boolean isSingleSelection() {
@@ -224,6 +290,12 @@ public class ChipGroup extends FlowLayout {
             setCheckedStateForView(i2, true);
             setCheckedId(this.checkedId);
         }
+    }
+
+    @Override // android.view.View
+    public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionInfo(AccessibilityNodeInfoCompat.CollectionInfoCompat.obtain(getRowCount(), isSingleLine() ? getChipCount() : -1, false, isSingleSelection() ? 1 : 2));
     }
 
     public void setChipSpacing(@Dimension int i2) {
@@ -283,6 +355,10 @@ public class ChipGroup extends FlowLayout {
         this.passThroughListener.onHierarchyChangeListener = onHierarchyChangeListener;
     }
 
+    public void setSelectionRequired(boolean z) {
+        this.selectionRequired = z;
+    }
+
     @Deprecated
     public void setShowDividerHorizontal(int i2) {
         throw new UnsupportedOperationException("Changing divider modes has no effect. ChipGroup do not use divider drawables as spacing.");
@@ -293,8 +369,9 @@ public class ChipGroup extends FlowLayout {
         throw new UnsupportedOperationException("Changing divider modes has no effect. ChipGroup do not use divider drawables as spacing.");
     }
 
-    public void setSingleLine(@BoolRes int i2) {
-        setSingleLine(getResources().getBoolean(i2));
+    @Override // com.google.android.material.internal.FlowLayout
+    public void setSingleLine(boolean z) {
+        super.setSingleLine(z);
     }
 
     public void setSingleSelection(boolean z) {
@@ -305,32 +382,48 @@ public class ChipGroup extends FlowLayout {
     }
 
     public ChipGroup(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, C1921R.attr.chipGroupStyle);
+        this(context, attributeSet, R.attr.chipGroupStyle);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void setCheckedId(int i2, boolean z) {
+        this.checkedId = i2;
+        OnCheckedChangeListener onCheckedChangeListener = this.onCheckedChangeListener;
+        if (onCheckedChangeListener != null && this.singleSelection && z) {
+            onCheckedChangeListener.onCheckedChanged(this, i2);
+        }
     }
 
     @Override // android.view.ViewGroup
+    @NonNull
     protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
         return new LayoutParams(layoutParams);
     }
 
+    public void setSingleLine(@BoolRes int i2) {
+        setSingleLine(getResources().getBoolean(i2));
+    }
+
     public ChipGroup(Context context, AttributeSet attributeSet, int i2) {
-        super(context, attributeSet, i2);
+        super(MaterialThemeOverlay.wrap(context, attributeSet, i2, DEF_STYLE_RES), attributeSet, i2);
         this.checkedStateTracker = new CheckedStateTracker();
         this.passThroughListener = new PassThroughHierarchyChangeListener();
         this.checkedId = -1;
         this.protectFromCheckedChange = false;
-        TypedArray obtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C1921R.styleable.ChipGroup, i2, C1921R.style.Widget_MaterialComponents_ChipGroup, new int[0]);
-        int dimensionPixelOffset = obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.ChipGroup_chipSpacing, 0);
-        setChipSpacingHorizontal(obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.ChipGroup_chipSpacingHorizontal, dimensionPixelOffset));
-        setChipSpacingVertical(obtainStyledAttributes.getDimensionPixelOffset(C1921R.styleable.ChipGroup_chipSpacingVertical, dimensionPixelOffset));
-        setSingleLine(obtainStyledAttributes.getBoolean(C1921R.styleable.ChipGroup_singleLine, false));
-        setSingleSelection(obtainStyledAttributes.getBoolean(C1921R.styleable.ChipGroup_singleSelection, false));
-        int resourceId = obtainStyledAttributes.getResourceId(C1921R.styleable.ChipGroup_checkedChip, -1);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(getContext(), attributeSet, R.styleable.ChipGroup, i2, DEF_STYLE_RES, new int[0]);
+        int dimensionPixelOffset = typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.ChipGroup_chipSpacing, 0);
+        setChipSpacingHorizontal(typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.ChipGroup_chipSpacingHorizontal, dimensionPixelOffset));
+        setChipSpacingVertical(typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.ChipGroup_chipSpacingVertical, dimensionPixelOffset));
+        setSingleLine(typedArrayObtainStyledAttributes.getBoolean(R.styleable.ChipGroup_singleLine, false));
+        setSingleSelection(typedArrayObtainStyledAttributes.getBoolean(R.styleable.ChipGroup_singleSelection, false));
+        setSelectionRequired(typedArrayObtainStyledAttributes.getBoolean(R.styleable.ChipGroup_selectionRequired, false));
+        int resourceId = typedArrayObtainStyledAttributes.getResourceId(R.styleable.ChipGroup_checkedChip, -1);
         if (resourceId != -1) {
             this.checkedId = resourceId;
         }
-        obtainStyledAttributes.recycle();
+        typedArrayObtainStyledAttributes.recycle();
         super.setOnHierarchyChangeListener(this.passThroughListener);
+        ViewCompat.setImportantForAccessibility(this, 1);
     }
 
     public void setSingleSelection(@BoolRes int i2) {

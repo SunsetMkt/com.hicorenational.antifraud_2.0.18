@@ -5,8 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-/* loaded from: classes.dex */
 class MediaControllerCompatApi23 {
 
     public static class TransportControls {

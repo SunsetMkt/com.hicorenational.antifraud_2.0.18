@@ -5,16 +5,16 @@ import android.os.Parcelable;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ByteArrayEntry implements BodyEntry {
-    public static final Parcelable.Creator<ByteArrayEntry> CREATOR = new C0802a();
+    public static final Parcelable.Creator<ByteArrayEntry> CREATOR = new a();
     private byte[] bytes;
     private String contentType;
     private int count;
     private int offset;
 
-    /* synthetic */ ByteArrayEntry(C0802a c0802a) {
+    /* synthetic */ ByteArrayEntry(a aVar) {
         this();
     }
 

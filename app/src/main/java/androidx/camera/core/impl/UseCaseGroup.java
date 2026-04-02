@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class UseCaseGroup {
     private static final String TAG = "UseCaseGroup";
 
@@ -31,11 +31,11 @@ public final class UseCaseGroup {
     }
 
     public boolean addUseCase(@NonNull UseCase useCase) {
-        boolean add;
+        boolean zAdd;
         synchronized (this.mUseCasesLock) {
-            add = this.mUseCases.add(useCase);
+            zAdd = this.mUseCases.add(useCase);
         }
-        return add;
+        return zAdd;
     }
 
     public void clear() {
@@ -51,38 +51,38 @@ public final class UseCaseGroup {
     }
 
     public boolean contains(@NonNull UseCase useCase) {
-        boolean contains;
+        boolean zContains;
         synchronized (this.mUseCasesLock) {
-            contains = this.mUseCases.contains(useCase);
+            zContains = this.mUseCases.contains(useCase);
         }
-        return contains;
+        return zContains;
     }
 
     @NonNull
     public Map<String, Set<UseCase>> getCameraIdToUseCaseMap() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         synchronized (this.mUseCasesLock) {
             for (UseCase useCase : this.mUseCases) {
                 for (String str : useCase.getAttachedCameraIds()) {
-                    Set set = (Set) hashMap.get(str);
-                    if (set == null) {
-                        set = new HashSet();
+                    Set hashSet = (Set) map.get(str);
+                    if (hashSet == null) {
+                        hashSet = new HashSet();
                     }
-                    set.add(useCase);
-                    hashMap.put(str, set);
+                    hashSet.add(useCase);
+                    map.put(str, hashSet);
                 }
             }
         }
-        return Collections.unmodifiableMap(hashMap);
+        return Collections.unmodifiableMap(map);
     }
 
     @NonNull
     public Collection<UseCase> getUseCases() {
-        Collection<UseCase> unmodifiableCollection;
+        Collection<UseCase> collectionUnmodifiableCollection;
         synchronized (this.mUseCasesLock) {
-            unmodifiableCollection = Collections.unmodifiableCollection(this.mUseCases);
+            collectionUnmodifiableCollection = Collections.unmodifiableCollection(this.mUseCases);
         }
-        return unmodifiableCollection;
+        return collectionUnmodifiableCollection;
     }
 
     public boolean isActive() {
@@ -90,11 +90,11 @@ public final class UseCaseGroup {
     }
 
     public boolean removeUseCase(@NonNull UseCase useCase) {
-        boolean remove;
+        boolean zRemove;
         synchronized (this.mUseCasesLock) {
-            remove = this.mUseCases.remove(useCase);
+            zRemove = this.mUseCases.remove(useCase);
         }
-        return remove;
+        return zRemove;
     }
 
     public void setListener(@NonNull StateChangeCallback stateChangeCallback) {

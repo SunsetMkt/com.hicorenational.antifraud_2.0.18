@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY})
-/* loaded from: classes.dex */
 public final class DirectedAcyclicGraph<T> {
     private final Pools.Pool<ArrayList<T>> mListPool = new Pools.SimplePool(10);
     private final SimpleArrayMap<T, ArrayList<T>> mGraph = new SimpleArrayMap<>();
@@ -38,8 +38,8 @@ public final class DirectedAcyclicGraph<T> {
 
     @NonNull
     private ArrayList<T> getEmptyList() {
-        ArrayList<T> acquire = this.mListPool.acquire();
-        return acquire == null ? new ArrayList<>() : acquire;
+        ArrayList<T> arrayListAcquire = this.mListPool.acquire();
+        return arrayListAcquire == null ? new ArrayList<>() : arrayListAcquire;
     }
 
     private void poolList(@NonNull ArrayList<T> arrayList) {
@@ -51,12 +51,12 @@ public final class DirectedAcyclicGraph<T> {
         if (!this.mGraph.containsKey(t) || !this.mGraph.containsKey(t2)) {
             throw new IllegalArgumentException("All nodes must be present in the graph before being added as an edge");
         }
-        ArrayList<T> arrayList = this.mGraph.get(t);
-        if (arrayList == null) {
-            arrayList = getEmptyList();
-            this.mGraph.put(t, arrayList);
+        ArrayList<T> emptyList = this.mGraph.get(t);
+        if (emptyList == null) {
+            emptyList = getEmptyList();
+            this.mGraph.put(t, emptyList);
         }
-        arrayList.add(t2);
+        emptyList.add(t2);
     }
 
     public void addNode(@NonNull T t) {
@@ -69,9 +69,9 @@ public final class DirectedAcyclicGraph<T> {
     public void clear() {
         int size = this.mGraph.size();
         for (int i2 = 0; i2 < size; i2++) {
-            ArrayList<T> valueAt = this.mGraph.valueAt(i2);
-            if (valueAt != null) {
-                poolList(valueAt);
+            ArrayList<T> arrayListValueAt = this.mGraph.valueAt(i2);
+            if (arrayListValueAt != null) {
+                poolList(arrayListValueAt);
             }
         }
         this.mGraph.clear();
@@ -91,8 +91,8 @@ public final class DirectedAcyclicGraph<T> {
         int size = this.mGraph.size();
         ArrayList arrayList = null;
         for (int i2 = 0; i2 < size; i2++) {
-            ArrayList<T> valueAt = this.mGraph.valueAt(i2);
-            if (valueAt != null && valueAt.contains(t)) {
+            ArrayList<T> arrayListValueAt = this.mGraph.valueAt(i2);
+            if (arrayListValueAt != null && arrayListValueAt.contains(t)) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
@@ -116,8 +116,8 @@ public final class DirectedAcyclicGraph<T> {
     public boolean hasOutgoingEdges(@NonNull T t) {
         int size = this.mGraph.size();
         for (int i2 = 0; i2 < size; i2++) {
-            ArrayList<T> valueAt = this.mGraph.valueAt(i2);
-            if (valueAt != null && valueAt.contains(t)) {
+            ArrayList<T> arrayListValueAt = this.mGraph.valueAt(i2);
+            if (arrayListValueAt != null && arrayListValueAt.contains(t)) {
                 return true;
             }
         }

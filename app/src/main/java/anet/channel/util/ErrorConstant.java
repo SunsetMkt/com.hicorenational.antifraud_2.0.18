@@ -3,8 +3,8 @@ package anet.channel.util;
 import android.util.SparseArray;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* compiled from: Taobao */
-/* loaded from: classes.dex */
+/* JADX INFO: compiled from: Taobao */
+/* JADX INFO: loaded from: classes.dex */
 public class ErrorConstant {
     public static final int ERROR_ACCS_CUSTOM_FRAME_CB_NULL = -105;
     public static final int ERROR_AUTH_EXCEPTION = -302;
@@ -38,31 +38,31 @@ public class ErrorConstant {
     private static SparseArray<String> errorMsgMap = new SparseArray<>();
 
     static {
-        errorMsgMap.put(200, "请求成功");
-        errorMsgMap.put(-100, "未知错误");
-        errorMsgMap.put(-101, "发生异常");
-        errorMsgMap.put(-102, "非法参数");
-        errorMsgMap.put(-103, "远程调用失败");
-        errorMsgMap.put(-105, "ACCS自定义帧回调为空");
-        errorMsgMap.put(ERROR_GET_PROCESS_NULL, "获取Process失败");
-        errorMsgMap.put(ERROR_NO_NETWORK, "无网络");
-        errorMsgMap.put(ERROR_NO_STRATEGY, "无策略");
-        errorMsgMap.put(ERROR_REQUEST_TIME_OUT, "请求超时");
-        errorMsgMap.put(ERROR_REQUEST_CANCEL, "请求被取消");
-        errorMsgMap.put(ERROR_REQUEST_FORBIDDEN_IN_BG, "请求后台被禁止");
-        errorMsgMap.put(ERROR_DATA_LENGTH_NOT_MATCH, "请求收到的数据长度与Content-Length不匹配");
-        errorMsgMap.put(ERROR_TNET_EXCEPTION, "Tnet层抛出异常");
-        errorMsgMap.put(ERROR_SESSION_INVALID, "Session不可用");
-        errorMsgMap.put(ERROR_AUTH_EXCEPTION, "鉴权异常");
-        errorMsgMap.put(ERROR_DATA_TOO_LARGE, "自定义帧数据过大");
-        errorMsgMap.put(ERROR_TNET_REQUEST_FAIL, "Tnet请求失败");
-        errorMsgMap.put(ERROR_CONN_TIME_OUT, "连接超时");
-        errorMsgMap.put(ERROR_SOCKET_TIME_OUT, "Socket超时");
-        errorMsgMap.put(ERROR_SSL_ERROR, "SSL失败");
-        errorMsgMap.put(ERROR_HOST_NOT_VERIFY_ERROR, "域名未认证");
-        errorMsgMap.put(-404, "IO异常");
-        errorMsgMap.put(ERROR_UNKNOWN_HOST_EXCEPTION, "域名不能解析");
-        errorMsgMap.put(ERROR_CONNECT_EXCEPTION, "连接异常");
+        errorMsgMap.put(200, "\u8bf7\u6c42\u6210\u529f");
+        errorMsgMap.put(-100, "\u672a\u77e5\u9519\u8bef");
+        errorMsgMap.put(-101, "\u53d1\u751f\u5f02\u5e38");
+        errorMsgMap.put(-102, "\u975e\u6cd5\u53c2\u6570");
+        errorMsgMap.put(-103, "\u8fdc\u7a0b\u8c03\u7528\u5931\u8d25");
+        errorMsgMap.put(-105, "ACCS\u81ea\u5b9a\u4e49\u5e27\u56de\u8c03\u4e3a\u7a7a");
+        errorMsgMap.put(ERROR_GET_PROCESS_NULL, "\u83b7\u53d6Process\u5931\u8d25");
+        errorMsgMap.put(ERROR_NO_NETWORK, "\u65e0\u7f51\u7edc");
+        errorMsgMap.put(ERROR_NO_STRATEGY, "\u65e0\u7b56\u7565");
+        errorMsgMap.put(ERROR_REQUEST_TIME_OUT, "\u8bf7\u6c42\u8d85\u65f6");
+        errorMsgMap.put(ERROR_REQUEST_CANCEL, "\u8bf7\u6c42\u88ab\u53d6\u6d88");
+        errorMsgMap.put(ERROR_REQUEST_FORBIDDEN_IN_BG, "\u8bf7\u6c42\u540e\u53f0\u88ab\u7981\u6b62");
+        errorMsgMap.put(ERROR_DATA_LENGTH_NOT_MATCH, "\u8bf7\u6c42\u6536\u5230\u7684\u6570\u636e\u957f\u5ea6\u4e0eContent-Length\u4e0d\u5339\u914d");
+        errorMsgMap.put(ERROR_TNET_EXCEPTION, "Tnet\u5c42\u629b\u51fa\u5f02\u5e38");
+        errorMsgMap.put(ERROR_SESSION_INVALID, "Session\u4e0d\u53ef\u7528");
+        errorMsgMap.put(ERROR_AUTH_EXCEPTION, "\u9274\u6743\u5f02\u5e38");
+        errorMsgMap.put(ERROR_DATA_TOO_LARGE, "\u81ea\u5b9a\u4e49\u5e27\u6570\u636e\u8fc7\u5927");
+        errorMsgMap.put(ERROR_TNET_REQUEST_FAIL, "Tnet\u8bf7\u6c42\u5931\u8d25");
+        errorMsgMap.put(ERROR_CONN_TIME_OUT, "\u8fde\u63a5\u8d85\u65f6");
+        errorMsgMap.put(ERROR_SOCKET_TIME_OUT, "Socket\u8d85\u65f6");
+        errorMsgMap.put(ERROR_SSL_ERROR, "SSL\u5931\u8d25");
+        errorMsgMap.put(ERROR_HOST_NOT_VERIFY_ERROR, "\u57df\u540d\u672a\u8ba4\u8bc1");
+        errorMsgMap.put(-404, "IO\u5f02\u5e38");
+        errorMsgMap.put(ERROR_UNKNOWN_HOST_EXCEPTION, "\u57df\u540d\u4e0d\u80fd\u89e3\u6790");
+        errorMsgMap.put(ERROR_CONNECT_EXCEPTION, "\u8fde\u63a5\u5f02\u5e38");
     }
 
     public static String formatMsg(int i2, String str) {

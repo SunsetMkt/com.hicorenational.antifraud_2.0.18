@@ -1,15 +1,15 @@
 package com.vivo.push.model;
 
 import android.text.TextUtils;
-import com.vivo.push.util.C4007r;
-import com.vivo.push.util.C4010u;
+import com.vivo.push.util.r;
+import com.vivo.push.util.u;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UnvarnishedMessage {
     private static final String TAG = "UnvarnishedMessage";
     private String mMessage;
@@ -24,17 +24,17 @@ public class UnvarnishedMessage {
     private void packToObj(String str) {
         try {
             if (TextUtils.isEmpty(str)) {
-                C4010u.m13292a(TAG, "unvarnishedMsg pack to obj is null");
+                u.a(TAG, "unvarnishedMsg pack to obj is null");
                 return;
             }
             JSONArray jSONArray = new JSONArray(str);
             this.mTargetType = jSONArray.optInt(0);
             this.mTragetContent = jSONArray.getString(1);
             this.mMessage = jSONArray.getString(2);
-            this.mParams = C4007r.m13277a(new JSONObject(jSONArray.getString(3)));
+            this.mParams = r.a(new JSONObject(jSONArray.getString(3)));
         } catch (JSONException e2) {
             e2.printStackTrace();
-            C4010u.m13293a(TAG, "unvarnishedMsg pack to obj error", e2);
+            u.a(TAG, "unvarnishedMsg pack to obj error", e2);
         }
     }
 
@@ -83,11 +83,11 @@ public class UnvarnishedMessage {
         jSONArray.put(this.mTargetType);
         jSONArray.put(this.mTragetContent);
         jSONArray.put(this.mMessage);
-        Object obj = this.mParams;
-        if (obj == null) {
-            obj = new HashMap();
+        Object map = this.mParams;
+        if (map == null) {
+            map = new HashMap();
         }
-        jSONArray.put(obj);
+        jSONArray.put(map);
         return jSONArray.toString();
     }
 

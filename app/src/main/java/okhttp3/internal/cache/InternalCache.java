@@ -4,7 +4,7 @@ import java.io.IOException;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface InternalCache {
     Response get(Request request) throws IOException;
 

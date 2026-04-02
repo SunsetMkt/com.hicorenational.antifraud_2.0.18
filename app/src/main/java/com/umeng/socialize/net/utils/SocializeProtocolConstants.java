@@ -1,6 +1,6 @@
 package com.umeng.socialize.net.utils;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class SocializeProtocolConstants {
     public static final String AUTHOR = "author";
     public static final String CREATE_AT = "create_at";

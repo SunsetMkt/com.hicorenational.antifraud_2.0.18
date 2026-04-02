@@ -1,6 +1,6 @@
 package com.umeng.message;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class MsgConstant {
     public static final String KEY_MESSAGE_BODY = "body";
     public static final int NOTIFICATION_PLAY_SDK_DISABLE = 2;

@@ -66,9 +66,9 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
-import util.permissionutil.C7308a;
+import util.permissionutil.a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class LiveActivity extends BaseActivity implements LivessCallBack, FaceInfoCallback, CameraPreview.CWPreviewCallback, ViewTreeObserver.OnGlobalLayoutListener {
     static final int DETECT_READY = 126;
     static final int FRAME_INFO = 201;
@@ -117,7 +117,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     private RoundTextureView textureView;
     private TextView tv_time_tips;
     private final String TAG = LogUtils.makeLogTag(Builder.FACE_DETECT_ACTIVITY);
-    private final String[] PERMISSIONS = {C7308a.f25524c};
+    private final String[] PERMISSIONS = {a.f15026c};
     boolean isSetResult = false;
     boolean isPlayMain = true;
     int totalStep = 0;
@@ -153,8 +153,8 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
             if (i3 != layoutParams.height) {
                 LiveActivity liveActivity = LiveActivity.this;
                 liveActivity.insertFrameLayout = new RoundFrameLayout(liveActivity);
-                int min = Math.min(i2, i3);
-                LiveActivity.this.insertFrameLayout.setLayoutParams(new FrameLayout.LayoutParams(min, min));
+                int iMin = Math.min(i2, i3);
+                LiveActivity.this.insertFrameLayout.setLayoutParams(new FrameLayout.LayoutParams(iMin, iMin));
                 FrameLayout frameLayout = (FrameLayout) LiveActivity.this.textureView.getParent();
                 frameLayout.removeView(LiveActivity.this.textureView);
                 frameLayout.addView(LiveActivity.this.insertFrameLayout);
@@ -290,20 +290,19 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
             } else if (i2 == 106) {
                 Integer num = (Integer) message.obj;
                 if (num.intValue() <= Builder.timerCount / 2) {
-                    liveActivity.tv_time_tips.setTextColor(liveActivity.getResources().getColor(C1241R.color.color_fffbc400));
+                    liveActivity.tv_time_tips.setTextColor(liveActivity.getResources().getColor(R.color.color_fffbc400));
                     liveActivity.tv_time_tips.setTextSize(2, 18.0f);
                 } else {
-                    liveActivity.tv_time_tips.setTextColor(liveActivity.getResources().getColor(C1241R.color.color_ffffff));
+                    liveActivity.tv_time_tips.setTextColor(liveActivity.getResources().getColor(R.color.color_ffffff));
                     liveActivity.tv_time_tips.setTextSize(2, 14.0f);
                 }
-                liveActivity.tv_time_tips.setText("超时提示：" + num + ExifInterface.LATITUDE_SOUTH);
+                liveActivity.tv_time_tips.setText("\u8d85\u65f6\u63d0\u793a\uff1a" + num + ExifInterface.LATITUDE_SOUTH);
             } else if (i2 != 122) {
                 switch (i2) {
                     case 124:
                         List<Integer> list = liveActivity.execLiveList;
                         if (list != null && list.size() > 0) {
                             liveActivity.updateStepLayout(liveActivity.execLiveList.get(liveActivity.currentStep - 1).intValue());
-                            break;
                         }
                         break;
                     case LiveActivity.PLAYMAIN_END /* 125 */:
@@ -313,10 +312,8 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                         removeMessages(LiveActivity.DETECT_READY);
                         if (liveActivity.isStartDetectFace && Builder.execLiveCount > 0) {
                             liveActivity.doNextStep();
-                            break;
                         } else {
                             sendEmptyMessageDelayed(LiveActivity.DETECT_READY, 400L);
-                            break;
                         }
                         break;
                     case 127:
@@ -328,6 +325,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                                 Builder.liveDatas.put(Integer.valueOf(message.arg1), (byte[]) message.obj);
                                 break;
                         }
+                        break;
                 }
             } else {
                 Integer num2 = (Integer) message.obj;
@@ -460,13 +458,13 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     public void doFaceSerLivess() {
         this.isLivePass = true;
         FrontLiveCallback frontLiveCallback = Builder.mFrontLiveCallback;
-        Integer valueOf = Integer.valueOf(FaceInterface.CW_LivenessCode.CW_FACE_LIVENESS_FACEDEC_OK);
+        Integer numValueOf = Integer.valueOf(FaceInterface.CW_LivenessCode.CW_FACE_LIVENESS_FACEDEC_OK);
         if (frontLiveCallback == null && Builder.mFrontDetectCallback == null) {
-            this.mMainHandler.obtainMessage(122, valueOf).sendToTarget();
+            this.mMainHandler.obtainMessage(122, numValueOf).sendToTarget();
             return;
         }
         if (Builder.antiHackMethod != 2 && !Builder.isServerLive) {
-            this.mMainHandler.obtainMessage(122, valueOf).sendToTarget();
+            this.mMainHandler.obtainMessage(122, numValueOf).sendToTarget();
             return;
         }
         this.localBroadcastManager = LocalBroadcastManager.getInstance(this);
@@ -477,7 +475,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
         this.tv_time_tips.setVisibility(8);
         this.img_tip.setVisibility(8);
         this.circle_mark.startAnim(0, 25);
-        this.textSwitcher.setCurrentText("正在检测.  ");
+        this.textSwitcher.setCurrentText("\u6b63\u5728\u68c0\u6d4b.  ");
         startTestingAnim();
         FrontLiveCallback frontLiveCallback2 = Builder.mFrontLiveCallback;
         if (frontLiveCallback2 != null) {
@@ -508,7 +506,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
         this.tv_time_tips.setVisibility(8);
         this.img_tip.setVisibility(8);
         this.circle_mark.startAnim(0, 25);
-        this.textSwitcher.setCurrentText("正在检测.  ");
+        this.textSwitcher.setCurrentText("\u6b63\u5728\u68c0\u6d4b.  ");
         startTestingAnim();
         FrontLiveCallback frontLiveCallback = Builder.mFrontLiveCallback;
         if (frontLiveCallback != null) {
@@ -562,26 +560,26 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     public void getExecLive() {
         boolean z;
         boolean z2;
+        boolean z3;
         int i2 = Builder.execLiveCount;
         if (1 >= i2 || i2 > 4) {
             Collections.shuffle(Builder.totalLiveList);
             this.execLiveList = new CopyOnWriteArrayList(Builder.totalLiveList.subList(0, Builder.execLiveCount));
             return;
         }
-        boolean z3 = Builder.totalLiveList.contains(1000) || Builder.totalLiveList.contains(1001);
-        boolean z4 = Builder.totalLiveList.contains(1005) || Builder.totalLiveList.contains(1004);
-        if (z3 && z4) {
+        boolean z4 = Builder.totalLiveList.contains(1000) || Builder.totalLiveList.contains(1001);
+        boolean z5 = Builder.totalLiveList.contains(1005) || Builder.totalLiveList.contains(1004);
+        if (z4 && z5) {
             while (true) {
-                for (boolean z5 = false; !z5; z5 = true) {
+                while (!z3) {
                     Collections.shuffle(Builder.totalLiveList);
                     this.execLiveList = new CopyOnWriteArrayList(Builder.totalLiveList.subList(0, Builder.execLiveCount));
-                    if ((this.execLiveList.contains(1000) || this.execLiveList.contains(1001)) && (this.execLiveList.contains(1005) || this.execLiveList.contains(1004))) {
-                    }
+                    z3 = (this.execLiveList.contains(1000) || this.execLiveList.contains(1001)) && (this.execLiveList.contains(1005) || this.execLiveList.contains(1004));
                 }
                 return;
             }
         }
-        if (z3) {
+        if (z4) {
             while (true) {
                 while (!z2) {
                     Collections.shuffle(Builder.totalLiveList);
@@ -591,7 +589,10 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 return;
             }
         }
-        if (z4) {
+        if (!z5) {
+            Collections.shuffle(Builder.totalLiveList);
+            this.execLiveList = new CopyOnWriteArrayList(Builder.totalLiveList.subList(0, Builder.execLiveCount));
+        } else {
             while (true) {
                 while (!z) {
                     Collections.shuffle(Builder.totalLiveList);
@@ -601,8 +602,6 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 return;
             }
         }
-        Collections.shuffle(Builder.totalLiveList);
-        this.execLiveList = new CopyOnWriteArrayList(Builder.totalLiveList.subList(0, Builder.execLiveCount));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -629,7 +628,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 initializeCallBack.onInitializeSuccess();
             } else {
                 z = false;
-                initializeCallBack.onInitializeFail(new InitializeException(getString(C1241R.string.init_detector_exception)));
+                initializeCallBack.onInitializeFail(new InitializeException(getString(R.string.init_detector_exception)));
             }
         }
         this.cloudwalkSDK.cwResetLivenessTarget();
@@ -668,15 +667,15 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     }
 
     private void initView() {
-        this.circle_view = (CircleView) findViewById(C1241R.id.circle_view);
-        this.tv_time_tips = (TextView) findViewById(C1241R.id.tv_time_tips);
-        this.textureView = (RoundTextureView) findViewById(C1241R.id.texture_preview);
+        this.circle_view = (CircleView) findViewById(R.id.circle_view);
+        this.tv_time_tips = (TextView) findViewById(R.id.tv_time_tips);
+        this.textureView = (RoundTextureView) findViewById(R.id.texture_preview);
         this.textureView.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        this.circle_mark = (CircleMarkView) findViewById(C1241R.id.circle_mark);
-        this.fl_content = (FrameLayout) findViewById(C1241R.id.fl_content);
-        this.mPreview = (CameraPreview) findViewById(C1241R.id.preview);
+        this.circle_mark = (CircleMarkView) findViewById(R.id.circle_mark);
+        this.fl_content = (FrameLayout) findViewById(R.id.fl_content);
+        this.mPreview = (CameraPreview) findViewById(R.id.preview);
         this.mPreview.setPreviewTexture(this.textureView);
-        this.textSwitcher = (TextSwitcher) findViewById(C1241R.id.textSwitcher);
+        this.textSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher);
         this.textSwitcher.setFactory(new ViewSwitcher.ViewFactory() { // from class: cn.cloudwalk.libproject.LiveActivity.5
             @Override // android.widget.ViewSwitcher.ViewFactory
             public View makeView() {
@@ -693,11 +692,11 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 return textView;
             }
         });
-        Animation loadAnimation = AnimationUtils.loadAnimation(this, C1241R.anim.slide_in_right);
-        Animation loadAnimation2 = AnimationUtils.loadAnimation(this, C1241R.anim.slide_out_left);
-        this.textSwitcher.setInAnimation(loadAnimation);
-        this.textSwitcher.setOutAnimation(loadAnimation2);
-        this.img_tip = (ImageView) findViewById(C1241R.id.img_tip);
+        Animation animationLoadAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
+        Animation animationLoadAnimation2 = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
+        this.textSwitcher.setInAnimation(animationLoadAnimation);
+        this.textSwitcher.setOutAnimation(animationLoadAnimation2);
+        this.img_tip = (ImageView) findViewById(R.id.img_tip);
         this.orientation = getResources().getConfiguration().orientation;
         this.mPreview.setScreenOrientation(this.orientation);
         if (CameraUtil.isHasCamera(1)) {
@@ -733,7 +732,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 }
             }
         });
-        findViewById(C1241R.id.img_cancle).setOnClickListener(new View.OnClickListener() { // from class: cn.cloudwalk.libproject.LiveActivity.7
+        findViewById(R.id.img_cancle).setOnClickListener(new View.OnClickListener() { // from class: cn.cloudwalk.libproject.LiveActivity.7
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 FrontDetectCallback frontDetectCallback = Builder.mFrontDetectCallback;
@@ -796,10 +795,10 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     /* JADX INFO: Access modifiers changed from: private */
     public void showReadyInfo(int i2) {
         if (i2 == 15) {
-            this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_glass));
+            this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_glass));
         }
         if (i2 == 16) {
-            this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_face_shield));
+            this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_face_shield));
             return;
         }
         switch (i2) {
@@ -810,31 +809,31 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 this.circle_mark.setTipMsg("");
                 break;
             case 2:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_too_far));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_too_far));
                 break;
             case 3:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_too_close));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_too_close));
                 break;
             case 4:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_not_frontal));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_not_frontal));
                 break;
             case 5:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_not_stable));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_not_stable));
                 break;
             case 6:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_too_dark));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_too_dark));
                 break;
             case 7:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_too_bright));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_too_bright));
                 break;
             case 8:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_not_frontal));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_not_frontal));
                 break;
             case 9:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_not_frontal));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_not_frontal));
                 break;
             case 10:
-                this.circle_mark.setTipMsg(getResources().getString(C1241R.string.cloudwalk_tip_face_shield));
+                this.circle_mark.setTipMsg(getResources().getString(R.string.cloudwalk_tip_face_shield));
                 break;
         }
     }
@@ -847,14 +846,14 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
         this.mTimeOutdialog.setOnDialogClickListener(new OnDialogClickListener() { // from class: cn.cloudwalk.libproject.LiveActivity.4
             @Override // cn.cloudwalk.libproject.dialog.OnDialogClickListener
             public void onDialogClick(Dialog dialog, int i2) {
-                if (i2 == C1241R.id.tv_again) {
+                if (i2 == R.id.tv_again) {
                     LiveActivity.this.mTimeOutdialog.dismiss();
                     LiveActivity.this.cloudwalkSDK.cwResetLivenessTarget();
                     LiveActivity.this.getExecLive();
                     LiveActivity.this.resetLive();
                     return;
                 }
-                if (i2 == C1241R.id.tv_cancle) {
+                if (i2 == R.id.tv_cancle) {
                     LiveActivity.this.mTimeOutdialog.dismiss();
                     FrontDetectCallback frontDetectCallback = Builder.mFrontDetectCallback;
                     if (frontDetectCallback != null) {
@@ -908,11 +907,11 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                             LiveActivity.this.animIndex = 0;
                         }
                         if (LiveActivity.this.animIndex % 3 == 0) {
-                            LiveActivity.this.textSwitcher.setCurrentText("正在检测.  ");
+                            LiveActivity.this.textSwitcher.setCurrentText("\u6b63\u5728\u68c0\u6d4b.  ");
                         } else if (LiveActivity.this.animIndex % 3 == 1) {
-                            LiveActivity.this.textSwitcher.setCurrentText("正在检测.. ");
+                            LiveActivity.this.textSwitcher.setCurrentText("\u6b63\u5728\u68c0\u6d4b.. ");
                         } else {
-                            LiveActivity.this.textSwitcher.setCurrentText("正在检测...");
+                            LiveActivity.this.textSwitcher.setCurrentText("\u6b63\u5728\u68c0\u6d4b...");
                         }
                         LiveActivity.access$1608(LiveActivity.this);
                     }
@@ -933,22 +932,22 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
         this.img_tip.setVisibility(0);
         this.circle_mark.startAnim(1, 25);
         if (i2 == 1000) {
-            this.textSwitcher.setText(getResources().getString(C1241R.string.cloudwalk_live_headleft));
-            this.img_tip.setImageResource(C1241R.drawable.cloudwalk_head_left);
+            this.textSwitcher.setText(getResources().getString(R.string.cloudwalk_live_headleft));
+            this.img_tip.setImageResource(R.drawable.cloudwalk_head_left);
             this.animationDrawable = (AnimationDrawable) this.img_tip.getDrawable();
         } else if (i2 == 1001) {
-            this.textSwitcher.setText(getResources().getString(C1241R.string.cloudwalk_live_headright));
-            this.img_tip.setImageResource(C1241R.drawable.cloudwalk_head_right);
+            this.textSwitcher.setText(getResources().getString(R.string.cloudwalk_live_headright));
+            this.img_tip.setImageResource(R.drawable.cloudwalk_head_right);
             this.animationDrawable = (AnimationDrawable) this.img_tip.getDrawable();
         } else if (i2 == 1004) {
-            this.textSwitcher.setText(getResources().getString(C1241R.string.cloudwalk_live_eye));
-            this.img_tip.setImageResource(C1241R.drawable.cloudwalk_eye_blink);
+            this.textSwitcher.setText(getResources().getString(R.string.cloudwalk_live_eye));
+            this.img_tip.setImageResource(R.drawable.cloudwalk_eye_blink);
             this.animationDrawable = (AnimationDrawable) this.img_tip.getDrawable();
         } else if (i2 != 1005) {
             this.animationDrawable = null;
         } else {
-            this.textSwitcher.setText(getResources().getString(C1241R.string.cloudwalk_live_mouth));
-            this.img_tip.setImageResource(C1241R.drawable.cloudwalk_open_mouth);
+            this.textSwitcher.setText(getResources().getString(R.string.cloudwalk_live_mouth));
+            this.img_tip.setImageResource(R.drawable.cloudwalk_open_mouth);
             this.animationDrawable = (AnimationDrawable) this.img_tip.getDrawable();
         }
         AnimationDrawable animationDrawable = this.animationDrawable;
@@ -1015,11 +1014,11 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
 
     @Override // cn.cloudwalk.callback.LivessCallBack
     public void detectInfo(int i2) {
-        long currentTimeMillis = System.currentTimeMillis();
-        if (!this.isStartAnimEnd || this.preLivessCode == i2 || currentTimeMillis - this.mLastPrepareInfoTime < 500) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (!this.isStartAnimEnd || this.preLivessCode == i2 || jCurrentTimeMillis - this.mLastPrepareInfoTime < 500) {
             return;
         }
-        this.mLastPrepareInfoTime = currentTimeMillis;
+        this.mLastPrepareInfoTime = jCurrentTimeMillis;
         this.preLivessCode = i2;
         showReadyInfo(i2);
     }
@@ -1029,11 +1028,11 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
         this.cloudwalkSDK.cwStopLivess();
         stopTimerRunnable();
         if (Builder.isLivesPicReturn) {
-            Message obtainMessage = this.mMainHandler.obtainMessage();
-            obtainMessage.what = 202;
-            obtainMessage.arg1 = i2;
-            obtainMessage.obj = bArr;
-            this.mMainHandler.sendMessage(obtainMessage);
+            Message messageObtainMessage = this.mMainHandler.obtainMessage();
+            messageObtainMessage.what = 202;
+            messageObtainMessage.arg1 = i2;
+            messageObtainMessage.obj = bArr;
+            this.mMainHandler.sendMessage(messageObtainMessage);
         }
         if (this.isSetResult || this.isStop) {
             return;
@@ -1047,6 +1046,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
             case FaceInterface.CW_LivenessCode.CW_FACE_LIVENESS_HEADRIGHT /* 605 */:
                 synchronized (LiveActivity.class) {
                     this.currentStep++;
+                    break;
                 }
                 doNextStep();
                 return;
@@ -1082,16 +1082,16 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
                 }
             }
         });
-        this.poolMap.put("main", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_main, 1)));
-        this.poolMap.put(Contants.POOL_MAP_MOUTH_OPEN, Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_live_mouth, 1)));
-        this.poolMap.put("head_up", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_live_top, 1)));
-        this.poolMap.put("head_down", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_live_down, 1)));
-        this.poolMap.put("head_left", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_live_left, 1)));
-        this.poolMap.put("head_right", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_live_right, 1)));
-        this.poolMap.put("eye_blink", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_live_eye, 1)));
-        this.poolMap.put("good", Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_good, 1)));
-        this.poolMap.put(Contants.POOL_MAP_TRY_AGAIN, Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_again, 1)));
-        this.poolMap.put(Contants.POOL_MAP_MOUTH_OPEN_WIDTHLY, Integer.valueOf(this.sndPool.load(context, C1241R.raw.cloudwalk_open_widely, 1)));
+        this.poolMap.put("main", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_main, 1)));
+        this.poolMap.put(Contants.POOL_MAP_MOUTH_OPEN, Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_live_mouth, 1)));
+        this.poolMap.put("head_up", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_live_top, 1)));
+        this.poolMap.put("head_down", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_live_down, 1)));
+        this.poolMap.put("head_left", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_live_left, 1)));
+        this.poolMap.put("head_right", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_live_right, 1)));
+        this.poolMap.put("eye_blink", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_live_eye, 1)));
+        this.poolMap.put("good", Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_good, 1)));
+        this.poolMap.put(Contants.POOL_MAP_TRY_AGAIN, Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_again, 1)));
+        this.poolMap.put(Contants.POOL_MAP_MOUTH_OPEN_WIDTHLY, Integer.valueOf(this.sndPool.load(context, R.raw.cloudwalk_open_widely, 1)));
     }
 
     public boolean isAppOnForeground() {
@@ -1155,8 +1155,8 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     @Override // cn.cloudwalk.libproject.BaseActivity, android.app.Activity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(C1241R.layout.cloudwalk_activity_liveness);
-        setTitle(C1241R.string.cloudwalk_live_title);
+        setContentView(R.layout.cloudwalk_activity_liveness);
+        setTitle(R.string.cloudwalk_live_title);
         this.mMainHandler = new MainHandler(this);
         initView();
         initViewListener();
@@ -1205,9 +1205,9 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
     public void onGlobalLayout() {
         this.textureView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
         ViewGroup.LayoutParams layoutParams = this.textureView.getLayoutParams();
-        int min = (Math.min(this.textureView.getWidth(), this.textureView.getHeight()) * 3) / 5;
-        layoutParams.width = min;
-        layoutParams.height = min;
+        int iMin = (Math.min(this.textureView.getWidth(), this.textureView.getHeight()) * 3) / 5;
+        layoutParams.width = iMin;
+        layoutParams.height = iMin;
         this.textureView.setLayoutParams(layoutParams);
         this.textureView.turnRound();
     }
@@ -1288,7 +1288,7 @@ public class LiveActivity extends BaseActivity implements LivessCallBack, FaceIn
         }
         this.img_tip.setVisibility(8);
         this.isStartDetectFace = false;
-        this.textSwitcher.setCurrentText(getResources().getString(C1241R.string.cloudwalk_tip_not_center));
+        this.textSwitcher.setCurrentText(getResources().getString(R.string.cloudwalk_tip_not_center));
         this.circle_mark.setTipMsg("");
         int i2 = this.initRet;
         if (i2 == 0) {

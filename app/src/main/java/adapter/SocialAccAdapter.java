@@ -4,67 +4,58 @@ import android.text.TextUtils;
 import bean.SocialAccBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hicorenational.antifraud.C2113R;
+import com.hicorenational.antifraud.R;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class SocialAccAdapter extends BaseQuickAdapter<SocialAccBean, BaseViewHolder> {
-
-    /* renamed from: V */
-    private List<SocialAccBean> f334V;
-
-    /* renamed from: W */
-    private boolean f335W;
+    private List<SocialAccBean> V;
+    private boolean W;
 
     public SocialAccAdapter(int i2, List<SocialAccBean> list) {
         super(i2, list);
-        this.f334V = list;
-        this.f335W = false;
+        this.V = list;
+        this.W = false;
     }
 
-    /* renamed from: k */
-    public void m290k(boolean z) {
-        this.f335W = z;
+    public void k(boolean z) {
+        this.W = z;
     }
 
-    /* renamed from: m */
-    public void m291m(int i2) {
-        this.f334V.remove(i2);
+    public void m(int i2) {
+        this.V.remove(i2);
         notifyDataSetChanged();
     }
 
-    /* renamed from: a */
-    public void m289a(List<SocialAccBean> list) {
-        this.f334V.clear();
-        this.f334V.addAll(list);
+    public void a(List<SocialAccBean> list) {
+        this.V.clear();
+        this.V.addAll(list);
         notifyDataSetChanged();
     }
 
-    /* renamed from: a */
-    public void m288a(int i2, SocialAccBean socialAccBean) {
-        this.f334V.set(i2, socialAccBean);
+    public void a(int i2, SocialAccBean socialAccBean) {
+        this.V.set(i2, socialAccBean);
         notifyItemChanged(i2);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.chad.library.adapter.base.BaseQuickAdapter
-    /* renamed from: a, reason: avoid collision after fix types in other method and merged with bridge method [inline-methods] */
-    public void mo204a(BaseViewHolder baseViewHolder, SocialAccBean socialAccBean) {
+    public void a(BaseViewHolder baseViewHolder, SocialAccBean socialAccBean) {
         String accountName = socialAccBean.getAccountName();
         String accountNum = socialAccBean.getAccountNum();
         String accountOtherName = socialAccBean.getAccountOtherName();
         if (TextUtils.isEmpty(accountOtherName)) {
             accountOtherName = accountName;
         }
-        baseViewHolder.m5211a(C2113R.id.tv_name, (CharSequence) accountOtherName);
-        baseViewHolder.m5211a(C2113R.id.tv_acc_num, (CharSequence) accountNum);
-        baseViewHolder.m5194a(C2113R.id.iv_edit);
-        baseViewHolder.m5194a(C2113R.id.iv_delete);
-        baseViewHolder.m5194a(C2113R.id.cl_item);
-        if (this.f335W) {
-            baseViewHolder.m5224c(C2113R.id.iv_edit).setVisibility(8);
-            baseViewHolder.m5224c(C2113R.id.iv_delete).setVisibility(8);
-            baseViewHolder.m5224c(C2113R.id.iv_arrow).setVisibility(0);
+        baseViewHolder.a(R.id.tv_name, (CharSequence) accountOtherName);
+        baseViewHolder.a(R.id.tv_acc_num, (CharSequence) accountNum);
+        baseViewHolder.a(R.id.iv_edit);
+        baseViewHolder.a(R.id.iv_delete);
+        baseViewHolder.a(R.id.cl_item);
+        if (this.W) {
+            baseViewHolder.c(R.id.iv_edit).setVisibility(8);
+            baseViewHolder.c(R.id.iv_delete).setVisibility(8);
+            baseViewHolder.c(R.id.iv_arrow).setVisibility(0);
         }
     }
 }

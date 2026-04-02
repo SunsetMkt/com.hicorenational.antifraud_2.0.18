@@ -2,7 +2,7 @@ package com.heytap.mcssdk.constant;
 
 import androidx.annotation.Keep;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class MessageConstant {
 
     @Keep

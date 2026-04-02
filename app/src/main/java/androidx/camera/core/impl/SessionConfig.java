@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class SessionConfig {
     private final List<CameraDevice.StateCallback> mDeviceStateCallbacks;
     private final List<ErrorListener> mErrorListeners;
@@ -186,20 +186,20 @@ public final class SessionConfig {
             }
             Config implementationOptions = repeatingCaptureConfig.getImplementationOptions();
             Config implementationOptions2 = this.mCaptureConfigBuilder.getImplementationOptions();
-            MutableOptionsBundle create = MutableOptionsBundle.create();
+            MutableOptionsBundle mutableOptionsBundleCreate = MutableOptionsBundle.create();
             for (Config.Option<?> option : implementationOptions.listOptions()) {
-                Object retrieveOption = implementationOptions.retrieveOption(option, null);
-                if ((retrieveOption instanceof MultiValueSet) || !implementationOptions2.containsOption(option)) {
-                    create.insertOption(option, implementationOptions.retrieveOption(option));
+                Object objRetrieveOption = implementationOptions.retrieveOption(option, null);
+                if ((objRetrieveOption instanceof MultiValueSet) || !implementationOptions2.containsOption(option)) {
+                    mutableOptionsBundleCreate.insertOption(option, implementationOptions.retrieveOption(option));
                 } else {
-                    Object retrieveOption2 = implementationOptions2.retrieveOption(option, null);
-                    if (!Objects.equals(retrieveOption, retrieveOption2)) {
-                        String str2 = "Invalid configuration due to conflicting option: " + option.getId() + " : " + retrieveOption + " != " + retrieveOption2;
+                    Object objRetrieveOption2 = implementationOptions2.retrieveOption(option, null);
+                    if (!Objects.equals(objRetrieveOption, objRetrieveOption2)) {
+                        String str2 = "Invalid configuration due to conflicting option: " + option.getId() + " : " + objRetrieveOption + " != " + objRetrieveOption2;
                         this.mValid = false;
                     }
                 }
             }
-            this.mCaptureConfigBuilder.addImplementationOptions(create);
+            this.mCaptureConfigBuilder.addImplementationOptions(mutableOptionsBundleCreate);
         }
 
         @NonNull

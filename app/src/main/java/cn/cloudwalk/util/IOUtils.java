@@ -9,23 +9,23 @@ import android.graphics.YuvImage;
 import androidx.core.view.ViewCompat;
 import cn.cloudwalk.jni.FaceLivingImg;
 import com.xiaomi.mipush.sdk.Constants;
+import i.f1;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import p286h.C5230f1;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IOUtils {
     public static byte[] bitmapToByte(Bitmap bitmap, Bitmap.CompressFormat compressFormat) {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         if (bitmap == null) {
             return null;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(compressFormat, 80, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-        TestLog.netE("2222", "bitmapToByte" + (System.currentTimeMillis() - currentTimeMillis));
+        TestLog.netE("2222", "bitmapToByte" + (System.currentTimeMillis() - jCurrentTimeMillis));
         return byteArray;
     }
 
@@ -37,9 +37,9 @@ public class IOUtils {
         int[] iArr = new int[i4];
         for (int i5 = 0; i5 < i4; i5++) {
             int i6 = i5 * 3;
-            int i7 = bArr[i6] & C5230f1.f20085c;
-            int i8 = bArr[i6 + 1] & C5230f1.f20085c;
-            int i9 = bArr[i6 + 2] & C5230f1.f20085c;
+            int i7 = bArr[i6] & f1.f12066c;
+            int i8 = bArr[i6 + 1] & f1.f12066c;
+            int i9 = bArr[i6 + 2] & f1.f12066c;
             if (i7 < 0) {
                 i7 = 0;
             } else if (i7 > 255) {
@@ -57,9 +57,9 @@ public class IOUtils {
             }
             iArr[i5] = (i9 << 16) + ViewCompat.MEASURED_STATE_MASK + (i8 << 8) + i7;
         }
-        Bitmap createBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-        createBitmap.setPixels(iArr, 0, i2, 0, 0, i2, i3);
-        return createBitmap;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
+        bitmapCreateBitmap.setPixels(iArr, 0, i2, 0, 0, i2, i3);
+        return bitmapCreateBitmap;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -87,7 +87,7 @@ public class IOUtils {
     /* JADX WARN: Type inference failed for: r3v8 */
     /* JADX WARN: Type inference failed for: r3v9 */
     /* JADX WARN: Type inference failed for: r4v6, types: [java.io.FileOutputStream, java.io.OutputStream] */
-    public static boolean copyAssetsToDest(Context context, String str, String str2) {
+    public static boolean copyAssetsToDest(Context context, String str, String str2) throws Throwable {
         boolean z;
         ?? r1 = 0;
         r1 = 0;
@@ -139,7 +139,6 @@ public class IOUtils {
                         if (context != 0) {
                             context.close();
                         }
-                        return z2;
                     } catch (Throwable th) {
                         th = th;
                         r1 = fileOutputStream;
@@ -220,7 +219,7 @@ public class IOUtils {
     }
 
     public static Bitmap rotaingImageView(Bitmap bitmap, int i2, int i3) {
-        long currentTimeMillis = System.currentTimeMillis();
+        long jCurrentTimeMillis = System.currentTimeMillis();
         Matrix matrix = new Matrix();
         if (i3 == 1) {
             matrix.postScale(-1.0f, 1.0f);
@@ -244,24 +243,24 @@ public class IOUtils {
                 matrix.postRotate(90.0f);
             }
         }
-        Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-        TestLog.netE("2222", "rotaingImageView" + (System.currentTimeMillis() - currentTimeMillis));
-        return createBitmap;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        TestLog.netE("2222", "rotaingImageView" + (System.currentTimeMillis() - jCurrentTimeMillis));
+        return bitmapCreateBitmap;
     }
 
     public static Bitmap yuv2Img(byte[] bArr, int i2, int i3, int i4, int i5) {
-        Long valueOf = Long.valueOf(System.currentTimeMillis());
-        Bitmap bitmap = null;
+        Long lValueOf = Long.valueOf(System.currentTimeMillis());
+        Bitmap bitmapDecodeByteArray = null;
         try {
             YuvImage yuvImage = new YuvImage(bArr, i2, i3, i4, null);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             yuvImage.compressToJpeg(new Rect(0, 0, i3, i4), i5, byteArrayOutputStream);
-            bitmap = BitmapFactory.decodeByteArray(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
+            bitmapDecodeByteArray = BitmapFactory.decodeByteArray(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
             byteArrayOutputStream.close();
         } catch (IOException e2) {
-            TestLog.netE("ContentValues", "yuv2Img异常:" + e2.getMessage());
+            TestLog.netE("ContentValues", "yuv2Img\u5f02\u5e38:" + e2.getMessage());
         }
-        TestLog.netE("ContentValues", "yuv2Img" + (System.currentTimeMillis() - valueOf.longValue()));
-        return bitmap;
+        TestLog.netE("ContentValues", "yuv2Img" + (System.currentTimeMillis() - lValueOf.longValue()));
+        return bitmapDecodeByteArray;
     }
 }

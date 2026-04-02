@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class TreeDocumentFile extends DocumentFile {
     private Context mContext;
     private Uri mUri;
@@ -45,9 +45,9 @@ class TreeDocumentFile extends DocumentFile {
     @Override // androidx.documentfile.provider.DocumentFile
     @Nullable
     public DocumentFile createDirectory(String str) {
-        Uri createFile = createFile(this.mContext, this.mUri, "vnd.android.document/directory", str);
-        if (createFile != null) {
-            return new TreeDocumentFile(this, this.mContext, createFile);
+        Uri uriCreateFile = createFile(this.mContext, this.mUri, "vnd.android.document/directory", str);
+        if (uriCreateFile != null) {
+            return new TreeDocumentFile(this, this.mContext, uriCreateFile);
         }
         return null;
     }
@@ -55,9 +55,9 @@ class TreeDocumentFile extends DocumentFile {
     @Override // androidx.documentfile.provider.DocumentFile
     @Nullable
     public DocumentFile createFile(String str, String str2) {
-        Uri createFile = createFile(this.mContext, this.mUri, str, str2);
-        if (createFile != null) {
-            return new TreeDocumentFile(this, this.mContext, createFile);
+        Uri uriCreateFile = createFile(this.mContext, this.mUri, str, str2);
+        if (uriCreateFile != null) {
+            return new TreeDocumentFile(this, this.mContext, uriCreateFile);
         }
         return null;
     }
@@ -122,14 +122,14 @@ class TreeDocumentFile extends DocumentFile {
     public DocumentFile[] listFiles() {
         ContentResolver contentResolver = this.mContext.getContentResolver();
         Uri uri = this.mUri;
-        Uri buildChildDocumentsUriUsingTree = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getDocumentId(uri));
+        Uri uriBuildChildDocumentsUriUsingTree = DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getDocumentId(uri));
         ArrayList arrayList = new ArrayList();
-        Cursor cursor = null;
+        Cursor cursorQuery = null;
         try {
             try {
-                cursor = contentResolver.query(buildChildDocumentsUriUsingTree, new String[]{"document_id"}, null, null, null);
-                while (cursor.moveToNext()) {
-                    arrayList.add(DocumentsContract.buildDocumentUriUsingTree(this.mUri, cursor.getString(0)));
+                cursorQuery = contentResolver.query(uriBuildChildDocumentsUriUsingTree, new String[]{"document_id"}, null, null, null);
+                while (cursorQuery.moveToNext()) {
+                    arrayList.add(DocumentsContract.buildDocumentUriUsingTree(this.mUri, cursorQuery.getString(0)));
                 }
             } catch (Exception e2) {
                 String str = "Failed query: " + e2;
@@ -141,16 +141,16 @@ class TreeDocumentFile extends DocumentFile {
             }
             return documentFileArr;
         } finally {
-            closeQuietly(cursor);
+            closeQuietly(cursorQuery);
         }
     }
 
     @Override // androidx.documentfile.provider.DocumentFile
     public boolean renameTo(String str) {
         try {
-            Uri renameDocument = DocumentsContract.renameDocument(this.mContext.getContentResolver(), this.mUri, str);
-            if (renameDocument != null) {
-                this.mUri = renameDocument;
+            Uri uriRenameDocument = DocumentsContract.renameDocument(this.mContext.getContentResolver(), this.mUri, str);
+            if (uriRenameDocument != null) {
+                this.mUri = uriRenameDocument;
                 return true;
             }
         } catch (Exception unused) {

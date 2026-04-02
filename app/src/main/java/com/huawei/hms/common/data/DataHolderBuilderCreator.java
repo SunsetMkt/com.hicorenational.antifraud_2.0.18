@@ -4,14 +4,14 @@ import android.content.ContentValues;
 import com.huawei.hms.common.data.DataHolder;
 import java.util.HashMap;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class DataHolderBuilderCreator extends DataHolder.Builder {
     DataHolderBuilderCreator(String[] strArr, String str) {
         super(strArr, (String) null, (DataHolderBuilderCreator) null);
     }
 
     @Override // com.huawei.hms.common.data.DataHolder.Builder
-    public final DataHolder.Builder setDataForContentValuesHashMap(HashMap<String, Object> hashMap) {
+    public final DataHolder.Builder setDataForContentValuesHashMap(HashMap<String, Object> map) {
         throw new UnsupportedOperationException("DataHolderBuilderCreator unsupported setDataForContentValuesHashMap");
     }
 

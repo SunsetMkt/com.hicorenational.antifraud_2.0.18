@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class HighPriorityExecutor implements Executor {
     private static volatile Executor sExecutor;
     private final ExecutorService mHighPriorityService = Executors.newSingleThreadExecutor(new ThreadFactory() { // from class: androidx.camera.core.impl.utils.executor.HighPriorityExecutor.1

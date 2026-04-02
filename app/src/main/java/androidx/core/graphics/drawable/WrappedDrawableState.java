@@ -8,7 +8,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class WrappedDrawableState extends Drawable.ConstantState {
     int mChangingConfigurations;
     Drawable.ConstantState mDrawableState;

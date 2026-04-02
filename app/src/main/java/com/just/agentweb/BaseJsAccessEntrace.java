@@ -4,7 +4,7 @@ import android.os.Build;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class BaseJsAccessEntrace implements JsAccessEntrace {
     public static final String TAG = "BaseJsAccessEntrace";
     private WebView mWebView;

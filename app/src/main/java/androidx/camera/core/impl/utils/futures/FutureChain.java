@@ -9,31 +9,30 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
-public class FutureChain<V> implements InterfaceFutureC0952a<V> {
+/* JADX INFO: loaded from: classes.dex */
+public class FutureChain<V> implements d.b.b.a.a.a<V> {
 
     @Nullable
     CallbackToFutureAdapter.Completer<V> mCompleter;
 
     @NonNull
-    private final InterfaceFutureC0952a<V> mDelegate;
+    private final d.b.b.a.a.a<V> mDelegate;
 
-    FutureChain(@NonNull InterfaceFutureC0952a<V> interfaceFutureC0952a) {
-        this.mDelegate = (InterfaceFutureC0952a) Preconditions.checkNotNull(interfaceFutureC0952a);
+    FutureChain(@NonNull d.b.b.a.a.a<V> aVar) {
+        this.mDelegate = (d.b.b.a.a.a) Preconditions.checkNotNull(aVar);
     }
 
     @NonNull
-    public static <V> FutureChain<V> from(@NonNull InterfaceFutureC0952a<V> interfaceFutureC0952a) {
-        return interfaceFutureC0952a instanceof FutureChain ? (FutureChain) interfaceFutureC0952a : new FutureChain<>(interfaceFutureC0952a);
+    public static <V> FutureChain<V> from(@NonNull d.b.b.a.a.a<V> aVar) {
+        return aVar instanceof FutureChain ? (FutureChain) aVar : new FutureChain<>(aVar);
     }
 
     public final void addCallback(@NonNull FutureCallback<? super V> futureCallback, @NonNull Executor executor) {
         Futures.addCallback(this, futureCallback, executor);
     }
 
-    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
+    @Override // d.b.b.a.a.a
     public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
         this.mDelegate.addListener(runnable, executor);
     }
@@ -45,7 +44,7 @@ public class FutureChain<V> implements InterfaceFutureC0952a<V> {
 
     @Override // java.util.concurrent.Future
     @Nullable
-    public V get() throws InterruptedException, ExecutionException {
+    public V get() throws ExecutionException, InterruptedException {
         return this.mDelegate.get();
     }
 
@@ -87,7 +86,7 @@ public class FutureChain<V> implements InterfaceFutureC0952a<V> {
 
     @Override // java.util.concurrent.Future
     @Nullable
-    public V get(long j2, @NonNull TimeUnit timeUnit) throws InterruptedException, ExecutionException, TimeoutException {
+    public V get(long j2, @NonNull TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         return this.mDelegate.get(j2, timeUnit);
     }
 

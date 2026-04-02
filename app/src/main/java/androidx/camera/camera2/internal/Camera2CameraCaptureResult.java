@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.impl.CameraCaptureMetaData;
 import androidx.camera.core.impl.CameraCaptureResult;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Camera2CameraCaptureResult implements CameraCaptureResult {
     private static final String TAG = "C2CameraCaptureResult";
     private final CaptureResult mCaptureResult;
@@ -24,21 +24,21 @@ public class Camera2CameraCaptureResult implements CameraCaptureResult {
         if (num == null) {
             return CameraCaptureMetaData.AeState.UNKNOWN;
         }
-        int intValue = num.intValue();
-        if (intValue == 0) {
+        int iIntValue = num.intValue();
+        if (iIntValue == 0) {
             return CameraCaptureMetaData.AeState.INACTIVE;
         }
-        if (intValue != 1) {
-            if (intValue == 2) {
+        if (iIntValue != 1) {
+            if (iIntValue == 2) {
                 return CameraCaptureMetaData.AeState.CONVERGED;
             }
-            if (intValue == 3) {
+            if (iIntValue == 3) {
                 return CameraCaptureMetaData.AeState.LOCKED;
             }
-            if (intValue == 4) {
+            if (iIntValue == 4) {
                 return CameraCaptureMetaData.AeState.FLASH_REQUIRED;
             }
-            if (intValue != 5) {
+            if (iIntValue != 5) {
                 String str = "Undefined ae state: " + num;
                 return CameraCaptureMetaData.AeState.UNKNOWN;
             }
@@ -53,15 +53,15 @@ public class Camera2CameraCaptureResult implements CameraCaptureResult {
         if (num == null) {
             return CameraCaptureMetaData.AfMode.UNKNOWN;
         }
-        int intValue = num.intValue();
-        if (intValue != 0) {
-            if (intValue == 1 || intValue == 2) {
+        int iIntValue = num.intValue();
+        if (iIntValue != 0) {
+            if (iIntValue == 1 || iIntValue == 2) {
                 return CameraCaptureMetaData.AfMode.ON_MANUAL_AUTO;
             }
-            if (intValue == 3 || intValue == 4) {
+            if (iIntValue == 3 || iIntValue == 4) {
                 return CameraCaptureMetaData.AfMode.ON_CONTINUOUS_AUTO;
             }
-            if (intValue != 5) {
+            if (iIntValue != 5) {
                 String str = "Undefined af mode: " + num;
                 return CameraCaptureMetaData.AfMode.UNKNOWN;
             }
@@ -103,17 +103,17 @@ public class Camera2CameraCaptureResult implements CameraCaptureResult {
         if (num == null) {
             return CameraCaptureMetaData.AwbState.UNKNOWN;
         }
-        int intValue = num.intValue();
-        if (intValue == 0) {
+        int iIntValue = num.intValue();
+        if (iIntValue == 0) {
             return CameraCaptureMetaData.AwbState.INACTIVE;
         }
-        if (intValue == 1) {
+        if (iIntValue == 1) {
             return CameraCaptureMetaData.AwbState.METERING;
         }
-        if (intValue == 2) {
+        if (iIntValue == 2) {
             return CameraCaptureMetaData.AwbState.CONVERGED;
         }
-        if (intValue == 3) {
+        if (iIntValue == 3) {
             return CameraCaptureMetaData.AwbState.LOCKED;
         }
         String str = "Undefined awb state: " + num;
@@ -132,14 +132,14 @@ public class Camera2CameraCaptureResult implements CameraCaptureResult {
         if (num == null) {
             return CameraCaptureMetaData.FlashState.UNKNOWN;
         }
-        int intValue = num.intValue();
-        if (intValue == 0 || intValue == 1) {
+        int iIntValue = num.intValue();
+        if (iIntValue == 0 || iIntValue == 1) {
             return CameraCaptureMetaData.FlashState.NONE;
         }
-        if (intValue == 2) {
+        if (iIntValue == 2) {
             return CameraCaptureMetaData.FlashState.READY;
         }
-        if (intValue == 3 || intValue == 4) {
+        if (iIntValue == 3 || iIntValue == 4) {
             return CameraCaptureMetaData.FlashState.FIRED;
         }
         String str = "Undefined flash state: " + num;

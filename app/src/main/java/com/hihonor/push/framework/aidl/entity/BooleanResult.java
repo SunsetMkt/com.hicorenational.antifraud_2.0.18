@@ -3,7 +3,7 @@ package com.hihonor.push.framework.aidl.entity;
 import com.hihonor.push.framework.aidl.IMessageEntity;
 import com.hihonor.push.framework.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class BooleanResult implements IMessageEntity {
 
     @Packed

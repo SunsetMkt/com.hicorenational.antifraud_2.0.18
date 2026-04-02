@@ -3,7 +3,7 @@ package androidx.recyclerview.widget;
 import androidx.recyclerview.widget.AdapterHelper;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class OpReorderer {
     final Callback mCallback;
 
@@ -114,13 +114,13 @@ class OpReorderer {
         }
         int i9 = updateOp.positionStart;
         int i10 = updateOp2.positionStart;
-        AdapterHelper.UpdateOp updateOp3 = null;
+        AdapterHelper.UpdateOp updateOpObtainUpdateOp = null;
         if (i9 <= i10) {
             updateOp2.positionStart = i10 + 1;
         } else {
             int i11 = updateOp2.itemCount;
             if (i9 < i10 + i11) {
-                updateOp3 = this.mCallback.obtainUpdateOp(2, i9 + 1, (i10 + i11) - i9, null);
+                updateOpObtainUpdateOp = this.mCallback.obtainUpdateOp(2, i9 + 1, (i10 + i11) - i9, null);
                 updateOp2.itemCount = updateOp.positionStart - updateOp2.positionStart;
             }
         }
@@ -131,14 +131,14 @@ class OpReorderer {
             return;
         }
         if (z) {
-            if (updateOp3 != null) {
+            if (updateOpObtainUpdateOp != null) {
                 int i12 = updateOp.positionStart;
-                if (i12 > updateOp3.positionStart) {
-                    updateOp.positionStart = i12 - updateOp3.itemCount;
+                if (i12 > updateOpObtainUpdateOp.positionStart) {
+                    updateOp.positionStart = i12 - updateOpObtainUpdateOp.itemCount;
                 }
                 int i13 = updateOp.itemCount;
-                if (i13 > updateOp3.positionStart) {
-                    updateOp.itemCount = i13 - updateOp3.itemCount;
+                if (i13 > updateOpObtainUpdateOp.positionStart) {
+                    updateOp.itemCount = i13 - updateOpObtainUpdateOp.itemCount;
                 }
             }
             int i14 = updateOp.positionStart;
@@ -150,14 +150,14 @@ class OpReorderer {
                 updateOp.itemCount = i15 - updateOp2.itemCount;
             }
         } else {
-            if (updateOp3 != null) {
+            if (updateOpObtainUpdateOp != null) {
                 int i16 = updateOp.positionStart;
-                if (i16 >= updateOp3.positionStart) {
-                    updateOp.positionStart = i16 - updateOp3.itemCount;
+                if (i16 >= updateOpObtainUpdateOp.positionStart) {
+                    updateOp.positionStart = i16 - updateOpObtainUpdateOp.itemCount;
                 }
                 int i17 = updateOp.itemCount;
-                if (i17 >= updateOp3.positionStart) {
-                    updateOp.itemCount = i17 - updateOp3.itemCount;
+                if (i17 >= updateOpObtainUpdateOp.positionStart) {
+                    updateOp.itemCount = i17 - updateOpObtainUpdateOp.itemCount;
                 }
             }
             int i18 = updateOp.positionStart;
@@ -175,86 +175,74 @@ class OpReorderer {
         } else {
             list.remove(i3);
         }
-        if (updateOp3 != null) {
-            list.add(i2, updateOp3);
+        if (updateOpObtainUpdateOp != null) {
+            list.add(i2, updateOpObtainUpdateOp);
         }
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:10:0x0048  */
-    /* JADX WARN: Removed duplicated region for block: B:12:0x0056  */
-    /* JADX WARN: Removed duplicated region for block: B:14:0x005b  */
-    /* JADX WARN: Removed duplicated region for block: B:17:? A[RETURN, SYNTHETIC] */
-    /* JADX WARN: Removed duplicated region for block: B:18:0x004c  */
-    /* JADX WARN: Removed duplicated region for block: B:19:0x002b  */
-    /* JADX WARN: Removed duplicated region for block: B:7:0x0027  */
+    /* JADX WARN: Removed duplicated region for block: B:36:0x0027  */
+    /* JADX WARN: Removed duplicated region for block: B:37:0x002b  */
+    /* JADX WARN: Removed duplicated region for block: B:42:0x0048  */
+    /* JADX WARN: Removed duplicated region for block: B:43:0x004c  */
+    /* JADX WARN: Removed duplicated region for block: B:45:0x0056  */
+    /* JADX WARN: Removed duplicated region for block: B:47:0x005b  */
+    /* JADX WARN: Removed duplicated region for block: B:49:? A[RETURN, SYNTHETIC] */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    void swapMoveUpdate(java.util.List<androidx.recyclerview.widget.AdapterHelper.UpdateOp> r9, int r10, androidx.recyclerview.widget.AdapterHelper.UpdateOp r11, int r12, androidx.recyclerview.widget.AdapterHelper.UpdateOp r13) {
-        /*
-            r8 = this;
-            int r0 = r11.itemCount
-            int r1 = r13.positionStart
-            r2 = 4
-            r3 = 0
-            r4 = 1
-            if (r0 >= r1) goto Ld
-            int r1 = r1 - r4
-            r13.positionStart = r1
-            goto L20
-        Ld:
-            int r5 = r13.itemCount
-            int r1 = r1 + r5
-            if (r0 >= r1) goto L20
-            int r5 = r5 - r4
-            r13.itemCount = r5
-            androidx.recyclerview.widget.OpReorderer$Callback r0 = r8.mCallback
-            int r1 = r11.positionStart
-            java.lang.Object r5 = r13.payload
-            androidx.recyclerview.widget.AdapterHelper$UpdateOp r0 = r0.obtainUpdateOp(r2, r1, r4, r5)
-            goto L21
-        L20:
-            r0 = r3
-        L21:
-            int r1 = r11.positionStart
-            int r5 = r13.positionStart
-            if (r1 > r5) goto L2b
-            int r5 = r5 + r4
-            r13.positionStart = r5
-            goto L41
-        L2b:
-            int r6 = r13.itemCount
-            int r7 = r5 + r6
-            if (r1 >= r7) goto L41
-            int r5 = r5 + r6
-            int r5 = r5 - r1
-            androidx.recyclerview.widget.OpReorderer$Callback r3 = r8.mCallback
-            int r1 = r1 + r4
-            java.lang.Object r4 = r13.payload
-            androidx.recyclerview.widget.AdapterHelper$UpdateOp r3 = r3.obtainUpdateOp(r2, r1, r5, r4)
-            int r1 = r13.itemCount
-            int r1 = r1 - r5
-            r13.itemCount = r1
-        L41:
-            r9.set(r12, r11)
-            int r11 = r13.itemCount
-            if (r11 <= 0) goto L4c
-            r9.set(r10, r13)
-            goto L54
-        L4c:
-            r9.remove(r10)
-            androidx.recyclerview.widget.OpReorderer$Callback r11 = r8.mCallback
-            r11.recycleUpdateOp(r13)
-        L54:
-            if (r0 == 0) goto L59
-            r9.add(r10, r0)
-        L59:
-            if (r3 == 0) goto L5e
-            r9.add(r10, r3)
-        L5e:
-            return
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.recyclerview.widget.OpReorderer.swapMoveUpdate(java.util.List, int, androidx.recyclerview.widget.AdapterHelper$UpdateOp, int, androidx.recyclerview.widget.AdapterHelper$UpdateOp):void");
+    void swapMoveUpdate(List<AdapterHelper.UpdateOp> list, int i2, AdapterHelper.UpdateOp updateOp, int i3, AdapterHelper.UpdateOp updateOp2) {
+        AdapterHelper.UpdateOp updateOpObtainUpdateOp;
+        int i4;
+        int i5;
+        int i6 = updateOp.itemCount;
+        int i7 = updateOp2.positionStart;
+        AdapterHelper.UpdateOp updateOpObtainUpdateOp2 = null;
+        if (i6 >= i7) {
+            int i8 = updateOp2.itemCount;
+            if (i6 < i7 + i8) {
+                updateOp2.itemCount = i8 - 1;
+                updateOpObtainUpdateOp = this.mCallback.obtainUpdateOp(4, updateOp.positionStart, 1, updateOp2.payload);
+            }
+            i4 = updateOp.positionStart;
+            i5 = updateOp2.positionStart;
+            if (i4 > i5) {
+                updateOp2.positionStart = i5 + 1;
+            } else {
+                int i9 = updateOp2.itemCount;
+                if (i4 < i5 + i9) {
+                    int i10 = (i5 + i9) - i4;
+                    updateOpObtainUpdateOp2 = this.mCallback.obtainUpdateOp(4, i4 + 1, i10, updateOp2.payload);
+                    updateOp2.itemCount -= i10;
+                }
+            }
+            list.set(i3, updateOp);
+            if (updateOp2.itemCount <= 0) {
+                list.set(i2, updateOp2);
+            } else {
+                list.remove(i2);
+                this.mCallback.recycleUpdateOp(updateOp2);
+            }
+            if (updateOpObtainUpdateOp != null) {
+                list.add(i2, updateOpObtainUpdateOp);
+            }
+            if (updateOpObtainUpdateOp2 == null) {
+                list.add(i2, updateOpObtainUpdateOp2);
+                return;
+            }
+            return;
+        }
+        updateOp2.positionStart = i7 - 1;
+        updateOpObtainUpdateOp = null;
+        i4 = updateOp.positionStart;
+        i5 = updateOp2.positionStart;
+        if (i4 > i5) {
+        }
+        list.set(i3, updateOp);
+        if (updateOp2.itemCount <= 0) {
+        }
+        if (updateOpObtainUpdateOp != null) {
+        }
+        if (updateOpObtainUpdateOp2 == null) {
+        }
     }
 }

@@ -3,55 +3,53 @@ package com.hihonor.push.sdk;
 import android.content.Context;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HonorPushClient {
-
-    /* renamed from: a */
-    public static final HonorPushClient f6742a = new HonorPushClient();
+    public static final HonorPushClient a = new HonorPushClient();
 
     public static HonorPushClient getInstance() {
-        return f6742a;
+        return a;
     }
 
     public boolean checkSupportHonorPush(Context context) {
-        return C2214l.f6798e.m6395a(context);
+        return l.f4263e.a(context);
     }
 
     public void deletePushToken(HonorPushCallback<Void> honorPushCallback) {
-        C2214l c2214l = C2214l.f6798e;
-        c2214l.m6394a(new RunnableC2202g(c2214l, honorPushCallback), honorPushCallback);
+        l lVar = l.f4263e;
+        lVar.a(new g(lVar, honorPushCallback), honorPushCallback);
     }
 
     public void getNotificationCenterStatus(HonorPushCallback<Boolean> honorPushCallback) {
-        C2214l c2214l = C2214l.f6798e;
-        c2214l.m6394a(new RunnableC2205h(c2214l, honorPushCallback), honorPushCallback);
+        l lVar = l.f4263e;
+        lVar.a(new h(lVar, honorPushCallback), honorPushCallback);
     }
 
     public void getPushToken(HonorPushCallback<String> honorPushCallback) {
-        C2214l c2214l = C2214l.f6798e;
-        c2214l.m6394a(new RunnableC2199f(c2214l, honorPushCallback, false), honorPushCallback);
+        l lVar = l.f4263e;
+        lVar.a(new f(lVar, honorPushCallback, false), honorPushCallback);
     }
 
     public void getUnReadMessageBox(HonorPushCallback<List<HonorPushDataMsg>> honorPushCallback) {
-        C2214l c2214l = C2214l.f6798e;
-        c2214l.m6394a(new RunnableC2212k(c2214l, honorPushCallback), honorPushCallback);
+        l lVar = l.f4263e;
+        lVar.a(new k(lVar, honorPushCallback), honorPushCallback);
     }
 
     public void init(Context context, boolean z) {
-        C2214l c2214l = C2214l.f6798e;
-        C2234v c2234v = new C2234v();
-        c2234v.f6840a = context.getApplicationContext();
-        c2234v.f6841b = z;
-        C2188b1.m6373a(new RunnableC2196e(c2214l, c2234v));
+        l lVar = l.f4263e;
+        v vVar = new v();
+        vVar.a = context.getApplicationContext();
+        vVar.f4285b = z;
+        b1.a(new e(lVar, vVar));
     }
 
     public void turnOffNotificationCenter(HonorPushCallback<Void> honorPushCallback) {
-        C2214l c2214l = C2214l.f6798e;
-        c2214l.m6394a(new RunnableC2210j(c2214l, honorPushCallback), honorPushCallback);
+        l lVar = l.f4263e;
+        lVar.a(new j(lVar, honorPushCallback), honorPushCallback);
     }
 
     public void turnOnNotificationCenter(HonorPushCallback<Void> honorPushCallback) {
-        C2214l c2214l = C2214l.f6798e;
-        c2214l.m6394a(new RunnableC2208i(c2214l, honorPushCallback), honorPushCallback);
+        l lVar = l.f4263e;
+        lVar.a(new i(lVar, honorPushCallback), honorPushCallback);
     }
 }

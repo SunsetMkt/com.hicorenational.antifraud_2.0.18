@@ -14,7 +14,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWebUIController> {
     private static final String TAG = WebParentLayout.class.getSimpleName();
     private AbsAgentWebUIController mAgentWebUIController;
@@ -28,54 +28,100 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
     private View mErrorView;
     private WebView mWebView;
 
+    /* JADX INFO: renamed from: com.just.agentweb.WebParentLayout$1 */
+    class AnonymousClass1 implements View.OnClickListener {
+        final /* synthetic */ View val$clickView;
+
+        AnonymousClass1(View view) {
+            view = view;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            if (WebParentLayout.this.getWebView() != null) {
+                view.setClickable(false);
+                WebParentLayout.this.getWebView().reload();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.just.agentweb.WebParentLayout$2 */
+    class AnonymousClass2 implements View.OnClickListener {
+        final /* synthetic */ FrameLayout val$mFrameLayout;
+
+        AnonymousClass2(FrameLayout frameLayout) {
+            frameLayout = frameLayout;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            if (WebParentLayout.this.getWebView() != null) {
+                frameLayout.setClickable(false);
+                WebParentLayout.this.getWebView().reload();
+            }
+        }
+    }
+
     WebParentLayout(@NonNull Context context) {
         this(context, null);
-        LogUtils.m8083i(TAG, "WebParentLayout");
+        LogUtils.i(TAG, "WebParentLayout");
     }
 
     private void createErrorLayout() {
-        final FrameLayout frameLayout = new FrameLayout(getContext());
+        FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setBackgroundColor(-1);
-        frameLayout.setId(C2605R.id.mainframe_error_container_id);
+        frameLayout.setId(R.id.mainframe_error_container_id);
         View view = this.mErrorView;
         if (view == null) {
-            LayoutInflater from = LayoutInflater.from(getContext());
-            LogUtils.m8083i(TAG, "mErrorLayoutRes:" + this.mErrorLayoutRes);
-            from.inflate(this.mErrorLayoutRes, (ViewGroup) frameLayout, true);
+            LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
+            LogUtils.i(TAG, "mErrorLayoutRes:" + this.mErrorLayoutRes);
+            layoutInflaterFrom.inflate(this.mErrorLayoutRes, (ViewGroup) frameLayout, true);
         } else {
             frameLayout.addView(view);
         }
-        View view2 = (ViewStub) findViewById(C2605R.id.mainframe_error_viewsub_id);
-        int indexOfChild = indexOfChild(view2);
+        View view2 = (ViewStub) findViewById(R.id.mainframe_error_viewsub_id);
+        int iIndexOfChild = indexOfChild(view2);
         removeViewInLayout(view2);
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         if (layoutParams != null) {
             this.mErrorLayout = frameLayout;
-            addView(frameLayout, indexOfChild, layoutParams);
+            addView(frameLayout, iIndexOfChild, layoutParams);
         } else {
             this.mErrorLayout = frameLayout;
-            addView(frameLayout, indexOfChild);
+            addView(frameLayout, iIndexOfChild);
         }
         frameLayout.setVisibility(0);
         int i2 = this.mClickId;
         if (i2 != -1) {
-            final View findViewById = frameLayout.findViewById(i2);
-            if (findViewById != null) {
-                findViewById.setOnClickListener(new View.OnClickListener() { // from class: com.just.agentweb.WebParentLayout.1
+            View viewFindViewById = frameLayout.findViewById(i2);
+            if (viewFindViewById != null) {
+                viewFindViewById.setOnClickListener(new View.OnClickListener() { // from class: com.just.agentweb.WebParentLayout.1
+                    final /* synthetic */ View val$clickView;
+
+                    AnonymousClass1(View viewFindViewById2) {
+                        view = viewFindViewById2;
+                    }
+
                     @Override // android.view.View.OnClickListener
                     public void onClick(View view3) {
                         if (WebParentLayout.this.getWebView() != null) {
-                            findViewById.setClickable(false);
+                            view.setClickable(false);
                             WebParentLayout.this.getWebView().reload();
                         }
                     }
                 });
                 return;
             } else if (LogUtils.isDebug()) {
-                LogUtils.m8081e(TAG, "ClickView is null , cannot bind accurate view to refresh or reload .");
+                LogUtils.e(TAG, "ClickView is null , cannot bind accurate view to refresh or reload .");
             }
         }
         frameLayout.setOnClickListener(new View.OnClickListener() { // from class: com.just.agentweb.WebParentLayout.2
+            final /* synthetic */ FrameLayout val$mFrameLayout;
+
+            AnonymousClass2(FrameLayout frameLayout2) {
+                frameLayout = frameLayout2;
+            }
+
             @Override // android.view.View.OnClickListener
             public void onClick(View view3) {
                 if (WebParentLayout.this.getWebView() != null) {
@@ -102,9 +148,9 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
     }
 
     void hideErrorLayout() {
-        View findViewById = findViewById(C2605R.id.mainframe_error_container_id);
-        if (findViewById != null) {
-            findViewById.setVisibility(8);
+        View viewFindViewById = findViewById(R.id.mainframe_error_container_id);
+        if (viewFindViewById != null) {
+            viewFindViewById.setVisibility(8);
         }
     }
 
@@ -115,7 +161,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
         }
         this.mErrorLayoutRes = i2;
         if (this.mErrorLayoutRes <= 0) {
-            this.mErrorLayoutRes = C2605R.layout.agentweb_error_page;
+            this.mErrorLayoutRes = R.layout.agentweb_error_page;
         }
     }
 
@@ -124,7 +170,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
     }
 
     void showPageMainFrameError() {
-        View findViewById;
+        View viewFindViewById;
         FrameLayout frameLayout = this.mErrorLayout;
         if (frameLayout != null) {
             frameLayout.setVisibility(0);
@@ -133,14 +179,13 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
             frameLayout = this.mErrorLayout;
         }
         int i2 = this.mClickId;
-        if (i2 == -1 || (findViewById = frameLayout.findViewById(i2)) == null) {
+        if (i2 == -1 || (viewFindViewById = frameLayout.findViewById(i2)) == null) {
             frameLayout.setClickable(true);
         } else {
-            findViewById.setClickable(true);
+            viewFindViewById.setClickable(true);
         }
     }
 
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.just.agentweb.Provider
     public AbsAgentWebUIController provide() {
         return this.mAgentWebUIController;
@@ -156,7 +201,7 @@ public class WebParentLayout extends FrameLayout implements Provider<AbsAgentWeb
         this.mClickId = -1;
         this.mErrorLayout = null;
         if (context instanceof Activity) {
-            this.mErrorLayoutRes = C2605R.layout.agentweb_error_page;
+            this.mErrorLayoutRes = R.layout.agentweb_error_page;
             return;
         }
         throw new IllegalArgumentException("WebParentLayout context must be activity or activity sub class .");

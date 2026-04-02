@@ -6,20 +6,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.huawei.hms.common.internal.Preconditions;
 import com.huawei.hms.common.util.Base64Utils;
-import com.xiaomi.push.service.C4383f;
+import com.xiaomi.push.service.f;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class SafeParcelableSerializer {
     public static <S extends SafeParcelable> S deserializeFromBytes(byte[] bArr, Parcelable.Creator<S> creator) {
         Preconditions.checkNotNull(creator);
-        Parcel obtain = Parcel.obtain();
-        obtain.unmarshall(bArr, 0, bArr.length);
-        obtain.setDataPosition(0);
-        S createFromParcel = creator.createFromParcel(obtain);
-        obtain.recycle();
-        return createFromParcel;
+        Parcel parcelObtain = Parcel.obtain();
+        parcelObtain.unmarshall(bArr, 0, bArr.length);
+        parcelObtain.setDataPosition(0);
+        S sCreateFromParcel = creator.createFromParcel(parcelObtain);
+        parcelObtain.recycle();
+        return sCreateFromParcel;
     }
 
     public static <S extends SafeParcelable> S deserializeFromIntentExtra(Intent intent, String str, Parcelable.Creator<S> creator) {
@@ -39,7 +39,7 @@ public final class SafeParcelableSerializer {
         if (bundle == null || (arrayList = (ArrayList) bundle.getSerializable(str)) == null) {
             return null;
         }
-        C4383f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
+        f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             anonymousClass3.add(deserializeFromBytes((byte[]) it.next(), creator));
@@ -52,7 +52,7 @@ public final class SafeParcelableSerializer {
         if (intent == null || (arrayList = (ArrayList) intent.getSerializableExtra(str)) == null) {
             return null;
         }
-        C4383f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
+        f.AnonymousClass3 anonymousClass3 = (ArrayList<S>) new ArrayList(arrayList.size());
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             anonymousClass3.add(deserializeFromBytes((byte[]) it.next(), creator));
@@ -85,13 +85,13 @@ public final class SafeParcelableSerializer {
     }
 
     public static <S extends SafeParcelable> byte[] serializeToBytes(S s) {
-        Parcel obtain = Parcel.obtain();
+        Parcel parcelObtain = Parcel.obtain();
         if (s != null) {
-            s.writeToParcel(obtain, 0);
+            s.writeToParcel(parcelObtain, 0);
         }
-        byte[] marshall = obtain.marshall();
-        obtain.recycle();
-        return marshall;
+        byte[] bArrMarshall = parcelObtain.marshall();
+        parcelObtain.recycle();
+        return bArrMarshall;
     }
 
     public static <S extends SafeParcelable> void serializeToIntentExtra(S s, Intent intent, String str) {

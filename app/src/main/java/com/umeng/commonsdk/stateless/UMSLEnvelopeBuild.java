@@ -7,7 +7,7 @@ import com.umeng.commonsdk.debug.UMLogCommon;
 import com.umeng.commonsdk.framework.UMLogDataProtocol;
 import org.json.JSONObject;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMSLEnvelopeBuild {
     private static final String TAG = "UMSLEnvelopeBuild";
     private static boolean isEncryptEnabled;

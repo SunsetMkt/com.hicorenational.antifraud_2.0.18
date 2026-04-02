@@ -1,6 +1,6 @@
 package androidx.collection;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CircularIntArray {
     private int mCapacityBitmask;
     private int[] mElements;

@@ -9,97 +9,88 @@ import com.huawei.hms.push.AttributionReporter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import l.a.a.c.a.c;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-import p358k.p359a.p360a.p367c.p368a.C5868c;
 
-/* loaded from: classes.dex */
-public abstract class AbstractSignInOptions implements C5868c.a.InterfaceC7434a, Parcelable {
+/* JADX INFO: loaded from: classes.dex */
+public abstract class AbstractSignInOptions implements c.a.InterfaceC0267a, Parcelable {
 
-    /* renamed from: m */
-    public static final PermissionInfo f6395m = new PermissionInfo().m6017a("com.hihonor.account.getUID");
+    /* JADX INFO: renamed from: m, reason: collision with root package name */
+    public static final PermissionInfo f4034m = new PermissionInfo().a("com.hihonor.account.getUID");
 
-    /* renamed from: n */
-    public static final Scope f6396n = new Scope("profile");
+    /* JADX INFO: renamed from: n, reason: collision with root package name */
+    public static final Scope f4035n = new Scope("profile");
+    public static final Scope o = new Scope(NotificationCompat.CATEGORY_EMAIL);
+    public static final Scope p = new Scope("openid");
+    public final ArrayList<Scope> a;
 
-    /* renamed from: o */
-    public static final Scope f6397o = new Scope(NotificationCompat.CATEGORY_EMAIL);
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public ArrayList<PermissionInfo> f4036b;
 
-    /* renamed from: p */
-    public static final Scope f6398p = new Scope("openid");
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    protected String f4037c;
 
-    /* renamed from: a */
-    public final ArrayList<Scope> f6399a;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    protected String f4038d;
 
-    /* renamed from: b */
-    public ArrayList<PermissionInfo> f6400b;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    protected String f4039e;
 
-    /* renamed from: c */
-    protected String f6401c;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    protected boolean f4040f;
 
-    /* renamed from: d */
-    protected String f6402d;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    protected boolean f4041g;
 
-    /* renamed from: e */
-    protected String f6403e;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    protected boolean f4042h;
 
-    /* renamed from: f */
-    protected boolean f6404f;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    protected boolean f4043i;
 
-    /* renamed from: g */
-    protected boolean f6405g;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    protected boolean f4044j;
 
-    /* renamed from: h */
-    protected boolean f6406h;
+    /* JADX INFO: renamed from: k, reason: collision with root package name */
+    protected String f4045k;
 
-    /* renamed from: i */
-    protected boolean f6407i;
-
-    /* renamed from: j */
-    protected boolean f6408j;
-
-    /* renamed from: k */
-    protected String f6409k;
-
-    /* renamed from: l */
-    protected String f6410l;
+    /* JADX INFO: renamed from: l, reason: collision with root package name */
+    protected String f4046l;
 
     public AbstractSignInOptions(ArrayList<Scope> arrayList, ArrayList<PermissionInfo> arrayList2, String str, String str2, String str3, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, String str4, String str5) {
-        this.f6401c = "";
-        this.f6402d = "";
-        this.f6403e = "";
-        this.f6399a = arrayList;
-        this.f6400b = arrayList2;
-        this.f6401c = str;
-        this.f6402d = str2;
-        this.f6403e = str3;
-        this.f6404f = z;
-        this.f6405g = z2;
-        this.f6406h = z3;
-        this.f6407i = z4;
-        this.f6408j = z5;
-        this.f6409k = str4;
-        this.f6410l = str5;
+        this.f4037c = "";
+        this.f4038d = "";
+        this.f4039e = "";
+        this.a = arrayList;
+        this.f4036b = arrayList2;
+        this.f4037c = str;
+        this.f4038d = str2;
+        this.f4039e = str3;
+        this.f4040f = z;
+        this.f4041g = z2;
+        this.f4042h = z3;
+        this.f4043i = z4;
+        this.f4044j = z5;
+        this.f4045k = str4;
+        this.f4046l = str5;
     }
 
-    /* renamed from: a */
-    public String m6022a() {
-        return this.f6410l;
+    public String a() {
+        return this.f4046l;
     }
 
-    /* renamed from: b */
-    public String m6026b() {
-        return this.f6401c;
+    public String b() {
+        return this.f4037c;
     }
 
-    /* renamed from: c */
-    public String m6027c() {
-        return this.f6402d;
+    public String c() {
+        return this.f4038d;
     }
 
-    /* renamed from: d */
-    public List<PermissionInfo> m6028d() {
-        return this.f6400b;
+    public List<PermissionInfo> d() {
+        return this.f4036b;
     }
 
     @Override // android.os.Parcelable
@@ -107,9 +98,8 @@ public abstract class AbstractSignInOptions implements C5868c.a.InterfaceC7434a,
         return 0;
     }
 
-    /* renamed from: e */
-    public String m6029e() {
-        return this.f6403e;
+    public String e() {
+        return this.f4039e;
     }
 
     public boolean equals(Object obj) {
@@ -120,82 +110,72 @@ public abstract class AbstractSignInOptions implements C5868c.a.InterfaceC7434a,
             return false;
         }
         AbstractSignInOptions abstractSignInOptions = (AbstractSignInOptions) obj;
-        return m6025a(this.f6399a, abstractSignInOptions.f6399a) && m6025a(this.f6400b, abstractSignInOptions.f6400b);
+        return a(this.a, abstractSignInOptions.a) && a(this.f4036b, abstractSignInOptions.f4036b);
     }
 
-    /* renamed from: f */
-    public List<Scope> m6030f() {
-        return this.f6399a;
+    public List<Scope> f() {
+        return this.a;
     }
 
-    /* renamed from: g */
-    public Scope[] m6031g() {
-        ArrayList<Scope> arrayList = this.f6399a;
+    public Scope[] g() {
+        ArrayList<Scope> arrayList = this.a;
         if (arrayList == null) {
             return null;
         }
         return (Scope[]) arrayList.toArray();
     }
 
-    /* renamed from: h */
-    public String m6032h() {
-        return this.f6409k;
+    public String h() {
+        return this.f4045k;
     }
 
     public int hashCode() {
-        ArrayList<Scope> arrayList = this.f6399a;
-        int hashCode = ((arrayList == null ? 0 : arrayList.hashCode()) + 31) * 31;
-        ArrayList<PermissionInfo> arrayList2 = this.f6400b;
-        return hashCode + (arrayList2 != null ? arrayList2.hashCode() : 0);
+        ArrayList<Scope> arrayList = this.a;
+        int iHashCode = ((arrayList == null ? 0 : arrayList.hashCode()) + 31) * 31;
+        ArrayList<PermissionInfo> arrayList2 = this.f4036b;
+        return iHashCode + (arrayList2 != null ? arrayList2.hashCode() : 0);
     }
 
-    /* renamed from: i */
-    public boolean m6033i() {
-        return this.f6404f;
+    public boolean i() {
+        return this.f4040f;
     }
 
-    /* renamed from: j */
-    public boolean m6034j() {
-        return this.f6405g;
+    public boolean j() {
+        return this.f4041g;
     }
 
-    /* renamed from: k */
-    public boolean m6035k() {
-        return this.f6406h;
+    public boolean k() {
+        return this.f4042h;
     }
 
-    /* renamed from: l */
-    public boolean m6036l() {
-        return this.f6408j;
+    public boolean l() {
+        return this.f4044j;
     }
 
-    /* renamed from: m */
-    public boolean m6037m() {
-        return this.f6407i;
+    public boolean m() {
+        return this.f4043i;
     }
 
-    /* renamed from: n */
-    public String m6038n() {
-        return m6039o().toString();
+    public String n() {
+        return o().toString();
     }
 
-    /* renamed from: o */
-    public JSONObject m6039o() {
+    public JSONObject o() throws JSONException {
         new JSONObject();
         JSONObject jSONObject = new JSONObject();
-        if (this.f6399a != null) {
+        if (this.a != null) {
             JSONArray jSONArray = new JSONArray();
-            Iterator<Scope> it = this.f6399a.iterator();
+            Iterator<Scope> it = this.a.iterator();
             while (it.hasNext()) {
-                jSONArray.put(m6024a(it.next()));
+                jSONArray.put(a(it.next()));
             }
             jSONObject.put("scopeArrayList", jSONArray);
         }
-        if (this.f6400b != null) {
+        if (this.f4036b != null) {
             JSONArray jSONArray2 = new JSONArray();
-            Iterator<PermissionInfo> it2 = this.f6400b.iterator();
+            Iterator<PermissionInfo> it2 = this.f4036b.iterator();
             while (it2.hasNext()) {
-                jSONArray2.put(m6023a(it2.next()));
+                jSONArray2.put(a(it2.next()));
             }
             jSONObject.put("permissionArrayList", jSONArray2);
         }
@@ -204,17 +184,15 @@ public abstract class AbstractSignInOptions implements C5868c.a.InterfaceC7434a,
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeList(this.f6399a);
-        parcel.writeList(this.f6400b);
+        parcel.writeList(this.a);
+        parcel.writeList(this.f4036b);
     }
 
-    /* renamed from: b */
-    public static Scope m6021b(JSONObject jSONObject) {
+    public static Scope b(JSONObject jSONObject) {
         return new Scope(jSONObject.optString("mScopeUri", null));
     }
 
-    /* renamed from: a */
-    public <T> boolean m6025a(ArrayList<T> arrayList, ArrayList<T> arrayList2) {
+    public <T> boolean a(ArrayList<T> arrayList, ArrayList<T> arrayList2) {
         if (arrayList == arrayList2) {
             return true;
         }
@@ -224,34 +202,31 @@ public abstract class AbstractSignInOptions implements C5868c.a.InterfaceC7434a,
         return arrayList.containsAll(arrayList2);
     }
 
-    /* renamed from: a */
-    public static PermissionInfo m6020a(JSONObject jSONObject) {
-        return new PermissionInfo().m6017a(jSONObject.optString(AttributionReporter.SYSTEM_PERMISSION, null));
+    public static PermissionInfo a(JSONObject jSONObject) {
+        return new PermissionInfo().a(jSONObject.optString(AttributionReporter.SYSTEM_PERMISSION, null));
     }
 
-    /* renamed from: a */
-    public JSONObject m6023a(PermissionInfo permissionInfo) {
+    public JSONObject a(PermissionInfo permissionInfo) throws JSONException {
         JSONObject jSONObject = new JSONObject();
-        if (permissionInfo.m6018a() != null) {
-            jSONObject.put(AttributionReporter.SYSTEM_PERMISSION, permissionInfo.m6018a());
+        if (permissionInfo.a() != null) {
+            jSONObject.put(AttributionReporter.SYSTEM_PERMISSION, permissionInfo.a());
         }
         return jSONObject;
     }
 
-    /* renamed from: a */
-    public JSONObject m6024a(Scope scope) {
+    public JSONObject a(Scope scope) throws JSONException {
         JSONObject jSONObject = new JSONObject();
-        if (scope.m6019a() != null) {
-            jSONObject.put("mScopeUri", scope.m6019a());
+        if (scope.a() != null) {
+            jSONObject.put("mScopeUri", scope.a());
         }
         return jSONObject;
     }
 
     public AbstractSignInOptions(Parcel parcel) {
-        this.f6401c = "";
-        this.f6402d = "";
-        this.f6403e = "";
-        this.f6399a = parcel.createTypedArrayList(Scope.CREATOR);
-        this.f6400b = parcel.createTypedArrayList(PermissionInfo.CREATOR);
+        this.f4037c = "";
+        this.f4038d = "";
+        this.f4039e = "";
+        this.a = parcel.createTypedArrayList(Scope.CREATOR);
+        this.f4036b = parcel.createTypedArrayList(PermissionInfo.CREATOR);
     }
 }

@@ -7,7 +7,7 @@ import androidx.core.view.MotionEventCompat;
 import androidx.core.view.NestedScrollingChild;
 import androidx.core.view.NestedScrollingChildHelper;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NestedScrollAgentWebView extends AgentWebView implements NestedScrollingChild {
     private NestedScrollingChildHelper mChildHelper;
     private int mLastMotionY;
@@ -59,7 +59,7 @@ public class NestedScrollAgentWebView extends AgentWebView implements NestedScro
 
     @Override // android.webkit.WebView, android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
+        MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
         int actionMasked = MotionEventCompat.getActionMasked(motionEvent);
         if (actionMasked == 0) {
             this.mNestedYOffset = 0;
@@ -76,20 +76,20 @@ public class NestedScrollAgentWebView extends AgentWebView implements NestedScro
                 int i2 = this.mLastMotionY - y;
                 if (dispatchNestedPreScroll(0, i2, this.mScrollConsumed, this.mScrollOffset)) {
                     i2 -= this.mScrollConsumed[1];
-                    obtain.offsetLocation(0.0f, this.mScrollOffset[1]);
+                    motionEventObtain.offsetLocation(0.0f, this.mScrollOffset[1]);
                     this.mNestedYOffset += this.mScrollOffset[1];
                 }
                 this.mLastMotionY = y - this.mScrollOffset[1];
                 int scrollY = getScrollY();
-                int max = Math.max(0, scrollY + i2) - scrollY;
-                if (dispatchNestedScroll(0, max, 0, i2 - max, this.mScrollOffset)) {
+                int iMax = Math.max(0, scrollY + i2) - scrollY;
+                if (dispatchNestedScroll(0, iMax, 0, i2 - iMax, this.mScrollOffset)) {
                     this.mLastMotionY = this.mLastMotionY - this.mScrollOffset[1];
-                    obtain.offsetLocation(0.0f, r1[1]);
+                    motionEventObtain.offsetLocation(0.0f, r1[1]);
                     this.mNestedYOffset += this.mScrollOffset[1];
                 }
-                boolean onTouchEvent = super.onTouchEvent(obtain);
-                obtain.recycle();
-                return onTouchEvent;
+                boolean zOnTouchEvent = super.onTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
+                return zOnTouchEvent;
             }
             if (actionMasked != 3 && actionMasked != 5) {
                 return false;

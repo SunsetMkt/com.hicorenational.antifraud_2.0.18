@@ -2,7 +2,7 @@ package interfaces;
 
 import bean.module.RegionMudelBean;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IResultMuCallback {
     void onIRFail();
 

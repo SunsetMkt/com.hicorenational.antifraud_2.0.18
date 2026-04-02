@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class ButterKnife {
 
     @VisibleForTesting
@@ -36,7 +36,7 @@ public final class ButterKnife {
     @CheckResult
     @UiThread
     private static Constructor<? extends Unbinder> findBindingConstructorForClass(Class<?> cls) {
-        Constructor<? extends Unbinder> findBindingConstructorForClass;
+        Constructor<? extends Unbinder> constructorFindBindingConstructorForClass;
         Constructor<? extends Unbinder> constructor = BINDINGS.get(cls);
         if (constructor != null || BINDINGS.containsKey(cls)) {
             boolean z = debug;
@@ -48,18 +48,18 @@ public final class ButterKnife {
             return null;
         }
         try {
-            findBindingConstructorForClass = cls.getClassLoader().loadClass(name + "_ViewBinding").getConstructor(cls, View.class);
+            constructorFindBindingConstructorForClass = cls.getClassLoader().loadClass(name + "_ViewBinding").getConstructor(cls, View.class);
             boolean z3 = debug;
         } catch (ClassNotFoundException unused) {
             if (debug) {
                 String str = "Not found. Trying superclass " + cls.getSuperclass().getName();
             }
-            findBindingConstructorForClass = findBindingConstructorForClass(cls.getSuperclass());
+            constructorFindBindingConstructorForClass = findBindingConstructorForClass(cls.getSuperclass());
         } catch (NoSuchMethodException e2) {
             throw new RuntimeException("Unable to find binding constructor for " + name, e2);
         }
-        BINDINGS.put(cls, findBindingConstructorForClass);
-        return findBindingConstructorForClass;
+        BINDINGS.put(cls, constructorFindBindingConstructorForClass);
+        return constructorFindBindingConstructorForClass;
     }
 
     public static void setDebug(boolean z) {
@@ -97,16 +97,16 @@ public final class ButterKnife {
         if (debug) {
             String str = "Looking up binding for " + cls.getName();
         }
-        Constructor<? extends Unbinder> findBindingConstructorForClass = findBindingConstructorForClass(cls);
-        if (findBindingConstructorForClass == null) {
+        Constructor<? extends Unbinder> constructorFindBindingConstructorForClass = findBindingConstructorForClass(cls);
+        if (constructorFindBindingConstructorForClass == null) {
             return Unbinder.EMPTY;
         }
         try {
-            return findBindingConstructorForClass.newInstance(obj, view);
+            return constructorFindBindingConstructorForClass.newInstance(obj, view);
         } catch (IllegalAccessException e2) {
-            throw new RuntimeException("Unable to invoke " + findBindingConstructorForClass, e2);
+            throw new RuntimeException("Unable to invoke " + constructorFindBindingConstructorForClass, e2);
         } catch (InstantiationException e3) {
-            throw new RuntimeException("Unable to invoke " + findBindingConstructorForClass, e3);
+            throw new RuntimeException("Unable to invoke " + constructorFindBindingConstructorForClass, e3);
         } catch (InvocationTargetException e4) {
             Throwable cause = e4.getCause();
             if (!(cause instanceof RuntimeException)) {

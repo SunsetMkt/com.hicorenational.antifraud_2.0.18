@@ -5,80 +5,74 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import androidx.core.app.NotificationCompat;
-import com.heytap.mcssdk.constant.C2085b;
+import com.heytap.mcssdk.constant.b;
 import com.hihonor.cloudservice.support.api.entity.auth.Scope;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-import p358k.p359a.p360a.p361a.C5848b;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractSignInAccountInfo implements Parcelable {
+    public String a;
 
-    /* renamed from: a */
-    public String f6423a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public String f4058b;
 
-    /* renamed from: b */
-    public String f6424b;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    public Set<Scope> f4059c;
 
-    /* renamed from: c */
-    public Set<Scope> f6425c;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    public String f4060d;
 
-    /* renamed from: d */
-    public String f6426d;
+    /* JADX INFO: renamed from: e, reason: collision with root package name */
+    public String f4061e;
 
-    /* renamed from: e */
-    public String f6427e;
+    /* JADX INFO: renamed from: f, reason: collision with root package name */
+    public String f4062f;
 
-    /* renamed from: f */
-    public String f6428f;
+    /* JADX INFO: renamed from: g, reason: collision with root package name */
+    public Set<Scope> f4063g;
 
-    /* renamed from: g */
-    public Set<Scope> f6429g;
+    /* JADX INFO: renamed from: h, reason: collision with root package name */
+    public String f4064h;
 
-    /* renamed from: h */
-    public String f6430h;
+    /* JADX INFO: renamed from: i, reason: collision with root package name */
+    public long f4065i;
 
-    /* renamed from: i */
-    public long f6431i;
-
-    /* renamed from: j */
-    public String f6432j;
+    /* JADX INFO: renamed from: j, reason: collision with root package name */
+    public String f4066j;
 
     public AbstractSignInAccountInfo(String str, String str2, Set<Scope> set, String str3, String str4, String str5) {
-        this.f6429g = new HashSet();
-        this.f6423a = str;
-        this.f6424b = str2;
-        this.f6425c = set;
-        this.f6426d = str3;
-        this.f6427e = str4;
-        this.f6430h = str5;
+        this.f4063g = new HashSet();
+        this.a = str;
+        this.f4058b = str2;
+        this.f4059c = set;
+        this.f4060d = str3;
+        this.f4061e = str4;
+        this.f4064h = str5;
     }
 
-    /* renamed from: a */
-    public String m6040a() {
-        return this.f6432j;
+    public String a() {
+        return this.f4066j;
     }
 
-    /* renamed from: b */
-    public String m6045b() {
-        return this.f6426d;
+    public String b() {
+        return this.f4060d;
     }
 
-    /* renamed from: c */
-    public Set<Scope> m6048c() {
-        return this.f6425c;
+    public Set<Scope> c() {
+        return this.f4059c;
     }
 
-    /* renamed from: d */
-    public Uri m6050d() {
-        if (TextUtils.isEmpty(this.f6424b)) {
-            this.f6424b = "";
+    public Uri d() {
+        if (TextUtils.isEmpty(this.f4058b)) {
+            this.f4058b = "";
         }
-        return Uri.parse(this.f6424b);
+        return Uri.parse(this.f4058b);
     }
 
     @Override // android.os.Parcelable
@@ -86,9 +80,8 @@ public abstract class AbstractSignInAccountInfo implements Parcelable {
         return 0;
     }
 
-    /* renamed from: e */
-    public String m6052e() {
-        return this.f6424b;
+    public String e() {
+        return this.f4058b;
     }
 
     public boolean equals(Object obj) {
@@ -96,112 +89,101 @@ public abstract class AbstractSignInAccountInfo implements Parcelable {
             return true;
         }
         if (obj instanceof AbstractSignInAccountInfo) {
-            return m6048c().equals(((AbstractSignInAccountInfo) obj).m6048c());
+            return c().equals(((AbstractSignInAccountInfo) obj).c());
         }
         return false;
     }
 
-    /* renamed from: f */
-    public String m6053f() {
-        return this.f6428f;
+    public String f() {
+        return this.f4062f;
     }
 
-    /* renamed from: g */
-    public long m6054g() {
-        return this.f6431i;
+    public long g() {
+        return this.f4065i;
     }
 
-    /* renamed from: h */
-    public Set<Scope> m6055h() {
-        return this.f6429g;
+    public Set<Scope> h() {
+        return this.f4063g;
     }
 
     public int hashCode() {
-        return m6058k().hashCode();
+        return k().hashCode();
     }
 
-    /* renamed from: i */
-    public String m6056i() {
-        return this.f6430h;
+    public String i() {
+        return this.f4064h;
     }
 
-    /* renamed from: j */
-    public String m6057j() {
-        return this.f6423a;
+    public String j() {
+        return this.a;
     }
 
-    /* renamed from: k */
-    public Set<Scope> m6058k() {
-        return new HashSet(this.f6429g);
+    public Set<Scope> k() {
+        return new HashSet(this.f4063g);
     }
 
-    /* renamed from: l */
-    public String m6059l() {
-        return this.f6427e;
+    public String l() {
+        return this.f4061e;
     }
 
-    /* renamed from: m */
-    public boolean m6060m() {
-        return this.f6431i > 300 && System.currentTimeMillis() / 1000 >= this.f6431i - 300;
+    public boolean m() {
+        return this.f4065i > 300 && System.currentTimeMillis() / 1000 >= this.f4065i - 300;
     }
 
-    /* renamed from: n */
-    public String m6061n() {
-        return mo6005o().toString();
+    public String n() {
+        return o().toString();
     }
 
-    /* renamed from: o */
-    public JSONObject mo6005o() {
+    public JSONObject o() throws JSONException {
         JSONObject jSONObject = new JSONObject();
-        if (m6057j() != null) {
-            jSONObject.put("openId", m6057j());
+        if (j() != null) {
+            jSONObject.put("openId", j());
         }
-        if (m6052e() != null) {
-            jSONObject.put("photoUriString", m6052e());
+        if (e() != null) {
+            jSONObject.put("photoUriString", e());
         }
-        if (m6059l() != null) {
-            jSONObject.put("unionId", m6059l());
+        if (l() != null) {
+            jSONObject.put("unionId", l());
         }
-        if (m6053f() != null) {
-            jSONObject.put(NotificationCompat.CATEGORY_EMAIL, m6053f());
+        if (f() != null) {
+            jSONObject.put(NotificationCompat.CATEGORY_EMAIL, f());
         }
-        if (m6045b() != null) {
-            jSONObject.put("serverAuthCode", m6045b());
+        if (b() != null) {
+            jSONObject.put("serverAuthCode", b());
         }
-        if (m6056i() != null) {
-            jSONObject.put("idToken", m6056i());
+        if (i() != null) {
+            jSONObject.put("idToken", i());
         }
-        if (m6040a() != null) {
-            jSONObject.put(C2085b.f6180u, m6040a());
+        if (a() != null) {
+            jSONObject.put(b.u, a());
         }
-        jSONObject.put("expirationTimeSecs", m6054g());
-        return m6041a(m6046b(jSONObject));
+        jSONObject.put("expirationTimeSecs", g());
+        return a(b(jSONObject));
     }
 
     public String toString() {
-        return "{displayName: photoUriString: " + this.f6424b + ",serviceCountryCode: countryCode: ";
+        return "{displayName: photoUriString: " + this.f4058b + ",serviceCountryCode: countryCode: ";
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i2) {
-        parcel.writeString(this.f6423a);
-        parcel.writeString(this.f6424b);
-        parcel.writeString(this.f6426d);
-        parcel.writeList(new ArrayList(this.f6425c));
-        parcel.writeString(this.f6427e);
-        parcel.writeString(this.f6428f);
-        parcel.writeString(this.f6430h);
-        parcel.writeLong(this.f6431i);
-        parcel.writeString(this.f6432j);
+        parcel.writeString(this.a);
+        parcel.writeString(this.f4058b);
+        parcel.writeString(this.f4060d);
+        parcel.writeList(new ArrayList(this.f4059c));
+        parcel.writeString(this.f4061e);
+        parcel.writeString(this.f4062f);
+        parcel.writeString(this.f4064h);
+        parcel.writeLong(this.f4065i);
+        parcel.writeString(this.f4066j);
     }
 
-    /* renamed from: a */
-    public JSONObject m6041a(JSONObject jSONObject) {
-        if (m6055h() != null) {
+    public JSONObject a(JSONObject jSONObject) throws JSONException {
+        if (h() != null) {
             JSONArray jSONArray = new JSONArray();
-            for (Scope scope : m6055h()) {
+            for (Scope scope : h()) {
                 JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.putOpt("mScopeUri", scope.m6019a());
+                jSONObject2.putOpt("mScopeUri", scope.a());
                 jSONArray.put(jSONObject2);
             }
             jSONObject.putOpt("extensionScopes", jSONArray);
@@ -209,13 +191,12 @@ public abstract class AbstractSignInAccountInfo implements Parcelable {
         return jSONObject;
     }
 
-    /* renamed from: b */
-    public JSONObject m6046b(JSONObject jSONObject) {
-        if (m6048c() != null) {
+    public JSONObject b(JSONObject jSONObject) throws JSONException {
+        if (c() != null) {
             JSONArray jSONArray = new JSONArray();
-            for (Scope scope : m6048c()) {
+            for (Scope scope : c()) {
                 JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.putOpt("mScopeUri", scope.m6019a());
+                jSONObject2.putOpt("mScopeUri", scope.a());
                 jSONArray.put(jSONObject2);
             }
             jSONObject.put("grantedScopes", jSONArray);
@@ -223,87 +204,78 @@ public abstract class AbstractSignInAccountInfo implements Parcelable {
         return jSONObject;
     }
 
-    /* renamed from: c */
-    public void mo6004c(JSONObject jSONObject) {
-        this.f6423a = jSONObject.optString("openId", null);
-        this.f6424b = jSONObject.optString("photoUriString", null);
-        this.f6426d = jSONObject.optString("serverAuthCode", null);
+    public void c(JSONObject jSONObject) throws JSONException {
+        this.a = jSONObject.optString("openId", null);
+        this.f4058b = jSONObject.optString("photoUriString", null);
+        this.f4060d = jSONObject.optString("serverAuthCode", null);
         JSONArray jSONArray = jSONObject.getJSONArray("grantedScopes");
         if (jSONArray != null) {
             HashSet hashSet = new HashSet();
             for (int i2 = 0; i2 < jSONArray.length(); i2++) {
-                String optString = jSONArray.getJSONObject(i2).optString("mScopeUri", null);
-                if (optString != null) {
-                    hashSet.add(new Scope(optString));
+                String strOptString = jSONArray.getJSONObject(i2).optString("mScopeUri", null);
+                if (strOptString != null) {
+                    hashSet.add(new Scope(strOptString));
                 }
             }
-            this.f6425c = hashSet;
+            this.f4059c = hashSet;
         }
-        this.f6427e = jSONObject.optString("unionId", null);
-        this.f6428f = jSONObject.optString(NotificationCompat.CATEGORY_EMAIL, null);
-        this.f6430h = jSONObject.optString("idToken", null);
-        this.f6431i = Long.parseLong(jSONObject.getString("expirationTimeSecs"));
-        this.f6432j = jSONObject.optString(C2085b.f6180u, null);
+        this.f4061e = jSONObject.optString("unionId", null);
+        this.f4062f = jSONObject.optString(NotificationCompat.CATEGORY_EMAIL, null);
+        this.f4064h = jSONObject.optString("idToken", null);
+        this.f4065i = Long.parseLong(jSONObject.getString("expirationTimeSecs"));
+        this.f4066j = jSONObject.optString(b.u, null);
     }
 
-    /* renamed from: d */
-    public void m6051d(String str) {
-        this.f6430h = str;
+    public void d(String str) {
+        this.f4064h = str;
     }
 
     public AbstractSignInAccountInfo(Parcel parcel) {
-        this.f6429g = new HashSet();
-        this.f6429g = new HashSet();
-        mo6003a(parcel);
+        this.f4063g = new HashSet();
+        this.f4063g = new HashSet();
+        a(parcel);
     }
 
-    /* renamed from: b */
-    public void m6047b(String str) {
-        this.f6424b = str;
+    public void b(String str) {
+        this.f4058b = str;
     }
 
-    /* renamed from: a */
-    public void mo6003a(Parcel parcel) {
-        this.f6423a = parcel.readString();
-        this.f6424b = parcel.readString();
-        this.f6426d = parcel.readString();
-        this.f6425c = new HashSet();
-        this.f6427e = parcel.readString();
-        this.f6428f = parcel.readString();
-        this.f6430h = parcel.readString();
-        this.f6431i = parcel.readLong();
-        this.f6432j = parcel.readString();
+    public void a(Parcel parcel) {
+        this.a = parcel.readString();
+        this.f4058b = parcel.readString();
+        this.f4060d = parcel.readString();
+        this.f4059c = new HashSet();
+        this.f4061e = parcel.readString();
+        this.f4062f = parcel.readString();
+        this.f4064h = parcel.readString();
+        this.f4065i = parcel.readLong();
+        this.f4066j = parcel.readString();
     }
 
     public AbstractSignInAccountInfo() {
-        this.f6429g = new HashSet();
+        this.f4063g = new HashSet();
     }
 
-    /* renamed from: c */
-    public void m6049c(String str) {
-        this.f6428f = str;
+    public void c(String str) {
+        this.f4062f = str;
     }
 
-    /* renamed from: a */
-    public AbstractSignInAccountInfo mo6002a(List<Scope> list) {
-        if (C5848b.m24626b(list)) {
-            this.f6429g.addAll(list);
+    public AbstractSignInAccountInfo a(List<Scope> list) {
+        if (l.a.a.a.b.b(list)) {
+            this.f4063g.addAll(list);
         }
         return this;
     }
 
-    /* renamed from: a */
-    public void m6043a(String str) {
-        this.f6432j = str;
+    public void a(String str) {
+        this.f4066j = str;
     }
 
-    /* renamed from: a */
-    public void m6042a(long j2) {
-        this.f6431i = j2;
+    public void a(long j2) {
+        this.f4065i = j2;
     }
 
-    /* renamed from: a */
-    public void m6044a(Set<Scope> set) {
-        this.f6429g = set;
+    public void a(Set<Scope> set) {
+        this.f4063g = set;
     }
 }

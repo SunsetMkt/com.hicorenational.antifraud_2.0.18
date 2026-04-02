@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.Build;
 import com.umeng.message.PushAgent;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UPushNotificationChannel {
     public static final String DEFAULT_NOTIFICATION_CHANNEL_NAME = "Default";
     public static final String DEFAULT_NOTIFICATION_SILENCE_CHANNEL_NAME = "Silence";
@@ -27,7 +27,7 @@ public class UPushNotificationChannel {
             notificationManager.createNotificationChannel(notificationChannel2);
             return notificationChannel2;
         } catch (Throwable th) {
-            UPLog.m12143e("NotificationChannel", th);
+            UPLog.e("NotificationChannel", th);
             return null;
         }
     }
@@ -46,7 +46,7 @@ public class UPushNotificationChannel {
             notificationManager.createNotificationChannel(notificationChannel2);
             return notificationChannel2;
         } catch (Throwable th) {
-            UPLog.m12143e("NotificationChannel", th);
+            UPLog.e("NotificationChannel", th);
             return null;
         }
     }

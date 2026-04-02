@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class CameraSelector {
     public static final int LENS_FACING_BACK = 1;
     public static final int LENS_FACING_FRONT = 0;
@@ -41,15 +41,13 @@ public final class CameraSelector {
     @Nullable
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public Integer getLensFacing() {
-        Iterator<CameraIdFilter> it = this.mCameraFilterSet.iterator();
         Integer num = null;
-        while (it.hasNext()) {
-            CameraIdFilter next = it.next();
-            if (next instanceof LensFacingCameraIdFilter) {
-                Integer valueOf = Integer.valueOf(((LensFacingCameraIdFilter) next).getLensFacing());
+        for (CameraIdFilter cameraIdFilter : this.mCameraFilterSet) {
+            if (cameraIdFilter instanceof LensFacingCameraIdFilter) {
+                Integer numValueOf = Integer.valueOf(((LensFacingCameraIdFilter) cameraIdFilter).getLensFacing());
                 if (num == null) {
-                    num = valueOf;
-                } else if (!num.equals(valueOf)) {
+                    num = numValueOf;
+                } else if (!num.equals(numValueOf)) {
                     throw new IllegalStateException("Multiple conflicting lens facing requirements exist.");
                 }
             }

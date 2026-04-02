@@ -3,7 +3,7 @@ package androidx.camera.core;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class FocusMeteringResult {
     private boolean mIsFocusSuccessful;
 

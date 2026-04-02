@@ -3,14 +3,13 @@ package androidx.recyclerview.widget;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class LayoutState {
     static final int INVALID_LAYOUT = Integer.MIN_VALUE;
     static final int ITEM_DIRECTION_HEAD = -1;
     static final int ITEM_DIRECTION_TAIL = 1;
     static final int LAYOUT_END = 1;
     static final int LAYOUT_START = -1;
-    static final String TAG = "LayoutState";
     int mAvailable;
     int mCurrentPosition;
     boolean mInfinite;

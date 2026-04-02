@@ -6,7 +6,7 @@ import android.view.SubMenu;
 import android.view.View;
 import androidx.annotation.RestrictTo;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class ActionProvider {
     private static final String TAG = "ActionProvider(support)";
     private final Context mContext;

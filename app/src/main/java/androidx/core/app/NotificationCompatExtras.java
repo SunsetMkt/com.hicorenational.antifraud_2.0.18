@@ -1,6 +1,6 @@
 package androidx.core.app;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class NotificationCompatExtras {
     public static final String EXTRA_ACTION_EXTRAS = "android.support.actionExtras";
     public static final String EXTRA_GROUP_KEY = "android.support.groupKey";

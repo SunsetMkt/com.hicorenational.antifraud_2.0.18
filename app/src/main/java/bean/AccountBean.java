@@ -2,11 +2,9 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AccountBean extends BaseBean {
-
-    /* renamed from: id */
-    private String f1578id;
+    private String id;
     private String paymentInfoID;
     private String paymentTime;
     private String paymentType;
@@ -23,7 +21,7 @@ public class AccountBean extends BaseBean {
     private String victimAccountTypeText1;
 
     public String getId() {
-        return this.f1578id;
+        return this.id;
     }
 
     public String getPaymentInfoID() {
@@ -83,7 +81,7 @@ public class AccountBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1578id = str;
+        this.id = str;
     }
 
     public void setPaymentInfoID(String str) {

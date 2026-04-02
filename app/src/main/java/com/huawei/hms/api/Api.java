@@ -7,7 +7,7 @@ import com.huawei.hms.support.api.entity.auth.Scope;
 import java.util.Collections;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Api<O extends ApiOptions> {
     private final String mApiName;
     public List<ConnectionPostProcessor> mConnetctPostList;

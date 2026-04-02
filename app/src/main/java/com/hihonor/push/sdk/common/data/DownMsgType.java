@@ -1,6 +1,6 @@
 package com.hihonor.push.sdk.common.data;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface DownMsgType {
     public static final String RECEIVE_PUSH_MESSAGE = "down_msg_receive_push_message";
     public static final String RECEIVE_QUERY_PUSH_STATUS = "down_msg_query_push_status";

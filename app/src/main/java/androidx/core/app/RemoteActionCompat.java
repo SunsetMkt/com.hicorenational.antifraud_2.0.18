@@ -10,7 +10,7 @@ import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.util.Preconditions;
 import androidx.versionedparcelable.VersionedParcelable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class RemoteActionCompat implements VersionedParcelable {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})

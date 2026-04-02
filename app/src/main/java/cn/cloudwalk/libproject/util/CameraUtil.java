@@ -3,7 +3,7 @@ package cn.cloudwalk.libproject.util;
 import android.hardware.Camera;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CameraUtil {
     public static boolean isHasCamera(int i2) {
         if (UIUtils.getSdkVersion() < 9) {

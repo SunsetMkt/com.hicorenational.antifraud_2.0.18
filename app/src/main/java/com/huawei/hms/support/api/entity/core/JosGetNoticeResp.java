@@ -3,7 +3,7 @@ package com.huawei.hms.support.api.entity.core;
 import android.content.Intent;
 import com.huawei.hms.core.aidl.annotation.Packed;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class JosGetNoticeResp extends JosBaseResp {
 
     @Packed

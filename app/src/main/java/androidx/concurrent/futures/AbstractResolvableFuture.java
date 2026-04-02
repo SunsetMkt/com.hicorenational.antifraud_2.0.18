@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import bean.SurveyH5Bean;
 import com.xiaomi.mipush.sdk.Constants;
+import d.b.b.a.a.a;
 import java.util.Locale;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
@@ -17,13 +18,10 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import p000a.p001a.p014u.C0052a;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
-import p031c.p075c.p076a.p081b.p082a.AbstractC1191a;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
-public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC0952a<V> {
+public abstract class AbstractResolvableFuture<V> implements a<V> {
     static final AtomicHelper ATOMIC_HELPER;
     private static final Object NULL;
     private static final long SPIN_THRESHOLD_NANOS = 1000;
@@ -36,7 +34,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
 
     @Nullable
     volatile Waiter waiters;
-    static final boolean GENERATE_CANCELLATION_CAUSES = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", C0052a.f159k));
+    static final boolean GENERATE_CANCELLATION_CAUSES = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", b.a.u.a.f1909k));
     private static final Logger log = Logger.getLogger(AbstractResolvableFuture.class.getName());
 
     private static abstract class AtomicHelper {
@@ -149,12 +147,12 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
     }
 
     private static final class SetFuture<V> implements Runnable {
-        final InterfaceFutureC0952a<? extends V> future;
+        final a<? extends V> future;
         final AbstractResolvableFuture<V> owner;
 
-        SetFuture(AbstractResolvableFuture<V> abstractResolvableFuture, InterfaceFutureC0952a<? extends V> interfaceFutureC0952a) {
+        SetFuture(AbstractResolvableFuture<V> abstractResolvableFuture, a<? extends V> aVar) {
             this.owner = abstractResolvableFuture;
-            this.future = interfaceFutureC0952a;
+            this.future = aVar;
         }
 
         @Override // java.lang.Runnable
@@ -314,15 +312,25 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         return listener3;
     }
 
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
     static void complete(AbstractResolvableFuture<?> abstractResolvableFuture) {
         Listener listener = null;
         while (true) {
             abstractResolvableFuture.releaseWaiters();
             abstractResolvableFuture.afterDone();
-            Listener clearListeners = abstractResolvableFuture.clearListeners(listener);
-            while (clearListeners != null) {
-                listener = clearListeners.next;
-                Runnable runnable = clearListeners.task;
+            Listener listenerClearListeners = abstractResolvableFuture.clearListeners(listener);
+            while (listenerClearListeners != null) {
+                listener = listenerClearListeners.next;
+                Runnable runnable = listenerClearListeners.task;
                 if (runnable instanceof SetFuture) {
                     SetFuture setFuture = (SetFuture) runnable;
                     abstractResolvableFuture = setFuture.owner;
@@ -334,9 +342,9 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
                         continue;
                     }
                 } else {
-                    executeListener(runnable, clearListeners.executor);
+                    executeListener(runnable, listenerClearListeners.executor);
                 }
-                clearListeners = listener;
+                listenerClearListeners = listener;
             }
             return;
         }
@@ -364,9 +372,9 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         return obj;
     }
 
-    static Object getFutureValue(InterfaceFutureC0952a<?> interfaceFutureC0952a) {
-        if (interfaceFutureC0952a instanceof AbstractResolvableFuture) {
-            Object obj = ((AbstractResolvableFuture) interfaceFutureC0952a).value;
+    static Object getFutureValue(a<?> aVar) {
+        if (aVar instanceof AbstractResolvableFuture) {
+            Object obj = ((AbstractResolvableFuture) aVar).value;
             if (!(obj instanceof Cancellation)) {
                 return obj;
             }
@@ -377,18 +385,18 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
             Throwable th = cancellation.cause;
             return th != null ? new Cancellation(false, th) : Cancellation.CAUSELESS_CANCELLED;
         }
-        boolean isCancelled = interfaceFutureC0952a.isCancelled();
-        if ((!GENERATE_CANCELLATION_CAUSES) && isCancelled) {
+        boolean zIsCancelled = aVar.isCancelled();
+        if ((!GENERATE_CANCELLATION_CAUSES) && zIsCancelled) {
             return Cancellation.CAUSELESS_CANCELLED;
         }
         try {
-            Object uninterruptibly = getUninterruptibly(interfaceFutureC0952a);
+            Object uninterruptibly = getUninterruptibly(aVar);
             return uninterruptibly == null ? NULL : uninterruptibly;
         } catch (CancellationException e2) {
-            if (isCancelled) {
+            if (zIsCancelled) {
                 return new Cancellation(false, e2);
             }
-            return new Failure(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + interfaceFutureC0952a, e2));
+            return new Failure(new IllegalArgumentException("get() threw CancellationException, despite reporting isCancelled() == false: " + aVar, e2));
         } catch (ExecutionException e3) {
             return new Failure(e3.getCause());
         } catch (Throwable th2) {
@@ -459,7 +467,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         return obj == this ? "this future" : String.valueOf(obj);
     }
 
-    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
+    @Override // d.b.b.a.a.a
     public final void addListener(Runnable runnable, Executor executor) {
         checkNotNull(runnable);
         checkNotNull(executor);
@@ -500,12 +508,12 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
                 if (!(obj2 instanceof SetFuture)) {
                     return true;
                 }
-                InterfaceFutureC0952a<? extends V> interfaceFutureC0952a = ((SetFuture) obj2).future;
-                if (!(interfaceFutureC0952a instanceof AbstractResolvableFuture)) {
-                    interfaceFutureC0952a.cancel(z);
+                a<? extends V> aVar = ((SetFuture) obj2).future;
+                if (!(aVar instanceof AbstractResolvableFuture)) {
+                    aVar.cancel(z);
                     return true;
                 }
-                abstractResolvableFuture = (AbstractResolvableFuture) interfaceFutureC0952a;
+                abstractResolvableFuture = (AbstractResolvableFuture) aVar;
                 obj2 = abstractResolvableFuture.value;
                 if (!(obj2 == null) && !(obj2 instanceof SetFuture)) {
                     return true;
@@ -521,7 +529,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
     }
 
     @Override // java.util.concurrent.Future
-    public final V get(long j2, TimeUnit timeUnit) throws InterruptedException, TimeoutException, ExecutionException {
+    public final V get(long j2, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         long nanos = timeUnit.toNanos(j2);
         if (Thread.interrupted()) {
             throw new InterruptedException();
@@ -530,7 +538,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         if ((obj != null) && (!(obj instanceof SetFuture))) {
             return getDoneValue(obj);
         }
-        long nanoTime = nanos > 0 ? System.nanoTime() + nanos : 0L;
+        long jNanoTime = nanos > 0 ? System.nanoTime() + nanos : 0L;
         if (nanos >= 1000) {
             Waiter waiter = this.waiters;
             if (waiter != Waiter.TOMBSTONE) {
@@ -548,7 +556,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
                             if ((obj2 != null) && (!(obj2 instanceof SetFuture))) {
                                 return getDoneValue(obj2);
                             }
-                            nanos = nanoTime - System.nanoTime();
+                            nanos = jNanoTime - System.nanoTime();
                         } while (nanos >= 1000);
                         removeWaiter(waiter2);
                     } else {
@@ -566,23 +574,23 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
             if (Thread.interrupted()) {
                 throw new InterruptedException();
             }
-            nanos = nanoTime - System.nanoTime();
+            nanos = jNanoTime - System.nanoTime();
         }
-        String abstractResolvableFuture = toString();
+        String string = toString();
         String lowerCase = timeUnit.toString().toLowerCase(Locale.ROOT);
-        String str = "Waited " + j2 + AbstractC1191a.f2568g + timeUnit.toString().toLowerCase(Locale.ROOT);
+        String str = "Waited " + j2 + d.c.a.b.a.a.f10074g + timeUnit.toString().toLowerCase(Locale.ROOT);
         if (nanos + 1000 < 0) {
             String str2 = str + " (plus ";
             long j3 = -nanos;
-            long convert = timeUnit.convert(j3, TimeUnit.NANOSECONDS);
-            long nanos2 = j3 - timeUnit.toNanos(convert);
-            boolean z = convert == 0 || nanos2 > 1000;
-            if (convert > 0) {
-                String str3 = str2 + convert + AbstractC1191a.f2568g + lowerCase;
+            long jConvert = timeUnit.convert(j3, TimeUnit.NANOSECONDS);
+            long nanos2 = j3 - timeUnit.toNanos(jConvert);
+            boolean z = jConvert == 0 || nanos2 > 1000;
+            if (jConvert > 0) {
+                String str3 = str2 + jConvert + d.c.a.b.a.a.f10074g + lowerCase;
                 if (z) {
                     str3 = str3 + Constants.ACCEPT_TIME_SEPARATOR_SP;
                 }
-                str2 = str3 + AbstractC1191a.f2568g;
+                str2 = str3 + d.c.a.b.a.a.f10074g;
             }
             if (z) {
                 str2 = str2 + nanos2 + " nanoseconds ";
@@ -592,7 +600,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         if (isDone()) {
             throw new TimeoutException(str + " but future completed as timeout expired");
         }
-        throw new TimeoutException(str + " for " + abstractResolvableFuture);
+        throw new TimeoutException(str + " for " + string);
     }
 
     protected void interruptTask() {
@@ -627,6 +635,16 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         return "remaining delay=[" + ((ScheduledFuture) this).getDelay(TimeUnit.MILLISECONDS) + " ms]";
     }
 
+    /* JADX WARN: Type inference fix 'apply assigned field type' failed
+    java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+    	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:593)
+    	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+    	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+    	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+     */
     protected boolean set(@Nullable V v) {
         if (v == null) {
             v = (V) NULL;
@@ -646,22 +664,22 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
         return true;
     }
 
-    protected boolean setFuture(InterfaceFutureC0952a<? extends V> interfaceFutureC0952a) {
+    protected boolean setFuture(a<? extends V> aVar) {
         Failure failure;
-        checkNotNull(interfaceFutureC0952a);
+        checkNotNull(aVar);
         Object obj = this.value;
         if (obj == null) {
-            if (interfaceFutureC0952a.isDone()) {
-                if (!ATOMIC_HELPER.casValue(this, null, getFutureValue(interfaceFutureC0952a))) {
+            if (aVar.isDone()) {
+                if (!ATOMIC_HELPER.casValue(this, null, getFutureValue(aVar))) {
                     return false;
                 }
                 complete(this);
                 return true;
             }
-            SetFuture setFuture = new SetFuture(this, interfaceFutureC0952a);
+            SetFuture setFuture = new SetFuture(this, aVar);
             if (ATOMIC_HELPER.casValue(this, null, setFuture)) {
                 try {
-                    interfaceFutureC0952a.addListener(setFuture, DirectExecutor.INSTANCE);
+                    aVar.addListener(setFuture, DirectExecutor.INSTANCE);
                 } catch (Throwable th) {
                     try {
                         failure = new Failure(th);
@@ -675,13 +693,13 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
             obj = this.value;
         }
         if (obj instanceof Cancellation) {
-            interfaceFutureC0952a.cancel(((Cancellation) obj).wasInterrupted);
+            aVar.cancel(((Cancellation) obj).wasInterrupted);
         }
         return false;
     }
 
     public String toString() {
-        String str;
+        String strPendingToString;
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
         sb.append("[status=");
@@ -691,13 +709,13 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
             addDoneString(sb);
         } else {
             try {
-                str = pendingToString();
+                strPendingToString = pendingToString();
             } catch (RuntimeException e2) {
-                str = "Exception thrown from implementation: " + e2.getClass();
+                strPendingToString = "Exception thrown from implementation: " + e2.getClass();
             }
-            if (str != null && !str.isEmpty()) {
+            if (strPendingToString != null && !strPendingToString.isEmpty()) {
                 sb.append("PENDING, info=[");
-                sb.append(str);
+                sb.append(strPendingToString);
                 sb.append("]");
             } else if (isDone()) {
                 addDoneString(sb);
@@ -715,7 +733,7 @@ public abstract class AbstractResolvableFuture<V> implements InterfaceFutureC095
     }
 
     @Override // java.util.concurrent.Future
-    public final V get() throws InterruptedException, ExecutionException {
+    public final V get() throws ExecutionException, InterruptedException {
         Object obj;
         if (!Thread.interrupted()) {
             Object obj2 = this.value;

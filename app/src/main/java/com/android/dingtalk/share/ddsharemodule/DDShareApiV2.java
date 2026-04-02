@@ -13,7 +13,7 @@ import com.android.dingtalk.share.ddsharemodule.message.SendMessageToDD;
 import com.android.dingtalk.share.ddsharemodule.plugin.DDVersionCheck;
 import com.android.dingtalk.share.ddsharemodule.plugin.SignatureCheck;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class DDShareApiV2 implements IDDShareApi {
     private static final String TAG = "DDShareApiV2";
     private String mAppId;

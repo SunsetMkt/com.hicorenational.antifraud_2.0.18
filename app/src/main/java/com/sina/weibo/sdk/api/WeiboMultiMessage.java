@@ -3,7 +3,7 @@ package com.sina.weibo.sdk.api;
 import android.os.Bundle;
 import java.io.Serializable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class WeiboMultiMessage implements Serializable {
     private static final long serialVersionUID = -3336491646257094828L;
     public ImageObject imageObject;

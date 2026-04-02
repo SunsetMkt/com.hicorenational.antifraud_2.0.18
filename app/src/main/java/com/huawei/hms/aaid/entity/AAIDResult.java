@@ -2,17 +2,15 @@ package com.huawei.hms.aaid.entity;
 
 import com.huawei.hms.core.aidl.IMessageEntity;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class AAIDResult implements IMessageEntity {
-
-    /* renamed from: id */
-    private String f7010id;
+    private String id;
 
     public String getId() {
-        return this.f7010id;
+        return this.id;
     }
 
     public void setId(String str) {
-        this.f7010id = str;
+        this.id = str;
     }
 }

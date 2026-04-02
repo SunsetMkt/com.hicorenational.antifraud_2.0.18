@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class WXAuthUtils {
     public static String convertStreamToString(InputStream inputStream) {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -17,11 +17,11 @@ public class WXAuthUtils {
             try {
                 try {
                     try {
-                        String readLine = bufferedReader.readLine();
-                        if (readLine == null) {
+                        String line = bufferedReader.readLine();
+                        if (line == null) {
                             break;
                         }
-                        sb.append(readLine);
+                        sb.append(line);
                         sb.append("/n");
                     } catch (IOException e2) {
                         SLog.error(e2);
@@ -45,12 +45,12 @@ public class WXAuthUtils {
 
     public static String request(String str) {
         try {
-            URLConnection openConnection = new URL(str).openConnection();
-            if (openConnection == null) {
+            URLConnection uRLConnectionOpenConnection = new URL(str).openConnection();
+            if (uRLConnectionOpenConnection == null) {
                 return "";
             }
-            openConnection.connect();
-            InputStream inputStream = openConnection.getInputStream();
+            uRLConnectionOpenConnection.connect();
+            InputStream inputStream = uRLConnectionOpenConnection.getInputStream();
             return inputStream == null ? "" : convertStreamToString(inputStream);
         } catch (Exception e2) {
             SLog.error(e2);

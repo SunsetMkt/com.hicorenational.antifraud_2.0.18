@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class Camera2CameraFactory implements CameraFactory {
     private static final int DEFAULT_ALLOWED_CONCURRENT_OPEN_CAMERAS = 1;
     private static final Handler sHandler;
@@ -37,11 +37,11 @@ public final class Camera2CameraFactory implements CameraFactory {
     @Override // androidx.camera.core.impl.CameraFactory
     @Nullable
     public String cameraIdForLensFacing(int i2) throws CameraInfoUnavailableException {
-        Set<String> filter = getLensFacingCameraIdFilter(i2).filter(getAvailableCameraIds());
-        if (filter.isEmpty()) {
+        Set<String> setFilter = getLensFacingCameraIdFilter(i2).filter(getAvailableCameraIds());
+        if (setFilter.isEmpty()) {
             return null;
         }
-        return filter.iterator().next();
+        return setFilter.iterator().next();
     }
 
     @Override // androidx.camera.core.impl.CameraFactory

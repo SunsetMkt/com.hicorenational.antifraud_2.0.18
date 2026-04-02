@@ -1,6 +1,6 @@
 package com.vivo.push.listener;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public interface IPushQueryActionListener extends IPushRequestListener<String, Integer> {
     @Override // com.vivo.push.listener.IPushRequestListener
     /* synthetic */ void onFail(V v);

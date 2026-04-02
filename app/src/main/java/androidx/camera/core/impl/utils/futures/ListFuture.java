@@ -15,20 +15,19 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
-class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
+/* JADX INFO: loaded from: classes.dex */
+class ListFuture<V> implements d.b.b.a.a.a<List<V>> {
     private final boolean mAllMustSucceed;
 
     @Nullable
-    List<? extends InterfaceFutureC0952a<? extends V>> mFutures;
+    List<? extends d.b.b.a.a.a<? extends V>> mFutures;
 
     @NonNull
     private final AtomicInteger mRemaining;
 
     @NonNull
-    private final InterfaceFutureC0952a<List<V>> mResult = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<List<V>>() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.1
+    private final d.b.b.a.a.a<List<V>> mResult = CallbackToFutureAdapter.getFuture(new CallbackToFutureAdapter.Resolver<List<V>>() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.1
         @Override // androidx.concurrent.futures.CallbackToFutureAdapter.Resolver
         public Object attachCompleter(@NonNull CallbackToFutureAdapter.Completer<List<V>> completer) {
             Preconditions.checkState(ListFuture.this.mResultNotifier == null, "The result can only set once!");
@@ -41,7 +40,7 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
     @Nullable
     List<V> mValues;
 
-    ListFuture(@NonNull List<? extends InterfaceFutureC0952a<? extends V>> list, boolean z, @NonNull Executor executor) {
+    ListFuture(@NonNull List<? extends d.b.b.a.a.a<? extends V>> list, boolean z, @NonNull Executor executor) {
         this.mFutures = (List) Preconditions.checkNotNull(list);
         this.mValues = new ArrayList(list.size());
         this.mAllMustSucceed = z;
@@ -50,14 +49,14 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
     }
 
     private void callAllGets() throws InterruptedException {
-        List<? extends InterfaceFutureC0952a<? extends V>> list = this.mFutures;
+        List<? extends d.b.b.a.a.a<? extends V>> list = this.mFutures;
         if (list == null || isDone()) {
             return;
         }
-        for (InterfaceFutureC0952a<? extends V> interfaceFutureC0952a : list) {
-            while (!interfaceFutureC0952a.isDone()) {
+        for (d.b.b.a.a.a<? extends V> aVar : list) {
+            while (!aVar.isDone()) {
                 try {
-                    interfaceFutureC0952a.get();
+                    aVar.get();
                 } catch (Error e2) {
                     throw e2;
                 } catch (InterruptedException e3) {
@@ -87,28 +86,28 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
         for (int i2 = 0; i2 < this.mFutures.size(); i2++) {
             this.mValues.add(null);
         }
-        List<? extends InterfaceFutureC0952a<? extends V>> list = this.mFutures;
+        List<? extends d.b.b.a.a.a<? extends V>> list = this.mFutures;
         for (final int i3 = 0; i3 < list.size(); i3++) {
-            final InterfaceFutureC0952a<? extends V> interfaceFutureC0952a = list.get(i3);
-            interfaceFutureC0952a.addListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.3
+            final d.b.b.a.a.a<? extends V> aVar = list.get(i3);
+            aVar.addListener(new Runnable() { // from class: androidx.camera.core.impl.utils.futures.ListFuture.3
                 @Override // java.lang.Runnable
                 public void run() {
-                    ListFuture.this.setOneValue(i3, interfaceFutureC0952a);
+                    ListFuture.this.setOneValue(i3, aVar);
                 }
             }, executor);
         }
     }
 
-    @Override // p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a
+    @Override // d.b.b.a.a.a
     public void addListener(@NonNull Runnable runnable, @NonNull Executor executor) {
         this.mResult.addListener(runnable, executor);
     }
 
     @Override // java.util.concurrent.Future
     public boolean cancel(boolean z) {
-        List<? extends InterfaceFutureC0952a<? extends V>> list = this.mFutures;
+        List<? extends d.b.b.a.a.a<? extends V>> list = this.mFutures;
         if (list != null) {
-            Iterator<? extends InterfaceFutureC0952a<? extends V>> it = list.iterator();
+            Iterator<? extends d.b.b.a.a.a<? extends V>> it = list.iterator();
             while (it.hasNext()) {
                 it.next().cancel(z);
             }
@@ -129,7 +128,7 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
     void setOneValue(int i2, @NonNull Future<? extends V> future) {
         CallbackToFutureAdapter.Completer<List<V>> completer;
         ArrayList arrayList;
-        int decrementAndGet;
+        int iDecrementAndGet;
         List<V> list = this.mValues;
         if (isDone() || list == null) {
             Preconditions.checkState(this.mAllMustSucceed, "Future was done before all dependencies completed");
@@ -140,67 +139,71 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
                 try {
                     try {
                         Preconditions.checkState(future.isDone(), "Tried to set value from future which is not done");
-                        list.set(i2, Futures.getUninterruptibly(future));
-                        decrementAndGet = this.mRemaining.decrementAndGet();
-                        Preconditions.checkState(decrementAndGet >= 0, "Less than 0 remaining futures");
+                        list.set(i2, (V) Futures.getUninterruptibly(future));
+                        iDecrementAndGet = this.mRemaining.decrementAndGet();
+                        Preconditions.checkState(iDecrementAndGet >= 0, "Less than 0 remaining futures");
                     } catch (Error e2) {
                         this.mResultNotifier.setException(e2);
-                        int decrementAndGet2 = this.mRemaining.decrementAndGet();
-                        Preconditions.checkState(decrementAndGet2 >= 0, "Less than 0 remaining futures");
-                        if (decrementAndGet2 != 0) {
-                            return;
+                        int iDecrementAndGet2 = this.mRemaining.decrementAndGet();
+                        Preconditions.checkState(iDecrementAndGet2 >= 0, "Less than 0 remaining futures");
+                        if (iDecrementAndGet2 == 0) {
+                            List<V> list2 = this.mValues;
+                            if (list2 != null) {
+                                completer = this.mResultNotifier;
+                                arrayList = new ArrayList(list2);
+                            }
+                            Preconditions.checkState(isDone());
                         }
-                        List<V> list2 = this.mValues;
-                        if (list2 != null) {
-                            completer = this.mResultNotifier;
-                            arrayList = new ArrayList(list2);
-                        }
+                        return;
                     } catch (CancellationException unused) {
                         if (this.mAllMustSucceed) {
                             cancel(false);
                         }
-                        int decrementAndGet3 = this.mRemaining.decrementAndGet();
-                        Preconditions.checkState(decrementAndGet3 >= 0, "Less than 0 remaining futures");
-                        if (decrementAndGet3 != 0) {
-                            return;
+                        int iDecrementAndGet3 = this.mRemaining.decrementAndGet();
+                        Preconditions.checkState(iDecrementAndGet3 >= 0, "Less than 0 remaining futures");
+                        if (iDecrementAndGet3 == 0) {
+                            List<V> list3 = this.mValues;
+                            if (list3 != null) {
+                                completer = this.mResultNotifier;
+                                arrayList = new ArrayList(list3);
+                            }
+                            Preconditions.checkState(isDone());
                         }
-                        List<V> list3 = this.mValues;
-                        if (list3 != null) {
-                            completer = this.mResultNotifier;
-                            arrayList = new ArrayList(list3);
-                        }
+                        return;
                     }
                 } catch (RuntimeException e3) {
                     if (this.mAllMustSucceed) {
                         this.mResultNotifier.setException(e3);
                     }
-                    int decrementAndGet4 = this.mRemaining.decrementAndGet();
-                    Preconditions.checkState(decrementAndGet4 >= 0, "Less than 0 remaining futures");
-                    if (decrementAndGet4 != 0) {
-                        return;
+                    int iDecrementAndGet4 = this.mRemaining.decrementAndGet();
+                    Preconditions.checkState(iDecrementAndGet4 >= 0, "Less than 0 remaining futures");
+                    if (iDecrementAndGet4 == 0) {
+                        List<V> list4 = this.mValues;
+                        if (list4 != null) {
+                            completer = this.mResultNotifier;
+                            arrayList = new ArrayList(list4);
+                        }
+                        Preconditions.checkState(isDone());
                     }
-                    List<V> list4 = this.mValues;
-                    if (list4 != null) {
-                        completer = this.mResultNotifier;
-                        arrayList = new ArrayList(list4);
-                    }
+                    return;
                 }
             } catch (ExecutionException e4) {
                 if (this.mAllMustSucceed) {
                     this.mResultNotifier.setException(e4.getCause());
                 }
-                int decrementAndGet5 = this.mRemaining.decrementAndGet();
-                Preconditions.checkState(decrementAndGet5 >= 0, "Less than 0 remaining futures");
-                if (decrementAndGet5 != 0) {
-                    return;
+                int iDecrementAndGet5 = this.mRemaining.decrementAndGet();
+                Preconditions.checkState(iDecrementAndGet5 >= 0, "Less than 0 remaining futures");
+                if (iDecrementAndGet5 == 0) {
+                    List<V> list5 = this.mValues;
+                    if (list5 != null) {
+                        completer = this.mResultNotifier;
+                        arrayList = new ArrayList(list5);
+                    }
+                    Preconditions.checkState(isDone());
                 }
-                List<V> list5 = this.mValues;
-                if (list5 != null) {
-                    completer = this.mResultNotifier;
-                    arrayList = new ArrayList(list5);
-                }
+                return;
             }
-            if (decrementAndGet == 0) {
+            if (iDecrementAndGet == 0) {
                 List<V> list6 = this.mValues;
                 if (list6 != null) {
                     completer = this.mResultNotifier;
@@ -211,9 +214,9 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
                 Preconditions.checkState(isDone());
             }
         } catch (Throwable th) {
-            int decrementAndGet6 = this.mRemaining.decrementAndGet();
-            Preconditions.checkState(decrementAndGet6 >= 0, "Less than 0 remaining futures");
-            if (decrementAndGet6 == 0) {
+            int iDecrementAndGet6 = this.mRemaining.decrementAndGet();
+            Preconditions.checkState(iDecrementAndGet6 >= 0, "Less than 0 remaining futures");
+            if (iDecrementAndGet6 == 0) {
                 List<V> list7 = this.mValues;
                 if (list7 != null) {
                     this.mResultNotifier.set(new ArrayList(list7));
@@ -227,13 +230,13 @@ class ListFuture<V> implements InterfaceFutureC0952a<List<V>> {
 
     @Override // java.util.concurrent.Future
     @Nullable
-    public List<V> get() throws InterruptedException, ExecutionException {
+    public List<V> get() throws ExecutionException, InterruptedException {
         callAllGets();
         return this.mResult.get();
     }
 
     @Override // java.util.concurrent.Future
-    public List<V> get(long j2, @NonNull TimeUnit timeUnit) throws InterruptedException, ExecutionException, TimeoutException {
+    public List<V> get(long j2, @NonNull TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
         return this.mResult.get(j2, timeUnit);
     }
 }

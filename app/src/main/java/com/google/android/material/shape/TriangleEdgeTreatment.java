@@ -1,9 +1,8 @@
 package com.google.android.material.shape;
 
-import com.google.android.material.internal.Experimental;
+import androidx.annotation.NonNull;
 
-@Experimental("The shapes API is currently experimental and subject to change")
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TriangleEdgeTreatment extends EdgeTreatment {
     private final boolean inside;
     private final float size;
@@ -14,11 +13,10 @@ public class TriangleEdgeTreatment extends EdgeTreatment {
     }
 
     @Override // com.google.android.material.shape.EdgeTreatment
-    public void getEdgePath(float f2, float f3, ShapePath shapePath) {
-        float f4 = f2 / 2.0f;
-        shapePath.lineTo(f4 - (this.size * f3), 0.0f);
-        shapePath.lineTo(f4, (this.inside ? this.size : -this.size) * f3);
-        shapePath.lineTo(f4 + (this.size * f3), 0.0f);
+    public void getEdgePath(float f2, float f3, float f4, @NonNull ShapePath shapePath) {
+        shapePath.lineTo(f3 - (this.size * f4), 0.0f);
+        shapePath.lineTo(f3, (this.inside ? this.size : -this.size) * f4);
+        shapePath.lineTo(f3 + (this.size * f4), 0.0f);
         shapePath.lineTo(f2, 0.0f);
     }
 }

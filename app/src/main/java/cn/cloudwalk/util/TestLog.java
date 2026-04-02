@@ -1,6 +1,6 @@
 package cn.cloudwalk.util;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class TestLog {
     public static int frame = 0;
     public static boolean isDebug = false;
@@ -13,7 +13,7 @@ public class TestLog {
         }
         if (System.currentTimeMillis() - startTime >= 1000) {
             startTime = System.currentTimeMillis();
-            netE("TestLog", "每秒:" + frame + "算法:" + sfFrame);
+            netE("TestLog", "\u6bcf\u79d2:" + frame + "\u7b97\u6cd5:" + sfFrame);
             frame = 0;
             sfFrame = 0;
         }

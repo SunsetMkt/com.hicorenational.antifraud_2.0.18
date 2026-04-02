@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 import java.util.ArrayList;
 
+/* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
-/* loaded from: classes.dex */
 final class BackStackState implements Parcelable {
     public static final Parcelable.Creator<BackStackState> CREATOR = new Parcelable.Creator<BackStackState>() { // from class: androidx.fragment.app.BackStackState.1
         /* JADX WARN: Can't rename method to resolve collision */
@@ -52,22 +52,22 @@ final class BackStackState implements Parcelable {
         int i2 = 0;
         int i3 = 0;
         while (i2 < size) {
-            FragmentTransaction.C0547Op c0547Op = backStackRecord.mOps.get(i2);
+            FragmentTransaction.Op op = backStackRecord.mOps.get(i2);
             int i4 = i3 + 1;
-            this.mOps[i3] = c0547Op.mCmd;
+            this.mOps[i3] = op.mCmd;
             ArrayList<String> arrayList = this.mFragmentWhos;
-            Fragment fragment = c0547Op.mFragment;
+            Fragment fragment = op.mFragment;
             arrayList.add(fragment != null ? fragment.mWho : null);
             int[] iArr = this.mOps;
             int i5 = i4 + 1;
-            iArr[i4] = c0547Op.mEnterAnim;
+            iArr[i4] = op.mEnterAnim;
             int i6 = i5 + 1;
-            iArr[i5] = c0547Op.mExitAnim;
+            iArr[i5] = op.mExitAnim;
             int i7 = i6 + 1;
-            iArr[i6] = c0547Op.mPopEnterAnim;
-            iArr[i7] = c0547Op.mPopExitAnim;
-            this.mOldMaxLifecycleStates[i2] = c0547Op.mOldMaxState.ordinal();
-            this.mCurrentMaxLifecycleStates[i2] = c0547Op.mCurrentMaxState.ordinal();
+            iArr[i6] = op.mPopEnterAnim;
+            iArr[i7] = op.mPopExitAnim;
+            this.mOldMaxLifecycleStates[i2] = op.mOldMaxState.ordinal();
+            this.mCurrentMaxLifecycleStates[i2] = op.mCurrentMaxState.ordinal();
             i2++;
             i3 = i7 + 1;
         }
@@ -94,33 +94,33 @@ final class BackStackState implements Parcelable {
         int i2 = 0;
         int i3 = 0;
         while (i2 < this.mOps.length) {
-            FragmentTransaction.C0547Op c0547Op = new FragmentTransaction.C0547Op();
+            FragmentTransaction.Op op = new FragmentTransaction.Op();
             int i4 = i2 + 1;
-            c0547Op.mCmd = this.mOps[i2];
+            op.mCmd = this.mOps[i2];
             if (FragmentManagerImpl.DEBUG) {
                 String str = "Instantiate " + backStackRecord + " op #" + i3 + " base fragment #" + this.mOps[i4];
             }
             String str2 = this.mFragmentWhos.get(i3);
             if (str2 != null) {
-                c0547Op.mFragment = fragmentManagerImpl.mActive.get(str2);
+                op.mFragment = fragmentManagerImpl.mActive.get(str2);
             } else {
-                c0547Op.mFragment = null;
+                op.mFragment = null;
             }
-            c0547Op.mOldMaxState = Lifecycle.State.values()[this.mOldMaxLifecycleStates[i3]];
-            c0547Op.mCurrentMaxState = Lifecycle.State.values()[this.mCurrentMaxLifecycleStates[i3]];
+            op.mOldMaxState = Lifecycle.State.values()[this.mOldMaxLifecycleStates[i3]];
+            op.mCurrentMaxState = Lifecycle.State.values()[this.mCurrentMaxLifecycleStates[i3]];
             int[] iArr = this.mOps;
             int i5 = i4 + 1;
-            c0547Op.mEnterAnim = iArr[i4];
+            op.mEnterAnim = iArr[i4];
             int i6 = i5 + 1;
-            c0547Op.mExitAnim = iArr[i5];
+            op.mExitAnim = iArr[i5];
             int i7 = i6 + 1;
-            c0547Op.mPopEnterAnim = iArr[i6];
-            c0547Op.mPopExitAnim = iArr[i7];
-            backStackRecord.mEnterAnim = c0547Op.mEnterAnim;
-            backStackRecord.mExitAnim = c0547Op.mExitAnim;
-            backStackRecord.mPopEnterAnim = c0547Op.mPopEnterAnim;
-            backStackRecord.mPopExitAnim = c0547Op.mPopExitAnim;
-            backStackRecord.addOp(c0547Op);
+            op.mPopEnterAnim = iArr[i6];
+            op.mPopExitAnim = iArr[i7];
+            backStackRecord.mEnterAnim = op.mEnterAnim;
+            backStackRecord.mExitAnim = op.mExitAnim;
+            backStackRecord.mPopEnterAnim = op.mPopEnterAnim;
+            backStackRecord.mPopExitAnim = op.mPopExitAnim;
+            backStackRecord.addOp(op);
             i3++;
             i2 = i7 + 1;
         }

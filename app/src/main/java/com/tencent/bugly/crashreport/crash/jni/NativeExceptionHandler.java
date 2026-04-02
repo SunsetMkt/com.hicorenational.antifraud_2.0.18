@@ -3,8 +3,8 @@ package com.tencent.bugly.crashreport.crash.jni;
 import com.tencent.bugly.crashreport.crash.CrashDetailBean;
 import java.util.Map;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public interface NativeExceptionHandler {
     void handleNativeException(int i2, int i3, long j2, long j3, String str, String str2, String str3, String str4, int i4, String str5, int i5, int i6, int i7, String str6, String str7);
 

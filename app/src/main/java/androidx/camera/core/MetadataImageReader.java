@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class MetadataImageReader implements ImageReaderProxy, ForwardingImageProxy.OnImageCloseListener {
     private static final String TAG = "MetadataImageReader";
 
@@ -73,10 +73,10 @@ class MetadataImageReader implements ImageReaderProxy, ForwardingImageProxy.OnIm
 
     private void dequeImageProxy(ImageProxy imageProxy) {
         synchronized (this.mLock) {
-            int indexOf = this.mMatchedImageProxies.indexOf(imageProxy);
-            if (indexOf >= 0) {
-                this.mMatchedImageProxies.remove(indexOf);
-                if (indexOf <= this.mImageProxiesIndex) {
+            int iIndexOf = this.mMatchedImageProxies.indexOf(imageProxy);
+            if (iIndexOf >= 0) {
+                this.mMatchedImageProxies.remove(iIndexOf);
+                if (iIndexOf <= this.mImageProxiesIndex) {
                     this.mImageProxiesIndex--;
                 }
             }
@@ -118,13 +118,13 @@ class MetadataImageReader implements ImageReaderProxy, ForwardingImageProxy.OnIm
     private void matchImages() {
         synchronized (this.mLock) {
             for (int size = this.mPendingImageInfos.size() - 1; size >= 0; size--) {
-                ImageInfo valueAt = this.mPendingImageInfos.valueAt(size);
-                long timestamp = valueAt.getTimestamp();
+                ImageInfo imageInfoValueAt = this.mPendingImageInfos.valueAt(size);
+                long timestamp = imageInfoValueAt.getTimestamp();
                 ImageProxy imageProxy = this.mPendingImages.get(timestamp);
                 if (imageProxy != null) {
                     this.mPendingImages.remove(timestamp);
                     this.mPendingImageInfos.removeAt(size);
-                    enqueueImageProxy(new SettableImageProxy(imageProxy, valueAt));
+                    enqueueImageProxy(new SettableImageProxy(imageProxy, imageInfoValueAt));
                 }
             }
             removeStaleData();
@@ -134,19 +134,19 @@ class MetadataImageReader implements ImageReaderProxy, ForwardingImageProxy.OnIm
     private void removeStaleData() {
         synchronized (this.mLock) {
             if (this.mPendingImages.size() != 0 && this.mPendingImageInfos.size() != 0) {
-                Long valueOf = Long.valueOf(this.mPendingImages.keyAt(0));
-                Long valueOf2 = Long.valueOf(this.mPendingImageInfos.keyAt(0));
-                Preconditions.checkArgument(valueOf2.equals(valueOf) ? false : true);
-                if (valueOf2.longValue() > valueOf.longValue()) {
+                Long lValueOf = Long.valueOf(this.mPendingImages.keyAt(0));
+                Long lValueOf2 = Long.valueOf(this.mPendingImageInfos.keyAt(0));
+                Preconditions.checkArgument(lValueOf2.equals(lValueOf) ? false : true);
+                if (lValueOf2.longValue() > lValueOf.longValue()) {
                     for (int size = this.mPendingImages.size() - 1; size >= 0; size--) {
-                        if (this.mPendingImages.keyAt(size) < valueOf2.longValue()) {
+                        if (this.mPendingImages.keyAt(size) < lValueOf2.longValue()) {
                             this.mPendingImages.valueAt(size).close();
                             this.mPendingImages.removeAt(size);
                         }
                     }
                 } else {
                     for (int size2 = this.mPendingImageInfos.size() - 1; size2 >= 0; size2--) {
-                        if (this.mPendingImageInfos.keyAt(size2) < valueOf.longValue()) {
+                        if (this.mPendingImageInfos.keyAt(size2) < lValueOf.longValue()) {
                             this.mPendingImageInfos.removeAt(size2);
                         }
                     }
@@ -277,17 +277,17 @@ class MetadataImageReader implements ImageReaderProxy, ForwardingImageProxy.OnIm
             }
             int i2 = 0;
             do {
-                ImageProxy imageProxy = null;
+                ImageProxy imageProxyAcquireNextImage = null;
                 try {
-                    imageProxy = imageReaderProxy.acquireNextImage();
-                    if (imageProxy != null) {
+                    imageProxyAcquireNextImage = imageReaderProxy.acquireNextImage();
+                    if (imageProxyAcquireNextImage != null) {
                         i2++;
-                        this.mPendingImages.put(imageProxy.getImageInfo().getTimestamp(), imageProxy);
+                        this.mPendingImages.put(imageProxyAcquireNextImage.getImageInfo().getTimestamp(), imageProxyAcquireNextImage);
                         matchImages();
                     }
                 } catch (IllegalStateException unused) {
                 }
-                if (imageProxy == null) {
+                if (imageProxyAcquireNextImage == null) {
                     break;
                 }
             } while (i2 < imageReaderProxy.getMaxImages());

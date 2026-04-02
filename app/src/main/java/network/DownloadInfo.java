@@ -1,6 +1,6 @@
 package network;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class DownloadInfo extends BaseBean {
     private String content;
     private String fileMD5;

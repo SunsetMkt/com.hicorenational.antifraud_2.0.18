@@ -5,7 +5,7 @@ import com.umeng.commonsdk.statistics.SdkVersion;
 import com.umeng.commonsdk.utils.UMUtils;
 import java.lang.reflect.Method;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class UMInnerManager {
     private static Class<?> innerImplClazz;
     private static Method sendInternalMethod;

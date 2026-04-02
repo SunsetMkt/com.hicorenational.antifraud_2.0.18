@@ -3,7 +3,7 @@ package com.alibaba.sdk.android.oss.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ListBucketsResult extends OSSResult {
     private List<OSSBucketSummary> buckets = new ArrayList();
     private boolean isTruncated;

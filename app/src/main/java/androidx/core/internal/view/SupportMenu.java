@@ -3,8 +3,8 @@ package androidx.core.internal.view;
 import android.view.Menu;
 import androidx.annotation.RestrictTo;
 
+/* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-/* loaded from: classes.dex */
 public interface SupportMenu extends Menu {
     public static final int CATEGORY_MASK = -65536;
     public static final int CATEGORY_SHIFT = 16;

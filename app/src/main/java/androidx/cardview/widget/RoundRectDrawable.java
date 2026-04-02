@@ -13,8 +13,8 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-/* loaded from: classes.dex */
 class RoundRectDrawable extends Drawable {
     private ColorStateList mBackground;
     private final RectF mBoundsF;

@@ -2,12 +2,10 @@ package bean;
 
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class CaseDivisonBean extends BaseBean {
     private String code;
-
-    /* renamed from: id */
-    private String f1584id;
+    private String id;
     private String name;
 
     public String getCode() {
@@ -15,7 +13,7 @@ public class CaseDivisonBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1584id;
+        return this.id;
     }
 
     public String getName() {
@@ -27,7 +25,7 @@ public class CaseDivisonBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1584id = str;
+        this.id = str;
     }
 
     public void setName(String str) {

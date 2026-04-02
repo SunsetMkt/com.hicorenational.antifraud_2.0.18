@@ -1,18 +1,18 @@
 package com.huawei.hms.common.data;
 
-import com.xiaomi.push.service.C4383f;
+import com.xiaomi.push.service.f;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public final class FreezableUtils {
     public static <T, E extends Freezable<T>> ArrayList<T> freeze(ArrayList<E> arrayList) {
         return freezeIterable(arrayList);
     }
 
     public static <T, E extends Freezable<T>> ArrayList<T> freezeIterable(Iterable<E> iterable) {
-        C4383f.AnonymousClass3 anonymousClass3 = (ArrayList<T>) new ArrayList();
+        f.AnonymousClass3 anonymousClass3 = (ArrayList<T>) new ArrayList();
         if (iterable == null) {
             return anonymousClass3;
         }

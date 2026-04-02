@@ -1,6 +1,6 @@
 package cn.cloudwalk.jni;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class FaceParam {
     public int attack_op;
     public float border_thres;

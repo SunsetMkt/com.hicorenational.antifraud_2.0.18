@@ -3,7 +3,7 @@ package androidx.core.widget;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ListViewAutoScrollHelper extends AutoScrollHelper {
     private final ListView mTarget;
 

@@ -11,11 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.camera.camera2.impl.Camera2ImplConfig;
-import androidx.camera.camera2.internal.Camera2CameraControl;
 import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.FocusMeteringResult;
 import androidx.camera.core.impl.CameraControlInternal;
 import androidx.camera.core.impl.CaptureConfig;
+import androidx.camera.core.impl.Config;
 import androidx.camera.core.impl.SessionConfig;
 import androidx.core.util.Preconditions;
 import java.util.Collections;
@@ -24,9 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledExecutorService;
-import p031c.p035b.p040b.p041a.p042a.InterfaceFutureC0952a;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 final class Camera2CameraControl implements CameraControlInternal {
     private final AeFpsRange mAeFpsRange;
     private final CameraCharacteristics mCameraCharacteristics;
@@ -52,8 +51,7 @@ final class Camera2CameraControl implements CameraControlInternal {
             this.mExecutor = executor;
         }
 
-        /* renamed from: a */
-        public /* synthetic */ void m300a(TotalCaptureResult totalCaptureResult) {
+        public /* synthetic */ void a(TotalCaptureResult totalCaptureResult) {
             HashSet hashSet = new HashSet();
             for (CaptureResultListener captureResultListener : this.mResultListeners) {
                 if (captureResultListener.onCaptureResult(totalCaptureResult)) {
@@ -76,7 +74,7 @@ final class Camera2CameraControl implements CameraControlInternal {
             this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.c
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Camera2CameraControl.CameraControlSessionCallback.this.m300a(totalCaptureResult);
+                    this.a.a(totalCaptureResult);
                 }
             });
         }
@@ -102,7 +100,7 @@ final class Camera2CameraControl implements CameraControlInternal {
         this.mZoomControl = new ZoomControl(this, this.mCameraCharacteristics);
         this.mTorchControl = new TorchControl(this, this.mCameraCharacteristics);
         this.mAeFpsRange = new AeFpsRange(this.mCameraCharacteristics);
-        this.mExecutor.execute(new RunnableC0243c0(this));
+        this.mExecutor.execute(new c0(this));
     }
 
     @WorkerThread
@@ -143,20 +141,20 @@ final class Camera2CameraControl implements CameraControlInternal {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.e
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraControl.this.m299a(z, z2);
+                this.a.a(z, z2);
             }
         });
     }
 
     @Override // androidx.camera.core.CameraControl
     @NonNull
-    public InterfaceFutureC0952a<Void> cancelFocusAndMetering() {
+    public d.b.b.a.a.a<Void> cancelFocusAndMetering() {
         return this.mFocusMeteringControl.cancelFocusAndMetering();
     }
 
     @Override // androidx.camera.core.CameraControl
     @NonNull
-    public InterfaceFutureC0952a<Void> enableTorch(boolean z) {
+    public d.b.b.a.a.a<Void> enableTorch(boolean z) {
         return this.mTorchControl.enableTorch(z);
     }
 
@@ -164,7 +162,7 @@ final class Camera2CameraControl implements CameraControlInternal {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.b
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraControl.this.m298a(z);
+                this.a.a(z);
             }
         });
     }
@@ -215,63 +213,42 @@ final class Camera2CameraControl implements CameraControlInternal {
         return (Rect) Preconditions.checkNotNull(this.mCameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE));
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:7:0x0051  */
-    @androidx.annotation.VisibleForTesting
-    @androidx.annotation.WorkerThread
+    /* JADX WARN: Removed duplicated region for block: B:13:0x0051  */
+    @VisibleForTesting
+    @WorkerThread
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    androidx.camera.core.impl.Config getSessionOptions() {
-        /*
-            r4 = this;
-            androidx.camera.camera2.impl.Camera2ImplConfig$Builder r0 = new androidx.camera.camera2.impl.Camera2ImplConfig$Builder
-            r0.<init>()
-            android.hardware.camera2.CaptureRequest$Key r1 = android.hardware.camera2.CaptureRequest.CONTROL_MODE
-            r2 = 1
-            java.lang.Integer r3 = java.lang.Integer.valueOf(r2)
-            r0.setCaptureRequestOption(r1, r3)
-            androidx.camera.camera2.internal.FocusMeteringControl r1 = r4.mFocusMeteringControl
-            r1.addFocusMeteringOptions(r0)
-            androidx.camera.camera2.internal.AeFpsRange r1 = r4.mAeFpsRange
-            r1.addAeFpsRangeOptions(r0)
-            boolean r1 = r4.mIsTorchOn
-            r3 = 2
-            if (r1 == 0) goto L28
-            android.hardware.camera2.CaptureRequest$Key r1 = android.hardware.camera2.CaptureRequest.FLASH_MODE
-            java.lang.Integer r3 = java.lang.Integer.valueOf(r3)
-            r0.setCaptureRequestOption(r1, r3)
-            goto L2e
-        L28:
-            int r1 = r4.mFlashMode
-            if (r1 == 0) goto L32
-            if (r1 == r2) goto L30
-        L2e:
-            r1 = 1
-            goto L33
-        L30:
-            r1 = 3
-            goto L33
-        L32:
-            r1 = 2
-        L33:
-            android.hardware.camera2.CaptureRequest$Key r3 = android.hardware.camera2.CaptureRequest.CONTROL_AE_MODE
-            int r1 = r4.getSupportedAeMode(r1)
-            java.lang.Integer r1 = java.lang.Integer.valueOf(r1)
-            r0.setCaptureRequestOption(r3, r1)
-            android.hardware.camera2.CaptureRequest$Key r1 = android.hardware.camera2.CaptureRequest.CONTROL_AWB_MODE
-            int r2 = r4.getSupportedAwbMode(r2)
-            java.lang.Integer r2 = java.lang.Integer.valueOf(r2)
-            r0.setCaptureRequestOption(r1, r2)
-            android.graphics.Rect r1 = r4.mCropRect
-            if (r1 == 0) goto L56
-            android.hardware.camera2.CaptureRequest$Key r2 = android.hardware.camera2.CaptureRequest.SCALER_CROP_REGION
-            r0.setCaptureRequestOption(r2, r1)
-        L56:
-            androidx.camera.camera2.impl.Camera2ImplConfig r0 = r0.build()
-            return r0
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.camera.camera2.internal.Camera2CameraControl.getSessionOptions():androidx.camera.core.impl.Config");
+    Config getSessionOptions() {
+        int i2;
+        Rect rect;
+        Camera2ImplConfig.Builder builder = new Camera2ImplConfig.Builder();
+        builder.setCaptureRequestOption(CaptureRequest.CONTROL_MODE, 1);
+        this.mFocusMeteringControl.addFocusMeteringOptions(builder);
+        this.mAeFpsRange.addAeFpsRangeOptions(builder);
+        if (!this.mIsTorchOn) {
+            int i3 = this.mFlashMode;
+            if (i3 == 0) {
+                i2 = 2;
+            } else if (i3 == 1) {
+                i2 = 3;
+            }
+            builder.setCaptureRequestOption(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(getSupportedAeMode(i2)));
+            builder.setCaptureRequestOption(CaptureRequest.CONTROL_AWB_MODE, Integer.valueOf(getSupportedAwbMode(1)));
+            rect = this.mCropRect;
+            if (rect != null) {
+                builder.setCaptureRequestOption(CaptureRequest.SCALER_CROP_REGION, rect);
+            }
+            return builder.build();
+        }
+        builder.setCaptureRequestOption(CaptureRequest.FLASH_MODE, 2);
+        i2 = 1;
+        builder.setCaptureRequestOption(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(getSupportedAeMode(i2)));
+        builder.setCaptureRequestOption(CaptureRequest.CONTROL_AWB_MODE, Integer.valueOf(getSupportedAwbMode(1)));
+        rect = this.mCropRect;
+        if (rect != null) {
+        }
+        return builder.build();
     }
 
     @WorkerThread
@@ -315,15 +292,15 @@ final class Camera2CameraControl implements CameraControlInternal {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.f
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraControl.this.m296a(rect);
+                this.a.a(rect);
             }
         });
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
-    /* renamed from: setCropRegionInternal, reason: merged with bridge method [inline-methods] */
-    public void m296a(Rect rect) {
+    /* JADX INFO: renamed from: setCropRegionInternal, reason: merged with bridge method [inline-methods] */
+    public void a(Rect rect) {
         this.mCropRect = rect;
         updateSessionConfig();
     }
@@ -335,12 +312,12 @@ final class Camera2CameraControl implements CameraControlInternal {
     @Override // androidx.camera.core.impl.CameraControlInternal
     public void setFlashMode(int i2) {
         this.mFlashMode = i2;
-        this.mExecutor.execute(new RunnableC0243c0(this));
+        this.mExecutor.execute(new c0(this));
     }
 
     @Override // androidx.camera.core.CameraControl
     @NonNull
-    public InterfaceFutureC0952a<Void> setLinearZoom(float f2) {
+    public d.b.b.a.a.a<Void> setLinearZoom(float f2) {
         return this.mZoomControl.setLinearZoom(f2);
     }
 
@@ -351,13 +328,13 @@ final class Camera2CameraControl implements CameraControlInternal {
 
     @Override // androidx.camera.core.CameraControl
     @NonNull
-    public InterfaceFutureC0952a<Void> setZoomRatio(float f2) {
+    public d.b.b.a.a.a<Void> setZoomRatio(float f2) {
         return this.mZoomControl.setZoomRatio(f2);
     }
 
     @Override // androidx.camera.core.CameraControl
     @NonNull
-    public InterfaceFutureC0952a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
+    public d.b.b.a.a.a<FocusMeteringResult> startFocusAndMetering(@NonNull FocusMeteringAction focusMeteringAction) {
         return this.mFocusMeteringControl.startFocusAndMetering(focusMeteringAction, this.mPreviewAspectRatio);
     }
 
@@ -366,15 +343,15 @@ final class Camera2CameraControl implements CameraControlInternal {
         this.mExecutor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.d
             @Override // java.lang.Runnable
             public final void run() {
-                Camera2CameraControl.this.m297a(list);
+                this.a.a(list);
             }
         });
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     @WorkerThread
-    /* renamed from: submitCaptureRequestsInternal, reason: merged with bridge method [inline-methods] */
-    public void m297a(List<CaptureConfig> list) {
+    /* JADX INFO: renamed from: submitCaptureRequestsInternal, reason: merged with bridge method [inline-methods] */
+    public void a(List<CaptureConfig> list) {
         this.mControlUpdateCallback.onCameraControlCaptureRequests(list);
     }
 
@@ -386,7 +363,7 @@ final class Camera2CameraControl implements CameraControlInternal {
         executor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.a
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.triggerAePrecapture();
+                focusMeteringControl.triggerAePrecapture();
             }
         });
     }
@@ -399,7 +376,7 @@ final class Camera2CameraControl implements CameraControlInternal {
         executor.execute(new Runnable() { // from class: androidx.camera.camera2.internal.b0
             @Override // java.lang.Runnable
             public final void run() {
-                FocusMeteringControl.this.triggerAf();
+                focusMeteringControl.triggerAf();
             }
         });
     }
@@ -410,13 +387,11 @@ final class Camera2CameraControl implements CameraControlInternal {
         this.mControlUpdateCallback.onCameraControlUpdateSessionConfig(this.mSessionConfigBuilder.build());
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m299a(boolean z, boolean z2) {
+    public /* synthetic */ void a(boolean z, boolean z2) {
         this.mFocusMeteringControl.cancelAfAeTrigger(z, z2);
     }
 
-    /* renamed from: a */
-    public /* synthetic */ void m298a(boolean z) {
+    public /* synthetic */ void a(boolean z) {
         this.mIsTorchOn = z;
         if (!z) {
             CaptureConfig.Builder builder = new CaptureConfig.Builder();
@@ -426,7 +401,7 @@ final class Camera2CameraControl implements CameraControlInternal {
             builder2.setCaptureRequestOption(CaptureRequest.CONTROL_AE_MODE, Integer.valueOf(getSupportedAeMode(1)));
             builder2.setCaptureRequestOption(CaptureRequest.FLASH_MODE, 0);
             builder.addImplementationOptions(builder2.build());
-            m297a(Collections.singletonList(builder.build()));
+            a(Collections.singletonList(builder.build()));
         }
         updateSessionConfig();
     }

@@ -2,7 +2,7 @@ package androidx.constraintlayout.motion.utils;
 
 import androidx.constraintlayout.motion.widget.MotionInterpolator;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class StopLogic extends MotionInterpolator {
     private boolean mBackwards = false;
     private float mLastPosition;
@@ -57,16 +57,16 @@ public class StopLogic extends MotionInterpolator {
         float f7 = f2 / f4;
         float f8 = (f7 * f2) / 2.0f;
         if (f2 < 0.0f) {
-            float sqrt = (float) Math.sqrt((f3 - ((((-f2) / f4) * f2) / 2.0f)) * f4);
-            if (sqrt < f5) {
+            float fSqrt = (float) Math.sqrt((f3 - ((((-f2) / f4) * f2) / 2.0f)) * f4);
+            if (fSqrt < f5) {
                 this.mType = "backward accelerate, decelerate";
                 this.mNumberOfStages = 2;
                 this.mStage1Velocity = f2;
-                this.mStage2Velocity = sqrt;
+                this.mStage2Velocity = fSqrt;
                 this.mStage3Velocity = 0.0f;
-                this.mStage1Duration = (sqrt - f2) / f4;
-                this.mStage2Duration = sqrt / f4;
-                this.mStage1EndPosition = ((f2 + sqrt) * this.mStage1Duration) / 2.0f;
+                this.mStage1Duration = (fSqrt - f2) / f4;
+                this.mStage2Duration = fSqrt / f4;
+                this.mStage1EndPosition = ((f2 + fSqrt) * this.mStage1Duration) / 2.0f;
                 this.mStage2EndPosition = f3;
                 this.mStage3EndPosition = f3;
                 return;
@@ -109,20 +109,20 @@ public class StopLogic extends MotionInterpolator {
             this.mStage2Duration = f7;
             return;
         }
-        float sqrt2 = (float) Math.sqrt((f4 * f3) + ((f2 * f2) / 2.0f));
-        float f13 = (sqrt2 - f2) / f4;
+        float fSqrt2 = (float) Math.sqrt((f4 * f3) + ((f2 * f2) / 2.0f));
+        float f13 = (fSqrt2 - f2) / f4;
         this.mStage1Duration = f13;
-        float f14 = sqrt2 / f4;
+        float f14 = fSqrt2 / f4;
         this.mStage2Duration = f14;
-        if (sqrt2 < f5) {
+        if (fSqrt2 < f5) {
             this.mType = "accelerate decelerate";
             this.mNumberOfStages = 2;
             this.mStage1Velocity = f2;
-            this.mStage2Velocity = sqrt2;
+            this.mStage2Velocity = fSqrt2;
             this.mStage3Velocity = 0.0f;
             this.mStage1Duration = f13;
             this.mStage2Duration = f14;
-            this.mStage1EndPosition = ((f2 + sqrt2) * this.mStage1Duration) / 2.0f;
+            this.mStage1EndPosition = ((f2 + fSqrt2) * this.mStage1Duration) / 2.0f;
             this.mStage2EndPosition = f3;
             return;
         }
@@ -197,9 +197,9 @@ public class StopLogic extends MotionInterpolator {
 
     @Override // androidx.constraintlayout.motion.widget.MotionInterpolator, android.animation.TimeInterpolator
     public float getInterpolation(float f2) {
-        float calcY = calcY(f2);
+        float fCalcY = calcY(f2);
         this.mLastPosition = f2;
-        return this.mBackwards ? this.mStartPosition - calcY : this.mStartPosition + calcY;
+        return this.mBackwards ? this.mStartPosition - fCalcY : this.mStartPosition + fCalcY;
     }
 
     public float getVelocity(float f2) {

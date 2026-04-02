@@ -16,8 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/* JADX INFO: loaded from: classes.dex */
 @RequiresApi(16)
-/* loaded from: classes.dex */
 class NotificationCompatJellybean {
     static final String EXTRA_ALLOW_GENERATED_REPLIES = "android.support.allowGeneratedReplies";
     static final String EXTRA_DATA_ONLY_REMOTE_INPUTS = "android.support.dataRemoteInputs";
@@ -210,19 +210,19 @@ class NotificationCompatJellybean {
     }
 
     public static NotificationCompat.Action readAction(int i2, CharSequence charSequence, PendingIntent pendingIntent, Bundle bundle) {
-        RemoteInput[] remoteInputArr;
-        RemoteInput[] remoteInputArr2;
+        RemoteInput[] remoteInputArrFromBundleArray;
+        RemoteInput[] remoteInputArrFromBundleArray2;
         boolean z;
         if (bundle != null) {
-            remoteInputArr = fromBundleArray(getBundleArrayFromBundle(bundle, NotificationCompatExtras.EXTRA_REMOTE_INPUTS));
-            remoteInputArr2 = fromBundleArray(getBundleArrayFromBundle(bundle, EXTRA_DATA_ONLY_REMOTE_INPUTS));
+            remoteInputArrFromBundleArray = fromBundleArray(getBundleArrayFromBundle(bundle, NotificationCompatExtras.EXTRA_REMOTE_INPUTS));
+            remoteInputArrFromBundleArray2 = fromBundleArray(getBundleArrayFromBundle(bundle, EXTRA_DATA_ONLY_REMOTE_INPUTS));
             z = bundle.getBoolean(EXTRA_ALLOW_GENERATED_REPLIES);
         } else {
-            remoteInputArr = null;
-            remoteInputArr2 = null;
+            remoteInputArrFromBundleArray = null;
+            remoteInputArrFromBundleArray2 = null;
             z = false;
         }
-        return new NotificationCompat.Action(i2, charSequence, pendingIntent, bundle, remoteInputArr, remoteInputArr2, z, 0, true, false);
+        return new NotificationCompat.Action(i2, charSequence, pendingIntent, bundle, remoteInputArrFromBundleArray, remoteInputArrFromBundleArray2, z, 0, true, false);
     }
 
     private static Bundle toBundle(RemoteInput remoteInput) {

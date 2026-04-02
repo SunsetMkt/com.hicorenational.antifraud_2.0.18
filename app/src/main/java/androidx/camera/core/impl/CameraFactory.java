@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.CameraInfoUnavailableException;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface CameraFactory {
 
     public interface Provider {

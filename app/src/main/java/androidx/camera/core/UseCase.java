@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class UseCase {
 
     @GuardedBy("mBoundCameraLock")
@@ -35,8 +35,8 @@ public abstract class UseCase {
     private final Object mBoundCameraLock = new Object();
     private int mImageFormat = 34;
 
-    /* renamed from: androidx.camera.core.UseCase$1 */
-    static /* synthetic */ class C03261 {
+    /* JADX INFO: renamed from: androidx.camera.core.UseCase$1 */
+    static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] $SwitchMap$androidx$camera$core$UseCase$State = new int[State.values().length];
 
         static {
@@ -84,7 +84,6 @@ public abstract class UseCase {
         this.mStateChangeCallbacks.add(stateChangeCallback);
     }
 
-    /* JADX WARN: Type inference failed for: r5v1, types: [androidx.camera.core.impl.UseCaseConfig, androidx.camera.core.impl.UseCaseConfig<?>] */
     @NonNull
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     protected UseCaseConfig<?> applyDefaults(@NonNull UseCaseConfig<?> useCaseConfig, @Nullable UseCaseConfig.Builder<?, ?, ?> builder) {
@@ -222,7 +221,7 @@ public abstract class UseCase {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     protected final void notifyState() {
-        int i2 = C03261.$SwitchMap$androidx$camera$core$UseCase$State[this.mState.ordinal()];
+        int i2 = AnonymousClass1.$SwitchMap$androidx$camera$core$UseCase$State[this.mState.ordinal()];
         if (i2 == 1) {
             Iterator<StateChangeCallback> it = this.mStateChangeCallbacks.iterator();
             while (it.hasNext()) {

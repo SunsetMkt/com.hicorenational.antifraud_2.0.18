@@ -1,5 +1,6 @@
 package androidx.transition;
 
+import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,9 @@ import androidx.transition.Transition;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
+@SuppressLint({"RestrictedApi"})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class FragmentTransitionSupport extends FragmentTransitionImpl {
     private static boolean hasSimpleTarget(Transition transition) {
         return (FragmentTransitionImpl.isNullOrEmpty(transition.getTargetIds()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetNames()) && FragmentTransitionImpl.isNullOrEmpty(transition.getTargetTypes())) ? false : true;
@@ -63,29 +65,29 @@ public class FragmentTransitionSupport extends FragmentTransitionImpl {
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public Object cloneTransition(Object obj) {
         if (obj != null) {
-            return ((Transition) obj).mo26847clone();
+            return ((Transition) obj).mo6clone();
         }
         return null;
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public Object mergeTransitionsInSequence(Object obj, Object obj2, Object obj3) {
-        Transition transition = (Transition) obj;
-        Transition transition2 = (Transition) obj2;
-        Transition transition3 = (Transition) obj3;
-        if (transition != null && transition2 != null) {
-            transition = new TransitionSet().addTransition(transition).addTransition(transition2).setOrdering(1);
-        } else if (transition == null) {
-            transition = transition2 != null ? transition2 : null;
+        Transition ordering = (Transition) obj;
+        Transition transition = (Transition) obj2;
+        Transition transition2 = (Transition) obj3;
+        if (ordering != null && transition != null) {
+            ordering = new TransitionSet().addTransition(ordering).addTransition(transition).setOrdering(1);
+        } else if (ordering == null) {
+            ordering = transition != null ? transition : null;
         }
-        if (transition3 == null) {
-            return transition;
+        if (transition2 == null) {
+            return ordering;
         }
         TransitionSet transitionSet = new TransitionSet();
-        if (transition != null) {
-            transitionSet.addTransition(transition);
+        if (ordering != null) {
+            transitionSet.addTransition(ordering);
         }
-        transitionSet.addTransition(transition3);
+        transitionSet.addTransition(transition2);
         return transitionSet;
     }
 
@@ -173,24 +175,13 @@ public class FragmentTransitionSupport extends FragmentTransitionImpl {
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void scheduleRemoveTargets(Object obj, final Object obj2, final ArrayList<View> arrayList, final Object obj3, final ArrayList<View> arrayList2, final Object obj4, final ArrayList<View> arrayList3) {
-        ((Transition) obj).addListener(new Transition.TransitionListener() { // from class: androidx.transition.FragmentTransitionSupport.3
-            @Override // androidx.transition.Transition.TransitionListener
-            public void onTransitionCancel(@NonNull Transition transition) {
-            }
-
-            @Override // androidx.transition.Transition.TransitionListener
+        ((Transition) obj).addListener(new TransitionListenerAdapter() { // from class: androidx.transition.FragmentTransitionSupport.3
+            @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
             public void onTransitionEnd(@NonNull Transition transition) {
+                transition.removeListener(this);
             }
 
-            @Override // androidx.transition.Transition.TransitionListener
-            public void onTransitionPause(@NonNull Transition transition) {
-            }
-
-            @Override // androidx.transition.Transition.TransitionListener
-            public void onTransitionResume(@NonNull Transition transition) {
-            }
-
-            @Override // androidx.transition.Transition.TransitionListener
+            @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
             public void onTransitionStart(@NonNull Transition transition) {
                 Object obj5 = obj2;
                 if (obj5 != null) {

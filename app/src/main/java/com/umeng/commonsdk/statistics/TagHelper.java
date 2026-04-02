@@ -3,7 +3,7 @@ package com.umeng.commonsdk.statistics;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class TagHelper {
     private static Object lock = new Object();
     private static Map<String, String> moduleTags = new HashMap();
@@ -20,27 +20,30 @@ public class TagHelper {
     }
 
     public static Map<String, String> getModuleTags() {
-        HashMap hashMap = new HashMap();
+        HashMap map = new HashMap();
         synchronized (lock) {
             try {
                 if (moduleTags.size() > 0) {
                     for (Map.Entry<String, String> entry : moduleTags.entrySet()) {
-                        hashMap.put(entry.getKey(), entry.getValue());
+                        map.put(entry.getKey(), entry.getValue());
                     }
                 }
             } catch (Throwable unused) {
             }
         }
-        return hashMap;
+        return map;
     }
 
     public static void setModuleTag(String str, String str2) {
         synchronized (lock) {
-            if (moduleTags.size() >= 30) {
-                return;
-            }
-            if (!moduleTags.containsKey(str)) {
-                moduleTags.put(str, str2);
+            try {
+                if (moduleTags.size() >= 30) {
+                    return;
+                }
+                if (!moduleTags.containsKey(str)) {
+                    moduleTags.put(str, str2);
+                }
+            } catch (Throwable unused) {
             }
         }
     }

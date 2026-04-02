@@ -12,7 +12,7 @@ import okhttp3.internal.http.RealInterceptorChain;
 import okhttp3.internal.http.RetryAndFollowUpInterceptor;
 import okhttp3.internal.platform.Platform;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 final class RealCall implements Call {
     final OkHttpClient client;
     private EventListener eventListener;

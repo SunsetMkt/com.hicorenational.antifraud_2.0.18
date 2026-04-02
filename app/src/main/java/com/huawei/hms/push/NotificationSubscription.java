@@ -28,72 +28,68 @@ import java.util.Iterator;
 import java.util.List;
 import org.json.JSONArray;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class NotificationSubscription {
     public static final int NOTIFICATION_SUBSCRIBE_REQUEST_CODE = 1001;
 
-    /* renamed from: d */
-    private static final String f7695d = "NotificationSubscription";
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    private static final String f4853d = "NotificationSubscription";
+    private Activity a;
 
-    /* renamed from: a */
-    private Activity f7696a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    private Context f4854b;
 
-    /* renamed from: b */
-    private Context f7697b;
-
-    /* renamed from: c */
-    private HuaweiApi<Api.ApiOptions.NoOptions> f7698c;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    private HuaweiApi<Api.ApiOptions.NoOptions> f4855c;
 
     private NotificationSubscription(Activity activity) {
         Preconditions.checkNotNull(activity);
-        this.f7697b = activity.getApplicationContext();
-        this.f7696a = activity;
+        this.f4854b = activity.getApplicationContext();
+        this.a = activity;
         HuaweiApi<Api.ApiOptions.NoOptions> huaweiApi = new HuaweiApi<>(activity, (Api<Api.ApiOptions>) new Api(HuaweiApiAvailability.HMS_API_NAME_PUSH), (Api.ApiOptions) null, (AbstractClientBuilder) new PushClientBuilder());
-        this.f7698c = huaweiApi;
+        this.f4855c = huaweiApi;
         huaweiApi.setKitSdkVersion(61200300);
     }
 
-    /* renamed from: a */
-    private Task<SubscribeResult> m7526a(List<String> list) {
-        String reportEntry = PushBiUtil.reportEntry(this.f7697b, PushNaming.SUBSCRIBE_NOTIFICATION);
+    private Task<SubscribeResult> a(List<String> list) {
+        String strReportEntry = PushBiUtil.reportEntry(this.f4854b, PushNaming.SUBSCRIBE_NOTIFICATION);
         if (list == null || list.isEmpty() || list.size() > 3) {
-            PushBiUtil.reportExit(this.f7697b, PushNaming.SUBSCRIBE_NOTIFICATION, reportEntry, ErrorEnum.ERROR_ARGUMENTS_INVALID);
-            HMSLog.m7715e(f7695d, "Invalid entityIds: entityId list should not be empty or more than max size");
-            return m7525a(ErrorEnum.ERROR_ARGUMENTS_INVALID.toApiException());
+            PushBiUtil.reportExit(this.f4854b, PushNaming.SUBSCRIBE_NOTIFICATION, strReportEntry, ErrorEnum.ERROR_ARGUMENTS_INVALID);
+            HMSLog.e(f4853d, "Invalid entityIds: entityId list should not be empty or more than max size");
+            return a(ErrorEnum.ERROR_ARGUMENTS_INVALID.toApiException());
         }
         if (Looper.getMainLooper() == Looper.myLooper()) {
-            PushBiUtil.reportExit(this.f7697b, PushNaming.SUBSCRIBE_NOTIFICATION, reportEntry, ErrorEnum.ERROR_MAIN_THREAD);
-            return m7525a(ErrorEnum.ERROR_MAIN_THREAD.toApiException());
+            PushBiUtil.reportExit(this.f4854b, PushNaming.SUBSCRIBE_NOTIFICATION, strReportEntry, ErrorEnum.ERROR_MAIN_THREAD);
+            return a(ErrorEnum.ERROR_MAIN_THREAD.toApiException());
         }
-        if (!((NotificationManager) this.f7697b.getSystemService("notification")).areNotificationsEnabled()) {
-            HMSLog.m7717i(f7695d, "App disabled notification");
-            PushBiUtil.reportExit(this.f7697b, PushNaming.SUBSCRIBE_NOTIFICATION, reportEntry, ErrorEnum.ERROR_NOTIFICATION_DISABLED);
-            return m7525a(ErrorEnum.ERROR_NOTIFICATION_DISABLED.toApiException());
+        if (!((NotificationManager) this.f4854b.getSystemService("notification")).areNotificationsEnabled()) {
+            HMSLog.i(f4853d, "App disabled notification");
+            PushBiUtil.reportExit(this.f4854b, PushNaming.SUBSCRIBE_NOTIFICATION, strReportEntry, ErrorEnum.ERROR_NOTIFICATION_DISABLED);
+            return a(ErrorEnum.ERROR_NOTIFICATION_DISABLED.toApiException());
         }
         try {
-            if (C2505v.m7654a(this.f7697b) != ErrorEnum.SUCCESS) {
-                return m7525a(ErrorEnum.ERROR_NO_TOKEN.toApiException());
+            if (v.a(this.f4854b) != ErrorEnum.SUCCESS) {
+                return a(ErrorEnum.ERROR_NO_TOKEN.toApiException());
             }
-            if (-1 != this.f7697b.getPackageManager().checkPermission("android.permission.ACCESS_NETWORK_STATE", this.f7697b.getPackageName()) && C2487g.m7560a(this.f7697b) == -1) {
-                HMSLog.m7715e(f7695d, "no network");
-                return m7525a(ErrorEnum.ERROR_NO_NETWORK.toApiException());
+            if (-1 != this.f4854b.getPackageManager().checkPermission("android.permission.ACCESS_NETWORK_STATE", this.f4854b.getPackageName()) && g.a(this.f4854b) == -1) {
+                HMSLog.e(f4853d, "no network");
+                return a(ErrorEnum.ERROR_NO_NETWORK.toApiException());
             }
-            Task doWrite = this.f7698c.doWrite(new SubscribeNotificationTask(this.f7696a, PushNaming.SUBSCRIBE_NOTIFICATION, m7527b(list), reportEntry));
-            Tasks.await(doWrite);
-            return doWrite;
+            Task taskDoWrite = this.f4855c.doWrite(new SubscribeNotificationTask(this.a, PushNaming.SUBSCRIBE_NOTIFICATION, b(list), strReportEntry));
+            Tasks.await(taskDoWrite);
+            return taskDoWrite;
         } catch (Exception e2) {
             if (!(e2.getCause() instanceof ApiException)) {
-                PushBiUtil.reportExit(this.f7697b, PushNaming.SUBSCRIBE_NOTIFICATION, reportEntry, ErrorEnum.ERROR_INTERNAL_ERROR);
-                return m7525a(ErrorEnum.ERROR_INTERNAL_ERROR.toApiException());
+                PushBiUtil.reportExit(this.f4854b, PushNaming.SUBSCRIBE_NOTIFICATION, strReportEntry, ErrorEnum.ERROR_INTERNAL_ERROR);
+                return a(ErrorEnum.ERROR_INTERNAL_ERROR.toApiException());
             }
             ApiException apiException = (ApiException) e2.getCause();
-            PushBiUtil.reportExit(this.f7697b, PushNaming.SUBSCRIBE_NOTIFICATION, reportEntry, apiException.getStatusCode());
-            return m7525a(apiException);
+            PushBiUtil.reportExit(this.f4854b, PushNaming.SUBSCRIBE_NOTIFICATION, strReportEntry, apiException.getStatusCode());
+            return a(apiException);
         }
     }
 
-    /* renamed from: b */
-    private SubscribeNotificationReq m7527b(List<String> list) {
+    private SubscribeNotificationReq b(List<String> list) {
         JSONArray jSONArray = new JSONArray();
         Iterator<String> it = list.iterator();
         while (it.hasNext()) {
@@ -101,7 +97,7 @@ public class NotificationSubscription {
         }
         SubscribeNotificationReq subscribeNotificationReq = new SubscribeNotificationReq();
         subscribeNotificationReq.setEntityIds(jSONArray.toString());
-        subscribeNotificationReq.setToken(BaseUtils.getLocalToken(this.f7697b, null));
+        subscribeNotificationReq.setToken(BaseUtils.getLocalToken(this.f4854b, null));
         return subscribeNotificationReq;
     }
 
@@ -117,31 +113,30 @@ public class NotificationSubscription {
         try {
             stringExtra = intent.getStringExtra("errorMsg");
         } catch (Throwable unused) {
-            HMSLog.m7715e(f7695d, "get subscribe result occurs exception");
+            HMSLog.e(f4853d, "get subscribe result occurs exception");
         }
         if (TextUtils.isEmpty(stringExtra)) {
             String stringExtra2 = intent.getStringExtra("subscribedItems");
             if (!TextUtils.isEmpty(stringExtra2)) {
-                List<SubscribedItem> m7539a = C2482b.m7539a(stringExtra2);
+                List<SubscribedItem> listA = b.a(stringExtra2);
                 SubscribeResult subscribeResult = new SubscribeResult();
-                subscribeResult.setSubscribedItems(m7539a);
+                subscribeResult.setSubscribedItems(listA);
                 return subscribeResult;
             }
             return null;
         }
         SubscribeResult subscribeResult2 = new SubscribeResult();
         subscribeResult2.setErrorMsg(stringExtra);
-        HMSLog.m7715e(f7695d, "get subscribe error msg:" + stringExtra);
+        HMSLog.e(f4853d, "get subscribe error msg:" + stringExtra);
         return subscribeResult2;
     }
 
     public Task<SubscribeResult> requestSubscribeNotification(List<String> list) {
-        HMSLog.m7717i(f7695d, "invoke request subscribe notification");
-        return m7526a(list);
+        HMSLog.i(f4853d, "invoke request subscribe notification");
+        return a(list);
     }
 
-    /* renamed from: a */
-    private Task<SubscribeResult> m7525a(Exception exc) {
+    private Task<SubscribeResult> a(Exception exc) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         taskCompletionSource.setException(exc);
         return taskCompletionSource.getTask();

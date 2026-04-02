@@ -3,7 +3,7 @@ package com.hihonor.push.sdk.bean;
 import android.text.TextUtils;
 import com.huawei.hms.support.hianalytics.HiAnalyticsConstant;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RemoteServiceBean {
     private String packageAction;
     private String packageName;

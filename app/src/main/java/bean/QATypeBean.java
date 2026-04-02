@@ -3,14 +3,12 @@ package bean;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class QATypeBean extends BaseBean {
     private int code;
     private String createTime;
     private String description;
-
-    /* renamed from: id */
-    private String f1612id;
+    private String id;
     private int isShow;
     private List<QABean> qaList;
     private int sort;
@@ -30,7 +28,7 @@ public class QATypeBean extends BaseBean {
     }
 
     public String getId() {
-        return this.f1612id;
+        return this.id;
     }
 
     public int getIsShow() {
@@ -66,7 +64,7 @@ public class QATypeBean extends BaseBean {
     }
 
     public void setId(String str) {
-        this.f1612id = str;
+        this.id = str;
     }
 
     public void setIsShow(int i2) {

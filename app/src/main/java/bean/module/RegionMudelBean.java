@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import network.BaseBean;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class RegionMudelBean extends BaseBean {
     private String AnVerificationAgreement;
     private String androidh5host;
@@ -179,8 +179,8 @@ public class RegionMudelBean extends BaseBean {
         this.localApi = str;
     }
 
-    public void setModles(HashMap<String, Integer> hashMap) {
-        this.modles = hashMap;
+    public void setModles(HashMap<String, Integer> map) {
+        this.modles = map;
     }
 
     public void setOssPath(String str) {

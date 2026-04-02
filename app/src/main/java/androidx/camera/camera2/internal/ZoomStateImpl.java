@@ -3,7 +3,7 @@ package androidx.camera.camera2.internal;
 import androidx.camera.core.ZoomState;
 import androidx.core.math.MathUtils;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 class ZoomStateImpl implements ZoomState {
     private float mLinearZoom;
     private final float mMaxZoomRatio;
@@ -41,7 +41,7 @@ class ZoomStateImpl implements ZoomState {
         float f3 = this.mMaxZoomRatio;
         float f4 = this.mMinZoomRatio;
         double d2 = 1.0f / f4;
-        return (float) MathUtils.clamp(1.0d / (d2 + (((1.0f / f3) - d2) * f2)), f4, f3);
+        return (float) MathUtils.clamp(1.0d / (d2 + ((((double) (1.0f / f3)) - d2) * ((double) f2))), f4, f3);
     }
 
     @Override // androidx.camera.core.ZoomState

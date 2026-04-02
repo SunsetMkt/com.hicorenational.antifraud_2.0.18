@@ -6,8 +6,8 @@ import com.xiaomi.mipush.sdk.PushMessageHandler;
 import java.util.HashMap;
 import java.util.Map;
 
-/* loaded from: classes2.dex */
-public class MiPushMessage implements PushMessageHandler.InterfaceC4046a {
+/* JADX INFO: loaded from: classes2.dex */
+public class MiPushMessage implements PushMessageHandler.a {
     private static final String KEY_ALIAS = "alias";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_CONTENT = "content";
@@ -212,9 +212,9 @@ public class MiPushMessage implements PushMessageHandler.InterfaceC4046a {
         if (!TextUtils.isEmpty(this.category)) {
             bundle.putString(KEY_CATEGORY, this.category);
         }
-        HashMap<String, String> hashMap = this.extra;
-        if (hashMap != null) {
-            bundle.putSerializable(KEY_EXTRA, hashMap);
+        HashMap<String, String> map = this.extra;
+        if (map != null) {
+            bundle.putSerializable(KEY_EXTRA, map);
         }
         return bundle;
     }

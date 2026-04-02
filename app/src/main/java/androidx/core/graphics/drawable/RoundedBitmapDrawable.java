@@ -15,7 +15,7 @@ import android.util.DisplayMetrics;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class RoundedBitmapDrawable extends Drawable {
     private static final int DEFAULT_PAINT_FLAGS = 3;
     final Bitmap mBitmap;
@@ -224,11 +224,11 @@ public abstract class RoundedBitmapDrawable extends Drawable {
     void updateDstRect() {
         if (this.mApplyGravity) {
             if (this.mIsCircular) {
-                int min = Math.min(this.mBitmapWidth, this.mBitmapHeight);
-                gravityCompatApply(this.mGravity, min, min, getBounds(), this.mDstRect);
-                int min2 = Math.min(this.mDstRect.width(), this.mDstRect.height());
-                this.mDstRect.inset(Math.max(0, (this.mDstRect.width() - min2) / 2), Math.max(0, (this.mDstRect.height() - min2) / 2));
-                this.mCornerRadius = min2 * 0.5f;
+                int iMin = Math.min(this.mBitmapWidth, this.mBitmapHeight);
+                gravityCompatApply(this.mGravity, iMin, iMin, getBounds(), this.mDstRect);
+                int iMin2 = Math.min(this.mDstRect.width(), this.mDstRect.height());
+                this.mDstRect.inset(Math.max(0, (this.mDstRect.width() - iMin2) / 2), Math.max(0, (this.mDstRect.height() - iMin2) / 2));
+                this.mCornerRadius = iMin2 * 0.5f;
             } else {
                 gravityCompatApply(this.mGravity, this.mBitmapWidth, this.mBitmapHeight, getBounds(), this.mDstRect);
             }

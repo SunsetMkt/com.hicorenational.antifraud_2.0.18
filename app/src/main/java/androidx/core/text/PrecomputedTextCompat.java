@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class PrecomputedTextCompat implements Spannable {
     private static final char LINE_FEED = '\n';
 
@@ -93,8 +93,8 @@ public class PrecomputedTextCompat implements Spannable {
             int length = charSequence.length();
             int i2 = 0;
             while (i2 < length) {
-                int indexOf = TextUtils.indexOf(charSequence, LINE_FEED, i2, length);
-                i2 = indexOf < 0 ? length : indexOf + 1;
+                int iIndexOf = TextUtils.indexOf(charSequence, LINE_FEED, i2, length);
+                i2 = iIndexOf < 0 ? length : iIndexOf + 1;
                 arrayList.add(Integer.valueOf(i2));
             }
             int[] iArr = new int[arrayList.size()];

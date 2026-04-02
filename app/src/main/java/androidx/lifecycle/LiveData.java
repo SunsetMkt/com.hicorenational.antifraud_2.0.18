@@ -6,10 +6,9 @@ import androidx.annotation.Nullable;
 import androidx.arch.core.executor.ArchTaskExecutor;
 import androidx.arch.core.internal.SafeIterableMap;
 import androidx.lifecycle.Lifecycle;
-import java.util.Iterator;
 import java.util.Map;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class LiveData<T> {
     static final Object NOT_SET = new Object();
     static final int START_VERSION = -1;
@@ -22,6 +21,23 @@ public abstract class LiveData<T> {
     volatile Object mPendingData;
     private final Runnable mPostValueRunnable;
     private int mVersion;
+
+    /* JADX INFO: renamed from: androidx.lifecycle.LiveData$1 */
+    class AnonymousClass1 implements Runnable {
+        AnonymousClass1() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // java.lang.Runnable
+        public void run() {
+            Object obj;
+            synchronized (LiveData.this.mDataLock) {
+                obj = LiveData.this.mPendingData;
+                LiveData.this.mPendingData = LiveData.NOT_SET;
+            }
+            LiveData.this.setValue(obj);
+        }
+    }
 
     private class AlwaysActiveObserver extends LiveData<T>.ObserverWrapper {
         AlwaysActiveObserver(Observer<? super T> observer) {
@@ -113,6 +129,9 @@ public abstract class LiveData<T> {
         this.mActiveCount = 0;
         this.mPendingData = NOT_SET;
         this.mPostValueRunnable = new Runnable() { // from class: androidx.lifecycle.LiveData.1
+            AnonymousClass1() {
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             @Override // java.lang.Runnable
             public void run() {
@@ -203,11 +222,11 @@ public abstract class LiveData<T> {
             return;
         }
         LifecycleBoundObserver lifecycleBoundObserver = new LifecycleBoundObserver(lifecycleOwner, observer);
-        LiveData<T>.ObserverWrapper putIfAbsent = this.mObservers.putIfAbsent(observer, lifecycleBoundObserver);
-        if (putIfAbsent != null && !putIfAbsent.isAttachedTo(lifecycleOwner)) {
+        LiveData<T>.ObserverWrapper observerWrapperPutIfAbsent = this.mObservers.putIfAbsent(observer, lifecycleBoundObserver);
+        if (observerWrapperPutIfAbsent != null && !observerWrapperPutIfAbsent.isAttachedTo(lifecycleOwner)) {
             throw new IllegalArgumentException("Cannot add the same observer with different lifecycles");
         }
-        if (putIfAbsent != null) {
+        if (observerWrapperPutIfAbsent != null) {
             return;
         }
         lifecycleOwner.getLifecycle().addObserver(lifecycleBoundObserver);
@@ -217,11 +236,11 @@ public abstract class LiveData<T> {
     public void observeForever(@NonNull Observer<? super T> observer) {
         assertMainThread("observeForever");
         AlwaysActiveObserver alwaysActiveObserver = new AlwaysActiveObserver(observer);
-        LiveData<T>.ObserverWrapper putIfAbsent = this.mObservers.putIfAbsent(observer, alwaysActiveObserver);
-        if (putIfAbsent instanceof LifecycleBoundObserver) {
+        LiveData<T>.ObserverWrapper observerWrapperPutIfAbsent = this.mObservers.putIfAbsent(observer, alwaysActiveObserver);
+        if (observerWrapperPutIfAbsent instanceof LifecycleBoundObserver) {
             throw new IllegalArgumentException("Cannot add the same observer with different lifecycles");
         }
-        if (putIfAbsent != null) {
+        if (observerWrapperPutIfAbsent != null) {
             return;
         }
         alwaysActiveObserver.activeStateChanged(true);
@@ -247,22 +266,20 @@ public abstract class LiveData<T> {
     @MainThread
     public void removeObserver(@NonNull Observer<? super T> observer) {
         assertMainThread("removeObserver");
-        LiveData<T>.ObserverWrapper remove = this.mObservers.remove(observer);
-        if (remove == null) {
+        LiveData<T>.ObserverWrapper observerWrapperRemove = this.mObservers.remove(observer);
+        if (observerWrapperRemove == null) {
             return;
         }
-        remove.detachObserver();
-        remove.activeStateChanged(false);
+        observerWrapperRemove.detachObserver();
+        observerWrapperRemove.activeStateChanged(false);
     }
 
     @MainThread
     public void removeObservers(@NonNull LifecycleOwner lifecycleOwner) {
         assertMainThread("removeObservers");
-        Iterator<Map.Entry<Observer<? super T>, LiveData<T>.ObserverWrapper>> it = this.mObservers.iterator();
-        while (it.hasNext()) {
-            Map.Entry<Observer<? super T>, LiveData<T>.ObserverWrapper> next = it.next();
-            if (next.getValue().isAttachedTo(lifecycleOwner)) {
-                removeObserver(next.getKey());
+        for (Map.Entry<Observer<? super T>, LiveData<T>.ObserverWrapper> entry : this.mObservers) {
+            if (entry.getValue().isAttachedTo(lifecycleOwner)) {
+                removeObserver(entry.getKey());
             }
         }
     }
@@ -281,6 +298,9 @@ public abstract class LiveData<T> {
         this.mActiveCount = 0;
         this.mPendingData = NOT_SET;
         this.mPostValueRunnable = new Runnable() { // from class: androidx.lifecycle.LiveData.1
+            AnonymousClass1() {
+            }
+
             /* JADX WARN: Multi-variable type inference failed */
             @Override // java.lang.Runnable
             public void run() {

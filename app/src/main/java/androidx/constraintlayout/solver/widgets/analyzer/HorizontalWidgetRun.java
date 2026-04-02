@@ -6,27 +6,25 @@ import androidx.constraintlayout.solver.widgets.Helper;
 import androidx.constraintlayout.solver.widgets.analyzer.DependencyNode;
 import androidx.constraintlayout.solver.widgets.analyzer.WidgetRun;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HorizontalWidgetRun extends WidgetRun {
     private static int[] tempDimensions = new int[2];
 
-    /* renamed from: androidx.constraintlayout.solver.widgets.analyzer.HorizontalWidgetRun$1 */
-    static /* synthetic */ class C04621 {
-
-        /* renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType */
-        static final /* synthetic */ int[] f605xbf6f0c8e = new int[WidgetRun.RunType.values().length];
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.HorizontalWidgetRun$1, reason: invalid class name */
+    static /* synthetic */ class AnonymousClass1 {
+        static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType = new int[WidgetRun.RunType.values().length];
 
         static {
             try {
-                f605xbf6f0c8e[WidgetRun.RunType.START.ordinal()] = 1;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.START.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f605xbf6f0c8e[WidgetRun.RunType.END.ordinal()] = 2;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.END.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f605xbf6f0c8e[WidgetRun.RunType.CENTER.ordinal()] = 3;
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.CENTER.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }
@@ -278,20 +276,204 @@ public class HorizontalWidgetRun extends WidgetRun {
         return "HorizontalRun " + this.widget.getDebugName();
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:111:0x02c6, code lost:
-    
-        if (r14 != 1) goto L135;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:125:0x02ec  */
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun, androidx.constraintlayout.solver.widgets.analyzer.Dependency
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public void update(androidx.constraintlayout.solver.widgets.analyzer.Dependency r17) {
-        /*
-            Method dump skipped, instructions count: 1105
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: androidx.constraintlayout.solver.widgets.analyzer.HorizontalWidgetRun.update(androidx.constraintlayout.solver.widgets.analyzer.Dependency):void");
+    public void update(Dependency dependency) {
+        float f2;
+        float dimensionRatio;
+        float dimensionRatio2;
+        int i2;
+        int i3 = AnonymousClass1.$SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[this.mRunType.ordinal()];
+        if (i3 == 1) {
+            updateRunStart(dependency);
+        } else if (i3 == 2) {
+            updateRunEnd(dependency);
+        } else if (i3 == 3) {
+            ConstraintWidget constraintWidget = this.widget;
+            updateRunCenter(dependency, constraintWidget.mLeft, constraintWidget.mRight, 0);
+            return;
+        }
+        if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+            ConstraintWidget constraintWidget2 = this.widget;
+            int i4 = constraintWidget2.mMatchConstraintDefaultWidth;
+            if (i4 == 2) {
+                ConstraintWidget parent = constraintWidget2.getParent();
+                if (parent != null) {
+                    if (parent.horizontalRun.dimension.resolved) {
+                        this.dimension.resolve((int) ((r0.value * this.widget.mMatchConstraintPercentWidth) + 0.5f));
+                    }
+                }
+            } else if (i4 == 3) {
+                int i5 = constraintWidget2.mMatchConstraintDefaultHeight;
+                if (i5 == 0 || i5 == 3) {
+                    ConstraintWidget constraintWidget3 = this.widget;
+                    VerticalWidgetRun verticalWidgetRun = constraintWidget3.verticalRun;
+                    DependencyNode dependencyNode = verticalWidgetRun.start;
+                    DependencyNode dependencyNode2 = verticalWidgetRun.end;
+                    boolean z = constraintWidget3.mLeft.mTarget != null;
+                    boolean z2 = this.widget.mTop.mTarget != null;
+                    boolean z3 = this.widget.mRight.mTarget != null;
+                    boolean z4 = this.widget.mBottom.mTarget != null;
+                    int dimensionRatioSide = this.widget.getDimensionRatioSide();
+                    if (z && z2 && z3 && z4) {
+                        float dimensionRatio3 = this.widget.getDimensionRatio();
+                        if (dependencyNode.resolved && dependencyNode2.resolved) {
+                            DependencyNode dependencyNode3 = this.start;
+                            if (dependencyNode3.readyToSolve && this.end.readyToSolve) {
+                                computeInsetRatio(tempDimensions, dependencyNode3.targets.get(0).value + this.start.margin, this.end.targets.get(0).value - this.end.margin, dependencyNode.value + dependencyNode.margin, dependencyNode2.value - dependencyNode2.margin, dimensionRatio3, dimensionRatioSide);
+                                this.dimension.resolve(tempDimensions[0]);
+                                this.widget.verticalRun.dimension.resolve(tempDimensions[1]);
+                                return;
+                            }
+                            return;
+                        }
+                        DependencyNode dependencyNode4 = this.start;
+                        if (dependencyNode4.resolved) {
+                            DependencyNode dependencyNode5 = this.end;
+                            if (dependencyNode5.resolved) {
+                                if (!dependencyNode.readyToSolve || !dependencyNode2.readyToSolve) {
+                                    return;
+                                }
+                                computeInsetRatio(tempDimensions, dependencyNode4.value + dependencyNode4.margin, dependencyNode5.value - dependencyNode5.margin, dependencyNode.targets.get(0).value + dependencyNode.margin, dependencyNode2.targets.get(0).value - dependencyNode2.margin, dimensionRatio3, dimensionRatioSide);
+                                this.dimension.resolve(tempDimensions[0]);
+                                this.widget.verticalRun.dimension.resolve(tempDimensions[1]);
+                            }
+                        }
+                        DependencyNode dependencyNode6 = this.start;
+                        if (!dependencyNode6.readyToSolve || !this.end.readyToSolve || !dependencyNode.readyToSolve || !dependencyNode2.readyToSolve) {
+                            return;
+                        }
+                        computeInsetRatio(tempDimensions, dependencyNode6.targets.get(0).value + this.start.margin, this.end.targets.get(0).value - this.end.margin, dependencyNode.targets.get(0).value + dependencyNode.margin, dependencyNode2.targets.get(0).value - dependencyNode2.margin, dimensionRatio3, dimensionRatioSide);
+                        this.dimension.resolve(tempDimensions[0]);
+                        this.widget.verticalRun.dimension.resolve(tempDimensions[1]);
+                    } else if (z && z3) {
+                        if (!this.start.readyToSolve || !this.end.readyToSolve) {
+                            return;
+                        }
+                        float dimensionRatio4 = this.widget.getDimensionRatio();
+                        int i6 = this.start.targets.get(0).value + this.start.margin;
+                        int i7 = this.end.targets.get(0).value - this.end.margin;
+                        if (dimensionRatioSide == -1 || dimensionRatioSide == 0) {
+                            int limitedDimension = getLimitedDimension(i7 - i6, 0);
+                            int i8 = (int) ((limitedDimension * dimensionRatio4) + 0.5f);
+                            int limitedDimension2 = getLimitedDimension(i8, 1);
+                            if (i8 != limitedDimension2) {
+                                limitedDimension = (int) ((limitedDimension2 / dimensionRatio4) + 0.5f);
+                            }
+                            this.dimension.resolve(limitedDimension);
+                            this.widget.verticalRun.dimension.resolve(limitedDimension2);
+                        } else if (dimensionRatioSide == 1) {
+                            int limitedDimension3 = getLimitedDimension(i7 - i6, 0);
+                            int i9 = (int) ((limitedDimension3 / dimensionRatio4) + 0.5f);
+                            int limitedDimension4 = getLimitedDimension(i9, 1);
+                            if (i9 != limitedDimension4) {
+                                limitedDimension3 = (int) ((limitedDimension4 * dimensionRatio4) + 0.5f);
+                            }
+                            this.dimension.resolve(limitedDimension3);
+                            this.widget.verticalRun.dimension.resolve(limitedDimension4);
+                        }
+                    } else if (z2 && z4) {
+                        if (!dependencyNode.readyToSolve || !dependencyNode2.readyToSolve) {
+                            return;
+                        }
+                        float dimensionRatio5 = this.widget.getDimensionRatio();
+                        int i10 = dependencyNode.targets.get(0).value + dependencyNode.margin;
+                        int i11 = dependencyNode2.targets.get(0).value - dependencyNode2.margin;
+                        if (dimensionRatioSide == -1) {
+                            int limitedDimension5 = getLimitedDimension(i11 - i10, 1);
+                            int i12 = (int) ((limitedDimension5 / dimensionRatio5) + 0.5f);
+                            int limitedDimension6 = getLimitedDimension(i12, 0);
+                            if (i12 != limitedDimension6) {
+                                limitedDimension5 = (int) ((limitedDimension6 * dimensionRatio5) + 0.5f);
+                            }
+                            this.dimension.resolve(limitedDimension6);
+                            this.widget.verticalRun.dimension.resolve(limitedDimension5);
+                        } else if (dimensionRatioSide == 0) {
+                            int limitedDimension7 = getLimitedDimension(i11 - i10, 1);
+                            int i13 = (int) ((limitedDimension7 * dimensionRatio5) + 0.5f);
+                            int limitedDimension8 = getLimitedDimension(i13, 0);
+                            if (i13 != limitedDimension8) {
+                                limitedDimension7 = (int) ((limitedDimension8 / dimensionRatio5) + 0.5f);
+                            }
+                            this.dimension.resolve(limitedDimension8);
+                            this.widget.verticalRun.dimension.resolve(limitedDimension7);
+                        } else if (dimensionRatioSide == 1) {
+                        }
+                    }
+                } else {
+                    int dimensionRatioSide2 = constraintWidget2.getDimensionRatioSide();
+                    if (dimensionRatioSide2 == -1) {
+                        ConstraintWidget constraintWidget4 = this.widget;
+                        f2 = constraintWidget4.verticalRun.dimension.value;
+                        dimensionRatio = constraintWidget4.getDimensionRatio();
+                    } else if (dimensionRatioSide2 == 0) {
+                        dimensionRatio2 = r0.verticalRun.dimension.value / this.widget.getDimensionRatio();
+                        i2 = (int) (dimensionRatio2 + 0.5f);
+                        this.dimension.resolve(i2);
+                    } else if (dimensionRatioSide2 != 1) {
+                        i2 = 0;
+                        this.dimension.resolve(i2);
+                    } else {
+                        ConstraintWidget constraintWidget5 = this.widget;
+                        f2 = constraintWidget5.verticalRun.dimension.value;
+                        dimensionRatio = constraintWidget5.getDimensionRatio();
+                    }
+                    dimensionRatio2 = f2 * dimensionRatio;
+                    i2 = (int) (dimensionRatio2 + 0.5f);
+                    this.dimension.resolve(i2);
+                }
+            }
+        }
+        DependencyNode dependencyNode7 = this.start;
+        if (dependencyNode7.readyToSolve) {
+            DependencyNode dependencyNode8 = this.end;
+            if (dependencyNode8.readyToSolve) {
+                if (dependencyNode7.resolved && dependencyNode8.resolved && this.dimension.resolved) {
+                    return;
+                }
+                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+                    ConstraintWidget constraintWidget6 = this.widget;
+                    if (constraintWidget6.mMatchConstraintDefaultWidth == 0 && !constraintWidget6.isInHorizontalChain()) {
+                        DependencyNode dependencyNode9 = this.start.targets.get(0);
+                        DependencyNode dependencyNode10 = this.end.targets.get(0);
+                        int i14 = dependencyNode9.value;
+                        DependencyNode dependencyNode11 = this.start;
+                        int i15 = i14 + dependencyNode11.margin;
+                        int i16 = dependencyNode10.value + this.end.margin;
+                        dependencyNode11.resolve(i15);
+                        this.end.resolve(i16);
+                        this.dimension.resolve(i16 - i15);
+                        return;
+                    }
+                }
+                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && this.matchConstraintsType == 1 && this.start.targets.size() > 0 && this.end.targets.size() > 0) {
+                    int iMin = Math.min((this.end.targets.get(0).value + this.end.margin) - (this.start.targets.get(0).value + this.start.margin), this.dimension.wrapValue);
+                    ConstraintWidget constraintWidget7 = this.widget;
+                    int i17 = constraintWidget7.mMatchConstraintMaxWidth;
+                    int iMax = Math.max(constraintWidget7.mMatchConstraintMinWidth, iMin);
+                    if (i17 > 0) {
+                        iMax = Math.min(i17, iMax);
+                    }
+                    this.dimension.resolve(iMax);
+                }
+                if (this.dimension.resolved) {
+                    DependencyNode dependencyNode12 = this.start.targets.get(0);
+                    DependencyNode dependencyNode13 = this.end.targets.get(0);
+                    int i18 = dependencyNode12.value + this.start.margin;
+                    int i19 = dependencyNode13.value + this.end.margin;
+                    float horizontalBiasPercent = this.widget.getHorizontalBiasPercent();
+                    if (dependencyNode12 == dependencyNode13) {
+                        i18 = dependencyNode12.value;
+                        i19 = dependencyNode13.value;
+                        horizontalBiasPercent = 0.5f;
+                    }
+                    this.start.resolve((int) (i18 + 0.5f + (((i19 - i18) - this.dimension.value) * horizontalBiasPercent)));
+                    this.end.resolve(this.start.value + this.dimension.value);
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.alibaba.sdk.android.httpdns.probe;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class IPProbeItem {
     String hostName;
     int port;

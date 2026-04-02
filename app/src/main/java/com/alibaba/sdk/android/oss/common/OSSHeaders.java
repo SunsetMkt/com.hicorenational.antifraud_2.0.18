@@ -2,7 +2,7 @@ package com.alibaba.sdk.android.oss.common;
 
 import com.alibaba.sdk.android.oss.common.utils.HttpHeaders;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public interface OSSHeaders extends HttpHeaders {
     public static final String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
     public static final String ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";

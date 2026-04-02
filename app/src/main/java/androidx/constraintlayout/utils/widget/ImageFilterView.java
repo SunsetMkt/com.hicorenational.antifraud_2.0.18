@@ -17,9 +17,9 @@ import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.C0471R;
+import androidx.constraintlayout.widget.R;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class ImageFilterView extends AppCompatImageView {
     private float mCrossfade;
     private ImageMatrix mImageMatrix;
@@ -34,8 +34,8 @@ public class ImageFilterView extends AppCompatImageView {
 
     static class ImageMatrix {
 
-        /* renamed from: m */
-        float[] f609m = new float[20];
+        /* JADX INFO: renamed from: m, reason: collision with root package name */
+        float[] f1307m = new float[20];
         ColorMatrix mColorMatrix = new ColorMatrix();
         ColorMatrix mTmpColorMatrix = new ColorMatrix();
         float mBrightness = 1.0f;
@@ -47,7 +47,7 @@ public class ImageFilterView extends AppCompatImageView {
         }
 
         private void brightness(float f2) {
-            float[] fArr = this.f609m;
+            float[] fArr = this.f1307m;
             fArr[0] = f2;
             fArr[1] = 0.0f;
             fArr[2] = 0.0f;
@@ -75,7 +75,7 @@ public class ImageFilterView extends AppCompatImageView {
             float f4 = 0.2999f * f3;
             float f5 = 0.587f * f3;
             float f6 = f3 * 0.114f;
-            float[] fArr = this.f609m;
+            float[] fArr = this.f1307m;
             fArr[0] = f4 + f2;
             fArr[1] = f5;
             fArr[2] = f6;
@@ -99,43 +99,43 @@ public class ImageFilterView extends AppCompatImageView {
         }
 
         private void warmth(float f2) {
-            float log;
-            float f3;
+            float fLog;
+            float fPow;
             if (f2 <= 0.0f) {
                 f2 = 0.01f;
             }
-            float f4 = (5000.0f / f2) / 100.0f;
-            if (f4 > 66.0f) {
-                double d2 = f4 - 60.0f;
-                f3 = ((float) Math.pow(d2, -0.13320475816726685d)) * 329.69873f;
-                log = ((float) Math.pow(d2, 0.07551484555006027d)) * 288.12216f;
+            float f3 = (5000.0f / f2) / 100.0f;
+            if (f3 > 66.0f) {
+                double d2 = f3 - 60.0f;
+                fPow = ((float) Math.pow(d2, -0.13320475816726685d)) * 329.69873f;
+                fLog = ((float) Math.pow(d2, 0.07551484555006027d)) * 288.12216f;
             } else {
-                log = (((float) Math.log(f4)) * 99.4708f) - 161.11957f;
-                f3 = 255.0f;
+                fLog = (((float) Math.log(f3)) * 99.4708f) - 161.11957f;
+                fPow = 255.0f;
             }
-            float log2 = f4 < 66.0f ? f4 > 19.0f ? (((float) Math.log(f4 - 10.0f)) * 138.51773f) - 305.0448f : 0.0f : 255.0f;
-            float min = Math.min(255.0f, Math.max(f3, 0.0f));
-            float min2 = Math.min(255.0f, Math.max(log, 0.0f));
-            float min3 = Math.min(255.0f, Math.max(log2, 0.0f));
-            float log3 = (((float) Math.log(50.0f)) * 99.4708f) - 161.11957f;
-            float log4 = (((float) Math.log(40.0f)) * 138.51773f) - 305.0448f;
-            float min4 = Math.min(255.0f, Math.max(255.0f, 0.0f));
-            float min5 = Math.min(255.0f, Math.max(log3, 0.0f));
-            float min6 = min3 / Math.min(255.0f, Math.max(log4, 0.0f));
-            float[] fArr = this.f609m;
-            fArr[0] = min / min4;
+            float fLog2 = f3 < 66.0f ? f3 > 19.0f ? (((float) Math.log(f3 - 10.0f)) * 138.51773f) - 305.0448f : 0.0f : 255.0f;
+            float fMin = Math.min(255.0f, Math.max(fPow, 0.0f));
+            float fMin2 = Math.min(255.0f, Math.max(fLog, 0.0f));
+            float fMin3 = Math.min(255.0f, Math.max(fLog2, 0.0f));
+            float fLog3 = (((float) Math.log(50.0f)) * 99.4708f) - 161.11957f;
+            float fLog4 = (((float) Math.log(40.0f)) * 138.51773f) - 305.0448f;
+            float fMin4 = Math.min(255.0f, Math.max(255.0f, 0.0f));
+            float fMin5 = Math.min(255.0f, Math.max(fLog3, 0.0f));
+            float fMin6 = fMin3 / Math.min(255.0f, Math.max(fLog4, 0.0f));
+            float[] fArr = this.f1307m;
+            fArr[0] = fMin / fMin4;
             fArr[1] = 0.0f;
             fArr[2] = 0.0f;
             fArr[3] = 0.0f;
             fArr[4] = 0.0f;
             fArr[5] = 0.0f;
-            fArr[6] = min2 / min5;
+            fArr[6] = fMin2 / fMin5;
             fArr[7] = 0.0f;
             fArr[8] = 0.0f;
             fArr[9] = 0.0f;
             fArr[10] = 0.0f;
             fArr[11] = 0.0f;
-            fArr[12] = min6;
+            fArr[12] = fMin6;
             fArr[13] = 0.0f;
             fArr[14] = 0.0f;
             fArr[15] = 0.0f;
@@ -151,7 +151,7 @@ public class ImageFilterView extends AppCompatImageView {
             float f2 = this.mSaturation;
             if (f2 != 1.0f) {
                 saturation(f2);
-                this.mColorMatrix.set(this.f609m);
+                this.mColorMatrix.set(this.f1307m);
                 z = true;
             } else {
                 z = false;
@@ -165,14 +165,14 @@ public class ImageFilterView extends AppCompatImageView {
             float f4 = this.mWarmth;
             if (f4 != 1.0f) {
                 warmth(f4);
-                this.mTmpColorMatrix.set(this.f609m);
+                this.mTmpColorMatrix.set(this.f1307m);
                 this.mColorMatrix.postConcat(this.mTmpColorMatrix);
                 z = true;
             }
             float f5 = this.mBrightness;
             if (f5 != 1.0f) {
                 brightness(f5);
-                this.mTmpColorMatrix.set(this.f609m);
+                this.mTmpColorMatrix.set(this.f1307m);
                 this.mColorMatrix.postConcat(this.mTmpColorMatrix);
                 z = true;
             }
@@ -196,32 +196,32 @@ public class ImageFilterView extends AppCompatImageView {
 
     private void init(Context context, AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0471R.styleable.ImageFilterView);
-            int indexCount = obtainStyledAttributes.getIndexCount();
-            Drawable drawable = obtainStyledAttributes.getDrawable(C0471R.styleable.ImageFilterView_altSrc);
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ImageFilterView);
+            int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
+            Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R.styleable.ImageFilterView_altSrc);
             for (int i2 = 0; i2 < indexCount; i2++) {
-                int index = obtainStyledAttributes.getIndex(i2);
-                if (index == C0471R.styleable.ImageFilterView_crossfade) {
-                    this.mCrossfade = obtainStyledAttributes.getFloat(index, 0.0f);
-                } else if (index == C0471R.styleable.ImageFilterView_warmth) {
-                    setWarmth(obtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == C0471R.styleable.ImageFilterView_saturation) {
-                    setSaturation(obtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == C0471R.styleable.ImageFilterView_contrast) {
-                    setContrast(obtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == C0471R.styleable.ImageFilterView_round) {
+                int index = typedArrayObtainStyledAttributes.getIndex(i2);
+                if (index == R.styleable.ImageFilterView_crossfade) {
+                    this.mCrossfade = typedArrayObtainStyledAttributes.getFloat(index, 0.0f);
+                } else if (index == R.styleable.ImageFilterView_warmth) {
+                    setWarmth(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
+                } else if (index == R.styleable.ImageFilterView_saturation) {
+                    setSaturation(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
+                } else if (index == R.styleable.ImageFilterView_contrast) {
+                    setContrast(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
+                } else if (index == R.styleable.ImageFilterView_round) {
                     if (Build.VERSION.SDK_INT >= 21) {
-                        setRound(obtainStyledAttributes.getDimension(index, 0.0f));
+                        setRound(typedArrayObtainStyledAttributes.getDimension(index, 0.0f));
                     }
-                } else if (index == C0471R.styleable.ImageFilterView_roundPercent) {
+                } else if (index == R.styleable.ImageFilterView_roundPercent) {
                     if (Build.VERSION.SDK_INT >= 21) {
-                        setRoundPercent(obtainStyledAttributes.getFloat(index, 0.0f));
+                        setRoundPercent(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
                     }
-                } else if (index == C0471R.styleable.ImageFilterView_overlay) {
-                    setOverlay(obtainStyledAttributes.getBoolean(index, this.mOverlay));
+                } else if (index == R.styleable.ImageFilterView_overlay) {
+                    setOverlay(typedArrayObtainStyledAttributes.getBoolean(index, this.mOverlay));
                 }
             }
-            obtainStyledAttributes.recycle();
+            typedArrayObtainStyledAttributes.recycle();
             if (drawable != null) {
                 this.mLayers = new Drawable[2];
                 this.mLayers[0] = getDrawable();
@@ -375,10 +375,10 @@ public class ImageFilterView extends AppCompatImageView {
             }
             int width = getWidth();
             int height = getHeight();
-            float min = (Math.min(width, height) * this.mRoundPercent) / 2.0f;
+            float fMin = (Math.min(width, height) * this.mRoundPercent) / 2.0f;
             this.mRect.set(0.0f, 0.0f, width, height);
             this.mPath.reset();
-            this.mPath.addRoundRect(this.mRect, min, min, Path.Direction.CW);
+            this.mPath.addRoundRect(this.mRect, fMin, fMin, Path.Direction.CW);
         } else if (Build.VERSION.SDK_INT >= 21) {
             setClipToOutline(false);
         }

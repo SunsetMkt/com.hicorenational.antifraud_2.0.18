@@ -2,7 +2,7 @@ package com.huawei.hms.android;
 
 import java.lang.reflect.InvocationTargetException;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HwBuildEx {
 
     public static class VERSION {

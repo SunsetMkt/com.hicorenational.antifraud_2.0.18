@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-/* loaded from: classes2.dex */
+/* JADX INFO: loaded from: classes2.dex */
 public class FloatWindowManager implements IFloatingWindowMgr {
     private static FloatWindowManager sFWManager;
     private List<IFloatingWindow> mWindows = new LinkedList();

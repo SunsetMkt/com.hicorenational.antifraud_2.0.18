@@ -2,22 +2,30 @@ package com.google.android.material.appbar;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.OverScroller;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 abstract class HeaderBehavior<V extends View> extends ViewOffsetBehavior<V> {
     private static final int INVALID_POINTER = -1;
     private int activePointerId;
+
+    @Nullable
     private Runnable flingRunnable;
     private boolean isBeingDragged;
     private int lastMotionY;
     OverScroller scroller;
     private int touchSlop;
+
+    @Nullable
     private VelocityTracker velocityTracker;
 
     private class FlingRunnable implements Runnable {
@@ -60,7 +68,7 @@ abstract class HeaderBehavior<V extends View> extends ViewOffsetBehavior<V> {
         return false;
     }
 
-    final boolean fling(CoordinatorLayout coordinatorLayout, V v, int i2, int i3, float f2) {
+    final boolean fling(CoordinatorLayout coordinatorLayout, @NonNull V v, int i2, int i3, float f2) {
         Runnable runnable = this.flingRunnable;
         if (runnable != null) {
             v.removeCallbacks(runnable);
@@ -79,11 +87,11 @@ abstract class HeaderBehavior<V extends View> extends ViewOffsetBehavior<V> {
         return true;
     }
 
-    int getMaxDragOffset(V v) {
+    int getMaxDragOffset(@NonNull V v) {
         return -v.getHeight();
     }
 
-    int getScrollRangeForDragFling(V v) {
+    int getScrollRangeForDragFling(@NonNull V v) {
         return v.getHeight();
     }
 
@@ -94,207 +102,114 @@ abstract class HeaderBehavior<V extends View> extends ViewOffsetBehavior<V> {
     void onFlingFinished(CoordinatorLayout coordinatorLayout, V v) {
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:16:0x002c, code lost:
-    
-        if (r0 != 3) goto L35;
-     */
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public boolean onInterceptTouchEvent(androidx.coordinatorlayout.widget.CoordinatorLayout r5, V r6, android.view.MotionEvent r7) {
-        /*
-            r4 = this;
-            int r0 = r4.touchSlop
-            if (r0 >= 0) goto L12
-            android.content.Context r0 = r5.getContext()
-            android.view.ViewConfiguration r0 = android.view.ViewConfiguration.get(r0)
-            int r0 = r0.getScaledTouchSlop()
-            r4.touchSlop = r0
-        L12:
-            int r0 = r7.getAction()
-            r1 = 2
-            r2 = 1
-            if (r0 != r1) goto L1f
-            boolean r0 = r4.isBeingDragged
-            if (r0 == 0) goto L1f
-            return r2
-        L1f:
-            int r0 = r7.getActionMasked()
-            r3 = 0
-            if (r0 == 0) goto L60
-            r5 = -1
-            if (r0 == r2) goto L51
-            if (r0 == r1) goto L2f
-            r6 = 3
-            if (r0 == r6) goto L51
-            goto L83
-        L2f:
-            int r6 = r4.activePointerId
-            if (r6 != r5) goto L34
-            goto L83
-        L34:
-            int r6 = r7.findPointerIndex(r6)
-            if (r6 != r5) goto L3b
-            goto L83
-        L3b:
-            float r5 = r7.getY(r6)
-            int r5 = (int) r5
-            int r6 = r4.lastMotionY
-            int r6 = r5 - r6
-            int r6 = java.lang.Math.abs(r6)
-            int r0 = r4.touchSlop
-            if (r6 <= r0) goto L83
-            r4.isBeingDragged = r2
-            r4.lastMotionY = r5
-            goto L83
-        L51:
-            r4.isBeingDragged = r3
-            r4.activePointerId = r5
-            android.view.VelocityTracker r5 = r4.velocityTracker
-            if (r5 == 0) goto L83
-            r5.recycle()
-            r5 = 0
-            r4.velocityTracker = r5
-            goto L83
-        L60:
-            r4.isBeingDragged = r3
-            float r0 = r7.getX()
-            int r0 = (int) r0
-            float r1 = r7.getY()
-            int r1 = (int) r1
-            boolean r2 = r4.canDragView(r6)
-            if (r2 == 0) goto L83
-            boolean r5 = r5.isPointInChildBounds(r6, r0, r1)
-            if (r5 == 0) goto L83
-            r4.lastMotionY = r1
-            int r5 = r7.getPointerId(r3)
-            r4.activePointerId = r5
-            r4.ensureVelocityTracker()
-        L83:
-            android.view.VelocityTracker r5 = r4.velocityTracker
-            if (r5 == 0) goto L8a
-            r5.addMovement(r7)
-        L8a:
-            boolean r5 = r4.isBeingDragged
-            return r5
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.material.appbar.HeaderBehavior.onInterceptTouchEvent(androidx.coordinatorlayout.widget.CoordinatorLayout, android.view.View, android.view.MotionEvent):boolean");
+    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull MotionEvent motionEvent) {
+        int iFindPointerIndex;
+        if (this.touchSlop < 0) {
+            this.touchSlop = ViewConfiguration.get(coordinatorLayout.getContext()).getScaledTouchSlop();
+        }
+        if (motionEvent.getActionMasked() == 2 && this.isBeingDragged) {
+            int i2 = this.activePointerId;
+            if (i2 == -1 || (iFindPointerIndex = motionEvent.findPointerIndex(i2)) == -1) {
+                return false;
+            }
+            int y = (int) motionEvent.getY(iFindPointerIndex);
+            if (Math.abs(y - this.lastMotionY) > this.touchSlop) {
+                this.lastMotionY = y;
+                return true;
+            }
+        }
+        if (motionEvent.getActionMasked() == 0) {
+            this.activePointerId = -1;
+            int x = (int) motionEvent.getX();
+            int y2 = (int) motionEvent.getY();
+            this.isBeingDragged = canDragView(v) && coordinatorLayout.isPointInChildBounds(v, x, y2);
+            if (this.isBeingDragged) {
+                this.lastMotionY = y2;
+                this.activePointerId = motionEvent.getPointerId(0);
+                ensureVelocityTracker();
+                OverScroller overScroller = this.scroller;
+                if (overScroller != null && !overScroller.isFinished()) {
+                    this.scroller.abortAnimation();
+                    return true;
+                }
+            }
+        }
+        VelocityTracker velocityTracker = this.velocityTracker;
+        if (velocityTracker != null) {
+            velocityTracker.addMovement(motionEvent);
+        }
+        return false;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:11:0x0021, code lost:
-    
-        if (r0 != 3) goto L39;
-     */
+    /* JADX WARN: Removed duplicated region for block: B:27:0x007b  */
+    /* JADX WARN: Removed duplicated region for block: B:30:0x0085  */
+    /* JADX WARN: Removed duplicated region for block: B:33:0x008c A[ADDED_TO_REGION] */
+    /* JADX WARN: Removed duplicated region for block: B:37:? A[ADDED_TO_REGION, RETURN, SYNTHETIC] */
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public boolean onTouchEvent(androidx.coordinatorlayout.widget.CoordinatorLayout r12, V r13, android.view.MotionEvent r14) {
-        /*
-            r11 = this;
-            int r0 = r11.touchSlop
-            if (r0 >= 0) goto L12
-            android.content.Context r0 = r12.getContext()
-            android.view.ViewConfiguration r0 = android.view.ViewConfiguration.get(r0)
-            int r0 = r0.getScaledTouchSlop()
-            r11.touchSlop = r0
-        L12:
-            int r0 = r14.getActionMasked()
-            r1 = 1
-            r2 = 0
-            if (r0 == 0) goto L8d
-            r3 = -1
-            if (r0 == r1) goto L5c
-            r4 = 2
-            if (r0 == r4) goto L25
-            r12 = 3
-            if (r0 == r12) goto L7e
-            goto Lae
-        L25:
-            int r0 = r11.activePointerId
-            int r0 = r14.findPointerIndex(r0)
-            if (r0 != r3) goto L2e
-            return r2
-        L2e:
-            float r0 = r14.getY(r0)
-            int r0 = (int) r0
-            int r2 = r11.lastMotionY
-            int r2 = r2 - r0
-            boolean r3 = r11.isBeingDragged
-            if (r3 != 0) goto L49
-            int r3 = java.lang.Math.abs(r2)
-            int r4 = r11.touchSlop
-            if (r3 <= r4) goto L49
-            r11.isBeingDragged = r1
-            if (r2 <= 0) goto L48
-            int r2 = r2 - r4
-            goto L49
-        L48:
-            int r2 = r2 + r4
-        L49:
-            r6 = r2
-            boolean r2 = r11.isBeingDragged
-            if (r2 == 0) goto Lae
-            r11.lastMotionY = r0
-            int r7 = r11.getMaxDragOffset(r13)
-            r8 = 0
-            r3 = r11
-            r4 = r12
-            r5 = r13
-            r3.scroll(r4, r5, r6, r7, r8)
-            goto Lae
-        L5c:
-            android.view.VelocityTracker r0 = r11.velocityTracker
-            if (r0 == 0) goto L7e
-            r0.addMovement(r14)
-            android.view.VelocityTracker r0 = r11.velocityTracker
-            r4 = 1000(0x3e8, float:1.401E-42)
-            r0.computeCurrentVelocity(r4)
-            android.view.VelocityTracker r0 = r11.velocityTracker
-            int r4 = r11.activePointerId
-            float r10 = r0.getYVelocity(r4)
-            int r0 = r11.getScrollRangeForDragFling(r13)
-            int r8 = -r0
-            r9 = 0
-            r5 = r11
-            r6 = r12
-            r7 = r13
-            r5.fling(r6, r7, r8, r9, r10)
-        L7e:
-            r11.isBeingDragged = r2
-            r11.activePointerId = r3
-            android.view.VelocityTracker r12 = r11.velocityTracker
-            if (r12 == 0) goto Lae
-            r12.recycle()
-            r12 = 0
-            r11.velocityTracker = r12
-            goto Lae
-        L8d:
-            float r0 = r14.getX()
-            int r0 = (int) r0
-            float r3 = r14.getY()
-            int r3 = (int) r3
-            boolean r12 = r12.isPointInChildBounds(r13, r0, r3)
-            if (r12 == 0) goto Lb6
-            boolean r12 = r11.canDragView(r13)
-            if (r12 == 0) goto Lb6
-            r11.lastMotionY = r3
-            int r12 = r14.getPointerId(r2)
-            r11.activePointerId = r12
-            r11.ensureVelocityTracker()
-        Lae:
-            android.view.VelocityTracker r12 = r11.velocityTracker
-            if (r12 == 0) goto Lb5
-            r12.addMovement(r14)
-        Lb5:
-            return r1
-        Lb6:
-            return r2
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.material.appbar.HeaderBehavior.onTouchEvent(androidx.coordinatorlayout.widget.CoordinatorLayout, android.view.View, android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull MotionEvent motionEvent) {
+        boolean z;
+        VelocityTracker velocityTracker;
+        VelocityTracker velocityTracker2;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 1) {
+            VelocityTracker velocityTracker3 = this.velocityTracker;
+            if (velocityTracker3 != null) {
+                velocityTracker3.addMovement(motionEvent);
+                this.velocityTracker.computeCurrentVelocity(1000);
+                fling(coordinatorLayout, v, -getScrollRangeForDragFling(v), 0, this.velocityTracker.getYVelocity(this.activePointerId));
+                z = true;
+            }
+            this.isBeingDragged = false;
+            this.activePointerId = -1;
+            velocityTracker = this.velocityTracker;
+            if (velocityTracker != null) {
+                velocityTracker.recycle();
+                this.velocityTracker = null;
+            }
+            velocityTracker2 = this.velocityTracker;
+            if (velocityTracker2 != null) {
+            }
+            if (this.isBeingDragged) {
+                return true;
+            }
+        }
+        if (actionMasked == 2) {
+            int iFindPointerIndex = motionEvent.findPointerIndex(this.activePointerId);
+            if (iFindPointerIndex == -1) {
+                return false;
+            }
+            int y = (int) motionEvent.getY(iFindPointerIndex);
+            int i2 = this.lastMotionY - y;
+            this.lastMotionY = y;
+            scroll(coordinatorLayout, v, i2, getMaxDragOffset(v), 0);
+        } else if (actionMasked != 3) {
+            if (actionMasked == 6) {
+                int i3 = motionEvent.getActionIndex() == 0 ? 1 : 0;
+                this.activePointerId = motionEvent.getPointerId(i3);
+                this.lastMotionY = (int) (motionEvent.getY(i3) + 0.5f);
+            }
+        }
+        z = false;
+        velocityTracker2 = this.velocityTracker;
+        if (velocityTracker2 != null) {
+            velocityTracker2.addMovement(motionEvent);
+        }
+        return !this.isBeingDragged || z;
+        z = false;
+        this.isBeingDragged = false;
+        this.activePointerId = -1;
+        velocityTracker = this.velocityTracker;
+        if (velocityTracker != null) {
+        }
+        velocityTracker2 = this.velocityTracker;
+        if (velocityTracker2 != null) {
+        }
+        if (this.isBeingDragged) {
+        }
     }
 
     final int scroll(CoordinatorLayout coordinatorLayout, V v, int i2, int i3, int i4) {
@@ -306,13 +221,13 @@ abstract class HeaderBehavior<V extends View> extends ViewOffsetBehavior<V> {
     }
 
     int setHeaderTopBottomOffset(CoordinatorLayout coordinatorLayout, V v, int i2, int i3, int i4) {
-        int clamp;
+        int iClamp;
         int topAndBottomOffset = getTopAndBottomOffset();
-        if (i3 == 0 || topAndBottomOffset < i3 || topAndBottomOffset > i4 || topAndBottomOffset == (clamp = MathUtils.clamp(i2, i3, i4))) {
+        if (i3 == 0 || topAndBottomOffset < i3 || topAndBottomOffset > i4 || topAndBottomOffset == (iClamp = MathUtils.clamp(i2, i3, i4))) {
             return 0;
         }
-        setTopAndBottomOffset(clamp);
-        return topAndBottomOffset - clamp;
+        setTopAndBottomOffset(iClamp);
+        return topAndBottomOffset - iClamp;
     }
 
     public HeaderBehavior(Context context, AttributeSet attributeSet) {

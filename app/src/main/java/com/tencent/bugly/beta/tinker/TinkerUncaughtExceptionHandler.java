@@ -8,8 +8,8 @@ import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 import java.lang.Thread;
 
-/* compiled from: BUGLY */
-/* loaded from: classes2.dex */
+/* JADX INFO: compiled from: BUGLY */
+/* JADX INFO: loaded from: classes2.dex */
 public class TinkerUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
     private static final String DALVIK_XPOSED_CRASH = "Class ref in pre-verified class resolved to unexpected implementation";
     public static final int MAX_CRASH_COUNT = 3;
@@ -48,12 +48,12 @@ public class TinkerUncaughtExceptionHandler implements Thread.UncaughtExceptionH
             TinkerLog.w(TAG, "tinker is not loaded", new Object[0]);
             return;
         }
-        boolean z = false;
+        boolean zIsXposedExists = false;
         while (th != null) {
-            if (!z) {
-                z = TinkerUtils.isXposedExists(th);
+            if (!zIsXposedExists) {
+                zIsXposedExists = TinkerUtils.isXposedExists(th);
             }
-            if (z) {
+            if (zIsXposedExists) {
                 if ((th instanceof IllegalAccessError) && th.getMessage().contains(DALVIK_XPOSED_CRASH)) {
                     TinkerReport.onXposedCrash();
                     TinkerLog.e(TAG, "have xposed: just clean tinker", new Object[0]);

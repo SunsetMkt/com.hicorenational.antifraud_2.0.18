@@ -1,49 +1,47 @@
 package com.hihonor.push.sdk;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class HonorPushDataMsg {
+    public int a = 1;
 
-    /* renamed from: a */
-    public int f6743a = 1;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public int f4230b = 0;
 
-    /* renamed from: b */
-    public int f6744b = 0;
+    /* JADX INFO: renamed from: c, reason: collision with root package name */
+    public long f4231c;
 
-    /* renamed from: c */
-    public long f6745c;
-
-    /* renamed from: d */
-    public String f6746d;
+    /* JADX INFO: renamed from: d, reason: collision with root package name */
+    public String f4232d;
 
     public String getData() {
-        return this.f6746d;
+        return this.f4232d;
     }
 
     public long getMsgId() {
-        return this.f6745c;
+        return this.f4231c;
     }
 
     public int getType() {
-        return this.f6744b;
+        return this.f4230b;
     }
 
     public int getVersion() {
-        return this.f6743a;
+        return this.a;
     }
 
     public void setData(String str) {
-        this.f6746d = str;
+        this.f4232d = str;
     }
 
     public void setMsgId(long j2) {
-        this.f6745c = j2;
+        this.f4231c = j2;
     }
 
     public void setType(int i2) {
-        this.f6744b = i2;
+        this.f4230b = i2;
     }
 
     public void setVersion(int i2) {
-        this.f6743a = i2;
+        this.a = i2;
     }
 }

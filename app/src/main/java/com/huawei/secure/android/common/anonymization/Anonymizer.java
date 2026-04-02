@@ -3,18 +3,16 @@ package com.huawei.secure.android.common.anonymization;
 import android.text.TextUtils;
 import com.xiaomi.mipush.sdk.Constants;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class Anonymizer {
-
-    /* renamed from: a */
-    private static final String f7998a = "Anonymizer";
+    private static final String a = "Anonymizer";
 
     public static String maskAccountId(String str) {
         return (str == null || str.length() <= 0) ? "" : str.length() <= 1 ? "*" : str.length() < 8 ? maskCommonString(str, 0, 1) : maskCommonString(str, 0, 4);
     }
 
     public static String maskBankAccount(String str) {
-        return (str == null || str.length() <= 0) ? "" : str.length() <= 2 ? C2545a.m7815a(str, '*') : (str.length() < 11 || str.length() >= 20) ? maskCommonString(str, 6, 4) : maskCommonString(str, 4, 4);
+        return (str == null || str.length() <= 0) ? "" : str.length() <= 2 ? a.a(str, '*') : (str.length() < 11 || str.length() >= 20) ? maskCommonString(str, 6, 4) : maskCommonString(str, 4, 4);
     }
 
     public static String maskBirthday(String str) {
@@ -22,10 +20,10 @@ public class Anonymizer {
             return "";
         }
         if (str.length() <= 4) {
-            return C2545a.m7815a(str, '*');
+            return a.a(str, '*');
         }
-        String[] m7819a = C2545a.m7819a(str, 4);
-        return C2545a.m7817a("", C2545a.m7818a(m7819a, 0), C2545a.m7816a(C2545a.m7818a(m7819a, 1), "0123456789", "*"));
+        String[] strArrA = a.a(str, 4);
+        return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), "0123456789", "*"));
     }
 
     public static String maskCommonString(String str, int i2, int i3) {
@@ -45,8 +43,8 @@ public class Anonymizer {
         } else {
             length = str.length() - i3;
         }
-        String[] m7820a = C2545a.m7820a(str, i2, length);
-        return C2545a.m7817a("", C2545a.m7818a(m7820a, 0), C2545a.m7815a(C2545a.m7818a(m7820a, 1), '*'), C2545a.m7818a(m7820a, 2));
+        String[] strArrA = a.a(str, i2, length);
+        return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), '*'), a.a(strArrA, 2));
     }
 
     public static String maskEmail(String str) {
@@ -56,13 +54,13 @@ public class Anonymizer {
         if (str.length() <= 1) {
             return "*";
         }
-        int indexOf = str.indexOf(64);
-        if (indexOf < 0) {
-            String[] m7819a = C2545a.m7819a(str, 1);
-            return C2545a.m7817a("", C2545a.m7818a(m7819a, 0), C2545a.m7815a(C2545a.m7818a(m7819a, 1), '*'));
+        int iIndexOf = str.indexOf(64);
+        if (iIndexOf < 0) {
+            String[] strArrA = a.a(str, 1);
+            return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), '*'));
         }
-        String[] m7821a = C2545a.m7821a(str, indexOf, indexOf + 1, str.lastIndexOf(46));
-        return C2545a.m7817a("", C2545a.m7815a(C2545a.m7818a(m7821a, 0), '*'), C2545a.m7818a(m7821a, 1), C2545a.m7815a(C2545a.m7818a(m7821a, 2), '*'), C2545a.m7818a(m7821a, 3));
+        String[] strArrA2 = a.a(str, iIndexOf, iIndexOf + 1, str.lastIndexOf(46));
+        return a.a("", a.a(a.a(strArrA2, 0), '*'), a.a(strArrA2, 1), a.a(a.a(strArrA2, 2), '*'), a.a(strArrA2, 3));
     }
 
     public static String maskId(String str) {
@@ -77,31 +75,31 @@ public class Anonymizer {
         if (str == null || str.length() <= 0) {
             return "";
         }
-        int lastIndexOf = str.lastIndexOf(46);
-        if (lastIndexOf < 0) {
-            return C2545a.m7815a(str, '*');
+        int iLastIndexOf = str.lastIndexOf(46);
+        if (iLastIndexOf < 0) {
+            return a.a(str, '*');
         }
-        String[] m7819a = C2545a.m7819a(str, lastIndexOf + 1);
-        return C2545a.m7817a("", C2545a.m7818a(m7819a, 0), C2545a.m7815a(C2545a.m7818a(m7819a, 1), '*'));
+        String[] strArrA = a.a(str, iLastIndexOf + 1);
+        return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), '*'));
     }
 
     public static String maskIpV6(String str) {
         if (str == null || str.length() <= 0) {
             return "";
         }
-        String[] m7825b = C2545a.m7825b(str, ':');
-        if (m7825b.length <= 1) {
-            return C2545a.m7815a(str, '*');
+        String[] strArrB = a.b(str, ':');
+        if (strArrB.length <= 1) {
+            return a.a(str, '*');
         }
-        if (m7825b.length != 8) {
-            String[] m7819a = C2545a.m7819a(str, str.indexOf(58) + 1);
-            return C2545a.m7817a("", C2545a.m7818a(m7819a, 0), C2545a.m7816a(C2545a.m7818a(m7819a, 1), "0123456789ABCDEFabcdef", "*"));
+        if (strArrB.length != 8) {
+            String[] strArrA = a.a(str, str.indexOf(58) + 1);
+            return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), "0123456789ABCDEFabcdef", "*"));
         }
-        m7825b[2] = maskLower8Bit(m7825b[2]);
-        for (int i2 = 3; i2 < m7825b.length; i2++) {
-            m7825b[i2] = C2545a.m7815a(m7825b[i2], '*');
+        strArrB[2] = maskLower8Bit(strArrB[2]);
+        for (int i2 = 3; i2 < strArrB.length; i2++) {
+            strArrB[i2] = a.a(strArrB[i2], '*');
         }
-        return C2545a.m7817a(Constants.COLON_SEPARATOR, m7825b);
+        return a.a(Constants.COLON_SEPARATOR, strArrB);
     }
 
     public static String maskLower8Bit(String str) {
@@ -109,22 +107,22 @@ public class Anonymizer {
             return "";
         }
         if (str.length() <= 2) {
-            return C2545a.m7815a(str, '*');
+            return a.a(str, '*');
         }
-        String[] m7819a = C2545a.m7819a(str, str.length() - 2);
-        return C2545a.m7817a("", C2545a.m7818a(m7819a, 0), C2545a.m7815a(C2545a.m7818a(m7819a, 1), '*'));
+        String[] strArrA = a.a(str, str.length() - 2);
+        return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), '*'));
     }
 
     public static String maskMac(String str) {
         if (str == null || str.length() <= 0) {
             return "";
         }
-        int m7814a = C2545a.m7814a(str, '-', 2);
-        if (m7814a < 0) {
-            return C2545a.m7816a(str, "0123456789ABCDEFabcdef", "*");
+        int iA = a.a(str, '-', 2);
+        if (iA < 0) {
+            return a.a(str, "0123456789ABCDEFabcdef", "*");
         }
-        String[] m7819a = C2545a.m7819a(str, m7814a);
-        return C2545a.m7817a("", C2545a.m7818a(m7819a, 0), C2545a.m7816a(C2545a.m7818a(m7819a, 1), "0123456789ABCDEFabcdef", "*"));
+        String[] strArrA = a.a(str, iA);
+        return a.a("", a.a(strArrA, 0), a.a(a.a(strArrA, 1), "0123456789ABCDEFabcdef", "*"));
     }
 
     public static String maskName(String str) {
@@ -132,6 +130,6 @@ public class Anonymizer {
     }
 
     public static String maskPhone(String str) {
-        return (str == null || str.length() <= 0) ? "" : str.length() <= 2 ? C2545a.m7815a(str, '*') : (str.length() < 8 || str.length() >= 11) ? maskCommonString(str, 3, 4) : maskCommonString(str, 2, 2);
+        return (str == null || str.length() <= 0) ? "" : str.length() <= 2 ? a.a(str, '*') : (str.length() < 8 || str.length() >= 11) ? maskCommonString(str, 3, 4) : maskCommonString(str, 2, 2);
     }
 }

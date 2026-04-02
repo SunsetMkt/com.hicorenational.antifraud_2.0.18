@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: Access modifiers changed from: package-private */
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, AdapterView.OnItemClickListener {
     private Rect mEpicenterBounds;
 
@@ -22,10 +22,10 @@ public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, Adap
     }
 
     protected static int measureIndividualMenuWidth(ListAdapter listAdapter, ViewGroup viewGroup, Context context, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
         int count = listAdapter.getCount();
-        ViewGroup viewGroup2 = viewGroup;
+        ViewGroup frameLayout = viewGroup;
         View view = null;
         int i3 = 0;
         int i4 = 0;
@@ -35,11 +35,11 @@ public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, Adap
                 view = null;
                 i4 = itemViewType;
             }
-            if (viewGroup2 == null) {
-                viewGroup2 = new FrameLayout(context);
+            if (frameLayout == null) {
+                frameLayout = new FrameLayout(context);
             }
-            view = listAdapter.getView(i5, view, viewGroup2);
-            view.measure(makeMeasureSpec, makeMeasureSpec2);
+            view = listAdapter.getView(i5, view, frameLayout);
+            view.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
             int measuredWidth = view.getMeasuredWidth();
             if (measuredWidth >= i2) {
                 return i2;

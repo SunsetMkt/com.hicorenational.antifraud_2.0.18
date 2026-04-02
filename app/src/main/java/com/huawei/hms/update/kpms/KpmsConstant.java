@@ -1,6 +1,6 @@
 package com.huawei.hms.update.kpms;
 
-/* loaded from: classes.dex */
+/* JADX INFO: loaded from: classes.dex */
 public class KpmsConstant {
     public static final String CALLER_PACKAGE_NAME = "kpms_key_caller_packagename";
     public static final String KIT_UPDATE_RESULT = "kit_update_result";
